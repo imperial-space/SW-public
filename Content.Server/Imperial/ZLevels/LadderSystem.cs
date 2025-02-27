@@ -24,8 +24,6 @@ namespace Content.Server.Imperial.Zlevels;
 
 public sealed class Laddersystem : SharedLadderSystem
 {
-    #region Events
-
     /// <summary>
     /// Инициализация стартового облика люка
     /// </summary>
@@ -82,16 +80,12 @@ public sealed class Laddersystem : SharedLadderSystem
     {
     }
 
-    #endregion
-
     /// <summary>
     /// Определяет как надо изменить визуал и какой звук надо воспроизводить
     /// </summary>
     public void ChangeStateDoor(LadderComponent comp, LadderDoorState doorState, EntityUid? user, bool noSound = false)
     {
     }
-
-    #region Change state indicator
 
     /// <summary>
     /// Изменяет визуал, воспроизводит звук
@@ -104,5 +98,4 @@ public sealed class Laddersystem : SharedLadderSystem
                                                 SoundSpecifier? sound = null)
     {
     }
-    #endregion
-
+}
