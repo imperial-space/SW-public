@@ -1,0 +1,13 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="{Loc 'medieval-map-window'}"
+    MinSize="790 790"
+    MaxSize="790 790"
+    SetSize="790 790"
+    Resizable="false"
+    MouseFilter="Pass"
+>
+    <ScrollContainer MouseFilter="Ignore" HorizontalExpand="True" VerticalExpand="True" Name="MapContainer">
+        <TextureRect Name="MapBackground" />
+    </ScrollContainer>
+</controls:FancyWindow>

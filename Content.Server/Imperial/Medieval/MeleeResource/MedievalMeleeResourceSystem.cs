@@ -10,6 +10,7 @@ using Content.Shared.Coordinates;
 using Robust.Shared.Player;
 using Robust.Server.Player;
 using Content.Server.MedievalMeleeResource.Components;
+using Content.Shared.Imperial.Medieval.MedievalItemRustComponent;
 
 namespace Content.Server.MedievalMeleeResource
 {
@@ -62,6 +63,13 @@ namespace Content.Server.MedievalMeleeResource
 
         private void CheckResource(EntityUid uid, MedievalMeleeResourceComponent component)
         {
+            if (TryComp<MedievalItemRustComponent>(uid, out var rustComponent))
+            {
+                rustComponent.RustPercentage = 1.0f - component.Resource / component.MaxResource;
+
+                Dirty(uid, rustComponent);
+            }
+
             if (component.Resource > 100f)
             {
                 if (TryComp<MeleeWeaponComponent>(uid, out var weapon))

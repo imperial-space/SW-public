@@ -1,0 +1,1192 @@
+using Content.Server.Cult.Components;
+using Content.Shared.Examine;
+using Content.Shared.Interaction;
+using Robust.Shared.Audio.Systems;
+using Robust.Server.Player;
+using System.Linq;
+using Content.Shared.Popups;
+using Content.Server.Body.Components;
+using Robust.Shared.Timing;
+using Content.Server.SpikeTrap.Components;
+using Content.Server.MagicBarrier.Components;
+using Content.Shared.Speech;
+using Content.Server.Chat.Systems;
+using Robust.Shared.Spawners;
+using Content.Shared.Damage;
+using Content.Shared.Nocturn.Components;
+using Content.Server.Administration.Systems;
+using Content.Shared.Imperial.Medieval.Magic.Mana;
+using Robust.Shared.Map.Components;
+
+namespace Content.Server.Cult
+{
+    public sealed partial class MedievalMeleeResourceSystem : EntitySystem
+    {
+        [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+        [Dependency] private readonly EntityLookupSystem _lookup = default!;
+        [Dependency] private readonly ChatSystem _chat = default!;
+        [Dependency] private readonly RejuvenateSystem _rejuv = default!;
+        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+        [Dependency] private readonly IGameTiming _timing = default!;
+
+        private const float DefaultReloadTimeSeconds = 13f;
+
+        private TimeSpan _nextCheckTime;
+
+        public override void Initialize()
+        {
+            base.Initialize();
+
+            SubscribeLocalEvent<CultBrushComponent, BeforeRangedInteractEvent>(OnUseBrushInHand);
+            SubscribeLocalEvent<CultCrystallComponent, BeforeRangedInteractEvent>(OnUseCrystallInHand);
+            SubscribeLocalEvent<CultCheckPictureComponent, ActivateInWorldEvent>(OnActivated);
+            SubscribeLocalEvent<CultCheckPictureComponent, ExaminedEvent>(OnExamine);
+            SubscribeLocalEvent<CultMemberComponent, MoveEvent>(OnChangeParent);
+
+            _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+        }
+
+        public override void Update(float frameTime)
+        {
+            base.Update(frameTime);
+
+            var curTime = _timing.CurTime;
+
+            if (curTime > _nextCheckTime)
+            {
+                foreach (var picture in EntityManager.EntityQuery<CultCheckPictureComponent>())
+                {
+                    if (picture.CollegiumUnlocked) return;
+                    foreach (var cultist in EntityManager.EntityQuery<CultMemberComponent>())
+                    {
+                        if (TryComp<CultMapBlockerComponent>(cultist.parent, out var blocker))
+                        {
+                            switch (blocker.Sector)
+                            {
+                                case "sector1":
+                                    if (!picture.Sector1)
+                                    {
+                                        _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
+                                    }
+                                    break;
+                                case "sector2":
+                                    if (!picture.Sector2)
+                                    {
+                                        _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
+                                    }
+                                    break;
+                                case "sector3":
+                                    if (!picture.Sector3)
+                                    {
+                                        _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
+                                    }
+                                    break;
+                                case "sector5":
+                                    if (!picture.CollegiumUnlocked)
+                                    {
+                                        _popupSystem.PopupEntity("Для разблокировки сектора с коллегией требуется особый ритуал, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
+                                    }
+                                    break;
+                                case "sector6":
+                                    if (!picture.Sector6)
+                                    {
+                                        _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
+                                    }
+                                    break;
+                                case "sector7":
+                                    if (!picture.Sector7)
+                                    {
+                                        _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
+                                    }
+                                    break;
+                                case "sector8":
+                                    if (!picture.Sector8)
+                                    {
+                                        _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
+                                    }
+                                    break;
+                                case "sector9":
+                                    if (!picture.Sector9)
+                                    {
+                                        _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    _nextCheckTime = curTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+                }
+            }
+        }
+
+        private void OnChangeParent(EntityUid uid, CultMemberComponent comp, ref MoveEvent args)
+        {
+            var newParent = args.NewPosition.EntityId;
+
+            if (!args.ParentChanged)
+                return;
+
+            var onGround = HasComp<MapGridComponent>(newParent);
+            comp.parent = newParent;
+        }
+        public void OnActivated(EntityUid uid, CultCheckPictureComponent comp, ActivateInWorldEvent args)
+        {
+            var xform = Transform(uid);
+            var coords = xform.Coordinates;
+            string figure = GetRuneFigure();
+
+
+            EnsureComp<SpeechComponent>(uid);
+            switch (figure)
+            {
+                case "christ":
+                    if (IsCultistsEnough(uid, 2))
+                    {
+                        foreach (var center in EntityManager.EntityQuery<CultRitualCenterComponent>())
+                        {
+                            var victim = GetVictim(center.Owner);
+                            if (victim != center.Owner)
+                            {
+                                if (TryComp<BloodstreamComponent>(victim, out var blood))
+                                {
+                                    if (blood.BleedAmount > 0)
+                                    {
+                                        _chat.TrySendInGameICMessage(uid, "Ритуал проведен успешно, связь цели с культом установлена. Если она будет постоянно жертвовать свою кровь около проклятых сосудов, это принесет проклятые криссталы.", InGameICChatType.Speak, false);
+                                        EnsureComp<CultCursedComponent>(victim);
+                                    }
+                                    else
+                                    {
+                                        _chat.TrySendInGameICMessage(uid, "На цели ритуала должен быть разрез", InGameICChatType.Speak, false);
+                                    }
+                                }
+                            }
+                            else
+                                _chat.TrySendInGameICMessage(uid, "Для ритуала связи необходима цель не-культист", InGameICChatType.Speak, false);
+                        }
+                    }
+                    break;
+                case "axe":
+                    if (IsCultistsEnough(uid, 2) && CheckCrystals(uid, comp, 0, 2))
+                    {
+                        Spawn("MedievalSpawnCultMelee", coords);
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва оружия проведен успешно", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "boat":
+                    if (IsCultistsEnough(uid, 5) && CheckCrystals(uid, comp, 2, 2))
+                    {
+                        foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+                        {
+                            barrier.Stability *= 0.7f;
+                        }
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал повреждения барьера выполнен успешно, его стабильность снижена на треть от текущей", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "key":
+                    if (IsCultistsEnough(uid, 5))
+                    {
+                        foreach (var picture in EntityManager.EntityQuery<CultCheckPictureComponent>())
+                        {
+                            if (picture.Sector1 && picture.Sector2 && picture.Sector3 && picture.Sector6 && picture.Sector7 && picture.Sector8 && picture.Sector9)
+                            {
+                                if (CheckCrystals(uid, comp, 5, 0))
+                                {
+                                    comp.CollegiumUnlocked = true;
+                                    Spawn("ShockWaveEffect", coords);
+                                    _chat.TrySendInGameICMessage(uid, "Ритуал открытия центральной части острова с коллегией выполнен успешно, смерть грядет!!", InGameICChatType.Speak, false);
+                                    _chat.DispatchGlobalAnnouncement("Целостность барьера повреждена, культисты смогли обойти защиту", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                                }
+                            }
+                            else
+                                _chat.TrySendInGameICMessage(uid, "Для ритуала открытия центральной части острова с коллегией необходимо разблокировать все остальные сектора", InGameICChatType.Speak, false);
+                        }
+
+                    }
+                    break;
+                case "swordshield":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, 1, 2))
+                    {
+                        Spawn("MedievalClothingOuterArmorCultUp", coords);
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва защитной робы выполнен успешно", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "wizard":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, 1, 2))
+                    {
+                        Spawn("MedievalClothingOuterArmorCultMana", coords);
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва магической робы выполнен успешно", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "heart":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, 0, 2))
+                    {
+                        Spawn("CompactDefibrillator", coords);
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва камня возрождения выполнен успешно", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "scroll":
+                    if (IsCultistsEnough(uid, 3))
+                    {
+                        if (comp.CollegiumUnlocked)
+                        {
+                            if (CheckCrystals(uid, comp, 1, 0))
+                            {
+                                Spawn("MedievalScrollBarrierBad", coords);
+                                Spawn("ShockWaveEffect", coords);
+                                _chat.TrySendInGameICMessage(uid, "Ритуал призыва проклятого свитка выполнен успешно, отнесите же его к барьеру!", InGameICChatType.Speak, false);
+                            }
+                        }
+                        else
+                            _chat.TrySendInGameICMessage(uid, "Для призыва проклятых свитков необходимо вначале разблокировать портал в центральную часть острова с коллегией магов.", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "wand":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, 1, 4))
+                    {
+                        Spawn("MedievalSpellBookRecodeNecro", coords);
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва магического гримуара выполнен успешно", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "sector1":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
+                    {
+                        comp.Sector1 = true;
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        comp.UnlockedSectors++;
+                        switch (comp.UnlockedSectors)
+                        {
+                            case 1: comp.NewSectorCost = 0; break;
+                            case 2: comp.NewSectorCost = 2; break;
+                            case 3: comp.NewSectorCost = 3; break;
+                            case 4: comp.NewSectorCost = 4; break;
+                            case 5: comp.NewSectorCost = 4; break;
+                            case 6: comp.NewSectorCost = 4; break;
+                        }
+
+                    }
+                    break;
+                case "sector2":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
+                    {
+                        comp.Sector2 = true;
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        comp.UnlockedSectors++;
+                        switch (comp.UnlockedSectors)
+                        {
+                            case 1: comp.NewSectorCost = 0; break;
+                            case 2: comp.NewSectorCost = 2; break;
+                            case 3: comp.NewSectorCost = 3; break;
+                            case 4: comp.NewSectorCost = 4; break;
+                            case 5: comp.NewSectorCost = 4; break;
+                            case 6: comp.NewSectorCost = 4; break;
+                        }
+                    }
+                    break;
+                case "sector3":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
+                    {
+                        comp.Sector3 = true;
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        comp.UnlockedSectors++;
+                        switch (comp.UnlockedSectors)
+                        {
+                            case 1: comp.NewSectorCost = 0; break;
+                            case 2: comp.NewSectorCost = 2; break;
+                            case 3: comp.NewSectorCost = 3; break;
+                            case 4: comp.NewSectorCost = 4; break;
+                            case 5: comp.NewSectorCost = 4; break;
+                            case 6: comp.NewSectorCost = 4; break;
+                        }
+                    }
+                    break;
+                case "sector6":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
+                    {
+                        comp.Sector6 = true;
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        comp.UnlockedSectors++;
+                        switch (comp.UnlockedSectors)
+                        {
+                            case 1: comp.NewSectorCost = 0; break;
+                            case 2: comp.NewSectorCost = 2; break;
+                            case 3: comp.NewSectorCost = 3; break;
+                            case 4: comp.NewSectorCost = 4; break;
+                            case 5: comp.NewSectorCost = 4; break;
+                            case 6: comp.NewSectorCost = 4; break;
+                        }
+                    }
+                    break;
+                case "sector7":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
+                    {
+                        comp.Sector7 = true;
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        comp.UnlockedSectors++;
+                        switch (comp.UnlockedSectors)
+                        {
+                            case 1: comp.NewSectorCost = 0; break;
+                            case 2: comp.NewSectorCost = 2; break;
+                            case 3: comp.NewSectorCost = 3; break;
+                            case 4: comp.NewSectorCost = 4; break;
+                            case 5: comp.NewSectorCost = 4; break;
+                            case 6: comp.NewSectorCost = 4; break;
+                        }
+                    }
+                    break;
+                case "sector8":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
+                    {
+                        comp.Sector8 = true;
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        comp.UnlockedSectors++;
+                        switch (comp.UnlockedSectors)
+                        {
+                            case 1: comp.NewSectorCost = 0; break;
+                            case 2: comp.NewSectorCost = 2; break;
+                            case 3: comp.NewSectorCost = 3; break;
+                            case 4: comp.NewSectorCost = 4; break;
+                            case 5: comp.NewSectorCost = 4; break;
+                            case 6: comp.NewSectorCost = 4; break;
+                        }
+                    }
+                    break;
+                case "sector9":
+                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
+                    {
+                        comp.Sector9 = true;
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        comp.UnlockedSectors++;
+                        switch (comp.UnlockedSectors)
+                        {
+                            case 1: comp.NewSectorCost = 0; break;
+                            case 2: comp.NewSectorCost = 2; break;
+                            case 3: comp.NewSectorCost = 3; break;
+                            case 4: comp.NewSectorCost = 4; break;
+                            case 5: comp.NewSectorCost = 4; break;
+                            case 6: comp.NewSectorCost = 4; break;
+                        }
+                    }
+                    break;
+                case "crystall":
+                    if (IsCultistsEnough(uid, 1) && CheckCrystals(uid, comp, 0, 3))
+                    {
+                        Spawn("MedievalCultCrystallBloody", coords);
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Алые кристаллы успешно конвертированы в кровавый", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "stable":
+                    if (IsCultistsEnough(uid, 1) && CheckCrystals(uid, comp, 0, 0))
+                    {
+                        double stab = 0f;
+                        double speed = 0f;
+                        foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+                        {
+                            stab = Math.Round(barrier.Stability, 2);
+                            speed = Math.Round(barrier.Lose, 2);
+                        }
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Стабильность барьера " + stab + ", скорость расхода стабильности " + speed, InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "nocturn":
+                    if (IsCultistsEnough(uid, 1))
+                    {
+                        if (TryComp<NocturnComponent>(args.User, out var nocturn))
+                        {
+                            if (CheckCrystals(uid, comp, 0, 1))
+                            {
+                                nocturn.BloodLevel = 380f;
+                                Spawn("ShockWaveEffect", coords);
+                                _chat.TrySendInGameICMessage(uid, "Уровень крови ноктюрна пополнен", InGameICChatType.Speak, false);
+                            }
+                        }
+                        else
+                            _chat.TrySendInGameICMessage(uid, "Этот ритуал может провести только ноктюрн", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "heal":
+                    if (IsCultistsEnough(uid, 2) && CheckCrystals(uid, comp, 0, 2))
+                    {
+                        foreach (var target in _lookup.GetEntitiesInRange(coords, 3.5f))
+                        {
+                            if (HasComp<CultMemberComponent>(target))
+                            {
+                                _rejuv.PerformRejuvenate(target);
+                            }
+                        }
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Все культисты, учавствующие в ритуале, восстановились от ран", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "food":
+                    if (IsCultistsEnough(uid, 2) && CheckCrystals(uid, comp, 0, 1))
+                    {
+                        Spawn("DrinkWineGlass", coords);
+                        Spawn("DrinkWineGlass", coords);
+                        Spawn("DrinkWineGlass", coords);
+                        Spawn("DrinkWineGlass", coords);
+                        Spawn("DrinkWineGlass", coords);
+                        Spawn("FoodGrape", coords);
+                        Spawn("FoodMeatChickenFried", coords);
+                        Spawn("FoodCheese", coords);
+                        Spawn("FoodBreadPlain", coords);
+                        Spawn("FoodMeatCutletCooked", coords);
+                        Spawn("FoodMeatChickenCooked", coords);
+                        Spawn("FoodBakedBunMeat", coords);
+                        Spawn("FoodGrape", coords);
+                        Spawn("FoodMeatChickenFried", coords);
+                        Spawn("FoodCheese", coords);
+                        Spawn("FoodBreadPlain", coords);
+                        Spawn("FoodMeatCutletCooked", coords);
+                        Spawn("FoodMeatChickenCooked", coords);
+                        Spawn("FoodBakedBunMeat", coords);
+                        Spawn("ShockWaveEffect", coords);
+                        _chat.TrySendInGameICMessage(uid, "Да будет пиршество", InGameICChatType.Speak, false);
+                    }
+                    break;
+                case "shard":
+                    foreach (var center in EntityManager.EntityQuery<CultRitualCenterComponent>())
+                    {
+                        if (IsCultistsEnough(uid, 2) && CheckCrystals(uid, comp, 0, 0))
+                        {
+                            var victim = GetHolyItem(center.Owner, "shard");
+                            if (victim != center.Owner)
+                            {
+                                QueueDel(victim);
+                                Spawn("MedievalCultCrystallRed", coords);
+                                Spawn("MedievalCultCrystallRed", coords);
+                                Spawn("MedievalCultCrystallRed", coords);
+                                Spawn("ShockWaveEffect", coords);
+                                _chat.TrySendInGameICMessage(uid, "Осколок хрусталя успешно преобразован в алые кристаллы", InGameICChatType.Speak, false);
+                            }
+                        }
+                    }
+                    break;
+                case "foliant":
+                    foreach (var center in EntityManager.EntityQuery<CultRitualCenterComponent>())
+                    {
+                        if (IsCultistsEnough(uid, 2) && CheckCrystals(uid, comp, 0, 0))
+                        {
+                            var victim = GetHolyItem(center.Owner, "foliant");
+                            if (victim != center.Owner)
+                            {
+                                QueueDel(victim);
+                                Spawn("MedievalCultCrystallRed", coords);
+                                Spawn("MedievalCultCrystallRed", coords);
+                                Spawn("MedievalCultCrystallRed", coords);
+                                Spawn("MedievalCultCrystallRed", coords);
+                                Spawn("MedievalCultCrystallRed", coords);
+                                Spawn("ShockWaveEffect", coords);
+                                _chat.TrySendInGameICMessage(uid, "Проклятый фолиант успешно преобразован кристаллы", InGameICChatType.Speak, false);
+                            }
+                        }
+                    }
+                    break;
+                case "manaregen":
+                    if (IsCultistsEnough(uid, 1) && CheckCrystals(uid, comp, 1, 2))
+                    {
+                        if (TryComp<ManaComponent>(args.User, out var mana) && mana.MaxManaRaceModifier != 0)
+                        {
+                            mana.Regen *= 1.25f;
+                            Spawn("ShockWaveEffect", coords);
+                            _chat.TrySendInGameICMessage(uid, "Скорость восстановления маны у проводящего ритуал повышена", InGameICChatType.Speak, false);
+                        }
+                        else
+                            _chat.TrySendInGameICMessage(uid, "Проводящий ритуал не может колдовать", InGameICChatType.Speak, false);
+                    }
+                    break;
+
+                default:
+                    _chat.TrySendInGameICMessage(uid, "Руна выполненна неверно, покайтесь!", InGameICChatType.Speak, false);
+                    break;
+            }
+            foreach (var rune in EntityManager.EntityQuery<CultBloodPaintComponent>())
+            {
+                if (rune.Bloody)
+                {
+                    EnsureComp<TimedDespawnComponent>(rune.Owner, out var desp);
+                    desp.Lifetime = 0.1f;
+                }
+            }
+
+        }
+
+        private bool CheckCrystals(EntityUid uid, CultCheckPictureComponent comp, int bloodyCost, int redCost)
+        {
+            if (comp.BloodyCrystall < bloodyCost)
+            {
+                _chat.TrySendInGameICMessage(uid, $"Для ритуала недостаточно кровавых кристаллов, необходимо {bloodyCost}", InGameICChatType.Speak, false);
+                return false;
+            }
+
+            if (comp.RedCrystall < redCost)
+            {
+                _chat.TrySendInGameICMessage(uid, $"Для ритуала недостаточно алых кристаллов, необходимо {redCost}", InGameICChatType.Speak, false);
+                return false;
+            }
+
+            comp.BloodyCrystall -= bloodyCost;
+            comp.RedCrystall -= redCost;
+            return true;
+        }
+
+        private void OnExamine(EntityUid uid, CultCheckPictureComponent comp, ExaminedEvent args)
+        {
+
+            args.PushMarkup("Сейчас заряжено [color=red]" + comp.BloodyCrystall.ToString() + " кровавых[/color] и [color=pink]" + comp.RedCrystall.ToString() + " алых[/color] кристаллов");
+
+        }
+
+        public bool IsCultistsEnough(EntityUid uid, int need)
+        {
+            foreach (var center in EntityManager.EntityQuery<CultRitualCenterComponent>())
+            {
+                if (GetCultistCount(center.Owner) < need)
+                {
+                    _chat.TrySendInGameICMessage(uid, "Руна верна, недостаточно членов культа для ритуала, необходимо минимум " + need.ToString(), InGameICChatType.Speak, false);
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        public int GetCultistCount(EntityUid center)
+        {
+            var xform = Transform(center);
+            var coords = xform.Coordinates;
+            int count = 0;
+            foreach (var target in _lookup.GetEntitiesInRange(coords, 3.5f))
+            {
+                if (HasComp<CultMemberComponent>(target))
+                {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        public EntityUid GetVictim(EntityUid center)
+        {
+            var xform = Transform(center);
+            var coords = xform.Coordinates;
+            foreach (var target in _lookup.GetEntitiesInRange(coords, 3.5f))
+            {
+                if (!HasComp<CultMemberComponent>(target) && HasComp<MedievalSpikeTargetComponent>(target))
+                {
+                    return target;
+                }
+            }
+            return center;
+        }
+
+
+        public EntityUid GetHolyItem(EntityUid center, string holyType)
+        {
+            var xform = Transform(center);
+            var coords = xform.Coordinates;
+            foreach (var target in _lookup.GetEntitiesInRange(coords, 3.5f))
+            {
+                if (TryComp<CultHolyItemComponent>(target, out var holy) && holy.HolyItemType == holyType)
+                {
+                    return target;
+                }
+            }
+            return center;
+        }
+        public void OnUseBrushInHand(EntityUid uid, CultBrushComponent comp, BeforeRangedInteractEvent args)
+        {
+            if (!args.CanReach)
+                return;
+            OnUseBrush(args.Target, args.User, args.Used, comp);
+        }
+
+        public void OnUseBrush(EntityUid? target, EntityUid user, EntityUid used, CultBrushComponent comp)
+        {
+            if (target == null)
+                return;
+            if (TryComp<CultBloodPaintComponent>(target, out var paint) && paint != null)
+            {
+                var xform = Transform(target.Value);
+                var coords = xform.Coordinates;
+                if (!paint.Bloody)
+                {
+
+                    var newBrush = Spawn("MedievalCultBrushBloody", coords);
+                    EnsureComp<CultBloodPaintComponent>(newBrush, out var newPaint);
+                    newPaint.PosX = paint.PosX;
+                    newPaint.PosY = paint.PosY;
+                }
+                else
+                {
+                    var newBrush = Spawn("MedievalCultBrushFine", coords);
+                    EnsureComp<CultBloodPaintComponent>(newBrush, out var newPaint);
+                    newPaint.PosX = paint.PosX;
+                    newPaint.PosY = paint.PosY;
+                }
+                QueueDel(target);
+            }
+        }
+        public void OnUseCrystallInHand(EntityUid uid, CultCrystallComponent comp, BeforeRangedInteractEvent args)
+        {
+            if (!args.CanReach)
+                return;
+            OnUseCrystall(args.Target, args.User, args.Used, comp);
+        }
+
+        public void OnUseCrystall(EntityUid? target, EntityUid user, EntityUid used, CultCrystallComponent comp)
+        {
+            if (target == null)
+                return;
+            if (TryComp<CultCheckPictureComponent>(target, out var pict) && pict != null)
+            {
+                if (comp.Bloody)
+                    pict.BloodyCrystall += 1;
+                else
+                    pict.RedCrystall += 1;
+                QueueDel(used);
+            }
+        }
+        public string GetRuneFigure()
+        {
+            var runeCoordinates = FindRuneCoordinates();
+
+            if (CheckForChrist(runeCoordinates))
+                return "christ"; // накладывание на человека эффекта проклятой метки
+            if (CheckForAxe(runeCoordinates))
+                return "axe"; // призыв оружия
+            if (CheckForBoat(runeCoordinates))
+                return "boat"; // дамаг по барьеру
+            if (CheckForKey(runeCoordinates))
+                return "key"; // открытие финального телепорта ПОСЛе того, как культисты открыли для себя все секторы
+            if (CheckForSwordShield(runeCoordinates))
+                return "swordshield"; // покупка брони
+            if (CheckForWizard(runeCoordinates))
+                return "wizard"; // покупка гримуара
+            if (CheckForHeart(runeCoordinates))
+                return "heart"; // покупка камня возрождения
+            if (CheckForScroll(runeCoordinates))
+                return "scroll"; // призыв проклятого свитка, которого надо отнести к барьеру, анлок ПОСЛЕ ключа только
+            if (CheckForWand(runeCoordinates))
+                return "wand"; // призыв гримуара
+            if (CheckForSector1(runeCoordinates))
+                return "sector1"; //сектор
+            if (CheckForSector2(runeCoordinates))
+                return "sector2"; //сектор
+            if (CheckForSector3(runeCoordinates))
+                return "sector3"; //сектор
+            if (CheckForSector6(runeCoordinates))
+                return "sector6"; //сектор
+            if (CheckForSector7(runeCoordinates))
+                return "sector7"; //сектор
+            if (CheckForSector8(runeCoordinates))
+                return "sector8"; //сектор
+            if (CheckForSector9(runeCoordinates))
+                return "sector9"; //сектор
+            if (CheckForCrystall(runeCoordinates))
+                return "crystall"; //кристалл
+            if (CheckForStable(runeCoordinates))
+                return "stable"; //стабильность
+            if (CheckForNocturn(runeCoordinates))
+                return "nocturn"; //Ноктюрн
+            if (CheckForHeal(runeCoordinates))
+                return "heal"; //Лечение
+            if (CheckForFood(runeCoordinates))
+                return "food"; //еда
+            if (CheckForShard(runeCoordinates))
+                return "shard"; //осколок
+            if (CheckForFoliant(runeCoordinates))
+                return "foliant"; //Книга
+            if (CheckForManaRegen(runeCoordinates))
+                return "manaregen"; //Восстановление маны
+
+            return "nothing";
+        }
+
+        private List<(int X, int Y)> FindRuneCoordinates()
+        {
+            List<(int X, int Y)> coordinates = new List<(int X, int Y)>();
+
+            foreach (var rune in EntityManager.EntityQuery<CultBloodPaintComponent>())
+            {
+                if (rune.Bloody)
+                {
+                    coordinates.Add((rune.PosX, rune.PosY));
+                }
+            }
+            return coordinates;
+        }
+
+        public bool IsInCoords(List<(int X, int Y)> coordinates, int CellX, int CellY)
+        {
+            foreach (var coordinate in coordinates)
+            {
+                if (coordinate.ToString() == "(" + CellX + ", " + CellY + ")") return true;
+            }
+            return false;
+        }
+
+        private bool CheckFigure(List<(int X, int Y)> coordinates, List<(int X, int Y)> whitePixels)
+        {
+            var newCoordinates = coordinates.ToList();
+
+            foreach (var pixel in whitePixels)
+            {
+                if (!IsInCoords(newCoordinates, pixel.X, pixel.Y))
+                    return false;
+                else
+                    newCoordinates.Remove((pixel.X, pixel.Y)); // Исправление: Создаём новый ValueTuple
+            }
+
+            if (newCoordinates.Any()) // Более лаконичная проверка на пустоту
+                return false;
+            return true;
+        }
+
+        private bool CheckForChrist(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+        (2, 1), (6, 1), (9, 1),
+        (1, 2), (5, 2), (6, 2), (7, 2), (10, 2),
+        (6, 3),
+        (3, 4), (4, 4), (5, 4), (6, 4), (7, 4), (8, 4), (9, 4),
+        (6, 5), (7, 5),
+        (6, 6), (8, 6),
+        (6, 7), (7, 7),
+        (5, 8), (6, 8),
+        (1, 9), (4, 9), (6, 9), (10, 9),
+        (2, 10), (5, 10), (6, 10), (9, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForAxe(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+        (3, 1), (5, 1), (7, 1),
+        (2, 2), (5, 2), (8, 2),
+        (2, 3), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3), (8, 3),
+        (2, 4), (3, 4), (4, 4), (5, 4), (6, 4), (7, 4), (8, 4),
+        (2, 5), (5, 5), (8, 5),
+        (3, 6), (5, 6), (7, 6),
+        (5, 7), (9, 7), (10, 7),
+        (4, 8), (5, 8), (6, 8), (7, 8), (8, 8), (9, 8), (10, 8),
+        (4, 9), (5, 9), (6, 9), (7, 9), (8, 9), (9, 9), (10, 9),
+        (5, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForBoat(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+        (5, 1), (6, 1),
+        (2, 2), (5, 2), (6, 2), (9, 2),
+        (3, 3), (4, 3), (5, 3), (6, 3), (7, 3), (8, 3),
+        (2, 4), (5, 4), (6, 4), (9, 4),
+        (1, 5), (5, 5), (6, 5), (10, 5),
+        (2, 6), (5, 6), (6, 6), (9, 6),
+        (3, 7), (4, 7), (5, 7), (6, 7), (7, 7), (8, 7),
+        (2, 8), (5, 8), (6, 8), (9, 8),
+        (4, 9), (7, 9),
+        (3, 10), (4, 10), (7, 10), (8, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForKey(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+        (2, 1), (3, 1),
+        (1, 2), (4, 2), (6, 2), (7, 2), (8, 2), (9, 2),
+        (1, 3), (4, 3), (8, 3),
+        (2, 4), (3, 4), (7, 4),
+        (2, 5), (8, 5),
+        (2, 6), (7, 6),
+        (2, 7), (3, 7), (4, 7), (8, 7),
+        (2, 8), (7, 8),
+        (1, 9), (2, 9), (3, 9), (4, 9), (6, 9), (7, 9), (8, 9), (9, 9)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForSwordShield(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+        (3, 1), (6, 1), (8, 1), (10, 1),
+        (2, 2), (3, 2),
+        (2, 3), (6, 3), (8, 3), (10, 3),
+        (2, 4), (3, 4), (6, 4), (7, 4), (8, 4), (9, 4), (10, 4),
+        (3, 5), (6, 5), (7, 5), (8, 5), (9, 5), (10, 5),
+        (2, 6), (3, 6), (6, 6), (7, 6), (8, 6), (9, 6), (10, 6),
+        (2, 7), (7, 7), (8, 7), (9, 7),
+        (1, 8), (2, 8), (3, 8), (4, 8),(8, 8),
+        (2, 9), (3, 9),
+        (2, 10), (3, 10), (8, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForWizard(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+        (1, 1), (9, 1),
+        (1, 2), (3, 2), (4, 2), (5, 2), (8, 2), (9, 2), (10, 2),
+        (3, 3), (4, 3), (5, 3), (6, 3), (9, 3),
+        (2, 4), (4, 4), (5, 4), (6, 4), (9, 4),
+        (4, 5), (5, 5), (6, 5), (7, 5),
+        (4, 6), (5, 6), (6, 6), (7, 6), (10, 6),
+        (1, 7), (3, 7), (4, 7), (7, 7), (8, 7), (10, 7),
+        (1, 8), (3, 8), (4, 8), (7, 8), (8, 8),
+        (3, 9), (4, 9), (5, 9), (6, 9), (7, 9), (8, 9),
+        (2, 10), (3, 10), (4, 10), (5, 10), (6, 10), (7, 10), (8, 10), (9, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForHeart(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+        (2, 1), (9, 1),
+        (1, 2), (3, 2), (4, 2), (7, 2), (8, 2), (10, 2),
+        (2, 3), (5, 3), (6, 3), (9, 3),
+        (2, 4), (4, 4), (7, 4), (9, 4),
+        (2, 5), (4, 5), (7, 5), (9, 5),
+        (2, 6), (5, 6), (6, 6), (9, 6),
+        (3, 7), (8, 7),
+        (2, 8), (4, 8), (7, 8), (9, 8),
+        (2, 9), (3, 9), (5, 9), (6, 9), (8, 9), (9, 9),
+        (1, 10), (10, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForScroll(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+        (3, 2), (4, 2), (5, 2), (6, 2), (7, 2), (8, 2),
+        (2, 3), (9, 3),
+        (3, 4), (4, 4), (5, 4), (6, 4), (7, 4), (8, 4),
+        (3, 5), (8, 5),
+        (3, 6), (5, 6), (6, 6), (8, 6),
+        (3, 7), (8, 7),
+        (3, 8), (6, 8), (7, 8), (8, 8),
+        (3, 9), (4, 9), (5, 9)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForWand(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+        (1, 1), (10, 1),
+        (3, 2), (6, 2), (8, 2),
+        (2, 3), (4, 3), (7, 3), (8, 3), (9, 3),
+        (3, 4), (6, 4), (7, 4), (8, 4),
+        (1, 5), (6, 5), (7, 5), (9, 5),
+        (5, 6),
+        (4, 7), (8, 7),
+        (3, 8), (7, 8), (9, 8),
+        (2, 9), (8, 9),
+        (1, 10), (6, 10), (10, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForSector1(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(2, 1), (3, 1),
+(1, 2), (4, 2),
+(1, 3), (4, 3),
+(2, 4), (3, 4),
+(5, 5), (6, 5),
+(5, 6), (6, 6)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForSector2(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(5, 1), (6, 1),
+(4, 2), (7, 2),
+(4, 3), (7, 3),
+(5, 4), (6, 4),
+(5, 5), (6, 5),
+(5, 6), (6, 6)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForSector3(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(8, 1), (9, 1),
+(7, 2), (10, 2),
+(7, 3), (10, 3),
+(8, 4), (9, 4),
+(5, 5), (6, 5),
+(5, 6), (6, 6)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForSector6(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(8, 4), (9, 4),
+(5, 5), (6, 5), (7, 5), (10, 5),
+(5, 6), (6, 6), (7, 6), (10, 6),
+(8, 7), (9, 7)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForSector7(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(6, 5), (5, 5),
+(6, 6), (5, 6),
+(2, 7), (3, 7),
+(1, 8), (4, 8),
+(1, 9), (4, 9),
+(2, 10), (3, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForSector8(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(6, 5), (5, 5),
+(6, 6), (5, 6),
+(6, 7), (5, 7),
+(4, 8), (7, 8),
+(4, 9), (7, 9),
+(6, 10), (5, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForSector9(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(6, 5), (5, 5),
+(6, 6), (5, 6),
+(8, 7), (9, 7),
+(7, 8), (10, 8),
+(7, 9), (10, 9),
+(8, 10), (9, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForCrystall(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(5, 1), (6, 1),
+(2, 2), (6, 2), (5, 2), (9, 2),
+(7, 3), (4, 3), (5, 3), (6, 3),
+(3, 4), (5, 4), (6, 4), (8, 4),
+(2, 5), (4, 5), (7, 5), (9, 5),
+(2, 6), (4, 6), (7, 6), (9, 6),
+(2, 7), (5, 7), (6, 7), (9, 7),
+(1, 8), (3, 8), (8, 8), (10, 8),
+(4, 9), (5, 9), (6, 9), (7, 9),
+(3, 10), (8, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForStable(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(8, 1), (9, 1),
+(3, 2), (7, 2), (10, 2),
+(2, 3), (3, 3), (4, 3), (7, 3), (10, 3),
+(3, 4), (7, 4), (10, 4),
+(3, 5), (6, 5), (8, 5), (9, 5),
+(3, 6), (6, 6), (8, 6),
+(3, 7), (5, 7),
+(3, 8), (4, 8), (8, 8),
+(3, 9)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForNocturn(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(2, 2), (5, 2), (6, 2), (9, 2),
+(4, 3), (7, 3),
+(2, 4), (4, 4), (5, 4), (6, 4), (7, 4), (9, 4),
+(1, 5), (2, 5), (3, 5), (4, 5), (7, 5), (8, 5), (9, 5), (10, 5),
+(2, 6), (4, 6), (7, 6), (9, 6),
+(3, 7), (5, 7), (6, 7), (8, 7),
+(1, 8), (3, 8), (4, 8), (7, 8), (8, 8), (10, 8),
+(3, 9), (8, 9),
+(4, 10), (5, 10), (6, 10), (7, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForHeal(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(2, 1), (10, 1),
+(1, 2), (2, 2), (7, 2), (8, 2), (9, 2),
+(4, 3), (6, 3), (9, 3),
+(3, 4), (5, 4), (9, 4),
+(4, 5), (6, 5), (8, 5),
+(3, 6), (7, 6),
+(2, 7), (6, 7), (8, 7),
+(2, 8), (5, 8), (7, 8),
+(2, 9), (3, 9), (4, 9), (9, 9), (10, 9),
+(1, 10), (9, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForFood(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(4, 1), (7, 1), (8, 1), (9, 1), (10, 1),
+(2, 2), (6, 2), (10, 2),
+(6, 3),
+(3, 4), (4, 4), (7, 4), (8, 4),
+(2, 5), (4, 5), (6, 5), (7, 5), (9, 5),
+(3, 6), (4, 6), (5, 6), (6, 6), (7, 6), (8, 6),
+(4, 7), (5, 7), (6, 7), (7, 7), (10, 7),
+(2, 8), (5, 8), (6, 8),
+(5, 9), (6, 9), (9, 9),
+(4, 10), (5, 10), (6, 10), (7, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForShard(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(3, 1), (8, 1),
+(4, 2), (7, 2),
+(1, 3), (4, 3), (5, 3), (6, 3), (7, 3), (10, 3),
+(2, 4), (3, 4), (5, 4), (6, 4), (8, 4), (9, 4),
+(1, 5), (3, 5), (8, 5), (10, 5),
+(3, 6), (8, 6),
+(2, 7), (3, 7), (5, 7), (6, 7), (8, 7), (9, 7),
+(1, 8), (4, 8), (5, 8), (6, 8), (7, 8), (10, 8),
+(6, 9), (5, 9),
+(6, 10), (5, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForFoliant(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(4, 1), (7, 1),
+(3, 2), (4, 2), (5, 2), (6, 2), (7, 2), (8, 2),
+(2, 3), (5, 3), (6, 3), (9, 3),
+(3, 4), (5, 4), (6, 4), (8, 4),
+(4, 5), (7, 5),
+(2, 6), (3, 6), (4, 6), (7, 6), (8, 6), (9, 6),
+(2, 7), (5, 7), (6, 7), (9, 7),
+(4, 8), (5, 8), (6, 8), (7, 8),
+(3, 9), (4, 9), (5, 9), (6, 9), (7, 9), (8, 9),
+(6, 10), (5, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+        private bool CheckForManaRegen(List<(int X, int Y)> coordinates)
+        {
+            var whitePixels = new List<(int X, int Y)>
+    {
+(2, 1), (9, 1),
+(1, 2), (2, 2), (5, 2), (6, 2), (9, 2), (10, 2),
+(2, 3), (4, 3), (6, 3), (9, 3),
+(1, 4), (4, 4), (5, 4), (6, 4), (7, 4), (10, 4),
+(3, 5), (8, 5),
+(4, 6), (7, 6),
+(6, 7), (5, 7),
+(1, 8), (4, 8), (6, 8), (10, 8),
+(1, 9), (2, 9), (9, 9), (10, 9),
+(4, 10), (5, 10), (6, 10), (7, 10)
+    };
+
+            return CheckFigure(coordinates, whitePixels);
+        }
+
+
+    }
+}
