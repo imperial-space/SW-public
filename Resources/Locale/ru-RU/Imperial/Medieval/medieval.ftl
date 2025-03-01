@@ -4904,3 +4904,4 @@ ent-MedievalCommsCrystallColl = кристалл связи коллегии
 ent-MedievalCommsCrystallLeg = кристалл связи легиона
     .desc = Кристалл связи позволяет получать сообщения лидера фракции даже с другого конца острова.
     .suffix = { "Средневековье" }
+dateVerbSpellward = Представиться

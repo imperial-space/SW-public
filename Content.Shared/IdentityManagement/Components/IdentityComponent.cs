@@ -15,6 +15,8 @@ public sealed partial class IdentityComponent : Component
 {
     [ViewVariables]
     public ContainerSlot IdentityEntitySlot = default!;
+    [ViewVariables(VVAccess.ReadWrite)]
+    public List<EntityUid> ListEntities = new() { };
 }
 
 /// <summary>

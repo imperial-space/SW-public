@@ -262,6 +262,7 @@
     bloodMultiplier: 1
     fresh: true
   - type: RandomSteal
+  - type: IdentityFaction
 # Imperial Medieval End
 
 - type: entity

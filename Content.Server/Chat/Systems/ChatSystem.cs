@@ -6,7 +6,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.Chat.Managers;
 using Content.Server.GameTicking;
 using Content.Server.Players.RateLimiting;
-using Content.Server.Speech.Prototypes;
+using Content.Server.Speech.Components;
 using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
@@ -66,7 +66,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
-    public const string DefaultAnnouncementSound = "/Audio/Imperial/Medieval/horn.ogg"; // Corvax-Announcements
+    public const string DefaultAnnouncementSound = "/Audio/Corvax/Announcements/announce.ogg"; // Corvax-Announcements
     public const string CentComAnnouncementSound = "/Audio/Corvax/Announcements/centcomm.ogg"; // Corvax-Announcements
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -147,10 +147,9 @@ public sealed partial class ChatSystem : SharedChatSystem
         IConsoleShell? shell = null,
         ICommonSession? player = null, string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false,
-        Color? color = null) // Impreial Medieval Magic
+        bool ignoreActionBlocker = false)
     {
-        TrySendInGameICMessage(source, message, desiredType, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker, color);
+        TrySendInGameICMessage(source, message, desiredType, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, hideLog, shell, player, nameOverride, checkRadioPrefix, ignoreActionBlocker);
     }
 
     /// <summary>
@@ -174,8 +173,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         ICommonSession? player = null,
         string? nameOverride = null,
         bool checkRadioPrefix = true,
-        bool ignoreActionBlocker = false,
-        Color? color = null // Impreial Medieval Magic
+        bool ignoreActionBlocker = false
         )
     {
         if (HasComp<GhostComponent>(source))
@@ -251,10 +249,10 @@ public sealed partial class ChatSystem : SharedChatSystem
         switch (desiredType)
         {
             case InGameICChatType.Speak:
-                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker, color); // Imperial Medieval Magic
+                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker);
                 break;
             case InGameICChatType.Whisper:
-                SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker, color); // Imperial Medieval Magic
+                SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker);
                 break;
             case InGameICChatType.Emote:
                 SendEntityEmote(source, message, range, nameOverride, hideLog: hideLog, ignoreActionBlocker: ignoreActionBlocker);
@@ -419,8 +417,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         ChatTransmitRange range,
         string? nameOverride,
         bool hideLog = false,
-        bool ignoreActionBlocker = false,
-        Color? color = null // Impreial Medieval Magic
+        bool ignoreActionBlocker = false
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -452,18 +449,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         name = FormattedMessage.EscapeText(name);
 
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-manager-entity-say-bold-wrap-message" : "chat-manager-entity-say-wrap-message",
-            ("entityName", name),
+            ("entityName", "SpellwardIdentityReplace"),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
             ("message", FormattedMessage.EscapeText(message)));
-
-        // Impreial Medieval Magic Start
-
-        if (color != null)
-            wrappedMessage = InjectTagInsideTag(new(ChatChannel.None, wrappedMessage, wrappedMessage, GetNetEntity(source), null), "BubbleContent", "color", color.Value.ToHex());
-
-        // Impreial Medieval Magic End
 
         SendInVoiceRange(ChatChannel.Local, message, wrappedMessage, source, range);
 
@@ -500,8 +490,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         RadioChannelPrototype? channel,
         string? nameOverride,
         bool hideLog = false,
-        bool ignoreActionBlocker = false,
-        Color? color = null // Impreial Medieval Magic
+        bool ignoreActionBlocker = false
         )
     {
         if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)
@@ -530,22 +519,14 @@ public sealed partial class ChatSystem : SharedChatSystem
         name = FormattedMessage.EscapeText(name);
 
         var wrappedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", name), ("message", FormattedMessage.EscapeText(message)));
+            ("entityName", "SpellwardIdentityReplace"), ("message", FormattedMessage.EscapeText(message)));
 
         var wrappedobfuscatedMessage = Loc.GetString("chat-manager-entity-whisper-wrap-message",
-            ("entityName", nameIdentity), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
+            ("entityName", "SpellwardIdentityReplace"), ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
 
         var wrappedUnknownMessage = Loc.GetString("chat-manager-entity-whisper-unknown-wrap-message",
             ("message", FormattedMessage.EscapeText(obfuscatedMessage)));
 
-        // Impreial Medieval Magic Start
-        if (color != null)
-        {
-            wrappedMessage = InjectTagInsideTag(new(ChatChannel.None, wrappedMessage, wrappedMessage, GetNetEntity(source), null), "BubbleContent", "color", color.Value.ToHex());
-            wrappedobfuscatedMessage = InjectTagInsideTag(new(ChatChannel.None, wrappedobfuscatedMessage, wrappedobfuscatedMessage, GetNetEntity(source), null), "BubbleContent", "color", color.Value.ToHex());
-            wrappedUnknownMessage = InjectTagInsideTag(new(ChatChannel.None, wrappedUnknownMessage, wrappedUnknownMessage, GetNetEntity(source), null), "BubbleContent", "color", color.Value.ToHex());
-        }
-        // Impreial Medieval Magic End
 
         foreach (var (session, data) in GetRecipients(source, WhisperMuffledRange))
         {
@@ -611,7 +592,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         // Emotes use Identity.Name, since it doesn't actually involve your voice at all.
         var wrappedMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
-            ("entityName", name),
+            ("entityName", "SpellwardIdentityReplace"),
             ("entity", ent),
             ("message", FormattedMessage.RemoveMarkupOrThrow(action)));
 
@@ -642,12 +623,12 @@ public sealed partial class ChatSystem : SharedChatSystem
         var wrappedMessage = "";
         if (_sponsorsManager.TryGetInfo(player.UserId, out var sponsorData) && sponsorData.HavePriorityJoin == true && sponsorData.OOCColor != null)
             wrappedMessage = Loc.GetString("chat-manager-entity-looc-patron-wrap-message",
-                    ("entityName", name),
+                    ("entityName", "SpellwardIdentityReplace"),
                     ("message", FormattedMessage.EscapeText(message)),
                     ("patronColor", sponsorData.OOCColor));
         else
             wrappedMessage = Loc.GetString("chat-manager-entity-looc-wrap-message",
-                ("entityName", name),
+                ("entityName", "SpellwardIdentityReplace"),
                 ("message", FormattedMessage.EscapeText(message)));
 
         SendInVoiceRange(ChatChannel.LOOC, message, wrappedMessage, source, hideChat ? ChatTransmitRange.HideChat : ChatTransmitRange.Normal, player.UserId);
