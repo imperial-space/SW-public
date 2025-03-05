@@ -167,7 +167,7 @@
       jumpsuit:
         sizeMaps:
           32:
-            sprite: Mobs/Species/Orc/displacement.rsi
+            sprite: Imperial/Medieval/Species/Orc/displacement.rsi
             state: jumpsuit-female
   - type: MobThresholds
     thresholds:
