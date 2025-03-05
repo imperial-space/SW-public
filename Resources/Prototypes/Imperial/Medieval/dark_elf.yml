@@ -133,7 +133,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.39
+          radius: 0.4
         # they r smaller
         density: 150
         restitution: 0.0
@@ -143,7 +143,7 @@
         - MobLayer
       medieval-spawner: # imperial medieval start
         shape: !type:PhysShapeCircle
-          radius: 12
+          radius: 0.4
         #layer:
         #- DoorPassable
         mask:
