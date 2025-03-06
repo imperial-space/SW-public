@@ -20,6 +20,48 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakDark
+  name: MedievalClothingNeckCloakDark
+  description: MedievalClothingNeckCloakDark
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/civilian_dark.rsi
+  - type: Insulated
+  - type: ToggleableClothing
+    clothingPrototype: ClothingMedievalHeadHatHoodCloakDark
+    requiredSlot:
+    - neck
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakBrown
+  name: MedievalClothingNeckCloakBrown
+  description: MedievalClothingNeckCloakBrown
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/civilian_brown.rsi
+  - type: Insulated
+  - type: ToggleableClothing
+    clothingPrototype: ClothingMedievalHeadHatHoodCloakBrown
+    requiredSlot:
+    - neck
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakGreen
+  name: MedievalClothingNeckCloakGreen
+  description: MedievalClothingNeckCloakGreen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/civilian_green.rsi
+  - type: Insulated
+  - type: ToggleableClothing
+    clothingPrototype: ClothingMedievalHeadHatHoodCloakGreen
+    requiredSlot:
+    - neck
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckCloakColorBlack
   name: black cloak
   description: A cloak to distinguish allies.

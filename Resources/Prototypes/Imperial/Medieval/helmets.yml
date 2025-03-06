@@ -359,7 +359,64 @@
     accent: StealthOnMove
 
 - type: entity
-  parent: MedievalClothingHelmetBaseLight
+  parent: ClothingHeadBase
+  id: ClothingMedievalHeadHatHoodCloakDark
+  name: ClothingMedievalHeadHatHoodCloakDark
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/cloak_hood.rsi
+  - type: Clothing
+    equipDelay: 2
+    unequipDelay: 2
+    sprite: Imperial/Medieval/Clothing/Head/cloak_hood.rsi
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingMedievalHeadHatHoodCloakBrown
+  name: ClothingMedievalHeadHatHoodCloakBrown
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/cloak_hood2.rsi
+  - type: Clothing
+    equipDelay: 2
+    unequipDelay: 2
+    sprite: Imperial/Medieval/Clothing/Head/cloak_hood2.rsi
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingMedievalHeadHatHoodCloakGreen
+  name: ClothingMedievalHeadHatHoodCloakGreen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/cloak_hood3.rsi
+  - type: Clothing
+    equipDelay: 2
+    unequipDelay: 2
+    sprite: Imperial/Medieval/Clothing/Head/cloak_hood3.rsi
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHeadBase
   id: MedievalClothingHeadHelmetCap
   name: cap
   description: Medieval cap

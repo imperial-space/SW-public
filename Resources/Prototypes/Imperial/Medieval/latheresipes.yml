@@ -1653,6 +1653,30 @@
   result: MedievalClothingHeadHelmetExecutor1
 
 - type: CP14Recipe
+  id: MedievalClothingNeckCloakDark
+  craftTime: 8
+  stacks:
+    MedievalLeather1: 1
+    Cloth: 3
+  result: MedievalClothingNeckCloakDark
+
+- type: CP14Recipe
+  id: MedievalClothingNeckCloakBrown
+  craftTime: 8
+  stacks:
+    MedievalLeather1: 1
+    Cloth: 3
+  result: MedievalClothingNeckCloakBrown
+
+- type: CP14Recipe
+  id: MedievalClothingNeckCloakGreen
+  craftTime: 8
+  stacks:
+    MedievalLeather1: 1
+    Cloth: 3
+  result: MedievalClothingNeckCloakGreen
+
+- type: CP14Recipe
   id: MedievalClothingHeadHelmetExecutor2
   craftTime: 8
   stacks:

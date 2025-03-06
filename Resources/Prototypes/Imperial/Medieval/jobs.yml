@@ -5,6 +5,7 @@
   groups:
   - TravellerHead
   - TravellerJumpsuit
+  - MedievalNeck
   - MedievalBackpack
   #- SecurityOuterClothing
   - MedievalShoes
@@ -442,6 +443,38 @@
     proto: TravellerTimer30hours
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth59
+
+- type: loadoutGroup
+  id: MedievalNeck
+  name: loadout-group-medieval-neck
+  loadouts:
+  - MedievalNeckDark
+  - MedievalNeckBrown
+  - MedievalNeckGreen
+
+- type: loadout
+  id: MedievalNeckDark
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MedievalTimer10hours
+  equipment:
+    neck: MedievalClothingNeckCloakDark
+
+- type: loadout
+  id: MedievalNeckBrown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MedievalTimer10hours
+  equipment:
+    neck: MedievalClothingNeckCloakBrown
+
+- type: loadout
+  id: MedievalNeckGreen
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: MedievalTimer10hours
+  equipment:
+    neck: MedievalClothingNeckCloakGreen
 
 - type: loadoutGroup
   id: MedievalBackpack
@@ -970,6 +1003,7 @@
   id: JobMedievalAvanturist
   groups:
   - TravellerHead
+  - MedievalNeck
   - TravellerJumpsuit
   - MedievalBackpack
   #- SecurityOuterClothing
