@@ -86,6 +86,7 @@
       failIfSpace: false
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Кабельный терминал # Imperial Recipes Locale
   id: CableTerminal
   graph: CableTerminal
@@ -802,8 +803,8 @@
     - !type:NoUnstackableInTile
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: GasFilterFlipped
-  hide: false # Imperial Space
   name: Газовый фильтр (перевёрнутый) # Imperial Recipes Locale
   description: Очень полезен для фильтрации газов. # Imperial Recipes Locale
   graph: GasTrinary
@@ -838,8 +839,8 @@
     - !type:NoUnstackableInTile
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: GasMixerFlipped
-  hide: false # Imperial Space
   name: Газовый смеситель (перевёрнутый) # Imperial Recipes Locale
   description: Очень полезен для смешивания газов. # Imperial Recipes Locale
   graph: GasTrinary

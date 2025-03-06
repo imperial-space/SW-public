@@ -250,6 +250,7 @@
     state: icon
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: pet carrier
   id: PetCarrier
   graph: PetCarrier
@@ -263,6 +264,7 @@
     state: icon
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: goliath hardsuit
   id: HardsuitGoliath
   graph: HardsuitGoliath
