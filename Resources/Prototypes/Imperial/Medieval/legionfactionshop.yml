@@ -284,6 +284,14 @@
   id: MdvLegionMedievalClothingOuterArmorIronCuirass
   productEntity: MedievalClothingOuterArmorIronCuirass
   cost:
+    MedalLegion: 10
+  categories:
+  - MedievalLegionArmor
+
+- type: listing
+  id: MdvLegionMedievalClothingOuterArmorBrigantin
+  productEntity: MedievalClothingOuterArmorBrigantin
+  cost:
     MedalLegion: 12
   categories:
   - MedievalLegionArmor

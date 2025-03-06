@@ -80,6 +80,7 @@
   - TravellerBeaty7
   - TravellerBeaty8
   - TravellerBeaty9
+  - TravellerBeaty9_2
   - TravellerBeaty10
   - TravellerBeaty11
   - TravellerBeaty12
@@ -305,6 +306,14 @@
     proto: TravellerTimer10hours
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
+
+- type: loadout
+  id: TravellerBeaty9_2
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TravellerTimer10hours
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth66
 
 - type: loadout
   id: TravellerBeaty10
@@ -1703,6 +1712,7 @@
   id: MedievalLegionRecruitGear
   equipment:
     pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallLeg
     #belt: Bible
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetLegionRecruit
@@ -1739,6 +1749,8 @@
     components:
     - type: Friends
       faction: "легион"
+    #- type: IdentityFaction
+    #  faction: "легион"
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -1786,6 +1798,7 @@
   id: MedievalLegionLegionerGear
   equipment:
     pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallLeg
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetLegionLegioner
     neck: MedievalClothingNeckCloakClanEagle
@@ -1822,6 +1835,8 @@
     components:
     - type: Friends
       faction: "легион"
+    #- type: IdentityFaction
+    #  faction: "легион"
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -1873,6 +1888,8 @@
     components:
     - type: Friends
       faction: "легион"
+    #- type: IdentityFaction
+    #  faction: "легион"
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -1897,6 +1914,7 @@
   id: MedievalLegionOpcionGear
   equipment:
     pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallLeg
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetLegionOpcionWeak
     neck: MedievalClothingNeckCloakClanEagle
@@ -1934,6 +1952,8 @@
     components:
     - type: Friends
       faction: "легион"
+    #- type: IdentityFaction
+    #  faction: "легион"
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -1957,7 +1977,7 @@
 - type: startingGear
   id: MedievalLegionTribunGear
   equipment:
-    pocket1: MedievalRevent25
+    pocket1: MedievalCommsCrystallLeg
     pocket2: MedievalKeyCargo
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetLegionOpcion
@@ -1995,6 +2015,8 @@
     components:
     - type: Friends
       faction: "легион"
+    #- type: IdentityFaction
+    #  faction: "легион"
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -2057,6 +2079,8 @@
     components:
     - type: Friends
       faction: "легион"
+    #- type: IdentityFaction
+    #  faction: "легион"
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -2083,7 +2107,7 @@
 - type: startingGear
   id: MedievalLegionMagGear
   equipment:
-    pocket1: MedievalRevent25
+    pocket1: MedievalCommsCrystallLeg
     pocket2: MedievalKeyCargo
     #back: MedievalClothingBackpackSatchelLeather
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
@@ -2130,6 +2154,8 @@
       regen: 0.4
     - type: Friends
       faction: "легион"
+    #- type: IdentityFaction
+    #  faction: "легион"
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -2165,6 +2191,7 @@
   id: MedievalInsurgencyRecruitGear
   equipment:
     pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallIns
     #belt: Bible
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth20
     head: MedievalClothingHeadHelmetFox1
@@ -2197,6 +2224,8 @@
     components:
     - type: Friends
       faction: "мятежники"
+    #- type: IdentityFaction
+    #  faction: "мятежники"
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2244,6 +2273,7 @@
   id: MedievalInsurgencyInsurgencyerGear
   equipment:
     pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallIns
     jumpsuit: ClothingUniformJumpsuitCasualRed
     head: MedievalClothingHeadHelmetFox2
     neck: MedievalClothingNeckCloakClanFox
@@ -2276,6 +2306,8 @@
     components:
     - type: Friends
       faction: "мятежники"
+    #- type: IdentityFaction
+    #  faction: "мятежники"
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2323,6 +2355,8 @@
     components:
     - type: Friends
       faction: "мятежники"
+    #- type: IdentityFaction
+    #  faction: "мятежники"
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2347,6 +2381,7 @@
   id: MedievalInsurgencyOpcionGear
   equipment:
     pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallIns
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth5
     head: MedievalClothingHeadHelmetFox2_5
     neck: MedievalClothingNeckCloakClanFox
@@ -2380,6 +2415,8 @@
     components:
     - type: Friends
       faction: "мятежники"
+    #- type: IdentityFaction
+    #  faction: "мятежники"
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2403,7 +2440,7 @@
 - type: startingGear
   id: MedievalInsurgencyTribunGear
   equipment:
-    pocket1: MedievalRevent25
+    pocket1: MedievalCommsCrystallIns
     pocket2: MedievalGuardKey
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth5
     head: MedievalClothingHeadHelmetFox3
@@ -2436,6 +2473,8 @@
     components:
     - type: Friends
       faction: "мятежники"
+    #- type: IdentityFaction
+    #  faction: "мятежники"
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2498,6 +2537,8 @@
     components:
     - type: Friends
       faction: "мятежники"
+    #- type: IdentityFaction
+    #  faction: "мятежники"
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2524,7 +2565,7 @@
 - type: startingGear
   id: MedievalInsurgencyMagGear
   equipment:
-    pocket1: MedievalRevent25
+    pocket1: MedievalCommsCrystallIns
     pocket2: MedievalGuardKey
     #back: MedievalClothingBackpackSatchelLeather
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth5
@@ -2569,6 +2610,8 @@
       regen: 0.4
     - type: Friends
       faction: "мятежники"
+    #- type: IdentityFaction
+    #  faction: "мятежники"
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2604,6 +2647,7 @@
   id: MedievalBanditRecruitGear
   equipment:
     pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallBand
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetHood
@@ -2636,6 +2680,8 @@
     components:
     - type: Friends
       faction: "банда"
+    #- type: IdentityFaction
+    #  faction: "банда"
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
@@ -2660,6 +2706,7 @@
   id: MedievalBanditRegularGear
   equipment:
     pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallBand
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetBand1
@@ -2693,6 +2740,8 @@
     components:
     - type: Friends
       faction: "банда"
+    #- type: IdentityFaction
+    #  faction: "банда"
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
@@ -2718,6 +2767,7 @@
   id: MedievalBanditVeteranGear
   equipment:
     pocket1: MedievalRevent50
+    pocket2: MedievalCommsCrystallBand
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetBand2
@@ -2752,6 +2802,8 @@
     components:
     - type: Friends
       faction: "банда"
+    #- type: IdentityFaction
+    #  faction: "банда"
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
@@ -2810,6 +2862,8 @@
     components:
     - type: Friends
       faction: "банда"
+    #- type: IdentityFaction
+    #  faction: "банда"
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
@@ -2837,6 +2891,7 @@
   id: MedievalMercGear
   equipment:
     pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallMerc
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth1
     #mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetHoodHelmet
@@ -2869,6 +2924,8 @@
     components:
     - type: Friends
       faction: "наемники"
+    #- type: IdentityFaction
+    #  faction: "наемники"
     - type: MedievalJobSpawn
       spawnType: Merc
     - type: GiveItemObjective
@@ -2893,7 +2950,7 @@
   id: MedievalMercLeaderGear
   equipment:
     pocket1: MedievalRevent50
-    #pocket2: MedievalStampMedievalMercs
+    #pocket2: MedievalCommsCrystallMerc
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetShapel
@@ -2931,6 +2988,8 @@
     components:
     - type: Friends
       faction: "наемники"
+    #- type: IdentityFaction
+    #  faction: "наемники"
     - type: MedievalJobSpawn
       spawnType: Merc
     - type: GiveItemObjective
@@ -2969,6 +3028,7 @@
   storage:
     back:
     - MedievalSpellBookRecodeCollegiumWeak
+    - MedievalCommsCrystallColl
 
 - type: playTimeTracker
   id: JobMedievalCollegiumRecruit
@@ -3003,6 +3063,8 @@
       regen: 0.325
     - type: Friends
       faction: "коллегия"
+    #- type: IdentityFaction
+    #  faction: "коллегия"
     - type: MedievalJobSpawn
       spawnType: Collegium
     - type: GiveItemObjective
@@ -3037,6 +3099,7 @@
   storage:
     back:
     - MedievalSpellBookRecodeCollegiumMedium
+    - MedievalCommsCrystallColl
 
 - type: playTimeTracker
   id: JobMedievalCollegiumCommon
@@ -3072,6 +3135,8 @@
       regen: 0.475
     - type: Friends
       faction: "коллегия"
+    #- type: IdentityFaction
+    #  faction: "коллегия"
     - type: MedievalJobSpawn
       spawnType: Collegium
     - type: GiveItemObjective
@@ -3143,6 +3208,8 @@
       regen: 0.5
     - type: Friends
       faction: "коллегия"
+    #- type: IdentityFaction
+    #  faction: "коллегия"
     - type: MedievalJobSpawn
       spawnType: Collegium
     - type: GiveItemObjective
@@ -3205,6 +3272,8 @@
     - type: GigaMonkeyAccent
     - type: Friends
       faction: "племя"
+    #- type: IdentityFaction
+    #  faction: "племя"
     - type: MedievalJobSpawn
       spawnType: Tribe
     - type: GiveItemObjective
@@ -3264,6 +3333,8 @@
     - type: GigaMonkeyAccent
     - type: Friends
       faction: "племя"
+    #- type: IdentityFaction
+    #  faction: "племя"
     - type: MedievalJobSpawn
       spawnType: Tribe
     - type: GiveItemObjective
@@ -3312,6 +3383,8 @@
     components:
     - type: Friends
       faction: "племя"
+    #- type: IdentityFaction
+    #  faction: "племя"
     - type: MedievalJobSpawn
       spawnType: Tribe
     - type: GiveItemObjective
@@ -3353,6 +3426,8 @@
       - ImperialLibrary
     - type: Friends
       faction: "вольные"
+    #- type: IdentityFaction
+    #  faction: "вольные"
     - type: MedievalJobSpawn
       spawnType: LegionTrader
     - type: MedievalTradeCurse
@@ -3471,6 +3546,8 @@
       - ImperialLibrary
     - type: Friends
       faction: "вольные"
+    #- type: IdentityFaction
+    #  faction: "вольные"
     - type: MedievalJobSpawn
       spawnType: InsurgencyTrader
     - type: MedievalTradeCurse
@@ -3527,7 +3604,7 @@
 - type: startingGear
   id: MedievalMinerGear
   equipment:
-    pocket1: MedievalRevent25
+    pocket1: MedievalCommsCrystallMine
     pocket2: MedievalPickaxe
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth62
     #mask: MedievalMaskFace
@@ -3562,6 +3639,8 @@
     - type: MedievalDigger
     - type: Friends
       faction: "шахтеры"
+    #- type: IdentityFaction
+    #  faction: "шахтеры"
     - type: MedievalJobSpawn
       spawnType: Mine
     - type: GiveItemObjective
@@ -3625,6 +3704,8 @@
     - type: MedievalDigger
     - type: Friends
       faction: "шахтеры"
+    #- type: IdentityFaction
+    #  faction: "шахтеры"
     - type: MedievalJobSpawn
       spawnType: Mine
     - type: GiveItemObjective
@@ -3651,9 +3732,9 @@
 - type: startingGear
   id: MedievalBlacksmithGear
   equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth66
     pocket1: MedievalRevent50
-    pocket2: MedievalRevent10
+    pocket2: MedievalCommsCrystallLeg
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
 
@@ -3681,6 +3762,8 @@
     - type: CrafterTrait
     - type: Friends
       faction: "легион"
+    #- type: IdentityFaction
+    #  faction: "легион"
     - type: MedievalJobSpawn
       spawnType: LegionBlacksmith
     - type: GiveItemObjective
@@ -3707,7 +3790,7 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
     pocket1: MedievalRevent50
-    pocket2: MedievalRevent10
+    pocket2: MedievalCommsCrystallIns
     neck: MedievalClothingNeckCloakClanFox
     id: MedievalKeyGuard
 
@@ -3735,6 +3818,8 @@
     - type: CrafterTrait
     - type: Friends
       faction: "мятежники"
+    #- type: IdentityFaction
+    #  faction: "мятежники"
     - type: MedievalJobSpawn
       spawnType: InsurgencyBlacksmith
     - type: GiveItemObjective
@@ -3759,7 +3844,7 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     pocket1: MedievalRevent50
-    pocket2: MedievalRevent10
+    pocket2: MedievalCommsCrystallLeg
     id: MedievalLeatherKey
     neck: MedievalClothingNeckCloakClanEagle
 
@@ -3787,6 +3872,8 @@
     - type: CrafterTrait
     - type: Friends
       faction: "легион"
+    #- type: IdentityFaction
+    #  faction: "легион"
     - type: MedievalJobSpawn
       spawnType: LegionBlacksmith
     - type: GiveItemObjective
@@ -3811,7 +3898,7 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     pocket1: MedievalRevent50
-    pocket2: MedievalRevent10
+    pocket2: MedievalCommsCrystallIns
     neck: MedievalClothingNeckCloakClanFox
     id: MedievalKeyGuard
 
@@ -3839,6 +3926,8 @@
     - type: CrafterTrait
     - type: Friends
       faction: "мятежники"
+    #- type: IdentityFaction
+    #  faction: "мятежники"
     - type: MedievalJobSpawn
       spawnType: InsurgencyBlacksmith
     - type: GiveItemObjective
@@ -3877,6 +3966,8 @@
     back:
     - MedievalCultBrushMelok
     - MedievalBookCultGuide
+    - MedievalKnut
+    - MedievalHandcuffs
 
 - type: playTimeTracker
   id: JobMedievalCult
@@ -3905,6 +3996,8 @@
     - type: CultMember
     - type: Friends
       faction: "культ"
+    #- type: IdentityFaction
+    #  faction: "культ"
     - type: MedievalJobSpawn
       spawnType: Cult
     - type: MedievalPasportPerson
@@ -3932,6 +4025,8 @@
     - MedievalCultBrushMelok
     - MedievalSpellBookRecodeNecro
     - MedievalBookCultGuide
+    - MedievalKnut
+    - MedievalHandcuffs
 
 - type: playTimeTracker
   id: JobMedievalCultLeader
@@ -3965,6 +4060,8 @@
     - type: CultMember
     - type: Friends
       faction: "культ"
+    #- type: IdentityFaction
+    #  faction: "культ"
     - type: MedievalJobSpawn
       spawnType: Cult
     - type: MedievalPasportPerson

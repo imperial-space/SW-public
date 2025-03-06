@@ -27,6 +27,7 @@
     color: red
     energy: 1.8
     radius: 2.5
+  - type: HealCurse
 
 - type: damageContainer
   id: SkeletonNecro

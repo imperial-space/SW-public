@@ -208,8 +208,6 @@
   - type: Insulated
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingNeckCloakClanEagle # imperial medieval
-  - type: CloackReciever
-    faction: "leg"
 
 - type: entity
   parent: ClothingNeckBase
@@ -232,8 +230,6 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/clan_mine.rsi
   - type: Insulated
-  - type: CloackReciever
-    faction: "mine"
 
 - type: entity
   parent: ClothingNeckBase
@@ -256,8 +252,7 @@
   - type: Insulated
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingNeckCloakClanWolf # imperial medieval
-  - type: CloackReciever
-    faction: "band"
+
 
 - type: entity
   parent: ClothingNeckBase
@@ -270,8 +265,7 @@
   - type: Insulated
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingNeckCloakClanFox # imperial medieval
-  - type: CloackReciever
-    faction: "ins"
+
 
 - type: entity
   parent: ClothingNeckBase
@@ -282,8 +276,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/clan_merc.rsi
   - type: Insulated
-  - type: CloackReciever
-    faction: "merc"
+
 
 - type: entity
   parent: ClothingNeckBase
@@ -294,8 +287,6 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/clan_wiz.rsi
   - type: Insulated
-  - type: CloackReciever
-    faction: "collegium"
 
 - type: entity
   parent: ClothingNeckBase

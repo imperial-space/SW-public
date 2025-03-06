@@ -209,6 +209,24 @@
   #- type: Anchorable
 
 - type: entity
+  name: MedievalCatapultCraft
+  description: MedievalCatapultCraft
+  id: MedievalCatapultCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: MedievalCatapult
+    doAfter: 25
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stockade.rsi
+    state: icon
+  #- type: Damageable
+  #- type: Anchorable
+
+- type: entity
   name: MMedievalAlcPlaceCraft
   description: MedievalAlcPlaceCraft
   id: MedievalAlcPlaceCraft

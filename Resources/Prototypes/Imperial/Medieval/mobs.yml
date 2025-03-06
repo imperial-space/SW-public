@@ -1106,6 +1106,10 @@
   - type: RandomSteal # imperial medieval
   - type: StealChanceIncreaser
     bonus: 45
+  #- type: Identity
+  - type: TakeName
+  #- type: IdentityFaction
+  #  faction: "гоблины"
 
 - type: entity
   parent: MobChicken

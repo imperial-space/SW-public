@@ -412,6 +412,8 @@
         prob: 0.03
       - id: MedievalClothingUniformJumpsuitShitCloth43
         prob: 0.03
+      - id: MedievalClothingUniformJumpsuitShitCloth66
+        prob: 0.03
       - id: MedievalClothingUniformJumpsuitShitCloth44
         prob: 0.03
       - id: MedievalClothingUniformJumpsuitShitCloth45
@@ -613,6 +615,8 @@
       - id: MedievalClothingUniformJumpsuitShitCloth42
         prob: 0.03
       - id: MedievalClothingUniformJumpsuitShitCloth43
+        prob: 0.03
+      - id: MedievalClothingUniformJumpsuitShitCloth66
         prob: 0.03
       - id: MedievalClothingUniformJumpsuitShitCloth44
         prob: 0.03
@@ -1006,6 +1010,8 @@
         prob: 0.03
       - id: MedievalClothingUniformJumpsuitShitCloth43
         prob: 0.03
+      - id: MedievalClothingUniformJumpsuitShitCloth66
+        prob: 0.03
       - id: MedievalClothingUniformJumpsuitShitCloth44
         prob: 0.03
       - id: MedievalClothingUniformJumpsuitShitCloth45
@@ -1125,6 +1131,8 @@
       - id: MedievalMuteChemistryBottle
         prob: 0.003
       - id: MedievalClothingOuterArmorIronCuirass
+        prob: 0.0008
+      - id: MedievalClothingOuterArmorBrigantin
         prob: 0.0008
       - id: MedievalClothingOuterArmorIronCuirassLight
         prob: 0.0015
@@ -1573,6 +1581,8 @@
       - id: MedievalMuteChemistryBottle
         prob: 0.003
       - id: MedievalClothingOuterArmorIronCuirass
+        prob: 0.0008
+      - id: MedievalClothingOuterArmorBrigantin
         prob: 0.0008
       - id: MedievalClothingOuterArmorIronCuirassLight
         prob: 0.0015

@@ -568,6 +568,14 @@
   - MedievalArmorDemo
 
 - type: listing
+  id: DemoMdvShopMedievalClothingOuterArmorBrigantin
+  productEntity: MedievalClothingOuterArmorBrigantin
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalArmorDemo
+
+- type: listing
   id: DemoMdvShopMedievalClothingOuterArmorIronCuirassLight
   productEntity: MedievalClothingOuterArmorIronCuirassLight
   cost:
@@ -1218,6 +1226,14 @@
 - type: listing
   id: DemoMdvShopMedievalClothingUniformJumpsuitShitCloth43
   productEntity: MedievalClothingUniformJumpsuitShitCloth43
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalClothingDemo
+
+- type: listing
+  id: DemoMdvShopMedievalClothingUniformJumpsuitShitCloth66
+  productEntity: MedievalClothingUniformJumpsuitShitCloth66
   cost:
     UnknownMedieval: 1
   categories:

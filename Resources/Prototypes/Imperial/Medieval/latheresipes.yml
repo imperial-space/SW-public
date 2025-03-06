@@ -113,6 +113,18 @@
   result: MedievalClothingOuterArmorIronCuirass
 
 - type: CP14Recipe
+  id: MedievalClothingOuterArmorBrigantin
+  craftTime: 28
+  stacks:
+    MedievalIronPlate: 4
+    MedievalRivets: 8
+    MedievalIronPlateSmall: 18
+    MedievalLeatherBelt: 4
+    # total 54 ingots
+    Cloth: 6
+  result: MedievalClothingOuterArmorBrigantin
+
+- type: CP14Recipe
   id: MedievalClothingOuterArmorIronCuirassLight
   craftTime: 28
   stacks:
@@ -339,9 +351,47 @@
   craftTime: 13
   stacks:
     MedievalSteelIngot: 3
-    Gunpowder: 25
+    Gunpowder: 8
     MedievalRope: 1
   result: MedievalGrenade
+
+- type: CP14Recipe
+  id: MedievalCatapultAmmoBarrel
+  craftTime: 6
+  stacks:
+    MedievalRivets: 1
+    WoodPlank: 6
+    #MedievalRope: 1
+  result: MedievalCatapultAmmoBarrel
+
+- type: CP14Recipe
+  id: MedievalCatapultAmmoBarrelGunpowder
+  craftTime: 4
+  stacks:
+    MedievalRivets: 2
+    Gunpowder: 14
+    MedievalRope: 1
+  entities:
+    MedievalCatapultAmmoBarrel: 1
+  result: MedievalCatapultAmmoBarrelGunpowder
+
+- type: CP14Recipe
+  id: MedievalCatapultAmmoBarrelAp
+  craftTime: 11
+  stacks:
+    MedievalIronIngot: 6
+    MedievalSteelIngot: 3
+    Gunpowder: 12
+  entities:
+    MedievalGrenade: 1
+  result: MedievalCatapultAmmoBarrelAp
+
+- type: CP14Recipe
+  id: MedievalCatapultAmmoBarrelStone
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 4
+  result: MedievalCatapultAmmoBarrelStone
 
 - type: CP14Recipe
   id: MedievalFalshion
@@ -1346,6 +1396,14 @@
   result: MedievalClothingUniformJumpsuitShitCloth43
 
 - type: CP14Recipe
+  id: MedievalClothingUniformJumpsuitShitCloth66
+  craftTime: 8
+  stacks:
+    Cloth: 5
+    MedievalLeather1: 2
+  result: MedievalClothingUniformJumpsuitShitCloth66
+
+- type: CP14Recipe
   id: MedievalClothingUniformJumpsuitShitCloth44
   craftTime: 8
   stacks:
@@ -1689,9 +1747,22 @@
   stacks:
     MedievalRope: 4
     WoodPlank: 15
-    MedievalSteelIngot: 3
-    MedievalGear: 5
+    MedievalSteelIngot: 2
+    MedievalGear: 3
   result: MedievalWeaponTurretNanoTrasenCraft
+
+- type: CP14Recipe
+  id: MedievalCatapultCraft
+  craftTime: 90
+  stacks:
+    MedievalRope: 12
+    WoodPlank: 30
+    MedievalSteelIngot: 1
+    MedievalRivets: 8
+    MedievalIronPlateSmall: 8
+    MedievalIronPlate: 6
+    MedievalGear: 5
+  result: MedievalCatapultCraft
 
 - type: CP14Recipe
   id: MedievalMopBucket

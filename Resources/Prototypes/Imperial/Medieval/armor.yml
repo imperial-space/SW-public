@@ -1408,3 +1408,49 @@
     sprite: Imperial/Medieval/Clothing/Gloves/forstone_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/forstone_gloves.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterArmorBrigantin
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: QuestItem
+    contractName: "любая железная кираса"
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/brigantin.rsi
+  - type: Clothing
+    equipDelay: 5
+    unequipDelay: 5
+    sprite: Imperial/Medieval/Clothing/Armor/brigantin.rsi
+    equipSound:
+      path: /Audio/Imperial/Medieval/iron_armor_eqiped.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/iron_armor_eqiped.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.54
+        Slash: 0.46
+        Piercing: 0.48
+        Heat: 0.4
+        Cold: 0.8
+        Stamina: 0.5 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.88
+    sprintModifier: 0.88
+  - type: Item
+    size: Normal
+  - type: ExplosionResistance
+    damageCoefficient: 0.82
+  - type: MedievalIronHitSound
+    effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"

@@ -273,6 +273,14 @@
   - MedievalInsArmor
 
 - type: listing
+  id: MdvInsMedievalClothingOuterArmorBrigantin
+  productEntity: MedievalClothingOuterArmorBrigantin
+  cost:
+    MedalIns: 12
+  categories:
+  - MedievalInsArmor
+
+- type: listing
   id: MdvInsClothingOuterArmorPodWars
   productEntity: ClothingOuterArmorPodWars
   cost:
@@ -284,7 +292,7 @@
   id: MdvInsMedievalClothingOuterArmorIronCuirass
   productEntity: MedievalClothingOuterArmorIronCuirass
   cost:
-    MedalIns: 12
+    MedalIns: 10
   categories:
   - MedievalInsArmor
 

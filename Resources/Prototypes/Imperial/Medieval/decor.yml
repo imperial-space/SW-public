@@ -103,7 +103,7 @@
 
 - type: entity
   id: MedievalBannerBlack
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: black banner
   description: works better
   components:
@@ -113,7 +113,7 @@
 
 - type: entity
   id: MedievalBannerBlue
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: blue banner
   description: works better
   components:
@@ -123,7 +123,7 @@
 
 - type: entity
   id: MedievalBannerFish
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: fish banner
   description: works better
   components:
@@ -133,7 +133,7 @@
 
 - type: entity
   id: MedievalBannerGreen
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: green banner
   description: works better
   components:
@@ -143,7 +143,7 @@
 
 - type: entity
   id: MedievalBannerRed
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: red banner
   description: works better
   components:
@@ -153,7 +153,7 @@
 
 - type: entity
   id: MedievalBannerWhite
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: white banner
   description: works better
   components:
@@ -163,7 +163,7 @@
 
 - type: entity
   id: MedievalBannerYellow
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: yellow banner
   description: works better
   components:
@@ -173,7 +173,7 @@
 
 - type: entity
   id: MedievalBannerHell
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: hell banner
   description: works better
   components:
@@ -650,7 +650,7 @@
 
 - type: entity
   id: MedievalDecorOhapka
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -701,7 +701,7 @@
 
 - type: entity
   id: MedievalDecorKolka
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -752,7 +752,7 @@
 
 - type: entity
   id: MedievalDecorWheat1
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -787,7 +787,7 @@
 
 - type: entity
   id: MedievalDecorWheat2
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -827,7 +827,7 @@
 
 - type: entity
   id: MedievalDecorMogila1
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -862,7 +862,7 @@
 
 - type: entity
   id: MedievalDecorMogila2
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -897,7 +897,7 @@
 
 - type: entity
   id: MedievalDecorMogila3
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -932,7 +932,7 @@
 
 - type: entity
   id: MedievalDecorBox
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1036,7 +1036,7 @@
 
 - type: entity
   id: MedievalDecorTorch
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1078,7 +1078,7 @@
 
 - type: entity
   id: MedievalDecorTorchColone
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1160,7 +1160,7 @@
 
 - type: entity
   id: MedievalDecorAnons
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1612,7 +1612,7 @@
 
 - type: entity
   id: MedievalDecorBags1
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1647,7 +1647,7 @@
 
 - type: entity
   id: MedievalDecorBags2
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1682,7 +1682,7 @@
 
 - type: entity
   id: MedievalDecorBags3
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1717,7 +1717,7 @@
 
 - type: entity
   id: MedievalDecorBags4
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1752,7 +1752,7 @@
 
 - type: entity
   id: MedievalDecorBags5
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1839,7 +1839,7 @@
 
 - type: entity
   id: MedievalDecorDangerSign
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1882,7 +1882,7 @@
 
 - type: entity
   id: MedievalDecorDangerSign2
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1925,7 +1925,7 @@
 
 - type: entity
   id: MedievalDecorDangerSign3
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -1968,7 +1968,7 @@
 
 - type: entity
   id: MedievalDecorCastle1
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -2034,7 +2034,7 @@
 
 - type: entity
   id: MedievalDecorCastle2
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -2346,7 +2346,7 @@
 
 - type: entity
   id: MedievalDecorCastleBase
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   abstract: true
@@ -2687,6 +2687,11 @@
     castShadows: false
   - type: MagicBarrier
   - type: MagicPotionsRecipes
+  - type: AmbientSound
+    volume: -3
+    range: 6.5
+    sound:
+      path: /Audio/Imperial/Medieval/barier_ambient.ogg
 
 - type: entity
   id: MedievalDecorDoorRespawn
@@ -2967,7 +2972,7 @@
 
 - type: entity
   id: MedievalDecorKotelForCoockingPotions
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -3586,7 +3591,7 @@
 
 - type: entity
   id: MedievalDecorPerekatiPole
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -3797,7 +3802,7 @@
 
 - type: entity
   id: MedievalTelega
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -4072,7 +4077,7 @@
 
 - type: entity
   id: MedievalTribeAltar
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -4194,7 +4199,7 @@
 
 - type: entity
   id: MedievalDecorCultDogStatue
-  parent: BannerBase
+  parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -4227,3 +4232,245 @@
         - HighImpassable
         - BulletImpassable
   - type: CultCheckPicture
+
+- type: entity
+  id: MedievalDecorCultTpOut
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/cult.rsi
+    state: cutlaltar
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 99999
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: CultTeleport
+    base: false
+  - type: PointLight
+    color: Red
+    radius: 7
+    energy: 2.3
+
+- type: entity
+  id: MedievalDecorCultTpIn
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    offset: 0,0.3
+    sprite: Imperial/Medieval/Misc/cult_stone.rsi
+    state: stone
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 99999
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.48
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: CultTeleport
+  - type: PointLight
+    color: Red
+    radius: 7
+    energy: 2.3
+
+- type: entity
+  id: MedievalBannerBase
+  parent: BaseStructure
+  name: base banner
+  description: It's the concept of a banner, you shouldn't be seeing this.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Structures/Decoration/banner.rsi
+    state: banner
+    noRot: true
+  - type: Transform
+    noRot: true
+    anchored: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.2
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Clickable
+  - type: Physics
+    bodyType: Dynamic
+
+- type: entity
+  id: MedievalDecorCultAltar
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/cult.rsi
+    state: cutlaltar2
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 99999
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: CultAltar
+  - type: Prayable
+
+- type: entity
+  id: MedievalDecorCultCol
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    offset: 0,0.3
+    sprite: Imperial/Medieval/Misc/cult_stone.rsi
+    state: col
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 99999
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: construction
+  id: Mattress
+  name: Спальник
+  description: На нем можно отоспаться
+  graph: Mattress
+  startNode: start
+  targetNode: Mattress
+  category: construction-category-furniture
+  icon:
+    sprite: Structures/Furniture/furniture.rsi
+    state: mattress
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: Mattress
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+        - to: Mattress
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: Cloth
+              amount: 8
+              doAfter: 4
+    - node: Mattress
+      entity: Mattress
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialCloth1
+              amount: 6
+          steps:
+            - tool: Prying
+              doAfter: 500

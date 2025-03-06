@@ -782,6 +782,55 @@
     damageContainer: Inorganic
 
 - type: entity
+  parent:
+  - BaseStructure
+  id: MedievalMeltingPlace
+  components:
+  - type: Climbable
+  - type: Clickable
+  - type: TrashDefendArea
+  - type: InteractionOutline
+  - type: PlaceableSurface
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/melt.rsi
+    snapCardinals: true
+    layers:
+    - state: furnace
+    - state: furnace_unshaded
+      shader: unshaded
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Transform
+    anchored: true
+  - type: PointLight
+    color: orange
+    energy: 3
+    radius: 1.5
+  - type: Melter
+
+- type: entity
   parent: CP14BaseWorkbench
   id: MedievalLeatherWorkingPlace
   name: LeatherWorkingPlace
@@ -1061,6 +1110,11 @@
       - MedievalIronPlateSmall
       - MedievalRivets
       - MedievalShoulder
+      - MedievalCatapultCraft
+      - MedievalCatapultAmmoBarrel
+      - MedievalCatapultAmmoBarrelGunpowder
+      - MedievalCatapultAmmoBarrelAp
+      - MedievalCatapultAmmoBarrelStone
       - MedievalClothingHeadHelmetSalad
       - MedievalClothingHeadHelmetSaladLight
       - MedievalClothingHeadHelmetNormand
@@ -1208,6 +1262,7 @@
       - MedievalClothingUniformJumpsuitShitCloth41
       - MedievalClothingUniformJumpsuitShitCloth42
       - MedievalClothingUniformJumpsuitShitCloth43
+      - MedievalClothingUniformJumpsuitShitCloth66
       - MedievalClothingUniformJumpsuitShitCloth44
       - MedievalClothingUniformJumpsuitShitCloth45
       - MedievalClothingUniformJumpsuitShitCloth46

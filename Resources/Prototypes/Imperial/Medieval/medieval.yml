@@ -964,7 +964,7 @@
   - type: Item
     size: Small
   - type: Handcuff
-    breakoutTime: 90
+    breakoutTime: 40
     cuffedRSI: Imperial/Medieval/Misc/handcuffs.rsi
     iconState: body-overlay
   - type: Sprite
@@ -1206,7 +1206,7 @@
     - ears
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_expl.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.05
+    damageCoefficient: 0.35
   - type: Armor
     modifiers:
       coefficients:
@@ -6446,11 +6446,13 @@
     interactSuccessString: comp-window-knock
     messagePerceivedByOthers: comp-window-knock
     interactSuccessSound:
-      path: /Audio/Imperial/Medieval/lyazg-visyaschego-zamka-na-zakryitoy-dveri.ogg
+      path: /Audio/Imperial/Medieval/gate_knock.ogg
   - type: BlockWeather
   - type: AccessReader
   - type: RadiationBlocker
     resistance: 8
+  - type: MedievalMeleeBadTarget
+    breakMultiplier: 9
 
 - type: entity
   id: MedievalGatesGear
@@ -6636,7 +6638,7 @@
       lifetime: 2.5
     - type: EmitSoundOnSpawn
       sound:
-        path: /Audio/Effects/Lightning/lightningbolt.ogg
+        path: /Audio/Imperial/Medieval/player_gone.ogg
 
 - type: entity
   name: Medieval
@@ -6654,3 +6656,73 @@
 - type: font
   id: SpellwardFont
   path: /Fonts/Imperial/Spellward/Monomakh-Regular.ttf
+
+- type: entity
+  name: gol
+  parent: BaseItem
+  id: MedievalCommsCrystallLeg
+  description: gol
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/comms.rsi
+    state: leg
+  - type: Item
+    size: Tiny
+  - type: CloackReciever
+    faction: "leg"
+
+- type: entity
+  name: gol
+  parent: MedievalCommsCrystallLeg
+  id: MedievalCommsCrystallMine
+  description: gol
+  components:
+  - type: Sprite
+    state: mine
+  - type: CloackReciever
+    faction: "mine"
+
+- type: entity
+  name: gol
+  parent: MedievalCommsCrystallLeg
+  id: MedievalCommsCrystallBand
+  description: gol
+  components:
+  - type: Sprite
+    state: band
+  - type: CloackReciever
+    faction: "band"
+
+- type: entity
+  name: gol
+  parent: MedievalCommsCrystallLeg
+  id: MedievalCommsCrystallIns
+  description: gol
+  components:
+  - type: Sprite
+    state: ins
+  - type: CloackReciever
+    faction: "ins"
+
+- type: entity
+  name: gol
+  parent: MedievalCommsCrystallLeg
+  id: MedievalCommsCrystallMerc
+  description: gol
+  components:
+  - type: Sprite
+    state: merc
+  - type: CloackReciever
+    faction: "merc"
+
+- type: entity
+  name: gol
+  parent: MedievalCommsCrystallLeg
+  id: MedievalCommsCrystallColl
+  description: gol
+  components:
+  - type: Sprite
+    state: coll
+  - type: CloackReciever
+    faction: "collegium"
+

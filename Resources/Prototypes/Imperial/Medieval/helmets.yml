@@ -35,6 +35,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -78,6 +80,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -350,6 +354,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -393,6 +399,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -436,6 +444,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -479,6 +489,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -524,6 +536,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -559,6 +573,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -602,6 +618,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -645,6 +663,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -930,6 +950,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
 
 
 - type: entity
@@ -964,6 +986,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
 
 - type: entity
   parent: ClothingHeadBase
@@ -995,6 +1019,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
 
 
 - type: entity
@@ -1031,6 +1057,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1074,6 +1102,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1138,6 +1168,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1198,6 +1230,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1236,6 +1270,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1274,6 +1310,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1313,6 +1351,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1351,6 +1391,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1389,6 +1431,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1427,6 +1471,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1465,6 +1511,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1503,6 +1551,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1541,6 +1591,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1581,6 +1633,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1618,6 +1672,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1655,6 +1711,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1692,6 +1750,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1732,6 +1792,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1766,6 +1828,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1800,6 +1864,8 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
   - type: Item
     size: Normal
   - type: ExplosionResistance

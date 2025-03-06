@@ -108,6 +108,8 @@
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
 
 - type: soundCollection
   id: MedievalIronDrop
@@ -159,6 +161,8 @@
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 5
 
 - type: entity
   name: dagger
@@ -256,6 +260,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 5
 
 - type: entity
   name: medieval spear
@@ -459,6 +465,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
 
 - type: entity
   name: MedievalIronHalberdNecro
@@ -518,6 +526,8 @@
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
 
 - type: entity
   name: iron halberd
@@ -634,6 +644,8 @@
     speed: 4
   - type: StaminaDamageOnHit
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
 
 - type: entity
   name: hoe
@@ -668,6 +680,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
+  - type: Meltable
+    resourceCount: 2
 
 - type: entity
   name: hatchet
@@ -728,6 +742,8 @@
     speed: 1.2
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
 
 - type: entity
   name: scythe
@@ -786,6 +802,8 @@
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
 
 - type: entity
   name: plant clippers
@@ -820,6 +838,8 @@
     lifetime: 0.3
     minLifetime: 0.05
     speed: 1
+  - type: Meltable
+    resourceCount: 2
 
 - type: entity
   parent: Pickaxe
@@ -860,7 +880,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
-
+  - type: Meltable
+    resourceCount: 2
 
 - type: entity
   parent: Pickaxe
@@ -901,6 +922,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
 
 - type: entity
   name: MedievalIngotGold
@@ -1129,6 +1152,8 @@
       walkModifier: 0.9
       sprintModifier: 0.9
       mirrorClothingModifier: false
+    - type: Meltable
+      resourceCount: 7
 
 - type: entity
   name: iron shield
@@ -1183,6 +1208,8 @@
       walkModifier: 0.95
       sprintModifier: 0.95
       mirrorClothingModifier: false
+    - type: Meltable
+      resourceCount: 7
 
 - type: damageModifierSet
   id: PassiveMedievalWoodenShieldBlock
@@ -1222,6 +1249,8 @@
     lifetime: 0.4
     minLifetime: 0.05
     speed: 2.1
+  - type: Meltable
+    resourceCount: 1
 
 - type: entity
   id: MedievalWrench
@@ -1343,6 +1372,8 @@
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: dagger
@@ -1404,6 +1435,8 @@
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 1
 
 - type: entity
   name: medieval spear
@@ -1490,6 +1523,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: mace
@@ -1550,6 +1585,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
 
 - type: entity
   name: mace
@@ -1610,6 +1647,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: iron halberd
@@ -1686,6 +1725,8 @@
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
 
 - type: entity
   name: iron halberd
@@ -1762,6 +1803,8 @@
     speed: 3
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
 
 - type: entity
   name: iron halberd
@@ -1831,6 +1874,8 @@
     lifetime: 0.6
     minLifetime: 0.05
     speed: 3
+  - type: Meltable
+    resourceCount: 7
 
 - type: entity
   name: falshion
@@ -1901,6 +1946,8 @@
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: falshion
@@ -2029,6 +2076,8 @@
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: falshion
@@ -2099,6 +2148,8 @@
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: dagger
@@ -2153,6 +2204,8 @@
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 2
 
 - type: entity
   name: medieval spear
@@ -2239,6 +2292,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: mace
@@ -2299,6 +2354,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
 
 - type: entity
   name: mace
@@ -2359,6 +2416,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: iron halberd
@@ -2435,6 +2494,8 @@
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
 
 - type: entity
   name: iron hammer
@@ -2499,6 +2560,8 @@
     speed: 4.4
   - type: StaminaDamageOnHit
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
 
 - type: entity
   name: falshion
@@ -2744,6 +2807,8 @@
     speed: 3
   - type: StaminaDamageOnHit
     damage: 55 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 20
 
 - type: entity
   name: dagger
@@ -2878,6 +2943,8 @@
     speed: 2
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: falshion
@@ -2947,6 +3014,8 @@
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 5
 
 - type: entity
   name: dagger
@@ -3022,6 +3091,8 @@
     speed: 1.4
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
 
 - type: entity
   name: dagger
@@ -3100,6 +3171,8 @@
     speed: 1.4
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
 
 - type: entity
   name: dagger
@@ -3199,6 +3272,8 @@
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 3
 
 - type: entity
   name: dagger
@@ -3368,6 +3443,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: dagger
@@ -3436,6 +3513,8 @@
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
 
 - type: entity
   name: mace
