@@ -6,11 +6,13 @@ using Content.Server.Imperial.Medieval.Magic.MedievalHomingProjectile;
 using Content.Server.Imperial.MouseInput;
 using Content.Server.Imperial.TargetOverlay;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Magic;
 using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Physics.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Magic;
@@ -38,6 +40,7 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
     [Dependency] private readonly SharedBroadphaseSystem _broadphaseSystem = default!;
     [Dependency] private readonly MapSystem _mapSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
 
     public override void Initialize()
@@ -77,7 +80,8 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
                     Loc.GetString(spellSpeech.Speech),
                     TransformToChatEnum(spellSpeech.SpeechType),
                     spellSpeech.HideChat,
-                    color: spellSpeech.Color
+                    color: spellSpeech.Color,
+                    language: _proto.Index(SharedLanguageSystem.Universal)
                 );
             }
         }

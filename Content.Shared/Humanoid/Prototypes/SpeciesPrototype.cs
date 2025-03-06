@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.Medieval.Language;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
@@ -122,6 +123,29 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// </summary>
     [DataField]
     public int MaxAge = 120;
+
+    // imperial medieval languages start
+
+    /// <summary>
+    /// Особые языки, которые не могут выбрать представители других рас.
+    /// Уникальные языки не должны быть раундстартовыми.
+    /// </summary>
+    [DataField]
+    public List<ProtoId<LanguagePrototype>> UniqueLanguages = new();
+
+    /// <summary>
+    /// Стандартные языки, выбирающиеся при создании персонажа
+    /// </summary>
+    [DataField]
+    public List<ProtoId<LanguagePrototype>> DefaultLanguages = new() { SharedLanguageSystem.Common };
+
+    /// <summary>
+    /// Максимальное число выбранных языков
+    /// </summary>
+    [DataField]
+    public int MaxLanguages = 3;
+
+    // imperial medieval languages end
 }
 
 public enum SpeciesNaming : byte

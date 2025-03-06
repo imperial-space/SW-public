@@ -24,6 +24,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.NeedSleep.Components;
 using Content.Server.Nutrition.Components;
 using Content.Shared.Inventory;
+using Content.Shared.Chat;
 
 namespace Content.Server.Nocturn
 {
