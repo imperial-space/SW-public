@@ -2174,3 +2174,41 @@
     MedievalIronIngot: 2
     MedievalIronPlateSmall: 3
   result: MedievalShoulder
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetNorthern
+  craftTime: 9
+  stacks:
+    MedievalIronIngot: 1
+    MedievalIronPlateSmall: 2
+    MedievalRivets: 1
+    MedievalLeather1: 1
+  result: MedievalClothingHeadHelmetNorthern
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorNorthern
+  craftTime: 28
+  stacks:
+    MedievalIronPlate: 5
+    MedievalRivets: 3
+    MedievalIronPlateSmall: 6
+    MedievalLeather1: 3
+  result: MedievalClothingOuterArmorNorthern
+
+- type: CP14Recipe
+  id: MedievalNorthernGloves
+  craftTime: 12
+  stacks:
+    MedievalRivets: 1
+    MedievalIronPlateSmall: 5
+    MedievalLeather1: 2
+  result: MedievalNorthernGloves
+
+- type: CP14Recipe
+  id: MedievalClothingFeetNorthern
+  craftTime: 6
+  stacks:
+    MedievalRivets: 1
+    MedievalIronPlateSmall: 4
+    MedievalLeather1: 1
+  result: MedievalClothingFeetNorthern

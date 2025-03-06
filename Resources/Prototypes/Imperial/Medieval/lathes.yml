@@ -1159,6 +1159,10 @@
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
     - MedievalWeaponTurretNanoTrasenCraft
+    - MedievalClothingHeadHelmetNorthern
+    - MedievalClothingOuterArmorNorthern
+    - MedievalNorthernGloves
+    - MedievalClothingFeetNorthern
 
 - type: entity
   parent: CP14BaseWorkbench

@@ -934,3 +934,14 @@
     equipDelay: 0.01 # imperial medieval
     unequipDelay: 0.01 # imperial medieval
     sprite: Imperial/Medieval/Clothing/Head/fur_hat1.rsi
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetNorthern
+  name: northern helmet
+  description: Medieval northern helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/northern_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/northern_helmet.rsi
