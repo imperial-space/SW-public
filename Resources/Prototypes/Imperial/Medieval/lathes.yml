@@ -13,22 +13,21 @@
     netsync: false
     layers:
     - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
+      map: [ "enum.LatheVisualLayers.IsRunning" ]
     - state: unlit
       shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
     - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      map: [ "enum.MaterialStorageVisualLayers.Inserting" ]
     - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: Appearance
   - type: Physics
     bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -37,20 +36,19 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 180
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Machine
   - type: MaterialStorage
     whitelist:
       tags:
-        - Ore
-        - MedievalStone
-        - MedievalTopaz
-        - RawMaterial
+      - Ore
+      - MedievalStone
+      - MedievalTopaz
+      - RawMaterial
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: UserInterface
@@ -64,17 +62,17 @@
     idleState: icon
     runningState: building
     staticRecipes:
-      - MedievalStoneLoopHoleCraft
-      - MedievalStoneWallCraft
-      - MedievalWizardPlaceCraft
-      - MedievalFoundryCraft
-      - MedievalMortarCraft
-      - MedievalWaterCraft
-      - MedievalDecorTorchColoneCraft
-      - MedievalStoneWizardPlaceCraft
-      - MedievalDecorMogila1Craft
-      - MedievalDecorMogila2Craft
-      - MedievalDecorMogila3Craft
+    - MedievalStoneLoopHoleCraft
+    - MedievalStoneWallCraft
+    - MedievalWizardPlaceCraft
+    - MedievalFoundryCraft
+    - MedievalMortarCraft
+    - MedievalWaterCraft
+    - MedievalDecorTorchColoneCraft
+    - MedievalStoneWizardPlaceCraft
+    - MedievalDecorMogila1Craft
+    - MedievalDecorMogila2Craft
+    - MedievalDecorMogila3Craft
 
 - type: entity
   noSpawn: true
@@ -91,22 +89,21 @@
     netsync: false
     layers:
     - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
+      map: [ "enum.LatheVisualLayers.IsRunning" ]
     - state: unlit
       shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
     - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      map: [ "enum.MaterialStorageVisualLayers.Inserting" ]
     - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: Appearance
   - type: Physics
     bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -115,20 +112,19 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 180
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Machine
   - type: MaterialStorage
     whitelist:
       tags:
-        - Ore
-        - MedievalStone
-        - MedievalTopaz
-        - RawMaterial
+      - Ore
+      - MedievalStone
+      - MedievalTopaz
+      - RawMaterial
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: UserInterface
@@ -142,9 +138,9 @@
     idleState: icon
     runningState: building
     staticRecipes:
-      - MedievalTopazOre
-      - MedievalFireSerdolickOre
-      - MedievalAdamOre
+    - MedievalTopazOre
+    - MedievalFireSerdolickOre
+    - MedievalAdamOre
 
 - type: entity
   noSpawn: true
@@ -161,22 +157,21 @@
     netsync: false
     layers:
     - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
+      map: [ "enum.LatheVisualLayers.IsRunning" ]
     - state: unlit
       shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
     - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      map: [ "enum.MaterialStorageVisualLayers.Inserting" ]
     - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: Appearance
   - type: Physics
     bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -185,21 +180,20 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 180
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Machine
   - type: MaterialStorage
     whitelist:
       tags:
-        - Ore
-        - MedievalStone
-        - MedievalTopaz
-        - MedievalFireSerdolick
-        - RawMaterial
+      - Ore
+      - MedievalStone
+      - MedievalTopaz
+      - MedievalFireSerdolick
+      - RawMaterial
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: UserInterface
@@ -213,11 +207,11 @@
     idleState: icon
     runningState: building
     staticRecipes:
-      - MedievalRuneFireBall
-      - MedievalRuneHealing
-      - MedievalRuneArrow
-      - MedievalRuneLighting
-      - MedievalRuneFlash
+    - MedievalRuneFireBall
+    - MedievalRuneHealing
+    - MedievalRuneArrow
+    - MedievalRuneLighting
+    - MedievalRuneFlash
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -235,22 +229,21 @@
     netsync: false
     layers:
     - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
+      map: [ "enum.LatheVisualLayers.IsRunning" ]
     - state: unlit
       shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
     - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      map: [ "enum.MaterialStorageVisualLayers.Inserting" ]
     - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: Appearance
   - type: Physics
     bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -259,21 +252,20 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 180
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Machine
   - type: MaterialStorage
     whitelist:
       tags:
-        - Ore
-        - MedievalStone
-        - MedievalTopaz
-        - MedievalFireSerdolick
-        - RawMaterial
+      - Ore
+      - MedievalStone
+      - MedievalTopaz
+      - MedievalFireSerdolick
+      - RawMaterial
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: UserInterface
@@ -287,16 +279,16 @@
     idleState: icon
     runningState: building
     staticRecipes:
-      - RobustHarvestChemistryBottle
-      - MedievalBloodChemistryBottle
-      - MedievalHealthChemistryBottle
-      - MedievalMuteChemistryBottle
-      - MedievalBaffChemistryBottle
-      - MedievalSleepChemistryBottle
-      - MedievalMutagenChemistryBottle
-      - MedievalDrugChemistryBottle
-      - MedievalFireChemistryBottle
-      - FoodCondimentBottleEnzyme
+    - RobustHarvestChemistryBottle
+    - MedievalBloodChemistryBottle
+    - MedievalHealthChemistryBottle
+    - MedievalMuteChemistryBottle
+    - MedievalBaffChemistryBottle
+    - MedievalSleepChemistryBottle
+    - MedievalMutagenChemistryBottle
+    - MedievalDrugChemistryBottle
+    - MedievalFireChemistryBottle
+    - FoodCondimentBottleEnzyme
 
 - type: entity
   noSpawn: true
@@ -313,22 +305,21 @@
     netsync: false
     layers:
     - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
+      map: [ "enum.LatheVisualLayers.IsRunning" ]
     - state: unlit
       shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
     - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      map: [ "enum.MaterialStorageVisualLayers.Inserting" ]
     - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: Appearance
   - type: Physics
     bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -337,21 +328,20 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 180
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Machine
   - type: MaterialStorage
     whitelist:
       tags:
-        - Ore
-        - MedievalStone
-        - MedievalTopaz
-        - MedievalFireSerdolick
-        - RawMaterial
+      - Ore
+      - MedievalStone
+      - MedievalTopaz
+      - MedievalFireSerdolick
+      - RawMaterial
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: UserInterface
@@ -365,24 +355,24 @@
     idleState: icon
     runningState: building
     staticRecipes:
-      - MedievalAloeSeeds
-      - MedievalAmbrosiaVulgarisSeeds
-      - MedievalGalaxythistleSeeds
-      - MedievalCabbageSeeds
-      - MedievalCannabisSeeds
-      - MedievalNettleSeeds
-      - MedievalWatermelonSeeds
-      - MedievalRiceSeeds
-      - MedievalAppleSeeds
-      - MedievalGarlicSeeds
-      - MedievalPoppySeeds
-      - MedievalWheatSeeds
-      - MedievalSugarcaneSeeds
-      - MedievalTomatoSeeds
-      - MedievalOatSeeds
-      - MedievalTowercapSeeds
-      - MedievalLingzhiSeeds
-      - MedievalChanterelleSeeds
+    - MedievalAloeSeeds
+    - MedievalAmbrosiaVulgarisSeeds
+    - MedievalGalaxythistleSeeds
+    - MedievalCabbageSeeds
+    - MedievalCannabisSeeds
+    - MedievalNettleSeeds
+    - MedievalWatermelonSeeds
+    - MedievalRiceSeeds
+    - MedievalAppleSeeds
+    - MedievalGarlicSeeds
+    - MedievalPoppySeeds
+    - MedievalWheatSeeds
+    - MedievalSugarcaneSeeds
+    - MedievalTomatoSeeds
+    - MedievalOatSeeds
+    - MedievalTowercapSeeds
+    - MedievalLingzhiSeeds
+    - MedievalChanterelleSeeds
 
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
@@ -399,22 +389,21 @@
     netsync: false
     layers:
     - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
+      map: [ "enum.LatheVisualLayers.IsRunning" ]
     - state: unlit
       shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
     - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      map: [ "enum.MaterialStorageVisualLayers.Inserting" ]
     - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: Appearance
   - type: Physics
     bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -423,19 +412,18 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 200
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Machine
   - type: MaterialStorage
     whitelist:
       tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
+      - Sheet
+      - RawMaterial
+      - Ingot
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: UserInterface
@@ -449,19 +437,19 @@
     idleState: icon
     runningState: building
     staticRecipes:
-      - MedievalKeyWizard
-      - MedievalMaidKey
-      - MedievalKeyGuard
-      - MedievalKeyAlchem
-      - MedievalKeyKing
-      - MedievalLeatherKey
-      - MedievalFarmerKey
-      - MedievalGateKey
-      - MedievalBlacksmithKey
-      - MedievalWoodKey
-      - MedievalKeyChapel
-      - MedievalKeyTavern
-      - MedievalKeyCargo
+    - MedievalKeyWizard
+    - MedievalMaidKey
+    - MedievalKeyGuard
+    - MedievalKeyAlchem
+    - MedievalKeyKing
+    - MedievalLeatherKey
+    - MedievalFarmerKey
+    - MedievalGateKey
+    - MedievalBlacksmithKey
+    - MedievalWoodKey
+    - MedievalKeyChapel
+    - MedievalKeyTavern
+    - MedievalKeyCargo
 
 - type: entity
   id: MedievalMortar
@@ -485,14 +473,13 @@
     visuals:
       enum.ReagentGrinderVisualState.BeakerAttached:
         grinder:
-          True: {state: "juicer1"}
-          False: {state: "juicer0"}
+          True: { state: "juicer1" }
+          False: { state: "juicer0" }
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.08,-0.35,0.15,0.25"
         density: 190
         mask:
@@ -520,11 +507,12 @@
     board: ReagentGrinderMachineCircuitboard
   - type: ContainerContainer
     containers:
-      beakerSlot: !type:ContainerSlot
-      inputContainer: !type:Container
-      machine_board: !type:Container
-      machine_parts: !type:Container
+      beakerSlot: !type:ContainerSlot ""
+      inputContainer: !type:Container ""
+      machine_board: !type:Container ""
+      machine_parts:
 
+        !type:Container ""
 - type: entity
   id: Medievalalchem_dispenser
   name: alchemical dispenser
@@ -544,7 +532,7 @@
     - state: mixer_empty
     - state: mixer_screens
       shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
   - type: Icon
     sprite: Imperial/Medieval/Lathe/alchem.rsi
     state: mixer_loaded
@@ -555,8 +543,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -565,8 +552,7 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 100
       behaviors:
       - !type:DoActsBehavior
@@ -582,10 +568,10 @@
     board: ChemMasterMachineCircuitboard
   - type: ContainerContainer
     containers:
-      beakerSlot: !type:ContainerSlot
-      outputSlot: !type:ContainerSlot
-      machine_board: !type:Container
-      machine_parts: !type:Container
+      beakerSlot: !type:ContainerSlot ""
+      outputSlot: !type:ContainerSlot ""
+      machine_board: !type:Container ""
+      machine_parts: !type:Container ""
   - type: ItemSlots
     slots:
       beakerSlot:
@@ -647,8 +633,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -662,18 +647,17 @@
     snapCardinals: true
     layers:
     - state: mw0
-      map: ["enum.MicrowaveVisualizerLayers.Base"]
+      map: [ "enum.MicrowaveVisualizerLayers.Base" ]
     - state: mw_unlit
       shader: unshaded
-      map: ["enum.MicrowaveVisualizerLayers.BaseUnlit"]
+      map: [ "enum.MicrowaveVisualizerLayers.BaseUnlit" ]
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 100
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   #- type: UpgradePowerDraw
   #  powerDrawMultiplier: 0.75
   #  scaling: Exponential
@@ -681,10 +665,11 @@
     board: MicrowaveMachineCircuitboard
   - type: ContainerContainer
     containers:
-      microwave_entity_container: !type:Container
-      machine_board: !type:Container
-      machine_parts: !type:Container
+      microwave_entity_container: !type:Container ""
+      machine_board: !type:Container ""
+      machine_parts:
 
+        !type:Container ""
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
   id: MedievalAlcPlace
@@ -700,22 +685,21 @@
     netsync: false
     layers:
     - state: icon
-      map: ["enum.LatheVisualLayers.IsRunning"]
+      map: [ "enum.LatheVisualLayers.IsRunning" ]
     - state: unlit
       shader: unshaded
-      map: ["enum.PowerDeviceVisualLayers.Powered"]
+      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
     - state: inserting
-      map: ["enum.MaterialStorageVisualLayers.Inserting"]
+      map: [ "enum.MaterialStorageVisualLayers.Inserting" ]
     - state: panel
-      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
   - type: Appearance
   - type: Physics
     bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
         density: 190
         mask:
@@ -724,20 +708,19 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 200
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Machine
   - type: MaterialStorage
     whitelist:
       tags:
-        - Sheet
-        - RawMaterial
-        - Ingot
-        - MedievalLeather
+      - Sheet
+      - RawMaterial
+      - Ingot
+      - MedievalLeather
   - type: ActivatableUI
     key: enum.LatheUiKey.Key
   - type: UserInterface
@@ -751,13 +734,13 @@
     idleState: icon
     runningState: building
     staticRecipes:
-      - MedievalBarrelWine
-      - MedievalBarrelMead
-      - MedievalBarrelRedMead
-      - MedievalBarrelBeer
-      - MedievalBarrelRum
-      - MedievalBarrelVodka
-      - MedievalBarrelAle
+    - MedievalBarrelWine
+    - MedievalBarrelMead
+    - MedievalBarrelRedMead
+    - MedievalBarrelBeer
+    - MedievalBarrelRum
+    - MedievalBarrelVodka
+    - MedievalBarrelAle
 
 - type: entity
   parent:
@@ -806,8 +789,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -816,12 +798,11 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 20000
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Transform
     anchored: true
   - type: PointLight
@@ -845,8 +826,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -855,12 +835,11 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 200
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepWood
@@ -870,34 +849,35 @@
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_cloth.ogg"
     recipes:
-      - MedievalClothingHeadHelmetCap
-      - MedievalCoinBag
-      - MedievalClothingOuterArmorFur
-      - MedievalClothingOuterArmorStudded
-      - MedievalClothingOuterArmorLeather
-      - MedievalClothingOuterArmorLeatherLight
-      - MedievalClothingOuterArmorLeatherHeavy
-      - MedievalClothingBackpackSatchelLeather
-      - MedievalClothingBackpackSatchelLeather2
-      - MedievalClothingBackpackSatchelLeather3
-      - MedievalClothingBackpackLeather
-      - MedievalClothingBackpackSatchelTraveller
-      - MedievalClothingOuterApronChef
-      - MedievalQuiver
-      - MedievalQuiverSteel
-      - MedievalClothingMaskPlague
-      - MedievalRope
-      - MedievalRopeSpider
-      - MedievalRopeCloth
-      - MedievalWineskin
-      - MedievalBastShoes
-      - MedievalClothingHeadBag
-      - MedievalGag
-      - MedievaldDiceBag
-      - MedievalPlantBag
-      - MedievalOreBag
-      - MedievalAlchemicBelt
-      - MedievalClothingHeadHatCowboyBrown
+    - MedievalClothingHeadHelmetCap
+    - MedievalClothingHeadFurHat
+    - MedievalCoinBag
+    - MedievalClothingOuterArmorFur
+    - MedievalClothingOuterArmorStudded
+    - MedievalClothingOuterArmorLeather
+    - MedievalClothingOuterArmorLeatherLight
+    - MedievalClothingOuterArmorLeatherHeavy
+    - MedievalClothingBackpackSatchelLeather
+    - MedievalClothingBackpackSatchelLeather2
+    - MedievalClothingBackpackSatchelLeather3
+    - MedievalClothingBackpackLeather
+    - MedievalClothingBackpackSatchelTraveller
+    - MedievalClothingOuterApronChef
+    - MedievalQuiver
+    - MedievalQuiverSteel
+    - MedievalClothingMaskPlague
+    - MedievalRope
+    - MedievalRopeSpider
+    - MedievalRopeCloth
+    - MedievalWineskin
+    - MedievalBastShoes
+    - MedievalClothingHeadBag
+    - MedievalGag
+    - MedievaldDiceBag
+    - MedievalPlantBag
+    - MedievalOreBag
+    - MedievalAlchemicBelt
+    - MedievalClothingHeadHatCowboyBrown
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -914,8 +894,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
         density: 190
         mask:
@@ -924,39 +903,38 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 200
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Transform
     anchored: true
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_wood.ogg"
     recipes:
-      - MedievalWeaponCrossbow
-      - MedievalWoodenSword
-      - MedievalBolt
-      - MedievalBoltSteel
-      - MedievalBoltPractice
-      - MedievalBow
-      - MedievalArrow
-      - MedievalArrowPractice
-      - MedievalArrowFire
-      - MedievalWoodenShield2
-      - MedievalWoodenShield
-      - MedievalWoodenShield3
-      - MedievalBanjoInstrument
-      - MedievalChest
-      - MedievalCrateCoffin
-      - MedievalBeaker
-      - MedievalPen
-      - MedievalTarget
-      - MedievalMopItem
-      - MedievalMopBucket
-      - MedievalKnut
+    - MedievalWeaponCrossbow
+    - MedievalWoodenSword
+    - MedievalBolt
+    - MedievalBoltSteel
+    - MedievalBoltPractice
+    - MedievalBow
+    - MedievalArrow
+    - MedievalArrowPractice
+    - MedievalArrowFire
+    - MedievalWoodenShield2
+    - MedievalWoodenShield
+    - MedievalWoodenShield3
+    - MedievalBanjoInstrument
+    - MedievalChest
+    - MedievalCrateCoffin
+    - MedievalBeaker
+    - MedievalPen
+    - MedievalTarget
+    - MedievalMopItem
+    - MedievalMopBucket
+    - MedievalKnut
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -973,8 +951,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -983,12 +960,11 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 180
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Transform
     anchored: true
   - type: Pullable
@@ -996,22 +972,22 @@
     craftSpeed: 1
     craftSound: "/Audio/Imperial/Medieval/craft_foundry.ogg"
     recipes:
-      - MedievalGlinaFormaReady
-      - FoodBowlBig
-      - SheetSteelMedieval
-      - SheetSteelMedieval10
-      - MedievalSteelIngot
-      - MedievalSteelIngot10
-      - MedievalGoldOre
-      - MedievalGoldOre10
-      - EbonitMedieval
-      - EbonitMedieval10
-      - ForstoneMedieval
-      - ForstoneMedieval10
-      - MaterialGunpowder
-      - MaterialGunpowder10
-      - MedievalCoal
-      - MedievalCoal10
+    - MedievalGlinaFormaReady
+    - FoodBowlBig
+    - SheetSteelMedieval
+    - SheetSteelMedieval10
+    - MedievalSteelIngot
+    - MedievalSteelIngot10
+    - MedievalGoldOre
+    - MedievalGoldOre10
+    - EbonitMedieval
+    - EbonitMedieval10
+    - ForstoneMedieval
+    - ForstoneMedieval10
+    - MaterialGunpowder
+    - MaterialGunpowder10
+    - MedievalCoal
+    - MedievalCoal10
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1028,8 +1004,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -1038,33 +1013,32 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 180
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Transform
     anchored: true
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
     recipes:
-      - MedievalGlowStone
-      - MedievalCompactDefibrillator
-      - MedievalShoesSpeed
-      - MedaljonSpeed
-      - MedaljonMana
-      - MedaljonNoslip
-      - MedaljonFlashImmune
-      - MedaljonThieving
-      - MedaljonDef
-      - MedaljonExpl
-      - MedaljonDark
-      - MedievalHandheldHealthAnalyzer
-      - MedaljonAntiMana
-      - MedievalClothingEyesEyepatchHudBeer
-      - MedievalClothingEyesEyepatchHudMedical
+    - MedievalGlowStone
+    - MedievalCompactDefibrillator
+    - MedievalShoesSpeed
+    - MedaljonSpeed
+    - MedaljonMana
+    - MedaljonNoslip
+    - MedaljonFlashImmune
+    - MedaljonThieving
+    - MedaljonDef
+    - MedaljonExpl
+    - MedaljonDark
+    - MedievalHandheldHealthAnalyzer
+    - MedaljonAntiMana
+    - MedievalClothingEyesEyepatchHudBeer
+    - MedievalClothingEyesEyepatchHudMedical
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1081,8 +1055,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.45,-0.45,0.45,0.45"
         density: 190
         mask:
@@ -1091,102 +1064,101 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 200
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Transform
     anchored: true
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
     recipes:
-      - MedievalGear
-      - MedievalChain
-      - MedievalLeatherBelt
-      - MedievalIronPlate
-      - MedievalIronPlateSmall
-      - MedievalRivets
-      - MedievalShoulder
-      - MedievalCatapultCraft
-      - MedievalCatapultAmmoBarrel
-      - MedievalCatapultAmmoBarrelGunpowder
-      - MedievalCatapultAmmoBarrelAp
-      - MedievalCatapultAmmoBarrelStone
-      - MedievalClothingHeadHelmetSalad
-      - MedievalClothingHeadHelmetSaladLight
-      - MedievalClothingHeadHelmetNormand
-      - MedievalClothingHeadHelmetNormandFree
-      - MedievalClothingHeadHelmetBacinet
-      - MedievalClothingHeadHelmetShapel
-      - MedievalClothingHeadHelmetCrusader
-      - MedievalIronGloves
-      - MedievalIronGlovesBrig
-      - MedievalIronGlovesBear
-      - MedievalClothingFeetSteel
-      - MedievalClothingOuterArmorChainMailLight
-      - MedievalClothingOuterArmorChainMail
-      - MedievalClothingOuterArmorIronCuirassLight
-      - MedievalClothingOuterArmorIronCuirass
-      - ClothingOuterArmorPodWars
-      - MedievalClothingOuterArmorIron
-      - MedievalClothingOuterArmorUpIron
-      - MedievalClothingHeadHelmetEbonit
-      - MedievalClothingHeadHelmetEbonit2
-      - MedievalClothingOuterArmorEbonit
-      - MedievalClothingOuterArmorEbonit2
-      - MedievalEbonitGloves
-      - MedievalEbonitGloves2
-      - MedievalClothingFeetEbonit
-      - MedievalClothingFeetEbonit2
-      - MedievalClothingHeadHelmetForstone
-      - MedievalClothingOuterArmorForstone
-      - MedievalForstoneGloves
-      - MedievalClothingFeetForstone
-      #- MedievalClothingOuterArmorUpIron2
-      - MedievalIronShield
-      - MedievalSpear
-      - MedievalSpearT3Steel
-      - MedievalDagger
-      - MedievalDaggerT3Steel
-      - MedievalFalshion
-      - MedievalFalshionT3Steel
-      - MedievalShortSword
-      - MedievalShortSwordSteel
-      - MedievalSaber
-      - MedievalSaberSteel
-      - MedievalMace
-      - MedievalMaceT3Steel
-      - MedievalPalice
-      - MedievalPaliceSteel
-      - MedievalIronHalberd
-      - MedievalIronHalberdT3Steel
-      - MedievalMaceT3Heavy
-      - MedievalMaceT3SteelHeavy
-      - MedievalIronSekir
-      - MedievalIronSekirSteel
-      - MedievalIronHammer
-      - MedievalIronHammerSteel
-      - MedievalLockpickPack
-      - MedievalLockpick
-      - MedievalShovel
-      - MedievalPickaxe
-      - MedievalPickaxeSteel
-      - MedievalRepairStone
-      - MedievalHoe
-      - MedievalScythe
-      - MedievalClippers
-      - MedievalHandcuffs
-      - MedievalFetter
-      - MedievalHatchet
-      - BarberScissors
-      - MedievalGrenade
-      - MedievalKeyStorage
-      - MedievalDoorKeyCheck
-      - MedievalPrisonGrilleCraft
-      - MedievalWeaponTurretNanoTrasenCraft
+    - MedievalGear
+    - MedievalChain
+    - MedievalLeatherBelt
+    - MedievalIronPlate
+    - MedievalIronPlateSmall
+    - MedievalRivets
+    - MedievalShoulder
+    - MedievalCatapultCraft
+    - MedievalCatapultAmmoBarrel
+    - MedievalCatapultAmmoBarrelGunpowder
+    - MedievalCatapultAmmoBarrelAp
+    - MedievalCatapultAmmoBarrelStone
+    - MedievalClothingHeadHelmetSalad
+    - MedievalClothingHeadHelmetSaladLight
+    - MedievalClothingHeadHelmetNormand
+    - MedievalClothingHeadHelmetNormandFree
+    - MedievalClothingHeadHelmetBacinet
+    - MedievalClothingHeadHelmetShapel
+    - MedievalClothingHeadHelmetCrusader
+    - MedievalIronGloves
+    - MedievalIronGlovesBrig
+    - MedievalIronGlovesBear
+    - MedievalClothingFeetSteel
+    - MedievalClothingOuterArmorChainMailLight
+    - MedievalClothingOuterArmorChainMail
+    - MedievalClothingOuterArmorIronCuirassLight
+    - MedievalClothingOuterArmorIronCuirass
+    - ClothingOuterArmorPodWars
+    - MedievalClothingOuterArmorIron
+    - MedievalClothingOuterArmorUpIron
+    - MedievalClothingHeadHelmetEbonit
+    - MedievalClothingHeadHelmetEbonit2
+    - MedievalClothingOuterArmorEbonit
+    - MedievalClothingOuterArmorEbonit2
+    - MedievalEbonitGloves
+    - MedievalEbonitGloves2
+    - MedievalClothingFeetEbonit
+    - MedievalClothingFeetEbonit2
+    - MedievalClothingHeadHelmetForstone
+    - MedievalClothingOuterArmorForstone
+    - MedievalForstoneGloves
+    - MedievalClothingFeetForstone
+    #- MedievalClothingOuterArmorUpIron2
+    - MedievalIronShield
+    - MedievalSpear
+    - MedievalSpearT3Steel
+    - MedievalDagger
+    - MedievalDaggerT3Steel
+    - MedievalFalshion
+    - MedievalFalshionT3Steel
+    - MedievalShortSword
+    - MedievalShortSwordSteel
+    - MedievalSaber
+    - MedievalSaberSteel
+    - MedievalMace
+    - MedievalMaceT3Steel
+    - MedievalPalice
+    - MedievalPaliceSteel
+    - MedievalIronHalberd
+    - MedievalIronHalberdT3Steel
+    - MedievalMaceT3Heavy
+    - MedievalMaceT3SteelHeavy
+    - MedievalIronSekir
+    - MedievalIronSekirSteel
+    - MedievalIronHammer
+    - MedievalIronHammerSteel
+    - MedievalLockpickPack
+    - MedievalLockpick
+    - MedievalShovel
+    - MedievalPickaxe
+    - MedievalPickaxeSteel
+    - MedievalRepairStone
+    - MedievalHoe
+    - MedievalScythe
+    - MedievalClippers
+    - MedievalHandcuffs
+    - MedievalFetter
+    - MedievalHatchet
+    - BarberScissors
+    - MedievalGrenade
+    - MedievalKeyStorage
+    - MedievalDoorKeyCheck
+    - MedievalPrisonGrilleCraft
+    - MedievalWeaponTurretNanoTrasenCraft
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1203,8 +1175,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeAabb
+        shape: !type:PhysShapeAabb
           bounds: "-0.4,-0.4,0.4,0.4"
         density: 190
         mask:
@@ -1213,94 +1184,93 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 200
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
   - type: Transform
     anchored: true
   - type: Pullable
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_cloth.ogg"
     recipes:
-      - MedievalClothFromGrass
-      - MedievalPaper
-      - MedievalMaskFace
-      - MedievalClothingShoesLeather
-      - MedievalClothingShoesSpider
-      - MedievalClothingHeadHelmetHood
-      - MedievalClothingHeadHelmetHood3
-      - MedievalClothingHeadHatPlaguedoctor
-      - MedievalClothingHandsGlovesColorBlack
-      - MedievalClothingHandsGlovesColorBrown
-      - MedievalGlovesBlacksmith
-      - MedievalClothingUniformJumpsuitShitCloth2
-      - MedievalClothingUniformJumpsuitShitCloth3
-      - MedievalClothingUniformJumpsuitShitCloth4
-      - MedievalClothingUniformJumpsuitShitCloth8
-      - MedievalClothingUniformJumpsuitShitCloth10
-      - MedievalClothingUniformJumpsuitShitCloth11
-      - MedievalClothingUniformJumpsuitShitCloth12
-      - MedievalClothingUniformJumpsuitShitCloth14
-      - MedievalClothingUniformJumpsuitShitCloth15
-      - MedievalClothingUniformJumpsuitShitCloth17
-      - MedievalClothingUniformJumpsuitShitCloth18
-      - MedievalClothingUniformJumpsuitShitCloth19
-      - MedievalClothingUniformJumpsuitShitCloth21
-      - MedievalClothingUniformJumpsuitShitCloth22
-      - MedievalClothingUniformJumpsuitShitCloth32
-      - MedievalClothingUniformJumpsuitShitCloth33
-      - MedievalClothingUniformJumpsuitShitCloth34
-      - MedievalClothingUniformJumpsuitShitCloth35
-      - MedievalClothingUniformJumpsuitShitCloth36
-      - MedievalClothingUniformJumpsuitShitCloth37
-      - MedievalClothingUniformJumpsuitShitCloth38
-      - MedievalClothingUniformJumpsuitShitCloth39
-      - MedievalClothingUniformJumpsuitShitCloth40
-      - MedievalClothingUniformJumpsuitShitCloth41
-      - MedievalClothingUniformJumpsuitShitCloth42
-      - MedievalClothingUniformJumpsuitShitCloth43
-      - MedievalClothingUniformJumpsuitShitCloth66
-      - MedievalClothingUniformJumpsuitShitCloth44
-      - MedievalClothingUniformJumpsuitShitCloth45
-      - MedievalClothingUniformJumpsuitShitCloth46
-      - MedievalClothingUniformJumpsuitShitCloth47
-      - MedievalClothingUniformJumpsuitShitCloth48
-      - MedievalClothingUniformJumpsuitShitCloth49
-      - MedievalClothingUniformJumpsuitShitCloth50
-      - MedievalClothingUniformJumpsuitShitCloth51
-      - MedievalClothingUniformJumpsuitShitCloth52
-      - MedievalClothingUniformJumpsuitShitCloth53
-      - MedievalClothingUniformJumpsuitShitCloth54
-      - MedievalClothingUniformJumpsuitShitCloth55
-      - MedievalClothingUniformJumpsuitShitCloth56
-      - MedievalClothingUniformJumpsuitShitCloth57
-      - MedievalClothingUniformJumpsuitShitCloth58
-      - MedievalClothingUniformJumpsuitShitCloth59
-      - MedievalClothingUniformJumpsuitShitCloth60
-      - MedievalClothingUniformJumpsuitShitCloth61
-      - MedievalClothingUniformJumpsuitShitCloth62
-      - MedievalClothingUniformJumpsuitShitCloth63
-      - MedievalClothingUniformJumpsuitShitCloth64
-      - MedievalClothingUniformJumpskirtJanimaid
-      - MedievalClothingUniformJumpsuitFlannel
-      - MedievalClothingHeadFarmerHat
-      - MedievalClothingHeadArcherHat
-      - MedievalClothingHeadHelmetExecutor1
-      - ClothingMaskBandGreen
-      - ClothingMaskBandGold
-      - ClothingMaskBandBrown
-      - ClothingMaskBandRed
-      - ClothingMaskBandBlue
-      - ClothingMaskBandBlack
-      - CarpetBlackCraft
-      - CarpetPinkCraft
-      - CarpetBlueCraft
-      - CarpetGreenCraft
-      - CarpetOrangeCraft
-      #- CarpetSBlueCraft
-      - CarpetPurpleCraft
-      #- CarpetCraft
-      - CarpetWhiteCraft
+    - MedievalClothFromGrass
+    - MedievalPaper
+    - MedievalMaskFace
+    - MedievalClothingShoesLeather
+    - MedievalClothingShoesSpider
+    - MedievalClothingHeadHelmetHood
+    - MedievalClothingHeadHelmetHood3
+    - MedievalClothingHeadHatPlaguedoctor
+    - MedievalClothingHandsGlovesColorBlack
+    - MedievalClothingHandsGlovesColorBrown
+    - MedievalGlovesBlacksmith
+    - MedievalClothingUniformJumpsuitShitCloth2
+    - MedievalClothingUniformJumpsuitShitCloth3
+    - MedievalClothingUniformJumpsuitShitCloth4
+    - MedievalClothingUniformJumpsuitShitCloth8
+    - MedievalClothingUniformJumpsuitShitCloth10
+    - MedievalClothingUniformJumpsuitShitCloth11
+    - MedievalClothingUniformJumpsuitShitCloth12
+    - MedievalClothingUniformJumpsuitShitCloth14
+    - MedievalClothingUniformJumpsuitShitCloth15
+    - MedievalClothingUniformJumpsuitShitCloth17
+    - MedievalClothingUniformJumpsuitShitCloth18
+    - MedievalClothingUniformJumpsuitShitCloth19
+    - MedievalClothingUniformJumpsuitShitCloth21
+    - MedievalClothingUniformJumpsuitShitCloth22
+    - MedievalClothingUniformJumpsuitShitCloth32
+    - MedievalClothingUniformJumpsuitShitCloth33
+    - MedievalClothingUniformJumpsuitShitCloth34
+    - MedievalClothingUniformJumpsuitShitCloth35
+    - MedievalClothingUniformJumpsuitShitCloth36
+    - MedievalClothingUniformJumpsuitShitCloth37
+    - MedievalClothingUniformJumpsuitShitCloth38
+    - MedievalClothingUniformJumpsuitShitCloth39
+    - MedievalClothingUniformJumpsuitShitCloth40
+    - MedievalClothingUniformJumpsuitShitCloth41
+    - MedievalClothingUniformJumpsuitShitCloth42
+    - MedievalClothingUniformJumpsuitShitCloth43
+    - MedievalClothingUniformJumpsuitShitCloth66
+    - MedievalClothingUniformJumpsuitShitCloth44
+    - MedievalClothingUniformJumpsuitShitCloth45
+    - MedievalClothingUniformJumpsuitShitCloth46
+    - MedievalClothingUniformJumpsuitShitCloth47
+    - MedievalClothingUniformJumpsuitShitCloth48
+    - MedievalClothingUniformJumpsuitShitCloth49
+    - MedievalClothingUniformJumpsuitShitCloth50
+    - MedievalClothingUniformJumpsuitShitCloth51
+    - MedievalClothingUniformJumpsuitShitCloth52
+    - MedievalClothingUniformJumpsuitShitCloth53
+    - MedievalClothingUniformJumpsuitShitCloth54
+    - MedievalClothingUniformJumpsuitShitCloth55
+    - MedievalClothingUniformJumpsuitShitCloth56
+    - MedievalClothingUniformJumpsuitShitCloth57
+    - MedievalClothingUniformJumpsuitShitCloth58
+    - MedievalClothingUniformJumpsuitShitCloth59
+    - MedievalClothingUniformJumpsuitShitCloth60
+    - MedievalClothingUniformJumpsuitShitCloth61
+    - MedievalClothingUniformJumpsuitShitCloth62
+    - MedievalClothingUniformJumpsuitShitCloth63
+    - MedievalClothingUniformJumpsuitShitCloth64
+    - MedievalClothingUniformJumpskirtJanimaid
+    - MedievalClothingUniformJumpsuitFlannel
+    - MedievalClothingHeadFarmerHat
+    - MedievalClothingHeadArcherHat
+    - MedievalClothingHeadHelmetExecutor1
+    - ClothingMaskBandGreen
+    - ClothingMaskBandGold
+    - ClothingMaskBandBrown
+    - ClothingMaskBandRed
+    - ClothingMaskBandBlue
+    - ClothingMaskBandBlack
+    - CarpetBlackCraft
+    - CarpetPinkCraft
+    - CarpetBlueCraft
+    - CarpetGreenCraft
+    - CarpetOrangeCraft
+    #- CarpetSBlueCraft
+    - CarpetPurpleCraft
+    #- CarpetCraft
+    - CarpetWhiteCraft

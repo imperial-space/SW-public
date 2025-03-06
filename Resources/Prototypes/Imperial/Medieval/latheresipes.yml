@@ -1086,6 +1086,13 @@
   result: MedievalClothingHeadHelmetCap
 
 - type: CP14Recipe
+  id: MedievalClothingHeadFurHat
+  craftTime: 10
+  stacks:
+    MedievalLeather1: 2
+  result: MedievalClothingHeadFurHat
+
+- type: CP14Recipe
   id: MedievalClothingOuterArmorLeather
   craftTime: 17
   stacks:
