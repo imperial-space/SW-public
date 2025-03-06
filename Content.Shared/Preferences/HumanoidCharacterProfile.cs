@@ -661,6 +661,11 @@ namespace Content.Shared.Preferences
             List<ProtoId<LanguagePrototype>> langsInvalid = new();
             foreach (var language in _languages)
             {
+                if (!prototypeManager.TryIndex(language, out var lang))
+                {
+                    langsInvalid.Add(language);
+                    continue;
+                }
                 if (!prototypeManager.Index(language).Roundstart && !speciesPrototype.UniqueLanguages.Contains(language))
                     langsInvalid.Add(language);
             }
@@ -668,6 +673,9 @@ namespace Content.Shared.Preferences
             {
                 _languages.Remove(lang);
             }
+
+            if (_languages.Count <= 0)
+                _languages = prototypeManager.Index(Species).DefaultLanguages.ToHashSet();
             // imperial medieval languages end
         }
 
