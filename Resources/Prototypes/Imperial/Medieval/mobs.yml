@@ -20,16 +20,16 @@
     baseSprintSpeed: 6
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: ReplacementAccent
     accent: xeno
   - type: MeleeWeapon
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       groups:
@@ -106,14 +106,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/fox.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: fox
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 50
         mask:
@@ -123,7 +122,7 @@
   - type: Appearance
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -147,7 +146,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       groups:
@@ -157,9 +156,9 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -187,14 +186,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/ant.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: ant
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.3
         density: 50
         mask:
@@ -204,7 +202,7 @@
   - type: Appearance
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -228,7 +226,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       groups:
@@ -238,9 +236,9 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -250,7 +248,6 @@
       10: 1
       25: 0.8
       35: 0.5
-
 
 - type: entity
   name: fox
@@ -277,14 +274,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/wolf.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: wolf
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 50
         mask:
@@ -314,7 +310,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       groups:
@@ -324,16 +320,16 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       54: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.0
-    baseSprintSpeed : 3.75
+    baseWalkSpeed: 3.0
+    baseSprintSpeed: 3.75
   - type: SlowOnDamage
     speedModifierThresholds:
       10: 1
@@ -346,7 +342,7 @@
     maxBuckleDistance: 1
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -383,14 +379,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/rabbit.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: rabbit
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.25
         density: 50
         mask:
@@ -419,7 +414,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       groups:
@@ -429,16 +424,16 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       14: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4.0
-    baseSprintSpeed : 5.8
+    baseWalkSpeed: 4.0
+    baseSprintSpeed: 5.8
   - type: NocturnBadFood
     timesCanBeBiten: 1
 
@@ -467,14 +462,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/golem_large.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: golem
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.85
         density: 50
         mask:
@@ -491,7 +485,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     damage:
       groups:
         Brute: 78
@@ -500,21 +494,20 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       960: Dead
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 960
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:SpawnEntitiesBehavior
         spawn:
           SteelOre1:
@@ -532,15 +525,15 @@
           MedievalMobGolemGhost:
             amount: 3
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 2.5
+    baseWalkSpeed: 2
+    baseSprintSpeed: 2.5
   - type: PointLight
     color: red
     energy: 4
     radius: 6.5
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -584,14 +577,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/golem.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: golem
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.36
         density: 50
         mask:
@@ -608,7 +600,7 @@
     angle: 0
     animation: WeaponArcFist
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     damage:
       groups:
         Brute: 10
@@ -617,36 +609,35 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       100: Dead
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 100
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:SpawnEntitiesBehavior
         spawn:
           SteelOre1:
             min: 4
             max: 7
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
-    baseSprintSpeed : 3.8
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 3.8
   - type: PointLight
     color: red
     energy: 3
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -693,14 +684,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/brown_bear.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bear
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -730,7 +720,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       groups:
@@ -741,9 +731,9 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -756,14 +746,14 @@
       120: 0.6
       150: 0.5
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.4
-    baseSprintSpeed : 3.4
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 3.4
   - type: Strap
     buckleOffset: "0, 0"
     maxBuckleDistance: 1
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -804,14 +794,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/hog.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bear
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -841,7 +830,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       groups:
@@ -852,9 +841,9 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -871,7 +860,7 @@
     maxBuckleDistance: 1
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -890,14 +879,13 @@
     drawdepth: Mobs
     sprite: Mobs/Ghosts/ghost_human.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: animated
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -919,7 +907,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       types:
@@ -929,8 +917,8 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
+    - CannotSuicide
+    - DoorBumpOpener
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -945,7 +933,7 @@
       300: 20
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -955,20 +943,19 @@
   - type: StealthOnMove
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 350
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:SpawnEntitiesBehavior
         spawn:
           MedievalEssence:
             min: 3
             max: 5
   - type: MovementSpeedModifier
-    baseWalkSpeed : 0.4
-    baseSprintSpeed : 0.4
+    baseWalkSpeed: 0.4
+    baseSprintSpeed: 0.4
   - type: WarpPoint
     follow: true
     location: Medieval boss ghost
@@ -993,7 +980,7 @@
 - type: entity
   name: monkey
   id: MedievalMobGoblin
-  parent: [SimpleMobBaseNoFood, StripableInventoryBase]
+  parent: [ SimpleMobBaseNoFood, StripableInventoryBase ]
   description: uga buga
   components:
   - type: CombatMode
@@ -1011,8 +998,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.3
         density: 80
         mask:
@@ -1028,7 +1014,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: monkey
       sprite: Imperial/Medieval/Mobs/goblin.rsi
   - type: Hands
@@ -1069,7 +1055,7 @@
   #- type: InventorySlots
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: HTN
     rootTask:
@@ -1092,13 +1078,13 @@
     regen: 0.2
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-      - CanPilot
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.62
-    baseSprintSpeed : 3.62
+    baseWalkSpeed: 3.62
+    baseSprintSpeed: 3.62
   - type: IgnitPocketFlames
   - type: MeleeParryAble
   - type: NocturnBadFood
@@ -1154,8 +1140,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 80
         mask:
@@ -1170,7 +1155,7 @@
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: monkey
       sprite: Imperial/Medieval/Mobs/cobold.rsi
   - type: Hands
@@ -1213,7 +1198,7 @@
     stealthy: true
   - type: NpcFactionMember
     factions:
-      - NanoTrasen
+    - NanoTrasen
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -1234,14 +1219,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/druid.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: golem
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.85
         density: 50
         mask:
@@ -1258,7 +1242,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     damage:
       groups:
         Brute: 78
@@ -1267,36 +1251,35 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       450: Dead
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 450
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:SpawnEntitiesBehavior
         spawn:
           MedievalAdam:
             min: 1
             max: 4
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1.8
-    baseSprintSpeed : 1.8
+    baseWalkSpeed: 1.8
+    baseSprintSpeed: 1.8
   - type: PointLight
     color: green
     energy: 1
     radius: 4.5
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -1323,12 +1306,12 @@
   description: Some cultures find them terrifying, others crunchy on the teeth.
   components:
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3
-    baseSprintSpeed : 6
+    baseWalkSpeed: 3
+    baseSprintSpeed: 6
   - type: Sprite
     drawdepth: Mobs
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bat
       sprite: Imperial/Medieval/Mobs/fire.rsi
   - type: Physics
@@ -1337,8 +1320,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.25
         density: 10
         mask:
@@ -1366,13 +1348,13 @@
   - type: MeleeWeapon
     hidden: true
     soundHit:
-        path: /Audio/Effects/bite.ogg
-        angle: 0
-        animation: WeaponArcBite
-        damage:
-        types:
-          Burn: 7
-          ParryAble: 1
+      path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+      types:
+        Burn: 7
+        ParryAble: 1
   - type: NoSlip
   - type: Puller
     needsHands: true
@@ -1384,7 +1366,7 @@
     energy: 8
   - type: NpcFactionMember
     factions:
-      - NanoTrasen
+    - NanoTrasen
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -1400,12 +1382,11 @@
   - type: IgniteOnMeleeHit
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 100
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:SpawnEntitiesBehavior
         spawn:
           Ash:
@@ -1422,14 +1403,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/spider_king.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: king
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.85
         density: 50
         mask:
@@ -1445,7 +1425,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     damage:
       groups:
         Brute: 48
@@ -1455,23 +1435,23 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       700: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
-    baseSprintSpeed : 2.8
+    baseWalkSpeed: 3.5
+    baseSprintSpeed: 2.8
   - type: PointLight
     color: green
     energy: 0.11
     radius: 4.5
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -1513,14 +1493,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/spider.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: midwife
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -1536,7 +1515,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     damage:
       groups:
         Brute: 7
@@ -1546,23 +1525,23 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       140: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4.1
-    baseSprintSpeed : 4.1
+    baseWalkSpeed: 4.1
+    baseSprintSpeed: 4.1
   - type: PointLight
     color: green
     energy: 0.06
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -1591,8 +1570,6 @@
       amount: 1
   - type: IgnoreSpiderWeb
 
-
-
 - type: entity
   name: MedievalMobSpiderCave
   parent: SimpleMobBaseNoFood
@@ -1605,14 +1582,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/cave_spider.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 50
         mask:
@@ -1628,7 +1604,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     damage:
       groups:
         Brute: 2
@@ -1639,23 +1615,23 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       48: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.8
-    baseSprintSpeed : 3.8
+    baseWalkSpeed: 3.8
+    baseSprintSpeed: 3.8
   - type: PointLight
     color: green
     energy: 1.2
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage
@@ -1687,7 +1663,6 @@
       params:
         variation: 0.125
 
-
 - type: entity
   name: fox
   parent: MedievalMobSpiderCave
@@ -1701,7 +1676,114 @@
     description: ghost-role-information-spider-cave-description
     rules: Вы - пещерный паук. Охраняйте пещеру, не покидая ее.
 
+- type: entity
+  name: MedievalMobSpiderStrongCave
+  parent: SimpleMobBaseNoFood
+  id: MedievalMobSpiderStrongCave
+  description: They're a golem.
+  components:
+  - type: TimedDespawn
+    lifetime: 600
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/cave_spider_strong.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.35
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: MeleeWeapon
+    range: 1.65
+    attackRate: 1.5
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: AlienClaw
+    damage:
+      groups:
+        Brute: 4
+      types:
+        ParryAble: 1
+        Caustic: 1
+        Bloodloss: 3
+  - type: Puller
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      78: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 4
+  - type: PointLight
+    color: green
+    energy: 1.3
+    radius: 1.5
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: InputMover
+  - type: MobMover
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      20: 1
+      25: 0.8
+      30: 0.7
+      40: 0.6
+      55: 0.5
+      65: 0.2
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: MedievalLootEgg
+      amount: 1
+    - id: MedievalSpiderHair
+      amount: 1
+    - id: MedievalSpiderEye
+      amount: 1
+  - type: IgnoreSpiderWeb
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/spider_stepsound.ogg
+      params:
+        variation: 0.125
 
+- type: entity
+  name: fox
+  parent: MedievalMobSpiderStrongCave
+  id: MedievalMobSpiderStrongCaveGhost
+  description: They're a fox.
+  components:
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-spider-strong-cave-name
+    description: ghost-role-information-spider-strong-cave-description
+    rules: Вы - кошмарный пещерный паук. Охраняйте пещеру, не покидая ее.
 
 - type: entity
   name: MedievalMobSkeletWeak
@@ -1715,14 +1797,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/skelet_weak.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -1734,7 +1815,7 @@
     bloodMaxVolume: 0
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Imperial/Medieval/skelet_atack.ogg
+      path: /Audio/Imperial/Medieval/skelet_atack.ogg
     animation: WeaponArcFist
     range: 1.55
     attackRate: 1
@@ -1748,24 +1829,24 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-      - MedievalMob
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - MedievalMob
   - type: MobThresholds
     thresholds:
       0: Alive
       35: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6
-    baseSprintSpeed : 3.6
+    baseWalkSpeed: 3.6
+    baseSprintSpeed: 3.6
   - type: PointLight
     color: red
     energy: 0.6
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Syndicate
+    - Syndicate
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage
@@ -1827,15 +1908,15 @@
     description: Путь к респавну
     rules: Перетащите себя на люк, чтобы начать путь. Как дойдете до конца - подойдите к святой гранате. Вас возродит автоматически.
   - type: MovementSpeedModifier
-    baseWalkSpeed : 1.65
-    baseSprintSpeed : 1.65
+    baseWalkSpeed: 1.65
+    baseSprintSpeed: 1.65
   - type: HellRespawnAble
   - type: TimedDespawn
     lifetime: 78000
   - type: TDMNaming
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Imperial/Medieval/skelet_atack.ogg
+      path: /Audio/Imperial/Medieval/skelet_atack.ogg
     animation: WeaponArcFist
     range: 1.55
     attackRate: 1
@@ -1860,14 +1941,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -1879,7 +1959,7 @@
     bloodMaxVolume: 0
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Imperial/Medieval/skelet_atack.ogg
+      path: /Audio/Imperial/Medieval/skelet_atack.ogg
     animation: WeaponArcFist
     range: 1.55
     attackRate: 1
@@ -1893,24 +1973,24 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-      - MedievalMob
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - MedievalMob
   - type: MobThresholds
     thresholds:
       0: Alive
       50: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.7
-    baseSprintSpeed : 3.7
+    baseWalkSpeed: 3.7
+    baseSprintSpeed: 3.7
   - type: PointLight
     color: red
     energy: 0.6
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Syndicate
+    - Syndicate
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage
@@ -1965,14 +2045,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -1984,7 +2063,7 @@
     bloodMaxVolume: 0
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Imperial/Medieval/skelet_atack.ogg
+      path: /Audio/Imperial/Medieval/skelet_atack.ogg
     animation: WeaponArcFist
     range: 1.55
     attackRate: 1
@@ -1999,24 +2078,24 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-      - MedievalMob
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - MedievalMob
   - type: MobThresholds
     thresholds:
       0: Alive
       100: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.9
-    baseSprintSpeed : 3.9
+    baseWalkSpeed: 3.9
+    baseSprintSpeed: 3.9
   - type: PointLight
     color: red
     energy: 0.6
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Syndicate
+    - Syndicate
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage
@@ -2071,14 +2150,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/skelet_legion.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -2090,7 +2168,7 @@
     bloodMaxVolume: 0
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Imperial/Medieval/skelet_atack.ogg
+      path: /Audio/Imperial/Medieval/skelet_atack.ogg
     animation: WeaponArcFist
     range: 1.55
     attackRate: 1
@@ -2105,24 +2183,24 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-      - MedievalMob
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - MedievalMob
   - type: MobThresholds
     thresholds:
       0: Alive
       155: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4.1
-    baseSprintSpeed : 4.1
+    baseWalkSpeed: 4.1
+    baseSprintSpeed: 4.1
   - type: PointLight
     color: red
     energy: 0.6
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Syndicate
+    - Syndicate
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage
@@ -2165,7 +2243,6 @@
     description: ghost-role-information-skelet-description
     rules: Вы - скелет. Смерть жалким человечкам. Аве некромантам и чернокнижникам.
 
-
 - type: entity
   name: MedievalMobHunter
   parent: SimpleMobBaseNoFood
@@ -2178,14 +2255,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/hunter.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -2202,7 +2278,7 @@
     hidden: true
     angle: 0
     soundHit:
-        path: /Audio/Imperial/Medieval/hunter_atack.ogg
+      path: /Audio/Imperial/Medieval/hunter_atack.ogg
     damage:
       groups:
         Brute: 6
@@ -2213,23 +2289,23 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       75: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 3.2
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3.2
   - type: PointLight
     color: red
     energy: 0.1
     radius: 1.3
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage
@@ -2291,14 +2367,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/devil_mouse.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.15
         density: 50
         mask:
@@ -2314,7 +2389,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     damage:
       groups:
         Airloss: 8
@@ -2323,23 +2398,23 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       10: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4
-    baseSprintSpeed : 7
+    baseWalkSpeed: 4
+    baseSprintSpeed: 7
   - type: PointLight
     color: red
     energy: 0.03
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage
@@ -2393,14 +2468,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/crab_mdv.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -2417,7 +2491,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     damage:
       groups:
         Brute: 2
@@ -2427,24 +2501,24 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-      - MedievalMob
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - MedievalMob
   - type: MobThresholds
     thresholds:
       0: Alive
       23: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.6
-    baseSprintSpeed : 3.6
+    baseWalkSpeed: 3.6
+    baseSprintSpeed: 3.6
   - type: PointLight
     color: red
     energy: 0.03
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -2498,14 +2572,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/crab_devil.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -2522,7 +2595,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     damage:
       groups:
         Brute: 2.6
@@ -2532,24 +2605,24 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-      - MedievalMob
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - MedievalMob
   - type: MobThresholds
     thresholds:
       0: Alive
       42: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.75
-    baseSprintSpeed : 3.75
+    baseWalkSpeed: 3.75
+    baseSprintSpeed: 3.75
   - type: PointLight
     color: red
     energy: 0.5
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -2601,14 +2674,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/vendigo.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: vendigo
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -2630,7 +2702,7 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+      collection: AlienClaw
     animation: WeaponArcBite
     damage:
       groups:
@@ -2641,17 +2713,17 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-      - Vendigo
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - Vendigo
   - type: MobThresholds
     thresholds:
       0: Alive
       1410: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 5.0
-    baseSprintSpeed : 2.5
+    baseWalkSpeed: 5.0
+    baseSprintSpeed: 2.5
   - type: SlowOnDamage
     speedModifierThresholds:
       100: 1
@@ -2661,7 +2733,7 @@
       900: 0.7
   - type: NpcFactionMember
     factions:
-      - Xeno
+    - Xeno
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -2712,14 +2784,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -2732,9 +2803,9 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2742,15 +2813,15 @@
   - type: Damageable
     damageModifierSet: MedievalRespawn
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.05
-    baseSprintSpeed : 3.05
+    baseWalkSpeed: 3.05
+    baseSprintSpeed: 3.05
   - type: PointLight
     color: red
     energy: 2
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Syndicate
+    - Syndicate
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage
@@ -2781,7 +2852,7 @@
     useKey: false
     selectedMode: FullAuto
     availableModes:
-      - FullAuto
+    - FullAuto
     soundGunshot: /Audio/Items/bow_pull.ogg
   - type: Butcherable
     spawned:
@@ -2824,14 +2895,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -2844,9 +2914,9 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2854,15 +2924,15 @@
   - type: Damageable
     damageModifierSet: MedievalRespawn
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2.25
-    baseSprintSpeed : 2.25
+    baseWalkSpeed: 2.25
+    baseSprintSpeed: 2.25
   - type: PointLight
     color: red
     energy: 2
     radius: 1.5
   - type: NpcFactionMember
     factions:
-      - Syndicate
+    - Syndicate
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage
@@ -2893,7 +2963,7 @@
     useKey: false
     selectedMode: FullAuto
     availableModes:
-      - FullAuto
+    - FullAuto
     soundGunshot: /Audio/Items/bow_pull.ogg
   - type: Butcherable
     spawned:
@@ -2925,14 +2995,13 @@
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/skelet_dark.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base"]
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.45
         density: 50
         mask:
@@ -2944,7 +3013,7 @@
     bloodMaxVolume: 0
   - type: MeleeWeapon
     soundHit:
-        path: /Audio/Imperial/Medieval/skelet_atack.ogg
+      path: /Audio/Imperial/Medieval/skelet_atack.ogg
     animation: WeaponArcFist
     range: 1.65
     attackRate: 1
@@ -2959,17 +3028,17 @@
   - type: Puller
   - type: Tag
     tags:
-      - CannotSuicide
-      - DoorBumpOpener
-      - FootstepSound
-      - MedievalMob
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - MedievalMob
   - type: MobThresholds
     thresholds:
       0: Alive
       355: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 4.5
-    baseSprintSpeed : 4.5
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 4.5
   - type: PointLight
     color: red
     energy: 6
@@ -2977,7 +3046,7 @@
     castShadows: false
   - type: NpcFactionMember
     factions:
-      - Syndicate
+    - Syndicate
   - type: InputMover
   - type: MobMover
   - type: SlowOnDamage

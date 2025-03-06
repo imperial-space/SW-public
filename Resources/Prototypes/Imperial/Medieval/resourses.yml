@@ -245,6 +245,40 @@
     count: 10
 
 - type: entity
+  name: MedievalSpiderEye
+  parent: BaseItem
+  id: MedievalSpiderEye
+  description: furry :)
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: spider_eye
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Sheet
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      MedievalSpiderEye: 100
+  - type: Stack
+    stackType: MedievalSpiderEye
+    count: 1
+  - type: Currency
+    price:
+      Revent: 7
+
+- type: entity
+  name: MedievalSpiderEye10
+  parent: MedievalSpiderEye
+  id: MedievalSpiderEye10
+  description: furry :)
+  components:
+  - type: Stack
+    stackType: MedievalSpiderEye
+    count: 10
+
+- type: entity
   name: MedievalCoal
   parent: BaseItem
   id: MedievalCoal
@@ -544,12 +578,27 @@
   color: "#d9d9d9"
   price: 0.1
 
+- type: material
+  id: MedievalSpiderEye
+  stackEntity: MedievalSpiderEye
+  name: materials-medieval-spider-eye
+  icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: spider_eye }
+  color: "#d9d9d9"
+  price: 0.1
+
 - type: stack
   id: MedievalSpiderHair
   name: materials-medieval-spider-hair
   icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: spider_hair }
   spawn: MedievalSpiderHair
   maxCount: 30
+
+- type: stack
+  id: MedievalSpiderEye
+  name: materials-medieval-spider-eye
+  icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: spider_eye }
+  spawn: MedievalSpiderEye
+  maxCount: 10
 
 - type: material
   id: MedievalCoal
@@ -1194,15 +1243,15 @@
   id: MedievalGlina
   start: start
   graph:
-    - node: start
-      edges:
-        - to: MedievalGlina
-          steps:
-            - material: MedievalGlina
-              amount: 2
-              doAfter: 3
-    - node: MedievalGlina
-      entity: MedievalGlinaForma
+  - node: start
+    edges:
+    - to: MedievalGlina
+      steps:
+      - material: MedievalGlina
+        amount: 2
+        doAfter: 3
+  - node: MedievalGlina
+    entity: MedievalGlinaForma
 
 - type: stack
   id: MedievalGlinaFormaReady
@@ -1270,15 +1319,15 @@
   id: MedievalGlinaBowl
   start: start
   graph:
-    - node: start
-      edges:
-        - to: MedievalGlinaBowl
-          steps:
-            - material: MedievalGlina
-              amount: 2
-              doAfter: 15
-    - node: MedievalGlinaBowl
-      entity: MedievalGlinaFormaBowl
+  - node: start
+    edges:
+    - to: MedievalGlinaBowl
+      steps:
+      - material: MedievalGlina
+        amount: 2
+        doAfter: 15
+  - node: MedievalGlinaBowl
+    entity: MedievalGlinaFormaBowl
 
 - type: material
   id: MedievalForstoneIngot
