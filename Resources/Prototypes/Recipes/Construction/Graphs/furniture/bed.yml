@@ -38,9 +38,11 @@
       edges:
         - to: start
           completed:
-            - !type:SpawnPrototype
-              prototype: SheetSteel1
-              amount: 2
+          # imperial medieval start
+          #  - !type:SpawnPrototype
+          #    prototype: SheetSteel1
+          #    amount: 2
+          # imperial medieval end
             - !type:SpawnPrototype
               prototype: MaterialCloth1
               amount: 2

@@ -60,8 +60,8 @@
   - type: StaticPrice
     price: 50
   - type: Construction
-    graph: CrateGenericSteel
-    node: crategenericsteel
+    graph: CrateLivestock
+    node: cratelivestock
     containers:
       - entity_storage
   - type: TimedDespawn
