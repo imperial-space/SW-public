@@ -200,7 +200,6 @@
             sprite: Imperial/Medieval/Species/Orc/displacement.rsi
             state: jumpsuit-female
 
-
 - type: species
   id: Orc
   name: Орк
