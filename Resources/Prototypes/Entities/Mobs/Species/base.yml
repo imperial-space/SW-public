@@ -262,6 +262,9 @@
     bloodMultiplier: 1
     fresh: true
   - type: RandomSteal
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
 # Imperial Medieval End
 
 - type: entity

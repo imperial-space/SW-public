@@ -67,6 +67,11 @@
     radius: 6
     enabled: false
   - type: MedievalBoo # imperial medieval
+  - type: LanguageSpeaker # imperial medieval
+    languages:
+      Common: Speak
+  - type: UniversalLanguageSpeaker # imperial medieval
+
 
 # proto for player ghosts specifically
 - type: entity

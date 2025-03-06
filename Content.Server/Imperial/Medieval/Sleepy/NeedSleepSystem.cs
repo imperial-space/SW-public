@@ -10,6 +10,7 @@ using Content.Server.Stunnable;
 using Content.Shared.StatusEffect;
 using Content.Server.Chat.Systems;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Chat;
 
 namespace Content.Server.NeedSleep
 {

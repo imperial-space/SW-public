@@ -3,653 +3,689 @@
   id: MedievalTimedSpawnerMedievalMobAnt
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobAnt
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobAnt
-    #  chance: 0.023
-    #  intervalSeconds: 250
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobAnt
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobAnt
+  #  chance: 0.023
+  #  intervalSeconds: 250
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSkeletWeakGhostResp
   id: MedievalTimedSpawnerMedievalMobSkeletWeakGhostResp
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: blue
-    - type: RandomSpawner
-      prototypes:
-        - SpawnPointMedievalMobPlayerRespawn
-      chance: 1
-      offset: 0
-
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: RandomSpawner
+    prototypes:
+    - SpawnPointMedievalMobPlayerRespawn
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalTimedSpawnerFlowers
   id: MedievalTimedSpawnerFlowers
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: red
-    - type: Timer
-    - type: TimedSpawner
-      prototypes:
-      - MedievalSpawnerFlower
-      chance: 0.22
-      intervalSeconds: 180
-      minimumEntitiesSpawned: 1
-      maximumEntitiesSpawned: 2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalSpawnerFlower
+    chance: 0.22
+    intervalSeconds: 180
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobWolf
   id: MedievalTimedSpawnerMedievalMobWolf
   parent: MarkerBase
   components:
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobWolf
-    - type: Sprite
-      layers:
-      - state: blue
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobWolf
-    #  - MedievalMobWolfGhost
-    #  chance: 0.0235
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobWolf
+  - type: Sprite
+    layers:
+    - state: blue
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobWolf
+  #  - MedievalMobWolfGhost
+  #  chance: 0.0235
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobBear
   id: MedievalTimedSpawnerMedievalMobBear
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      chance: 0.12
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobBear
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobBear
-    #  - MedievalMobBear
-    #  - MedievalMobBear
-    #  - MedievalMobBearGhost
-    #  chance: 0.023
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    chance: 0.12
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobBear
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobBear
+  #  - MedievalMobBear
+  #  - MedievalMobBear
+  #  - MedievalMobBearGhost
+  #  chance: 0.023
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalTimedSpawnerMedievalDecorPerekatiPole
   id: MedievalTimedSpawnerMedievalDecorPerekatiPole
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalDecorPerekatiPole
-      chance: 0.33
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalDecorPerekatiPole
+    chance: 0.33
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobHog
   id: MedievalTimedSpawnerMedievalMobHog
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      chance: 0.15
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobHog
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobHog
-    #  - MedievalMobHog
-    #  chance: 0.023
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    chance: 0.15
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobHog
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobHog
+  #  - MedievalMobHog
+  #  chance: 0.023
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobGoblin
   id: MedievalTimedSpawnerMedievalMobGoblin
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Timer
-    - type: TimedSpawner
-      prototypes:
-      - MedievalLateMobSpawnerMedievalMobGoblin
-      chance: 0.35
-      intervalSeconds: 600
-      minimumEntitiesSpawned: 5
-      maximumEntitiesSpawned: 9
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalLateMobSpawnerMedievalMobGoblin
+    chance: 0.35
+    intervalSeconds: 600
+    minimumEntitiesSpawned: 5
+    maximumEntitiesSpawned: 9
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSpiderCave
   id: MedievalTimedSpawnerMedievalMobSpiderCave
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobSpiderCave
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobSpiderCave
-    #  chance: 0.023
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobSpiderCave
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobSpiderCave
+  #  chance: 0.023
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
+
+- type: entity
+  name: MedievalTimedSpawnerMedievalMobSpiderStrongCave
+  id: MedievalTimedSpawnerMedievalMobSpiderStrongCave
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobSpiderStrongCave
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSkeletWeak
   id: MedievalTimedSpawnerMedievalMobSkeletWeak
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalLateMobSpawnerMedievalSpawnerSkeletonSpawnerWeak
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobSkeletWeak
-    #  - MedievalMobSkeletWeak
-    #  - MedievalMobSkeletWeak
-    #  - MedievalMobSkeletWeak
-    #  - MedievalMobSkeletWeak
-    #  - MedievalMobSkeletWeakGhost
-    #  chance: 0.023
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalSpawnerSkeletonSpawnerWeak
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobSkeletWeak
+  #  - MedievalMobSkeletWeak
+  #  - MedievalMobSkeletWeak
+  #  - MedievalMobSkeletWeak
+  #  - MedievalMobSkeletWeak
+  #  - MedievalMobSkeletWeakGhost
+  #  chance: 0.023
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSkeletMeat
   id: MedievalTimedSpawnerMedievalMobSkeletMeat
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletMeat
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletMeat
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSkeletFighter
   id: MedievalTimedSpawnerMedievalMobSkeletFighter
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalLateMobSpawnerMedievalSpawnerSkeletonSpawnerFighter
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalSpawnerSkeletonSpawnerFighter
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSkeletLegion
   id: MedievalTimedSpawnerMedievalMobSkeletLegion
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletLegion
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobSkeletLegion
-    #  - MedievalMobSkeletLegion
-    #  - MedievalMobSkeletLegion
-    #  - MedievalMobSkeletLegion
-    #  - MedievalMobSkeletLegion
-    #  - MedievalMobSkeletLegion
-    #  - MedievalMobSkeletLegion
-    #  - MedievalMobSkeletLegion
-    #  - MedievalMobSkeletLegionGhost
-    #  chance: 0.023
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletLegion
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobSkeletLegion
+  #  - MedievalMobSkeletLegion
+  #  - MedievalMobSkeletLegion
+  #  - MedievalMobSkeletLegion
+  #  - MedievalMobSkeletLegion
+  #  - MedievalMobSkeletLegion
+  #  - MedievalMobSkeletLegion
+  #  - MedievalMobSkeletLegion
+  #  - MedievalMobSkeletLegionGhost
+  #  chance: 0.023
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobHunter
   id: MedievalTimedSpawnerMedievalMobHunter
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalMobHunterGhost
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobHunterGhost
-    #  chance: 0.02
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalMobHunterGhost
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobHunterGhost
+  #  chance: 0.02
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobDevilMouse
   id: MedievalTimedSpawnerMedievalMobDevilMouse
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobDevilMouseGhost
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobDevilMouse
-    #  - MedievalMobDevilMouseGhost
-    #  - MedievalMobDevilMouseGhost
-    #  - MedievalMobDevilMouseGhost
-    #  - MedievalMobDevilMouseGhost
-    #  chance: 0.04
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobDevilMouseGhost
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobDevilMouse
+  #  - MedievalMobDevilMouseGhost
+  #  - MedievalMobDevilMouseGhost
+  #  - MedievalMobDevilMouseGhost
+  #  - MedievalMobDevilMouseGhost
+  #  chance: 0.04
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobCrab
   id: MedievalTimedSpawnerMedievalMobCrab
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      maxCoolDown: 600
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobCrab
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobCrab
-    #  - MedievalMobCrab
-    #  - MedievalMobCrab
-    #  - MedievalMobCrab
-    #  - MedievalMobCrab
-    #  - MedievalMobCrab
-    #  - MedievalMobCrabGhost
-    #  chance: 0.023
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    maxCoolDown: 600
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobCrab
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobCrab
+  #  - MedievalMobCrab
+  #  - MedievalMobCrab
+  #  - MedievalMobCrab
+  #  - MedievalMobCrab
+  #  - MedievalMobCrab
+  #  - MedievalMobCrabGhost
+  #  chance: 0.023
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobCrabDevil
   id: MedievalTimedSpawnerMedievalMobCrabDevil
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobCrabDevil
-    #- type: Timer
-    #- type: TimedSpawner
-    #  prototypes:
-    #  - MedievalMobCrabDevil
-    #  - MedievalMobCrabDevil
-    #  - MedievalMobCrabDevil
-    #  - MedievalMobCrabDevil
-    #  - MedievalMobCrabDevil
-    #  - MedievalMobCrabDevil
-    #  - MedievalMobCrabDevil
-    #  - MedievalMobCrabDevilGhost
-    #  chance: 0.023
-    #  intervalSeconds: 150
-    #  minimumEntitiesSpawned: 2
-    #  maximumEntitiesSpawned: 16
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobCrabDevil
+  #- type: Timer
+  #- type: TimedSpawner
+  #  prototypes:
+  #  - MedievalMobCrabDevil
+  #  - MedievalMobCrabDevil
+  #  - MedievalMobCrabDevil
+  #  - MedievalMobCrabDevil
+  #  - MedievalMobCrabDevil
+  #  - MedievalMobCrabDevil
+  #  - MedievalMobCrabDevil
+  #  - MedievalMobCrabDevilGhost
+  #  chance: 0.023
+  #  intervalSeconds: 150
+  #  minimumEntitiesSpawned: 2
+  #  maximumEntitiesSpawned: 16
 
 - type: entity
   name: MedievalBarrierMagic
   id: MedievalSpawnerMedievalBarrierMagic
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalBarrierMagic
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalBarrierMagic
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalShopHoleWizard
   id: MedievalSpawnerMedievalShopHoleWizard
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalShopHoleWizard
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalShopHoleWizard
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalShopHoleWolf
   id: MedievalSpawnerMedievalShopHoleWolf
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalShopHoleWolf
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalShopHoleWolf
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalShopHoleFish
   id: MedievalSpawnerMedievalShopHoleFish
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalShopHoleFish
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalShopHoleFish
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalShopHoleFlame
   id: MedievalSpawnerMedievalShopHoleFlame
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalShopHoleFlame
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalShopHoleFlame
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalShopHoleNecro
   id: MedievalSpawnerMedievalShopHoleNecro
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalShopHoleNecro
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalShopHoleNecro
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalShopHoleEagle
   id: MedievalSpawnerMedievalShopHoleEagle
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalShopHoleEagle
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalShopHoleEagle
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalShopHole
   id: MedievalSpawnerMedievalShopHole
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalShopHole
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalShopHole
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalWeaponTurretNanoTrasen
   id: MedievalSpawnerMedievalWeaponTurretNanoTrasen
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalWeaponTurretNanoTrasen
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalWeaponTurretNanoTrasen
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalAirlock
   id: MedievalSpawnerMedievalAirlock
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalAirlock
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalAirlock
+    chance: 1
+    offset: 0
 
 - type: entity
   name: BlastDoor
   id: MedievalSpawnerBlastDoor
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - BlastDoor
-      chance: 1
-      offset: 0
-
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - BlastDoor
+    chance: 1
+    offset: 0
 
 #- type: entity
 #  name: MedievalTimedSpawnerMedievalMobHumanTraveller
@@ -676,246 +712,246 @@
   id: MedievalSpawnerFlower
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalFlowerVetr
-        - MedievalFlowerLipad
-        - MedievalFlowerLava
-        - MedievalFlowerCryo
-      chance: 1
-      offset: 8
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalFlowerVetr
+    - MedievalFlowerLipad
+    - MedievalFlowerLava
+    - MedievalFlowerCryo
+    chance: 1
+    offset: 8
 
 - type: entity
   name: BlastDoor
   id: MedievalSpawnerSkeletonSpawnerWeak
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalMobSkeletArcher
-        - MedievalMobSkeletWeak
-        - MedievalMobSkeletWeak
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalMobSkeletArcher
+    - MedievalMobSkeletWeak
+    - MedievalMobSkeletWeak
+    chance: 1
+    offset: 0
 
 - type: entity
   name: BlastDoor
   id: MedievalSpawnerSkeletonSpawnerFighter
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalMobSkeletCrossbow
-        - MedievalMobSkeletFighter
-        - MedievalMobSkeletFighter
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalMobSkeletCrossbow
+    - MedievalMobSkeletFighter
+    - MedievalMobSkeletFighter
+    chance: 1
+    offset: 0
 
 - type: entity
   name: BlastDoor
   id: MedievalCrystalIceCharm1Spawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalCrystalIceCharm1
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalCrystalIceCharm1
+    chance: 1
+    offset: 0
 
 - type: entity
   name: BlastDoor
   id: MedievalCrystalIceCharm2Spawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalCrystalIceCharm2
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalCrystalIceCharm2
+    chance: 1
+    offset: 0
 
 - type: entity
   name: BlastDoor
   id: MedievalCrystalIceCharm3Spawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalCrystalIceCharm3
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalCrystalIceCharm3
+    chance: 1
+    offset: 0
 
 - type: entity
   name: BlastDoor
   id: MedievalPersonalAISpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalPersonalAI
-      chance: 0.9
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalPersonalAI
+    chance: 0.9
+    offset: 0.2
 
 - type: entity
   name: BlastDoor
   id: MedievalLockpickSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalLockpick
-      chance: 0.3
-      offset: 0.4
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalLockpick
+    chance: 0.3
+    offset: 0.4
 
 - type: entity
   name: MedievalJobSpawner
   id: MedievalJobSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - sprite: Imperial/Medieval/Markers/cross.rsi
-          state: def
-    - type: MedievalJobPoint
-      spawnType: Default
-    - type: AntiSSDFreeArea
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Default
+  - type: AntiSSDFreeArea
 
 - type: entity
   name: MedievalJobSpawnerLegion
   id: MedievalJobSpawnerLegion
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - sprite: Imperial/Medieval/Markers/cross.rsi
-          state: def
-    - type: MedievalJobPoint
-      spawnType: Legion
-    - type: AntiSSDFreeArea
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Legion
+  - type: AntiSSDFreeArea
 
 - type: entity
   name: MedievalJobSpawnerMine
   id: MedievalJobSpawnerMine
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - sprite: Imperial/Medieval/Markers/cross.rsi
-          state: def
-    - type: MedievalJobPoint
-      spawnType: Mine
-    - type: AntiSSDFreeArea
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Mine
+  - type: AntiSSDFreeArea
 
 - type: entity
   name: MedievalJobSpawnerCult
   id: MedievalJobSpawnerCult
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - sprite: Imperial/Medieval/Markers/cross.rsi
-          state: def
-    - type: MedievalJobPoint
-      spawnType: Cult
-    - type: AntiSSDFreeArea
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Cult
+  - type: AntiSSDFreeArea
 
 - type: entity
   name: MedievalJobSpawnerInsurgency
   id: MedievalJobSpawnerInsurgency
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - sprite: Imperial/Medieval/Markers/cross.rsi
-          state: def
-    - type: MedievalJobPoint
-      spawnType: Insurgency
-    - type: AntiSSDFreeArea
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Insurgency
+  - type: AntiSSDFreeArea
 
 - type: entity
   name: MedievalJobSpawnerCollegium
   id: MedievalJobSpawnerCollegium
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - sprite: Imperial/Medieval/Markers/cross.rsi
-          state: def
-    - type: MedievalJobPoint
-      spawnType: Collegium
-    - type: AntiSSDFreeArea
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Collegium
+  - type: AntiSSDFreeArea
 
 - type: entity
   name: MedievalJobSpawnerBand
   id: MedievalJobSpawnerBand
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - sprite: Imperial/Medieval/Markers/cross.rsi
-          state: def
-    - type: MedievalJobPoint
-      spawnType: Band
-    - type: AntiSSDFreeArea
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Band
+  - type: AntiSSDFreeArea
 
 - type: entity
   name: MedievalJobSpawnerMerc
   id: MedievalJobSpawnerMerc
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - sprite: Imperial/Medieval/Markers/cross.rsi
-          state: def
-    - type: MedievalJobPoint
-      spawnType: Merc
-    - type: AntiSSDFreeArea
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Merc
+  - type: AntiSSDFreeArea
 
 - type: entity
   name: MedievalJobSpawnerTribe
   id: MedievalJobSpawnerTribe
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - sprite: Imperial/Medieval/Markers/cross.rsi
-          state: def
-    - type: MedievalJobPoint
-      spawnType: Tribe
-    - type: AntiSSDFreeArea
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Tribe
+  - type: AntiSSDFreeArea
 
 - type: entity
   name: MedievalSpikePoint
   id: MedievalSpikePoint
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: SpikeTrap
+  - type: Sprite
+    layers:
+    - state: red
+  - type: SpikeTrap
 
 - type: entity
   name: lightning
@@ -931,7 +967,7 @@
     canCollide: false
   - type: Tag
     tags:
-      - HideContextMenu
+    - HideContextMenu
 
 - type: entity
   name: lightning
@@ -947,117 +983,119 @@
     canCollide: false
   - type: Tag
     tags:
-      - HideContextMenu
+    - HideContextMenu
 
 - type: entity
   name: MedievalTimedSpawnerOre
   id: MedievalTimedSpawnerOre
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      barrierAddicted: false
-      maxCoolDown: 450
-      chance: 0.4
-      spawnedEntity: MedievalLateOreSpawner
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    barrierAddicted: false
+    maxCoolDown: 450
+    chance: 0.4
+    spawnedEntity: MedievalLateOreSpawner
 
 - type: entity
   id: MedievalLateOreSpawner
   name: late mob spawn test
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalSpawnerOre
+  - type: SlowMobSpawn
+    spawnMob: MedievalSpawnerOre
 
 - type: entity
   name: BlastDoor
   id: MedievalSpawnerOre
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        #- MedievalOreIron
-        #- MedievalOreIron
-        #- MedievalOreIron
-        - MedievalOreGold
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        #- MedievalOreIron
-        #- MedievalOreIron
-        #- MedievalOreIron
-        #- MedievalOreGold
-        #- MedievalOreTopaz
-        #- MedievalOreSerd
-        #- MedievalOreAdam
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    #- MedievalOreIron
+    #- MedievalOreIron
+    #- MedievalOreIron
+    - MedievalOreGold
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    #- MedievalOreIron
+    #- MedievalOreIron
+    #- MedievalOreIron
+    #- MedievalOreGold
+    #- MedievalOreTopaz
+    #- MedievalOreSerd
+    #- MedievalOreAdam
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalTimedSpawnerOre
   id: MedievalTimedSpawnerOreCave
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      barrierAddicted: false
-      maxCoolDown: 360
-      chance: 0.7
-      spawnedEntity: MedievalLateOreSpawnerCave
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    barrierAddicted: false
+    maxCoolDown: 360
+    chance: 0.7
+    spawnedEntity: MedievalLateOreSpawnerCave
 
 - type: entity
   name: MedievalTimedSpawnerOreCave
@@ -1065,66 +1103,66 @@
   parent: MedievalTimedSpawnerOreCave
   noSpawn: true
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalSpawnerOreCave
+  - type: SlowMobSpawn
+    spawnMob: MedievalSpawnerOreCave
 
 - type: entity
   id: MedievalLateOreSpawnerCave
   name: late mob spawn test
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalSpawnerOreCave
+  - type: SlowMobSpawn
+    spawnMob: MedievalSpawnerOreCave
 
 - type: entity
   name: BlastDoor
   id: MedievalSpawnerOreCave
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalOreIron
-        #- MedievalOreCoal
-        - MedievalOreIron
-        #- MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreIron
-        #- MedievalOreCoal
-        - MedievalOreIron
-        #- MedievalOreCoal
-        - MedievalOreIron
-        #- MedievalOreCoal
-        - MedievalOreIron
-        #- MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreIron
-        - MedievalOreIron
-        - MedievalOreGold
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreCoal
-        - MedievalOreIron
-        - MedievalOreIron
-        - MedievalOreIron
-        - MedievalOreGold
-        - MedievalOreTopaz
-        - MedievalOreSerd
-        - MedievalOreAdam
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalOreIron
+    #- MedievalOreCoal
+    - MedievalOreIron
+    #- MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreIron
+    #- MedievalOreCoal
+    - MedievalOreIron
+    #- MedievalOreCoal
+    - MedievalOreIron
+    #- MedievalOreCoal
+    - MedievalOreIron
+    #- MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreIron
+    - MedievalOreIron
+    - MedievalOreGold
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreCoal
+    - MedievalOreIron
+    - MedievalOreIron
+    - MedievalOreIron
+    - MedievalOreGold
+    - MedievalOreTopaz
+    - MedievalOreSerd
+    - MedievalOreAdam
+    chance: 1
+    offset: 0
 
 - type: entity
   id: MedievalOreIron
@@ -1140,12 +1178,11 @@
   - type: Damageable
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 95
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/break_stone.ogg
@@ -1160,8 +1197,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 190
         mask:
@@ -1192,12 +1228,11 @@
   - type: Damageable
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 65
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/break_stone.ogg
@@ -1212,8 +1247,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 190
         mask:
@@ -1244,12 +1278,11 @@
   - type: Damageable
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 150
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/break_stone.ogg
@@ -1264,8 +1297,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 190
         mask:
@@ -1296,12 +1328,11 @@
   - type: Damageable
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 310
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/break_stone.ogg
@@ -1316,8 +1347,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 190
         mask:
@@ -1348,12 +1378,11 @@
   - type: Damageable
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 310
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/break_stone.ogg
@@ -1368,8 +1397,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 190
         mask:
@@ -1400,12 +1428,11 @@
   - type: Damageable
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 310
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/break_stone.ogg
@@ -1420,8 +1447,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.35
         density: 190
         mask:
@@ -1443,89 +1469,92 @@
   id: MedievalSpawnerDarkSkeletonRandom
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalLateMobSpawnerMedievalMobSkeletDark
-      chance: 0.2
-      offset: 2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalLateMobSpawnerMedievalMobSkeletDark
+    chance: 0.2
+    offset: 2
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSkeletDungeonMeat
   id: MedievalTimedSpawnerMedievalMobSkeletDungeonMeat
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      maxCoolDown: 450
-      chance: 0.9
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletMeat
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    maxCoolDown: 450
+    chance: 0.9
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletMeat
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSkeletDungeonFighter
   id: MedievalTimedSpawnerMedievalMobSkeletDungeonFighter
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      maxCoolDown: 450
-      chance: 0.9
-      spawnedEntity: MedievalLateMobSpawnerMedievalSpawnerSkeletonSpawnerFighter
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    maxCoolDown: 450
+    chance: 0.9
+    spawnedEntity: MedievalLateMobSpawnerMedievalSpawnerSkeletonSpawnerFighter
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSkeletDungeonLegion
   id: MedievalTimedSpawnerMedievalMobSkeletDungeonLegion
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      maxCoolDown: 450
-      chance: 0.9
-      spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletLegion
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    maxCoolDown: 450
+    chance: 0.9
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletLegion
 
 - type: entity
   name: MedievalSpawnerRandomTreeLifetime1200
@@ -1533,13 +1562,13 @@
   id: MedievalSpawnerRandomTreeLifetime1200
   parent: FloraTreeStump
   components:
-    #- type: Sprite
-    #  layers:
-    #    - state: red
-    - type: TimedDespawn
-      lifetime: 1200
-    - type: SpawnOnDespawn
-      prototype: MedievalSpawnerRandomTree
+  #- type: Sprite
+  #  layers:
+  #    - state: red
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MedievalSpawnerRandomTree
 
 - type: entity
   name: MedievalSpawnerRandomTree
@@ -1547,26 +1576,26 @@
   id: MedievalSpawnerRandomTree
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - FloraTree
-        # - FloraTree01
-        # - FloraTree02
-        # - FloraTree03
-        # - FloraTree04
-        # - FloraTree05
-        # - FloraTree06
-        #- FloraTreeLarge01
-        #- FloraTreeLarge02
-        #- FloraTreeLarge03
-        #- FloraTreeLarge04
-        #- FloraTreeLarge05
-        #- FloraTreeLarge06
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - FloraTree
+    # - FloraTree01
+    # - FloraTree02
+    # - FloraTree03
+    # - FloraTree04
+    # - FloraTree05
+    # - FloraTree06
+    #- FloraTreeLarge01
+    #- FloraTreeLarge02
+    #- FloraTreeLarge03
+    #- FloraTreeLarge04
+    #- FloraTreeLarge05
+    #- FloraTreeLarge06
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalSpawnerRandomTreeLifetime1200Large
@@ -1574,13 +1603,13 @@
   id: MedievalSpawnerRandomTreeLifetime1200Large
   parent: FloraTreeStump
   components:
-    #- type: Sprite
-    #  layers:
-    #    - state: red
-    - type: TimedDespawn
-      lifetime: 1200
-    - type: SpawnOnDespawn
-      prototype: MedievalSpawnerRandomTreeLarge
+  #- type: Sprite
+  #  layers:
+  #    - state: red
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MedievalSpawnerRandomTreeLarge
 
 - type: entity
   name: MedievalSpawnerRandomTreeLarge
@@ -1588,26 +1617,26 @@
   id: MedievalSpawnerRandomTreeLarge
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - FloraTreeLarge
-        #- FloraTree01
-        #- FloraTree02
-        #- FloraTree03
-        #- FloraTree04
-        #- FloraTree05
-        #- FloraTree06
-        # - FloraTreeLarge01
-        # - FloraTreeLarge02
-        # - FloraTreeLarge03
-        # - FloraTreeLarge04
-        # - FloraTreeLarge05
-        # - FloraTreeLarge06
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - FloraTreeLarge
+    #- FloraTree01
+    #- FloraTree02
+    #- FloraTree03
+    #- FloraTree04
+    #- FloraTree05
+    #- FloraTree06
+    # - FloraTreeLarge01
+    # - FloraTreeLarge02
+    # - FloraTreeLarge03
+    # - FloraTreeLarge04
+    # - FloraTreeLarge05
+    # - FloraTreeLarge06
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalSpawnerRandomTreeLifetime1200Snow
@@ -1615,13 +1644,13 @@
   id: MedievalSpawnerRandomTreeLifetime1200Snow
   parent: FloraTreeStumpConifer
   components:
-    #- type: Sprite
-    #  layers:
-    #    - state: red
-    - type: TimedDespawn
-      lifetime: 1200
-    - type: SpawnOnDespawn
-      prototype: MedievalSpawnerRandomTreeSnow
+  #- type: Sprite
+  #  layers:
+  #    - state: red
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MedievalSpawnerRandomTreeSnow
 
 - type: entity
   name: MedievalSpawnerRandomTreeSnow
@@ -1629,59 +1658,60 @@
   id: MedievalSpawnerRandomTreeSnow
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - FloraTreeSnow
-        #- FloraTreeSnow02
-        #- FloraTreeSnow03
-        #- FloraTreeSnow04
-        #- FloraTreeSnow05
-        #- FloraTreeSnow06
-        #- FloraTreeLarge01
-        #- FloraTreeLarge02
-        #- FloraTreeLarge03
-        #- FloraTreeLarge04
-        #- FloraTreeLarge05
-        #- FloraTreeLarge06
-      chance: 1
-      offset: 0
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - FloraTreeSnow
+    #- FloraTreeSnow02
+    #- FloraTreeSnow03
+    #- FloraTreeSnow04
+    #- FloraTreeSnow05
+    #- FloraTreeSnow06
+    #- FloraTreeLarge01
+    #- FloraTreeLarge02
+    #- FloraTreeLarge03
+    #- FloraTreeLarge04
+    #- FloraTreeLarge05
+    #- FloraTreeLarge06
+    chance: 1
+    offset: 0
 
 - type: entity
   name: MedievalTimedSpawnerOreGlina
   id: MedievalTimedSpawnerOreGlina
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - state: blue
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape: !type:PhysShapeCircle
-            radius: 11
-          layer:
-          - DoorPassable
-          hard: false
-          mask: # imperial medieval start
-          - MedievalSpawnerLayer # imperial medieval end
-    - type: Physics
-      bodyType: Static
-    - type: MedievalMobSpawner
-      barrierAddicted: false
-      maxCoolDown: 300
-      chance: 0.5
-      spawnedEntity: MedievalLateOreGlinaSpawner
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    barrierAddicted: false
+    maxCoolDown: 300
+    chance: 0.5
+    spawnedEntity: MedievalLateOreGlinaSpawner
 
 - type: entity
   id: MedievalLateOreGlinaSpawner
   name: late mob spawn test
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalOreGlina
+  - type: SlowMobSpawn
+    spawnMob: MedievalOreGlina
 
 - type: entity
   id: MedievalOreGlina
@@ -1697,12 +1727,11 @@
   - type: Damageable
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 11
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/break_stone.ogg
@@ -1717,8 +1746,7 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
+        shape: !type:PhysShapeCircle
           radius: 0.25
         density: 190
         mask:
@@ -1740,18 +1768,18 @@
   id: MedievalStoneBasaltEbonut
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - WallRockBasaltEbonut
-        - WallRockBasaltEbonut
-        - WallRockBasaltEbonut
-        - WallRockBasaltForstone
-        - ShadowBasaltRandom
-      chance: 0.85
-      offset: 0.4
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - WallRockBasaltEbonut
+    - WallRockBasaltEbonut
+    - WallRockBasaltEbonut
+    - WallRockBasaltForstone
+    - ShadowBasaltRandom
+    chance: 0.85
+    offset: 0.4
 
 - type: entity
   id: WallRockBasaltEbonutAlarm
@@ -1775,12 +1803,11 @@
   - type: MedievalDiggAble
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 120
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/break_stone.ogg
@@ -1797,17 +1824,17 @@
             max: 1
   - type: Sprite
     layers:
-      - state: rock_wall
-      - map: [ "enum.EdgeLayer.South" ]
-        state: rock_wall_south
-      - map: [ "enum.EdgeLayer.East" ]
-        state: rock_wall_east
-      - map: [ "enum.EdgeLayer.North" ]
-        state: rock_wall_north
-      - map: [ "enum.EdgeLayer.West" ]
-        state: rock_wall_west
-      - state: rock_phoron
-        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+    - state: rock_wall
+    - map: [ "enum.EdgeLayer.South" ]
+      state: rock_wall_south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: rock_wall_east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: rock_wall_north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: rock_wall_west
+    - state: rock_phoron
+      map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   id: WallRockBasaltForstone
@@ -1818,12 +1845,11 @@
   - type: MedievalDiggAble
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
+    - trigger: !type:DamageTrigger
         damage: 120
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           path: /Audio/Effects/break_stone.ogg
@@ -1840,234 +1866,234 @@
             max: 1
     - type: Sprite
       layers:
-        - state: rock_wall
-        - map: [ "enum.EdgeLayer.South" ]
-          state: rock_wall_south
-        - map: [ "enum.EdgeLayer.East" ]
-          state: rock_wall_east
-        - map: [ "enum.EdgeLayer.North" ]
-          state: rock_wall_north
-        - map: [ "enum.EdgeLayer.West" ]
-          state: rock_wall_west
-        - state: rock_bananium
-          map: [ "enum.MiningScannerVisualLayers.Overlay" ]
+      - state: rock_wall
+      - map: [ "enum.EdgeLayer.South" ]
+        state: rock_wall_south
+      - map: [ "enum.EdgeLayer.East" ]
+        state: rock_wall_east
+      - map: [ "enum.EdgeLayer.North" ]
+        state: rock_wall_north
+      - map: [ "enum.EdgeLayer.West" ]
+        state: rock_wall_west
+      - state: rock_bananium
+        map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
   name: BlastDoor
   id: RockEbonutDestructSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalEbonitOre
-        - MedievalEbonitOre
-        - MedievalEbonitOre
-        - MedievalEbonitOre
-        - MobHivelord
-        - MobHivelord
-        - MedievalMobGolem
-        - MedievalMobGolem
-        - MedievalMobGolem
-        - MedievalMobGolem
-      chance: 0.9
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalEbonitOre
+    - MedievalEbonitOre
+    - MedievalEbonitOre
+    - MedievalEbonitOre
+    - MobHivelord
+    - MobHivelord
+    - MedievalMobGolem
+    - MedievalMobGolem
+    - MedievalMobGolem
+    - MedievalMobGolem
+    chance: 0.9
+    offset: 0.2
 
 - type: entity
   name: BlastDoor
   id: RockForstoneDestructSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalForstoneOre
-        - MedievalForstoneOre
-        - MedievalForstoneOre
-        - MedievalForstoneOre
-        - MobHivelord
-        - MobHivelord
-        - MedievalMobGolem
-        - MedievalMobGolem
-        - MedievalMobGolem
-        - MedievalMobGolem
-      chance: 0.9
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalForstoneOre
+    - MedievalForstoneOre
+    - MedievalForstoneOre
+    - MedievalForstoneOre
+    - MobHivelord
+    - MobHivelord
+    - MedievalMobGolem
+    - MedievalMobGolem
+    - MedievalMobGolem
+    - MedievalMobGolem
+    chance: 0.9
+    offset: 0.2
 
 - type: entity
   name: BlastDoor
   id: MedievalKaravanSkeletonSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalKaravanSkeleton
-      chance: 0.6
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalKaravanSkeleton
+    chance: 0.6
+    offset: 0.2
 
 - type: entity
   name: BlastDoor
   id: MedievalMedievalEbonitOreSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalEbonitOre
-      chance: 0.6
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalEbonitOre
+    chance: 0.6
+    offset: 0.2
 
 - type: entity
   name: BlastDoor
   id: MedievalMedievalForstoneOreSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalForstoneOre
-      chance: 0.6
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalForstoneOre
+    chance: 0.6
+    offset: 0.2
 
 - type: entity
   name: BlastDoor
   id: MedievalMedievalIronIngotSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalIronIngot
-      chance: 0.9
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalIronIngot
+    chance: 0.9
+    offset: 0.2
 
 - type: entity
   name: BlastDoor
   id: MedievalMedievalCoalSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalCoal
-      chance: 0.9
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalCoal
+    chance: 0.9
+    offset: 0.2
 
 - type: entity
   name: BlastDoor
   id: MedievalMedievalRevent5Spawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - MedievalRevent5
-      chance: 0.9
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalRevent5
+    chance: 0.9
+    offset: 0.2
 
 - type: entity
   name: BlastDoor
   id: MedievalBrutepackSpawner
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-        - state: red
-    - type: RandomSpawner
-      prototypes:
-        - Brutepack
-      chance: 0.9
-      offset: 0.2
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - Brutepack
+    chance: 0.9
+    offset: 0.2
 
 - type: entity
   name: starfall base
   id: MedievalStarfallPointBase
   parent: MarkerBase
   components:
-    - type: Sprite
-      layers:
-      - sprite: Imperial/Medieval/Markers/cross.rsi
-        state: yellow
-    - type: StarFall
-      side: "на острове"
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: yellow
+  - type: StarFall
+    side: "на острове"
 
 - type: entity
   name: starfall 1
   id: MedievalStarfallPoint1
   parent: MedievalStarfallPointBase
   components:
-    - type: StarFall
-      side: "в северо-западной стороне острова"
+  - type: StarFall
+    side: "в северо-западной стороне острова"
 
 - type: entity
   name: starfall 2
   id: MedievalStarfallPoint2
   parent: MedievalStarfallPointBase
   components:
-    - type: StarFall
-      side: "в северной стороне острова"
+  - type: StarFall
+    side: "в северной стороне острова"
 
 - type: entity
   name: starfall 3
   id: MedievalStarfallPoint3
   parent: MedievalStarfallPointBase
   components:
-    - type: StarFall
-      side: "в северо-восточной стороне острова"
+  - type: StarFall
+    side: "в северо-восточной стороне острова"
 
 - type: entity
   name: starfall 4
   id: MedievalStarfallPoint4
   parent: MedievalStarfallPointBase
   components:
-    - type: StarFall
-      side: "в западной стороне острова"
+  - type: StarFall
+    side: "в западной стороне острова"
 
 - type: entity
   name: starfall 6
   id: MedievalStarfallPoint6
   parent: MedievalStarfallPointBase
   components:
-    - type: StarFall
-      side: "в восточной стороне острова"
+  - type: StarFall
+    side: "в восточной стороне острова"
 
 - type: entity
   name: starfall 7
   id: MedievalStarfallPoint7
   parent: MedievalStarfallPointBase
   components:
-    - type: StarFall
-      side: "в юго-западной стороне острова"
+  - type: StarFall
+    side: "в юго-западной стороне острова"
 
 - type: entity
   name: starfall 8
   id: MedievalStarfallPoint8
   parent: MedievalStarfallPointBase
   components:
-    - type: StarFall
-      side: "в южной стороне острова"
+  - type: StarFall
+    side: "в южной стороне острова"
 
 - type: entity
   name: starfall 9
   id: MedievalStarfallPoint9
   parent: MedievalStarfallPointBase
   components:
-    - type: StarFall
-      side: "в юго-восточной стороне острова"
+  - type: StarFall
+    side: "в юго-восточной стороне острова"

@@ -85,10 +85,17 @@ namespace Content.Shared.Chat
         /// </summary>
         Unspecified = 1 << 14,
 
+        // imperial medieval languages start
+        /// <summary>
+        ///     Unspecified.
+        /// </summary>
+        CollectiveMind = 1 << 15,
+        // imperial medieval languages end
+
         /// <summary>
         ///     Channels considered to be IC.
         /// </summary>
-        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Notifications,
+        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Notifications | CollectiveMind,
 
         AdminRelated = Admin | AdminAlert | AdminChat,
     }

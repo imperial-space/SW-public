@@ -1,0 +1,55 @@
+# Универсальный язык, который понимают все.
+- type: language
+  id: Universal
+  speech: !type:Generic
+    replacement:
+    - "*incomprehensible*"
+
+# The common language (for everyone).
+- type: language
+  id: Common
+  roundstart: true
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    obfuscateSyllables: true
+    replacement:
+    - бла
+    - бла
+    - бла
+    - динг-донг
+    - динг
+    - донг
+    - жиббер-жаббер
+    - жуббр
+    - бле
+    - зиппти
+    - зуп
+    - виббл
+    - воббл
+    - виггл
+    - яда
+    - мех
+    - нех
+    - нах
+    - вах
+
+# Язык, который требует слух у слушателя и возможность говорить у говорящего
+# (*голосом якубовича* - да ладно)
+- type: language
+  id: BaseVocalLanguage
+  abstract: true
+  vocal: true
+  conditions:
+  - !type:CanSpeak
+  - !type:CanHear
+    raiseOnListener: true
+
+# Язык, который требует зрение у слушателя и возможность писать в /me у говорящего
+- type: language
+  id: BaseEmoteLanguage
+  abstract: true
+  conditions:
+  - !type:CanEmote
+  - !type:CanSee
+    raiseOnListener: true
