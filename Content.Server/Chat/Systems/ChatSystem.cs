@@ -61,7 +61,6 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
     [Dependency] private readonly ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
@@ -483,7 +482,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         if (!success)
             return;
 
-        // imperial medieval - Вырезал старую часть начиная с GetLanguageColoredMessages, заканчивая SendInVoiceRange, так как вся логика теперь находится в языках
+        // imperial medieval - Вырезал старую часть начиная с name = FormattedMessage.EscapeText(name), заканчивая SendInVoiceRange, так как вся логика теперь находится в языках
 
         if (language.LanguageType.RaiseEvent)
         {
@@ -698,7 +697,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
     #region Utility
 
-    public enum MessageRangeCheckResult
+    public enum MessageRangeCheckResult // imperial medieval languages: private -> public
     {
         Disallowed,
         HideChat,
@@ -717,7 +716,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     ///     Checks if a target as returned from GetRecipients should receive the message.
     ///     Keep in mind data.Range is -1 for out of range observers.
     /// </summary>
-    public MessageRangeCheckResult MessageRangeCheck(ICommonSession session, ICChatRecipientData data, ChatTransmitRange range)
+    public MessageRangeCheckResult MessageRangeCheck(ICommonSession session, ICChatRecipientData data, ChatTransmitRange range) // imperial medieval languages: private -> public
     {
         var initialResult = MessageRangeCheckResult.Full;
         switch (range)
@@ -816,7 +815,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     // ReSharper disable once InconsistentNaming
-    public string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)
+    public string SanitizeInGameICMessage(EntityUid source, string message, out string? emoteStr, bool capitalize = true, bool punctuate = false, bool capitalizeTheWordI = true)   // imperial medieval languages: private -> public
     {
         var newMessage = SanitizeMessageReplaceWords(message.Trim());
 
@@ -824,6 +823,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         // Sanitize it first as it might change the word order
         _sanitizer.TrySanitizeEmoteShorthands(newMessage, source, out newMessage, out emoteStr);
+        newMessage = ReplaceWords(newMessage); // Corvax-ChatSanitize
 
         if (capitalize)
             newMessage = SanitizeMessageCapital(newMessage);
@@ -882,28 +882,23 @@ public sealed partial class ChatSystem : SharedChatSystem
     }
 
     [ValidatePrototypeId<ReplacementAccentPrototype>]
-    public static readonly string[] ChatSanitize_Accent = { "chatsanitize", "imperial medieval_chatsanitize" }; // imperial medieval-Tweak
+    public const string ChatSanitize_Accent = "chatsanitize";
 
     public string SanitizeMessageReplaceWords(string message)
     {
         if (string.IsNullOrEmpty(message)) return message;
 
         var msg = message;
-        // imperial medieval-Tweak-start: теперь можно обрабатывать сразу несколько прототипов списка общих акцентов.
-        foreach (var accent in ChatSanitize_Accent)
-        {
-            msg = _wordreplacement.ApplyReplacements(msg, accent);
-        }
-        // ... ... ^_^
-        // msg = _wordreplacement.ApplyReplacements(msg, ChatSanitize_Accent);
-        // imperial medieval-Tweak-end
+
+        msg = _wordreplacement.ApplyReplacements(msg, ChatSanitize_Accent);
+
         return msg;
     }
 
     /// <summary>
     ///     Returns list of players and ranges for all players withing some range. Also returns observers with a range of -1.
     /// </summary>
-    public Dictionary<ICommonSession, ICChatRecipientData> GetRecipients(EntityUid source, float voiceGetRange)
+    public Dictionary<ICommonSession, ICChatRecipientData> GetRecipients(EntityUid source, float voiceGetRange) // imperial medieval languages: private -> public
     {
         // TODO proper speech occlusion
 
@@ -928,7 +923,7 @@ public sealed partial class ChatSystem : SharedChatSystem
             var observer = ghostHearing.HasComponent(playerEntity);
 
             // even if they are a ghost hearer, in some situations we still need the range
-            if (sourceCoords.TryDistance(EntityManager, transformEntity.Coordinates, out var distance))
+            if (sourceCoords.TryDistance(EntityManager, transformEntity.Coordinates, out var distance) && distance < voiceGetRange)
             {
                 recipients.Add(player, new ICChatRecipientData(distance, observer));
                 continue;
@@ -942,11 +937,11 @@ public sealed partial class ChatSystem : SharedChatSystem
         return recipients;
     }
 
-    public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null, bool Muffled = false)
+    public readonly record struct ICChatRecipientData(float Range, bool Observer, bool? HideChatOverride = null, bool Muffled = false) // imperial medieval languages: Muffled
     {
     }
 
-    public string ObfuscateMessageReadability(string message, float chance)
+    public string ObfuscateMessageReadability(string message, float chance)  // imperial medieval languages: private -> public
     {
         var modifiedMessage = new StringBuilder(message);
 
@@ -1027,17 +1022,17 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     ///     message gets sent on this channel, this should be set to null to prevent duplicate messages.
     /// </summary>
     public RadioChannelPrototype? Channel;
-    public readonly LanguagePrototype Language;
-    public readonly bool Whisper;
+    public readonly LanguagePrototype Language;  // imperial medieval languages
+    public readonly bool Whisper;                // imperial medieval languages
 
-    public EntitySpokeEvent(EntityUid source, string message, LanguagePrototype language, RadioChannelPrototype? channel, string? obfuscatedMessage, bool whisper = false)
+    public EntitySpokeEvent(EntityUid source, string message, LanguagePrototype language, RadioChannelPrototype? channel, string? obfuscatedMessage, bool whisper = false)  // imperial medieval languages tweaked
     {
         Source = source;
         Message = message;
         Channel = channel;
         ObfuscatedMessage = obfuscatedMessage;
-        Language = language;
-        Whisper = whisper;
+        Language = language;    // imperial medieval languages
+        Whisper = whisper;      // imperial medieval languages
     }
 }
 

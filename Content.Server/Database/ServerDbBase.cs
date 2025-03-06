@@ -349,12 +349,14 @@ namespace Content.Server.Database
                 profile.Loadouts.Add(dz);
             }
 
+            // imperial medieval languages start
             profile.Languages.Clear();
             profile.Languages.AddRange(
                     humanoid.Languages.Select
                     (l => new Language { LanguageName = l.ToString() }
                     )
                 );
+            // imperial medieval languages end
 
             return profile;
         }
