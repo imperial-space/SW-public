@@ -3509,6 +3509,7 @@ loadout-group-medieval-backpack = Рюкзак
 loadout-group-medieval-shoes = Обувь
 loadout-group-medieval-belt = Пояс
 loadout-group-medieval-gloves = Перчатки
+loadout-group-medieval-neck = Шея
 job-name-traveller = Путник
 JobMedievalTraveller = Путник
 job-description-traveller = Свободная по отыгрышу роль. Быть может вы беглый дворянин? А может кузнец или просто искатель приключений? Решать вам.
