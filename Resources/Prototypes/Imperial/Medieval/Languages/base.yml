@@ -5,6 +5,35 @@
     replacement:
     - "*incomprehensible*"
 
+# The common language (for everyone).
+- type: language
+  id: Common
+  roundstart: true
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    obfuscateSyllables: true
+    replacement:
+    - бла
+    - бла
+    - бла
+    - динг-донг
+    - динг
+    - донг
+    - жиббер-жаббер
+    - жуббр
+    - бле
+    - зиппти
+    - зуп
+    - виббл
+    - воббл
+    - виггл
+    - яда
+    - мех
+    - нех
+    - нах
+    - вах
+
 # Язык, который требует слух у слушателя и возможность говорить у говорящего
 # (*голосом якубовича* - да ладно)
 - type: language
