@@ -19,6 +19,7 @@ public abstract partial class SharedLanguageSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
 
     public static ProtoId<LanguagePrototype> Universal = "Universal";
+    public static ProtoId<LanguagePrototype> Common = "Common";
 
     public override void Initialize()
     {

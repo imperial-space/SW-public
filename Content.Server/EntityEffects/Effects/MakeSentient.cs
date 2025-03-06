@@ -25,10 +25,10 @@ public sealed partial class MakeSentient : EntityEffect
 
         // imperial medieval start
         var lang = entityManager.EnsureComponent<LanguageSpeakerComponent>(uid);
-        if (!lang.Languages.ContainsKey("GalacticCommon"))
-            lang.Languages.Add("GalacticCommon", LanguageKnowledge.Speak);
+        if (!lang.Languages.ContainsKey(SharedLanguageSystem.Common))
+            lang.Languages.Add(SharedLanguageSystem.Common, LanguageKnowledge.Speak);
         else
-            lang.Languages["GalacticCommon"] = LanguageKnowledge.Speak;
+            lang.Languages[SharedLanguageSystem.Common] = LanguageKnowledge.Speak;
         // imperial medieval end
 
         // Stops from adding a ghost role to things like people who already have a mind

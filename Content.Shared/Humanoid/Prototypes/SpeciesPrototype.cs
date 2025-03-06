@@ -137,7 +137,7 @@ public sealed partial class SpeciesPrototype : IPrototype
     /// Стандартные языки, выбирающиеся при создании персонажа
     /// </summary>
     [DataField]
-    public List<ProtoId<LanguagePrototype>> DefaultLanguages = new() { "GalacticCommon" };
+    public List<ProtoId<LanguagePrototype>> DefaultLanguages = new() { SharedLanguageSystem.Common };
 
     /// <summary>
     /// Максимальное число выбранных языков
