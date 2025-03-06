@@ -414,15 +414,6 @@ entities:
     - type: SpreaderGrid
     - type: GridPathfinding
     - type: RadiationGridResistance
-- proto: AmbientCave
-  entities:
-  - uid: 2
-    components:
-    - type: Transform
-      pos: 6.3869076,2.3043635
-      parent: 1
-    - type: TimedDespawn
-      lifetime: 10.73378
 - proto: Cobweb1
   entities:
   - uid: 3
