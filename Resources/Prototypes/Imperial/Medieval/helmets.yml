@@ -1,260 +1,159 @@
 - type: entity
   parent: ClothingHeadBase
+  id: MedievalClothingHeadBase
+  abstract: true
+  components:
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Clothing
+    equipDelay: 2
+    unequipDelay: 2
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: MedievalClothingHelmetBaseHeavy
+  abstract: true
+  components:
+  - type: Clothing
+    equipSound:
+      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: IdentityBlocker
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.85
+        Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: MedievalClothingHelmetBaseLight
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
+
+# Heavy helmets
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetSalad
   name: salad helmet
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/salad.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/salad.rsi
   - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetHoly
   name: salad helmet
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/holy.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/holy.rsi
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetExecutor1
   name: executor
   description: Medieval executor bag
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/executor1.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/executor1.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
-  - type: Item
-    size: Normal
-  - type: Insulated
+  - type: Meltable
+    enabled: false
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetExecutor2
   name: executor
   description: Medieval executor bag
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/executor2.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/executor2.rsi
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
-  - type: Item
-    size: Normal
-  - type: Insulated
+  - type: Meltable
+    enabled: false
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadFarmerHat
   name: farmer hat
   description: Medieval hat
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/farmer.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/farmer.rsi
-  - type: Item
-    size: Normal
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadArcherHat
   name: archer hat
   description: Medieval hat
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/archer.rsi
   - type: Clothing
     equipDelay: 0.01 # imperial medieval
     unequipDelay: 0.01 # imperial medieval
     sprite: Imperial/Medieval/Clothing/Head/archer.rsi
-  - type: Item
-    size: Normal
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadShipCap
   name: archer hat
   description: Medieval hat
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/ship_cap.rsi
   - type: Clothing
     equipDelay: 0.01 # imperial medieval
     unequipDelay: 0.01 # imperial medieval
     sprite: Imperial/Medieval/Clothing/Head/ship_cap.rsi
-  - type: Item
-    size: Normal
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadCloth
   name: archer hat
   description: Medieval hat
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/cloth.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/cloth.rsi
-  - type: Item
-    size: Normal
-  - type: Insulated
   - type: Construction
     node: MedievalClothingHeadCloth
     graph: MedievalClothingHeadCloth
@@ -275,675 +174,249 @@
   id: MedievalClothingHeadCloth
   start: start
   graph:
-    - node: start
-      edges:
-        - to: MedievalClothingHeadCloth
-          steps:
-            - material: Cloth
-              amount: 4
-              doAfter: 2
-    - node: MedievalClothingHeadCloth
-      entity: MedievalClothingHeadCloth
+  - node: start
+    edges:
+    - to: MedievalClothingHeadCloth
+      steps:
+      - material: Cloth
+        amount: 4
+        doAfter: 2
+  - node: MedievalClothingHeadCloth
+    entity: MedievalClothingHeadCloth
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadBag
   name: MedievalClothingHeadBag
   description: Medieval bag
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/bag.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/bag.rsi
   - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
   - type: IdentityBlocker
-  - type: Item
-    size: Normal
   - type: Blindfold
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetSaladLight
   name: salad helmet
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/salad_light.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/salad_light.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetNormand
   name: normand helmet
   description: Medieval normand helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/normand.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/normand.rsi
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetNormandFree
   name: normand helmet
   description: Medieval normand helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/normand_free.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/normand_free.rsi
-  #- type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  #- type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetNazal
   name: normand helmet
   description: Medieval normand helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/crus_gold.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/crus_gold.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: IdentityBlocker
-  - type: IngestionBlocker
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetNazal # imperial medieval
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetBacinet
   name: bacinet helmet
   description: Medieval bacinet helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/bacinet.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/bacinet.rsi
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetShapel
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/shapel.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/shapel.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetCrusader
   name: crusader helmet
   description: Medieval crusader helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/crusader.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/crusader.rsi
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetGoblinSlayer
   name: crusader helmet
   description: Medieval crusader helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/goblin_slayer_helmet.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/goblin_slayer_helmet.rsi
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetHood
   name: leather hood
   description: Medieval leather hood
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leather_hood.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/leather_hood.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.93
-  - type: Item
-    size: Normal
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetHood2
   name: leather hood
   description: Medieval leather hood
   noSpawn: true
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leather_hood2.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/leather_hood2.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.93
-  - type: Item
-    size: Normal
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetHood3
   name: leather hood
   description: Medieval leather hood
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leather_hood3.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/leather_hood3.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.93
-  - type: Item
-    size: Normal
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetHoodInvis
   name: MedievalClothingHeadHelmetHoodInvis
   description: MedievalClothingHeadHelmetHoodInvis
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/stealth_hood.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/stealth_hood.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
   - type: IdentityBlocker
-  - type: Item
-    size: Normal
-  - type: Insulated
   - type: AddAccentClothing
     accent: StealthOnMove
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetCap
   name: cap
   description: Medieval cap
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/cap.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/cap.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.97
         Slash: 0.97
         Piercing: 0.95
-  - type: Item
-    size: Normal
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetLeatherHelmet
   name: leather helmet
   description: Medieval leather helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leather_helmet.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/leather_helmet.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.93
-  - type: Item
-    size: Normal
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHatFancyCrown
   name: fancy crown
   description: It smells like dead rat. Lets you speak like one!
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Clothing/Head/Misc/fancycrown.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     equipSound:
       path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Clothing/Head/Misc/fancycrown.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadCrownKing
   name: farmer hat
   description: Medieval hat
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/king_crown.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     equipSound:
       path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/king_crown.rsi
-  - type: Item
-    size: Normal
-  - type: Insulated
   - type: Armor
     modifiers:
       coefficients:
@@ -953,33 +426,18 @@
   - type: Meltable
     resourceCount: 2
 
-
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadCrownKingNecro
   name: farmer hat
   description: Medieval hat
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/king_crown_necro.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     equipSound:
       path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/king_crown_necro.rsi
-  - type: Item
-    size: Normal
-  - type: Insulated
   - type: Armor
     modifiers:
       coefficients:
@@ -990,29 +448,15 @@
     resourceCount: 2
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadNecro
   name: farmer hat
   description: Medieval hat
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/necro.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/necro.rsi
-  - type: Item
-    size: Normal
-  - type: Insulated
   - type: Armor
     modifiers:
       coefficients:
@@ -1022,34 +466,16 @@
   - type: Meltable
     resourceCount: 2
 
-
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetCharmer
   name: MedievalClothingHeadHelmetCharmer
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/charmer.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/charmer.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
   - type: IdentityBlocker
   - type: Armor
     modifiers:
@@ -1059,42 +485,21 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
-  - type: Item
-    size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Insulated
   - type: ManaRegen
     regen: 0.7
 
-
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetCharmerLight
   name: MedievalClothingHeadHelmetCharmerLight
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/charmer_light.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/charmer_light.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
   - type: IdentityBlocker
   - type: Armor
     modifiers:
@@ -1104,11 +509,8 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
-  - type: Item
-    size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Insulated
   - type: ManaRegen
     regen: 0.5
 
@@ -1135,33 +537,16 @@
     sprite: Imperial/Medieval/Clothing/Head/charmer_ins.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetCharmerWeak
   name: gool
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
+
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/charmer_weak.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/charmer_weak.rsi
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  #- type: IdentityBlocker
   - type: Armor
     modifiers:
       coefficients:
@@ -1170,59 +555,31 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
-  - type: Item
-    size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Insulated
   - type: ManaRegen
     regen: 0.25
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetJester
   name: MedievalClothingHeadHelmetJester
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/mdv_jester.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/mdv_jester.rsi
-  - type: Item
-    size: Normal
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetLegionRecruit
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leg1.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/leg1.rsi
   - type: Armor
     modifiers:
@@ -1232,198 +589,68 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
-  - type: Item
-    size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Insulated
   - type: HideLayerClothing
     slots:
     - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetLegionLegioner
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leg2.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/leg2.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetLegionOpcion
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leg3.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/leg3.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetLegionOpcionWeak
   name: shapel helmet
   description: Medieval shapel helmet
-  #abstract: true # УБРАТЬ ПОСЛЕ ДОБАВЛЕНИЯ ШЛЕМА
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leg2_5.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/leg2_5.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetLegionLegat
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
+
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetLegionLegat # imperial medieval
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetFox1
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/fox1.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/fox1.rsi
   - type: Armor
     modifiers:
@@ -1433,238 +660,75 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
-  - type: Item
-    size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetFox2
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/fox2.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/fox2.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetFox2_5
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/fox2_5.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/fox2_5.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetFox3
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/fox3.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/fox3.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetFox4
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/fox4.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/fox4.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: HideLayerClothing
-    slots:
-    - Hair
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetFox4 # imperial medieval
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetHoodHelmet
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/helmet_hood.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/helmet_hood.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: IdentityBlocker
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetBand1
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/band1.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/band1.rsi
   - type: Armor
     modifiers:
@@ -1674,116 +738,43 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
-  - type: Item
-    size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Insulated
   - type: IdentityBlocker
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHeadHelmetBand1
   id: MedievalClothingHeadHelmetBand2
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/band2.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/band2.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: IdentityBlocker
-  - type: HideLayerClothing
-    slots:
-    - Hair
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHeadHelmetBand1
   id: MedievalClothingHeadHelmetBand3
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/band3.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/band3.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
-  - type: IdentityBlocker
-  - type: HideLayerClothing
-    slots:
-    - Hair
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetBand3 # imperial medieval
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetTribe1
   name: salad helmet
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/tribe1.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/tribe1.rsi
   - type: IdentityBlocker
   - type: Armor
@@ -1794,88 +785,35 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
-  - type: Item
-    size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHeadHelmetTribe1
   id: MedievalClothingHeadHelmetTribe2
   name: salad helmet
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/tribe2.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/tribe2.rsi
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHeadHelmetTribe1
   id: MedievalClothingHeadHelmetTribe3
   name: salad helmet
   description: Medieval salad helmet
   components:
-  #- type: QualityOfItem
-  #  qualityWeights:
-  #    0: 0
-  #    1: 0
-  #    2: 0
-  #    3: 10
-  #    4: 0
-  #    5: 0
-  #    6: 0
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/tribe3.rsi
   - type: Clothing
-    equipDelay: 2
-    unequipDelay: 2
     sprite: Imperial/Medieval/Clothing/Head/tribe3.rsi
-  - type: IdentityBlocker
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: Item
-    size: Normal
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: Insulated
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetTribe3 # imperial medieval
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetEbonit
   name: normand helmet
   description: Medieval normand helmet
@@ -1885,28 +823,15 @@
   - type: Clothing
     equipDelay: 3
     unequipDelay: 3
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/ebonit.rsi
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.75
         Slash: 0.75
         Piercing: 0.8
-  - type: Item
-    size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.8
-  - type: Insulated
 
 - type: entity
   parent: MedievalClothingHeadHelmetEbonit
@@ -1920,7 +845,7 @@
     sprite: Imperial/Medieval/Clothing/Head/ebonit2.rsi
 
 - type: entity
-  parent: ClothingHeadBase
+  parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetForstone
   name: normand helmet
   description: Medieval normand helmet
@@ -1930,24 +855,12 @@
   - type: Clothing
     equipDelay: 3
     unequipDelay: 3
-    equipSound:
-      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
     sprite: Imperial/Medieval/Clothing/Head/forstone.rsi
-  - type: IngestionBlocker
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-  - type: IdentityBlocker
   - type: Armor
     modifiers:
       coefficients:
         Blunt: 0.82
         Slash: 0.82
         Piercing: 0.82
-  - type: Item
-    size: Normal
   - type: ExplosionResistance
     damageCoefficient: 0.8
