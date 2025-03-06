@@ -725,48 +725,6 @@
 #  - type: Airtight
 #    airBlocked: false
 
-- type: Tag
-  id: MedievalLeather
-
-- type: Tag
-  id: Bolt
-
-- type: Tag
-  id: MedievalKey
-
-- type: Tag
-  id: MedievalStone
-
-- type: Tag
-  id: MedievalTopaz
-
-- type: Tag
-  id: MedievalFireSerdolickOre
-
-- type: Tag
-  id: MedievalGoldOre
-
-- type: Tag
-  id: MedievalAdamOre
-
-- type: Tag
-  id: MedievalFireSerdolick
-
-- type: Tag
-  id: MedievalRune
-
-- type: Tag
-  id: MedievalRevent
-
-- type: Tag
-  id: MedievalMob
-
-- type: Tag
-  id: MagicScroll
-
-- type: Tag
-  id: AlchemicIngredient
-
 - type: entity
   parent: BaseItem
   id: MedievalBeaker
@@ -2201,9 +2159,6 @@
   - type: Sprite
     sprite: Imperial/Medieval/Misc/vendigo.rsi
     state: icon
-
-- type: Tag
-  id: Vendigo
 
 - type: entity
   name: pinpointer
@@ -6208,12 +6163,6 @@
     roomWhitelist:
       tags:
       - KaravanMap
-
-- type: Tag
-  id: SteroidMap
-
-- type: Tag
-  id: KaravanMap
 
 - type: entity
   id: MedievalSeedExtractorNew
