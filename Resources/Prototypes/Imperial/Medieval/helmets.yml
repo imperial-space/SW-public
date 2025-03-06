@@ -864,3 +864,16 @@
         Piercing: 0.82
   - type: ExplosionResistance
     damageCoefficient: 0.8
+
+- type: entity
+  parent: MedievalClothingHelmetBaseLight
+  id: MedievalClothingHeadFurHat
+  name: fur hat
+  description: Medieval fur hat
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/fur_hat1.rsi
+  - type: Clothing
+    equipDelay: 0.01 # imperial medieval
+    unequipDelay: 0.01 # imperial medieval
+    sprite: Imperial/Medieval/Clothing/Head/fur_hat1.rsi
