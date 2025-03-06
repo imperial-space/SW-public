@@ -2,6 +2,7 @@ using Content.Server.Cult.Components;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio;
 using Robust.Server.Player;
 using System.Linq;
 using Content.Shared.Popups;
@@ -16,7 +17,12 @@ using Content.Shared.Damage;
 using Content.Shared.Nocturn.Components;
 using Content.Server.Administration.Systems;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
-using Robust.Shared.Map.Components;
+using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Player;
+using Robust.Shared.Random;
+using Content.Shared.Random.Helpers;
+using Content.Server.Administration;
+using Content.Shared.Alert;
 
 namespace Content.Server.Cult
 {
@@ -30,8 +36,13 @@ namespace Content.Server.Cult
         [Dependency] private readonly RejuvenateSystem _rejuv = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
+        [Dependency] private readonly AlertsSystem _alertsSystem = default!;
 
-        private const float DefaultReloadTimeSeconds = 13f;
+        private const float DefaultReloadTimeSeconds = 10f;
 
         private TimeSpan _nextCheckTime;
 
@@ -43,9 +54,95 @@ namespace Content.Server.Cult
             SubscribeLocalEvent<CultCrystallComponent, BeforeRangedInteractEvent>(OnUseCrystallInHand);
             SubscribeLocalEvent<CultCheckPictureComponent, ActivateInWorldEvent>(OnActivated);
             SubscribeLocalEvent<CultCheckPictureComponent, ExaminedEvent>(OnExamine);
+            SubscribeLocalEvent<CultTeleportComponent, ExaminedEvent>(OnExamineTp);
+            SubscribeLocalEvent<CultCursedComponent, ExaminedEvent>(OnExamineCursed);
             SubscribeLocalEvent<CultMemberComponent, MoveEvent>(OnChangeParent);
+            SubscribeLocalEvent<CultRitualMeleeComponent, MeleeHitEvent>(OnMeleeHit);
+            SubscribeLocalEvent<CultBloodMeleeComponent, MeleeHitEvent>(OnBloodMeleeHit);
+            SubscribeLocalEvent<TakeNameComponent, PlayerAttachedEvent>(OnPlayerAttached);
 
             _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+        }
+
+        private void OnPlayerAttached(EntityUid uid, TakeNameComponent comp, PlayerAttachedEvent args)
+        {
+            if (!_playerManager.TryGetSessionByEntity(uid, out var session) || !comp.HasName) return;
+            _quickDialog.OpenDialog(session, "Введите имя", "Имя", (string message) =>
+            {
+                _metaData.SetEntityName(uid, message);
+                comp.HasName = false;
+            });
+        }
+        private void OnBloodMeleeHit(EntityUid uid, CultBloodMeleeComponent component, MeleeHitEvent args)
+        {
+            if (!TryComp<CultCursedComponent>(args.User, out var cursed)) return;
+            foreach (var entity in args.HitEntities)
+            {
+                if (entity != args.User) continue;
+                var xform = Transform(entity);
+                var coords = xform.Coordinates;
+                foreach (var target in _lookup.GetEntitiesInRange(coords, 2.5f))
+                {
+                    if (TryComp<CultTeleportComponent>(target, out var tp) && !tp.Base)
+                    {
+                        foreach (var altar in EntityManager.EntityQuery<CultAltarComponent>())
+                        {
+                            if (cursed.CurseLevel > 75)
+                            {
+                                _chat.TrySendInGameICMessage(cursed.Owner, "Кровь культу была отдана совсем недавно, больше ее пока не нужно, надо подождать", InGameICChatType.Whisper, false);
+                                continue;
+                            }
+                            _chat.TrySendInGameICMessage(cursed.Owner, "Ave truth...", InGameICChatType.Whisper, false);
+                            cursed.CurseLevel = cursed.MaxCurseLevel;
+                            var axform = Transform(altar.Owner);
+                            var acoords = axform.Coordinates;
+                            Spawn("MedievalCultCrystallRed", acoords);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void OnMeleeHit(EntityUid uid, CultRitualMeleeComponent component, MeleeHitEvent args)
+        {
+            if (!HasComp<CultMemberComponent>(args.User)) return;
+            foreach (var entity in args.HitEntities)
+            {
+                if (entity != args.User) continue;
+                var from = GetTeleport(args.User);
+                if (!TryComp<CultTeleportComponent>(from, out var teleport) || !teleport.Enabled) continue;
+                if (from != args.User)
+                {
+                    var xform = Transform(from);
+                    var coords = xform.Coordinates;
+                    foreach (var target in _lookup.GetEntitiesInRange(coords, 2.5f))
+                    {
+                        foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
+                        {
+                            if (tp.Base != teleport.Base && tp.Sector == teleport.Sector && HasComp<MedievalSpikeTargetComponent>(target))
+                            {
+                                var newxform = Transform(tp.Owner);
+                                var newcoords = newxform.Coordinates;
+                                _transform.SetCoordinates(target, newcoords);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        public EntityUid GetTeleport(EntityUid uid)
+        {
+            var xform = Transform(uid);
+            var coords = xform.Coordinates;
+            foreach (var target in _lookup.GetEntitiesInRange(coords, 2.5f))
+            {
+                if (HasComp<CultTeleportComponent>(target))
+                {
+                    return target;
+                }
+            }
+            return uid;
         }
 
         public override void Update(float frameTime)
@@ -56,6 +153,40 @@ namespace Content.Server.Cult
 
             if (curTime > _nextCheckTime)
             {
+                foreach (var heal in EntityManager.EntityQuery<HealCurseComponent>())
+                {
+                    _damageableSystem.TryChangeDamage(heal.Owner, -heal.RegenDamage, true, false);
+                }
+
+                foreach (var cursed in EntityManager.EntityQuery<CultCursedComponent>())
+                {
+                    cursed.CurseLevel -= cursed.Rate;
+                    if (cursed.CurseLevel < 0f)
+                    {
+                        cursed.CurseLevel = 0f;
+                        _alertsSystem.ClearAlert(cursed.Owner, cursed.CurseAlert);
+                    }
+                    else
+                    {
+                        _alertsSystem.ShowAlert(cursed.Owner, cursed.CurseAlert, (short)Math.Clamp(Math.Round(cursed.CurseLevel / cursed.MaxCurseLevel * 5.1f), 0, 5));
+                    }
+                    if (cursed.CurseLevel > 5f && cursed.CurseLevel < 24f)
+                    {
+                        _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
+                        _popupSystem.PopupEntity("Все ваше тело болит из-за того, что вы не поддерживаете зов культа. Терпеть?", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
+                    }
+                    if (cursed.CurseLevel > 0f && cursed.CurseLevel < 5f)
+                    {
+                        _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
+                        _popupSystem.PopupEntity("Еще немного, и связь с культом разорвется. Терпеть осталось недолго.", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
+                    }
+                    if (cursed.CurseLevel > 60f && TryComp<DamageableComponent>(cursed.Owner, out var damage) && damage.TotalDamage < 100 && damage.TotalDamage > 5)
+                    {
+                        _damageableSystem.TryChangeDamage(cursed.Owner, -cursed.RegenDamage, true, false);
+                        _popupSystem.PopupEntity("Связь с культом восстанавливает твои раны", cursed.Owner, cursed.Owner, PopupType.Small);
+                    }
+                }
+
                 foreach (var picture in EntityManager.EntityQuery<CultCheckPictureComponent>())
                 {
                     if (picture.CollegiumUnlocked) return;
@@ -69,6 +200,7 @@ namespace Content.Server.Cult
                                     if (!picture.Sector1)
                                     {
                                         _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _audioSystem.PlayEntity("/Audio/Imperial/Medieval/Cult/cult_zone_damage.ogg", Filter.Entities(cultist.Owner), cultist.Owner, false, AudioParams.Default.WithVolume(10f));
                                         _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
                                     }
                                     break;
@@ -76,6 +208,8 @@ namespace Content.Server.Cult
                                     if (!picture.Sector2)
                                     {
                                         _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _audioSystem.PlayEntity("/Audio/Imperial/Medieval/Cult/cult_zone_damage.ogg", Filter.Entities(cultist.Owner), cultist.Owner, false, AudioParams.Default.WithVolume(10f));
+
                                         _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
                                     }
                                     break;
@@ -83,6 +217,7 @@ namespace Content.Server.Cult
                                     if (!picture.Sector3)
                                     {
                                         _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _audioSystem.PlayEntity("/Audio/Imperial/Medieval/Cult/cult_zone_damage.ogg", Filter.Entities(cultist.Owner), cultist.Owner, false, AudioParams.Default.WithVolume(10f));
                                         _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
                                     }
                                     break;
@@ -90,6 +225,7 @@ namespace Content.Server.Cult
                                     if (!picture.CollegiumUnlocked)
                                     {
                                         _popupSystem.PopupEntity("Для разблокировки сектора с коллегией требуется особый ритуал, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _audioSystem.PlayEntity("/Audio/Imperial/Medieval/Cult/cult_zone_damage.ogg", Filter.Entities(cultist.Owner), cultist.Owner, false, AudioParams.Default.WithVolume(10f));
                                         _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
                                     }
                                     break;
@@ -97,6 +233,7 @@ namespace Content.Server.Cult
                                     if (!picture.Sector6)
                                     {
                                         _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _audioSystem.PlayEntity("/Audio/Imperial/Medieval/Cult/cult_zone_damage.ogg", Filter.Entities(cultist.Owner), cultist.Owner, false, AudioParams.Default.WithVolume(10f));
                                         _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
                                     }
                                     break;
@@ -104,6 +241,7 @@ namespace Content.Server.Cult
                                     if (!picture.Sector7)
                                     {
                                         _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _audioSystem.PlayEntity("/Audio/Imperial/Medieval/Cult/cult_zone_damage.ogg", Filter.Entities(cultist.Owner), cultist.Owner, false, AudioParams.Default.WithVolume(10f));
                                         _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
                                     }
                                     break;
@@ -111,6 +249,7 @@ namespace Content.Server.Cult
                                     if (!picture.Sector8)
                                     {
                                         _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _audioSystem.PlayEntity("/Audio/Imperial/Medieval/Cult/cult_zone_damage.ogg", Filter.Entities(cultist.Owner), cultist.Owner, false, AudioParams.Default.WithVolume(10f));
                                         _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
                                     }
                                     break;
@@ -118,6 +257,7 @@ namespace Content.Server.Cult
                                     if (!picture.Sector9)
                                     {
                                         _popupSystem.PopupEntity("Этот сектор еще не был разблокирован ритуалом, срочно назад!", cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _audioSystem.PlayEntity("/Audio/Imperial/Medieval/Cult/cult_zone_damage.ogg", Filter.Entities(cultist.Owner), cultist.Owner, false, AudioParams.Default.WithVolume(10f));
                                         _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
                                     }
                                     break;
@@ -136,7 +276,6 @@ namespace Content.Server.Cult
             if (!args.ParentChanged)
                 return;
 
-            var onGround = HasComp<MapGridComponent>(newParent);
             comp.parent = newParent;
         }
         public void OnActivated(EntityUid uid, CultCheckPictureComponent comp, ActivateInWorldEvent args)
@@ -145,6 +284,7 @@ namespace Content.Server.Cult
             var coords = xform.Coordinates;
             string figure = GetRuneFigure();
 
+            if (!TryComp<CultMemberComponent>(args.User, out var cultistritualist)) return;
 
             EnsureComp<SpeechComponent>(uid);
             switch (figure)
@@ -161,17 +301,44 @@ namespace Content.Server.Cult
                                 {
                                     if (blood.BleedAmount > 0)
                                     {
-                                        _chat.TrySendInGameICMessage(uid, "Ритуал проведен успешно, связь цели с культом установлена. Если она будет постоянно жертвовать свою кровь около проклятых сосудов, это принесет проклятые криссталы.", InGameICChatType.Speak, false);
-                                        EnsureComp<CultCursedComponent>(victim);
+                                        _chat.TrySendInGameICMessage(uid, "Ритуал проведен успешно, связь цели с культом установлена. Если она будет постоянно жертвовать свою кровь около проклятых сосудов, это принесет культу проклятые криссталы, а жертве - длительную регенерацию", InGameICChatType.Speak, false);
+                                        foreach (var altar in EntityManager.EntityQuery<CultAltarComponent>())
+                                        {
+                                            var axform = Transform(altar.Owner);
+                                            var acoords = axform.Coordinates;
+                                            Spawn("MedievalCultCrystallRed", acoords);
+                                        }
+                                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
+
+                                        var altars = EntityManager.EntityQuery<CultTeleportComponent>();
+                                        var needAltars = new List<CultTeleportComponent>();
+                                        foreach (var altar in altars)
+                                        {
+                                            if (!altar.Base)
+                                            {
+                                                needAltars.Add(altar);
+                                            }
+                                        }
+                                        var ouraltar = _random.Pick(needAltars);
+                                        var oxform = Transform(ouraltar.Owner);
+                                        var ocoords = oxform.Coordinates;
+                                        _transform.SetCoordinates(victim, ocoords);
+                                        _chat.TrySendInGameICMessage(victim, "Культ истины провел со мной ритуал связи. Если я буду жертвовать кровь... то есть резать себя около этих кровавых сосудов, к одному из которых меня телепортировало, раз в какое-то время, то я буду получать длительную магическую регенерацию, а культ - алые кристаллы. Это... взаимовыгодно? Лишь бы другие не узнали...", InGameICChatType.Whisper, false);
+                                        var cyr = EnsureComp<CultCursedComponent>(victim);
+                                        cyr.CurseLevel = cyr.MaxCurseLevel;
                                     }
                                     else
                                     {
                                         _chat.TrySendInGameICMessage(uid, "На цели ритуала должен быть разрез", InGameICChatType.Speak, false);
+                                        _audioSystem.PlayPvs(comp.FailSound, uid);
                                     }
                                 }
                             }
                             else
+                            {
                                 _chat.TrySendInGameICMessage(uid, "Для ритуала связи необходима цель не-культист", InGameICChatType.Speak, false);
+                                _audioSystem.PlayPvs(comp.FailSound, uid);
+                            }
                         }
                     }
                     break;
@@ -180,6 +347,7 @@ namespace Content.Server.Cult
                     {
                         Spawn("MedievalSpawnCultMelee", coords);
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал призыва оружия проведен успешно", InGameICChatType.Speak, false);
                     }
                     break;
@@ -191,6 +359,7 @@ namespace Content.Server.Cult
                             barrier.Stability *= 0.7f;
                         }
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал повреждения барьера выполнен успешно, его стабильность снижена на треть от текущей", InGameICChatType.Speak, false);
                     }
                     break;
@@ -203,14 +372,24 @@ namespace Content.Server.Cult
                             {
                                 if (CheckCrystals(uid, comp, 5, 0))
                                 {
+                                    foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
+                                    {
+                                        if (tp.Sector == 5)
+                                            tp.Enabled = true;
+                                    }
                                     comp.CollegiumUnlocked = true;
                                     Spawn("ShockWaveEffect", coords);
+                                    _audioSystem.PlayPvs(comp.SuccesSound, uid);
                                     _chat.TrySendInGameICMessage(uid, "Ритуал открытия центральной части острова с коллегией выполнен успешно, смерть грядет!!", InGameICChatType.Speak, false);
                                     _chat.DispatchGlobalAnnouncement("Целостность барьера повреждена, культисты смогли обойти защиту", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
                                 }
                             }
                             else
+                            {
+                                _audioSystem.PlayPvs(comp.FailSound, uid);
                                 _chat.TrySendInGameICMessage(uid, "Для ритуала открытия центральной части острова с коллегией необходимо разблокировать все остальные сектора", InGameICChatType.Speak, false);
+
+                            }
                         }
 
                     }
@@ -220,6 +399,7 @@ namespace Content.Server.Cult
                     {
                         Spawn("MedievalClothingOuterArmorCultUp", coords);
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал призыва защитной робы выполнен успешно", InGameICChatType.Speak, false);
                     }
                     break;
@@ -228,6 +408,7 @@ namespace Content.Server.Cult
                     {
                         Spawn("MedievalClothingOuterArmorCultMana", coords);
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал призыва магической робы выполнен успешно", InGameICChatType.Speak, false);
                     }
                     break;
@@ -236,6 +417,7 @@ namespace Content.Server.Cult
                     {
                         Spawn("CompactDefibrillator", coords);
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал призыва камня возрождения выполнен успешно", InGameICChatType.Speak, false);
                     }
                     break;
@@ -248,11 +430,15 @@ namespace Content.Server.Cult
                             {
                                 Spawn("MedievalScrollBarrierBad", coords);
                                 Spawn("ShockWaveEffect", coords);
+                                _audioSystem.PlayPvs(comp.SuccesSound, uid);
                                 _chat.TrySendInGameICMessage(uid, "Ритуал призыва проклятого свитка выполнен успешно, отнесите же его к барьеру!", InGameICChatType.Speak, false);
                             }
                         }
                         else
+                        {
+                            _audioSystem.PlayPvs(comp.FailSound, uid);
                             _chat.TrySendInGameICMessage(uid, "Для призыва проклятых свитков необходимо вначале разблокировать портал в центральную часть острова с коллегией магов.", InGameICChatType.Speak, false);
+                        }
                     }
                     break;
                 case "wand":
@@ -260,15 +446,28 @@ namespace Content.Server.Cult
                     {
                         Spawn("MedievalSpellBookRecodeNecro", coords);
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал призыва магического гримуара выполнен успешно", InGameICChatType.Speak, false);
                     }
                     break;
                 case "sector1":
+                    if (comp.Sector1)
+                    {
+                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                        _chat.TrySendInGameICMessage(uid, "Этот сектор уже разблокирован", InGameICChatType.Speak, false);
+                        break;
+                    }
                     if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
                     {
                         comp.Sector1 = true;
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
+                        {
+                            if (tp.Sector == 1)
+                                tp.Enabled = true;
+                        }
                         comp.UnlockedSectors++;
                         switch (comp.UnlockedSectors)
                         {
@@ -283,11 +482,23 @@ namespace Content.Server.Cult
                     }
                     break;
                 case "sector2":
+                    if (comp.Sector2)
+                    {
+                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                        _chat.TrySendInGameICMessage(uid, "Этот сектор уже разблокирован", InGameICChatType.Speak, false);
+                        break;
+                    }
                     if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
                     {
                         comp.Sector2 = true;
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
+                        {
+                            if (tp.Sector == 2)
+                                tp.Enabled = true;
+                        }
                         comp.UnlockedSectors++;
                         switch (comp.UnlockedSectors)
                         {
@@ -301,11 +512,23 @@ namespace Content.Server.Cult
                     }
                     break;
                 case "sector3":
+                    if (comp.Sector3)
+                    {
+                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                        _chat.TrySendInGameICMessage(uid, "Этот сектор уже разблокирован", InGameICChatType.Speak, false);
+                        break;
+                    }
                     if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
                     {
                         comp.Sector3 = true;
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
+                        {
+                            if (tp.Sector == 3)
+                                tp.Enabled = true;
+                        }
                         comp.UnlockedSectors++;
                         switch (comp.UnlockedSectors)
                         {
@@ -319,11 +542,23 @@ namespace Content.Server.Cult
                     }
                     break;
                 case "sector6":
+                    if (comp.Sector6)
+                    {
+                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                        _chat.TrySendInGameICMessage(uid, "Этот сектор уже разблокирован", InGameICChatType.Speak, false);
+                        break;
+                    }
                     if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
                     {
                         comp.Sector6 = true;
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
+                        {
+                            if (tp.Sector == 6)
+                                tp.Enabled = true;
+                        }
                         comp.UnlockedSectors++;
                         switch (comp.UnlockedSectors)
                         {
@@ -337,11 +572,23 @@ namespace Content.Server.Cult
                     }
                     break;
                 case "sector7":
+                    if (comp.Sector7)
+                    {
+                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                        _chat.TrySendInGameICMessage(uid, "Этот сектор уже разблокирован", InGameICChatType.Speak, false);
+                        break;
+                    }
                     if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
                     {
                         comp.Sector7 = true;
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
+                        {
+                            if (tp.Sector == 7)
+                                tp.Enabled = true;
+                        }
                         comp.UnlockedSectors++;
                         switch (comp.UnlockedSectors)
                         {
@@ -355,11 +602,23 @@ namespace Content.Server.Cult
                     }
                     break;
                 case "sector8":
+                    if (comp.Sector8)
+                    {
+                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                        _chat.TrySendInGameICMessage(uid, "Этот сектор уже разблокирован", InGameICChatType.Speak, false);
+                        break;
+                    }
                     if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
                     {
                         comp.Sector8 = true;
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
+                        {
+                            if (tp.Sector == 8)
+                                tp.Enabled = true;
+                        }
                         comp.UnlockedSectors++;
                         switch (comp.UnlockedSectors)
                         {
@@ -373,11 +632,23 @@ namespace Content.Server.Cult
                     }
                     break;
                 case "sector9":
+                    if (comp.Sector9)
+                    {
+                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                        _chat.TrySendInGameICMessage(uid, "Этот сектор уже разблокирован", InGameICChatType.Speak, false);
+                        break;
+                    }
                     if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, comp.NewSectorCost, 0))
                     {
                         comp.Sector9 = true;
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал открытия нового сектора острова выполнен успешно", InGameICChatType.Speak, false);
+                        foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
+                        {
+                            if (tp.Sector == 9)
+                                tp.Enabled = true;
+                        }
                         comp.UnlockedSectors++;
                         switch (comp.UnlockedSectors)
                         {
@@ -395,6 +666,7 @@ namespace Content.Server.Cult
                     {
                         Spawn("MedievalCultCrystallBloody", coords);
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Алые кристаллы успешно конвертированы в кровавый", InGameICChatType.Speak, false);
                     }
                     break;
@@ -409,6 +681,7 @@ namespace Content.Server.Cult
                             speed = Math.Round(barrier.Lose, 2);
                         }
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Стабильность барьера " + stab + ", скорость расхода стабильности " + speed, InGameICChatType.Speak, false);
                     }
                     break;
@@ -421,11 +694,15 @@ namespace Content.Server.Cult
                             {
                                 nocturn.BloodLevel = 380f;
                                 Spawn("ShockWaveEffect", coords);
+                                _audioSystem.PlayPvs(comp.SuccesSound, uid);
                                 _chat.TrySendInGameICMessage(uid, "Уровень крови ноктюрна пополнен", InGameICChatType.Speak, false);
                             }
                         }
                         else
+                        {
+                            _audioSystem.PlayPvs(comp.FailSound, uid);
                             _chat.TrySendInGameICMessage(uid, "Этот ритуал может провести только ноктюрн", InGameICChatType.Speak, false);
+                        }
                     }
                     break;
                 case "heal":
@@ -439,6 +716,7 @@ namespace Content.Server.Cult
                             }
                         }
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Все культисты, учавствующие в ритуале, восстановились от ран", InGameICChatType.Speak, false);
                     }
                     break;
@@ -465,6 +743,7 @@ namespace Content.Server.Cult
                         Spawn("FoodMeatChickenCooked", coords);
                         Spawn("FoodBakedBunMeat", coords);
                         Spawn("ShockWaveEffect", coords);
+                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Да будет пиршество", InGameICChatType.Speak, false);
                     }
                     break;
@@ -481,6 +760,7 @@ namespace Content.Server.Cult
                                 Spawn("MedievalCultCrystallRed", coords);
                                 Spawn("MedievalCultCrystallRed", coords);
                                 Spawn("ShockWaveEffect", coords);
+                                _audioSystem.PlayPvs(comp.SuccesSound, uid);
                                 _chat.TrySendInGameICMessage(uid, "Осколок хрусталя успешно преобразован в алые кристаллы", InGameICChatType.Speak, false);
                             }
                         }
@@ -501,6 +781,7 @@ namespace Content.Server.Cult
                                 Spawn("MedievalCultCrystallRed", coords);
                                 Spawn("MedievalCultCrystallRed", coords);
                                 Spawn("ShockWaveEffect", coords);
+                                _audioSystem.PlayPvs(comp.SuccesSound, uid);
                                 _chat.TrySendInGameICMessage(uid, "Проклятый фолиант успешно преобразован кристаллы", InGameICChatType.Speak, false);
                             }
                         }
@@ -513,15 +794,21 @@ namespace Content.Server.Cult
                         {
                             mana.Regen *= 1.25f;
                             Spawn("ShockWaveEffect", coords);
+                            _audioSystem.PlayPvs(comp.SuccesSound, uid);
                             _chat.TrySendInGameICMessage(uid, "Скорость восстановления маны у проводящего ритуал повышена", InGameICChatType.Speak, false);
                         }
                         else
+                        {
+                            _audioSystem.PlayPvs(comp.FailSound, uid);
                             _chat.TrySendInGameICMessage(uid, "Проводящий ритуал не может колдовать", InGameICChatType.Speak, false);
+                        }
+
                     }
                     break;
 
                 default:
                     _chat.TrySendInGameICMessage(uid, "Руна выполненна неверно, покайтесь!", InGameICChatType.Speak, false);
+                    _damageableSystem.TryChangeDamage(cultistritualist.Owner, cultistritualist.Damage, true, false);
                     break;
             }
             foreach (var rune in EntityManager.EntityQuery<CultBloodPaintComponent>())
@@ -540,12 +827,14 @@ namespace Content.Server.Cult
             if (comp.BloodyCrystall < bloodyCost)
             {
                 _chat.TrySendInGameICMessage(uid, $"Для ритуала недостаточно кровавых кристаллов, необходимо {bloodyCost}", InGameICChatType.Speak, false);
+                _audioSystem.PlayPvs(comp.FailSound, uid);
                 return false;
             }
 
             if (comp.RedCrystall < redCost)
             {
                 _chat.TrySendInGameICMessage(uid, $"Для ритуала недостаточно алых кристаллов, необходимо {redCost}", InGameICChatType.Speak, false);
+                _audioSystem.PlayPvs(comp.FailSound, uid);
                 return false;
             }
 
@@ -556,9 +845,32 @@ namespace Content.Server.Cult
 
         private void OnExamine(EntityUid uid, CultCheckPictureComponent comp, ExaminedEvent args)
         {
-
             args.PushMarkup("Сейчас заряжено [color=red]" + comp.BloodyCrystall.ToString() + " кровавых[/color] и [color=pink]" + comp.RedCrystall.ToString() + " алых[/color] кристаллов");
+        }
+        private void OnExamineTp(EntityUid uid, CultTeleportComponent comp, ExaminedEvent args)
+        {
+            if (HasComp<CultMemberComponent>(args.Examiner))
+            {
+                if (!comp.Enabled)
+                    args.PushMarkup("Этот телепорт сейчас [color=red] выключен[/color], проведите специальный ритуал для его разблокировки");
+                else
+                    args.PushMarkup("Этот телепорт сейчас [color=green] включен[/color]. Если вы культист - ударьте себя ножом, чтобы телепортировать всех в радиусе двух тайлов к связанному с этим телепорту.");
+            }
+            else
+                args.PushMarkup("Вы и [color=red] понятия не имеете[/color] что это за штука, но четко понимаете, что она как-то связана с кровавым культом, называющим себя культом истины.");
+        }
 
+        private void OnExamineCursed(EntityUid uid, CultCursedComponent comp, ExaminedEvent args)
+        {
+            if (HasComp<CultMemberComponent>(args.Examiner))
+            {
+                if (comp.CurseLevel > 0f)
+                    args.PushMarkup("Имеет [color=red]связь с культом[/color]");
+                if (comp.CurseLevel < 0f)
+                    args.PushMarkup("[color=red]Разорвал[/color] связь с культом, грешник!");
+            }
+            if (TryComp<CultCursedComponent>(args.Examiner, out var cursed) && cursed.CurseLevel > 0f && comp.CurseLevel > 0f)
+                args.PushMarkup("Тоже имеет [color=red]связь с культом[/color]");
         }
 
         public bool IsCultistsEnough(EntityUid uid, int need)
@@ -636,6 +948,7 @@ namespace Content.Server.Cult
                 {
 
                     var newBrush = Spawn("MedievalCultBrushBloody", coords);
+                    _audioSystem.PlayPvs(comp.Sound, newBrush);
                     EnsureComp<CultBloodPaintComponent>(newBrush, out var newPaint);
                     newPaint.PosX = paint.PosX;
                     newPaint.PosY = paint.PosY;
@@ -643,6 +956,7 @@ namespace Content.Server.Cult
                 else
                 {
                     var newBrush = Spawn("MedievalCultBrushFine", coords);
+                    _audioSystem.PlayPvs(comp.DelSound, newBrush);
                     EnsureComp<CultBloodPaintComponent>(newBrush, out var newPaint);
                     newPaint.PosX = paint.PosX;
                     newPaint.PosY = paint.PosY;
@@ -667,6 +981,7 @@ namespace Content.Server.Cult
                     pict.BloodyCrystall += 1;
                 else
                     pict.RedCrystall += 1;
+                _audioSystem.PlayPvs(pict.EatSound, target.Value);
                 QueueDel(used);
             }
         }
