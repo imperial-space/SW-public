@@ -4,31 +4,27 @@
     "copyright": "by crookielv",
     "size": {
         "x": 32,
-        "y": 32
+        "y": 64
     },
     "states": [
         {
-            "name": "book"
-        },
-        {
-            "name": "bloody"
-        },
-        {
-            "name": "red"
-        },
-        {
-            "name": "cutlaltar2"
-        },
-        {
-            "name": "cutlaltar",
+            "name": "stone",
             "delays": [
               [
+                0.35,
+                0.35,
                 0.35,
                 0.35,
                 0.35,
                 0.35
               ]
             ]
+        },
+        {
+            "name": "off"
+        },
+        {
+            "name": "col"
         }
     ]
 }

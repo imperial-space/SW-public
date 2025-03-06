@@ -8,27 +8,22 @@
     },
     "states": [
         {
-            "name": "book"
+            "name": "band"
         },
         {
-            "name": "bloody"
+            "name": "coll"
         },
         {
-            "name": "red"
+            "name": "ins"
         },
         {
-            "name": "cutlaltar2"
+            "name": "leg"
         },
         {
-            "name": "cutlaltar",
-            "delays": [
-              [
-                0.35,
-                0.35,
-                0.35,
-                0.35
-              ]
-            ]
+            "name": "merc"
+        },
+        {
+            "name": "mine"
         }
     ]
 }

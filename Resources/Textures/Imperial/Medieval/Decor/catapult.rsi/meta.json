@@ -1,0 +1,47 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by rubelaks",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "ready",
+            "directions": 8
+        },
+        {
+            "name": "shoot",
+            "directions": 8,
+            "delays": [
+                [0.22, 0.22, 0.22, 8.22],
+                [0.22, 0.22, 0.22, 8.22],
+                [0.22, 0.22, 0.22, 8.22],
+                [0.22, 0.22, 0.22, 8.22],
+                [0.22, 0.22, 0.22, 8.22],
+                [0.22, 0.22, 0.22, 8.22],
+                [0.22, 0.22, 0.22, 8.22],
+                [0.22, 0.22, 0.22, 8.22]
+            ]
+        },
+        {
+            "name": "charge",
+            "directions": 8,
+            "delays": [
+                [0.6, 0.6, 8.6],
+                [0.6, 0.6, 8.6],
+                [0.6, 0.6, 8.6],
+                [0.6, 0.6, 8.6],
+                [0.6, 0.6, 8.6],
+                [0.6, 0.6, 8.6],
+                [0.6, 0.6, 8.6],
+                [0.6, 0.6, 8.6]
+            ]
+        },
+        {
+            "name": "unloaded",
+            "directions": 8
+        }
+    ]
+}

@@ -53,3 +53,23 @@
   description: Вам, как и всем, надо периодически спать. Если этого делать не будете - можете свалиться от усталости прямо посреди битвы.
   minSeverity: 0
   maxSeverity: 4
+
+- type: alert
+  id: CultCurse
+  icons:
+  - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
+    state: 0
+  - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
+    state: 1
+  - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
+    state: 2
+  - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
+    state: 3
+  - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
+    state: 4
+  - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
+    state: 5
+  name: Связь с культом
+  description: Культ истины провел над вами ритуал и теперь вы связанны с ним. Если вы будете поддерживать связь (периодически подходить к сосудам и бить себя ножом), то у вас будет слабая магическая регенерация. Если не будете, то вы получите немного урона и связь пропадет.
+  minSeverity: 0
+  maxSeverity: 5
