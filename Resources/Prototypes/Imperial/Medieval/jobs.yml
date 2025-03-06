@@ -447,6 +447,8 @@
 - type: loadoutGroup
   id: MedievalNeck
   name: loadout-group-medieval-neck
+  minLimit: 0
+  maxLimit: 1
   loadouts:
   - MedievalNeckDark
   - MedievalNeckBrown
