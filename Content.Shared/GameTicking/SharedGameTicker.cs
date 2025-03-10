@@ -20,7 +20,7 @@ namespace Content.Shared.GameTicking
         [ValidatePrototypeId<JobPrototype>]
         public const string FallbackOverflowJob = "MedievalTraveller"; // imperial medieval
 
-        public const string FallbackOverflowJobName = "ghost-role-information-medieval-traveller-name"; // imperial medieval
+        public const string FallbackOverflowJobName = "job-name-traveller"; // imperial medieval
 
         // TODO network.
         // Probably most useful for replays, round end info, and probably things like lobby menus.
