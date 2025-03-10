@@ -2,6 +2,7 @@
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Shared.CharacterInfo;
+using Content.Shared.Friends.Components;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
@@ -56,6 +57,15 @@ public sealed class CharacterInfoSystem : EntitySystem
             briefing = _roles.MindGetBriefing(mindId);
         }
 
-        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing), args.SenderSession);
+        // Imperial medieval faction menu start
+        List<string> faction = new();
+        if (TryComp<FriendsComponent>(entity, out var friend))
+        {
+            faction.Add(friend.MemberData.Objective != "" ? $"Ваша текущая задача: {friend.MemberData.Objective}" : "Вам ещё не назначили задачу.");
+            faction.Add(friend.MemberData.Group != "" ? $"Вы находитесь в группе {friend.MemberData.Group}" : "Вас ещё не определили в группу.");
+        }
+        // Imperial medieval faction menu end
+
+        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing, faction), args.SenderSession);   // Imperial medieval faction menu tweaked
     }
 }

@@ -15,6 +15,10 @@
                     <Label Name="SubText" VerticalAlignment="Top" StyleClasses="LabelSubText" Access="Public"/>
                 </BoxContainer>
             </BoxContainer>
+            <!-- Imperial medieval faction menu start -->
+            <Label Name="FactionLabel" Access="Public" Text="{Loc 'character-info-faction-label'}" HorizontalAlignment="Center"/>
+            <BoxContainer Orientation="Vertical" Name="Faction" Access="Public"/>
+            <!-- Imperial medieval faction menu end -->
             <Label Name="ObjectivesLabel" Access="Public" Text="{Loc 'character-info-objectives-label'}" HorizontalAlignment="Center"/>
             <BoxContainer Orientation="Vertical" Name="Objectives" Access="Public"/>
             <cc:Placeholder Name="RolePlaceholder" Access="Public" PlaceholderText="{Loc 'character-info-roles-antagonist-text'}"/>
