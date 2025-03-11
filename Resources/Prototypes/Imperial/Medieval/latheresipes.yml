@@ -1790,9 +1790,9 @@
     MedievalRope: 12
     WoodPlank: 30
     MedievalSteelIngot: 1
-    MedievalRivets: 8
+    MedievalRivets: 6
     MedievalIronPlateSmall: 8
-    MedievalIronPlate: 6
+    MedievalIronPlate: 4
     MedievalGear: 5
   result: MedievalCatapultCraft
 
