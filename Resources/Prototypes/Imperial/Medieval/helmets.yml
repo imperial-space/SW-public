@@ -573,6 +573,17 @@
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetWhiteCharmerLight
+  name: MedievalClothingHeadHelmetWhiteCharmerLight
+  description: MedievalClothingHeadHelmetWhiteCharmerLight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/white_charmer_light.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/white_charmer_light.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
   id: MedievalClothingHeadHelmetCharmerLegion
   name: clooth
   description: Medieval salad helmet
@@ -599,7 +610,6 @@
   name: gool
   description: Medieval salad helmet
   components:
-
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/charmer_weak.rsi
   - type: Clothing
@@ -616,6 +626,17 @@
     damageCoefficient: 0.9
   - type: ManaRegen
     regen: 0.25
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetWhiteCharmerWeak
+  name: MedievalClothingHeadHelmetWhiteCharmerWeak
+  description: MedievalClothingHeadHelmetWhiteCharmerWeak
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/white_charmer_weak.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/white_charmer_weak.rsi
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -945,3 +966,14 @@
     sprite: Imperial/Medieval/Clothing/Head/northern_helmet.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/northern_helmet.rsi
+
+- type: entity
+  parent: WitchersPurpleHat
+  id: WitchersWhiteHat
+  name: The Witch's Hat
+  description: The white witch hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/white_witchers_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/white_witchers_hat.rsi
