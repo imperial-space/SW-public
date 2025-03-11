@@ -12,6 +12,7 @@ public abstract class SharedFriendsSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<FriendsComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<FactionHeadComponent, OpenFactionMenuActionEvent>(OnFactionMenuAction);
     }
 
     private void OnExamine(EntityUid uid, FriendsComponent comp, ExaminedEvent args)
@@ -30,5 +31,17 @@ public abstract class SharedFriendsSystem : EntitySystem
             args.PushMarkup("[color=green]Из моей фракции, узнаю [/color] " + job);
         else if (myFaction.KnownFactions.TryGetValue(comp.Faction, out var str))
             args.PushMarkup(str);
+    }
+
+    private void OnFactionMenuAction(EntityUid uid, FactionHeadComponent comp, OpenFactionMenuActionEvent args)
+    {
+        if (args.Handled)
+            return;
+        args.Handled = true;
+        OpenMenu(comp.CachedMembers);
+    }
+
+    public virtual void OpenMenu(Dictionary<NetEntity, FactionMemberData> data)
+    {
     }
 }

@@ -3,11 +3,11 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Friends.Components
 {
-    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
     public sealed partial class FactionHeadComponent : Component
     {
         [DataField(required: true)]
-        public EntProtoId FactionMenuAction = "";
+        public EntProtoId FactionMenuAction = "BaseFactionMenuAction";
 
         public EntityUid? FactionMenuActionEntity;
 

@@ -13,7 +13,10 @@ public sealed partial class FriendsSystem
         SubscribeLocalEvent<FriendsComponent, MapInitEvent>(OnFriendsInit);
 
         SubscribeLocalEvent<FactionHeadComponent, MapInitEvent>(OnHeadInit);
-        SubscribeLocalEvent<FactionMemberRemovedEvent>(OnMemberRemoved);
+
+        SubscribeNetworkEvent<SetFactionMemberObjectiveMessage>(OnSetObjective);
+        SubscribeNetworkEvent<SetFactionMemberGroupMessage>(OnSetGroup);
+        SubscribeLocalEvent<RemoveFactionMemberMessage>(OnMemberRemoved);
     }
 
     private void OnFriendsInit(EntityUid uid, FriendsComponent comp, MapInitEvent args)
@@ -21,7 +24,7 @@ public sealed partial class FriendsSystem
         comp.MemberData = new()
         {
             Name = Name(uid),
-            Job = CompOrNull<MedievalPasportPersonComponent>(uid)?.PersonJob ?? "Нет"
+            Job = CompOrNull<MedievalPasportPersonComponent>(uid)?.PersonJob ?? "Нет должности"
         };
 
         Dirty(uid, comp);
@@ -38,9 +41,41 @@ public sealed partial class FriendsSystem
         _action.AddAction(uid, ref comp.FactionMenuActionEntity, comp.FactionMenuAction);
     }
 
-    private void OnMemberRemoved(ref FactionMemberRemovedEvent args)
+    private void OnSetObjective(SetFactionMemberObjectiveMessage args)
     {
+        var uid = GetEntity(args.Ent);
+        if (!uid.IsValid())
+            return;
+        if (!TryComp<FriendsComponent>(uid, out var comp))
+            return;
 
+        comp.MemberData.Objective = args.Objective;
+        RefreshFactionHeads(comp.Faction);
+    }
+
+    private void OnSetGroup(SetFactionMemberGroupMessage args)
+    {
+        var uid = GetEntity(args.Ent);
+        if (!uid.IsValid())
+            return;
+        if (!TryComp<FriendsComponent>(uid, out var comp))
+            return;
+
+        comp.MemberData.Group = args.Group;
+        RefreshFactionHeads(comp.Faction);
+    }
+
+    private void OnMemberRemoved(RemoveFactionMemberMessage args)
+    {
+        var uid = GetEntity(args.Ent);
+        if (!uid.IsValid())
+            return;
+        if (!TryComp<FriendsComponent>(uid, out var comp))
+            return;
+        comp.Faction = "Voluntary";
+        comp.MemberData.Job = "Нет должности";
+        comp.MemberData.Objective = "";
+        comp.MemberData.Group = "";
     }
 
     public void RefreshFactionHeads(ProtoId<MedievalFactionPrototype> proto)

@@ -1,0 +1,48 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    Title="{Loc 'faction-menu-title'}"
+    MinSize="612 512"
+    SetSize="812 512">
+    <PanelContainer Name="MainPanel" HorizontalExpand="True" VerticalExpand="True" Margin="-50">
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#73573e" />
+        </PanelContainer.PanelOverride>
+    </PanelContainer>
+        <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+            <PanelContainer Name="TipPanel">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#402c1b" />
+                </PanelContainer.PanelOverride>
+                <BoxContainer Orientation="Horizontal" Margin="4 4" MaxHeight="45" SetHeight="45" VerticalAlignment="Top">
+                    <Control MinSize="2 5" Margin="4 0"/>
+                    <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="2">
+                        <RichTextLabel Text="Имя" HorizontalAlignment="Center"/>
+                    </BoxContainer>
+                    <Control MinSize="2 5" Margin="4 0"/>
+                    <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                        <RichTextLabel Text="Должность" HorizontalAlignment="Center"/>
+                    </BoxContainer>
+                    <Control MinSize="2 5" Margin="4 0"/>
+                    <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="3">
+                        <RichTextLabel Text="Задача" HorizontalAlignment="Center"/>
+                    </BoxContainer>
+                    <Control MinSize="2 5" Margin="4 0"/>
+                    <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                        <RichTextLabel Text="Группа" HorizontalAlignment="Center"/>
+                    </BoxContainer>
+                    <Control MinSize="2 5" Margin="4 0"/>
+                    <BoxContainer MaxWidth="45">
+                        <RichTextLabel Text="Искл." HorizontalAlignment="Center"/>
+                    </BoxContainer>
+                    <Control MinSize="2 5" Margin="4 0"/>
+                </BoxContainer>
+            </PanelContainer>
+            <ScrollContainer HScrollEnabled="False" VerticalExpand="True" HorizontalExpand="True" Margin="2">
+                <BoxContainer Name="Members" Orientation="Vertical">
+                    <!-- Rest of this populated in .cs -->
+                </BoxContainer>
+            </ScrollContainer>
+        </BoxContainer>
+</DefaultWindow>

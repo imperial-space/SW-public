@@ -1,0 +1,69 @@
+<Control
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    HorizontalExpand="True"
+    MinHeight="45"
+    SetHeight="45"
+    Margin="2 4">
+    <BoxContainer Name="Main" Orientation="Horizontal">
+        <PanelContainer MinSize="2 5" VerticalExpand="True" Margin="4" >
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#45372a" />
+            </PanelContainer.PanelOverride>
+        </PanelContainer>
+        <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="2">
+            <RichTextLabel Name="NameLabel" HorizontalAlignment="Center"/>
+        </BoxContainer>
+        <PanelContainer MinSize="2 5" VerticalExpand="True" Margin="4" >
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#45372a" />
+            </PanelContainer.PanelOverride>
+        </PanelContainer>
+        <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="1">
+            <RichTextLabel Name="JobLabel" HorizontalAlignment="Center"/>
+        </BoxContainer>
+        <PanelContainer MinSize="2 5" VerticalExpand="True" Margin="4" >
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#45372a" />
+            </PanelContainer.PanelOverride>
+        </PanelContainer>
+        <PanelContainer HorizontalExpand="True" SizeFlagsStretchRatio="3">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#33271d" />
+            </PanelContainer.PanelOverride>
+            <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="3">
+                <LineEdit Name="ObjectiveEdit" HorizontalExpand="True" ModulateSelfOverride="#00000000" />
+            </BoxContainer>
+        </PanelContainer>
+        <PanelContainer MinSize="2 5" VerticalExpand="True" Margin="4" >
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#45372a" />
+            </PanelContainer.PanelOverride>
+        </PanelContainer>
+        <PanelContainer HorizontalExpand="True" SizeFlagsStretchRatio="1">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#33271d" />
+            </PanelContainer.PanelOverride>
+            <BoxContainer HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                <LineEdit Name="GroupEdit" HorizontalExpand="True" ModulateSelfOverride="#00000000" />
+            </BoxContainer>
+        </PanelContainer>
+        <PanelContainer MinSize="2 5" VerticalExpand="True" Margin="4" >
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#45372a" />
+            </PanelContainer.PanelOverride>
+        </PanelContainer>
+        <TextureButton Name="RemoveButton"
+            TexturePath="/Textures/Interface/Nano/cross.svg.png"
+            MinSize="45 45" SetSize="45 45"
+            ModulateSelfOverride="Red"
+            ToolTip="Исключить участника из фракции."/>
+        <PanelContainer MinSize="2 5" VerticalExpand="True" Margin="4" >
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#45372a" />
+            </PanelContainer.PanelOverride>
+        </PanelContainer>
+    </BoxContainer>
+</Control>
