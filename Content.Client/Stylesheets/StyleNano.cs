@@ -537,24 +537,6 @@ namespace Content.Client.Stylesheets
             var directionIconQuestionTex = resCache.GetTexture("/Textures/Interface/VerbIcons/information.svg.192dpi.png");
             var directionIconHereTex = resCache.GetTexture("/Textures/Interface/VerbIcons/dot.svg.192dpi.png");
 
-            // Imperial medieval UI start
-            var windowHeaderWoodenTex = resCache.GetTexture("/Textures/Imperial/Interface/Medieval/window_header_wooden.png");
-            var windowHeaderWooden = new StyleBoxTexture
-            {
-                Texture = windowHeaderWoodenTex,
-                PatchMarginBottom = 3,
-                ExpandMarginBottom = 3,
-                ContentMarginBottomOverride = 0
-            };
-            var windowBackgroundWoodenTex = resCache.GetTexture("/Textures/Imperial/Interface/Medieval/window_background_wooden.png");
-            var windowBackgroundWooden = new StyleBoxTexture
-            {
-                Texture = windowBackgroundWoodenTex,
-            };
-            windowBackgroundWooden.SetPatchMargin(StyleBox.Margin.Horizontal | StyleBox.Margin.Bottom, 2);
-            windowBackgroundWooden.SetExpandMargin(StyleBox.Margin.Horizontal | StyleBox.Margin.Bottom, 2);
-            // Imperial medieval UI end
-
             Stylesheet = new Stylesheet(BaseRules.Concat(new[]
             {
                 Element().Class("monospace")
@@ -629,21 +611,6 @@ namespace Content.Client.Stylesheets
                     {
                         new StyleProperty(PanelContainer.StylePropertyPanel, windowHeaderAlert),
                     }),
-                // Imperial medieval UI start
-                // Wooden window header.
-                new StyleRule(
-                    new SelectorElement(typeof(PanelContainer), new[] {"windowHeaderWood"}, null, null),
-                    new[]
-                    {
-                        new StyleProperty(PanelContainer.StylePropertyPanel, windowHeaderWooden),
-                    }),
-                new StyleRule(
-                    new SelectorElement(null, new[] {"windowPanelWood"}, null, null),
-                    new[]
-                    {
-                        new StyleProperty(PanelContainer.StylePropertyPanel, windowBackgroundWooden),
-                    }),
-                // Imperial medieval UI end
 
                 // Shapes for the buttons.
                 Element<ContainerButton>().Class(ContainerButton.StyleClassButton)
