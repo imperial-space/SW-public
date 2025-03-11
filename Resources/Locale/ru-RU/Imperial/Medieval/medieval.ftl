@@ -4979,3 +4979,4 @@ ent-MedievalTimedSpawnerMedievalMobSpiderStrongCave = Периодический
     .suffix = { "Средневековье, спавнер" }
 department-Mages = Роли магов
 department-Mages-description = Магия сильнее меча!
+MedievalDurability = Текущее состояние: {$durab}
