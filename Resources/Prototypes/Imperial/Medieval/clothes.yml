@@ -1027,6 +1027,17 @@
     regen: 0.25
 
 - type: entity
+  parent: MedievalShoesChamber
+  id: MedievalWhiteShoesCharmer
+  name: MedievalWhiteShoesCharmer
+  description: MedievalWhiteShoesCharmer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/white_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/white_charmer.rsi
+
+- type: entity
   parent: ClothingShoesBaseButcherable
   id: MedievalShoesSapogi
   name: MedievalShoesSapogi
