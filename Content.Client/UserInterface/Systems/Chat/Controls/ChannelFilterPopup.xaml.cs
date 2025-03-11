@@ -16,6 +16,7 @@ public sealed partial class ChannelFilterPopup : Popup
         ChatChannel.Whisper,
         ChatChannel.Emotes,
         ChatChannel.Radio,
+        ChatChannel.CollectiveMind, // imperial medieval languages
         ChatChannel.Notifications,
         ChatChannel.LOOC,
         ChatChannel.OOC,

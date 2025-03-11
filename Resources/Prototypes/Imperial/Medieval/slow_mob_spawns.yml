@@ -1,141 +1,148 @@
-
 - type: entity
   id: MedievalLateMobSpawnerBase
   name: late mob spawn test
   parent: MarkerBase
   components:
-    - type: Sprite
-      sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
-      layers:
-        #- state: black
-        - sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
-          state: cburn
-    - type: SlowMobSpawn
-      spawnEffect: MedievalLateMobSpawnEffect
-      spawnMob: MobMonkey
-      soundEffect: "/Audio/Imperial/Medieval/mob_spawn_effect.ogg"
-    - type: TimedDespawn
-      lifetime: 10
+  - type: Sprite
+    sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
+    layers:
+    #- state: black
+    - sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
+      state: cburn
+  - type: SlowMobSpawn
+    spawnEffect: MedievalLateMobSpawnEffect
+    spawnMob: MobMonkey
+    soundEffect: "/Audio/Imperial/Medieval/mob_spawn_effect.ogg"
+  - type: TimedDespawn
+    lifetime: 10
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobAnt
   name: late mob spawn ant
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobAnt
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobAnt
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobWolf
   name: late mob spawn test
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobWolf
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobWolf
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobBear
   name: late mob spawn bear
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobBear
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobBear
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobHog
   name: late mob spawn hog
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobHog
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobHog
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobGoblin
   name: late mob spawn goblin
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobGoblin
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobGoblin
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobSpiderCave
   name: late mob spawn cave spider
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobSpiderCave
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSpiderCave
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobSpiderStrongCave
+  name: late mob spawn cave strong spider
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSpiderStrongCave
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalSpawnerSkeletonSpawnerWeak
   name: late mob spawn weak skelet
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalSpawnerSkeletonSpawnerWeak
+  - type: SlowMobSpawn
+    spawnMob: MedievalSpawnerSkeletonSpawnerWeak
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobSkeletMeat
   name: late mob spawn meat skelet
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobSkeletMeat
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletMeat
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalSpawnerSkeletonSpawnerFighter
   name: late mob spawn fighter skelet
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalSpawnerSkeletonSpawnerFighter
+  - type: SlowMobSpawn
+    spawnMob: MedievalSpawnerSkeletonSpawnerFighter
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobSkeletLegion
   name: late mob spawn legion skelet
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobSkeletLegion
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletLegion
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobSkeletDark
   name: late mob spawn dark skelet
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobSkeletDark
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletDark
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobHunterGhost
   name: late mob spawn hunter
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobHunterGhost
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobHunterGhost
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobDevilMouseGhost
   name: late mob spawn mouse devil
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobDevilMouseGhost
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobDevilMouseGhost
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobCrab
   name: late mob spawn crab
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobCrab
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobCrab
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobCrabDevil
   name: late mob spawn crab devil
   parent: MedievalLateMobSpawnerBase
   components:
-    - type: SlowMobSpawn
-      spawnMob: MedievalMobCrabDevil
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobCrabDevil
 
 - type: entity
   name: lightning
@@ -153,4 +160,4 @@
     lifetime: 30
   - type: Tag
     tags:
-      - HideContextMenu
+    - HideContextMenu

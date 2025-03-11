@@ -1,6 +1,7 @@
 using Content.Server.Ghost.Roles.Components;
 using Content.Server.Speech.Components;
 using Content.Shared.EntityEffects;
+using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
 
@@ -21,6 +22,14 @@ public sealed partial class MakeSentient : EntityEffect
         // We call this before the mind check to allow things like player-controlled mice to be able to benefit from the effect
         entityManager.RemoveComponent<ReplacementAccentComponent>(uid);
         entityManager.RemoveComponent<MonkeyAccentComponent>(uid);
+
+        // imperial medieval start
+        var lang = entityManager.EnsureComponent<LanguageSpeakerComponent>(uid);
+        if (!lang.Languages.ContainsKey(SharedLanguageSystem.Common))
+            lang.Languages.Add(SharedLanguageSystem.Common, LanguageKnowledge.Speak);
+        else
+            lang.Languages[SharedLanguageSystem.Common] = LanguageKnowledge.Speak;
+        // imperial medieval end
 
         // Stops from adding a ghost role to things like people who already have a mind
         if (entityManager.TryGetComponent<MindContainerComponent>(uid, out var mindContainer) && mindContainer.HasMind)

@@ -2,6 +2,7 @@ using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.Emoting;
 using Content.Shared.Examine;
+using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Mind.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Speech;
@@ -55,6 +56,14 @@ namespace Content.Server.Mind.Commands
             {
                 entityManager.EnsureComponent<SpeechComponent>(uid);
                 entityManager.EnsureComponent<EmotingComponent>(uid);
+
+                // imperial medieval start
+                var lang = entityManager.EnsureComponent<LanguageSpeakerComponent>(uid);
+                if (!lang.Languages.ContainsKey(SharedLanguageSystem.Common))
+                    lang.Languages.Add(SharedLanguageSystem.Common, LanguageKnowledge.Speak);
+                else
+                    lang.Languages[SharedLanguageSystem.Common] = LanguageKnowledge.Speak;
+                // imperial medieval end
             }
 
             entityManager.EnsureComponent<ExaminerComponent>(uid);
