@@ -33,7 +33,7 @@ public sealed partial class SolutionRegenerationComponent : Component
     /// How long it takes to regenerate once.
     /// </summary>
     [DataField]
-    public TimeSpan Duration = TimeSpan.FromSeconds(1);
+    public TimeSpan Duration = TimeSpan.FromSeconds(9); // imperial medieval
 
     /// <summary>
     /// The time when the next regeneration will occur.

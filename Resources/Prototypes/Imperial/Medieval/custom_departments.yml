@@ -133,3 +133,17 @@
   - MedievalMercLeader
   - MedievalMinerLeader
   - MedievalCultLeader
+
+- type: department
+  id: Mages
+  name: department-Mages
+  description: department-Mages-description
+  color: "#CCCCCC"
+  roles:
+  - MedievalLegionMag
+  - MedievalInsurgencyMag
+  - MedievalCultLeader
+  - MedievalWanderMag
+  - MedievalCollegiumRecruit
+  - MedievalCollegiumCommon
+  - MedievalCollegiumLeader
