@@ -1161,13 +1161,64 @@
     - MedievalOreTopaz
     - MedievalOreSerd
     - MedievalOreAdam
+    - MedievalOreFurstone
     chance: 1
     offset: 0
+
+- type: entity ###ТУТА
+  id: MedievalOreFurstone
+  parent: BannerBase
+  name: oreMedievalDecorFurstone
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: ore_forestone
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 95
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          MedievalForstoneOre1:
+            min: 2
+            max: 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: TimedDespawn
+    lifetime: 500
+  - type: MedievalDiggAble
+  - type: MedievalMeleeBadTarget # imperial medieval
+    safeToHitGroup: ore # imperial medieval
+    breakMultiplier: 10
 
 - type: entity
   id: MedievalOreIron
   parent: BannerBase
-  name: nanotrasen banner
+  name: oreMedievalDecorIron
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
@@ -1217,7 +1268,7 @@
 - type: entity
   id: MedievalOreCoal
   parent: BannerBase
-  name: nanotrasen banner
+  name: oreMedievalDecorCoal
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
@@ -1267,7 +1318,7 @@
 - type: entity
   id: MedievalOreGold
   parent: BannerBase
-  name: nanotrasen banner
+  name: oreMedievalDecorGold
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
@@ -1317,7 +1368,7 @@
 - type: entity
   id: MedievalOreTopaz
   parent: BannerBase
-  name: nanotrasen banner
+  name: oreMedievalDecorTopaz
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
@@ -1367,7 +1418,7 @@
 - type: entity
   id: MedievalOreSerd
   parent: BannerBase
-  name: nanotrasen banner
+  name: oreMedievalDecorSerd
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
@@ -1417,7 +1468,7 @@
 - type: entity
   id: MedievalOreAdam
   parent: BannerBase
-  name: nanotrasen banner
+  name: oreMedievalDecorAdam
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
