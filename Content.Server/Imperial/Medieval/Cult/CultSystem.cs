@@ -23,6 +23,7 @@ using Robust.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Server.Administration;
 using Content.Shared.Alert;
+using Content.Shared.Inventory;
 
 namespace Content.Server.Cult
 {
@@ -41,6 +42,7 @@ namespace Content.Server.Cult
         [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
         [Dependency] private readonly MetaDataSystem _metaData = default!;
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
+        [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
 
@@ -63,7 +65,14 @@ namespace Content.Server.Cult
 
             _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
         }
-
+        private bool CheckCultWearing(EntityUid uid)
+        {
+            if (!HasComp<CultMemberComponent>(uid) || !TryComp<InventoryComponent>(uid, out var inventoryComponent)) return false;
+            var check1 = _inventorySystem.TryGetSlotEntity(uid, "outerclothing", out var slot1, inventoryComponent);
+            var check2 = _inventorySystem.TryGetSlotEntity(uid, "helmet", out var slot2, inventoryComponent);
+            if (!check1 || !check2 || !HasComp<CultClothingComponent>(slot1) || !HasComp<CultClothingComponent>(slot2)) return false;
+            return true;
+        }
         private void OnPlayerAttached(EntityUid uid, TakeNameComponent comp, PlayerAttachedEvent args)
         {
             if (!_playerManager.TryGetSessionByEntity(uid, out var session) || !comp.HasName) return;
@@ -107,6 +116,7 @@ namespace Content.Server.Cult
 
         private void OnMeleeHit(EntityUid uid, CultRitualMeleeComponent component, MeleeHitEvent args)
         {
+            if (!CheckCultWearing(args.User)) return;
             if (!HasComp<CultMemberComponent>(args.User)) return;
             foreach (var entity in args.HitEntities)
             {
@@ -282,6 +292,7 @@ namespace Content.Server.Cult
         }
         public void OnActivated(EntityUid uid, CultCheckPictureComponent comp, ActivateInWorldEvent args)
         {
+            if (!CheckCultWearing(args.User)) return;
             var xform = Transform(uid);
             var coords = xform.Coordinates;
             string figure = GetRuneFigure();
