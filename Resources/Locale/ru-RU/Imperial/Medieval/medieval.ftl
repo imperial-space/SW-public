@@ -4979,3 +4979,6 @@ ent-MedievalTimedSpawnerMedievalMobSpiderStrongCave = Периодический
     .suffix = { "Средневековье, спавнер" }
 department-Mages = Роли магов
 department-Mages-description = Магия сильнее меча!
+ent-WallRockBasaltForstone = Каменная порода шахты
+    .desc = окаменелости эльфов?
+    .suffix = { "Средневековье" }
