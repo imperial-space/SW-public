@@ -599,13 +599,13 @@
   categories:
   - MedievalArmorDemo
 
-- type: listing
-  id: DemoMdvShopMedievalClothingOuterArmorUpIron2
-  productEntity: MedievalClothingOuterArmorUpIron2
-  cost:
-    UnknownMedieval: 1
-  categories:
-  - MedievalArmorDemo
+#- type: listing
+#  id: DemoMdvShopMedievalClothingOuterArmorUpIron2
+#  productEntity: MedievalClothingOuterArmorUpIron2
+#  cost:
+#    UnknownMedieval: 1
+#  categories:
+#  - MedievalArmorDemo
 
 - type: listing
   id: DemoMdvShopMedievalClothingHeadHelmetShapel

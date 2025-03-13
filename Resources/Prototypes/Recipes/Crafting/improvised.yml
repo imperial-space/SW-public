@@ -1,11 +1,11 @@
 - type: construction
-  name: Бейсбольная бита # Imperial Recipes Locale
+  name: дубинка # Imperial Recipes Locale
   id: bat
   graph: WoodenBat
   startNode: start
   targetNode: bat
   category: construction-category-weapons
-  description: Прочная бейсбольная бита. # Imperial Recipes Locale
+  description: Прочная дубинка. # Imperial Recipes Locale
   icon:
     sprite: Objects/Weapons/Melee/baseball_bat.rsi
     state: icon

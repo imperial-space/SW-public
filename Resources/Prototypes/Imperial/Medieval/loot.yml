@@ -81,7 +81,7 @@
       fixtures:
         fix1:
           shape: !type:PhysShapeCircle
-            radius: 0.4
+            radius: 10
           layer:
           - DoorPassable
           hard: false
@@ -126,7 +126,7 @@
       fixtures:
         fix1:
           shape: !type:PhysShapeCircle
-            radius: 0.4
+            radius: 10
           layer:
           - DoorPassable
           hard: false
@@ -183,7 +183,7 @@
       fixtures:
         fix1:
           shape: !type:PhysShapeCircle
-            radius: 0.4
+            radius: 10
           layer:
           - DoorPassable
           hard: false
@@ -225,7 +225,7 @@
       fixtures:
         fix1:
           shape: !type:PhysShapeCircle
-            radius: 0.4
+            radius: 10
           layer:
           - DoorPassable
           hard: false
@@ -1702,8 +1702,8 @@
         prob: 0.08
       - id: MedievalClothingOuterArmorUpIron
         prob: 0.012
-      - id: MedievalClothingOuterArmorUpIron2
-        prob: 0.012
+      #- id: MedievalClothingOuterArmorUpIron2
+      #  prob: 0.012
       - id: MedievalClothingHeadCrownKing
         prob: 0.01
       - id: MedievalEbonitOre

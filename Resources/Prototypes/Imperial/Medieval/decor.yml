@@ -4474,3 +4474,247 @@
           steps:
             - tool: Prying
               doAfter: 500
+
+# railing recipes
+
+- type: constructionGraph
+  id: WoodRailing
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: woodrailing
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 2
+        - to: woodrailingCorner
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2.5
+        - to: woodrailingCornerSmall
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 2
+        - to: woodrailingRound
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+
+    - node: railing
+      entity: WoodRailing
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingCorner
+      entity: WoodRailingCorner
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+
+    - node: railingCornerSmall
+      entity: WoodRailingCornerSmall
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingRound
+      entity: WoodRailingRound
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+
+# railing recipes
+
+- type: entity
+  parent: Railing
+  id: WoodRailing
+  suffix: WoodRailing
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: side
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: side
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    node: woodrailing
+
+- type: entity
+  parent: RailingCorner
+  id: WoodRailingCorner
+  suffix: WoodRailingCorner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: corner
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: corner
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    node: woodrailingCorner
+
+- type: entity
+  parent: RailingCornerSmall
+  id: WoodRailingCornerSmall
+  suffix: WoodRailingCornerSmall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: corner_small
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: corner_small
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    node: woodrailingCornerSmall
+
+- type: entity
+  parent: RailingRound
+  id: WoodRailingRound
+  suffix: WoodRailingRound
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: round
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: round
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    node: woodrailingRound
+

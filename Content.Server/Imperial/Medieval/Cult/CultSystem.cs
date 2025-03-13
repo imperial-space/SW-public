@@ -97,6 +97,8 @@ namespace Content.Server.Cult
                             var axform = Transform(altar.Owner);
                             var acoords = axform.Coordinates;
                             Spawn("MedievalCultCrystallRed", acoords);
+                            Spawn("MedievalCultCrystallRed", acoords);
+                            Spawn("MedievalCultCrystallRed", acoords);
                         }
                     }
                 }
@@ -299,39 +301,40 @@ namespace Content.Server.Cult
                             {
                                 if (TryComp<BloodstreamComponent>(victim, out var blood))
                                 {
-                                    if (blood.BleedAmount > 0)
+                                    //if (blood.BleedAmount > 0)
+                                    //{
+                                    _chat.TrySendInGameICMessage(uid, "Ритуал проведен успешно, связь цели с культом установлена. Если она будет постоянно жертвовать свою кровь около проклятых сосудов, это принесет культу проклятые криссталы, а жертве - длительную регенерацию", InGameICChatType.Speak, false);
+                                    foreach (var altar in EntityManager.EntityQuery<CultAltarComponent>())
                                     {
-                                        _chat.TrySendInGameICMessage(uid, "Ритуал проведен успешно, связь цели с культом установлена. Если она будет постоянно жертвовать свою кровь около проклятых сосудов, это принесет культу проклятые криссталы, а жертве - длительную регенерацию", InGameICChatType.Speak, false);
-                                        foreach (var altar in EntityManager.EntityQuery<CultAltarComponent>())
-                                        {
-                                            var axform = Transform(altar.Owner);
-                                            var acoords = axform.Coordinates;
-                                            Spawn("MedievalCultCrystallRed", acoords);
-                                        }
-                                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
+                                        var axform = Transform(altar.Owner);
+                                        var acoords = axform.Coordinates;
+                                        Spawn("MedievalCultCrystallRed", acoords);
+                                        Spawn("MedievalCultCrystallRed", acoords);
+                                    }
+                                    _audioSystem.PlayPvs(comp.SuccesSound, uid);
 
-                                        var altars = EntityManager.EntityQuery<CultTeleportComponent>();
-                                        var needAltars = new List<CultTeleportComponent>();
-                                        foreach (var altar in altars)
-                                        {
-                                            if (!altar.Base)
-                                            {
-                                                needAltars.Add(altar);
-                                            }
-                                        }
-                                        var ouraltar = _random.Pick(needAltars);
-                                        var oxform = Transform(ouraltar.Owner);
-                                        var ocoords = oxform.Coordinates;
-                                        _transform.SetCoordinates(victim, ocoords);
-                                        _chat.TrySendInGameICMessage(victim, "Культ истины провел со мной ритуал связи. Если я буду жертвовать кровь... то есть резать себя около этих кровавых сосудов, к одному из которых меня телепортировало, раз в какое-то время, то я буду получать длительную магическую регенерацию, а культ - алые кристаллы. Это... взаимовыгодно? Лишь бы другие не узнали...", InGameICChatType.Whisper, false);
-                                        var cyr = EnsureComp<CultCursedComponent>(victim);
-                                        cyr.CurseLevel = cyr.MaxCurseLevel;
-                                    }
-                                    else
+                                    var altars = EntityManager.EntityQuery<CultTeleportComponent>();
+                                    var needAltars = new List<CultTeleportComponent>();
+                                    foreach (var altar in altars)
                                     {
-                                        _chat.TrySendInGameICMessage(uid, "На цели ритуала должен быть разрез", InGameICChatType.Speak, false);
-                                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                                        if (!altar.Base)
+                                        {
+                                            needAltars.Add(altar);
+                                        }
                                     }
+                                    var ouraltar = _random.Pick(needAltars);
+                                    var oxform = Transform(ouraltar.Owner);
+                                    var ocoords = oxform.Coordinates;
+                                    _transform.SetCoordinates(victim, ocoords);
+                                    _chat.TrySendInGameICMessage(victim, "Культ истины провел со мной ритуал связи. Если я буду жертвовать кровь... то есть резать себя около этих кровавых сосудов, к одному из которых меня телепортировало, раз в какое-то время, то я буду получать длительную магическую регенерацию, а культ - алые кристаллы. Это... взаимовыгодно? Лишь бы другие не узнали...", InGameICChatType.Whisper, false);
+                                    var cyr = EnsureComp<CultCursedComponent>(victim);
+                                    cyr.CurseLevel = cyr.MaxCurseLevel;
+                                    //}
+                                    //else
+                                    //{
+                                    //    _chat.TrySendInGameICMessage(uid, "На цели ритуала должен быть разрез", InGameICChatType.Speak, false);
+                                    //    _audioSystem.PlayPvs(comp.FailSound, uid);
+                                    //}
                                 }
                             }
                             else
