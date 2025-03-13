@@ -1,6 +1,8 @@
 using Content.Shared.Friends;
+using Content.Shared.Friends.Prototypes;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controllers;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Imperial.Medieval.Friends.UI;
 
@@ -11,7 +13,7 @@ public sealed class FactionMenuUiController : UIController
 
     private FactionMenu? _menu;
 
-    public void ToggleMenu(Dictionary<NetEntity, FactionMemberData> data)
+    public void ToggleMenu()
     {
         if (_menu == null)
         {
@@ -23,7 +25,6 @@ public sealed class FactionMenuUiController : UIController
             _menu.GroupSet += GroupSet;
             _menu.RemoveButtonPressed += OpenConfirmationMenu;
 
-            _menu.Populate(data);
             _menu.OpenCentered();
         }
         else
@@ -37,19 +38,23 @@ public sealed class FactionMenuUiController : UIController
         }
     }
 
-    public void PopulateMenu(Dictionary<NetEntity, FactionMemberData> data)
+    public void PopulateMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<NetEntity, FactionMemberData> data)
     {
-        _menu?.Populate(data);
+        _menu?.Populate(proto, data);
     }
 
     private void OpenConfirmationMenu(NetEntity ent)
     {
     }
-    private void ObjectiveSet(NetEntity ent, string obj)
+
+    private void ObjectiveSet(FactionMemberGroup group, string obj)
     {
-        _entityManager.RaisePredictiveEvent(new SetFactionMemberObjectiveMessage(ent, obj));
+        if (_menu == null)
+            return;
+
+        _entityManager.RaisePredictiveEvent(new SetFactionMemberObjectiveMessage(_menu.Faction, group, obj));
     }
-    private void GroupSet(NetEntity ent, string obj)
+    private void GroupSet(NetEntity ent, FactionMemberGroup obj)
     {
         _entityManager.RaisePredictiveEvent(new SetFactionMemberGroupMessage(ent, obj));
     }

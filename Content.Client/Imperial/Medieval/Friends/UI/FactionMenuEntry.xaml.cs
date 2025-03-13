@@ -16,7 +16,7 @@ public sealed partial class FactionMenuEntry : Control
     public Action<NetEntity, FactionMemberGroup>? GroupSet;
     public Action<NetEntity>? RemoveButtonPressed;
 
-    public FactionMenuEntry(NetEntity ent, FactionMemberData data)
+    public FactionMenuEntry(NetEntity ent, FactionMemberData data, string objective)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -35,8 +35,10 @@ public sealed partial class FactionMenuEntry : Control
         {
             GroupRemoveButton.Visible = true;
             GroupSelector.Visible = false;
-            GroupRemoveButtonText.ModulateSelfOverride = FriendsSystem.FactionGroups[data.Group].Item1;
+            Objective.Text = objective;
+            Objective.Visible = objective != string.Empty;
             GroupRemoveButtonText.Text = FriendsSystem.FactionGroups[data.Group].Item2;
+            GroupRemoveButton.ModulateSelfOverride = FriendsSystem.FactionGroups[data.Group].Item1;
             GroupRemoveButton.OnPressed += args => GroupSet?.Invoke(ent, FactionMemberGroup.None);
         }
 

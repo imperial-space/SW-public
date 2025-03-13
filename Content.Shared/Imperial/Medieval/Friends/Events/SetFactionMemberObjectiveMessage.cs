@@ -1,3 +1,5 @@
+using Content.Shared.Friends.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Friends;
@@ -8,12 +10,14 @@ namespace Content.Shared.Friends;
 [Serializable, NetSerializable]
 public sealed partial class SetFactionMemberObjectiveMessage : EntityEventArgs
 {
-    public NetEntity Ent;
+    public ProtoId<MedievalFactionPrototype> Faction;
+    public FactionMemberGroup Group;
     public string Objective;
 
-    public SetFactionMemberObjectiveMessage(NetEntity ent, string objective)
+    public SetFactionMemberObjectiveMessage(ProtoId<MedievalFactionPrototype> faction, FactionMemberGroup group, string objective)
     {
-        Ent = ent;
+        Faction = faction;
+        Group = group;
         Objective = objective;
     }
 }

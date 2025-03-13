@@ -9,9 +9,9 @@ namespace Content.Shared.Friends;
 public sealed partial class SetFactionMemberGroupMessage : EntityEventArgs
 {
     public NetEntity Ent;
-    public string Group;
+    public FactionMemberGroup Group;
 
-    public SetFactionMemberGroupMessage(NetEntity ent, string group)
+    public SetFactionMemberGroupMessage(NetEntity ent, FactionMemberGroup group)
     {
         Ent = ent;
         Group = group;
