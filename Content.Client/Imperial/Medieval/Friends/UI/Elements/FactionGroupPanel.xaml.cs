@@ -44,7 +44,7 @@ public sealed partial class FactionGroupPanel : PanelContainer
         SetObjectiveButton.OnPressed += args =>
         {
             SetObjectiveButton.Visible = false;
-            ObjectiveEdit.Visible = true;
+            ObjectiveEditPanel.Visible = true;
             ObjectiveEdit.Text = groupObjective;
         };
 

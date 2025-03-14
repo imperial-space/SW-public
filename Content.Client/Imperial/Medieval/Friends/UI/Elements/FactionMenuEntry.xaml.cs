@@ -28,6 +28,9 @@ public sealed partial class FactionMenuEntry : Control
         {
             for (var i = 0; i < FriendsSystem.FactionGroups.Count; i++)
             {
+                if (FriendsSystem.FactionGroups.ElementAt(i).Key == FactionMemberGroup.None)
+                    continue;
+
                 var item = FriendsSystem.FactionGroups.ElementAt(i).Value;
                 GroupSelector.AddItem(item.Item2, item.Item1, i);
             }

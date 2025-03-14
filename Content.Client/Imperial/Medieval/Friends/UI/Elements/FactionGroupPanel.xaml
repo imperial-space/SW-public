@@ -39,8 +39,8 @@
                                Margin="15 0"
                                HorizontalAlignment="Center"/>
             </PanelContainer>
-            <PanelContainer Margin="15 10" HorizontalExpand="True" >
-                <LineEdit Name="ObjectiveEdit" HorizontalExpand="True" VerticalExpand="True" Visible="False">
+            <PanelContainer Name="ObjectiveEditPanel" Margin="15 10" HorizontalExpand="True" Visible="False">
+                <LineEdit Name="ObjectiveEdit" HorizontalExpand="True" VerticalExpand="True" >
                 </LineEdit>
                 <RichTextLabel Name="ObjectiveEditTip" Margin="5 5" HorizontalAlignment="Left" VerticalAlignment="Center" Text="[color=#46464df2]Не более 32 символов.[/color]" />
             </PanelContainer>
