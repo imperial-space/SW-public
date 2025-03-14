@@ -1,18 +1,19 @@
 using Content.Server.GameTicking.Rules.Components;
-using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.GameTicking.Components;
+using Robust.Shared.EntitySerialization.Systems;
+using Robust.Server.GameObjects;
+using Robust.Shared.EntitySerialization;
 
 namespace Content.Server.GameTicking.Rules;
 
 public sealed class TDMRuleSystem : GameRuleSystem<TDMRuleComponent>
 {
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly MapLoaderSystem _map = default!;
+    [Dependency] private readonly MapSystem _mapSystem = default!;
+    [Dependency] private readonly MapLoaderSystem _mapLoaderSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -90,14 +91,13 @@ public sealed class TDMRuleSystem : GameRuleSystem<TDMRuleComponent>
             return false;
 
         var path = _random.Pick(mappath);
-
-        var mapId = _mapManager.CreateMap();
-        var options = new MapLoadOptions
+        var options = new DeserializationOptions
         {
-            LoadMap = true,
+            InitializeMaps = true,
         };
 
-        _map.TryLoad(mapId, path.ToString(), out var outpostGrids, options);
+        _mapSystem.CreateMap(out var mapId);
+        _mapLoaderSystem.TryMergeMap(mapId, path, out var _, options);
 
         return true;
     }

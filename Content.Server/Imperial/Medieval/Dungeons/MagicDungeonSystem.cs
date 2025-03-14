@@ -4,24 +4,25 @@ using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Random;
 using Robust.Server.GameObjects;
-using Robust.Server.Maps;
 using Content.Shared.Imperial.Zlevels;
 using Robust.Shared.Utility;
 using Content.Server.MedievalDungeon.Components;
 using Content.Shared.Interaction;
 using Content.Server.Imperial.Zlevels;
 using Content.Server.MagicBarrier.Components;
+using Robust.Shared.EntitySerialization.Systems;
+using Robust.Shared.EntitySerialization;
 
 namespace Content.Server.MedievalDungeon
 {
     public sealed partial class DungeonSystem : EntitySystem
     {
-        [Dependency] internal readonly IEntityManager _entityManager = default!;
-        [Dependency] internal readonly IMapManager _mapManager = default!;
-        [Dependency] protected readonly SharedAudioSystem _audio = default!;
-        [Dependency] protected readonly Laddersystem _ladder = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly MapSystem _mapSystem = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly Laddersystem _ladder = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly MapLoaderSystem _map = default!;
+        [Dependency] private readonly MapLoaderSystem _mapLoaderSystem = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
 
         public override void Initialize()
@@ -94,14 +95,13 @@ namespace Content.Server.MedievalDungeon
         private MapId? SpawnMap(EntityUid uid, ResPath[] mappath)
         {
             var path = _random.Pick(mappath);
-
-            var mapId = _mapManager.CreateMap();
-            var options = new MapLoadOptions
+            var options = new DeserializationOptions
             {
-                LoadMap = true,
+                InitializeMaps = true,
             };
 
-            _map.TryLoad(mapId, path.ToString(), out var outpostGrids, options);
+            _mapSystem.CreateMap(out var mapId);
+            _mapLoaderSystem.TryMergeMap(mapId, path, out var _, options);
 
             return mapId;
         }

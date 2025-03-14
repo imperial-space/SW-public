@@ -104,6 +104,17 @@
   icon: { sprite: Clothing/Shoes/Misc/duck-slippers.rsi, state: icon }
   objectType: Item
 
+- type: construction
+  hide: true # imperial medieval craft disable
+  name: Тапочки-ящерицы
+  id: ClothingShoeSlippersLizard
+  graph: ClothingShoeSlippersLizard
+  startNode: start
+  targetNode: shoes
+  category: construction-category-clothing
+  description: Очаровательная пара тапочек, напоминающих человека-ящерицу. Сочетайте это с другой зеленой одеждой, и вы станете самым крутым членом экипажа на станции!
+  icon: { sprite: Clothing/Shoes/Misc/lizard-slippers.rsi, state: icon }
+  objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable

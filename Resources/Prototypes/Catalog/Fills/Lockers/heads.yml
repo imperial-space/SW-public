@@ -51,6 +51,7 @@
     - id: SpaceCash1000
     - id: WeaponDisabler
     - id: ClothingEyesGlassesCommand
+    - id: ControlModsuitMagnate # Imperial Space РИГИ
 
 # No laser table + Laser table
 - type: entityTable
@@ -163,6 +164,7 @@
     - id: RCDAmmo
     - id: RubberStampCE
     - id: HandHeldAtmosAlertsMonitor # Imperial add
+    - id: ControlModsuitAdvanced # Imperial Space РИГИ
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -222,6 +224,7 @@
     - id: RubberStampCMO
     - id: MedTekCartridge
     - id: CompactDefibrillator # Imperial Space Компактный дефибриллятор в шкафчике ГВ
+    - id: ControlModsuitRescue # Imperial Space РИГИ
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable
@@ -333,6 +336,7 @@
     - id: WantedListCartridge
     - id: HandHeldSecurityMonitor # Imperial add
     - id: DrinkHosFlask
+    - id: ControlModsuitSafeguard # Imperial Space РИГИ
 
 # Hardsuit table, used for suit storage as well
 - type: entityTable

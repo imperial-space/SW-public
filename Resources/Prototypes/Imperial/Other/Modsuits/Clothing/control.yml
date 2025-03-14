@@ -560,7 +560,7 @@
   - type: Speech # Взрывные РИГ'и
     speechSounds: Pai
   - type: ClothingFactionExplosion # Взрывные РИГ'и
-    friendlyFaction: DeathSquad
+    factions: [DeathSquad]
     chance: 1
 
 - type: entity
