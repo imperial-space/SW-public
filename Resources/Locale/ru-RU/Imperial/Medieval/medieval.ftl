@@ -4980,3 +4980,4 @@ ent-MedievalTimedSpawnerMedievalMobSpiderStrongCave = Периодический
 department-Mages = Роли магов
 department-Mages-description = Магия сильнее меча!
 MedievalDurability = Текущее состояние: {$durab}
+bell-map-popup = Звон колокола гремит над землями, призывая всех внимать вестям судьбоносным.
