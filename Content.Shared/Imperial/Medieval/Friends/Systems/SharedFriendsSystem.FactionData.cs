@@ -21,7 +21,7 @@ public abstract partial class SharedFriendsSystem
         return false;
     }
 
-    public bool TryGetFactionMemberData(NetEntity netEnt, [NotNullWhen(true)] out FactionMemberData? data)
+    public bool TryGetFactionMemberData(int id, [NotNullWhen(true)] out FactionMemberData? data)
     {
         data = null;
         if (!TryGetFactionDataContainer(out var container))
@@ -29,7 +29,7 @@ public abstract partial class SharedFriendsSystem
 
         foreach (var item in container.Value.Comp.CachedMembers)
         {
-            if (item.Value.TryGetValue(netEnt, out data))
+            if (item.Value.TryGetValue(id, out data))
                 return true;
         }
 

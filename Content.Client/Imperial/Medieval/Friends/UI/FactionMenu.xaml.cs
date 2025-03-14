@@ -19,9 +19,9 @@ public sealed partial class FactionMenu : DefaultWindow
     private readonly FriendsSystem _friends;
 
     public Action<FactionMemberGroup, string>? ObjectiveSet;
-    public Action<NetEntity, FactionMemberGroup>? GroupSet;
-    public Action<NetEntity>? FirePressed;
-    public Action<NetEntity>? HeadhuntPressed;
+    public Action<int, FactionMemberGroup>? GroupSet;
+    public Action<int>? FirePressed;
+    public Action<int>? HeadhuntPressed;
 
     public ProtoId<MedievalFactionPrototype> Faction = "";
 
@@ -37,8 +37,8 @@ public sealed partial class FactionMenu : DefaultWindow
         }
     }
     private bool _jobMode = true;
-    private Dictionary<NetEntity, FactionMemberData> _localData = new();
-    private NetEntity? _fireSelected;
+    private Dictionary<int, FactionMemberData> _localData = new();
+    private int? _fireSelected;
 
     public FactionMenu()
     {
@@ -77,7 +77,7 @@ public sealed partial class FactionMenu : DefaultWindow
         };
     }
 
-    public void Populate(ProtoId<MedievalFactionPrototype> proto, Dictionary<NetEntity, FactionMemberData> data)
+    public void Populate(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data)
     {
         Members.DisposeAllChildren();
         Faction = proto;

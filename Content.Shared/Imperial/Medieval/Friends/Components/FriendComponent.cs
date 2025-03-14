@@ -24,6 +24,9 @@ public sealed partial class FriendsComponent : Component
     [DataField]
     [AutoNetworkedField]
     public FactionMenuAccess MenuAccess = FactionMenuAccess.None;
+
+    [AutoNetworkedField]
+    public int MemberID = 0;
 }
 
 [Serializable, NetSerializable]

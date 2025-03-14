@@ -8,10 +8,10 @@ namespace Content.Shared.Friends;
 [Serializable, NetSerializable]
 public sealed partial class SetFactionMemberGroupMessage : EntityEventArgs
 {
-    public NetEntity Ent;
+    public int Ent;
     public FactionMemberGroup Group;
 
-    public SetFactionMemberGroupMessage(NetEntity ent, FactionMemberGroup group)
+    public SetFactionMemberGroupMessage(int ent, FactionMemberGroup group)
     {
         Ent = ent;
         Group = group;

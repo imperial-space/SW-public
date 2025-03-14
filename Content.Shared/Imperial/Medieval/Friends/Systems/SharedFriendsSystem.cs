@@ -23,7 +23,7 @@ public abstract partial class SharedFriendsSystem : EntitySystem
             return;
         if (!Identity.Name(uid, EntityManager).Equals(Name(uid)))
             return;
-        if (!TryGetFactionMemberData(GetNetEntity(uid), out var data))
+        if (!TryGetFactionMemberData(comp.MemberID, out var data))
             return;
 
         var myFaction = _proto.Index(me.Faction);
@@ -46,7 +46,7 @@ public abstract partial class SharedFriendsSystem : EntitySystem
         OpenMenu(comp.Faction, container.Value.Comp.CachedMembers.GetOrNew(comp.Faction));
     }
 
-    public virtual void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<NetEntity, FactionMemberData> data)
+    public virtual void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data)
     {
     }
 }

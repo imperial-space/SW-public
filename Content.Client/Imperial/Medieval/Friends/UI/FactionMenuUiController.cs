@@ -38,12 +38,12 @@ public sealed class FactionMenuUiController : UIController
         }
     }
 
-    public void PopulateMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<NetEntity, FactionMemberData> data)
+    public void PopulateMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data)
     {
         _menu?.Populate(proto, data);
     }
 
-    private void Fire(NetEntity ent)
+    private void Fire(int ent)
     {
         // todo
     }
@@ -55,7 +55,7 @@ public sealed class FactionMenuUiController : UIController
 
         _entityManager.RaisePredictiveEvent(new SetFactionMemberObjectiveMessage(_menu.Faction, group, obj));
     }
-    private void GroupSet(NetEntity ent, FactionMemberGroup obj)
+    private void GroupSet(int ent, FactionMemberGroup obj)
     {
         _entityManager.RaisePredictiveEvent(new SetFactionMemberGroupMessage(ent, obj));
     }

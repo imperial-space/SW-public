@@ -42,7 +42,7 @@ public sealed partial class FriendsSystem : SharedFriendsSystem
             _uiMan.GetUIController<FactionMenuUiController>().PopulateMenu(friends.Faction, val);
     }
 
-    public override void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<NetEntity, FactionMemberData> data)
+    public override void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data)
     {
         if (_time.IsFirstTimePredicted)
         {
@@ -50,6 +50,5 @@ public sealed partial class FriendsSystem : SharedFriendsSystem
             if (TryGetFactionDataContainer(out var container) && container.Value.Comp.CachedMembers.TryGetValue(proto, out var val))
                 _uiMan.GetUIController<FactionMenuUiController>().PopulateMenu(proto, val);
         }
-
     }
 }

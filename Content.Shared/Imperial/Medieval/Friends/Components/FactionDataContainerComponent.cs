@@ -11,7 +11,7 @@ public sealed partial class FactionDataContainerComponent : Component
     /// Участники и информация о них.
     /// </summary>
     [AutoNetworkedField]
-    public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<NetEntity, FactionMemberData>> CachedMembers = new();
+    public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<int, FactionMemberData>> CachedMembers = new();
 
     /// <summary>
     /// Цели для каждой из групп каждой из фракций

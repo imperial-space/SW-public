@@ -68,7 +68,7 @@ public sealed class CharacterInfoSystem : EntitySystem
             if (!_friends.TryGetFactionDataContainer(out var container))
                 return;
 
-            var data = container.Value.Comp.CachedMembers.GetValueOrDefault(friend.Faction)?.GetOrNew(GetNetEntity(entity));
+            var data = container.Value.Comp.CachedMembers.GetValueOrDefault(friend.Faction)?.GetOrNew(friend.MemberID);
 
             if (_friends.TryGetFactionGroupObjective(friend.Faction, data?.Group ?? FactionMemberGroup.None, out var objective))
                 faction.Add(objective != "" ? $"Ваша текущая задача: {objective}" : "Вам ещё не назначили задачу.");

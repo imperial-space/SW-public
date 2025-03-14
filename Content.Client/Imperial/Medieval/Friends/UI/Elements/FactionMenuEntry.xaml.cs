@@ -14,11 +14,11 @@ namespace Content.Client.Imperial.Medieval.Friends.UI.Elements;
 [GenerateTypedNameReferences]
 public sealed partial class FactionMenuEntry : Control
 {
-    public Action<NetEntity, string>? ObjectiveSet;
-    public Action<NetEntity, FactionMemberGroup>? GroupSet;
-    public Action<NetEntity>? RemoveButtonPressed;
+    public Action<int, string>? ObjectiveSet;
+    public Action<int, FactionMemberGroup>? GroupSet;
+    public Action<int>? RemoveButtonPressed;
 
-    public FactionMenuEntry(NetEntity ent, FactionMemberData data, string objective)
+    public FactionMenuEntry(int ent, FactionMemberData data, string objective)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
