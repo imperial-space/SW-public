@@ -1,6 +1,6 @@
-- type: ssdIcon
-  id: SSDIcon
-  icon:
-    sprite: /Textures/Effects/ssd.rsi
-    state: default0
-  locationPreference: Left
+#- type: ssdIcon # imperial medieval start
+#  id: SSDIcon
+#  icon:
+#    sprite: /Textures/Effects/ssd.rsi
+#    state: default0
+#  locationPreference: Left # imperial medieval end

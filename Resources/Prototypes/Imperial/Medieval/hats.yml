@@ -1,0 +1,165 @@
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalStrawHat
+  name: Hat
+  description: 1 
+  components: 
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/straw_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/straw_hat.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalWhiteHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/white_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/white_hat.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalRedHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/red_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/red_hat.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalPurpleHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/purple_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/purple_hat.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalMotleyHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/motley_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/motley_hat.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalWreath
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/wreath.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/wreath.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalWanderHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/wanderehat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/wanderehat.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalGreenHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/green hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/green hat.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalGrayHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/gray_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/gray_hat.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalFeatherHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/feather_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/feather_hat.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalBlueHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/blue_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/blue_hat.rsi
+  - type: Item
+    size: Normal
+
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalBlackHat
+  name: Hat
+  description: 
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/black_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/black_hat.rsi
+  - type: Item
+    size: Normal

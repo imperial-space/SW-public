@@ -1,0 +1,6 @@
+- type: ssdIcon
+  id: SSDIcon
+  icon:
+    sprite: /Textures/Imperial/Medieval/Effects/ssd.rsi
+    state: default0
+  locationPreference: Left
