@@ -2,17 +2,18 @@
     xmlns="https://spacestation14.io"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-    Orientation="Vertical">
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    Orientation="Vertical"
+    Margin="0 10">
     <RichTextLabel Name="JobLabel" Text="Нет должности" Margin="12 5 5 5"/>
-    <PanelContainer>
-        <PanelContainer.PanelOverride>
-            <gfx:StyleBoxFlat BackgroundColor="#16161a"/>
-        </PanelContainer.PanelOverride>
+    <imp:BorderedPanelContainer ModulateSelfOverride="White"
+            BorderRadius="25"
+            BackgroundPanelColor="#16161a">
         <BoxContainer Name="Box"
                     Margin="4"
                     VerticalExpand="True"
                     Orientation="Vertical"
                     Access="Public">
         </BoxContainer>
-    </PanelContainer>
+    </imp:BorderedPanelContainer>
 </BoxContainer>

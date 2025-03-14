@@ -3,14 +3,17 @@
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     xmlns:friends="clr-namespace:Content.Client.Imperial.Medieval.Friends.UI.Elements"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
     HorizontalExpand="True"
     MinHeight="50"
     SetHeight="50"
     Margin="4 4">
-    <PanelContainer StyleClasses="windowPanel"
+    <imp:BorderedPanelContainer ModulateSelfOverride="White"
+                    BackgroundPanelColor="#25252A"
                     HorizontalExpand="True"
                     VerticalExpand="True"
-                    VerticalAlignment="Center">
+                    VerticalAlignment="Center"
+                    BorderRadius="40">
         <BoxContainer Name="Main"
                       Orientation="Horizontal"
                       HorizontalExpand="True"
@@ -105,5 +108,5 @@
                                HorizontalAlignment="Left"/>
             </Button>
         </BoxContainer>
-    </PanelContainer>
+    </imp:BorderedPanelContainer>
 </Control>

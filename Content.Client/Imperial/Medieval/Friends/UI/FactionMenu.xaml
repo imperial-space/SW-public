@@ -2,6 +2,7 @@
     xmlns="https://spacestation14.io"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
     Title="{Loc 'faction-menu-title'}"
     MinSize="612 512"
     SetSize="812 512">
@@ -15,17 +16,54 @@
             <Button Name="JobMode"
                     Text="Звания"
                     ToggleMode="True"
-                    HorizontalAlignment="Left"
                     VerticalExpand="True"
+                    HorizontalExpand="True"
                     StyleClasses="ButtonSquare"
-                    Margin="0 5 5 5"/>
+                    ModulateSelfOverride="#00000000"
+                    Margin="0"
+                    SizeFlagsStretchRatio="1">
+                <BoxContainer VerticalExpand="True"
+                        HorizontalExpand="True">
+                    <imp:BorderedPanelContainer VerticalExpand="True"
+                            HorizontalExpand="True"
+                            ModulateSelfOverride="White"
+                            BackgroundPanelColor="#31313D"
+                            BorderRadius="25">
+                        <RichTextLabel
+                            Text="Звания"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            Margin="0 0"
+                            HorizontalAlignment="Center"/>
+                    </imp:BorderedPanelContainer>
+                </BoxContainer>
+            </Button>
             <Button Name="GroupMode"
                     Text="Группы"
                     ToggleMode="True"
-                    HorizontalAlignment="Left"
                     VerticalExpand="True"
+                    HorizontalExpand="True"
                     StyleClasses="ButtonSquare"
-                    Margin="0 5 0 5"/>
+                    ModulateSelfOverride="#00000000"
+                    Margin="0"
+                    SizeFlagsStretchRatio="1">
+                <BoxContainer VerticalExpand="True"
+                        HorizontalExpand="True">
+                    <imp:BorderedPanelContainer VerticalExpand="True"
+                            HorizontalExpand="True"
+                            ModulateSelfOverride="White"
+                            BackgroundPanelColor="#31313D"
+                            BorderRadius="25">
+                        <RichTextLabel
+                            Text="Группы"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            Margin="0 0"
+                            HorizontalAlignment="Center"/>
+                    </imp:BorderedPanelContainer>
+                </BoxContainer>
+            </Button>
+            <Control HorizontalExpand="True" SizeFlagsStretchRatio="5"/>
         </BoxContainer>
         <ScrollContainer HScrollEnabled="False"
                          VerticalExpand="True"
@@ -61,16 +99,48 @@
                     VerticalExpand="True"
                     HorizontalExpand="True"
                     StyleClasses="ButtonSquare"
-                    ModulateSelfOverride="#435E45"
-                    Margin="5 0"/>
+                    ModulateSelfOverride="#00000000"
+                    Margin="5 0">
+                <BoxContainer VerticalExpand="True"
+                        HorizontalExpand="True">
+                    <imp:BorderedPanelContainer VerticalExpand="True"
+                            HorizontalExpand="True"
+                            ModulateSelfOverride="White"
+                            BackgroundPanelColor="#435E45"
+                            BorderRadius="25">
+                        <RichTextLabel
+                            Text="Отмена"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            Margin="0 0"
+                            HorizontalAlignment="Center"/>
+                    </imp:BorderedPanelContainer>
+                </BoxContainer>
+            </Button>
             <Button Name="Fire"
                     Text="Уволить"
                     ToggleMode="True"
                     VerticalExpand="True"
                     HorizontalExpand="True"
                     StyleClasses="ButtonSquare"
-                    ModulateSelfOverride="#947452"
-                    Margin="5 0"/>
+                    ModulateSelfOverride="#00000000"
+                    Margin="5 0">
+                <BoxContainer VerticalExpand="True"
+                        HorizontalExpand="True">
+                    <imp:BorderedPanelContainer VerticalExpand="True"
+                            HorizontalExpand="True"
+                            ModulateSelfOverride="White"
+                            BackgroundPanelColor="#947452"
+                            BorderRadius="25">
+                        <RichTextLabel
+                            Text="Уволить"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            Margin="0 0"
+                            HorizontalAlignment="Center"/>
+                    </imp:BorderedPanelContainer>
+                </BoxContainer>
+            </Button>
         </BoxContainer>
         <Button Name="Headhunt"
                 Text="Уволить и назначить награду"
@@ -78,7 +148,23 @@
                 HorizontalExpand="True"
                 VerticalExpand="True"
                 StyleClasses="ButtonSquare"
-                ModulateSelfOverride="#774D4E"
-                Margin="35 5"/>
+                ModulateSelfOverride="#00000000"
+                Margin="35 5">
+            <BoxContainer VerticalExpand="True"
+                    HorizontalExpand="True">
+                <imp:BorderedPanelContainer VerticalExpand="True"
+                        HorizontalExpand="True"
+                        ModulateSelfOverride="White"
+                        BackgroundPanelColor="#774D4E"
+                        BorderRadius="25">
+                    <RichTextLabel
+                        Text="Уволить и назначить награду"
+                        HorizontalExpand="True"
+                        VerticalExpand="True"
+                        Margin="0 0"
+                        HorizontalAlignment="Center"/>
+                </imp:BorderedPanelContainer>
+            </BoxContainer>
+        </Button>
     </BoxContainer>
 </DefaultWindow>

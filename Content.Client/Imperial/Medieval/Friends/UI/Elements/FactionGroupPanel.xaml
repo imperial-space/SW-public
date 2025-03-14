@@ -1,10 +1,12 @@
-<PanelContainer
+<imp:BorderedPanelContainer
     xmlns="https://spacestation14.io"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
-    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client">
-    <PanelContainer.PanelOverride>
-        <gfx:StyleBoxFlat BackgroundColor="#16161a"/>
-    </PanelContainer.PanelOverride>
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    ModulateSelfOverride="White"
+    BorderRadius="15"
+    BackgroundPanelColor="#16161a"
+    Margin="0 10">
     <BoxContainer Name="Box"
                   Margin="4"
                   VerticalExpand="True"
@@ -14,31 +16,34 @@
                       Orientation="Horizontal"
                       VerticalAlignment="Top"
                       SetHeight="50">
-            <PanelContainer Name="GroupNamePanel"
+            <imp:BorderedPanelContainer Name="GroupNamePanel"
                             HorizontalAlignment="Left"
                             Margin="5 5"
-                            VerticalExpand="True">
+                            VerticalExpand="True"
+                            ModulateSelfOverride="White"
+                            BorderRadius="25"
+                            BackgroundPanelColor="#1f1f24">
                 <RichTextLabel Name="GroupNameText"
                                Text="Без группы"
                                HorizontalExpand="True"
                                Margin="15 0"
                                VerticalExpand="True"
                                HorizontalAlignment="Center"/>
-            </PanelContainer>
-            <PanelContainer Name="ObjectivePanel"
+            </imp:BorderedPanelContainer>
+            <imp:BorderedPanelContainer Name="ObjectivePanel"
                             HorizontalAlignment="Left"
                             Margin="5 10"
-                            VerticalExpand="True">
-                <PanelContainer.PanelOverride>
-                    <gfx:StyleBoxFlat BackgroundColor="#474747"/>
-                </PanelContainer.PanelOverride>
+                            VerticalExpand="True"
+                            ModulateSelfOverride="White"
+                            BorderRadius="25"
+                            BackgroundPanelColor="#474747">
                 <RichTextLabel Name="Objective"
                                Text=""
                                HorizontalExpand="True"
                                VerticalExpand="True"
                                Margin="15 0"
                                HorizontalAlignment="Center"/>
-            </PanelContainer>
+            </imp:BorderedPanelContainer>
             <PanelContainer Name="ObjectiveEditPanel" Margin="15 10" HorizontalExpand="True" Visible="False">
                 <LineEdit Name="ObjectiveEdit" HorizontalExpand="True" VerticalExpand="True" >
                 </LineEdit>
@@ -54,4 +59,4 @@
             </Button>
         </BoxContainer>
     </BoxContainer>
-</PanelContainer>
+</imp:BorderedPanelContainer>
