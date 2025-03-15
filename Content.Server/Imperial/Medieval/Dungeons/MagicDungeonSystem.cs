@@ -100,10 +100,9 @@ namespace Content.Server.MedievalDungeon
                 InitializeMaps = true,
             };
 
-            _mapSystem.CreateMap(out var mapId);
-            _mapLoaderSystem.TryMergeMap(mapId, path, out var _, options);
+            _mapLoaderSystem.TryLoadMap(path, out var map, out var _, options);
 
-            return mapId;
+            return map?.Comp.MapId;
         }
 
         private void AssignFloor(MedievalDungeonSpawnComponent component, int floor)
