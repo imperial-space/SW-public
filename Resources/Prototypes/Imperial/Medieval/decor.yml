@@ -912,7 +912,42 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
-
+        
+- type: entity
+  id: MedievalDecorHelpParent
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: mogila3
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+        
 - type: entity
   id: MedievalDecorMogila3
   parent: MedievalBannerBase
@@ -1488,7 +1523,7 @@
       radius: 1.5
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign1
   name: sign
   description: A sign
@@ -1506,7 +1541,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign2
   name: sign
   description: A sign
@@ -1522,7 +1557,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign3
   name: sign
   description: A sign
@@ -1538,7 +1573,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign4
   name: sign
   description: A sign
@@ -1554,7 +1589,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign5
   name: sign
   description: A sign
@@ -1570,7 +1605,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign6
   name: sign
   description: A sign
@@ -1586,7 +1621,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign7
   name: sign
   description: A sign
@@ -1602,7 +1637,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign8
   name: sign
   description: A sign
@@ -1618,7 +1653,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign9
   name: sign
   description: A sign
@@ -2742,7 +2777,7 @@
 
 - type: entity
   id: MedievalDecorSpikes1
-  parent: MedievalDecorMogila3
+  parent: MedievalDecorHelpParent
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
