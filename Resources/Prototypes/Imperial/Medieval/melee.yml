@@ -3644,3 +3644,116 @@
       walkModifier: 0.98
       sprintModifier: 0.98
       mirrorClothingModifier: false
+- type: entity
+  name: pickaxe
+  parent: BaseItem
+  id: MedievalPickaxeEbonit
+  description: Ebonit pickaxe.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - Pickaxe
+  - type: MeleeParry
+    parryChanse: 0.3
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
+    state: pickaxe
+  - type: MeleeWeapon
+    attackRate: 0.7
+    wideAnimationRotation: -135
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+      params:
+        volume: -3
+    clickDamageModifier: 1.7
+    damage:
+      types:
+        Piercing: 18
+        Structural: 18
+        ParryAble: 1
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 10
+        Structural: 50
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.05
+  - type: MeleeThrowOnHit
+    distance: 3
+    speed: 2.1
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
+    storedRotation: -45
+  - type: UseDelay
+  
+- type: entity
+  name: pickaxe
+  parent: BaseItem
+  id: MedievalPickaxeForStone
+  description: ForStone pickaxe.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - Pickaxe
+  - type: MeleeParry
+    parryChanse: 0.36
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
+    state: pickaxe
+  - type: MeleeWeapon
+    attackRate: 1.5
+    wideAnimationRotation: -135
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+      params:
+        volume: -3
+    clickDamageModifier: 1.7
+    damage:
+      types:
+        Piercing: 9
+        Structural: 9
+        ParryAble: 1
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 5
+        Structural: 25
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.05
+  - type: MeleeThrowOnHit
+    distance: 2
+    speed: 2.1
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
+    storedRotation: -45
+  - type: UseDelay
