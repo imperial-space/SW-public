@@ -3,9 +3,9 @@
   roundstart: false
   priority: 2
   parent: BaseVocalLanguage
-  font: SpellwardBlackCraftFont
-  fontSize: 14
   speech: !type:Generic
+    font: SpellwardBlackCraftFont
+    fontSize: 14
     obfuscateSyllables: true
     replacement:
     - бу
@@ -21,10 +21,10 @@
   id: Ancient
   roundstart: false
   priority: 2
-  font: SpellwardBeeBoopFont
-  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
+    font: SpellwardBeeBoopFont
+    fontSize: 14
     obfuscateSyllables: true
     replacement:
     - ur
@@ -56,10 +56,10 @@
   id: Tribe
   roundstart: false
   priority: 2
-  font: SpellwardTanaUncialFont
-  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
+    font: SpellwardTanaUncialFont
+    fontSize: 14
     obfuscateSyllables: true
     replacement:
     - ук
@@ -91,10 +91,10 @@
   id: Orc
   roundstart: false
   priority: 2
-  font: SpellwardInsulaGFont
-  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
+    font: SpellwardInsulaGFont
+    fontSize: 14
     obfuscateSyllables: true
     replacement:
     - бу
@@ -126,10 +126,10 @@
   id: Cursed
   roundstart: false
   priority: 2
-  font: SpellwardGothicFont
-  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
+    font: SpellwardGothicFont
+    fontSize: 14
     obfuscateSyllables: true
     replacement:
     - ач
@@ -161,10 +161,10 @@
   id: Growling
   roundstart: false
   priority: 2
-  font: SpellwardNeedleteethFont
-  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
+    font: SpellwardNeedleteethFont
+    fontSize: 14
     obfuscateSyllables: true
     replacement:
     - ар
@@ -196,10 +196,10 @@
   id: Hissing
   roundstart: false
   priority: 2
-  font: SpellwardHoneyBeeGFont
-  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
+    font: SpellwardHoneyBeeGFont
+    fontSize: 14
     obfuscateSyllables: true
     replacement:
     - чищ
@@ -229,12 +229,12 @@
 
 - type: language
   id: Elf
-  font: SpellwardChristmasFont
-  fontSize: 14
   roundstart: false
   priority: 2
   parent: BaseVocalLanguage
   speech: !type:Generic
+    font: SpellwardChristmasFont
+    fontSize: 14
     obfuscateSyllables: true
     replacement:
     - ль

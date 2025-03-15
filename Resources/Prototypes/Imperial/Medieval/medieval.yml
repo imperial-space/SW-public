@@ -6608,51 +6608,51 @@
 
 - type: font
   id: SpellwardBeeBoopFont
-  path: Fonts/Imperial/BeeBopp/beebopptygra.ttf
+  path: /Fonts/Imperial/BeeBopp/beebopptygra.ttf
 
 - type: font
   id: SpellwardBlackCraftFont
-  path: Fonts/Imperial/Blackcraft/Blackcraft.ttf
+  path: /Fonts/Imperial/Blackcraft/Blackcraft.ttf
 
 - type: font
   id: SpellwardChristmasFont
-  path: Fonts/Imperial/Christmas/ChristmasScriptC.ttf
+  path: /Fonts/Imperial/Christmas/ChristmasScriptC.ttf
 
 - type: font
   id: SpellwardDiabloFont
-  path: Fonts/Imperial/DiabloFont/diablofont.otf
+  path: /Fonts/Imperial/DiabloFont/diablofont.otf
 
 - type: font
   id: SpellwardGothicFont
-  path: Fonts/Imperial/Gothic/DreiFraktur.ttf
+  path: /Fonts/Imperial/Gothic/DreiFraktur.ttf
 
 - type: font
   id: SpellwardHoneyBeeGFont
-  path: Fonts/Imperial/HoneyBeeG/mrhoneybeeg.ttf
+  path: /Fonts/Imperial/HoneyBeeG/mrhoneybeeg.ttf
 
 - type: font
   id: SpellwardInsulaGFont
-  path: Fonts/Imperial/InsulaG/mr_insulag.otf
+  path: /Fonts/Imperial/InsulaG/mr_insulag.otf
 
 - type: font
   id: SpellwardNeedleteethFont
-  path: Fonts/Imperial/Needleteeth/NeedleteethSP.otf
+  path: /Fonts/Imperial/Needleteeth/NeedleteethSP.otf
 
 - type: font
   id: SpellwardTabulaPeutingerianaFont
-  path: Fonts/Imperial/TabulaPeutingeriana/TabulaPeutingeriana.ttf
+  path: /Fonts/Imperial/TabulaPeutingeriana/TabulaPeutingeriana.ttf
 
 - type: font
   id: SpellwardTabulaPeutingerianaFontSecond
-  path: Fonts/Imperial/TabulaPeutingeriana/TabulaPeutingerianaCapitelBoldItalic.ttf #кто-то прошелся лицом по клавиатуре
+  path: /Fonts/Imperial/TabulaPeutingeriana/TabulaPeutingerianaCapitelBoldItalic.ttf #кто-то прошелся лицом по клавиатуре
 
 - type: font
   id: SpellwardTanaUncialFont
-  path: Fonts/Imperial/TanaUncial/TanaUncialSP.otf
+  path: /Fonts/Imperial/TanaUncial/TanaUncialSP.otf
 
 - type: font
   id: SpellwardVezitsaFont
-  path: Fonts/Imperial/Vezitsa/VezitsaCyrillic.ttf
+  path: /Fonts/Imperial/Vezitsa/VezitsaCyrillic.ttf
 
 - type: entity
   name: gol
