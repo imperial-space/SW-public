@@ -6606,6 +6606,54 @@
   id: SpellwardFont
   path: /Fonts/Imperial/Spellward/Monomakh-Regular.ttf
 
+- type: font
+  id: SpellwardBeeBoopFont
+  path: Imperial/Medieval/Fonts/BeeBopp/beebopptygra.ttf
+
+- type: font
+  id: SpellwardBlackCraftFont
+  path: Imperial/Medieval/Fonts/Blackcraft/Blackcraft.ttf
+
+- type: font
+  id: SpellwardChristmasFont
+  path: Imperial/Medieval/Fonts/Christmas/ChristmasScriptC.ttf
+
+- type: font
+  id: SpellwardDiabloFont
+  path: Imperial/Medieval/Fonts/DiabloFont/diablofont.otf
+
+- type: font
+  id: SpellwardGothicFont
+  path: Imperial/Medieval/Fonts/Gothic/DreiFraktur.ttf
+
+- type: font
+  id: SpellwardHoneyBeeGFont
+  path: Imperial/Medieval/Fonts/HoneyBeeG/mrhoneybeeg.ttf
+
+- type: font
+  id: SpellwardInsulaGFont
+  path: Imperial/Medieval/Fonts/InsulaG/mr_insulag.otf
+
+- type: font
+  id: SpellwardNeedleteethFont
+  path: Imperial/Medieval/Fonts/Needleteeth/NeedleteethSP.otf
+
+- type: font
+  id: SpellwardTabulaPeutingerianaFont
+  path: Imperial/Medieval/Fonts/TabulaPeutingeriana/TabulaPeutingeriana.ttf
+
+- type: font
+  id: SpellwardTabulaPeutingerianaFontSecond
+  path: Imperial/Medieval/Fonts/TabulaPeutingeriana/TabulaPeutingerianaCapitelBoldItalic.ttf #кто-то прошелся лицом по клавиатуре
+
+- type: font
+  id: SpellwardTanaUncialFont
+  path: Imperial/Medieval/Fonts/TanaUncial/TanaUncialSP.otf
+
+- type: font
+  id: SpellwardVezitsaFont
+  path: Imperial/Medieval/Fonts/Vezitsa/VezitsaCyrillic.ttf
+
 - type: entity
   name: gol
   parent: BaseItem
