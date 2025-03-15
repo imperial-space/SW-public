@@ -154,6 +154,17 @@
       Male: MaleZveres
       Female: FemaleZveres
       Unsexed: MaleZveres
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
   - type: Speech
     speechSounds: Alto
   - type: HumanoidAppearance

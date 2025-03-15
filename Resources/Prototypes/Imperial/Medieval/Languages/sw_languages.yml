@@ -3,8 +3,8 @@
   roundstart: false
   priority: 2
   parent: BaseVocalLanguage
-  #font: FontPrototype # Прототип шрифта
-  #fontSize: 14 # Размер текста (ст. 13)
+  font: SpellwardBlackCraftFont
+  fontSize: 14
   speech: !type:Generic
     obfuscateSyllables: true
     replacement:
@@ -21,6 +21,8 @@
   id: Ancient
   roundstart: false
   priority: 2
+  font: SpellwardBeeBoopFont
+  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
     obfuscateSyllables: true
@@ -54,6 +56,8 @@
   id: Tribe
   roundstart: false
   priority: 2
+  font: SpellwardTanaUncialFont
+  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
     obfuscateSyllables: true
@@ -87,6 +91,8 @@
   id: Orc
   roundstart: false
   priority: 2
+  font: SpellwardInsulaGFont
+  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
     obfuscateSyllables: true
@@ -120,6 +126,8 @@
   id: Cursed
   roundstart: false
   priority: 2
+  font: SpellwardGothicFont
+  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
     obfuscateSyllables: true
@@ -153,6 +161,8 @@
   id: Growling
   roundstart: false
   priority: 2
+  font: SpellwardNeedleteethFont
+  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
     obfuscateSyllables: true
@@ -186,6 +196,8 @@
   id: Hissing
   roundstart: false
   priority: 2
+  font: SpellwardHoneyBeeGFont
+  fontSize: 14
   parent: BaseVocalLanguage
   speech: !type:Generic
     obfuscateSyllables: true
@@ -217,6 +229,8 @@
 
 - type: language
   id: Elf
+  font: SpellwardChristmasFont
+  fontSize: 14
   roundstart: false
   priority: 2
   parent: BaseVocalLanguage

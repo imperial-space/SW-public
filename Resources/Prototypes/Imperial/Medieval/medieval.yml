@@ -6608,51 +6608,51 @@
 
 - type: font
   id: SpellwardBeeBoopFont
-  path: Imperial/Medieval/Fonts/BeeBopp/beebopptygra.ttf
+  path: Fonts/Imperial/BeeBopp/beebopptygra.ttf
 
 - type: font
   id: SpellwardBlackCraftFont
-  path: Imperial/Medieval/Fonts/Blackcraft/Blackcraft.ttf
+  path: Fonts/Imperial/Blackcraft/Blackcraft.ttf
 
 - type: font
   id: SpellwardChristmasFont
-  path: Imperial/Medieval/Fonts/Christmas/ChristmasScriptC.ttf
+  path: Fonts/Imperial/Christmas/ChristmasScriptC.ttf
 
 - type: font
   id: SpellwardDiabloFont
-  path: Imperial/Medieval/Fonts/DiabloFont/diablofont.otf
+  path: Fonts/Imperial/DiabloFont/diablofont.otf
 
 - type: font
   id: SpellwardGothicFont
-  path: Imperial/Medieval/Fonts/Gothic/DreiFraktur.ttf
+  path: Fonts/Imperial/Gothic/DreiFraktur.ttf
 
 - type: font
   id: SpellwardHoneyBeeGFont
-  path: Imperial/Medieval/Fonts/HoneyBeeG/mrhoneybeeg.ttf
+  path: Fonts/Imperial/HoneyBeeG/mrhoneybeeg.ttf
 
 - type: font
   id: SpellwardInsulaGFont
-  path: Imperial/Medieval/Fonts/InsulaG/mr_insulag.otf
+  path: Fonts/Imperial/InsulaG/mr_insulag.otf
 
 - type: font
   id: SpellwardNeedleteethFont
-  path: Imperial/Medieval/Fonts/Needleteeth/NeedleteethSP.otf
+  path: Fonts/Imperial/Needleteeth/NeedleteethSP.otf
 
 - type: font
   id: SpellwardTabulaPeutingerianaFont
-  path: Imperial/Medieval/Fonts/TabulaPeutingeriana/TabulaPeutingeriana.ttf
+  path: Fonts/Imperial/TabulaPeutingeriana/TabulaPeutingeriana.ttf
 
 - type: font
   id: SpellwardTabulaPeutingerianaFontSecond
-  path: Imperial/Medieval/Fonts/TabulaPeutingeriana/TabulaPeutingerianaCapitelBoldItalic.ttf #кто-то прошелся лицом по клавиатуре
+  path: Fonts/Imperial/TabulaPeutingeriana/TabulaPeutingerianaCapitelBoldItalic.ttf #кто-то прошелся лицом по клавиатуре
 
 - type: font
   id: SpellwardTanaUncialFont
-  path: Imperial/Medieval/Fonts/TanaUncial/TanaUncialSP.otf
+  path: Fonts/Imperial/TanaUncial/TanaUncialSP.otf
 
 - type: font
   id: SpellwardVezitsaFont
-  path: Imperial/Medieval/Fonts/Vezitsa/VezitsaCyrillic.ttf
+  path: Fonts/Imperial/Vezitsa/VezitsaCyrillic.ttf
 
 - type: entity
   name: gol
