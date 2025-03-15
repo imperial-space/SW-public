@@ -129,7 +129,7 @@
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardGothicFont
-    fontSize: 14
+    fontSize: 11
     obfuscateSyllables: true
     replacement:
     - ач
@@ -163,8 +163,8 @@
   priority: 2
   parent: BaseVocalLanguage
   speech: !type:Generic
-    font: SpellwardNeedleteethFont
-    fontSize: 14
+    font: SpellwardDiabloFont
+    fontSize: 15
     obfuscateSyllables: true
     replacement:
     - ар
@@ -199,7 +199,7 @@
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardHoneyBeeGFont
-    fontSize: 14
+    fontSize: 18
     obfuscateSyllables: true
     replacement:
     - чищ
@@ -234,7 +234,7 @@
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardChristmasFont
-    fontSize: 14
+    fontSize: 19
     obfuscateSyllables: true
     replacement:
     - ль

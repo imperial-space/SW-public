@@ -379,8 +379,8 @@
     timesCanBeBiten: 3
   - type: LanguageSpeaker
     languages:
-      Common: Understand
-      #Goblin: Speak
+      #Common: Understand
+      Goblin: Understand
       #Ancient: Speak
       #Tribe: Speak
       #Orc: Speak

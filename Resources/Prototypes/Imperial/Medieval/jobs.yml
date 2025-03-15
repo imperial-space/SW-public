@@ -3471,7 +3471,7 @@
       languages:
         #ommon: Understand
         #Goblin: Speak
-        #Ancient: Speak
+        Ancient: Understand
         Tribe: Speak
         #Orc: Speak
         #Cursed: Speak
@@ -3532,7 +3532,7 @@
       languages:
         Common: Speak
         #Goblin: Speak
-        #Ancient: Speak
+        Ancient: Understand
         Tribe: Speak
         #Orc: Speak
         #Cursed: Speak
