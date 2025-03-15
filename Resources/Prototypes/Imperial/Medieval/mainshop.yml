@@ -1827,6 +1827,70 @@
   - MedievalClothing
 
 - type: listing
+  id: MdvShopMedievalWhiteHat
+  productEntity: MedievalWhiteHat
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalPurpleHat
+  productEntity: MedievalPurpleHat
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalMotleyHat
+  productEntity: MedievalMotleyHat
+  cost:
+    Revent: 60
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalWreathHat
+  productEntity: MedievalWreath
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalWanderHat
+  productEntity: MedievalWanderHat
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalGreenHat
+  productEntity: MedievalGreenHat
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalGrayHat
+  productEntity: MedievalGrayHat
+  cost:
+    Revent: 50
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalBlackHat
+  productEntity: MedievalBlackHat
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
   id: MdvShopMedievalMaskFace
   productEntity: MedievalMaskFace
   cost:

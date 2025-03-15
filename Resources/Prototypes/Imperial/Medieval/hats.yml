@@ -122,21 +122,6 @@
   - type: Item
     size: Normal
 
-
-- type: entity
-  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
-  id: MedievalFeatherHat
-  name: Hat
-  description: 
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Head/feather_hat.rsi
-  - type: Clothing
-    sprite: Imperial/Medieval/Clothing/Head/feather_hat.rsi
-  - type: Item
-    size: Normal
-
-
 - type: entity
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
   id: MedievalBlueHat
