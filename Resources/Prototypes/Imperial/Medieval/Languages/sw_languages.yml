@@ -3,6 +3,8 @@
   roundstart: false
   priority: 2
   parent: BaseVocalLanguage
+  #font: FontPrototype # Прототип шрифта
+  #fontSize: 14 # Размер текста (ст. 13)
   speech: !type:Generic
     obfuscateSyllables: true
     replacement:
