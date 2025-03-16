@@ -421,7 +421,7 @@ namespace Content.Server.Cult
                 case "swordshield":
                     if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, 1, 2))
                     {
-                        Spawn("MedievalClothin%uterArmorCultUp", coords);
+                        Spawn("MedievalClothingOuterArmorCultUp", coords);
                         Spawn("ShockWaveEffect", coords);
                         _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Ритуал призыва защитной робы выполнен успешно", InGameICChatType.Speak, false);
