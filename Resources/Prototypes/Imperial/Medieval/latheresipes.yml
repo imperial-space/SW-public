@@ -512,7 +512,7 @@
   stacks:
     MedievalSteelIngot: 6
     WoodPlank: 4
-  result: MedievalPickaxe
+  result: MedievalPickaxeSteel
 
 - type: CP14Recipe
   id: MedievalIronHalberd

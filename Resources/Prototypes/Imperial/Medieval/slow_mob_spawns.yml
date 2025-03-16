@@ -30,7 +30,7 @@
   parent: MedievalLateMobSpawnerBase
   components:
   - type: SlowMobSpawn
-    spawnMob: MedievalMobWolf
+    spawnMob: MedievalMobWolfGhost
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobBear

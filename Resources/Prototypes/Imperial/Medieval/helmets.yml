@@ -649,6 +649,8 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/mdv_jester.rsi
 
+
+
 - type: entity
   parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetLegionRecruit
@@ -672,7 +674,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
-
+  
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetLegionLegioner
@@ -969,11 +971,43 @@
 
 - type: entity
   parent: WitchersPurpleHat
-  id: WitchersWhiteHat
-  name: The Witch's Hat
-  description: The white witch hat.
+  id: MedievalClothingHeadHelmetCollegiumPurpleHat
+  name: Collegium Hat
+  description: The purple magic hat
+  components:
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.85
+        Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ManaRegen
+    regen: 0.5
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCollegiumPurpleHat
+  id: MedievalClothingHeadHelmeCollegiumWhitetHat
+  name: Collegium White Hat.
+  description: The white magic hat.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/white_witchers_hat.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/white_witchers_hat.rsi
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalMercLeadHat
+  name: Merc Leader's Hat
+  description: Fancy hat with integrated iron plates. When style doesn't compromise practicality.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/feather_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/feather_hat.rsi
+  - type: Item
+    size: Normal

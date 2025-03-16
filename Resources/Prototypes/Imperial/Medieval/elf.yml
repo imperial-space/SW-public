@@ -128,6 +128,17 @@
     spawned:
     - id: FoodMeatHuman
       amount: 6
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      Elf: Speak
   - type: Fixtures
     fixtures:
       fix1:
@@ -228,7 +239,7 @@
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_upwards
-    
+
 - type: marking
   id: ElfEarsSmall
   bodyPart: HeadTop
@@ -239,7 +250,7 @@
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_small
-    
+
 - type: marking
   id: ElfEarsWide
   bodyPart: HeadTop
@@ -250,7 +261,7 @@
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_wide
-    
+
 - type: marking
   id: ElfLongEars
   bodyPart: HeadTop
@@ -261,7 +272,7 @@
   sprites:
   - sprite: Mobs/Customization/ears.rsi
     state: long_ears_standard
-    
+
 - type: markingPoints
   id: MobElfMarkingLimits
   onlyWhitelisted: false

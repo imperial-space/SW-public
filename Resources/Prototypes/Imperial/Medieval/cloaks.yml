@@ -362,3 +362,14 @@
   sprite:
     sprite: Imperial/Medieval/Clothing/Cloaks/goblin.rsi
     state: icon
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakInqVeteran
+  name: Плащ ветерана инквизиции адского пламени
+  description: Наградной плащ, выдаваемый бойцам инквизиции адского пламени за выдающиеся заслуги. Отличается от обычного, наличием серебряного наплечника и золотого плетения.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/InqVeteranCloak.rsi
+  - type: Insulated
+  

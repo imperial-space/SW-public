@@ -96,8 +96,7 @@ public sealed class TDMRuleSystem : GameRuleSystem<TDMRuleComponent>
             InitializeMaps = true,
         };
 
-        _mapSystem.CreateMap(out var mapId);
-        _mapLoaderSystem.TryMergeMap(mapId, path, out var _, options);
+        _mapLoaderSystem.TryLoadMap(path, out var _, out var _, options);
 
         return true;
     }
