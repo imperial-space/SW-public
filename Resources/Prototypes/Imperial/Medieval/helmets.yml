@@ -674,7 +674,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  
+
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetLegionLegioner
@@ -1011,3 +1011,14 @@
     sprite: Imperial/Medieval/Clothing/Head/feather_hat.rsi
   - type: Item
     size: Normal
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetNimbus
+  name: Nimbus
+  description: Smeels like heaven.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/nimbus.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/nimbus.rsi
