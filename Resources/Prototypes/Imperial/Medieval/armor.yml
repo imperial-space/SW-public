@@ -1541,7 +1541,7 @@
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLightLegion
-  id: MedievalClothingOuterArmorСeremonialRobe
+  id: MedievalClothingOuterArmorCeremonialRobe
   name: cloth
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
@@ -1550,11 +1550,11 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/charmer_ceremonial_robe.rsi
   - type: ToggleableClothing
-    clothingPrototype: MedievalClothingHeadHelmetСeremonialRobe
+    clothingPrototype: MedievalClothingHeadHelmetCeremonialRobe
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLegion
-  id: MedievalClothingHeadHelmetСeremonialRobe
+  id: MedievalClothingHeadHelmetCeremonialRobe
   name: clooth
   description: Medieval salad helmet
   components:
