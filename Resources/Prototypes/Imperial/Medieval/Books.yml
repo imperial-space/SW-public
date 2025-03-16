@@ -1,0 +1,198 @@
+- type: entity
+  parent: BookBase
+  id: BookMedievalBarrier
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-barrier
+
+- type: entity
+  parent: BookBase
+  id: BookMedievalThreats
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-threats
+
+- type: entity
+  parent: BookBase
+  id: BookMedievalFractions
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-factions
+
+- type: entity
+  parent: BookBase
+  id: BookMedievalMagicTypes
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-magic-types
+
+- type: entity
+  parent: BookBase
+  id: BookMedievalStory
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-story
+
+- type: entity
+  parent: BookBase
+  id: BookMedievalCreationOne
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-creation-one
+
+- type: entity
+  parent: BookBase
+  id: BookMedievalCreationTwo
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-creation-two
+
+- type: entity
+  parent: BookBase
+  id: BookMedievalCreationThree
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-creation-three
+
+- type: entity
+  parent: BookBase
+  id: BookMedievalCreationFour
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-creation-four
+
+- type: entity
+  parent: BookBase
+  id: BookMedievalCreationFive
+  name: Some
+  description: There are endless illegible notes scribbled in the margins. Most of the text is covered in handwritten question marks.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_old
+      color: "#4d2e0d"
+    - state: decor_bottom
+      color: "#4d2e0d"
+    - state: icon_eye
+  - type: Paper
+    content: book-text-medieval-creation-five
+
+- type: entityTable
+  id: BookshelfMedieval
+  table: !type:AllSelector
+    children:
+    - !type:GroupSelector
+      rolls: !type:RangeNumberSelector
+        range: 0, 4
+      children:
+      - id: BookMedievalCreationFive
+      - id: BookMedievalCreationFour
+      - id: BookMedievalCreationThree
+      - id: BookMedievalCreationTwo
+      - id: BookMedievalCreationOne
+      - id: BookMedievalStory
+      - id: BookMedievalMagicTypes
+      - id: BookMedievalFractions
+      - id: BookMedievalThreats
+      - id: BookMedievalBarrier
+
+- type: entity
+  id: BookshelfFilledMedieval
+  parent: Bookshelf
+  suffix: random medieval filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:NestedSelector
+        tableId: BookshelfMedieval
