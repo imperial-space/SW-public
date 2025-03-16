@@ -39,8 +39,8 @@
   category: MedievalBody
   cost: 1
   components:
-    - type: Hunger
-      baseDecayRate: 0.3
+    - type: Stamina
+      critThreshold: 120 # fix later
 
 - type: trait
   id: MedievalThirst
@@ -49,8 +49,8 @@
   category: MedievalBody
   cost: 1
   components:
-    - type: Thirst
-      baseDecayRate: 0.15
+    - type: Stamina
+      critThreshold: 120 # fix later
 
 - type: trait
   id: MedievalEye

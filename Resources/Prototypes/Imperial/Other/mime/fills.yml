@@ -44,5 +44,5 @@
       - id: BoxMimeMute
       - id: ClothingHandsGlovesColorRed
       - id: ClothingNeckShawlRed
-      - id: ClothingMaskSexyMime
+      # - id: ClothingMaskSexyMime # Убрано официальными разработчиками в миграцию и вызывает ошибки в других местах
       - id: ClothingHeadHatBeretBonBon

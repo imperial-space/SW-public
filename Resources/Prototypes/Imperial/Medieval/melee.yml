@@ -25,7 +25,7 @@
     angle: 0
     animation: WeaponArcThrust
   - type: Item
-    size: Large
+    size: Huge
   - type: Clothing
     quickEquip: false
     slots:
@@ -175,7 +175,7 @@
     #size: Tiny
     state: icon
   - type: Item
-    size: Tiny
+    size: Small
     sprite: Imperial/Medieval/Melee/dagger.rsi
   - type: MeleeWeapon
     attackRate: 16
@@ -226,7 +226,7 @@
     range: 3.5
     damage:
       types:
-        Piercing: 16
+        Piercing: 15
         Caustic: 4
         ParryAble: 1
     angle: 0
@@ -255,9 +255,9 @@
     tags:
     - Spear
   - type: MeleeThrowOnHit
-    lifetime: 0.4
+    lifetime: 0.1
     minLifetime: 0.05
-    speed: 2.1
+    speed: 2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -343,7 +343,7 @@
   - type: MedievalMeleeResource
     resourceWaste: 0.2
   - type: Item
-    size: Large
+    size: Normal
   - type: Clothing
     sprite: Imperial/Medieval/Melee/wooden_sword.rsi
     slots:
@@ -387,6 +387,8 @@
     damage:
       types:
         Blunt: 7
+  - type: Item
+    size: Normal
   - type: DamageOtherOnHit
     damage:
       types:
@@ -623,7 +625,7 @@
         Blunt: 18
         Structural: 34
   - type: Item
-    size: Ginormous
+    size: Huge
   - type: DamageOtherOnHit
     damage:
       types:
@@ -671,6 +673,7 @@
       path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     sprite: Imperial/Medieval/Melee/medieval_hoe.rsi
+    size: Normal
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -712,6 +715,7 @@
     safeToHitGroup: tree
   - type: Item
     sprite: Imperial/Medieval/Melee/medieval_hatchet.rsi
+    size: Normal
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -774,7 +778,7 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Item
-    size: Normal
+    size: Huge
   - type: Clothing
     sprite: Imperial/Medieval/Melee/medieval_scythe.rsi
     slots:
@@ -825,6 +829,7 @@
         ParryAble: 1
   - type: Item
     sprite: Imperial/Medieval/Melee/medieval_clippers.rsi
+    size: Small
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -954,6 +959,8 @@
     lifetime: 0.27
     minLifetime: 0.05
     speed: 0.7
+  - type: Item
+    size: Small
 
 - type: entity
   name: wooden shield
@@ -967,6 +974,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: woodknight
+      size: Normal
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1015,6 +1023,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: wooden
+      size: Normal
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1063,6 +1072,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: buckler
+      size: Normal
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1117,6 +1127,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: inf_medieval
+      size: Large
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1173,6 +1184,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: iron-buckler
+      size: Normal
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1251,6 +1263,8 @@
     speed: 2.1
   - type: Meltable
     resourceCount: 1
+  - type: Item
+    size: Large
 
 - type: entity
   id: MedievalWrench
@@ -1460,7 +1474,7 @@
     range: 2.6
     damage:
       types:
-        Piercing: 9
+        Piercing: 8
         ParryAble: 1
     angle: 0
     animation: WeaponArcThrust
@@ -1471,7 +1485,7 @@
   - type: MedievalMeleeResource
     resourceWaste: 0.7
   - type: Item
-    size: Large
+    size: Huge
   - type: Clothing
     quickEquip: false
     slots:
@@ -1482,7 +1496,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 9
+        Piercing: 7
   - type: DamageOtherOnHit
     damage:
       types:
@@ -1518,9 +1532,9 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    lifetime: 0.4
+    lifetime: 0.1
     minLifetime: 0.05
-    speed: 2.1
+    speed: 2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -1619,7 +1633,7 @@
         ParryAble: 1
     #resetOnHandSelected: false
   - type: Item
-    size: Normal
+    size: Large
   - type: DisarmMalus
   - type: DamageOtherOnHit
     damage:
@@ -2229,7 +2243,7 @@
     range: 2.75
     damage:
       types:
-        Piercing: 11
+        Piercing: 9
         ParryAble: 1
     angle: 0
     animation: WeaponArcThrust
@@ -2240,7 +2254,7 @@
   - type: MedievalMeleeResource
     resourceWaste: 0.75
   - type: Item
-    size: Large
+    size: Huge
   - type: Clothing
     quickEquip: false
     slots:
@@ -2251,7 +2265,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 13
+        Piercing: 11
   - type: DamageOtherOnHit
     damage:
       types:
@@ -2287,9 +2301,9 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    lifetime: 0.4
+    lifetime: 0.1
     minLifetime: 0.05
-    speed: 2.1
+    speed: 2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2539,7 +2553,7 @@
         Blunt: 29
         Structural: 79
   - type: Item
-    size: Ginormous
+    size: Huge
   - type: DamageOtherOnHit
     damage:
       types:
@@ -2762,7 +2776,7 @@
     damage: 35 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
 - type: entity
-  name: falshion
+  name: LongAxe
   parent: BaseItem
   id: MedievalLongAxe
   description: An ancient war blade.
@@ -2793,7 +2807,7 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Item
-    size: Normal
+    size: Huge
   #- type: Clothing
   #  sprite: Imperial/Medieval/Melee/long_axe.rsi
   #  slots:
@@ -2980,7 +2994,7 @@
   - type: MedievalMeleeResource
     resourceWaste: 0.4
   - type: Item
-    size: Normal
+    size: Large
   - type: Clothing
     sprite: Imperial/Medieval/Melee/necro_iron_sword.rsi
     slots:
@@ -3036,7 +3050,7 @@
     size: Small
     state: icon
   - type: Item
-    size: Normal
+    size: Small
     sprite: Imperial/Medieval/Melee/iron_short_sword.rsi
   - type: MeleeParry
     parryChanse: 0.52

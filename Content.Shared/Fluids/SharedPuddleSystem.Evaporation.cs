@@ -15,6 +15,9 @@ public abstract partial class SharedPuddleSystem
     private const string DemonsBlood = "DemonsBlood";
 
     [ValidatePrototypeId<ReagentPrototype>]
+    private const string Protein = "Protein";
+
+    [ValidatePrototypeId<ReagentPrototype>]
     private const string Nutriment = "Nutriment";
 
     [ValidatePrototypeId<ReagentPrototype>]
@@ -92,11 +95,28 @@ public abstract partial class SharedPuddleSystem
     [ValidatePrototypeId<ReagentPrototype>]
     private const string RobustHarvest = "RobustHarvest";
 
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Ethanol = "Ethanol";
+
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Vitamin = "Vitamin";
+
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Vomit = "Vomit";
+
+    [ValidatePrototypeId<ReagentPrototype>]
+    private const string Amatoxin = "Amatoxin";
+
     public static readonly string[] EvaporationReagents =
 {
     "Water",
     "Blood",
     "DemonsBlood",
+    "Ethanol",
+    "Protein",
+    "Vomit",
+    "Amatoxin",
+    "Vitamin",
     "Nutriment",
     "Milk",
     "Wine",

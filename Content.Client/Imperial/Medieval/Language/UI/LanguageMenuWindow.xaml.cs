@@ -102,7 +102,7 @@ public sealed partial class LanguageMenuWindow : FancyWindow
 
             foreach (var language in list)
             {
-                AddLanguageEntry(language.Key, translator.ContainsKey(language.Key));
+                AddLanguageEntry(language.Key, language.Value, translator.ContainsKey(language.Key));
             }
         }
 
@@ -117,14 +117,14 @@ public sealed partial class LanguageMenuWindow : FancyWindow
         }
     }
 
-    private void AddLanguageEntry(string language, bool translator = false)
+    private void AddLanguageEntry(string language, LanguageKnowledge knowledge, bool translator = false)
     {
         if (_entries.ContainsKey(language))
             return;
 
         var prototype = _language.GetLanguage(language);
 
-        var entry = new LanguageEntry(prototype, translator);
+        var entry = new LanguageEntry(prototype, translator, knowledge);
         entry.OnLanguageSelected += args => OnLanguageSelected?.Invoke(args);
 
         OptionsList.AddChild(entry);

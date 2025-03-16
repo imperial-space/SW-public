@@ -128,6 +128,17 @@
     spawned:
     - id: FoodMeatHuman
       amount: 6
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      Elf: Speak
   - type: Fixtures
     fixtures:
       fix1:
@@ -192,6 +203,81 @@
   roundStart: true
   prototype: MobElf
   sprites: MobHumanSprites
-  markingLimits: MobHumanMarkingLimits
+  markingLimits: MobElfMarkingLimits
   dollPrototype: MobElfDummy
   skinColoration: TintedHues
+
+- type: marking
+  id: ElfEarsStandart
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Elf]
+  sprites:
+  - sprite: Mobs/Customization/ears.rsi
+    state: long_ears_tall
+
+- type: marking
+  id: ElfEarsThin
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Elf]
+  sprites:
+  - sprite: Mobs/Customization/ears.rsi
+    state: long_ears_thin
+
+- type: marking
+  id: ElfEarsUpwards
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Elf]
+  sprites:
+  - sprite: Mobs/Customization/ears.rsi
+    state: long_ears_upwards
+
+- type: marking
+  id: ElfEarsSmall
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Elf]
+  sprites:
+  - sprite: Mobs/Customization/ears.rsi
+    state: long_ears_small
+
+- type: marking
+  id: ElfEarsWide
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Elf]
+  sprites:
+  - sprite: Mobs/Customization/ears.rsi
+    state: long_ears_wide
+
+- type: marking
+  id: ElfLongEars
+  bodyPart: HeadTop
+  markingCategory: HeadTop
+  forcedColoring: true
+  followSkinColor: true
+  speciesRestriction: [Elf]
+  sprites:
+  - sprite: Mobs/Customization/ears.rsi
+    state: long_ears_standard
+
+- type: markingPoints
+  id: MobElfMarkingLimits
+  onlyWhitelisted: false
+  points:
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ ElfEarsStandart ]

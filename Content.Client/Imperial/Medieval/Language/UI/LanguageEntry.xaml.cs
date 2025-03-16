@@ -11,15 +11,27 @@ public sealed partial class LanguageEntry : Control
     public Action<string>? OnLanguageSelected;
     public string Language;
 
-    public LanguageEntry(LanguagePrototype proto, bool translator)
+    public LanguageEntry(LanguagePrototype proto, bool translator, LanguageKnowledge? knowledge = null)
     {
         RobustXamlLoader.Load(this);
         Name.Text = proto.LocalizedName;
         if (proto.UiColor.HasValue)
             Name.FontColorOverride = proto.UiColor.Value;
-        SelectButton.ToolTip = translator ?
-            Loc.GetString("language-choose-button-tooltip-translator") :
-            Loc.GetString("language-choose-button-tooltip-known");
+        if (knowledge != null)
+        {
+
+            SelectButton.ToolTip = knowledge switch
+            {
+                LanguageKnowledge.Understand =>
+                    Loc.GetString(translator ? "language-choose-button-tooltip-translator-understood" : "language-choose-button-tooltip-understood"),
+                LanguageKnowledge.BadSpeak =>
+                    Loc.GetString(translator ? "language-choose-button-tooltip-translator" : "language-choose-button-tooltip-known"),
+                LanguageKnowledge.Speak =>
+                    Loc.GetString(translator ? "language-choose-button-tooltip-translator" : "language-choose-button-tooltip-known"),
+                _ => null
+            };
+        }
+
         Description.SetMessage(proto.LocalizedDescription);
         Language = proto.ID;
 

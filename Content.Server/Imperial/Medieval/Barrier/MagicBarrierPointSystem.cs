@@ -460,7 +460,7 @@ namespace Content.Server.MagicBarrier
                         _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
                     }
 
-                    if (comp.Cycle == 151)
+                    if (comp.Cycle == 161)
                     {
                         var cursespawners = EntityManager.EntityQuery<MagicBarrierNecroSpawnComponent>().ToArray();
                         var choosenSpawner = _random.Pick(cursespawners);

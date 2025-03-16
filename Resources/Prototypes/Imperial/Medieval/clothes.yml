@@ -821,8 +821,8 @@
     - 0,0,5,5
     whitelist:
       tags:
-        - Bolt
-        - Arrow
+      - Bolt
+      - Arrow
   - type: Appearance
   - type: Item
     size: Ginormous
@@ -842,8 +842,8 @@
     - 0,0,6,6
     whitelist:
       tags:
-        - Bolt
-        - Arrow
+      - Bolt
+      - Arrow
   - type: Appearance
   - type: Item
     size: Ginormous
@@ -863,12 +863,11 @@
     - 0,0,5,5
     whitelist:
       tags:
-        - Bolt
-        - Arrow
+      - Bolt
+      - Arrow
   - type: Appearance
   - type: Item
     size: Ginormous
-
 
 - type: entity
   parent: ClothingShoesLeather
@@ -961,22 +960,22 @@
   category: construction-category-misc
   description: "На случай если хотите ограничить кого-то в разговоро-способности или произношении заклинаний."
   icon: { sprite: Imperial/Medieval/Clothing/Mask/gag.rsi, state: icon }
-#    color: darkgreen
+  #    color: darkgreen
   objectType: Item
 
 - type: constructionGraph
   id: MedievalGag
   start: start
   graph:
-    - node: start
-      edges:
-        - to: MedievalGag
-          steps:
-            - material: Cloth
-              amount: 3
-              doAfter: 2
-    - node: MedievalGag
-      entity: MedievalGag
+  - node: start
+    edges:
+    - to: MedievalGag
+      steps:
+      - material: Cloth
+        amount: 3
+        doAfter: 2
+  - node: MedievalGag
+    entity: MedievalGag
 
 - type: entity
   parent: ClothingShoesBase
@@ -1028,6 +1027,17 @@
     regen: 0.25
 
 - type: entity
+  parent: MedievalShoesChamber
+  id: MedievalWhiteShoesCharmer
+  name: MedievalWhiteShoesCharmer
+  description: MedievalWhiteShoesCharmer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/white_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/white_charmer.rsi
+
+- type: entity
   parent: ClothingShoesBaseButcherable
   id: MedievalShoesSapogi
   name: MedievalShoesSapogi
@@ -1065,7 +1075,6 @@
     sprite: Imperial/Medieval/Clothing/Shoes/disco.rsi
   - type: Item
     size: Normal
-
 
 - type: entity
   parent: ClothingShoesBaseButcherable
@@ -1203,7 +1212,6 @@
     sprintModifier: 0.95
   - type: HeldSpeedModifier
 
-
 - type: entity
   parent: MedievalClothingBackpackSatchelLeather
   id: MedievalClothingBackpackSatchelLeather2
@@ -1259,9 +1267,9 @@
   name: satchel
   description: A trendy looking satchel.
   components:
-    - type: StorageFill
-      contents:
-        - id: BaseMagicSpellbook75
+  - type: StorageFill
+    contents:
+    - id: BaseMagicSpellbook75
 
 - type: entity
   parent: ClothingBackpackSatchelCharmer
@@ -1269,9 +1277,9 @@
   name: satchel
   description: A trendy looking satchel.
   components:
-    - type: StorageFill
-      contents:
-        - id: BaseMagicSpellbook
+  - type: StorageFill
+    contents:
+    - id: BaseMagicSpellbook
 
 - type: entity
   parent: ClothingBackpackSatchelCharmer
@@ -1279,9 +1287,9 @@
   name: satchel
   description: A trendy looking satchel.
   components:
-    - type: StorageFill
-      contents:
-        - id: BaseMagicSpellbook150
+  - type: StorageFill
+    contents:
+    - id: BaseMagicSpellbook150
 
 - type: entity
   parent: MedievalClothingBackpackSatchelLeather
@@ -1311,8 +1319,6 @@
         type: StorageBoundUserInterface
   - type: UseDelay
     delay: 0.5
-
-
 
 - type: entity
   parent: MedievalClothingBackpackSatchelLeather
@@ -1433,3 +1439,56 @@
         color: "#723A02"
   - type: Fiber
     fiberColor: fibers-brown
+
+# Cloth Gloves
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesCloth
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/cloth_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/cloth_gloves.rsi
+    clothingVisuals:
+      gloves:
+      - state: equipped-HAND
+  - type: Fiber
+    fiberColor: fibers-white
+  - type: Construction
+    graph: MedievalClothingHandsGlovesCloth
+    node: ground
+  - type: Armor
+    modifiers:
+      coefficients:
+        Heat: 0.95
+        Cold: 0.95
+
+- type: construction
+  name: Тканевые перчатки
+  description: Обычно такое носят только отчаянные люди.
+  id: MedievalClothingHandsGlovesCloth
+  graph: MedievalClothingHandsGlovesCloth
+  startNode: start
+  targetNode: MedievalClothingHandsGlovesCloth
+  category: construction-category-clothing
+  icon: { sprite: Imperial/Medieval/Clothing/Gloves/cloth_gloves.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalClothingHandsGlovesCloth
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: MedievalClothingHandsGlovesCloth
+      steps:
+      - material: Cloth
+        amount: 3
+        doAfter: 3
+  - node: MedievalClothingHandsGlovesCloth
+    entity: MedievalClothingHandsGlovesCloth

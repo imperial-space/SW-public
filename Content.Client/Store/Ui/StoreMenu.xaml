@@ -3,7 +3,7 @@
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'store-ui-default-title'}"
     MinSize="512 512"
-    SetSize="512 512">
+    SetSize="812 712">
     <BoxContainer Orientation="Vertical">
         <BoxContainer Orientation="Vertical" VerticalExpand="True">
             <BoxContainer Margin="4,4,4,4" Orientation="Horizontal">

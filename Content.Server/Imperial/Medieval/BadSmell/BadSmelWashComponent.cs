@@ -13,7 +13,7 @@ namespace Content.Server.BadSmell.Components
     public sealed partial class BadSmelWashComponent : Component
     {
         [DataField]
-        public float MaxWash = 28f;
+        public float MaxWash = 21f;
 
         [DataField]
         public float WashSpeedMultiplier = 1f;

@@ -4,6 +4,8 @@
   priority: 2
   parent: BaseVocalLanguage
   speech: !type:Generic
+    font: SpellwardBlackCraftFont
+    fontSize: 14
     obfuscateSyllables: true
     replacement:
     - бу
@@ -14,3 +16,232 @@
     - та
     - ба
     - ша
+
+- type: language
+  id: Ancient
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    font: SpellwardBeeBoopFont
+    fontSize: 14
+    obfuscateSyllables: true
+    replacement:
+    - ur
+    - url
+    - ol
+    - ath
+    - ti
+    - ve
+    - al
+    - ost
+    - ur
+    - url
+    - urn
+    - Mz
+    - st
+    - ul
+    - il
+    - rae
+    - arr
+    - ali
+    - iir
+    - oi
+    - lar
+    - nar
+    - rel
+    - it
+
+- type: language
+  id: Tribe
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    font: SpellwardTanaUncialFont
+    fontSize: 14
+    obfuscateSyllables: true
+    replacement:
+    - ук
+    - ур
+    - фус
+    - мар
+    - ка
+    - пр
+    - дж
+    - иг
+    - йр
+    - еп
+    - ип
+    - ех
+    - йф
+    - ал
+    - оап
+    - ле
+    - оп
+    - ле
+    - ро
+    - йл
+    - жу
+    - ба
+    - те
+    - ди
+
+- type: language
+  id: Orc
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    font: SpellwardInsulaGFont
+    fontSize: 14
+    obfuscateSyllables: true
+    replacement:
+    - бу
+    - шу
+    - тас
+    - ма
+    - мо
+    - ур
+    - ош
+    - га
+    - кас
+    - щес
+    - се
+    - сий
+    - идт
+    - ние
+    - об
+    - аб
+    - итк
+    - ет
+    - вет
+    - хот
+    - хра
+    - обл
+    - ин
+    - гр
+
+- type: language
+  id: Cursed
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    font: SpellwardGothicFont
+    fontSize: 11
+    obfuscateSyllables: true
+    replacement:
+    - ач
+    - кчз
+    - чэв
+    - чк
+    - ачк
+    - чкэ
+    - чвек
+    - чег
+    - чаг
+    - чвек
+    - кос
+    - геч
+    - кча
+    - гач
+    - кч
+    - акч
+    - чагш
+    - чегш
+    - тагч
+    - шчи
+    - щчи
+    - щчь
+    - чщьк
+    - чщик
+
+- type: language
+  id: Growling
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    font: SpellwardDiabloFont
+    fontSize: 15
+    obfuscateSyllables: true
+    replacement:
+    - ар
+    - ры
+    - едр
+    - рел
+    - ер
+    - уре
+    - рих
+    - руз
+    - рез
+    - рыщ
+    - ра
+    - ирч
+    - ур
+    - эр
+    - рэс
+    - орс
+    - рес
+    - риз
+    - роз
+    - реф
+    - риф
+    - рь
+    - урь
+    - арь
+
+- type: language
+  id: Hissing
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    font: SpellwardHoneyBeeGFont
+    fontSize: 18
+    obfuscateSyllables: true
+    replacement:
+    - чищ
+    - щи
+    - щек
+    - щуч
+    - шу
+    - щус
+    - щис
+    - шес
+    - щу
+    - щьек
+    - щик
+    - щек
+    - щейс
+    - ши
+    - чущ
+    - чащ
+    - чещ
+    - чейщ
+    - щэйш
+    - щуйш
+    - щук
+    - щак
+    - щек
+    - щей
+
+- type: language
+  id: Elf
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    font: SpellwardChristmasFont
+    fontSize: 19
+    obfuscateSyllables: true
+    replacement:
+    - ль
+    - ий
+    - квэ
+    - йо
+    - йу
+    - вэ
+    - та
+    - арэ

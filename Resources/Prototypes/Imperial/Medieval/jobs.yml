@@ -27,6 +27,12 @@
   - ClothingHeadHatCowboyBrown
   - InnkeeperMedievalClothingHeadCloth
   - MedievalClothingHeadFurHatLoadout
+  - MedievalStrawHat #New Hats
+  - MedievalMotleyHat
+  - MedievalWreath
+  - MedievalGrayHat
+  - MedievalWanderHat
+  - MedievalGreenHat
 
 - type: loadout
   id: TravellerArcher
@@ -800,13 +806,13 @@
   minLimit: 1
   name: loadout-group-medieval-head-collegium
   loadouts:
-  - WitchersPurpleHat
+  - MedievalClothingHeadHelmetCollegiumPurpleHat
   - MedievalClothingHeadHelmetCharmerLight
 
 - type: loadout
-  id: WitchersPurpleHat
+  id: MedievalClothingHeadHelmetCollegiumPurpleHat
   equipment:
-    head: WitchersPurpleHat
+    head: MedievalClothingHeadHelmetCollegiumPurpleHat
 
 - type: loadout
   id: MedievalClothingHeadHelmetCharmerLight
@@ -1087,6 +1093,13 @@
   - ClothingHeadHatTophat
   - ClothingHeadFlowerCentComGold
   - ClothingHeadHatAnimalMonkey
+  - MedievalStrawHat #New Hats
+  - MedievalMotleyHat
+  - MedievalWreath
+  - MedievalGrayHat
+  - MedievalWanderHat
+  - MedievalGreenHat
+  - MedievalWhiteHat
   #- TravellerHood
 
 - type: loadout
@@ -1144,6 +1157,64 @@
     proto: BumTimer30hours
   equipment:
     head: ClothingHeadHatAnimalMonkey
+
+- type: loadout             #New Hats
+  id: MedievalStrawHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: MedievalStrawHat
+
+- type: loadout
+  id: MedievalMotleyHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: MedievalMotleyHat #
+
+- type: loadout
+  id: MedievalWreath
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: MedievalWreath #
+
+- type: loadout
+  id: MedievalGrayHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: MedievalGrayHat #
+
+- type: loadout
+  id: MedievalWanderHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: MedievalWanderHat #
+
+- type: loadout
+  id: MedievalGreenHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: MedievalGreenHat #
+
+- type: loadout
+  id: MedievalWhiteHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: MedievalWhiteHat
+
+
 
 - type: loadoutGroup
   id: BardJumpsuit
@@ -1382,6 +1453,12 @@
   - ClothingHeadHatCowboyBrown
   - InnkeeperMedievalClothingHeadCloth
   - MedievalClothingHeadFurHatLoadout
+  - MedievalStrawHat #New Hats
+  - MedievalMotleyHat
+  - MedievalWreath
+  - MedievalGrayHat
+  - MedievalWanderHat
+  - MedievalGreenHat
   #- ClothingOfficerHeadMinuteman
   #- ClothingHeadHatCowboyBlack
   #- MedievalClothingHeadHelmetJester
@@ -2991,7 +3068,7 @@
     #pocket2: MedievalCommsCrystallMerc
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     mask: MedievalMaskFace
-    head: MedievalClothingHeadHelmetShapel
+    head: MedievalMercLeadHat
     neck: MedievalClothingNeckCloakClanMerc
     id: MedievalFarmerKey
 
@@ -3132,7 +3209,7 @@
     id: MedievalKeyWizard
     neck: MedievalClothingNeckCloakClanWiz
     outerClothing: MedievalClothingOuterArmorCharmerLight
-    #head: MedievalClothingHeadHelmetCharmerLight
+    head: MedievalClothingHeadHelmetCollegiumPurpleHat
     shoes: MedievalShoesChamber
   storage:
     back:
@@ -3317,6 +3394,18 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjectiveTribe
+    - type: LanguageSpeaker
+      languages:
+        #ommon: Understand
+        #Goblin: Speak
+        #Ancient: Speak
+        Tribe: Speak
+        #Orc: Speak
+        #Cursed: Speak
+        #Growling: Speak
+        #Hissing: Speak
+        #Elf: Speak
+
 
 # MEDIEVAL Tribe COMMON
 
@@ -3378,6 +3467,17 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjectiveTribe
+    - type: LanguageSpeaker
+      languages:
+        #ommon: Understand
+        #Goblin: Speak
+        Ancient: Understand
+        Tribe: Speak
+        #Orc: Speak
+        #Cursed: Speak
+        #Growling: Speak
+        #Hissing: Speak
+        #Elf: Speak
 
 # MEDIEVAL Tribe Leader
 
@@ -3428,6 +3528,17 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjectiveTribe
+    - type: LanguageSpeaker
+      languages:
+        Common: Speak
+        #Goblin: Speak
+        Ancient: Understand
+        Tribe: Speak
+        #Orc: Speak
+        #Cursed: Speak
+        #Growling: Speak
+        #Hissing: Speak
+        #Elf: Speak
 
 # MEDIEVAL Trader
 
@@ -3629,6 +3740,14 @@
   - TraderMedievalClothingHeadCloth
   - ClothingHeadHatCowboyBrown
   - MedievalClothingHeadFurHatLoadout
+  - MedievalStrawHat #New Hats
+  - MedievalMotleyHat
+  - MedievalWreath
+  - MedievalGrayHat
+  - MedievalFeatherHat
+  - MedievalWanderHat
+  - MedievalGreenHat
+
 
 - type: loadout
   id: TraderMedievalClothingHeadCloth
@@ -4106,3 +4225,4 @@
     - type: CloackMessage
       action: CloackMessageActionIns
       faction: "cult"
+

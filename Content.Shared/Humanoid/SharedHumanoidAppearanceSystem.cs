@@ -351,7 +351,7 @@ public abstract class SharedHumanoidAppearanceSystem : EntitySystem
 
         SetSpecies(uid, profile.Species, false, humanoid);
         SetSex(uid, profile.Sex, false, humanoid);
-        SetLanguages(uid, profile.Languages.ToList());  // imperial medieval languages
+        //SetLanguages(uid, profile.Languages.ToList());  // imperial medieval languages
         humanoid.EyeColor = profile.Appearance.EyeColor;
 
         SetSkinColor(uid, profile.Appearance.SkinColor, false);

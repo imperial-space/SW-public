@@ -110,6 +110,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_black
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerBlue
@@ -120,6 +122,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_blul
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerFish
@@ -130,6 +134,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_fish
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerGreen
@@ -140,6 +146,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_green
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerRed
@@ -150,6 +158,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_red
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerWhite
@@ -160,6 +170,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_white
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerYellow
@@ -170,6 +182,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_yll
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerHell
@@ -180,6 +194,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_hell
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   parent: CrateCoffin
@@ -869,6 +885,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: mogila2
+    drawdepth: Overdoors
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -880,6 +897,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: SpriteFade
   - type: Fixtures
     fixtures:
       fix1:
@@ -904,6 +922,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: mogila3
+    drawdepth: Overdoors
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -915,6 +934,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: SpriteFade
   - type: Fixtures
     fixtures:
       fix1:
@@ -1167,6 +1187,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_anons.rsi
     state: box
+    drawdepth: Overdoors
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -1214,6 +1235,7 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+  - type: SpriteFade
 
 - type: entity
   id: MedievalTrapDoor
@@ -1474,6 +1496,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: sign_1
+    drawdepth: Overdoors
+  - type: SpriteFade
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -3809,6 +3833,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/telega.rsi
     state: telega
+    drawdepth: Overdoors
+  - type: SpriteFade
   - type: Timer
   - type: TimedSpawner
     prototypes:
@@ -4084,6 +4110,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/tribe_altar.rsi
     state: altar
+    drawdepth: Overdoors
   - type: Timer
   - type: TimedSpawner
     prototypes:
@@ -4127,6 +4154,7 @@
     pack: MedievalTribeAltarAdvertise
     minimumWait: 60
     maximumWait: 180
+  - type: SpriteFade
 
 - type: localizedDataset
   id: MedievalTribeAltarAdvertise
@@ -4284,6 +4312,7 @@
     offset: 0,0.3
     sprite: Imperial/Medieval/Misc/cult_stone.rsi
     state: stone
+    drawdepth: Overdoors
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -4314,6 +4343,7 @@
     color: Red
     radius: 7
     energy: 2.3
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerBase
@@ -4405,6 +4435,7 @@
     offset: 0,0.3
     sprite: Imperial/Medieval/Misc/cult_stone.rsi
     state: col
+    drawdepth: Overdoors
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -4416,6 +4447,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: SpriteFade
   - type: Fixtures
     fixtures:
       fix1:
@@ -4430,7 +4462,7 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
-
+   
 - type: construction
   id: Mattress
   name: Спальник
@@ -4474,3 +4506,247 @@
           steps:
             - tool: Prying
               doAfter: 500
+
+# railing recipes
+
+- type: constructionGraph
+  id: WoodRailing
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: woodrailing
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 2
+        - to: woodrailingCorner
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2.5
+        - to: woodrailingCornerSmall
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 2
+        - to: woodrailingRound
+          completed:
+            - !type:SnapToGrid { }
+          steps:
+            - material: WoodPlank
+              amount: 2
+              doAfter: 2
+
+    - node: railing
+      entity: WoodRailing
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingCorner
+      entity: WoodRailingCorner
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+
+    - node: railingCornerSmall
+      entity: WoodRailingCornerSmall
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 1
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.25
+
+    - node: railingRound
+      entity: WoodRailingRound
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: MaterialWoodPlank1
+              amount: 2
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+
+# railing recipes
+
+- type: entity
+  parent: Railing
+  id: WoodRailing
+  suffix: WoodRailing
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: side
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: side
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    node: woodrailing
+
+- type: entity
+  parent: RailingCorner
+  id: WoodRailingCorner
+  suffix: WoodRailingCorner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: corner
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: corner
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    node: woodrailingCorner
+
+- type: entity
+  parent: RailingCornerSmall
+  id: WoodRailingCornerSmall
+  suffix: WoodRailingCornerSmall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: corner_small
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: corner_small
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    node: woodrailingCornerSmall
+
+- type: entity
+  parent: RailingRound
+  id: WoodRailingRound
+  suffix: WoodRailingRound
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: round
+  - type: Icon
+    sprite: Imperial/Medieval/Decor/railing.rsi
+    state: round
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    node: woodrailingRound
+
