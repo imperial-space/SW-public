@@ -1538,3 +1538,27 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.99
     sprintModifier: 0.99
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLightLegion
+  id: MedievalClothingOuterArmorCeremonialRobe
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_ceremonial_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_ceremonial_robe.rsi
+  - type: ToggleableClothing
+    clothingPrototype: MedievalClothingHeadHelmetCeremonialRobe
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLegion
+  id: MedievalClothingHeadHelmetCeremonialRobe
+  name: clooth
+  description: Medieval salad helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/golden_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/golden_head.rsi

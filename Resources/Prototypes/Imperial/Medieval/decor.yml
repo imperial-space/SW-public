@@ -110,6 +110,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_black
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerBlue
@@ -120,6 +122,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_blul
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerFish
@@ -130,6 +134,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_fish
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerGreen
@@ -140,6 +146,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_green
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerRed
@@ -150,6 +158,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_red
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerWhite
@@ -160,6 +170,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_white
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerYellow
@@ -170,6 +182,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_yll
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerHell
@@ -180,6 +194,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_hell
+    drawdepth: Overdoors
+  - type: SpriteFade
 
 - type: entity
   parent: CrateCoffin
@@ -869,6 +885,43 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: mogila2
+    drawdepth: Overdoors
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SpriteFade
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+        
+- type: entity
+  id: MedievalDecorHelpParent
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: mogila3
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -894,7 +947,7 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
-
+        
 - type: entity
   id: MedievalDecorMogila3
   parent: MedievalBannerBase
@@ -904,6 +957,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: mogila3
+    drawdepth: Overdoors
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -915,6 +969,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: SpriteFade
   - type: Fixtures
     fixtures:
       fix1:
@@ -1167,6 +1222,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_anons.rsi
     state: box
+    drawdepth: Overdoors
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -1214,6 +1270,7 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+  - type: SpriteFade
 
 - type: entity
   id: MedievalTrapDoor
@@ -1466,7 +1523,7 @@
       radius: 1.5
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign1
   name: sign
   description: A sign
@@ -1474,6 +1531,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: sign_1
+    drawdepth: Overdoors
+  - type: SpriteFade
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -1482,7 +1541,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign2
   name: sign
   description: A sign
@@ -1498,7 +1557,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign3
   name: sign
   description: A sign
@@ -1514,7 +1573,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign4
   name: sign
   description: A sign
@@ -1530,7 +1589,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign5
   name: sign
   description: A sign
@@ -1546,7 +1605,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign6
   name: sign
   description: A sign
@@ -1562,7 +1621,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign7
   name: sign
   description: A sign
@@ -1578,7 +1637,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign8
   name: sign
   description: A sign
@@ -1594,7 +1653,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorMogila1
+  parent: MedievalDecorHelpParent
   id: MedievalSign9
   name: sign
   description: A sign
@@ -2718,7 +2777,7 @@
 
 - type: entity
   id: MedievalDecorSpikes1
-  parent: MedievalDecorMogila3
+  parent: MedievalDecorHelpParent
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
@@ -3809,6 +3868,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/telega.rsi
     state: telega
+    drawdepth: Overdoors
+  - type: SpriteFade
   - type: Timer
   - type: TimedSpawner
     prototypes:
@@ -4084,6 +4145,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/tribe_altar.rsi
     state: altar
+    drawdepth: Overdoors
   - type: Timer
   - type: TimedSpawner
     prototypes:
@@ -4127,6 +4189,7 @@
     pack: MedievalTribeAltarAdvertise
     minimumWait: 60
     maximumWait: 180
+  - type: SpriteFade
 
 - type: localizedDataset
   id: MedievalTribeAltarAdvertise
@@ -4284,6 +4347,7 @@
     offset: 0,0.3
     sprite: Imperial/Medieval/Misc/cult_stone.rsi
     state: stone
+    drawdepth: Overdoors
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -4314,6 +4378,7 @@
     color: Red
     radius: 7
     energy: 2.3
+  - type: SpriteFade
 
 - type: entity
   id: MedievalBannerBase
@@ -4405,6 +4470,7 @@
     offset: 0,0.3
     sprite: Imperial/Medieval/Misc/cult_stone.rsi
     state: col
+    drawdepth: Overdoors
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -4416,6 +4482,7 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+  - type: SpriteFade
   - type: Fixtures
     fixtures:
       fix1:
@@ -4430,7 +4497,7 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
-
+   
 - type: construction
   id: Mattress
   name: Спальник

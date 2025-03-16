@@ -10,9 +10,9 @@
     - state: vehicle
     netsync: false
     noRot: true
-  - type: Strap
-    buckleOffset: "0, 0"
-    maxBuckleDistance: 1
+  #- type: Strap
+  #  buckleOffset: "0, 0"
+  #  maxBuckleDistance: 1
   - type: MovementSpeedModifier
     acceleration: 1
     friction: 1
@@ -23,8 +23,8 @@
     - CannotSuicide
     - DoorBumpOpener
     - FootstepSound
-  - type: ReplacementAccent
-    accent: xeno
+  #- type: ReplacementAccent
+  #  accent: xeno
   - type: MeleeWeapon
     hidden: true
     angle: 0
@@ -140,8 +140,8 @@
       amount: 3
     - id: MedievalLeather1
       amount: 2
-  - type: ReplacementAccent
-    accent: xeno
+  #- type: ReplacementAccent
+  #  accent: xeno
   - type: MeleeWeapon
     hidden: true
     angle: 0
@@ -172,6 +172,18 @@
     bloodMaxVolume: 30
   - type: NocturnBadFood
     timesCanBeBiten: 2
+  - type: LanguageSpeaker
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      Growling: Understand
+      Hissing: Speak
+      #Elf: Speak
+
 
 - type: entity
   name: fox
@@ -220,8 +232,8 @@
       amount: 1
   - type: Bloodstream
     bloodMaxVolume: 0
-  - type: ReplacementAccent
-    accent: xeno
+  #- type: ReplacementAccent
+  #  accent: xeno
   - type: MeleeWeapon
     hidden: true
     angle: 0
@@ -248,6 +260,18 @@
       10: 1
       25: 0.8
       35: 0.5
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak
+
 
 - type: entity
   name: fox
@@ -260,7 +284,7 @@
     makeSentient: true
     name: ghost-role-information-fox-name
     description: ghost-role-information-fox-description
-    rules: Вы - лиса. Охотьтесь на мелкую живность, исследуйте мир. Вам НЕ запрещается быть мирным.
+    rules: Вы - лиса. Охотьтесь на мелкую живность, исследуйте мир.
 
 - type: entity
   name: wolf
@@ -304,8 +328,8 @@
       amount: 1
   - type: Bloodstream
     bloodMaxVolume: 40
-  - type: ReplacementAccent
-    accent: dog
+  #- type: ReplacementAccent
+  #  accent: dog
   - type: MeleeWeapon
     hidden: true
     angle: 0
@@ -337,9 +361,9 @@
       35: 0.7
       45: 0.6
       60: 0.5
-  - type: Strap
-    buckleOffset: "0, 0"
-    maxBuckleDistance: 1
+  #- type: Strap
+  #  buckleOffset: "0, 0"
+  #  maxBuckleDistance: 1
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -353,6 +377,17 @@
       Unsexed: MedievalBear
   - type: NocturnBadFood
     timesCanBeBiten: 3
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      Goblin: Understand
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
 
 - type: entity
   name: wolf
@@ -365,7 +400,7 @@
     makeSentient: true
     name: ghost-role-information-wolf-name
     description: ghost-role-information-wolf-description
-    rules: Вы - волк. Охотьтесь на живность, исследуйте мир. Вам запрещается быть мирным.
+    rules: Вы - волк. Охотьтесь на живность, исследуйте мир.
 
 - type: entity
   name: rabbit
@@ -408,8 +443,8 @@
       prob: 0.5
   - type: Bloodstream
     bloodMaxVolume: 10
-  - type: ReplacementAccent
-    accent: cat
+  #- type: ReplacementAccent
+  #  accent: cat
   - type: MeleeWeapon
     hidden: true
     angle: 0
@@ -436,6 +471,18 @@
     baseSprintSpeed: 5.8
   - type: NocturnBadFood
     timesCanBeBiten: 1
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      #Goblin: Speak
+      #Ancient: Understand
+      Tribe: Understand
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak
+
 
 - type: entity
   name: rabbit
@@ -714,8 +761,8 @@
       amount: 1
   - type: Bloodstream
     bloodMaxVolume: 200
-  - type: ReplacementAccent
-    accent: agressive
+  #- type: ReplacementAccent
+  #  accent: agressive
   - type: MeleeWeapon
     hidden: true
     angle: 0
@@ -748,9 +795,9 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.4
     baseSprintSpeed: 3.4
-  - type: Strap
-    buckleOffset: "0, 0"
-    maxBuckleDistance: 1
+  #- type: Strap
+  #  buckleOffset: "0, 0"
+  #  maxBuckleDistance: 1
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -768,6 +815,17 @@
     lifetime: 0.8
     minLifetime: 0.05
     speed: 5
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      Goblin: Understand
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
 
 - type: entity
   name: bear
@@ -780,7 +838,7 @@
     makeSentient: true
     name: ghost-role-information-bear-name
     description: ghost-role-information-bear-description
-    rules: Вы - медведь. Охотьтесь, исследуйте мир. Вам запрещается быть мирным.
+    rules: Вы - медведь. Охотьтесь, исследуйте мир.
 
 - type: entity
   name: hog
@@ -824,8 +882,8 @@
       amount: 1
   - type: Bloodstream
     bloodMaxVolume: 140
-  - type: ReplacementAccent
-    accent: agressive
+  #- type: ReplacementAccent
+  #  accent: agressive
   - type: MeleeWeapon
     hidden: true
     angle: 0
@@ -855,9 +913,9 @@
       40: 0.7
       80: 0.6
       110: 0.5
-  - type: Strap
-    buckleOffset: "0, 0"
-    maxBuckleDistance: 1
+  #- type: Strap
+  #  buckleOffset: "0, 0"
+  #  maxBuckleDistance: 1
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -868,6 +926,18 @@
       task: SimpleHostileCompound
   - type: NocturnBadFood
     timesCanBeBiten: 4
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      Goblin: Understand
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+
 
 - type: entity
   name: hog
@@ -901,8 +971,8 @@
         Base: animated
   - type: Bloodstream
     bloodMaxVolume: 0
-  - type: ReplacementAccent
-    accent: agressive
+  #- type: ReplacementAccent
+  #  accent: agressive
   - type: MeleeWeapon
     hidden: true
     angle: 0
@@ -959,6 +1029,18 @@
   - type: WarpPoint
     follow: true
     location: Medieval boss ghost
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+
 
 - type: entity
   name: hog
@@ -971,7 +1053,7 @@
     makeSentient: true
     name: ghost-role-information-hog-name
     description: ghost-role-information-hog-description
-    rules: Вы - кабан. Охотьтесь, исследуйте мир. Вам НЕ запрещается быть мирным.
+    rules: Вы - кабан. Охотьтесь, исследуйте мир.
   - type: MobMover
   - type: HTN
     rootTask:
@@ -1347,8 +1429,8 @@
       path: /Audio/Animals/fox_squeak.ogg
   - type: Bloodstream
     bloodMaxVolume: 0
-  - type: ReplacementAccent
-    accent: mouse
+  #- type: ReplacementAccent
+  #  accent: mouse
   - type: MeleeWeapon
     hidden: true
     soundHit:
@@ -1396,6 +1478,18 @@
           Ash:
             min: 1
             max: 1
+  - type: LanguageSpeaker
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+
 
 - type: entity
   name: rabbit
@@ -1666,6 +1760,18 @@
       path: /Audio/Imperial/Medieval/spider_stepsound.ogg
       params:
         variation: 0.125
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak
+
 
 - type: entity
   name: fox
@@ -1775,6 +1881,18 @@
       path: /Audio/Imperial/Medieval/spider_stepsound.ogg
       params:
         variation: 0.125
+  - type: LanguageSpeaker
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak
+
 
 - type: entity
   name: fox
@@ -1873,6 +1991,17 @@
     baseDecayRate: 0
   - type: Thirst
     baseDecayRate: 0
+  - type: LanguageSpeaker
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      Ancient: Understand
+      #Tribe: Speak
+      #Orc: Speak
+      Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
 
 - type: entity
   name: weak skeleton
@@ -2551,6 +2680,17 @@
       path: /Audio/Imperial/Medieval/footstep_hunter.ogg
       params:
         variation: 0.125
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak
 
 - type: entity
   name: fox
@@ -2652,6 +2792,18 @@
       task: SimpleHostileCompound
   - type: NocturnBadFood
     timesCanBeBiten: 1
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak
+
 
 - type: entity
   name: fox

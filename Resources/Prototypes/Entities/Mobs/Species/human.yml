@@ -27,9 +27,19 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
-  - type: BadSmellRaceModifier # imperial medieval
-    modifier: 0.7 # imperial medieval
-
+  - type: BadSmellRaceModifier # imperial medieval start
+    modifier: 0.7
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak # imperial medieval end
 
 - type: entity
   parent: BaseSpeciesDummy

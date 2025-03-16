@@ -1,42 +1,42 @@
 # Imperial Medieval Start
-# - type: tile
-#   id: FloorPlanetDirt
-#   name: tiles-dirt-floor
-#   sprite: /Textures/Tiles/Planet/dirt.rsi/dirt.png
-#   variants: 4
-#   placementVariants:
-#   - 1.0
-#   - 1.0
-#   - 1.0
-#   - 1.0
-#   isSubfloor: true
-#   footstepSounds:
-#     collection: FootstepAsteroid
-#   heatCapacity: 10000
-#   weather: true
-#   indestructible: true
+#- type: tile
+#  id: FloorPlanetDirt
+#  name: tiles-dirt-floor
+#  sprite: /Textures/Tiles/Planet/Dirt/dirt.png
+#  variants: 4
+#  placementVariants:
+#  - 1.0
+#  - 1.0
+#  - 1.0
+#  - 1.0
+#  isSubfloor: true
+#  footstepSounds:
+#    collection: FootstepAsteroid
+#  heatCapacity: 99910000
+#  weather: true
+#  indestructible: true
 
 # Desert
-# - type: tile
-#   id: FloorDesert
-#   name: tiles-desert-floor
-#   sprite: /Textures/Tiles/Planet/Desert/desert.png
-#   variants: 6
-#   placementVariants:
-#   - 1.0
-#   - 1.0
-#   - 1.0
-#   - 1.0
-#   - 1.0
-#   - 1.0
-#   isSubfloor: true
-#   footstepSounds:
-#     collection: FootstepAsteroid
-#   heatCapacity: 10000
-#   weather: true
-#   indestructible: true
+#- type: tile
+#  id: FloorDesert
+#  name: tiles-desert-floor
+#  sprite: /Textures/Tiles/Planet/Desert/desert.png
+#  variants: 6
+#  placementVariants:
+#  - 1.0
+#  - 1.0
+#  - 1.0
+#  - 1.0
+#  - 1.0
+#  - 1.0
+#  isSubfloor: true
+#  footstepSounds:
+#    collection: FootstepAsteroid
+#  heatCapacity: 99910000
+#  weather: true
+#  indestructible: true
 # Imperial Medieval End
-
+#
 - type: tile
   id: FloorLowDesert
   name: tiles-low-desert-floor
@@ -52,40 +52,40 @@
   isSubfloor: true
   footstepSounds:
     collection: FootstepAsteroid
-  heatCapacity: 10000
+  heatCapacity: 99910000
   weather: true
   indestructible: true
 
 # Grass
 # Imperial Medieval Start
-# - type: tile
-#   id: FloorPlanetGrass
-#   name: tiles-grass-planet-floor
-#   sprite: /Textures/Tiles/Planet/Grass/grass.png
-#   variants: 4
-#   placementVariants:
-#   - 1.0
-#   - 1.0
-#   - 1.0
-#   - 1.0
-#   edgeSpritePriority: 1
-#   edgeSprites:
-#     SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-#     NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
-#     NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-#     SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
-#     South: /Textures/Tiles/Planet/Grass/double_edge.png
-#     East: /Textures/Tiles/Planet/Grass/double_edge.png
-#     North: /Textures/Tiles/Planet/Grass/double_edge.png
-#     West: /Textures/Tiles/Planet/Grass/double_edge.png
-#   baseTurf: FloorPlanetDirt
-#   isSubfloor: true
-#   footstepSounds:
-#     collection: FootstepGrass
-#   itemDrop: FloorTileItemGrass
-#   heatCapacity: 10000
-#   weather: true
-#   indestructible: true
+#- type: tile
+#  id: FloorPlanetGrass
+#  name: tiles-grass-planet-floor
+#  sprite: /Textures/Tiles/Planet/Grass/grass.png
+#  variants: 4
+#  placementVariants:
+#  - 1.0
+#  - 1.0
+#  - 1.0
+#  - 1.0
+#  edgeSpritePriority: 1
+#  edgeSprites:
+#    SouthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+#    NorthEast: /Textures/Tiles/Planet/Grass/single_edge.png
+#    NorthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+#    SouthWest: /Textures/Tiles/Planet/Grass/single_edge.png
+#    South: /Textures/Tiles/Planet/Grass/double_edge.png
+#    East: /Textures/Tiles/Planet/Grass/double_edge.png
+#    North: /Textures/Tiles/Planet/Grass/double_edge.png
+#    West: /Textures/Tiles/Planet/Grass/double_edge.png
+#  baseTurf: FloorPlanetDirt
+#  isSubfloor: true
+#  footstepSounds:
+#    collection: FootstepGrass
+#  itemDrop: FloorTileItemGrass
+#  heatCapacity: 99910000
+#  weather: true
+#  indestructible: true
 # Imperial Medieval End
 
 # Lava
@@ -96,7 +96,7 @@
   isSubfloor: true
   footstepSounds:
     collection: FootstepAsteroid
-  heatCapacity: 10000
+  heatCapacity: 99910000
   weather: true
   indestructible: true
 
@@ -120,16 +120,20 @@
   - 0.0166
   - 0.0116
   - 0.0116
-  edgeSpritePriority: 2
+  edgeSpritePriority: 4
   edgeSprites:
-    South: /Textures/Tiles/Planet/Snow/snow_double_edge_south.png
-    East: /Textures/Tiles/Planet/Snow/snow_double_edge_east.png
-    North: /Textures/Tiles/Planet/Snow/snow_double_edge_north.png
-    West: /Textures/Tiles/Planet/Snow/snow_double_edge_west.png
+    SouthEast: /Textures/Tiles/Planet/Snow/single_edge_SE.png
+    NorthEast: /Textures/Tiles/Planet/Snow/single_edge_NE.png
+    NorthWest: /Textures/Tiles/Planet/Snow/single_edge_NW.png
+    SouthWest: /Textures/Tiles/Planet/Snow/single_edge_SW.png
+    South: /Textures/Tiles/Planet/Snow/double_edge_S.png
+    East: /Textures/Tiles/Planet/Snow/double_edge_E.png
+    North: /Textures/Tiles/Planet/Snow/double_edge_N.png
+    West: /Textures/Tiles/Planet/Snow/double_edge_W.png
   isSubfloor: true
   footstepSounds:
     collection: FootstepSnow
-  heatCapacity: 10000
+  heatCapacity: 99910000
   weather: true
   indestructible: true
 
@@ -140,7 +144,7 @@
   sprite: /Textures/Tiles/Planet/Snow/ice.png
   isSubfloor: true
   friction: 0.05
-  heatCapacity: 10000
+  heatCapacity: 99910000
   weather: true
   mobFriction: 0.5
   mobFrictionNoInput: 0.05
@@ -152,16 +156,20 @@
   id: FloorSnowDug
   name: tiles-snow-dug
   sprite: /Textures/Tiles/Planet/Snow/snow_dug.png
-  edgeSpritePriority: 1
+  edgeSpritePriority: 2
   edgeSprites:
-    South: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_south.png
-    East: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_east.png
-    North: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_north.png
-    West: /Textures/Tiles/Planet/Snow/snow_dug_double_edge_west.png
+    SouthEast: /Textures/Tiles/Planet/Snow/dug_single_edge_SE.png
+    NorthEast: /Textures/Tiles/Planet/Snow/dug_single_edge_NE.png
+    NorthWest: /Textures/Tiles/Planet/Snow/dug_single_edge_NW.png
+    SouthWest: /Textures/Tiles/Planet/Snow/dug_single_edge_SW.png
+    South: /Textures/Tiles/Planet/Snow/dug_double_edge_S.png
+    East: /Textures/Tiles/Planet/Snow/dug_double_edge_E.png
+    North: /Textures/Tiles/Planet/Snow/dug_double_edge_N.png
+    West: /Textures/Tiles/Planet/Snow/dug_double_edge_W.png
   isSubfloor: true
   footstepSounds:
     collection: FootstepSnow
-  heatCapacity: 10000
+  heatCapacity: 99910000
   weather: true
   indestructible: true
 

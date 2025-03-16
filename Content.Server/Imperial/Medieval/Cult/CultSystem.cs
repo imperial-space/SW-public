@@ -89,25 +89,27 @@ namespace Content.Server.Cult
         }
         private void OnBloodMeleeHit(EntityUid uid, CultBloodMeleeComponent component, MeleeHitEvent args)
         {
+
             if (!TryComp<CultCursedComponent>(args.User, out var cursed)) return;
             foreach (var entity in args.HitEntities)
             {
                 if (entity != args.User) continue;
+                if (cursed.CurseLevel > 75)
+                {
+                    _chat.TrySendInGameICMessage(cursed.Owner, "Кровь культу была отдана совсем недавно, больше ее пока не нужно, надо подождать", InGameICChatType.Whisper, false);
+                    return;
+                }
                 var xform = Transform(entity);
                 var coords = xform.Coordinates;
                 foreach (var target in _lookup.GetEntitiesInRange(coords, 2.5f))
                 {
                     if (TryComp<CultTeleportComponent>(target, out var tp) && !tp.Base)
                     {
+
+                        _chat.TrySendInGameICMessage(cursed.Owner, "Ave truth...", InGameICChatType.Whisper, false);
+                        cursed.CurseLevel = cursed.MaxCurseLevel;
                         foreach (var altar in EntityManager.EntityQuery<CultAltarComponent>())
                         {
-                            if (cursed.CurseLevel > 75)
-                            {
-                                _chat.TrySendInGameICMessage(cursed.Owner, "Кровь культу была отдана совсем недавно, больше ее пока не нужно, надо подождать", InGameICChatType.Whisper, false);
-                                continue;
-                            }
-                            _chat.TrySendInGameICMessage(cursed.Owner, "Ave truth...", InGameICChatType.Whisper, false);
-                            cursed.CurseLevel = cursed.MaxCurseLevel;
                             var axform = Transform(altar.Owner);
                             var acoords = axform.Coordinates;
                             Spawn("MedievalCultCrystallRed", acoords);

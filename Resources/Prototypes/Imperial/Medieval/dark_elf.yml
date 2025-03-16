@@ -149,6 +149,17 @@
         mask:
         - MedievalSpawnerLayer
         hard: false # imperial medieval end
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      Ancient: Understand
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      Elf: Speak
   - type: Vocal
     sounds:
       Male: MaleHuman

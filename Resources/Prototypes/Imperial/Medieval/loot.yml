@@ -478,6 +478,28 @@
         prob: 0.05
       - id: MedievalMaskFace
         prob: 0.11
+      - id: MedievalStrawHat
+        prob: 0.05
+      - id: MedievalWhiteHat
+        prob: 0.05
+      - id: MedievalRedHat
+        prob: 0.03
+      - id: MedievalPurpleHat
+        prob: 0.03
+      - id: MedievalMotleyHat
+        prob: 0.03
+      - id: MedievalWreath
+        prob: 0.05
+      - id: MedievalWanderHat
+        prob: 0.03
+      - id: MedievalGreenHat
+        prob: 0.05
+      - id: MedievalGrayHat
+        prob: 0.05
+      - id: MedievalBlueHat
+        prob: 0.03
+      - id: MedievalBlackHat
+        prob: 0.05
       - id: MedievalClothingOuterArmorLeatherLight
         prob: 0.035
       - id: MedievalClothingOuterArmorChainMailLight
