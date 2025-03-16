@@ -366,8 +366,8 @@
 - type: entity
   parent: ClothingNeckBase
   id: MedievalClothingNeckCloakInqVeteran
-  name: Плащ ветерана инквизиции адского пламени
-  description: Наградной плащ, выдаваемый бойцам инквизиции адского пламени за выдающиеся заслуги. Отличается от обычного, наличием серебряного наплечника и золотого плетения.
+  name: inq veteran cloak
+  description: A cloak to distinguish allies.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/InqVeteranCloak.rsi

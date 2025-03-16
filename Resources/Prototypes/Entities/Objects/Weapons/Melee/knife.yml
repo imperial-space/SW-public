@@ -55,8 +55,7 @@
       types:
         Slash: 8
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7 # imperial medieval end
 
 - type: entity

@@ -812,8 +812,7 @@
   - type: NocturnBadFood
     timesCanBeBiten: 8
   - type: MeleeThrowOnHit
-    lifetime: 0.8
-    minLifetime: 0.05
+    distance: 4
     speed: 5
   - type: LanguageSpeaker
     languages:

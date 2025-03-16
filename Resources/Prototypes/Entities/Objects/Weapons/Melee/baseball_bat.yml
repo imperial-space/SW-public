@@ -46,8 +46,7 @@
     - BaseballBat
   # Imperial Medieval Start
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 1
     speed: 2.1
   # Imperial Medieval End
 

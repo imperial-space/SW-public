@@ -103,8 +103,7 @@
     tags:
     - Spear
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -156,8 +155,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -196,8 +194,7 @@
     - Spear
     - Knife
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -255,8 +252,7 @@
     tags:
     - Spear
   - type: MeleeThrowOnHit
-    lifetime: 0.1
-    minLifetime: 0.05
+    distance: 4
     speed: 2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -309,8 +305,7 @@
     tags:
     - Spear
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 4
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -368,8 +363,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 1
     speed: 1.7
   - type: TrashClear
     safe: true
@@ -404,8 +398,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 1
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -462,8 +455,7 @@
     intensity: 1
     slope: 1
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -523,8 +515,7 @@
     intensity: 1
     slope: 1
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -577,8 +568,7 @@
   - type: Item
     size: Huge
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -641,9 +631,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.7
-    minLifetime: 0.05
-    speed: 4
+    distance: 6
+    speed: 3
   - type: StaminaDamageOnHit
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -741,8 +730,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.3
-    minLifetime: 0.05
+    distance: 2
     speed: 1.2
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -801,8 +789,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 3
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -840,8 +827,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.3
-    minLifetime: 0.05
+    distance: 0.3
     speed: 1
   - type: Meltable
     resourceCount: 2
@@ -880,8 +866,7 @@
     safeToHitGroup: ore
     resourceWaste: 0.1
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -922,8 +907,7 @@
     safeToHitGroup: ore
     resourceWaste: 0.1
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -956,8 +940,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: Item
     size: Small
@@ -1258,8 +1241,7 @@
   - type: MeleeWeapon
     attackRate: 0.7
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 0.3
     speed: 2.1
   - type: Meltable
     resourceCount: 1
@@ -1381,8 +1363,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1444,8 +1425,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1532,8 +1512,7 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    lifetime: 0.1
-    minLifetime: 0.05
+    distance: 4
     speed: 2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1594,8 +1573,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1656,8 +1634,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1734,8 +1711,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1812,8 +1788,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1885,8 +1860,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: Meltable
     resourceCount: 7
@@ -1955,8 +1929,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2085,8 +2058,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2157,8 +2129,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2213,8 +2184,7 @@
     - Spear
     - Knife
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2301,8 +2271,7 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    lifetime: 0.1
-    minLifetime: 0.05
+    distance: 4
     speed: 2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2363,8 +2332,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2425,8 +2393,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2503,8 +2470,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2569,8 +2535,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.75
-    minLifetime: 0.05
+    distance: 6
     speed: 4.4
   - type: StaminaDamageOnHit
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2636,8 +2601,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 11 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2705,8 +2669,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 16 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2769,8 +2732,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.67
-    minLifetime: 0.05
+    distance: 5
     speed: 4
   - type: StaminaDamageOnHit
     damage: 35 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2816,8 +2778,7 @@
   #  quickEquip: false
   - type: DisarmMalus
   - type: MeleeThrowOnHit
-    lifetime: 0.7
-    minLifetime: 0.05
+    distance: 2
     speed: 3
   - type: StaminaDamageOnHit
     damage: 55 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2881,8 +2842,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2952,8 +2912,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 2
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3023,8 +2982,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3100,8 +3058,7 @@
     unequipSound:
       path: /Audio/Imperial/Medieval/sword_eqip.ogg
   - type: MeleeThrowOnHit
-    lifetime: 0.3
-    minLifetime: 0.05
+    distance: 0.6
     speed: 1.4
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3180,8 +3137,7 @@
     - Spear
     - Knife
   - type: MeleeThrowOnHit
-    lifetime: 0.3
-    minLifetime: 0.05
+    distance: 0.6
     speed: 1.4
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3281,8 +3237,7 @@
     unequipSound:
       path: /Audio/Imperial/Medieval/sword_eqip.ogg
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 1
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3365,8 +3320,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 1
     speed: 1.7
 
 - type: entity
@@ -3452,8 +3406,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3522,8 +3475,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3576,8 +3528,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3672,3 +3623,116 @@
       walkModifier: 0.98
       sprintModifier: 0.98
       mirrorClothingModifier: false
+- type: entity
+  name: pickaxe
+  parent: BaseItem
+  id: MedievalPickaxeEbonit
+  description: Ebonit pickaxe.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - Pickaxe
+  - type: MeleeParry
+    parryChanse: 0.3
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
+    state: pickaxe
+  - type: MeleeWeapon
+    attackRate: 0.7
+    wideAnimationRotation: -135
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+      params:
+        volume: -3
+    clickDamageModifier: 1.7
+    damage:
+      types:
+        Piercing: 18
+        Structural: 18
+        ParryAble: 1
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 10
+        Structural: 50
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.05
+  - type: MeleeThrowOnHit
+    distance: 3
+    speed: 2.1
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
+    storedRotation: -45
+  - type: UseDelay
+  
+- type: entity
+  name: pickaxe
+  parent: BaseItem
+  id: MedievalPickaxeForStone
+  description: ForStone pickaxe.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - Pickaxe
+  - type: MeleeParry
+    parryChanse: 0.36
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
+    state: pickaxe
+  - type: MeleeWeapon
+    attackRate: 1.5
+    wideAnimationRotation: -135
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+      params:
+        volume: -3
+    clickDamageModifier: 1.7
+    damage:
+      types:
+        Piercing: 9
+        Structural: 9
+        ParryAble: 1
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 5
+        Structural: 25
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.05
+  - type: MeleeThrowOnHit
+    distance: 2
+    speed: 2.1
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
+    storedRotation: -45
+  - type: UseDelay
