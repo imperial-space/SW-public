@@ -2218,7 +2218,7 @@
   id: MedievalPickaxeEbonit
   craftTime: 5
   stacks:
-    MedievalIronIngot: 3
+    MedievalSteelIngot: 8
     MedievalEbonitIngot: 6
   result: MedievalPickaxeEbonit
   
@@ -2226,6 +2226,6 @@
   id: MedievalPickaxeForStone
   craftTime: 5
   stacks:
-    MedievalIronIngot: 3
+    MedievalGold: 8
     MedievalForstoneIngot: 6
   result: MedievalPickaxeForStone
