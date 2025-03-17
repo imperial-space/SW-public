@@ -44,4 +44,20 @@ public abstract partial class SharedFriendsSystem
 
         return container.Value.Comp.Objectives.TryGetValue(proto, out var objectives) && objectives.TryGetValue(group, out val);
     }
+
+    public bool GetFactionMemberById(int id, [NotNullWhen(true)] out EntityUid? entity)
+    {
+        entity = null;
+
+        var query = EntityQueryEnumerator<FriendsComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.MemberID == id)
+            {
+                entity = uid;
+                return true;
+            }
+        }
+        return false;
+    }
 }

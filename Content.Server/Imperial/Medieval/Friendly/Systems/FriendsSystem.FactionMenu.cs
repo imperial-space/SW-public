@@ -101,20 +101,24 @@ public sealed partial class FriendsSystem
         }
     }
 
-    public bool GetFactionMemberById(int id, [NotNullWhen(true)] out EntityUid? entity)
+    public void SetJob(EntityUid uid, ProtoId<MedievalFactionPrototype> faction, string job, string jobPrefix = "")
     {
-        entity = null;
+        var comp = EnsureComp<FriendsComponent>(uid);
+        var oldFaction = comp.Faction;
 
-        var query = EntityQueryEnumerator<FriendsComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (comp.MemberID == id)
-            {
-                entity = uid;
-                return true;
-            }
-        }
-        return false;
+        if (!TryGetFactionDataContainer(out var container))
+            return;
+        if (!TryGetFactionMemberData(comp.MemberID, out var data))
+            return;
+
+        data.Group = FactionMemberGroup.None;
+        data.JobName = job;
+        data.JobPrefix = jobPrefix;
+
+        container.Value.Comp.CachedMembers.GetOrNew(oldFaction).Remove(comp.MemberID);
+        container.Value.Comp.CachedMembers.GetOrNew(faction).Add(comp.MemberID, data);
+        RefreshFactionMenu(faction);
+        RefreshFactionMenu(oldFaction);
     }
 
     public void RefreshFactionMenu(ProtoId<MedievalFactionPrototype> proto)
