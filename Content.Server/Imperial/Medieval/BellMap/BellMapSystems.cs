@@ -31,7 +31,7 @@ public sealed partial class BellMapSystem : EntitySystem
             if (mapId == _transformSystem.GetMapId(uidd.ToCoordinates()))
             {
                 _popupSystem.PopupEntity(Loc.GetString(comp.Locale), uidd, uidd);
-                _audioSystem.PlayEntity(comp.Sound, Filter.Entities(uidd), uidd, false, comp.Params);
+                _audioSystem.PlayEntity(comp.Sound, Filter.Entities(uidd), uidd, false);
             }
         }
     }

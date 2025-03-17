@@ -4,7 +4,6 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Pinpointer;
 using Robust.Server.GameObjects;
-using Content.Server.Pinpointer;
 
 namespace Content.Server.Imperial.PinpointerCritical.Systems;
 
@@ -12,6 +11,7 @@ public sealed partial class PinpointerCriticalSystem : EntitySystem
 {
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly SharedPinpointerSystem _pinpointer = default!;
+    [Dependency] private readonly ISawmill _sawmill = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -43,11 +43,11 @@ public sealed partial class PinpointerCriticalSystem : EntitySystem
 
         if (closestUid != null)
         {
-            Log.Info($"Ближайший критический моб: {ToPrettyString(closestUid)} на расстоянии {MathF.Sqrt(closestDistance)}: вызвано {ToPrettyString(uid)}");
+            _sawmill.Info($"Ближайший критический моб: {ToPrettyString(closestUid)} на расстоянии {MathF.Sqrt(closestDistance)}: вызвано {ToPrettyString(uid)}");
         }
         else
         {
-            Log.Info($"Критических мобов не найдено: вызвано {ToPrettyString(uid)}");
+            _sawmill.Info($"Критических мобов не найдено: вызвано {ToPrettyString(uid)}");
         }
         if (TryComp<PinpointerComponent>(ev.Target, out var pinComp) && closestUid != null)
         {

@@ -26,7 +26,7 @@ public sealed class DurabilityDisplaySystem : EntitySystem
         private readonly RichTextLabel _label;
         private readonly DurabilityDisplayComponent _component;
 
-        private string? _lastDurability;
+        private DurabilityDisplayComponent.Durability? _lastDurability;
 
         public DurabilityStatusControl(Entity<DurabilityDisplayComponent> entity)
         {
@@ -45,29 +45,29 @@ public sealed class DurabilityDisplaySystem : EntitySystem
 
             UpdateText();
         }
-        private static string GetName(string i)
+        private static string GetName(DurabilityDisplayComponent.Durability i)
         {
             return i switch
             {
-                "up" => "Дополнительно заточено",
-                "full" => "В идеальном состоянии",
-                "almostfull" => "Слегка поцарапано",
-                "damaged" => "Видны повреждения",
-                "badlydamaged" => "В отвратном состоянии",
-                "broken" => "Вот-вот сломается",
+                DurabilityDisplayComponent.Durability.Up => "Дополнительно заточено",
+                DurabilityDisplayComponent.Durability.Full => "В идеальном состоянии",
+                DurabilityDisplayComponent.Durability.AlmostFull => "Слегка поцарапано",
+                DurabilityDisplayComponent.Durability.Damaged => "Видны повреждения",
+                DurabilityDisplayComponent.Durability.BadlyDamaged => "В отвратном состоянии",
+                DurabilityDisplayComponent.Durability.Broken => "Вот-вот сломается",
                 _ => "",
             };
         }
-        private static string GetColor(string i)
+        private static string GetColor(DurabilityDisplayComponent.Durability i)
         {
             return i switch
             {
-                "up" => "cyan",
-                "full" => "green",
-                "almostfull" => "#90ee90",
-                "damaged" => "yellow",
-                "badlydamaged" => "orange",
-                "broken" => "red",
+                DurabilityDisplayComponent.Durability.Up => "cyan",
+                DurabilityDisplayComponent.Durability.Full => "green",
+                DurabilityDisplayComponent.Durability.AlmostFull => "#90ee90",
+                DurabilityDisplayComponent.Durability.Damaged => "yellow",
+                DurabilityDisplayComponent.Durability.BadlyDamaged => "orange",
+                DurabilityDisplayComponent.Durability.Broken => "red",
                 _ => "",
             };
         }
@@ -75,7 +75,7 @@ public sealed class DurabilityDisplaySystem : EntitySystem
         {
             _lastDurability = _component.Dub;
 
-            _label.SetMarkup($"[color={GetColor(_component.Dub.ToLower())}]{Robust.Shared.Localization.Loc.GetString("MedievalDurability", ("durab", GetName(_component.Dub.ToLower())))}");
+            _label.SetMarkup($"[color={GetColor(_component.Dub)}]{Robust.Shared.Localization.Loc.GetString("MedievalDurability", ("durab", GetName(_component.Dub)))}");
         }
     }
 }
