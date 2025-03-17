@@ -2213,3 +2213,19 @@
     MedievalIronPlateSmall: 4
     MedievalLeather1: 1
   result: MedievalClothingFeetNorthern
+
+- type: CP14Recipe
+  id: MedievalPickaxeEbonit
+  craftTime: 5
+  stacks:
+    MedievalSteelIngot: 8
+    MedievalEbonitIngot: 5
+  result: MedievalPickaxeEbonit
+  
+- type: CP14Recipe
+  id: MedievalPickaxeForStone
+  craftTime: 5
+  stacks:
+    MedievalGold: 8
+    MedievalForstoneIngot: 5
+  result: MedievalPickaxeForStone

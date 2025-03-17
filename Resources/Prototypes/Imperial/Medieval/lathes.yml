@@ -1091,16 +1091,20 @@
     - MedievalClothingHeadHelmetSaladLight
     - MedievalClothingHeadHelmetNormand
     - MedievalClothingHeadHelmetNormandFree
+    - MedievalClothingHeadHelmetNorthern
     - MedievalClothingHeadHelmetBacinet
     - MedievalClothingHeadHelmetShapel
     - MedievalClothingHeadHelmetCrusader
     - MedievalIronGloves
     - MedievalIronGlovesBrig
+    - MedievalNorthernGloves
     - MedievalIronGlovesBear
     - MedievalClothingFeetSteel
+    - MedievalClothingFeetNorthern
     - MedievalClothingOuterArmorChainMailLight
     - MedievalClothingOuterArmorChainMail
     - MedievalClothingOuterArmorIronCuirassLight
+    - MedievalClothingOuterArmorNorthern
     - MedievalClothingOuterArmorIronCuirass
     - MedievalClothingOuterArmorBrigantin
     - ClothingOuterArmorPodWars
@@ -1147,6 +1151,8 @@
     - MedievalShovel
     - MedievalPickaxe
     - MedievalPickaxeSteel
+    - MedievalPickaxeForStone
+    - MedievalPickaxeEbonit
     - MedievalRepairStone
     - MedievalHoe
     - MedievalScythe
@@ -1160,10 +1166,6 @@
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
     - MedievalWeaponTurretNanoTrasenCraft
-    - MedievalClothingHeadHelmetNorthern
-    - MedievalClothingOuterArmorNorthern
-    - MedievalNorthernGloves
-    - MedievalClothingFeetNorthern
 
 - type: entity
   parent: CP14BaseWorkbench
