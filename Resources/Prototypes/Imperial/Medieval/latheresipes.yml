@@ -2219,7 +2219,7 @@
   craftTime: 5
   stacks:
     MedievalSteelIngot: 8
-    MedievalEbonitIngot: 6
+    MedievalEbonitIngot: 5
   result: MedievalPickaxeEbonit
   
 - type: CP14Recipe
@@ -2227,5 +2227,5 @@
   craftTime: 5
   stacks:
     MedievalGold: 8
-    MedievalForstoneIngot: 6
+    MedievalForstoneIngot: 5
   result: MedievalPickaxeForStone
