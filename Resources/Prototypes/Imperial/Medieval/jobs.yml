@@ -3384,7 +3384,7 @@
   special:
   - !type:AddComponentSpecial
     components:
-    - type: GigaMonkeyAccent
+    #- type: GigaMonkeyAccent
     - type: Friends
       faction: "племя"
     #- type: IdentityFaction
@@ -3457,7 +3457,7 @@
     - type: Mana
       maxMana: 180
       regen: 0.65
-    - type: GigaMonkeyAccent
+    #- type: GigaMonkeyAccent
     - type: Friends
       faction: "племя"
     #- type: IdentityFaction
@@ -3470,14 +3470,14 @@
     - type: LanguageSpeaker
       languages:
         #ommon: Understand
-        #Goblin: Speak
+        Goblin: Understand
         Ancient: Understand
         Tribe: Speak
         #Orc: Speak
         #Cursed: Speak
-        #Growling: Speak
-        #Hissing: Speak
-        #Elf: Speak
+        Growling: Speak
+        Hissing: Understand
+        Elf: Understand
 
 # MEDIEVAL Tribe Leader
 
