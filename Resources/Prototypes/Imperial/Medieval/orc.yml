@@ -122,6 +122,17 @@
   - type: Body
     prototype: Orc
     requiredLegs: 2
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      Tribe: Understand
+      Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
   - type: Butcherable
     butcheringType: Spike
     spawned:

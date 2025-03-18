@@ -55,8 +55,7 @@
       types:
         Slash: 8
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7 # imperial medieval end
 
 - type: entity
@@ -88,7 +87,7 @@
 
 - type: entity
   name: combat knife
-  parent: [BaseKnife, BaseRestrictedContraband]
+  parent: [BaseKnife, BaseSecurityContraband]
   id: CombatKnife
   description: A deadly knife intended for melee confrontations.
   components:

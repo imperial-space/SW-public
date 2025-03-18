@@ -1090,6 +1090,19 @@
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorWhiteCharmerLight
+  name: MedievalClothingOuterArmorWhiteCharmerLight
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/white_charmer_light.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/white_charmer_light.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
   id: MedievalClothingOuterArmorCharmerLightLegion
   name: cloth
   description: An upgraded armor with iron plates to protect against melee weapons.
@@ -1165,6 +1178,19 @@
     damageCoefficient: 0.75
   - type: ManaRegen
     regen: 0.7
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorWhiteCharmerWeak
+  name: MedievalClothingOuterArmorWhiteCharmerWeak
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/white_charmer_weak.rsi
+  - type: Clothing
+    equipDelay: 3
+    unequipDelay: 3
+    sprite: Imperial/Medieval/Clothing/Armor/white_charmer_weak.rsi
 
 - type: entity
   parent: ClothingOuterArmorPodWars
@@ -1512,3 +1538,27 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.99
     sprintModifier: 0.99
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLightLegion
+  id: MedievalClothingOuterArmorCeremonialRobe
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_ceremonial_robe.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_ceremonial_robe.rsi
+  - type: ToggleableClothing
+    clothingPrototype: MedievalClothingHeadHelmetCeremonialRobe
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLegion
+  id: MedievalClothingHeadHelmetCeremonialRobe
+  name: clooth
+  description: Medieval salad helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/golden_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/golden_head.rsi

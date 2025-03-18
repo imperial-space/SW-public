@@ -30,7 +30,7 @@
   parent: MedievalLateMobSpawnerBase
   components:
   - type: SlowMobSpawn
-    spawnMob: MedievalMobWolf
+    spawnMob: MedievalMobWolfGhost
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobBear
@@ -102,7 +102,16 @@
   parent: MedievalLateMobSpawnerBase
   components:
   - type: SlowMobSpawn
-    spawnMob: MedievalMobSkeletLegion
+    spawnMob: MedievalSpawnerSkeletonSpawnerLegion
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobSkeletLegionGhost
+  name: late mob spawn legion ghost
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalSpawnerSkeletonSpawnerLegionGhost
+
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobSkeletDark
@@ -111,6 +120,38 @@
   components:
   - type: SlowMobSpawn
     spawnMob: MedievalMobSkeletDark
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobSkeletMace
+  name: late mob spawn mace skelet
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletMace
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobSkeletDagger
+  name: late mob spawn dagger skelet
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletDagger
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobSkeletHalberd
+  name: late mob spawn halberd skelet
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletHalberd
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobSkeletSpear
+  name: late mob spawn spear skelet
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobSkeletSpear
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobHunterGhost

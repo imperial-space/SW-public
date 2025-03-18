@@ -45,9 +45,9 @@
     falloffPower: 2
   - type: GravityWell
     maxRange: 2
-    baseRadialAcceleration: 35
-    baseTangentialAcceleration: 10
-    gravPulsePeriod: 0.01
+    baseRadialAcceleration: 25
+    baseTangentialAcceleration: 7
+    gravPulsePeriod: 0.09
   - type: ProjectileCursorFollower
   - type: TriggerOnSimilarFixtureCollide
     fixtureID: blackHoleExplode
@@ -116,9 +116,9 @@
     falloffPower: 1.75
   - type: GravityWell
     maxRange: 3
-    baseRadialAcceleration: 100
-    baseTangentialAcceleration: 10
-    gravPulsePeriod: 0.01
+    baseRadialAcceleration: 60
+    baseTangentialAcceleration: 8
+    gravPulsePeriod: 0.07
   - type: ProjectileCursorFollower
   - type: TriggerOnSimilarFixtureCollide
     fixtureID: blackHoleExplode
@@ -187,9 +187,9 @@
     falloffPower: 1.5
   - type: GravityWell
     maxRange: 5
-    baseRadialAcceleration: 145
-    baseTangentialAcceleration: 10
-    gravPulsePeriod: 0.01
+    baseRadialAcceleration: 85
+    baseTangentialAcceleration: 9
+    gravPulsePeriod: 0.07
   - type: ProjectileCursorFollower
   - type: TriggerOnSimilarFixtureCollide
     fixtureID: blackHoleExplode

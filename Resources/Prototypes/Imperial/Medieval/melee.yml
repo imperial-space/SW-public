@@ -25,7 +25,7 @@
     angle: 0
     animation: WeaponArcThrust
   - type: Item
-    size: Large
+    size: Huge
   - type: Clothing
     quickEquip: false
     slots:
@@ -103,8 +103,7 @@
     tags:
     - Spear
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -156,8 +155,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -175,7 +173,7 @@
     #size: Tiny
     state: icon
   - type: Item
-    size: Tiny
+    size: Small
     sprite: Imperial/Medieval/Melee/dagger.rsi
   - type: MeleeWeapon
     attackRate: 16
@@ -196,8 +194,7 @@
     - Spear
     - Knife
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -226,7 +223,7 @@
     range: 3.5
     damage:
       types:
-        Piercing: 16
+        Piercing: 15
         Caustic: 4
         ParryAble: 1
     angle: 0
@@ -255,9 +252,8 @@
     tags:
     - Spear
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
-    speed: 2.1
+    distance: 4
+    speed: 2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -309,8 +305,7 @@
     tags:
     - Spear
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 4
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -343,7 +338,7 @@
   - type: MedievalMeleeResource
     resourceWaste: 0.2
   - type: Item
-    size: Large
+    size: Normal
   - type: Clothing
     sprite: Imperial/Medieval/Melee/wooden_sword.rsi
     slots:
@@ -368,8 +363,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 1
     speed: 1.7
   - type: TrashClear
     safe: true
@@ -387,6 +381,8 @@
     damage:
       types:
         Blunt: 7
+  - type: Item
+    size: Normal
   - type: DamageOtherOnHit
     damage:
       types:
@@ -402,8 +398,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 1
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -460,8 +455,7 @@
     intensity: 1
     slope: 1
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -521,8 +515,7 @@
     intensity: 1
     slope: 1
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -575,8 +568,7 @@
   - type: Item
     size: Huge
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -623,7 +615,7 @@
         Blunt: 18
         Structural: 34
   - type: Item
-    size: Ginormous
+    size: Huge
   - type: DamageOtherOnHit
     damage:
       types:
@@ -639,9 +631,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.7
-    minLifetime: 0.05
-    speed: 4
+    distance: 6
+    speed: 3
   - type: StaminaDamageOnHit
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -671,6 +662,7 @@
       path: /Audio/Weapons/bladeslice.ogg
   - type: Item
     sprite: Imperial/Medieval/Melee/medieval_hoe.rsi
+    size: Normal
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -712,6 +704,7 @@
     safeToHitGroup: tree
   - type: Item
     sprite: Imperial/Medieval/Melee/medieval_hatchet.rsi
+    size: Normal
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -737,8 +730,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.3
-    minLifetime: 0.05
+    distance: 2
     speed: 1.2
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -774,7 +766,7 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Item
-    size: Normal
+    size: Huge
   - type: Clothing
     sprite: Imperial/Medieval/Melee/medieval_scythe.rsi
     slots:
@@ -797,8 +789,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 3
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -825,6 +816,7 @@
         ParryAble: 1
   - type: Item
     sprite: Imperial/Medieval/Melee/medieval_clippers.rsi
+    size: Small
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -835,8 +827,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.3
-    minLifetime: 0.05
+    distance: 0.3
     speed: 1
   - type: Meltable
     resourceCount: 2
@@ -875,8 +866,7 @@
     safeToHitGroup: ore
     resourceWaste: 0.1
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -917,8 +907,7 @@
     safeToHitGroup: ore
     resourceWaste: 0.1
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -951,9 +940,10 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
+  - type: Item
+    size: Small
 
 - type: entity
   name: wooden shield
@@ -967,6 +957,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: woodknight
+      size: Normal
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1015,6 +1006,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: wooden
+      size: Normal
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1063,6 +1055,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: buckler
+      size: Normal
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1117,6 +1110,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: inf_medieval
+      size: Large
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1173,6 +1167,7 @@
     - type: Item
       sprite: Imperial/Medieval/Melee/shields.rsi
       heldPrefix: iron-buckler
+      size: Normal
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1246,11 +1241,12 @@
   - type: MeleeWeapon
     attackRate: 0.7
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 0.3
     speed: 2.1
   - type: Meltable
     resourceCount: 1
+  - type: Item
+    size: Large
 
 - type: entity
   id: MedievalWrench
@@ -1367,8 +1363,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1430,8 +1425,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1460,7 +1454,7 @@
     range: 2.6
     damage:
       types:
-        Piercing: 9
+        Piercing: 8
         ParryAble: 1
     angle: 0
     animation: WeaponArcThrust
@@ -1471,7 +1465,7 @@
   - type: MedievalMeleeResource
     resourceWaste: 0.7
   - type: Item
-    size: Large
+    size: Huge
   - type: Clothing
     quickEquip: false
     slots:
@@ -1482,7 +1476,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 9
+        Piercing: 7
   - type: DamageOtherOnHit
     damage:
       types:
@@ -1518,9 +1512,8 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
-    speed: 2.1
+    distance: 4
+    speed: 2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -1580,8 +1573,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1619,7 +1611,7 @@
         ParryAble: 1
     #resetOnHandSelected: false
   - type: Item
-    size: Normal
+    size: Large
   - type: DisarmMalus
   - type: DamageOtherOnHit
     damage:
@@ -1642,8 +1634,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1720,8 +1711,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1798,8 +1788,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1871,8 +1860,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: Meltable
     resourceCount: 7
@@ -1941,8 +1929,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2071,8 +2058,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2143,8 +2129,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2199,8 +2184,7 @@
     - Spear
     - Knife
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2229,7 +2213,7 @@
     range: 2.75
     damage:
       types:
-        Piercing: 11
+        Piercing: 9
         ParryAble: 1
     angle: 0
     animation: WeaponArcThrust
@@ -2240,7 +2224,7 @@
   - type: MedievalMeleeResource
     resourceWaste: 0.75
   - type: Item
-    size: Large
+    size: Huge
   - type: Clothing
     quickEquip: false
     slots:
@@ -2251,7 +2235,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 13
+        Piercing: 11
   - type: DamageOtherOnHit
     damage:
       types:
@@ -2287,9 +2271,8 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
-    speed: 2.1
+    distance: 4
+    speed: 2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2349,8 +2332,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2411,8 +2393,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2489,8 +2470,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.6
-    minLifetime: 0.05
+    distance: 5
     speed: 3
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2539,7 +2519,7 @@
         Blunt: 29
         Structural: 79
   - type: Item
-    size: Ginormous
+    size: Huge
   - type: DamageOtherOnHit
     damage:
       types:
@@ -2555,8 +2535,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.75
-    minLifetime: 0.05
+    distance: 6
     speed: 4.4
   - type: StaminaDamageOnHit
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2622,8 +2601,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 11 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2691,8 +2669,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 16 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2755,14 +2732,13 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.67
-    minLifetime: 0.05
+    distance: 5
     speed: 4
   - type: StaminaDamageOnHit
     damage: 35 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
 - type: entity
-  name: falshion
+  name: LongAxe
   parent: BaseItem
   id: MedievalLongAxe
   description: An ancient war blade.
@@ -2793,7 +2769,7 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Item
-    size: Normal
+    size: Huge
   #- type: Clothing
   #  sprite: Imperial/Medieval/Melee/long_axe.rsi
   #  slots:
@@ -2802,8 +2778,7 @@
   #  quickEquip: false
   - type: DisarmMalus
   - type: MeleeThrowOnHit
-    lifetime: 0.7
-    minLifetime: 0.05
+    distance: 2
     speed: 3
   - type: StaminaDamageOnHit
     damage: 55 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2867,8 +2842,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.27
-    minLifetime: 0.05
+    distance: 0.3
     speed: 0.7
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2938,8 +2912,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 2
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2980,7 +2953,7 @@
   - type: MedievalMeleeResource
     resourceWaste: 0.4
   - type: Item
-    size: Normal
+    size: Large
   - type: Clothing
     sprite: Imperial/Medieval/Melee/necro_iron_sword.rsi
     slots:
@@ -3009,8 +2982,7 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 2
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3036,7 +3008,7 @@
     size: Small
     state: icon
   - type: Item
-    size: Normal
+    size: Small
     sprite: Imperial/Medieval/Melee/iron_short_sword.rsi
   - type: MeleeParry
     parryChanse: 0.52
@@ -3086,8 +3058,7 @@
     unequipSound:
       path: /Audio/Imperial/Medieval/sword_eqip.ogg
   - type: MeleeThrowOnHit
-    lifetime: 0.3
-    minLifetime: 0.05
+    distance: 0.6
     speed: 1.4
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3166,8 +3137,7 @@
     - Spear
     - Knife
   - type: MeleeThrowOnHit
-    lifetime: 0.3
-    minLifetime: 0.05
+    distance: 0.6
     speed: 1.4
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3267,8 +3237,7 @@
     unequipSound:
       path: /Audio/Imperial/Medieval/sword_eqip.ogg
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 1
     speed: 1.7
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3351,8 +3320,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.33
-    minLifetime: 0.05
+    distance: 1
     speed: 1.7
 
 - type: entity
@@ -3438,8 +3406,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3508,8 +3475,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3562,8 +3528,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    lifetime: 0.4
-    minLifetime: 0.05
+    distance: 2
     speed: 2.1
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -3658,3 +3623,116 @@
       walkModifier: 0.98
       sprintModifier: 0.98
       mirrorClothingModifier: false
+- type: entity
+  name: pickaxe
+  parent: BaseItem
+  id: MedievalPickaxeEbonit
+  description: Ebonit pickaxe.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - Pickaxe
+  - type: MeleeParry
+    parryChanse: 0.3
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
+    state: pickaxe
+  - type: MeleeWeapon
+    attackRate: 0.7
+    wideAnimationRotation: -135
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+      params:
+        volume: -3
+    clickDamageModifier: 1.7
+    damage:
+      types:
+        Piercing: 18
+        Structural: 18
+        ParryAble: 1
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 10
+        Structural: 50
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.05
+  - type: MeleeThrowOnHit
+    distance: 3
+    speed: 2.1
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: Imperial/Medieval/Melee/ebonit_pickaxe.rsi
+    storedRotation: -45
+  - type: UseDelay
+  
+- type: entity
+  name: pickaxe
+  parent: BaseItem
+  id: MedievalPickaxeForStone
+  description: ForStone pickaxe.
+  components:
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+          variation: 0.02
+          volume: 1
+  - type: Tag
+    tags:
+    - Pickaxe
+  - type: MeleeParry
+    parryChanse: 0.36
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
+    state: pickaxe
+  - type: MeleeWeapon
+    attackRate: 1.5
+    wideAnimationRotation: -135
+    soundHit:
+      path: "/Audio/Weapons/smash.ogg"
+      params:
+        volume: -3
+    clickDamageModifier: 1.7
+    damage:
+      types:
+        Piercing: 9
+        Structural: 9
+        ParryAble: 1
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 5
+        Structural: 25
+  - type: MedievalDiggerInstrument
+  - type: MedievalMeleeResource
+    safeToHitGroup: ore
+    resourceWaste: 0.05
+  - type: MeleeThrowOnHit
+    distance: 2
+    speed: 2.1
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,0
+    - 1,1,1,2
+    sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
+    storedRotation: -45
+  - type: UseDelay

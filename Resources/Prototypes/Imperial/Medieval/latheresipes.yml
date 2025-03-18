@@ -228,12 +228,12 @@
     MedievalEbonitIngot: 12
   result: MedievalClothingOuterArmorEbonit2
 
-- type: CP14Recipe
-  id: MedievalClothingOuterArmorUpIron2
-  craftTime: 26
-  stacks:
-    MedievalSteelIngot: 52
-  result: MedievalClothingOuterArmorUpIron2
+#- type: CP14Recipe
+#  id: MedievalClothingOuterArmorUpIron2
+#  craftTime: 26
+#  stacks:
+#    MedievalSteelIngot: 52
+#  result: MedievalClothingOuterArmorUpIron2
 
 - type: CP14Recipe
   id: MedievalDoorLock
@@ -350,8 +350,9 @@
   id: MedievalGrenade
   craftTime: 13
   stacks:
-    MedievalSteelIngot: 3
-    Gunpowder: 8
+    MedievalSteelIngot: 2
+    MedievalRivets: 1
+    Gunpowder: 6
     MedievalRope: 1
   result: MedievalGrenade
 
@@ -360,7 +361,7 @@
   craftTime: 6
   stacks:
     MedievalRivets: 1
-    WoodPlank: 6
+    WoodPlank: 4
     #MedievalRope: 1
   result: MedievalCatapultAmmoBarrel
 
@@ -369,7 +370,7 @@
   craftTime: 4
   stacks:
     MedievalRivets: 2
-    Gunpowder: 14
+    Gunpowder: 10
     MedievalRope: 1
   entities:
     MedievalCatapultAmmoBarrel: 1
@@ -379,9 +380,9 @@
   id: MedievalCatapultAmmoBarrelAp
   craftTime: 11
   stacks:
-    MedievalIronIngot: 6
-    MedievalSteelIngot: 3
-    Gunpowder: 12
+    MedievalIronIngot: 5
+    MedievalSteelIngot: 1
+    Gunpowder: 6
   entities:
     MedievalGrenade: 1
   result: MedievalCatapultAmmoBarrelAp
@@ -390,7 +391,7 @@
   id: MedievalCatapultAmmoBarrelStone
   craftTime: 3
   stacks:
-    MedievalIronIngot: 4
+    MedievalIronIngot: 2
   result: MedievalCatapultAmmoBarrelStone
 
 - type: CP14Recipe
@@ -511,7 +512,7 @@
   stacks:
     MedievalSteelIngot: 6
     WoodPlank: 4
-  result: MedievalPickaxe
+  result: MedievalPickaxeSteel
 
 - type: CP14Recipe
   id: MedievalIronHalberd
@@ -1789,9 +1790,9 @@
     MedievalRope: 12
     WoodPlank: 30
     MedievalSteelIngot: 1
-    MedievalRivets: 8
+    MedievalRivets: 6
     MedievalIronPlateSmall: 8
-    MedievalIronPlate: 6
+    MedievalIronPlate: 4
     MedievalGear: 5
   result: MedievalCatapultCraft
 
@@ -2212,3 +2213,19 @@
     MedievalIronPlateSmall: 4
     MedievalLeather1: 1
   result: MedievalClothingFeetNorthern
+
+- type: CP14Recipe
+  id: MedievalPickaxeEbonit
+  craftTime: 5
+  stacks:
+    MedievalSteelIngot: 8
+    MedievalEbonitIngot: 5
+  result: MedievalPickaxeEbonit
+  
+- type: CP14Recipe
+  id: MedievalPickaxeForStone
+  craftTime: 5
+  stacks:
+    MedievalGold: 8
+    MedievalForstoneIngot: 5
+  result: MedievalPickaxeForStone

@@ -249,6 +249,17 @@
     heatDamage:
       types:
         Heat : 1.0 #per second, scales with temperature & other constants
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
   - type: TemperatureSpeed
     thresholds:
       301: 0.8

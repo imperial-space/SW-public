@@ -27,12 +27,12 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "neck" ]
+    - map: [ "outerClothing" ]
     - map: [ "back" ]
+    - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -262,9 +262,17 @@
     bloodMultiplier: 1
     fresh: true
   - type: RandomSteal
-  - type: LanguageSpeaker
-    languages:
-      Common: Speak
+  #- type: LanguageSpeaker
+  #  languages:
+  #    Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
 # Imperial Medieval End
 
 - type: entity
@@ -373,12 +381,12 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "neck" ]
+    - map: [ "outerClothing" ]
     - map: [ "back" ]
+    - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

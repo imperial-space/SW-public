@@ -81,7 +81,7 @@
       fixtures:
         fix1:
           shape: !type:PhysShapeCircle
-            radius: 0.4
+            radius: 10
           layer:
           - DoorPassable
           hard: false
@@ -126,7 +126,7 @@
       fixtures:
         fix1:
           shape: !type:PhysShapeCircle
-            radius: 0.4
+            radius: 10
           layer:
           - DoorPassable
           hard: false
@@ -183,7 +183,7 @@
       fixtures:
         fix1:
           shape: !type:PhysShapeCircle
-            radius: 0.4
+            radius: 10
           layer:
           - DoorPassable
           hard: false
@@ -225,7 +225,7 @@
       fixtures:
         fix1:
           shape: !type:PhysShapeCircle
-            radius: 0.4
+            radius: 10
           layer:
           - DoorPassable
           hard: false
@@ -478,6 +478,28 @@
         prob: 0.05
       - id: MedievalMaskFace
         prob: 0.11
+      - id: MedievalStrawHat
+        prob: 0.05
+      - id: MedievalWhiteHat
+        prob: 0.05
+      - id: MedievalRedHat
+        prob: 0.03
+      - id: MedievalPurpleHat
+        prob: 0.03
+      - id: MedievalMotleyHat
+        prob: 0.03
+      - id: MedievalWreath
+        prob: 0.05
+      - id: MedievalWanderHat
+        prob: 0.03
+      - id: MedievalGreenHat
+        prob: 0.05
+      - id: MedievalGrayHat
+        prob: 0.05
+      - id: MedievalBlueHat
+        prob: 0.03
+      - id: MedievalBlackHat
+        prob: 0.05
       - id: MedievalClothingOuterArmorLeatherLight
         prob: 0.035
       - id: MedievalClothingOuterArmorChainMailLight
@@ -1702,8 +1724,8 @@
         prob: 0.08
       - id: MedievalClothingOuterArmorUpIron
         prob: 0.012
-      - id: MedievalClothingOuterArmorUpIron2
-        prob: 0.012
+      #- id: MedievalClothingOuterArmorUpIron2
+      #  prob: 0.012
       - id: MedievalClothingHeadCrownKing
         prob: 0.01
       - id: MedievalEbonitOre
