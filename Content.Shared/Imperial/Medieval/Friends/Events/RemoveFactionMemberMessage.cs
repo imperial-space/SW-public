@@ -8,12 +8,14 @@ namespace Content.Shared.Friends;
 [Serializable, NetSerializable]
 public sealed partial class RemoveFactionMemberMessage : EntityEventArgs
 {
-    public NetEntity Ent;
+    public int Ent;
+    public int Performer;
     public bool Headhunt;
 
-    public RemoveFactionMemberMessage(NetEntity ent, bool headhunt)
+    public RemoveFactionMemberMessage(int ent, int performer, bool headhunt)
     {
         Ent = ent;
+        Performer = performer;
         Headhunt = headhunt;
     }
 }
