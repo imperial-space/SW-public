@@ -3,7 +3,7 @@
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
-    Title="{Loc 'faction-menu-title'}"
+    Title="{Loc 'wanted-desk-title'}"
     MinSize="612 512"
     SetSize="812 512">
     <BoxContainer Name="Main"
