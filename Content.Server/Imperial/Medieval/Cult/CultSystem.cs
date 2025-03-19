@@ -89,10 +89,9 @@ namespace Content.Server.Cult
         }
         private void OnBloodMeleeHit(EntityUid uid, CultBloodMeleeComponent component, MeleeHitEvent args)
         {
-
-            if (!TryComp<CultCursedComponent>(args.User, out var cursed)) return;
             foreach (var entity in args.HitEntities)
             {
+                if (!TryComp<CultCursedComponent>(args.User, out var cursed)) continue;
                 if (entity != args.User) continue;
                 if (cursed.CurseLevel > 75)
                 {

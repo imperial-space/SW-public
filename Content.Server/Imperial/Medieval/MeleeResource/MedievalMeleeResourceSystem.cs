@@ -10,6 +10,7 @@ using Content.Shared.Coordinates;
 using Robust.Shared.Player;
 using Robust.Server.Player;
 using Content.Shared.Imperial.Medieval.MedievalItemRustComponent;
+using Content.Server.Cult.Components;
 
 namespace Content.Server.MedievalMeleeResource
 {
@@ -182,6 +183,7 @@ namespace Content.Server.MedievalMeleeResource
             if (TryComp<MeleeWeaponComponent>(uid, out var weapon) && !HasComp<ExaminerComponent>(uid))
             {
                 EnsureComp<MedievalMeleeResourceComponent>(uid);
+                EnsureComp<CultBloodMeleeComponent>(uid, out var blood);
             }
         }
         private void OnStart(EntityUid uid, MedievalMeleeResourceComponent component, ComponentStartup args)
