@@ -1,0 +1,116 @@
+- type: entity
+  id: BaseFactionMenuAction
+  name: Factions menu
+  description: e
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_cycle_equip_on
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: BanditFactionMenuAction
+  name: Factions menu
+  description: e
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: bandit
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: CollegiumFactionMenuAction
+  name: Factions menu
+  description: e
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: collegium
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: CultFactionMenuAction
+  name: Factions menu
+  description: e
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: cult
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: InsurgencyFactionMenuAction
+  name: Factions menu
+  description: e
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: insurgency
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: LegionFactionMenuAction
+  name: Factions menu
+  description: e
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: legion
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: MercFactionMenuAction
+  name: Factions menu
+  description: e
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: merc
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: MinerFactionMenuAction
+  name: Factions menu
+  description: e
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: miner
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: TribeFactionMenuAction
+  name: Factions menu
+  description: e
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: tribe
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
