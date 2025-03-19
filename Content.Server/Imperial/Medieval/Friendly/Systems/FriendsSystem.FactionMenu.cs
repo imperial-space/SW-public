@@ -1,11 +1,15 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.GameTicking;
 using Content.Server.MedievalPasport.Components;
+using Content.Server.Mind;
+using Content.Server.Roles.Jobs;
 using Content.Server.Station.Components;
 using Content.Shared.Friends;
 using Content.Shared.Friends.Components;
 using Content.Shared.Friends.Prototypes;
 using Content.Shared.GameTicking;
+using Robust.Server.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -13,6 +17,9 @@ namespace Content.Server.Friends;
 
 public sealed partial class FriendsSystem
 {
+    [Dependency] private readonly JobSystem _job = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+
     private int _nextId = 1;
 
     private void InitializeMenu()
@@ -21,7 +28,7 @@ public sealed partial class FriendsSystem
 
         SubscribeNetworkEvent<SetFactionMemberObjectiveMessage>(OnSetObjective);
         SubscribeNetworkEvent<SetFactionMemberGroupMessage>(OnSetGroup);
-        SubscribeLocalEvent<RemoveFactionMemberMessage>(OnMemberRemoved);
+        SubscribeNetworkEvent<RemoveFactionMemberMessage>(OnMemberRemoved);
 
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStartedMenu);
     }
@@ -80,15 +87,23 @@ public sealed partial class FriendsSystem
 
     private void OnMemberRemoved(RemoveFactionMemberMessage args)
     {
-        var uid = GetEntity(args.Ent);
-        if (!uid.IsValid())
+        if (!GetFactionMemberById(args.Ent, out var uid))
+            return;
+        if (!uid.Value.IsValid())
             return;
         if (!TryComp<FriendsComponent>(uid, out var comp))
             return;
-        // comp.Faction = "Voluntary";
-        // comp.MemberData.Job = "Нет должности";
-        // comp.MemberData.Objective = "";
-        //comp.MemberData.Group = "";
+        if (!TryGetFactionDataContainer(out var container))
+            return;
+        if (!TryGetFactionMemberData(args.Ent, out var data) || !TryGetFactionMemberData(args.Performer, out var headData))
+            return;
+        if (!_mind.TryGetMind(uid.Value, out var mindId, out _) || !_job.MindTryGetJob(mindId, out var job))
+            return;
+
+        if (args.Headhunt)
+            AddWanted(uid.Value, job.ID, headData.Name, comp.Faction);
+
+        SetJob(uid.Value, "Voluntary", "idk");
     }
 
     private void OnRoundStartedMenu(RoundStartedEvent args)
