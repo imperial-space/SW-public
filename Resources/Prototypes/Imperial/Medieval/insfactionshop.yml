@@ -111,7 +111,7 @@
   id: MdvInsMedievalSpearSulica
   productEntity: MedievalSpearSulica
   cost:
-    MedalIns: 2
+    MedalIns: 3
   categories:
   - MedievalInsWeapon
 
