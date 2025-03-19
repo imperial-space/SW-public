@@ -25,7 +25,10 @@
     - MedalIns
     balance:
       MedalIns: 0
-  
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [["Medical"]]
+
 
 - type: storeCategory
   id: MedievalInsWeapon
