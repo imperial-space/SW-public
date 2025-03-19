@@ -127,7 +127,7 @@ public sealed partial class FriendsSystem
             return;
 
         data.Group = FactionMemberGroup.None;
-        data.JobName = job;
+        data.Job = job;
         data.JobPrefix = jobPrefix;
 
         container.Value.Comp.CachedMembers.GetOrNew(oldFaction).Remove(comp.MemberID);
