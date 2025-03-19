@@ -94,14 +94,14 @@
   components:
     - type: DoorHacker
 
-- type: trait
-  id: MedievalTribeAccent
-  name: trait-medieval-tribe-accent
-  description: trait-medieval-tribe-accent-desc
-  category: SpeechTraits
-  cost: 1
-  components:
-    - type: GigaMonkeyAccent
+#- type: trait
+#  id: MedievalTribeAccent
+#  name: trait-medieval-tribe-accent
+#  description: trait-medieval-tribe-accent-desc
+#  category: SpeechTraits
+#  cost: 1
+#  components:
+#    - type: GigaMonkeyAccent
 
 - type: trait
   id: MedievalAlchemy

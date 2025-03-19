@@ -234,7 +234,7 @@
   parent: BaseVocalLanguage
   speech: !type:Generic
     font: SpellwardChristmasFont
-    fontSize: 19
+    fontSize: 22
     obfuscateSyllables: true
     replacement:
     - ль
