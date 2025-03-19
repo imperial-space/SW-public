@@ -2097,3 +2097,27 @@
   components:
   - type: StarFall
     side: "в юго-восточной стороне острова"
+
+- type: entity
+  name: MedievalTimedSpawnerMedievalMobNastyGrowth
+  id: MedievalTimedSpawnerMedievalMobNastyGrowth
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobNastyGrowth
