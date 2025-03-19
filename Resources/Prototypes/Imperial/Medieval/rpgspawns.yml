@@ -388,6 +388,30 @@
   #  maximumEntitiesSpawned: 16
 
 - type: entity
+  name: MedievalTimedSpawnerMedievalMobSkeletLegionGhost
+  id: MedievalTimedSpawnerMedievalMobSkeletLegionGhost
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletLegionGhost
+
+- type: entity
   name: MedievalTimedSpawnerMedievalMobHunter
   id: MedievalTimedSpawnerMedievalMobHunter
   parent: MarkerBase
@@ -753,6 +777,44 @@
     - MedievalMobSkeletCrossbow
     - MedievalMobSkeletFighter
     - MedievalMobSkeletFighter
+    chance: 1
+    offset: 0
+
+- type: entity
+  name: BlastDoor
+  id: MedievalSpawnerSkeletonSpawnerLegion
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalMobSkeletLegion
+    - MedievalMobSkeletLegion
+    - MedievalMobSkeletMace
+    - MedievalMobSkeletSpear
+    - MedievalMobSkeletHalberd
+    - MedievalMobSkeletDagger
+    chance: 1
+    offset: 0
+
+- type: entity
+  name: BlastDoor
+  id: MedievalSpawnerSkeletonSpawnerLegionGhost
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalMobSkeletLegionGhost
+    - MedievalMobSkeletLegionGhost
+    - MedievalMobSkeletMaceGhost
+    - MedievalMobSkeletSpearGhost
+    - MedievalMobSkeletHalberdGhost
+    - MedievalMobSkeletDaggerGhost
     chance: 1
     offset: 0
 

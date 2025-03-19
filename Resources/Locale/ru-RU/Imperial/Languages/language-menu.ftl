@@ -6,5 +6,7 @@ language-choose-button-chosen = Выбрано
 language-choose-button-cannot = Только понимание
 language-choose-button-tooltip-translator = Вы используете переводчик для пользования данным языком.
 language-choose-button-tooltip-known = Вы полностью владеете данным языком.
+language-choose-button-tooltip-translator-understood = Вы используете переводчик для понимания данного языка.
+language-choose-button-tooltip-understood = Вы понимаете данный язык.
 
 game-hud-open-languages-menu-button-tooltip = Открыть меню выбора языка

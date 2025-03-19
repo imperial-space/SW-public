@@ -85,6 +85,17 @@
         mask:
         - MedievalSpawnerLayer
         hard: false
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
       # Imperial Medieval End
   - type: Reactive
     groups:

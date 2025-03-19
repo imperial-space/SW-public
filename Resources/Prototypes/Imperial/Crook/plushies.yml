@@ -63,6 +63,16 @@
   values:
     prefix: fumo-cirno-
     count: 2
+- type: localizedDataset
+  id: FumoSakuya
+  values:
+    prefix: fumo-sakuya-
+    count: 4
+- type: localizedDataset
+  id: FumoEirin
+  values:
+    prefix: fumo-eirin-
+    count: 2
 # Datasets for Fumo
 
 - type: speechSounds
@@ -83,6 +93,32 @@
   components:
   - type: Item
     size: Small
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+  - type: Tag
+    tags:
+      - Payload
+      - ClothMade
+  - type: Food
+    requiresSpecialDigestion: true
+    useSound:
+      collection: ToySqueak
+    delay: 2
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: ToySqueak
+    damage:
+      types:
+        Blunt: 0
   - type: Sprite
     sprite: Imperial/Crook/Plushie/fumoplush.rsi
     state: junko
@@ -92,14 +128,12 @@
     pack: FumoJunko
 
 - type: entity
-  parent: BaseFigurine
+  parent: PlushieFumoJunko
   id: PlushieFumoMarisa
   name: Marisa
   suffix: Crook, COMMUNITY, TOY
   description: Just let me possess the spark of all these bad boys!
   components:
-  - type: Item
-    size: Small
   - type: Sprite
     sprite: Imperial/Crook/Plushie/fumoplush.rsi
     state: marisa
@@ -109,14 +143,12 @@
     pack: FumoMarisa
 
 - type: entity
-  parent: BaseFigurine
+  parent: PlushieFumoJunko
   id: PlushieFumoReimu
   name: Reimu
   suffix: Crook, COMMUNITY, TOY
   description: I don't get paid enough for this.
   components:
-  - type: Item
-    size: Small
   - type: Sprite
     sprite: Imperial/Crook/Plushie/fumoplush.rsi
     state: reimu
@@ -126,14 +158,12 @@
     pack: FumoReimu
 
 - type: entity
-  parent: BaseFigurine
+  parent: PlushieFumoJunko
   id: PlushieFumoReisen
   name: Reisen
   suffix: Crook, COMMUNITY, TOY
   description: Blinding you with madness.
   components:
-  - type: Item
-    size: Small
   - type: Sprite
     sprite: Imperial/Crook/Plushie/fumoplush.rsi
     state: reisen
@@ -143,14 +173,12 @@
     pack: FumoReisen
 
 - type: entity
-  parent: BaseFigurine
+  parent: PlushieFumoJunko
   id: PlushieFumoTewi
   name: Tewi
   suffix: Crook, COMMUNITY, TOY
   description: Pranksta gangsta.
   components:
-  - type: Item
-    size: Small
   - type: Sprite
     sprite: Imperial/Crook/Plushie/fumoplush.rsi
     state: tewi
@@ -160,14 +188,12 @@
     pack: FumoTewi
 
 - type: entity
-  parent: BaseFigurine
+  parent: PlushieFumoJunko
   id: PlushieFumoCirno
   name: Cirno
   suffix: Crook, COMMUNITY, TOY
   description: She's such a dummy.
   components:
-  - type: Item
-    size: Small
   - type: Sprite
     sprite: Imperial/Crook/Plushie/fumoplush.rsi
     state: cirno
@@ -175,6 +201,36 @@
     speechSounds: Fumo
   - type: SpeakOnTrigger
     pack: FumoCirno
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieFumoSakuya
+  name: Sakuya Izayoi
+  suffix: Crook, COMMUNITY, TOY
+  description: She is the supervisor of the maids and cleaners of the Scarlet Devil Mansion and always uses her ability to stop time while working.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/fumoplush.rsi
+    state: sakuya
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoSakuya
+
+- type: entity
+  parent: PlushieFumoJunko
+  id: PlushieFumoEirin
+  name: Eirin Yagokoro
+  suffix: Crook, COMMUNITY, TOY
+  description: A genius healer from the moon that she can even create an elixir of immortality using some of Kaguya Khoraisan's power.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/fumoplush.rsi
+    state: eirin
+  - type: Speech
+    speechSounds: Fumo
+  - type: SpeakOnTrigger
+    pack: FumoEirin
 
 - type: entity
   id: FumoBoxCrook

@@ -28,6 +28,18 @@
     energy: 1.8
     radius: 2.5
   - type: HealCurse
+  - type: LanguageSpeaker
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+
 
 - type: damageContainer
   id: SkeletonNecro

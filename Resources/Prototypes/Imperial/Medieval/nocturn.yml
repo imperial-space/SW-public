@@ -224,6 +224,17 @@
           32:
             sprite: Imperial/Medieval/Species/Tifling/displacement.rsi
             state: jumpsuit-female
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
   #- type: Reactive
   #  reactions:
   #  - reagents: [Blood]

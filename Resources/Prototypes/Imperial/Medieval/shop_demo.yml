@@ -599,13 +599,13 @@
   categories:
   - MedievalArmorDemo
 
-- type: listing
-  id: DemoMdvShopMedievalClothingOuterArmorUpIron2
-  productEntity: MedievalClothingOuterArmorUpIron2
-  cost:
-    UnknownMedieval: 1
-  categories:
-  - MedievalArmorDemo
+#- type: listing
+#  id: DemoMdvShopMedievalClothingOuterArmorUpIron2
+#  productEntity: MedievalClothingOuterArmorUpIron2
+#  cost:
+#    UnknownMedieval: 1
+#  categories:
+#  - MedievalArmorDemo
 
 - type: listing
   id: DemoMdvShopMedievalClothingHeadHelmetShapel
@@ -1722,6 +1722,70 @@
 - type: listing
   id: DemoMdvShopMedievalClothingUniformJumpskirtJanimaid
   productEntity: MedievalClothingUniformJumpskirtJanimaid
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalClothingDemo
+
+- type: listing
+  id: DemoMdvShopMedievalWhiteHat
+  productEntity: MedievalWhiteHat
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalClothingDemo
+
+- type: listing
+  id: DemoMdvShopMedievalPurpleHat
+  productEntity: MedievalPurpleHat
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalClothingDemo
+
+- type: listing
+  id: DemoMdvShopMedievalMotleyHat
+  productEntity: MedievalMotleyHat
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalClothingDemo
+
+- type: listing
+  id: DemoMdvShopMedievalWreathHat
+  productEntity: MedievalWreath
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalClothingDemo
+
+- type: listing
+  id: DemoMdvShopMedievalWanderHat
+  productEntity: MedievalWanderHat
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalClothingDemo
+
+- type: listing
+  id: DemoMdvShopMedievalGreenHat
+  productEntity: MedievalGreenHat
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalClothingDemo
+
+- type: listing
+  id: DemoMdvShopMedievalGrayHat
+  productEntity: MedievalGrayHat
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalClothingDemo
+
+- type: listing
+  id: DemoMdvShopMedievalBlackHat
+  productEntity: MedievalBlackHat
   cost:
     UnknownMedieval: 1
   categories:
