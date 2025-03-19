@@ -1,4 +1,5 @@
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.Friends.Prototypes;
 
@@ -16,6 +17,9 @@ public sealed class MedievalFactionPrototype : IPrototype
 
     [DataField]
     public bool AllowHeadhunt = true;
+
+    [DataField]
+    public SpriteSpecifier? Icon = null;
 
     [DataField]
     public Dictionary<ProtoId<MedievalFactionPrototype>, string> KnownFactions = new();
