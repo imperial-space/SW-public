@@ -2,3 +2,8 @@
   id: RoundEnd
   files:
   - /Audio/Imperial/Medieval/horn.ogg # imperial medieval
+
+- type: soundCollection
+  id: PowerOn
+  files:
+  - /Audio/Announcements/power_on.ogg

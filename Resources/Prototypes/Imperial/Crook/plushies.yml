@@ -30,6 +30,55 @@
     contents:
       - id: DrinkLongIslandIcedTeaGlass
 
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieMichael
+  name: Michael Murphy
+  suffix: Crook, COMMUNITY, TOY
+  description: ¡Hola, amigo! The epitome of Murphy's Law.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/michaelmurphy.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: DrinkTequilaSunriseGlass
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieSylvester
+  name: Sylvester Reynar
+  suffix: Crook, COMMUNITY, TOY
+  description: This toy is looking right into your soul with its plush eyes. Are you sure you have a gun permit?
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/sylvesterreynar.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: FoodSnackSyndi
+      - id: FoodSnackSyndi
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieBorg
+  name: Borg
+  suffix: Crook, COMMUNITY, TOY
+  description: They LOVE it when you ask their laws over and over again... Emphasising the emptiness of their souls.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/borg.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: FoodBurgerRobot
+
 # Фумо @buhoj_med
 
 # Datasets for Fumo
