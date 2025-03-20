@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Damage.Systems;
-using Content.Shared.GameTicking;
+using Content.Shared.Imperial.EntityLayer;
 using Content.Shared.Imperial.PhaseSpace;
 using Content.Shared.Input;
 using Content.Shared.Movement.Components;
@@ -10,7 +10,6 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -39,13 +38,14 @@ public sealed partial class MedievalDashSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var enumerator = EntityQueryEnumerator<MedievalDashComponent>();
+        var enumerator = EntityQueryEnumerator<MedievalDashComponent, EntityLayerComponent>();
 
-        while (enumerator.MoveNext(out var uid, out var component))
+        while (enumerator.MoveNext(out var uid, out var component, out var entityLayerComponent))
         {
             if (_timing.CurTime < component.NextDash) continue;
 
             RemComp<PhaseSpaceShadowComponent>(uid);
+            entityLayerComponent.CollideLayers = component.CachedLayers;
         }
     }
 
@@ -74,11 +74,15 @@ public sealed partial class MedievalDashSystem : EntitySystem
         _physicsSystem.ApplyLinearImpulse(player, impulse);
 
         var shadowComponent = EnsureComp<PhaseSpaceShadowComponent>(player);
+        var entityLayerComponent = EnsureComp<EntityLayerComponent>(player);
 
         shadowComponent.ShadowUpdateRate = TimeSpan.FromSeconds(0);
         shadowComponent.PositionUpdateRate = TimeSpan.FromSeconds(0);
 
+        component.CachedLayers = entityLayerComponent.CollideLayers.ToHashSet();
         component.NextDash = dashTime + component.AdditionalDashReloadTime + _timing.CurTime;
+
+        entityLayerComponent.CollideLayers = new() { component.DashLayer };
 
         return false;
     }

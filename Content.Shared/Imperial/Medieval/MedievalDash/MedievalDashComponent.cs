@@ -32,6 +32,9 @@ public sealed partial class MedievalDashComponent : Component
     public EntityLayerGroups DashLayer = EntityLayerGroups.Dash;
 
 
-    [ViewVariables, NonSerialized]
+    [ViewVariables]
     public TimeSpan NextDash = TimeSpan.Zero;
+
+    [ViewVariables]
+    public HashSet<EntityLayerGroups> CachedLayers = new();
 }
