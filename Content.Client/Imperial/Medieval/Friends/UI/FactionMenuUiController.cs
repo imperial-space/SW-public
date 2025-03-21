@@ -25,6 +25,7 @@ public sealed class FactionMenuUiController : UIController
 
             _menu.ObjectiveSet += ObjectiveSet;
             _menu.GroupSet += GroupSet;
+            _menu.SetLeaderPressed += SetLeader;
             _menu.FirePressed += args => Fire(args, false);
             _menu.HeadhuntPressed += args => Fire(args, true);
 
@@ -34,6 +35,7 @@ public sealed class FactionMenuUiController : UIController
         {
             _menu.ObjectiveSet -= ObjectiveSet;
             _menu.GroupSet -= GroupSet;
+            _menu.SetLeaderPressed -= SetLeader;
             _menu.FirePressed -= args => Fire(args, false);
             _menu.FirePressed -= args => Fire(args, true);
 
@@ -42,9 +44,9 @@ public sealed class FactionMenuUiController : UIController
         }
     }
 
-    public void PopulateMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data)
+    public void PopulateMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data, FactionMenuAccess access, FactionMemberGroup selfGroup, int self)
     {
-        _menu?.Populate(proto, data);
+        _menu?.Populate(proto, self, data, access, selfGroup);
     }
 
     private void Fire(int ent, bool headhunt = false)
@@ -64,5 +66,10 @@ public sealed class FactionMenuUiController : UIController
     private void GroupSet(int ent, FactionMemberGroup obj)
     {
         _entityManager.RaisePredictiveEvent(new SetFactionMemberGroupMessage(ent, obj));
+    }
+
+    private void SetLeader(int ent, bool leader)
+    {
+        _entityManager.RaisePredictiveEvent(new SetGroupLeaderMessage(ent, leader));
     }
 }

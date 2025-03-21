@@ -43,10 +43,10 @@ public abstract partial class SharedFriendsSystem : EntitySystem
         if (!TryGetFactionDataContainer(out var container))
             return;
 
-        OpenMenu(comp.Faction, container.Value.Comp.CachedMembers.GetOrNew(comp.Faction));
+        OpenMenu(comp.Faction, container.Value.Comp.CachedMembers.GetOrNew(comp.Faction), comp.MenuAccess);
     }
 
-    public virtual void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data)
+    public virtual void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data, FactionMenuAccess access)
     {
     }
 }

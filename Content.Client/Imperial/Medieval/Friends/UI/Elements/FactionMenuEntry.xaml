@@ -13,7 +13,7 @@
                     HorizontalExpand="True"
                     VerticalExpand="True"
                     VerticalAlignment="Center"
-                    BorderRadius="40">
+                    BorderRadius="25">
         <BoxContainer Name="Main"
                       Orientation="Horizontal"
                       HorizontalExpand="True"
@@ -61,30 +61,35 @@
                                     Text="Назначить группу"
                                     HorizontalExpand="True"
                                     VerticalExpand="True"
-                                    Margin="0 0"
+                                    Margin="4"
                                     HorizontalAlignment="Center"/>
                             </PanelContainer>
                         </BoxContainer>
                     </friends:ColoredOptionButton>
-                    <Button Name="GroupRemoveButton"
+                    <PanelContainer Name="GroupRemovePanel"
                             HorizontalExpand="True"
-                            StyleClasses="ButtonSquare"
-                            Margin="-1"
+                            VerticalExpand="True"
+                            Margin="0"
                             Visible="False">
+                        <Button Name="GroupRemoveButton"
+                                HorizontalExpand="True"
+                                VerticalExpand="True"
+                                StyleClasses="ButtonSquare"/>
                         <BoxContainer Orientation="Horizontal">
-                            <TextureRect TextureScale="0.5 0.5"
-                                         Margin="1"
-                                         Stretch="KeepAspectCentered"
-                                         TexturePath="/Textures/Interface/Nano/cross.svg.png"
-                                         HorizontalAlignment="Left"/>
+                            <TextureRect Name="GroupRemoveCross"
+                                        TextureScale="0.5 0.5"
+                                        Margin="8"
+                                        Stretch="KeepAspectCentered"
+                                        TexturePath="/Textures/Interface/Nano/cross.svg.png"
+                                        HorizontalAlignment="Left"/>
                             <RichTextLabel Name="GroupRemoveButtonText"
-                                           Text=""
-                                           HorizontalExpand="True"
-                                           VerticalExpand="True"
-                                           Margin="4 0"
-                                           HorizontalAlignment="Right"/>
+                                        Text=""
+                                        HorizontalExpand="True"
+                                        VerticalExpand="True"
+                                        Margin="8 4"
+                                        HorizontalAlignment="Right"/>
                         </BoxContainer>
-                    </Button>
+                    </PanelContainer>
                     <PanelContainer VerticalExpand="True"
                                     Margin="10 0">
                         <PanelContainer.PanelOverride>
@@ -97,6 +102,33 @@
                                        Margin="4 4"
                                        Visible="True"/>
                     </PanelContainer>
+                    <imp:BorderedPanelContainer Name="LeaderPanel"
+                                    ModulateSelfOverride="White"
+                                    BackgroundPanelColor="#474747"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="True"
+                                    Margin="0"
+                                    BorderRadius="40"
+                                    Visible="False">
+                        <BoxContainer Orientation="Horizontal"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="True">
+                            <TextureRect Name="RemoveLeaderCross"
+                                        TextureScale="0.5 0.5"
+                                        Margin="8"
+                                        Stretch="KeepAspectCentered"
+                                        TexturePath="/Textures/Interface/Nano/cross.svg.png"
+                                        Visible="False"/>
+                            <TextureRect TextureScale="1 1"
+                                        Margin="8"
+                                        Stretch="KeepAspectCentered"
+                                        HorizontalAlignment="Right"
+                                        TexturePath="/Textures/Imperial/Medieval/Interface/faction-leader.png"/>
+                        </BoxContainer>
+                        <Button Name="SetLeaderButton"
+                                ModulateSelfOverride="#00000000">
+                        </Button>
+                    </imp:BorderedPanelContainer>
                 </BoxContainer>
             </BoxContainer>
         </BoxContainer>

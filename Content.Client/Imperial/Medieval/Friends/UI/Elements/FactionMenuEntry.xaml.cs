@@ -17,13 +17,16 @@ public sealed partial class FactionMenuEntry : Control
     public Action<int, string>? ObjectiveSet;
     public Action<int, FactionMemberGroup>? GroupSet;
     public Action<int>? RemoveButtonPressed;
+    public Action<int, bool>? SetLeaderPressed;
 
-    public FactionMenuEntry(int ent, FactionMemberData data, string objective)
+    public FactionMenuEntry(int ent, int self, FactionMemberData data, FactionMenuAccess access, string objective)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
         NameLabel.SetMessage($"{data.JobPrefix} {data.Name}");
+        RemoveButton.Visible = access == FactionMenuAccess.Full && ent != self;
+
         if (data.Group == FactionMemberGroup.None)
         {
             for (var i = 0; i < FriendsSystem.FactionGroups.Count; i++)
@@ -41,7 +44,7 @@ public sealed partial class FactionMenuEntry : Control
         else
         {
             // Переключение видимости элементов
-            GroupRemoveButton.Visible = true;
+            GroupRemovePanel.Visible = true;
             GroupSelector.Visible = false;
             Objective.Visible = objective != string.Empty;
 
@@ -51,6 +54,28 @@ public sealed partial class FactionMenuEntry : Control
             GroupRemoveButtonText.Text = FriendsSystem.FactionGroups[data.Group].Item2;
             GroupRemoveButton.ModulateSelfOverride = FriendsSystem.FactionGroups[data.Group].Item1;
             GroupRemoveButton.OnPressed += args => GroupSet?.Invoke(ent, FactionMemberGroup.None);
+
+            // Доступ
+            switch (access)
+            {
+                case FactionMenuAccess.Full:
+                    {
+                        GroupRemoveButton.Visible = true;
+                        RemoveLeaderCross.Visible = data.Leader;
+                        SetLeaderButton.Visible = ent != self;
+                        LeaderPanel.Visible = ent != self;
+                        SetLeaderButton.OnPressed += args => SetLeaderPressed?.Invoke(ent, !data.Leader);
+                        break;
+                    }
+                default:
+                    {
+                        GroupRemoveCross.Visible = false;
+                        RemoveLeaderCross.Visible = false;
+                        SetLeaderButton.Visible = false;
+                        LeaderPanel.Visible = data.Leader;
+                        break;
+                    }
+            }
         }
 
         RemoveButton.OnPressed += _ => RemoveButtonPressed?.Invoke(ent);

@@ -29,6 +29,7 @@ public sealed partial class FriendsSystem
         SubscribeNetworkEvent<SetFactionMemberObjectiveMessage>(OnSetObjective);
         SubscribeNetworkEvent<SetFactionMemberGroupMessage>(OnSetGroup);
         SubscribeNetworkEvent<RemoveFactionMemberMessage>(OnMemberRemoved);
+        SubscribeNetworkEvent<SetGroupLeaderMessage>(OnSetLeader);
 
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStartedMenu);
     }
@@ -75,12 +76,12 @@ public sealed partial class FriendsSystem
             return;
         if (!TryComp<FriendsComponent>(uid, out var comp))
             return;
-        if (!TryGetFactionDataContainer(out var container))
-            return;
         if (!TryGetFactionMemberData(args.Ent, out var data))
             return;
 
         data.Group = args.Group;
+        data.Leader = args.Group == FactionMemberGroup.None ? false : data.Leader;
+        comp.MenuAccess = args.Group == FactionMemberGroup.None ? FactionMenuAccess.None : FactionMenuAccess.Group;
 
         RefreshFactionMenu(comp.Faction);
     }
@@ -93,17 +94,33 @@ public sealed partial class FriendsSystem
             return;
         if (!TryComp<FriendsComponent>(uid, out var comp))
             return;
-        if (!TryGetFactionDataContainer(out var container))
-            return;
-        if (!TryGetFactionMemberData(args.Ent, out var data) || !TryGetFactionMemberData(args.Performer, out var headData))
-            return;
-        if (!_mind.TryGetMind(uid.Value, out var mindId, out _) || !_job.MindTryGetJob(mindId, out var job))
+        if (!TryGetFactionMemberData(args.Performer, out var headData))
             return;
 
         if (args.Headhunt)
-            AddWanted(uid.Value, job.ID, headData.Name, comp.Faction);
+        {
+            if (_mind.TryGetMind(uid.Value, out var mindId, out _) && _job.MindTryGetJob(mindId, out var job))
+                AddWanted(uid.Value, job.ID, headData.Name, comp.Faction);
+        }
 
-        SetJob(uid.Value, "Voluntary", "idk");
+        SetJob(uid.Value, "Voluntary", "Нет должности");
+    }
+
+    private void OnSetLeader(SetGroupLeaderMessage args)
+    {
+        if (!GetFactionMemberById(args.Ent, out var uid))
+            return;
+        if (!uid.Value.IsValid())
+            return;
+        if (!TryComp<FriendsComponent>(uid, out var comp))
+            return;
+        if (!TryGetFactionMemberData(args.Ent, out var data))
+            return;
+
+        data.Leader = args.Leader;
+        comp.MenuAccess = args.Leader ? FactionMenuAccess.Group : FactionMenuAccess.None;
+        Dirty(uid.Value, comp);
+        RefreshFactionMenu(comp.Faction);
     }
 
     private void OnRoundStartedMenu(RoundStartedEvent args)
