@@ -7,15 +7,12 @@ using Content.Server.GameTicking;
 using Content.Server.Chat.Systems;
 using Content.Server.RoundEnd;
 using Content.Shared.Examine;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Audio;
 using Content.Shared.Damage;
 using Robust.Shared.Random;
 using System.Linq;
-using Content.Shared.Humanoid;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Tips;
-using Content.Shared.Tips;
 using Content.Server.MedievalFactionFlag.Components;
 using Content.Server.SpikeTrap.Components;
 using Content.Shared.Mobs;
@@ -24,6 +21,7 @@ using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 using Content.Server.BadSmell.Components;
 using Content.Shared.Nocturn.Components;
+using Content.Shared.Interaction;
 
 namespace Content.Server.MagicBarrier
 {
@@ -44,14 +42,34 @@ namespace Content.Server.MagicBarrier
         {
             base.Initialize();
             SubscribeLocalEvent<MagicBarrierComponent, ExaminedEvent>(OnExamine);
-            SubscribeLocalEvent<MagicBarrierComponent, StartCollideEvent>(OnCollide);
+            SubscribeLocalEvent<MagicScrollComponent, BeforeRangedInteractEvent>(OnUseInHand);
             SubscribeLocalEvent<MagicBarrierCurseComponent, BeforeDamageChangedEvent>(OnCurseDamage);
             SubscribeLocalEvent<MagicBarrierComponent, ComponentStartup>(OnStart);
             SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEnd);
             SubscribeLocalEvent<MedievalSpikeTargetComponent, MobStateChangedEvent>(OnDeath);
             SubscribeLocalEvent<MedievalSpikeTargetComponent, BeforeDamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<MedievalSpikeTargetComponent, ScreamActionEvent>(OnScreamAction);
-            //SubscribeLocalEvent<ItemComponent, BeforeItemStrippedEvent>(OnScreamAction);
+        }
+
+
+        public void OnUseInHand(EntityUid uid, MagicScrollComponent comp, BeforeRangedInteractEvent args)
+        {
+            if (!args.CanReach)
+                return;
+            OnUse(args.Target, args.User, args.Used, comp);
+        }
+
+        public void OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicScrollComponent comp)
+        {
+            if (target == null)
+                return;
+
+            if (TryComp<MagicBarrierComponent>(target, out var barrier))
+            {
+                barrier.Stability += comp.Power;
+                Audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), barrier.Owner);
+                QueueDel(used);
+            }
         }
 
         private void OnRoundEnd(RoundEndTextAppendEvent ev)
@@ -341,18 +359,6 @@ namespace Content.Server.MagicBarrier
                 comp.Stability += 7f;
             }
         }
-
-        private void OnCollide(EntityUid uid, MagicBarrierComponent component, ref StartCollideEvent args)
-        {
-            var scrollent = args.OtherEntity;
-            if (TryComp<MagicScrollComponent>(scrollent, out var scroll))
-            {
-                component.Stability += scroll.Power;
-                Audio.PlayPvs(new SoundPathSpecifier(component.EffectSoundOnScrollAdd), uid);
-                QueueDel(scroll.Owner);
-            }
-        }
-
         private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
         {
             args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]");
@@ -466,6 +472,25 @@ namespace Content.Server.MagicBarrier
                         var choosenSpawner = _random.Pick(cursespawners);
                         var cursexform = Transform(choosenSpawner.Owner);
                         var cursecoords = cursexform.Coordinates;
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
                         Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
                         Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
                         Spawn("MedievalSpawnNecroFighterPreset", cursecoords);

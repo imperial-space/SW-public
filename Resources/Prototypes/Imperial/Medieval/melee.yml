@@ -17,8 +17,8 @@
   - type: Sharp
   - type: MeleeWeapon
     wideAnimationRotation: -140
-    attackRate: 0.65
-    range: 2.65
+    attackRate: 0.5
+    range: 2.15
     damage:
       types:
         Piercing: 9
@@ -35,7 +35,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 9
+        Piercing: 8
   - type: DamageOtherOnHit
     damage:
       types:
@@ -62,6 +62,9 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 2
 
 - type: entity
   name: MedievalDaggerNecro
@@ -1451,7 +1454,7 @@
     clickDamageModifier: 1.28
     wideAnimationRotation: -140
     attackRate: 0.65
-    range: 2.6
+    range: 2.3
     damage:
       types:
         Piercing: 8
@@ -2209,8 +2212,8 @@
   - type: MeleeWeapon
     clickDamageModifier: 1.28
     wideAnimationRotation: -140
-    attackRate: 0.65
-    range: 2.75
+    attackRate: 0.6
+    range: 2.3
     damage:
       types:
         Piercing: 9
