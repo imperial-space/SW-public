@@ -1164,7 +1164,7 @@
     - FootstepSound
     - CanPilot
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.62
+    baseWalkSpeed: 4.6
     baseSprintSpeed: 3.62
   - type: IgnitPocketFlames
   - type: MeleeParryAble

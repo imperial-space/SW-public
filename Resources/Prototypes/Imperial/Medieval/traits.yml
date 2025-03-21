@@ -40,7 +40,7 @@
   cost: 1
   components:
     - type: Stamina
-      critThreshold: 120 # fix later
+      critThreshold: 110 # fix later
 
 - type: trait
   id: MedievalThirst
@@ -50,7 +50,7 @@
   cost: 1
   components:
     - type: Stamina
-      critThreshold: 120 # fix later
+      critThreshold: 110 # fix later
 
 - type: trait
   id: MedievalEye
@@ -83,7 +83,7 @@
   cost: 1
   components:
     - type: Stamina
-      critThreshold: 120
+      critThreshold: 110
 
 - type: trait
   id: MedievalHack
