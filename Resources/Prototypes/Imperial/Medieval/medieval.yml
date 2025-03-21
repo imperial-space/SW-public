@@ -988,7 +988,7 @@
   components:
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    explosionType: MedievalDefault
     maxIntensity: 3
     intensitySlope: 1
     totalIntensity: 45
@@ -1006,6 +1006,8 @@
     initialBeepDelay: 0
     beepInterval: 6 # 2 beeps total (at 0 and 2)
     delay: 2.5
+  - type: SpawnOnTrigger
+    proto: MedievalExplosionEffect
 
 - type: entity
   parent: MopItem
@@ -6799,3 +6801,59 @@
     speechSounds: Dog
   - type: SpeakOnTrigger
     pack: PlushDog
+
+- type: explosion
+  id: MedievalDefault
+  damagePerIntensity:
+    types:
+      Heat: 5
+      Blunt: 5
+      Piercing: 5
+  tileBreakChance: [0, 0.5, 1]
+  tileBreakIntensity: [0, 10, 30]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
+  fireStates: 1
+
+- type: entity
+  id: MedievalExplosionEffect
+  components:
+  - type: TimedDespawn
+    lifetime: 3
+  - type: Sprite
+    scale: 1.8, 1.8
+    sprite: Imperial/Medieval/Effects/Explosions/common.rsi
+    state: explosion
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: SmallExplosionShockWaveEffect
+
+- type: entity
+  id: SmallExplosionShockWaveEffect
+  components:
+  - type: ShockWave
+    speed: 2
+  - type: ShockWaveDistortion
+    speed: 2
+    thikness: 0.1
+    distortion: 0.05
+    maxDistance: 1.3
+    disappearDistancePercentage: 0
+  - type: TimedDespawn
+    lifetime: 0.2
+
+- type: explosion
+  id: MedievalDemolitionCharge
+  damagePerIntensity:
+    types:
+      Heat: 3
+      Blunt: 3
+      Piercing: 3
+      Structural: 50
+  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakIntensity: [ 0, 10, 30 ]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
+  fireStates: 1
