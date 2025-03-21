@@ -25,7 +25,7 @@
   - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_7.ogg
   
 - type: soundCollection
-  id: FemaleQuestioning
+  id: FemaleDreaminess
   files:
   - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_think_female_1.ogg
   - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_think_female_2.ogg
