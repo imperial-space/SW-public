@@ -108,8 +108,10 @@ public sealed partial class FactionMenu : DefaultWindow
             entry.RemoveButtonPressed += args =>
             {
                 _fireSelected = args;
+                ConfirmationLabel.SetMessage($"{item.Value.JobPrefix}{item.Value.Name} будет исключён из вашей фракции.");
                 Main.Visible = false;
                 Confirmation.Visible = true;
+                Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(proto).AllowHeadhunt && !item.Value.Dead;
             };
             entry.SetLeaderPressed += (id, isLeader) => SetLeaderPressed?.Invoke(id, isLeader);
 
