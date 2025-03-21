@@ -349,6 +349,20 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+    Dreaminess:
+      collection: MaleDreaminess
+    Questioning: 
+      collection: MaleQuestioning
+    Warcry:
+      collection: MaleWarcry
+    Charge:
+      collection: MaleCharge
+    Woo:
+      collection: MaleWoo
+    PainScream:
+      collection: MalePainScreams
+    PassiveScream:
+      collection: MalePassiveScream
   params:
     variation: 0.125
     pitch: 0.75
@@ -392,6 +406,20 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    Dreaminess:
+      collection: FemaleDreaminess
+    Questioning: 
+      collection: FemaleQuestioning
+    Warcry:
+      collection: FemaleWarcry
+    Charge:
+      collection: FemaleCharge
+    Woo:
+      collection: FemaleWoo
+    PainScream:
+      collection: FemalePainScreams
+    PassiveScream:
+      collection: FemalePassiveScream
   params:
     variation: 0.125
     pitch: 0.75
