@@ -1,8 +1,9 @@
 - type: emote
   id: Sneeze
   name: chat-emote-name-sneeze
-  icon: Interface/Emotes/Sneeze.png
+  icon: Interface/Emotes/Sneeze.png # imperial medieval "emotions"
   category: Vocal
+# imperial medieval "emotions" start
   whitelist:
     components:
     - Vocal
@@ -12,7 +13,7 @@
   chatMessages: ["chat-emote-msg-sneeze"]
   chatTriggers:
     - sneeze
-
+# imperial medieval "emotions" end
 
 - type: emote
   id: Cough
