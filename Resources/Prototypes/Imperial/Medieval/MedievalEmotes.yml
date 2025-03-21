@@ -126,7 +126,7 @@
 - type: emote
   id: Charge
   name: chat-emote-name-charge
-  icon: Interface/Emotes/charge.png
+  icon: Interface/Emotes/charge .png
   category: Vocal
   whitelist:
     components:
