@@ -57,6 +57,9 @@ public sealed partial class FriendsSystem
         var wanted = new WantedData(profile, job, proto, performer, flavorText);
         WantedList.Add(friends.MemberID, wanted);
         UpdateUi();
+
+        _action.RemoveAction(uid, friends.FactionMenuActionEntity);
+        _ui.CloseUis(uid);
     }
 
     private HumanoidCharacterProfile? BuildProfile(EntityUid uid)
