@@ -1,8 +1,18 @@
 - type: emote
   id: Sneeze
   name: chat-emote-name-sneeze
+  icon: Interface/Emotes/Sneeze.png
   category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
   chatMessages: ["chat-emote-msg-sneeze"]
+  chatTriggers:
+    - sneeze
+
 
 - type: emote
   id: Cough
