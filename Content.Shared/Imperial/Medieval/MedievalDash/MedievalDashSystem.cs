@@ -84,7 +84,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var impulse = forceDirection.RotateVec(force);
         var dashTime = TimeSpan.FromSeconds(component.Force / 990 / physicsComponent.Mass);
 
-        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage)) return false;
+        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage, ignoreResistances: true)) return false;
 
         _physicsSystem.ApplyLinearImpulse(player, impulse);
 
