@@ -1,12 +1,16 @@
 - type: soundCollection
   id: MaleGasp
   files:
+# imperial medieval "emotions" start
   - /Audio/Imperial/Medieval/Emotes/Gasp/Male/gasp1.ogg
   - /Audio/Imperial/Medieval/Emotes/Gasp/Male/gasp2.ogg
   - /Audio/Imperial/Medieval/Emotes/Gasp/Male/gasp3.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: FemaleGasp
   files:
+# imperial medieval "emotions" start
   - /Audio/Imperial/Medieval/Emotes/Gasp/Female/gasp1.ogg
   - /Audio/Imperial/Medieval/Emotes/Gasp/Female/gasp2.ogg
+# imperial medieval "emotions" end
