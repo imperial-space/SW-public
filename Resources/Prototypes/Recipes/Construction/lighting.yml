@@ -71,6 +71,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name:  Голубая лампа-трубка # Imperial Recipes Locale
   id: CyanLightBulb
   graph: CyanLightBulb
@@ -82,6 +83,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Синяя лампа-трубка # Imperial Recipes Locale
   id: BlueLightBulb
   graph: BlueLightBulb
@@ -93,6 +95,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Розовая лампа-трубка # Imperial Recipes Locale
   id: PinkLightBulb
   graph: PinkLightBulb
@@ -104,6 +107,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Оранжевая лампа-трубка # Imperial Recipes Locale
   id: OrangeLightBulb
   graph: OrangeLightBulb
@@ -115,6 +119,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Красная лампа-трубка # Imperial Recipes Locale
   id: RedLightBulb
   graph: RedLightBulb
@@ -126,6 +131,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Зеленая лампа-трубка # Imperial Recipes Locale
   id: GreenLightBulb
   graph: GreenLightBulb
