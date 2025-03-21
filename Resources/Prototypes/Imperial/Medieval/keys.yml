@@ -225,7 +225,6 @@
   id: MedievalKeyStandard
   name: key
   description: key
-  noSpawn: true
   components:
   - type: Key
     accesses:
@@ -233,6 +232,9 @@
   - type: Tag
     tags:
     - MedievalKey
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: medieval_key
 
 - type: entity
   parent: MedievalKeyBase
@@ -248,7 +250,7 @@
   - type: Tag
     tags:
     - LegionnaireKey
-  
+
 
 - type: job
   id: TavernaKey
