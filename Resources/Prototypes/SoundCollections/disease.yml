@@ -1,28 +1,36 @@
 - type: soundCollection
   id: MaleSneezes
   files:
+# imperial medieval "emotions" start
     - /Audio/Imperial/Medieval/Emotes/Sneeze/sneeze_male.ogg
     - /Audio/Imperial/Medieval/Emotes/Sneeze/sneeze_neutral.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: FemaleSneezes
   files:
+# imperial medieval "emotions" start
     - /Audio/Imperial/Medieval/Emotes/Sneeze/sneeze_female.ogg
     - /Audio/Imperial/Medieval/Emotes/Sneeze/sneeze_neutral.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: MaleCoughs
   files:
+# imperial medieval "emotions" start
   - /Audio/Imperial/Medieval/Emotes/Cough/Male/mbcough_1.ogg
   - /Audio/Imperial/Medieval/Emotes/Cough/Male/mbcough_2.ogg
   - /Audio/Imperial/Medieval/Emotes/Cough/Male/mbcough_3.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: FemaleCoughs
   files:
+# imperial medieval "emotions" start
   - /Audio/Imperial/Medieval/Emotes/Cough/Female/fbcough_1.ogg
   - /Audio/Imperial/Medieval/Emotes/Cough/Female/fbcough_2.ogg
   - /Audio/Imperial/Medieval/Emotes/Cough/Female/fbcough_3.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: CatMeows
@@ -70,5 +78,7 @@
 - type: soundCollection
   id: Vomit
   files:
+# imperial medieval "emotions" start
   - /Audio/Imperial/Medieval/Emotes/Vomit/Male/mvomit_1.ogg
   - /Audio/Imperial/Medieval/Emotes/Vomit/Male/mvomit_2.ogg
+# imperial medieval "emotions" end
