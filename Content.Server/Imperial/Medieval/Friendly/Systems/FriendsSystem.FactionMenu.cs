@@ -45,7 +45,9 @@ public sealed partial class FriendsSystem
         var data = new FactionMemberData()
         {
             Name = Name(uid),
-            Job = CompOrNull<MedievalPasportPersonComponent>(uid)?.PersonJob ?? "Нет должности"
+            Job = CompOrNull<MedievalPasportPersonComponent>(uid)?.PersonJob ?? "Нет должности",
+            JobPrefix = CompOrNull<MedievalPasportPersonComponent>(uid)?.JobPrefix ?? "",
+            Faction = comp.Faction
         };
         container.Value.Comp.CachedMembers.GetOrNew(comp.Faction).Add(comp.MemberID, data);
 
