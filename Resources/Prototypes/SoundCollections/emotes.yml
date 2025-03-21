@@ -1,6 +1,7 @@
 - type: soundCollection
   id: MaleLaugh
   files:
+# imperial medieval "emotions" start
     - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-1.ogg
     - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-2.ogg
     - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-3.ogg
@@ -10,10 +11,12 @@
     - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-7.ogg
     - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-8.ogg
     - /Audio/Imperial/Medieval/Emotes/Laugh/Male/laugh_male-9.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: FemaleLaugh
   files:
+# imperial medieval "emotions" start
     - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-1.ogg
     - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-2.ogg
     - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-3.ogg
@@ -22,6 +25,7 @@
     - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-6.ogg
     - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-7.ogg
     - /Audio/Imperial/Medieval/Emotes/Laugh/Female/laugh_female-8.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: MaleCough
@@ -66,12 +70,12 @@
 - type: soundCollection
   id: MaleSigh
   files:
-    - /Audio/Imperial/Medieval/Emotes/Sigh/sigh_male.ogg
-
+    - /Audio/Imperial/Medieval/Emotes/Sigh/sigh_male.ogg # imperial medieval "emotions"
+    
 - type: soundCollection
   id: FemaleSigh
   files:
-    - /Audio/Imperial/Medieval/Emotes/Sigh/sigh_female.ogg
+    - /Audio/Imperial/Medieval/Emotes/Sigh/sigh_female.ogg # imperial medieval "emotions"
 
 - type: soundCollection
   id: Salutes
@@ -81,19 +85,23 @@
 - type: soundCollection
   id: MaleCry
   files:
+# imperial medieval "emotions" start
     - /Audio/Imperial/Medieval/Emotes/Cry/Male/mpassive_whiner_1.ogg
     - /Audio/Imperial/Medieval/Emotes/Cry/Male/mpassive_whiner_2.ogg
     - /Audio/Imperial/Medieval/Emotes/Cry/Male/mpassive_whiner_3.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: FemaleCry
   files:
+# imperial medieval "emotions" end
     - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_1.ogg
     - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_2.ogg
     - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_3.ogg
     - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_4.ogg
     - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_5.ogg
     - /Audio/Imperial/Medieval/Emotes/Cry/Female/fpassive_whiner_6.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: Whistles
