@@ -36,7 +36,7 @@ public sealed partial class MedievalSprintSystem : EntitySystem
 
             if (component.Tried) _speedModifierSystem.RefreshMovementSpeedModifiers(uid);
 
-            _staminaSystem.TryTakeStamina(uid, component.StaminaDamage);
+            _staminaSystem.TryTakeStamina(uid, component.StaminaDamage, ignoreResistances: true);
 
             component.Tried = false;
             component.NextStaminaDamageTime = _timing.CurTime + component.StaminaGainPeriod;
