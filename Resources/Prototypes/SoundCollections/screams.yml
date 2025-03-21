@@ -1,22 +1,26 @@
 - type: soundCollection
   id: MaleScreams
   files:
+# imperial medieval "emotions" start
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_1.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_2.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_3.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_4.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_5.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Male/heavy_6.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: FemaleScreams
   files:
+# imperial medieval "emotions" start
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_1.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_2.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_3.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_4.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_5.ogg
     - /Audio/Imperial/Medieval/Emotes/Scream/Heavy/Female/heavy_6.ogg
+# imperial medieval "emotions" end
 
 - type: soundCollection
   id: ZombieScreams
