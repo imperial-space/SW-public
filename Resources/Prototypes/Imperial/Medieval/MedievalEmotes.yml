@@ -1,0 +1,270 @@
+- type: soundCollection
+  id: MaleQuestioning
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_question_male_6.ogg
+  
+- type: soundCollection
+  id: FemaleQuestioning
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_question_female_1.ogg
+
+- type: soundCollection
+  id: MaleDreaminess
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Male/hmm_think_male_7.ogg
+  
+- type: soundCollection
+  id: FemaleQuestioning
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_think_female_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_think_female_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Hmmm/Female/hmm_think_female_3.ogg
+  
+- type: emote
+  id: Dreaminess
+  name: chat-emote-name-dreaminess
+  icon: Interface/Emotes/think.png
+  category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-Hmmm"]
+  chatTriggers:
+    - Хммм
+    - хммм
+    - Хммм.
+    - хммм.
+    - Хмммм
+    - хмммм
+    - Хмммм.
+    - хмммм.
+    
+- type: emote
+  id: Questioning
+  name: chat-emote-name-questioning
+  icon: Interface/Emotes/think.png
+  category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-Hmm"]
+  chatTriggers:
+    - Хмм?
+    - Хм?
+    - Хм
+    - хм
+    - хм
+    - хмм
+    - ?
+    
+- type: emote
+  id: Warcry
+  name: chat-emote-name-warcry
+  icon: Interface/Emotes/warcry.png
+  category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-warcry"]
+  chatTriggers:
+    - ААА
+    - ВАГХ
+    - УРА
+    - ааа
+    - вагх
+    - ура
+    
+- type: soundCollection
+  id: MaleWarcry
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_7.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_8.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_9.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_11.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_12.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_13.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_14.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_15.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_16.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_17.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_18.ogg
+  
+- type: soundCollection
+  id: FemaleWarcry
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_6.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_7.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_9.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_10.ogg
+  
+- type: emote
+  id: Charge
+  name: chat-emote-name-charge
+  icon: Interface/Emotes/charge.png
+  category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-charge"]
+  chatTriggers:
+    - charge.
+    - charge
+    - Charge
+    - Charge.
+    - Чардж
+    - чардж
+    - Чардж.
+    - чардж.
+    - вперед
+    - Вперед
+    - вперед.
+    - Вперед.
+    
+- type: soundCollection
+  id: MaleCharge
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_10.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Male/warcry_3.ogg
+  
+- type: soundCollection
+  id: FemaleCharge
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Warcry/Female/warcry_8.ogg
+  
+- type: emote
+  id: Woo
+  name: chat-emote-name-woo
+  icon: Interface/Emotes/woo.png
+  category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-woo"]
+  chatTriggers:
+    - ууу
+    - ууу.
+    - уху
+    - уху.
+
+- type: soundCollection
+  id: MaleWoo
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_5.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Male/woo_male_6.ogg
+  
+- type: soundCollection
+  id: FemaleWoo
+  files:
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_1.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_2.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_3.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_4.ogg
+  - /Audio/Imperial/Medieval/Emotes/Woo/Female/woo_female_5.ogg
+
+- type: emote
+  id: PainScream
+  name: chat-emote-name-painscream
+  icon: Interface/Emotes/pain.png
+  category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-painscream"]
+  chatTriggers:
+    - ах
+    
+- type: soundCollection
+  id: MalePainScreams
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_1.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_2.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_3.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_4.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_5.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Male/scream_6.ogg
+
+- type: soundCollection
+  id: FemalePainScreams
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_1.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_2.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_3.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_4.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Pain/Female/scream_5.ogg
+    
+- type: emote
+  id: PassiveScream
+  name: chat-emote-name-passivescream
+  icon: Interface/Emotes/passive.png
+  category: Vocal
+  whitelist:
+    components:
+    - Vocal
+  blacklist:
+    components:
+    - BorgChassis
+  chatMessages: ["chat-emote-msg-passivescream"]
+  chatTriggers:
+    - ааа
+    
+- type: soundCollection
+  id: MalePassiveScream
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_1.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_2.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_3.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_4.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_5.ogg
+    
+- type: soundCollection
+  id: FemalePassiveScream
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_1.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_2.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_3.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_4.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_5.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_6.ogg
