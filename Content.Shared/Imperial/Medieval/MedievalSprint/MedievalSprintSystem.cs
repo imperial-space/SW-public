@@ -1,7 +1,9 @@
+using System.Numerics;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.Medieval.Sprint;
@@ -25,12 +27,13 @@ public sealed partial class MedievalSprintSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var enumerator = EntityQueryEnumerator<MedievalSprintComponent, InputMoverComponent, StaminaComponent>();
+        var enumerator = EntityQueryEnumerator<MedievalSprintComponent, InputMoverComponent, StaminaComponent, PhysicsComponent>();
 
-        while (enumerator.MoveNext(out var uid, out var component, out var inputMoverComponent, out var staminaComponent))
+        while (enumerator.MoveNext(out var uid, out var component, out var inputMoverComponent, out var staminaComponent, out var physicsComponent))
         {
             if (staminaComponent.Critical) continue;
             if (!EnoughStamina(component, staminaComponent)) continue;
+            if (physicsComponent.LinearVelocity == Vector2.Zero) continue;
             if (_timing.CurTime <= component.NextStaminaDamageTime) continue;
             if ((inputMoverComponent.HeldMoveButtons & MoveButtons.Walk) == 0 && inputMoverComponent.HeldMoveButtons != MoveButtons.Walk) continue;
 
