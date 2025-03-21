@@ -134,6 +134,20 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+    Dreaminess:
+      collection: MaleDreaminess
+    Questioning: 
+      collection: MaleQuestioning
+    Warcry:
+      collection: MaleWarcry
+    Charge:
+      collection: MaleCharge
+    Woo:
+      collection: MaleWoo
+    PainScream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+    PassiveScream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 
 - type: emoteSounds
   id: FemaleReptilian
@@ -158,6 +172,20 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+    Dreaminess:
+      collection: FemaleDreaminess
+    Questioning: 
+      collection: FemaleQuestioning
+    Warcry:
+      collection: FemaleWarcry
+    Charge:
+      collection: FemaleCharge
+    Woo:
+      collection: FemaleWoo
+    PainScream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+    PassiveScream:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
 
 - type: emoteSounds
   id: MaleSlime
