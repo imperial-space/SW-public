@@ -259,9 +259,9 @@
 - type: soundCollection
   id: FemalePassiveScream
   files:
-    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_1.ogg
-    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_2.ogg
-    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_3.ogg
-    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_4.ogg
-    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_5.ogg
-    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Male/passive_6.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_1.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_2.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_3.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_4.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_5.ogg
+    - /Audio/Imperial/Medieval/Emotes/Scream/Passive/Female/passive_6.ogg
