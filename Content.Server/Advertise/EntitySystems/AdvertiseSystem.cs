@@ -37,7 +37,8 @@ public sealed class AdvertiseSystem : EntitySystem
 
     private void OnMapInit(EntityUid uid, AdvertiseComponent advert, MapInitEvent args)
     {
-        RandomizeNextAdvertTime(advert, advert.Prewarm); // Imperial medieval
+        var prewarm = advert.Prewarm;
+        RandomizeNextAdvertTime(advert, prewarm);
         _nextCheckTime = MathHelper.Min(advert.NextAdvertisementTime, _nextCheckTime);
     }
 
@@ -70,7 +71,8 @@ public sealed class AdvertiseSystem : EntitySystem
         if (_nextCheckTime > currentGameTime)
             return;
 
-        _nextCheckTime = currentGameTime + _maximumNextCheckDuration;  // Imperial medieval
+        // _nextCheckTime starts at TimeSpan.MinValue, so this has to SET the value, not just increment it.
+        _nextCheckTime = currentGameTime + _maximumNextCheckDuration;
 
         var query = EntityQueryEnumerator<AdvertiseComponent>();
         while (query.MoveNext(out var uid, out var advert))
@@ -78,14 +80,13 @@ public sealed class AdvertiseSystem : EntitySystem
             if (currentGameTime > advert.NextAdvertisementTime)
             {
                 SayAdvertisement(uid, advert);
+                // The timer is always refreshed when it expires, to prevent mass advertising (ex: all the vending machines have no power, and get it back at the same time).
                 RandomizeNextAdvertTime(advert);
             }
-            //  // Imperial medieval start
-            if (advert.NextAdvertisementTime > currentGameTime)
-                _nextCheckTime = MathHelper.Min(advert.NextAdvertisementTime, _nextCheckTime);
-            // Imperial medieval end
+            _nextCheckTime = MathHelper.Min(advert.NextAdvertisementTime, _nextCheckTime);
         }
     }
+
 
     private static void OnPowerReceiverAttemptAdvertiseEvent(EntityUid uid, ApcPowerReceiverComponent powerReceiver, ref AttemptAdvertiseEvent args)
     {
