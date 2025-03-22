@@ -244,11 +244,13 @@
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
   - type: EmoteOnDamage
+# imperial medieval "emotions" start
     emotes:
-    - Scream
+    - PainScream 
     emoteChance: 0.3
     withChat: true
     emoteCooldown: 3.5
+# imperial medieval "emotions" end
   - type: MedievalSpikeTarget
   - type: BadSmellFeel
   - type: BadSmell

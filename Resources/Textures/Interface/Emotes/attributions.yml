@@ -130,3 +130,37 @@
   license: "CC-BY-SA-3.0"
   copyright: "Created by Sarahon"
   source: "https://github.com/Sarahon"
+  
+# imperial medieval "emotions" start
+- files: ["charge.png"]
+  license: "ICLA"
+  copyright: "Created by fortengamer"
+
+- files: ["heavy.png"]
+  license: "ICLA"
+  copyright: "Created by fortengamer"
+  
+- files: ["pain.png"]
+  license: "ICLA"
+  copyright: "Created by fortengamer"
+
+- files: ["passive.png"]
+  license: "ICLA"
+  copyright: "Created by fortengamer"
+
+- files: ["Sneeze.png"]
+  license: "ICLA"
+  copyright: "Created by fortengamer"
+
+- files: ["think.png"]
+  license: "ICLA"
+  copyright: "Created by fortengamer"
+
+- files: ["warcry.png"]
+  license: "ICLA"
+  copyright: "Created by fortengamer"
+
+- files: ["woo.png"]
+  license: "ICLA"
+  copyright: "Created by fortengamer"
+# imperial medieval "emotions" end
