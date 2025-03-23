@@ -1,4 +1,3 @@
-
 using Robust.Shared.Audio;
 
 namespace Content.Shared.Imperial.BellMap.Components;
@@ -13,4 +12,10 @@ public sealed partial class BellMapComponent : Component
     };
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public LocId Locale = "bell-map-popup";
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan? LastRingTime;
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public float Cooldown = 30f; //Default cooldown of 30 seconds.
 }
