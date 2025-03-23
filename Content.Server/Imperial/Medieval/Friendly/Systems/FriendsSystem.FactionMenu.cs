@@ -97,6 +97,7 @@ public sealed partial class FriendsSystem
         data.Leader = args.Group == FactionMemberGroup.None ? false : data.Leader;
         comp.MenuAccess = args.Group == FactionMemberGroup.None ? FactionMenuAccess.None : FactionMenuAccess.Group;
 
+        Dirty(uid.Value, comp);
         RefreshFactionMenu(comp.Faction);
     }
 
