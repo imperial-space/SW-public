@@ -57,7 +57,9 @@ namespace Content.Server.GameTicking
 
                     // Make the player actually join the game.
                     // timer time must be > tick length
-                    Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    // Imperial-Medieval-JoinQueue-Start
+                    // Timer.Spawn(0, () => _playerManager.JoinGame(args.Session));
+                    // Imperial-Medieval-JoinQueue-End
 
                     var record = await _db.GetPlayerRecordByUserId(args.Session.UserId);
                     var firstConnection = record != null &&
