@@ -4959,3 +4959,4 @@ ent-MedievalClothingOuterArmorСeremonialRobe = роскошная мантия
 ent-MedievalClothingOuterArmorСeremonialRobe = благородный золотой шлем
     .desc = Вы не сможете найти на нём ни крупицы настоящего золота.
     .suffix = { "Средневековье, одежда" }
+cactus-component-contact-damage = В вашу кожу впивается пара колючек   
