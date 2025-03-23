@@ -48,6 +48,7 @@ public sealed partial class FactionMenuEntry : Control
             GroupSelector.Select(0);
             Objective.Visible = false;
             GroupSelector.OnItemSelected += args => GroupSet?.Invoke(ent, FriendsSystem.GroupColors.ElementAt(args.Id).Key);
+            GroupSelector.Visible = access == FactionMenuAccess.Full;
         }
         else
         {
@@ -82,6 +83,7 @@ public sealed partial class FactionMenuEntry : Control
                         RemoveLeaderCross.Visible = false;
                         SetLeaderButton.Visible = false;
                         LeaderPanel.Visible = data.Leader;
+                        GroupSelector.Visible = false;
                         break;
                     }
             }
