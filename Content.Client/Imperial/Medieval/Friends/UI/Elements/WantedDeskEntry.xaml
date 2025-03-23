@@ -48,14 +48,21 @@
                                                 BorderRadius="10">
                         <ScrollContainer Margin="5 10"
                             HScrollEnabled="False">
-                            <BoxContainer Name="Info"
-                                          Orientation="Vertical">
-                                <RichTextLabel Name="Faction"
-                                               Text="Тут будет написана фракция"
-                                               HorizontalAlignment="Left"/>
-                                <RichTextLabel Name="Job"
-                                               Text="Тут будет написана должность"
-                                               HorizontalAlignment="Left"/>
+                            <BoxContainer Orientation="Vertical">
+                                <BoxContainer Name="Info"  Orientation="Vertical" Margin="0 4">
+                                    <RichTextLabel Text="[bold]Основная информация:[/bold]"
+                                                HorizontalAlignment="Left"/>
+                                    <RichTextLabel Name="Faction"
+                                                Text="Тут будет написана фракция"
+                                                HorizontalAlignment="Left"/>
+                                    <RichTextLabel Name="Job"
+                                                Text="Тут будет написана должность"
+                                                HorizontalAlignment="Left"/>
+                                </BoxContainer>
+                                <BoxContainer Name="Details"  Orientation="Vertical" Margin="0 4">
+                                    <RichTextLabel Text="[bold]Детали:[/bold]"
+                                                HorizontalAlignment="Left"/>
+                                </BoxContainer>
                             </BoxContainer>
                         </ScrollContainer>
                     </imp:BorderedPanelContainer>

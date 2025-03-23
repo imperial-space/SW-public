@@ -43,6 +43,13 @@ public sealed partial class WantedDeskEntry : Control
             Info.AddChild(label);
         }
 
+        if (data.Details != string.Empty)
+        {
+            var label = new RichTextLabel();
+            label.SetMessage(data.Details);
+            Details.AddChild(label);
+        }
+
         RewardHeadName.SetMessage(data.Performer);
         var icon = _proto.Index(data.Faction).Icon;
         if (icon != null)

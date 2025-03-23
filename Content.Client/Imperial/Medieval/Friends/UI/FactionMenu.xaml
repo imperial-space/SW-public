@@ -143,7 +143,7 @@
             </Button>
         </BoxContainer>
         <Button Name="Headhunt"
-                Text="Уволить и назначить награду"
+                Text=""
                 ToggleMode="True"
                 HorizontalExpand="True"
                 VerticalExpand="True"
@@ -152,7 +152,8 @@
                 Margin="35 5">
             <BoxContainer VerticalExpand="True"
                     HorizontalExpand="True">
-                <imp:BorderedPanelContainer VerticalExpand="True"
+                <imp:BorderedPanelContainer Name="HeadhuntPanel"
+                        VerticalExpand="True"
                         HorizontalExpand="True"
                         ModulateSelfOverride="White"
                         BackgroundPanelColor="#774D4E"
@@ -166,5 +167,36 @@
                 </imp:BorderedPanelContainer>
             </BoxContainer>
         </Button>
+        <BoxContainer Name="HeadhuntConfirmation"
+                VerticalExpand="True"
+                HorizontalExpand="True"
+                Visible="False">
+            <LineEdit Name="HeadhuntDetails" HorizontalExpand="True" VerticalExpand="True" Margin="0 0 4 0" SizeFlagsStretchRatio="3" />
+            <Button Name="HeadhuntConfirm"
+                    Text=""
+                    ToggleMode="True"
+                    HorizontalExpand="True"
+                    VerticalExpand="True"
+                    StyleClasses="ButtonSquare"
+                    ModulateSelfOverride="#00000000"
+                    SizeFlagsStretchRatio="2"
+                    Margin="4 0 0 0">
+                <BoxContainer VerticalExpand="True"
+                        HorizontalExpand="True">
+                    <imp:BorderedPanelContainer VerticalExpand="True"
+                            HorizontalExpand="True"
+                            ModulateSelfOverride="White"
+                            BackgroundPanelColor="#774D4E"
+                            BorderRadius="25">
+                        <RichTextLabel
+                            Text="Готово"
+                            HorizontalExpand="True"
+                            VerticalExpand="True"
+                            Margin="0 0"
+                            HorizontalAlignment="Center"/>
+                    </imp:BorderedPanelContainer>
+                </BoxContainer>
+            </Button>
+        </BoxContainer>
     </BoxContainer>
 </DefaultWindow>
