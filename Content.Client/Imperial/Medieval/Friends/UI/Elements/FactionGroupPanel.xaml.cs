@@ -51,7 +51,10 @@ public sealed partial class FactionGroupPanel : BorderedPanelContainer
         {
             SetObjectiveButton.Visible = false;
             ObjectiveEditPanel.Visible = true;
-            ObjectiveEdit.SetText(groupObjective.Substring(0, 32), true);
+            if (groupObjective != string.Empty)
+                ObjectiveEdit.SetText(groupObjective.Substring(0, 32), true);
+            else
+                ObjectiveEditTip.Visible = true;
         };
 
         ObjectiveEdit.OnTextChanged += args =>

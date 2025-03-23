@@ -22,7 +22,7 @@ public sealed partial class FactionMenu : DefaultWindow
     public Action<FactionMemberGroup, string>? ObjectiveSet;
     public Action<int, FactionMemberGroup>? GroupSet;
     public Action<int>? FirePressed;
-    public Action<int>? HeadhuntPressed;
+    public Action<int, string>? HeadhuntPressed;
     public Action<int, bool>? SetLeaderPressed;
 
     public ProtoId<MedievalFactionPrototype> Faction = "";
@@ -82,7 +82,17 @@ public sealed partial class FactionMenu : DefaultWindow
         {
             if (!_fireSelected.HasValue)
                 return;
-            HeadhuntPressed?.Invoke(_fireSelected.Value);
+            Headhunt.Visible = false;
+            HeadhuntConfirmation.Visible = true;
+        };
+        HeadhuntConfirm.OnPressed += args =>
+        {
+            if (!_fireSelected.HasValue)
+                return;
+            HeadhuntPressed?.Invoke(_fireSelected.Value, HeadhuntDetails.Text);
+            HeadhuntDetails.Clear();
+            Headhunt.Visible = true;
+            HeadhuntConfirmation.Visible = false;
             Main.Visible = true;
             Confirmation.Visible = false;
             _fireSelected = null;

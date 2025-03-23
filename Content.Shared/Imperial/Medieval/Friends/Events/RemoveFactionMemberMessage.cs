@@ -10,12 +10,14 @@ public sealed partial class RemoveFactionMemberMessage : EntityEventArgs
 {
     public int Ent;
     public int Performer;
+    public string Details;
     public bool Headhunt;
 
-    public RemoveFactionMemberMessage(int ent, int performer, bool headhunt)
+    public RemoveFactionMemberMessage(int ent, int performer, string details, bool headhunt)
     {
         Ent = ent;
         Performer = performer;
+        Details = details;
         Headhunt = headhunt;
     }
 }

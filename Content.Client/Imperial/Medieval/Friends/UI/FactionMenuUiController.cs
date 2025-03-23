@@ -26,8 +26,8 @@ public sealed class FactionMenuUiController : UIController
             _menu.ObjectiveSet += ObjectiveSet;
             _menu.GroupSet += GroupSet;
             _menu.SetLeaderPressed += SetLeader;
-            _menu.FirePressed += args => Fire(args, false);
-            _menu.HeadhuntPressed += args => Fire(args, true);
+            _menu.FirePressed += args => Fire(args, "", false);
+            _menu.HeadhuntPressed += (id, details) => Fire(id, details, true);
 
             _menu.OpenCentered();
         }
@@ -36,8 +36,8 @@ public sealed class FactionMenuUiController : UIController
             _menu.ObjectiveSet -= ObjectiveSet;
             _menu.GroupSet -= GroupSet;
             _menu.SetLeaderPressed -= SetLeader;
-            _menu.FirePressed -= args => Fire(args, false);
-            _menu.FirePressed -= args => Fire(args, true);
+            _menu.FirePressed -= args => Fire(args, "", false);
+            _menu.HeadhuntPressed -= (id, details) => Fire(id, details, true);
 
             _menu.Dispose();
             _menu = null;
@@ -49,11 +49,11 @@ public sealed class FactionMenuUiController : UIController
         _menu?.Populate(proto, self, data, access, selfGroup);
     }
 
-    private void Fire(int ent, bool headhunt = false)
+    private void Fire(int ent, string details, bool headhunt = false)
     {
         var playerMan = IoCManager.Resolve<IPlayerManager>();
         if (_entityManager.TryGetComponent<FriendsComponent>(playerMan.LocalEntity, out var friends))
-            _entityManager.RaisePredictiveEvent(new RemoveFactionMemberMessage(ent, friends.MemberID, headhunt));
+            _entityManager.RaisePredictiveEvent(new RemoveFactionMemberMessage(ent, friends.MemberID, details, headhunt));
     }
 
     private void ObjectiveSet(FactionMemberGroup group, string obj)

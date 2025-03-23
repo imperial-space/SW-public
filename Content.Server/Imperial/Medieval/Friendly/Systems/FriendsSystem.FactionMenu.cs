@@ -1,6 +1,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.GameTicking;
+using Content.Server.MedievalPasport;
 using Content.Server.MedievalPasport.Components;
 using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
@@ -24,7 +25,7 @@ public sealed partial class FriendsSystem
 
     private void InitializeMenu()
     {
-        SubscribeLocalEvent<FriendsComponent, MapInitEvent>(OnFriendsInit);
+        SubscribeLocalEvent<FriendsComponent, StartupFactionDataEvent>(OnFriendsInit);
         SubscribeLocalEvent<FriendsComponent, EntityTerminatingEvent>(OnFriendsTerminating);
 
         SubscribeNetworkEvent<SetFactionMemberObjectiveMessage>(OnSetObjective);
@@ -35,7 +36,7 @@ public sealed partial class FriendsSystem
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStartedMenu);
     }
 
-    private void OnFriendsInit(EntityUid uid, FriendsComponent comp, MapInitEvent args)
+    private void OnFriendsInit(EntityUid uid, FriendsComponent comp, StartupFactionDataEvent args)
     {
         if (!TryGetFactionDataContainer(out var container))
             return;
@@ -46,8 +47,8 @@ public sealed partial class FriendsSystem
         var data = new FactionMemberData()
         {
             Name = Name(uid),
-            Job = CompOrNull<MedievalPasportPersonComponent>(uid)?.PersonJob ?? "Нет должности",
-            JobPrefix = CompOrNull<MedievalPasportPersonComponent>(uid)?.JobPrefix ?? "",
+            Job = args.Job,
+            JobPrefix = args.JobPrefix,
             Faction = comp.Faction
         };
         container.Value.Comp.CachedMembers.GetOrNew(comp.Faction).Add(comp.MemberID, data);
@@ -117,7 +118,7 @@ public sealed partial class FriendsSystem
         if (args.Headhunt)
         {
             if (TryComp<FriendsComponent>(uid, out var comp) && _mind.TryGetMind(uid.Value, out var mindId, out _) && _job.MindTryGetJob(mindId, out var job))
-                AddWanted(uid.Value, job.ID, headData.Name, comp.Faction);
+                AddWanted(uid.Value, job.ID, headData.Name, args.Details, comp.Faction);
         }
 
         SetJob(uid.Value, "Voluntary", "Нет должности");
