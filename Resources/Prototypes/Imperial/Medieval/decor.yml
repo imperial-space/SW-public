@@ -3188,7 +3188,7 @@
   - type: Sprite
     state: cactus5
 
-- type: entity
+ - type: entity
   id: MedievalBaseTreeCactus
   description: Yep, it's a tree.
   abstract: true
@@ -3198,6 +3198,19 @@
     dis: 6.5
   - type: SpriteFade
   - type: Clickable
+  - type: DamageContacts
+    damage:
+     types:
+       Piercing: 3
+  - type: DamageOnInteract
+    damage:
+      types:
+         Piercing: 4
+    popupText: cactus-component-contact-damage
+  - type: DamageOnAttacked
+    damage:
+      types:
+         Piercing: 6
   - type: Sprite
     noRot: true
     sprite: Imperial/Medieval/Decor/cactus.rsi
