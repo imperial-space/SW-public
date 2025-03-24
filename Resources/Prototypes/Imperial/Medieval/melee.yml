@@ -3695,16 +3695,59 @@
 
 - type: entity
   name: wooden shield
+  parent: MedievalWoodenShieldKnight
+  id: MedievalWoodenShieldKnightCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/woodknight.rsi
+      state: shield-cross
+    - type: Item
+      sprite: Imperial/Medieval/Shields/woodknight.rsi
+      heldPrefix: cross
+      size: Normal
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShield
+  id: MedievalWoodenShieldCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/wooden.rsi
+      state: shield-cross
+    - type: Item
+      sprite: Imperial/Medieval/Shields/wooden.rsi
+      heldPrefix: cross
+      size: Normal
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShieldBuckler
+  id: MedievalWoodenShieldBucklerCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/buckler.rsi
+      state: shield-cross
+    - type: Item
+      sprite: Imperial/Medieval/Shields/buckler.rsi
+      heldPrefix: cross
+      size: Normal
+
+- type: entity
+  name: wooden shield
   parent: MedievalWoodenShieldBucklerGoblin
   id: MedievalWoodenShieldBucklerGoblinCross
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: bucklergobl-icon-cross
+      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
+      state: shield-cross
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: bucklergobl-cross
+      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
+      heldPrefix: cross
+      size: Normal
 
 - type: entity
   name: pickaxe
