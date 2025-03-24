@@ -1004,20 +1004,6 @@
 
 - type: entity
   name: wooden shield
-  parent: MedievalWoodenShieldKnight
-  id: MedievalWoodenShieldKnightCross
-  description: Wooden shield.
-  components:
-    - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: woodknight-icon-cross
-    - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: woodknight-cross
-      size: Normal
-
-- type: entity
-  name: wooden shield
   parent: BaseShield
   id: MedievalWoodenShield
   description: Wooden shield.
@@ -1072,20 +1058,6 @@
 
 - type: entity
   name: wooden shield
-  parent: MedievalWoodenShield
-  id: MedievalWoodenShieldCross
-  description: Wooden shield.
-  components:
-    - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: wooden-icon-cross
-    - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: wooden-cross
-      size: Normal
-
-- type: entity
-  name: wooden shield
   parent: BaseShield
   id: MedievalWoodenShieldBuckler
   description: Wooden shield.
@@ -1137,20 +1109,6 @@
       walkModifier: 0.97
       sprintModifier: 0.97
       mirrorClothingModifier: false
-
-- type: entity
-  name: wooden shield
-  parent: MedievalWoodenShieldBuckler
-  id: MedievalWoodenShieldBucklerCross
-  description: Wooden shield.
-  components:
-    - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: buckler-icon-cross
-    - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: buckler-cross
-      size: Normal
 
 - type: entity
   name: iron shield
