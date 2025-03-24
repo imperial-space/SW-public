@@ -19,6 +19,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Server.Imperial.Sponsors;
+using Content.Shared.Imperial.ICCVar;
 
 /*
  * TODO: Remove baby jail code once a more mature gateway process is established. This code is only being issued as a stopgap to help with potential tiding in the immediate future.
@@ -303,7 +304,10 @@ namespace Content.Server.Connection
                 softPlayerCount -= _adminManager.ActiveAdmins.Count();
             }
 
-            if ((softPlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass) && !wasInGame && !isPriorityJoin)
+            // Imperial-Medieval-JoinQueue-Start
+            var isQueueEnabled = _cfg.GetCVar(ICCVars.QueueEnabled);
+            if (_plyMgr.PlayerCount >= _cfg.GetCVar(CCVars.SoftMaxPlayers) && !adminBypass && !isPriorityJoin && !isQueueEnabled && !wasInGame)
+            // Imperial-Medieval-JoinQueue-End
             {
                 return (ConnectionDenyReason.Full, Loc.GetString("soft-player-cap-full"), null);
             }
@@ -374,7 +378,7 @@ namespace Content.Server.Connection
         }
 
         //Imperial sponsors start
-        private bool HavePriorityJoin(NetUserId user)
+        public bool HavePriorityJoin(NetUserId user)
         {
             return _sponsorsManager.TryGetInfo(user, out var sponsorInfo) && sponsorInfo.HavePriorityJoin;
         }

@@ -3,7 +3,7 @@
   id: Scream
   name: chat-emote-name-scream
   category: Vocal
-  icon: Interface/Emotes/scream.png
+  icon: Interface/Emotes/heavy.png # imperial medieval "emotions"
   whitelist:
     components:
     - Vocal

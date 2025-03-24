@@ -2245,3 +2245,10 @@
     MedievalGold: 8
     MedievalForstoneIngot: 5
   result: MedievalPickaxeForStone
+
+- type: CP14Recipe
+  id: ClothingEyesGlasses
+  craftTime: 5
+  stacks:
+    MedievalIronIngot: 5
+  result: ClothingEyesGlasses

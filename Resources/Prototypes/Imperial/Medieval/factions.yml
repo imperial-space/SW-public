@@ -1,0 +1,61 @@
+- type: medievalFaction
+  id: Voluntary
+  name: вольные
+  showKnown: false
+  icon:
+    sprite: Imperial/Medieval/Interface/factions.rsi
+    state: merc
+
+- type: medievalFaction
+  id: Legion
+  name: легион
+  icon:
+    sprite: Imperial/Medieval/Interface/factions.rsi
+    state: legion
+  knownFactions:
+    Insurgency: "[color=red]Чертов предатель, сбежал(а) из легиона![/color]"
+
+- type: medievalFaction
+  id: Insurgency
+  name: мятежники
+  icon:
+    sprite: Imperial/Medieval/Interface/factions.rsi
+    state: insurgency
+  knownFactions:
+    Legion: "[color=red]Бывший сослуживец, грязный легионер![/color]"
+
+- type: medievalFaction
+  id: Bandit
+  name: банда
+  icon:
+    sprite: Imperial/Medieval/Interface/factions.rsi
+    state: bandit
+
+- type: medievalFaction
+  id: Merc
+  name: наёмники
+  icon:
+    sprite: Imperial/Medieval/Interface/factions.rsi
+    state: merc
+
+- type: medievalFaction
+  id: Collegium
+  name: коллегия
+  icon:
+    sprite: Imperial/Medieval/Interface/factions.rsi
+    state: collegium
+
+- type: medievalFaction
+  id: Miner
+  name: шахтёры
+  icon:
+    sprite: Imperial/Medieval/Interface/factions.rsi
+    state: miner
+
+- type: medievalFaction
+  id: Tribe
+  name: племя
+
+- type: medievalFaction
+  id: Cult
+  name: культ

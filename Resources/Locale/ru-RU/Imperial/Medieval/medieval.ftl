@@ -5083,3 +5083,4 @@ ent-MedievalSpearSulica = сулица
 ent-MedievalClothingOuterArmorBrigantin = кираса бригантины
     .desc = Нагрудник из пластин, наклепанных на кожаную основу.
     .suffix = { "Средневековье, одежда" }
+cactus-component-contact-damage = В вашу кожу впивается пара колючек 

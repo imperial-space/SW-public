@@ -943,7 +943,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1005,7 +1005,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1057,7 +1057,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1381,7 +1381,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: BadSmell
@@ -1421,7 +1421,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: LegionTrader
     - type: GiveItemObjective
@@ -1520,7 +1520,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: InsurgencyTrader
     - type: GiveItemObjective
@@ -1583,7 +1583,7 @@
       actions:
       - MedievalActionDivineTouchBeginner
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1790,7 +1790,7 @@
       maxMana: 140
       regen: 0.4
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1864,9 +1864,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -1875,6 +1876,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=cyan]рекрут легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[РекЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionRecruit
@@ -1950,9 +1952,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -1961,6 +1964,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=cyan]легионер легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[ЛегЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionLegioner
@@ -2003,9 +2007,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -2014,6 +2019,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=cyan]вратничий легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[ВратЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionGateman
@@ -2067,9 +2073,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -2078,6 +2085,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=cyan]опцион легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[ВарЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionOpcion
@@ -2130,9 +2138,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -2141,6 +2150,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=cyan]трибун легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[ТрибЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionTribun
@@ -2194,9 +2204,11 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
+      menuAccess: Full
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -2208,6 +2220,7 @@
     - type: CloackMessage
       action: CloackMessageActionLegion
       faction: "leg"
+      jobPrefix: "[ЛегЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionLegat
@@ -2269,9 +2282,10 @@
       maxMana: 140
       regen: 0.4
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
@@ -2280,6 +2294,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=cyan]маг легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[МагЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionMag
@@ -2339,9 +2354,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2350,6 +2366,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=red]фелаг мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[РекМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyRecruit
@@ -2421,9 +2438,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2432,6 +2450,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=red]дружинник мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[ДружМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyInsurgencyer
@@ -2470,9 +2489,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2481,6 +2501,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=red]вратничий мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[ВратМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyGateman
@@ -2530,9 +2551,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2541,6 +2563,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=red]варяг мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[ВарМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyOpcion
@@ -2588,9 +2611,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2599,6 +2623,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=red]форинг мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[ФорМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyTribun
@@ -2652,9 +2677,11 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
+      menuAccess: Full
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2666,6 +2693,7 @@
     - type: CloackMessage
       action: CloackMessageActionIns
       faction: "ins"
+      jobPrefix: "[ЯрлМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyLegat
@@ -2725,9 +2753,10 @@
       maxMana: 140
       regen: 0.4
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
@@ -2736,6 +2765,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=red]маг мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[МагМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyMag
@@ -2795,17 +2825,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "банда"
+      faction: Bandit
+      factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "банда"
+    #  faction: Bandit
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
-    #- type: MedievalPasportPerson
-    #  personJob: "[color=gray]Молодняк банды[/color]"
-    #  pasport: MedievalPasportBand
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Молодняк банды[/color]"
+      pasport: "no"
+      jobPrefix: "[МолБ]"
 
 - type: roleLoadout
   id: JobMedievalBanditRecruit
@@ -2855,17 +2887,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "банда"
+      faction: Bandit
+      factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "банда"
+    #  faction: Bandit
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
-    #- type: MedievalPasportPerson
-    #  personJob: "[color=gray]Бывалый разбойник банды[/color]"
-    #  pasport: MedievalPasportBand
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Бывалый разбойник банды[/color]"
+      pasport: "no"
+      jobPrefix: "[БывБ]"
 
 - type: roleLoadout
   id: JobMedievalBanditRegular
@@ -2916,17 +2950,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "банда"
+      faction: Bandit
+      factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "банда"
+    #  faction: Bandit
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
-    #- type: MedievalPasportPerson
-    #  personJob: "[color=gray]Ветеран банды[/color]"
-    #  pasport: MedievalPasportBand
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Ветеран банды[/color]"
+      pasport: "no"
+      jobPrefix: "[ВетБ]"
 
 - type: roleLoadout
   id: JobMedievalBanditVeteran
@@ -2976,17 +3012,20 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "банда"
+      faction: Bandit
+      factionMenuAction: BanditFactionMenuAction
+      menuAccess: Full
     #- type: IdentityFaction
-    #  faction: "банда"
+    #  faction: Bandit
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
-    #- type: MedievalPasportPerson
-    #  personJob: "[color=gray]Главарь банды[/color]"
-    #  pasport: MedievalPasportBand
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Главарь банды[/color]"
+      pasport: "no"
+      jobPrefix: "[ГлБ]"
     - type: CloackMessage
       action: CloackMessageActionBand
       faction: "band"
@@ -3038,9 +3077,10 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "наемники"
+      faction: Merc
+      factionMenuAction: MercFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "наемники"
+    #  faction: Merc
     - type: MedievalJobSpawn
       spawnType: Merc
     - type: GiveItemObjective
@@ -3049,6 +3089,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=yellow]наемник[/color]"
       pasport: MedievalPasportMerc
+      jobPrefix: "[Наем]"
 
 - type: roleLoadout
   id: JobMedievalMerc
@@ -3102,9 +3143,11 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "наемники"
+      faction: Merc
+      factionMenuAction: MercFactionMenuAction
+      menuAccess: Full
     #- type: IdentityFaction
-    #  faction: "наемники"
+    #  faction: Merc
     - type: MedievalJobSpawn
       spawnType: Merc
     - type: GiveItemObjective
@@ -3113,6 +3156,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=yellow]лидер наемников[/color]"
       pasport: MedievalPasportMerc
+      jobPrefix: "[ЛидН]"
     - type: CloackMessage
       action: CloackMessageActionMerc
       faction: "merc"
@@ -3177,9 +3221,10 @@
       maxMana: 120
       regen: 0.325
     - type: Friends
-      faction: "коллегия"
+      faction: Collegium
+      factionMenuAction: CollegiumFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "коллегия"
+    #  faction: Collegium
     - type: MedievalJobSpawn
       spawnType: Collegium
     - type: GiveItemObjective
@@ -3188,6 +3233,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=purple]послушник коллегии[/color]"
       pasport: MedievalPasportCollegium
+      jobPrefix: "[ПосК]"
 
 - type: roleLoadout
   id: JobMedievalCollegiumRecruit
@@ -3249,9 +3295,10 @@
       maxMana: 150
       regen: 0.475
     - type: Friends
-      faction: "коллегия"
+      faction: Collegium
+      factionMenuAction: CollegiumFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "коллегия"
+    #  faction: Collegium
     - type: MedievalJobSpawn
       spawnType: Collegium
     - type: GiveItemObjective
@@ -3260,6 +3307,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=purple]маг коллегии[/color]"
       pasport: MedievalPasportCollegium
+      jobPrefix: "[МагК]"
 
 - type: roleLoadout
   id: JobMedievalCollegiumCommon
@@ -3322,9 +3370,11 @@
       maxMana: 180
       regen: 0.5
     - type: Friends
-      faction: "коллегия"
+      faction: Collegium
+      factionMenuAction: CollegiumFactionMenuAction
+      menuAccess: Full
     #- type: IdentityFaction
-    #  faction: "коллегия"
+    #  faction: Collegium
     - type: MedievalJobSpawn
       spawnType: Collegium
     - type: GiveItemObjective
@@ -3333,6 +3383,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=purple]архимаг коллегии[/color]"
       pasport: MedievalPasportCollegium
+      jobPrefix: "[АрхмК]"
     - type: CloackMessage
       action: CloackMessageActionCollegium
       faction: "collegium"
@@ -3386,14 +3437,19 @@
     components:
     #- type: GigaMonkeyAccent
     - type: Friends
-      faction: "племя"
+      faction: Tribe
+      factionMenuAction: TribeFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "племя"
+    #  faction: Tribe
     - type: MedievalJobSpawn
       spawnType: Tribe
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjectiveTribe
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Воин племени[/color]"
+      pasport: "no"
+      jobPrefix: "[ВоинП]"
     - type: LanguageSpeaker
       languages:
         #ommon: Understand
@@ -3405,7 +3461,6 @@
         #Growling: Speak
         #Hissing: Speak
         #Elf: Speak
-
 
 # MEDIEVAL Tribe COMMON
 
@@ -3459,14 +3514,19 @@
       regen: 0.65
     #- type: GigaMonkeyAccent
     - type: Friends
-      faction: "племя"
+      faction: Tribe
+      factionMenuAction: TribeFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "племя"
+    #  faction: Tribe
     - type: MedievalJobSpawn
       spawnType: Tribe
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjectiveTribe
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Шаман племени[/color]"
+      pasport: "no"
+      jobPrefix: "[ШамП]"
     - type: LanguageSpeaker
       languages:
         #ommon: Understand
@@ -3520,14 +3580,20 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "племя"
+      faction: Tribe
+      factionMenuAction: TribeFactionMenuAction
+      menuAccess: Full
     #- type: IdentityFaction
-    #  faction: "племя"
+    #  faction: Tribe
     - type: MedievalJobSpawn
       spawnType: Tribe
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjectiveTribe
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Вождь племени[/color]"
+      pasport: "no"
+      jobPrefix: "[ВождьП]"
     - type: LanguageSpeaker
       languages:
         Common: Speak
@@ -3574,9 +3640,9 @@
       tags:
       - ImperialLibrary
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     #- type: IdentityFaction
-    #  faction: "вольные"
+    #  faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: LegionTrader
     - type: MedievalTradeCurse
@@ -3694,9 +3760,9 @@
       tags:
       - ImperialLibrary
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     #- type: IdentityFaction
-    #  faction: "вольные"
+    #  faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: InsurgencyTrader
     - type: MedievalTradeCurse
@@ -3796,9 +3862,10 @@
     components:
     - type: MedievalDigger
     - type: Friends
-      faction: "шахтеры"
+      faction: Miner
+      factionMenuAction: MinerFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "шахтеры"
+    #  faction: Miner
     - type: MedievalJobSpawn
       spawnType: Mine
     - type: GiveItemObjective
@@ -3807,6 +3874,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=green]шахтер[/color]"
       pasport: MedievalPasportMine
+      jobPrefix: "[Шахт]"
 
 - type: roleLoadout
   id: JobMedievalMiner
@@ -3861,9 +3929,11 @@
     components:
     - type: MedievalDigger
     - type: Friends
-      faction: "шахтеры"
+      faction: Miner
+      factionMenuAction: MinerFactionMenuAction
+      menuAccess: Full
     #- type: IdentityFaction
-    #  faction: "шахтеры"
+    #  faction: Miner
     - type: MedievalJobSpawn
       spawnType: Mine
     - type: GiveItemObjective
@@ -3872,6 +3942,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=green]старший шахтер[/color]"
       pasport: MedievalPasportMine
+      jobPrefix: "[СтШахт]"
     - type: CloackMessage
       action: CloackMessageActionMine
       faction: "mine"
@@ -3919,9 +3990,10 @@
     components:
     - type: CrafterTrait
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: LegionBlacksmith
     - type: GiveItemObjective
@@ -3930,6 +4002,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=cyan]кузнец легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[КузЛ]"
 
 - type: roleLoadout
   id: JobMedievalBlacksmith
@@ -3973,9 +4046,10 @@
     components:
     - type: CrafterTrait
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: InsurgencyBlacksmith
     - type: GiveItemObjective
@@ -3984,6 +4058,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=red]кузнец мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[КузМ]"
 
 - type: roleLoadout
   id: JobMedievalBlacksmithN
@@ -4027,9 +4102,10 @@
     components:
     - type: CrafterTrait
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: LegionBlacksmith
     - type: GiveItemObjective
@@ -4038,6 +4114,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=cyan]подмастерье кузнеца легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[МлКузЛ]"
 
 - type: roleLoadout
   id: JobMedievalBlacksmithYoung
@@ -4081,9 +4158,10 @@
     components:
     - type: CrafterTrait
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: InsurgencyBlacksmith
     - type: GiveItemObjective
@@ -4092,6 +4170,7 @@
     - type: MedievalPasportPerson
       personJob: "[color=red]подмастерье кузнеца мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[МлКузМ]"
 
 - type: roleLoadout
   id: JobMedievalBlacksmithYoungN
@@ -4150,14 +4229,16 @@
     components:
     - type: CultMember
     - type: Friends
-      faction: "культ"
+      faction: Cult
+      factionMenuAction: CultFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "культ"
+    #  faction: Cult
     - type: MedievalJobSpawn
       spawnType: Cult
     - type: MedievalPasportPerson
       personJob: "[color=red]культист[/color]"
       pasport: no
+      jobPrefix: "[Культ]"
 
 # MEDIEVAL CultLeader
 
@@ -4214,14 +4295,17 @@
     components:
     - type: CultMember
     - type: Friends
-      faction: "культ"
+      faction: Cult
+      factionMenuAction: CultFactionMenuAction
+      menuAccess: Full
     #- type: IdentityFaction
-    #  faction: "культ"
+    #  faction: Cult
     - type: MedievalJobSpawn
       spawnType: Cult
     - type: MedievalPasportPerson
       personJob: "[color=red]проповедник культа[/color]"
       pasport: no
+      jobPrefix: "[ПропКульт]"
     - type: CloackMessage
       action: CloackMessageActionIns
       faction: "cult"

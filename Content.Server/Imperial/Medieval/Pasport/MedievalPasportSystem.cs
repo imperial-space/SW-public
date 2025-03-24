@@ -9,6 +9,7 @@ using Content.Shared.Item;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
+using Content.Shared.Friends;
 
 namespace Content.Server.MedievalPasport
 {
@@ -76,6 +77,9 @@ namespace Content.Server.MedievalPasport
 
         public void OnStart(EntityUid uid, MedievalPasportPersonComponent comp, ComponentStartup args)
         {
+            var ev = new StartupFactionDataEvent(comp.PersonJob, comp.JobPrefix);
+            RaiseLocalEvent(uid, ev);
+
             if (comp.Pasport == "no") return;
             var xform = Transform(comp.Owner);
             var coords = xform.Coordinates;

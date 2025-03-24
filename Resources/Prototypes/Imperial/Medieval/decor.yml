@@ -912,7 +912,7 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
-        
+
 - type: entity
   id: MedievalDecorHelpParent
   parent: MedievalBannerBase
@@ -947,7 +947,7 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
-        
+
 - type: entity
   id: MedievalDecorMogila3
   parent: MedievalBannerBase
@@ -3198,6 +3198,19 @@
     dis: 6.5
   - type: SpriteFade
   - type: Clickable
+  - type: DamageContacts
+    damage:
+     types:
+       Piercing: 3
+  - type: DamageOnInteract
+    damage:
+      types:
+         Piercing: 4
+    popupText: cactus-component-contact-damage
+  - type: DamageOnAttacked
+    damage:
+      types:
+         Piercing: 6
   - type: Sprite
     noRot: true
     sprite: Imperial/Medieval/Decor/cactus.rsi
@@ -4497,7 +4510,7 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
-   
+
 - type: construction
   id: Mattress
   name: Спальник

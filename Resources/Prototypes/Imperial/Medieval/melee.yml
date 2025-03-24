@@ -955,12 +955,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: woodknight-icon
+      sprite: Imperial/Medieval/Shields/woodknight.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: woodknight
+      sprite: Imperial/Medieval/Shields/woodknight.rsi
       size: Normal
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1018,12 +1023,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: wooden-icon
+      sprite: Imperial/Medieval/Shields/wooden.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: wooden
+      sprite: Imperial/Medieval/Shields/wooden.rsi
       size: Normal
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1081,12 +1091,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: buckler-icon
+      sprite: Imperial/Medieval/Shields/buckler.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: buckler
+      sprite: Imperial/Medieval/Shields/buckler.rsi
       size: Normal
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1150,11 +1165,10 @@
             variation: 0.02
             volume: 1
     - type: Sprite
-      state: inf_medieval-icon
-      sprite: Imperial/Medieval/Melee/shields.rsi
+      sprite: Imperial/Medieval/Shields/inf_medieval.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: inf_medieval
+      sprite: Imperial/Medieval/Shields/inf_medieval.rsi
       size: Large
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
@@ -1207,12 +1221,17 @@
             variation: 0.02
             volume: 1
     - type: Sprite
-      state: iron-buckler-icon
-      sprite: Imperial/Medieval/Melee/shields.rsi
+      sprite: Imperial/Medieval/Shields/iron_buckler.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: iron-buckler
+      sprite: Imperial/Medieval/Shields/iron_buckler.rsi
       size: Normal
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -3628,11 +3647,16 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: bucklergobl-icon
+      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: bucklergobl
+      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:

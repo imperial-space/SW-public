@@ -8,6 +8,7 @@ using Content.Client.Fullscreen;
 using Content.Client.GameTicking.Managers;
 using Content.Client.GhostKick;
 using Content.Client.Guidebook;
+using Content.Client.Imperial.Medieval.JoinQueue;
 using Content.Client.Launcher;
 using Content.Client.Mapping;
 using Content.Client.Parallax.Managers;
@@ -57,7 +58,8 @@ namespace Content.Client.IoC
             collection.Register<ISharedPlaytimeManager, JobRequirementsManager>();
             collection.Register<MappingManager>();
             collection.Register<DebugMonitorManager>();
-            IoCManager.Register<SponsorsManager>(); //Imperial sponsors
+            collection.Register<SponsorsManager>(); //Imperial sponsors
+            collection.Register<JoinQueueManager>(); // Imperial-Medieval-JoinQueue
             collection.Register<PlayerRateLimitManager>();
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
