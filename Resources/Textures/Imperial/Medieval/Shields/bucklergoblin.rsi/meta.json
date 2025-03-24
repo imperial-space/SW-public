@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-  "copyright": "by brotania, -cross versions made by @crookielv",
+  "copyright": "by brotania",
   "size": {
     "x": 32,
     "y": 32
@@ -20,21 +20,6 @@
     },
     {
         "name": "equipped-SUITSTORAGE",
-        "directions": 4
-    },
-    {
-      "name": "shield-cross"
-    },
-    {
-      "name": "cross-inhand-left",
-      "directions": 4
-    },
-    {
-      "name": "cross-inhand-right",
-      "directions": 4
-    },
-    {
-        "name": "cross-equipped-SUITSTORAGE",
         "directions": 4
     }
   ]

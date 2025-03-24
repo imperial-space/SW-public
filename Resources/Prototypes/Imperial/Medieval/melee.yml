@@ -3658,11 +3658,10 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Shields/woodknight.rsi
-      state: shield-cross
+      sprite: Imperial/Medieval/Shields/cross_woodknight.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Shields/woodknight.rsi
-      heldPrefix: cross
+      sprite: Imperial/Medieval/Shields/cross_woodknight.rsi
       size: Normal
 
 - type: entity
@@ -3672,11 +3671,10 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Shields/wooden.rsi
-      state: shield-cross
+      sprite: Imperial/Medieval/Shields/cross_wooden.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Shields/wooden.rsi
-      heldPrefix: cross
+      sprite: Imperial/Medieval/Shields/cross_wooden.rsi
       size: Normal
 
 - type: entity
@@ -3686,11 +3684,10 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Shields/buckler.rsi
-      state: shield-cross
+      sprite: Imperial/Medieval/Shields/cross_buckler.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Shields/buckler.rsi
-      heldPrefix: cross
+      sprite: Imperial/Medieval/Shields/cross_buckler.rsi
       size: Normal
 
 - type: entity
@@ -3700,11 +3697,10 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
-      state: shield-cross
+      sprite: Imperial/Medieval/Shields/cross_bucklergoblin.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
-      heldPrefix: cross
+      sprite: Imperial/Medieval/Shields/cross_bucklergoblin.rsi
       size: Normal
 
 - type: entity
