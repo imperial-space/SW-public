@@ -246,7 +246,7 @@
   - type: EmoteOnDamage
 # imperial medieval "emotions" start
     emotes:
-    - PainScream 
+    - PainScream
     emoteChance: 0.3
     withChat: true
     emoteCooldown: 3.5
@@ -264,6 +264,7 @@
     bloodMultiplier: 1
     fresh: true
   - type: RandomSteal
+  - type: Customizer
   #- type: LanguageSpeaker
   #  languages:
   #    Common: Speak
