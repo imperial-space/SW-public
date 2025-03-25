@@ -1,11 +1,12 @@
+using Content.Shared.Popups;
 using Content.Shared.Verbs;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Medieval.Identity;
-public abstract partial class MedievalIdentitySystem : EntitySystem
+
+public sealed partial class MedievalIdentitySystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private int _nextId = 1;
 
@@ -35,6 +36,8 @@ public abstract partial class MedievalIdentitySystem : EntitySystem
         {
             Act = () =>
             {
+                _popup.PopupPredicted($"Вы представились {IdentityManagement.Identity.Name(uid, EntityManager, args.User)}.", uid, args.User);
+                _popup.PopupPredicted($"{Name(args.User)} представился вам.", args.User, uid);
                 component.KnownIds.Add(comp.Identifier);
                 Dirty(uid, component);
             },
