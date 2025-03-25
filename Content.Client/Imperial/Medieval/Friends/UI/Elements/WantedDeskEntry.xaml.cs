@@ -33,10 +33,10 @@ public sealed partial class WantedDeskEntry : Control
         Character.SetEntity(ent);
 
         Name.SetMessage(data.Profile.Name);
-        Faction.SetMessage($"Состоял в: {_proto.Index(data.Faction).Name}");
-        Job.SetMessage($"Должность: {_proto.Index<JobPrototype>(data.Job).LocalizedName}");
-        Species.SetMessage($"Раса: {data.Profile.Species}");
-        Sex.SetMessage($"Пол: {data.Profile.Sex}");
+        Faction.SetMessage($"Состоял в: {_proto.Index(data.Faction).Name.ToLower()}");
+        Job.SetMessage($"Должность: {_proto.Index<JobPrototype>(data.Job).LocalizedName.ToLower()}");
+        Species.SetMessage($"Раса: {FormattedMessage.EscapeText(Loc.GetString($"species-colored-{data.Profile.Species}"))}");
+        Sex.SetMessage($"Пол: {Loc.GetString($"humanoid-profile-editor-sex-{data.Profile.Sex}-text").ToLower()}");
         Age.SetMessage($"Возраст: {data.Profile.Age}");
 
         if (data.FlavorText != string.Empty)
