@@ -1,3 +1,4 @@
+using Content.Shared.Friends;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
@@ -14,7 +15,7 @@ public sealed partial class MedievalIdentitySystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit);
+        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedFriendsSystem) });
         SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
     }
 
