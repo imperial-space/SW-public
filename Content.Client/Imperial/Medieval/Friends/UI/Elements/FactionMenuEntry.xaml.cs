@@ -20,6 +20,7 @@ public sealed partial class FactionMenuEntry : Control
     public Action<int, FactionMemberGroup>? GroupSet;
     public Action<int>? RemoveButtonPressed;
     public Action<int, bool>? SetLeaderPressed;
+    public bool Alive = true;
 
     public FactionMenuEntry(int ent, int self, FactionMemberData data, FactionMenuAccess access, string objective)
     {
@@ -32,6 +33,7 @@ public sealed partial class FactionMenuEntry : Control
 
         if (data.Dead)
         {
+            Alive = false;
             MainPanel.BackgroundPanelColor = Color.FromHex("#291e1e");
             FireText.SetMessage("Вычеркнуть");
         }

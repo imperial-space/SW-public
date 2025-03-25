@@ -207,7 +207,7 @@ public sealed partial class FriendsSystem
             if (!GetFactionMemberById(y.Key, out var yEnt) || !TryComp<FriendsComponent>(yEnt, out var yFriends))
                 return -1;
 
-            return yFriends.Priority.CompareTo(yFriends.Priority);
+            return yFriends.Priority.CompareTo(xFriends.Priority);
         });
 
         var headQuery = EntityQueryEnumerator<FactionDataContainerComponent>();

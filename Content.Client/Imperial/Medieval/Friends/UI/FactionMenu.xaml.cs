@@ -128,6 +128,14 @@ public sealed partial class FactionMenu : DefaultWindow
             var container = _jobMode ? EnsureJobContainer(item.Value.Job) : EnsureGroupContainer(group, objective ?? "", access, selfGroup);
             container.AddChild(entry);
         }
+
+        foreach (var item in Members.Children)
+        {
+            if (item is FactionJobPanel job)
+                job.Update();
+            if (item is FactionGroupPanel group)
+                group.Update();
+        }
     }
 
     private BoxContainer EnsureJobContainer(string job)
