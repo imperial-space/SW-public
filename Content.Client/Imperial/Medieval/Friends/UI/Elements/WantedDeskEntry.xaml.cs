@@ -37,7 +37,7 @@ public sealed partial class WantedDeskEntry : Control
         Job.SetMessage($"Должность: {_proto.Index<JobPrototype>(data.Job).LocalizedName.ToLower()}");
         Species.SetMessage($"Раса: {FormattedMessage.EscapeText(Loc.GetString($"species-colored-{data.Profile.Species}"))}");
         Sex.SetMessage($"Пол: {Loc.GetString($"humanoid-profile-editor-sex-{data.Profile.Sex}-text").ToLower()}");
-        Age.SetMessage($"Возраст: {data.Profile.Age}");
+        Age.SetMessage($"Возраст: {data.Profile.Age} лет");
 
         if (data.FlavorText != string.Empty)
         {
