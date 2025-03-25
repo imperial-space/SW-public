@@ -3197,8 +3197,8 @@
   - type: Damageable
     damageModifierSet: MedievalRespawn
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.9
-    baseSprintSpeed: 2.9
+    baseWalkSpeed: 2.3
+    baseSprintSpeed: 2.3
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -3312,8 +3312,8 @@
       120: 0.75
       175: 0.7
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.3
-    baseSprintSpeed: 2.3
+    baseWalkSpeed: 2.9
+    baseSprintSpeed: 2.9
   #- type: Strap
   #  buckleOffset: "0, 0"
   #  maxBuckleDistance: 1
