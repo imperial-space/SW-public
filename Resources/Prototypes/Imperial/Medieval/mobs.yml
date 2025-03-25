@@ -3219,6 +3219,8 @@
       task: SimpleRangedHostileCompound
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/chainmail_hit.ogg
   - type: BasicEntityAmmoProvider
     proto: MedievalAmmoSpike
     capacity: 1
@@ -3230,6 +3232,7 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    soundGunshot: /Audio/Imperial/Medieval/hunter_atack.ogg
   - type: Butcherable
     spawned:
     - id: MedievalLootNastyGrowth
