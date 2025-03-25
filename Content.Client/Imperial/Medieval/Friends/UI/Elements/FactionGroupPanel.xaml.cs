@@ -52,7 +52,7 @@ public sealed partial class FactionGroupPanel : BorderedPanelContainer
         {
             SetObjectiveButton.Visible = false;
             ObjectiveEditPanel.Visible = true;
-            if (groupObjective != string.Empty)
+            if (groupObjective.Length > 32)
                 ObjectiveEdit.SetText(groupObjective.Substring(0, 32), true);
             else
                 ObjectiveEditTip.Visible = true;
