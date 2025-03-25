@@ -112,6 +112,7 @@ public sealed partial class FriendsSystem
                 WithCharacterAppearance(hca).
                 WithSpecies(humanoid.Species).
                 WithSex(humanoid.Sex).
+                WithAge(humanoid.Age).
                 WithName(Name(uid));
     }
 

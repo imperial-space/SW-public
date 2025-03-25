@@ -35,6 +35,9 @@ public sealed partial class WantedDeskEntry : Control
         Name.SetMessage(data.Profile.Name);
         Faction.SetMessage($"Состоял в: {_proto.Index(data.Faction).Name}");
         Job.SetMessage($"Должность: {_proto.Index<JobPrototype>(data.Job).LocalizedName}");
+        Species.SetMessage($"Раса: {data.Profile.Species}");
+        Sex.SetMessage($"Пол: {data.Profile.Sex}");
+        Age.SetMessage($"Возраст: {data.Profile.Age}");
 
         if (data.FlavorText != string.Empty)
         {
