@@ -3197,8 +3197,8 @@
   - type: Damageable
     damageModifierSet: MedievalRespawn
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.05
-    baseSprintSpeed: 2.05
+    baseWalkSpeed: 2.9
+    baseSprintSpeed: 2.9
   - type: NpcFactionMember
     factions:
     - Xeno
