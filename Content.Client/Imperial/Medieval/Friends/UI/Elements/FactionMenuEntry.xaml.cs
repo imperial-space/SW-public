@@ -75,6 +75,7 @@ public sealed partial class FactionMenuEntry : Control
                         RemoveLeaderCross.Visible = data.Leader;
                         SetLeaderButton.Visible = ent != self;
                         LeaderPanel.Visible = ent != self;
+                        LeaderPanel.BackgroundPanelColor = data.Leader ? Color.FromHex("#474747") : Color.FromHex("#2b2b2b");
                         SetLeaderButton.OnPressed += args => SetLeaderPressed?.Invoke(ent, !data.Leader);
                         SetLeaderButton.ToolTip = data.Leader ? "Снять с поста" : "Назначить лидером";
                         break;
