@@ -187,6 +187,7 @@ public sealed partial class FriendsSystem
 
         container.Value.Comp.CachedMembers.GetOrNew(oldFaction).Remove(comp.MemberID);
         container.Value.Comp.CachedMembers.GetOrNew(faction).Add(comp.MemberID, data);
+        Dirty(uid, comp);
         RefreshFactionMenu(faction);
         RefreshFactionMenu(oldFaction);
     }
