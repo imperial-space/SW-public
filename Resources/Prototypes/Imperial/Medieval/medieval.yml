@@ -1244,7 +1244,7 @@
     - ears
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_expl.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.35
+    damageCoefficient: 0.6
   - type: Armor
     modifiers:
       coefficients:

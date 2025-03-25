@@ -1814,18 +1814,18 @@
   - type: Bloodstream
     bloodMaxVolume: 0
   - type: MeleeWeapon
-    range: 1.65
-    attackRate: 1.5
+    range: 1.75
+    attackRate: 1.7
     hidden: true
     angle: 0
     soundHit:
       collection: AlienClaw
     damage:
       groups:
-        Brute: 4
+        Brute: 6.8
       types:
         ParryAble: 1
-        Caustic: 1
+        Caustic: 1.9
         Bloodloss: 3
   - type: Puller
   - type: Tag
