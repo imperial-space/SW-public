@@ -3197,8 +3197,8 @@
   - type: Damageable
     damageModifierSet: MedievalRespawn
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.05
-    baseSprintSpeed: 2.05
+    baseWalkSpeed: 2.3
+    baseSprintSpeed: 2.3
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -3219,6 +3219,8 @@
       task: SimpleRangedHostileCompound
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/chainmail_hit.ogg
   - type: BasicEntityAmmoProvider
     proto: MedievalAmmoSpike
     capacity: 1
@@ -3230,6 +3232,7 @@
     selectedMode: FullAuto
     availableModes:
     - FullAuto
+    soundGunshot: /Audio/Imperial/Medieval/hunter_atack.ogg
   - type: Butcherable
     spawned:
     - id: MedievalLootNastyGrowth
@@ -3240,3 +3243,100 @@
         Base: base
       Dead:
         Base: dead
+
+- type: entity
+  name: shield-slug
+  parent: SimpleMobBaseNoFood
+  id: MedievalMobShieldSlug
+  description: They're a slug.
+  components:
+  - type: TimedDespawn
+    lifetime: 600
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/shield_slug.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: MedievalLootShieldSlug
+      amount: 1
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  #- type: ReplacementAccent
+  #  accent: agressive
+  - type: MeleeWeapon
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 15
+      types:
+        ParryAble: 0.2
+    range: 1.4
+  - type: Puller
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      275: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      75: 0.8
+      120: 0.75
+      175: 0.7
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2.9
+    baseSprintSpeed: 2.9
+  #- type: Strap
+  #  buckleOffset: "0, 0"
+  #  maxBuckleDistance: 1
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: InputMover
+  - type: MobMover
+  - type: MeleeThrowOnHit
+    distance: 5
+    speed: 6
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      Goblin: Understand
+      Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+

@@ -2183,3 +2183,27 @@
     bodyType: Static
   - type: MedievalMobSpawner
     spawnedEntity: MedievalLateMobSpawnerMedievalMobNastyGrowth
+
+- type: entity
+  name: MedievalTimedSpawnerMedievalMobShieldSlug
+  id: MedievalTimedSpawnerMedievalMobShieldSlug
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobShieldSlug
