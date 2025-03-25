@@ -185,6 +185,8 @@ public sealed partial class FriendsSystem
         data.JobPrefix = jobPrefix;
         data.Faction = faction;
         comp.Faction = faction;
+        if (Proto.TryIndex(oldFaction, out var factProto) && factProto.WantedText != null && !factProto.AllowHeadhunt)
+            comp.Wanted = new(oldFaction, factProto.WantedText);
 
         container.Value.Comp.CachedMembers.GetOrNew(oldFaction).Remove(comp.MemberID);
         container.Value.Comp.CachedMembers.GetOrNew(faction).Add(comp.MemberID, data);
