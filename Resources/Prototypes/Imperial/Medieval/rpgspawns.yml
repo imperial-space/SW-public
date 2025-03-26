@@ -1752,7 +1752,7 @@
   - type: TimedDespawn
     lifetime: 1200
   - type: SpawnOnDespawn
-    prototype: MedievalSpawnerRandomTreeSnow
+    prototype: MedievalSpawnerRandomTreeSnowConifer
 
 - type: entity
   name: MedievalSpawnerRandomTreeSnowConifer
