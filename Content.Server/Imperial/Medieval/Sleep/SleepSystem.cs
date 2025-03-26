@@ -11,7 +11,7 @@ public sealed class SleepingSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly RobustRandom _random = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -81,7 +81,7 @@ public sealed class SleepingSystem : EntitySystem
                 if (HasComp<SleepingComponent>(uid))
                 {
                     Console.Write("thirds");
-                    var word = component.Words[_random.Next(component.Words.Count)];
+                    var word = "... " + component.Words[_random.Next(component.Words.Count)] + " ...";
                     _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Server, word, word, uid, false, session.Channel, component.Color, false, null, 0, null);
                 }
             }
