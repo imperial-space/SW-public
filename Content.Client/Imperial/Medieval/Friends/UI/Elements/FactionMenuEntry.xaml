@@ -52,30 +52,35 @@
                                                  VerticalAlignment="Center">
                         <BoxContainer VerticalExpand="True"
                                 HorizontalExpand="True">
-                            <PanelContainer VerticalExpand="True"
-                                    HorizontalExpand="True"
-                                    Margin="-7.5 -4">
-                                <PanelContainer.PanelOverride>
-                                    <gfx:StyleBoxFlat BackgroundColor="#1f1f24"/>
-                                </PanelContainer.PanelOverride>
+                            <imp:BorderedPanelContainer
+                                            ModulateSelfOverride="White"
+                                            BackgroundPanelColor="#1f1f24"
+                                            VerticalExpand="True"
+                                            HorizontalExpand="True"
+                                            Margin="-7.5 -4"
+                                            BorderRadius="25">
                                 <RichTextLabel
                                     Text="Назначить группу"
                                     HorizontalExpand="True"
                                     VerticalExpand="True"
                                     Margin="4"
                                     HorizontalAlignment="Center"/>
-                            </PanelContainer>
+                            </imp:BorderedPanelContainer>
                         </BoxContainer>
                     </friends:ColoredOptionButton>
-                    <PanelContainer Name="GroupRemovePanel"
-                            HorizontalExpand="True"
-                            VerticalExpand="True"
-                            Margin="0"
-                            Visible="False">
+                    <imp:BorderedPanelContainer Name="GroupRemovePanel"
+                                    ModulateSelfOverride="White"
+                                    BackgroundPanelColor="#1f1f24"
+                                    VerticalExpand="True"
+                                    HorizontalExpand="True"
+                                    Margin="5 0 10 0"
+                                    Visible="False"
+                                    BorderRadius="40">
                         <Button Name="GroupRemoveButton"
                                 HorizontalExpand="True"
                                 VerticalExpand="True"
-                                StyleClasses="ButtonSquare"/>
+                                StyleClasses="ButtonSquare"
+                                ModulateSelfOverride="#00000000"/>
                         <BoxContainer Orientation="Horizontal">
                             <TextureRect Name="GroupRemoveCross"
                                         TextureScale="0.5 0.5"
@@ -90,19 +95,21 @@
                                         Margin="8 4"
                                         HorizontalAlignment="Right"/>
                         </BoxContainer>
-                    </PanelContainer>
-                    <PanelContainer VerticalExpand="True"
-                                    Margin="10 0">
-                        <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="#474747"/>
-                        </PanelContainer.PanelOverride>
+                    </imp:BorderedPanelContainer>
+                    <imp:BorderedPanelContainer Name="ObjectivePanel"
+                                    ModulateSelfOverride="White"
+                                    BackgroundPanelColor="#474747"
+                                    VerticalExpand="True"
+                                    Margin="10 0"
+                                    Visible="False"
+                                    BorderRadius="25">
                         <RichTextLabel Name="Objective"
                                        Text="Test test"
                                        HorizontalExpand="True"
                                        VerticalExpand="True"
                                        Margin="4 4"
                                        Visible="True"/>
-                    </PanelContainer>
+                    </imp:BorderedPanelContainer>
                     <imp:BorderedPanelContainer Name="LeaderPanel"
                                     ModulateSelfOverride="White"
                                     BackgroundPanelColor="#474747"
@@ -133,8 +140,12 @@
                 </BoxContainer>
             </BoxContainer>
         </BoxContainer>
-        <BoxContainer Margin="4 0"
+        <BoxContainer Margin="8 0"
                       HorizontalAlignment="Right">
+            <RichTextLabel  Name="YouText"
+                            Text="[color=green]Это вы[/color]"
+                            Margin="10 0"
+                            Visible="False"/>
             <Button Name="RemoveButton"
                     ModulateSelfOverride="#00000000">
                 <RichTextLabel  Name="FireText"

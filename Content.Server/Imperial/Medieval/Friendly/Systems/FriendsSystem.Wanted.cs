@@ -45,6 +45,11 @@ public sealed partial class FriendsSystem
             return;
         if (WantedList.ContainsKey(friends.MemberID))
             return;
+        if (Proto.TryIndex(proto, out var factProto) && factProto.WantedText != null)
+        {
+            friends.Wanted = new(proto, factProto.WantedText);
+            Dirty(uid, friends);
+        }
 
         var profile = BuildProfile(uid);
         if (profile == null)
@@ -107,6 +112,7 @@ public sealed partial class FriendsSystem
                 WithCharacterAppearance(hca).
                 WithSpecies(humanoid.Species).
                 WithSex(humanoid.Sex).
+                WithAge(humanoid.Age).
                 WithName(Name(uid));
     }
 

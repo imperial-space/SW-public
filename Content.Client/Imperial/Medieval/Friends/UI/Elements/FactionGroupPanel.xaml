@@ -57,6 +57,12 @@
                                Text="Назначить задачу"
                                VerticalExpand="True"/>
             </Button>
+            <RichTextLabel Name="AliveCounter"
+                           Text=""
+                           Margin="5"
+                           HorizontalAlignment="Right"
+                           VerticalExpand="True"
+                           HorizontalExpand="True"/>
         </BoxContainer>
     </BoxContainer>
 </imp:BorderedPanelContainer>

@@ -1057,6 +1057,19 @@
 
 - type: entity
   parent: ClothingNeckTieDet
+  id: MedaljonSandClock
+  name: MedaljonSandClock
+  description: MedaljonSandClock
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/sandclock.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/sandclock.rsi
+
+- type: entity
+  parent: ClothingNeckTieDet
   id: MedaljonMana
   name: MedaljonMana
   description: MedaljonMana
@@ -1244,7 +1257,7 @@
     - ears
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_expl.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.35
+    damageCoefficient: 0.6
   - type: Armor
     modifiers:
       coefficients:
@@ -6977,3 +6990,72 @@
   texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
   fireStates: 1
 
+- type: entity
+  id: MedievalMagicBell
+  name: church bell
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Specific/church-bell.rsi
+    layers:
+    - state: church-bell
+  - type: InteractionPopup
+    interactDelay: 30
+    successChance: 1
+    #interactSuccessSound:
+    #  collection: ChurchBell
+  - type: Clickable
+  - type: Rotatable
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    canCollide: false
+    bodyType: Static
+  - type: Fixtures
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: ChurchBell
+  - type: BellMap
+
+- type: entity
+  id: MedievalMagicBellLeg
+  name: church bell
+  parent: MedievalMagicBell
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: BellMap
+    locale: bell-map-popup-legion
+
+
+- type: entity
+  id: MedievalMagicBellIns
+  name: church bell
+  parent: MedievalMagicBell
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: BellMap
+    locale: bell-map-popup-ins

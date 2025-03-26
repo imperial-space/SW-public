@@ -323,9 +323,6 @@ namespace Content.Server.Cult
                 return;
             }
 
-
-
-
             switch (figure)
             {
                 case "christ":

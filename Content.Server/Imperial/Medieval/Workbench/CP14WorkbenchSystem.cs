@@ -159,7 +159,7 @@ public sealed partial class CP14WorkbenchSystem : SharedCP14WorkbenchSystem
         if (HasComp<CrafterTraitComponent>(user))
             time /= 4f;
         else
-            time *= 2f;
+            time *= 4f;
         var doAfterArgs = new DoAfterArgs(EntityManager,
             user,
             time,

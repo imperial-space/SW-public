@@ -58,6 +58,15 @@
                                     <RichTextLabel Name="Job"
                                                 Text="Тут будет написана должность"
                                                 HorizontalAlignment="Left"/>
+                                    <RichTextLabel Name="Species"
+                                                Text="Тут будет написана раса"
+                                                HorizontalAlignment="Left"/>
+                                    <RichTextLabel Name="Sex"
+                                                Text="Тут будет написан пол"
+                                                HorizontalAlignment="Left"/>
+                                    <RichTextLabel Name="Age"
+                                                Text="Тут будет написан возраст"
+                                                HorizontalAlignment="Left"/>
                                 </BoxContainer>
                                 <BoxContainer Name="Details"  Orientation="Vertical" Margin="0 4">
                                     <RichTextLabel Text="[bold]Детали:[/bold]"

@@ -100,6 +100,16 @@
   - MedievalMinerLeader
 
 - type: department
+  id: Village
+  name: department-Village
+  description: department-Village-description
+  color: "#CCCCCC"
+  roles:
+  - MedievalVillager
+  - MedievalVillagerDef
+  - MedievalVillagerLeader
+
+- type: department
   id: Crafters
   name: department-Crafters
   description: department-Crafters-description

@@ -23,4 +23,7 @@ public sealed class MedievalFactionPrototype : IPrototype
 
     [DataField]
     public Dictionary<ProtoId<MedievalFactionPrototype>, string> KnownFactions = new();
+
+    [DataField]
+    public string? WantedText;
 }
