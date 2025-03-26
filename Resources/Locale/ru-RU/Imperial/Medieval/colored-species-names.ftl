@@ -8,3 +8,14 @@ species-colored-Human = [color=yellow]человек[/color]
 species-colored-Reptilian = [color=green]ящер[/color]
 species-colored-Skeleton = [color=white]скелетон[/color]
 species-colored-Elf = [color=lightgreen]лесной эльф[/color]
+
+species-DarkElf = темный эльф
+species-Tifling = инферн
+species-Drou = ноктюрн
+species-Orc = орк
+species-Zveres = мунвульф
+species-Dwarf = дварф
+species-Human = человек
+species-Reptilian = ящер
+species-Skeleton = скелетон
+species-Elf = лесной эльф
