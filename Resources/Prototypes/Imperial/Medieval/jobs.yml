@@ -4318,3 +4318,148 @@
       action: CloackMessageActionIns
       faction: "cult"
 
+# MEDIEVAL Villager REGULAR
+
+- type: startingGear
+  id: MedievalVillagerGear
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth8
+    shoes: MedievalBastShoes
+
+- type: playTimeTracker
+  id: JobMedievalVillager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalVillager
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: villager
+  jobName: job-name-villager-medieval
+
+- type: job
+  id: MedievalVillager
+  name: job-name-villager-medieval
+  description: job-description-villager-medieval
+  playTimeTracker: JobMedievalVillager
+  startingGear: MedievalVillagerGear
+  icon: "JobIconMedievalVillager"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MedievalJobSpawn
+      spawnType: Village
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+
+
+- type: roleLoadout
+  id: JobMedievalVillager
+  groups:
+  - MedievalBackpack
+  - MedievalBelt
+  - MedievalTrinkets
+
+
+# MEDIEVAL Villager REGULAR Def
+
+- type: startingGear
+  id: MedievalVillagerDefGear
+  equipment:
+    pocket1: MedievalRevent25
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth11
+    head: MedievalClothingHeadHelmetNormandFree
+
+- type: playTimeTracker
+  id: JobMedievalVillagerDef
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalVillagerDef
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: villager_def
+  jobName: job-name-villager-def-medieval
+
+- type: job
+  id: MedievalVillagerDef
+  name: job-name-villager-def-medieval
+  description: job-description-villager-def-medieval
+  playTimeTracker: JobMedievalVillagerDef
+  startingGear: MedievalVillagerDefGear
+  icon: "JobIconMedievalVillagerDef"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MedievalJobSpawn
+      spawnType: Village
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+
+
+- type: roleLoadout
+  id: JobMedievalVillagerDef
+  groups:
+  - MedievalBackpack
+  - MedievalBelt
+  - MedievalTrinkets
+  - MedievalGloves
+  - MedievalShoes
+
+# MEDIEVAL VillagerLeader
+
+- type: startingGear
+  id: MedievalVillagerLeaderGear
+  equipment:
+    pocket1: MedievalRevent50
+    pocket2: MedievalRevent25
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
+    head: MedievalClothingHeadArcherHat
+
+
+- type: playTimeTracker
+  id: JobMedievalVillagerLeader
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalVillagerLeader
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: villager_leader
+  jobName: job-name-villagerLeader-medieval
+
+- type: job
+  id: MedievalVillagerLeader
+  name: job-name-villagerLeader-medieval
+  description: job-descriptionvillagerLeader-medieval
+  playTimeTracker: JobMedievalVillagerLeader
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Skeleton
+    inverted: true
+  #  - !type:DepartmentTimeRequirement
+  #    department: Village
+  #    time: 2000 #Imperial role timers
+  startingGear: MedievalVillagerLeaderGear
+  icon: "JobIconMedievalVillagerLeader"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MedievalJobSpawn
+      spawnType: Village
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective5001000
+
+- type: roleLoadout
+  id: JobMedievalVillagerLeader
+  groups:
+  - MedievalBackpack
+  - MedievalShoes
+  - MedievalBelt
+  - MedievalTrinkets
+  - MedievalGloves
+

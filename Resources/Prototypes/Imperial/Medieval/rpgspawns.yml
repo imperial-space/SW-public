@@ -1006,6 +1006,19 @@
   - type: AntiSSDFreeArea
 
 - type: entity
+  name: MedievalJobSpawnerVillage
+  id: MedievalJobSpawnerVillage
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Village
+  - type: AntiSSDFreeArea
+
+- type: entity
   name: MedievalSpikePoint
   id: MedievalSpikePoint
   parent: MarkerBase

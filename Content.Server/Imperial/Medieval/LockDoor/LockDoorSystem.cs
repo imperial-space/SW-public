@@ -23,10 +23,6 @@ public sealed partial class LockDoorSystems : EntitySystem
 
     public void OnClick(EntityUid uid, LockDoorComponent comp, InteractUsingEvent ev)
     {
-        if (TryComp<DoorHackableComponent>(ev.Target, out var hack))
-        {
-            hack.LockPickProgress = 0;
-        }
 
         var has = false;
         if (!TryComp<KeyComponent>(ev.Used, out var accessUsedComponent) || !TryComp<DoorBoltComponent>(ev.Target, out var doorBoltComponent)) return;
@@ -49,10 +45,15 @@ public sealed partial class LockDoorSystems : EntitySystem
             if (isBolted)
             {
                 _popupSystem.PopupEntity(Loc.GetString("lock-door-popup-unlock"), ev.Target, ev.User);
+
             }
             else
             {
                 _popupSystem.PopupEntity(Loc.GetString("lock-door-popup-lock"), ev.Target, ev.User);
+            }
+            if (TryComp<DoorHackableComponent>(ev.Target, out var hack))
+            {
+                hack.LockPickProgress = 0;
             }
         }
     }

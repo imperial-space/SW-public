@@ -2,7 +2,7 @@
   id: FoxEars
   bodyPart: HeadTop
   markingCategory: HeadTop
-  speciesRestriction: [Human]
+  speciesRestriction: [Beastmen] # Imperial Medieval
   sprites:
   - sprite: Imperial/Other/HairAndTail/fox_parts.rsi
     state: ears_fox_outer
@@ -13,7 +13,7 @@
   id: FoxTailStripes
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Human]
+  speciesRestriction: [Beastmen] # Imperial Medieval
   coloring:
     default:
       type:

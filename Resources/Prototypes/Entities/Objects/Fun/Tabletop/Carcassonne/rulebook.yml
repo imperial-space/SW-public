@@ -1,0 +1,12 @@
+- type: entity
+  parent: BookBase
+  id: BookCarcRulesClassic
+  name: "Carcassonne rulebook"
+  description: "Just read it before play."
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Tabletop/Carcassonne/rulebook.rsi
+    layers:
+    - state: classic
+  - type: Paper
+    content: book-text-carcassonne-rules

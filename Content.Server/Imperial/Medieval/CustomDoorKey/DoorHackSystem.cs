@@ -153,7 +153,6 @@ namespace Content.Server.CustomDoorKey
                     }
                 }
 
-                door.LockPickProgress = 0;
 
                 if (comp.UseCount != 0)
                     _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnNo), door.Owner);
@@ -163,16 +162,22 @@ namespace Content.Server.CustomDoorKey
                     if (number > rightNumber)
                     {
                         _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Вы надавили на отмычку слишком сильно, сброс прогресса взлома", "Взлом провал");
+                        door.LockPickProgress = 0;
+
                     }
                     else if (number < rightNumber)
                     {
                         _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Вы надавили на отмычку слишком слабо, сброс прогресса взлома", "Взлом провал");
+                        door.LockPickProgress = 0;
+
                     }
                 }
                 else
                 {
                     if (number > rightNumber)
                     {
+                        door.LockPickProgress = 0;
+
                         if (number - 1 == rightNumber || number - 2 == rightNumber)
                             _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Нужно надавить немного слабее, сброс прогресса взлома", "Взлом провал");
                         else
@@ -180,6 +185,8 @@ namespace Content.Server.CustomDoorKey
                     }
                     else if (number < rightNumber)
                     {
+                        door.LockPickProgress = 0;
+
                         if (number + 1 == rightNumber || number + 2 == rightNumber)
                             _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Нужно надавить немного сильнее, сброс прогресса взлома", "Взлом провал");
                         else

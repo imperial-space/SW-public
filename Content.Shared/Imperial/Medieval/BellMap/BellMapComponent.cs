@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.BellMap.Components;
 public sealed partial class BellMapComponent : Component
 {
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Announcements/attention.ogg")
+    public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Effects/church_bell1.ogg")
     {
         Params = AudioParams.Default.WithVolume(5f)
     };

@@ -17,6 +17,15 @@
             "name": "cultlead"
         },
         {
+            "name": "villager"
+        },
+        {
+            "name": "villager_def"
+        },
+        {
+            "name": "villager_leader"
+        },
+        {
             "name": "miner"
         },
         {
