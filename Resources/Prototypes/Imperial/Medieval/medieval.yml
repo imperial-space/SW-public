@@ -1057,6 +1057,19 @@
 
 - type: entity
   parent: ClothingNeckTieDet
+  id: MedaljonSandClock
+  name: MedaljonSandClock
+  description: MedaljonSandClock
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/sandclock.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/sandclock.rsi
+
+- type: entity
+  parent: ClothingNeckTieDet
   id: MedaljonMana
   name: MedaljonMana
   description: MedaljonMana
