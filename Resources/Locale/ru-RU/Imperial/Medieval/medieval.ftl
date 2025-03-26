@@ -5047,3 +5047,6 @@ ent-MedievalSpearSulica = сулица
 ent-MedievalClothingOuterArmorBrigantin = кираса бригантины
     .desc = Нагрудник из пластин, наклепанных на кожаную основу.
     .suffix = { "Средневековье, одежда" }
+ent-MedievalSpawnerRandomTreeLifetime1200SnowConifer = Зимний пень
+    .desc = скоро обратно прорастет  
+    .suffix = { "Средневековье, одежда" }
