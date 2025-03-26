@@ -59,6 +59,10 @@
             # Miner (9 total)
             MedievalMiner: [ 8, 8 ]
             MedievalMinerLeader: [ 1, 1 ]
+            # Village (13 total)
+            MedievalVillager: [ 10, 10 ]
+            MedievalVillagerDef: [ 2, 2 ]
+            MedievalVillagerLeader: [ 1, 1 ]
             # Traders (8 total)
             MedievalTrader: [ 3, 3 ]
             MedievalTraderN: [ 3, 3 ]
@@ -129,6 +133,10 @@
             # Miner (7 total)
             MedievalMiner: [ 6, 6 ]
             MedievalMinerLeader: [ 1, 1 ]
+            # Village (10 total)
+            MedievalVillager: [ 8, 8 ]
+            MedievalVillagerDef: [ 1, 1 ]
+            MedievalVillagerLeader: [ 1, 1 ]
             # Traders (6 total)
             MedievalTrader: [ 3, 3 ]
             MedievalTraderN: [ 3, 3 ]
@@ -199,6 +207,10 @@
             # Miner (6 total)
             MedievalMiner: [ 5, 5 ]
             MedievalMinerLeader: [ 1, 1 ]
+            # Village (8 total)
+            MedievalVillager: [ 6, 6 ]
+            MedievalVillagerDef: [ 1, 1 ]
+            MedievalVillagerLeader: [ 1, 1 ]
             # Traders (6 total)
             MedievalTrader: [ 3, 3 ]
             MedievalTraderN: [ 3, 3 ]
@@ -266,6 +278,10 @@
             # Miner (4 total)
             MedievalMiner: [ 3, 3 ]
             MedievalMinerLeader: [ 1, 1 ]
+            # Village (6 total)
+            MedievalVillager: [ 4, 4 ]
+            MedievalVillagerDef: [ 1, 1 ]
+            MedievalVillagerLeader: [ 1, 1 ]
             # Traders (4 total)
             MedievalTrader: [ 2, 2 ]
             MedievalTraderN: [ 2, 2 ]
@@ -333,6 +349,10 @@
             # Miner (3 total)
             MedievalMiner: [ 2, 2 ]
             MedievalMinerLeader: [ 1, 1 ]
+            # Village (5 total)
+            MedievalVillager: [ 4, 4 ]
+            #MedievalVillagerDef: [ 1, 1 ]
+            MedievalVillagerLeader: [ 1, 1 ]
             # Traders (4 total)
             MedievalTrader: [ 2, 2 ]
             MedievalTraderN: [ 2, 2 ]
