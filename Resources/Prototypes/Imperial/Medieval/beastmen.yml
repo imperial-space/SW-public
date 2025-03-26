@@ -207,7 +207,7 @@
       100: Critical
       200: Dead
   - type: Mana
-    maxManaRaceModifier: 1.5
+    maxManaRaceModifier: 1.0
     regenRaceModifier: 1.0
   - type: Respirator
     damage:
@@ -220,7 +220,7 @@
 
 - type: species
   id: Beastmen
-  name: Зверолюдь
+  name: Зверолюд
   roundStart: true
   prototype: MobBeastmen
   sprites: MobBeastmenSprites
