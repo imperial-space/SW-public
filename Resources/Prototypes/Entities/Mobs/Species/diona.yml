@@ -110,6 +110,22 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: LanguageSpeaker # Imperial Medieval start
+    languages:
+     Common: Speak
+     Goblin: Understand
+     #Ancient: Speak
+     #Tribe: Understand
+     #Orc: Speak
+     #Cursed: Speak
+     Growling: Understand
+     #Hissing: Speak
+     #Elf: Speak
+  - type: Mana
+    maxManaRaceModifier: 1.10
+    regenRaceModifier: 1.00
+  - type: NeedSleepRaceModifier
+    modifier: 1.0 # Imperial Medieval end
 
 - type: entity
   parent: BaseSpeciesDummy

@@ -1,86 +1,86 @@
-marking-DionaThornsHead-thorns_head = Диона, голова (Колючки)
-marking-DionaThornsHead = Диона, голова (Колючки)
+marking-DionaThornsHead-thorns_head = Дендрит, голова (Колючки)
+marking-DionaThornsHead = Дендрит, голова (Колючки)
 
-marking-DionaThornsBody-thorns_body = Диона, грудь (Колючки)
-marking-DionaThornsBody = Диона, грудь (Колючки)
+marking-DionaThornsBody-thorns_body = Дендрит, грудь (Колючки)
+marking-DionaThornsBody = Дендрит, грудь (Колючки)
 
-marking-DionaFlowersHead-flowers_head = Диона, голова (Цветы)
-marking-DionaFlowersHead = Диона, голова (Цветы)
+marking-DionaFlowersHead-flowers_head = Дендрит, голова (Цветы)
+marking-DionaFlowersHead = Дендрит, голова (Цветы)
 
-marking-DionaFlowersBody-flowers_body = Диона, грудь (Цветы)
-marking-DionaFlowersBody = Диона, грудь (Цветы)
+marking-DionaFlowersBody-flowers_body = Дендрит, грудь (Цветы)
+marking-DionaFlowersBody = Дендрит, грудь (Цветы)
 
-marking-DionaLeafCover-leaf_cover = Диона, грудь (Лист)
-marking-DionaLeafCover = Диона, грудь (Лист)
+marking-DionaLeafCover-leaf_cover = Дендрит, грудь (Лист)
+marking-DionaLeafCover = Дендрит, грудь (Лист)
 
-marking-DionaBloomHead-bloom = Диона, Вечноцвет (Цветы)
-marking-DionaBloomHead = Диона, Вечноцвет (Цветы)
+marking-DionaBloomHead-bloom = Дендрит, Вечноцвет (Цветы)
+marking-DionaBloomHead = Дендрит, Вечноцвет (Цветы)
 
-marking-DionaBracketHead-bracket = Диона, Трутовик (Грибы)
-marking-DionaBracketHead = Диона, Трутовик (Грибы)
+marking-DionaBracketHead-bracket = Дендрит, Трутовик (Грибы)
+marking-DionaBracketHead = Дендрит, Трутовик (Грибы)
 
-marking-DionaBrushHead-brush = Диона, Кисти (Лианы)
-marking-DionaBrushHead = Диона, Кисти (Лианы)
+marking-DionaBrushHead-brush = Дендрит, Кисти (Лианы)
+marking-DionaBrushHead = Дендрит, Кисти (Лианы)
 
-marking-DionaCornflowerHead-cornflower = Диона, Василёк (Цветы)
-marking-DionaCornflowerHead = Диона, Василёк (Цветы)
+marking-DionaCornflowerHead-cornflower = Дендрит, Василёк (Цветы)
+marking-DionaCornflowerHead = Дендрит, Василёк (Цветы)
 
-marking-DionaFicusHead-ficus = Диона, Фикус (Листья)
-marking-DionaFicusHead = Диона, Фикус (Листья)
+marking-DionaFicusHead-ficus = Дендрит, Фикус (Листья)
+marking-DionaFicusHead = Дендрит, Фикус (Листья)
 
-marking-DionaGarlandHead-garland = Диона, Гирлянда (Цветы)
-marking-DionaGarlandHead = Диона, Гирлянда (Цветы)
+marking-DionaGarlandHead-garland = ДДендрит, Гирлянда (Цветы)
+marking-DionaGarlandHead = Дендрит, Гирлянда (Цветы)
 
-marking-DionaKingHead-king = Диона, Флауэркинг (Цветы)
-marking-DionaKingHead = Диона, Флауэркинг (Цветы)
+marking-DionaKingHead-king = Дендрит, Флауэркинг (Цветы)
+marking-DionaKingHead = Дендрит, Флауэркинг (Цветы)
 
-marking-DionaLaurelHead-laurel = Диона, Кальмия (Листья)
-marking-DionaLaurelHead = Диона, Кальмия (Листья)
+marking-DionaLaurelHead-laurel = Дендрит, Кальмия (Листья)
+marking-DionaLaurelHead = Дендрит, Кальмия (Листья)
 
-marking-DionaLeafyHeadTop-leafy = Диона, Листья (Листья)
-marking-DionaLeafyHeadTop = Диона, Листья (Листья)
+marking-DionaLeafyHeadTop-leafy = Дендрит, Листья (Листья)
+marking-DionaLeafyHeadTop = Дендрит, Листья (Листья)
 
-marking-DionaLotusHead-lotus = Диона, Лотус (Цветы)
-marking-DionaLotusHead = Диона, Лотус (Цветы)
+marking-DionaLotusHead-lotus = Дендрит, Лотус (Цветы)
+marking-DionaLotusHead = Дендрит, Лотус (Цветы)
 
-marking-DionaMeadowHeadTop-meadow = Диона, Луг
-marking-DionaMeadowHeadTop = Диона, Луг
+marking-DionaMeadowHeadTop-meadow = Дендрит, Луг
+marking-DionaMeadowHeadTop = Дендрит, Луг
 
-marking-DionaOakHead-oak = Диона, Дуб (Дерево)
-marking-DionaOakHead = Диона, Дуб (Дерево)
+marking-DionaOakHead-oak = Дендрит, Дуб (Дерево)
+marking-DionaOakHead = Дендрит, Дуб (Дерево)
 
-marking-DionaPalmHead-palm = Диона, Пальма (Листья)
-marking-DionaPalmHead = Диона, Пальма (Листья)
+marking-DionaPalmHead-palm = Дендрит, Пальма (Листья)
+marking-DionaPalmHead = Дендрит, Пальма (Листья)
 
-marking-DionaRootHead-root = Диона, Корень (Корни)
-marking-DionaRootHead = Диона, Корень (Корни)
+marking-DionaRootHead-root = Дендрит, Корень (Корни)
+marking-DionaRootHead = Дендрит, Корень (Корни)
 
-marking-DionaRoseHead-rose = Диона, Роза (Цветы)
-marking-DionaRoseHead = Диона, Роза (Цветы)
+marking-DionaRoseHead-rose = Дендрит, Роза (Цветы)
+marking-DionaRoseHead = Дендрит, Роза (Цветы)
 
-marking-DionaRoseyHead-rosey = Диона, Розы (Цветы)
-marking-DionaRoseyHead = Диона, Розы (Цветы)
+marking-DionaRoseyHead-rosey = Дендрит, Розы (Цветы)
+marking-DionaRoseyHead = Дендрит, Розы (Цветы)
 
-marking-DionaShrubHeadTop-shrub = Диона, Кустарник (Колючки)
-marking-DionaShrubHeadTop = Диона, Кустарник (Колючки)
+marking-DionaShrubHeadTop-shrub = Дендрит, Кустарник (Колючки)
+marking-DionaShrubHeadTop = Дендрит, Кустарник (Колючки)
 
-marking-DionaSpinnerHeadSide-spinner = Диона, Спиннер
-marking-DionaSpinnerHeadSide = Диона, Спиннер
+marking-DionaSpinnerHeadSide-spinner = Дендрит, Спиннер
+marking-DionaSpinnerHeadSide = Дендрит, Спиннер
 
-marking-DionaSproutHeadSide-sprout = Диона, Росток
-marking-DionaSproutHeadSide = Диона, Росток
+marking-DionaSproutHeadSide-sprout = Дендрит, Росток
+marking-DionaSproutHeadSide = Дендрит, Росток
 
-marking-DionaVineHeadTop-vine = Диона, Лоза (Лоза)
-marking-DionaVineHeadTop = Диона, Лоза (Лоза)
+marking-DionaVineHeadTop-vine = Дендрит, Лоза (Лоза)
+marking-DionaVineHeadTop = Дендрит, Лоза (Лоза)
 
-marking-DionaVinelHead-vinel = Диона, Лоза длинная (Лоза)
-marking-DionaVinelHead = Диона, Лоза длинная (Лоза)
+marking-DionaVinelHead-vinel = Дендрит, Лоза длинная (Лоза)
+marking-DionaVinelHead = Дендрит, Лоза длинная (Лоза)
 
-marking-DionaVinesHead-vines = Диона, Лоза короткая (Лоза)
-marking-DionaVinesHead = Диона, Лоза короткая (Лоза)
+marking-DionaVinesHead-vines = Дендрит, Лоза короткая (Лоза)
+marking-DionaVinesHead = Дендрит, Лоза короткая (Лоза)
 
-marking-DionaWildflowerHead-wildflower = Диона, Полевые цветы (Цветы)
-marking-DionaWildflowerHead = Диона, Полевые цветы (Цветы)
+marking-DionaWildflowerHead-wildflower = Дендрит, Полевые цветы (Цветы)
+marking-DionaWildflowerHead = Дендрит, Полевые цветы (Цветы)
 
-marking-DionaVineOverlay-overlay = Лозы тела Дионы
-marking-DionaVineOverlay = Лозы тела Дионы
+marking-DionaVineOverlay-overlay = Лозы тела Дендрита
+marking-DionaVineOverlay = Лозы тела Дендрита
