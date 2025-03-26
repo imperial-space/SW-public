@@ -33,9 +33,9 @@ public sealed partial class SpawnOnActionSystem : EntitySystem
         }
         if (comp.Object == null || comp.Prototype == null) return;
 
-        _transform.SetWorldPosition(
+        _transform.SetCoordinates(
             comp.Object.Value,
-            ev.Target.Position
+            ev.Target
         );
         ev.Handled = true;
     }
