@@ -112,14 +112,14 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 1.7
+        Asphyxiation: 1
     damageRecovery:
       types:
-        Asphyxiation: -0.7
+        Asphyxiation: -1
   - type: Sprite
     noRot: true
     drawdepth: Mobs
-    scale: 0.97, 1.03
+    #scale: 0.97, 1.03
   - type: Body
     prototype: Beastmen
     requiredLegs: 2
@@ -193,7 +193,7 @@
   noSpawn: true
   components:
   - type: Sprite
-    scale: 0.97, 1.03
+    #scale: 0.97, 1.03
   - type: Inventory
     femaleDisplacements:
       jumpsuit:
@@ -212,10 +212,10 @@
   - type: Respirator
     damage:
       types:
-        Asphyxiation: 1.7
+        Asphyxiation: 1
     damageRecovery:
       types:
-        Asphyxiation: -0.7
+        Asphyxiation: -1
 
 
 - type: species
