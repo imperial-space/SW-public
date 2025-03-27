@@ -4853,7 +4853,7 @@
         - HighImpassable
         - BulletImpassable
   - type: MedievalMeleeBadTarget # imperial medieval
-    safeToHitGroup: tree # imperial medieval
+    safeToHitGroup: structure # imperial medieval
   - type: AmbientSound
     volume: -16
     range: 3
