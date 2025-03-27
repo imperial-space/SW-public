@@ -4843,7 +4843,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.65
+          radius: 0.35
         density: 190
         mask:
         - MachineMask
