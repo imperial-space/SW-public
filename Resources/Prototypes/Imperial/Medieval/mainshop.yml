@@ -2094,6 +2094,17 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopCarcBoxClassic
+  productEntity: CarcBoxClassic
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 13
+  cost:
+    Revent: 22
+  categories:
+  - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalPaper
   productEntity: MedievalPaper
   cost:
