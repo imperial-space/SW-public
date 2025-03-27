@@ -6590,7 +6590,7 @@
   - type: InteractionOutline
   - type: UseDelay
     delay: 3 # prevent light-toggling auto-clickers.
-  - type: SignalSwitch
+  - type: SignalSwitchImperial
     clickSound: /Audio/Imperial/Medieval/gates_use.ogg
     onPort: Pressed
     offPort: Pressed
