@@ -2,6 +2,7 @@
   parent: BaseStorageItem
   id: CarcBagMeepleBase
   name: "meeple bag"
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: Objects/Fun/Tabletop/Carcassonne/meeple_bag.rsi
