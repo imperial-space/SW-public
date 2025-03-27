@@ -118,6 +118,10 @@ namespace Content.Client.Administration.UI.ManageSolutions
                 {
                     continue;
                 }
+                // Imperial Medieval Chemistry Begin
+                if (reagent.Abstract)
+                    continue;
+                // Imperial Medieval Chemistry End
 
                 ItemList.Item regentItem = new(ReagentList)
                 {

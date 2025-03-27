@@ -2542,6 +2542,17 @@
 #       - id: BoneGel
 #       - id: OrganHealer
 
+- type: reagent
+  id: MedievalLootGoblin
+  name: ent-MedievalLootGoblin
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
 - type: entity
   name: MedievalLoot
   parent: BaseItem
@@ -2563,6 +2574,11 @@
     stealGroup: MedievalGetMedievalLootGoblin # imperial medieval
   - type: QuestItem
     contractName: "уши гоблинов"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootGoblin
+        Quantity: 10
 
 - type: stack
   id: MedievalLootGoblin
@@ -2612,6 +2628,17 @@
     - node: ground
       entity: MedievalClothingNeckCloakGoblin
 
+- type: reagent
+  id: MedievalLootHog
+  name: ent-MedievalLootHog
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
 - type: entity
   name: MedievalLoot
   parent: BaseItem
@@ -2628,6 +2655,22 @@
     size: Small
   - type: QuestItem
     contractName: "волчьи хвосты или кабаньи клыки"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootHog
+        Quantity: 10
+
+- type: reagent
+  id: MedievalLootHunter
+  name: ent-MedievalLootHunter
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
 
 - type: entity
   name: MedievalLoot
@@ -2645,6 +2688,22 @@
     size: Small
   - type: QuestItem
     contractName: "клешни хантера"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootHunter
+        Quantity: 10
+
+- type: reagent
+  id: MedievalLootCrab
+  name: ent-MedievalLootCrab
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
 
 - type: entity
   name: MedievalLoot
@@ -2662,6 +2721,22 @@
     size: Small
   - type: QuestItem
     contractName: "клешни краба"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootCrab
+        Quantity: 10
+
+- type: reagent
+  id: MedievalLootCrabDevil
+  name: ent-MedievalLootCrabDevil
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
 
 - type: entity
   name: MedievalLoot
@@ -2679,6 +2754,11 @@
     size: Small
   - type: QuestItem
     contractName: "клешни краба"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootCrabDevil
+        Quantity: 10
 
 - type: entity
   name: MedievalLoot
@@ -2697,6 +2777,17 @@
   - type: QuestItem
     contractName: "волчьи хвосты или кабаньи клыки"
 
+- type: reagent
+  id: MedievalLootDevilMouse
+  name: ent-MedievalLootDevilMouse
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
 - type: entity
   name: MedievalLoot
   parent: BaseItem
@@ -2711,6 +2802,22 @@
       Revent: 3
   - type: Item
     size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootDevilMouse
+        Quantity: 10
+
+- type: reagent
+  id: MedievalLootAnt
+  name: ent-MedievalLootAnt
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
 
 - type: entity
   name: MedievalLoot
@@ -2728,7 +2835,11 @@
     size: Tiny
   - type: QuestItem
     contractName: "муравьиный хитин"
-
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootAnt
+        Quantity: 10
 
 - type: entity
   name: MedievalLoot
@@ -2817,6 +2928,17 @@
   - type: QuestItem
     contractName: "головы бронированных скелетов"
 
+- type: reagent
+  id: MedievalLootEgg
+  name: ent-MedievalLootEgg
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
 - type: entity
   name: MedievalLoot
   parent: BaseItem
@@ -2833,6 +2955,11 @@
     size: Tiny
   - type: QuestItem
     contractName: "паучьи яйца"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalLootEgg
+        Quantity: 10
 
 #- type: entity
 #  name: MedievalRandom
@@ -3959,6 +4086,17 @@
     mask: ClothingKrilBig
     head: MedievalClothingHeadCrownKing
 
+- type: reagent
+  id: MedievalFlowerVetr
+  name: ent-MedievalFlowerVetr
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
 - type: entity
   name: gol
   parent: BaseItem
@@ -3978,6 +4116,22 @@
     - AlchemicIngredient
   - type: Item
     size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerVetr
+        Quantity: 10
+
+- type: reagent
+  id: MedievalFlowerLipad
+  name: ent-MedievalFlowerLipad
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
 
 - type: entity
   name: gol
@@ -3998,6 +4152,11 @@
     - AlchemicIngredient
   - type: Item
     size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerLipad
+        Quantity: 10
 
 - type: entity
   name: gol
@@ -4019,6 +4178,17 @@
   - type: Item
     size: Tiny
 
+- type: reagent
+  id: MedievalFlowerCryo
+  name: ent-MedievalFlowerCryo
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
 - type: entity
   name: gol
   parent: BaseItem
@@ -4038,6 +4208,11 @@
     - AlchemicIngredient
   - type: Item
     size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerCryo
+        Quantity: 10
 
 - type: hudTheme
   id: MedievalTheme
@@ -6934,6 +7109,131 @@
   - type: SpeakOnTrigger
     pack: PlushDog
 
+- type: reagent
+  id: MedievalMushroom1
+  name: ent-MedievalMushroom1
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalMushroom1
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/gribi.rsi
+    state: grib1
+  - type: Currency
+    price:
+      Revent: 8
+  - type: Item
+    size: Small
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMushroom1
+        Quantity: 10
+
+- type: reagent
+  id: MedievalMushroom2
+  name: ent-MedievalMushroom2
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalMushroom2
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/gribi.rsi
+    state: grib2
+  - type: Currency
+    price:
+      Revent: 8
+  - type: Item
+    size: Small
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMushroom1
+        Quantity: 10
+
+- type: reagent
+  id: MedievalMushroom3
+  name: ent-MedievalMushroom3
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalMushroom3
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/gribi.rsi
+    state: grib3
+  - type: Currency
+    price:
+      Revent: 8
+  - type: Item
+    size: Small
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMushroom3
+        Quantity: 10
+
+- type: entity
+  name: MedievalTimedSpawnerMushrooms
+  id: MedievalTimedSpawnerMushrooms
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalSpawnerMushroom
+    chance: 0.22
+    intervalSeconds: 180
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+- type: entity
+  name: BlastDoor
+  id: MedievalSpawnerMushroom
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalMushroom1
+    - MedievalMushroom2
+    - MedievalMushroom3
+    chance: 1
+    offset: 8
 - type: explosion
   id: MedievalDefault
   damagePerIntensity:
