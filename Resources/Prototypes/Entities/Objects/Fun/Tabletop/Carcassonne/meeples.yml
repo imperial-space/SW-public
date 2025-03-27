@@ -3,11 +3,11 @@
   id: CarcMeepleBase
   name: "meeple"
   description: "Little humanoid figure for board games. Made from flat wood."
-  suffix: "DEBUG"
+  suffix: "DEBUG, White"
   components:
   - type: Sprite
     drawdepth: 4
-    sprite: Objects/Fun/Tabletop/Spacessonne/meeples.rsi
+    sprite: Objects/Fun/Tabletop/Carcassonne/meeples.rsi
     state: normal
     color: "#FFFFFFFF"
   - type: Rotatable
