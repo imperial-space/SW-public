@@ -17,6 +17,7 @@ using Robust.Shared.Random;
 using Content.Shared.Item;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.IdentityManagement;
+using Robust.Server.GameObjects;
 
 namespace Content.Shared.Imperial.RandomSteal.Systems;
 
@@ -29,6 +30,7 @@ public sealed partial class RandomStealSystem : EntitySystem
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -112,6 +114,9 @@ public sealed partial class RandomStealSystem : EntitySystem
         if (!HasComp<HandsComponent>(uid) || ev.Cancelled) return;
         _popupSystem.PopupClient(Loc.GetString("stealSuccessSpellward", ("entity1", nameItem)), ev.Target);
         if (ev.Target == null || comp.Item == null) return;
+        var xform = Transform(ev.Target.Value);
+        var coords = xform.Coordinates;
+        _transform.SetCoordinates(comp.Item.Value, coords);
         _hands.TryForcePickupAnyHand(ev.Target.Value, comp.Item.Value);
     }
 }
