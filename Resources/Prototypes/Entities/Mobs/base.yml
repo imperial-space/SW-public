@@ -225,7 +225,7 @@
       types:
         Asphyxiation: -1.0
   # Imperial medieval start
-  - type: CritEmotes
+  - type: SoftCritEmotes
     emotes:
     - Cough
     - Gasp

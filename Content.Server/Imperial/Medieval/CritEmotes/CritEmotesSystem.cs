@@ -17,7 +17,7 @@ public sealed class CritEmotesSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<CritEmotesComponent, MobStateComponent>();
+        var query = EntityQueryEnumerator<SoftCritEmotesComponent, MobStateComponent>();
         while (query.MoveNext(out var uid, out var crit, out var mob))
         {
             if (_gameTiming.CurTime < crit.NextUpdate)

@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Body.Components;
 
 [RegisterComponent]
-public sealed partial class CritEmotesComponent : Component
+public sealed partial class SoftCritEmotesComponent : Component
 {
     [DataField]
     public ProtoId<EmotePrototype>[] Emotes = [];
