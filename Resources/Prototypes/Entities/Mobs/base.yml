@@ -229,6 +229,7 @@
     emotes:
     - Cough
     - Gasp
+    - PassiveScream
   # Imperial medieval end
 
 # Used for mobs that have a bloodstream
