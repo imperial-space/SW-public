@@ -1,6 +1,7 @@
 using System.Numerics;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Imperial.Medieval.Farmer;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Physics.Components;
@@ -39,7 +40,11 @@ public sealed partial class MedievalSprintSystem : EntitySystem
 
             if (component.Tried) _speedModifierSystem.RefreshMovementSpeedModifiers(uid);
 
-            _staminaSystem.TryTakeStamina(uid, component.StaminaDamage, ignoreResistances: true);
+            var stam = component.StaminaDamage;
+            if (HasComp<FarmerBoostComponent>(uid))
+                stam *= 0.5f;
+
+            _staminaSystem.TryTakeStamina(uid, stam, ignoreResistances: true);
 
             component.Tried = false;
             component.NextStaminaDamageTime = _timing.CurTime + component.StaminaGainPeriod;

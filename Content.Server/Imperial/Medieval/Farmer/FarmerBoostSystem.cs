@@ -23,7 +23,6 @@ public sealed class FarmerBoostSystem : EntitySystem
         SubscribeLocalEvent<AfterMicrowavedEvent>(AfterMicrowawerCheck);
 
         SubscribeLocalEvent<FarmerBoostOnConsumeComponent, BeforeFullyEatenEvent>(OnBeforeFullyEaten);
-        SubscribeLocalEvent<FarmerBoostComponent, ModifySlowOnDamageSpeedEvent>(OnModifySpeed);
     }
 
     private void OnContPickup(EntityUid uid, LastPickedUpContainerComponent comp, GotEquippedHandEvent args)
@@ -58,13 +57,4 @@ public sealed class FarmerBoostSystem : EntitySystem
 
     private void OnBeforeFullyEaten(EntityUid uid, FarmerBoostOnConsumeComponent comp, BeforeFullyEatenEvent args)
         => _status.TryAddStatusEffect<FarmerBoostComponent>(args.User, StatusEffectId, TimeSpan.FromMinutes(comp.Time), true);
-
-    private void OnModifySpeed(EntityUid uid, FarmerBoostComponent comp, ref ModifySlowOnDamageSpeedEvent args)
-    {
-        var dif = 1 - args.Speed;
-        if (dif <= 0)
-            return;
-
-        args.Speed += dif * 0.5f;
-    }
 }
