@@ -1,0 +1,27 @@
+- type: entity
+  name: маркер таверны
+  description: После инициализации карты добавляет буст всей еде в радиусе 3 тайлов.
+  suffix: 3 тайла
+  id: MedievalTavernMarker3
+  parent: MarkerBase
+  components:
+#God forgive me for what I'm about to do
+  - type: Sprite
+    layers:
+    - state: green
+  - type: AddFarmerBoostOnInit
+    range: 3
+
+- type: entity
+  name: маркер таверны
+  description: После инициализации карты добавляет буст всей еде в радиусе 5 тайлов.
+  suffix: 5 тайлов
+  id: MedievalTavernMarker5
+  parent: MarkerBase
+  components:
+#God forgive me for what I'm about to do
+  - type: Sprite
+    layers:
+    - state: green
+  - type: AddFarmerBoostOnInit
+    range: 5

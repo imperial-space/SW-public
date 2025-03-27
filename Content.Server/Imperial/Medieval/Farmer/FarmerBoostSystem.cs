@@ -1,3 +1,5 @@
+using System.Linq;
+using Content.Server.Nutrition.Components;
 using Content.Shared.Damage;
 using Content.Shared.Hands;
 using Content.Shared.Imperial.Medieval.Farmer;
@@ -9,12 +11,15 @@ namespace Content.Server.Imperial.Medieval.Farmer;
 public sealed class FarmerBoostSystem : EntitySystem
 {
     [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     public const string StatusEffectId = "MedievalFarmerBoost";
 
     public override void Initialize()
     {
         base.Initialize();
+
+        SubscribeLocalEvent<AddFarmerBoostOnInitComponent, MapInitEvent>(OnMarkerInit);
 
         SubscribeLocalEvent<LastPickedUpContainerComponent, GotEquippedHandEvent>(OnContPickup);
         SubscribeLocalEvent<LastPickedUpContainerComponent, BeforeMicrowavedEvent>(OnContBeforeMicrowaved);
@@ -24,6 +29,10 @@ public sealed class FarmerBoostSystem : EntitySystem
 
         SubscribeLocalEvent<FarmerBoostOnConsumeComponent, BeforeFullyEatenEvent>(OnBeforeFullyEaten);
     }
+
+    private void OnMarkerInit(EntityUid uid, AddFarmerBoostOnInitComponent comp, MapInitEvent args)
+        => _lookup.GetEntitiesInRange<FoodComponent>(Transform(uid).Coordinates, comp.Range).ToList()
+                                                                   .ForEach(x => EnsureComp<FarmerBoostOnConsumeComponent>(x));
 
     private void OnContPickup(EntityUid uid, LastPickedUpContainerComponent comp, GotEquippedHandEvent args)
         => comp.Ent = args.User;
