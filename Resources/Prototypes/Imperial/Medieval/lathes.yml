@@ -1168,6 +1168,7 @@
     - MedievalKeyStorage
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
+    - MedievalKotel
     - MedievalWeaponTurretNanoTrasenCraft
 
 - type: entity

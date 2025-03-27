@@ -135253,7 +135253,7 @@ entities:
     - type: Transform
       pos: 2.5,-22.5
       parent: 1
-- proto: MedievalDecorKotelForCoockingPotions
+- proto: MedievalKotel
   entities:
   - uid: 6985
     components:

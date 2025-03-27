@@ -837,6 +837,13 @@
   result: MedievalFetter
 
 - type: CP14Recipe
+  id: MedievalKotel
+  craftTime: 11
+  stacks:
+    MedievalIronIngot: 9
+  result: MedievalKotel
+
+- type: CP14Recipe
   id: SheetSteelMedieval
   craftTime: 1
   stacks:
