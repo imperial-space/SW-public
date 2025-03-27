@@ -1169,6 +1169,7 @@
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
     - MedievalWeaponTurretNanoTrasenCraft
+    - Syringe
 
 - type: entity
   parent: CP14BaseWorkbench
