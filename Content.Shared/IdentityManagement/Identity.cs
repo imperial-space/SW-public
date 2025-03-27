@@ -1,5 +1,7 @@
 ﻿using Content.Shared.Ghost;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement.Components;
+using Content.Shared.Imperial.Medieval.Identity;
 
 namespace Content.Shared.IdentityManagement;
 
@@ -32,6 +34,25 @@ public static class Identity
             return uidName;
 
         var identName = ent.GetComponent<MetaDataComponent>(ident.Value).EntityName;
+
+        if (ent.TryGetComponent<IdentityRequiresKnowledgeComponent>(uid, out var identReqTarget) && ent.TryGetComponent<IdentityRequiresKnowledgeComponent>(viewer, out var identReqViewer))
+        {
+            if (identReqViewer.KnownIds.Contains(identReqTarget.Identifier) || identReqTarget.Identifier == identReqViewer.Identifier || !identReqTarget.HideUnknown)
+                return identName;
+
+            if (!ent.TryGetComponent<HumanoidAppearanceComponent>(uid, out var humanoid))
+                return Loc.GetString("identity-gender-person");
+
+            var humanoidSys = ent.System<SharedHumanoidAppearanceSystem>();
+            var ageStr = humanoidSys.GetAgeRepresentation(humanoid.Species, humanoid.Age);
+            return humanoid.Sex switch
+            {
+                Sex.Male => $"{ageStr} {Loc.GetString("identity-gender-masculine")} ({identReqTarget.Identifier})",
+                Sex.Female => $"{ageStr} {Loc.GetString("identity-gender-feminine")} ({identReqTarget.Identifier})",
+                Sex.Unsexed or _ => $"{ageStr} {Loc.GetString("identity-gender-person")} ({identReqTarget.Identifier})"
+            };
+        }
+
         if (viewer == null || !CanSeeThroughIdentity(uid, viewer.Value, ent))
         {
             return identName;

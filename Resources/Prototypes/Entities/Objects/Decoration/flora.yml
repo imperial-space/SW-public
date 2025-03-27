@@ -237,6 +237,43 @@
         density: 3500
         layer:
         - WallLayer
+  # Imperial Medieval Start
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 900
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 5
+            max: 7
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalGrass:
+            min: 1
+            max: 3
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalSpawnerRandomTreeLifetime1200SnowConifer:
+            min: 1
+            max: 1
+  # Imperial Medieval End
 
 - type: entity
   parent: BaseRock

@@ -11,6 +11,7 @@ using Content.Shared.Friends;
 using Content.Shared.Friends.Components;
 using Content.Shared.Friends.Prototypes;
 using Content.Shared.GameTicking;
+using Content.Shared.Imperial.Medieval.Identity;
 using Robust.Server.Audio;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
@@ -63,6 +64,24 @@ public sealed partial class FriendsSystem
 
         Dirty(uid, comp);
         RefreshFactionMenu(comp.Faction);
+
+        if (!TryComp<IdentityRequiresKnowledgeComponent>(uid, out var selfIdent))
+            return;
+
+        foreach (var item in container.Value.Comp.CachedMembers.GetOrNew(comp.Faction))
+        {
+            if (!GetFactionMemberById(item.Key, out var ent))
+                continue;
+
+            if (!TryComp<IdentityRequiresKnowledgeComponent>(ent, out var ident))
+                continue;
+
+            ident.KnownIds.Add(selfIdent.Identifier);
+            selfIdent.KnownIds.Add(ident.Identifier);
+            Dirty(ent.Value, ident);
+        }
+
+        Dirty(uid, selfIdent);
     }
 
     private void OnFriendsTerminating(EntityUid uid, FriendsComponent comp, EntityTerminatingEvent args)

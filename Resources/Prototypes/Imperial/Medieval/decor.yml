@@ -477,6 +477,12 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 4
     fillBaseName: pit-content-
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 1
 
 - type: entity
   parent: WaterTank
