@@ -135260,9 +135260,9 @@ entities:
     - type: Transform
       pos: -48.5,-21.5
       parent: 1
-    - type: MagicPotionsMaker
-      endTime: 880.8324535
-      startTime: 879.8324535
+    #- type: MagicPotionsMaker
+    #  endTime: 880.8324535
+    #  startTime: 879.8324535
 - proto: MedievalDecorOhapka
   entities:
   - uid: 6986
