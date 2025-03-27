@@ -2998,7 +2998,7 @@
     state: slugbones
   - type: Currency
     price:
-      Revent: 20
+      Revent: 30
   - type: Item
     size: Normal
 
