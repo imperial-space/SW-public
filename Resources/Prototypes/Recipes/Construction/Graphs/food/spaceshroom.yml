@@ -15,7 +15,8 @@
   - node: cooked spaceshroom
     entity: FoodSpaceshroomCooked
     # Imperial medieval start
-    transform: !type:UserWhitelistCompGrantTransform
+    transform:
+    - !type:UserWhitelistCompGrantTransform
       whitelist:
         components:
         - Farmer
