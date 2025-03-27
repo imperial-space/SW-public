@@ -52,11 +52,11 @@ public sealed class SignalSwitchImperialSystem : EntitySystem
     }
     private void OnDoAfter(EntityUid uid, SignalSwitchImperialComponent comp, OnDoAfterSignalSwitchEvent ev)
     {
-        _audio.PlayPvs(comp.ClickSound, uid, AudioParams.Default.WithVariation(0.125f).WithVolume(8f));
+        RemComp<SignalSwitchImperialHelpComponent>(ev.User);
 
         if (ev.Cancelled || ev.Target == null) return;
 
-        RemComp<SignalSwitchImperialHelpComponent>(ev.User);
+        _audio.PlayPvs(comp.ClickSound, uid, AudioParams.Default.WithVariation(0.125f).WithVolume(8f));
         comp.State = !comp.State;
         _deviceLink.InvokePort(uid, comp.State ? comp.OnPort : comp.OffPort);
         _deviceLink.SendSignal(uid, comp.StatusPort, comp.State);
