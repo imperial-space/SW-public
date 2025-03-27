@@ -57,8 +57,8 @@
       - id: CarcBagMeepleGreen
       - id: CarcBagClassic
       - id: BookCarcRulesClassic
-      - id: Paper
-      - id: Pen
+      - id: MedievalPaper
+      - id: MedievalPen
       - id: CarcBagMeepleBlue
       - id: CarcBagMeepleYellow
       - id: CarcBagMeepleBlack
