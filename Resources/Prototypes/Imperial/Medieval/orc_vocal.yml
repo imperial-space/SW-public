@@ -1,8 +1,7 @@
 # species
 - type: emoteSounds
   id: MaleOrc
-  params:
-    variation: 0.125
+  # imperial medieval
   sounds:
     Scream:
       collection: MaleScreamsOrc
@@ -40,7 +39,7 @@
       collection: MaleDeathOrc
     Dreaminess:
       collection: MaleDreaminess
-    Questioning: 
+    Questioning:
       collection: MaleQuestioning
     Warcry:
       collection: MaleWarcry
@@ -55,8 +54,7 @@
 
 - type: emoteSounds
   id: FemaleOrc
-  params:
-    variation: 0.125
+  # imperial medieval
   sounds:
     Scream:
       collection: MaleScreamsOrc
@@ -94,7 +92,7 @@
       collection: MaleDeathOrc
     Dreaminess:
       collection: FemaleDreaminess
-    Questioning: 
+    Questioning:
       collection: FemaleQuestioning
     Warcry:
       collection: FemaleWarcry
@@ -106,7 +104,7 @@
       collection: MaleScreamsOrc
     PassiveScream:
       collection: MaleScreamsOrc
-      
+
 - type: soundCollection
   id: MaleLaughOrc
   files:

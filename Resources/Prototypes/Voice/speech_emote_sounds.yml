@@ -1,6 +1,7 @@
 # species
 - type: emoteSounds
   id: MaleHuman
+  # imperial medieval
   sounds:
     Scream:
       collection: MaleScreams
@@ -57,6 +58,7 @@
 
 - type: emoteSounds
   id: FemaleHuman
+  # imperial medieval
   sounds:
     Scream:
       collection: FemaleScreams
@@ -113,6 +115,7 @@
 
 - type: emoteSounds
   id: MaleReptilian
+  # imperial medieval
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -151,6 +154,7 @@
 
 - type: emoteSounds
   id: FemaleReptilian
+  # imperial medieval
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -189,6 +193,7 @@
 
 - type: emoteSounds
   id: MaleSlime
+  # imperial medieval
   sounds:
     Squish:
       collection: Squishes
@@ -231,6 +236,7 @@
 
 - type: emoteSounds
   id: FemaleSlime
+  # imperial medieval
   sounds:
     Squish:
       collection: Squishes
@@ -274,6 +280,7 @@
 
 - type: emoteSounds
   id: UnisexVox
+  # imperial medieval
   sounds:
     Scream:
       path: /Audio/Voice/Vox/shriek1.ogg
@@ -289,6 +296,7 @@
 
 - type: emoteSounds
   id: UnisexDiona
+  # imperial medieval
   sounds:
     Scream:
       path: /Audio/Voice/Diona/diona_scream.ogg
@@ -308,6 +316,7 @@
       collection: DeathGasp
 - type: emoteSounds
   id: UnisexArachnid
+  # imperial medieval
   sounds:
     Scream:
       path: /Audio/Voice/Arachnid/arachnid_scream.ogg
@@ -330,6 +339,7 @@
 
 - type: emoteSounds
   id: UnisexDwarf
+  # imperial medieval
   sounds:
     Scream:
       collection: MaleScreams
@@ -386,6 +396,7 @@
 
 - type: emoteSounds
   id: FemaleDwarf
+  # imperial medieval
   sounds:
     Scream:
       collection: FemaleScreams
@@ -442,6 +453,7 @@
 
 - type: emoteSounds
   id: UnisexMoth
+  # imperial medieval
   sounds:
     Buzz:
       path: /Audio/Voice/Moth/moth_scream.ogg
