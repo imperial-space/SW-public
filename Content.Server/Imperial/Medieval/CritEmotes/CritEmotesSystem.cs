@@ -23,7 +23,7 @@ public sealed class CritEmotesSystem : EntitySystem
             if (_gameTiming.CurTime < crit.NextUpdate)
                 continue;
 
-            crit.NextUpdate += TimeSpan.FromSeconds(6);
+            crit.NextUpdate += TimeSpan.FromSeconds(_random.NextFloat(4f, 7f));
 
             if (mob.CurrentState != Shared.Mobs.MobState.Critical)  // TODO софт крит вместо обычного
                 continue;
