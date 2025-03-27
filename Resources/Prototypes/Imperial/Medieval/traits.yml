@@ -293,3 +293,12 @@
   components:
     - type: ReligionMember
       religion: Нексар
+
+- type: trait
+  id: MedievalFarmer
+  name: trait-medieval-skills-farmer
+  description: trait-medieval-skills-farmer-desc
+  category: MedievalSkills
+  cost: 1
+  components:
+    - type: Farmer
