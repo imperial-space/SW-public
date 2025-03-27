@@ -1912,6 +1912,14 @@
   - MedievalMiscDemo
 
 - type: listing
+  id: DemoCarcBoxClassic
+  productEntity: CarcBoxClassic
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
   id: DemoMdvShopMedievalPaper
   productEntity: MedievalPaper
   cost:
