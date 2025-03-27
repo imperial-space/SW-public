@@ -1,7 +1,7 @@
 # species
 - type: emoteSounds
   id: MaleHuman
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreams
@@ -58,7 +58,7 @@
 
 - type: emoteSounds
   id: FemaleHuman
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: FemaleScreams
@@ -115,7 +115,7 @@
 
 - type: emoteSounds
   id: MaleReptilian
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -154,7 +154,7 @@
 
 - type: emoteSounds
   id: FemaleReptilian
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -193,7 +193,6 @@
 
 - type: emoteSounds
   id: MaleSlime
-  # imperial medieval
   sounds:
     Squish:
       collection: Squishes
@@ -233,10 +232,10 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
+  # imperial medieval "pitch delete"
 
 - type: emoteSounds
   id: FemaleSlime
-  # imperial medieval
   sounds:
     Squish:
       collection: Squishes
@@ -276,11 +275,11 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
+  # imperial medieval "pitch delete"
 
 
 - type: emoteSounds
   id: UnisexVox
-  # imperial medieval
   sounds:
     Scream:
       path: /Audio/Voice/Vox/shriek1.ogg
@@ -292,11 +291,11 @@
       collection: Weh
     Hew:
       collection: Hew
+  # imperial medieval "pitch delete"
     # We need vox sounds for the other emotes
 
 - type: emoteSounds
   id: UnisexDiona
-  # imperial medieval
   sounds:
     Scream:
       path: /Audio/Voice/Diona/diona_scream.ogg
@@ -314,9 +313,11 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
+  # imperial medieval "pitch delete"
+
 - type: emoteSounds
   id: UnisexArachnid
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       path: /Audio/Voice/Arachnid/arachnid_scream.ogg
@@ -339,7 +340,6 @@
 
 - type: emoteSounds
   id: UnisexDwarf
-  # imperial medieval
   sounds:
     Scream:
       collection: MaleScreams
@@ -392,11 +392,12 @@
       collection: MalePainScreams
     PassiveScream:
       collection: MalePassiveScream
+  # imperial medieval "pitch delete"
 # imperial medieval "emotions" end
 
 - type: emoteSounds
   id: FemaleDwarf
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: FemaleScreams
@@ -453,7 +454,7 @@
 
 - type: emoteSounds
   id: UnisexMoth
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Buzz:
       path: /Audio/Voice/Moth/moth_scream.ogg

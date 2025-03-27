@@ -1,7 +1,7 @@
 # species
 - type: emoteSounds
   id: MaleZveres
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsZveres
@@ -54,7 +54,7 @@
 
 - type: emoteSounds
   id: FemaleZveres
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsZveres

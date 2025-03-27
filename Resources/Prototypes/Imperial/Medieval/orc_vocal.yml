@@ -1,7 +1,7 @@
 # species
 - type: emoteSounds
   id: MaleOrc
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsOrc
@@ -54,7 +54,7 @@
 
 - type: emoteSounds
   id: FemaleOrc
-  # imperial medieval
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsOrc
