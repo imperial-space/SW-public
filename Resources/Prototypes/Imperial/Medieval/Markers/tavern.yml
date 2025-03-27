@@ -1,7 +1,5 @@
 - type: entity
-  name: маркер таверны
-  description: После инициализации карты добавляет буст всей еде в радиусе 3 тайлов.
-  suffix: 3 тайла
+  name: tavern marker
   id: MedievalTavernMarker3
   parent: MarkerBase
   components:
@@ -13,9 +11,7 @@
     range: 3
 
 - type: entity
-  name: маркер таверны
-  description: После инициализации карты добавляет буст всей еде в радиусе 5 тайлов.
-  suffix: 5 тайлов
+  name: tavern marker
   id: MedievalTavernMarker5
   parent: MarkerBase
   components:
