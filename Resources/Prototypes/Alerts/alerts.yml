@@ -138,8 +138,8 @@
 - type: alert
   id: Stun
   icons:
-  - sprite: /Textures/Objects/Weapons/Melee/stunbaton.rsi #Should probably draw a proper icon
-    state: stunbaton_off
+  - sprite: /Textures/Objects/Weapons/Melee/gohei.rsi # imperial medieval
+    state: gohei # imperial medieval
   name: alerts-stunned-name
   description: alerts-stunned-desc
 
