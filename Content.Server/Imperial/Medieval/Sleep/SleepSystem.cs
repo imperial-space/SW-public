@@ -8,7 +8,7 @@ namespace Content.Server.Bed.Sleep;
 
 public sealed class SleepingSystem : EntitySystem
 {
-    private readonly TimeSpan _timing = TimeSpan.FromSeconds(15);
+    private readonly TimeSpan _timing = TimeSpan.FromSeconds(7);
     private TimeSpan _curTime = TimeSpan.Zero;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
