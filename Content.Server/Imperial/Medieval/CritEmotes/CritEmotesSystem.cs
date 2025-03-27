@@ -25,7 +25,7 @@ public sealed class CritEmotesSystem : EntitySystem
 
             crit.NextUpdate += TimeSpan.FromSeconds(6);
 
-            if (mob.CurrentState != Shared.Mobs.MobState.Critical)
+            if (mob.CurrentState != Shared.Mobs.MobState.Critical)  // TODO софт крит вместо обычного
                 continue;
 
             _chat.TryEmoteWithChat(uid, _random.Pick(crit.Emotes), ChatTransmitRange.HideChat, ignoreActionBlocker: true);
