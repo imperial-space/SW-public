@@ -41,10 +41,7 @@ namespace Content.Shared.MeleeParry
         }
         private void OnBeforeStaminaDamage(EntityUid uid, MeleeParryAbleComponent component, ref BeforeStaminaDamageEvent args)
         { // Захардкожено для деревянного меча
-            if (args.Value < 1)
-                return;
-
-            if (args.Value > 25)
+            if (args.Value != 10)
                 return;
             if (CheckParryChanceStamina(uid, component.ParryModifier))
             {

@@ -1082,6 +1082,7 @@
     - MedievalIronPlateSmall
     - MedievalRivets
     - MedievalShoulder
+    - ClothingEyesGlasses
     - MedievalCatapultCraft
     - MedievalCatapultAmmoBarrel
     - MedievalCatapultAmmoBarrelGunpowder
@@ -1126,6 +1127,8 @@
     - MedievalIronShield
     - MedievalSpear
     - MedievalSpearT3Steel
+    - MedievalSpearPilum
+    - MedievalSpearSulica
     - MedievalDagger
     - MedievalDaggerT3Steel
     - MedievalFalshion

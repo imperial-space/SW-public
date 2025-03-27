@@ -1,0 +1,51 @@
+- type: entity
+  parent: BaseStructure
+  id: WantedDesk
+  name: wanted desk
+  description: A desk with a list of wanted criminals.
+  components:
+  - type: Transform
+    noRot: true
+  - type: WantedDesk
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: ActivatableUI
+    key: enum.WantedDeskUiKey.Key
+  - type: UserInterface
+    interfaces:
+        enum.WantedDeskUiKey.Key:
+          type: WantedDeskBoundUserInterface
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/wanted_desk.rsi
+    layers:
+      - state: icon
+      - state: desk-1
+        map: ["enum.WantedDeskVisuals.Layer"]
+        visible: false
+    noRot: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.WantedDeskVisuals.Appearance:
+        enum.WantedDeskVisuals.Layer:
+          None:
+            state: desk-1
+            visible: false
+          Min:
+            state: desk-1
+            visible: true
+          Medium:
+            state: desk-1
+            visible: true
+          Full:
+            state: desk-2
+            visible: true

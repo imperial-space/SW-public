@@ -46,6 +46,7 @@
   - type: UseDelayOnMelee # imperial medieval start
   - type: UseDelay
     delay: 0.1
+  - type: Customizable # imperial medieval
   - type: TrashClear # imperial medieval end
 
 - type: entity

@@ -1,10 +1,14 @@
-﻿using Content.Server.Mind;
+﻿using Content.Server.Friends;
+using Content.Server.Mind;
 using Content.Server.Roles;
 using Content.Server.Roles.Jobs;
 using Content.Shared.CharacterInfo;
+using Content.Shared.Friends;
+using Content.Shared.Friends.Components;
 using Content.Shared.Objectives;
 using Content.Shared.Objectives.Components;
 using Content.Shared.Objectives.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Server.CharacterInfo;
 
@@ -14,6 +18,7 @@ public sealed class CharacterInfoSystem : EntitySystem
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
+    [Dependency] private readonly FriendsSystem _friends = default!;
 
     public override void Initialize()
     {
@@ -56,6 +61,22 @@ public sealed class CharacterInfoSystem : EntitySystem
             briefing = _roles.MindGetBriefing(mindId);
         }
 
-        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing), args.SenderSession);
+        // Imperial medieval faction menu start
+        List<string> faction = new();
+        if (TryComp<FriendsComponent>(entity, out var friend))
+        {
+            if (!_friends.TryGetFactionDataContainer(out var container))
+                return;
+
+            var data = container.Value.Comp.CachedMembers.GetValueOrDefault(friend.Faction)?.GetOrNew(friend.MemberID);
+
+            if (_friends.TryGetFactionGroupObjective(friend.Faction, data?.Group ?? FactionMemberGroup.None, out var objective))
+                faction.Add(objective != "" ? $"Ваша текущая задача: {objective}" : "Вам ещё не назначили задачу.");
+
+            faction.Add(data?.Group != FactionMemberGroup.None ? $"Вы находитесь в группе {data?.Group}" : "Вас ещё не определили в группу.");
+        }
+        // Imperial medieval faction menu end
+
+        RaiseNetworkEvent(new CharacterInfoEvent(GetNetEntity(entity), jobTitle, objectives, briefing, faction), args.SenderSession);   // Imperial medieval faction menu tweaked
     }
 }

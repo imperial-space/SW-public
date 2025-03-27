@@ -1,0 +1,14 @@
+chat-emote-msg-Hmmm = думает
+chat-emote-msg-Hmm = вопрошает
+chat-emote-msg-warcry = кричит
+chat-emote-msg-charge = призывает в атаку
+chat-emote-msg-woo = восторжен
+chat-emote-msg-painscream = кричит
+chat-emote-msg-passivescream = кричит
+chat-emote-name-dreaminess = думать
+chat-emote-name-questioning = вопрошать
+chat-emote-name-warcry = боевой клич
+chat-emote-name-charge = в атаку!
+chat-emote-name-woo = радоваться
+chat-emote-name-painscream = кричать (боль)
+chat-emote-name-passivescream = кричать (тихо)

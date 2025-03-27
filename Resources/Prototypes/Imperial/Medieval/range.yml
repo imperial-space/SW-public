@@ -686,3 +686,19 @@
     - state: proto
   - type: StaminaDamageOnCollide
     damage: 25
+
+- type: entity
+  id: MedievalAmmoSpike
+  name: spike
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 15
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/ammo_spike.rsi
+    rotation: 180
+    layers:
+    - state: proto

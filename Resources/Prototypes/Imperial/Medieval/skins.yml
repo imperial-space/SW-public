@@ -1,0 +1,29 @@
+- type: customization
+  id: kosh4k2
+  holder: 8f1283cf-ea3c-4dad-812f-bcec4ec05484
+  map:
+    MedievalClothingOuterArmorCharmerLightLegion: [ MedievalClothingOuterArmorCeremonialRobe ]
+    MedievalClothingOuterArmorIron: [ MedievalClothingOuterArmorPodWarsSkinWarhammer ]
+    MedievalClothingOuterArmorUpIron: [ MedievalClothingOuterArmorPodWarsSkinWarhammerUp ]
+    MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2 ]
+
+- type: customization
+  id: eifall
+  holder: e06b4453-06c8-4aed-ba24-aa89a24194e6
+  map:
+    MedievalClothingNeckCloakClanFox: [ MedievalClothingNeckCloakCivRed ]
+    MedievalClothingNeckCloakClanMerc: [ MedievalClothingNeckCloakCivYellow ]
+    MedievalClothingNeckCloakClanEagle: [ MedievalClothingNeckCloakCivBlue ]
+    MedievalClothingNeckCloakClanWolf: [ MedievalClothingNeckCloakCivGrey ]
+    MedievalClothingNeckCloakClanWiz: [ MedievalClothingNeckCloakCivPurple ]
+    MedievalClothingNeckCloakClanMine: [ MedievalClothingNeckCloakCivGreen ]
+
+- type: customization
+  id: catfirebattle
+  holder: aca7b474-a916-42d2-aa3a-0cbc0b99132c
+  map:
+    MedievalClothingOuterArmorCharmerWeak: [ MedievalClothingOuterArmorWhiteCharmerWeak ]
+    MedievalClothingHeadHelmetCharmerWeak: [ MedievalClothingHeadHelmetWhiteCharmerWeak ]
+    MedievalClothingOuterArmorCharmerLight: [ MedievalClothingOuterArmorWhiteCharmerLight ]
+    MedievalClothingHeadHelmetCharmerLight: [ MedievalClothingHeadHelmetWhiteCharmerLight ]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [ MedievalClothingHeadHelmeCollegiumWhitetHat ]

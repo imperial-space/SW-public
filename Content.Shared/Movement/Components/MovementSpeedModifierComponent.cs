@@ -23,8 +23,8 @@ namespace Content.Shared.Movement.Components
         public const float DefaultFriction = 8f;
         public const float DefaultFrictionNoInput = 8f;
 
-        public const float DefaultBaseWalkSpeed = 4.6f;
-        public const float DefaultBaseSprintSpeed = 3.6f; // imperial medieval end
+        public const float DefaultBaseWalkSpeed = 4.4f;
+        public const float DefaultBaseSprintSpeed = 2.8f; // imperial medieval end
 
         [AutoNetworkedField, ViewVariables]
         public float WalkSpeedModifier = 1.0f;

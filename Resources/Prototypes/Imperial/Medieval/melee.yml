@@ -17,8 +17,8 @@
   - type: Sharp
   - type: MeleeWeapon
     wideAnimationRotation: -140
-    attackRate: 0.65
-    range: 2.65
+    attackRate: 0.5
+    range: 2.15
     damage:
       types:
         Piercing: 9
@@ -35,7 +35,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 9
+        Piercing: 8
   - type: DamageOtherOnHit
     damage:
       types:
@@ -62,6 +62,9 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 2
 
 - type: entity
   name: MedievalDaggerNecro
@@ -952,12 +955,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: woodknight-icon
+      sprite: Imperial/Medieval/Shields/woodknight.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: woodknight
+      sprite: Imperial/Medieval/Shields/woodknight.rsi
       size: Normal
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1001,12 +1009,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: wooden-icon
+      sprite: Imperial/Medieval/Shields/wooden.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: wooden
+      sprite: Imperial/Medieval/Shields/wooden.rsi
       size: Normal
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1050,12 +1063,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: buckler-icon
+      sprite: Imperial/Medieval/Shields/buckler.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: buckler
+      sprite: Imperial/Medieval/Shields/buckler.rsi
       size: Normal
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1105,11 +1123,10 @@
             variation: 0.02
             volume: 1
     - type: Sprite
-      state: inf_medieval-icon
-      sprite: Imperial/Medieval/Melee/shields.rsi
+      sprite: Imperial/Medieval/Shields/inf_medieval.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: inf_medieval
+      sprite: Imperial/Medieval/Shields/inf_medieval.rsi
       size: Large
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
@@ -1162,12 +1179,17 @@
             variation: 0.02
             volume: 1
     - type: Sprite
-      state: iron-buckler-icon
-      sprite: Imperial/Medieval/Melee/shields.rsi
+      sprite: Imperial/Medieval/Shields/iron_buckler.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: iron-buckler
+      sprite: Imperial/Medieval/Shields/iron_buckler.rsi
       size: Normal
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1451,7 +1473,7 @@
     clickDamageModifier: 1.28
     wideAnimationRotation: -140
     attackRate: 0.65
-    range: 2.6
+    range: 2.3
     damage:
       types:
         Piercing: 8
@@ -2209,8 +2231,8 @@
   - type: MeleeWeapon
     clickDamageModifier: 1.28
     wideAnimationRotation: -140
-    attackRate: 0.65
-    range: 2.75
+    attackRate: 0.6
+    range: 2.3
     damage:
       types:
         Piercing: 9
@@ -3583,11 +3605,16 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: bucklergobl-icon
+      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: bucklergobl
+      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
+    - type: Clothing
+      equipDelay: 4
+      unequipDelay: 4
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -3623,6 +3650,58 @@
       walkModifier: 0.98
       sprintModifier: 0.98
       mirrorClothingModifier: false
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShieldKnight
+  id: MedievalWoodenShieldKnightCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/cross_woodknight.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/cross_woodknight.rsi
+      size: Normal
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShield
+  id: MedievalWoodenShieldCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/cross_wooden.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/cross_wooden.rsi
+      size: Normal
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShieldBuckler
+  id: MedievalWoodenShieldBucklerCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/cross_buckler.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/cross_buckler.rsi
+      size: Normal
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShieldBucklerGoblin
+  id: MedievalWoodenShieldBucklerGoblinCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/cross_bucklergoblin.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/cross_bucklergoblin.rsi
+      size: Normal
 
 - type: entity
   name: pickaxe
@@ -3737,3 +3816,111 @@
     sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
     storedRotation: -45
   - type: UseDelay
+
+- type: entity
+  name: Pilum
+  parent: BaseItem
+  id: MedievalSpearPilum
+  description: Just a spear
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/pilum.rsi
+    state: spear
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    damage:
+      types:
+        Piercing: 10
+    angle: 0
+    animation: WeaponArcThrust
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 38
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaminaDamageOnHit
+    damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+
+- type: entity
+  name: Sulica
+  parent: BaseItem
+  id: MedievalSpearSulica
+  description: Just a spear
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/sulica.rsi
+    state: spear
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    damage:
+      types:
+        Piercing: 10
+    angle: 0
+    animation: WeaponArcThrust
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 38
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaminaDamageOnHit
+    damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer

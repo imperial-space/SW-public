@@ -208,13 +208,13 @@
   - type: TriggerOnSpawn
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: DemolitionCharge
+    explosionType: MedievalDemolitionCharge
     maxIntensity: 12
     intensitySlope: 10
     totalIntensity: 110
     canCreateVacuum: false
   - type: SpawnOnTrigger
-    proto: ShockWaveEffect
+    proto: MedievalExplosionEffect
 
 - type: entity
   id: MedievalHitMarkerStone

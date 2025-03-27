@@ -135,7 +135,7 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
             return;
         }
 
-        var (entity, job, objectives, briefing, entityName) = data;
+        var (entity, job, objectives, briefing, entityName, faction) = data;    // Imperial medieval faction menu tweaked
 
         _window.SpriteView.SetEntity(entity);
 
@@ -145,6 +145,20 @@ public sealed class CharacterUIController : UIController, IOnStateEntered<Gamepl
         _window.SubText.Text = job;
         _window.Objectives.RemoveAllChildren();
         _window.ObjectivesLabel.Visible = objectives.Any();
+
+        // Imperial medieval faction menu start
+        _window.Faction.RemoveAllChildren();
+        _window.FactionLabel.Visible = faction.Any();
+        foreach (var item in faction)
+        {
+            var label = new RichTextLabel()
+            {
+                Margin = new(2, 2)
+            };
+            label.SetMessage(item);
+            _window.Faction.AddChild(label);
+        }
+        // Imperial medieval faction menu end
 
         foreach (var (groupId, conditions) in objectives)
         {

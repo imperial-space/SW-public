@@ -7,6 +7,7 @@ using Content.Client.Fullscreen;
 using Content.Client.GameTicking.Managers;
 using Content.Client.GhostKick;
 using Content.Client.Guidebook;
+using Content.Client.Imperial.Medieval.JoinQueue;
 using Content.Client.Input;
 using Content.Client.IoC;
 using Content.Client.Launcher;
@@ -137,6 +138,7 @@ namespace Content.Client.Entry
             _extendedDisconnectInformation.Initialize();
             _jobRequirements.Initialize();
             _playbackMan.Initialize();
+            IoCManager.Resolve<JoinQueueManager>().Initialize(); // Imperial-Medieval-JoinQueue
 
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);

@@ -12,3 +12,13 @@
   - node: flat
     entity: FoodDoughFlat
   # TODO: add stuff for adding ingredients then cooking the pizza, wsci
+    # Imperial medieval start
+    transform:
+    - !type:UserWhitelistCompGrantTransform
+      whitelist:
+        components:
+        - Farmer
+      grants:
+      - type: FarmerBoostOnConsume
+        time: 15
+    # Imperial medieval end

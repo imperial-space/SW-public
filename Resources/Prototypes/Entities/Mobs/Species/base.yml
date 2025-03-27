@@ -19,6 +19,8 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
@@ -158,6 +160,7 @@
     - RadiationProtection
     - Drowsiness
     - Adrenaline
+    - MedievalFarmerBoost # Imperial medieval
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -244,11 +247,13 @@
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
   - type: EmoteOnDamage
+# imperial medieval "emotions" start
     emotes:
-    - Scream
+    - PainScream
     emoteChance: 0.3
     withChat: true
     emoteCooldown: 3.5
+# imperial medieval "emotions" end
   - type: MedievalSpikeTarget
   - type: BadSmellFeel
   - type: BadSmell
@@ -262,6 +267,8 @@
     bloodMultiplier: 1
     fresh: true
   - type: RandomSteal
+  - type: Customizer
+  - type: IdentityRequiresKnowledge
   #- type: LanguageSpeaker
   #  languages:
   #    Common: Speak
@@ -273,6 +280,7 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: SleepingImperial
 # Imperial Medieval End
 
 - type: entity
@@ -368,6 +376,8 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
