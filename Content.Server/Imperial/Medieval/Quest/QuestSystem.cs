@@ -23,7 +23,9 @@ public partial class QuestSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<QuestContractComponent, ComponentStartup>(OnStart);
+        SubscribeLocalEvent<PalletContractComponent, ComponentStartup>(OnStartPallete);
         SubscribeLocalEvent<QuestContractComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<PalletContractComponent, ExaminedEvent>(OnExaminePallete);
         SubscribeLocalEvent<QuestContractComponent, BeforeRangedInteractEvent>(OnUseInHand);
     }
 
@@ -49,18 +51,31 @@ public partial class QuestSystem : EntitySystem
             }
             if (lootCount >= comp.Amount)
             {
-                GetReward(used, user, comp, storage.Owner);
+                GetReward(used, user, storage.Owner, comp.Reward, comp.ContractPartner);
             }
         }
     }
 
-
-    public void GetReward(EntityUid contract, EntityUid user, QuestContractComponent comp, EntityUid chest)
+    public void OnUseInHandPallete(EntityUid uid, PalletContractComponent comp, BeforeRangedInteractEvent args)
     {
-        int remainingAmount = comp.Reward;
+        if (!args.CanReach)
+            return;
+        OnUsePallete(args.Target, args.User, args.Used, comp);
+    }
+
+    public void OnUsePallete(EntityUid? target, EntityUid user, EntityUid used, PalletContractComponent comp)
+    {
+        if (target == null)
+            return;
+        GetReward(used, user, target.Value, comp.Reward, comp.ContractPartner);
+    }
+
+    public void GetReward(EntityUid contract, EntityUid user, EntityUid chest, int Reward, string ContractPartner)
+    {
+        int remainingAmount = Reward;
         var xform = Transform(chest);
         var coords = xform.Coordinates;
-        if (!CheckQuestArea(coords, comp.ContractPartner))
+        if (!CheckQuestArea(coords, ContractPartner))
             return;
         while (remainingAmount >= 100)
         {
@@ -91,12 +106,27 @@ public partial class QuestSystem : EntitySystem
         comp.ContractName = _random.Pick(comp.ContractTypes);
     }
 
+    private void OnStartPallete(EntityUid uid, PalletContractComponent comp, ComponentStartup args)
+    {
+        comp.Reward = _random.Next(comp.MinReward, comp.MaxReward);
+        var xform = Transform(uid);
+        var coords = xform.Coordinates;
+        Spawn(comp.QuestLink, coords);
+    }
+
     private void OnExamine(EntityUid uid, QuestContractComponent comp, ExaminedEvent args)
     {
         args.PushMarkup("[color=sandybrown]Тип контракта: [/color]добыча");
         args.PushMarkup("[color=lightgreen]Место сдачи: [/color]" + comp.ContractPartner);
         args.PushMarkup("[color=orange]Тип добычи: [/color]" + comp.ContractName);
         args.PushMarkup("[color=red]Необходимое количество: [/color]" + comp.Amount);
+        args.PushMarkup("[color=yellow]Награда: [/color]" + comp.Reward);
+    }
+
+    private void OnExaminePallete(EntityUid uid, PalletContractComponent comp, ExaminedEvent args)
+    {
+        args.PushMarkup("[color=sandybrown]Тип контракта: [/color]доставка");
+        args.PushMarkup("[color=lightgreen]Место сдачи: [/color]" + comp.ContractPartner);
         args.PushMarkup("[color=yellow]Награда: [/color]" + comp.Reward);
     }
 }

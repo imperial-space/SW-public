@@ -35,7 +35,7 @@ public sealed class CritEmotesSystem : EntitySystem
             }
             if (_gameTiming.CurTime >= crit.NextHeartbeatUpdate)
             {
-                crit.NextHeartbeatUpdate = _gameTiming.CurTime + TimeSpan.FromSeconds(_random.NextFloat(2.2f, 3.4f));
+                crit.NextHeartbeatUpdate = _gameTiming.CurTime + TimeSpan.FromSeconds(_random.NextFloat(1.4f, 2.1f));
 
                 if (damageable.Damage.GetTotal() < crit.MinDamage || mob.CurrentState == Shared.Mobs.MobState.Dead)
                     continue;
