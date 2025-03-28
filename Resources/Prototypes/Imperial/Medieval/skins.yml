@@ -43,6 +43,12 @@
     Log: [ MedievalClothingHeadHelmetNimbus ]
 
 - type: customization
+  id: the_greatkeeper
+  holder: b4a31ba6-4303-4ad5-9be5-bb9d26cb3042
+  map:
+    Log: [ MedievalClothingNeckCloakInqVeteran ]
+
+- type: customization
   id: prime_mango_87673
   holder: e7fa19a3-594f-4eec-809d-d0d4e1e7fc82
   map:
