@@ -1,0 +1,690 @@
+﻿- type: entity
+  id: BaseSmithWorkpiece
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: SmithingWorkpiece
+    steps: 20
+    nothingTime: 1
+    goldTime: 0.5
+    stepsSpawnSpeed: 0.8
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: gate
+
+- type: entity
+  id: WorkpieceMedievalGear
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalGear
+
+- type: entity
+  id: WorkpieceMedievalChain
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalChain
+
+- type: entity
+  id: WorkpieceMedievalLeatherBelt
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalLeatherBelt
+
+
+- type: entity
+  id: WorkpieceMedievalIronPlate
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronPlate
+
+
+- type: entity
+  id: WorkpieceMedievalIronPlateSmall
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronPlateSmall
+
+
+- type: entity
+  id: WorkpieceMedievalRivets
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalRivets
+
+
+- type: entity
+  id: WorkpieceMedievalShoulder
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalShoulder
+
+
+- type: entity
+  id: WorkpieceClothingEyesGlasses
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: ClothingEyesGlasses
+
+
+- type: entity
+  id: WorkpieceMedievalCatapultCraft
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalCatapultCraft
+
+
+- type: entity
+  id: WorkpieceMedievalCatapultAmmoBarrel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalCatapultAmmoBarrel
+
+
+- type: entity
+  id: WorkpieceMedievalCatapultAmmoBarrelGunpowder
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalCatapultAmmoBarrelGunpowder
+
+
+- type: entity
+  id: WorkpieceMedievalCatapultAmmoBarrelAp
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalCatapultAmmoBarrelAp
+
+
+- type: entity
+  id: WorkpieceMedievalCatapultAmmoBarrelStone
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalCatapultAmmoBarrelStone
+
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetSalad
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetSalad
+  - type: UpgradeArmorOnSmithComplete
+
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetSaladLight
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetSaladLight
+
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetNormand
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetNormand
+
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetNormandFree
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetNormandFree
+
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetNorthern
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetNorthern
+
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetBacinet
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetBacinet
+
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetShapel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetShapel
+
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetCrusader
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetCrusader
+
+
+- type: entity
+  id: WorkpieceMedievalIronGloves
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronGloves
+
+
+- type: entity
+  id: WorkpieceMedievalIronGlovesBrig
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronGlovesBrig
+
+- type: entity
+  id: WorkpieceMedievalNorthernGloves
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalNorthernGloves
+
+- type: entity
+  id: WorkpieceMedievalIronGlovesBear
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronGlovesBear
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetSteel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetSteel
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetNorthern
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetNorthern
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorChainMailLight
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorChainMailLight
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorChainMail
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorChainMail
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorIronCuirassLight
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorIronCuirassLight
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorNorthern
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalMedievalClothingOuterArmorNorthern
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorIronCuirass
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorIronCuirass
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorBrigantin
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorBrigantin
+
+- type: entity
+  id: WorkpieceClothingOuterArmorPodWars
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: ClothingOuterArmorPodWars
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorIron
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorIron
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorUpIron
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorUpIron
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetEbonit
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetEbonit
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetEbonit2
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetEbonit2
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorEbonit
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorEbonit
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorEbonit2
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorEbonit2
+
+- type: entity
+  id: WorkpieceMedievalEbonitGloves
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalEbonitGloves
+
+- type: entity
+  id: WorkpieceMedievalEbonitGloves2
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalEbonitGloves2
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetEbonit
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetEbonit
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetEbonit2
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetEbonit2
+
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetForstone
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetForstone
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorForstone
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorForstone
+
+- type: entity
+  id: WorkpieceMedievalForstoneGloves
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalForstoneGloves
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetForstone
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetForstone
+
+- type: entity
+  id: WorkpieceMedievalIronShield
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronShield
+
+- type: entity
+  id: WorkpieceMedievalSpear
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalSpear
+
+- type: entity
+  id: WorkpieceMedievalSpearT3Steel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalSpearT3Steel
+
+- type: entity
+  id: WorkpieceMedievalSpearPilum
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalSpearPilum
+
+- type: entity
+  id: WorkpieceMedievalSpearSulica
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalSpearSulica
+
+- type: entity
+  id: WorkpieceMedievalDagger
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalDagger
+
+- type: entity
+  id: WorkpieceMedievalDaggerT3Steel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalDaggerT3Steel
+
+- type: entity
+  id: WorkpieceMedievalFalshion
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalFalshion
+
+- type: entity
+  id: WorkpieceMedievalFalshionT3Steel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalFalshionT3Steel
+
+- type: entity
+  id: WorkpieceMedievalShortSword
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalShortSword
+
+- type: entity
+  id: WorkpieceMedievalShortSwordSteel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalShortSwordSteel
+
+- type: entity
+  id: WorkpieceMedievalSaber
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalSaber
+
+- type: entity
+  id: WorkpieceMedievalSaberSteel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalSaberSteel
+
+- type: entity
+  id: WorkpieceMedievalMace
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalMace
+
+- type: entity
+  id: WorkpieceMedievalMaceT3Steel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalMaceT3Steel
+
+- type: entity
+  id: WorkpieceMedievalPalice
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalPalice
+
+- type: entity
+  id: WorkpieceMedievalPaliceSteel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalPaliceSteel
+
+- type: entity
+  id: WorkpieceMedievalIronHalberd
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronHalberd
+
+- type: entity
+  id: WorkpieceMedievalIronHalberdT3Steel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronHalberdT3Steel
+
+- type: entity
+  id: WorkpieceMedievalMaceT3Heavy
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalMaceT3Heavy
+
+- type: entity
+  id: WorkpieceMedievalMaceT3SteelHeavy
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalMaceT3SteelHeavy
+
+- type: entity
+  id: WorkpieceMedievalIronSekir
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronSekir
+
+- type: entity
+  id: WorkpieceMedievalIronSekirSteel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronSekirSteel
+
+- type: entity
+  id: WorkpieceMedievalIronHammer
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronHammer
+
+- type: entity
+  id: WorkpieceMedievalIronHammerSteell
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronHammerSteel
+
+- type: entity
+  id: WorkpieceMedievalLockpickPack
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalLockpickPack
+
+- type: entity
+  id: WorkpieceMedievalLockpick
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalLockpick
+
+- type: entity
+  id: WorkpieceMedievalShovel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalShovel
+
+- type: entity
+  id: WorkpieceMedievalPickaxe
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalPickaxe
+
+- type: entity
+  id: WorkpieceMedievalPickaxeSteel
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalPickaxeSteel
+
+- type: entity
+  id: WorkpieceMedievalPickaxeForStone
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalPickaxeForStone
+
+- type: entity
+  id: WorkpieceMedievalPickaxeEbonit
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalPickaxeEbonit
+
+- type: entity
+  id: WorkpieceMedievalRepairStone
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalRepairStone
+
+- type: entity
+  id: WorkpieceMedievalHoe
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalHoe
+
+- type: entity
+  id: WorkpieceMedievalScythe
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalScythe
+
+- type: entity
+  id: WorkpieceMedievalClippers
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClippers
+
+- type: entity
+  id: WorkpieceMedievalHandcuffs
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalHandcuffs
+
+- type: entity
+  id: WorkpieceMedievalFetter
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalFetter
+
+- type: entity
+  id: WorkpieceMedievalHatchet
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalHatchet
+
+- type: entity
+  id: WorkpieceBarberScissorss
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: BarberScissors
+
+- type: entity
+  id: WorkpieceMedievalGrenade
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalGrenade
+
+- type: entity
+  id: WorkpiecMedievalKeyStorage
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalKeyStorage
+
+- type: entity
+  id: WorkpieceMedievalDoorKeyCheck
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalDoorKeyCheck
+
+- type: entity
+  id: WorkpieceMedievalPrisonGrilleCraft
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalPrisonGrilleCraft
+
+- type: entity
+  id: WorkpieceMedievalWeaponTurretNanoTrasenCraft
+  parent: BaseSmithWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalWeaponTurretNanoTrasenCraft
+
+
+
+
+

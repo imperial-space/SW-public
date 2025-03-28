@@ -75,3 +75,6 @@
 
 - type: Tag
   id: CultOfTruthKey
+
+- type: Tag
+  id: SmithingTool

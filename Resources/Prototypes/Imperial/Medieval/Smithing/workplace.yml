@@ -1,0 +1,85 @@
+﻿- type: entity
+  id: SmithWorkplace
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Lathe/blacksmith.rsi
+    state: icon_2
+  - type: SmithingWorkplace
+    workpieceSlot:
+      whitelist:
+        components:
+        - SmithingWorkpiece
+      whitelistFailPopup: ame-controller-component-fuel-slot-fail-whitelist
+      lockedFailPopup: ame-controller-component-fuel-slot-fail-locked
+      insertSuccessPopup: ame-controller-component-fuel-slot-success-insert
+  - type: ContainerContainer
+    containers:
+      WorkpieceSlot: !type:ContainerSlot
+        showEnts: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: UserInterface
+    interfaces:
+      enum.SmithUiKey.Key:
+        type: SmithingBoundUserInterface
+
+- type: entity
+  id: SmithingGorn
+  parent: BaseStructure
+  name: gorn
+  components:
+  - type: SmithingFurnace
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/gorn.rsi
+    layers:
+    - state: gorn
+    - state: unshaded
+      shader: unshaded
+  - type: Appearance
+  - type: AmbientSound
+    volume: -6
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#FF6F00"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: AlwaysHot
