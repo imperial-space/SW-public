@@ -1,7 +1,9 @@
 ﻿using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Bui;
+using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.SmithingSystem;
 
@@ -13,6 +15,9 @@ public sealed partial class SmithingWorkplaceComponent : Component
 
     [DataField]
     public ItemSlot WorkpieceSlot = new();
+
+    [DataField]
+    public string SmithingToolTag = "SmithingTool";
 
     public Entity<SmithingWorkpieceComponent>? Workpiece;
 

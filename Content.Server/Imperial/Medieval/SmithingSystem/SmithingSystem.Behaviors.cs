@@ -1,4 +1,5 @@
-﻿using Content.Shared.Armor;
+﻿using System.Linq;
+using Content.Shared.Armor;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Events;
@@ -22,7 +23,7 @@ public sealed partial class SmithingSystem
             return;
         }
 
-        var modifier = ent.Comp.GetBestModifier(args.Score);
+        var modifier = GetBestModifier(args.Score, ent.Comp.ItemQualityTable);
 
         foreach (var key in armorComponent.Modifiers.FlatReduction.Keys)
         {
@@ -44,7 +45,7 @@ public sealed partial class SmithingSystem
             return;
         }
 
-        var modifier = ent.Comp.GetBestModifier(args.Score);
+        var modifier = GetBestModifier(args.Score, ent.Comp.ItemQualityTable);
 
         resourceComponent.FullModifier *= modifier.Modifier;
         resourceComponent.AlmostFullModifier *= modifier.Modifier;
@@ -67,13 +68,13 @@ public sealed partial class SmithingSystem
     private void SetName(EntityUid entityUid, ItemQuality quality)
     {
         var name = Identity.Name(entityUid, EntityManager);
-        var append = _appendByItemQuality[quality];
+        var append = _itemQualityDecorators[quality];
 
         var newName = append + name + append;
         _metaDataSystem.SetEntityName(entityUid, newName);
     }
 
-    private Dictionary<ItemQuality, string> _appendByItemQuality = new()
+    private Dictionary<ItemQuality, string> _itemQualityDecorators = new()
     {
         { ItemQuality.Bad, "-"},
         { ItemQuality.Default, string.Empty},
@@ -81,4 +82,19 @@ public sealed partial class SmithingSystem
         { ItemQuality.Excellent, "++"},
 
     };
+
+    private SmithQualityModifiers GetBestModifier(int score, Dictionary<int, SmithQualityModifiers> table)
+    {
+        var bestData = table.MinBy(x => x.Key).Value; // Самый плохой по умолчанию
+
+        foreach (var (threshold, data) in table)
+        {
+            if (score > threshold && data.Modifier > bestData.Modifier)
+            {
+                bestData = data;
+            }
+        }
+
+        return bestData;
+    }
 }

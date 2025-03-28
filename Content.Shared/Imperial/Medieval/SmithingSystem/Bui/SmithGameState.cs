@@ -4,6 +4,7 @@ public sealed class SmithGameState
 {
     public TimeSpan StartTime;
     public TimeSpan ForceEndTime;
+    public bool Started { get; private set; }
 
     private readonly int _steps;
     private int _completedSteps;
@@ -26,6 +27,8 @@ public sealed class SmithGameState
     {
         StartTime = currentTime;
         ForceEndTime = currentTime + TimeSpan.FromSeconds(_maxGameTime + 5f);
+
+        Started = true;
     }
 
     public void AddStep(SmithHitState state, bool incrementSteps = true)

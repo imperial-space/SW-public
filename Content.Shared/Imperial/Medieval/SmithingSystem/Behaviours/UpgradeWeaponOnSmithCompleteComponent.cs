@@ -3,7 +3,7 @@
 namespace Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
 
 [RegisterComponent]
-public sealed partial class UpgradeArmorOnSmithCompleteComponent : Component
+public sealed partial class UpgradeWeaponOnSmithCompleteComponent : Component
 {
     [DataField]
     public Dictionary<int, SmithQualityModifiers> ItemQualityTable { get; set; } = new()

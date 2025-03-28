@@ -1,21 +1,20 @@
-﻿using Content.Shared.Imperial.Medieval.SmithingSystem;
+﻿using System.Globalization;
+using Content.Shared.Imperial.Medieval.SmithingSystem;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Bui;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Events;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.SmithingSystem;
 
 public sealed partial class SmithingSystem : SharedSmithingSystem
 {
-    [Dependency] TagSystem _tagSystem = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     public override void Initialize()
     {
@@ -48,6 +47,7 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
         while (query.MoveNext(out var uid, out var workplaceComponent))
         {
             if (workplaceComponent.GameState == null ||
+                !workplaceComponent.GameState.Started ||
                 workplaceComponent.GameState.ForceEndTime > _gameTiming.CurTime)
             {
                 continue;
@@ -124,6 +124,8 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
 
         ent.Comp.GameState = new SmithGameState(workpiece.Steps, gameDataMessage.CalculateTotalTime());
 
+        Log.Error(gameDataMessage.CalculateTotalTime().ToString(CultureInfo.InvariantCulture));
+
         _ui.SetUiState(ent.Owner, SmithUiKey.Key, gameDataMessage);
     }
 
@@ -155,7 +157,7 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
 
     private void OnInteractUsingEvent(Entity<SmithingWorkplaceComponent> ent, ref InteractUsingEvent args)
     {
-        if (!_tagSystem.HasTag(args.Used, "SmithingTool") ||
+        if (!_tagSystem.HasTag(args.Used, ent.Comp.SmithingToolTag) ||
             !ent.Comp.WorkpieceSlot.HasItem ||
             _ui.IsUiOpen(ent.Owner, SmithUiKey.Key))
         {
