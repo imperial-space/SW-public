@@ -10,7 +10,7 @@
         </BoxContainer>
 
         <LayoutContainer Margin="5" Name="MainLayout" HorizontalExpand="True" VerticalExpand="True">
-            <SpriteView SetSize="192 192" Name="ItemSpriteView"/>
+            <TextureRect SetSize="192 192" Stretch="Scale" Name="ItemSpriteView"/>
         </LayoutContainer>
 
         <Button Name="StartGameButton" Text="Начать!" HorizontalExpand="True" SetHeight="25"></Button>

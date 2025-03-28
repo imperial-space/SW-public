@@ -125,6 +125,7 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
         {
             SpawnTime = workpieceComponent.StepsSpawnSpeed,
             Steps = steps,
+            ItemProtoId = workpieceComponent.FinalProductEntity
         };
 
         return gameData;

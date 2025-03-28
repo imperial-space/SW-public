@@ -2,6 +2,7 @@
 using Content.Shared.Imperial.Medieval.SmithingSystem.Bui;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Medieval.SmithingSystem;
@@ -35,6 +36,8 @@ public sealed class SmithGameData : BoundUserInterfaceState
     public float SpawnTime;
 
     public Stack<SmithStepData> Steps = new();
+
+    public EntProtoId ItemProtoId;
 
     public float CalculateTotalTime()
     {
