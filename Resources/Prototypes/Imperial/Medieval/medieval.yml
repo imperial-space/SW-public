@@ -4009,6 +4009,17 @@
       - ReagentId: MedievalFlowerLipad
         Quantity: 10
 
+- type: reagent
+  id: MedievalFlowerLava
+  name: ent-MedievalFlowerLava
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
 - type: entity
   name: gol
   parent: BaseItem
@@ -4028,6 +4039,11 @@
     - AlchemicIngredient
   - type: Item
     size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerLava
+        Quantity: 10
 
 - type: reagent
   id: MedievalFlowerCryo

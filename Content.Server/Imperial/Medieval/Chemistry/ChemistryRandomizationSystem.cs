@@ -17,6 +17,9 @@ using Content.Shared.Examine;
 using Content.Server.MedievalPotionChecker.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Fluids;
+using Content.Shared.Imperial.Medieval.Chemistry;
+using Robust.Shared.GameObjects;
 
 namespace Content.Server.ChemistryRandomization;
 
@@ -26,6 +29,7 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly GamePrototypeLoadManager _uploadManager = default!;
     [Dependency] private readonly IEntitySystemManager _ent = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
     public readonly List<string> BasicReagentList = new()
     {
         "MedievalFlowerLipad",
@@ -41,9 +45,10 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
         "MedievalLootDevilMouse",
         "Blood",
         "DemonsBlood",
-        //"грибы1",
-        //"грибы2",
-        //"грибы3"
+        "MedievalFlowerLava",
+        "MedievalMushroom1",
+        "MedievalMushroom2",
+        "MedievalMushroom3"
     };
     public readonly List<string> EasyPotionList = new()
     {
@@ -123,6 +128,12 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
         "sweet",
         "metallic"
     };
+    public readonly Dictionary<string, Dictionary<string, List<string>>> CurrentRecipes = new()
+    {
+        ["easy"] = new(),
+        ["medium"] = new(),
+        ["hard"] = new()
+    };
     public readonly Dictionary<string, MappingDataNode> OriginalReagentPrototypes = new();
     public readonly Dictionary<string, MappingDataNode> OriginalReactionPrototypes = new();
     public delegate bool Can<T>(T value);
@@ -148,6 +159,20 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
         }
         SubscribeLocalEvent<RoundStartAttemptEvent>(TryStart);
         SubscribeLocalEvent<SolutionContainerManagerComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<MedievalRandomChemistryRecipeComponent, MapInitEvent>(Init);
+    }
+    public void Init(EntityUid uid, MedievalRandomChemistryRecipeComponent component, MapInitEvent args)
+    {
+        if (component.Weights.Count() == 0)
+            return;
+        var type = _random.Pick(component.Weights);
+        var randomrecipe = _random.Pick(CurrentRecipes[type]);
+        var str = Loc.GetString("imperial-medieval-recipewritten");
+        foreach (var reagent in randomrecipe.Value)
+        {
+            str = $"{str}{Environment.NewLine}- {Loc.GetString(_prototype.Index<ReagentPrototype>(reagent).LocalizedName)}";
+        }
+        _meta.SetEntityDescription(uid, str);
     }
     public void OnExamine(EntityUid uid, SolutionContainerManagerComponent component, ExaminedEvent args)
     {
@@ -194,7 +219,6 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
         }
         if (!addedsomething)
             return;
-        Console.WriteLine(str);
         args.PushMarkup(str);
     }
     public bool BasicCan<T>(T value)
@@ -462,8 +486,10 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
             if (!OriginalReagentPrototypes.TryGetValue(id, out var mapping))
                 continue;
             mapping.Get<ValueDataNode>("id").Value = $"{id}clone";
-            if (!mapping.ContainsKey(new ValueDataNode("abstract")))
-                mapping["abstract"] = new ValueDataNode("true");
+            mapping.Remove("showinbook");
+            mapping.Remove("nospawn");
+            mapping["showinbook"] = new ValueDataNode("false");
+            mapping["nospawn"] = new ValueDataNode("true");
 
             newprototypes = $"{newprototypes}{Environment.NewLine}{ConvertMappingToString(mapping)}";
         }
@@ -481,6 +507,34 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
             newprototypes = $"{newprototypes}{Environment.NewLine}{ConvertMappingToString(mapping)}";
         }
         _uploadManager.SendGamePrototype(newprototypes); // Todo: stop using SendGamePrototype because unoptimized
+        foreach (var table in CurrentRecipes)
+            table.Value.Clear();
+        foreach (var recipe in easyPotionRecipes)
+            CurrentRecipes["easy"].Add(recipe.Key, recipe.Value);
+
+        foreach (var recipe in mediumPotionRecipes)
+        {
+            var list = new List<string>();
+            foreach (var key in recipe.Value)
+                if (allPotions.Contains(key))
+                    list.Add($"{key}clone");
+                else
+                    list.Add(key);
+
+            CurrentRecipes["medium"].Add(recipe.Key, list);
+        }
+
+        foreach (var recipe in hardPotionRecipes)
+        {
+            var list = new List<string>();
+            foreach (var key in recipe.Value)
+                if (allPotions.Contains(key))
+                    list.Add($"{key}clone");
+                else
+                    list.Add(key);
+
+            CurrentRecipes["hard"].Add(recipe.Key, list);
+        }
         // Log.Debug(newprototypes);
     }
     private string? ConvertMappingToString(MappingDataNode node)

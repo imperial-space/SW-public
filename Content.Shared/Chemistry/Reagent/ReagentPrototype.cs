@@ -142,6 +142,8 @@ namespace Content.Shared.Chemistry.Reagent
         // Imperial Medieval Chemistry Begin
         [DataField("showinbook")]
         public bool ShowInBook = true;
+        [DataField("nospawn")]
+        public bool NoSpawn = false;
         // Imperial Medieval Chemistry End
 
         [DataField]
