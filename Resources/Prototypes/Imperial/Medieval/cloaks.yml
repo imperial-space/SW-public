@@ -370,9 +370,9 @@
   description: A cloak to distinguish allies.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Cloaks/InqVeteranCloak.rsi
+    sprite: Imperial/Medieval/Clothing/Cloaks/inq_veteran_cloak.rsi
   - type: Insulated
-  
+
 - type: entity
   parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivYellow
@@ -382,7 +382,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/yellowcloak.rsi
   - type: Insulated
-  
+
 - type: entity
   parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivPurple
@@ -392,7 +392,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/purplecloak.rsi
   - type: Insulated
-  
+
 - type: entity
   parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivGrey
@@ -402,7 +402,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/greycloak.rsi
   - type: Insulated
-  
+
 - type: entity
   parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivRed
@@ -412,7 +412,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/redcloak.rsi
   - type: Insulated
-  
+
 - type: entity
   parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivGreen
@@ -422,7 +422,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/greencloak.rsi
   - type: Insulated
-  
+
 - type: entity
   parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivBlue
