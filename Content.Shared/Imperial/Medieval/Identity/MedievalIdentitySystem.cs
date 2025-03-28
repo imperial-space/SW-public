@@ -1,3 +1,4 @@
+using Content.Shared.Examine;
 using Content.Shared.Friends;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
@@ -17,6 +18,7 @@ public sealed partial class MedievalIdentitySystem : EntitySystem
 
         SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedFriendsSystem) });
         SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ExaminedEvent>(OnExamined);
     }
 
     private void OnComponentInit(EntityUid uid, IdentityRequiresKnowledgeComponent component, ComponentInit args)
@@ -29,6 +31,8 @@ public sealed partial class MedievalIdentitySystem : EntitySystem
     private void OnGetVerbs(EntityUid uid, IdentityRequiresKnowledgeComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
         if (!TryComp<IdentityRequiresKnowledgeComponent>(args.User, out var userComp))
+            return;
+        if (uid == args.User)
             return;
         if (component.KnownIds.Contains(userComp.Identifier) || !userComp.HideUnknown)
             return;
@@ -46,5 +50,10 @@ public sealed partial class MedievalIdentitySystem : EntitySystem
             Priority = 1,
             Text = "Представиться"
         });
+    }
+
+    private void OnExamined(EntityUid uid, IdentityRequiresKnowledgeComponent component, ExaminedEvent args)
+    {
+        args.PushMarkup($"[font=Default size=8][color=gray]Идентификатор игрока:[/color] {component.Identifier}[/font]", -1);
     }
 }
