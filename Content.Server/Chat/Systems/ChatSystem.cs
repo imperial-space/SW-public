@@ -707,7 +707,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     /// <summary>
     ///     If hideChat should be set as far as replays are concerned.
     /// </summary>
-    private bool MessageRangeHideChatForReplay(ChatTransmitRange range)
+    public bool MessageRangeHideChatForReplay(ChatTransmitRange range)  // Imperial medieval - made func public
     {
         return range == ChatTransmitRange.HideChat;
     }

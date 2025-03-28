@@ -9,6 +9,7 @@ using Content.Shared.Item;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Examine;
 using Content.Shared.Humanoid;
+using Content.Shared.Friends;
 
 namespace Content.Server.MedievalPasport
 {
@@ -38,44 +39,14 @@ namespace Content.Server.MedievalPasport
                 args.PushMarkup("Пол: [color=pink]" + component.PersonGender + "[/color]");
             args.PushMarkup("Возраст: [color=white]" + component.PersonAge + "[/color]");
             args.PushMarkup("Должность: " + component.PersonJob);
-            switch (component.PersonRace)
-            {
-                case "DarkElf":
-                    args.PushMarkup("Раса: [color=gray]темный эльф[/color]");
-                    break;
-                case "Tifling":
-                    args.PushMarkup("Раса: [color=red]инферн[/color]");
-                    break;
-                case "Drou":
-                    args.PushMarkup("Раса: [color=purple]ноктюрн[/color]");
-                    break;
-                case "Orc":
-                    args.PushMarkup("Раса: [color=green]орк[/color]");
-                    break;
-                case "Zveres":
-                    args.PushMarkup("Раса: [color=gray]мунвульф[/color]");
-                    break;
-                case "Dwarf":
-                    args.PushMarkup("Раса: [color=orange]дварф[/color]");
-                    break;
-                case "Human":
-                    args.PushMarkup("Раса: [color=yellow]человек[/color]");
-                    break;
-                case "Reptilian":
-                    args.PushMarkup("Раса: [color=green]ящер[/color]");
-                    break;
-                case "Skeleton":
-                    args.PushMarkup("Раса: [color=white]скелетон[/color]");
-                    break;
-                case "Elf":
-                    args.PushMarkup("Раса: [color=lightgreen]лесной эльф[/color]");
-                    break;
-            }
-
+            args.PushMarkup($"Раса: {Loc.GetString($"species-colored-{component.PersonRace}")}");
         }
 
         public void OnStart(EntityUid uid, MedievalPasportPersonComponent comp, ComponentStartup args)
         {
+            var ev = new StartupFactionDataEvent(comp.PersonJob, comp.JobPrefix);
+            RaiseLocalEvent(uid, ev);
+
             if (comp.Pasport == "no") return;
             var xform = Transform(comp.Owner);
             var coords = xform.Coordinates;

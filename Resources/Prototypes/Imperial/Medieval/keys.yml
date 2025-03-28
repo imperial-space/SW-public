@@ -1,7 +1,19 @@
 - type: entity
-  parent: MedievalKeyStandard
+  parent: Clothing
+  id: MedievalKeyBase
+  abstract: true
+  components:
+  - type: Clothing
+    slots:
+    - idcard
+  - type: Item
+    size: Tiny
+  - type: Access
+
+- type: entity
+  parent: MedievalKeyBase
   id: MedievalLeatherKey
-  name: security key
+  name: legionnaire key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -9,11 +21,14 @@
   - type: Key
     accesses:
     - Atmospherics
+  - type: Tag
+    tags:
+    - LegionnaireKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalGuardKey
-  name: security key
+  name: armory rebel key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -21,11 +36,14 @@
   - type: Key
     accesses:
     - Security
+  - type: Tag
+    tags:
+    - RebelKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalUnknownKey
-  name: security key
+  name: unknown key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -33,11 +51,14 @@
   - type: Key
     accesses:
     - Maintenance
+  - type: Tag
+    tags:
+    - MedievalKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalFarmerKey
-  name: security key
+  name: mercenary key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -45,11 +66,14 @@
   - type: Key
     accesses:
     - Hydroponics
+  - type: Tag
+    tags:
+    - MercenaryKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalGateKey
-  name: security key
+  name: gate key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -57,11 +81,14 @@
   - type: Key
     accesses:
     - Medical
+  - type: Tag
+    tags:
+    - RebelKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalBlacksmithKey
-  name: security key
+  name: tribal key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -69,11 +96,14 @@
   - type: Key
     accesses:
     - Engineering
+  - type: Tag
+    tags:
+    - TribalKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalWoodKey
-  name: security key
+  name: miner key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -81,11 +111,14 @@
   - type: Key
     accesses:
     - ChiefEngineer
+  - type: Tag
+    tags:
+    - MinerKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalMaidKey
-  name: security key
+  name: maid key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -93,11 +126,14 @@
   - type: Key
     accesses:
     - Janitor
+  - type: Tag
+    tags:
+    - MedievalKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalKeyGuard
-  name: security key
+  name: rebel key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -105,9 +141,12 @@
   - type: Key
     accesses:
     - Medical
+  - type: Tag
+    tags:
+    - RebelKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalKeyChapel
   name: chapel key
   components:
@@ -117,11 +156,14 @@
   - type: Key
     accesses:
     - Chapel
+  - type: Tag
+    tags:
+    - NecromancerKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalKeyAlchem
-  name: alchem key
+  name: bandit key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -129,9 +171,12 @@
   - type: Key
     accesses:
     - Chemistry
+  - type: Tag
+    tags:
+    - BanditKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalKeyTavern
   name: tavern key
   components:
@@ -141,11 +186,14 @@
   - type: Key
     accesses:
     - Bar
+  - type: Tag
+    tags:
+    - MedievalKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalKeyKing
-  name: king key
+  name: cult of truth key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -153,9 +201,12 @@
   - type: Key
     accesses:
     - Captain
+  - type: Tag
+    tags:
+    - CultOfTruthKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalKeyWizard
   name: wizard key
   components:
@@ -165,19 +216,17 @@
   - type: Key
     accesses:
     - Research
+  - type: Tag
+    tags:
+    - WizardKey
 
 - type: entity
-  parent: Clothing
+  parent: MedievalKeyBase
   id: MedievalKeyStandard
   name: key
   description: key
   noSpawn: true
   components:
-  - type: Clothing
-    slots:
-    - idcard
-  - type: Item
-    size: Tiny
   - type: Key
     accesses:
     - MedievalKey
@@ -186,9 +235,9 @@
     - MedievalKey
 
 - type: entity
-  parent: MedievalKeyStandard
+  parent: MedievalKeyBase
   id: MedievalKeyCargo
-  name: storage key
+  name: legion armoury key
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
@@ -196,6 +245,10 @@
   - type: Key
     accesses:
     - Cargo
+  - type: Tag
+    tags:
+    - LegionnaireKey
+
 
 - type: job
   id: TavernaKey
@@ -373,12 +426,68 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/key_storage.rsi
+    state: base
   - type: Storage
+    maxItemSize: Small
     grid:
     - 0,0,6,1
     whitelist:
       tags:
         - MedievalKey
+        - LegionnaireKey
+        - RebelKey
+        - MercenaryKey
+        - TribalKey
+        - MinerKey
+        - NecromancerKey
+        - BanditKey
+        - TavernKey
+        - CultOfTruthKey
+        - WizardKey
+  - type: ItemMapper
+    mapLayers:
+      medieval_key:
+        whitelist:
+          tags:
+          - MedievalKey
+      bandits:
+        whitelist:
+          tags:
+          - BanditKey
+      fox:
+        whitelist:
+          tags:
+          - RebelKey
+      legion:
+        whitelist:
+          tags:
+          - LegionnaireKey
+      mage:
+        whitelist:
+          tags:
+          - WizardKey
+      mercenaries:
+        whitelist:
+          tags:
+          - MercenaryKey
+      necro:
+        whitelist:
+          tags:
+          - NecromancerKey
+      tribe:
+        whitelist:
+          tags:
+          - TribalKey
+      wood:
+        whitelist:
+          tags:
+            - MinerKey
+      king:
+        whitelist:
+          tags:
+            - CultOfTruthKey
+    sprite: Imperial/Medieval/Misc/key_storage.rsi
+  - type: Appearance
   - type: Item
     size: Normal
   - type: Clothing

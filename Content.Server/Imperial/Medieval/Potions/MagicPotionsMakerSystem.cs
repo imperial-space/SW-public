@@ -7,7 +7,6 @@ using Robust.Shared.Random;
 using Content.Shared.Interaction;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Audio;
-using Robust.Shared.Physics.Events;
 using Content.Server.SpikeTrap.Components;
 using Content.Server.MagicBarrier.Components;
 
@@ -28,36 +27,43 @@ namespace Content.Server.MagicPotionsMaker
             SubscribeLocalEvent<MagicPotionsIngredientComponent, ExaminedEvent>(OnExamineIngredient);
             SubscribeLocalEvent<MagicPotionsMakerComponent, ActivateInWorldEvent>(OnActivated);
             SubscribeLocalEvent<MagicPotionsRecipesComponent, ComponentStartup>(MixRecipes);
-            SubscribeLocalEvent<MagicPotionsMakerComponent, StartCollideEvent>(OnCollide);
+            SubscribeLocalEvent<MagicPotionsIngredientComponent, BeforeRangedInteractEvent>(OnUseInHand);
         }
 
-        private void OnCollide(EntityUid uid, MagicPotionsMakerComponent comp, ref StartCollideEvent args)
+        public void OnUseInHand(EntityUid uid, MagicPotionsIngredientComponent comp, BeforeRangedInteractEvent args)
         {
-            var entity = args.OtherEntity;
+            if (!args.CanReach)
+                return;
+            OnUse(args.Target, args.User, args.Used, comp);
+        }
 
-            if (TryComp<MagicPotionsIngredientComponent>(entity, out var ingredient))
+        public void OnUse(EntityUid? target, EntityUid user, EntityUid used, MagicPotionsIngredientComponent ingredient)
+        {
+            if (target == null)
+                return;
+
+            if (TryComp<MagicPotionsMakerComponent>(target, out var maker))
             {
-                if (comp.FirstIngredient == "None")
+                if (maker.FirstIngredient == "None")
                 {
-                    comp.Charge += 1f;
-                    comp.FirstIngredient = ingredient.IngredientType;
-                    _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnAddingIngredient), comp.Owner);
-                    QueueDel(ingredient.Owner);
+                    maker.Charge += 1f;
+                    maker.FirstIngredient = ingredient.IngredientType;
+                    _audio.PlayPvs(new SoundPathSpecifier(maker.EffectSoundOnAddingIngredient), target.Value);
+                    QueueDel(used);
                 }
                 else
                 {
-                    if (comp.SecondIngredient == "None")
+                    if (maker.SecondIngredient == "None")
                     {
-                        comp.Charge += 1f;
-                        comp.SecondIngredient = ingredient.IngredientType;
-                        _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnAddingIngredient), comp.Owner);
-                        QueueDel(ingredient.Owner);
+                        maker.Charge += 1f;
+                        maker.SecondIngredient = ingredient.IngredientType;
+                        _audio.PlayPvs(new SoundPathSpecifier(maker.EffectSoundOnAddingIngredient), target.Value);
+                        QueueDel(used);
                     }
                 }
-
             }
-        }
 
+        }
         public void MixRecipes(EntityUid uid, MagicPotionsRecipesComponent component, ComponentStartup args)
         {
             component.CryoCryo = _random.Pick(component.Potions);

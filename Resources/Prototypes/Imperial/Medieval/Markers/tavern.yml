@@ -1,0 +1,23 @@
+- type: entity
+  name: tavern marker
+  id: MedievalTavernMarker3
+  parent: MarkerBase
+  components:
+#God forgive me for what I'm about to do
+  - type: Sprite
+    layers:
+    - state: green
+  - type: AddFarmerBoostOnInit
+    range: 3
+
+- type: entity
+  name: tavern marker
+  id: MedievalTavernMarker5
+  parent: MarkerBase
+  components:
+#God forgive me for what I'm about to do
+  - type: Sprite
+    layers:
+    - state: green
+  - type: AddFarmerBoostOnInit
+    range: 5

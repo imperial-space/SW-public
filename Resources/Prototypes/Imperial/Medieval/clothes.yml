@@ -1151,6 +1151,15 @@
     sprite: Imperial/Medieval/Clothing/Backpack/charmer_light.rsi
 
 - type: entity
+  parent: ClothingBackpackSatchelCharmerLight
+  id: ClothingBackpackSatchelWhiteCharmerLight
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/white_charmer.rsi
+
+- type: entity
   parent: MedievalClothingBackpackSatchelLeather
   id: ClothingBackpackSatchelNecro
   name: satchel

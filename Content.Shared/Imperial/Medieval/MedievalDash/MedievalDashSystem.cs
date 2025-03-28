@@ -13,6 +13,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Content.Shared.ActionBlocker;
 
 namespace Content.Shared.Imperial.Dash;
 
@@ -23,6 +24,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StaminaSystem _staminaSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
 
 
     public override void Initialize()
@@ -38,19 +40,21 @@ public sealed partial class MedievalDashSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        if (_net.IsClient) return;
-
         var enumerator = EntityQueryEnumerator<MedievalDashComponent, EntityLayerComponent>();
 
         while (enumerator.MoveNext(out var uid, out var component, out var entityLayerComponent))
         {
-            if (_timing.CurTime < component.NextDash) continue;
-            if (!component.IsDashing) return;
-
-            RemComp<PhaseSpaceShadowComponent>(uid);
-            entityLayerComponent.CollideLayers = component.CachedLayers;
+            if (_timing.CurTime < component.DashEndTime) continue;
+            if (!component.IsDashing) continue;
 
             component.IsDashing = false;
+            entityLayerComponent.CollideLayers = component.CachedLayers;
+
+            Dirty(uid, entityLayerComponent);
+
+            if (_net.IsClient) return;
+
+            RemComp<PhaseSpaceShadowComponent>(uid);
         }
     }
 
@@ -62,9 +66,16 @@ public sealed partial class MedievalDashSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(player, out var physicsComponent)) return false;
         if (!TryComp<InputMoverComponent>(player, out var inputMoverComponent)) return false;
 
-        if (_timing.CurTime < component.NextDash && _timing.IsFirstTimePredicted) return false;
-        if (physicsComponent.LinearVelocity == Vector2.Zero) return false;
+        if (!component.RequiredBodyStatus.Contains(physicsComponent.BodyStatus)) return false;
         if ((inputMoverComponent.HeldMoveButtons & MoveButtons.AnyDirection) == 0) return false;
+
+        if (physicsComponent.LinearVelocity == Vector2.Zero) return false;
+        if (!_actionBlockerSystem.CanMove(player, inputMoverComponent)) return false;
+
+        var isSimulationTick = _timing.CurTick == component.DashButtonPressedTick;
+
+        if (component.IsDashing && !isSimulationTick) return false;
+        if (_timing.CurTime < component.NextDash && !isSimulationTick) return false;
 
         var targetRotation = physicsComponent.LinearVelocity.ToAngle();
 
@@ -74,7 +85,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var impulse = forceDirection.RotateVec(force);
         var dashTime = TimeSpan.FromSeconds(component.Force / 990 / physicsComponent.Mass);
 
-        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage)) return false;
+        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage, ignoreResistances: true)) return false;
 
         _physicsSystem.ApplyLinearImpulse(player, impulse);
 
@@ -84,11 +95,16 @@ public sealed partial class MedievalDashSystem : EntitySystem
         shadowComponent.ShadowUpdateRate = TimeSpan.Zero;
         shadowComponent.PositionUpdateRate = TimeSpan.Zero;
 
-        component.CachedLayers = entityLayerComponent.CollideLayers.ToHashSet();
-        component.NextDash = dashTime + component.AdditionalDashReloadTime + _timing.CurTime;
+        component.DashEndTime = dashTime + _timing.CurTime;
+        component.NextDash = _timing.CurTime + component.DashReloadTime;
+        component.DashButtonPressedTick = _timing.CurTick;
+
         component.IsDashing = true;
+        component.CachedLayers = entityLayerComponent.CollideMasks.ToHashSet();
 
         entityLayerComponent.CollideLayers = new() { component.DashLayer };
+
+        Dirty(player, entityLayerComponent);
 
         return false;
     }

@@ -58,11 +58,11 @@ namespace Content.Server.Mind.Commands
                 entityManager.EnsureComponent<EmotingComponent>(uid);
 
                 // imperial medieval start
-                var lang = entityManager.EnsureComponent<LanguageSpeakerComponent>(uid);
-                if (!lang.Languages.ContainsKey(SharedLanguageSystem.Common))
-                    lang.Languages.Add(SharedLanguageSystem.Common, LanguageKnowledge.Speak);
-                else
-                    lang.Languages[SharedLanguageSystem.Common] = LanguageKnowledge.Speak;
+                //var lang = entityManager.EnsureComponent<LanguageSpeakerComponent>(uid);
+                //if (!lang.Languages.ContainsKey(SharedLanguageSystem.Common))
+                //    lang.Languages.Add(SharedLanguageSystem.Common, LanguageKnowledge.Speak);
+                //else
+                //    lang.Languages[SharedLanguageSystem.Common] = LanguageKnowledge.Speak;
                 // imperial medieval end
             }
 

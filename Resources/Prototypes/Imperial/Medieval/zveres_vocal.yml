@@ -38,6 +38,20 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathZveres
+    Dreaminess:
+      collection: MaleDreaminess
+    Questioning: 
+      collection: MaleQuestioning
+    Warcry:
+      collection: MaleWarcry
+    Charge:
+      collection: MaleCharge
+    Woo:
+      collection: MaleWoo
+    PainScream:
+      collection: MaleScreamsZveres
+    PassiveScream:
+      collection: MaleScreamsZveres
 
 - type: emoteSounds
   id: FemaleZveres
@@ -78,6 +92,20 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: MaleDeathZveres
+    Dreaminess:
+      collection: FemaleDreaminess
+    Questioning: 
+      collection: FemaleQuestioning
+    Warcry:
+      collection: FemaleWarcry
+    Charge:
+      collection: FemaleCharge
+    Woo:
+      collection: FemaleWoo
+    PainScream:
+      collection: MaleScreamsZveres
+    PassiveScream:
+      collection: MaleScreamsZveres
 
 - type: soundCollection
   id: MaleLaughZveres

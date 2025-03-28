@@ -11,6 +11,7 @@ using Robust.Shared.Player;
 using Robust.Server.Player;
 using Content.Shared.Imperial.Medieval.MedievalItemRustComponent;
 using Content.Server.Cult.Components;
+using Content.Shared.Imperial.DurabilityDisplay.Components;
 
 namespace Content.Server.MedievalMeleeResource
 {
@@ -59,7 +60,7 @@ namespace Content.Server.MedievalMeleeResource
                     Dirty(resource.Owner, resource);
                     resource.Resource = resource.MaxResource;
                 }
-                _audioSystem.PlayPvs(new SoundPathSpecifier(resource.EffectSoundOnRepair), target.Value);
+                _audioSystem.PlayPvs(resource.EffectSoundOnRepair, target.Value);
                 CheckResource(target.Value, resource);
 
                 QueueDel(used);
@@ -75,7 +76,7 @@ namespace Content.Server.MedievalMeleeResource
 
                 Dirty(uid, rustComponent);
             }
-
+            DurabilityDisplayComponent.Durability NewDurability = DurabilityDisplayComponent.Durability.Broken;
             if (component.Resource > 100f)
             {
                 if (TryComp<MeleeWeaponComponent>(uid, out var weapon))
@@ -89,6 +90,7 @@ namespace Content.Server.MedievalMeleeResource
 #pragma warning restore RA0002
                 }
                 component.DamageState = "Up";
+                NewDurability = DurabilityDisplayComponent.Durability.Up;
             }
             if (component.Resource > 80f && component.Resource <= 100f)
             {
@@ -103,6 +105,7 @@ namespace Content.Server.MedievalMeleeResource
 #pragma warning restore RA0002
                 }
                 component.DamageState = "Full";
+                NewDurability = DurabilityDisplayComponent.Durability.Full;
             }
 
             if (component.Resource > 60f && component.Resource <= 80f)
@@ -118,6 +121,7 @@ namespace Content.Server.MedievalMeleeResource
 #pragma warning restore RA0002
                 }
                 component.DamageState = "AlmostFull";
+                NewDurability = DurabilityDisplayComponent.Durability.AlmostFull;
             }
 
             if (component.Resource > 40f && component.Resource <= 60f)
@@ -133,6 +137,7 @@ namespace Content.Server.MedievalMeleeResource
 #pragma warning restore RA0002
                 }
                 component.DamageState = "Damaged";
+                NewDurability = DurabilityDisplayComponent.Durability.Damaged;
             }
 
             if (component.Resource > 20f && component.Resource <= 40f)
@@ -148,6 +153,7 @@ namespace Content.Server.MedievalMeleeResource
 #pragma warning restore RA0002
                 }
                 component.DamageState = "BadlyDamaged";
+                NewDurability = DurabilityDisplayComponent.Durability.BadlyDamaged;
             }
 
             if (component.Resource > 0f && component.Resource <= 20f)
@@ -163,18 +169,23 @@ namespace Content.Server.MedievalMeleeResource
 #pragma warning restore RA0002
                 }
                 component.DamageState = "Broken";
+                NewDurability = DurabilityDisplayComponent.Durability.Broken;
             }
             if (component.Resource == 0)
             {
                 _audioSystem.PlayStatic(
-                    new SoundPathSpecifier(component.EffectSoundOnBreak),
+                    component.EffectSoundOnBreak,
                     Filter.Pvs(uid.ToCoordinates(), 1, EntityManager, _playerManager),
                     uid.ToCoordinates(),
                     true
                 );
                 QueueDel(uid);
             }
-
+            if (TryComp<DurabilityDisplayComponent>(uid, out var dur))
+            {
+                dur.Dub = NewDurability;
+                Dirty(dur.Owner, dur);
+            }
 
         }
 
@@ -184,6 +195,7 @@ namespace Content.Server.MedievalMeleeResource
             {
                 EnsureComp<MedievalMeleeResourceComponent>(uid);
                 EnsureComp<CultBloodMeleeComponent>(uid, out var blood);
+                EnsureComp<DurabilityDisplayComponent>(uid);
             }
         }
         private void OnStart(EntityUid uid, MedievalMeleeResourceComponent component, ComponentStartup args)
@@ -215,6 +227,8 @@ namespace Content.Server.MedievalMeleeResource
         }
         private void OnMeleeHit(EntityUid uid, MedievalMeleeResourceComponent component, MeleeHitEvent args)
         {
+            CheckResource(uid, component);
+
             if (TryComp<MeleeWeaponComponent>(args.Weapon, out var weapon))
             {
                 component.Resource -= component.ResourceWaste * CheckBadTarget(uid, component, args);

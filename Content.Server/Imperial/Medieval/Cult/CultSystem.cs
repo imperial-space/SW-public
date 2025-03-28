@@ -323,9 +323,6 @@ namespace Content.Server.Cult
                 return;
             }
 
-
-
-
             switch (figure)
             {
                 case "christ":
@@ -413,7 +410,7 @@ namespace Content.Server.Cult
                         {
                             if (picture.Sector1 && picture.Sector2 && picture.Sector3 && picture.Sector6 && picture.Sector7 && picture.Sector8 && picture.Sector9)
                             {
-                                if (CheckCrystals(uid, comp, 5, 0))
+                                if (CheckCrystals(uid, comp, 4, 0))
                                 {
                                     foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
                                     {
@@ -515,11 +512,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
 
                     }

@@ -307,6 +307,22 @@
   result: MedievalSpearT3
 
 - type: CP14Recipe
+  id: MedievalSpearSulica
+  craftTime: 11
+  stacks:
+    MedievalIronIngot: 12
+    WoodPlank: 6
+  result: MedievalSpearSulica
+
+- type: CP14Recipe
+  id: MedievalSpearPilum
+  craftTime: 11
+  stacks:
+    MedievalIronIngot: 12
+    WoodPlank: 6
+  result: MedievalSpearPilum
+
+- type: CP14Recipe
   id: MedievalSpearT3Steel
   craftTime: 11
   stacks:
@@ -2229,3 +2245,10 @@
     MedievalGold: 8
     MedievalForstoneIngot: 5
   result: MedievalPickaxeForStone
+
+- type: CP14Recipe
+  id: ClothingEyesGlasses
+  craftTime: 5
+  stacks:
+    MedievalIronIngot: 5
+  result: ClothingEyesGlasses

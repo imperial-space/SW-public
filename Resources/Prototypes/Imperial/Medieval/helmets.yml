@@ -33,6 +33,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: IngestionBlocker
   - type: IdentityBlocker
   - type: Armor
     modifiers:
@@ -269,6 +270,10 @@
     sprite: Imperial/Medieval/Clothing/Head/shapel.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/shapel.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -533,6 +538,8 @@
     sprite: Imperial/Medieval/Clothing/Head/charmer.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/charmer.rsi
+  - type: IngestionBlocker
+    enabled: false
   - type: IdentityBlocker
   - type: Armor
     modifiers:
@@ -557,6 +564,8 @@
     sprite: Imperial/Medieval/Clothing/Head/charmer_light.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/charmer_light.rsi
+  - type: IngestionBlocker
+    enabled: false
   - type: IdentityBlocker
   - type: Armor
     modifiers:
@@ -685,6 +694,10 @@
     sprite: Imperial/Medieval/Clothing/Head/leg2.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leg2.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -696,6 +709,10 @@
     sprite: Imperial/Medieval/Clothing/Head/leg3.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leg3.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -707,6 +724,10 @@
     sprite: Imperial/Medieval/Clothing/Head/leg2_5.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leg2_5.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -714,13 +735,16 @@
   name: shapel helmet
   description: Medieval shapel helmet
   components:
-
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetLegionLegat # imperial medieval
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -742,6 +766,10 @@
     resourceCount: 2
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -753,6 +781,10 @@
     sprite: Imperial/Medieval/Clothing/Head/fox2.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/fox2.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -764,6 +796,10 @@
     sprite: Imperial/Medieval/Clothing/Head/fox2_5.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/fox2_5.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -788,6 +824,10 @@
     sprite: Imperial/Medieval/Clothing/Head/fox4.rsi
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetFox4 # imperial medieval
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1011,6 +1051,10 @@
     sprite: Imperial/Medieval/Clothing/Head/feather_hat.rsi
   - type: Item
     size: Normal
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1022,3 +1066,5 @@
     sprite: Imperial/Medieval/Clothing/Head/nimbus.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/nimbus.rsi
+  - type: IdentityBlocker
+    enabled: false

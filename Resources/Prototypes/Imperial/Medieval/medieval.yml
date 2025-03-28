@@ -988,7 +988,7 @@
   components:
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
+    explosionType: MedievalDefault
     maxIntensity: 3
     intensitySlope: 1
     totalIntensity: 45
@@ -1006,6 +1006,8 @@
     initialBeepDelay: 0
     beepInterval: 6 # 2 beeps total (at 0 and 2)
     delay: 2.5
+  - type: SpawnOnTrigger
+    proto: MedievalExplosionEffect
 
 - type: entity
   parent: MopItem
@@ -1041,6 +1043,32 @@
     stealGroup: MedievalGetMedaljonSpeed # imperial medieval
 
 - type: entity
+  parent: MedaljonSpeed
+  id: MedaljonSpeedSkin
+  name: MedaljonSpeedSkin
+  description: MedaljonSpeedSkin
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+
+- type: entity
+  parent: ClothingNeckTieDet
+  id: MedaljonSandClock
+  name: MedaljonSandClock
+  description: MedaljonSandClock
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/sandclock.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/sandclock.rsi
+
+- type: entity
   parent: ClothingNeckTieDet
   id: MedaljonMana
   name: MedaljonMana
@@ -1054,6 +1082,19 @@
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_speed.rsi
   - type: ManaRegen
     regen: 2
+
+- type: entity
+  parent: MedaljonMana
+  id: MedaljonManaSkin
+  name: MedaljonManaSkin
+  description: MedaljonManaSkin
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ClothingNeckTieDet
@@ -1071,6 +1112,19 @@
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_antimag.rsi
   - type: ManaRegen
     regen: -150
+
+- type: entity
+  parent: MedaljonAntiMana
+  id: MedaljonAntiManaSkin
+  name: MedaljonAntiManaSkin
+  description: MedaljonAntiManaSkin
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ClothingNeckTieDet
@@ -1107,6 +1161,19 @@
     stealGroup: MedievalGetMedaljonNoslip # imperial medieval
 
 - type: entity
+  parent: MedaljonNoslip
+  id: MedaljonNoslipSkin
+  name: MedaljonNoslip
+  description: MedaljonNoslip
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+
+- type: entity
   parent: ClothingNeckTieDet
   id: MedaljonThieving
   name: MedaljonThieving
@@ -1120,6 +1187,19 @@
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_thieving.rsi
   - type: AddAccentClothing
     accent: Thieving
+
+- type: entity
+  parent: ClothingNeckTieDet
+  id: MedaljonThievingSkin
+  name: MedaljonThieving
+  description: MedaljonThieving
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ClothingNeckTieDet
@@ -1152,6 +1232,19 @@
     stealGroup: MedievalGetMedaljonDef # imperial medieval
 
 - type: entity
+  parent: MedaljonDef
+  id: MedaljonDefSkin
+  name: MedaljonDef
+  description: MedaljonDef
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+
+- type: entity
   parent: ClothingNeckTieDet
   id: MedaljonExpl
   name: MedaljonExpl
@@ -1164,7 +1257,7 @@
     - ears
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_expl.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.35
+    damageCoefficient: 0.6
   - type: Armor
     modifiers:
       coefficients:
@@ -1182,6 +1275,19 @@
   #    6: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonExpl # imperial medieval
+
+- type: entity
+  parent: MedaljonExpl
+  id: MedaljonExplSkin
+  name: MedaljonExpl
+  description: MedaljonExpl
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ClothingNeckTieDet
@@ -1212,6 +1318,19 @@
   #    6: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonDark # imperial medieval
+
+- type: entity
+  parent: MedaljonDark
+  id: MedaljonDarkSkin
+  name: MedaljonDark
+  description: MedaljonDark
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ChemistryEmptyBottle01
@@ -2852,6 +2971,36 @@
 #  - type: Sprite
 #    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
 #    state: egg
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalLootNastyGrowth
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: flower
+  - type: Currency
+    price:
+      Revent: 20
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalLootShieldSlug
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: slugbones
+  - type: Currency
+    price:
+      Revent: 20
+  - type: Item
+    size: Normal
 
 - type: entity
   name: multitool
@@ -6632,7 +6781,7 @@
   - type: InteractionOutline
   - type: UseDelay
     delay: 3 # prevent light-toggling auto-clickers.
-  - type: SignalSwitch
+  - type: SignalSwitchImperial
     clickSound: /Audio/Imperial/Medieval/gates_use.ogg
     onPort: Pressed
     offPort: Pressed
@@ -7101,3 +7250,128 @@
     - MedievalMushroom3
     chance: 1
     offset: 8
+- type: explosion
+  id: MedievalDefault
+  damagePerIntensity:
+    types:
+      Heat: 5
+      Blunt: 5
+      Piercing: 5
+  tileBreakChance: [0, 0.5, 1]
+  tileBreakIntensity: [0, 10, 30]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
+  fireStates: 1
+
+- type: entity
+  id: MedievalExplosionEffect
+  components:
+  - type: TimedDespawn
+    lifetime: 3
+  - type: Sprite
+    scale: 1.8, 1.8
+    sprite: Imperial/Medieval/Effects/Explosions/common.rsi
+    state: explosion
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: SmallExplosionShockWaveEffect
+
+- type: entity
+  id: SmallExplosionShockWaveEffect
+  components:
+  - type: ShockWave
+    speed: 2
+  - type: ShockWaveDistortion
+    speed: 2
+    thikness: 0.1
+    distortion: 0.05
+    maxDistance: 1.3
+    disappearDistancePercentage: 0
+  - type: TimedDespawn
+    lifetime: 0.2
+
+- type: explosion
+  id: MedievalDemolitionCharge
+  damagePerIntensity:
+    types:
+      Heat: 3
+      Blunt: 3
+      Piercing: 3
+      Structural: 50
+  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakIntensity: [ 0, 10, 30 ]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
+  fireStates: 1
+
+- type: entity
+  id: MedievalMagicBell
+  name: church bell
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Specific/church-bell.rsi
+    layers:
+    - state: church-bell
+  - type: InteractionPopup
+    interactDelay: 30
+    successChance: 1
+    #interactSuccessSound:
+    #  collection: ChurchBell
+  - type: Clickable
+  - type: Rotatable
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    canCollide: false
+    bodyType: Static
+  - type: Fixtures
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: ChurchBell
+  - type: BellMap
+
+- type: entity
+  id: MedievalMagicBellLeg
+  name: church bell
+  parent: MedievalMagicBell
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: BellMap
+    locale: bell-map-popup-legion
+
+
+- type: entity
+  id: MedievalMagicBellIns
+  name: church bell
+  parent: MedievalMagicBell
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: BellMap
+    locale: bell-map-popup-ins
