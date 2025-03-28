@@ -303,7 +303,7 @@
 
 - type: listing
   id: DemoMdvShopMedievalDecorKotelForCoockingPotionsCraft
-  productEntity: MedievalDecorKotelForCoockingPotionsCraft
+  productEntity: MedievalKotel
   cost:
     UnknownMedieval: 1
   categories:

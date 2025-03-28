@@ -2,6 +2,6 @@ ent-MedievalTavernMarker3 = маркер таверны
     .desc = После инициализации карты добавляет буст еде в радиусе 3 тайлов.
     .suffix = 3 тайла
 
-ent-MedievalTavernMarker3 = маркер таверны
+ent-MedievalTavernMarker5 = маркер таверны
     .desc = После инициализации карты добавляет буст еде в радиусе 5 тайлов.
     .suffix = 5 тайла

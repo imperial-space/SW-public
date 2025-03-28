@@ -74,6 +74,8 @@
       damageThreshold: 200
     - type: EmoteOnDamage
       emoteChance: 0
+    - type: SoftCritEmotes
+      minDamage: 200
 
 - type: trait
   id: MedievalStamina

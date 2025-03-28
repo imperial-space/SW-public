@@ -42,10 +42,31 @@
   result: MedievalKeyStorage
 
 - type: CP14Recipe
+  id: MedievalChemistryEmptyBottle01
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 2
+  result: MedievalChemistryEmptyBottle01
+
+- type: CP14Recipe
+  id: MedievalChemistryEmptyBottle02
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 2
+  result: MedievalChemistryEmptyBottle02
+
+- type: CP14Recipe
+  id: MedievalChemistryEmptyBottle03
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 2
+  result: MedievalChemistryEmptyBottle03
+
+- type: CP14Recipe
   id: MedievalChemistryEmptyBottle04
   craftTime: 3
   stacks:
-    MedievalIronIngot: 1
+    MedievalIronIngot: 2
   result: MedievalChemistryEmptyBottle04
 
 - type: CP14Recipe
@@ -835,6 +856,13 @@
   stacks:
     MedievalIronIngot: 3
   result: MedievalFetter
+
+- type: CP14Recipe
+  id: MedievalKotel
+  craftTime: 11
+  stacks:
+    MedievalIronIngot: 9
+  result: MedievalKotel
 
 - type: CP14Recipe
   id: SheetSteelMedieval
@@ -2252,3 +2280,11 @@
   stacks:
     MedievalIronIngot: 5
   result: ClothingEyesGlasses
+
+- type: CP14Recipe
+  id: Syringe
+  craftTime: 1
+  stacks:
+    MedievalIronIngot: 1
+    MedievalSteelIngot: 1
+  result: Syringe

@@ -90720,13 +90720,6 @@ entities:
     - type: Transform
       pos: 3.5,-78.5
       parent: 1
-- proto: AmbrosiaDeusSeeds
-  entities:
-  - uid: 4
-    components:
-    - type: Transform
-      pos: 32.564613,23.309252
-      parent: 1
 - proto: Barricade
   entities:
   - uid: 5
@@ -135253,16 +135246,16 @@ entities:
     - type: Transform
       pos: 2.5,-22.5
       parent: 1
-- proto: MedievalDecorKotelForCoockingPotions
+- proto: MedievalKotel
   entities:
   - uid: 6985
     components:
     - type: Transform
       pos: -48.5,-21.5
       parent: 1
-    - type: MagicPotionsMaker
-      endTime: 880.8324535
-      startTime: 879.8324535
+    #- type: MagicPotionsMaker
+    #  endTime: 880.8324535
+    #  startTime: 879.8324535
 - proto: MedievalDecorOhapka
   entities:
   - uid: 6986

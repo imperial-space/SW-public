@@ -435,7 +435,7 @@
 
 - type: listing
   id: MdvShopMedievalDecorKotelForCoockingPotionsCraft
-  productEntity: MedievalDecorKotelForCoockingPotionsCraft
+  productEntity: MedievalKotel
   discountCategory: medievalDiscounts
   discountDownTo:
     Revent: 35

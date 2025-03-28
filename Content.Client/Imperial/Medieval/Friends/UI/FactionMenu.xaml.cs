@@ -43,7 +43,6 @@ public sealed partial class FactionMenu : DefaultWindow
     private FactionMenuAccess _access = FactionMenuAccess.None;
     private FactionMemberGroup _selfGroup = FactionMemberGroup.None;
     private int _self = 0;
-
     private int? _fireSelected;
 
     public FactionMenu()
@@ -107,7 +106,7 @@ public sealed partial class FactionMenu : DefaultWindow
         _access = access;
         _self = self;
         _selfGroup = selfGroup;
-        Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(proto).AllowHeadhunt;
+        Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(proto).AllowHeadhunt && !HeadhuntConfirmation.Visible;
 
         foreach (var item in data)
         {

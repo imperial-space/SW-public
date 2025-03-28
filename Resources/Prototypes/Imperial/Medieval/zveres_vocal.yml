@@ -1,8 +1,7 @@
 # species
 - type: emoteSounds
   id: MaleZveres
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsZveres
@@ -40,7 +39,7 @@
       collection: MaleDeathZveres
     Dreaminess:
       collection: MaleDreaminess
-    Questioning: 
+    Questioning:
       collection: MaleQuestioning
     Warcry:
       collection: MaleWarcry
@@ -55,8 +54,7 @@
 
 - type: emoteSounds
   id: FemaleZveres
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsZveres
@@ -94,7 +92,7 @@
       collection: MaleDeathZveres
     Dreaminess:
       collection: FemaleDreaminess
-    Questioning: 
+    Questioning:
       collection: FemaleQuestioning
     Warcry:
       collection: FemaleWarcry

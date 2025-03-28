@@ -43,7 +43,7 @@
   - type: Item
     size: Large
   - type: SpawnAfterInteract
-    prototype: MedievalDecorKotelForCoockingPotions
+    prototype: MedievalKotel
     doAfter: 16
     deleteOnInteract: true
   - type: Sprite

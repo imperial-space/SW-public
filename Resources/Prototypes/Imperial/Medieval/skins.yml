@@ -27,3 +27,46 @@
     MedievalClothingOuterArmorCharmerLight: [ MedievalClothingOuterArmorWhiteCharmerLight ]
     MedievalClothingHeadHelmetCharmerLight: [ MedievalClothingHeadHelmetWhiteCharmerLight ]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [ MedievalClothingHeadHelmeCollegiumWhitetHat ]
+    MedievalShoesChamber: [ MedievalWhiteShoesCharmer ]
+    ClothingBackpackSatchelCharmerLight: [ ClothingBackpackSatchelWhiteCharmerLight ]
+
+- type: customization
+  id: game123456
+  holder: cc584a6a-cc13-4009-bd91-e5c2a74b15b3
+  map:
+    Log: [ MedaljonSandClock ]
+
+- type: customization
+  id: arelover
+  holder: f074e865-f7f4-435e-807d-3a62280dc462
+  map:
+    Log: [ MedievalClothingHeadHelmetNimbus ]
+
+- type: customization
+  id: the_greatkeeper
+  holder: b4a31ba6-4303-4ad5-9be5-bb9d26cb3042
+  map:
+    Log: [ MedievalClothingNeckCloakInqVeteran ]
+
+- type: customization
+  id: prime_mango_87673
+  holder: e7fa19a3-594f-4eec-809d-d0d4e1e7fc82
+  map:
+    MedievalWoodenShieldBucklerGoblin: [ MedievalWoodenShieldBucklerGoblinCross ]
+    MedievalWoodenShieldBuckler: [ MedievalWoodenShieldBucklerCross ]
+    MedievalWoodenShield: [ MedievalWoodenShieldCross ]
+    MedievalWoodenShieldKnight: [ MedievalWoodenShieldKnightCross ]
+
+- type: customization
+  id: iwordoloni
+  holder: 5d927c3b-b26d-4352-93f7-f9f4f32fb70a
+  map:
+    MedaljonNoslip: [ MedaljonNoslipSkin ]
+    MedaljonThieving: [ MedaljonThievingSkin ]
+    MedaljonMana: [ MedaljonManaSkin ]
+    MedaljonDef: [ MedaljonDefSkin ]
+    MedaljonFlashImmune: [ MedaljonFlashImmuneSkin ]
+    MedaljonExpl: [ MedaljonExplSkin ]
+    MedaljonDark: [ MedaljonDarkSkin ]
+    MedaljonSpeed: [ MedaljonSpeedSkin ]
+

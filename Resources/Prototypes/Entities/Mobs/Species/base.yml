@@ -281,6 +281,13 @@
       #Hissing: Speak
       #Elf: Speak
   - type: SleepingImperial
+  # Imperial medieval start
+  - type: SoftCritEmotes
+    emotes:
+    - Cough
+    - Gasp
+    - PassiveScream
+  # Imperial medieval end
 # Imperial Medieval End
 
 - type: entity

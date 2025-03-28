@@ -4352,7 +4352,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
-
+    - type: Farmer
 
 - type: roleLoadout
   id: JobMedievalVillager
@@ -4397,6 +4397,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
+    - type: Farmer
 
 
 - type: roleLoadout
@@ -4453,6 +4454,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
+    - type: Farmer
 
 - type: roleLoadout
   id: JobMedievalVillagerLeader

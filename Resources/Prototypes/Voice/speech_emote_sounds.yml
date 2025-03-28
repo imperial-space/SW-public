@@ -1,8 +1,7 @@
 # species
 - type: emoteSounds
   id: MaleHuman
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreams
@@ -43,7 +42,7 @@
 # imperial medieval "emotions" start
     Dreaminess:
       collection: MaleDreaminess
-    Questioning: 
+    Questioning:
       collection: MaleQuestioning
     Warcry:
       collection: MaleWarcry
@@ -56,11 +55,10 @@
     PassiveScream:
       collection: MalePassiveScream
 # imperial medieval "emotions" end
-  
+
 - type: emoteSounds
   id: FemaleHuman
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: FemaleScreams
@@ -101,7 +99,7 @@
 # imperial medieval "emotions" start
     Dreaminess:
       collection: FemaleDreaminess
-    Questioning: 
+    Questioning:
       collection: FemaleQuestioning
     Warcry:
       collection: FemaleWarcry
@@ -117,8 +115,7 @@
 
 - type: emoteSounds
   id: MaleReptilian
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -141,7 +138,7 @@
 # imperial medieval "emotions" start
     Dreaminess:
       collection: MaleDreaminess
-    Questioning: 
+    Questioning:
       collection: MaleQuestioning
     Warcry:
       collection: MaleWarcry
@@ -157,8 +154,7 @@
 
 - type: emoteSounds
   id: FemaleReptilian
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       path: /Audio/Voice/Reptilian/reptilian_scream.ogg
@@ -181,7 +177,7 @@
 # imperial medieval "emotions" start
     Dreaminess:
       collection: FemaleDreaminess
-    Questioning: 
+    Questioning:
       collection: FemaleQuestioning
     Warcry:
       collection: FemaleWarcry
@@ -236,8 +232,7 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathGasp
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
 
 - type: emoteSounds
   id: FemaleSlime
@@ -280,8 +275,8 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: FemaleDeathGasp
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
+
 
 - type: emoteSounds
   id: UnisexVox
@@ -296,8 +291,7 @@
       collection: Weh
     Hew:
       collection: Hew
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
     # We need vox sounds for the other emotes
 
 - type: emoteSounds
@@ -319,13 +313,11 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: DeathGasp
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
 
 - type: emoteSounds
   id: UnisexArachnid
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       path: /Audio/Voice/Arachnid/arachnid_scream.ogg
@@ -388,7 +380,7 @@
 # imperial medieval "emotions" start
     Dreaminess:
       collection: MaleDreaminess
-    Questioning: 
+    Questioning:
       collection: MaleQuestioning
     Warcry:
       collection: MaleWarcry
@@ -400,12 +392,12 @@
       collection: MalePainScreams
     PassiveScream:
       collection: MalePassiveScream
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
 # imperial medieval "emotions" end
 
 - type: emoteSounds
   id: FemaleDwarf
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: FemaleScreams
@@ -446,7 +438,7 @@
 # imperial medieval "emotions" start
     Dreaminess:
       collection: FemaleDreaminess
-    Questioning: 
+    Questioning:
       collection: FemaleQuestioning
     Warcry:
       collection: FemaleWarcry
@@ -458,14 +450,11 @@
       collection: FemalePainScreams
     PassiveScream:
       collection: FemalePassiveScream
-  params:
-    variation: 0.125
 # imperial medieval "emotions" end
 
 - type: emoteSounds
   id: UnisexMoth
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Buzz:
       path: /Audio/Voice/Moth/moth_scream.ogg

@@ -85,6 +85,7 @@ public sealed partial class FactionMenuEntry : Control
                     }
                 default:
                     {
+                        GroupRemoveButton.Visible = false;
                         GroupRemoveCross.Visible = false;
                         RemoveLeaderCross.Visible = false;
                         SetLeaderButton.Visible = false;

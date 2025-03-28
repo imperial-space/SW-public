@@ -71,9 +71,20 @@ public sealed partial class RandomStealSystem : EntitySystem
             item = validItems[_random.Next(validItems.Count)];
         }
         if (TryComp<StealChanceIncreaserComponent>(first, out var increaser))
-            comp.Chance = 35 + increaser.Bonus;
+        {
+            if (TryComp<StealRaceChanceIncreaserComponent>(first, out var raceIncreaser))
+                comp.Chance = 35 + increaser.Bonus + raceIncreaser.Bonus;
+            else
+                comp.Chance = 35 + increaser.Bonus;
+        }
         else
-            comp.Chance = 35;
+        {
+            if (TryComp<StealRaceChanceIncreaserComponent>(first, out var raceIncreaser))
+                comp.Chance = 35 + raceIncreaser.Bonus;
+            else
+                comp.Chance = 35;
+        }
+
         if (item == null) return;
         var doAfterSteal = new DoAfterArgs(EntityManager, first, comp.TimeNeed, new StealDoAfterArgs(), target: first, eventTarget: second)
         {

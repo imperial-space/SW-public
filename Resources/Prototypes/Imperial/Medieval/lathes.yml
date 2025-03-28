@@ -1166,9 +1166,15 @@
     - BarberScissors
     - MedievalGrenade
     - MedievalKeyStorage
+    - MedievalChemistryEmptyBottle01
+    - MedievalChemistryEmptyBottle02
+    - MedievalChemistryEmptyBottle03
+    - MedievalChemistryEmptyBottle04
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
+    - MedievalKotel
     - MedievalWeaponTurretNanoTrasenCraft
+    - Syringe
 
 - type: entity
   parent: CP14BaseWorkbench

@@ -1161,6 +1161,19 @@
     stealGroup: MedievalGetMedaljonNoslip # imperial medieval
 
 - type: entity
+  parent: MedaljonFlashImmune
+  id: MedaljonFlashImmuneSkin
+  name: MedaljonFlashImmune
+  description: MedaljonFlashImmune
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+
+- type: entity
   parent: MedaljonNoslip
   id: MedaljonNoslipSkin
   name: MedaljonNoslip
@@ -1801,7 +1814,12 @@
 - type: soundCollection
   id: MedievalFootstepSteel
   files:
-  - /Audio/Imperial/Medieval/0919132c658e1be.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step1.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step2.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step3.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step4.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step5.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step6.ogg
 
 - type: entity
   name: MedievalBrutepack
@@ -2998,7 +3016,7 @@
     state: slugbones
   - type: Currency
     price:
-      Revent: 20
+      Revent: 30
   - type: Item
     size: Normal
 

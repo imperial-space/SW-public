@@ -1152,6 +1152,18 @@
     - Maintenance
   - type: Speech
     speechSounds: Goblin
+    allowedEmotes: ['Scream', 'Laugh', 'Cough', 'Sigh', 'Warcry', 'PainScream', 'PassiveScream']
+  - type: Vocal
+    sounds:
+      Male: Goblins
+      Female: Goblins
+      Unsexed: Goblins
+  - type: SoftCritEmotes
+    minDamage: 45
+    emotes:
+    - PainScream
+    - Sigh
+    - Cough
   - type: MedievalMobTrigger
     fixtureId: "medieval-spawner"
   - type: Mana
@@ -3328,6 +3340,8 @@
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
+  - type: StaminaDamageOnHit
+    damage: 17
   - type: LanguageSpeaker
     languages:
       #Common: Understand
@@ -3421,12 +3435,6 @@
   - type: IgnoreSpiderWeb
   - type: StaminaDamageOnHit
     damage: 17
-  - type: Stealth
-    maxVisibility: 1
-    minVisibility: -1
-  - type: StealthOnMove
-    movementVisibilityRate: 0.2
-    passiveVisibilityRate: -0.2
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
