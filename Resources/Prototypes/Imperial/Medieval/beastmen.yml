@@ -185,7 +185,8 @@
       100: Critical
       200: Dead
   - type: NeedSleepRaceModifier
-    modifier: 1.0
+    modifier: 0.9
+  - type: StealRaceChanceIncreaser
 
 - type: entity
   parent: BaseMobBeastmen
