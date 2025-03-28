@@ -97,8 +97,6 @@ public sealed partial class Emotes : ILanguageType
         int fontSize = FontSize.HasValue ? FontSize.Value : verb.FontSize;
         string font = Font != null && Font != "" ? Font : verb.FontId;
 
-        name = FormattedMessage.EscapeText(name);
-
         foreach (var (session, data) in chat.GetRecipients(uid, ChatSystem.VoiceRange))
         {
             EntityUid listener;
@@ -115,7 +113,7 @@ public sealed partial class Emotes : ILanguageType
             if (!lang.CanUnderstand(listener, Language))
             {
                 var wrappedLanguageMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
-                    ("entityName", Identity.Name(uid, entMan, listener)),
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
                     ("entity", Identity.Entity(uid, entMan)),
                     ("message", FormattedMessage.RemoveMarkupOrThrow(coloredLanguageMessage)));
 
@@ -124,7 +122,7 @@ public sealed partial class Emotes : ILanguageType
             else
             {
                 var wrappedMessage = Loc.GetString(verb.Bold ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
-                    ("entityName", Identity.Name(uid, entMan, listener)),
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
                     ("verb", Loc.GetString(random.Pick(verbStrings))),
                     ("fontType", font),
                     ("fontSize", fontSize),
@@ -185,21 +183,6 @@ public sealed partial class Emotes : ILanguageType
         int fontSize = FontSize.HasValue ? FontSize.Value : verb.FontSize;
         string font = Font != null && Font != "" ? Font : verb.FontId;
 
-        name = FormattedMessage.EscapeText(name);
-        var wrappedMessage = Loc.GetString(verb.Bold ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
-            ("entityName", name),
-            ("verb", Loc.GetString(random.Pick(verbStrings))),
-            ("fontType", font),
-            ("fontSize", fontSize),
-            ("defaultFont", verb.FontId),
-            ("defaultSize", verb.FontSize),
-            ("message", coloredMessage));
-
-        var wrappedLanguageMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
-            ("entityName", name),
-            ("entity", Identity.Entity(uid, entMan)),
-            ("message", FormattedMessage.RemoveMarkupOrThrow(coloredLanguageMessage)));
-
         foreach (var (session, data) in chat.GetRecipients(uid, ChatSystem.VoiceRange))
         {
             EntityUid listener;
@@ -214,9 +197,27 @@ public sealed partial class Emotes : ILanguageType
             var entHideChat = entRange == ChatSystem.MessageRangeCheckResult.HideChat;
 
             if (!lang.CanUnderstand(listener, Language))
+            {
+                var wrappedLanguageMessage = Loc.GetString("chat-manager-entity-me-wrap-message",
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
+                    ("entity", Identity.Entity(uid, entMan)),
+                    ("message", FormattedMessage.RemoveMarkupOrThrow(coloredLanguageMessage)));
+
                 chatMan.ChatMessageToOne(ChatChannel.Emotes, message, wrappedLanguageMessage, uid, entHideChat, session.Channel, author: session.UserId);
+            }
             else
+            {
+                var wrappedMessage = Loc.GetString(verb.Bold ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
+                    ("verb", Loc.GetString(random.Pick(verbStrings))),
+                    ("fontType", font),
+                    ("fontSize", fontSize),
+                    ("defaultFont", verb.FontId),
+                    ("defaultSize", verb.FontSize),
+                    ("message", coloredMessage));
+
                 chatMan.ChatMessageToOne(ChatChannel.Local, message, wrappedMessage, uid, entHideChat, session.Channel, author: session.UserId);
+            }
         }
 
         audio.PlayPvs(Sound, uid);

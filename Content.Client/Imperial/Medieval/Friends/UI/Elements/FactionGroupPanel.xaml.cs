@@ -31,9 +31,6 @@ public sealed partial class FactionGroupPanel : BorderedPanelContainer
         if (group != FactionMemberGroup.None)
             GroupNameText.Text = Loc.GetString($"group-{group}");
 
-        SetObjectiveButton.Visible = group != FactionMemberGroup.None;
-        ObjectivePanel.Visible = group != FactionMemberGroup.None;
-
         Objective.Text = groupObjective;
         SetObjectiveButtonText.Text = groupObjective != string.Empty ? "Изменить" : "Назначить задачу";
         ObjectivePanel.Visible = groupObjective != string.Empty && group != FactionMemberGroup.None;

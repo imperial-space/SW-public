@@ -141,7 +141,7 @@ public sealed partial class Generic : ILanguageType
             if (!lang.CanUnderstand(listener, langProto))
             {
                 var wrappedLanguageMessage = Loc.GetString(verb.Bold && Font == null ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
-                    ("entityName", Identity.Name(uid, entMan, listener)),
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
                     ("verb", Loc.GetString(random.Pick(verbStrings))),
                     ("fontType", font),
                     ("fontSize", fontSize),
@@ -228,7 +228,7 @@ public sealed partial class Generic : ILanguageType
             if (!data.Muffled)
             {
                 var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
-                    ("entityName", Identity.Name(uid, entMan, listener)),
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
                     ("fontType", Font ?? "NotoSansDisplayItalic"),
                     ("fontSize", FontSize ?? 11),
                     ("defaultFont", "NotoSansDisplayItalic"),
@@ -242,7 +242,7 @@ public sealed partial class Generic : ILanguageType
             else if (examine.InRangeUnOccluded(uid, listener, ChatSystem.WhisperMuffledRange))
             {
                 var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
-                    ("entityName", Identity.Name(uid, entMan, listener)),
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
                     ("fontType", Font ?? "NotoSansDisplayItalic"),
                     ("fontSize", FontSize ?? 11),
                     ("defaultFont", "NotoSansDisplayItalic"),

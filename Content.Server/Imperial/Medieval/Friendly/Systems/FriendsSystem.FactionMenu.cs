@@ -129,7 +129,7 @@ public sealed partial class FriendsSystem
         data.Group = args.Group;
         data.Leader = args.Group == FactionMemberGroup.None ? false : data.Leader;
         if (comp.MenuAccess != FactionMenuAccess.Full)
-            comp.MenuAccess = args.Group == FactionMemberGroup.None ? FactionMenuAccess.None : FactionMenuAccess.Group;
+            comp.MenuAccess = args.Group == FactionMemberGroup.None ? FactionMenuAccess.None : (data.Leader ? FactionMenuAccess.Group : FactionMenuAccess.None);
 
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/faction_group_assigned.ogg"), uid.Value);
         _popup.PopupEntity("Вам была назначена новая группа.", uid.Value, uid.Value, Shared.Popups.PopupType.Medium);
