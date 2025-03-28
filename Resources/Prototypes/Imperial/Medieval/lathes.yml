@@ -1174,6 +1174,7 @@
     - MedievalPrisonGrilleCraft
     - MedievalKotel
     - MedievalWeaponTurretNanoTrasenCraft
+    - Syringe
 
 - type: entity
   parent: CP14BaseWorkbench

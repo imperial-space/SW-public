@@ -2280,3 +2280,11 @@
   stacks:
     MedievalIronIngot: 5
   result: ClothingEyesGlasses
+
+- type: CP14Recipe
+  id: Syringe
+  craftTime: 1
+  stacks:
+    MedievalIronIngot: 1
+    MedievalSteelIngot: 1
+  result: Syringe
