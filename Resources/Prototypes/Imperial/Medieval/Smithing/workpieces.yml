@@ -37,7 +37,8 @@
   components:
   - type: UpgradeArmorOnSmithComplete
 
-- type: BaseWeaponWorkpiece
+- type: entity
+  id: BaseWeaponWorkpiece
   parent: BaseSmithWorkpiece
   abstract: true
   components:
