@@ -14,18 +14,18 @@
       types:
         Heat: 5
     popupText: powered-light-component-burn-hand
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.WorkpieceVisuals.Melted:
+        base:
+          True: { state: melted }
+          False: { state: scrap }
   - type: Sprite
     sprite: Imperial/Medieval/Misc/scrap.rsi
     layers:
     - state: scrap
       map: [ "base" ]
-    - type: Appearance
-    - type: GenericVisualizer
-      visuals:
-        enum.WorkpieceVisuals.Melted:
-          base:
-            True: { state: melted }
-            False: { state: scrap }
 
 - type: entity
   id: WorkpieceMedievalGear
@@ -698,8 +698,3 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalWeaponTurretNanoTrasenCraft
-
-
-
-
-

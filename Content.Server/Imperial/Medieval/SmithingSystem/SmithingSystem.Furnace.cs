@@ -3,6 +3,7 @@ using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Medieval.SmithingSystem;
+using Robust.Server.GameObjects;
 using Robust.Shared.Containers;
 
 namespace Content.Server.Imperial.Medieval.SmithingSystem;
@@ -11,7 +12,7 @@ public sealed partial class SmithingSystem
 {
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
+    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly DamageOnInteractSystem _damageOnInteract = default!;
 
 
