@@ -96,4 +96,3 @@ ent-WorkpieceMedievalKeyStorage = заготовка хранилища ключ
 ent-WorkpieceMedievalDoorKeyCheck = заготовка ключевого замка
 ent-WorkpieceMedievalPrisonGrilleCraft = заготовка тюремной решётки
 ent-WorkpieceMedievalWeaponTurretNanoTrasenCraft = заготовка турели NanoTrasen
-ent-MedievalIronShield = заготовка железного щита

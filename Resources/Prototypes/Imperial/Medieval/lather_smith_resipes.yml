@@ -822,13 +822,14 @@
     MedievalGear: 3
   result: WorkpieceMedievalWeaponTurretNanoTrasenCraft
 
-- type: CP14Recipe
-  id: MedievalShoulder
-  craftTime: 9
-  stacks:
-    MedievalIronIngot: 2
-    MedievalIronPlateSmall: 3
-  result: WorkpieceMedievalShoulder
+#- type: CP14Recipe
+#  id: MedievalShoulder
+#  craftTime: 9
+#  stacks:
+#    MedievalIronIngot: 2
+#    MedievalIronPlateSmall: 3
+#  result: WorkpieceMedievalShoulder
+# was dublicated
 
 - type: CP14Recipe
   id: Syringe
