@@ -5,6 +5,8 @@ using Content.Shared.Chat;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Random;
 using Content.Shared.Damage;
+using Robust.Server.Audio;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Body.Systems;
 
@@ -13,6 +15,7 @@ public sealed class CritEmotesSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
     public override void Update(float frameTime)
     {
@@ -21,15 +24,24 @@ public sealed class CritEmotesSystem : EntitySystem
         var query = EntityQueryEnumerator<SoftCritEmotesComponent, MobStateComponent, DamageableComponent>();
         while (query.MoveNext(out var uid, out var crit, out var mob, out var damageable))
         {
-            if (_gameTiming.CurTime < crit.NextUpdate)
-                continue;
+            if (_gameTiming.CurTime <= crit.NextEmoteUpdate)
+            {
+                crit.NextEmoteUpdate += TimeSpan.FromSeconds(_random.NextFloat(4f, 7f));
 
-            crit.NextUpdate += TimeSpan.FromSeconds(_random.NextFloat(4f, 7f));
+                if (damageable.Damage.GetTotal() < crit.MinDamage || mob.CurrentState == Shared.Mobs.MobState.Dead)
+                    continue;
 
-            if (damageable.Damage.GetTotal() < crit.MinDamage || mob.CurrentState == Shared.Mobs.MobState.Dead)  // TODO софт крит вместо обычного
-                continue;
+                _chat.TryEmoteWithChat(uid, _random.Pick(crit.Emotes), ChatTransmitRange.HideChat, ignoreActionBlocker: true);
+            }
+            if (_gameTiming.CurTime <= crit.NextHeartbeatUpdate)
+            {
+                crit.NextHeartbeatUpdate += TimeSpan.FromSeconds(_random.NextFloat(2.5f, 4f));
 
-            _chat.TryEmoteWithChat(uid, _random.Pick(crit.Emotes), ChatTransmitRange.HideChat, ignoreActionBlocker: true);
+                if (damageable.Damage.GetTotal() < crit.MinDamage || mob.CurrentState == Shared.Mobs.MobState.Dead)
+                    continue;
+
+                _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/heartbeat.ogg"), uid);
+            }
         }
     }
 }

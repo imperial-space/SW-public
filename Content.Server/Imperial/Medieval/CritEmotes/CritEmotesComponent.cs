@@ -12,5 +12,6 @@ public sealed partial class SoftCritEmotesComponent : Component
     [DataField]
     public float MinDamage = 70f;
 
-    public TimeSpan NextUpdate = TimeSpan.Zero;
+    public TimeSpan NextEmoteUpdate = TimeSpan.Zero;
+    public TimeSpan NextHeartbeatUpdate = TimeSpan.Zero;
 }
