@@ -765,9 +765,6 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: MedievalFootstepSteel
-      params:
-        variation: 0.05
-        volume: -6
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingFeetSteel # imperial medieval
 
@@ -811,9 +808,6 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: MedievalFootstepSteel
-      params:
-        variation: 0.05
-        volume: -6
   - type: RadiationSource
     intensity: 0.3
     slope: 0.2
@@ -1335,9 +1329,6 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: MedievalFootstepSteel
-      params:
-        variation: 0.05
-        volume: -6
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingFeetSteel # imperial medieval
 
