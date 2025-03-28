@@ -38,6 +38,25 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
             });
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        FurnanceUpdate(frameTime);
+
+        var query = EntityQueryEnumerator<SmithingWorkplaceComponent>();
+
+        while (query.MoveNext(out var uid, out var workplaceComponent))
+        {
+            if (workplaceComponent.GameState == null ||
+                workplaceComponent.GameState.ForceEndTime > _gameTiming.CurTime)
+            {
+                continue;
+            }
+
+            EndGame((uid, workplaceComponent));
+        }
+    }
+
     private void OnWorkpieceInit(Entity<SmithingWorkpieceComponent> ent, ref MapInitEvent args)
     {
         var entityLoc = Loc.GetEntityData(ent.Comp.FinalProductEntity);
@@ -71,6 +90,8 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
         var score = ent.Comp.GameState.CalculateScore();
         ent.Comp.GameState = null;
 
+        _itemSlots.SetLock(ent, ent.Comp.WorkpieceSlot, false);
+
         var ev = new SmithingCompleteEvent(score);
 
         RaiseLocalEvent(ent.Comp.Workpiece.Value, ref ev);
@@ -102,6 +123,7 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
         var gameDataMessage = GenerateGameData(ent.Comp.Workpiece!);
 
         ent.Comp.GameState = new SmithGameState(workpiece.Steps, gameDataMessage.CalculateTotalTime());
+
         _ui.SetUiState(ent.Owner, SmithUiKey.Key, gameDataMessage);
     }
 
@@ -114,7 +136,7 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
             var stepData = new SmithStepData
             {
                 State = SmithHitState.Missed,
-                PerfectHitTime = workpieceComponent.GoodTime,
+                PerfectHitTime = workpieceComponent.ExcellentTime,
                 GoodHitTime = workpieceComponent.NothingTime,
             };
 
@@ -133,11 +155,15 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
 
     private void OnInteractUsingEvent(Entity<SmithingWorkplaceComponent> ent, ref InteractUsingEvent args)
     {
-        if (!_tagSystem.HasTag(args.Used, "SmithingTool") || !ent.Comp.WorkpieceSlot.HasItem)
+        if (!_tagSystem.HasTag(args.Used, "SmithingTool") ||
+            !ent.Comp.WorkpieceSlot.HasItem ||
+            _ui.IsUiOpen(ent.Owner, SmithUiKey.Key))
         {
             return;
         }
 
+
+        _itemSlots.SetLock(ent, ent.Comp.WorkpieceSlot, true);
         _ui.OpenUi(ent.Owner, SmithUiKey.Key, args.User);
     }
 

@@ -22,7 +22,6 @@ public abstract partial class SharedSmithingSystem : EntitySystem
         InitializeFurnaceSystem();
 
         SubscribeLocalEvent<SmithingWorkplaceComponent, MapInitEvent>(OnWorkplaceInit);
-
         SubscribeLocalEvent<SmithingWorkplaceComponent, ContainerIsInsertingAttemptEvent>(OnInsertAttempt);
 
         Subs.BuiEvents<SmithingWorkplaceComponent>(SmithUiKey.Key,

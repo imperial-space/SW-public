@@ -8,9 +8,24 @@
     nothingTime: 1
     goldTime: 0.5
     stepsSpawnSpeed: 0.8
+  - type: DamageOnInteract
+    isDamageActive: false
+    damage:
+      types:
+        Heat: 5
+    popupText: powered-light-component-burn-hand
   - type: Sprite
-    sprite: Imperial/Medieval/Misc/keys.rsi
-    state: gate
+    sprite: Imperial/Medieval/Misc/scrap.rsi
+    layers:
+    - state: scrap
+      map: [ "base" ]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.WorkpieceVisuals.Melted:
+          base:
+            True: { state: melted }
+            False: { state: scrap }
 
 - type: entity
   id: WorkpieceMedievalGear

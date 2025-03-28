@@ -882,6 +882,10 @@
     sprite: Imperial/Medieval/Clothing/Gloves/blacksmith_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/blacksmith_gloves.rsi
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 8
 
 - type: entity
   parent: ClothingOuterBase

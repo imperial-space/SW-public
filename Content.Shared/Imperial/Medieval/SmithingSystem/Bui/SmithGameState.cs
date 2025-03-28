@@ -1,17 +1,15 @@
-﻿using Content.Shared.Imperial.Medieval.SmithingSystem.Bui;
-
-namespace Content.Shared.Imperial.Medieval.SmithingSystem;
+﻿namespace Content.Shared.Imperial.Medieval.SmithingSystem.Bui;
 
 public sealed class SmithGameState
 {
     public TimeSpan StartTime;
     public TimeSpan ForceEndTime;
 
-    private int _steps;
+    private readonly int _steps;
     private int _completedSteps;
-    private float _maxGameTime;
+    private readonly float _maxGameTime;
 
-    private Dictionary<SmithHitState, int> _hitStates = new()
+    private readonly Dictionary<SmithHitState, int> _hitStates = new()
     {
         { SmithHitState.Good, 0},
         { SmithHitState.Neutral, 0},

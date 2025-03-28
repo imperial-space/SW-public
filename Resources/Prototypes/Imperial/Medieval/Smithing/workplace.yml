@@ -53,6 +53,16 @@
   name: gorn
   components:
   - type: SmithingFurnace
+    meltingSlot:
+      whitelist:
+        components:
+        - SmithingWorkpiece
+      whitelistFailPopup: ame-controller-component-fuel-slot-fail-whitelist
+      lockedFailPopup: ame-controller-component-fuel-slot-fail-locked
+      insertSuccessPopup: ame-controller-component-fuel-slot-success-insert
+  - type: ContainerContainer
+    containers:
+      meltingSlot: !type:ContainerSlot
   - type: Clickable
   - type: InteractionOutline
   - type: Sprite

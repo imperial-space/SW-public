@@ -21,12 +21,12 @@ public sealed partial class SmithingWorkpieceComponent : Component
     public float NothingTime = 1f;
 
     [DataField]
-    public float GoodTime = 0.5f;
+    public float ExcellentTime = 0.5f;
 
     #endregion
 
     [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
-    public bool ReadyToForge = true;
+    public bool ReadyToForge = false;
 }
 
