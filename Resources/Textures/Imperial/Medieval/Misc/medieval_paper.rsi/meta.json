@@ -296,6 +296,33 @@
     {
       "name": "clipboard-equipped-BELT",
       "directions": 4
+    },
+    {
+        "name": "stamp-ok"
+    },
+    {
+        "name": "paper_stamp-centcom"
+    },
+    {
+        "name": "stamp-lawyer"
+    },
+    {
+        "name": "paper_stamp-ok"
+    },
+    {
+        "name": "stamp-greytide"
+    },
+    {
+        "name": "stamp-centcom"
+    },
+    {
+        "name": "stamp-psychologist"
+    },
+    {
+        "name": "paper_stamp-coroner"
+    },
+    {
+        "name": "stamp-detective"
     }
-  ]
+]
 }

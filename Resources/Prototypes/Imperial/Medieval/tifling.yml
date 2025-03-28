@@ -428,8 +428,8 @@
   markingLimits: MobTiflingMarkingLimits
   dollPrototype: MobTiflingDummy
   skinColoration: TintedHues
-  maleFirstNames: names_reptilian_male
-  femaleFirstNames: names_reptilian_female
+  maleFirstNames: NamesReptilianMale
+  femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
 
 - type: speciesBaseSprites
