@@ -1801,8 +1801,13 @@
 - type: soundCollection
   id: MedievalFootstepSteel
   files:
-  - /Audio/Imperial/Medieval/0919132c658e1be.ogg
-
+  - /Audio/Imperial/Medieval/SteelStep/step1.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step2.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step3.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step4.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step5.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step6.ogg
+  
 - type: entity
   name: MedievalBrutepack
   description: A therapeutic gel pack and bandages designed to treat blunt-force trauma.
