@@ -16,9 +16,6 @@ namespace Content.Server.Quest.Components
         public string ContractPartner { get; set; } = string.Empty;
 
         [DataField]
-        public string QuestLink { get; set; } = string.Empty;
-
-        [DataField]
         public int MinReward = 375;
 
         [DataField]

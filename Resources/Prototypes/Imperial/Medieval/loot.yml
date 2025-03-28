@@ -286,10 +286,12 @@
   #  prototype: MedievalChestWithLoot
   - type: StorageFill
     contents:
+      - id: MedievalChemistryRecipe
+        prob: 0.1
       - id: MedievalScrollBarrierWeak
-        prob: 0.2
+        prob: 0.15
       - id: MedievalScrollBarrierNormal
-        prob: 0.01
+        prob: 0.005
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalLockpickPack
@@ -783,13 +785,13 @@
   - type: StorageFill
     contents:
       - id: MedievalScrollBarrierWeak
-        prob: 0.4
+        prob: 0.25
       - id: MedievalScrollBarrierWeak
-        prob: 0.4
+        prob: 0.25
       - id: MedievalScrollBarrierWeak
-        prob: 0.3
+        prob: 0.2
       - id: MedievalScrollBarrierNormal
-        prob: 0.6
+        prob: 0.4
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
@@ -1210,6 +1212,8 @@
         prob: 0.2
       - id: MedievalEbonitOre
         prob: 0.1
+      - id: MedievalChemistryRecipe
+        prob: 0.35
       - id: MedievalForstoneOre
         prob: 0.1
       - id: ClothingHeadHatPumpkin
@@ -1287,25 +1291,25 @@
   - type: StorageFill
     contents:
       - id: MedievalScrollBarrierWeak
-        prob: 0.5
+        prob: 0.4
       - id: MedievalScrollBarrierWeak
-        prob: 0.5
+        prob: 0.4
       - id: MedievalScrollBarrierWeak
-        prob: 0.2
+        prob: 0.15
       - id: MedievalScrollBarrierWeak
-        prob: 0.04
+        prob: 0.03
       - id: MedievalScrollBarrierWeak
-        prob: 0.04
+        prob: 0.03
       - id: MedievalScrollBarrierNormal
         prob: 0.01
       - id: MedievalScrollBarrierNormal
         prob: 0.1
       - id: MedievalScrollBarrierNormal
-        prob: 0.3
+        prob: 0.2
       - id: MedievalScrollBarrierGood
-        prob: 0.1
+        prob: 0.07
       - id: MedievalScrollBarrierDebug
-        prob: 0.015
+        prob: 0.01
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
@@ -1736,6 +1740,16 @@
         prob: 0.7
       - id: MedievalEbonitOre
         prob: 0.7
+      - id: MedievalChemistryRecipe
+        prob: 0.6
+      - id: MedievalChemistryRecipe
+        prob: 0.6
+      - id: MedievalChemistryRecipe
+        prob: 0.6
+      - id: MedievalChemistryRecipe
+        prob: 0.6
+      - id: MedievalChemistryRecipe
+        prob: 0.6
       - id: MedievalForstoneOre
         prob: 0.7
       - id: MedievalForstoneOre

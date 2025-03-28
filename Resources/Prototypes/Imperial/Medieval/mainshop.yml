@@ -2798,7 +2798,7 @@
 
 - type: storeCategory
   id: MedievalPalletLeg
-  name: medieval-category-food
+  name: medieval-category-pallet
   priority: 0
 
 - type: listing
@@ -2859,7 +2859,7 @@
 
 - type: storeCategory
   id: MedievalPalletIns
-  name: medieval-category-food
+  name: medieval-category-pallet
   priority: 0
 
 - type: listing

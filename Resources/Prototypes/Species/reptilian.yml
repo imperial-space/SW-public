@@ -57,12 +57,12 @@
     HeadSide:
       points: 1
       required: false
-    UndergarmentTop:
-      points: 1
-      required: false
-    UndergarmentBottom:
-      points: 1
-      required: false
+    #UndergarmentTop: # imperial medieval start
+    #  points: 1
+    #  required: false
+    #UndergarmentBottom:
+    #  points: 1
+    #  required: false # imperial medieval end
     Chest:
       points: 3
       required: false

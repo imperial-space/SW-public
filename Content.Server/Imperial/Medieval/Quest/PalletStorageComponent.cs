@@ -9,5 +9,7 @@ namespace Content.Server.Quest.Components
         [DataField]
         public string ContractPartner { get; set; } = string.Empty;
 
+        [DataField]
+        public string QuestLink { get; set; } = string.Empty;
     }
 }

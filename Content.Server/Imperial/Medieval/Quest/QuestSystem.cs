@@ -24,9 +24,11 @@ public partial class QuestSystem : EntitySystem
         base.Initialize();
         SubscribeLocalEvent<QuestContractComponent, ComponentStartup>(OnStart);
         SubscribeLocalEvent<PalletContractComponent, ComponentStartup>(OnStartPallete);
+        SubscribeLocalEvent<PalletStorageComponent, ComponentStartup>(OnStartPallete2);
         SubscribeLocalEvent<QuestContractComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<PalletContractComponent, ExaminedEvent>(OnExaminePallete);
         SubscribeLocalEvent<QuestContractComponent, BeforeRangedInteractEvent>(OnUseInHand);
+        SubscribeLocalEvent<PalletContractComponent, BeforeRangedInteractEvent>(OnUseInHandPallete);
     }
 
     public void OnUseInHand(EntityUid uid, QuestContractComponent comp, BeforeRangedInteractEvent args)
@@ -67,7 +69,8 @@ public partial class QuestSystem : EntitySystem
     {
         if (target == null)
             return;
-        GetReward(used, user, target.Value, comp.Reward, comp.ContractPartner);
+        if (TryComp<PalletStorageComponent>(target.Value, out var pallet) && pallet.ContractPartner == comp.ContractPartner)
+            GetReward(used, user, target.Value, comp.Reward, comp.ContractPartner);
     }
 
     public void GetReward(EntityUid contract, EntityUid user, EntityUid chest, int Reward, string ContractPartner)
@@ -109,6 +112,10 @@ public partial class QuestSystem : EntitySystem
     private void OnStartPallete(EntityUid uid, PalletContractComponent comp, ComponentStartup args)
     {
         comp.Reward = _random.Next(comp.MinReward, comp.MaxReward);
+    }
+
+    private void OnStartPallete2(EntityUid uid, PalletStorageComponent comp, ComponentStartup args)
+    {
         var xform = Transform(uid);
         var coords = xform.Coordinates;
         Spawn(comp.QuestLink, coords);
