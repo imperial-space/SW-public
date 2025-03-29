@@ -38,13 +38,11 @@ public sealed partial class FriendsSystem
         SubscribeNetworkEvent<SetFactionMemberGroupMessage>(OnSetGroup);
         SubscribeNetworkEvent<RemoveFactionMemberMessage>(OnMemberRemoved);
         SubscribeNetworkEvent<SetGroupLeaderMessage>(OnSetLeader);
-
-        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStartedMenu);
     }
 
     private void OnFriendsInit(EntityUid uid, FriendsComponent comp, StartupFactionDataEvent args)
     {
-        if (!TryGetFactionDataContainer(out var container))
+        if (!EnsureFactionDataContainer(out var container))
             return;
 
         comp.MemberID = _nextId;
@@ -95,7 +93,7 @@ public sealed partial class FriendsSystem
 
     private void OnSetObjective(SetFactionMemberObjectiveMessage args)
     {
-        if (!TryGetFactionDataContainer(out var ent))
+        if (!EnsureFactionDataContainer(out var ent))
             return;
         var dict = ent.Value.Comp.Objectives.GetOrNew(args.Faction);
         if (dict.TryGetValue(args.Group, out _))
@@ -142,7 +140,7 @@ public sealed partial class FriendsSystem
     {
         if (!GetFactionMemberById(args.Ent, out var uid))
         {
-            if (!TryGetFactionMemberData(args.Ent, out var data) || !TryGetFactionDataContainer(out var cont))
+            if (!TryGetFactionMemberData(args.Ent, out var data) || !EnsureFactionDataContainer(out var cont))
                 return;
             var fact = data.Faction;
             cont.Value.Comp.CachedMembers.GetOrNew(data.Faction).Remove(args.Ent);
@@ -179,22 +177,12 @@ public sealed partial class FriendsSystem
         RefreshFactionMenu(comp.Faction);
     }
 
-    private void OnRoundStartedMenu(RoundStartedEvent args)
-    {
-        var query = AllEntityQuery<BecomesStationComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            EnsureComp<FactionDataContainerComponent>(uid);
-            break;
-        }
-    }
-
     public void SetJob(EntityUid uid, ProtoId<MedievalFactionPrototype> faction, string job, string jobPrefix = "")
     {
         var comp = EnsureComp<FriendsComponent>(uid);
         var oldFaction = comp.Faction;
 
-        if (!TryGetFactionDataContainer(out var container))
+        if (!EnsureFactionDataContainer(out var container))
             return;
         if (!TryGetFactionMemberData(comp.MemberID, out var data))
             return;
@@ -218,7 +206,7 @@ public sealed partial class FriendsSystem
     {
         Dictionary<int, FactionMemberData> dict = new();
 
-        if (!TryGetFactionDataContainer(out var container))
+        if (!EnsureFactionDataContainer(out var container))
             return;
 
         dict = container.Value.Comp.CachedMembers.GetOrNew(proto);
@@ -242,5 +230,25 @@ public sealed partial class FriendsSystem
                 data.CachedMembers.Add(proto, list.ToDictionary());
             Dirty(uid, data);
         }
+    }
+
+    public bool EnsureFactionDataContainer([NotNullWhen(true)] out Entity<FactionDataContainerComponent>? ent)
+    {
+        ent = null;
+        var query = EntityQueryEnumerator<FactionDataContainerComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            ent = (uid, comp);
+            return true;
+        }
+        var ensureQuery = EntityQueryEnumerator<BecomesStationComponent>();
+        while (ensureQuery.MoveNext(out var uid, out var comp))
+        {
+            var data = EnsureComp<FactionDataContainerComponent>(uid);
+            ent = (uid, data);
+            return true;
+        }
+
+        return false;
     }
 }
