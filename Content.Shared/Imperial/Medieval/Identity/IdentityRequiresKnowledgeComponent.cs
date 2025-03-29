@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Shared.Imperial.Medieval.Identity;
+namespace Content.Shared.Imperial.Medieval.IdentityManagement;
 
 [RegisterComponent, NetworkedComponent]
 [AutoGenerateComponentState]

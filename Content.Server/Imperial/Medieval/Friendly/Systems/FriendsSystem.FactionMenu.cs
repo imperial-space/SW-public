@@ -11,7 +11,7 @@ using Content.Shared.Friends;
 using Content.Shared.Friends.Components;
 using Content.Shared.Friends.Prototypes;
 using Content.Shared.GameTicking;
-using Content.Shared.Imperial.Medieval.Identity;
+using Content.Shared.Imperial.Medieval.IdentityManagement;
 using Robust.Server.Audio;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
