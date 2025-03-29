@@ -16,8 +16,7 @@
       insertSuccessPopup: ame-controller-component-fuel-slot-success-insert
   - type: ContainerContainer
     containers:
-      WorkpieceSlot: !type:ContainerSlot
-        showEnts: true
+      workpieceSlot: !type:ContainerSlot
   - type: Clickable
   - type: InteractionOutline
   - type: Appearance

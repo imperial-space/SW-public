@@ -62,5 +62,7 @@ public sealed partial class SmithingSystem
         {
             _damageOnInteract.SetIsDamageActiveTo((args.Entity, damageOnInteractComp), true);
         }
+
+        Dirty(args.Entity, workpieceComponent);
     }
 }

@@ -780,33 +780,6 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalIronHalberdT3
 
-- type: entity
-  id: WorkpieceMedievalChemistryEmptyBottle01
-  parent: BaseWeaponWorkpiece
-  components:
-  - type: SmithingWorkpiece
-    finalProductEntity: MedievalChemistryEmptyBottle01
-
-- type: entity
-  id: WorkpieceMedievalChemistryEmptyBottle02
-  parent: BaseWeaponWorkpiece
-  components:
-  - type: SmithingWorkpiece
-    finalProductEntity: MedievalChemistryEmptyBottle02
-
-- type: entity
-  id: WorkpieceMedievalChemistryEmptyBottle03
-  parent: BaseWeaponWorkpiece
-  components:
-  - type: SmithingWorkpiece
-    finalProductEntity: MedievalChemistryEmptyBottle03
-
-- type: entity
-  id: WorkpieceMedievalChemistryEmptyBottle04
-  parent: BaseWeaponWorkpiece
-  components:
-  - type: SmithingWorkpiece
-    finalProductEntity: MedievalChemistryEmptyBottle04
 
 - type: entity
   id: WorkpieceMedievalKotel
