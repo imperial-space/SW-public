@@ -6745,7 +6745,7 @@
     canPry: false
     crushDamage:
       types:
-        Blunt: 85 # yowch
+        Blunt: 115 # yowch
     doorStunTime: 4.5
     bumpOpen: false
     clickOpen: false
