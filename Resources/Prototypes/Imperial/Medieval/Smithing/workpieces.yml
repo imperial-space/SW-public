@@ -388,13 +388,6 @@
     finalProductEntity: MedievalIronShield
 
 - type: entity
-  id: WorkpieceMedievalSpear
-  parent: BaseWeaponWorkpiece
-  components:
-  - type: SmithingWorkpiece
-    finalProductEntity: MedievalSpear
-
-- type: entity
   id: WorkpieceMedievalSpearT3Steel
   parent: BaseWeaponWorkpiece
   components:
@@ -470,13 +463,6 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalSaberSteel
-
-- type: entity
-  id: WorkpieceMedievalMace
-  parent: BaseWeaponWorkpiece
-  components:
-  - type: SmithingWorkpiece
-    finalProductEntity: MedievalMace
 
 - type: entity
   id: WorkpieceMedievalMaceT3Steel
