@@ -989,9 +989,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: MedievalDefault
-    maxIntensity: 3
+    maxIntensity: 4
     intensitySlope: 1
-    totalIntensity: 45
+    totalIntensity: 60
     canCreateVacuum: false
   - type: Sprite
     sprite: Imperial/Medieval/Misc/medieval_grenade.rsi
