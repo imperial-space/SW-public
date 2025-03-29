@@ -1,32 +1,23 @@
 using Content.Shared.Examine;
-using Content.Shared.Friends;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Imperial.Medieval.Identity;
+namespace Content.Shared.Imperial.Medieval.IdentityManagement;
 
-public sealed partial class MedievalIdentitySystem : EntitySystem
+public abstract class SharedMedievalIdentitySystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-
-    private int _nextId = 1;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedFriendsSystem) });
         SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, GetVerbsEvent<AlternativeVerb>>(OnGetVerbs);
         SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ExaminedEvent>(OnExamined);
     }
 
-    private void OnComponentInit(EntityUid uid, IdentityRequiresKnowledgeComponent component, ComponentInit args)
-    {
-        component.Identifier = _nextId;
-        _nextId++;
-        Dirty(uid, component);
-    }
 
     private void OnGetVerbs(EntityUid uid, IdentityRequiresKnowledgeComponent component, GetVerbsEvent<AlternativeVerb> args)
     {
@@ -41,7 +32,7 @@ public sealed partial class MedievalIdentitySystem : EntitySystem
         {
             Act = () =>
             {
-                _popup.PopupPredicted($"Вы представились {IdentityManagement.Identity.Name(uid, EntityManager, args.User)}.", null, uid, args.User);
+                _popup.PopupPredicted($"Вы представились {Identity.Name(uid, EntityManager, args.User)}.", null, uid, args.User);
                 _popup.PopupPredicted($"{Name(args.User)} представился вам.", null, args.User, uid);
                 component.KnownIds.Add(userComp.Identifier);
                 Dirty(uid, component);

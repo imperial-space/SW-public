@@ -1,7 +1,7 @@
 ﻿using Content.Shared.Ghost;
 using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement.Components;
-using Content.Shared.Imperial.Medieval.Identity;
+using Content.Shared.Imperial.Medieval.IdentityManagement;
 
 namespace Content.Shared.IdentityManagement;
 
