@@ -563,14 +563,6 @@
     steps: 5
 
 - type: entity
-  id: WorkpieceMedievalKotel
-  parent: BaseWeaponWorkpiece
-  components:
-  - type: SmithingWorkpiece
-    finalProductEntity: MedievalKotel
-    steps: 5
-
-- type: entity
   id: WorkpieceMedievalShovel
   parent: BaseWeaponWorkpiece
   components:

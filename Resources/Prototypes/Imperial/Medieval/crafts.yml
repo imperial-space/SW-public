@@ -1180,3 +1180,39 @@
   - type: WarpPoint
     follow: true
     location: Medieval boss ant's
+
+- type: entity
+  name: SmithingGornCraft
+  description: SmithingGornCraft
+  id: SmithingGornCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stone_wall.rsi
+    state: icon
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: SmithingGorn
+    doAfter: 9
+    deleteOnInteract: true
+
+- type: entity
+  name: SmithWorkplaceCraft
+  description: SmithWorkplaceCraft
+  id: SmithWorkplaceCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stone_wall.rsi
+    state: icon
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: SmithWorkplace
+    doAfter: 9
+    deleteOnInteract: true

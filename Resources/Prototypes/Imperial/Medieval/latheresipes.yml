@@ -1443,5 +1443,11 @@
     MedievalGrass: 1
   result: MaterialCloth1
 
-
-
+- type: CP14Recipe
+  id: MedievalHammerBlacksmith
+  craftTime: 25
+  iconOverride: MedievalHammerBlacksmith
+  stacks:
+    WoodPlank: 2
+    MedievalIronIngot: 2
+  result: MedievalHammerBlacksmith

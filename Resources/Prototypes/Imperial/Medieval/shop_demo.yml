@@ -456,6 +456,22 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopSmithingGornCraft
+  productEntity: SmithingGornCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopSmithWorkplaceCraft
+  productEntity: SmithWorkplaceCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalMortarCraft
   productEntity: MedievalMortarCraft
   cost:

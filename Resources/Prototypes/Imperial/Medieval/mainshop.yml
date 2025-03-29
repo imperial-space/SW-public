@@ -610,6 +610,22 @@
   - MedievalBuild
 
 - type: listing
+  id: MdvShopSmithingGornCraft
+  productEntity: SmithingGornCraft
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopSmithWorkplaceCraft
+  productEntity: SmithWorkplaceCraft
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
   id: MdvShopMedievalClothingOuterArmorFur
   productEntity: MedievalClothingOuterArmorFur
   cost:
