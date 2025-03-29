@@ -31,6 +31,9 @@ public sealed class CP14WorkbenchRecipePrototype : IPrototype
     public EntProtoId Result;
 
     [DataField]
+    public EntProtoId? IconOverride;
+
+    [DataField]
     public bool TryMergeSolutions = false;
 
     [DataField]

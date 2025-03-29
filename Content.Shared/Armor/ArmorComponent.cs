@@ -9,7 +9,7 @@ namespace Content.Shared.Armor;
 /// <summary>
 /// Used for clothing that reduces damage when worn.
 /// </summary>
-[RegisterComponent, NetworkedComponent, Access(typeof(SharedArmorSystem), typeof(SharedSmithingSystem))] //Spellward smithing
+[RegisterComponent, NetworkedComponent, Access(typeof(SharedArmorSystem), typeof(SharedSmithingSystem))] // Imperial medieval smithing
 public sealed partial class ArmorComponent : Component
 {
     /// <summary>

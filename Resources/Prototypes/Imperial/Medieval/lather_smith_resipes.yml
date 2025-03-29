@@ -1,6 +1,7 @@
-﻿- type: CP14Recipe
+- type: CP14Recipe
   id: MedievalGear
   craftTime: 2
+  iconOverride: MedievalGear
   stacks:
     MedievalIronPlateSmall: 1
     MedievalSteelIngot: 1
@@ -9,6 +10,7 @@
 - type: CP14Recipe
   id: MedievalChain
   craftTime: 12
+  iconOverride: MedievalChain
   stacks:
     MedievalIronIngot: 3
   result: WorkpieceMedievalChain
@@ -16,6 +18,7 @@
 - type: CP14Recipe
   id: MedievalLeatherBelt
   craftTime: 5
+  iconOverride: MedievalLeatherBelt
   stacks:
     MedievalIronIngot: 1
     MedievalLeather1: 2
@@ -24,6 +27,7 @@
 - type: CP14Recipe
   id: MedievalIronPlate
   craftTime: 7
+  iconOverride: MedievalIronPlate
   stacks:
     MedievalIronIngot: 4
   result: WorkpieceMedievalIronPlate
@@ -31,6 +35,7 @@
 - type: CP14Recipe
   id: MedievalIronPlateSmall
   craftTime: 2
+  iconOverride: MedievalIronPlateSmall
   stacks:
     MedievalIronIngot: 1
   result: WorkpieceMedievalIronPlateSmall
@@ -38,6 +43,7 @@
 - type: CP14Recipe
   id: MedievalRivets
   craftTime: 4
+  iconOverride: MedievalRivets
   stacks:
     MedievalIronIngot: 2
   result: WorkpieceMedievalRivets
@@ -45,6 +51,7 @@
 - type: CP14Recipe
   id: MedievalShoulder
   craftTime: 9
+  iconOverride: MedievalShoulder
   stacks:
     MedievalIronIngot: 2
     MedievalIronPlateSmall: 3
@@ -53,6 +60,7 @@
 - type: CP14Recipe
   id: ClothingEyesGlasses
   craftTime: 5
+  iconOverride: ClothingEyesGlasses
   stacks:
     MedievalIronIngot: 5
   result: WorkpieceClothingEyesGlasses
@@ -60,6 +68,7 @@
 - type: CP14Recipe
   id: MedievalCatapultCraft
   craftTime: 90
+  iconOverride: MedievalCatapultCraft
   stacks:
     MedievalRope: 12
     WoodPlank: 30
@@ -73,6 +82,7 @@
 - type: CP14Recipe
   id: MedievalCatapultAmmoBarrel
   craftTime: 6
+  iconOverride: MedievalCatapultAmmoBarrel
   stacks:
     MedievalRivets: 1
     WoodPlank: 4
@@ -82,6 +92,7 @@
 - type: CP14Recipe
   id: MedievalCatapultAmmoBarrelGunpowder
   craftTime: 4
+  iconOverride: MedievalCatapultAmmoBarrelGunpowder
   stacks:
     MedievalRivets: 2
     Gunpowder: 10
@@ -93,6 +104,7 @@
 - type: CP14Recipe
   id: MedievalCatapultAmmoBarrelAp
   craftTime: 11
+  iconOverride: MedievalCatapultAmmoBarrelAp
   stacks:
     MedievalIronIngot: 5
     MedievalSteelIngot: 1
@@ -104,6 +116,7 @@
 - type: CP14Recipe
   id: MedievalCatapultAmmoBarrelStone
   craftTime: 3
+  iconOverride: MedievalCatapultAmmoBarrelStone
   stacks:
     MedievalIronIngot: 2
   result: WorkpieceMedievalCatapultAmmoBarrelStone
@@ -111,6 +124,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetSalad
   craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetSalad
   stacks:
     MedievalIronIngot: 1
     MedievalIronPlateSmall: 5
@@ -120,6 +134,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetSaladLight
   craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetSaladLight
   stacks:
     MedievalIronIngot: 1
     MedievalIronPlateSmall: 5
@@ -129,6 +144,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetNormand
   craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetNormand
   stacks:
     MedievalIronIngot: 1
     MedievalIronPlateSmall: 5
@@ -138,6 +154,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetNormandFree
   craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetNormandFree
   stacks:
     MedievalIronIngot: 1
     MedievalIronPlateSmall: 5
@@ -147,6 +164,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetNorthern
   craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetNorthern
   stacks:
     MedievalIronIngot: 1
     MedievalIronPlateSmall: 2
@@ -157,6 +175,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetBacinet
   craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetBacinet
   stacks:
     MedievalIronIngot: 1
     MedievalIronPlateSmall: 5
@@ -166,6 +185,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetShapel
   craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetShapel
   stacks:
     MedievalIronIngot: 1
     MedievalIronPlateSmall: 5
@@ -175,6 +195,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetCrusader
   craftTime: 9
+  iconOverride: MedievalClothingHeadHelmetCrusader
   stacks:
     MedievalIronIngot: 1
     MedievalIronPlateSmall: 5
@@ -184,6 +205,7 @@
 - type: CP14Recipe
   id: MedievalIronGloves
   craftTime: 12
+  iconOverride: MedievalIronGloves
   stacks:
     MedievalRivets: 1
     MedievalIronPlateSmall: 6
@@ -193,6 +215,7 @@
 - type: CP14Recipe
   id: MedievalIronGlovesBrig
   craftTime: 12
+  iconOverride: MedievalIronGlovesBrig
   stacks:
     MedievalRivets: 1
     MedievalIronPlateSmall: 6
@@ -202,6 +225,7 @@
 - type: CP14Recipe
   id: MedievalNorthernGloves
   craftTime: 12
+  iconOverride: MedievalNorthernGloves
   stacks:
     MedievalRivets: 1
     MedievalIronPlateSmall: 5
@@ -211,6 +235,7 @@
 - type: CP14Recipe
   id: MedievalIronGlovesBear
   craftTime: 12
+  iconOverride: MedievalIronGlovesBear
   stacks:
     MedievalRivets: 1
     MedievalIronPlateSmall: 6
@@ -220,6 +245,7 @@
 - type: CP14Recipe
   id: MedievalClothingFeetSteel
   craftTime: 10
+  iconOverride: MedievalClothingFeetSteel
   stacks:
     MedievalRivets: 1
     MedievalIronPlateSmall: 5
@@ -229,6 +255,7 @@
 - type: CP14Recipe
   id: MedievalClothingFeetNorthern
   craftTime: 6
+  iconOverride: MedievalClothingFeetNorthern
   stacks:
     MedievalRivets: 1
     MedievalIronPlateSmall: 4
@@ -238,6 +265,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorChainMailLight
   craftTime: 35
+  iconOverride: MedievalClothingOuterArmorChainMailLight
   stacks:
     MedievalChain: 3
   result: WorkpieceMedievalClothingOuterArmorChainMailLight
@@ -245,6 +273,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorChainMail
   craftTime: 35
+  iconOverride: MedievalClothingOuterArmorChainMail
   stacks:
     MedievalChain: 4
     MedievalLeatherBelt: 1
@@ -254,6 +283,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorIronCuirassLight
   craftTime: 28
+  iconOverride: MedievalClothingOuterArmorIronCuirassLight
   stacks:
     MedievalIronPlate: 3
     MedievalRivets: 2
@@ -265,6 +295,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorNorthern
   craftTime: 28
+  iconOverride: MedievalClothingOuterArmorNorthern
   stacks:
     MedievalIronPlate: 5
     MedievalRivets: 3
@@ -275,6 +306,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorIronCuirass
   craftTime: 28
+  iconOverride: MedievalClothingOuterArmorIronCuirass
   stacks:
     MedievalIronPlate: 6
     MedievalRivets: 3
@@ -285,6 +317,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorBrigantin
   craftTime: 28
+  iconOverride: MedievalClothingOuterArmorBrigantin
   stacks:
     MedievalIronPlate: 4
     MedievalRivets: 8
@@ -297,6 +330,7 @@
 - type: CP14Recipe
   id: ClothingOuterArmorPodWars
   craftTime: 35
+  iconOverride: ClothingOuterArmorPodWars
   stacks:
     MedievalIronPlate: 1
     MedievalRivets: 8
@@ -310,6 +344,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorIron
   craftTime: 43
+  iconOverride: MedievalClothingOuterArmorIron
   stacks:
     MedievalIronPlate: 5
     MedievalRivets: 12
@@ -324,6 +359,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorUpIron
   craftTime: 62
+  iconOverride: MedievalClothingOuterArmorUpIron
   stacks:
     MedievalIronPlate: 16
     MedievalRivets: 15
@@ -338,6 +374,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetEbonit
   craftTime: 30
+  iconOverride: MedievalClothingHeadHelmetEbonit
   stacks:
     MedievalSteelIngot: 5
     MedievalEbonitIngot: 4
@@ -347,6 +384,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetEbonit2
   craftTime: 30
+  iconOverride: MedievalClothingHeadHelmetEbonit2
   stacks:
     MedievalSteelIngot: 5
     MedievalEbonitIngot: 4
@@ -356,6 +394,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorEbonit
   craftTime: 60
+  iconOverride: MedievalClothingOuterArmorEbonit
   stacks:
     MedievalRivets: 4
     MedievalIronPlate: 12
@@ -368,6 +407,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorEbonit2
   craftTime: 60
+  iconOverride: MedievalClothingOuterArmorEbonit2
   stacks:
     MedievalRivets: 4
     MedievalIronPlate: 12
@@ -380,6 +420,7 @@
 - type: CP14Recipe
   id: MedievalEbonitGloves
   craftTime: 25
+  iconOverride: MedievalEbonitGloves
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
@@ -389,6 +430,7 @@
 - type: CP14Recipe
   id: MedievalEbonitGloves2
   craftTime: 25
+  iconOverride: MedievalEbonitGloves2
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
@@ -398,6 +440,7 @@
 - type: CP14Recipe
   id: MedievalClothingFeetEbonit
   craftTime: 30
+  iconOverride: MedievalClothingFeetEbonit
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
@@ -407,6 +450,7 @@
 - type: CP14Recipe
   id: MedievalClothingFeetEbonit2
   craftTime: 30
+  iconOverride: MedievalClothingFeetEbonit2
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
@@ -416,6 +460,7 @@
 - type: CP14Recipe
   id: MedievalClothingHeadHelmetForstone
   craftTime: 30
+  iconOverride: MedievalClothingHeadHelmetForstone
   stacks:
     MedievalSteelIngot: 5
     MedievalForstoneIngot: 4
@@ -425,6 +470,7 @@
 - type: CP14Recipe
   id: MedievalClothingOuterArmorForstone
   craftTime: 60
+  iconOverride: MedievalClothingOuterArmorForstone
   stacks:
     MedievalRivets: 4
     MedievalIronPlate: 12
@@ -437,6 +483,7 @@
 - type: CP14Recipe
   id: MedievalForstoneGloves
   craftTime: 25
+  iconOverride: MedievalForstoneGloves
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
@@ -446,6 +493,7 @@
 - type: CP14Recipe
   id: MedievalClothingFeetForstone
   craftTime: 30
+  iconOverride: MedievalClothingFeetForstone
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
@@ -455,6 +503,7 @@
 - type: CP14Recipe
   id: MedievalIronShield
   craftTime: 10
+  iconOverride: MedievalIronShield
   stacks:
     MedievalRivets: 2
     MedievalIronPlate: 3
@@ -463,6 +512,7 @@
 - type: CP14Recipe
   id: MedievalIronShieldBuckler
   craftTime: 10
+  iconOverride: MedievalIronShieldBuckler
   stacks:
     MedievalRivets: 2
     MedievalIronPlate: 3
@@ -471,6 +521,7 @@
 - type: CP14Recipe
   id: MedievalSpear
   craftTime: 11
+  iconOverride: MedievalSpearT3
   stacks:
     MedievalIronIngot: 14
     WoodPlank: 8
@@ -479,6 +530,7 @@
 - type: CP14Recipe
   id: MedievalSpearT3Steel
   craftTime: 11
+  iconOverride: MedievalSpearT3Steel
   stacks:
     MedievalSteelIngot: 12
     WoodPlank: 8
@@ -487,6 +539,7 @@
 - type: CP14Recipe
   id: MedievalPalice
   craftTime: 10
+  iconOverride: MedievalPalice
   stacks:
     MedievalIronIngot: 23
     WoodPlank: 6
@@ -495,6 +548,7 @@
 - type: CP14Recipe
   id: MedievalPaliceSteel
   craftTime: 10
+  iconOverride: MedievalPaliceSteel
   stacks:
     MedievalSteelIngot: 15
     WoodPlank: 6
@@ -503,6 +557,7 @@
 - type: CP14Recipe
   id: MedievalSpearPilum
   craftTime: 11
+  iconOverride: MedievalSpearPilum
   stacks:
     MedievalIronIngot: 12
     WoodPlank: 6
@@ -511,6 +566,7 @@
 - type: CP14Recipe
   id: MedievalSpearSulica
   craftTime: 11
+  iconOverride: MedievalSpearSulica
   stacks:
     MedievalIronIngot: 12
     WoodPlank: 6
@@ -519,6 +575,7 @@
 - type: CP14Recipe
   id: MedievalDagger
   craftTime: 4
+  iconOverride: MedievalDaggerT3
   stacks:
     MedievalIronIngot: 3
     WoodPlank: 1
@@ -527,6 +584,7 @@
 - type: CP14Recipe
   id: MedievalDaggerT3Steel
   craftTime: 4
+  iconOverride: MedievalDaggerT3Steel
   stacks:
     MedievalSteelIngot: 3
     WoodPlank: 1
@@ -535,6 +593,7 @@
 - type: CP14Recipe
   id: MedievalFalshion
   craftTime: 10
+  iconOverride: MedievalFalshionT3
   stacks:
     MedievalIronIngot: 8
     WoodPlank: 7
@@ -543,6 +602,7 @@
 - type: CP14Recipe
   id: MedievalFalshionT3Steel
   craftTime: 10
+  iconOverride: MedievalFalshionT3Steel
   stacks:
     MedievalSteelIngot: 8
     WoodPlank: 7
@@ -551,6 +611,7 @@
 - type: CP14Recipe
   id: MedievalShortSword
   craftTime: 10
+  iconOverride: MedievalShortSword
   stacks:
     MedievalIronIngot: 7
     WoodPlank: 7
@@ -559,6 +620,7 @@
 - type: CP14Recipe
   id: MedievalShortSwordSteel
   craftTime: 10
+  iconOverride: MedievalShortSwordSteel
   stacks:
     MedievalSteelIngot: 7
     WoodPlank: 7
@@ -567,6 +629,7 @@
 - type: CP14Recipe
   id: MedievalSaber
   craftTime: 10
+  iconOverride: MedievalSaber
   stacks:
     MedievalIronIngot: 11
     WoodPlank: 7
@@ -575,14 +638,16 @@
 - type: CP14Recipe
   id: MedievalSaberSteel
   craftTime: 10
+  iconOverride: MedievalSaberSteel
   stacks:
     MedievalSteelIngot: 9
     WoodPlank: 7
   result: WorkpieceMedievalSaberSteel
 
 - type: CP14Recipe
-  id: MedievalMace
+  id: MedievalMaceT3
   craftTime: 10
+  iconOverride: MedievalMaceT3
   stacks:
     MedievalIronIngot: 18
     WoodPlank: 5
@@ -591,6 +656,7 @@
 - type: CP14Recipe
   id: MedievalMaceT3Steel
   craftTime: 10
+  iconOverride: MedievalMaceT3Steel
   stacks:
     MedievalSteelIngot: 14
     WoodPlank: 5
@@ -599,6 +665,7 @@
 - type: CP14Recipe
   id: MedievalIronHalberd
   craftTime: 22
+  iconOverride: MedievalIronHalberdT3
   stacks:
     MedievalIronIngot: 35
     WoodPlank: 12
@@ -607,6 +674,7 @@
 - type: CP14Recipe
   id: MedievalIronHalberdT3Steel
   craftTime: 22
+  iconOverride: MedievalIronHalberdT3Steel
   stacks:
     MedievalSteelIngot: 27
     WoodPlank: 12
@@ -615,6 +683,7 @@
 - type: CP14Recipe
   id: MedievalMaceT3Heavy
   craftTime: 10
+  iconOverride: MedievalMaceT3Heavy
   stacks:
     MedievalIronIngot: 28
     WoodPlank: 7
@@ -623,6 +692,7 @@
 - type: CP14Recipe
   id: MedievalMaceT3SteelHeavy
   craftTime: 10
+  iconOverride: MedievalMaceT3SteelHeavy
   stacks:
     MedievalSteelIngot: 18
     WoodPlank: 7
@@ -631,6 +701,7 @@
 - type: CP14Recipe
   id: MedievalIronSekir
   craftTime: 22
+  iconOverride: MedievalIronSekir
   stacks:
     MedievalIronIngot: 27
     WoodPlank: 12
@@ -639,6 +710,7 @@
 - type: CP14Recipe
   id: MedievalIronSekirSteel
   craftTime: 22
+  iconOverride: MedievalIronSekirSteel
   stacks:
     MedievalSteelIngot: 17
     WoodPlank: 25
@@ -647,6 +719,7 @@
 - type: CP14Recipe
   id: MedievalIronHammer
   craftTime: 22
+  iconOverride: MedievalIronHammer
   stacks:
     MedievalIronIngot: 29
     WoodPlank: 17
@@ -655,6 +728,7 @@
 - type: CP14Recipe
   id: MedievalIronHammerSteel
   craftTime: 22
+  iconOverride: MedievalIronHammerSteel
   stacks:
     MedievalSteelIngot: 18
     WoodPlank: 17
@@ -663,6 +737,7 @@
 - type: CP14Recipe
   id: MedievalLockpickPack
   craftTime: 10
+  iconOverride: MedievalLockpickPack
   stacks:
     MedievalSteelIngot: 3
     WoodPlank: 1
@@ -673,6 +748,7 @@
 - type: CP14Recipe
   id: MedievalLockpick
   craftTime: 10
+  iconOverride: MedievalLockpick
   stacks:
     MedievalIronIngot: 3
   result: WorkpieceMedievalLockpick
@@ -680,6 +756,7 @@
 - type: CP14Recipe
   id: MedievalShovel
   craftTime: 7
+  iconOverride: MedievalShovel
   stacks:
     MedievalIronIngot: 5
     WoodPlank: 4
@@ -688,6 +765,7 @@
 - type: CP14Recipe
   id: MedievalPickaxe
   craftTime: 5
+  iconOverride: MedievalPickaxe
   stacks:
     MedievalIronIngot: 6
     WoodPlank: 3
@@ -696,6 +774,7 @@
 - type: CP14Recipe
   id: MedievalPickaxeSteel
   craftTime: 7
+  iconOverride: MedievalPickaxeSteel
   stacks:
     MedievalSteelIngot: 6
     WoodPlank: 4
@@ -704,6 +783,7 @@
 - type: CP14Recipe
   id: MedievalPickaxeEbonit
   craftTime: 5
+  iconOverride: MedievalPickaxeEbonit
   stacks:
     MedievalSteelIngot: 8
     MedievalEbonitIngot: 5
@@ -712,6 +792,7 @@
 - type: CP14Recipe
   id: MedievalPickaxeForStone
   craftTime: 5
+  iconOverride: MedievalPickaxeForStone
   stacks:
     MedievalGold: 8
     MedievalForstoneIngot: 5
@@ -720,6 +801,7 @@
 - type: CP14Recipe
   id: MedievalRepairStone
   craftTime: 5
+  iconOverride: MedievalRepairStone
   stacks:
     MedievalIronIngot: 1
     MedievalSteelIngot: 1
@@ -728,6 +810,7 @@
 - type: CP14Recipe
   id: MedievalHoe
   craftTime: 7
+  iconOverride: MedievalHoe
   stacks:
     MedievalIronIngot: 3
     WoodPlank: 2
@@ -736,6 +819,7 @@
 - type: CP14Recipe
   id: MedievalScythe
   craftTime: 7
+  iconOverride: MedievalScythe
   stacks:
     MedievalIronIngot: 5
     WoodPlank: 4
@@ -744,6 +828,7 @@
 - type: CP14Recipe
   id: MedievalClippers
   craftTime: 7
+  iconOverride: MedievalClippers
   stacks:
     MedievalIronIngot: 2
     WoodPlank: 1
@@ -752,6 +837,7 @@
 - type: CP14Recipe
   id: MedievalHandcuffs
   craftTime: 6
+  iconOverride: MedievalHandcuffs
   stacks:
     MedievalIronIngot: 3
     MedievalGear: 1
@@ -760,6 +846,7 @@
 - type: CP14Recipe
   id: MedievalFetter
   craftTime: 6
+  iconOverride: MedievalFetter
   stacks:
     MedievalIronIngot: 3
   result: WorkpieceMedievalFetter
@@ -767,6 +854,7 @@
 - type: CP14Recipe
   id: MedievalHatchet
   craftTime: 11
+  iconOverride: MedievalHatchet
   stacks:
     MedievalIronIngot: 6
     WoodPlank: 4
@@ -775,6 +863,7 @@
 - type: CP14Recipe
   id: BarberScissors
   craftTime: 5
+  iconOverride: BarberScissors
   stacks:
     MedievalIronIngot: 2
     WoodPlank: 1
@@ -783,6 +872,7 @@
 - type: CP14Recipe
   id: MedievalGrenade
   craftTime: 13
+  iconOverride: MedievalGrenade
   stacks:
     MedievalSteelIngot: 2
     MedievalRivets: 1
@@ -793,6 +883,7 @@
 - type: CP14Recipe
   id: MedievalKeyStorage
   craftTime: 4
+  iconOverride: MedievalKeyStorage
   stacks:
     MedievalIronIngot: 5
   result: WorkpieceMedievalKeyStorage
@@ -800,6 +891,7 @@
 - type: CP14Recipe
   id: MedievalDoorKeyCheck
   craftTime: 7
+  iconOverride: MedievalDoorKeyCheck
   stacks:
     MedievalIronIngot: 3
   result: WorkpieceMedievalDoorKeyCheck
@@ -807,6 +899,7 @@
 - type: CP14Recipe
   id: MedievalPrisonGrilleCraft
   craftTime: 10
+  iconOverride: MedievalPrisonGrilleCraft
   stacks:
     MedievalIronIngot: 2
     MedievalIronPlate: 1
@@ -815,6 +908,7 @@
 - type: CP14Recipe
   id: MedievalWeaponTurretNanoTrasenCraft
   craftTime: 45
+  iconOverride: MedievalWeaponTurretNanoTrasenCraft
   stacks:
     MedievalRope: 4
     WoodPlank: 15
@@ -822,19 +916,51 @@
     MedievalGear: 3
   result: WorkpieceMedievalWeaponTurretNanoTrasenCraft
 
-#- type: CP14Recipe
-#  id: MedievalShoulder
-#  craftTime: 9
-#  stacks:
-#    MedievalIronIngot: 2
-#    MedievalIronPlateSmall: 3
-#  result: WorkpieceMedievalShoulder
-# was dublicated
-
 - type: CP14Recipe
   id: Syringe
   craftTime: 1
+  iconOverride: Syringe
   stacks:
     MedievalIronIngot: 1
     MedievalSteelIngot: 1
   result: WorkpieceSyringe
+
+- type: CP14Recipe
+  id: MedievalChemistryEmptyBottle01
+  craftTime: 3
+  iconOverride: MedievalChemistryEmptyBottle01
+  stacks:
+    MedievalIronIngot: 2
+  result: WorkpieceMedievalChemistryEmptyBottle01
+
+- type: CP14Recipe
+  id: MedievalChemistryEmptyBottle02
+  craftTime: 3
+  iconOverride: MedievalChemistryEmptyBottle02
+  stacks:
+    MedievalIronIngot: 2
+  result: WorkpieceMedievalChemistryEmptyBottle02
+
+- type: CP14Recipe
+  id: MedievalChemistryEmptyBottle03
+  iconOverride: MedievalChemistryEmptyBottle03
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 2
+  result: WorkpieceMedievalChemistryEmptyBottle03
+
+- type: CP14Recipe
+  id: MedievalChemistryEmptyBottle04
+  iconOverride: MedievalChemistryEmptyBottle04
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 2
+  result: WorkpieceMedievalChemistryEmptyBottle04
+
+- type: CP14Recipe
+  id: MedievalKotel
+  iconOverride: MedievalKotel
+  craftTime: 11
+  stacks:
+    MedievalIronIngot: 9
+  result: WorkpieceMedievalKotel

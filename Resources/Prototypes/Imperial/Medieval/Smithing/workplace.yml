@@ -11,13 +11,14 @@
       whitelist:
         components:
         - SmithingWorkpiece
-      whitelistFailPopup: ame-controller-component-fuel-slot-fail-whitelist
-      lockedFailPopup: ame-controller-component-fuel-slot-fail-locked
-      insertSuccessPopup: ame-controller-component-fuel-slot-success-insert
+      whitelistFailPopup: smith-workplace-component-slot-fail
+      lockedFailPopup: smith-workplace-component-slot-fail-locked
+      insertSuccessPopup: smith-workplace-component-slot-fail-success
+      ejectSound: null
+      insertSound: null
   - type: ContainerContainer
     containers:
-      WorkpieceSlot: !type:ContainerSlot
-        showEnts: true
+      workpieceSlot: !type:ContainerSlot
   - type: Clickable
   - type: InteractionOutline
   - type: Appearance
@@ -58,9 +59,11 @@
       whitelist:
         components:
         - SmithingWorkpiece
-      whitelistFailPopup: ame-controller-component-fuel-slot-fail-whitelist
-      lockedFailPopup: ame-controller-component-fuel-slot-fail-locked
-      insertSuccessPopup: ame-controller-component-fuel-slot-success-insert
+      whitelistFailPopup: smithing-gorn-slot-fail-whitelist
+      lockedFailPopup: smithing-gorn-slot-fail-locked
+      insertSuccessPopup: smithing-gorn-slot-success-insert
+      ejectSound: null
+      insertSound: null
   - type: ContainerContainer
     containers:
       meltingSlot: !type:ContainerSlot

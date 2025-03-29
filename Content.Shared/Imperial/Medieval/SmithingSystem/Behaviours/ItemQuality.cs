@@ -3,6 +3,8 @@
 [Serializable]
 public enum ItemQuality
 {
+    Worst,
+    ReallyBad,
     Bad,
     Default,
     Good,

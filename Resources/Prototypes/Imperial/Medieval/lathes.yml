@@ -1047,7 +1047,7 @@
   description: It produces armor and weapon using steel and wood.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Lathe/blacksmith.rsi
+    sprite: Imperial/Medieval/Lathe/wood_worker.rsi
     state: icon
   - type: Appearance
   - type: Physics
@@ -1137,12 +1137,12 @@
     - MedievalShortSwordSteel
     - MedievalSaber
     - MedievalSaberSteel
-    - MedievalMace
     - MedievalMaceT3Steel
     - MedievalPalice
     - MedievalPaliceSteel
     - MedievalIronHalberd
     - MedievalIronHalberdT3Steel
+    - MedievalMaceT3
     - MedievalMaceT3Heavy
     - MedievalMaceT3SteelHeavy
     - MedievalIronSekir
@@ -1169,6 +1169,12 @@
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
     - MedievalWeaponTurretNanoTrasenCraft
+    - MedievalChemistryEmptyBottle01
+    - MedievalChemistryEmptyBottle02
+    - MedievalChemistryEmptyBottle03
+    - MedievalChemistryEmptyBottle04
+    - MedievalKotel
+    - Syringe
 
 - type: entity
   parent: CP14BaseWorkbench

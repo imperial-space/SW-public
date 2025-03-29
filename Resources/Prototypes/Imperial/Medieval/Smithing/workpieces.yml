@@ -50,6 +50,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalGear
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalChain
@@ -57,6 +58,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalChain
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalLeatherBelt
@@ -71,6 +73,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalIronPlate
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalIronPlateSmall
@@ -78,6 +81,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalIronPlateSmall
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalRivets
@@ -85,6 +89,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalRivets
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalShoulder
@@ -99,6 +104,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: ClothingEyesGlasses
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalCatapultCraft
@@ -388,13 +394,6 @@
     finalProductEntity: MedievalIronShield
 
 - type: entity
-  id: WorkpieceMedievalSpear
-  parent: BaseWeaponWorkpiece
-  components:
-  - type: SmithingWorkpiece
-    finalProductEntity: MedievalSpear
-
-- type: entity
   id: WorkpieceMedievalSpearT3Steel
   parent: BaseWeaponWorkpiece
   components:
@@ -470,13 +469,6 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalSaberSteel
-
-- type: entity
-  id: WorkpieceMedievalMace
-  parent: BaseWeaponWorkpiece
-  components:
-  - type: SmithingWorkpiece
-    finalProductEntity: MedievalMace
 
 - type: entity
   id: WorkpieceMedievalMaceT3Steel
@@ -568,6 +560,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalLockpick
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalShovel
@@ -680,6 +673,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalChemistryEmptyBottle01
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalChemistryEmptyBottle02
@@ -687,6 +681,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalChemistryEmptyBottle02
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalChemistryEmptyBottle03
@@ -694,6 +689,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalChemistryEmptyBottle03
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalChemistryEmptyBottle04
@@ -701,6 +697,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalChemistryEmptyBottle04
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalDoorKeyCheck
@@ -708,6 +705,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalDoorKeyCheck
+    steps: 5
 
 - type: entity
   id: WorkpieceMedievalPrisonGrilleCraft
@@ -736,6 +734,7 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: Syringe
+    steps: 5
 
 #
 - type: entity

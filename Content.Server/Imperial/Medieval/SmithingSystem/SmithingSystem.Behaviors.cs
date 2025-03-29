@@ -1,9 +1,12 @@
 ﻿using System.Linq;
+using Content.Server.Damage.Components;
 using Content.Shared.Armor;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Events;
 using Content.Shared.MedievalMeleeResource.Components;
+using Content.Shared.Weapons.Melee;
+using SixLabors.ImageSharp.Formats;
 
 namespace Content.Server.Imperial.Medieval.SmithingSystem;
 
@@ -40,21 +43,30 @@ public sealed partial class SmithingSystem
 
     private void UpgradeWeapon(Entity<UpgradeWeaponOnSmithCompleteComponent> ent, ref SmithingApplyBehaviorsEvent args)
     {
-        if (!TryComp<MedievalMeleeResourceComponent>(args.Item, out var resourceComponent))
-        {
-            return;
-        }
-
         var modifier = GetBestModifier(args.Score, ent.Comp.ItemQualityTable);
 
-        resourceComponent.FullModifier *= modifier.Modifier;
-        resourceComponent.AlmostFullModifier *= modifier.Modifier;
-        resourceComponent.DamagedModifier *= modifier.Modifier;
-        resourceComponent.BadlyDamagedModifier *= modifier.Modifier;
-        resourceComponent.BrokenModifier *= modifier.Modifier;
-        resourceComponent.UpModifier *= modifier.Modifier;
+        if (TryComp<MedievalMeleeResourceComponent>(args.Item, out var resourceComponent))
+        {
+            resourceComponent.FullModifier *= modifier.Modifier;
+            resourceComponent.AlmostFullModifier *= modifier.Modifier;
+            resourceComponent.DamagedModifier *= modifier.Modifier;
+            resourceComponent.BadlyDamagedModifier *= modifier.Modifier;
+            resourceComponent.BrokenModifier *= modifier.Modifier;
+            resourceComponent.UpModifier *= modifier.Modifier;
+        }
+
+        if (TryComp<DamageOtherOnHitComponent>(args.Item, out var damageOtherOnHitComponent))
+        {
+            damageOtherOnHitComponent.Damage *= modifier.Modifier;
+        }
+
+        if (TryComp<MeleeWeaponComponent>(args.Item, out var meleeWeaponComponent))
+        {
+            meleeWeaponComponent.Damage *= modifier.Modifier;
+        }
 
         SetName(args.Item, modifier.Quality);
+        Dirty(ent);
     }
 
     private void DeleteOnLowScore(Entity<DeleteOnLowScoreOnSmithCompleteComponent> ent, ref SmithingApplyBehaviorsEvent args)
@@ -76,6 +88,8 @@ public sealed partial class SmithingSystem
 
     private Dictionary<ItemQuality, string> _itemQualityDecorators = new()
     {
+        { ItemQuality.Worst, "---"},
+        { ItemQuality.ReallyBad, "--"},
         { ItemQuality.Bad, "-"},
         { ItemQuality.Default, string.Empty},
         { ItemQuality.Good, "+"},

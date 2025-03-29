@@ -80,7 +80,7 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
         }
 
         var score = ent.Comp.GameState.CalculateScore();
-        Log.Error(score.ToString());
+
         ent.Comp.GameState = null;
 
         _itemSlots.SetLock(ent, ent.Comp.WorkpieceSlot, false);
@@ -116,8 +116,6 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
         var gameDataMessage = GenerateGameData(ent.Comp.Workpiece!);
 
         ent.Comp.GameState = new SmithGameState(workpiece.Steps, gameDataMessage.CalculateTotalTime());
-
-        Log.Error(gameDataMessage.CalculateTotalTime().ToString(CultureInfo.InvariantCulture));
 
         _ui.SetUiState(ent.Owner, SmithUiKey.Key, gameDataMessage);
     }
