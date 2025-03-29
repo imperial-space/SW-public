@@ -1124,7 +1124,7 @@
     - MedievalForstoneGloves
     - MedievalClothingFeetForstone
     #- MedievalClothingOuterArmorUpIron2
-    - MedievalIronShield
+    - MedievalIronShieldBuckler
     - MedievalSpear
     - MedievalSpearT3Steel
     - MedievalSpearPilum
@@ -1151,6 +1151,7 @@
     - MedievalIronHammerSteel
     - MedievalLockpickPack
     - MedievalLockpick
+    - MedievalKotel
     - MedievalShovel
     - MedievalPickaxe
     - MedievalPickaxeSteel

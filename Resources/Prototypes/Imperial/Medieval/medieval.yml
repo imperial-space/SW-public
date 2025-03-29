@@ -5145,6 +5145,17 @@
     sprite: Imperial/Medieval/Misc/pai.rsi
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalPersonalAI # imperial medieval
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
 
 - type: entity
   id: MedievalServerMap
@@ -6735,6 +6746,7 @@
     crushDamage:
       types:
         Blunt: 85 # yowch
+    doorStunTime: 4.5
     bumpOpen: false
     clickOpen: false
     openSound:

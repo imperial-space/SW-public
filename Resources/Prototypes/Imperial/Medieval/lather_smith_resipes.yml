@@ -754,6 +754,14 @@
   result: WorkpieceMedievalLockpick
 
 - type: CP14Recipe
+  id: MedievalKotel
+  craftTime: 10
+  iconOverride: MedievalKotel
+  stacks:
+    MedievalIronIngot: 12
+  result: WorkpieceMedievalKotel
+
+- type: CP14Recipe
   id: MedievalShovel
   craftTime: 7
   iconOverride: MedievalShovel

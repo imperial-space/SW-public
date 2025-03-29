@@ -52,7 +52,7 @@
 - type: entity
   id: SmithingGorn
   parent: BaseStructure
-  name: горн
+  name: кузнечный горн
   components:
   - type: SmithingFurnace
     meltingSlot:

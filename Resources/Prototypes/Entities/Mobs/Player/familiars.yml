@@ -32,6 +32,17 @@
     - PetsNT
   - type: Alerts
   - type: Familiar
+  - type: LanguageSpeaker # imperial medieval start
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak # imperial medieval end
 
 - type: entity
   name: Cerberus
@@ -94,3 +105,14 @@
       Male: Cerberus
       Female: Cerberus
       Unsexed: Cerberus
+  - type: LanguageSpeaker # imperial medieval start
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      Cursed: Speak
+      Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak # imperial medieval end
