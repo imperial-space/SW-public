@@ -11,7 +11,7 @@
       whitelist:
         components:
         - SmithingWorkpiece
-      whitelistFailPopup: smith-workplace-component-slot-fail
+      #whitelistFailPopup: smith-workplace-component-slot-fail
       lockedFailPopup: smith-workplace-component-slot-fail-locked
       insertSuccessPopup: smith-workplace-component-slot-fail-success
       ejectSound: null
