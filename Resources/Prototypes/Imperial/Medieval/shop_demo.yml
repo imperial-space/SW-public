@@ -1896,6 +1896,14 @@
   - MedievalMiscDemo
 
 - type: listing
+  id: DemoMdvShopMedievalHammerBlacksmith
+  productEntity: MedievalHammerBlacksmith
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
   id: DemoMdvShopMedievalHolySalt
   productEntity: MedievalHolySalt
   cost:

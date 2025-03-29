@@ -1988,6 +1988,33 @@
 
 - type: entity
   name: Exception Spawner
+  id: BarricadeSpellward
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: ai
+
+- type: entity
+  name: Exception Spawner
+  id: BarricadeSpellwardDirectional
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: ai
+
+- type: entity
+  name: Exception Spawner
+  id: BarricadeSpellwardBlock
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: ai
+
+- type: entity
+  name: Exception Spawner
   id: MedievalDungeonLadderEnter
   parent: MarkerBase
   components:
@@ -6759,7 +6786,8 @@
   - type: RadiationBlocker
     resistance: 8
   - type: MedievalMeleeBadTarget
-    breakMultiplier: 9
+    breakMultiplier: 8
+  - type: DamageCheckable
 
 - type: entity
   id: MedievalGatesGear
@@ -7393,3 +7421,4 @@
   components:
   - type: BellMap
     locale: bell-map-popup-ins
+

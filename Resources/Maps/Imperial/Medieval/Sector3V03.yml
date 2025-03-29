@@ -89766,7 +89766,7 @@ entities:
     - type: Transform
       pos: -8.5,27.5
       parent: 1
-- proto: Barricade
+- proto: BarricadeSpellward
   entities:
   - uid: 4
     components:
@@ -89853,7 +89853,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 34.5,-19.5
       parent: 1
-- proto: BarricadeBlock
+- proto: BarricadeSpellwardBlock
   entities:
   - uid: 19
     components:
@@ -90125,7 +90125,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-40.5
       parent: 1
-- proto: BarricadeDirectional
+- proto: BarricadeSpellwardDirectional
   entities:
   - uid: 66
     components:

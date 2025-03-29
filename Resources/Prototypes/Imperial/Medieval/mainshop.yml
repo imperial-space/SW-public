@@ -2075,6 +2075,14 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopMedievalHammerBlacksmith
+  productEntity: MedievalHammerBlacksmith
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalHolySalt
   productEntity: MedievalHolySalt
   cost:
@@ -2747,3 +2755,125 @@
     Revent: 15
   categories:
   - MedievalQuestIns
+
+- type: entity
+  id: MedievalShopHolePalletLeg
+  name: MedievalShopHole
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - MedievalPalletLeg
+    currencyWhitelist:
+    - Revent
+    balance:
+      Revent: 0
+  - type: TrashDefendArea
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight
+
+- type: storeCategory
+  id: MedievalPalletLeg
+  name: medieval-category-pallet
+  priority: 0
+
+- type: listing
+  id: MedievalPalletContractIns
+  productEntity: MedievalDecorStoragePalletIns
+  cost:
+    Revent: 220
+  categories:
+  - MedievalPalletLeg
+
+- type: entity
+  id: MedievalShopHolePalletIns
+  name: MedievalShopHole
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - MedievalPalletLeg
+    currencyWhitelist:
+    - Revent
+    balance:
+      Revent: 0
+  - type: TrashDefendArea
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight
+
+- type: storeCategory
+  id: MedievalPalletIns
+  name: medieval-category-pallet
+  priority: 0
+
+- type: listing
+  id: MedievalPalletContractLeg
+  productEntity: MedievalDecorStoragePalletLeg
+  cost:
+    Revent: 220
+  categories:
+  - MedievalPalletIns

@@ -1,4 +1,4 @@
-﻿ent-WorkpieceMedievalGear = заготовка средневекового механизма
+ent-WorkpieceMedievalGear = заготовка средневекового механизма
 ent-WorkpieceMedievalChain = заготовка цепи
 ent-WorkpieceMedievalLeatherBelt = заготовка кожаного ремня
 ent-WorkpieceMedievalIronPlate = заготовка железной пластины

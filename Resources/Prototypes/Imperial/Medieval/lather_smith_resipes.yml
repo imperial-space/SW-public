@@ -1,4 +1,4 @@
-﻿- type: CP14Recipe
+- type: CP14Recipe
   id: MedievalGear
   craftTime: 2
   iconOverride: MedievalGear
