@@ -2872,7 +2872,7 @@
 
 - type: listing
   id: MedievalPalletContractLeg
-  productEntity: MedievalDecorStoragePalletLeg
+  productEntity: MedievalDecorStoragePallet
   cost:
     Revent: 220
   categories:
