@@ -928,6 +928,7 @@
 - type: CP14Recipe
   id: MedievalChemistryEmptyBottle01
   craftTime: 3
+  iconOverride: MedievalChemistryEmptyBottle01
   stacks:
     MedievalIronIngot: 2
   result: WorkpieceMedievalChemistryEmptyBottle01
@@ -935,12 +936,14 @@
 - type: CP14Recipe
   id: MedievalChemistryEmptyBottle02
   craftTime: 3
+  iconOverride: MedievalChemistryEmptyBottle02
   stacks:
     MedievalIronIngot: 2
   result: WorkpieceMedievalChemistryEmptyBottle02
 
 - type: CP14Recipe
   id: MedievalChemistryEmptyBottle03
+  iconOverride: MedievalChemistryEmptyBottle03
   craftTime: 3
   stacks:
     MedievalIronIngot: 2
@@ -948,6 +951,7 @@
 
 - type: CP14Recipe
   id: MedievalChemistryEmptyBottle04
+  iconOverride: MedievalChemistryEmptyBottle04
   craftTime: 3
   stacks:
     MedievalIronIngot: 2
@@ -955,6 +959,7 @@
 
 - type: CP14Recipe
   id: MedievalKotel
+  iconOverride: MedievalKotel
   craftTime: 11
   stacks:
     MedievalIronIngot: 9
