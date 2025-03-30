@@ -103,7 +103,7 @@ namespace Content.Server.MedievalFactionFlag
                     {
                         if (barrier.Faction == comp.Faction)
                         {
-                            Spawn("MedievalRevent80", coords);
+                            Spawn("MedievalRevent25", coords);
                             if (comp.Faction == "legion")
                                 Spawn("MedievalMedalLegion", coords);
                             if (comp.Faction == "insurgency")
