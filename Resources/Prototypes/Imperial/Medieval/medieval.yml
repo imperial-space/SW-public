@@ -7207,12 +7207,15 @@
     price:
       Revent: 8
   - type: Item
-    size: Small
+    size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom1
         Quantity: 10
+  - type: Tag
+    tags:
+    - AlchemicIngredient
 
 - type: reagent
   id: MedievalMushroom2
@@ -7238,12 +7241,15 @@
     price:
       Revent: 8
   - type: Item
-    size: Small
+    size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom2
         Quantity: 10
+  - type: Tag
+    tags:
+    - AlchemicIngredient
 
 - type: reagent
   id: MedievalMushroom3
@@ -7269,12 +7275,15 @@
     price:
       Revent: 8
   - type: Item
-    size: Small
+    size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom3
         Quantity: 10
+  - type: Tag
+    tags:
+    - AlchemicIngredient
 
 - type: entity
   name: MedievalTimedSpawnerMushrooms

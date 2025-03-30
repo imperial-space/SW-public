@@ -158,6 +158,17 @@
   components:
     - type: Loadout
       prototypes: [ MedievalNecroFighter ]
+    - type: LanguageSpeaker
+      languages:
+        Common: Speak
+        #Goblin: Speak
+        #Ancient: Speak
+        #Tribe: Speak
+        #Orc: Speak
+        Cursed: Speak
+        #Growling: Speak
+        #Hissing: Speak
+        # Elf: Speak
 
 - type: startingGear
   id: MedievalNecroFighter

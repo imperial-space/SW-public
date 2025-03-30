@@ -717,6 +717,7 @@
         - MedievalRune
         - Bottle
         - MagicScroll
+        - AlchemicIngredient
   - type: Appearance
   - type: Item
     size: Large
