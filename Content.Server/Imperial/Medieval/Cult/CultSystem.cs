@@ -28,6 +28,9 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 using Content.Server.SSDFree;
 using Content.Server.SSDFree.Components;
+using Content.Shared.Cuffs.Components;
+using Robust.Shared.Containers;
+using Content.Shared.Containers;
 
 namespace Content.Server.Cult
 {
@@ -48,6 +51,7 @@ namespace Content.Server.Cult
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SSDFreeSystem _ssdFreeSystem = default!;
+        [Dependency] private readonly SharedContainerSystem _container = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
 
@@ -364,6 +368,8 @@ namespace Content.Server.Cult
                                     var oxform = Transform(ouraltar.Owner);
                                     var ocoords = oxform.Coordinates;
                                     _transform.SetCoordinates(victim, ocoords);
+                                    if (TryComp<CuffableComponent>(victim, out var cuff))
+                                        _container.EmptyContainer(cuff.Container, true);
                                     _chat.TrySendInGameICMessage(victim, "Культ истины провел со мной ритуал связи. Если я буду жертвовать кровь... то есть резать себя около этих кровавых сосудов, к одному из которых меня телепортировало, раз в какое-то время, то я буду получать длительную магическую регенерацию, а культ - алые кристаллы. Это... взаимовыгодно? Лишь бы другие не узнали...", InGameICChatType.Whisper, false);
                                     var cyr = EnsureComp<CultCursedComponent>(victim);
                                     cyr.CurseLevel = cyr.MaxCurseLevel;
