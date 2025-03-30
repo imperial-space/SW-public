@@ -10,7 +10,7 @@ public sealed partial class MercenaryBountyBoardComponent : Component
     public EntProtoId<MercenaryContractComponent> ContractProtoId { get; set; } = "MercContract";
 
     [DataField]
-    public TimeSpan CooldownTime { get; set; } = TimeSpan.FromMinutes(10);
+    public TimeSpan CooldownTime { get; set; } = TimeSpan.FromMinutes(20);
 
     public TimeSpan NextTimeUse { get; set; }
 }

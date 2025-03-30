@@ -41,8 +41,8 @@ public sealed class BountyBoardSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<MercenaryTargetComponent, InteractUsingEvent>(OnTargetInteracted);
-        SubscribeLocalEvent<MercenaryBountyBoardComponent, MapInitEvent>(OnMapInit);
 
+        SubscribeLocalEvent<MercenaryBountyBoardComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<MercenaryBountyTargetTraitComponent, MapInitEvent>(OnTargetInit);
     }
 
@@ -92,8 +92,9 @@ public sealed class BountyBoardSystem : EntitySystem
                 continue;
             }
 
-            _storageSystem.Insert(uid, contract, out _);
+            boardComponent.NextTimeUse = _gameTiming.CurTime + boardComponent.CooldownTime;
 
+            _storageSystem.Insert(uid, contract, out _);
             InitTarget(targetMaybe.Value.Target);
         }
     }
@@ -168,29 +169,6 @@ public sealed class BountyBoardSystem : EntitySystem
         while (query.MoveNext(out var uid, out _, out _, out _))
         {
             if (HasComp<MercenaryTargetComponent>(uid))
-            {
-                continue;
-            }
-
-            targets.Add(uid);
-        }
-
-        if (targets.Count != 0)
-        {
-            target = _random.Pick(targets);
-            return CreateMercTargetData(target);
-        }
-
-        var query2 = EntityQueryEnumerator<HumanoidAppearanceComponent, SSDFreeComponent>();
-
-        while (query2.MoveNext(out var uid, out _, out _))
-        {
-            if (HasComp<MercenaryTargetComponent>(uid))
-            {
-                continue;
-            }
-
-            if (HasComp<MercenaryComponent>(uid))
             {
                 continue;
             }
