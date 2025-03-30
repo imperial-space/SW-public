@@ -19,7 +19,7 @@ namespace Content.Server.Imperial.Medieval.JoinQueue;
 /// Manages new player connections when the server is full and queues them up,
 /// granting access when a slot becomes free.
 /// </summary>
-public sealed class JoinQueueManager : IPostInjectInit
+public sealed class JoinQueueManager
 {
     private static readonly Gauge QueueCount = Metrics.CreateGauge(
         "join_queue_count",
@@ -45,9 +45,6 @@ public sealed class JoinQueueManager : IPostInjectInit
     [Dependency] private readonly IConnectionManager _connection = default!;
     [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly IServerNetManager _net = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-
-    private GameTicker _gameTicker = default!;
 
     /// <summary>
     /// Queue of active player sessions.
@@ -65,11 +62,6 @@ public sealed class JoinQueueManager : IPostInjectInit
     private int ActualPlayersCount => _player.PlayerCount - PlayerInQueueCount;
 
     private bool _enabled;
-
-    public void PostInject()
-    {
-        _gameTicker = _entityManager.System<GameTicker>();
-    }
 
     public void Initialize()
     {
@@ -104,8 +96,8 @@ public sealed class JoinQueueManager : IPostInjectInit
         if (_connection is ConnectionManager connection)
             isPrivileged = connection.HavePriorityJoin(e.Session.UserId);
 
-        var wasInGame = _gameTicker.PlayerGameStatuses.TryGetValue(e.Session.UserId, out var status) &&
-                        status == PlayerGameStatus.JoinedGame;
+        var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) && ticker.PlayerGameStatuses.TryGetValue(e.Session.UserId, out var status) &&
+                         status == PlayerGameStatus.JoinedGame;
 
         // Do not count current session in general online, because we are still deciding her fate
         var currentOnline = _player.PlayerCount - 1;
