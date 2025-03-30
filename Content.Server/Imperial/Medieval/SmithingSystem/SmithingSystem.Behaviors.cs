@@ -91,9 +91,9 @@ public sealed partial class SmithingSystem
         { ItemQuality.Worst, "---"},
         { ItemQuality.ReallyBad, "--"},
         { ItemQuality.Bad, "-"},
-        { ItemQuality.Default, string.Empty},
-        { ItemQuality.Good, "+"},
-        { ItemQuality.Excellent, "++"},
+        { ItemQuality.Default, "+"},
+        { ItemQuality.Good, "++"},
+        { ItemQuality.Excellent, "+++"},
 
     };
 
