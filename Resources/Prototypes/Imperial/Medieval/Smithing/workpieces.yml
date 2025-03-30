@@ -51,6 +51,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalGear
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalChain
@@ -59,6 +61,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalChain
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalLeatherBelt
@@ -74,6 +78,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalIronPlate
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalIronPlateSmall
@@ -82,6 +88,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalIronPlateSmall
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalRivets
@@ -90,6 +98,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalRivets
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalShoulder
@@ -105,6 +115,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: ClothingEyesGlasses
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalCatapultCraft
@@ -561,6 +573,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalLockpick
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalShovel
@@ -674,6 +688,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalChemistryEmptyBottle01
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalChemistryEmptyBottle02
@@ -682,6 +698,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalChemistryEmptyBottle02
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalChemistryEmptyBottle03
@@ -690,6 +708,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalChemistryEmptyBottle03
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalChemistryEmptyBottle04
@@ -706,6 +726,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: MedievalDoorKeyCheck
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 - type: entity
   id: WorkpieceMedievalPrisonGrilleCraft
@@ -735,6 +757,8 @@
   - type: SmithingWorkpiece
     finalProductEntity: Syringe
     steps: 5
+  - type: DeleteOnLowScoreOnSmithComplete
+    threshold: -3
 
 #
 - type: entity
