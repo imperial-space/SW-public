@@ -29,6 +29,8 @@
     MedievalClothingHeadHelmetCollegiumPurpleHat: [ MedievalClothingHeadHelmeCollegiumWhitetHat ]
     MedievalShoesChamber: [ MedievalWhiteShoesCharmer ]
     ClothingBackpackSatchelCharmerLight: [ ClothingBackpackSatchelWhiteCharmerLight ]
+    ClothingOuterArmorPodWars: [ MedievalClothingOuterArmorGoblinSlayer ] 
+    MedievalClothingHeadHelmetHoodHelmet: [MedievalClothingHeadHelmetGoblinSlayer]
 
 - type: customization
   id: game123456
