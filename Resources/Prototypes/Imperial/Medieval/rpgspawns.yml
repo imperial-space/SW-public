@@ -1267,8 +1267,8 @@
         offset: 0.35
         spawn:
           SteelOre1:
-            min: 6
-            max: 10
+            min: 9
+            max: 14
   - type: Fixtures
     fixtures:
       fix1:

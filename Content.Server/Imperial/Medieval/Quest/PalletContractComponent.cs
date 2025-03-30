@@ -16,12 +16,12 @@ namespace Content.Server.Quest.Components
         public string ContractPartner { get; set; } = string.Empty;
 
         [DataField]
-        public int MinReward = 375;
+        public int MinReward = 415;
 
         [DataField]
-        public int MaxReward = 475;
+        public int MaxReward = 575;
         [DataField]
-        public int Reward = 400;
+        public int Reward = 500;
 
     }
 }

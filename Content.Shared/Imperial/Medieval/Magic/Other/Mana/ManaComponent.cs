@@ -29,7 +29,7 @@ public sealed partial class ManaComponent : Component
 
 
     [DataField("reloadTime")]
-    public TimeSpan ReloadTime = TimeSpan.FromSeconds(1f);
+    public TimeSpan ReloadTime = TimeSpan.FromSeconds(10f);
 
 
     [ViewVariables]

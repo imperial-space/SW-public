@@ -7242,7 +7242,7 @@
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: MedievalMushroom1
+      - ReagentId: MedievalMushroom2
         Quantity: 10
 
 - type: reagent

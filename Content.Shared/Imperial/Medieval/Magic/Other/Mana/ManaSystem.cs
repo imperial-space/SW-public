@@ -138,7 +138,7 @@ public sealed partial class ManaSystem : EntitySystem
         if (!Resolve(uid, ref component)) return false;
         if (component.Mana + mana > component.MaxMana) return false;
 
-        component.Mana = component.Mana + mana < 0 ? 0 : component.Mana + mana;
+        component.Mana = component.Mana + mana * 10f < 0 ? 0 : component.Mana + mana * 10f;
 
         Dirty(uid, component);
 

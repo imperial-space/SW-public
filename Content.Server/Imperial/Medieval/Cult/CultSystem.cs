@@ -175,6 +175,8 @@ namespace Content.Server.Cult
 
             if (curTime > _nextCheckTime)
             {
+                _nextCheckTime = curTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+
                 foreach (var heal in EntityManager.EntityQuery<HealCurseComponent>())
                 {
                     _damageableSystem.TryChangeDamage(heal.Owner, -heal.RegenDamage, true, false);
@@ -286,7 +288,6 @@ namespace Content.Server.Cult
                             }
                         }
                     }
-                    _nextCheckTime = curTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
                 }
             }
         }
