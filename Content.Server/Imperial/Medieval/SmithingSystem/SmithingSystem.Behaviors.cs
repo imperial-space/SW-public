@@ -30,14 +30,15 @@ public sealed partial class SmithingSystem
 
         foreach (var key in armorComponent.Modifiers.FlatReduction.Keys)
         {
-            armorComponent.Modifiers.FlatReduction[key] *= modifier.Modifier;
+            armorComponent.Modifiers.FlatReduction[key] = MathF.Round(armorComponent.Modifiers.FlatReduction[key] * modifier.Modifier, digits: 2);
         }
 
         foreach (var key in armorComponent.Modifiers.Coefficients.Keys)
         {
-            armorComponent.Modifiers.Coefficients[key] /= modifier.Modifier;
+            armorComponent.Modifiers.Coefficients[key] = MathF.Round(armorComponent.Modifiers.Coefficients[key] / modifier.Modifier, digits: 2);
         }
 
+        EntityManager.DirtyEntity(args.Item);
         SetName(args.Item, modifier.Quality);
     }
 
@@ -47,12 +48,12 @@ public sealed partial class SmithingSystem
 
         if (TryComp<MedievalMeleeResourceComponent>(args.Item, out var resourceComponent))
         {
-            resourceComponent.FullModifier *= modifier.Modifier;
-            resourceComponent.AlmostFullModifier *= modifier.Modifier;
-            resourceComponent.DamagedModifier *= modifier.Modifier;
-            resourceComponent.BadlyDamagedModifier *= modifier.Modifier;
-            resourceComponent.BrokenModifier *= modifier.Modifier;
-            resourceComponent.UpModifier *= modifier.Modifier;
+            resourceComponent.FullModifier = MathF.Round(resourceComponent.FullModifier * modifier.Modifier, digits: 2);
+            resourceComponent.AlmostFullModifier = MathF.Round(resourceComponent.AlmostFullModifier * modifier.Modifier, digits: 2);
+            resourceComponent.DamagedModifier = MathF.Round(resourceComponent.DamagedModifier * modifier.Modifier, digits: 2);
+            resourceComponent.BadlyDamagedModifier = MathF.Round(resourceComponent.BadlyDamagedModifier * modifier.Modifier, digits: 2);
+            resourceComponent.BrokenModifier = MathF.Round(resourceComponent.BrokenModifier * modifier.Modifier, digits: 2);
+            resourceComponent.UpModifier = MathF.Round(resourceComponent.UpModifier * modifier.Modifier, digits: 2);
         }
 
         if (TryComp<DamageOtherOnHitComponent>(args.Item, out var damageOtherOnHitComponent))
@@ -65,8 +66,8 @@ public sealed partial class SmithingSystem
             meleeWeaponComponent.Damage *= modifier.Modifier;
         }
 
+        EntityManager.DirtyEntity(args.Item);
         SetName(args.Item, modifier.Quality);
-        Dirty(ent);
     }
 
     private void DeleteOnLowScore(Entity<DeleteOnLowScoreOnSmithCompleteComponent> ent, ref SmithingApplyBehaviorsEvent args)
@@ -91,9 +92,9 @@ public sealed partial class SmithingSystem
         { ItemQuality.Worst, "---"},
         { ItemQuality.ReallyBad, "--"},
         { ItemQuality.Bad, "-"},
-        { ItemQuality.Default, string.Empty},
-        { ItemQuality.Good, "+"},
-        { ItemQuality.Excellent, "++"},
+        { ItemQuality.Default, "+"},
+        { ItemQuality.Good, "++"},
+        { ItemQuality.Excellent, "+++"},
 
     };
 

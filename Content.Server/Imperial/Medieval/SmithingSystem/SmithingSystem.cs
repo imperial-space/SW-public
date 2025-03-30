@@ -3,6 +3,7 @@ using Content.Shared.Imperial.Medieval.SmithingSystem;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Bui;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Events;
 using Content.Shared.Interaction;
+using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Tag;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
@@ -25,6 +26,7 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
         SubscribeLocalEvent<SmithingWorkplaceComponent, EntRemovedFromContainerMessage>(OnSmithEntRemoved);
         SubscribeLocalEvent<SmithingWorkplaceComponent, InteractUsingEvent>(OnInteractUsingEvent);
         SubscribeLocalEvent<SmithingWorkpieceComponent, SmithingCompleteEvent>(OnSmithingComplete);
+        SubscribeLocalEvent<SmithingWorkpieceComponent, PullAttemptEvent>(OnPullAttempt);
 
         Subs.BuiEvents<SmithingWorkplaceComponent>(SmithUiKey.Key,
             subscriber =>
@@ -33,6 +35,14 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
                 subscriber.Event<BoundUIClosedEvent>(OnBuiClosed);
                 subscriber.Event<ClientStartedGameEvent>(OnClientStartedGame);
             });
+    }
+
+    private void OnPullAttempt(Entity<SmithingWorkpieceComponent> ent, ref PullAttemptEvent args)
+    {
+        if (ent.Comp.ReadyToForge)
+        {
+            args.Cancelled = true;
+        }
     }
 
     public override void Update(float frameTime)
@@ -69,7 +79,10 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
 
     private void OnBuiClosed(Entity<SmithingWorkplaceComponent> ent, ref BoundUIClosedEvent args)
     {
-        EndGame(ent);
+        if (ent.Comp.GameState is { Started: true })
+        {
+            EndGame(ent);
+        }
     }
 
     private void EndGame(Entity<SmithingWorkplaceComponent> ent)
