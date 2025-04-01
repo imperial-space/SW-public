@@ -3178,7 +3178,7 @@
     damage:
       types:
         Asphyxiation: 8
-        Blunt: 1
+        Slash: 1
     ignoreWhitelist:
       tags:
       - MedievalMob
