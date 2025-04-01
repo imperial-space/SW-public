@@ -6800,6 +6800,8 @@
   - type: MedievalMeleeBadTarget
     breakMultiplier: 8
   - type: DamageCheckable
+  - type: ExplosionResistance
+    damageCoefficient: 0.33
 
 - type: entity
   id: MedievalGatesGear
