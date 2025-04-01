@@ -294,6 +294,14 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: MedievalMortarCraft
+  productEntity: MedievalMortarCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+  
+- type: listing
   id: DemoMdvShopMedievalWoodWorkerPlaceCraft
   productEntity: MedievalWoodWorkerPlaceCraft
   cost:
