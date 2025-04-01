@@ -300,7 +300,7 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
                 blacklist[otherkey].Add(key);
             }
         }
-        if (!TryRandomize(EasyPotionList.Clone(), availableEasyRecipes, BasicCan, 10, out var easyPotionRecipes, out var easyPotions))
+        if (!TryRandomize(EasyPotionList.Clone(), availableEasyRecipes, BasicCan, 26, out var easyPotionRecipes, out var easyPotions))
         {
             Log.Debug("Failure while generating easy potion recipes");
             args.Cancel();
@@ -318,7 +318,7 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
                 availableMediumRecipes.Add(result);
             }
         }
-        if (!TryRandomize(MediumPotionList.Clone(), availableMediumRecipes, BasicCan, 3, out var mediumPotionRecipes, out var mediumPotions))
+        if (!TryRandomize(MediumPotionList.Clone(), availableMediumRecipes, BasicCan, 8, out var mediumPotionRecipes, out var mediumPotions))
         {
             Log.Debug("Failure while generating medium potion recipes");
             args.Cancel();
