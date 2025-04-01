@@ -166,6 +166,14 @@
   - MedievalFoodDemo
 
 - type: listing
+  id: FoodCondimentBottleEnzyme
+  productEntity: FoodCondimentBottleEnzyme
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalFoodDemo
+
+- type: listing
   id: DemoMdvShopFoodMeatChickenFried
   productEntity: FoodMeatChickenFried
   cost:
