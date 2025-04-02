@@ -3178,7 +3178,7 @@
     damage:
       types:
         Asphyxiation: 8
-        Blunt: 1
+        Slash: 1
     ignoreWhitelist:
       tags:
       - MedievalMob
@@ -6800,6 +6800,8 @@
   - type: MedievalMeleeBadTarget
     breakMultiplier: 8
   - type: DamageCheckable
+  - type: ExplosionResistance
+    damageCoefficient: 3
 
 - type: entity
   id: MedievalGatesGear

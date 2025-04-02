@@ -206,6 +206,14 @@
   - MedievalFood
 
 - type: listing
+  id: FoodCondimentBottleEnzyme
+  productEntity: FoodCondimentBottleEnzyme
+  cost:
+    Revent: 10
+  categories:
+  - MedievalFood
+
+- type: listing
   id: MdvShopFoodBakedPretzel
   productEntity: FoodBakedPretzel
   cost:
