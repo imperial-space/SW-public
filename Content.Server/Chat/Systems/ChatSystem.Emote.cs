@@ -155,7 +155,7 @@ public partial class ChatSystem
         // Imperial Medieval AgePitch Begin
         if (TryComp<Shared.Humanoid.HumanoidAppearanceComponent>(uid, out var comp))
             param.Pitch += Math.Clamp((50f - comp.Age) * 0.05f, -0.5f, 5f);
-        Log.Debug(param.Pitch.ToString());
+
         // Imperial Medieval AgePitch End
         _audio.PlayPvs(sound, uid, param);
         return true;
