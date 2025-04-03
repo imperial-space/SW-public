@@ -85,14 +85,14 @@ public abstract class SharedArmorSystem : EntitySystem
             {
                 msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
                     ("type", coefficientArmor.Key),
-                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,1))
+                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,2)) //Imperail medieval edit
                     ));
             }
             if (coefficientArmor.Key == "Stamina")
             {
                 msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value-stamina",
                     ("type", coefficientArmor.Key),
-                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,1))
+                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,2)) //Imperail medieval edit
                     ));
             }
             // stamina resistance end

@@ -28,6 +28,10 @@ public sealed class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
         var changeset = new ReagentGuideChangeset(new Dictionary<string, ReagentGuideEntry>(), new HashSet<string>());
         foreach (var proto in PrototypeManager.EnumeratePrototypes<ReagentPrototype>())
         {
+            // Imperial Medieval Chemistry Begin
+            if (!proto.ShowInBook)
+                continue;
+            // Imperial Medieval Chemistry End
             var entry = new ReagentGuideEntry(proto, PrototypeManager, EntityManager.EntitySysManager);
             changeset.GuideEntries.Add(proto.ID, entry);
             Registry[proto.ID] = entry;
@@ -56,6 +60,10 @@ public sealed class ChemistryGuideDataSystem : SharedChemistryGuideDataSystem
         foreach (var (id, proto) in reagents.Modified)
         {
             var reagentProto = (ReagentPrototype) proto;
+            // Imperial Medieval Chemistry Begin
+            if (!reagentProto.ShowInBook)
+                continue;
+            // Imperial Medieval Chemistry End
             var entry = new ReagentGuideEntry(reagentProto, PrototypeManager, EntityManager.EntitySysManager);
             changeset.GuideEntries.Add(id, entry);
             Registry[id] = entry;

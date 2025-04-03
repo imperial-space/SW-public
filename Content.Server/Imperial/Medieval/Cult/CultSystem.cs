@@ -28,6 +28,9 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 using Content.Server.SSDFree;
 using Content.Server.SSDFree.Components;
+using Content.Shared.Cuffs.Components;
+using Robust.Shared.Containers;
+using Content.Shared.Containers;
 
 namespace Content.Server.Cult
 {
@@ -48,6 +51,7 @@ namespace Content.Server.Cult
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SSDFreeSystem _ssdFreeSystem = default!;
+        [Dependency] private readonly SharedContainerSystem _container = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
 
@@ -175,6 +179,8 @@ namespace Content.Server.Cult
 
             if (curTime > _nextCheckTime)
             {
+                _nextCheckTime = curTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+
                 foreach (var heal in EntityManager.EntityQuery<HealCurseComponent>())
                 {
                     _damageableSystem.TryChangeDamage(heal.Owner, -heal.RegenDamage, true, false);
@@ -197,7 +203,7 @@ namespace Content.Server.Cult
                         _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
                         _popupSystem.PopupEntity("Все ваше тело болит из-за того, что вы не поддерживаете зов культа. Терпеть?", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
                     }
-                    if (cursed.CurseLevel > 0f && cursed.CurseLevel < 5f)
+                    if (cursed.CurseLevel > 0f && cursed.CurseLevel <= 5f)
                     {
                         _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
                         _popupSystem.PopupEntity("Еще немного, и связь с культом разорвется. Терпеть осталось недолго.", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
@@ -211,7 +217,7 @@ namespace Content.Server.Cult
 
                 foreach (var picture in EntityManager.EntityQuery<CultCheckPictureComponent>())
                 {
-                    if (picture.CollegiumUnlocked) return;
+                    if (picture.CollegiumUnlocked) continue;
                     foreach (var cultist in EntityManager.EntityQuery<CultMemberComponent>())
                     {
                         if (TryComp<CultMapBlockerComponent>(cultist.parent, out var blocker))
@@ -286,7 +292,6 @@ namespace Content.Server.Cult
                             }
                         }
                     }
-                    _nextCheckTime = curTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
                 }
             }
         }
@@ -323,9 +328,6 @@ namespace Content.Server.Cult
                 return;
             }
 
-
-
-
             switch (figure)
             {
                 case "christ":
@@ -348,7 +350,7 @@ namespace Content.Server.Cult
                                         var axform = Transform(altar.Owner);
                                         var acoords = axform.Coordinates;
                                         Spawn("MedievalCultCrystallRed", acoords);
-                                        if (!isDead) Spawn("MedievalCultCrystallRed", acoords);
+                                        //if (!isDead) Spawn("MedievalCultCrystallRed", acoords);
                                         if (isDead && TryComp<SSDFreeComponent>(victim, out var ssdfreeComp) && _playerManager.TryGetSessionByEntity(victim, out var session)) _ssdFreeSystem.GoToSSD(victim, session.UserId, false, ssdfreeComp);
                                     }
                                     _audioSystem.PlayPvs(comp.SuccesSound, uid);
@@ -366,6 +368,8 @@ namespace Content.Server.Cult
                                     var oxform = Transform(ouraltar.Owner);
                                     var ocoords = oxform.Coordinates;
                                     _transform.SetCoordinates(victim, ocoords);
+                                    if (TryComp<CuffableComponent>(victim, out var cuff))
+                                        _container.EmptyContainer(cuff.Container, true);
                                     _chat.TrySendInGameICMessage(victim, "Культ истины провел со мной ритуал связи. Если я буду жертвовать кровь... то есть резать себя около этих кровавых сосудов, к одному из которых меня телепортировало, раз в какое-то время, то я буду получать длительную магическую регенерацию, а культ - алые кристаллы. Это... взаимовыгодно? Лишь бы другие не узнали...", InGameICChatType.Whisper, false);
                                     var cyr = EnsureComp<CultCursedComponent>(victim);
                                     cyr.CurseLevel = cyr.MaxCurseLevel;
@@ -413,7 +417,7 @@ namespace Content.Server.Cult
                         {
                             if (picture.Sector1 && picture.Sector2 && picture.Sector3 && picture.Sector6 && picture.Sector7 && picture.Sector8 && picture.Sector9)
                             {
-                                if (CheckCrystals(uid, comp, 5, 0))
+                                if (CheckCrystals(uid, comp, 4, 0))
                                 {
                                     foreach (var tp in EntityManager.EntityQuery<CultTeleportComponent>())
                                     {
@@ -515,11 +519,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
 
                     }
@@ -909,7 +913,7 @@ namespace Content.Server.Cult
             {
                 if (comp.CurseLevel > 0f)
                     args.PushMarkup("Имеет [color=red]связь с культом[/color]");
-                if (comp.CurseLevel < 0f)
+                if (comp.CurseLevel <= 0f)
                     args.PushMarkup("[color=red]Разорвал[/color] связь с культом, грешник!");
             }
             if (TryComp<CultCursedComponent>(args.Examiner, out var cursed) && cursed.CurseLevel > 0f && comp.CurseLevel > 0f)

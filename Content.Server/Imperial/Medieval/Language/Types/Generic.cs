@@ -5,6 +5,11 @@ using Content.Shared.Speech;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using System.Linq;
+using Content.Server.Chat.Managers;
+using Robust.Shared.Replays;
+using Content.Shared.IdentityManagement;
+using Content.Server.Examine;
 
 namespace Content.Server.Imperial.Medieval.Language;
 /// <summary>
@@ -62,6 +67,7 @@ public sealed partial class Generic : ILanguageType
     {
         var lang = entMan.System<LanguageSystem>();
         var chat = entMan.System<ChatSystem>();
+        var chatMan = IoCManager.Resolve<IChatManager>();
         var random = IoCManager.Resolve<IRobustRandom>();
         var proto = IoCManager.Resolve<IPrototypeManager>();
         success = false;
@@ -106,34 +112,68 @@ public sealed partial class Generic : ILanguageType
 
         name = FormattedMessage.EscapeText(name);
 
-        // Build messages
-        var wrappedMessage = Loc.GetString(verb.Bold && Font == null ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
-            ("entityName", name),
-            ("verb", Loc.GetString(random.Pick(verbStrings))),
-            ("fontType", font),
-            ("fontSize", fontSize),
-            ("defaultFont", verb.FontId),
-            ("defaultSize", verb.FontSize),
-            ("message", coloredMessage));
-
-        var wrappedLanguageMessage = Loc.GetString(verb.Bold && Font == null ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
-            ("entityName", name),
-            ("verb", Loc.GetString(random.Pick(verbStrings))),
-            ("fontType", font),
-            ("fontSize", fontSize),
-            ("defaultFont", verb.FontId),
-            ("defaultSize", verb.FontSize),
-            ("message", coloredLanguageMessage));
-
         // Send
-        chat.SendInVoiceRange(ChatChannel.Local, message, wrappedMessage, wrappedLanguageMessage, uid, range, language: Language);
         success = true;
+
+        var langProto = proto.Index(Language);
+        foreach (var (session, data) in chat.GetRecipients(uid, ChatSystem.VoiceRange))
+        {
+            EntityUid listener;
+
+            if (session.AttachedEntity is not { Valid: true } playerEntity)
+                continue;
+            listener = session.AttachedEntity.Value;
+
+            bool condition = true;
+            foreach (var item in langProto.Conditions.Where(x => x.RaiseOnListener))
+            {
+                if (!item.Condition(listener, uid, entMan))
+                    condition = false;
+            }
+            if (!condition)
+                continue;
+
+            var entRange = chat.MessageRangeCheck(session, data, range);
+            if (entRange == ChatSystem.MessageRangeCheckResult.Disallowed)
+                continue;
+            var entHideChat = entRange == ChatSystem.MessageRangeCheckResult.HideChat;
+
+            if (!lang.CanUnderstand(listener, langProto))
+            {
+                var wrappedLanguageMessage = Loc.GetString(verb.Bold && Font == null ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
+                    ("verb", Loc.GetString(random.Pick(verbStrings))),
+                    ("fontType", font),
+                    ("fontSize", fontSize),
+                    ("defaultFont", verb.FontId),
+                    ("defaultSize", verb.FontSize),
+                    ("message", coloredLanguageMessage));
+
+                chatMan.ChatMessageToOne(ChatChannel.Local, message, wrappedLanguageMessage, uid, entHideChat, session.Channel);
+            }
+            else
+            {
+                var wrappedMessage = Loc.GetString(verb.Bold && Font == null ? "chat-manager-entity-lang-say-bold-wrap-message" : "chat-manager-entity-lang-say-wrap-message",
+                    ("entityName", Identity.Name(uid, entMan, listener)),
+                    ("verb", Loc.GetString(random.Pick(verbStrings))),
+                    ("fontType", font),
+                    ("fontSize", fontSize),
+                    ("defaultFont", verb.FontId),
+                    ("defaultSize", verb.FontSize),
+                    ("message", coloredMessage));
+
+                chatMan.ChatMessageToOne(ChatChannel.Local, message, wrappedMessage, uid, entHideChat, session.Channel);
+            }
+        }
     }
 
     public void Whisper(EntityUid uid, string message, string name, string nameIdentity, ChatTransmitRange range, IEntityManager entMan, out bool success, out string resultMessage, out string resultObfMessage, Color? colorOverride = null)
     {
         var lang = entMan.System<LanguageSystem>();
         var chat = entMan.System<ChatSystem>();
+        var examine = entMan.System<ExamineSystem>();
+        var chatMan = IoCManager.Resolve<IChatManager>();
+        var proto = IoCManager.Resolve<IPrototypeManager>();
         success = false;
 
         message = chat.TransformSpeech(uid, message);
@@ -162,55 +202,68 @@ public sealed partial class Generic : ILanguageType
             obfuscatedLanguageMessage = $"[color={WhisperColor.Value.ToHex()}]" + obfuscatedLanguageMessage + "[/color]";
         }
 
-        name = FormattedMessage.EscapeText(name);
-
-        var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
-            ("entityName", name),
-            ("fontType", Font ?? "NotoSansDisplayItalic"),
-            ("fontSize", FontSize ?? 11),
-            ("defaultFont", "NotoSansDisplayItalic"),
-            ("defaultSize", 11),
-            ("message", accentMessage));
-
-        var wrappedobfuscatedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
-            ("entityName", nameIdentity),
-            ("fontType", Font ?? "NotoSansDisplayItalic"),
-            ("fontSize", FontSize ?? 11),
-            ("defaultFont", "NotoSansDisplayItalic"),
-            ("defaultSize", 11),
-            ("message", obfuscatedMessage));
-
-        var wrappedUnknownMessage = Loc.GetString("chat-manager-entity-lang-whisper-unknown-wrap-message",
-            ("fontType", Font ?? "NotoSansDisplayItalic"),
-            ("fontSize", FontSize ?? 11),
-            ("defaultFont", "NotoSansDisplayItalic"),
-            ("defaultSize", 11),
-            ("message", obfuscatedMessage));
-
-        var wrappedLanguageMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
-            ("fontType", Font ?? "NotoSansDisplayItalic"),
-            ("fontSize", FontSize ?? 11),
-            ("defaultFont", "NotoSansDisplayItalic"),
-            ("defaultSize", 11),
-            ("entityName", name), ("message", languageMessage));
-
-        var wrappedobfuscatedLanguageMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
-            ("fontType", Font ?? "NotoSansDisplayItalic"),
-            ("fontSize", FontSize ?? 11),
-            ("defaultFont", "NotoSansDisplayItalic"),
-            ("defaultSize", 11),
-            ("entityName", nameIdentity), ("message", obfuscatedLanguageMessage));
-
-        var wrappedUnknownLanguageMessage = Loc.GetString("chat-manager-entity-lang-whisper-unknown-wrap-message",
-            ("fontType", Font ?? "NotoSansDisplayItalic"),
-            ("fontSize", FontSize ?? 11),
-            ("defaultFont", "NotoSansDisplayItalic"),
-            ("defaultSize", 11),
-            ("message", obfuscatedLanguageMessage));
-
-        chat.SendWhisper(uid, Language, range, message, obfuscatedMessage,
-                        wrappedMessage, wrappedobfuscatedMessage, wrappedUnknownMessage,
-                        wrappedLanguageMessage, wrappedobfuscatedLanguageMessage, wrappedUnknownLanguageMessage);
         success = true;
+        var langProto = proto.Index(Language);
+
+        foreach (var (session, data) in chat.GetWhisperRecipients(uid, ChatSystem.WhisperClearRange, ChatSystem.WhisperMuffledRange))
+        {
+            EntityUid listener;
+
+            if (session.AttachedEntity is not { Valid: true } playerEntity)
+                continue;
+            listener = session.AttachedEntity.Value;
+
+            bool condition = true;
+            foreach (var item in langProto.Conditions.Where(x => x.RaiseOnListener))
+            {
+                if (!item.Condition(listener, uid, entMan))
+                    condition = false;
+            }
+            if (!condition)
+                continue;
+
+            if (chat.MessageRangeCheck(session, data, range) != ChatSystem.MessageRangeCheckResult.Full)
+                continue; // Won't get logged to chat, and ghosts are too far away to see the pop-up, so we just won't send it to them.
+
+            if (!data.Muffled)
+            {
+                var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
+                    ("fontType", Font ?? "NotoSansDisplayItalic"),
+                    ("fontSize", FontSize ?? 11),
+                    ("defaultFont", "NotoSansDisplayItalic"),
+                    ("defaultSize", 11),
+                    ("message", lang.CanUnderstand(listener, langProto) ? accentMessage : languageMessage));
+
+                chatMan.ChatMessageToOne(ChatChannel.Whisper, message, wrappedMessage, uid, false, session.Channel);
+            }
+
+            //If listener is too far, they only hear fragments of the message
+            else if (examine.InRangeUnOccluded(uid, listener, ChatSystem.WhisperMuffledRange))
+            {
+                var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-wrap-message",
+                    ("entityName", Identity.Name(uid, entMan, listener, true)),
+                    ("fontType", Font ?? "NotoSansDisplayItalic"),
+                    ("fontSize", FontSize ?? 11),
+                    ("defaultFont", "NotoSansDisplayItalic"),
+                    ("defaultSize", 11),
+                    ("message", lang.CanUnderstand(listener, langProto) ? obfuscatedMessage : obfuscatedLanguageMessage));
+
+                chatMan.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedMessage, uid, false, session.Channel);
+            }
+
+            //If listener is too far and has no line of sight, they can't identify the whisperer's identity
+            else
+            {
+                var wrappedMessage = Loc.GetString("chat-manager-entity-lang-whisper-unknown-wrap-message",
+                    ("fontType", Font ?? "NotoSansDisplayItalic"),
+                    ("fontSize", FontSize ?? 11),
+                    ("defaultFont", "NotoSansDisplayItalic"),
+                    ("defaultSize", 11),
+                    ("message", lang.CanUnderstand(listener, langProto) ? obfuscatedMessage : obfuscatedLanguageMessage));
+
+                chatMan.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedMessage, uid, false, session.Channel);
+            }
+        }
     }
 }

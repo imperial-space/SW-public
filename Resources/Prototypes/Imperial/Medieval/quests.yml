@@ -149,8 +149,8 @@
     - "хлопок"
     contractPartner: "порт легиона"
     minReward: 85
-    maxReward: 225
-    minAmount: 10
+    maxReward: 150
+    minAmount: 14
     maxAmount: 20
 
 - type: entity
@@ -326,6 +326,6 @@
     - "хлопок"
     contractPartner: "дракар в порту мятежников"
     minReward: 85
-    maxReward: 225
-    minAmount: 10
+    maxReward: 150
+    minAmount: 14
     maxAmount: 20

@@ -1,5 +1,5 @@
 ﻿using Content.Server.Quest.Components;
-using Content.Shared.Actions;
+using Content.Shared.Speech;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Random;
 using Content.Shared.Examine;
@@ -10,6 +10,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
+using Content.Server.Chat.Systems;
 
 namespace Content.Server.Quest;
 public partial class QuestSystem : EntitySystem
@@ -18,13 +19,18 @@ public partial class QuestSystem : EntitySystem
     [Dependency] private readonly SharedStackSystem _stack = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] protected readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<QuestContractComponent, ComponentStartup>(OnStart);
+        SubscribeLocalEvent<PalletContractComponent, ComponentStartup>(OnStartPallete);
+        SubscribeLocalEvent<PalletStorageComponent, ComponentStartup>(OnStartPallete2);
         SubscribeLocalEvent<QuestContractComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<PalletContractComponent, ExaminedEvent>(OnExaminePallete);
         SubscribeLocalEvent<QuestContractComponent, BeforeRangedInteractEvent>(OnUseInHand);
+        SubscribeLocalEvent<PalletContractComponent, BeforeRangedInteractEvent>(OnUseInHandPallete);
     }
 
     public void OnUseInHand(EntityUid uid, QuestContractComponent comp, BeforeRangedInteractEvent args)
@@ -49,18 +55,32 @@ public partial class QuestSystem : EntitySystem
             }
             if (lootCount >= comp.Amount)
             {
-                GetReward(used, user, comp, storage.Owner);
+                GetReward(used, user, storage.Owner, comp.Reward, comp.ContractPartner);
             }
         }
     }
 
-
-    public void GetReward(EntityUid contract, EntityUid user, QuestContractComponent comp, EntityUid chest)
+    public void OnUseInHandPallete(EntityUid uid, PalletContractComponent comp, BeforeRangedInteractEvent args)
     {
-        int remainingAmount = comp.Reward;
+        if (!args.CanReach)
+            return;
+        OnUsePallete(args.Target, args.User, args.Used, comp);
+    }
+
+    public void OnUsePallete(EntityUid? target, EntityUid user, EntityUid used, PalletContractComponent comp)
+    {
+        if (target == null)
+            return;
+        if (TryComp<PalletStorageComponent>(target.Value, out var pallet) && pallet.ContractPartner == comp.ContractPartner)
+            GetReward(used, user, target.Value, comp.Reward, comp.ContractPartner);
+    }
+
+    public void GetReward(EntityUid contract, EntityUid user, EntityUid chest, int Reward, string ContractPartner)
+    {
+        int remainingAmount = Reward;
         var xform = Transform(chest);
         var coords = xform.Coordinates;
-        if (!CheckQuestArea(coords, comp.ContractPartner))
+        if (!CheckQuestArea(coords, ContractPartner))
             return;
         while (remainingAmount >= 100)
         {
@@ -91,12 +111,36 @@ public partial class QuestSystem : EntitySystem
         comp.ContractName = _random.Pick(comp.ContractTypes);
     }
 
+    private void OnStartPallete(EntityUid uid, PalletContractComponent comp, ComponentStartup args)
+    {
+        comp.Reward = _random.Next(comp.MinReward, comp.MaxReward);
+        foreach (var spy in EntityManager.EntityQuery<PalletSpyComponent>())
+        {
+            EnsureComp<SpeechComponent>(spy.Owner);
+            _chat.TrySendInGameICMessage(spy.Owner, "Замечено прибытие ценного груза... его собираются доставить в " + comp.ContractPartner +"!!!", InGameICChatType.Speak, false);
+        }
+    }
+
+    private void OnStartPallete2(EntityUid uid, PalletStorageComponent comp, ComponentStartup args)
+    {
+        var xform = Transform(uid);
+        var coords = xform.Coordinates;
+        Spawn(comp.QuestLink, coords);
+    }
+
     private void OnExamine(EntityUid uid, QuestContractComponent comp, ExaminedEvent args)
     {
         args.PushMarkup("[color=sandybrown]Тип контракта: [/color]добыча");
         args.PushMarkup("[color=lightgreen]Место сдачи: [/color]" + comp.ContractPartner);
         args.PushMarkup("[color=orange]Тип добычи: [/color]" + comp.ContractName);
         args.PushMarkup("[color=red]Необходимое количество: [/color]" + comp.Amount);
+        args.PushMarkup("[color=yellow]Награда: [/color]" + comp.Reward);
+    }
+
+    private void OnExaminePallete(EntityUid uid, PalletContractComponent comp, ExaminedEvent args)
+    {
+        args.PushMarkup("[color=sandybrown]Тип контракта: [/color]доставка");
+        args.PushMarkup("[color=lightgreen]Место сдачи: [/color]" + comp.ContractPartner);
         args.PushMarkup("[color=yellow]Награда: [/color]" + comp.Reward);
     }
 }

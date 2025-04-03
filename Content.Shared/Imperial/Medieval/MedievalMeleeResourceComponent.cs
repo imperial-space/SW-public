@@ -2,6 +2,7 @@ using Content.Shared.Damage;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 using Robust.Shared.GameStates;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.MedievalMeleeResource.Components;
 
@@ -21,11 +22,11 @@ public sealed partial class MedievalMeleeResourceComponent : Component
     [DataField, AutoNetworkedField]
     public string DamageState = "Full";
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
-    public string EffectSoundOnRepair = "/Audio/Imperial/Medieval/repair_stone_use.ogg";
+    [DataField]
+    public SoundSpecifier? EffectSoundOnRepair = new SoundPathSpecifier("/Audio/Imperial/Medieval/repair_stone_use.ogg");
 
-    [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
-    public string EffectSoundOnBreak = "/Audio/Imperial/Medieval/melee_break.ogg";
+    [DataField]
+    public SoundSpecifier? EffectSoundOnBreak = new SoundPathSpecifier("/Audio/Imperial/Medieval/melee_break.ogg");
 
     [DataField]
     public string SafeToHitGroup = "all";

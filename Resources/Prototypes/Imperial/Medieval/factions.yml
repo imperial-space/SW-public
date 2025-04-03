@@ -14,6 +14,7 @@
     state: legion
   knownFactions:
     Insurgency: "[color=red]Чертов предатель, сбежал(а) из легиона![/color]"
+  wantedText: "[color=red]Дезертир![/color]"
 
 - type: medievalFaction
   id: Insurgency
@@ -23,6 +24,7 @@
     state: insurgency
   knownFactions:
     Legion: "[color=red]Бывший сослуживец, грязный легионер![/color]"
+  wantedText: "[color=red]Изменник![/color]"
 
 - type: medievalFaction
   id: Bandit
@@ -30,6 +32,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: bandit
+  wantedText: "[color=red]Изгнанник.[/color]"
 
 - type: medievalFaction
   id: Merc
@@ -37,6 +40,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: merc
+  wantedText: "[color=red]Предатель.[/color]"
 
 - type: medievalFaction
   id: Collegium
@@ -44,6 +48,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: collegium
+  wantedText: "[color=red]Проклятый![/color]"
 
 - type: medievalFaction
   id: Miner
@@ -51,11 +56,16 @@
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: miner
+  wantedText: "[color=red]Уволен.[/color]"
 
 - type: medievalFaction
   id: Tribe
   name: племя
+  allowHeadhunt: false
+  wantedText: "[color=red]Изгнанник.[/color]"
 
 - type: medievalFaction
   id: Cult
   name: культ
+  allowHeadhunt: false
+  wantedText: "[color=red]Неверный![/color]"

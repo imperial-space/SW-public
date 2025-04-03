@@ -52,11 +52,7 @@
   abstract: true
   components:
   - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
+
 
 # Heavy helmets
 - type: entity
@@ -261,7 +257,7 @@
     sprite: Imperial/Medieval/Clothing/Head/bacinet.rsi
 
 - type: entity
-  parent: MedievalClothingHelmetBaseHeavy
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetShapel
   name: shapel helmet
   description: Medieval shapel helmet
@@ -274,6 +270,16 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.85
+        Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -453,6 +459,12 @@
         Blunt: 0.95
         Slash: 0.95
         Piercing: 0.93
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -487,6 +499,12 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -508,6 +526,12 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -527,6 +551,12 @@
         Piercing: 0.95
   - type: Meltable
     resourceCount: 2
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -553,6 +583,12 @@
     damageCoefficient: 0.9
   - type: ManaRegen
     regen: 0.7
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -579,6 +615,12 @@
     damageCoefficient: 0.9
   - type: ManaRegen
     regen: 0.5
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
@@ -635,6 +677,12 @@
     damageCoefficient: 0.9
   - type: ManaRegen
     regen: 0.25
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
@@ -680,6 +728,9 @@
     resourceCount: 2
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: Tag
+    tags:
+    - HidesHair
   - type: HideLayerClothing
     slots:
     - Hair
@@ -770,6 +821,12 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -861,6 +918,12 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: IdentityBlocker
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHeadHelmetBand1
@@ -907,6 +970,12 @@
     resourceCount: 2
   - type: ExplosionResistance
     damageCoefficient: 0.9
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHeadHelmetTribe1
@@ -952,6 +1021,12 @@
         Piercing: 0.8
   - type: ExplosionResistance
     damageCoefficient: 0.8
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHeadHelmetEbonit
@@ -984,6 +1059,12 @@
         Piercing: 0.82
   - type: ExplosionResistance
     damageCoefficient: 0.8
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -1057,7 +1138,7 @@
     enabled: false
 
 - type: entity
-  parent: MedievalClothingHelmetBaseHeavy
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetNimbus
   name: Nimbus
   description: Smeels like heaven.
@@ -1068,3 +1149,9 @@
     sprite: Imperial/Medieval/Clothing/Head/nimbus.rsi
   - type: IdentityBlocker
     enabled: false
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.85
+        Piercing: 0.95

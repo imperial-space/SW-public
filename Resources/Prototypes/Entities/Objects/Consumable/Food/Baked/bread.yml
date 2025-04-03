@@ -22,6 +22,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 20
+  - type: LastPickedUpContainer # Imperial medieval
 
 - type: entity
   parent: FoodBreadBase

@@ -12,6 +12,9 @@
   description: An ancient war blade.
   components:
   - type: Sharp
+  - type: Tag
+    tags:
+    - SmithingTool
   - type: Sprite
     sprite: Imperial/Medieval/Melee/blacksmith_hammer.rsi
     state: icon

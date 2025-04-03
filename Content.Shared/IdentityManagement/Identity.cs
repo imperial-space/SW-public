@@ -1,5 +1,7 @@
 ﻿using Content.Shared.Ghost;
+using Content.Shared.Humanoid;
 using Content.Shared.IdentityManagement.Components;
+using Content.Shared.Imperial.Medieval.IdentityManagement;
 
 namespace Content.Shared.IdentityManagement;
 
@@ -13,7 +15,7 @@ public static class Identity
     /// <summary>
     ///     Returns the name that should be used for this entity for identity purposes.
     /// </summary>
-    public static string Name(EntityUid uid, IEntityManager ent, EntityUid? viewer=null)
+    public static string Name(EntityUid uid, IEntityManager ent, EntityUid? viewer = null, bool showId = false) // Imperial medieval - showId
     {
         if (!uid.IsValid())
             return string.Empty;
@@ -32,6 +34,27 @@ public static class Identity
             return uidName;
 
         var identName = ent.GetComponent<MetaDataComponent>(ident.Value).EntityName;
+
+        // Imperial medieval start
+        if (ent.TryGetComponent<IdentityRequiresKnowledgeComponent>(uid, out var identReqTarget) && ent.TryGetComponent<IdentityRequiresKnowledgeComponent>(viewer, out var identReqViewer))
+        {
+            if (identReqViewer.KnownIds.Contains(identReqTarget.Identifier) || identReqTarget.Identifier == identReqViewer.Identifier || !identReqTarget.HideUnknown)
+                return identName;
+
+            if (!ent.TryGetComponent<HumanoidAppearanceComponent>(uid, out var humanoid))
+                return Loc.GetString("identity-gender-person") + (showId ? $" ({identReqTarget.Identifier})" : "");
+
+            var humanoidSys = ent.System<SharedHumanoidAppearanceSystem>();
+            var ageStr = humanoidSys.GetAgeRepresentation(humanoid.Species, humanoid.Age);
+            return humanoid.Sex switch
+            {
+                Sex.Male => $"{ageStr} {Loc.GetString("identity-gender-masculine")}" + (showId ? $" ({identReqTarget.Identifier})" : ""),
+                Sex.Female => $"{ageStr} {Loc.GetString("identity-gender-feminine")}" + (showId ? $" ({identReqTarget.Identifier})" : ""),
+                Sex.Unsexed or _ => $"{ageStr} {Loc.GetString("identity-gender-person")}" + (showId ? $" ({identReqTarget.Identifier})" : "")
+            };
+        }
+        // Imperial medieval end
+
         if (viewer == null || !CanSeeThroughIdentity(uid, viewer.Value, ent))
         {
             return identName;

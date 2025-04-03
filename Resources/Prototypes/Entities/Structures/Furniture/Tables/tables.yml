@@ -479,7 +479,7 @@
         acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
-          collection: GlassBreak
+          collection: WoodDestroy #Imperial medieval
     - trigger:
         !type:DamageTrigger
         damage: 15

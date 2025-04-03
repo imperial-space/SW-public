@@ -88,6 +88,15 @@ public sealed partial class HumanoidAppearanceComponent : Component
     /// </summary>
     [DataField]
     public HashSet<HumanoidVisualLayers> HideLayersOnEquip = [HumanoidVisualLayers.Hair];
+
+    /// <summary>
+    ///     Which markings the humanoid defaults to when nudity is toggled off.
+    /// </summary>
+    [DataField]
+    public ProtoId<MarkingPrototype>? UndergarmentTop; // imperial medieval
+
+    [DataField]
+    public ProtoId<MarkingPrototype>? UndergarmentBottom; // imperial medieval
 }
 
 [DataDefinition]
