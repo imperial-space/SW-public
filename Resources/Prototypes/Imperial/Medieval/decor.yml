@@ -4861,7 +4861,7 @@
       path: /Audio/Imperial/Medieval/clock_ticktack.ogg
 
 - type: entity
-  id: MedievalDecorStoragePallet
+  id: MedievalDecorShipSail
   parent: MedievalBannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
@@ -4874,7 +4874,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 9000
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -4884,8 +4884,18 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           MaterialWoodPlank1:
-            min: 2
-            max: 6
+            min: 15
+            max: 30
+    sprite: Imperial/Medieval/Decor/shipsail.rsi
+    state: icon
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+        params:
+          variation: 0.05
+  - type: Physics
+    bodyType: Static
   - type: Fixtures
     fixtures:
       fix1:
@@ -4898,9 +4908,6 @@
         layer:
         - MachineLayer
   - type: InteractionOutline
-  - type: PalletStorage
-    contractPartner: "порт легиона"
-    questLink: MedievalQuestContractLegionPallet
 
 - type: entity
   id: MedievalDecorStoragePalletIns
