@@ -4945,3 +4945,50 @@
     state: ins
   - type: PalletContract
     contractPartner: "дракар в порту мятежников"
+
+- type: entity
+  id: MedievalDecorShipSail
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/shipsail.rsi
+    state: icon
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+        params:
+          variation: 0.05
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 15
+            max: 30
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 190
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: InteractionOutline
