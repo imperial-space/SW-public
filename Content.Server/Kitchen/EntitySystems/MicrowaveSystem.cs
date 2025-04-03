@@ -42,6 +42,7 @@ using Content.Server.Construction.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Robust.Shared.Utility;
+using Content.Server.Imperial.Medieval.Farmer;
 
 namespace Content.Server.Kitchen.EntitySystems
 {
@@ -193,7 +194,7 @@ namespace Content.Server.Kitchen.EntitySystems
             }
         }
 
-        private void SubtractContents(MicrowaveComponent component, FoodRecipePrototype recipe)
+        private void SubtractContents(MicrowaveComponent component, FoodRecipePrototype recipe, ref BeforeMicrowavedEvent ev)   // Imperial medieval - BeforeMicrowavedEvent
         {
             // TODO Turn recipe.IngredientsReagents into a ReagentQuantity[]
 
@@ -235,6 +236,8 @@ namespace Content.Server.Kitchen.EntitySystems
                     foreach (var item in component.Storage.ContainedEntities)
                     {
                         string? itemID = null;
+
+                        RaiseLocalEvent(item, ref ev);  // Imperial medieval
 
                         // If an entity has a stack component, use the stacktype instead of prototype id
                         if (TryComp<StackComponent>(item, out var stackComp))
@@ -698,8 +701,14 @@ namespace Content.Server.Kitchen.EntitySystems
                     var coords = Transform(uid).Coordinates;
                     for (var i = 0; i < active.PortionedRecipe.Item2; i++)
                     {
-                        SubtractContents(microwave, active.PortionedRecipe.Item1);
-                        Spawn(active.PortionedRecipe.Item1.Result, coords);
+                        var ev = new BeforeMicrowavedEvent(new());  // Imperial medieval
+                        SubtractContents(microwave, active.PortionedRecipe.Item1, ref ev);  // Imperial medieval - ev
+                        var result = Spawn(active.PortionedRecipe.Item1.Result, coords);
+
+                        // Imperial medieval start
+                        var resultEv = new AfterMicrowavedEvent(result, ev.Users);
+                        RaiseLocalEvent(ref resultEv);
+                        // Imperial medieval end
                     }
                 }
 

@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Construction.Components;
+using Content.Server.Imperial.Medieval.Farmer;
 using Content.Server.Temperature.Components;
 using Content.Shared.Construction;
 using Content.Shared.Construction.Components;
@@ -377,6 +378,8 @@ namespace Content.Server.Construction
                 {
                     if (ev is not OnTemperatureChangeEvent)
                         break;
+
+                    user = CompOrNull<LastPickedUpContainerComponent>(uid)?.Ent;    // Imperial medieval - буст еды от фермера
 
                     // Some things, like microwaves, might need to block the temperature construction step from kicking in, or override it entirely.
                     var tempEvent = new OnConstructionTemperatureEvent();

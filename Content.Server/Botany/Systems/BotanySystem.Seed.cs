@@ -14,6 +14,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Imperial.Medieval.Farmer;
 
 namespace Content.Server.Botany.Systems;
 
@@ -116,7 +117,7 @@ public sealed partial class BotanySystem : EntitySystem
     {
         if (position.IsValid(EntityManager) &&
             proto.ProductPrototypes.Count > 0)
-            return GenerateProduct(proto, position, yieldMod);
+            return GenerateProduct(proto, null, yieldMod, position);    // Imperial medieval tweaked
 
         return Enumerable.Empty<EntityUid>();
     }
@@ -131,11 +132,16 @@ public sealed partial class BotanySystem : EntitySystem
 
         var name = Loc.GetString(proto.DisplayName);
         _popupSystem.PopupCursor(Loc.GetString("botany-harvest-success-message", ("name", name)), user, PopupType.Medium);
-        return GenerateProduct(proto, Transform(user).Coordinates, yieldMod);
+        return GenerateProduct(proto, user, yieldMod);  // Imperial medieval tweaked
     }
 
-    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, int yieldMod = 1)
+    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityUid? user, int yieldMod = 1, EntityCoordinates position = default)  // Imperial medieval - добавлен юзер, позиция уехала вправо
     {
+        // Imperial medieval start
+        if (user.HasValue)
+            position = Transform(user.Value).Coordinates;
+        // Imperial medieval end
+
         var totalYield = 0;
         if (proto.Yield > -1)
         {
@@ -174,6 +180,14 @@ public sealed partial class BotanySystem : EntitySystem
                 _metaData.SetEntityDescription(entity,
                     metaData.EntityDescription + " " + Loc.GetString("botany-mysterious-description-addon"), metaData);
             }
+
+            // Imperial medieval start
+            if (!user.HasValue)
+                continue;
+
+            var ev = new UserAfterHarvestEvent(entity);
+            RaiseLocalEvent(user.Value, ref ev);
+            // Imperial medieval end
         }
 
         return products;

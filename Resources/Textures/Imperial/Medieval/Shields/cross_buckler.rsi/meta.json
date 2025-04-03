@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-  "copyright": "by brotania, -cross versions by @crookielv",
+  "copyright": "by brotania, -cross versions made by @crookielv",
   "size": {
     "x": 32,
     "y": 32
@@ -11,11 +11,11 @@
       "name": "shield"
     },
     {
-      "name": "inhand-left",
+      "name": "riot-inhand-left",
       "directions": 4
     },
     {
-      "name": "inhand-right",
+      "name": "riot-inhand-right",
       "directions": 4
     },
     {

@@ -210,3 +210,11 @@
   components:
   - type: SlowMobSpawn
     spawnMob: MedievalMobNastyGrowth
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobShieldSlug
+  name: late mob spawn shield slug
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobShieldSlug

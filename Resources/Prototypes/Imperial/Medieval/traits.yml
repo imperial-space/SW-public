@@ -74,6 +74,8 @@
       damageThreshold: 200
     - type: EmoteOnDamage
       emoteChance: 0
+    - type: SoftCritEmotes
+      minDamage: 200
 
 - type: trait
   id: MedievalStamina
@@ -293,3 +295,24 @@
   components:
     - type: ReligionMember
       religion: Нексар
+
+- type: trait
+  id: MedievalFarmer
+  name: trait-medieval-skills-farmer
+  description: trait-medieval-skills-farmer-desc
+  category: MedievalSkills
+  cost: 1
+  components:
+    - type: Farmer
+
+
+- type: trait
+  id: BountyTrait
+  name: trait-medieval-bounty
+  description: trait-medieval-bounty-desc
+  category: Quirks
+  components:
+  - type: MercenaryBountyTargetTrait
+  blacklist:
+    components:
+    - Mercenary

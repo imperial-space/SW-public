@@ -717,6 +717,7 @@
         - MedievalRune
         - Bottle
         - MagicScroll
+        - AlchemicIngredient
   - type: Appearance
   - type: Item
     size: Large
@@ -766,8 +767,7 @@
     footstepSoundCollection:
       collection: MedievalFootstepSteel
       params:
-        variation: 0.05
-        volume: -6
+        volume: -8
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingFeetSteel # imperial medieval
 
@@ -812,8 +812,7 @@
     footstepSoundCollection:
       collection: MedievalFootstepSteel
       params:
-        variation: 0.05
-        volume: -6
+        volume: -8
   - type: RadiationSource
     intensity: 0.3
     slope: 0.2
@@ -884,6 +883,10 @@
     sprite: Imperial/Medieval/Clothing/Gloves/blacksmith_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/blacksmith_gloves.rsi
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 8
 
 - type: entity
   parent: ClothingOuterBase
@@ -1336,8 +1339,7 @@
     footstepSoundCollection:
       collection: MedievalFootstepSteel
       params:
-        variation: 0.05
-        volume: -6
+        volume: -8
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingFeetSteel # imperial medieval
 
@@ -1562,3 +1564,47 @@
     sprite: Imperial/Medieval/Clothing/Head/golden_head.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/golden_head.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIron
+  id: MedievalClothingOuterArmorPodWarsSkinWarhammer
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/warhammer_iron.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/warhammer_iron.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron
+  id: MedievalClothingOuterArmorPodWarsSkinWarhammerUp
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/warhammer_iron_up.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/warhammer_iron_up.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetCrusaderWarhammer
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/warhammer1.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/warhammer1.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetCrusaderWarhammer2
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/warhammer2.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/warhammer2.rsi

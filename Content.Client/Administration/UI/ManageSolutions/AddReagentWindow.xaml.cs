@@ -118,6 +118,11 @@ namespace Content.Client.Administration.UI.ManageSolutions
                 {
                     continue;
                 }
+                // Imperial Medieval Chemistry Begin
+                // Logger.Debug($"{reagent.ID} is {reagent.Abstract}");
+                if (reagent.Abstract || reagent.NoSpawn)
+                    continue;
+                // Imperial Medieval Chemistry End
 
                 ItemList.Item regentItem = new(ReagentList)
                 {

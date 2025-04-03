@@ -166,6 +166,14 @@
   - MedievalFoodDemo
 
 - type: listing
+  id: FoodCondimentBottleEnzyme
+  productEntity: FoodCondimentBottleEnzyme
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalFoodDemo
+
+- type: listing
   id: DemoMdvShopFoodMeatChickenFried
   productEntity: FoodMeatChickenFried
   cost:
@@ -294,6 +302,14 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: MedievalMortarCraft
+  productEntity: MedievalMortarCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+  
+- type: listing
   id: DemoMdvShopMedievalWoodWorkerPlaceCraft
   productEntity: MedievalWoodWorkerPlaceCraft
   cost:
@@ -303,7 +319,7 @@
 
 - type: listing
   id: DemoMdvShopMedievalDecorKotelForCoockingPotionsCraft
-  productEntity: MedievalDecorKotelForCoockingPotionsCraft
+  productEntity: MedievalKotel
   cost:
     UnknownMedieval: 1
   categories:
@@ -450,6 +466,22 @@
 - type: listing
   id: DemoMdvShopMedievalPrisonGrilleCraft
   productEntity: MedievalPrisonGrilleCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopSmithingGornCraft
+  productEntity: SmithingGornCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopSmithWorkplaceCraft
+  productEntity: SmithWorkplaceCraft
   cost:
     UnknownMedieval: 1
   categories:
@@ -1896,6 +1928,14 @@
   - MedievalMiscDemo
 
 - type: listing
+  id: DemoMdvShopMedievalHammerBlacksmith
+  productEntity: MedievalHammerBlacksmith
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
   id: DemoMdvShopMedievalHolySalt
   productEntity: MedievalHolySalt
   cost:
@@ -1906,6 +1946,14 @@
 - type: listing
   id: DemoMdvShopMedievalRepairStone
   productEntity: MedievalRepairStone
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoCarcBoxClassic
+  productEntity: CarcBoxClassic
   cost:
     UnknownMedieval: 1
   categories:

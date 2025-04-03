@@ -75,7 +75,7 @@ namespace Content.Server.MedievalFactionFlag
                         break;
                 }
             }
-            args.PushMarkup("[color=cyan]Точек, подконтрольно легиону: " + legion + "[/color]");
+            args.PushMarkup("[color=cyan]" + Loc.GetString("flag-controls-legion") + " " + legion + "[/color]");
             args.PushMarkup("[color=red]Точек, подконтрольно мятежникам: " + insurgency + "[/color]");
             args.PushMarkup("[color=white]Свободных точек: " + none + "[/color]");
         }
@@ -103,6 +103,7 @@ namespace Content.Server.MedievalFactionFlag
                     {
                         if (barrier.Faction == comp.Faction)
                         {
+                            Spawn("MedievalRevent25", coords);
                             if (comp.Faction == "legion")
                                 Spawn("MedievalMedalLegion", coords);
                             if (comp.Faction == "insurgency")

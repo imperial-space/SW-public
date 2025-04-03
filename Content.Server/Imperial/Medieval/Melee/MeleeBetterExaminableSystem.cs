@@ -20,6 +20,13 @@ namespace Content.Server.MeleeBetterExaminable
         {
             if (TryComp<MeleeWeaponComponent>(uid, out var weapon) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
             {
+                var totaldamage = 0;
+                foreach (var damage in weapon.Damage.DamageDict)
+                {
+                    totaldamage += damage.Value.Int();
+                }
+                if (totaldamage <= 0)
+                    return;
                 args.PushMarkup("Скорость атаки [color=green]" + weapon.AttackRate + "[/color]");
                 args.PushMarkup("Множитель урона при широкой атаке [color=yellow]" + "1" + "[/color]");
                 args.PushMarkup("Множитель урона при точечной атаке [color=orange]" + weapon.ClickDamageModifier + "[/color]");

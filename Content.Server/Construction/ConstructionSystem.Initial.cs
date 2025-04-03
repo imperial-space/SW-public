@@ -273,6 +273,14 @@ namespace Content.Server.Construction
             var newEntityProto = graph.Nodes[edge.Target].Entity.GetId(null, user, new(EntityManager));
             var newEntity = EntityManager.SpawnAttachedTo(newEntityProto, coords, rotation: angle);
 
+            // Imperial medieval start
+            var transforms = graph.Nodes[edge.Target].TransformLogic;
+            foreach (var item in transforms)
+            {
+                item.Transform(EntityUid.Invalid, newEntity, user, new GraphTransformArgs(EntityManager));
+            }
+            // Imperial medieval end
+
             if (!TryComp(newEntity, out ConstructionComponent? construction))
             {
                 Log.Error($"Initial construction does not have a valid target entity! It is missing a ConstructionComponent.\nGraph: {graph.ID}, Initial Target: {edge.Target}, Ent. Prototype: {newEntityProto}\nCreated Entity {ToPrettyString(newEntity)} will be deleted.");

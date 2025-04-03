@@ -27,6 +27,9 @@ public sealed partial class FriendsComponent : Component
 
     [AutoNetworkedField]
     public int MemberID = 0;
+
+    [AutoNetworkedField]
+    public KeyValuePair<ProtoId<MedievalFactionPrototype>, string>? Wanted;
 }
 
 [Serializable, NetSerializable]

@@ -11,11 +11,11 @@
       "name": "shield"
     },
     {
-      "name": "inhand-left",
+      "name": "riot-inhand-left",
       "directions": 4
     },
     {
-      "name": "inhand-right",
+      "name": "riot-inhand-right",
       "directions": 4
     },
     {

@@ -80,6 +80,10 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
 
     private void GenerateControl(ReagentPrototype reagent)
     {
+        // Imperial Medieval Chemistry Begin
+        if (!reagent.ShowInBook)
+            return;
+        // Imperial Medieval Chemistry End
         NameBackground.PanelOverride = new StyleBoxFlat
         {
             BackgroundColor = reagent.SubstanceColor

@@ -477,6 +477,12 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 4
     fillBaseName: pit-content-
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 1
 
 - type: entity
   parent: WaterTank
@@ -4861,6 +4867,25 @@
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: storage_pallet
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 15
+            max: 30
     sprite: Imperial/Medieval/Decor/shipsail.rsi
     state: icon
   - type: MeleeSound
@@ -4876,14 +4901,54 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.35
+          radius: 0.4
         density: 190
         mask:
-        - MachineMask
+        - SmallMobMask
         layer:
-        - Opaque
-        - MidImpassable
-        - HighImpassable
-        - BulletImpassable
-  - type: MedievalMeleeBadTarget # imperial medieval
-    safeToHitGroup: structure # imperial medieval
+        - MachineLayer
+  - type: InteractionOutline
+
+- type: entity
+  id: MedievalDecorStoragePalletIns
+  parent: MedievalDecorStoragePallet
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: PalletStorage
+    contractPartner: "дракар в порту мятежников"
+    questLink: MedievalQuestContractInsPallet
+
+- type: entity
+  abstract: true
+  #name: MedievalQuestContractBase
+  parent: BaseItem
+  id: MedievalPalletContractBase
+  description: ""
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/quest.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: MedievalQuestContract
+  parent: MedievalPalletContractBase
+  id: MedievalQuestContractLegionPallet
+  description: ""
+  components:
+  - type: Sprite
+    state: leg
+  - type: PalletContract
+    contractPartner: "порт легиона"
+
+- type: entity
+  name: MedievalQuestContract
+  parent: MedievalPalletContractBase
+  id: MedievalQuestContractInsPallet
+  description: ""
+  components:
+  - type: Sprite
+    state: ins
+  - type: PalletContract
+    contractPartner: "дракар в порту мятежников"

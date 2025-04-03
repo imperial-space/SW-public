@@ -1,0 +1,100 @@
+﻿- type: entity
+  id: SmithWorkplace
+  parent: BaseStructure
+  name: наковальня
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Lathe/blacksmith.rsi
+    state: icon_2
+  - type: SmithingWorkplace
+    workpieceSlot:
+      whitelist:
+        components:
+        - SmithingWorkpiece
+      #whitelistFailPopup: smith-workplace-component-slot-fail
+      lockedFailPopup: smith-workplace-component-slot-fail-locked
+      insertSuccessPopup: smith-workplace-component-slot-fail-success
+      ejectSound: null
+      insertSound: null
+  - type: ContainerContainer
+    containers:
+      workpieceSlot: !type:ContainerSlot
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: UserInterface
+    interfaces:
+      enum.SmithUiKey.Key:
+        type: SmithingBoundUserInterface
+
+- type: entity
+  id: SmithingGorn
+  parent: BaseStructure
+  name: SmithingGorn
+  description: SmithingGorn
+  components:
+  - type: SmithingFurnace
+    meltingSlot:
+      whitelist:
+        components:
+        - SmithingWorkpiece
+      whitelistFailPopup: smithing-gorn-slot-fail-whitelist
+      lockedFailPopup: smithing-gorn-slot-fail-locked
+      insertSuccessPopup: smithing-gorn-slot-success-insert
+      ejectSound: null
+      insertSound: null
+  - type: ContainerContainer
+    containers:
+      meltingSlot: !type:ContainerSlot
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/gorn.rsi
+    layers:
+    - state: gorn
+    - state: unshaded
+      shader: unshaded
+  - type: Appearance
+  - type: AmbientSound
+    volume: -6
+    range: 5
+    sound:
+      path: /Audio/Ambience/Objects/fireplace.ogg
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#FF6F00"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: AlwaysHot

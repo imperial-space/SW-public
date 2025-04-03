@@ -139,6 +139,12 @@ namespace Content.Shared.Chemistry.Reagent
 
         [DataField]
         public float PricePerUnit;
+        // Imperial Medieval Chemistry Begin
+        [DataField("showinbook")]
+        public bool ShowInBook = true;
+        [DataField("nospawn")]
+        public bool NoSpawn = false;
+        // Imperial Medieval Chemistry End
 
         [DataField]
         public SoundSpecifier FootstepSound = new SoundCollectionSpecifier("FootstepWater", AudioParams.Default.WithVolume(6));

@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Content.Server.Connection;
+using Content.Server.GameTicking;
 using Content.Shared.CCVar;
+using Content.Shared.GameTicking;
 using Content.Shared.Imperial.ICCVar;
 using Content.Shared.Imperial.Medieval.JoinQueue;
 using Prometheus;
@@ -94,11 +96,14 @@ public sealed class JoinQueueManager
         if (_connection is ConnectionManager connection)
             isPrivileged = connection.HavePriorityJoin(e.Session.UserId);
 
+        var wasInGame = EntitySystem.TryGet<GameTicker>(out var ticker) && ticker.PlayerGameStatuses.TryGetValue(e.Session.UserId, out var status) &&
+                         status == PlayerGameStatus.JoinedGame;
+
         // Do not count current session in general online, because we are still deciding her fate
         var currentOnline = _player.PlayerCount - 1;
         var haveFreeSlot = currentOnline < _configuration.GetCVar(CCVars.SoftMaxPlayers);
 
-        if (isPrivileged || haveFreeSlot)
+        if (isPrivileged || haveFreeSlot || wasInGame)
         {
             SendToGame(e.Session);
 

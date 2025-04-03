@@ -1,0 +1,61 @@
+- type: emoteSounds
+  id: Goblins
+  sounds:
+    Scream:
+      collection: GoblinScreams
+    Laugh:
+      collection: GoblinLaugh
+    Cough:
+      collection: GoblinCough
+    Sigh:
+      collection: GoblinSigh
+    Warcry:
+      collection: GoblinWarcry
+    PainScream:
+      collection: GoblinPainScream
+    PassiveScream:
+      collection: GoblinScreams
+
+- type: soundCollection
+  id: GoblinCough
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Goblin/cough.ogg
+
+- type: soundCollection
+  id: GoblinLaugh
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Goblin/laugh1.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/laugh2.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/laugh3.ogg
+    
+- type: soundCollection
+  id: GoblinPainScream
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Goblin/pain1.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/pain2.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/pain3.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/pain4.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/pain5.ogg
+    
+- type: soundCollection
+  id: GoblinScreams
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Goblin/scream.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/scream2.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/scream3.ogg
+    
+- type: soundCollection
+  id: GoblinSigh
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Goblin/sigh.ogg
+    
+- type: soundCollection
+  id: GoblinWarcry
+  files:
+    - /Audio/Imperial/Medieval/Emotes/Goblin/warcry1.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/warcry2.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/warcry3.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/warcry4.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/warcry5.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/warcry6.ogg
+    - /Audio/Imperial/Medieval/Emotes/Goblin/warcry7.ogg

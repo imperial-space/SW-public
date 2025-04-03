@@ -8,7 +8,7 @@ using Robust.Shared.Utility;
 namespace Content.Shared.Friends;
 public abstract partial class SharedFriendsSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] protected readonly IPrototypeManager Proto = default!;
 
     public override void Initialize()
     {
@@ -26,13 +26,16 @@ public abstract partial class SharedFriendsSystem : EntitySystem
         if (!TryGetFactionMemberData(comp.MemberID, out var data))
             return;
 
-        var myFaction = _proto.Index(me.Faction);
-        var otherFaction = _proto.Index(comp.Faction);
+        var myFaction = Proto.Index(me.Faction);
+        var otherFaction = Proto.Index(comp.Faction);
 
         if (myFaction == otherFaction && myFaction.ShowKnown)
-            args.PushMarkup("[color=green]Из моей фракции, это [/color] " + data.Job);
+            args.PushMarkup("[color=green]Из моей фракции, это [/color] " + data.Job.ToLower());
         else if (myFaction.KnownFactions.TryGetValue(comp.Faction, out var str))
             args.PushMarkup(str);
+
+        if (comp.Wanted != null && comp.Wanted.Value.Key == me.Faction)
+            args.PushMarkup(comp.Wanted.Value.Value);
     }
 
     private void OnFactionMenuAction(EntityUid uid, FriendsComponent comp, OpenFactionMenuActionEvent args)

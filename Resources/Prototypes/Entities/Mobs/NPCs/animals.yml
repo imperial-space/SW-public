@@ -3574,6 +3574,17 @@
     reformTime: 10
     popupText: diona-reform-attempt
     reformPrototype: MobDionaReformed
+  - type: LanguageSpeaker # Imperial medieval start
+    languages:
+     Common: Speak
+     Goblin: Understand
+     #Ancient: Speak
+     #Tribe: Understand
+     #Orc: Speak
+     #Cursed: Speak
+     Growling: Understand
+     #Hissing: Speak
+     #Elf: Speak # Imperial medieval end
 
 - type: entity
   parent: MobDionaNymph

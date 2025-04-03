@@ -17,6 +17,7 @@ using Robust.Shared.Random;
 using Content.Shared.Item;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.IdentityManagement;
+using Robust.Server.GameObjects;
 
 namespace Content.Shared.Imperial.RandomSteal.Systems;
 
@@ -29,6 +30,7 @@ public sealed partial class RandomStealSystem : EntitySystem
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -69,9 +71,20 @@ public sealed partial class RandomStealSystem : EntitySystem
             item = validItems[_random.Next(validItems.Count)];
         }
         if (TryComp<StealChanceIncreaserComponent>(first, out var increaser))
-            comp.Chance = 35 + increaser.Bonus;
+        {
+            if (TryComp<StealRaceChanceIncreaserComponent>(first, out var raceIncreaser))
+                comp.Chance = 35 + increaser.Bonus + raceIncreaser.Bonus;
+            else
+                comp.Chance = 35 + increaser.Bonus;
+        }
         else
-            comp.Chance = 35;
+        {
+            if (TryComp<StealRaceChanceIncreaserComponent>(first, out var raceIncreaser))
+                comp.Chance = 35 + raceIncreaser.Bonus;
+            else
+                comp.Chance = 35;
+        }
+
         if (item == null) return;
         var doAfterSteal = new DoAfterArgs(EntityManager, first, comp.TimeNeed, new StealDoAfterArgs(), target: first, eventTarget: second)
         {
@@ -112,6 +125,9 @@ public sealed partial class RandomStealSystem : EntitySystem
         if (!HasComp<HandsComponent>(uid) || ev.Cancelled) return;
         _popupSystem.PopupClient(Loc.GetString("stealSuccessSpellward", ("entity1", nameItem)), ev.Target);
         if (ev.Target == null || comp.Item == null) return;
+        var xform = Transform(ev.Target.Value);
+        var coords = xform.Coordinates;
+        _transform.SetCoordinates(comp.Item.Value, coords);
         _hands.TryForcePickupAnyHand(ev.Target.Value, comp.Item.Value);
     }
 }

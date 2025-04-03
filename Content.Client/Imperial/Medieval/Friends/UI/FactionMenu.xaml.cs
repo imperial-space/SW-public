@@ -43,7 +43,6 @@ public sealed partial class FactionMenu : DefaultWindow
     private FactionMenuAccess _access = FactionMenuAccess.None;
     private FactionMemberGroup _selfGroup = FactionMemberGroup.None;
     private int _self = 0;
-
     private int? _fireSelected;
 
     public FactionMenu()
@@ -107,7 +106,7 @@ public sealed partial class FactionMenu : DefaultWindow
         _access = access;
         _self = self;
         _selfGroup = selfGroup;
-        Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(proto).AllowHeadhunt;
+        Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(proto).AllowHeadhunt && !HeadhuntConfirmation.Visible;
 
         foreach (var item in data)
         {
@@ -117,16 +116,30 @@ public sealed partial class FactionMenu : DefaultWindow
             entry.GroupSet += (ent, group) => GroupSet?.Invoke(ent, group);
             entry.RemoveButtonPressed += args =>
             {
+                if (item.Value.Dead)
+                {
+                    FirePressed?.Invoke(args);
+                    return;
+                }
+
                 _fireSelected = args;
                 ConfirmationLabel.SetMessage($"{item.Value.JobPrefix}{item.Value.Name} будет исключён из вашей фракции.");
                 Main.Visible = false;
                 Confirmation.Visible = true;
-                Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(proto).AllowHeadhunt && !item.Value.Dead;
+                Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(proto).AllowHeadhunt;
             };
             entry.SetLeaderPressed += (id, isLeader) => SetLeaderPressed?.Invoke(id, isLeader);
 
             var container = _jobMode ? EnsureJobContainer(item.Value.Job) : EnsureGroupContainer(group, objective ?? "", access, selfGroup);
             container.AddChild(entry);
+        }
+
+        foreach (var item in Members.Children)
+        {
+            if (item is FactionJobPanel job)
+                job.Update();
+            if (item is FactionGroupPanel group)
+                group.Update();
         }
     }
 
