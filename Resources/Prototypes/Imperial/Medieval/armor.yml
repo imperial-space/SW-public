@@ -770,6 +770,7 @@
         volume: -8
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingFeetSteel # imperial medieval
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: Clothing
@@ -816,6 +817,7 @@
   - type: RadiationSource
     intensity: 0.3
     slope: 0.2
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: ClothingHandsBase
@@ -1014,6 +1016,7 @@
   - type: RadiationSource
     intensity: 0.3
     slope: 0.2
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: ClothingOuterBase
@@ -1342,6 +1345,7 @@
         volume: -8
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingFeetSteel # imperial medieval
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: MedievalClothingFeetEbonit
@@ -1540,6 +1544,7 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.99
     sprintModifier: 0.99
+  - type: ProtectedFromStepTriggers
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLightLegion
