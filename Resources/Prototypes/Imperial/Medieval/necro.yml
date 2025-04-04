@@ -114,17 +114,17 @@
   components:
     - type: Loadout
       prototypes: [ MedievalNecroSender ]
-   - type: LanguageSpeaker
-     languages:
-       Common: Speak
-       #Goblin: Speak
-       #Ancient: Speak
-       #Tribe: Speak
-       #Orc: Speak
-       Cursed: Speak
-       #Growling: Speak
-       #Hissing: Speak
-       #Elf: Speak
+    - type: LanguageSpeaker
+      languages:
+        Common: Speak
+        #Goblin: Speak
+        #Ancient: Speak
+        #Tribe: Speak
+        #Orc: Speak
+        Cursed: Speak
+        #Growling: Speak
+        #Hissing: Speak
+        #Elf: Speak
 
 - type: startingGear
   id: MedievalNecroSender
