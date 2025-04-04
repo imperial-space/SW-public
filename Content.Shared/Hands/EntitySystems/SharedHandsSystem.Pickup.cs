@@ -2,8 +2,6 @@ using Content.Shared.Clothing.Components;
 using Content.Shared.Database;
 using Content.Shared.Hands.Components;
 using Content.Shared.Item;
-using Content.Shared.Tag;
-using Content.Shared.Imperial.WhitelistClothing.Components; // Imperial Medieval WhitelistClothing
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -105,8 +103,6 @@ public abstract partial class SharedHandsSystem : EntitySystem
 
         if (!CanPickupToHand(uid, entity, hand, checkActionBlocker, handsComp, item))
             return false;
-
-        if (!TryComp<WhitelistClothingComponent>(uid, out var comp) && EntityManager.System<TagSystem>().HasTag(entity, "GoblinArmor")) return false; // Imperial Medieval WhitelistClothing
 
         if (animate)
         {
