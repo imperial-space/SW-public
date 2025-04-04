@@ -1446,6 +1446,13 @@
       uiWindowPos: 0,1
       strippingWindowPos: 0,1
       displayName: Neck
+    - name: outerClothing
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      stripTime: 3
+      uiWindowPos: 1,1
+      strippingWindowPos: 2,2
+      displayName: Suit
     - name: mask
       slotTexture: mask
       slotFlags: MASK
