@@ -106,7 +106,7 @@ public abstract partial class SharedHandsSystem : EntitySystem
         if (!CanPickupToHand(uid, entity, hand, checkActionBlocker, handsComp, item))
             return false;
 
-        if (!TryComp<WhitelistClothingComponent>(uid, out var comp) && comp != null && EntityManager.System<TagSystem>().HasTag(entity, comp.Whitelist)) return false; // Imperial Medieval WhitelistClothing
+        if (!TryComp<WhitelistClothingComponent>(uid, out var comp) && EntityManager.System<TagSystem>().HasTag(entity, "GoblinArmor")) return false; // Imperial Medieval WhitelistClothing
 
         if (animate)
         {
