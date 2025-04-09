@@ -656,6 +656,17 @@
     sprite: Imperial/Medieval/Clothing/Head/charmer_ins.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCharmerIns
+  id: MedievalClothingHeadHelmetCharmerInsBlood
+  name: clooth
+  description: Medieval salad helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/insbloodhelmet.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/insbloodhelmet.rsi
+
+- type: entity
   parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetCharmerWeak
   name: gool

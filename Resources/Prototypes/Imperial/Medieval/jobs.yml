@@ -1427,6 +1427,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
+    - type: Farmer
 
 - type: roleLoadout
   id: JobMedievalInnkeeper
@@ -1526,6 +1527,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
+    - type: Farmer
 
 - type: roleLoadout
   id: JobMedievalInnkeeperN

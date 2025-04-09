@@ -1148,6 +1148,17 @@
     sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_ins.rsi
 
 - type: entity
+  parent: MedievalClothingOuterArmorCharmerLightIns
+  id: MedievalClothingOuterArmorCharmerLightInsBlood
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/insbloodmagic.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/insbloodmagic.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorCharmerWeak
   name: MedievalClothingOuterArmorCharmerWeak

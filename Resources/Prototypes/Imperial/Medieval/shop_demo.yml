@@ -166,7 +166,7 @@
   - MedievalFoodDemo
 
 - type: listing
-  id: FoodCondimentBottleEnzyme
+  id: DemoMdvShopFoodCondimentBottleEnzyme
   productEntity: FoodCondimentBottleEnzyme
   cost:
     UnknownMedieval: 1
@@ -308,7 +308,7 @@
     UnknownMedieval: 1
   categories:
   - MedievalBuildDemo
-  
+
 - type: listing
   id: DemoMdvShopMedievalWoodWorkerPlaceCraft
   productEntity: MedievalWoodWorkerPlaceCraft

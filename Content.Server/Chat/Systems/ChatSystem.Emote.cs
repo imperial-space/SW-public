@@ -152,6 +152,11 @@ public partial class ChatSystem
 
         // if general params for all sounds set - use them
         var param = proto.GeneralParams ?? sound.Params;
+        // Imperial Medieval AgePitch Begin
+        if (TryComp<Shared.Humanoid.HumanoidAppearanceComponent>(uid, out var comp))
+            param.Pitch += Math.Clamp((50f - comp.Age) * 0.05f, -0.5f, 5f);
+
+        // Imperial Medieval AgePitch End
         _audio.PlayPvs(sound, uid, param);
         return true;
     }

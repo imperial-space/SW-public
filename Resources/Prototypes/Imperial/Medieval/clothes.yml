@@ -1501,3 +1501,34 @@
         doAfter: 3
   - node: MedievalClothingHandsGlovesCloth
     entity: MedievalClothingHandsGlovesCloth
+
+- type: entity
+  parent: ClothingMaskPlague
+  id: MedievalClothingElectroMask
+  name: MedievalClothingElectroMask
+  description: MedievalClothingElectroMask
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Mask/iron.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Mask/iron.rsi
+
+- type: entity
+  parent: ClothingEyesGlassesSunglasses
+  id: ClothingEyesElectroBlindfold
+  name: blindfold
+  description: blindfold
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Eyes/eblindfold.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Eyes/eblindfold.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-EYES
+      - state: unshaded
+        shader: unshaded

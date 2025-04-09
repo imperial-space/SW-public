@@ -5201,4 +5201,15 @@ ent-MedievalPaperOnValuableCargoLeg = бумага на ценный груз
 ent-MedievalPaperOnValuableCargoIns = бумага на ценный груз
     .desc = На бумаге имеется множество печатей.
     .suffix = { "Средневековье" }
-
+ent-MedievalClothingHeadHelmetCharmerInsBlood = защитный шлем мага мятежника
+    .desc = Скован из магического металла, не сковывает движения и дает какую-никакую защиту.
+    .suffix = { "Средневековье, одежда, чародей" }
+ent-MedievalClothingOuterArmorCharmerLightInsBlood = броня мага мятежников
+    .desc = Скована из магического металла, не сковывает движения и дает какую-никакую защиту.
+    .suffix = { "Средневековье, одежда, чародей" }
+ent-MedievalClothingElectroMask = железная маска
+    .desc = Металлическая маска, на которой изображено множество узоров.
+    .suffix = { "Средневековье, одежда" }
+ent-ClothingEyesElectroBlindfold = беспристрастность Уайса
+    .desc = Повязка из магической ткани, сдерживает некую мощь.
+    .suffix = { "Средневековье, одежда" }
