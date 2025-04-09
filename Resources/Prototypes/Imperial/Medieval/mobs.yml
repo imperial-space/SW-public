@@ -1200,6 +1200,7 @@
       Goblin: Speak
       Common: Understand
   - type: WhitelistClothing
+    whitelist: GoblinArmor
 
 - type: entity
   parent: MobChicken
