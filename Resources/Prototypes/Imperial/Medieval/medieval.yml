@@ -7452,3 +7452,48 @@
   - type: BellMap
     locale: bell-map-popup-ins
 
+
+- type: entity
+  id: MedievalPaperOnValuableCargoIns
+  name: church bell
+  parent: BaseItem
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/quest.rsi
+    state: ins
+  - type: Currency
+    price:
+      MedievalPaperOnValuableCargoCurrencyIns: 1
+  - type: Item
+    size: Tiny
+
+- type: currency
+  id: MedievalPaperOnValuableCargoCurrencyIns
+  displayName: store-currency-display-paperonvaluablecargo
+  cash:
+    1: MedievalPaperOnValuableCargoIns
+  canWithdraw: true
+
+
+- type: entity
+  id: MedievalPaperOnValuableCargoLeg
+  name: church bell
+  parent: BaseItem
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/quest.rsi
+    state: leg
+  - type: Currency
+    price:
+      MedievalPaperOnValuableCargoCurrencyLeg: 1
+  - type: Item
+    size: Tiny
+
+- type: currency
+  id: MedievalPaperOnValuableCargoCurrencyLeg
+  displayName: store-currency-display-paperonvaluablecargo
+  cash:
+    1: MedievalPaperOnValuableCargoLeg
+  canWithdraw: true

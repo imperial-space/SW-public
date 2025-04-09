@@ -241,7 +241,7 @@
     - Knife
   - type: MeleeThrowOnHit
     distance: 0.3
-    speed: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 6
 
@@ -768,8 +768,8 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    distance: 4
-    speed: 2.1
+    distance: 0.6
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -828,8 +828,8 @@
   - type: EmbeddableProjectile
     offset: 0.15,0.15
   - type: MeleeThrowOnHit
-    distance: 5
-    speed: 3
+    distance: 2.5
+    speed: 5
 
 - type: entity
   name: dagger
@@ -877,8 +877,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 2
-    speed: 1.7
+    distance: 0.7
+    speed: 5
 
 - type: entity
   name: Exception Spawner

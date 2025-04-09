@@ -206,7 +206,7 @@
   - MedievalFood
 
 - type: listing
-  id: FoodCondimentBottleEnzyme
+  id: MdvFoodCondimentBottleEnzyme
   productEntity: FoodCondimentBottleEnzyme
   cost:
     Revent: 10
@@ -2717,6 +2717,14 @@
   - MedievalQuestLegion
 
 - type: listing
+  id: MdvPaperOnValuableCargoLeg
+  productEntity: MedievalPaperOnValuableCargoLeg
+  cost:
+    Revent: 220
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
   id: MedievalQuestContractInsWood
   productEntity: MedievalQuestContractInsWood
   cost:
@@ -2780,6 +2788,14 @@
   categories:
   - MedievalQuestIns
 
+- type: listing
+  id: MdvPaperOnValuableCargoIns
+  productEntity: MedievalPaperOnValuableCargoIns
+  cost:
+    Revent: 220
+  categories:
+  - MedievalQuestIns
+
 - type: entity
   id: MedievalShopHolePalletLeg
   name: MedievalShopHole
@@ -2802,9 +2818,9 @@
     categories:
     - MedievalPalletLeg
     currencyWhitelist:
-    - Revent
+    - MedievalPaperOnValuableCargoCurrencyLeg
     balance:
-      Revent: 0
+     MedievalPaperOnValuableCargoCurrencyLeg: 0
   - type: TrashDefendArea
   - type: Transform
     anchored: true
@@ -2837,9 +2853,9 @@
   id: MedievalPalletContractIns
   productEntity: MedievalDecorStoragePalletIns
   cost:
-    Revent: 220
+    MedievalPaperOnValuableCargoCurrencyIns: 1
   categories:
-  - MedievalPalletLeg
+  - MedievalPalletIns
 
 - type: entity
   id: MedievalShopHolePalletIns
@@ -2863,9 +2879,9 @@
     categories:
     - MedievalPalletIns
     currencyWhitelist:
-    - Revent
+    - MedievalPaperOnValuableCargoCurrencyIns
     balance:
-      Revent: 0
+      MedievalPaperOnValuableCargoCurrencyIns: 0
   - type: TrashDefendArea
   - type: Transform
     anchored: true
@@ -2898,6 +2914,6 @@
   id: MedievalPalletContractLeg
   productEntity: MedievalDecorStoragePallet
   cost:
-    Revent: 220
+   MedievalPaperOnValuableCargoCurrencyLeg: 1
   categories:
-  - MedievalPalletIns
+  - MedievalPalletLeg
