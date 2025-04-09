@@ -84,11 +84,11 @@ namespace Content.Server.Cult
         }
         private void OnPlayerAttached(EntityUid uid, TakeNameComponent comp, PlayerAttachedEvent args)
         {
-            if (!_playerManager.TryGetSessionByEntity(uid, out var session) || !comp.HasName) return;
+            if (!_playerManager.TryGetSessionByEntity(uid, out var session) || comp.HasName) return;
             _quickDialog.OpenDialog(session, "Введите имя", "Имя", (string message) =>
             {
                 _metaData.SetEntityName(uid, message);
-                comp.HasName = false;
+                comp.HasName = true;
             });
         }
         private void OnBloodMeleeHit(EntityUid uid, CultBloodMeleeComponent component, MeleeHitEvent args)
