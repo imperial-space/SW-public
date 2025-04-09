@@ -4953,8 +4953,11 @@
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
+    noRot: true
     sprite: Imperial/Medieval/Decor/shipsail.rsi
     state: icon
+    drawdepth: Overdoors
+    offset: 0,3.6
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -4984,11 +4987,9 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-          radius: 0.4
-        density: 190
-        mask:
-        - SmallMobMask
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.4,0.35,0.4"
+        density: 1000
         layer:
-        - MachineLayer
+        - WallLayer
   - type: InteractionOutline
