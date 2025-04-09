@@ -959,10 +959,10 @@
       state: shield
     - type: Item
       sprite: Imperial/Medieval/Shields/woodknight.rsi
-      size: Normal
+      size: Ginormous
     - type: Clothing
-      equipDelay: 4
-      unequipDelay: 4
+      equipDelay: 3
+      unequipDelay: 3
       quickEquip: false
       slots:
       - suitStorage
@@ -1013,10 +1013,10 @@
       state: shield
     - type: Item
       sprite: Imperial/Medieval/Shields/wooden.rsi
-      size: Normal
+      size: Ginormous
     - type: Clothing
-      equipDelay: 4
-      unequipDelay: 4
+      equipDelay: 3
+      unequipDelay: 3
       quickEquip: false
       slots:
       - suitStorage
@@ -1067,10 +1067,10 @@
       state: shield
     - type: Item
       sprite: Imperial/Medieval/Shields/buckler.rsi
-      size: Normal
+      size: Ginormous
     - type: Clothing
-      equipDelay: 4
-      unequipDelay: 4
+      equipDelay: 3
+      unequipDelay: 3
       quickEquip: false
       slots:
       - suitStorage
@@ -1127,7 +1127,7 @@
       state: shield
     - type: Item
       sprite: Imperial/Medieval/Shields/inf_medieval.rsi
-      size: Large
+      size: Ginormous
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1183,10 +1183,10 @@
       state: shield
     - type: Item
       sprite: Imperial/Medieval/Shields/iron_buckler.rsi
-      size: Normal
+      size: Ginormous
     - type: Clothing
-      equipDelay: 4
-      unequipDelay: 4
+      equipDelay: 3
+      unequipDelay: 3
       quickEquip: false
       slots:
       - suitStorage
@@ -3609,9 +3609,10 @@
       state: shield
     - type: Item
       sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
+      size: Ginormous
     - type: Clothing
-      equipDelay: 4
-      unequipDelay: 4
+      equipDelay: 3
+      unequipDelay: 3
       quickEquip: false
       slots:
       - suitStorage
