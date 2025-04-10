@@ -458,7 +458,7 @@
     intensity: 1
     slope: 1
   - type: MeleeThrowOnHit
-    distance: 0.9
+    distance: 0.4
     speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -1608,7 +1608,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 0.9
+    distance: 0.3
     speed: 5
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2367,7 +2367,7 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 0.9
+    distance: 0.4
     speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
