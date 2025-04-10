@@ -74,6 +74,7 @@ public partial class InventorySystem
         // stamina resistance begin
         SubscribeLocalEvent<InventoryComponent, StaminaModifyEvent>(RelayInventoryEvent);
         // stamina resistance end
+        SubscribeLocalEvent<InventoryComponent, BadSmell.CleaningActionEvent>(RelayInventoryEvent); // Imperial Medieval BadSmell
     }
 
     protected void RefRelayInventoryEvent<T>(EntityUid uid, InventoryComponent component, ref T args) where T : IInventoryRelayEvent
