@@ -84,6 +84,21 @@ public sealed class PricingSystem : EntitySystem
         }
     }
 
+    private double GetGPSTrackerPrice(EntityUid uid)
+    {
+        double price = 0;
+
+        if(TryComp<GPSTrackerPriceComponent>(uid, out var gpsTracker))
+        {
+            if (gpsTracker.GPSTrackerInstalled == true)
+            {
+                price = gpsTracker.StartPrice;
+            }
+            else price = gpsTracker.EndPrice;
+        }
+        return price;
+    }
+
     private void CalculateMobPrice(EntityUid uid, MobPriceComponent component, ref PriceCalculationEvent args)
     {
         // TODO: Estimated pricing.
@@ -241,6 +256,7 @@ public sealed class PricingSystem : EntitySystem
         if (oldPrice.Equals(price))
         {
             price += GetStaticPrice(uid);
+            price += GetGPSTrackerPrice(uid);
         }
 
         if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))

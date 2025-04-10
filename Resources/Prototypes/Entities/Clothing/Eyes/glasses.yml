@@ -65,6 +65,9 @@
   - type: EyeProtection
   - type: IdentityBlocker
     coverage: EYES
+  - type: Tag
+    tags:
+    - Meson
 
 - type: entity
   parent: ClothingEyesBase
@@ -253,6 +256,9 @@
     - type: SolutionScanner
     - type: IdentityBlocker
       coverage: EYES
+    - type: Tag
+      tags:
+      - HudChemical
 
 - type: entity
   parent: [ClothingEyesBase, BaseMajorContraband]

@@ -159,6 +159,11 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: JetpackCaptainFilled
+  - type: StaticPrice
+    price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 25000
 
 # Filled captain
 - type: entity

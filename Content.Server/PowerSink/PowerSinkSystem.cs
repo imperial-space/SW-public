@@ -88,7 +88,10 @@ namespace Content.Server.PowerSink
                         break;
                     }
                 }
-
+                if(component.ExplodeOnFullCharge != true)
+                {
+                    return;
+                }
                 // Check for explosion
                 if (battery.CurrentCharge < battery.MaxCharge)
                     continue;
@@ -128,7 +131,7 @@ namespace Content.Server.PowerSink
 
             _chat.DispatchStationAnnouncement(
                 station.Value,
-                Loc.GetString("powersink-imminent-explosion-announcement"),
+                Loc.GetString(powerSinkComponent.ImminentExplosionMessage),
                 playDefaultSound: true,
                 colorOverride: Color.Yellow
             );

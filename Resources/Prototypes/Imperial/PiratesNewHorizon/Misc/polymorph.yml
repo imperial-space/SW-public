@@ -1,0 +1,12 @@
+- type: polymorph
+  id: BlackRavenMorph
+  configuration:
+    entity: MobBlackRavenPirate
+    forced: true
+    transferName: false
+    transferHumanoidAppearance: true
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: false
+    duration: 60
+    cooldown: 63

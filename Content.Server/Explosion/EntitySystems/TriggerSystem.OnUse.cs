@@ -110,6 +110,9 @@ public sealed partial class TriggerSystem
             return;
 
         timerTriggerComp.Delay = _random.NextFloat(comp.Min, comp.Max);
+        if(!TryComp<TriggerOnHeatComponent>(ent, out var heatTriggerComp))
+            return;
+        OnRandomTimerHeatTriggerMapInit(ent, ref args);
     }
 
     private void CycleDelay(OnUseTimerTriggerComponent component, EntityUid user)

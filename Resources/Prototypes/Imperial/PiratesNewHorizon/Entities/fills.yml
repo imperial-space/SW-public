@@ -1,0 +1,54 @@
+- type: entity
+  id: CratePirateShotgunAmmo
+  suffix: Filled
+  parent: CrateSyndicate
+  name: Black market shotgun ammo
+  description: Contains all sorts of ammo for shotguns. A great opportunity to start genocide on one of NanoTrasen's stations. 
+  components:
+  - type: StorageFill
+    contents:
+      - id: BoxLethalshot
+        amount: 2
+      - id: BoxShellTranquilizer
+        amount: 4
+      - id: BoxShotgunSlug
+        amount: 1
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateMedicalBundle
+  id: ClothingBackpackDuffelPirateDrugs
+  name: drug bundle
+  description: Contains varios sorts of drugs and toxins, not so legal in here. Make sure not to harm yourself.
+  components:
+  - type: StorageFill
+    contents:
+      - id: SyringeSpaceDrugs
+        amount: 3
+      - id: SyringeBananadine
+        amount: 2
+      - id: SyringeTHC
+      - id: SyringeDesoxyephedrine
+      - id: SyringeImpedrezene
+      - id: SyringePax
+      - id: SyringeCitaloporam
+      - id: SyringeMindbreakerToxin
+        amount: 3
+      - id: SyringeChloralHydrate
+      - id: SyringeHonk
+      - id: SyringeMuteToxin
+      - id: SyringeHeartbreakerToxin
+      - id: SyringeNorepinephricAcid
+      - id: SyringeCalomel
+        amount: 5
+      - id: SyringeSodiumHydroxide
+        amount: 3
+      - id: CigarGold
+        amount: 2
+      - id: FlippoEngravedLighter
+      - id: Lighter
+        amount: 2
+      - id: CigaretteSpaceDrugs
+        amount: 3
+      - id: CigaretteSyndicate
+      - id: Cigarette
+        amount: 5

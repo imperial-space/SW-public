@@ -28,6 +28,9 @@
     sprite: Clothing/Eyes/Misc/eyepatch.rsi
   - type: EyeProtection
     protectionTime: 5
+  - type: Tag
+    tags:
+      - Eyepatch
 
 - type: entity
   parent: [ClothingEyesEyepatch, ClothingHeadEyeBaseFlipped]

@@ -417,3 +417,146 @@
     - id: BloodbathPuddleMessVariationPass
       prob: 0.01
       orGroup: puddleMess
+
+- type: entity
+  id: PiratesDebug
+  components:
+  - type: GameRule
+    minPlayers: 1
+  - type: AntagLoadProfileRule
+    speciesOverride: Human
+  - type: RuleGrids
+  - type: LoadMapRule
+    mapPath: /Maps/Shuttles/pirate_map.yml
+  - type: PiratesRule
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ CaptainPirate ]
+      fallbackRoles: [ Pirate ]
+      startingGear: PirateCaptainGear
+      spawnerPrototype: SpawnPointCaptainPirate
+      components:
+      - type: NpcFactionMember
+        factions:
+        - Pirate
+      - type: PirateAccent
+      mindRoles:
+      - MindRoleCaptainPirate
+    - prefRoles: [ Pirate ]
+      fallbackRoles: [ CaptainPirate ]
+      spawnerPrototype: SpawnPointPrivateer
+      max: 14
+      playerRatio: 1
+      startingGear: PirateGear
+      components:
+      - type: NpcFactionMember
+        factions:
+        - Pirate
+      - type: PirateAccent
+      mindRoles:
+      - MindRolePirate
+
+- type: entity
+  id: Pirates
+  components:
+  - type: GameRule
+    minPlayers: 20
+  - type: AntagLoadProfileRule
+    speciesOverride: Human
+  - type: RuleGrids
+  - type: LoadMapRule
+    mapPath: /Maps/Shuttles/pirate_map.yml
+  - type: PiratesRule
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ CaptainPirate ]
+      fallbackRoles: [ Pirate ]
+      startingGear: PirateCaptainGear
+      spawnerPrototype: SpawnPointCaptainPirate
+      components:
+      - type: NpcFactionMember
+        factions:
+        - Pirate
+      - type: PirateAccent
+      mindRoles:
+      - MindRoleCaptainPirate
+    - prefRoles: [ Pirate ]
+      fallbackRoles: [ CaptainPirate ]
+      spawnerPrototype: SpawnPointPrivateer
+      max: 14
+      playerRatio: 1
+      startingGear: PirateGear
+      components:
+      - type: NpcFactionMember
+        factions:
+        - Pirate
+      - type: PirateAccent
+      mindRoles:
+      - MindRolePirate
+
+- type: entity
+  parent: BaseNukeopsRule
+  id: NukeopsDebug
+  components:
+  - type: GameRule
+    minPlayers: 0
+  - type: LoadMapRule
+    mapPath: /Maps/Nonstations/nukieplanet.yml
+  - type: AntagSelection
+    selectionTime: PrePlayerSpawn
+    definitions:
+    - prefRoles: [ NukeopsCommander ]
+      fallbackRoles: [ Nukeops, NukeopsMedic ]
+      spawnerPrototype: SpawnPointNukeopsCommander
+      startingGear: SyndicateCommanderGearFull
+      roleLoadout:
+      - RoleSurvivalNukie
+      components:
+      - type: NukeOperative
+      - type: RandomMetadata
+        nameSegments:
+        - nukeops-role-commander
+        - SyndicateNamesElite
+      - type: NpcFactionMember
+        factions:
+        - Syndicate
+      mindRoles:
+      - MindRoleNukeopsCommander
+    - prefRoles: [ NukeopsMedic ]
+      fallbackRoles: [ Nukeops, NukeopsCommander ]
+      spawnerPrototype: SpawnPointNukeopsMedic
+      startingGear: SyndicateOperativeMedicFull
+      roleLoadout:
+      - RoleSurvivalNukie
+      components:
+      - type: NukeOperative
+      - type: RandomMetadata
+        nameSegments:
+        - nukeops-role-agent
+        - SyndicateNamesNormal
+      - type: NpcFactionMember
+        factions:
+        - Syndicate
+      mindRoles:
+      - MindRoleNukeopsMedic
+    - prefRoles: [ Nukeops ]
+      fallbackRoles: [ NukeopsCommander, NukeopsMedic ]
+      spawnerPrototype: SpawnPointNukeopsOperative
+      max: 3
+      playerRatio: 1
+      startingGear: SyndicateOperativeGearFull
+      roleLoadout:
+      - RoleSurvivalNukie
+      components:
+      - type: NukeOperative
+      - type: RandomMetadata
+        nameSegments:
+        - nukeops-role-operator
+        - SyndicateNamesNormal
+      - type: NpcFactionMember
+        factions:
+        - Syndicate
+      mindRoles:
+      - MindRoleNukeops

@@ -245,7 +245,7 @@ public sealed partial class CargoSystem
         amount = 0;
         toSell = new HashSet<EntityUid>();
 
-        foreach (var (palletUid, _, _) in GetCargoPallets(gridUid, BuySellType.Sell))
+        foreach (var (palletUid, palletComp, _) in GetCargoPallets(gridUid, BuySellType.Sell))
         {
             // Containers should already get the sell price of their children so can skip those.
             _setEnts.Clear();
@@ -267,7 +267,8 @@ public sealed partial class CargoSystem
                 }
 
                 if (_blacklistQuery.HasComponent(ent))
-                    continue;
+                    if(palletComp.AvoidSellBlacklist == false)
+                        continue;
 
                 var price = _pricing.GetPrice(ent);
                 if (price == 0)

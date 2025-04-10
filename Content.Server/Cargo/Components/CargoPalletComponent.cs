@@ -23,4 +23,7 @@ public sealed partial class CargoPalletComponent : Component
     /// </summary>
     [DataField]
     public BuySellType PalletType;
+
+    [DataField]
+    public bool AvoidSellBlacklist = false;
 }

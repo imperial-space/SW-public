@@ -45,6 +45,9 @@
     - Sidearm
   - type: StaticPrice
     price: 1250
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 13000
   - type: StealTarget
     stealGroup: M2108
 

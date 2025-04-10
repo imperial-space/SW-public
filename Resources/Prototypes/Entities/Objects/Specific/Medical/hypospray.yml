@@ -23,6 +23,9 @@
     delay: 0.5
   - type: StaticPrice
     price: 750
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 7000
   - type: Tag
     tags:
     - HighRiskItem

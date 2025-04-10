@@ -95,6 +95,7 @@ namespace Content.Server.Explosion.EntitySystems
             InitializeTimedCollide();
             InitializeVoice();
             InitializeMobstate();
+            InitializeOnHeat();
 
             SubscribeLocalEvent<TriggerOnSpawnComponent, MapInitEvent>(OnSpawnTriggered);
             SubscribeLocalEvent<TriggerOnCollideComponent, StartCollideEvent>(OnTriggerCollide);
@@ -403,6 +404,7 @@ namespace Content.Server.Explosion.EntitySystems
             UpdateTimer(frameTime);
             UpdateTimedCollide(frameTime);
             UpdateRepeat();
+            UpdateHeat();
         }
 
         private void UpdateTimer(float frameTime)

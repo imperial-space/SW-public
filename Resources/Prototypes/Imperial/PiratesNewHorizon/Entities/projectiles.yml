@@ -1,0 +1,23 @@
+- type: entity
+  id: ProjectileEnergySwing
+  name: energy swing
+  description: FEEL MY WRATH
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: PointLight
+    color: "#e95151"
+    radius: 2.0
+    energy: 5.0
+  - type: Projectile
+    damage:
+      types:
+        Heat: 20
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/projectiles.rsi
+    layers:
+    - state: e_swing
+      shader: unshaded
+  - type: Electrified
+    requirePower: false
+    shockDamage: 40

@@ -298,3 +298,23 @@
     exclusiveAntag: true
     roleType: TeamAntagonist
   - type: ZombieRole
+
+- type: entity
+  parent: BaseMindRoleAntag
+  id: MindRolePirate
+  name: Pirate Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: Pirate
+  - type: PirateRole
+
+- type: entity
+  parent: MindRolePirate
+  id: MindRoleCaptainPirate
+  name: Captain Pirate Role
+  components:
+  - type: MindRole
+    exclusiveAntag: true
+    antagPrototype: CaptainPirate
+  - type: PirateRole

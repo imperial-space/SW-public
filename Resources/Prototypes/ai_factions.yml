@@ -10,6 +10,7 @@
   - AllHostile
   - Wizard
   - SyndicateAgent # Imperial Syndicate Agent Fix
+  - Pirate
 
 - type: npcFaction
   id: NanoTrasen
@@ -22,6 +23,7 @@
   - Dragon
   - AllHostile
   - Wizard
+  - Pirate
 
 - type: npcFaction
   id: Mouse
@@ -55,6 +57,7 @@
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - Pirate
 
 - type: npcFaction
   id: SimpleNeutral
@@ -70,6 +73,7 @@
   - Dragon
   - AllHostile
   - Wizard
+  - Pirate
 
 - type: npcFaction
   id: Xeno
@@ -83,6 +87,7 @@
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - Pirate
 
 - type: npcFaction
   id: Zombie
@@ -97,6 +102,7 @@
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - Pirate
 
 - type: npcFaction
   id: Revolutionary
@@ -141,3 +147,17 @@
   - Revolutionary
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
+
+  - Pirate
+
+- type: npcFaction
+  id: Pirate
+  hostile:
+  - NanoTrasen
+  - Zombie
+  - SimpleHostile
+  - Dragon
+  - DeathSquad
+  - Syndicate
+  - Revolutionary
+  - AllHostile

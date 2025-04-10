@@ -1,0 +1,19 @@
+- type: entity
+  id: ActionPirateCutlassSwing
+  name: Th' mighty swing!
+  description: Create an energy swing to damage your enemies.
+  noSpawn: true
+  components:
+  - type: WorldTargetAction
+    useDelay: 15
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Magic/forcewall.ogg
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: fireball
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectileEnergySwing
+      posData: !type:TargetCasterPos

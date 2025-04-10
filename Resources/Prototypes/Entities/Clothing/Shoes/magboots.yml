@@ -59,6 +59,9 @@
     - HighRiskItem
   - type: StaticPrice
     price: 750
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 12000
   - type: StealTarget
     stealGroup: ClothingShoesBootsMagAdv
 

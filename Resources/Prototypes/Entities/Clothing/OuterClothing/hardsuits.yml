@@ -455,6 +455,9 @@
     clothingPrototype: ClothingHeadHelmetHardsuitRd
   - type: StaticPrice
     price: 750
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 6750
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitRd
 

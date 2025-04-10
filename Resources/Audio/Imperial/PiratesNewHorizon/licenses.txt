@@ -1,0 +1,4 @@
+- files: ["pirate_bell.ogg"]
+  licensee: "CC0 1.0"
+  copyright: "florianreichelt"
+  source: "https://freesound.org/people/florianreichelt/sounds/563016/"

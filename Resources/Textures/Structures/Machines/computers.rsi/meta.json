@@ -1718,6 +1718,28 @@
         {
             "name": "wizard_key",
             "directions": 4
+        },
+        {
+            "name": "pirate",
+            "directions": 4,
+            "delays": [
+                [
+                    0
+                ],
+                [
+                    0
+                ],
+                [
+                    0.3,
+                    0.3,
+                    0.3
+                ],
+                [
+                    0.3,
+                    0.3,
+                    0.3
+                ]
+            ]
         }
     ]
 }

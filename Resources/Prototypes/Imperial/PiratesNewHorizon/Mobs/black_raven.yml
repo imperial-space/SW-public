@@ -1,0 +1,72 @@
+- type: entity
+  parent:
+  - BaseMob
+  - MobCombat
+  - MobDamageable
+  - MobFlammable
+  - MobAtmosStandard
+  - MobRespirator
+  id: MobBlackRavenPirate
+  name: The Black Raven
+  description: The fear of every station's captain. Black raven's head is hidden under his pirate hat. He wears a bowtie, reminding ya of your quick death.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 2
+    baseSprintSpeed: 3.9
+  - type: Sprite
+    sprite: Imperial/PiratesNewHorizon/black_raven.rsi
+    state: alive
+    noRot: true
+    #offset: 0, 0.65
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      300: Dead
+  - type: Speech
+    speechVerb: LargeMob
+  - type: CombatMode
+  - type: MobMover
+  - type: InputMover
+  - type: Appearance
+  - type: Physics
+    bodyType: KinematicController
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        # he heavy
+        density: 500
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobState
+  - type: MobStateActions
+    actions:
+      Critical:
+      - ActionCritSuccumb
+      - ActionCritLastWords
+  - type: MeleeWeapon
+    attackRate: 2.5
+    damage:
+      types:
+        Blunt: 45
+        Structural: 75
+  - type: Puller
+    needsHands: false
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: BlackRaven
+  - type: PirateAccent
+  - type: NpcFactionMember
+    factions:
+    - Pirate
+  - type: HTN
+    rootTask:
+      task: SimpleHumanoidHostileCompound

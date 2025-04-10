@@ -13,7 +13,7 @@
   id: PirateCaptainGear
   parent: PirateGear
   equipment:
-    head: ClothingHeadHatPirate
+    head: ClothingHeadHatPirateCaptain
     pocket2: EnergyCutlass
     outerClothing: ClothingOuterCoatPirate
 
@@ -23,3 +23,26 @@
   equipment:
     head: ClothingHeadHatPirateTricord
     outerClothing: ClothingOuterCoatGentle
+
+- type: antag
+  id: Pirate
+  name: roles-antag-pirate-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-pirate-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 18000 # 5h
+
+- type: antag
+  id: CaptainPirate
+  name: roles-antag-captain-pirate-name
+  antagonist: true
+  setPreference: true
+  objective: roles-antag-pirate-objective
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 108000
+  - !type:DepartmentTimeRequirement
+    department: Security
+    time: 36000

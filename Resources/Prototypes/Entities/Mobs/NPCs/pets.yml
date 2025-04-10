@@ -36,6 +36,11 @@
     - VimPilot
   - type: StealTarget
     stealGroup: AnimalIan
+  - type: StaticPrice
+    price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 23000
 
 - type: entity
   name: Old Ian

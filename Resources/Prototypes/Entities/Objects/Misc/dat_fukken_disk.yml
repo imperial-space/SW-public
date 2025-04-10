@@ -12,6 +12,9 @@
     state: icon
   - type: StaticPrice
     price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 13000
   - type: CargoSellBlacklist
   - type: ArrivalsBlacklist
   - type: WarpPoint

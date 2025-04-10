@@ -119,6 +119,11 @@
     - WhitelistChameleon
     - WhitelistChameleonIdCard
     - HighRiskItem
+  - type: StaticPrice
+    price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 10000
   - type: StealTarget
     stealGroup: CaptainIDCard
 
@@ -691,8 +696,20 @@
     - state: pirate
   - type: Access
     tags:
-    - NuclearOperative
-    - SyndicateAgent
+    - Pirate
+
+- type: entity
+  parent: IDCardStandard
+  id: PirateCaptainIDCard
+  name: captain pirate ID card
+  components:
+  - type: Sprite
+    layers:
+    - state: pirate
+  - type: Access
+    tags:
+    - Pirate
+    - CaptainPirate
 
 - type: entity
   parent: IDCardStandard

@@ -604,6 +604,11 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: BoxFolderQmClipboard
+  - type: StaticPrice
+    price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 7250
 
 - type: entity
   parent: [Paper, BaseSyndicateContraband] # eat or burn your damn piece of paper damn thieves

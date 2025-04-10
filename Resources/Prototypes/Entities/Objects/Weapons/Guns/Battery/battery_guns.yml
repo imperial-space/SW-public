@@ -608,7 +608,10 @@
     - Sidearm
     - WeaponAntiqueLaser
   - type: StaticPrice
-    price: 750
+    price: 0
+  - type: GPSTrackerPrice
+    startprice: 750
+    endprice: 50000
   - type: StealTarget
     stealGroup: WeaponAntiqueLaser
   - type: SentienceTarget # I hope this is only the captain's gun
@@ -796,3 +799,8 @@
     autoRechargeRate: 24
     autoRechargePause: true
     autoRechargePauseTime: 30
+  - type: StaticPrice
+    price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 33000
