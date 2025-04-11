@@ -902,8 +902,8 @@
   - type: AntiSSDFreeArea
 
 - type: entity
-  name: MedievalJobSpawnerLegion
-  id: MedievalJobSpawnerLegion
+  name: MedievalJobSpawnerLegionJailed
+  id: MedievalJobSpawnerLegionJailed
   parent: MarkerBase
   components:
   - type: Sprite
@@ -911,12 +911,12 @@
     - sprite: Imperial/Medieval/Markers/cross.rsi
       state: def
   - type: MedievalJobPoint
-    spawnType: Legion
+    spawnType: LegionJailed
   - type: AntiSSDFreeArea
 
 - type: entity
-  name: MedievalJobSpawnerLegionJail
-  id: MedievalJobSpawnerLegionJail
+  name: MedievalJobSpawnerLegionJailer
+  id: MedievalJobSpawnerLegionJailer
   parent: MarkerBase
   components:
   - type: Sprite
@@ -924,8 +924,9 @@
     - sprite: Imperial/Medieval/Markers/cross.rsi
       state: def
   - type: MedievalJobPoint
-    spawnType: LegionJail
+    spawnType: LegionJailer
   - type: AntiSSDFreeArea
+
 
 - type: entity
   name: MedievalJobSpawnerMine
