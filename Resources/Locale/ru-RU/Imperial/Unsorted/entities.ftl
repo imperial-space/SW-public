@@ -1429,7 +1429,7 @@ ent-FoodBakedCroissant = Круассан
 ent-RandomModsuitCrate = Cпавнер случайного Р.И.Г.
 .desc = { ent-BaseMobDiona.desc }
 
-ent-ClothingUniformJumpsuitCasualGreen = Обычная зелёная юбка-комбинезон
+ent-ClothingUniformJumpsuitCasualGreen = Обычный зелёный комбинезон
 .desc = Свободная поношенная зеленая рубашка с серыми брюками идеально подойдет для тех, кто хочет расслабиться.
 
 ent-RandomHumanoidVisitorMusicianFancy = Гост роль посетителя (Модный музыкант)
