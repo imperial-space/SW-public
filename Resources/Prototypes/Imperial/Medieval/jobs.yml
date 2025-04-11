@@ -1863,7 +1863,7 @@
   - !type:AddComponentSpecial
     components:
     - type: MedievalJobSpawn
-      spawnType: Legion
+      spawnType: LegionJailed
 
 
 # MEDIEVAL LegionJAILER
@@ -1903,7 +1903,7 @@
     #- type: IdentityFaction
     #  faction: Legion
     - type: MedievalJobSpawn
-      spawnType: Legion
+      spawnType: LegionJailer
     - type: MedievalPasportPerson
       personJob: "[color=cyan]Тюремщик легиона[/color]"
       pasport: MedievalPasportLegion
