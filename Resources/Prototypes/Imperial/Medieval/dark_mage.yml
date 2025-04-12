@@ -54,7 +54,7 @@
       availableModes:
       - FullAuto
       soundGunshot: /Audio/Imperial/Medieval/magic-power.ogg
-    - type: DarkMage
+    # - type: DarkMage
     
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobDarkMage
