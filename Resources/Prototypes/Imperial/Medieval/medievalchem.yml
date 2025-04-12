@@ -1134,3 +1134,76 @@
     weights:
       easy: 70
       medium: 30
+
+- type: entity
+  name: mortar
+  parent: [ BaseItem, BaseStorageItem ]
+  id: MedievalMortarNew
+  description: .
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 50
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/mortar.rsi
+      layers:
+        - state: stupca
+        - state: stupca1
+          map: [ "enum.SolutionContainerLayers.Fill" ]
+          visible: false
+    - type: Item
+      size: Normal
+      sprite: Imperial/Medieval/Chem/mortar.rsi
+    - type: MixableSolution
+      solution: beaker
+    - type: RefillableSolution
+      solution: beaker
+    - type: DrainableSolution
+      solution: beaker
+    - type: ExaminableSolution
+      solution: beaker
+    - type: DrawableSolution
+      solution: beaker
+    - type: InjectableSolution
+      solution: beaker
+    - type: SolutionTransfer
+      canChangeTransferAmount: true
+    - type: SolutionItemStatus
+      solution: beaker
+    - type: UserInterface
+      interfaces:
+        enum.TransferAmountUiKey.Key:
+          type: TransferAmountBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: Drink
+      solution: beaker
+    - type: Spillable
+      solution: beaker
+    - type: Appearance
+    - type: SolutionContainerVisuals
+      maxFillLevels: 3
+      fillBaseName: stupca
+    - type: StaticPrice
+      price: 60
+    - type: DnaSubstanceTrace
+    - type: Mortar
+    - type: Storage
+      grid:
+      - 0,0,2,2
+
+- type: entity
+  name: mortar tool
+  parent: BaseItem
+  id: MedievalMortarTool
+  description: .
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/mortartool.rsi
+      layers:
+        - state: icon
+    - type: Item
+      size: Tiny
+      sprite: Imperial/Medieval/Chem/mortartool.rsi
+    - type: MortarTool
