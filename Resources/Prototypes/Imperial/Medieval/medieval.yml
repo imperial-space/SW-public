@@ -1510,6 +1510,12 @@
       uiWindowPos: 1,1
       strippingWindowPos: 2,2
       displayName: Suit
+    - name: gloves
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,2
+      displayName: Gloves
     - name: mask
       slotTexture: mask
       slotFlags: MASK
@@ -7531,7 +7537,7 @@
   cash:
     1: MedievalPaperOnValuableCargoIns
   canWithdraw: true
-  
+
 - type: entity
   id: MedievalPaperOnValuableCargoLeg
   name: church bell
@@ -7554,3 +7560,83 @@
     1: MedievalPaperOnValuableCargoLeg
   canWithdraw: true
 
+- type: construction
+  name: Деревянная броня гоблинов
+  id: MedievalClothingOuterArmorGoblinWood
+  graph: MedievalClothingOuterArmorGoblinWood
+  startNode: start
+  targetNode: MedievalClothingOuterArmorGoblinWood
+  category: construction-category-misc
+  description: "Пик гоблинской моды"
+  icon: { sprite: Imperial/Medieval/Clothing/Armor/goblin_wood_armor.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalClothingOuterArmorGoblinWood
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalClothingOuterArmorGoblinWood
+          steps:
+            - material: WoodPlank
+              amount: 26
+              doAfter: 5
+            - material: MedievalGrass
+              amount: 6
+    - node: MedievalClothingOuterArmorGoblinWood
+      entity: MedievalClothingOuterArmorGoblinWood
+
+- type: construction
+  name: Кожаная броня гоблинов
+  id: MedievalClothingOuterArmorGoblinLeather
+  graph: MedievalClothingOuterArmorGoblinLeather
+  startNode: start
+  targetNode: MedievalClothingOuterArmorGoblinLeather
+  category: construction-category-misc
+  description: "Вчера ище мяукала"
+  icon: { sprite: Imperial/Medieval/Clothing/Armor/goblin_leather_armor.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalClothingOuterArmorGoblinLeather
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalClothingOuterArmorGoblinLeather
+          steps:
+            - material: MedievalLeather1
+              amount: 14
+              doAfter: 12
+            - material: Cloth
+              amount: 2
+    - node: MedievalClothingOuterArmorGoblinLeather
+      entity: MedievalClothingOuterArmorGoblinLeather
+
+- type: construction
+  name: Железная броня гоблинов
+  id: MedievalClothingOuterArmorGoblinIron
+  graph: MedievalClothingOuterArmorGoblinIron
+  startNode: start
+  targetNode: MedievalClothingOuterArmorGoblinIron
+  category: construction-category-misc
+  description: "Как гоблины такое носят?"
+  icon: { sprite: Imperial/Medieval/Clothing/Armor/goblin_iron_armor.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalClothingOuterArmorGoblinIron
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalClothingOuterArmorGoblinIron
+          steps:
+            - material: MedievalIronIngot
+              amount: 14
+              doAfter: 6
+            - material: Cloth
+              amount: 4
+    - node: MedievalClothingOuterArmorGoblinIron
+      entity: MedievalClothingOuterArmorGoblinIron
