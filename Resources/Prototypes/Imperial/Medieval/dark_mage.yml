@@ -30,16 +30,16 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        180: Dead
+        385: Dead
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3.7
-      baseSprintSpeed: 3.7
+      baseWalkSpeed: 4.2
+      baseSprintSpeed: 4.2
     - type: Tag
       tags:
         - FootstepSound
     - type: CombatMode
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 2
+      rechargeCooldown: 1.5
       rechargeSound:
         path: /Audio/Imperial/Medieval/magic-shipenie.ogg
     - type: BasicEntityAmmoProvider
@@ -48,7 +48,7 @@
       count: 1
     - type: Gun
       projectileSpeed: 8
-      fireRate: 0.3
+      fireRate: 0.4
       useKey: false
       selectedMode: FullAuto
       availableModes:
