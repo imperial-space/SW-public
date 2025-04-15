@@ -1657,3 +1657,122 @@
     sprite: Imperial/Medieval/Clothing/Head/warhammer2.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/warhammer2.rsi
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterArmorGoblinWood
+  name: studded armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/goblin_wood_armor.rsi
+  - type: Clothing
+    equipDelay: 2.4
+    unequipDelay: 2.4
+    sprite: Imperial/Medieval/Clothing/Armor/goblin_wood_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.92
+        Slash: 0.8
+        Piercing: 0.76
+        Heat: 0.6
+        Cold: 0.3
+        Stamina: 0.8 ## Stamina resistance
+  - type: Tag
+    tags:
+    - GoblinArmor
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterArmorGoblinLeather
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/goblin_leather_armor.rsi
+  - type: Clothing
+    equipDelay: 2.9
+    unequipDelay: 2.9
+    sprite: Imperial/Medieval/Clothing/Armor/goblin_leather_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.6
+        Piercing: 0.71
+        Heat: 0.7
+        Cold: 0.51
+        Stamina: 0.7 ## Stamina resistance
+  - type: Item
+    size: Normal
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+  - type: Tag
+    tags:
+    - GoblinArmor
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterArmorGoblinIron
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/goblin_iron_armor.rsi
+  - type: Clothing
+    equipDelay: 4.5
+    unequipDelay: 4.5
+    sprite: Imperial/Medieval/Clothing/Armor/goblin_iron_armor.rsi
+    equipSound:
+      path: /Audio/Imperial/Medieval/iron_armor_eqiped.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/iron_armor_eqiped.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.54
+        Slash: 0.46
+        Piercing: 0.48
+        Heat: 0.4
+        Cold: 0.8
+        Stamina: 0.5 ## Stamina resistance
+  - type: ClothingSpeedModifier
+    walkModifier: 0.88
+    sprintModifier: 0.88
+  - type: Item
+    size: Normal
+  - type: ExplosionResistance
+    damageCoefficient: 0.82
+  - type: Tag
+    tags:
+    - GoblinArmor
+  - type: MedievalIronHitSound
+    effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
