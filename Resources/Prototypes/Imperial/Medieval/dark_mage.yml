@@ -4,57 +4,69 @@
   parent: SimpleMobBase
   description: old dark power
   components:
-    - type: NpcFactionMember
-      factions:
-        - Syndicate
-    - type: HTN
-      rootTask:
-        task: SimpleRangedHostileCompound
-    - type: Sprite
-      drawdepth: Mobs
-      sprite: Imperial/Medieval/Mobs/dark_mage.rsi
-      layers:
-        - map: [ "enum.DamageStateVisualLayers.Base" ]
-          state: darkmage
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeCircle
-            radius: 0.45
-          density: 50
-          mask:
-            - MobMask
-          layer:
-            - MobLayer
-    - type: MobThresholds
-      thresholds:
-        0: Alive
-        385: Dead
-    - type: MovementSpeedModifier
-      baseWalkSpeed: 4.2
-      baseSprintSpeed: 4.2
-    - type: Tag
-      tags:
-        - FootstepSound
-    - type: CombatMode
-    - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 1.5
-      rechargeSound:
-        path: /Audio/Imperial/Medieval/magic-shipenie.ogg
-    - type: BasicEntityAmmoProvider
-      proto: MedievalProjectileMagicArrowPlayerFolloverMiddle
-      capacity: 1
-      count: 1
-    - type: Gun
-      projectileSpeed: 8
-      fireRate: 0.4
-      useKey: false
-      selectedMode: FullAuto
-      availableModes:
-      - FullAuto
-      soundGunshot: /Audio/Imperial/Medieval/magic-power.ogg
-    - type: DarkMage
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
+  - type: HTN
+    rootTask:
+      task: SimpleRangedHostileCompound
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/dark_mage.rsi
+    layers:
+      - map: [ "enum.DamageStateVisualLayers.Base" ]
+        state: darkmage
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 50
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      515: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.2
+    baseSprintSpeed: 4.2
+  - type: Tag
+    tags:
+      - FootstepSound
+  - type: CombatMode
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/magic-shipenie.ogg
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileMagicArrowPlayerFolloverMiddle
+    capacity: 1
+    count: 1
+  - type: Gun
+    projectileSpeed: 8
+    fireRate: 0.22
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot: /Audio/Imperial/Medieval/magic-power.ogg
+  - type: DarkMage
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 515
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalEssence:
+            min: 4
+            max: 7
 
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobDarkMage
