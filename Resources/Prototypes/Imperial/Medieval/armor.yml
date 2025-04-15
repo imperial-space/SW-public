@@ -1732,9 +1732,6 @@
   - type: Tag
     tags:
     - GoblinArmor
-  - type: Construction
-    graph: MedievalClothingOuterArmorGoblinLeather
-    node: ground
 
 - type: entity
   parent: ClothingOuterBase
@@ -1782,6 +1779,3 @@
     - GoblinArmor
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
-  - type: Construction
-    graph: MedievalClothingOuterArmorGoblinIron
-    node: ground

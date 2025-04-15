@@ -1437,6 +1437,16 @@
   result: ClothingMaskBandBlack
 
 - type: CP14Recipe
+  id: MedievalClothingOuterArmorGoblinLeather
+  craftTime: 6
+  stacks:
+    MedievalLeather1: 6
+    MedievalLeatherBelt: 2
+    WoodPlank: 5
+    MedievalRope: 4
+  result: MedievalClothingOuterArmorGoblinLeather
+
+- type: CP14Recipe
   id: MedievalClothFromGrass
   craftTime: 3
   stacks:

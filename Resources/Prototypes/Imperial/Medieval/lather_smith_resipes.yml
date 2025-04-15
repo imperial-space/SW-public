@@ -964,3 +964,13 @@
   stacks:
     MedievalIronIngot: 9
   result: WorkpieceMedievalKotel
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorGoblinIron
+  craftTime: 14
+  iconOverride: MedievalClothingOuterArmorGoblinIron
+  stacks:
+    MedievalIronIngot: 8
+    MedievalRope: 2
+    MedievalLeatherBelt: 1
+  result: WorkpieceMedievalClothingOuterArmorGoblinIron
