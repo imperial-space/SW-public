@@ -36,3 +36,6 @@
 
 - type: Tag
   id: Meson
+
+- type: Tag
+  id: TrayScanner

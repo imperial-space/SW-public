@@ -75,7 +75,7 @@
         nameSegments:
         - NamesPirateFirst
         - NamesPirateLast
-    mindRoles:
+      mindRoles:
     - MindRoleCaptainPirate
     - prefRoles: [ Pirate ]
       fallbackRoles: [ CaptainPirate ]

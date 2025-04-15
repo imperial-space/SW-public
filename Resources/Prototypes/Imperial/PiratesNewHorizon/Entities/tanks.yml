@@ -10,4 +10,4 @@
         reagents:
         - ReagentId: Rum
           Quantity: 1000
-          maxVol: 1000
+        maxVol: 1000

@@ -261,7 +261,7 @@
   name: pirate-booze-grog-name
   description: pirate-booze-grog-description
   icon: { sprite: Imperial/PiratesNewHorizon/grogbottle.rsi, state: icon}
-  productEntity: DrinkBottleGrogFull
+  productEntity: DrinkGrogBottleFull
   cost: 
     Doubloon: 1350
   categories:

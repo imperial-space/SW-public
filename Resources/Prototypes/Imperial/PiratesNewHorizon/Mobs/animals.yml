@@ -28,7 +28,6 @@
     makeSentient: true
     allowSpeech: true
     allowMovement: true
-    whitelistRequired: false
     name: ghost-role-information-parrot-pirate-name
     description: ghost-role-information-parrot-pirate-description
     rules: ghost-role-information-parrot-pirate-rules

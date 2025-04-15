@@ -9,19 +9,18 @@
     sprite: Imperial/PiratesNewHorizon/magboots-pirate.rsi
   - type: Clothing
     sprite: Imperial/PiratesNewHorizon/magboots-pirate.rsi
-  - type: Magboots
-    toggleAction: ActionToggleMagbootsPirate
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.65
-    enabled: false
-
+  - type: ToggleClothing
+    action: ActionToggleMagbootsPirate
+    mustEquip: false
 
 - type: entity
   id: ActionToggleMagbootsPirate
   parent: ActionToggleMagboots
-  noSpawn: true
   components:
   - type: InstantAction
-    icon: { sprite: Imperial/PiratesNewHorizon/magboots-pirate.rsi, state: icon }
-    iconOn: Imperial/PiratesNewHorizon/magboots-pirate.rsi/icon-on.png
+    #icon: { sprite: Imperial/PiratesNewHorizon/magboots-pirate.rsi, state: icon }
+    itemIconStyle: BigItem
+    event: !type:ToggleActionEvent
