@@ -9,6 +9,7 @@
   id: BaseMobSpecies
   abstract: true
   components:
+  - type: AreaMarkerInvoker
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]

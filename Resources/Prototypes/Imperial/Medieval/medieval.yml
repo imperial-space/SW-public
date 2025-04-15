@@ -7067,6 +7067,10 @@
   - type: CultBrush
 
 - type: font
+  id: Vinque
+  path: /Fonts/Imperial/Vinque/Vinque.otf
+
+- type: font
   id: SpellwardFont
   path: /Fonts/Imperial/Spellward/Monomakh-Regular.ttf
 
@@ -7531,7 +7535,7 @@
   cash:
     1: MedievalPaperOnValuableCargoIns
   canWithdraw: true
-  
+
 - type: entity
   id: MedievalPaperOnValuableCargoLeg
   name: church bell

@@ -1,0 +1,27 @@
+﻿- type: entity
+  id: BaseAreaMarker
+  parent: MarkerBase
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-placeholder-name
+  - type: Sprite
+    layers:
+    - state: red
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+
