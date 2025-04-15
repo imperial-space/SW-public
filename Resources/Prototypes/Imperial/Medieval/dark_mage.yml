@@ -30,7 +30,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        100: Dead
+        180: Dead
     - type: MovementSpeedModifier
       baseWalkSpeed: 3.7
       baseSprintSpeed: 3.7
@@ -106,6 +106,3 @@
     layers:
     - state: flame
   - type: MedievalFollower
-
-- type: entity
-  id: MedievalJobSpawnerLegion
