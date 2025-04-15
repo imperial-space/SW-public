@@ -54,8 +54,8 @@
       availableModes:
       - FullAuto
       soundGunshot: /Audio/Imperial/Medieval/magic-power.ogg
-    # - type: DarkMage
-    
+    - type: DarkMage
+
 - type: entity
   id: MedievalLateMobSpawnerMedievalMobDarkMage
   name: late mob spawn dark mage
@@ -63,7 +63,7 @@
   components:
   - type: SlowMobSpawn
     spawnMob: MedievalMobDarkMage
-    
+
 - type: entity
   name: MedievalTimedSpawnerMedievalMobDarkMage
   id: MedievalTimedSpawnerMedievalMobDarkMage
@@ -87,3 +87,25 @@
     bodyType: Static
   - type: MedievalMobSpawner
     spawnedEntity: MedievalLateMobSpawnerMedievalMobDarkMage
+
+- type: entity
+  noSpawn: true
+  id: MedievalDarkMageObject
+  name: inside out
+  components:
+  - type: MindContainer
+  - type: Item
+    size: Tiny
+
+- type: entity
+  id: MedievalDarkMageFlame
+  name: flame
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/dark_mage.rsi
+    layers:
+    - state: flame
+  - type: MedievalFollower
+
+- type: entity
+  id: MedievalJobSpawnerLegion

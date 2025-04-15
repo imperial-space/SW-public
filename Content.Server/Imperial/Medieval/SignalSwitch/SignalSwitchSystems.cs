@@ -33,7 +33,7 @@ public sealed class SignalSwitchImperialSystem : EntitySystem
     {
         if (args.Handled || !args.Complex || args.Target == null || HasComp<SignalSwitchImperialHelpComponent>(args.User))
             return;
-        
+
         var sdoAfter = new DoAfterArgs(EntityManager, args.User, comp.Timing, new OnDoAfterSignalSwitchEvent(), args.Target, target: args.User)
         {
             MovementThreshold = 0.5f,
@@ -46,7 +46,7 @@ public sealed class SignalSwitchImperialSystem : EntitySystem
 
         if (!_doAfter.TryStartDoAfter(sdoAfter))
             return;
-            
+
         _audio.PlayPvs(comp.ClickSound, uid, AudioParams.Default.WithVariation(0.125f).WithVolume(8f));
         EnsureComp<SignalSwitchImperialHelpComponent>(args.User);
         args.Handled = true;
@@ -57,7 +57,7 @@ public sealed class SignalSwitchImperialSystem : EntitySystem
 
         if (ev.Cancelled || ev.Target == null) return;
 
-        
+
         comp.State = !comp.State;
         _deviceLink.InvokePort(uid, comp.State ? comp.OnPort : comp.OffPort);
         _deviceLink.SendSignal(uid, comp.StatusPort, comp.State);
