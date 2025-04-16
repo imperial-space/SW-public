@@ -25,6 +25,20 @@ public sealed class DarkMageSystem : EntitySystem
     [Dependency] private readonly MindSystem _mindSystem = default!;
     [Dependency] private readonly ContainerSystem _container = default!;
     [Dependency] private readonly NpcFactionSystem _npcFactionSystem = default!;
+    private void ForceDie(DarkMageComponent darkMageComponent)
+    {
+        darkMageComponent.IsDied = true;
+        if (darkMageComponent.Target == null || darkMageComponent.Container == null) return;
+
+        _mindSystem.TransferTo(darkMageComponent.Mind, darkMageComponent.Target);
+
+        _container.RemoveEntity(darkMageComponent.Target.Value, darkMageComponent.Object);
+        _container.Remove(darkMageComponent.Target.Value, darkMageComponent.Container);
+
+        _npcFactionSystem.ClearFactions(darkMageComponent.Target.Value);
+        _npcFactionSystem.AddFactions(darkMageComponent.Target.Value, darkMageComponent.Faction);
+        return;
+    }
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -50,21 +64,27 @@ public sealed class DarkMageSystem : EntitySystem
 
             if (!TryComp<MobStateComponent>(uid, out var mbst) || mbst.CurrentState != MobState.Alive)
             {
-                if (darkMageComponent.Target == null || darkMageComponent.Container == null) continue;
+                ForceDie(darkMageComponent);
+                continue;
+            }
 
+            if (darkMageComponent.IsMoved)
+            {
+                if (darkMageComponent.LastTiming == TimeSpan.Zero) darkMageComponent.LastTiming = _gameTiming.CurTime;
+                if (darkMageComponent.Target == null || darkMageComponent.Container == null) continue;
+                if (darkMageComponent.LastTiming + darkMageComponent.TimeToStop > _gameTiming.CurTime) continue;
                 _mindSystem.TransferTo(darkMageComponent.Mind, darkMageComponent.Target);
 
                 _container.RemoveEntity(darkMageComponent.Target.Value, darkMageComponent.Object);
                 _container.Remove(darkMageComponent.Target.Value, darkMageComponent.Container);
 
-                var factioncomp = EnsureComp<NpcFactionMemberComponent>(darkMageComponent.Target.Value);
                 _npcFactionSystem.ClearFactions(darkMageComponent.Target.Value);
                 _npcFactionSystem.AddFactions(darkMageComponent.Target.Value, darkMageComponent.Faction);
-                darkMageComponent.IsDied = true;
-                continue;
+                darkMageComponent.Target = null;
+                darkMageComponent.IsMoved = false;
+                darkMageComponent.IsCaptured = false;
+                darkMageComponent.IsFirst = true;
             }
-
-            if (darkMageComponent.IsMoved) continue;
 
             if (darkMageComponent.IsCaptured && darkMageComponent.Target != null && !darkMageComponent.IsMoved && TryComp<MindContainerComponent>(darkMageComponent.Target, out var mindContainerComponent) && mindContainerComponent.Mind != null)
             {
@@ -81,6 +101,7 @@ public sealed class DarkMageSystem : EntitySystem
                 darkMageComponent.Object = oobject;
                 darkMageComponent.Container = internalContainer;
                 darkMageComponent.IsMoved = true;
+                darkMageComponent.LastTiming = TimeSpan.Zero;
 
                 var component = EnsureComp<HTNComponent>(target);
                 component.RootTask = new HTNCompoundTask()
@@ -92,7 +113,6 @@ public sealed class DarkMageSystem : EntitySystem
                 _npcFactionSystem.ClearFactions(target);
                 _npcFactionSystem.AddFaction(target, "Syndicate");
                 continue;
-
             }
 
             var position = _transform.GetMapCoordinates(uid);
