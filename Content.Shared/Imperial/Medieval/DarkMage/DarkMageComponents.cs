@@ -17,6 +17,8 @@ public sealed partial class DarkMageComponent : Component
     public EntityUid Mind;
     [DataField, ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan Timing = TimeSpan.FromSeconds(9);
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public TimeSpan TimeToStop = TimeSpan.FromSeconds(20);
     [ViewVariables(VVAccess.ReadOnly)]
     public TimeSpan LastTiming = TimeSpan.Zero;
     [DataField, ViewVariables(VVAccess.ReadWrite)]
