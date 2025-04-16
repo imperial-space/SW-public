@@ -9,7 +9,6 @@
   id: BaseMobSpecies
   abstract: true
   components:
-  - type: AreaMarkerInvoker
   - type: Sprite
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
@@ -248,13 +247,11 @@
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
   - type: EmoteOnDamage
-# imperial medieval "emotions" start
     emotes:
     - PainScream
     emoteChance: 0.3
     withChat: true
     emoteCooldown: 3.5
-# imperial medieval "emotions" end
   - type: MedievalSpikeTarget
   - type: BadSmellFeel
   - type: BadSmell
@@ -282,13 +279,12 @@
       #Hissing: Speak
       #Elf: Speak
   - type: SleepingImperial
-  # Imperial medieval start
   - type: SoftCritEmotes
     emotes:
     - Cough
     - Gasp
     - PassiveScream
-  # Imperial medieval end
+  - type: AreaMarkerInvoker
 # Imperial Medieval End
 
 - type: entity
