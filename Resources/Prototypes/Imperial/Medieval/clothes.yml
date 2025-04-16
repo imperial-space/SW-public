@@ -1578,3 +1578,4 @@
       - state: equipped-EYES
       - state: unshaded
         shader: unshaded
+
