@@ -152,6 +152,12 @@
             "name": "tribe_recruit"
         },
         {
+            "name": "ins_alc"
+        },
+        {
+            "name": "legion_alc"
+        },
+        {
             "name": "wandernag"
         }
     ]

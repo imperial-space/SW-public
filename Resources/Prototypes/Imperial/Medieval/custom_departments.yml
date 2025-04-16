@@ -26,6 +26,7 @@
   - MedievalLegionTribun
   - MedievalLegionLegat
   - MedievalLegionMag
+  - MedievalLegionAlchemic
 
 - type: department
   id: Insurgency
@@ -40,6 +41,7 @@
   - MedievalInsurgencyTribun
   - MedievalInsurgencyLegat
   - MedievalInsurgencyMag
+  - MedievalInsurgencyAlchemic
 
 - type: department
   id: Band

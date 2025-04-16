@@ -5252,3 +5252,7 @@ ent-MedievalClothingElectroMask = маска Прокажённого
 ent-ClothingEyesElectroBlindfold = повязка Уайса
     .desc = Повязка из магической ткани, сдерживает некую мощь.
     .suffix = { "Средневековье, одежда" }
+job-description-LegionAlchemic-medieval = Создавайте зелья и другие алхимические вещи.
+job-name-LegionAlchemic-medieval = Алхимик легиона
+job-description-InsurgencyAlchemic-medieval = Создавайте зелья и другие алхимические вещи.
+job-name-InsurgencyAlchemic-medieval = Алхимик Мятежников

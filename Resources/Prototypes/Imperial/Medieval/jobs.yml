@@ -2319,6 +2319,86 @@
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
 
+# MEDIEVAL LegionAlchemic
+
+- type: startingGear
+  id: MedievalLegionAlchemicGear
+  equipment:
+    pocket1: MedievalCommsCrystallLeg
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
+    neck: MedievalClothingNeckCloakClanEagle
+    belt: MedievalAlchemicBelt
+    id: MedievalLeatherKey
+  storage:
+    back:
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+
+- type: playTimeTracker
+  id: JobMedievalLegionAlchemic
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalLegionAlchemic
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: legion_alc
+  jobName: job-name-InsurgencyAlchemic-medieval
+
+- type: job
+  id: MedievalLegionAlchemic
+  name: job-name-LegionAlchemic-medieval
+  description: job-description-LegionAlchemic-medieval
+  playTimeTracker: JobMedievalLegionAlchemic
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Orc
+    - Skeleton
+    inverted: true
+  #  - !type:OverallPlaytimeRequirement
+  #    time: 36000 #Imperial role timers
+  startingGear: MedievalLegionAlchemicGear
+  icon: "JobIconMedievalLegionAlchemic"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Friends
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
+    #- type: IdentityFaction
+    #  faction: Insurgency
+    - type: MedievalJobSpawn
+      spawnType: Legion
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: MedievalPasportPerson
+      personJob: "[color=red]Алхимик легиона[/color]"
+      pasport: MedievalPasportLegion
+      jobPrefix: "[АлхимикЛ]"
+
+- type: roleLoadout
+  id: JobMedievalLegionAlchemic
+  groups:
+  #- TravellerHead
+  #- ChaplainOuterMedieval
+  #- ChaplainJumpsuitMedieval
+  - MedievalBackpack
+  #- MedievalBiblie
+  #- MedievalChaplainNeck
+  #- SecurityOuterClothing
+  - MedievalShoes
+  #- SecurityPDA
+  #- MedievalBelt
+  #- ChaplainMaskMedieval
+  #- SurvivalSecurity
+  #- MedievalTrinkets
+  #- MedievalMusic
+  #- GroupSpeciesBreathToolSecurity
+  - MedievalGloves
+
 # MEDIEVAL Insurgency RECRUIT
 
 - type: startingGear
@@ -2790,6 +2870,86 @@
   #- MedievalMusic
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
+
+# MEDIEVAL InsurgencyAlchemic
+
+- type: startingGear
+  id: MedievalInsurgencyAlchemicGear
+  equipment:
+    pocket1: MedievalCommsCrystallIns
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
+    neck: MedievalClothingNeckCloakClanFox
+    belt: MedievalAlchemicBelt
+    id: MedievalKeyGuard
+  storage:
+    back:
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+
+- type: playTimeTracker
+  id: JobMedievalInsurgencyAlchemic
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalInsurgencyAlchemic
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: ins_alc
+  jobName: job-name-InsurgencyAlchemic-medieval
+
+- type: job
+  id: MedievalInsurgencyAlchemic
+  name: job-name-InsurgencyAlchemic-medieval
+  description: job-description-InsurgencyAlchemic-medieval
+  playTimeTracker: JobMedievalInsurgencyAlchemic
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Orc
+    inverted: true
+  #  - !type:OverallPlaytimeRequirement
+  #    time: 36000 #Imperial role timers
+  startingGear: MedievalInsurgencyAlchemicGear
+  icon: "JobIconMedievalInsurgencyAlchemic"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Friends
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
+    #- type: IdentityFaction
+    #  faction: Insurgency
+    - type: MedievalJobSpawn
+      spawnType: Insurgency
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: MedievalPasportPerson
+      personJob: "[color=red]Алхимик мятежников[/color]"
+      pasport: MedievalPasportInsurgency
+      jobPrefix: "[АлхимикМ]"
+
+- type: roleLoadout
+  id: JobMedievalInsurgencyAlchemic
+  groups:
+  #- TravellerHead
+  #- ChaplainOuterMedieval
+  #- ChaplainJumpsuitMedieval
+  - MedievalBackpack
+  #- MedievalBiblie
+  #- MedievalChaplainNeck
+  #- SecurityOuterClothing
+  - MedievalShoes
+  #- SecurityPDA
+  #- MedievalBelt
+  #- ChaplainMaskMedieval
+  #- SurvivalSecurity
+  #- MedievalTrinkets
+  #- MedievalMusic
+  #- GroupSpeciesBreathToolSecurity
+  - MedievalGloves
+
 
 # MEDIEVAL BANDIT RECRUIT
 
