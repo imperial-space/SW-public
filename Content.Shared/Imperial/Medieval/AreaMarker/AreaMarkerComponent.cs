@@ -10,5 +10,8 @@ public sealed partial class AreaMarkerComponent : Component
     public SoundSpecifier AudioPath { get; set; } = new SoundPathSpecifier("/Audio/Effects/Cargo/ping.ogg");
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public string AreaName { get; set; }
+    public string AreaName { get; set; } = "area-name-placeholder";
+
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
+    public int FontSize { get; set; } = 24;
 }

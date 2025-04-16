@@ -9,7 +9,7 @@ namespace Content.Shared.Imperial.Medieval.AreaMarker;
 
 public sealed class AreaMarkerSystem : EntitySystem
 {
-    [Dependency] private INetManager _netManager = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
@@ -46,7 +46,7 @@ public sealed class AreaMarkerSystem : EntitySystem
             return;
         }
 
-        var message = Loc.GetString("wrapped-area-marker-message", ("area", ent.Comp.AreaName));
+        var message = Loc.GetString("wrapped-area-marker-message", ("area", ent.Comp.AreaName), ("fontSize", ent.Comp.FontSize));
 
         var ev = new AreaMarkerAnnounceEvent(message);
         RaiseLocalEvent(ref ev);

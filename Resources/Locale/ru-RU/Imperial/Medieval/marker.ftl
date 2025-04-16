@@ -1,1 +1,1 @@
-﻿wrapped-area-marker-message = [font="Vinque" size=18] -{$area}- [/font]
+﻿wrapped-area-marker-message = [font="Vinque" size={$fontSize}] - {$area} - [/font]
