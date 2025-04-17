@@ -6,15 +6,19 @@ using Robust.Shared.Player;
 using Content.Shared.DoAfter;
 using Robust.Shared.Random;
 using Content.Shared.Popups;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.MedievalLockpickSystem;
 
 public sealed class MedievalLockpickSystem : EntitySystem
 {
+    public const float DefaultChance = 0.2f;
+
     [Dependency] private readonly SharedDoorSystem _door = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -54,14 +58,17 @@ public sealed class MedievalLockpickSystem : EntitySystem
 
     private void OnDoAfter(EntityUid uid, MedievalLockpickComponent component, MedievalLockpickDoAfterEvent args)
     {
-        if (args.Handled || args.Cancelled)
+        if (args.Handled || args.Cancelled || !_timing.IsFirstTimePredicted)
             return;
 
         if (args.Args.Target is not null)
         {
             if (TryComp<DoorComponent>(args.Args.Target.Value, out var doorcomp) && doorcomp != null)
             {
-                if (_random.Prob(0.2f))
+                var ev = new GetLockpickChanceModifiersEvent();
+                RaiseLocalEvent(args.Args.User, ref ev);
+
+                if (_random.Prob(DefaultChance * ev.Modifier))
                 {
                     _popupSystem.PopupEntity("Взлом успешный", args.Args.User, PopupType.LargeCaution);
                     var door = args.Args.Target.Value;
