@@ -5,6 +5,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Inventory;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.Events;
 using Content.Shared.Item;
@@ -161,10 +162,15 @@ public abstract partial class InventorySystem
             (clothing.Slots & slotDefinition.SlotFlags) != 0 &&
             _containerSystem.CanInsert(itemUid, slotContainer))
         {
+            // Imperial Medieval Skills start
+            var ev = new GetEquipDelayModifiersEvent();
+            RaiseLocalEvent(actor, ref ev);
+            // Imperial Medieval Skills end
+
             var args = new DoAfterArgs(
                 EntityManager,
                 actor,
-                clothing.EquipDelay,
+                clothing.EquipDelay * ev.Modifier,  // Imperial Medieval - modifier added
                 new ClothingEquipDoAfterEvent(slot),
                 itemUid,
                 target,
