@@ -66,9 +66,34 @@ public sealed partial class SkillsSystem
                                         _threshold.GetThresholdForState(uid, MobState.Alive) + proto.Modifiers["AliveHealthPerLevel"] * diff,
                                         MobState.Alive);
 
-        // Раскомментите при переносе в секретку
         // _threshold.SetMobStateThreshold(uid,
-        //                                 _threshold.GetThresholdForState(uid, MobState.Wounded) + proto.Modifiers["WoundedHealthPerLevel"] * diff,
+        //                                 _threshold.GetThresholdForState(uid, MobState.Wounded) + proto.Modifiers["AliveHealthPerLevel"] * diff,
         //                                 MobState.Wounded);
+
+        _threshold.SetMobStateThreshold(uid,
+                                        _threshold.GetThresholdForState(uid, MobState.Critical) + proto.Modifiers["AliveHealthPerLevel"] * diff,
+                                        MobState.Critical);
+
+        _threshold.SetMobStateThreshold(uid,
+                                        _threshold.GetThresholdForState(uid, MobState.Dead) + proto.Modifiers["AliveHealthPerLevel"] * diff,
+                                        MobState.Dead);
+
+        // var woundedThreshold = _threshold.GetThresholdForState(uid, MobState.Alive) + proto.Modifiers["AliveHealthPerLevel"] * diff;
+        // if (level >= 20)
+        //     woundedThreshold += proto.Modifiers["MaxHealthBonus"];
+        // else if (oldLevel >= 20 && level < 20)
+        //     woundedThreshold -= proto.Modifiers["MaxHealthBonus"];
+
+        // _threshold.SetMobStateThreshold(uid,
+        //                                 woundedThreshold,
+        //                                 MobState.Wounded);
+
+        // _threshold.SetMobStateThreshold(uid,
+        //                                 woundedThreshold,
+        //                                 MobState.Critical);
+
+        // _threshold.SetMobStateThreshold(uid,
+        //                                 woundedThreshold,
+        //                                 MobState.Dead);
     }
 }
