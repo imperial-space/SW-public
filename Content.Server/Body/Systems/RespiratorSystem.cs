@@ -19,6 +19,7 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Chat;
+using Content.Server.Imperial.Medieval.Body;
 
 namespace Content.Server.Body.Systems;
 
@@ -295,7 +296,12 @@ public sealed class RespiratorSystem : EntitySystem
             }
         }
 
-        _damageableSys.TryChangeDamage(ent, ent.Comp.Damage, interruptsDoAfters: false);
+        // Imperial Medieval Skills start
+        var ev = new GetSuffocationDamageModifiersEvent();
+        RaiseLocalEvent(ent, ref ev);
+        // Imperial Medieval Skills end
+
+        _damageableSys.TryChangeDamage(ent, ent.Comp.Damage * ev.Modifier, interruptsDoAfters: false);  // Imperial Medieval - modifier added
     }
 
     private void StopSuffocation(Entity<RespiratorComponent> ent)
