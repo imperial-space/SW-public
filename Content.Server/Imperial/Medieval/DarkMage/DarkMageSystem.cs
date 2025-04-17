@@ -13,6 +13,7 @@ using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Server.Imperial.DarkMage.Follower;
 using Content.Client.Imperial.Medieval.DarkMage;
+using Content.Shared.Humanoid;
 
 namespace Content.Server.Imperial.DarkMage.Systems;
 
@@ -117,7 +118,7 @@ public sealed class DarkMageSystem : EntitySystem
 
             var position = _transform.GetMapCoordinates(uid);
             var entitiesNearby = _lookup.GetEntitiesInRange(position, darkMageComponent.SearchRadius)
-                .Where(e => e != uid && HasComp<MindContainerComponent>(e) && TryComp<MobStateComponent>(e, out var eComp) && eComp.CurrentState == MobState.Alive) // Живые поон?
+                .Where(e => e != uid && TryComp<MindContainerComponent>(e, out var mindE) && mindE.HasMind && TryComp<MobStateComponent>(e, out var eComp) && eComp.CurrentState == MobState.Alive && HasComp<HumanoidAppearanceComponent>(e)) // Много
                 .ToList();
 
             if (entitiesNearby.Count >= 2)
