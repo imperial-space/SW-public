@@ -8,6 +8,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     {
         base.Initialize();
         InitializeAgility();
+        InitializeVitality();
 
         SubscribeLocalEvent<SkillsComponent, SkillLevelChangedEvent>(OnLevelChanged);
     }
