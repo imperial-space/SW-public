@@ -7,6 +7,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Database;
 using Content.Shared.Effects;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.Stamina;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
 using Content.Shared.Rejuvenate;
@@ -357,8 +358,13 @@ public sealed partial class StaminaSystem : EntitySystem
                 continue;
             }
 
+            // Imperial Medieval Skills start
+            var ev = new GetStaminaRegenModifiersEvent();
+            RaiseLocalEvent(uid, ref ev);
+            // Imperial Medieval Skills end
+
             comp.NextUpdate += TimeSpan.FromSeconds(1f);
-            TakeStaminaDamage(uid, -comp.Decay, comp);
+            TakeStaminaDamage(uid, -(comp.Decay * ev.Modifier), comp);  // Imperial Medieval - modifier added
             Dirty(uid, comp);
         }
     }
@@ -377,7 +383,12 @@ public sealed partial class StaminaSystem : EntitySystem
         component.Critical = true;
         component.StaminaDamage = component.CritThreshold;
 
-        _stunSystem.TryParalyze(uid, component.StunTime, true);
+        // Imperial Medieval Skills start
+        var ev = new GetStaminaCritDurationModifiersEvent();
+        RaiseLocalEvent(uid, ref ev);
+        // Imperial Medieval Skills end
+
+        _stunSystem.TryParalyze(uid, component.StunTime * ev.Modifier, true);   // Imperial Medieval - modifier added
 
         // Give them buffer before being able to be re-stunned
         component.NextUpdate = _timing.CurTime + component.StunTime + StamCritBufferTime;

@@ -49,3 +49,16 @@
     NegativeSuffocationDamageModifier: 0.03
     PositiveBloodRegenModifier: 0.05
     NegativeBloodRegenModifier: -0.03
+
+- type: skill
+  id: Endurance
+  name: Выносливость
+  color: "#ffec96"
+  modifiers:
+    PositiveSprintStaminaDamageModifier: -0.03
+    NegativeSprintStaminaDamageModifier: 0.03
+    PositiveSlowdownModifier: 0.02
+    PositiveStaminaRegenModifier: 0.03
+    NegativeStaminaRegenModifier: -0.03
+    PositiveStaminaCritModifier: -0.05
+    NegativeStaminaCritModifier: 0.05
