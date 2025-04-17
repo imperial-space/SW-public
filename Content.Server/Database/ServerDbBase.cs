@@ -50,6 +50,7 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
                 .Include(p => p.Profiles).ThenInclude(h => h.Languages) // imperial medieval languages
+                .Include(p => p.Profiles).ThenInclude(h => h.Skills) // imperial medieval
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -103,6 +104,7 @@ namespace Content.Server.Database
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
                 .Include(p => p.Languages)  // imperial medieval languages
+                .Include(p => p.Skills) // Imperial medieval
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
                     .ThenInclude(group => group.Loadouts)
@@ -267,7 +269,10 @@ namespace Content.Server.Database
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
-                languages.ToHashSet()   // imperial medieval languages
+                // Imperial medieval start
+                languages.ToHashSet(),
+                new(profile.Skills.ToDictionary(s => s.SkillName, s => s.SkillLevel))
+                // Imperial medieval end
             );
         }
 
@@ -349,14 +354,21 @@ namespace Content.Server.Database
                 profile.Loadouts.Add(dz);
             }
 
-            // imperial medieval languages start
+            // Imperial medieval start
             profile.Languages.Clear();
             profile.Languages.AddRange(
                     humanoid.Languages.Select
                     (l => new Language { LanguageName = l.ToString() }
                     )
                 );
-            // imperial medieval languages end
+
+            profile.Skills.Clear();
+            profile.Skills.AddRange(
+                    humanoid.Skills.Select
+                    (s => new Skill { SkillName = s.Key, SkillLevel = s.Value }
+                    )
+                );
+            // Imperial medieval end
 
             return profile;
         }
