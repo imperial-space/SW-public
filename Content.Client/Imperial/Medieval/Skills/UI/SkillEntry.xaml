@@ -1,0 +1,28 @@
+<Control
+    xmlns="https://spacestation14.io"
+    Margin="5"
+    HorizontalExpand="True"
+    VerticalExpand="True">
+    <PanelContainer Name="Wrapper"
+        StyleClasses="PdaBorderRect">
+        <BoxContainer Orientation="Vertical">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                <Label Name="Name"
+                    MinWidth="50"
+                    HorizontalExpand="True"
+                    Margin="4"/>
+                <BoxContainer Orientation="Horizontal" Margin="4">
+                    <Button Name="IncreaseButton"
+                        Text = "+"
+                        HorizontalExpand="True"
+                        Margin="2"/>
+                    <Button Name="DecreaseButton"
+                        Text = "-"
+                        HorizontalExpand="True"
+                        Margin="2"/>
+                </BoxContainer>
+            </BoxContainer>
+            <BoxContainer Name="VisualizerContainer" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" SizeFlagsStretchRatio="5"/>
+        </BoxContainer>
+    </PanelContainer>
+</Control>
