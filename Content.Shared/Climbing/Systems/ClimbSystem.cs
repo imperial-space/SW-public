@@ -7,6 +7,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.Climbing;
 using Content.Shared.Interaction;
 using Content.Shared.Movement.Events;
 using Content.Shared.Physics;
@@ -223,7 +224,12 @@ public sealed partial class ClimbSystem : VirtualController
         if (ev.Cancelled)
             return false;
 
-        var args = new DoAfterArgs(EntityManager, user, comp.ClimbDelay, new ClimbDoAfterEvent(),
+        // Imperial Medieval Skills start
+        var modEv = new GetClimbDelayModifiersEvent(user);
+        RaiseLocalEvent(entityToMove, ref modEv);
+        // Imperial Medieval Skills end
+
+        var args = new DoAfterArgs(EntityManager, user, comp.ClimbDelay * modEv.Modifier, new ClimbDoAfterEvent(),  // Imperial Medieval - modifier added
             entityToMove,
             target: climbable,
             used: entityToMove)
