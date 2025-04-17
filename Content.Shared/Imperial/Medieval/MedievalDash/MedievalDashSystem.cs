@@ -82,9 +82,16 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var impulse = forceDirection.RotateVec(force);
         var dashTime = TimeSpan.FromSeconds(component.Force / 990 / physicsComponent.Mass);
 
-        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage, ignoreResistances: true)) return false;
+        var staminaEv = new CheckDashStaminaCostModifiersEvent();
+        RaiseLocalEvent(player, ref staminaEv);
 
-        _physicsSystem.ApplyLinearImpulse(player, impulse);
+        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage * staminaEv.Modifier, ignoreResistances: true))
+            return false;
+
+        var distEv = new CheckDashDistanceModifiersEvent();
+        RaiseLocalEvent(player, ref distEv);
+
+        _physicsSystem.ApplyLinearImpulse(player, impulse * distEv.Modifier);
 
         var shadowComponent = EnsureComp<PhaseSpaceShadowComponent>(player);
 
@@ -92,7 +99,12 @@ public sealed partial class MedievalDashSystem : EntitySystem
         shadowComponent.PositionUpdateRate = TimeSpan.Zero;
 
         component.DashEndTime = dashTime + _timing.CurTime;
-        component.NextDash = _timing.CurTime + component.DashReloadTime;
+
+        var cooldownEv = new CheckDashCooldownModifiersEvent();
+        RaiseLocalEvent(player, ref cooldownEv, true);
+
+        component.NextDash = _timing.CurTime + component.DashReloadTime + TimeSpan.FromSeconds(staminaEv.Modifier);
+
         component.DashButtonPressedTick = _timing.CurTick;
 
         component.IsDashing = true;
