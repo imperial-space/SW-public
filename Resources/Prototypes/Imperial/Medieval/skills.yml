@@ -1,0 +1,44 @@
+- type: skill
+  id: Agility
+  name: Ловкость
+  color: "#96fff3"
+  modifiers:
+    PositiveAttackRate: 0.02
+    NegativeAttackRate: -0.01
+    PositiveDashCooldownBonus: -0.1
+    NegativeDashCooldownBonus: 0.2
+    PositiveDashDistanceBonus: 0.4
+    NegativeDashDistanceBonus: -0.3
+    PositiveClimbDelayModifier: -0.1
+    NegativeClimbDelayModifier: 0.1
+    PositiveLockpickChanceModifier: 0.2
+    NegativeLockpickChanceModifier: 0
+    PositiveEquipDelayModifier: -0.07
+    NegativeEquipDelayModifier: 0.04
+    PositiveSpreadModifier: -0.08
+    NegativeSpreadModifier: 0.05
+    PositiveStealChanceModifier: 3
+    NegativeStealChanceModifier: -2
+
+- type: skill
+  id: Strength
+  name: Сила
+  color: "#ff9696"
+  modifiers:
+    FistPositiveDamageModifier: 0.1
+    FistNegativeDamageModifier: -0.05
+    WeaponPositiveDamageModifier: 0.02
+    WeaponNegativeDamageModifier: -0.03
+    PositiveUncuffDurationModifier: -0.07
+    NegativeUncuffDurationModifier: 0.07
+    FistMaxDamageModifier: 0.4
+    WeaponMaxDamageModifier: 0.1
+
+- type: skill
+  id: Vitality
+  name: Живучесть
+  color: "#99ff96"
+  modifiers:
+    AliveHealthPerLevel: 1
+    WoundedHealthPerLevel: 1
+    PositiveSlowdownModifier: 0.02
