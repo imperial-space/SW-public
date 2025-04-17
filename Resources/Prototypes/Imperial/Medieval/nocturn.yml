@@ -259,8 +259,8 @@
   #          Blunt: -1
   #          Brute: -1
   #          Slash: -1
-  - type: NeedSleepRaceModifier
-    modifier: 0.65
+  - type: NeedSleep
+    sleepLevelPerUpdate: 19.5
   - type: MobThresholds
     thresholds:
       0: Alive

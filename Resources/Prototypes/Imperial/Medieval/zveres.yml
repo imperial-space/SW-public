@@ -195,8 +195,8 @@
     damage:
       types:
         Slash: 5
-  - type: NeedSleepRaceModifier
-    modifier: 1.2
+  - type: NeedSleep
+    sleepLevelPerUpdate: 36
   - type: BadSmellRaceModifier
     modifier: 1.35
   - type: Damageable
