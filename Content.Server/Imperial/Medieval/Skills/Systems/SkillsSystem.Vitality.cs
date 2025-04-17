@@ -1,3 +1,4 @@
+using Content.Server.Imperial.Medieval.NeedSleep;
 using Content.Server.Imperial.Medieval.RandomSteal;
 using Content.Server.Imperial.Medieval.Weapons;
 using Content.Shared.Imperial.Medieval.Skills;
@@ -10,6 +11,22 @@ namespace Content.Server.Imperial.Medieval.Skills;
 public sealed partial class SkillsSystem
 {
     [Dependency] private readonly MobThresholdSystem _threshold = default!;
+
+    private void InitializeVitality()
+    {
+        SubscribeLocalEvent<SkillsComponent, GetSleepLevelModifiersEvent>(OnGetSleepModifiers);
+    }
+
+    private void OnGetSleepModifiers(EntityUid uid, SkillsComponent comp, ref GetSleepLevelModifiersEvent args)
+    {
+        var (proto, level) = GetSkill(uid, VitalityId);
+
+        if (level == 10)
+            return;
+
+        var diff = Math.Abs(level - 10);
+        args.Modifier += (level > 10 ? proto.Modifiers["PositiveSleepEffeciencyModifier"] : proto.Modifiers["NegativeSleepEffeciencyModifier"]) * diff;
+    }
 
     private void VitalityLevelSet(EntityUid uid, int level, int oldLevel)
     {

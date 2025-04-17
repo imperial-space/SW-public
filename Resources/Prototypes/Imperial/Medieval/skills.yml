@@ -42,3 +42,5 @@
     AliveHealthPerLevel: 1
     WoundedHealthPerLevel: 1
     PositiveSlowdownModifier: 0.02
+    PositiveSleepEffeciencyModifier: -0.05
+    NegativeSleepEffeciencyModifier: 0.05
