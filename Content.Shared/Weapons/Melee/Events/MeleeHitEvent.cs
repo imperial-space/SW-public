@@ -80,13 +80,13 @@ public sealed class MeleeHitEvent : HandledEntityEventArgs
 /// Raised on a melee weapon to calculate potential damage bonuses or decreases.
 /// </summary>
 [ByRefEvent]
-public record struct GetMeleeDamageEvent(EntityUid Weapon, DamageSpecifier Damage, List<DamageModifierSet> Modifiers, EntityUid User, bool ResistanceBypass = false);
+public record struct GetMeleeDamageEvent(EntityUid Weapon, DamageSpecifier Damage, List<DamageModifierSet> Modifiers, EntityUid User, bool ResistanceBypass = false, bool RaisedOnUser = false);    // Imperial Medieval - RaisedOnUser bool added
 
 /// <summary>
 /// Raised on a melee weapon to calculate the attack rate.
 /// </summary>
 [ByRefEvent]
-public record struct GetMeleeAttackRateEvent(EntityUid Weapon, float Rate, float Multipliers, EntityUid User);
+public record struct GetMeleeAttackRateEvent(EntityUid Weapon, float Rate, float Multipliers, EntityUid User, bool RaisedOnUser = false);   // Imperial Medieval - RaisedOnUser bool added
 
 /// <summary>
 /// Raised on a melee weapon to calculate the heavy damage modifier.
