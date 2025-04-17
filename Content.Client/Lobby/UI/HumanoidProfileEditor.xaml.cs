@@ -372,7 +372,7 @@ namespace Content.Client.Lobby.UI
 
             #endregion Appearance
 
-            RefreshLanguages(); // imperial medieval languages
+            RefreshSkills(); // imperial medieval skills
 
             #region Jobs
 
@@ -759,7 +759,7 @@ namespace Content.Client.Lobby.UI
             UpdateCMarkingsHair();
             UpdateCMarkingsFacialHair();
 
-            RefreshLanguages(); // imperial medieval languages
+            RefreshSkills(); // imperial medieval skills
             RefreshAntags();
             RefreshJobs();
             RefreshLoadouts();
