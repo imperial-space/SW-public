@@ -45,4 +45,6 @@
     PositiveSleepEffeciencyModifier: -0.05
     NegativeSleepEffeciencyModifier: 0.05
     PositiveSuffocationDamageModifier: -0.05
-    NegativeSuffocationDamageModifier: 0.05
+    NegativeSuffocationDamageModifier: 0.03
+    PositiveBloodRegenModifier: 0.05
+    NegativeBloodRegenModifier: -0.03
