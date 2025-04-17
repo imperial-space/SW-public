@@ -61,7 +61,7 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
             var (walkMod, sprintMod) = (0f, 0f);
             if (_container.TryGetContainingContainer((uid, null, null), out var container))
             {
-                var ev = new ModifyClothingMovespeedModifier(component.WalkModifier, component.SprintModifier);
+                var ev = new ModifyClothingMovespeedModifierEvent(component.WalkModifier, component.SprintModifier);
                 RaiseLocalEvent(container.Owner, ref ev);
                 (walkMod, sprintMod) = (ev.Walk, ev.Sprint);
             }
