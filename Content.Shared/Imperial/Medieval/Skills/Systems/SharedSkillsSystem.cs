@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Imperial.Medieval.Clothing;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
@@ -17,7 +18,15 @@ public abstract partial class SharedSkillsSystem : EntitySystem
         base.Initialize();
         InitializeCombat();
         InitializeAgility();
-        InitializeVitality();
+        InitializeEndurance();
+
+        SubscribeLocalEvent<SkillsComponent, ModifyClothingMovespeedModifierEvent>(OnModifyClothingSpeedMod);
+    }
+
+    private void OnModifyClothingSpeedMod(EntityUid uid, SkillsComponent comp, ref ModifyClothingMovespeedModifierEvent args)
+    {
+        VitalityModifyClothingSpeedMod(uid, comp, ref args);
+        EnduranceModifyClothingSpeedMod(uid, comp, ref args);
     }
 
     protected (SkillPrototype, int) GetSkill(EntityUid uid, string id)

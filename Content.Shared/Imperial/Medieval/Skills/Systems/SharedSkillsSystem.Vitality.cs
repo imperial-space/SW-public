@@ -6,12 +6,7 @@ public abstract partial class SharedSkillsSystem
 {
     public const string VitalityId = "Vitality";
 
-    private void InitializeVitality()
-    {
-        SubscribeLocalEvent<SkillsComponent, ModifyClothingMovespeedModifier>(OnModifyClothingSpeedMod);
-    }
-
-    private void OnModifyClothingSpeedMod(EntityUid uid, SkillsComponent comp, ref ModifyClothingMovespeedModifier args)
+    private void VitalityModifyClothingSpeedMod(EntityUid uid, SkillsComponent comp, ref ModifyClothingMovespeedModifierEvent args)
     {
         var (proto, level) = GetSkill(uid, VitalityId);
 
@@ -23,7 +18,6 @@ public abstract partial class SharedSkillsSystem
 
         var diff = Math.Abs(level - 10);
         args.Walk += proto.Modifiers["PositiveSlowdownModifier"] * diff * (1 - args.Walk);
+        args.Sprint += proto.Modifiers["PositiveSlowdownModifier"] * diff * (1 - args.Sprint);
     }
-
-
 }
