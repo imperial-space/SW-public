@@ -17,6 +17,8 @@ public sealed partial class SkillsSystem
     {
         SubscribeLocalEvent<SkillsComponent, GetSleepLevelModifiersEvent>(OnGetSleepModifiers);
         SubscribeLocalEvent<SkillsComponent, GetSuffocationDamageModifiersEvent>(OnModifySuffocationDamage);
+        SubscribeLocalEvent<SkillsComponent, GetBloodRegenModifiersEvent>(OnModifyBloodRegen);
+
     }
 
     private void OnGetSleepModifiers(EntityUid uid, SkillsComponent comp, ref GetSleepLevelModifiersEvent args)
@@ -39,6 +41,17 @@ public sealed partial class SkillsSystem
 
         var diff = Math.Abs(level - 10);
         args.Modifier += (level > 10 ? proto.Modifiers["PositiveSuffocationDamageModifier"] : proto.Modifiers["NegativeSuffocationDamageModifier"]) * diff;
+    }
+
+    private void OnModifyBloodRegen(EntityUid uid, SkillsComponent comp, ref GetBloodRegenModifiersEvent args)
+    {
+        var (proto, level) = GetSkill(uid, VitalityId);
+
+        if (level == 10)
+            return;
+
+        var diff = Math.Abs(level - 10);
+        args.Modifier += (level > 10 ? proto.Modifiers["PositiveBloodRegenModifier"] : proto.Modifiers["NegativeBloodRegenModifier"]) * diff;
     }
 
     private void VitalityLevelSet(EntityUid uid, int level, int oldLevel)
