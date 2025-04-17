@@ -7497,3 +7497,36 @@
   cash:
     1: MedievalPaperOnValuableCargoLeg
   canWithdraw: true
+
+- type: entityTable
+  id: MedievalBaseLoot
+  table: !type:GroupSelector
+    children:
+    - id: MedievalScrollBarrierWeak
+    - id: MedievalBolt
+    - id: MedievalArrowIronPhysics
+    - id: Gauze
+    - id: MedievalBrutepack
+    - id: MedievalPaper
+    - id: FoodBreadMeat
+    - id: FoodSoupBeetRed
+    - id: MedievalDrugChemistryBottle
+    - id: Ointment
+    - id: MedievalHolySalt
+
+
+- type: entity
+  id: MedievalBaseLootEffect
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: false
+    table: !type:NestedSelector
+      tableId: MedievalBaseLoot
