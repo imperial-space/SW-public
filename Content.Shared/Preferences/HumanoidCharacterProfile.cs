@@ -16,6 +16,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.Medieval.Skills;
 
 namespace Content.Shared.Preferences
 {
@@ -127,12 +128,14 @@ namespace Content.Shared.Preferences
         public PreferenceUnavailableMode PreferenceUnavailable { get; private set; } =
             PreferenceUnavailableMode.SpawnAsOverflow;
 
-        // imperial medieval languages start
+        // imperial medieval start
         [DataField]
         private HashSet<ProtoId<LanguagePrototype>> _languages = new();
 
         public IReadOnlySet<ProtoId<LanguagePrototype>> Languages => _languages;
-        // imperial medieval languages end
+
+        public Dictionary<string, int> Skills = new();
+        // imperial medieval end
 
         public HumanoidCharacterProfile(
             string name,
@@ -148,7 +151,10 @@ namespace Content.Shared.Preferences
             HashSet<ProtoId<AntagPrototype>> antagPreferences,
             HashSet<ProtoId<TraitPrototype>> traitPreferences,
             Dictionary<string, RoleLoadout> loadouts,
-            HashSet<ProtoId<LanguagePrototype>> languages)  // imperial medieval languages
+            // imperial medieval start
+            HashSet<ProtoId<LanguagePrototype>> languages,
+            Dictionary<string, int> skills)
+            // imperial medieval end
         {
             Name = name;
             FlavorText = flavortext;
@@ -163,7 +169,10 @@ namespace Content.Shared.Preferences
             _antagPreferences = antagPreferences;
             _traitPreferences = traitPreferences;
             _loadouts = loadouts;
-            _languages = languages;  // imperial medieval languages
+            // imperial medieval start
+            _languages = languages;
+            Skills = skills;
+            // imperial medieval end
 
             var hasHighPrority = false;
             foreach (var (key, value) in _jobPriorities)
@@ -195,7 +204,10 @@ namespace Content.Shared.Preferences
                 new HashSet<ProtoId<AntagPrototype>>(other.AntagPreferences),
                 new HashSet<ProtoId<TraitPrototype>>(other.TraitPreferences),
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
-                other._languages)   // imperial medieval languages
+                // imperial medieval start
+                other._languages,
+                other.Skills)
+                // imperial medieval end
         {
         }
 
@@ -486,7 +498,10 @@ namespace Content.Shared.Preferences
             if (!_traitPreferences.SequenceEqual(other._traitPreferences)) return false;
             if (!Loadouts.SequenceEqual(other.Loadouts)) return false;
             if (FlavorText != other.FlavorText) return false;
-            if (!_languages.SequenceEqual(other._languages)) return false;  // imperial medieval languages
+            // imperial medieval start
+            if (!_languages.SequenceEqual(other._languages)) return false;
+            if (!Skills.Equals(other.Skills)) return false;
+            // imperial medieval end
             return Appearance.MemberwiseEquals(other.Appearance);
         }
 
@@ -655,7 +670,7 @@ namespace Content.Shared.Preferences
                 _loadouts.Remove(value);
             }
 
-            // imperial medieval languages start
+            // imperial medieval start
             if (_languages.Count <= 0)
                 _languages = new(speciesPrototype.DefaultLanguages);
             List<ProtoId<LanguagePrototype>> langsInvalid = new();
@@ -676,7 +691,16 @@ namespace Content.Shared.Preferences
 
             if (_languages.Count <= 0)
                 _languages = prototypeManager.Index(Species).DefaultLanguages.ToHashSet();
-            // imperial medieval languages end
+
+            if (Skills.Values.Sum() > SharedSkillsSystem.Points)
+            {
+                Skills.Clear();
+                foreach (var item in prototypeManager.EnumeratePrototypes<SkillPrototype>())
+                {
+                    Skills[item.ID] = 10;
+                }
+            }
+            // imperial medieval end
         }
 
         /// <summary>
@@ -798,7 +822,7 @@ namespace Content.Shared.Preferences
             return new HumanoidCharacterProfile(this);
         }
 
-        // imperial medieval languages start
+        // imperial medieval start
         public HumanoidCharacterProfile WithLanguage(ProtoId<LanguagePrototype> language)
         {
             var proto = IoCManager.Resolve<IPrototypeManager>();
@@ -838,6 +862,22 @@ namespace Content.Shared.Preferences
                 _languages = list,
             };
         }
-        // imperial medieval languages end
+
+        public HumanoidCharacterProfile WithSkill(string id, int level)
+        {
+            Skills.TryAdd(id, 10);
+
+            if (Skills.Values.Sum() - Skills.GetValueOrDefault(id, 10) + level > SharedSkillsSystem.Points)
+                return new(this);
+
+            return new(this)
+            {
+                Skills = new(Skills)
+                {
+                    [id] = level
+                }
+            };
+        }
+        // imperial medieval end
     }
 }
