@@ -13,6 +13,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared.ActionBlocker;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Imperial.Dash;
 
@@ -57,22 +58,21 @@ public sealed partial class MedievalDashSystem : EntitySystem
 
     private bool DashButtonPressed(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid entity)
     {
-        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
+        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player))
+            return false;
 
-        if (!TryComp<MedievalDashComponent>(player, out var component)) return false;
-        if (!TryComp<PhysicsComponent>(player, out var physicsComponent)) return false;
-        if (!TryComp<InputMoverComponent>(player, out var inputMoverComponent)) return false;
+        if (!CanDash(player, out var component))
+            return false;
 
-        if (!component.RequiredBodyStatus.Contains(physicsComponent.BodyStatus)) return false;
-        if ((inputMoverComponent.HeldMoveButtons & MoveButtons.AnyDirection) == 0) return false;
+        if (!TryComp<PhysicsComponent>(player, out var physicsComponent) || physicsComponent.LinearVelocity == Vector2.Zero)
+            return false;
 
-        if (physicsComponent.LinearVelocity == Vector2.Zero) return false;
-        if (!_actionBlockerSystem.CanMove(player, inputMoverComponent)) return false;
+        if (!component.RequiredBodyStatus.Contains(physicsComponent.BodyStatus))
+            return false;
 
-        var isSimulationTick = _timing.CurTick == component.DashButtonPressedTick;
-
-        if (component.IsDashing && !isSimulationTick) return false;
-        if (_timing.CurTime < component.NextDash && !isSimulationTick) return false;
+        if (!TryComp<InputMoverComponent>(player, out var inputMoverComponent) ||
+            (inputMoverComponent.HeldMoveButtons & MoveButtons.AnyDirection) == 0)
+            return false;
 
         var targetRotation = physicsComponent.LinearVelocity.ToAngle();
 
@@ -112,5 +112,26 @@ public sealed partial class MedievalDashSystem : EntitySystem
 
 
         return false;
+    }
+
+    private bool CanDash(EntityUid uid, [NotNullWhen(true)] out MedievalDashComponent? component)
+    {
+        if (!TryComp(uid, out component))
+            return false;
+
+        var isSimulationTick = _timing.CurTick == component.DashButtonPressedTick;
+
+        if (component.IsDashing && !isSimulationTick)
+            return false;
+
+        if (_timing.CurTime < component.NextDash && !isSimulationTick)
+            return false;
+
+        if (!_actionBlockerSystem.CanMove(uid))
+            return false;
+
+        var ev = new CanDashEvent();
+        RaiseLocalEvent(uid, ref ev);
+        return !ev.Cancelled;
     }
 }
