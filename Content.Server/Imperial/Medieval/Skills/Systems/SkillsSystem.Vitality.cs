@@ -58,9 +58,6 @@ public sealed partial class SkillsSystem
     {
         var (proto, _) = GetSkill(uid, VitalityId);
 
-        if (!TryComp<MobThresholdsComponent>(uid, out var mobState))
-            return;
-
         var diff = level - oldLevel;
         _threshold.SetMobStateThreshold(uid,
                                         _threshold.GetThresholdForState(uid, MobState.Alive) + proto.Modifiers["AliveHealthPerLevel"] * diff,
