@@ -8,6 +8,7 @@ using Content.Shared.Construction.Components;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Construction.Steps;
 using Content.Shared.DoAfter;
+using Content.Shared.Imperial.Medieval.Construction;
 using Content.Shared.Interaction;
 using Content.Shared.Prying.Systems;
 using Content.Shared.Radio.EntitySystems;
@@ -284,7 +285,10 @@ namespace Content.Server.Construction
                     {
                         var doAfterEv = new ConstructionInteractDoAfterEvent(EntityManager, interactUsing);
 
-                        var doAfterEventArgs = new DoAfterArgs(EntityManager, interactUsing.User, step.DoAfter, doAfterEv, uid, uid, interactUsing.Used)
+                        var skillsEv = new GetConstructionSpeedModifiersEvent();
+                        RaiseLocalEvent(interactUsing.User, ref skillsEv);
+
+                        var doAfterEventArgs = new DoAfterArgs(EntityManager, interactUsing.User, step.DoAfter * Math.Max(skillsEv.Modifier, 0.15f), doAfterEv, uid, uid, interactUsing.Used)
                         {
                             BreakOnDamage = false,
                             BreakOnMove = true,
@@ -361,11 +365,14 @@ namespace Content.Server.Construction
                     if (doAfterState == DoAfterState.Completed)
                         return  HandleResult.True;
 
+                    var skillsEv = new GetConstructionSpeedModifiersEvent();
+                    RaiseLocalEvent(interactUsing.User, ref skillsEv);
+
                     var result  = _toolSystem.UseTool(
                         interactUsing.Used,
                         interactUsing.User,
                         uid,
-                        TimeSpan.FromSeconds(toolInsertStep.DoAfter),
+                        TimeSpan.FromSeconds(toolInsertStep.DoAfter * Math.Max(skillsEv.Modifier, 0.15f)),
                         new [] { toolInsertStep.Tool },
                         new ConstructionInteractDoAfterEvent(EntityManager, interactUsing),
                         out var doAfter,
