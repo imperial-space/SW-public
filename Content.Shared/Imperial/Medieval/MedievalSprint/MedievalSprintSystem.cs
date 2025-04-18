@@ -82,7 +82,14 @@ public sealed partial class MedievalSprintSystem : EntitySystem
     #region Helpers
 
     private bool EnoughStamina(MedievalSprintComponent component, StaminaComponent staminaComponent)
-        => staminaComponent.StaminaDamage / staminaComponent.CritThreshold <= component.MinStaminaToSprintPrecent;
+    {
+        var ev = new CanSprintEvent();
+        RaiseLocalEvent(component.Owner, ref ev);
+        if (ev.Cancelled)
+            return false;
+
+        return staminaComponent.StaminaDamage / staminaComponent.CritThreshold <= component.MinStaminaToSprintPrecent;
+    }
 
     #endregion
 }
