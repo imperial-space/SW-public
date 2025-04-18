@@ -1,18 +1,12 @@
 using Content.Server.Imperial.Medieval.Body;
 using Content.Server.Imperial.Medieval.NeedSleep;
-using Content.Server.Imperial.Medieval.RandomSteal;
-using Content.Server.Imperial.Medieval.Weapons;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
 
 namespace Content.Server.Imperial.Medieval.Skills;
 
 public sealed partial class SkillsSystem
 {
-    [Dependency] private readonly MobThresholdSystem _threshold = default!;
-
     private void InitializeVitality()
     {
         SubscribeLocalEvent<SkillsComponent, GetSleepLevelModifiersEvent>(OnGetSleepModifiers);

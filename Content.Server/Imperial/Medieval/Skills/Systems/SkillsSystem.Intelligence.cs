@@ -10,8 +10,6 @@ namespace Content.Server.Imperial.Medieval.Skills;
 
 public sealed partial class SkillsSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-
     private void InitializeIntelligence()
     {
         SubscribeLocalEvent<SkillsComponent, GetHealingSpeedModifiersEvent>(OnGetHealingSpeedModifiers);
