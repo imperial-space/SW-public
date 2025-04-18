@@ -15,6 +15,7 @@ public abstract partial class SharedSkillsSystem
         SubscribeLocalEvent<SkillsComponent, GetMeleeAttackRateEvent>(OnGetRate);
         SubscribeLocalEvent<SkillsComponent, CheckDashCooldownModifiersEvent>(OnGetDashCooldownModifiers);
         SubscribeLocalEvent<SkillsComponent, CheckDashDistanceModifiersEvent>(OnGetDashDistanceModifiers);
+        SubscribeLocalEvent<SkillsComponent, CanDashEvent>(OnCanDash);
         SubscribeLocalEvent<SkillsComponent, GetClimbDelayModifiersEvent>(OnGetClimbDelayModifiers);
         SubscribeLocalEvent<SkillsComponent, GetLockpickChanceModifiersEvent>(OnGetLockpickModifiers);
         SubscribeLocalEvent<SkillsComponent, GetEquipDelayModifiersEvent>(OnGetEquipDelayModifiers);
@@ -58,6 +59,16 @@ public abstract partial class SharedSkillsSystem
         var diff = Math.Abs(level - 10);
 
         args.Modifier += (level > 10 ? proto.Modifiers["PositiveDashDistanceBonus"] : proto.Modifiers["NegativeDashDistanceBonus"]) * diff;
+    }
+
+    private void OnCanDash(EntityUid uid, SkillsComponent comp, ref CanDashEvent args)
+    {
+        var (proto, level) = GetSkill(uid, AgilityId);
+
+        if (level > 1)
+            return;
+
+        args.Cancelled = true;
     }
 
     private void OnGetClimbDelayModifiers(EntityUid uid, SkillsComponent comp, ref GetClimbDelayModifiersEvent args)
