@@ -21,6 +21,7 @@ using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
+using Content.Shared.Imperial.Medieval.Medical;
 
 namespace Content.Server.Medical;
 
@@ -213,8 +214,13 @@ public sealed class HealingSystem : EntitySystem
             ? component.Delay
             : component.Delay * GetScaledHealingPenalty(user, component);
 
+        // Imperial Medieval Skills start
+        var ev = new GetHealingSpeedModifiersEvent(isNotSelf);
+        RaiseLocalEvent(user, ref ev);
+        // Imperial Medieval Skills end
+
         var doAfterEventArgs =
-            new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), target, target: target, used: uid)
+            new DoAfterArgs(EntityManager, user, delay * ev.Modifier, new HealingDoAfterEvent(), target, target: target, used: uid) // Imperial Medieval - modifier added
             {
                 // Didn't break on damage as they may be trying to prevent it and
                 // not being able to heal your own ticking damage would be frustrating.
