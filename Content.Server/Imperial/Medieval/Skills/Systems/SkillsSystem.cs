@@ -9,6 +9,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         base.Initialize();
         InitializeAgility();
         InitializeVitality();
+        InitializeIntelligence();
 
         SubscribeLocalEvent<SkillsComponent, SkillLevelChangedEvent>(OnLevelChanged);
     }
@@ -16,5 +17,6 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     private void OnLevelChanged(EntityUid uid, SkillsComponent comp, ref SkillLevelChangedEvent args)
     {
         VitalityLevelSet(uid, args.Level, args.OldLevel);
+        IntelligenceLevelSet(uid, args.Level, args.OldLevel);
     }
 }
