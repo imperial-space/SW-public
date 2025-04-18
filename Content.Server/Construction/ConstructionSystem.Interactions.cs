@@ -285,10 +285,12 @@ namespace Content.Server.Construction
                     {
                         var doAfterEv = new ConstructionInteractDoAfterEvent(EntityManager, interactUsing);
 
+                        // Imperial Medieval Skills start
                         var skillsEv = new GetConstructionSpeedModifiersEvent();
                         RaiseLocalEvent(interactUsing.User, ref skillsEv);
+                        // Imperial Medieval Skills end
 
-                        var doAfterEventArgs = new DoAfterArgs(EntityManager, interactUsing.User, step.DoAfter * Math.Max(skillsEv.Modifier, 0.15f), doAfterEv, uid, uid, interactUsing.Used)
+                        var doAfterEventArgs = new DoAfterArgs(EntityManager, interactUsing.User, step.DoAfter * Math.Max(skillsEv.Modifier, 0.15f), doAfterEv, uid, uid, interactUsing.Used)   // Imperial Medieval - modifier added
                         {
                             BreakOnDamage = false,
                             BreakOnMove = true,
@@ -365,14 +367,16 @@ namespace Content.Server.Construction
                     if (doAfterState == DoAfterState.Completed)
                         return  HandleResult.True;
 
+                    // Imperial Medieval Skills start
                     var skillsEv = new GetConstructionSpeedModifiersEvent();
                     RaiseLocalEvent(interactUsing.User, ref skillsEv);
+                    // Imperial Medieval Skills end
 
                     var result  = _toolSystem.UseTool(
                         interactUsing.Used,
                         interactUsing.User,
                         uid,
-                        TimeSpan.FromSeconds(toolInsertStep.DoAfter * Math.Max(skillsEv.Modifier, 0.15f)),
+                        TimeSpan.FromSeconds(toolInsertStep.DoAfter * Math.Max(skillsEv.Modifier, 0.15f)),  // Imperial Medieval - modifier added
                         new [] { toolInsertStep.Tool },
                         new ConstructionInteractDoAfterEvent(EntityManager, interactUsing),
                         out var doAfter,
