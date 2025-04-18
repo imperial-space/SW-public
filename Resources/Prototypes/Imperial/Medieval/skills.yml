@@ -62,3 +62,17 @@
     NegativeStaminaRegenModifier: -0.03
     PositiveStaminaCritModifier: -0.05
     NegativeStaminaCritModifier: 0.05
+    MaxStaminaDamageModifier: 0.5
+
+- type: skill
+  id: Intelligence
+  name: Интеллект
+  color: "#ea96ff"
+  modifiers:
+    PositiveConstructionSpeedModifier: -0.07
+    NegativeConstructionSpeedModifier: 0.1
+    PositiveHealingSpeedModifier: -0.04
+    NegativeHealingSpeedModifier: 0.06
+    PositiveManaModifier: 0.03
+    NegativeManaModifier: -0.03
+    LowStupidityChance: 0.2

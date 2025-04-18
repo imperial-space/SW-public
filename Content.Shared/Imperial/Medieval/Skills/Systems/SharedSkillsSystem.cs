@@ -19,6 +19,7 @@ public abstract partial class SharedSkillsSystem : EntitySystem
         InitializeCombat();
         InitializeAgility();
         InitializeEndurance();
+        InitializeIntelligence();
 
         SubscribeLocalEvent<SkillsComponent, ModifyClothingMovespeedModifierEvent>(OnModifyClothingSpeedMod);
     }
