@@ -1138,6 +1138,7 @@
       60: Critical
       140: Dead
   #- type: InventorySlots
+  - type: AreaMarkerInvoker
   - type: NpcFactionMember
     factions:
     - Xeno
