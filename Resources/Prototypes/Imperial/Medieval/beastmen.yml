@@ -185,7 +185,7 @@
       100: Critical
       200: Dead
   - type: NeedSleep
-    sleepLevelPerUpdate: 27
+    sleepLevelPerUpdate: 0.27
   - type: StealRaceChanceIncreaser
 
 - type: entity

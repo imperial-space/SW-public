@@ -185,7 +185,7 @@
       105: Critical
       180: Dead
   - type: NeedSleep
-    sleepLevelPerUpdate: 21
+    sleepLevelPerUpdate: 0.21
 
 - type: entity
   parent: BaseMobDarkElf

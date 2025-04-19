@@ -260,7 +260,7 @@
   #          Brute: -1
   #          Slash: -1
   - type: NeedSleep
-    sleepLevelPerUpdate: 19.5
+    sleepLevelPerUpdate: 0.195
   - type: MobThresholds
     thresholds:
       0: Alive

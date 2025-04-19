@@ -290,7 +290,7 @@
     maxManaRaceModifier: 1.07
     regenRaceModifier: 1.07
   - type: NeedSleep
-    sleepLevelPerUpdate: 32
+    sleepLevelPerUpdate: 0.32
 
 - type: entity
   parent: BaseSpeciesDummy
