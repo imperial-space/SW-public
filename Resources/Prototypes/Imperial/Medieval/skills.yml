@@ -7,7 +7,7 @@
     NegativeAttackRate: -0.01
     PositiveDashCooldownBonus: -0.1
     NegativeDashCooldownBonus: 0.2
-    PositiveDashDistanceBonus: 0.4
+    PositiveDashDistanceBonus: 0.2
     NegativeDashDistanceBonus: -0.3
     PositiveClimbDelayModifier: -0.1
     NegativeClimbDelayModifier: 0.1
@@ -62,7 +62,7 @@
     NegativeStaminaRegenModifier: -0.03
     PositiveStaminaCritModifier: -0.05
     NegativeStaminaCritModifier: 0.05
-    MaxStaminaDamageModifier: 0.5
+    MaxStaminaDamageModifier: -0.5
 
 - type: skill
   id: Intelligence

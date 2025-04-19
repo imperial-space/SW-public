@@ -194,7 +194,7 @@
       types:
         Blunt: 8
   - type: NeedSleep
-    sleepLevelPerUpdate: 35
+    sleepLevelPerUpdate: 0.35
   - type: BadSmellRaceModifier
     modifier: 1.15
 
