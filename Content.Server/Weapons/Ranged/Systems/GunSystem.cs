@@ -23,6 +23,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Containers;
 using Content.Server.Imperial.Medieval.Weapons;
+using Robust.Shared.Threading;
+using Robust.Shared.Random;
 
 namespace Content.Server.Weapons.Ranged.Systems;
 
@@ -36,6 +38,7 @@ public sealed partial class GunSystem : SharedGunSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly StaminaSystem _stamina = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private const float DamagePitchVariation = 0.05f;
 
@@ -66,7 +69,7 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         userImpulse = true;
 
-        float spreadMod = 1f;   // Imperial Medieval Skills
+        float spread = 1f;   // Imperial Medieval Skills
 
         if (user != null)
         {
@@ -79,9 +82,9 @@ public sealed partial class GunSystem : SharedGunSystem
             }
 
             // Imperial Medieval Skills start
-            var spreadEv = new GetGunSpreadModifiersEvent();
+            var spreadEv = new GetGunSpreadModifiersEvent(gun.DefaultSpread);
             RaiseLocalEvent(user.Value, ref spreadEv);
-            spreadMod = spreadEv.Modifier;
+            spread = _random.NextFloat(-spreadEv.Modifier, spreadEv.Modifier);
             // Imperial Medieval Skills end
         }
 
@@ -90,7 +93,7 @@ public sealed partial class GunSystem : SharedGunSystem
         var mapDirection = toMap - fromMap.Position;
         var mapAngle = mapDirection.ToAngle();
         var angle = GetRecoilAngle(Timing.CurTime, gun, mapDirection.ToAngle());
-        angle *= spreadMod; // Imperial Medieval Skills
+        angle += Angle.FromDegrees(spread); // Imperial Medieval Skills
 
         // If applicable, this ensures the projectile is parented to grid on spawn, instead of the map.
         var fromEnt = MapManager.TryFindGridAt(fromMap, out var gridUid, out var grid)
