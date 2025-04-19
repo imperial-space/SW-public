@@ -16,6 +16,7 @@
         - PlushieChemistGift
         - PlushieSOGift
         - PlushieIAAGift
+        - PlushieYeseniaGift
       rareChance: 0.15
       prototypes:
         - PlushieCapitan
@@ -39,5 +40,9 @@
         - PlushieSylvester
         - PlushieBorg
         - PlushieErika
+        - PlushieAiden
+        - PlushieKainov
+        - PlushieYesenia
+
       chance: 0.75
       offset: 0.10

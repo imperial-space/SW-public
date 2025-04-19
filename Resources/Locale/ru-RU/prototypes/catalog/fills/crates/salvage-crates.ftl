@@ -1,7 +1,7 @@
-ent-CrateSalvageEquipment = Ящик снаряжения утилизатора
+ent-CrateSalvageEquipment = ящик снаряжения утилизатора
     .desc = Для отважных.
 
-ent-CrateSalvageAssortedGoodies = Ящик
+ent-CrateSalvageAssortedGoodies = ящик
     .desc = Обычный ящик
 
 ent-CratePartsT3 = ящик компонентов 3 уровня

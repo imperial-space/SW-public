@@ -32,3 +32,9 @@ ent-ThermosRed = красный термос
 ent-ThermosGray = серый термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
 
+ent-ClothingUniformJumpsuitMadzima = брейкданс костюм
+    .desc = Увидимся, мисси!
+ent-ClothingShoesMadzima = брейкданс ботинки
+    .desc = Пора надрать задницу!
+ent-ClothingOuterMadzima = брейкданс куртка
+    .desc = Пора сходить с ума!

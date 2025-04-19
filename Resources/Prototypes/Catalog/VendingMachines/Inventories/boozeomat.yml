@@ -48,7 +48,7 @@
     DrinkWineCan: 5
     DrinkKarmotrineCan: 5 # Imperial Space / VA-11Hall-A
   contrabandInventory:
-    EthanolChemistryBottle: 3
+    ChemistryBottleEthanol: 3
     DrinkBottleOfNothingFull: 1
   emaggedInventory:
     DrinkPoisonWinebottleFull: 2

@@ -11,6 +11,8 @@
   - Wizard
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Pirate
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
 
 - type: npcFaction
   id: NanoTrasen
@@ -44,6 +46,7 @@
   - Xeno
   - AllHostile
   - Wizard
+  - Dragon
 
 - type: npcFaction
   id: SimpleHostile
@@ -58,6 +61,9 @@
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
   - Pirate
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Dragon
 
 - type: npcFaction
   id: SimpleNeutral
@@ -74,6 +80,8 @@
   - AllHostile
   - Wizard
   - Pirate
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
 
 - type: npcFaction
   id: Xeno
@@ -88,6 +96,9 @@
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
   - Pirate
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Dragon
 
 - type: npcFaction
   id: Zombie
@@ -103,6 +114,9 @@
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
   - Pirate
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
+  - Dragon
 
 - type: npcFaction
   id: Revolutionary
@@ -113,6 +127,8 @@
   - Dragon
   - AllHostile
   - Wizard
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
 
 - type: npcFaction
   id: AllHostile
@@ -130,6 +146,8 @@
   - Revolutionary
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Wizard
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction adding
 
 - type: npcFaction
   id: Wizard
@@ -140,7 +158,6 @@
   - Passive
   - PetsNT
   - SimpleHostile
-  - SimpleNeutral
   - Syndicate
   - Xeno
   - Zombie
@@ -148,3 +165,5 @@
   - AllHostile
   - SyndicateAgent # Imperial Syndicate Agent Fix
   - Pirate
+  - DeathSquad # Imperial Space Death Squad faction Fix
+  - RiotControlUnit # Imperial Space RCU faction addin

@@ -82,8 +82,8 @@
     - MedkitCombatFilled
     - MedkitCombatFilled
     - CompactDefibrillator
-    - EpinephrineChemistryBottle
-    - EpinephrineChemistryBottle
+    - ChemistryBottleEpinephrine
+    - ChemistryBottleEpinephrine
     - Syringe
 
 - type: startingGear

@@ -16,8 +16,9 @@
   name: gnomish polybolt
   description: Nooo, I don't wanna be clown!
   components:
-  - type: PolymorphOnCollide
+  - type: PolymorphOnTrigger
     polymorph: GnomeCluwne
+  - type: TriggerWhitelist
     whitelist:
       components:
       - Body

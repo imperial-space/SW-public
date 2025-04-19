@@ -270,3 +270,24 @@
   - type: Sprite
     sprite: Imperial/Other/TFG/Toughguys/Venyaa.rsi
     state: icon
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieYesenia
+  name: Yesenia Orlova
+  description: "\"Captain, the reason \"They won't be arriving anytime soon anyway\" is not appropriate for calling the Emergency Response Team 10 minutes into your shift.\""
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Toughguys/Yesenia.rsi
+    state: icon
+
+#OCC with gift pen
+- type: entity
+  parent: PlushieYesenia
+  id: PlushieYeseniaGift
+  suffix: COMMUNITY,TOY,GIFT
+  components:
+  - type: StorageFill
+    contents:
+      - id: PenCentcomGift
+      - id: ReportGoalAchievement
