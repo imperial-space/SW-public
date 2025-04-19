@@ -23,7 +23,7 @@ public sealed partial class SkillsSystem
 
         var diff = Math.Abs(level - 10);
 
-        args.Modifier += (level > 10 ? proto.Modifiers["PositiveSpreadModifier"] : proto.Modifiers["NegativeSpreadModifier"]) * diff;
+        args.Modifier = Math.Max(args.Modifier * (level > 10 ? proto.Modifiers["PositiveSpreadModifier"] : proto.Modifiers["NegativeSpreadModifier"]) * diff, 0);
     }
 
     private void OnGetStealChanceMod(EntityUid uid, SkillsComponent component, ref GetStealChanceModifiersEvent args)
