@@ -16,7 +16,8 @@
         - type: StationEmergencyShuttle
           emergencyShuttlePath: /Maps/Shuttles/emergency.yml
         - type: StationJobs
-          availableJobs:
+          availableJobs: # 15 jobs total w/o latejoins, 19 jobs total w/ latejoins
+            #command (2)
             Captain: [ 1, 1 ]
             HeadOfSecurity: [ 1, 1 ]
             Adjutant: [ 1, 1 ]
@@ -26,12 +27,14 @@
             Bartender: [ 1, 1 ]
             Botanist: [ 1, 1 ]
             Chef: [ 1, 1 ]
-            MedicalDoctor: [ 1, 2 ]
-            Chemist: [ 1, 1 ]
             Janitor: [ 1, 1 ]
-            Musician: [ 1, 1 ]
+            #engineering (2 - 3)
             AtmosphericTechnician: [ 1, 1 ]
             StationEngineer: [ 1, 2 ]
+            #medical (2 - 3)
+            Chemist: [ 1, 1 ]
+            MedicalDoctor: [ 1, 2 ]
+            #science (1)
             Scientist: [ 1, 1 ]
             Passenger: [ -1, -1 ]
             IAA: [ 1, 1 ] # imperial IAA
