@@ -69,7 +69,7 @@ public sealed partial class GunSystem : SharedGunSystem
     {
         userImpulse = true;
 
-        float spread = 1f;   // Imperial Medieval Skills
+        float spread = 0f;   // Imperial Medieval Skills
 
         if (user != null)
         {
