@@ -33,6 +33,8 @@
     NegativeUncuffDurationModifier: 0.07
     FistMaxDamageModifier: 0.4
     WeaponMaxDamageModifier: 0.1
+    PositiveGateInteractionTimeModifier: -0.07
+    NegativeGateInteractionTimeModifier: 0.1
 
 - type: skill
   id: Vitality
@@ -49,6 +51,7 @@
     NegativeSuffocationDamageModifier: 0.03
     PositiveBloodRegenModifier: 0.05
     NegativeBloodRegenModifier: -0.03
+    PseudoMassModifier: 0.04
 
 - type: skill
   id: Endurance
