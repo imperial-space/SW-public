@@ -39,10 +39,20 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
     private void OnLevelChanged(EntityUid uid, SkillsComponent comp, ref SkillLevelChangedEvent args)
     {
-        if (args.Id == VitalityId)
-            VitalityLevelSet(uid, args.Level, args.OldLevel);
-        if (args.Id == IntelligenceId)
-            IntelligenceLevelSet(uid, args.Level, args.OldLevel);
+        switch (args.Id)
+        {
+            case VitalityId:
+                VitalityLevelSet(uid, args.Level, args.OldLevel);
+                break;
+            case IntelligenceId:
+                IntelligenceLevelSet(uid, args.Level, args.OldLevel);
+                break;
+            case AgilityId:
+                AgilityLevelSet(uid, args.Level, args.OldLevel);
+                break;
+            default:
+                break;
+        }
     }
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
@@ -73,5 +83,12 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         }
 
         Dirty(uid, comp);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        UpdateAgility(frameTime);
+        UpdateVitality(frameTime);
     }
 }

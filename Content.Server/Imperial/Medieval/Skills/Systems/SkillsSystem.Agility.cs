@@ -1,6 +1,13 @@
 using Content.Server.Imperial.Medieval.RandomSteal;
 using Content.Server.Imperial.Medieval.Weapons;
+using Content.Server.Stunnable;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
+using Robust.Shared.Map;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Skills;
 
@@ -52,5 +59,55 @@ public sealed partial class SkillsSystem
             return;
 
         args.Success = true;
+    }
+
+    private void AgilityLevelSet(EntityUid uid, int level, int oldLevel)
+    {
+        if (level == 10)
+            return;
+        Comp<SkillsComponent>(uid).Timers.Remove("AgilityFall");
+        Comp<SkillsComponent>(uid).Timers.Remove("AgilityDrop");
+
+        if (level <= 1)
+            Comp<SkillsComponent>(uid).Timers.Add("AgilityDrop", _timing.CurTime + TimeSpan.FromSeconds(60f));
+        if (level < 5)
+            Comp<SkillsComponent>(uid).Timers.Add("AgilityFall", _timing.CurTime + TimeSpan.FromSeconds(60f));
+    }
+
+    private void UpdateAgility(float frameTime)
+    {
+        var query = EntityQueryEnumerator<SkillsComponent, InputMoverComponent>();
+        while (query.MoveNext(out var uid, out var comp, out var mover))
+        {
+            if (comp.Timers.TryGetValue("AgilityFall", out var timer) || _timing.CurTime < timer)
+            {
+                comp.Timers["AgilityFall"] = _timing.CurTime + TimeSpan.FromSeconds(60f);
+
+                if (mover.HeldMoveButtons == MoveButtons.None)
+                    continue;
+
+                if (GetSkill(uid, AgilityId).Item2 > 5)
+                    continue;
+
+                if (!_random.Prob(0.01f))
+                    continue;
+
+                _stun.TryParalyze(uid, TimeSpan.FromSeconds(0.5f), false);
+            }
+
+            if (comp.Timers.TryGetValue("AgilityDrop", out var dropTimer) || _timing.CurTime < dropTimer)
+            {
+                comp.Timers["AgilityFall"] = _timing.CurTime + TimeSpan.FromSeconds(60f);
+
+                if (GetSkill(uid, AgilityId).Item2 > 1)
+                    continue;
+
+                if (!_random.Prob(0.15f))
+                    continue;
+
+                var coords = Transform(uid).Coordinates;
+                _hands.ThrowHeldItem(uid, new EntityCoordinates(coords.EntityId, _random.NextFloat(coords.X - 2, coords.X + 2), _random.NextFloat(coords.Y - 2, coords.Y + 2)));
+            }
+        }
     }
 }
