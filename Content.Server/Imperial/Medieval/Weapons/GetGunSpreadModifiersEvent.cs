@@ -1,4 +1,4 @@
 namespace Content.Server.Imperial.Medieval.Weapons;
 
 [ByRefEvent]
-public record struct GetGunSpreadModifiersEvent(float Modifier = 1f);
+public record struct GetGunSpreadModifiersEvent(float Modifier = 0f);
