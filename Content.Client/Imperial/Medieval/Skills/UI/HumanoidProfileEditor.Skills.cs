@@ -38,20 +38,30 @@ public sealed partial class HumanoidProfileEditor
             RefreshSkills();
         };
 
-        foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())
+        var list = _prototypeManager.EnumeratePrototypes<SkillPrototype>();
+        list.OrderBy(x => x.Name);
+
+        foreach (var item in list)
         {
             var entry = new SkillEntry(item.Name, Profile?.Skills.GetValueOrDefault(item.ID, 10) ?? 10, item.Color);
 
             SkillsContainer.AddChild(entry);
             entry.LevelSet += level =>
             {
-                Profile = Profile?.WithSkill(item.ID, level);
+                if (Profile == null)
+                    return;
+
+                Profile = Profile.WithSkill(item.ID, level, out var success);
+
+                if (!success)
+                    return;
+
                 entry.Level = level;
 
-                var sum = Profile?.Skills.Values.Sum();
+                var sum = Profile.Skills.Values.Sum();
                 foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())
                 {
-                    if (!Profile?.Skills.ContainsKey(item.ID) ?? false)
+                    if (!Profile.Skills.ContainsKey(item.ID))
                         sum += 10;
                 }
 
