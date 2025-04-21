@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Server.DeviceLinking.Components;
 using Content.Server.DeviceNetwork;
 using Content.Server.DoAfter;
+using Content.Server.Imperial.DeviceLinking;
 using Content.Shared.DeviceLinking.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
@@ -34,7 +35,10 @@ public sealed class SignalSwitchImperialSystem : EntitySystem
         if (args.Handled || !args.Complex || args.Target == null || HasComp<SignalSwitchImperialHelpComponent>(args.User))
             return;
 
-        var sdoAfter = new DoAfterArgs(EntityManager, args.User, comp.Timing, new OnDoAfterSignalSwitchEvent(), args.Target, target: args.User)
+        var ev = new CheckSignalSwitchActivationTimeEvent(1f);
+        RaiseLocalEvent(args.User, ref ev);
+
+        var sdoAfter = new DoAfterArgs(EntityManager, args.User, comp.Timing * ev.Modifier, new OnDoAfterSignalSwitchEvent(), args.Target, target: args.User)
         {
             MovementThreshold = 0.5f,
             BreakOnMove = true,
