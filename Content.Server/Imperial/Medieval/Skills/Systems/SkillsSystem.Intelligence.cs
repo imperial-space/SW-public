@@ -68,7 +68,7 @@ public sealed partial class SkillsSystem
             // A word ends when one of the following is found: a space, a sentence end, or EOM
             if (char.IsWhiteSpace(ch) || (ch is '.' or '!' or '?' or '~' or '-' or ',') || i == message.Length - 1)
             {
-                var wordLength = i - wordBeginIndex;
+                var wordLength = i - wordBeginIndex + 1;
                 if (wordLength > 0)
                 {
                     if (!_random.Prob(scale))
