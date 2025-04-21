@@ -297,7 +297,7 @@ public sealed class RespiratorSystem : EntitySystem
         }
 
         // Imperial Medieval Skills start
-        var ev = new GetSuffocationDamageModifiersEvent();
+        var ev = new GetSuffocationDamageModifiersEvent(1f);
         RaiseLocalEvent(ent, ref ev);
         // Imperial Medieval Skills end
 

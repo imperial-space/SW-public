@@ -163,7 +163,7 @@ public abstract partial class InventorySystem
             _containerSystem.CanInsert(itemUid, slotContainer))
         {
             // Imperial Medieval Skills start
-            var ev = new GetEquipDelayModifiersEvent();
+            var ev = new GetEquipDelayModifiersEvent(1f);
             RaiseLocalEvent(actor, ref ev);
             // Imperial Medieval Skills end
 

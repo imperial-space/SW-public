@@ -47,7 +47,7 @@ public sealed partial class MedievalSprintSystem : EntitySystem
             if (component.Tried)
                 _speedModifierSystem.RefreshMovementSpeedModifiers(uid);
 
-            var ev = new GetSprintStaminaDamageModifiersEvent();
+            var ev = new GetSprintStaminaDamageModifiersEvent(1f);
             RaiseLocalEvent(uid, ref ev);
 
             var stam = component.StaminaDamage;
