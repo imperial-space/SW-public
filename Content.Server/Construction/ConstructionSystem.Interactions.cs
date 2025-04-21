@@ -286,7 +286,7 @@ namespace Content.Server.Construction
                         var doAfterEv = new ConstructionInteractDoAfterEvent(EntityManager, interactUsing);
 
                         // Imperial Medieval Skills start
-                        var skillsEv = new GetConstructionSpeedModifiersEvent();
+                        var skillsEv = new GetConstructionSpeedModifiersEvent(1f);
                         RaiseLocalEvent(interactUsing.User, ref skillsEv);
                         // Imperial Medieval Skills end
 
@@ -368,7 +368,7 @@ namespace Content.Server.Construction
                         return  HandleResult.True;
 
                     // Imperial Medieval Skills start
-                    var skillsEv = new GetConstructionSpeedModifiersEvent();
+                    var skillsEv = new GetConstructionSpeedModifiersEvent(1f);
                     RaiseLocalEvent(interactUsing.User, ref skillsEv);
                     // Imperial Medieval Skills end
 

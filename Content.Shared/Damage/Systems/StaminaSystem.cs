@@ -359,7 +359,7 @@ public sealed partial class StaminaSystem : EntitySystem
             }
 
             // Imperial Medieval Skills start
-            var ev = new GetStaminaRegenModifiersEvent();
+            var ev = new GetStaminaRegenModifiersEvent(1f);
             RaiseLocalEvent(uid, ref ev);
             // Imperial Medieval Skills end
 
@@ -384,7 +384,7 @@ public sealed partial class StaminaSystem : EntitySystem
         component.StaminaDamage = component.CritThreshold;
 
         // Imperial Medieval Skills start
-        var ev = new GetStaminaCritDurationModifiersEvent();
+        var ev = new GetStaminaCritDurationModifiersEvent(1f);
         RaiseLocalEvent(uid, ref ev);
         // Imperial Medieval Skills end
 

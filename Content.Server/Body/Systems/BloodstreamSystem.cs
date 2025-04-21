@@ -361,7 +361,7 @@ public sealed class BloodstreamSystem : EntitySystem
         if (amount >= 0)
         {
             // Imperial Medieval Skills start
-            var ev = new GetBloodRegenModifiersEvent();
+            var ev = new GetBloodRegenModifiersEvent(1f);
             RaiseLocalEvent(uid, ref ev);
             // Imperial Medieval Skills end
 

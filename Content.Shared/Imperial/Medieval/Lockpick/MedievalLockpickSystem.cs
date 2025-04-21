@@ -65,7 +65,7 @@ public sealed class MedievalLockpickSystem : EntitySystem
         {
             if (TryComp<DoorComponent>(args.Args.Target.Value, out var doorcomp) && doorcomp != null)
             {
-                var ev = new GetLockpickChanceModifiersEvent();
+                var ev = new GetLockpickChanceModifiersEvent(1f);
                 RaiseLocalEvent(args.Args.User, ref ev);
 
                 if (_random.Prob(DefaultChance * ev.Modifier))

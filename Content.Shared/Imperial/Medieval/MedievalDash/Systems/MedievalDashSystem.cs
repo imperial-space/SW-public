@@ -82,13 +82,13 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var impulse = forceDirection.RotateVec(force);
         var dashTime = TimeSpan.FromSeconds(component.Force / 990 / physicsComponent.Mass);
 
-        var staminaEv = new CheckDashStaminaCostModifiersEvent();
+        var staminaEv = new CheckDashStaminaCostModifiersEvent(1f);
         RaiseLocalEvent(player, ref staminaEv);
 
         if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage * staminaEv.Modifier, ignoreResistances: true))
             return false;
 
-        var distEv = new CheckDashDistanceModifiersEvent();
+        var distEv = new CheckDashDistanceModifiersEvent(1f);
         RaiseLocalEvent(player, ref distEv);
 
         _physicsSystem.ApplyLinearImpulse(player, impulse * distEv.Modifier);
@@ -100,7 +100,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
 
         component.DashEndTime = dashTime + _timing.CurTime;
 
-        var cooldownEv = new CheckDashCooldownModifiersEvent();
+        var cooldownEv = new CheckDashCooldownModifiersEvent(1f);
         RaiseLocalEvent(player, ref cooldownEv, true);
 
         component.NextDash = _timing.CurTime + component.DashReloadTime + TimeSpan.FromSeconds(staminaEv.Modifier);
