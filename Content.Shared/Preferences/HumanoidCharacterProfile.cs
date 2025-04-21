@@ -863,13 +863,21 @@ namespace Content.Shared.Preferences
             };
         }
 
-        public HumanoidCharacterProfile WithSkill(string id, int level)
+        public HumanoidCharacterProfile WithSkill(string id, int level, out bool success)
         {
+            success = false;
             Skills.TryAdd(id, 10);
 
-            if (Skills.Values.Sum() - Skills.GetValueOrDefault(id, 10) + level > SharedSkillsSystem.Points)
+            var sum = 0;
+            foreach (var item in IoCManager.Resolve<IPrototypeManager>().EnumeratePrototypes<SkillPrototype>())
+            {
+                sum += item.ID == id ? level : Skills.GetValueOrDefault(item.ID, 10);
+            }
+
+            if (sum > SharedSkillsSystem.Points || level < 1)
                 return new(this);
 
+            success = true;
             return new(this)
             {
                 Skills = new(Skills)
