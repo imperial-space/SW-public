@@ -7623,7 +7623,7 @@
         - to: MedievalMortarNew
           steps:
             - material: MedievalGlina
-              amount: 16
+              amount: 8
               doAfter: 8
     - node: MedievalMortarNew
       entity: MedievalMortarNew
@@ -7648,7 +7648,7 @@
         - to: MortarTool
           steps:
             - material: MedievalGlina
-              amount: 4
+              amount: 2
               doAfter: 4
     - node: MortarTool
       entity: MortarTool
