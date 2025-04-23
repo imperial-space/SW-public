@@ -1,5 +1,6 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Utility;
 using Serilog.Events;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
@@ -20,5 +21,8 @@ public sealed partial class SkillPrototype : IPrototype
     public Dictionary<string, float> Modifiers = new();
 
     [DataField]
-    public Dictionary<string, float> Cooldowns = new();
+    public Dictionary<int, SpriteSpecifier> Icons = new()
+    {
+        { 1, new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Misc/job_icons.rsi"), "Admin") }
+    };
 }
