@@ -3,26 +3,42 @@
     Margin="5"
     HorizontalExpand="True"
     VerticalExpand="True">
-    <PanelContainer Name="Wrapper"
-        StyleClasses="PdaBorderRect">
+    <PanelContainer Name="Wrapper" StyleClasses="PdaBorderRect">
         <BoxContainer Orientation="Vertical">
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True" SizeFlagsStretchRatio="1">
-                <Label Name="Name"
-                    MinWidth="50"
-                    HorizontalExpand="True"
-                    Margin="4"/>
-                <BoxContainer Orientation="Horizontal" Margin="4">
-                    <Button Name="IncreaseButton"
-                        Text = "+"
+            <BoxContainer
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                SizeFlagsStretchRatio="1">
+                <BoxContainer HorizontalExpand="True" Orientation="Horizontal">
+                    <TextureRect
+                        Name="Icon"
+                        Margin="4"
+                        TextureScale="4 4"/>
+                    <Label
+                        Name="Name"
+                        MinWidth="50"
+                        Margin="4"
+                        HorizontalExpand="True" />
+                </BoxContainer>
+                <BoxContainer Margin="4" Orientation="Horizontal">
+                    <Button
+                        Name="IncreaseButton"
+                        Margin="2"
                         HorizontalExpand="True"
-                        Margin="2"/>
-                    <Button Name="DecreaseButton"
-                        Text = "-"
+                        Text="+" />
+                    <Button
+                        Name="DecreaseButton"
+                        Margin="2"
                         HorizontalExpand="True"
-                        Margin="2"/>
+                        Text="-" />
                 </BoxContainer>
             </BoxContainer>
-            <BoxContainer Name="VisualizerContainer" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" SizeFlagsStretchRatio="5"/>
+            <BoxContainer
+                Name="VisualizerContainer"
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                SizeFlagsStretchRatio="5"
+                VerticalExpand="True" />
         </BoxContainer>
     </PanelContainer>
 </Control>

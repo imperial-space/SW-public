@@ -6,6 +6,8 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Client.Utility;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.Medieval.Skills.UI;
 
@@ -35,13 +37,14 @@ public sealed partial class SkillEntry : Control
     public Action<int>? LevelSet;
     public Action? Decreased;
 
-    public SkillEntry(string name, int level, Color color)
+    public SkillEntry(string name, int level, SpriteSpecifier icon, Color color)
     {
         RobustXamlLoader.Load(this);
 
         Name.Text = name;
         _color = color;
         Level = level;
+        Icon.Texture = icon.Frame0();
         IncreaseButton.OnPressed += _ => LevelSet?.Invoke(Level + 1);
         DecreaseButton.OnPressed += _ => LevelSet?.Invoke(Level - 1);
     }

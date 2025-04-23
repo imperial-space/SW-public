@@ -43,7 +43,10 @@ public sealed partial class HumanoidProfileEditor
 
         foreach (var item in list)
         {
-            var entry = new SkillEntry(item.Name, Profile?.Skills.GetValueOrDefault(item.ID, 10) ?? 10, item.Color);
+            var level = Profile.Skills.GetValueOrDefault(item.ID, 10);
+            var icon = item.Icons[item.Icons.Keys.Where(x => x <= level).Max()];
+
+            var entry = new SkillEntry(item.Name, level, icon, item.Color);
 
             SkillsContainer.AddChild(entry);
             entry.LevelSet += level =>
