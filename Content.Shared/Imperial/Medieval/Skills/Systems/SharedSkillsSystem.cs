@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Imperial.Medieval.Clothing;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
@@ -23,6 +22,8 @@ public abstract partial class SharedSkillsSystem : EntitySystem
         InitializeAgility();
         InitializeEndurance();
         InitializeIntelligence();
+
+        InitializeDesc();
 
         SubscribeLocalEvent<SkillsComponent, ModifyClothingMovespeedModifierEvent>(OnModifyClothingSpeedMod);
     }
