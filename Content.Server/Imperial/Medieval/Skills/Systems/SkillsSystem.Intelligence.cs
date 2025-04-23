@@ -1,19 +1,26 @@
 using System.Text;
+using Content.Server.Examine;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Imperial.Medieval.Medical;
 using Content.Shared.Imperial.Medieval.Skills;
 using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Skills;
 
 public sealed partial class SkillsSystem
 {
+    [Dependency] private readonly ExamineSystem _examine = default!;
+
     private void InitializeIntelligence()
     {
         SubscribeLocalEvent<SkillsComponent, GetHealingSpeedModifiersEvent>(OnGetHealingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, AccentGetEvent>(OnAccent);
+
+        SubscribeNetworkEvent<GetEnteredChatTextResponseMessage>(OnGetMessage);
     }
 
     private void OnGetHealingSpeedModifiers(EntityUid uid, SkillsComponent comp, ref GetHealingSpeedModifiersEvent args)
@@ -54,6 +61,11 @@ public sealed partial class SkillsSystem
             prob = 1;
 
         args.Message = Accentuate(args.Message, prob);
+    }
+
+    private void OnGetMessage(GetEnteredChatTextResponseMessage message)
+    {
+        _examine.SendExamineTooltip(GetEntity(message.User), GetEntity(message.Target), FormattedMessage.FromUnformatted(message.Text != string.Empty ? $"По глазам легко читается - '{message.Text}'." : $"Кажется, {Identity.Name(GetEntity(message.Target), EntityManager, GetEntity(message.User))} не планирует ничего говорить."), false, false);
     }
 
     private string Accentuate(string message, float scale)

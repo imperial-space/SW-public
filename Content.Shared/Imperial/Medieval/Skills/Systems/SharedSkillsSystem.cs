@@ -1,8 +1,9 @@
 using System.Linq;
 using Content.Shared.Imperial.Medieval.Clothing;
 using Content.Shared.Popups;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
 
@@ -10,6 +11,8 @@ public abstract partial class SharedSkillsSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly INetManager _netMan = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     public const int Points = 53;
 
