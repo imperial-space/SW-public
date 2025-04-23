@@ -949,4 +949,14 @@ public sealed class ChatUIController : UIController
 
         public Queue<SpeechBubbleData> MessageQueue { get; } = new();
     }
+
+    // Imperial Medieval start
+    public string GetChatMessage()
+    {
+        if (_chats.FirstOrDefault()?.ChatInput.ChannelSelector.SelectedChannel is not ChatSelectChannel.Local or ChatSelectChannel.Whisper or ChatSelectChannel.Radio)
+            return string.Empty;
+
+        return _chats.FirstOrDefault()?.ChatInput.Input.Text ?? string.Empty;
+    }
+    // Imperial Medieval end
 }
