@@ -30,6 +30,7 @@ namespace Content.Server.BadSmell
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly MapSystem _map = default!;
         [Dependency] private readonly ITileDefinitionManager _tile = default!;
+        [Dependency] private readonly AppearanceSystem _appearance = default!;
 
         private const float CheckWashInterval = 20f; // Проверять "мытье" раз в 20 секунд
 
@@ -189,7 +190,7 @@ namespace Content.Server.BadSmell
                     }
                 }
             }
-
+            _appearance.SetData(uid, BadSmellVisuals.Dirt, Math.Min(Math.Floor(comp.SmellLevel / 20f), 4));
         }
 
         public float CheckWash(EntityCoordinates coords)

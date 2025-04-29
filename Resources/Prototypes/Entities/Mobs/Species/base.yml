@@ -24,6 +24,12 @@
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
+# Imperial Medieval BadSmell Begin
+    - map: [ "badsmell" ]
+      sprite: Imperial/Medieval/BadSmell/species.rsi
+      visible: false
+      state: dirty1
+# Imperial Medieval BadSmell End
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
@@ -72,6 +78,15 @@
         clownedon: # Not 'creampied' bc I can already see Skyrat complaining about conflicts.
           True: {visible: true}
           False: {visible: false}
+  # Imperial Medieval BadSmell Begin
+      enum.BadSmellVisuals.Dirt:
+        badsmell:
+          0: {visible: false}
+          1: {visible: true, state: dirty1}
+          2: {visible: true, state: dirty2}
+          3: {visible: true, state: dirty3}
+          4: {visible: true, state: dirty4}
+  # Imperial Medieval BadSmell End
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
   - type: RotationVisuals
