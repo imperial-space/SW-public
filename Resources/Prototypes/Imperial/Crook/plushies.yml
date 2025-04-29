@@ -79,6 +79,55 @@
     contents:
       - id: FoodBurgerRobot
 
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieErika
+  name: Эрика Штейнхофер
+  suffix: Crook, COMMUNITY, TOY
+  description: Не верит в совпадения. Особенно когда пассажир стоит рядом с телом
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/erikasteinhofer.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: ForensicPad
+      - id: ForensicPad
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieAiden
+  name: Айден Бисмарк
+  suffix: Crook, COMMUNITY, TOY
+  description: Выдайте мне СоХ, БоХ, МСоХ, Тох, белт, инженерные инструменты абдукторов, хирургические инструменты абдукторов, музыкальные инструменты абдукторов, красное зелье, синее зелье, радужное зелье, серобуромалиновое зелье, зелье против сноса, зелье против поноса, РЦД, РПД, РПЦ, РКС, СВД, СКС, ПТУР, мур, мяу, гав, кря, хрю, х-рей имплант, у-рей имплант, z-рей имплант, СБ-худ, мед-худ, антаг-худ, админ-худ, связки бога, развязки бога, помпу плюс, помпу минус, помпу умножение, помпу разделение. Дыхательную трубку, выдыхательную трубку, вздыхательную трубку осуждающе вздыхательную трубку, анти-дроп, анти-рейв, анти-порчу, анти-перелом, анти-внутртяк, анти-щиткур, АЕГ, пепег, иммолятор, аннигилятор, аллигатор, крокодил, сокол, тесла-револьвер, тесла-карабин, тесла-рогатка, тесла-кастеты, взрывычатку Т4, Х4, ТНТ4, кибер сердце, кибер лёгкие, кибер-тяжёлые, кибер-силу воли, ген прыжка, ген распрыжки, ген разбега, ген побега, ген полного улета. И побыстрее пожалуйста!
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/aidenbismark.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: SyringeEphedrine
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieKainov
+  name: Александр Каинов
+  suffix: Crook, COMMUNITY, TOY
+  description: Он из тех кто напомнит вам, что доблесть превосходит количество, а верность своей Родине не оценивается количеством текущих проблем.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/Crook/Plushie/alexandrkainov.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: CartridgePistol
+
 # Фумо @buhoj_med
 
 # Datasets for Fumo

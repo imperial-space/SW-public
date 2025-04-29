@@ -39,6 +39,71 @@
       path: /Audio/Imperial/Medieval/area_markers/legbels.ogg
 
 - type: entity
+  id: AreaMarkerSand
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-sand
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general2.ogg
+
+- type: entity
+  id: AreaMarkerWestCoast
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-west-coast
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerEastCoast
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-east-coast
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerFlowerForest
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-flower-forest
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
+  id: AreaMarkerFlowerForestNear
+  parent: BaseAreaMarker
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: AreaMarker
+    areaName: area-map1-flower-forest-near
+    audioPath:
+      path: /Audio/Imperial/Medieval/area_markers/general.ogg
+
+- type: entity
   id: AreaMarkerPortLegion
   parent: BaseAreaMarker
   placement:
