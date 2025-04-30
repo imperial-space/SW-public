@@ -1125,6 +1125,7 @@
     stripTimeReduction: 3
     stealthy: true
   - type: Stripping
+  - type: SSDFree
   - type: MobsterAccent
   - type: GhostTakeoverAvailable
   - type: GhostRole

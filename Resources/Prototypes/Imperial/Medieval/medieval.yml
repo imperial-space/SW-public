@@ -1518,9 +1518,9 @@
     - name: outerClothing
       slotTexture: suit
       slotFlags: OUTERCLOTHING
-      stripTime: 3
+      stripTime: 5
       uiWindowPos: 1,1
-      strippingWindowPos: 2,2
+      strippingWindowPos: 1,2
       displayName: Suit
     - name: gloves
       slotTexture: gloves
@@ -7602,3 +7602,53 @@
               amount: 8
     - node: MedievalClothingOuterArmorGoblinWood
       entity: MedievalClothingOuterArmorGoblinWood
+
+- type: construction
+  name: Алхимическая ступка
+  id: MedievalMortarNew
+  graph: MedievalMortarNew
+  startNode: start
+  targetNode: MedievalMortarNew
+  category: construction-category-misc
+  description: "Ступка, в которой можно измельчать алхимические ингредиенты с помощью пестика"
+  icon: { sprite: Imperial/Medieval/Chem/mortar.rsi, state: stupca }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalMortarNew
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalMortarNew
+          steps:
+            - material: MedievalGlina
+              amount: 8
+              doAfter: 8
+    - node: MedievalMortarNew
+      entity: MedievalMortarNew
+
+- type: construction
+  name: Пестик
+  id: MortarTool
+  graph: MortarTool
+  startNode: start
+  targetNode: MortarTool
+  category: construction-category-misc
+  description: "Необходим для измельчения ингредиентов в ступке"
+  icon: { sprite: Imperial/Medieval/Chem/mortartool.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: MortarTool
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MortarTool
+          steps:
+            - material: MedievalGlina
+              amount: 2
+              doAfter: 4
+    - node: MortarTool
+      entity: MortarTool
