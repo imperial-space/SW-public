@@ -1,0 +1,7 @@
+- type: alert
+  id: MedievalSatitated
+  icons:
+    - sprite: /Textures/Imperial/Medieval/Interface/Alerts/farmer-boost.rsi
+      state: icon
+  name: Насыщение
+  description: У хорошей еды есть свои плюсы!

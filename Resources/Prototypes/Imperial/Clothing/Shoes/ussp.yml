@@ -13,7 +13,7 @@
     - WhitelistChameleon
     - ClothMade
 
-- type: entity
+- type: entity 
   parent: ClothingShoesMilitaryBase
   id: USSPstormdivisionBoots
   name: jackboots

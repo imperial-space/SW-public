@@ -16,7 +16,7 @@
 #    access: [["Bar"]]
   - type: TrashDefendArea
   - type: DoorBolt
-    boltsDown: True
+    boltsDown: False
   - type: LockDoor
     accessLists:
     - Bar

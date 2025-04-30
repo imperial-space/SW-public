@@ -1,78 +1,13 @@
-- type: entity
+- type: entity # Убрано для соблюдения лицензии временно
   parent: ClothingOuterHardsuitBase
-  id: USSPHardsuitSoldier
-  name: brigmedic hardsuit
-  description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
+  id: USSPHardsuitBlue
+  name: Blue Imperial Division hardsuit
+  description: Special hardsuit of the guardian angel.
   components:
   - type: Sprite
-    sprite: Imperial/ussp/hardsuits/soldier.rsi
+    sprite: Imperial/ussp/hardsuits/blue.rsi
   - type: Clothing
-    sprite: Imperial/ussp/hardsuits/soldier.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.3
-    lowPressureMultiplier: 1000
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Heat: 0.5
-        Radiation: 0.5
-        Caustic: 0.5
-        Stamina: 0.5
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: USSPHardsuitSoldierHelmet
-  - type: ExplosionResistance
-    damageCoefficient: 0.5
-
-
-- type: entity
-  parent: ClothingOuterHardsuitBase
-  id: USSPHardsuitStorm
-  name: brigmedic hardsuit
-  description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
-  components:
-  - type: Sprite
-    sprite: Imperial/ussp/hardsuits/divstorm.rsi
-  - type: Clothing
-    sprite: Imperial/ussp/hardsuits/divstorm.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.3
-    lowPressureMultiplier: 1000
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.4
-        Heat: 0.4
-        Radiation: 0.4
-        Caustic: 0.4
-        Stamina: 0.4
-  - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: USSPHardsuitStormHelmet
-  - type: ExplosionResistance
-    damageCoefficient: 0.4
-
-- type: entity
-  parent: [ClothingOuterHardsuitBase, BaseToggleClothing]
-  id: USSPHardsuitRed
-  name: brigmedic hardsuit
-  description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
-  components:
-  - type: Sprite
-    sprite: Imperial/ussp/hardsuits/red.rsi
-  - type: Clothing
-    sprite: Imperial/ussp/hardsuits/red.rsi
+    sprite: Imperial/ussp/hardsuits/blue.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.3
     lowPressureMultiplier: 1000
@@ -89,44 +24,8 @@
   - type: ClothingSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
-  - type: ToggleClothing
-    action: USSPHandGunAction
   - type: HeldSpeedModifier
   - type: ToggleableClothing
-    clothingPrototype: USSPHardsuitRedHelmet
+    clothingPrototype: USSPHardsuitBlueHelmet
   - type: ExplosionResistance
     damageCoefficient: 0.2
-
-- type: entity
-  parent: [ClothingOuterHardsuitBase, BaseToggleClothing]
-  id: USSPHardsuitGuard
-  name: brigmedic hardsuit
-  description: Special hardsuit of the guardian angel of the brig. It is the medical version of the security hardsuit.
-  components:
-  - type: Sprite
-    sprite: Imperial/ussp/hardsuits/guard.rsi
-  - type: Clothing
-    sprite: Imperial/ussp/hardsuits/guard.rsi
-  - type: PressureProtection
-    highPressureMultiplier: 0.3
-    lowPressureMultiplier: 1000
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.4
-        Slash: 0.4
-        Piercing: 0.4
-        Heat: 0.4
-        Radiation: 0.4
-        Caustic: 0.4
-        Stamina: 0.4
-  - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
-  - type: ToggleClothing
-    action: USSPHandGunAction
-  - type: HeldSpeedModifier
-  - type: ToggleableClothing
-    clothingPrototype: USSPHardsuitGuardHelmet
-  - type: ExplosionResistance
-    damageCoefficient: 0.4

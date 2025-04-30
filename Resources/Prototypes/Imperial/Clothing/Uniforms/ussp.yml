@@ -28,7 +28,7 @@
     - WhitelistChameleon
     - ClothMade
 
-- type: entity
+- type: entity 
   parent: UnsensoredClothingUniformBase
   id: USSPguardsmenUniform
   name: operative jumpsuit

@@ -1,8 +1,7 @@
 # species
 - type: emoteSounds
   id: MaleOrc
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsOrc
@@ -38,11 +37,24 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathOrc
+    Dreaminess:
+      collection: MaleDreaminess
+    Questioning:
+      collection: MaleQuestioning
+    Warcry:
+      collection: MaleWarcry
+    Charge:
+      collection: MaleCharge
+    Woo:
+      collection: MaleWoo
+    PainScream:
+      collection: MaleScreamsOrc
+    PassiveScream:
+      collection: MaleScreamsOrc
 
 - type: emoteSounds
   id: FemaleOrc
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsOrc
@@ -78,6 +90,20 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: MaleDeathOrc
+    Dreaminess:
+      collection: FemaleDreaminess
+    Questioning:
+      collection: FemaleQuestioning
+    Warcry:
+      collection: FemaleWarcry
+    Charge:
+      collection: FemaleCharge
+    Woo:
+      collection: FemaleWoo
+    PainScream:
+      collection: MaleScreamsOrc
+    PassiveScream:
+      collection: MaleScreamsOrc
 
 - type: soundCollection
   id: MaleLaughOrc

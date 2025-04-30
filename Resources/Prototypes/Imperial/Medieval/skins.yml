@@ -1,0 +1,74 @@
+- type: customization
+  id: kosh4k2
+  holder: 8f1283cf-ea3c-4dad-812f-bcec4ec05484
+  map:
+    MedievalClothingOuterArmorCharmerLightLegion: [ MedievalClothingOuterArmorCeremonialRobe ]
+    MedievalClothingOuterArmorIron: [ MedievalClothingOuterArmorPodWarsSkinWarhammer ]
+    MedievalClothingOuterArmorUpIron: [ MedievalClothingOuterArmorPodWarsSkinWarhammerUp ]
+    MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2 ]
+
+- type: customization
+  id: eifall
+  holder: e06b4453-06c8-4aed-ba24-aa89a24194e6
+  map:
+    MedievalClothingNeckCloakClanFox: [ MedievalClothingNeckCloakCivRed ]
+    MedievalClothingNeckCloakClanMerc: [ MedievalClothingNeckCloakCivYellow ]
+    MedievalClothingNeckCloakClanEagle: [ MedievalClothingNeckCloakCivBlue ]
+    MedievalClothingNeckCloakClanWolf: [ MedievalClothingNeckCloakCivGrey ]
+    MedievalClothingNeckCloakClanWiz: [ MedievalClothingNeckCloakCivPurple ]
+    MedievalClothingNeckCloakClanMine: [ MedievalClothingNeckCloakCivGreen ]
+
+- type: customization
+  id: catfirebattle
+  holder: aca7b474-a916-42d2-aa3a-0cbc0b99132c
+  map:
+    MedievalClothingOuterArmorCharmerWeak: [ MedievalClothingOuterArmorWhiteCharmerWeak ]
+    MedievalClothingHeadHelmetCharmerWeak: [ MedievalClothingHeadHelmetWhiteCharmerWeak ]
+    MedievalClothingOuterArmorCharmerLight: [ MedievalClothingOuterArmorWhiteCharmerLight ]
+    MedievalClothingHeadHelmetCharmerLight: [ MedievalClothingHeadHelmetWhiteCharmerLight ]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [ MedievalClothingHeadHelmeCollegiumWhitetHat ]
+    MedievalShoesChamber: [ MedievalWhiteShoesCharmer ]
+    ClothingBackpackSatchelCharmerLight: [ ClothingBackpackSatchelWhiteCharmerLight ]
+    ClothingOuterArmorPodWars: [ MedievalClothingOuterArmorGoblinSlayer ] 
+    MedievalClothingHeadHelmetHoodHelmet: [MedievalClothingHeadHelmetGoblinSlayer]
+
+- type: customization
+  id: game123456
+  holder: cc584a6a-cc13-4009-bd91-e5c2a74b15b3
+  map:
+    Log: [ MedaljonSandClock ]
+
+- type: customization
+  id: arelover
+  holder: f074e865-f7f4-435e-807d-3a62280dc462
+  map:
+    Log: [ MedievalClothingHeadHelmetNimbus ]
+
+- type: customization
+  id: the_greatkeeper
+  holder: b4a31ba6-4303-4ad5-9be5-bb9d26cb3042
+  map:
+    Log: [ MedievalClothingNeckCloakInqVeteran ]
+
+- type: customization
+  id: prime_mango_87673
+  holder: e7fa19a3-594f-4eec-809d-d0d4e1e7fc82
+  map:
+    MedievalWoodenShieldBucklerGoblin: [ MedievalWoodenShieldBucklerGoblinCross ]
+    MedievalWoodenShieldBuckler: [ MedievalWoodenShieldBucklerCross ]
+    MedievalWoodenShield: [ MedievalWoodenShieldCross ]
+    MedievalWoodenShieldKnight: [ MedievalWoodenShieldKnightCross ]
+
+- type: customization
+  id: iwordoloni
+  holder: 5d927c3b-b26d-4352-93f7-f9f4f32fb70a
+  map:
+    MedaljonNoslip: [ MedaljonNoslipSkin ]
+    MedaljonThieving: [ MedaljonThievingSkin ]
+    MedaljonMana: [ MedaljonManaSkin ]
+    MedaljonDef: [ MedaljonDefSkin ]
+    MedaljonFlashImmune: [ MedaljonFlashImmuneSkin ]
+    MedaljonExpl: [ MedaljonExplSkin ]
+    MedaljonDark: [ MedaljonDarkSkin ]
+    MedaljonSpeed: [ MedaljonSpeedSkin ]
+

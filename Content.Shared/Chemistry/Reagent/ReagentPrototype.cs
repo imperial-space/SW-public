@@ -20,7 +20,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Chemistry.Reagent
 {
-    [Prototype("reagent")]
+    [Prototype]
     [DataDefinition]
     public sealed partial class ReagentPrototype : IPrototype, IInheritingPrototype
     {
@@ -142,6 +142,8 @@ namespace Content.Shared.Chemistry.Reagent
         // Imperial Medieval Chemistry Begin
         [DataField("showinbook")]
         public bool ShowInBook = true;
+        [DataField("nospawn")]
+        public bool NoSpawn = false;
         // Imperial Medieval Chemistry End
 
         [DataField]

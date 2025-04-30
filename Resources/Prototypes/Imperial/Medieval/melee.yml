@@ -17,8 +17,8 @@
   - type: Sharp
   - type: MeleeWeapon
     wideAnimationRotation: -140
-    attackRate: 0.65
-    range: 2.65
+    attackRate: 0.5
+    range: 2.15
     damage:
       types:
         Piercing: 9
@@ -35,7 +35,7 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Piercing: 9
+        Piercing: 8
   - type: DamageOtherOnHit
     damage:
       types:
@@ -62,6 +62,9 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: MeleeThrowOnHit
+    distance: 0.5
+    speed: 5
 
 - type: entity
   name: MedievalDaggerNecro
@@ -104,7 +107,7 @@
     - Spear
   - type: MeleeThrowOnHit
     distance: 0.3
-    speed: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -156,7 +159,7 @@
   #    6: 0
   - type: MeleeThrowOnHit
     distance: 0.3
-    speed: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -195,7 +198,7 @@
     - Knife
   - type: MeleeThrowOnHit
     distance: 0.3
-    speed: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -252,8 +255,8 @@
     tags:
     - Spear
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 2
+    distance: 0.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -305,8 +308,8 @@
     tags:
     - Spear
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 2.1
+    distance: 0.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -363,8 +366,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 1.7
+    distance: 0.7
+    speed: 5
   - type: TrashClear
     safe: true
 
@@ -398,8 +401,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 2.1
+    distance: 0.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -455,8 +458,8 @@
     intensity: 1
     slope: 1
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 2.1
+    distance: 0.4
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -515,8 +518,8 @@
     intensity: 1
     slope: 1
   - type: MeleeThrowOnHit
-    distance: 3
-    speed: 3
+    distance: 1.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -568,8 +571,8 @@
   - type: Item
     size: Huge
   - type: MeleeThrowOnHit
-    distance: 3
-    speed: 3
+    distance: 1.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -601,7 +604,7 @@
     attackRate: 0.15
     damage:
       types:
-        Blunt: 20
+        Blunt: 12
         Structural: 56
         ParryAble: 1
   - type: MedievalMeleeResource
@@ -612,14 +615,14 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 18
+        Blunt: 12
         Structural: 34
   - type: Item
     size: Huge
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 18
+        Blunt: 12
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -631,8 +634,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 5
-    speed: 4
+    distance: 2.3
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -731,7 +734,7 @@
     quickEquip: false
   - type: MeleeThrowOnHit
     distance: 0.7
-    speed: 1.2
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -789,8 +792,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 1.6
-    speed: 1.7
+    distance: 0.8
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -828,7 +831,7 @@
   #    6: 0
   - type: MeleeThrowOnHit
     distance: 0.3
-    speed: 1
+    speed: 5
   - type: Meltable
     resourceCount: 2
 
@@ -866,8 +869,8 @@
     safeToHitGroup: ore
     resourceWaste: 0.1
   - type: MeleeThrowOnHit
-    distance: 1.2
-    speed: 2.1
+    distance: 0.6
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -907,8 +910,8 @@
     safeToHitGroup: ore
     resourceWaste: 0.1
   - type: MeleeThrowOnHit
-    distance: 1.4
-    speed: 2.1
+    distance: 0.6
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -921,7 +924,7 @@
   description: MedievalKnut
   components:
   - type: StaminaDamageOnHit
-    damage: 14
+    damage: 8
   - type: MeleeWeapon
     attackRate: 1.1
     damage:
@@ -940,8 +943,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 0.3
-    speed: 0.7
+    distance: 0.15
+    speed: 5
   - type: Item
     size: Small
 
@@ -952,12 +955,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: woodknight-icon
+      sprite: Imperial/Medieval/Shields/woodknight.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: woodknight
-      size: Normal
+      sprite: Imperial/Medieval/Shields/woodknight.rsi
+      size: Ginormous
+    - type: Clothing
+      equipDelay: 3
+      unequipDelay: 3
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1001,12 +1009,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: wooden-icon
+      sprite: Imperial/Medieval/Shields/wooden.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: wooden
-      size: Normal
+      sprite: Imperial/Medieval/Shields/wooden.rsi
+      size: Ginormous
+    - type: Clothing
+      equipDelay: 3
+      unequipDelay: 3
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1050,12 +1063,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: buckler-icon
+      sprite: Imperial/Medieval/Shields/buckler.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: buckler
-      size: Normal
+      sprite: Imperial/Medieval/Shields/buckler.rsi
+      size: Ginormous
+    - type: Clothing
+      equipDelay: 3
+      unequipDelay: 3
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1105,12 +1123,11 @@
             variation: 0.02
             volume: 1
     - type: Sprite
-      state: inf_medieval-icon
-      sprite: Imperial/Medieval/Melee/shields.rsi
+      sprite: Imperial/Medieval/Shields/inf_medieval.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: inf_medieval
-      size: Large
+      sprite: Imperial/Medieval/Shields/inf_medieval.rsi
+      size: Ginormous
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1162,12 +1179,17 @@
             variation: 0.02
             volume: 1
     - type: Sprite
-      state: iron-buckler-icon
-      sprite: Imperial/Medieval/Melee/shields.rsi
+      sprite: Imperial/Medieval/Shields/iron_buckler.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: iron-buckler
-      size: Normal
+      sprite: Imperial/Medieval/Shields/iron_buckler.rsi
+      size: Ginormous
+    - type: Clothing
+      equipDelay: 3
+      unequipDelay: 3
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -1206,6 +1228,19 @@
     - type: Meltable
       resourceCount: 7
 
+- type: entity
+  name: iron shield
+  parent: MedievalIronShieldBuckler
+  id: MedievalIronShieldBucklerGoblinSlayer
+  description: Iron shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/gs_buckler.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/gs_buckler.rsi
+      size: Normal
+
 - type: damageModifierSet
   id: PassiveMedievalWoodenShieldBlock
   coefficients:
@@ -1241,8 +1276,8 @@
   - type: MeleeWeapon
     attackRate: 0.7
   - type: MeleeThrowOnHit
-    distance: 0.3
-    speed: 2.1
+    distance: 0.2
+    speed: 5
   - type: Meltable
     resourceCount: 1
   - type: Item
@@ -1363,8 +1398,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 1.7
+    distance: 0.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -1426,7 +1461,7 @@
     quickEquip: false
   - type: MeleeThrowOnHit
     distance: 0.3
-    speed: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -1451,7 +1486,7 @@
     clickDamageModifier: 1.28
     wideAnimationRotation: -140
     attackRate: 0.65
-    range: 2.6
+    range: 2.3
     damage:
       types:
         Piercing: 8
@@ -1512,8 +1547,8 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 2
+    distance: 0.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -1573,8 +1608,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 1.3
-    speed: 2.1
+    distance: 0.3
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -1634,8 +1669,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 1.3
-    speed: 2.1
+    distance: 0.9
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -1711,8 +1746,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 3.5
-    speed: 3
+    distance: 1.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -1788,8 +1823,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 2.5
-    speed: 3
+    distance: 1.2
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -1860,8 +1895,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 2.5
-    speed: 3
+    distance: 1.2
+    speed: 5
   - type: Meltable
     resourceCount: 7
 
@@ -1929,12 +1964,42 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 1.7
+    distance: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 4
+
+- type: entity
+  name: dark blade
+  parent: MedievalFalshionT3Legion
+  id: MedievalFalshionT3DarkSword
+  description: Is a mysterious and powerful weapon covered in age-old secrets. Its curved black blade, as if absorbing light, shines only in the light of the moon, thanks to ancient rune inscriptions that twinkle like stars in the night sky. The handle, wrapped in black leather and adorned with mysterious symbols, radiates coldness, causing those skilled in the art of combat to feel an inner strength and attraction.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/dark_sword.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/dark_sword.rsi
+  - type: MedievalMeleeResource
+    safeToHitGroup: tree
+
+- type: entity
+  name: dark blade
+  parent: MedievalFalshionT3LegionSteel
+  id: MedievalFalshionT3DarkSwordSteel
+  description: Is a mysterious and powerful weapon covered in age-old secrets. Its curved black blade, as if absorbing light, shines only in the light of the moon, thanks to ancient rune inscriptions that twinkle like stars in the night sky. The handle, wrapped in black leather and adorned with mysterious symbols, radiates coldness, causing those skilled in the art of combat to feel an inner strength and attraction.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/dark_sword.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/dark_sword.rsi
+  - type: MedievalMeleeResource
+    safeToHitGroup: tree
 
 - type: entity
   name: falshion
@@ -2058,8 +2123,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 1.7
+    distance: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2129,8 +2194,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 1.7
+    distance: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2185,7 +2250,7 @@
     - Knife
   - type: MeleeThrowOnHit
     distance: 0.3
-    speed: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2209,8 +2274,8 @@
   - type: MeleeWeapon
     clickDamageModifier: 1.28
     wideAnimationRotation: -140
-    attackRate: 0.65
-    range: 2.75
+    attackRate: 0.6
+    range: 2.3
     damage:
       types:
         Piercing: 9
@@ -2271,8 +2336,8 @@
         restitution: 0.3
         friction: 0.2
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 2
+    distance: 0.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2332,8 +2397,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 1.3
-    speed: 2.1
+    distance: 0.4
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2393,8 +2458,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 1.8
-    speed: 2.1
+    distance: 0.9
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2470,8 +2535,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 4
-    speed: 3
+    distance: 2
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2505,7 +2570,7 @@
     attackRate: 0.15
     damage:
       types:
-        Blunt: 25
+        Blunt: 14
         Structural: 98
         ParryAble: 1
   - type: MedievalMeleeResource
@@ -2516,14 +2581,14 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 29
+        Blunt: 14
         Structural: 79
   - type: Item
     size: Huge
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 31
+        Blunt: 14
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2535,8 +2600,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 6
-    speed: 4.4
+    distance: 3
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2601,8 +2666,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 1.7
+    distance: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 11 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -2669,8 +2734,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 2
-    speed: 1.7
+    distance: 1
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 16 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -2732,8 +2797,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 5
-    speed: 9
+    distance: 2.3
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 35 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -2778,7 +2843,7 @@
   #  quickEquip: false
   - type: DisarmMalus
   - type: MeleeThrowOnHit
-    distance: 7
+    distance: 3.5
     speed: 5
   - type: StaminaDamageOnHit
     damage: 55 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
@@ -2843,7 +2908,7 @@
     quickEquip: false
   - type: MeleeThrowOnHit
     distance: 0.3
-    speed: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 2 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -2912,8 +2977,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 2
-    speed: 2
+    distance: 0.5
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -2982,8 +3047,8 @@
   #    5: 0
   #    6: 0
   - type: MeleeThrowOnHit
-    distance: 1.15
-    speed: 1.7
+    distance: 0.7
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -3058,12 +3123,40 @@
     unequipSound:
       path: /Audio/Imperial/Medieval/sword_eqip.ogg
   - type: MeleeThrowOnHit
-    distance: 0.6
-    speed: 1.4
+    distance: 0.3
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 3
+
+- type: entity
+  name: short sword
+  parent: MedievalShortSword
+  id: MedievalShortSwordGoblinSlayer
+  description: MedievalShortSwordGoblinSlayer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/gs_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/gs_sword.rsi
+
+- type: entity
+  name: short sword
+  parent: MedievalShortSwordSteel
+  id: MedievalShortSwordSteelGoblinSlayer
+  description: MedievalShortSwordSteelGoblinSlayer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/gs_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/gs_sword.rsi
 
 - type: entity
   name: dagger
@@ -3137,8 +3230,8 @@
     - Spear
     - Knife
   - type: MeleeThrowOnHit
-    distance: 0.6
-    speed: 1.4
+    distance: 0.32
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -3237,8 +3330,8 @@
     unequipSound:
       path: /Audio/Imperial/Medieval/sword_eqip.ogg
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 1.7
+    distance: 0.6
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -3320,8 +3413,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 1
-    speed: 1.7
+    distance: 0.6
+    speed: 5
 
 - type: entity
   name: dagger
@@ -3406,8 +3499,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 1.6
-    speed: 2.1
+    distance: 0.9
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -3475,8 +3568,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 1.65
-    speed: 2.1
+    distance: 0.9
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 6 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
@@ -3528,8 +3621,8 @@
     - belt
     quickEquip: false
   - type: MeleeThrowOnHit
-    distance: 2
-    speed: 2.1
+    distance: 1
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
@@ -3583,11 +3676,17 @@
   description: Wooden shield.
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      state: bucklergobl-icon
+      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
+      state: shield
     - type: Item
-      sprite: Imperial/Medieval/Melee/shields.rsi
-      heldPrefix: bucklergobl
+      sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
+      size: Ginormous
+    - type: Clothing
+      equipDelay: 3
+      unequipDelay: 3
+      quickEquip: false
+      slots:
+      - suitStorage
     - type: Blocking
       passiveBlockModifier: #PassiveMedievalWoodenShieldBlock
         coefficients:
@@ -3623,6 +3722,58 @@
       walkModifier: 0.98
       sprintModifier: 0.98
       mirrorClothingModifier: false
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShieldKnight
+  id: MedievalWoodenShieldKnightCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/cross_woodknight.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/cross_woodknight.rsi
+      size: Normal
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShield
+  id: MedievalWoodenShieldCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/cross_wooden.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/cross_wooden.rsi
+      size: Normal
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShieldBuckler
+  id: MedievalWoodenShieldBucklerCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/cross_buckler.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/cross_buckler.rsi
+      size: Normal
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShieldBucklerGoblin
+  id: MedievalWoodenShieldBucklerGoblinCross
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/cross_bucklergoblin.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/cross_bucklergoblin.rsi
+      size: Normal
 
 - type: entity
   name: pickaxe
@@ -3668,8 +3819,8 @@
     safeToHitGroup: ore
     resourceWaste: 0.05
   - type: MeleeThrowOnHit
-    distance: 1.8
-    speed: 2.1
+    distance: 0.04
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 10
   - type: Item
@@ -3725,8 +3876,8 @@
     safeToHitGroup: ore
     resourceWaste: 0.05
   - type: MeleeThrowOnHit
-    distance: 1.3
-    speed: 2.1
+    distance: 0.04
+    speed: 5
   - type: StaminaDamageOnHit
     damage: 8
   - type: Item
@@ -3737,3 +3888,111 @@
     sprite: Imperial/Medieval/Melee/forstone_pickaxe.rsi
     storedRotation: -45
   - type: UseDelay
+
+- type: entity
+  name: Pilum
+  parent: BaseItem
+  id: MedievalSpearPilum
+  description: Just a spear
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/pilum.rsi
+    state: spear
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    damage:
+      types:
+        Piercing: 10
+    angle: 0
+    animation: WeaponArcThrust
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 38
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaminaDamageOnHit
+    damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+
+- type: entity
+  name: Sulica
+  parent: BaseItem
+  id: MedievalSpearSulica
+  description: Just a spear
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/sulica.rsi
+    state: spear
+  - type: Sharp
+  - type: MeleeWeapon
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    damage:
+      types:
+        Piercing: 10
+    angle: 0
+    animation: WeaponArcThrust
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - back
+    - suitStorage
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Piercing: 38
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+  - type: LandAtCursor
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaminaDamageOnHit
+    damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer

@@ -17,6 +17,15 @@
             "name": "cultlead"
         },
         {
+            "name": "villager"
+        },
+        {
+            "name": "villager_def"
+        },
+        {
+            "name": "villager_leader"
+        },
+        {
             "name": "miner"
         },
         {
@@ -143,7 +152,19 @@
             "name": "tribe_recruit"
         },
         {
+            "name": "ins_alc"
+        },
+        {
+            "name": "legion_alc"
+        },
+        {
             "name": "wandernag"
+        },
+        {
+            "name": "legion_jailer"
+        },
+        {
+            "name": "legion_jailed"
         }
     ]
 }

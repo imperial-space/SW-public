@@ -943,7 +943,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1005,7 +1005,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1057,7 +1057,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1381,7 +1381,7 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: BadSmell
@@ -1421,12 +1421,13 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: LegionTrader
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
+    - type: Farmer
 
 - type: roleLoadout
   id: JobMedievalInnkeeper
@@ -1520,12 +1521,13 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: InsurgencyTrader
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
+    - type: Farmer
 
 - type: roleLoadout
   id: JobMedievalInnkeeperN
@@ -1583,7 +1585,7 @@
       actions:
       - MedievalActionDivineTouchBeginner
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1790,7 +1792,7 @@
       maxMana: 140
       regen: 0.4
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1820,6 +1822,100 @@
   #- MedievalTrinkets
   #- MedievalMusic
   #- GroupSpeciesBreathToolSecurity
+  - MedievalGloves
+
+# MEDIEVAL LegionJAILED
+
+- type: startingGear
+  id: MedievalLegionJailedGear
+  equipment:
+    pocket1: MedievalSecretLootBox
+    #belt: Bible
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth32
+    shoes: MedievalFetter
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalLegionJailed
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: legion_jailed
+  jobName: job-name-legionJailed-medieval
+
+- type: playTimeTracker
+  id: JobMedievalLegionJailed
+
+- type: job
+  id: MedievalLegionJailed
+  name: job-name-legionJailed-medieval
+  description: job-description-legionJailed-medieval
+  playTimeTracker: JobMedievalLegionJailed
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Skeleton
+    inverted: true
+  #- !type:OverallPlaytimeRequirement
+  #  time: 6000 #Imperial role timers
+  startingGear: MedievalLegionJailedGear
+  icon: "JobIconMedievalLegionJailed"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MedievalJobSpawn
+      spawnType: LegionJailed
+
+
+# MEDIEVAL LegionJAILER
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalLegionJailer
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: legion_jailer
+  jobName: job-name-legionJailer-medieval
+
+- type: playTimeTracker
+  id: JobMedievalLegionJailer
+
+- type: job
+  id: MedievalLegionJailer
+  name: job-name-legionJailer-medieval
+  description: job-description-legionJailer-medieval
+  playTimeTracker: JobMedievalLegionJailer
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Skeleton
+    inverted: true
+  #  - !type:DepartmentTimeRequirement
+  #    department: Legion
+  #    time: 7200 # Imperial medieval role timers (2 hours)
+  startingGear: MedievalLegionLegionerGear
+  icon: "JobIconMedievalLegionJailer"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Friends
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
+    #- type: IdentityFaction
+    #  faction: Legion
+    - type: MedievalJobSpawn
+      spawnType: LegionJailer
+    - type: MedievalPasportPerson
+      personJob: "[color=cyan]Тюремщик легиона[/color]"
+      pasport: MedievalPasportLegion
+      jobPrefix: "[ТюрЛ]"
+
+- type: roleLoadout
+  id: JobMedievalLegionJailer
+  groups:
+  - MedievalBackpack
+  - MedievalShoes
+  #- MedievalBeltLegion
+  - MedievalTrinkets
   - MedievalGloves
 
 # MEDIEVAL LEGION RECRUIT
@@ -1864,17 +1960,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]рекрут легиона[/color]"
+      personJob: "[color=cyan]Рекрут легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[РекЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionRecruit
@@ -1950,17 +2048,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]легионер легиона[/color]"
+      personJob: "[color=cyan]Легионер легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[ЛегЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionLegioner
@@ -2003,17 +2103,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]вратничий легиона[/color]"
+      personJob: "[color=cyan]Вратничий легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[ВратЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionGateman
@@ -2067,17 +2169,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]опцион легиона[/color]"
+      personJob: "[color=cyan]Опцион легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[ВарЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionOpcion
@@ -2130,17 +2234,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]трибун легиона[/color]"
+      personJob: "[color=cyan]Трибун легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[ТрибЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionTribun
@@ -2194,17 +2300,21 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
+      menuAccess: Full
+      priority: 2
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]легат легиона[/color]"
+      personJob: "[color=cyan]Легат легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[ЛегЛ]"
     - type: CloackMessage
       action: CloackMessageActionLegion
       faction: "leg"
@@ -2269,20 +2379,103 @@
       maxMana: 140
       regen: 0.4
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]маг легиона[/color]"
+      personJob: "[color=cyan]Маг легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[МагЛ]"
 
 - type: roleLoadout
   id: JobMedievalLegionMag
+  groups:
+  #- TravellerHead
+  #- ChaplainOuterMedieval
+  #- ChaplainJumpsuitMedieval
+  - MedievalBackpack
+  #- MedievalBiblie
+  #- MedievalChaplainNeck
+  #- SecurityOuterClothing
+  - MedievalShoes
+  #- SecurityPDA
+  #- MedievalBelt
+  #- ChaplainMaskMedieval
+  #- SurvivalSecurity
+  #- MedievalTrinkets
+  #- MedievalMusic
+  #- GroupSpeciesBreathToolSecurity
+  - MedievalGloves
+
+# MEDIEVAL LegionAlchemic
+
+- type: startingGear
+  id: MedievalLegionAlchemicGear
+  equipment:
+    pocket1: MedievalCommsCrystallLeg
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
+    neck: MedievalClothingNeckCloakClanEagle
+    belt: MedievalAlchemicBelt
+    id: MedievalLeatherKey
+  storage:
+    back:
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+
+- type: playTimeTracker
+  id: JobMedievalLegionAlchemic
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalLegionAlchemic
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: legion_alc
+  jobName: job-name-InsurgencyAlchemic-medieval
+
+- type: job
+  id: MedievalLegionAlchemic
+  name: job-name-LegionAlchemic-medieval
+  description: job-description-LegionAlchemic-medieval
+  playTimeTracker: JobMedievalLegionAlchemic
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Orc
+    - Skeleton
+    inverted: true
+  #  - !type:OverallPlaytimeRequirement
+  #    time: 36000 #Imperial role timers
+  startingGear: MedievalLegionAlchemicGear
+  icon: "JobIconMedievalLegionAlchemic"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Friends
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
+    #- type: IdentityFaction
+    #  faction: Insurgency
+    - type: MedievalJobSpawn
+      spawnType: Legion
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: MedievalPasportPerson
+      personJob: "[color=red]Алхимик легиона[/color]"
+      pasport: MedievalPasportLegion
+      jobPrefix: "[АлхимикЛ]"
+    - type: MedievalPotionChecker
+
+- type: roleLoadout
+  id: JobMedievalLegionAlchemic
   groups:
   #- TravellerHead
   #- ChaplainOuterMedieval
@@ -2339,17 +2532,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: MedievalPasportPerson
-      personJob: "[color=red]фелаг мятежников[/color]"
+      personJob: "[color=red]Фелаг мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[РекМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyRecruit
@@ -2421,17 +2616,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: MedievalPasportPerson
-      personJob: "[color=red]дружинник мятежников[/color]"
+      personJob: "[color=red]Дружинник мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[ДружМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyInsurgencyer
@@ -2470,17 +2667,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: MedievalPasportPerson
-      personJob: "[color=red]вратничий мятежников[/color]"
+      personJob: "[color=red]Вратничий мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[ВратМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyGateman
@@ -2530,17 +2729,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=red]варяг мятежников[/color]"
+      personJob: "[color=red]Варяг мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[ВарМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyOpcion
@@ -2588,17 +2789,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=red]форинг мятежников[/color]"
+      personJob: "[color=red]Форинг мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[ФорМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyTribun
@@ -2652,17 +2855,21 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
+      menuAccess: Full
+      priority: 2
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=red]ярл мятежников[/color]"
+      personJob: "[color=red]Ярл мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[ЯрлМ]"
     - type: CloackMessage
       action: CloackMessageActionIns
       faction: "ins"
@@ -2725,17 +2932,19 @@
       maxMana: 140
       regen: 0.4
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=red]маг мятежников[/color]"
+      personJob: "[color=red]Маг мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[МагМ]"
 
 - type: roleLoadout
   id: JobMedievalInsurgencyMag
@@ -2756,6 +2965,87 @@
   #- MedievalMusic
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
+
+# MEDIEVAL InsurgencyAlchemic
+
+- type: startingGear
+  id: MedievalInsurgencyAlchemicGear
+  equipment:
+    pocket1: MedievalCommsCrystallIns
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
+    neck: MedievalClothingNeckCloakClanFox
+    belt: MedievalAlchemicBelt
+    id: MedievalKeyGuard
+  storage:
+    back:
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+
+- type: playTimeTracker
+  id: JobMedievalInsurgencyAlchemic
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalInsurgencyAlchemic
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: ins_alc
+  jobName: job-name-InsurgencyAlchemic-medieval
+
+- type: job
+  id: MedievalInsurgencyAlchemic
+  name: job-name-InsurgencyAlchemic-medieval
+  description: job-description-InsurgencyAlchemic-medieval
+  playTimeTracker: JobMedievalInsurgencyAlchemic
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Orc
+    inverted: true
+  #  - !type:OverallPlaytimeRequirement
+  #    time: 36000 #Imperial role timers
+  startingGear: MedievalInsurgencyAlchemicGear
+  icon: "JobIconMedievalInsurgencyAlchemic"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: Friends
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
+    #- type: IdentityFaction
+    #  faction: Insurgency
+    - type: MedievalJobSpawn
+      spawnType: Insurgency
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: MedievalPasportPerson
+      personJob: "[color=red]Алхимик мятежников[/color]"
+      pasport: MedievalPasportInsurgency
+      jobPrefix: "[АлхимикМ]"
+    - type: MedievalPotionChecker
+
+- type: roleLoadout
+  id: JobMedievalInsurgencyAlchemic
+  groups:
+  #- TravellerHead
+  #- ChaplainOuterMedieval
+  #- ChaplainJumpsuitMedieval
+  - MedievalBackpack
+  #- MedievalBiblie
+  #- MedievalChaplainNeck
+  #- SecurityOuterClothing
+  - MedievalShoes
+  #- SecurityPDA
+  #- MedievalBelt
+  #- ChaplainMaskMedieval
+  #- SurvivalSecurity
+  #- MedievalTrinkets
+  #- MedievalMusic
+  #- GroupSpeciesBreathToolSecurity
+  - MedievalGloves
+
 
 # MEDIEVAL BANDIT RECRUIT
 
@@ -2795,17 +3085,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "банда"
+      faction: Bandit
+      factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "банда"
+    #  faction: Bandit
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
-    #- type: MedievalPasportPerson
-    #  personJob: "[color=gray]Молодняк банды[/color]"
-    #  pasport: MedievalPasportBand
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Молодняк банды[/color]"
+      pasport: "no"
+      jobPrefix: "[МолБ]"
 
 - type: roleLoadout
   id: JobMedievalBanditRecruit
@@ -2855,17 +3147,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "банда"
+      faction: Bandit
+      factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "банда"
+    #  faction: Bandit
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
-    #- type: MedievalPasportPerson
-    #  personJob: "[color=gray]Бывалый разбойник банды[/color]"
-    #  pasport: MedievalPasportBand
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Бывалый разбойник банды[/color]"
+      pasport: "no"
+      jobPrefix: "[БывБ]"
 
 - type: roleLoadout
   id: JobMedievalBanditRegular
@@ -2916,17 +3210,19 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "банда"
+      faction: Bandit
+      factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "банда"
+    #  faction: Bandit
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
-    #- type: MedievalPasportPerson
-    #  personJob: "[color=gray]Ветеран банды[/color]"
-    #  pasport: MedievalPasportBand
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Ветеран банды[/color]"
+      pasport: "no"
+      jobPrefix: "[ВетБ]"
 
 - type: roleLoadout
   id: JobMedievalBanditVeteran
@@ -2976,17 +3272,21 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "банда"
+      faction: Bandit
+      factionMenuAction: BanditFactionMenuAction
+      menuAccess: Full
+      priority: 2
     #- type: IdentityFaction
-    #  faction: "банда"
+    #  faction: Bandit
     - type: MedievalJobSpawn
       spawnType: Band
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
-    #- type: MedievalPasportPerson
-    #  personJob: "[color=gray]Главарь банды[/color]"
-    #  pasport: MedievalPasportBand
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Главарь банды[/color]"
+      pasport: "no"
+      jobPrefix: "[ГлБ]"
     - type: CloackMessage
       action: CloackMessageActionBand
       faction: "band"
@@ -3037,18 +3337,21 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: Mercenary
     - type: Friends
-      faction: "наемники"
+      faction: Merc
+      factionMenuAction: MercFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "наемники"
+    #  faction: Merc
     - type: MedievalJobSpawn
       spawnType: Merc
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=yellow]наемник[/color]"
+      personJob: "[color=yellow]Наёмник[/color]"
       pasport: MedievalPasportMerc
+      jobPrefix: "[Наем]"
 
 - type: roleLoadout
   id: JobMedievalMerc
@@ -3101,18 +3404,23 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: Mercenary
     - type: Friends
-      faction: "наемники"
+      faction: Merc
+      factionMenuAction: MercFactionMenuAction
+      menuAccess: Full
+      priority: 2
     #- type: IdentityFaction
-    #  faction: "наемники"
+    #  faction: Merc
     - type: MedievalJobSpawn
       spawnType: Merc
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=yellow]лидер наемников[/color]"
+      personJob: "[color=yellow]Лидер наёмников[/color]"
       pasport: MedievalPasportMerc
+      jobPrefix: "[ЛидН]"
     - type: CloackMessage
       action: CloackMessageActionMerc
       faction: "merc"
@@ -3177,17 +3485,19 @@
       maxMana: 120
       regen: 0.325
     - type: Friends
-      faction: "коллегия"
+      faction: Collegium
+      factionMenuAction: CollegiumFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "коллегия"
+    #  faction: Collegium
     - type: MedievalJobSpawn
       spawnType: Collegium
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: MedievalPasportPerson
-      personJob: "[color=purple]послушник коллегии[/color]"
+      personJob: "[color=purple]Послушник коллегии[/color]"
       pasport: MedievalPasportCollegium
+      jobPrefix: "[ПосК]"
 
 - type: roleLoadout
   id: JobMedievalCollegiumRecruit
@@ -3249,17 +3559,19 @@
       maxMana: 150
       regen: 0.475
     - type: Friends
-      faction: "коллегия"
+      faction: Collegium
+      factionMenuAction: CollegiumFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "коллегия"
+    #  faction: Collegium
     - type: MedievalJobSpawn
       spawnType: Collegium
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
     - type: MedievalPasportPerson
-      personJob: "[color=purple]маг коллегии[/color]"
+      personJob: "[color=purple]Маг коллегии[/color]"
       pasport: MedievalPasportCollegium
+      jobPrefix: "[МагК]"
 
 - type: roleLoadout
   id: JobMedievalCollegiumCommon
@@ -3322,17 +3634,21 @@
       maxMana: 180
       regen: 0.5
     - type: Friends
-      faction: "коллегия"
+      faction: Collegium
+      factionMenuAction: CollegiumFactionMenuAction
+      menuAccess: Full
+      priority: 2
     #- type: IdentityFaction
-    #  faction: "коллегия"
+    #  faction: Collegium
     - type: MedievalJobSpawn
       spawnType: Collegium
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=purple]архимаг коллегии[/color]"
+      personJob: "[color=purple]Архимаг коллегии[/color]"
       pasport: MedievalPasportCollegium
+      jobPrefix: "[АрхмК]"
     - type: CloackMessage
       action: CloackMessageActionCollegium
       faction: "collegium"
@@ -3386,14 +3702,19 @@
     components:
     #- type: GigaMonkeyAccent
     - type: Friends
-      faction: "племя"
+      faction: Tribe
+      factionMenuAction: TribeFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "племя"
+    #  faction: Tribe
     - type: MedievalJobSpawn
       spawnType: Tribe
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjectiveTribe
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Воин племени[/color]"
+      pasport: "no"
+      jobPrefix: "[ВоинП]"
     - type: LanguageSpeaker
       languages:
         #ommon: Understand
@@ -3405,7 +3726,6 @@
         #Growling: Speak
         #Hissing: Speak
         #Elf: Speak
-
 
 # MEDIEVAL Tribe COMMON
 
@@ -3459,14 +3779,19 @@
       regen: 0.65
     #- type: GigaMonkeyAccent
     - type: Friends
-      faction: "племя"
+      faction: Tribe
+      factionMenuAction: TribeFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "племя"
+    #  faction: Tribe
     - type: MedievalJobSpawn
       spawnType: Tribe
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjectiveTribe
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Шаман племени[/color]"
+      pasport: "no"
+      jobPrefix: "[ШамП]"
     - type: LanguageSpeaker
       languages:
         #ommon: Understand
@@ -3520,14 +3845,21 @@
   - !type:AddComponentSpecial
     components:
     - type: Friends
-      faction: "племя"
+      faction: Tribe
+      factionMenuAction: TribeFactionMenuAction
+      menuAccess: Full
+      priority: 2
     #- type: IdentityFaction
-    #  faction: "племя"
+    #  faction: Tribe
     - type: MedievalJobSpawn
       spawnType: Tribe
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjectiveTribe
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Вождь племени[/color]"
+      pasport: "no"
+      jobPrefix: "[ВождьП]"
     - type: LanguageSpeaker
       languages:
         Common: Speak
@@ -3574,9 +3906,9 @@
       tags:
       - ImperialLibrary
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     #- type: IdentityFaction
-    #  faction: "вольные"
+    #  faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: LegionTrader
     - type: MedievalTradeCurse
@@ -3694,9 +4026,9 @@
       tags:
       - ImperialLibrary
     - type: Friends
-      faction: "вольные"
+      faction: Voluntary
     #- type: IdentityFaction
-    #  faction: "вольные"
+    #  faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: InsurgencyTrader
     - type: MedievalTradeCurse
@@ -3796,17 +4128,19 @@
     components:
     - type: MedievalDigger
     - type: Friends
-      faction: "шахтеры"
+      faction: Miner
+      factionMenuAction: MinerFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "шахтеры"
+    #  faction: Miner
     - type: MedievalJobSpawn
       spawnType: Mine
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
     - type: MedievalPasportPerson
-      personJob: "[color=green]шахтер[/color]"
+      personJob: "[color=green]Шахтёр[/color]"
       pasport: MedievalPasportMine
+      jobPrefix: "[Шахт]"
 
 - type: roleLoadout
   id: JobMedievalMiner
@@ -3861,17 +4195,21 @@
     components:
     - type: MedievalDigger
     - type: Friends
-      faction: "шахтеры"
+      faction: Miner
+      factionMenuAction: MinerFactionMenuAction
+      menuAccess: Full
+      priority: 2
     #- type: IdentityFaction
-    #  faction: "шахтеры"
+    #  faction: Miner
     - type: MedievalJobSpawn
       spawnType: Mine
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=green]старший шахтер[/color]"
+      personJob: "[color=green]Старший шахтёр[/color]"
       pasport: MedievalPasportMine
+      jobPrefix: "[СтШахт]"
     - type: CloackMessage
       action: CloackMessageActionMine
       faction: "mine"
@@ -3891,9 +4229,10 @@
   id: MedievalBlacksmithGear
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth66
-    pocket1: MedievalRevent50
+    pocket1: MedievalHammerBlacksmith
     pocket2: MedievalCommsCrystallLeg
     neck: MedievalClothingNeckCloakClanEagle
+    gloves: MedievalGlovesBlacksmith
     id: MedievalLeatherKey
 
 - type: playTimeTracker
@@ -3919,17 +4258,19 @@
     components:
     - type: CrafterTrait
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: LegionBlacksmith
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]кузнец легиона[/color]"
+      personJob: "[color=cyan]Кузнец легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[КузЛ]"
 
 - type: roleLoadout
   id: JobMedievalBlacksmith
@@ -3937,7 +4278,7 @@
   - MedievalBackpack
   - MedievalShoes
   - MedievalTrinkets
-  - MedievalGloves
+  #- MedievalGloves
 
 # MEDIEVAL BlacksmithN
 
@@ -3945,10 +4286,11 @@
   id: MedievalBlacksmithNGear
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
-    pocket1: MedievalRevent50
+    pocket1: MedievalHammerBlacksmith
     pocket2: MedievalCommsCrystallIns
     neck: MedievalClothingNeckCloakClanFox
     id: MedievalKeyGuard
+    gloves: MedievalGlovesBlacksmith
 
 - type: playTimeTracker
   id: JobMedievalBlacksmithN
@@ -3973,17 +4315,19 @@
     components:
     - type: CrafterTrait
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: InsurgencyBlacksmith
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=red]кузнец мятежников[/color]"
+      personJob: "[color=red]Кузнец мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[КузМ]"
 
 - type: roleLoadout
   id: JobMedievalBlacksmithN
@@ -3991,7 +4335,7 @@
   - MedievalBackpack
   - MedievalShoes
   - MedievalTrinkets
-  - MedievalGloves
+  #- MedievalGloves
 
 # MEDIEVAL BlacksmithYoung
 
@@ -4027,17 +4371,19 @@
     components:
     - type: CrafterTrait
     - type: Friends
-      faction: "легион"
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "легион"
+    #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: LegionBlacksmith
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=cyan]подмастерье кузнеца легиона[/color]"
+      personJob: "[color=cyan]Подмастерье кузнеца легиона[/color]"
       pasport: MedievalPasportLegion
+      jobPrefix: "[МлКузЛ]"
 
 - type: roleLoadout
   id: JobMedievalBlacksmithYoung
@@ -4081,17 +4427,19 @@
     components:
     - type: CrafterTrait
     - type: Friends
-      faction: "мятежники"
+      faction: Insurgency
+      factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "мятежники"
+    #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: InsurgencyBlacksmith
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: MedievalPasportPerson
-      personJob: "[color=red]подмастерье кузнеца мятежников[/color]"
+      personJob: "[color=red]Подмастерье кузнеца мятежников[/color]"
       pasport: MedievalPasportInsurgency
+      jobPrefix: "[МлКузМ]"
 
 - type: roleLoadout
   id: JobMedievalBlacksmithYoungN
@@ -4150,14 +4498,16 @@
     components:
     - type: CultMember
     - type: Friends
-      faction: "культ"
+      faction: Cult
+      factionMenuAction: CultFactionMenuAction
     #- type: IdentityFaction
-    #  faction: "культ"
+    #  faction: Cult
     - type: MedievalJobSpawn
       spawnType: Cult
     - type: MedievalPasportPerson
-      personJob: "[color=red]культист[/color]"
+      personJob: "[color=red]Культист[/color]"
       pasport: no
+      jobPrefix: "[Культ]"
 
 # MEDIEVAL CultLeader
 
@@ -4214,15 +4564,166 @@
     components:
     - type: CultMember
     - type: Friends
-      faction: "культ"
+      faction: Cult
+      factionMenuAction: CultFactionMenuAction
+      menuAccess: Full
+      priority: 2
     #- type: IdentityFaction
-    #  faction: "культ"
+    #  faction: Cult
     - type: MedievalJobSpawn
       spawnType: Cult
     - type: MedievalPasportPerson
-      personJob: "[color=red]проповедник культа[/color]"
+      personJob: "[color=red]Проповедник культа[/color]"
       pasport: no
+      jobPrefix: "[ПропКульт]"
     - type: CloackMessage
       action: CloackMessageActionIns
       faction: "cult"
+
+# MEDIEVAL Villager REGULAR
+
+- type: startingGear
+  id: MedievalVillagerGear
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth8
+    shoes: MedievalBastShoes
+
+- type: playTimeTracker
+  id: JobMedievalVillager
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalVillager
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: villager
+  jobName: job-name-villager-medieval
+
+- type: job
+  id: MedievalVillager
+  name: job-name-villager-medieval
+  description: job-description-villager-medieval
+  playTimeTracker: JobMedievalVillager
+  startingGear: MedievalVillagerGear
+  icon: "JobIconMedievalVillager"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MedievalJobSpawn
+      spawnType: Village
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: Farmer
+
+- type: roleLoadout
+  id: JobMedievalVillager
+  groups:
+  - MedievalBackpack
+  - MedievalBelt
+  - MedievalTrinkets
+
+
+# MEDIEVAL Villager REGULAR Def
+
+- type: startingGear
+  id: MedievalVillagerDefGear
+  equipment:
+    pocket1: MedievalRevent25
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth11
+    head: MedievalClothingHeadHelmetNormandFree
+
+- type: playTimeTracker
+  id: JobMedievalVillagerDef
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalVillagerDef
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: villager_def
+  jobName: job-name-villager-def-medieval
+
+- type: job
+  id: MedievalVillagerDef
+  name: job-name-villager-def-medieval
+  description: job-description-villager-def-medieval
+  playTimeTracker: JobMedievalVillagerDef
+  startingGear: MedievalVillagerDefGear
+  icon: "JobIconMedievalVillagerDef"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MedievalJobSpawn
+      spawnType: Village
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: Farmer
+
+
+- type: roleLoadout
+  id: JobMedievalVillagerDef
+  groups:
+  - MedievalBackpack
+  - MedievalBelt
+  - MedievalTrinkets
+  - MedievalGloves
+  - MedievalShoes
+
+# MEDIEVAL VillagerLeader
+
+- type: startingGear
+  id: MedievalVillagerLeaderGear
+  equipment:
+    pocket1: MedievalRevent50
+    pocket2: MedievalRevent25
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
+    head: MedievalClothingHeadArcherHat
+
+
+- type: playTimeTracker
+  id: JobMedievalVillagerLeader
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalVillagerLeader
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: villager_leader
+  jobName: job-name-villagerLeader-medieval
+
+- type: job
+  id: MedievalVillagerLeader
+  name: job-name-villagerLeader-medieval
+  description: job-descriptionvillagerLeader-medieval
+  playTimeTracker: JobMedievalVillagerLeader
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Skeleton
+    inverted: true
+  #  - !type:DepartmentTimeRequirement
+  #    department: Village
+  #    time: 2000 #Imperial role timers
+  startingGear: MedievalVillagerLeaderGear
+  icon: "JobIconMedievalVillagerLeader"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: MedievalJobSpawn
+      spawnType: Village
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective5001000
+    - type: Farmer
+
+- type: roleLoadout
+  id: JobMedievalVillagerLeader
+  groups:
+  - MedievalBackpack
+  - MedievalShoes
+  - MedievalBelt
+  - MedievalTrinkets
+  - MedievalGloves
 

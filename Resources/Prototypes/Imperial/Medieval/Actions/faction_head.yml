@@ -1,0 +1,85 @@
+- type: entity
+  id: BaseFactionMenuAction
+  categories: [ HideSpawnMenu ]
+  name: Меню фракции
+  description: Откройте меню фракции со списком всех ваших товарищей.
+  components:
+  - type: InstantAction
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_cycle_equip_on
+    event: !type:OpenFactionMenuActionEvent
+    useDelay: 0.5
+
+- type: entity
+  id: BanditFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: bandit
+
+- type: entity
+  id: CollegiumFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: collegium
+
+- type: entity
+  id: CultFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: cult
+
+- type: entity
+  id: InsurgencyFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: insurgency
+
+- type: entity
+  id: LegionFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: legion
+
+- type: entity
+  id: MercFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: merc
+
+- type: entity
+  id: MinerFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: miner
+
+- type: entity
+  id: TribeFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: InstantAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: tribe

@@ -1,8 +1,7 @@
 # species
 - type: emoteSounds
   id: MaleZveres
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsZveres
@@ -38,11 +37,24 @@
       collection: MaleGasp
     DefaultDeathgasp:
       collection: MaleDeathZveres
+    Dreaminess:
+      collection: MaleDreaminess
+    Questioning:
+      collection: MaleQuestioning
+    Warcry:
+      collection: MaleWarcry
+    Charge:
+      collection: MaleCharge
+    Woo:
+      collection: MaleWoo
+    PainScream:
+      collection: MaleScreamsZveres
+    PassiveScream:
+      collection: MaleScreamsZveres
 
 - type: emoteSounds
   id: FemaleZveres
-  params:
-    variation: 0.125
+  # imperial medieval "pitch delete"
   sounds:
     Scream:
       collection: MaleScreamsZveres
@@ -78,6 +90,20 @@
       collection: FemaleGasp
     DefaultDeathgasp:
       collection: MaleDeathZveres
+    Dreaminess:
+      collection: FemaleDreaminess
+    Questioning:
+      collection: FemaleQuestioning
+    Warcry:
+      collection: FemaleWarcry
+    Charge:
+      collection: FemaleCharge
+    Woo:
+      collection: FemaleWoo
+    PainScream:
+      collection: MaleScreamsZveres
+    PassiveScream:
+      collection: MaleScreamsZveres
 
 - type: soundCollection
   id: MaleLaughZveres

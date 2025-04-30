@@ -396,6 +396,8 @@
     - SecurityWeaponsStatic
     - ImperialSecurityStatic # Imperial Space
     dynamicPacks:
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives

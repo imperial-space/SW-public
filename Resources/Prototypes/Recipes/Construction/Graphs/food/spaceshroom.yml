@@ -14,3 +14,13 @@
 
   - node: cooked spaceshroom
     entity: FoodSpaceshroomCooked
+    # Imperial medieval start
+    transform:
+    - !type:UserWhitelistCompGrantTransform
+      whitelist:
+        components:
+        - Farmer
+      grants:
+      - type: FarmerBoostOnConsume
+        time: 15
+    # Imperial medieval end

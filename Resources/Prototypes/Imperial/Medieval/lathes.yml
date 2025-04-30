@@ -857,6 +857,7 @@
     - MedievalClothingOuterArmorLeather
     - MedievalClothingOuterArmorLeatherLight
     - MedievalClothingOuterArmorLeatherHeavy
+    - MedievalClothingOuterArmorGoblinLeather
     - MedievalClothingBackpackSatchelLeather
     - MedievalClothingBackpackSatchelLeather2
     - MedievalClothingBackpackSatchelLeather3
@@ -1047,7 +1048,7 @@
   description: It produces armor and weapon using steel and wood.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Lathe/blacksmith.rsi
+    sprite: Imperial/Medieval/Lathe/wood_worker.rsi
     state: icon
   - type: Appearance
   - type: Physics
@@ -1082,6 +1083,7 @@
     - MedievalIronPlateSmall
     - MedievalRivets
     - MedievalShoulder
+    - ClothingEyesGlasses
     - MedievalCatapultCraft
     - MedievalCatapultAmmoBarrel
     - MedievalCatapultAmmoBarrelGunpowder
@@ -1107,6 +1109,7 @@
     - MedievalClothingOuterArmorNorthern
     - MedievalClothingOuterArmorIronCuirass
     - MedievalClothingOuterArmorBrigantin
+    - MedievalClothingOuterArmorGoblinIron
     - ClothingOuterArmorPodWars
     - MedievalClothingOuterArmorIron
     - MedievalClothingOuterArmorUpIron
@@ -1123,9 +1126,12 @@
     - MedievalForstoneGloves
     - MedievalClothingFeetForstone
     #- MedievalClothingOuterArmorUpIron2
-    - MedievalIronShield
+    - MedievalHammerBlacksmith
+    - MedievalIronShieldBuckler
     - MedievalSpear
     - MedievalSpearT3Steel
+    - MedievalSpearPilum
+    - MedievalSpearSulica
     - MedievalDagger
     - MedievalDaggerT3Steel
     - MedievalFalshion
@@ -1134,12 +1140,12 @@
     - MedievalShortSwordSteel
     - MedievalSaber
     - MedievalSaberSteel
-    - MedievalMace
     - MedievalMaceT3Steel
     - MedievalPalice
     - MedievalPaliceSteel
     - MedievalIronHalberd
     - MedievalIronHalberdT3Steel
+    - MedievalMaceT3
     - MedievalMaceT3Heavy
     - MedievalMaceT3SteelHeavy
     - MedievalIronSekir
@@ -1148,6 +1154,7 @@
     - MedievalIronHammerSteel
     - MedievalLockpickPack
     - MedievalLockpick
+    - MedievalKotel
     - MedievalShovel
     - MedievalPickaxe
     - MedievalPickaxeSteel
@@ -1166,6 +1173,12 @@
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
     - MedievalWeaponTurretNanoTrasenCraft
+    - MedievalChemistryEmptyBottle01
+    - MedievalChemistryEmptyBottle02
+    - MedievalChemistryEmptyBottle03
+    - MedievalChemistryEmptyBottle04
+    - MedievalKotel
+    - Syringe
 
 - type: entity
   parent: CP14BaseWorkbench

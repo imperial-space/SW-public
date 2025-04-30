@@ -1,7 +1,6 @@
 ﻿#ERT START
 #Leader
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTLeaderEVAPresetAlternative
   name: ERT leader
@@ -9,8 +8,8 @@
   components:
     - type: RandomMetadata
       nameSegments:
-        - NamesFirstMilitaryLeader
-        - names_last
+        - NamesMilitaryFirstLeader
+        - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -22,7 +21,6 @@
 
 #Medic
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTMedicEVAPresetAlternative
   name: ERT medic
@@ -30,8 +28,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-        - NamesFirstMilitary
-        - names_last
+        - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -43,7 +40,6 @@
 
 #Security
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTSecurityEVAPresetAlternative
   name: ERT security
@@ -51,8 +47,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-        - NamesFirstMilitary
-        - names_last
+        - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -64,7 +59,6 @@
 
 #Engineer
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTEngineerEVAPresetAlternative
   name: ERT engineer
@@ -72,8 +66,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-        - NamesFirstMilitary
-        - names_last
+        - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -85,7 +78,6 @@
 
 #Janitor
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTJanitorEVAPresetAlternative
   name: ERT janitor
@@ -93,8 +85,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-        - NamesFirstMilitary
-        - names_last
+        - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi

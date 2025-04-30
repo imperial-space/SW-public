@@ -1,5 +1,4 @@
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneTraderPreset
   name: Trader
@@ -7,8 +6,8 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Торговец
-      - names_last
+      - OldStationTrader
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -30,16 +29,15 @@
     #     - skillMaintenance
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneSmugglerPreset
-  name: Smuggler
+  name: OldStationSmuggler
   suffix: Arcane
   components:
     - type: RandomMetadata
       nameSegments:
-      - Контрабандист
-      - names_last
+      - OldStationSmuggler
+      - NamesLast
     - type: NpcFactionMember
       factions:
         - Syndicate
@@ -62,7 +60,6 @@
     #     - skillMaintenance
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneMercPreset
   name: Merc
@@ -70,8 +67,8 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Наёмник
-      - names_last
+      - OldStationMerc
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -95,7 +92,6 @@
     #     - skillSurgery
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneHeadMercPreset
   name: Head Merc
@@ -103,8 +99,8 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Главарь
-      - names_last
+      - OldStationHeadMerc
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -128,7 +124,6 @@
     #     - skillSurgery
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ArcaneBomjPreset
   name: Bum
@@ -136,8 +131,8 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Бомж
-      - names_last
+      - OldStationBomj
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi

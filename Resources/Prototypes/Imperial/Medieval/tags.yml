@@ -14,9 +14,6 @@
   id: Bolt
 
 - type: Tag
-  id: MedievalKey
-
-- type: Tag
   id: MedievalStone
 
 - type: Tag
@@ -48,3 +45,36 @@
 
 - type: Tag
   id: AlchemicIngredient
+
+- type: Tag
+  id: MedievalKey
+
+- type: Tag
+  id: LegionnaireKey
+
+- type: Tag
+  id: RebelKey
+
+- type: Tag
+  id: MercenaryKey
+
+- type: Tag
+  id: TribalKey
+
+- type: Tag
+  id: MinerKey
+
+- type: Tag
+  id: NecromancerKey
+
+- type: Tag
+  id: BanditKey
+
+- type: Tag
+  id: TavernKey
+
+- type: Tag
+  id: CultOfTruthKey
+
+- type: Tag
+  id: SmithingTool

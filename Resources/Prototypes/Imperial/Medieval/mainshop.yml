@@ -206,6 +206,14 @@
   - MedievalFood
 
 - type: listing
+  id: MdvFoodCondimentBottleEnzyme
+  productEntity: FoodCondimentBottleEnzyme
+  cost:
+    Revent: 10
+  categories:
+  - MedievalFood
+
+- type: listing
   id: MdvShopFoodBakedPretzel
   productEntity: FoodBakedPretzel
   cost:
@@ -435,7 +443,7 @@
 
 - type: listing
   id: MdvShopMedievalDecorKotelForCoockingPotionsCraft
-  productEntity: MedievalDecorKotelForCoockingPotionsCraft
+  productEntity: MedievalKotel
   discountCategory: medievalDiscounts
   discountDownTo:
     Revent: 35
@@ -606,6 +614,22 @@
   productEntity: MedievalDecorTorchColoneCraft
   cost:
     Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopSmithingGornCraft
+  productEntity: SmithingGornCraft
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopSmithWorkplaceCraft
+  productEntity: SmithWorkplaceCraft
+  cost:
+    Revent: 50
   categories:
   - MedievalBuild
 
@@ -2075,6 +2099,14 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopMedievalHammerBlacksmith
+  productEntity: MedievalHammerBlacksmith
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalHolySalt
   productEntity: MedievalHolySalt
   cost:
@@ -2090,6 +2122,17 @@
     Revent: 12
   cost:
     Revent: 18
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopCarcBoxClassic
+  productEntity: CarcBoxClassic
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 13
+  cost:
+    Revent: 22
   categories:
   - MedievalMisc
 
@@ -2674,6 +2717,14 @@
   - MedievalQuestLegion
 
 - type: listing
+  id: MdvPaperOnValuableCargoLeg
+  productEntity: MedievalPaperOnValuableCargoLeg
+  cost:
+    Revent: 220
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
   id: MedievalQuestContractInsWood
   productEntity: MedievalQuestContractInsWood
   cost:
@@ -2736,3 +2787,133 @@
     Revent: 15
   categories:
   - MedievalQuestIns
+
+- type: listing
+  id: MdvPaperOnValuableCargoIns
+  productEntity: MedievalPaperOnValuableCargoIns
+  cost:
+    Revent: 220
+  categories:
+  - MedievalQuestIns
+
+- type: entity
+  id: MedievalShopHolePalletLeg
+  name: MedievalShopHole
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - MedievalPalletLeg
+    currencyWhitelist:
+    - MedievalPaperOnValuableCargoCurrencyLeg
+    balance:
+     MedievalPaperOnValuableCargoCurrencyLeg: 0
+  - type: TrashDefendArea
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight
+
+- type: storeCategory
+  id: MedievalPalletLeg
+  name: medieval-category-pallet
+  priority: 0
+
+- type: listing
+  id: MedievalPalletContractIns
+  productEntity: MedievalDecorStoragePalletIns
+  cost:
+    MedievalPaperOnValuableCargoCurrencyIns: 1
+  categories:
+  - MedievalPalletIns
+
+- type: entity
+  id: MedievalShopHolePalletIns
+  name: MedievalShopHole
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - MedievalPalletIns
+    currencyWhitelist:
+    - MedievalPaperOnValuableCargoCurrencyIns
+    balance:
+      MedievalPaperOnValuableCargoCurrencyIns: 0
+  - type: TrashDefendArea
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight
+
+- type: storeCategory
+  id: MedievalPalletIns
+  name: medieval-category-pallet
+  priority: 0
+
+- type: listing
+  id: MedievalPalletContractLeg
+  productEntity: MedievalDecorStoragePallet
+  cost:
+   MedievalPaperOnValuableCargoCurrencyLeg: 1
+  categories:
+  - MedievalPalletLeg

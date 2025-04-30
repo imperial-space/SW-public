@@ -29,6 +29,7 @@
   - type: AccessReader
     access: [["Medical"]]
 
+
 - type: storeCategory
   id: MedievalInsWeapon
   name: medieval-category-weapon
@@ -101,6 +102,14 @@
 - type: listing
   id: MdvInsMedievalSpearT3
   productEntity: MedievalSpearT3
+  cost:
+    MedalIns: 2
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
+  id: MdvInsMedievalSpearSulica
+  productEntity: MedievalSpearSulica
   cost:
     MedalIns: 2
   categories:
@@ -233,6 +242,14 @@
   - MedievalInsWeapon
 
 - type: listing
+  id: MdvInsMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    MedalIns: 30
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
   id: MdvInsMedievalClothingOuterArmorLeather
   productEntity: MedievalClothingOuterArmorLeather
   cost:
@@ -359,3 +376,6 @@
     MedalIns: 10
   categories:
   - MedievalInsArmor
+
+
+

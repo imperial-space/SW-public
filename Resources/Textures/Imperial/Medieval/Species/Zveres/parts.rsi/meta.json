@@ -61,6 +61,14 @@
         {
             "name": "torso_m",
             "directions": 4
+        },
+        {
+            "name": "ears_in",
+            "directions": 4
+        },
+        {
+            "name": "ears_out",
+            "directions": 4
         }
     ]
 }

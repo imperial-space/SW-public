@@ -1,26 +1,26 @@
-ent-CrateFoodPizza = Экстренная доставка пиццы
+ent-CrateFoodPizza = экстренная доставка пиццы
     .desc = Внесите свой вклад в борьбу с голодом на станции, доставляя пиццу в отделы с недостаточным финансированием!
 
-ent-CrateFoodMRE = Ящик ИРП
+ent-CrateFoodMRE = ящик ИРП
     .desc = Армейские обеды, которыми можно накормить целый отдел.
 
-ent-CrateFoodCooking = Ящик кухонных припасов
+ent-CrateFoodCooking = ящик кухонных припасов
     .desc = Дополнительные кухонные припасы на случай отсутствия ботаников.
 
-ent-CrateFoodDinnerware = Ящик кухонных принадлежностей
+ent-CrateFoodDinnerware = ящик кухонных принадлежностей
     .desc = Дополнительные кухонные припасы на случай, если клоуна оставили на кухне без надзора.
 
-ent-CrateFoodBarSupply = Ящик барных принадлежностей
+ent-CrateFoodBarSupply = ящик барных принадлежностей
     .desc = Дополнительные барные припасы на случай, если клоуна оставили за барной стойкой без надзора.
 
-ent-CrateFoodKvassTank = Ящик с бочкой кваса
+ent-CrateFoodKvassTank = ящик с бочкой кваса
     .desc = Цистерна с освежающим квасом, который так помогает в жару.
 
-ent-CrateFoodSoftdrinks = Ящик напитков
+ent-CrateFoodSoftdrinks = ящик напитков
     .desc = Ящик напитков.
 
-ent-CrateFoodSoftdrinksLarge = Ящик напитков (большой)
+ent-CrateFoodSoftdrinksLarge = ящик напитков (большой)
     .desc = { ent-CrateFoodSoftdrinks.desc }
 
-ent-CrateFoodPizzaLarge = Экстренная доставка пиццы (большой)
+ent-CrateFoodPizzaLarge = экстренная доставка пиццы (большой)
     .desc = Внесите свой вклад в борьбу с голодом на станции, доставляя пиццу в отделы с недостаточным финансированием!

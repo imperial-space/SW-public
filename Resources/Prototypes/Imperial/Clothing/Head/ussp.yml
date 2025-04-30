@@ -50,11 +50,11 @@
     tags:
     - WhitelistChameleon
 
-- type: entity
+- type: entity 
   parent: ClothingHeadBase
   id: USSPstormdivisionUshanka
-  name: Helmet S-o.N.A
-  suffix: Vl, S-o.N.A
+  name: Helmet USSP
+  suffix: Vl, USSP
   description: Helmet of the elite security of the S-o.N.A. AI Dynamics Corporation.
   components:
   - type: Item
@@ -212,17 +212,17 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
-- type: entity
+- type: entity 
   parent: [ClothingHeadHardsuitBase , ClothingHeadSuitWithLightBase]
-  id: USSPHardsuitRedHelmet
-  name: brigmedic hardsuit helmet
+  id: USSPHardsuitBlueHelmet
+  name: Imperial Division helmet
   description: The lightweight helmet of the brigmedic hardsuit. Protects against viruses, and clowns.
   components:
   - type: BreathMask
   - type: Sprite
-    sprite: Imperial/ussp/hardsuits/redhelm.rsi
+    sprite: Imperial/ussp/hardsuits/bluehelm.rsi
   - type: Clothing
-    sprite: Imperial/ussp/hardsuits/redhelm.rsi
+    sprite: Imperial/ussp/hardsuits/bluehelm.rsi
   - type: PointLight
     color: "#339900"
   - type: Armor

@@ -1,9 +1,10 @@
 using Content.Server.Damage.Systems;
+using Content.Server.Imperial.Medieval.SmithingSystem;
 using Content.Shared.Damage;
 
 namespace Content.Server.Damage.Components
 {
-    [Access(typeof(DamageOtherOnHitSystem))]
+    [Access(typeof(DamageOtherOnHitSystem), typeof(SmithingSystem))] // Imperial medieval smithing
     [RegisterComponent]
     public sealed partial class DamageOtherOnHitComponent : Component
     {

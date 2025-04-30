@@ -807,6 +807,30 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth67
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_67.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_67.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth68
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_68.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_68.rsi
+  - type: Insulated
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiver
   name: MedievalQuiver
@@ -1038,6 +1062,28 @@
     sprite: Imperial/Medieval/Clothing/Shoes/white_charmer.rsi
 
 - type: entity
+  parent: MedievalShoesChamber
+  id: MedievalWhiteShoesCharmerIns
+  name: MedievalWhiteShoesCharmer
+  description: MedievalWhiteShoesCharmer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/charmerins.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/charmerins.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalWhiteShoesCharmerLegion
+  name: MedievalWhiteShoesCharmer
+  description: MedievalWhiteShoesCharmer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/charmerlegion.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/charmerlegion.rsi
+
+- type: entity
   parent: ClothingShoesBaseButcherable
   id: MedievalShoesSapogi
   name: MedievalShoesSapogi
@@ -1149,6 +1195,15 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Backpack/charmer_light.rsi
+
+- type: entity
+  parent: ClothingBackpackSatchelCharmerLight
+  id: ClothingBackpackSatchelWhiteCharmerLight
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/white_charmer.rsi
 
 - type: entity
   parent: MedievalClothingBackpackSatchelLeather
@@ -1492,3 +1547,34 @@
         doAfter: 3
   - node: MedievalClothingHandsGlovesCloth
     entity: MedievalClothingHandsGlovesCloth
+
+- type: entity
+  parent: ClothingMaskPlague
+  id: MedievalClothingElectroMask
+  name: MedievalClothingElectroMask
+  description: MedievalClothingElectroMask
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Mask/iron.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Mask/iron.rsi
+
+- type: entity
+  parent: ClothingEyesGlassesSunglasses
+  id: ClothingEyesElectroBlindfold
+  name: blindfold
+  description: blindfold
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Eyes/eblindfold.rsi
+    layers:
+      - state: icon
+      - state: icon-unshaded
+        shader: unshaded
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Eyes/eblindfold.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-EYES
+      - state: unshaded
+        shader: unshaded 

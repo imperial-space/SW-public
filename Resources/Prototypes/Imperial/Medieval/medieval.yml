@@ -354,6 +354,75 @@
     normalState: 1
 
 - type: entity
+  name: LootBox
+  parent: BaseItem
+  id: MedievalSecretLootBox
+  description: GAMBLING IS MY LIFE
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/secretbox.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Misc/secretbox.rsi
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalSecretLootBoxSpawner
+
+- type: entity
+  name: Message
+  parent: MedievalPaper
+  id: MedievalJailPosxalka
+  description: Idk
+  components:
+    - type: Paper
+      content: >-
+       [italic]
+        Вам не повезло для вас ничего не осталось, простите.
+        С уважением: Ф.Б!
+
+- type: entity
+  id: MedievalSecretLootBoxSpawner
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 0.4
+  - type: Sprite
+    drawdepth: Effects
+    noRot: true
+    layers:
+      - shader: unshaded
+        map: ["enum.EffectLayers.Unshaded"]
+        sprite: Effects/emp.rsi
+        state: emp_disable
+  - type: EffectVisuals
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: AnimationPlayer
+  - type: EntityTableSpawner
+    deleteSpawnerAfterSpawn: true
+    table: !type:NestedSelector
+      tableId: SecretLootBoxLootTable
+
+- type: entityTable
+  id: SecretLootBoxLootTable
+  table: !type:GroupSelector
+    children:
+    - id: MedievalDrugChemistryBottle
+    - id: FoodApple
+    - id: MedievalLockpick
+    - id: MedievalDaggerT3
+    - id: MedievalPickaxe
+    - id: FoodBreadPlain
+    - id: MedievalMaskFace
+    - id: FoodMeatLizardCooked
+    - id: FoodMeatCooked
+    - id: MedievalHatchet
+    - id: MedievalJailPosxalka
+
+- type: entity
   parent: BaseStructure
   id: MedievalStoneBrickWallLoopHole
   name: stone loophole
@@ -988,10 +1057,10 @@
   components:
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
-    maxIntensity: 3
+    explosionType: MedievalDefault
+    maxIntensity: 4
     intensitySlope: 1
-    totalIntensity: 45
+    totalIntensity: 60
     canCreateVacuum: false
   - type: Sprite
     sprite: Imperial/Medieval/Misc/medieval_grenade.rsi
@@ -1006,6 +1075,8 @@
     initialBeepDelay: 0
     beepInterval: 6 # 2 beeps total (at 0 and 2)
     delay: 2.5
+  - type: SpawnOnTrigger
+    proto: MedievalExplosionEffect
 
 - type: entity
   parent: MopItem
@@ -1041,6 +1112,32 @@
     stealGroup: MedievalGetMedaljonSpeed # imperial medieval
 
 - type: entity
+  parent: MedaljonSpeed
+  id: MedaljonSpeedSkin
+  name: MedaljonSpeedSkin
+  description: MedaljonSpeedSkin
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+
+- type: entity
+  parent: ClothingNeckTieDet
+  id: MedaljonSandClock
+  name: MedaljonSandClock
+  description: MedaljonSandClock
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/sandclock.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/sandclock.rsi
+
+- type: entity
   parent: ClothingNeckTieDet
   id: MedaljonMana
   name: MedaljonMana
@@ -1054,6 +1151,19 @@
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_speed.rsi
   - type: ManaRegen
     regen: 2
+
+- type: entity
+  parent: MedaljonMana
+  id: MedaljonManaSkin
+  name: MedaljonManaSkin
+  description: MedaljonManaSkin
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ClothingNeckTieDet
@@ -1071,6 +1181,19 @@
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_antimag.rsi
   - type: ManaRegen
     regen: -150
+
+- type: entity
+  parent: MedaljonAntiMana
+  id: MedaljonAntiManaSkin
+  name: MedaljonAntiManaSkin
+  description: MedaljonAntiManaSkin
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ClothingNeckTieDet
@@ -1107,6 +1230,32 @@
     stealGroup: MedievalGetMedaljonNoslip # imperial medieval
 
 - type: entity
+  parent: MedaljonFlashImmune
+  id: MedaljonFlashImmuneSkin
+  name: MedaljonFlashImmune
+  description: MedaljonFlashImmune
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+
+- type: entity
+  parent: MedaljonNoslip
+  id: MedaljonNoslipSkin
+  name: MedaljonNoslip
+  description: MedaljonNoslip
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+
+- type: entity
   parent: ClothingNeckTieDet
   id: MedaljonThieving
   name: MedaljonThieving
@@ -1120,6 +1269,19 @@
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_thieving.rsi
   - type: AddAccentClothing
     accent: Thieving
+
+- type: entity
+  parent: ClothingNeckTieDet
+  id: MedaljonThievingSkin
+  name: MedaljonThieving
+  description: MedaljonThieving
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ClothingNeckTieDet
@@ -1152,6 +1314,19 @@
     stealGroup: MedievalGetMedaljonDef # imperial medieval
 
 - type: entity
+  parent: MedaljonDef
+  id: MedaljonDefSkin
+  name: MedaljonDef
+  description: MedaljonDef
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+
+- type: entity
   parent: ClothingNeckTieDet
   id: MedaljonExpl
   name: MedaljonExpl
@@ -1164,7 +1339,7 @@
     - ears
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_expl.rsi
   - type: ExplosionResistance
-    damageCoefficient: 0.35
+    damageCoefficient: 0.6
   - type: Armor
     modifiers:
       coefficients:
@@ -1182,6 +1357,19 @@
   #    6: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonExpl # imperial medieval
+
+- type: entity
+  parent: MedaljonExpl
+  id: MedaljonExplSkin
+  name: MedaljonExpl
+  description: MedaljonExpl
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ClothingNeckTieDet
@@ -1212,6 +1400,19 @@
   #    6: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonDark # imperial medieval
+
+- type: entity
+  parent: MedaljonDark
+  id: MedaljonDarkSkin
+  name: MedaljonDark
+  description: MedaljonDark
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_skin.rsi
 
 - type: entity
   parent: ChemistryEmptyBottle01
@@ -1314,6 +1515,19 @@
       uiWindowPos: 0,1
       strippingWindowPos: 0,1
       displayName: Neck
+    - name: outerClothing
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      stripTime: 5
+      uiWindowPos: 1,1
+      strippingWindowPos: 1,2
+      displayName: Suit
+    - name: gloves
+      slotTexture: gloves
+      slotFlags: GLOVES
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,2
+      displayName: Gloves
     - name: mask
       slotTexture: mask
       slotFlags: MASK
@@ -1682,7 +1896,12 @@
 - type: soundCollection
   id: MedievalFootstepSteel
   files:
-  - /Audio/Imperial/Medieval/0919132c658e1be.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step1.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step2.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step3.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step4.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step5.ogg
+  - /Audio/Imperial/Medieval/SteelStep/step6.ogg
 
 - type: entity
   name: MedievalBrutepack
@@ -1848,6 +2067,33 @@
       prototypes:
       - MedievalMobDruid
       chance: 1
+
+- type: entity
+  name: Exception Spawner
+  id: BarricadeSpellward
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: ai
+
+- type: entity
+  name: Exception Spawner
+  id: BarricadeSpellwardDirectional
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: ai
+
+- type: entity
+  name: Exception Spawner
+  id: BarricadeSpellwardBlock
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: ai
 
 - type: entity
   name: Exception Spawner
@@ -2854,6 +3100,36 @@
 #    state: egg
 
 - type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalLootNastyGrowth
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: flower
+  - type: Currency
+    price:
+      Revent: 20
+  - type: Item
+    size: Normal
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalLootShieldSlug
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: slugbones
+  - type: Currency
+    price:
+      Revent: 30
+  - type: Item
+    size: Normal
+
+- type: entity
   name: multitool
   parent: BaseItem
   id: MedievalMultitool
@@ -2984,7 +3260,7 @@
     damage:
       types:
         Asphyxiation: 8
-        Blunt: 1
+        Slash: 1
     ignoreWhitelist:
       tags:
       - MedievalMob
@@ -4023,6 +4299,17 @@
       - ReagentId: MedievalFlowerLipad
         Quantity: 10
 
+- type: reagent
+  id: MedievalFlowerLava
+  name: ent-MedievalFlowerLava
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
 - type: entity
   name: gol
   parent: BaseItem
@@ -4042,6 +4329,11 @@
     - AlchemicIngredient
   - type: Item
     size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerLava
+        Quantity: 10
 
 - type: reagent
   id: MedievalFlowerCryo
@@ -4968,6 +5260,17 @@
     sprite: Imperial/Medieval/Misc/pai.rsi
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalPersonalAI # imperial medieval
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
 
 - type: entity
   id: MedievalServerMap
@@ -6557,7 +6860,8 @@
     canPry: false
     crushDamage:
       types:
-        Blunt: 45 # yowch
+        Blunt: 115 # yowch
+    doorStunTime: 4.5
     bumpOpen: false
     clickOpen: false
     openSound:
@@ -6609,7 +6913,10 @@
   - type: RadiationBlocker
     resistance: 8
   - type: MedievalMeleeBadTarget
-    breakMultiplier: 9
+    breakMultiplier: 8
+  - type: DamageCheckable
+  - type: ExplosionResistance
+    damageCoefficient: 3
 
 - type: entity
   id: MedievalGatesGear
@@ -6649,7 +6956,7 @@
   - type: InteractionOutline
   - type: UseDelay
     delay: 3 # prevent light-toggling auto-clickers.
-  - type: SignalSwitch
+  - type: SignalSwitchImperial
     clickSound: /Audio/Imperial/Medieval/gates_use.ogg
     onPort: Pressed
     offPort: Pressed
@@ -6809,6 +7116,10 @@
   - type: Item
     size: Tiny
   - type: CultBrush
+
+- type: font
+  id: Vinque
+  path: /Fonts/Imperial/Vinque/Vinque.otf
 
 - type: font
   id: SpellwardFont
@@ -7018,12 +7329,15 @@
     price:
       Revent: 8
   - type: Item
-    size: Small
+    size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom1
         Quantity: 10
+  - type: Tag
+    tags:
+    - AlchemicIngredient
 
 - type: reagent
   id: MedievalMushroom2
@@ -7049,12 +7363,15 @@
     price:
       Revent: 8
   - type: Item
-    size: Small
+    size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: MedievalMushroom1
+      - ReagentId: MedievalMushroom2
         Quantity: 10
+  - type: Tag
+    tags:
+    - AlchemicIngredient
 
 - type: reagent
   id: MedievalMushroom3
@@ -7080,9 +7397,292 @@
     price:
       Revent: 8
   - type: Item
-    size: Small
+    size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom3
         Quantity: 10
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+
+- type: entity
+  name: MedievalTimedSpawnerMushrooms
+  id: MedievalTimedSpawnerMushrooms
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalSpawnerMushroom
+    chance: 0.22
+    intervalSeconds: 180
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+- type: entity
+  name: BlastDoor
+  id: MedievalSpawnerMushroom
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalMushroom1
+    - MedievalMushroom2
+    - MedievalMushroom3
+    chance: 1
+    offset: 8
+- type: explosion
+  id: MedievalDefault
+  damagePerIntensity:
+    types:
+      Heat: 5
+      Blunt: 5
+      Piercing: 5
+  tileBreakChance: [0, 0.5, 1]
+  tileBreakIntensity: [0, 10, 30]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
+  fireStates: 1
+
+- type: entity
+  id: MedievalExplosionEffect
+  components:
+  - type: TimedDespawn
+    lifetime: 3
+  - type: Sprite
+    scale: 1.8, 1.8
+    sprite: Imperial/Medieval/Effects/Explosions/common.rsi
+    state: explosion
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: SmallExplosionShockWaveEffect
+
+- type: entity
+  id: SmallExplosionShockWaveEffect
+  components:
+  - type: ShockWave
+    speed: 2
+  - type: ShockWaveDistortion
+    speed: 2
+    thikness: 0.1
+    distortion: 0.05
+    maxDistance: 1.3
+    disappearDistancePercentage: 0
+  - type: TimedDespawn
+    lifetime: 0.2
+
+- type: explosion
+  id: MedievalDemolitionCharge
+  damagePerIntensity:
+    types:
+      Heat: 3
+      Blunt: 3
+      Piercing: 3
+      Structural: 50
+  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakIntensity: [ 0, 10, 30 ]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
+  fireStates: 1
+
+- type: entity
+  id: MedievalMagicBell
+  name: church bell
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Specific/church-bell.rsi
+    layers:
+    - state: church-bell
+  - type: InteractionPopup
+    interactDelay: 30
+    successChance: 1
+    #interactSuccessSound:
+    #  collection: ChurchBell
+  - type: Clickable
+  - type: Rotatable
+  - type: CollisionWake
+    enabled: false
+  - type: Physics
+    canCollide: false
+    bodyType: Static
+  - type: Fixtures
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: ChurchBell
+  - type: BellMap
+
+- type: entity
+  id: MedievalMagicBellLeg
+  name: church bell
+  parent: MedievalMagicBell
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: BellMap
+    locale: bell-map-popup-legion
+
+
+- type: entity
+  id: MedievalMagicBellIns
+  name: church bell
+  parent: MedievalMagicBell
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: BellMap
+    locale: bell-map-popup-ins
+
+
+- type: entity
+  id: MedievalPaperOnValuableCargoIns
+  name: church bell
+  parent: BaseItem
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/quest.rsi
+    state: ins
+  - type: Currency
+    price:
+      MedievalPaperOnValuableCargoCurrencyIns: 1
+  - type: Item
+    size: Tiny
+
+- type: currency
+  id: MedievalPaperOnValuableCargoCurrencyIns
+  displayName: store-currency-display-paperonvaluablecargo
+  cash:
+    1: MedievalPaperOnValuableCargoIns
+  canWithdraw: true
+
+- type: entity
+  id: MedievalPaperOnValuableCargoLeg
+  name: church bell
+  parent: BaseItem
+  description: You feel your soul grow ever closer to the realms beyond for every chime this bell tolls...
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/quest.rsi
+    state: leg
+  - type: Currency
+    price:
+      MedievalPaperOnValuableCargoCurrencyLeg: 1
+  - type: Item
+    size: Tiny
+
+- type: currency
+  id: MedievalPaperOnValuableCargoCurrencyLeg
+  displayName: store-currency-display-paperonvaluablecargo
+  cash:
+    1: MedievalPaperOnValuableCargoLeg
+  canWithdraw: true
+
+- type: construction
+  name: Деревянная броня гоблинов
+  id: MedievalClothingOuterArmorGoblinWood
+  graph: MedievalClothingOuterArmorGoblinWood
+  startNode: start
+  targetNode: MedievalClothingOuterArmorGoblinWood
+  category: construction-category-misc
+  description: "Пик гоблинской моды"
+  icon: { sprite: Imperial/Medieval/Clothing/Armor/goblin_wood_armor.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalClothingOuterArmorGoblinWood
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalClothingOuterArmorGoblinWood
+          steps:
+            - material: WoodPlank
+              amount: 24
+              doAfter: 6
+            - material: MedievalGrass
+              amount: 8
+    - node: MedievalClothingOuterArmorGoblinWood
+      entity: MedievalClothingOuterArmorGoblinWood
+
+- type: construction
+  name: Алхимическая ступка
+  id: MedievalMortarNew
+  graph: MedievalMortarNew
+  startNode: start
+  targetNode: MedievalMortarNew
+  category: construction-category-misc
+  description: "Ступка, в которой можно измельчать алхимические ингредиенты с помощью пестика"
+  icon: { sprite: Imperial/Medieval/Chem/mortar.rsi, state: stupca }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalMortarNew
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalMortarNew
+          steps:
+            - material: MedievalGlina
+              amount: 8
+              doAfter: 8
+    - node: MedievalMortarNew
+      entity: MedievalMortarNew
+
+- type: construction
+  name: Пестик
+  id: MortarTool
+  graph: MortarTool
+  startNode: start
+  targetNode: MortarTool
+  category: construction-category-misc
+  description: "Необходим для измельчения ингредиентов в ступке"
+  icon: { sprite: Imperial/Medieval/Chem/mortartool.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: MortarTool
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MortarTool
+          steps:
+            - material: MedievalGlina
+              amount: 2
+              doAfter: 4
+    - node: MortarTool
+      entity: MortarTool

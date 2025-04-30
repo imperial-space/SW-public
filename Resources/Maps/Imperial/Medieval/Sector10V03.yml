@@ -1,6 +1,17 @@
 meta:
-  format: 6
-  postmapinit: false
+  format: 7
+  category: Map
+  engineVersion: 248.0.2
+  forkId: ""
+  forkVersion: ""
+  time: 04/19/2025 11:54:33
+  entityCount: 8878
+maps:
+- 1
+grids:
+- 1
+orphans: []
+nullspace: []
 tilemap:
   0: Space
   5: FloorAsphalt
@@ -32,6 +43,7 @@ entities:
       name: Sector 10 (hell)
     - type: Transform
     - type: Map
+      mapPaused: True
     - type: PhysicsMap
     - type: GridTree
     - type: MovedGrids
@@ -13700,8 +13712,33 @@ entities:
         - 0
         - 0
     - type: RadiationGridResistance
-    - type: LoadedMap
-- proto: BarricadeBlock
+- proto: AreaMarkerHell
+  entities:
+  - uid: 8875
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-5.5
+      parent: 1
+  - uid: 8876
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 9.5,-1.5
+      parent: 1
+  - uid: 8877
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 13.5,-6.5
+      parent: 1
+  - uid: 8878
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 8.5,-11.5
+      parent: 1
+- proto: BarricadeSpellwardBlock
   entities:
   - uid: 2
     components:
@@ -48399,9 +48436,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 1
-      - 2
-      - 2
+      - 5
+      - 0
+      - 0
       - 0
       - 0
       - 0
@@ -48509,8 +48546,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
+      - 3
       - 5
-      - 0
       - 3
       - 0
       - 0
@@ -48618,7 +48655,7 @@ entities:
     - type: DoorHackable
       numbers:
       - 2
-      - 1
+      - 2
       - 2
       - 0
       - 0
@@ -48727,9 +48764,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
       - 2
-      - 1
+      - 2
+      - 5
       - 0
       - 0
       - 0
@@ -48838,8 +48875,8 @@ entities:
     - type: DoorHackable
       numbers:
       - 0
-      - 4
-      - 2
+      - 1
+      - 5
       - 0
       - 0
       - 0
@@ -48945,9 +48982,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 3
-      - 4
-      - 3
+      - 2
+      - 2
+      - 1
       - 0
       - 0
       - 0
@@ -49055,8 +49092,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 1
-      - 2
+      - 3
+      - 0
       - 3
       - 0
       - 0
@@ -49165,9 +49202,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 1
-      - 3
-      - 5
+      - 0
+      - 2
+      - 2
       - 0
       - 0
       - 0
@@ -49273,9 +49310,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
+      - 1
       - 3
-      - 4
-      - 3
+      - 0
       - 0
       - 0
       - 0
@@ -49383,9 +49420,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 3
-      - 3
       - 5
+      - 4
+      - 0
       - 0
       - 0
       - 0
@@ -49493,9 +49530,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
-      - 4
-      - 4
+      - 5
+      - 0
+      - 1
       - 0
       - 0
       - 0
@@ -49603,8 +49640,8 @@ entities:
     - type: DoorHackable
       numbers:
       - 3
-      - 4
-      - 4
+      - 1
+      - 1
       - 0
       - 0
       - 0

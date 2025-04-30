@@ -1,7 +1,6 @@
 #ERT START
 #Leader
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTLeaderEVAPreset
   name: ERT leader
@@ -9,8 +8,8 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitaryLeader
-      - names_last
+      - NamesMilitaryFirstLeader
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -25,7 +24,6 @@
 
 #Medic
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTMedicEVAPreset
   name: ERT medic
@@ -33,8 +31,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -49,7 +46,6 @@
 
 #Security
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTSecurityEVAPreset
   name: ERT security
@@ -57,8 +53,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -73,7 +68,6 @@
 
 #Engineer
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTEngineerEVAPreset
   name: ERT engineer
@@ -81,8 +75,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -97,7 +90,6 @@
 
 #Junitor
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: ERTJunitorEVAPreset
   name: ERT junitor
@@ -105,8 +97,7 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Markers/jobs.rsi
@@ -124,15 +115,14 @@
 #CBURN START
 #Leader
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: CBURNLeaderEVAPreset
   name: CBURN Agent
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitaryLeader
-      - names_last
+      - NamesMilitaryFirstLeader
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
@@ -147,15 +137,13 @@
 
 #Security
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: CBURNSecurityEVAPreset
   name: CBURN Agent
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
@@ -170,15 +158,13 @@
 
 #Medic
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: CBURNMedicEVAPreset
   name: CBURN Agent
   components:
     - type: RandomMetadata
       nameSegments:
-      - NamesFirstMilitary
-      - names_last
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
@@ -194,7 +180,6 @@
 
 #DEAD SQUAD START
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: DeadSquadSecurityEVAPreset
   name: Dead Squad Agent
@@ -202,7 +187,7 @@
     # - type: RandomMetadata
     #   nameSegments:
     #   - NamesFirstMilitary
-    #   - names_last
+    #   - NamesLast
     - type: Sprite
       netsync: false
       sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
@@ -217,16 +202,21 @@
     - type: NpcFactionMember
       factions:
       - DeathSquad
-      
+
 - type: npcFaction ##Новая фракция для эскадрона смерти
   id: DeathSquad
   hostile:
   - NanoTrasen
+  - RiotControlUnit
   - Syndicate
   - Passive
   - PetsNT
   - Zombie
   - Revolutionary
+  - Dragon
+  - SimpleHostile
+  - SyndicateAgent
+  - Wizard # Обновление фракци ЭС
 #DEAD SQUAD END
 
 

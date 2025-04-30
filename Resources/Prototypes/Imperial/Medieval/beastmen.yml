@@ -1,0 +1,367 @@
+- type: entity
+  id: OrganBeastmenHeart
+  parent: OrganHumanHeart
+  name: Beastmen heart
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Beastmen]
+
+- type: entity
+  id: OrganBeastmenLiver
+  parent: OrganHumanLiver
+  name: Beastmen liver
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [Beastmen]
+
+- type: entity
+  id: OrganBeastmenStomach
+  parent: OrganHumanStomach
+  name: Beastmen stomach
+  components:
+  - type: Sprite
+    state: stomach
+  - type: Organ
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 75
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 5
+  - type: Stomach
+  - type: Metabolizer
+    # mm very yummy
+    maxReagents: 5
+    metabolizerTypes: [Beastmen]
+
+- type: body
+  id: Beastmen
+  name: "beastmen"
+  root: torso
+  slots:
+    head:
+      part: HeadBeastmen
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: TorsoBeastmen
+      connections:
+      - right arm
+      - left arm
+      - right leg
+      - left leg
+      organs:
+        heart: OrganBeastmenHeart
+        lungs: OrganHumanLungs
+        stomach: OrganBeastmenStomach
+        liver: OrganBeastmenLiver
+        kidneys: OrganHumanKidneys
+    right arm:
+      part: RightArmBeastmen
+      connections:
+      - right hand
+    left arm:
+      part: LeftArmBeastmen
+      connections:
+      - left hand
+    right hand:
+      part: RightHandBeastmen
+    left hand:
+      part: LeftHandBeastmen
+    right leg:
+      part: RightLegBeastmen
+      connections:
+      - right foot
+    left leg:
+      part: LeftLegBeastmen
+      connections:
+      - left foot
+    right foot:
+      part: RightFootBeastmen
+    left foot:
+      part: LeftFootBeastmen
+
+- type: metabolizerType
+  id: Beastmen
+  name: Beastmen
+
+- type: entity
+  save: false
+  name: Урист МакЗверолюдь
+  parent: BaseMobBeastmen
+  id: MobBeastmen
+
+- type: entity
+  save: false
+  name: Urist McHands The Beastmen
+  parent: BaseMobSpeciesOrganic
+  id: BaseMobBeastmen
+  abstract: true
+  components:
+  - type: Hunger
+  - type: Thirst
+  - type: Icon
+    sprite: Imperial/Medieval/Species/Slime/parts.rsi # It was like this beforehand, no idea why.
+    state: full
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1
+    damageRecovery:
+      types:
+        Asphyxiation: -1
+  - type: Sprite
+    noRot: true
+    drawdepth: Mobs
+    #scale: 0.97, 1.03
+  - type: Body
+    prototype: Beastmen
+    requiredLegs: 2
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Understand
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatHuman
+      amount: 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        # they r smaller
+        density: 150
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+      medieval-spawner: # imperial medieval start
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        #layer:
+        #- DoorPassable
+        mask:
+        - MedievalSpawnerLayer
+        hard: false # imperial medieval end
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Speech
+    speechSounds: Alto
+  - type:  HumanoidAppearance
+    species: Beastmen
+  - type: Mana
+    maxManaRaceModifier: 1.00
+    regenRaceModifier: 1.00
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Imperial/Medieval/Species/Beastmen/displacement.rsi
+            state: jumpsuit-female
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: NeedSleepRaceModifier
+    modifier: 0.9
+  - type: StealRaceChanceIncreaser
+
+- type: entity
+  parent: BaseMobBeastmen
+  id: MobBeastmenDummy
+  noSpawn: true
+  components:
+  - type: Sprite
+    #scale: 0.97, 1.03
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Imperial/Medieval/Species/Beastmen/displacement.rsi
+            state: jumpsuit-female
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: Mana
+    maxManaRaceModifier: 1.0
+    regenRaceModifier: 1.0
+  - type: Respirator
+    damage:
+      types:
+        Asphyxiation: 1
+    damageRecovery:
+      types:
+        Asphyxiation: -1
+
+
+- type: species
+  id: Beastmen
+  name: Зверолюд
+  roundStart: true
+  prototype: MobBeastmen
+  sprites: MobBeastmenSprites
+  markingLimits: MobBeastmenMarkingLimits
+  dollPrototype: MobBeastmenDummy
+  skinColoration: HumanToned
+
+- type: speciesBaseSprites
+  id: MobBeastmenSprites
+  sprites:
+    Head: MobBeastmenHead
+    Hair: MobHumanoidAnyMarking
+    FacialHair: MobHumanoidAnyMarking
+    Snout: MobHumanoidAnyMarking
+    Chest: MobBeastmenTorso
+    Eyes: MobHumanoidEyes
+    LArm: MobBeastmenLArm
+    RArm: MobBeastmenRArm
+    LHand: MobBeastmenLHand
+    RHand: MobBeastmenRHand
+    LLeg: MobBeastmenLLeg
+    RLeg: MobBeastmenRLeg
+    LFoot: MobBeastmenLFoot
+    RFoot: MobBeastmenRFoot
+    Tail: MobHumanoidAnyMarking # imperial HairAndTail
+    HeadTop: MobHumanoidAnyMarking # imperial HairAndTail
+
+- type: markingPoints
+  id: MobBeastmenMarkingLimits
+  points:
+    #Special: # the cat ear joke
+    #  points: 0
+    #  required: false
+    Hair:
+      points: 1
+      required: false
+    FacialHair:
+      points: 1
+      required: false
+    Snout:
+      points: 1
+      required: false
+    Tail: # the cat tail joke
+      points: 1 # imperial HairAndTail
+      required: true
+      defaultMarkings: [ CatTailStripes ]
+    HeadTop:
+      points: 1
+      required: true
+      defaultMarkings: [ CatEars ]
+    Chest:
+      points: 1
+      required: false
+    Legs:
+      points: 2
+      required: false
+    Arms:
+      points: 2
+      required: false
+
+- type: humanoidBaseSprite
+  id: MobBeastmenHead
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobBeastmenHeadMale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: head_m
+
+- type: humanoidBaseSprite
+  id: MobBeastmenHeadFemale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: head_f
+
+- type: humanoidBaseSprite
+  id: MobBeastmenTorso
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobBeastmenTorsoMale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: torso_m
+
+- type: humanoidBaseSprite
+  id: MobBeastmenTorsoFemale
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: torso_f
+
+- type: humanoidBaseSprite
+  id: MobBeastmenLLeg
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: l_leg
+
+- type: humanoidBaseSprite
+  id: MobBeastmenLArm
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: l_arm
+
+- type: humanoidBaseSprite
+  id: MobBeastmenLHand
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: l_hand
+
+- type: humanoidBaseSprite
+  id: MobBeastmenLFoot
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: l_foot
+
+- type: humanoidBaseSprite
+  id: MobBeastmenRLeg
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: r_leg
+
+- type: humanoidBaseSprite
+  id: MobBeastmenRArm
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: r_arm
+
+- type: humanoidBaseSprite
+  id: MobBeastmenRHand
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: r_hand
+
+- type: humanoidBaseSprite
+  id: MobBeastmenRFoot
+  baseSprite:
+    sprite: Imperial/Medieval/Species/Beastmen/parts.rsi
+    state: r_foot

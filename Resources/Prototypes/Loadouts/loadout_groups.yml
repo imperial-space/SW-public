@@ -22,6 +22,7 @@
   - ClothingNeckAllyPin
   - ClothingNeckAromanticPin
   - ClothingNeckAsexualPin
+  - ClothingNeckAroacePin
   - ClothingNeckBisexualPin
   - ClothingNeckGayPin
   - ClothingNeckIntersexPin
@@ -77,6 +78,7 @@
   - EmergencyOxygen
   - LoadoutSpeciesVoxNitrogen
 
+# nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
   id: GroupEVATank
   name: loadout-group-EVA-tank
@@ -84,6 +86,14 @@
   loadouts:
   - LoadoutSpeciesEVANitrogen
   - LoadoutSpeciesEVAOxygen
+
+# vox get a nitrogen tank, other species get nothing
+- type: loadoutGroup
+  id: GroupEVATankVox
+  name: loadout-group-vox-tank
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
   id: GroupPocketTankDouble
@@ -375,8 +385,10 @@
   id: ChaplainNeck
   name: loadout-group-chaplain-neck
   minLimit: 0
+  maxLimit: 1 # Imperial Space chaplain
   loadouts:
   - ChaplainNeck
+  - ChaplainNeckCross # Imperial Space chaplain
 
 - type: loadoutGroup
   id: JanitorHead
@@ -767,8 +779,8 @@
   - StationEngineerJumpsuit
   - StationEngineerJumpskirt
   - StationEngineerHazardsuit
-  - SeniorEngineerJumpsuit
-  - SeniorEngineerJumpskirt
+  # - SeniorEngineerJumpsuit Imperial Space
+  # - SeniorEngineerJumpskirt Imperial Space
 
 - type: loadoutGroup
   id: StationEngineerBackpack
@@ -798,7 +810,7 @@
   name: loadout-group-station-engineer-id
   loadouts:
   - StationEngineerPDA
-  - SeniorEngineerPDA
+  # - SeniorEngineerPDA Imperial Space
 
 - type: loadoutGroup
   id: AtmosphericTechnicianJumpsuit
@@ -877,7 +889,7 @@
   loadouts:
   - BrownShoes
   - ScienceWinterBoots
-  - ScienceShoesAlterBoots #Imperial edit
+  # - ScienceShoesAlterBoots Imperial edit
 
 - type: loadoutGroup
   id: ScientistHead
@@ -903,8 +915,8 @@
   - ScientistJumpskirt
   - RoboticistJumpsuit
   - RoboticistJumpskirt
-  - SeniorResearcherJumpsuit
-  - SeniorResearcherJumpskirt
+  # - SeniorResearcherJumpsuit Imperial Space
+  # - SeniorResearcherJumpskirt Imperial Space
 
 - type: loadoutGroup
   id: ScientistBackpack
@@ -924,7 +936,7 @@
   - ScienceWintercoat
   - RoboticistLabCoat
   - RoboticistWintercoat
-  - SeniorResearcherLabCoat
+  # - SeniorResearcherLabCoat Imperial Space
 
 - type: loadoutGroup
   id: ScientistShoes
@@ -933,7 +945,7 @@
   - WhiteShoes
   - BlackShoes
   - ScienceWinterBoots
-  - ScienceShoesAlterBoots #Imperial edit
+  # - ScienceShoesAlterBoots Imperial edit
 
 - type: loadoutGroup
   id: ScientistGloves
@@ -949,7 +961,7 @@
   name: loadout-group-scientist-id
   loadouts:
   - ScientistPDA
-  - SeniorResearcherPDA
+  # - SeniorResearcherPDA Imperial Space
 
 - type: loadoutGroup
   id: ResearchAssistantJumpsuit
@@ -1033,8 +1045,8 @@
   - SecurityJumpskirt
   - SecurityJumpsuitGrey
   - SecurityJumpskirtGrey
-  - SeniorOfficerJumpsuit
-  - SeniorOfficerJumpskirt
+  # - SeniorOfficerJumpsuit Imperial Space
+  # - SeniorOfficerJumpskirt Imperial Space
   - TrooperUniform
 
 - type: loadoutGroup
@@ -1072,7 +1084,7 @@
   name: loadout-group-security-id
   loadouts:
   - SecurityPDA
-  - SeniorOfficerPDA
+  # - SeniorOfficerPDA Imperial Space
 
 - type: loadoutGroup
   id: DetectiveHead
@@ -1177,7 +1189,7 @@
   minLimit: 0
   loadouts:
   - MedicalBeret
-  - SeniorPhysicianBeret
+  # - SeniorPhysicianBeret Imperial Space
   - MedicalHeadMirror
   - BlueSurgeryCap
   - GreenSurgeryCap
@@ -1190,8 +1202,8 @@
   loadouts:
   - MedicalDoctorJumpsuit
   - MedicalDoctorJumpskirt
-  - SeniorPhysicianJumpsuit
-  - SeniorPhysicianJumpskirt
+  # - SeniorPhysicianJumpsuit Imperial Space
+  # - SeniorPhysicianJumpskirt Imperial Space
   - MedicalBlueScrubs
   - MedicalGreenScrubs
   - MedicalPurpleScrubs
@@ -1203,7 +1215,7 @@
   loadouts:
   - RegularLabCoat
   - MedicalDoctorWintercoat
-  - SeniorPhysicianLabCoat
+  # - SeniorPhysicianLabCoat Imperial Space
 
 - type: loadoutGroup
   id: MedicalBackpack
@@ -1225,7 +1237,7 @@
   name: loadout-group-medical-doctor-id
   loadouts:
   - MedicalDoctorPDA
-  - SeniorPhysicianPDA
+  # - SeniorPhysicianPDA Imperial Space
 
 - type: loadoutGroup
   id: MedicalGloves

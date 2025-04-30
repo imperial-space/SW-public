@@ -88,7 +88,7 @@ chat-speech-verb-slime-1 = плескается
 chat-speech-verb-slime-2 = булькает
 chat-speech-verb-slime-3 = сочится
 
-chat-speech-verb-name-plant = Диона
+chat-speech-verb-name-plant = Дендрит
 chat-speech-verb-plant-1 = шуршит
 chat-speech-verb-plant-2 = качается
 chat-speech-verb-plant-3 = скрипит

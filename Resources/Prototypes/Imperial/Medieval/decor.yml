@@ -477,6 +477,12 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 4
     fillBaseName: pit-content-
+  - type: SolutionRegeneration
+    solution: tank
+    generated:
+      reagents:
+      - ReagentId: Water
+        Quantity: 1
 
 - type: entity
   parent: WaterTank
@@ -3203,6 +3209,19 @@
     dis: 6.5
   - type: SpriteFade
   - type: Clickable
+  - type: DamageContacts
+    damage:
+     types:
+       Piercing: 3
+  - type: DamageOnInteract
+    damage:
+      types:
+         Piercing: 4
+    popupText: cactus-component-contact-damage
+  - type: DamageOnAttacked
+    damage:
+      types:
+         Piercing: 6
   - type: Sprite
     noRot: true
     sprite: Imperial/Medieval/Decor/cactus.rsi
@@ -4790,3 +4809,192 @@
   - type: Construction
     node: woodrailingRound
 
+- type: entity
+  id: MedievalDecorWoodenClock
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/woodclock.rsi
+    state: icon
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+        params:
+          variation: 0.05
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 1
+            max: 3
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: MedievalMeleeBadTarget # imperial medieval
+    safeToHitGroup: structure # imperial medieval
+  - type: AmbientSound
+    volume: -16
+    range: 3
+    sound:
+      path: /Audio/Imperial/Medieval/clock_ticktack.ogg
+
+- type: entity
+  id: MedievalDecorStoragePallet
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: storage_pallet
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 2
+            max: 6
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.4
+        density: 190
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
+  - type: InteractionOutline
+  - type: PalletStorage
+    contractPartner: "порт легиона"
+    questLink: MedievalQuestContractLegionPallet
+
+- type: entity
+  id: MedievalDecorStoragePalletIns
+  parent: MedievalDecorStoragePallet
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: PalletStorage
+    contractPartner: "дракар в порту мятежников"
+    questLink: MedievalQuestContractInsPallet
+
+- type: entity
+  abstract: true
+  #name: MedievalQuestContractBase
+  parent: BaseItem
+  id: MedievalPalletContractBase
+  description: ""
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/quest.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: MedievalQuestContract
+  parent: MedievalPalletContractBase
+  id: MedievalQuestContractLegionPallet
+  description: ""
+  components:
+  - type: Sprite
+    state: leg
+  - type: PalletContract
+    contractPartner: "порт легиона"
+
+- type: entity
+  name: MedievalQuestContract
+  parent: MedievalPalletContractBase
+  id: MedievalQuestContractInsPallet
+  description: ""
+  components:
+  - type: Sprite
+    state: ins
+  - type: PalletContract
+    contractPartner: "дракар в порту мятежников"
+
+- type: entity
+  id: MedievalDecorShipSail
+  parent: BaseStructure
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/shipsail.rsi
+    state: icon
+    drawdepth: Overdoors
+    offset: 0,3.6
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        path: /Audio/Effects/chop.ogg
+        params:
+          variation: 0.05
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 15
+            max: 30
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.4,0.35,0.4"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: InteractionOutline

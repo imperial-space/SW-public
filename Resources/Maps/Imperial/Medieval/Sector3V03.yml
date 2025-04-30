@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 247.2.0
+  engineVersion: 248.0.2
   forkId: ""
   forkVersion: ""
-  time: 03/18/2025 13:34:37
-  entityCount: 10036
+  time: 04/19/2025 11:48:12
+  entityCount: 10223
 maps:
 - 1
 grids:
@@ -89643,117 +89643,6 @@ entities:
         - 0
     - type: RadiationGridResistance
     - type: DayTimeSubscriber
-    - type: Roof
-      data:
-        0,2: 4557430888798830399
-        0,3: 4557430888798830399
-        0,4: 65485619007
-        -1,2: 18446744073709551615
-        -1,3: 18446744073709551615
-        -1,4: 1099511627775
-        -2,2: 18446744073709551615
-        -2,3: 18446744073709551615
-        -2,4: 4541318373761351679
-        -3,2: 18446744073709551615
-        -3,3: 18446744073709551615
-        -3,4: 9223373136366403583
-        -4,2: 18446744073709551615
-        -4,3: 18446744073709551615
-        -4,4: 1095216660479
-        -5,2: 16204198715727069312
-        -5,3: 16204198715729174752
-        -5,4: 2160115936
-        0,1: 1080863910568919040
-        -1,1: 17870283321406128128
-        1,0: 136874106387582
-        1,-1: 8970466218368499712
-        0,-1: 11536111950027030528
-        0,0: 4027097288
-        4,-3: 217585654555475968
-        4,-2: 514
-        6,0: 2419085488
-        7,-1: 72057594037927936
-        6,-1: 12141704595390857216
-        8,-1: 2260797719320592
-        9,-1: 16777216
-        5,3: 848835861544960
-        4,3: 777367724687360
-        5,7: 17361641481122611200
-        5,8: 15790320
-        6,8: 16764879
-        6,7: 17854511720173666304
-        2,6: 506381205453668352
-        2,7: 460551
-        1,6: 18219457998219116544
-        1,7: 14742780
-        -3,7: 17361641481138372800
-        -2,7: 2238076874004565773
-        -3,6: 17302829768357445632
-        -3,8: 128
-        -2,6: 288230376151711744
-        -2,5: 148071502556659583
-        -3,5: 826789625984
-        -6,8: 137580544
-        -7,8: 12632064
-        -9,7: 4485090714932277472
-        -9,8: 62
-        -9,6: 16204211050055237632
-        -8,0: 201720065
-        -9,0: 15259680
-        -8,-1: 504684633242206208
-        -9,-5: 16579836
-        -9,-6: 18196962468264148992
-        -8,-5: 1799
-        -8,-6: 432909643790942208
-        -8,-9: 16140945182399922176
-        -7,-9: 432908514180988928
-        -8,-8: 112
-        -7,-8: 768
-        -5,-9: 211934100111552
-        -5,-10: 13889312357043142656
-        -4,-9: 3311538216767
-        -4,-10: 4557430617154781184
-        -3,-8: 1069328955640
-        -3,-9: 17940089115630370816
-        -2,-8: 30182672135
-        -2,-9: 506373483102470144
-        1,-9: 2549776172318720
-        0,-9: 16141041801984212992
-        0,-8: 2154592
-        6,-9: 54113564272623616
-        7,-9: 295828757413888
-        8,-8: 6881006820735844352
-        7,-8: 9223372036854775808
-        7,-7: 128
-        6,-6: 4534411924996096
-        7,-3: 141416063712545
-        8,-3: 65792
-        6,-3: 128
-        3,-2: 128
-        3,0: 18261655229889788
-        4,0: 1103823438081
-        3,-1: 13835058055282163712
-        1,3: 2147483650
-        2,3: 66054
-        2,2: 288230376151711744
-        1,2: 434047668356907008
-        -5,-4: 2310373237638299648
-        -4,-4: 1987287397303808
-        -9,-1: 9223372036854775808
-        -10,4: 2064383
-        -10,3: 4555135128923234079
-        -3,-1: 18186455911006208
-        -2,-1: 16974338
-        -2,-2: 504403158265495552
-        -3,-2: 13835058055282163712
-        0,-4: 2022116232689352704
-        0,-3: 20
-        -1,-5: 2426413168
-        0,-5: 16777216
-        -1,-6: 31596048245850112
-        0,-6: 1699857995661312
-        2,-6: 49574780273164288
-        2,-5: 12591168
 - proto: AltarConvert
   entities:
   - uid: 2
@@ -89766,7 +89655,1133 @@ entities:
     - type: Transform
       pos: -8.5,27.5
       parent: 1
-- proto: Barricade
+- proto: AreaMarkerChapel
+  entities:
+  - uid: 10037
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -33.5,26.5
+      parent: 1
+  - uid: 10038
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -33.5,25.5
+      parent: 1
+- proto: AreaMarkerNorth
+  entities:
+  - uid: 10039
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -35.5,34.5
+      parent: 1
+  - uid: 10040
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -36.5,34.5
+      parent: 1
+  - uid: 10041
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -37.5,34.5
+      parent: 1
+  - uid: 10042
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -38.5,34.5
+      parent: 1
+  - uid: 10043
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -39.5,34.5
+      parent: 1
+  - uid: 10044
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -40.5,34.5
+      parent: 1
+  - uid: 10045
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,34.5
+      parent: 1
+  - uid: 10046
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,33.5
+      parent: 1
+  - uid: 10047
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,32.5
+      parent: 1
+  - uid: 10048
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,31.5
+      parent: 1
+  - uid: 10049
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,30.5
+      parent: 1
+  - uid: 10050
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,29.5
+      parent: 1
+  - uid: 10051
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,28.5
+      parent: 1
+  - uid: 10052
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,27.5
+      parent: 1
+  - uid: 10053
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,26.5
+      parent: 1
+  - uid: 10054
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,25.5
+      parent: 1
+  - uid: 10055
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,24.5
+      parent: 1
+  - uid: 10056
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,23.5
+      parent: 1
+  - uid: 10057
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,22.5
+      parent: 1
+  - uid: 10058
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,21.5
+      parent: 1
+  - uid: 10059
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,20.5
+      parent: 1
+  - uid: 10060
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,19.5
+      parent: 1
+  - uid: 10061
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,18.5
+      parent: 1
+  - uid: 10062
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,17.5
+      parent: 1
+  - uid: 10063
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -40.5,17.5
+      parent: 1
+  - uid: 10064
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -39.5,17.5
+      parent: 1
+  - uid: 10065
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -38.5,17.5
+      parent: 1
+  - uid: 10066
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -37.5,17.5
+      parent: 1
+  - uid: 10067
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -36.5,17.5
+      parent: 1
+  - uid: 10068
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -35.5,17.5
+      parent: 1
+  - uid: 10069
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -74.5,-49.5
+      parent: 1
+  - uid: 10070
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -73.5,-49.5
+      parent: 1
+  - uid: 10071
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -72.5,-49.5
+      parent: 1
+  - uid: 10072
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -71.5,-49.5
+      parent: 1
+  - uid: 10073
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -70.5,-49.5
+      parent: 1
+  - uid: 10074
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -69.5,-49.5
+      parent: 1
+  - uid: 10075
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -68.5,-49.5
+      parent: 1
+  - uid: 10076
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -67.5,-49.5
+      parent: 1
+  - uid: 10077
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -66.5,-49.5
+      parent: 1
+  - uid: 10078
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -65.5,-49.5
+      parent: 1
+  - uid: 10079
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -64.5,-49.5
+      parent: 1
+  - uid: 10080
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -63.5,-49.5
+      parent: 1
+  - uid: 10081
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -62.5,-49.5
+      parent: 1
+  - uid: 10082
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -61.5,-49.5
+      parent: 1
+  - uid: 10083
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -60.5,-49.5
+      parent: 1
+  - uid: 10084
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -60.5,-48.5
+      parent: 1
+  - uid: 10085
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -59.5,-48.5
+      parent: 1
+  - uid: 10086
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -58.5,-48.5
+      parent: 1
+  - uid: 10087
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -57.5,-48.5
+      parent: 1
+  - uid: 10088
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -56.5,-48.5
+      parent: 1
+  - uid: 10089
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -55.5,-48.5
+      parent: 1
+  - uid: 10090
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -54.5,-48.5
+      parent: 1
+  - uid: 10091
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -53.5,-48.5
+      parent: 1
+  - uid: 10092
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -52.5,-48.5
+      parent: 1
+  - uid: 10093
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -51.5,-48.5
+      parent: 1
+  - uid: 10094
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -50.5,-48.5
+      parent: 1
+  - uid: 10095
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -49.5,-48.5
+      parent: 1
+  - uid: 10096
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -48.5,-48.5
+      parent: 1
+  - uid: 10097
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -47.5,-48.5
+      parent: 1
+  - uid: 10098
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -46.5,-48.5
+      parent: 1
+  - uid: 10099
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -45.5,-48.5
+      parent: 1
+  - uid: 10100
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -44.5,-48.5
+      parent: 1
+  - uid: 10101
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -43.5,-48.5
+      parent: 1
+  - uid: 10102
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -42.5,-48.5
+      parent: 1
+  - uid: 10103
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -41.5,-48.5
+      parent: 1
+  - uid: 10104
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -40.5,-48.5
+      parent: 1
+  - uid: 10105
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -39.5,-48.5
+      parent: 1
+  - uid: 10106
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -38.5,-48.5
+      parent: 1
+  - uid: 10107
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -37.5,-48.5
+      parent: 1
+  - uid: 10108
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -36.5,-48.5
+      parent: 1
+  - uid: 10109
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -35.5,-48.5
+      parent: 1
+  - uid: 10110
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -34.5,-48.5
+      parent: 1
+  - uid: 10111
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -33.5,-48.5
+      parent: 1
+  - uid: 10112
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -32.5,-48.5
+      parent: 1
+  - uid: 10113
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -31.5,-48.5
+      parent: 1
+  - uid: 10114
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -30.5,-48.5
+      parent: 1
+  - uid: 10115
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -29.5,-48.5
+      parent: 1
+  - uid: 10116
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -28.5,-48.5
+      parent: 1
+  - uid: 10117
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -27.5,-48.5
+      parent: 1
+  - uid: 10118
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -26.5,-48.5
+      parent: 1
+  - uid: 10119
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -25.5,-48.5
+      parent: 1
+  - uid: 10120
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -24.5,-48.5
+      parent: 1
+  - uid: 10121
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -23.5,-48.5
+      parent: 1
+  - uid: 10122
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -22.5,-48.5
+      parent: 1
+  - uid: 10123
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -21.5,-48.5
+      parent: 1
+  - uid: 10124
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -20.5,-48.5
+      parent: 1
+  - uid: 10125
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -19.5,-48.5
+      parent: 1
+  - uid: 10126
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -18.5,-48.5
+      parent: 1
+  - uid: 10127
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -17.5,-48.5
+      parent: 1
+  - uid: 10128
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -16.5,-48.5
+      parent: 1
+  - uid: 10129
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -15.5,-48.5
+      parent: 1
+  - uid: 10130
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -14.5,-48.5
+      parent: 1
+  - uid: 10131
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -13.5,-48.5
+      parent: 1
+  - uid: 10132
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -12.5,-48.5
+      parent: 1
+  - uid: 10133
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -11.5,-48.5
+      parent: 1
+  - uid: 10134
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -10.5,-48.5
+      parent: 1
+  - uid: 10135
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -9.5,-48.5
+      parent: 1
+  - uid: 10136
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -8.5,-48.5
+      parent: 1
+  - uid: 10137
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -7.5,-48.5
+      parent: 1
+  - uid: 10138
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -6.5,-48.5
+      parent: 1
+  - uid: 10139
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -5.5,-48.5
+      parent: 1
+  - uid: 10140
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -4.5,-48.5
+      parent: 1
+  - uid: 10141
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -3.5,-48.5
+      parent: 1
+  - uid: 10142
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -2.5,-48.5
+      parent: 1
+  - uid: 10143
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,-48.5
+      parent: 1
+  - uid: 10144
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -0.5,-48.5
+      parent: 1
+  - uid: 10145
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,-48.5
+      parent: 1
+  - uid: 10146
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 1.5,-48.5
+      parent: 1
+  - uid: 10147
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 2.5,-48.5
+      parent: 1
+  - uid: 10148
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 3.5,-48.5
+      parent: 1
+  - uid: 10149
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 4.5,-48.5
+      parent: 1
+  - uid: 10150
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 5.5,-48.5
+      parent: 1
+  - uid: 10151
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-48.5
+      parent: 1
+  - uid: 10152
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 7.5,-48.5
+      parent: 1
+  - uid: 10153
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 8.5,-48.5
+      parent: 1
+  - uid: 10154
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 9.5,-48.5
+      parent: 1
+  - uid: 10155
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 10.5,-48.5
+      parent: 1
+  - uid: 10156
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 11.5,-48.5
+      parent: 1
+  - uid: 10157
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 12.5,-48.5
+      parent: 1
+  - uid: 10158
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 13.5,-48.5
+      parent: 1
+  - uid: 10159
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 14.5,-48.5
+      parent: 1
+  - uid: 10160
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 15.5,-48.5
+      parent: 1
+  - uid: 10161
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 16.5,-48.5
+      parent: 1
+  - uid: 10162
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 17.5,-48.5
+      parent: 1
+  - uid: 10163
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 18.5,-48.5
+      parent: 1
+  - uid: 10164
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 19.5,-48.5
+      parent: 1
+  - uid: 10165
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 20.5,-48.5
+      parent: 1
+  - uid: 10166
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 21.5,-48.5
+      parent: 1
+  - uid: 10167
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 22.5,-48.5
+      parent: 1
+  - uid: 10168
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 23.5,-48.5
+      parent: 1
+  - uid: 10169
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 24.5,-48.5
+      parent: 1
+  - uid: 10170
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 25.5,-48.5
+      parent: 1
+  - uid: 10171
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 26.5,-48.5
+      parent: 1
+  - uid: 10172
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 27.5,-48.5
+      parent: 1
+  - uid: 10173
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 28.5,-48.5
+      parent: 1
+  - uid: 10174
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 29.5,-48.5
+      parent: 1
+  - uid: 10175
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 30.5,-48.5
+      parent: 1
+  - uid: 10176
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 31.5,-48.5
+      parent: 1
+  - uid: 10177
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 32.5,-48.5
+      parent: 1
+  - uid: 10178
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 33.5,-48.5
+      parent: 1
+  - uid: 10179
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 34.5,-48.5
+      parent: 1
+  - uid: 10180
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 35.5,-48.5
+      parent: 1
+  - uid: 10181
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 36.5,-48.5
+      parent: 1
+  - uid: 10182
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 37.5,-48.5
+      parent: 1
+  - uid: 10183
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 38.5,-48.5
+      parent: 1
+  - uid: 10184
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 39.5,-48.5
+      parent: 1
+  - uid: 10185
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 40.5,-48.5
+      parent: 1
+  - uid: 10186
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 41.5,-48.5
+      parent: 1
+  - uid: 10187
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 42.5,-48.5
+      parent: 1
+  - uid: 10188
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 43.5,-48.5
+      parent: 1
+  - uid: 10189
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 44.5,-48.5
+      parent: 1
+  - uid: 10190
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 45.5,-48.5
+      parent: 1
+  - uid: 10191
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 46.5,-48.5
+      parent: 1
+  - uid: 10192
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 47.5,-48.5
+      parent: 1
+  - uid: 10193
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 48.5,-48.5
+      parent: 1
+  - uid: 10194
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 49.5,-48.5
+      parent: 1
+  - uid: 10195
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 50.5,-48.5
+      parent: 1
+  - uid: 10196
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 51.5,-48.5
+      parent: 1
+  - uid: 10197
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 52.5,-48.5
+      parent: 1
+  - uid: 10198
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 53.5,-48.5
+      parent: 1
+  - uid: 10199
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 54.5,-48.5
+      parent: 1
+  - uid: 10200
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 55.5,-48.5
+      parent: 1
+  - uid: 10201
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 56.5,-48.5
+      parent: 1
+  - uid: 10202
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 57.5,-48.5
+      parent: 1
+  - uid: 10203
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 58.5,-48.5
+      parent: 1
+  - uid: 10204
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 59.5,-48.5
+      parent: 1
+  - uid: 10205
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 60.5,-48.5
+      parent: 1
+  - uid: 10206
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 61.5,-48.5
+      parent: 1
+  - uid: 10207
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 62.5,-48.5
+      parent: 1
+  - uid: 10208
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 63.5,-48.5
+      parent: 1
+  - uid: 10209
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 64.5,-48.5
+      parent: 1
+  - uid: 10210
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 65.5,-48.5
+      parent: 1
+  - uid: 10211
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 66.5,-48.5
+      parent: 1
+  - uid: 10212
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 67.5,-48.5
+      parent: 1
+  - uid: 10213
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 68.5,-48.5
+      parent: 1
+  - uid: 10214
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 69.5,-48.5
+      parent: 1
+  - uid: 10215
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 70.5,-48.5
+      parent: 1
+  - uid: 10216
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 71.5,-48.5
+      parent: 1
+  - uid: 10217
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 72.5,-48.5
+      parent: 1
+  - uid: 10218
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 73.5,-48.5
+      parent: 1
+  - uid: 10219
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -14.5,40.5
+      parent: 1
+  - uid: 10220
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -12.5,40.5
+      parent: 1
+  - uid: 10221
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -15.5,43.5
+      parent: 1
+  - uid: 10222
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -13.5,44.5
+      parent: 1
+  - uid: 10223
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -11.5,43.5
+      parent: 1
+- proto: BarricadeSpellward
   entities:
   - uid: 4
     components:
@@ -89853,7 +90868,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 34.5,-19.5
       parent: 1
-- proto: BarricadeBlock
+- proto: BarricadeSpellwardBlock
   entities:
   - uid: 19
     components:
@@ -90125,7 +91140,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 2.5,-40.5
       parent: 1
-- proto: BarricadeDirectional
+- proto: BarricadeSpellwardDirectional
   entities:
   - uid: 66
     components:
@@ -95534,12 +96549,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: Bookshelf
   entities:
   - uid: 1136
@@ -98849,12 +99871,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 1708
     components:
     - type: Transform
@@ -98867,12 +99896,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 1709
     components:
     - type: Transform
@@ -98885,12 +99921,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 1710
     components:
     - type: Transform
@@ -98903,12 +99946,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: FenceWoodHighCorner
   entities:
   - uid: 1711
@@ -111533,12 +112583,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4139
     components:
     - type: Transform
@@ -111553,12 +112610,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4140
     components:
     - type: Transform
@@ -111573,12 +112637,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4141
     components:
     - type: Transform
@@ -111593,12 +112664,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4142
     components:
     - type: Transform
@@ -111613,12 +112691,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4143
     components:
     - type: Transform
@@ -111633,12 +112718,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4144
     components:
     - type: Transform
@@ -111653,12 +112745,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4145
     components:
     - type: Transform
@@ -111673,12 +112772,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4146
     components:
     - type: Transform
@@ -111693,12 +112799,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4147
     components:
     - type: Transform
@@ -111713,12 +112826,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4148
     components:
     - type: Transform
@@ -111733,12 +112853,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4149
     components:
     - type: Transform
@@ -111753,12 +112880,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4150
     components:
     - type: Transform
@@ -111773,12 +112907,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 4151
     components:
     - type: Transform
@@ -111793,12 +112934,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MaterialWoodPlank1
   entities:
   - uid: 4152
@@ -111973,9 +113121,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 5
-      - 4
-      - 4
+      - 3
+      - 2
+      - 2
       - 0
       - 0
       - 0
@@ -112080,9 +113228,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
+      - 1
       - 2
-      - 5
-      - 5
+      - 4
       - 0
       - 0
       - 0
@@ -112187,9 +113335,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 0
-      - 0
       - 3
+      - 5
+      - 2
       - 0
       - 0
       - 0
@@ -112295,9 +113443,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 5
-      - 2
+      - 3
       - 4
+      - 0
       - 0
       - 0
       - 0
@@ -112403,9 +113551,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
+      - 4
       - 3
-      - 0
-      - 5
+      - 2
       - 0
       - 0
       - 0
@@ -112511,9 +113659,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 5
-      - 4
-      - 4
+      - 0
+      - 0
+      - 1
       - 0
       - 0
       - 0
@@ -112619,9 +113767,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 0
+      - 5
+      - 1
       - 4
-      - 0
       - 0
       - 0
       - 0
@@ -112727,9 +113875,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 3
-      - 2
-      - 0
+      - 1
+      - 1
+      - 4
       - 0
       - 0
       - 0
@@ -112835,9 +113983,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 5
-      - 5
-      - 0
+      - 1
+      - 1
+      - 2
       - 0
       - 0
       - 0
@@ -112943,9 +114091,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
+      - 3
       - 1
-      - 4
+      - 0
       - 0
       - 0
       - 0
@@ -113051,8 +114199,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
+      - 5
       - 3
-      - 4
       - 3
       - 0
       - 0
@@ -113161,7 +114309,7 @@ entities:
       numbers:
       - 0
       - 2
-      - 4
+      - 2
       - 0
       - 0
       - 0
@@ -113267,9 +114415,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 0
-      - 0
       - 1
+      - 1
+      - 4
       - 0
       - 0
       - 0
@@ -113375,9 +114523,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 3
       - 2
-      - 2
+      - 1
+      - 1
       - 0
       - 0
       - 0
@@ -113483,9 +114631,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
-      - 4
       - 1
+      - 3
+      - 0
       - 0
       - 0
       - 0
@@ -113591,9 +114739,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 5
-      - 0
-      - 3
+      - 2
+      - 2
+      - 1
       - 0
       - 0
       - 0
@@ -113701,7 +114849,7 @@ entities:
       numbers:
       - 0
       - 1
-      - 1
+      - 2
       - 0
       - 0
       - 0
@@ -113806,9 +114954,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
+      - 3
       - 1
-      - 1
+      - 0
       - 0
       - 0
       - 0
@@ -114024,7 +115172,7 @@ entities:
       numbers:
       - 5
       - 4
-      - 5
+      - 0
       - 0
       - 0
       - 0
@@ -114129,8 +115277,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
-      - 1
+      - 3
+      - 3
       - 2
       - 0
       - 0
@@ -114236,9 +115384,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
-      - 4
       - 1
+      - 4
+      - 3
       - 0
       - 0
       - 0
@@ -114344,9 +115492,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 3
-      - 0
-      - 2
+      - 5
+      - 1
+      - 4
       - 0
       - 0
       - 0
@@ -114451,9 +115599,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 2
+      - 5
       - 0
-      - 4
+      - 1
       - 0
       - 0
       - 0
@@ -114558,7 +115706,7 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 2
+      - 4
       - 1
       - 5
       - 0
@@ -114666,8 +115814,8 @@ entities:
     - type: DoorHackable
       numbers:
       - 2
-      - 3
-      - 1
+      - 0
+      - 2
       - 0
       - 0
       - 0
@@ -114773,7 +115921,7 @@ entities:
     - type: DoorHackable
       numbers:
       - 4
-      - 1
+      - 5
       - 4
       - 0
       - 0
@@ -114879,8 +116027,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 3
-      - 0
+      - 1
+      - 4
       - 5
       - 0
       - 0
@@ -114988,8 +116136,8 @@ entities:
     - type: DoorHackable
       numbers:
       - 3
-      - 1
       - 5
+      - 2
       - 0
       - 0
       - 0
@@ -115094,9 +116242,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 0
-      - 2
-      - 4
+      - 5
+      - 3
+      - 5
       - 0
       - 0
       - 0
@@ -115204,7 +116352,7 @@ entities:
       numbers:
       - 3
       - 4
-      - 0
+      - 4
       - 0
       - 0
       - 0
@@ -115309,9 +116457,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 3
-      - 5
       - 1
+      - 4
+      - 5
       - 0
       - 0
       - 0
@@ -115416,9 +116564,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
+      - 5
       - 3
-      - 0
-      - 0
+      - 5
       - 0
       - 0
       - 0
@@ -115524,8 +116672,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
-      - 3
+      - 2
+      - 0
       - 5
       - 0
       - 0
@@ -115633,8 +116781,8 @@ entities:
     - type: DoorHackable
       numbers:
       - 5
-      - 0
-      - 2
+      - 3
+      - 4
       - 0
       - 0
       - 0
@@ -115739,9 +116887,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 1
-      - 1
       - 4
+      - 3
+      - 2
       - 0
       - 0
       - 0
@@ -115847,9 +116995,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 0
-      - 0
-      - 2
+      - 5
+      - 4
+      - 3
       - 0
       - 0
       - 0
@@ -115955,9 +117103,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
-      - 4
-      - 2
+      - 1
+      - 0
+      - 1
       - 0
       - 0
       - 0
@@ -116063,8 +117211,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 2
-      - 4
+      - 1
+      - 3
       - 5
       - 0
       - 0
@@ -116172,8 +117320,8 @@ entities:
     - type: DoorHackable
       numbers:
       - 3
-      - 0
-      - 1
+      - 4
+      - 5
       - 0
       - 0
       - 0
@@ -116278,9 +117426,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 0
-      - 3
-      - 5
+      - 2
+      - 1
+      - 2
       - 0
       - 0
       - 0
@@ -116385,8 +117533,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 5
-      - 1
+      - 3
+      - 2
       - 5
       - 0
       - 0
@@ -116492,9 +117640,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 5
-      - 3
-      - 1
+      - 4
+      - 0
+      - 2
       - 0
       - 0
       - 0
@@ -116599,9 +117747,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 5
+      - 4
       - 2
-      - 2
+      - 3
       - 0
       - 0
       - 0
@@ -116707,8 +117855,8 @@ entities:
     - type: DoorHackable
       numbers:
       - 4
-      - 4
-      - 1
+      - 5
+      - 5
       - 0
       - 0
       - 0
@@ -116814,8 +117962,8 @@ entities:
     - type: DoorHackable
       numbers:
       - 5
-      - 2
-      - 2
+      - 4
+      - 0
       - 0
       - 0
       - 0
@@ -116920,9 +118068,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
-      - 4
-      - 1
+      - 0
+      - 3
+      - 0
       - 0
       - 0
       - 0
@@ -117027,9 +118175,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 1
-      - 1
       - 2
+      - 5
+      - 5
       - 0
       - 0
       - 0
@@ -117134,9 +118282,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 4
-      - 5
       - 0
+      - 4
+      - 2
       - 0
       - 0
       - 0
@@ -117239,108 +118387,6 @@ entities:
     - type: Transform
       pos: 38.5,26.5
       parent: 1
-    - type: DoorHackable
-      numbers:
-      - 1
-      - 4
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
-      - 0
   - uid: 4227
     components:
     - type: Transform
@@ -117348,9 +118394,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 3
-      - 5
-      - 2
+      - 1
+      - 0
+      - 1
       - 0
       - 0
       - 0
@@ -117456,9 +118502,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
+      - 0
       - 2
-      - 2
-      - 4
+      - 0
       - 0
       - 0
       - 0
@@ -117564,8 +118610,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 0
-      - 4
+      - 3
+      - 5
       - 1
       - 0
       - 0
@@ -117672,8 +118718,8 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
+      - 5
       - 3
-      - 2
       - 4
       - 0
       - 0
@@ -117780,9 +118826,9 @@ entities:
       parent: 1
     - type: DoorHackable
       numbers:
-      - 2
+      - 5
+      - 5
       - 0
-      - 4
       - 0
       - 0
       - 0
@@ -120610,12 +121656,19 @@ entities:
           startTime: 0
           length: 0.7462686
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalDaggerT3Steel
   entities:
   - uid: 4717
@@ -120630,12 +121683,19 @@ entities:
           startTime: 0
           length: 0.7407407
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalDecorBags1
   entities:
   - uid: 4718
@@ -122639,12 +123699,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 5098
     components:
     - type: Transform
@@ -122657,12 +123724,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 5099
     components:
     - type: Transform
@@ -122675,12 +123749,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalFlagCaptureWhite
   entities:
   - uid: 5100
@@ -123570,6 +124651,9 @@ entities:
           endTime: 0
           startTime: 0
           length: 1
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 5259
     components:
     - type: Transform
@@ -123581,6 +124665,9 @@ entities:
           endTime: 0
           startTime: 0
           length: 1
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalKnut
   entities:
   - uid: 5260
@@ -123595,12 +124682,19 @@ entities:
           startTime: 0
           length: 0.9090908
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 5261
     components:
     - type: Transform
@@ -123613,12 +124707,19 @@ entities:
           startTime: 0
           length: 0.9090908
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 5262
     components:
     - type: Transform
@@ -123631,12 +124732,19 @@ entities:
           startTime: 0
           length: 0.9090908
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalLootFighter
   entities:
   - uid: 5263
@@ -123859,6 +124967,9 @@ entities:
           endTime: 0
           startTime: 0
           length: 1.4285714
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalPlushieTraveller
   entities:
   - uid: 5302
@@ -123873,12 +124984,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
   - uid: 5303
     components:
     - type: Transform
@@ -123891,12 +125009,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalPlushieWizard
   entities:
   - uid: 5304
@@ -123911,12 +125036,19 @@ entities:
           startTime: 0
           length: 1
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalPosterWallMap1
   entities:
   - uid: 5305
@@ -124264,6 +125396,10 @@ entities:
           length: 1
     - type: MedievalMeleeResource
       brokenWieldDamage: {}
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
@@ -124275,6 +125411,9 @@ entities:
       almostFullWieldDamage: {}
       damagedWieldDamage: {}
       badlyDamagedWieldDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalShoesSapogi
   entities:
   - uid: 5363
@@ -124296,12 +125435,19 @@ entities:
           startTime: 0
           length: 1.4285714
     - type: MedievalMeleeResource
+      effectSoundOnRepair: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/repair_stone_use.ogg
+      effectSoundOnBreak: !type:SoundPathSpecifier
+        path: /Audio/Imperial/Medieval/melee_break.ogg
       upDamage: {}
       fullDamage: {}
       almostFullDamage: {}
       damagedDamage: {}
       badlyDamagedDamage: {}
       brokenDamage: {}
+    - type: CultBloodMelee
+    - type: DurabilityDisplay
+      dub: Full
 - proto: MedievalSign3
   entities:
   - uid: 5365

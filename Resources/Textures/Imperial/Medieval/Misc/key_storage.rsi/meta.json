@@ -8,7 +8,43 @@
   },
   "states": [
     {
-      "name": "icon"
+      "name": "base"
+    },
+    {
+      "name": "bandits"
+    },
+    {
+      "name": "fox"
+    },
+    {
+      "name": "legion"
+    },
+    {
+      "name": "mage"
+    },
+    {
+      "name": "mercenaries"
+    },
+    {
+      "name": "necro"
+    },
+    {
+      "name": "tribe"
+    },
+    {
+      "name": "wood"
+    },
+    {
+      "name": "king"
+    },
+    {
+      "name": "medieval_key"
+    },
+    {
+        "name": "icon"
+    },
+    {
+        "name": "1"
     }
-  ]
+    ]
 }

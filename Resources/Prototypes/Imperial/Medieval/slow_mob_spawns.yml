@@ -202,3 +202,19 @@
   - type: Tag
     tags:
     - HideContextMenu
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobNastyGrowth
+  name: late mob spawn nasty growth
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobNastyGrowth
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobShieldSlug
+  name: late mob spawn shield slug
+  parent: MedievalLateMobSpawnerBase
+  components:
+  - type: SlowMobSpawn
+    spawnMob: MedievalMobShieldSlug

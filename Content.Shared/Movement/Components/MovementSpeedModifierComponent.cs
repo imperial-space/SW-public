@@ -19,12 +19,12 @@ namespace Content.Shared.Movement.Components
         public const float DefaultWeightlessModifier = 0.7f;
         public const float DefaultWeightlessAcceleration = 1f;
 
-        public const float DefaultAcceleration = 11f; // imperial medieval start
-        public const float DefaultFriction = 8f;
-        public const float DefaultFrictionNoInput = 8f;
+        public const float DefaultAcceleration = 16f; // imperial medieval start
+        public const float DefaultFriction = 16f;
+        public const float DefaultFrictionNoInput = 16f;
 
-        public const float DefaultBaseWalkSpeed = 4.6f;
-        public const float DefaultBaseSprintSpeed = 3.6f; // imperial medieval end
+        public const float DefaultBaseWalkSpeed = 4f;
+        public const float DefaultBaseSprintSpeed = 2.8f; // imperial medieval end
 
         [AutoNetworkedField, ViewVariables]
         public float WalkSpeedModifier = 1.0f;

@@ -7,6 +7,8 @@ using Content.Client.Fullscreen;
 using Content.Client.GameTicking.Managers;
 using Content.Client.GhostKick;
 using Content.Client.Guidebook;
+using Content.Client.Imperial.Medieval.CharacterBlock;
+using Content.Client.Imperial.Medieval.JoinQueue;
 using Content.Client.Input;
 using Content.Client.IoC;
 using Content.Client.Launcher;
@@ -75,6 +77,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly DebugMonitorManager _debugMonitorManager = default!;
         [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsors
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
+        [Dependency] private readonly CharacterBlockManager _characterBlock = default!; // Imperial medieval edit1
 
         public override void Init()
         {
@@ -137,6 +140,7 @@ namespace Content.Client.Entry
             _extendedDisconnectInformation.Initialize();
             _jobRequirements.Initialize();
             _playbackMan.Initialize();
+            IoCManager.Resolve<JoinQueueManager>().Initialize(); // Imperial-Medieval-JoinQueue
 
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
@@ -176,6 +180,7 @@ namespace Content.Client.Entry
 
             _sponsorsManager.Initialize(); //Imperial sponsors
             _titleWindowManager.Initialize();
+            _characterBlock.Initialize(); // Imperial medieval edit
 
             _baseClient.RunLevelChanged += (_, args) =>
             {

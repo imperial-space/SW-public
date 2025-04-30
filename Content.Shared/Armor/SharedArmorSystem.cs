@@ -58,7 +58,7 @@ public abstract class SharedArmorSystem : EntitySystem
 
     private void OnArmorVerbExamine(EntityUid uid, ArmorComponent component, GetVerbsEvent<ExamineVerb> args)
     {
-        if (!args.CanInteract || !args.CanAccess)
+        if (!args.CanInteract || !args.CanAccess || !component.ShowArmorOnExamine)
             return;
 
         var examineMarkup = GetArmorExamine(component.Modifiers);
@@ -85,14 +85,14 @@ public abstract class SharedArmorSystem : EntitySystem
             {
                 msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
                     ("type", coefficientArmor.Key),
-                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,1))
+                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,2)) //Imperail medieval edit
                     ));
             }
             if (coefficientArmor.Key == "Stamina")
             {
                 msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value-stamina",
                     ("type", coefficientArmor.Key),
-                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,1))
+                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,2)) //Imperail medieval edit
                     ));
             }
             // stamina resistance end
@@ -115,6 +115,8 @@ public abstract class SharedArmorSystem : EntitySystem
     // stamina resistance begin
     private void OnStaminaModify(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<StaminaModifyEvent> args)
     {
+        if (args.Args.IgnoreResistances) return;
+
         if (component.Modifiers.Coefficients.TryGetValue("Stamina", out var coefficient))
         {
             args.Args.Damage = args.Args.Damage * coefficient;

@@ -19,6 +19,8 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
@@ -33,10 +35,11 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "outerClothing" ] # Imperial Space для корректного отображения РПС
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
+    # - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
@@ -173,6 +176,7 @@
     - RadiationProtection
     - Drowsiness
     - Adrenaline
+    - MedievalFarmerBoost # Imperial medieval
   - type: Body
     prototype: Human
     requiredLegs: 2
@@ -260,7 +264,7 @@
   - type: IgnitPocketFlames
   - type: EmoteOnDamage
     emotes:
-    - Scream
+    - PainScream
     emoteChance: 0.3
     withChat: true
     emoteCooldown: 3.5
@@ -277,6 +281,8 @@
     bloodMultiplier: 1
     fresh: true
   - type: RandomSteal
+  - type: Customizer
+  - type: IdentityRequiresKnowledge
   #- type: LanguageSpeaker
   #  languages:
   #    Common: Speak
@@ -288,6 +294,13 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: SleepingImperial
+  - type: SoftCritEmotes
+    emotes:
+    - Cough
+    - Gasp
+    - PassiveScream
+  - type: AreaMarkerInvoker
 # Imperial Medieval End
 
 - type: entity
@@ -341,7 +354,7 @@
     sweatHeatRegulation: 2000
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
+    thermalRegulationTemperatureThreshold: 2
   - type: Perishable
   - type: Butcherable
     butcheringType: Spike # TODO human.
@@ -383,6 +396,8 @@
     - map: [ "enum.HumanoidVisualLayers.LArm" ]
     - map: [ "enum.HumanoidVisualLayers.RLeg" ]
     - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
     - map: ["jumpsuit"]
     - map: ["enum.HumanoidVisualLayers.LFoot"]
     - map: ["enum.HumanoidVisualLayers.RFoot"]
@@ -396,10 +411,11 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "outerClothing" ] # Imperial Space для корректного отображения РПС
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
+    # - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]

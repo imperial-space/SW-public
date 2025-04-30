@@ -46,34 +46,6 @@
         type: TransferAmountBoundUserInterface
   - type: Drink
     solution: beaker
-  - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Glass
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 5
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: GlassBreak
-          params:
-            volume: -4
-      - !type:SpillBehavior
-        solution: beaker
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          ShardGlass:
-            min: 1
-            max: 1
-        transferForensics: true
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-  - type: DamageOnLand
-    damage:
-      types:
-        Blunt: 10 # glass resistance set reduces damage. Need to land twice (w/o hitting wall)
   - type: DamageOtherOnHit
     damage:
       types:
@@ -629,7 +601,7 @@
         amount: -0.25
 
 - type: reagent
-  id: medievalsmokeandexplosion
+  id: medievaladvancedsmokeandexplosion
   name: ""
   desc: ""
   physicalDesc: ""
@@ -1146,3 +1118,103 @@
               Toxin: -5
               Airloss: -5
               Brute: -5
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalChemistryRecipe
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/recipe.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: MedievalRandomChemistryRecipe
+    weights:
+      easy: 70
+      medium: 30
+
+- type: entity
+  name: mortar
+  parent: [ BaseItem, BaseStorageItem ]
+  id: MedievalMortarNew
+  description: .
+  components:
+    - type: SolutionContainerManager
+      solutions:
+        beaker:
+          maxVol: 50
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/mortar.rsi
+      layers:
+        - state: stupca
+        - state: stupca1
+          map: [ "enum.SolutionContainerLayers.Fill" ]
+          visible: false
+    - type: Item
+      size: Normal
+      sprite: Imperial/Medieval/Chem/mortar.rsi
+    - type: MixableSolution
+      solution: beaker
+    - type: RefillableSolution
+      solution: beaker
+    - type: DrainableSolution
+      solution: beaker
+    - type: ExaminableSolution
+      solution: beaker
+    - type: DrawableSolution
+      solution: beaker
+    - type: InjectableSolution
+      solution: beaker
+    - type: SolutionTransfer
+      canChangeTransferAmount: true
+    - type: SolutionItemStatus
+      solution: beaker
+    - type: UserInterface
+      interfaces:
+        enum.TransferAmountUiKey.Key:
+          type: TransferAmountBoundUserInterface
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: Drink
+      solution: beaker
+    - type: Spillable
+      solution: beaker
+    - type: Appearance
+    - type: SolutionContainerVisuals
+      maxFillLevels: 3
+      fillBaseName: stupca
+    - type: StaticPrice
+      price: 60
+    - type: DnaSubstanceTrace
+    - type: Mortar
+    - type: Storage
+      storageOpenSound: null
+      storageInsertSound: null
+      blacklist:
+        components:
+        - MortarTool
+      grid:
+      - 0,0,2,2
+    - type: Construction
+      graph: MedievalMortarNew
+      node: ground
+
+- type: entity
+  name: mortar tool
+  parent: BaseItem
+  id: MedievalMortarTool
+  description: .
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/mortartool.rsi
+      layers:
+        - state: icon
+    - type: Item
+      size: Tiny
+      sprite: Imperial/Medieval/Chem/mortartool.rsi
+    - type: MortarTool
+    - type: Construction
+      graph: MedievalMortarTool
+      node: ground

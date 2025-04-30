@@ -2,7 +2,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.Body.Systems;
 using Content.Server.Construction;
 using Content.Server.Explosion.EntitySystems;
-using Content.Server.DeviceLinking.Events;
 using Content.Server.DeviceLinking.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Kitchen.Components;
@@ -17,6 +16,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Construction.EntitySystems;
 using Content.Shared.Database;
+using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Destructible;
 using Content.Shared.FixedPoint;
 using Content.Shared.Interaction;
@@ -42,6 +42,7 @@ using Content.Server.Construction.Components;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Robust.Shared.Utility;
+using Content.Server.Imperial.Medieval.Farmer;
 
 namespace Content.Server.Kitchen.EntitySystems
 {
@@ -72,6 +73,9 @@ namespace Content.Server.Kitchen.EntitySystems
 
         [ValidatePrototypeId<EntityPrototype>]
         private const string MalfunctionSpark = "Spark";
+
+        private static readonly ProtoId<TagPrototype> MetalTag = "Metal";
+        private static readonly ProtoId<TagPrototype> PlasticTag = "Plastic";
 
         public override void Initialize()
         {
@@ -193,7 +197,7 @@ namespace Content.Server.Kitchen.EntitySystems
             }
         }
 
-        private void SubtractContents(MicrowaveComponent component, FoodRecipePrototype recipe)
+        private void SubtractContents(MicrowaveComponent component, FoodRecipePrototype recipe, ref BeforeMicrowavedEvent ev)   // Imperial medieval - BeforeMicrowavedEvent
         {
             // TODO Turn recipe.IngredientsReagents into a ReagentQuantity[]
 
@@ -235,6 +239,8 @@ namespace Content.Server.Kitchen.EntitySystems
                     foreach (var item in component.Storage.ContainedEntities)
                     {
                         string? itemID = null;
+
+                        RaiseLocalEvent(item, ref ev);  // Imperial medieval
 
                         // If an entity has a stack component, use the stacktype instead of prototype id
                         if (TryComp<StackComponent>(item, out var stackComp))
@@ -550,12 +556,12 @@ namespace Content.Server.Kitchen.EntitySystems
                     return;
                 }
 
-                if (_tag.HasTag(item, "Metal"))
+                if (_tag.HasTag(item, MetalTag))
                 {
                     malfunctioning = true;
                 }
 
-                if (_tag.HasTag(item, "Plastic"))
+                if (_tag.HasTag(item, PlasticTag))
                 {
                     var junk = Spawn(component.BadRecipeEntityId, Transform(uid).Coordinates);
                     _container.Insert(junk, component.Storage);
@@ -698,8 +704,14 @@ namespace Content.Server.Kitchen.EntitySystems
                     var coords = Transform(uid).Coordinates;
                     for (var i = 0; i < active.PortionedRecipe.Item2; i++)
                     {
-                        SubtractContents(microwave, active.PortionedRecipe.Item1);
-                        Spawn(active.PortionedRecipe.Item1.Result, coords);
+                        var ev = new BeforeMicrowavedEvent(new());  // Imperial medieval
+                        SubtractContents(microwave, active.PortionedRecipe.Item1, ref ev);  // Imperial medieval - ev
+                        var result = Spawn(active.PortionedRecipe.Item1.Result, coords);
+
+                        // Imperial medieval start
+                        var resultEv = new AfterMicrowavedEvent(result, ev.Users);
+                        RaiseLocalEvent(ref resultEv);
+                        // Imperial medieval end
                     }
                 }
 

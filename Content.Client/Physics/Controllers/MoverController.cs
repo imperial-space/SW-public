@@ -62,16 +62,16 @@ public sealed class MoverController : SharedMoverController
 
     private void OnRelayPlayerAttached(Entity<RelayInputMoverComponent> entity, ref LocalPlayerAttachedEvent args)
     {
-        Physics.UpdateIsPredicted(entity.Owner);
-        Physics.UpdateIsPredicted(entity.Comp.RelayEntity);
+        PhysicsSystem.UpdateIsPredicted(entity.Owner);
+        PhysicsSystem.UpdateIsPredicted(entity.Comp.RelayEntity);
         if (MoverQuery.TryGetComponent(entity.Comp.RelayEntity, out var inputMover))
             SetMoveInput((entity.Comp.RelayEntity, inputMover), MoveButtons.None);
     }
 
     private void OnRelayPlayerDetached(Entity<RelayInputMoverComponent> entity, ref LocalPlayerDetachedEvent args)
     {
-        Physics.UpdateIsPredicted(entity.Owner);
-        Physics.UpdateIsPredicted(entity.Comp.RelayEntity);
+        PhysicsSystem.UpdateIsPredicted(entity.Owner);
+        PhysicsSystem.UpdateIsPredicted(entity.Comp.RelayEntity);
         if (MoverQuery.TryGetComponent(entity.Comp.RelayEntity, out var inputMover))
             SetMoveInput((entity.Comp.RelayEntity, inputMover), MoveButtons.None);
     }
@@ -146,9 +146,9 @@ public sealed class MoverController : SharedMoverController
         // Logger.Info($"[{_gameTiming.CurTick}/{subTick}] Sprint: {enabled}");
         base.SetSprinting(entity, subTick, walking);
 
-        if (walking && _cfg.GetCVar(CCVars.ToggleWalk))
-            _alerts.ShowAlert(entity, WalkingAlert, showCooldown: false, autoRemove: false);
-        else
-            _alerts.ClearAlert(entity, WalkingAlert);
+        //if (walking && _cfg.GetCVar(CCVars.ToggleWalk)) // imperial medieval
+        //    _alerts.ShowAlert(entity, WalkingAlert, showCooldown: false, autoRemove: false);
+        //else
+        //    _alerts.ClearAlert(entity, WalkingAlert); // imperial medieval
     }
 }

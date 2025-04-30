@@ -548,3 +548,12 @@
                   max: 2
     - type: StaticPrice
       price: 250
+    # Imperial Teleriot Sprite Fix Start
+    - type: PointLight
+      netsync: false
+      enabled: false
+      radius: 0
+      energy: 0
+      color: blue
+    - type: ItemTogglePointLight
+    # Imperial Teleriot Sprite Fix End

@@ -14,7 +14,6 @@
     id: BlackShieldPDA
 
 - type: entity
-  noSpawn: false
   parent: MobHuman
   id: BlackShieldPreset
   name: Officer "Shadow"
@@ -22,8 +21,8 @@
   components:
     - type: RandomMetadata
       nameSegments:
-      - Офицер
-      - names_last
+      - OldStationVlBlueShield
+      - NamesLast
     - type: Sprite
       netsync: false
       sprite: Imperial/VlClothes/DSO/BSPoint.rsi

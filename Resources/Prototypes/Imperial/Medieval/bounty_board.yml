@@ -1,0 +1,60 @@
+﻿- type: entity
+  id: MercBountyBoard
+  name: notice board
+  description: Is there a job for a witcher?
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: WallMount
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: Structures/Wallmounts/noticeboard.rsi
+    layers:
+    - state: noticeboard
+    - state: notice-0
+    - map: ["enum.StorageFillLayers.Fill"]
+  - type: StorageFillVisualizer
+    maxFillLevels: 6
+    fillBaseName: notice
+  - type: MercenaryBountyBoard
+  - type: Appearance
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Transform
+    anchored: true
+  - type: Storage
+    grid:
+    - 0,0,3,3
+    maxItemSize: Small
+    whitelist:
+      components:
+      - MercenaryContract
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: Tag
+    tags:
+    - Wooden
+  - type: Construction
+    graph: NoticeBoard
+    node: noticeBoard
+
+
+- type: entity
+  name: MercContract
+  parent: BaseItem
+  id: MercContract
+  categories: [ HideSpawnMenu ]
+  description: ""
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/quest.rsi
+    state: merccontract
+  - type: Item
+    size: Small
+  - type: MercenaryContract
+    payoutRange: 125, 200

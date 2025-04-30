@@ -901,6 +901,7 @@
     spawnType: Default
   - type: AntiSSDFreeArea
 
+
 - type: entity
   name: MedievalJobSpawnerLegion
   id: MedievalJobSpawnerLegion
@@ -913,6 +914,33 @@
   - type: MedievalJobPoint
     spawnType: Legion
   - type: AntiSSDFreeArea
+
+- type: entity
+  name: MedievalJobSpawnerLegionJailed
+  id: MedievalJobSpawnerLegionJailed
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: LegionJailed
+  - type: AntiSSDFreeArea
+
+- type: entity
+  name: MedievalJobSpawnerLegionJailer
+  id: MedievalJobSpawnerLegionJailer
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: LegionJailer
+  - type: AntiSSDFreeArea
+
 
 - type: entity
   name: MedievalJobSpawnerMine
@@ -1003,6 +1031,19 @@
       state: def
   - type: MedievalJobPoint
     spawnType: Tribe
+  - type: AntiSSDFreeArea
+
+- type: entity
+  name: MedievalJobSpawnerVillage
+  id: MedievalJobSpawnerVillage
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Village
   - type: AntiSSDFreeArea
 
 - type: entity
@@ -1254,8 +1295,8 @@
         offset: 0.35
         spawn:
           SteelOre1:
-            min: 6
-            max: 10
+            min: 9
+            max: 14
   - type: Fixtures
     fixtures:
       fix1:
@@ -1741,6 +1782,46 @@
     offset: 0
 
 - type: entity
+  name: MedievalSpawnerRandomTreeLifetime1200SnowConifer
+  noSpawn: true
+  id: MedievalSpawnerRandomTreeLifetime1200SnowConifer
+  parent: FloraTreeStumpConifer
+  components:
+  #- type: Sprite
+  #  layers:
+  #    - state: red
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MedievalSpawnerRandomTreeSnowConifer
+
+- type: entity
+  name: MedievalSpawnerRandomTreeSnowConifer
+  noSpawn: true
+  id: MedievalSpawnerRandomTreeSnowConifer
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - FloraTreeConifer
+    #- FloraTreeSnow02
+    #- FloraTreeSnow03
+    #- FloraTreeSnow04
+    #- FloraTreeSnow05
+    #- FloraTreeSnow06
+    #- FloraTreeLarge01
+    #- FloraTreeLarge02
+    #- FloraTreeLarge03
+    #- FloraTreeLarge04
+    #- FloraTreeLarge05
+    #- FloraTreeLarge06
+    chance: 1
+    offset: 0
+
+- type: entity
   name: MedievalTimedSpawnerOreGlina
   id: MedievalTimedSpawnerOreGlina
   parent: MarkerBase
@@ -2159,3 +2240,51 @@
   components:
   - type: StarFall
     side: "в юго-восточной стороне острова"
+
+- type: entity
+  name: MedievalTimedSpawnerMedievalMobNastyGrowth
+  id: MedievalTimedSpawnerMedievalMobNastyGrowth
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobNastyGrowth
+
+- type: entity
+  name: MedievalTimedSpawnerMedievalMobShieldSlug
+  id: MedievalTimedSpawnerMedievalMobShieldSlug
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    spawnedEntity: MedievalLateMobSpawnerMedievalMobShieldSlug
