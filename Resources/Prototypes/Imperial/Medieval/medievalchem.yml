@@ -1190,6 +1190,11 @@
     - type: DnaSubstanceTrace
     - type: Mortar
     - type: Storage
+      storageOpenSound: null
+      storageInsertSound: null
+      blacklist:
+        components:
+        - MortarTool
       grid:
       - 0,0,2,2
 
