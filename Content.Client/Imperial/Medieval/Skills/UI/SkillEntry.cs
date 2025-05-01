@@ -25,8 +25,7 @@ public sealed partial class SkillEntry : Control
         get => _level;
         set
         {
-            _level = value;
-            UpdateVisualizer(value);
+            UpdateVisualizer(Math.Clamp(value, 1, 20));
         }
     }
 
@@ -42,6 +41,7 @@ public sealed partial class SkillEntry : Control
         RobustXamlLoader.Load(this);
 
         Name.Text = name;
+        LevelLabel.Text = $"УР: {level}";
         _color = color;
         Level = level;
         Icon.Texture = icon.Frame0();
@@ -53,6 +53,10 @@ public sealed partial class SkillEntry : Control
     {
         VisualizerContainer.RemoveAllChildren();
         _level = level;
+        LevelLabel.Text = $"УР: {level}";
+
+        IncreaseButton.Disabled = level >= 20;
+        DecreaseButton.Disabled = level <= 1;
 
         for (var i = 0; i < 20; i++)
         {
