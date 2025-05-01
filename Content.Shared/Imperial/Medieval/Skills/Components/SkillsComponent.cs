@@ -11,4 +11,7 @@ public sealed partial class SkillsComponent : Component
 
     [DataField(serverOnly: true)]
     public Dictionary<string, TimeSpan> Timers = new();
+
+    [ViewVariables]
+    public bool LanguagesGain = false;
 }
