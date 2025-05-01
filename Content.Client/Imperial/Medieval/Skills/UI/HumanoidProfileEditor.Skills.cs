@@ -3,6 +3,7 @@ using Robust.Client.UserInterface.Controls;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Client.Imperial.Medieval.Skills.UI;
 using Content.Shared.Preferences;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Lobby.UI;
 
@@ -46,7 +47,8 @@ public sealed partial class HumanoidProfileEditor
             var level = Profile.Skills.GetValueOrDefault(item.ID, 10);
             var icon = item.Icons[item.Icons.Keys.Where(x => x <= level).Max()];
 
-            var entry = new SkillEntry(item.Name, level, icon, item.Color);
+            var entry = new SkillEntry(item.Name, level, new SpriteSpecifier.Rsi(new(item.RsiPath), icon), item.Color);
+            entry.IncreaseButton.Disabled = sum >= SharedSkillsSystem.Points;
 
             SkillsContainer.AddChild(entry);
             entry.LevelSet += level =>
@@ -67,6 +69,8 @@ public sealed partial class HumanoidProfileEditor
                     if (!Profile.Skills.ContainsKey(item.ID))
                         sum += 10;
                 }
+
+                entry.IncreaseButton.Disabled = sum >= SharedSkillsSystem.Points;
 
                 SkillPointsCountLabel.Text = $"{sum} / {SharedSkillsSystem.Points}";
                 SetDirty();
