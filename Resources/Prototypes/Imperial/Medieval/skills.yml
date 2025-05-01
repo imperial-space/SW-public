@@ -65,7 +65,8 @@
     NegativeStaminaRegenModifier: -0.03
     PositiveStaminaCritModifier: -0.05
     NegativeStaminaCritModifier: 0.05
-    MaxStaminaDamageModifier: -0.5
+    MaxStaminaDamageModifier: 0.5
+    HighMeleeThrowDistanceModifier: 0.5
 
 - type: skill
   id: Intelligence

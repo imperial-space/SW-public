@@ -2,6 +2,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Imperial.Medieval.Clothing;
 using Content.Shared.Imperial.Medieval.Sprint;
 using Content.Shared.Imperial.Medieval.Stamina;
+using Content.Shared.Weapons.Melee.Components;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
 
@@ -15,6 +16,7 @@ public abstract partial class SharedSkillsSystem
         SubscribeLocalEvent<SkillsComponent, GetStaminaRegenModifiersEvent>(OnModifyStaminaRegenModifiers);
         SubscribeLocalEvent<SkillsComponent, GetStaminaCritDurationModifiersEvent>(OnGetStaminaCritDurationModifiers);
         SubscribeLocalEvent<SkillsComponent, StaminaModifyEvent>(OnModifyStaminaDamage);
+        SubscribeLocalEvent<SkillsComponent, MeleeThrowOnHitStartEvent>(OnModifyMeleeThrowDistance);
         SubscribeLocalEvent<SkillsComponent, CanSprintEvent>(OnCanSprint);
     }
 
@@ -61,7 +63,17 @@ public abstract partial class SharedSkillsSystem
         if (level < 20)
             return;
 
-        args.Damage *= 1 + proto.Modifiers["MaxStaminaDamageModifier"];
+        args.Damage *= proto.Modifiers["MaxStaminaDamageModifier"];
+    }
+
+    private void OnModifyMeleeThrowDistance(EntityUid uid, SkillsComponent comp, ref MeleeThrowOnHitStartEvent args)
+    {
+        var (proto, level) = GetSkill(uid, EnduranceId);
+
+        if (level < 16)
+            return;
+
+        args.Distance *= proto.Modifiers["HighMeleeThrowDistanceModifier"];
     }
 
     private void OnCanSprint(EntityUid uid, SkillsComponent comp, ref CanSprintEvent args)
