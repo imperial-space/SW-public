@@ -21,8 +21,11 @@ public sealed partial class SkillPrototype : IPrototype
     public Dictionary<string, float> Modifiers = new();
 
     [DataField]
-    public Dictionary<int, SpriteSpecifier> Icons = new()
+    public string RsiPath = "/Textures/Interface/Misc/job_icons.rsi";
+
+    [DataField]
+    public Dictionary<int, string> Icons = new()
     {
-        { 1, new SpriteSpecifier.Rsi(new ResPath("/Textures/Interface/Misc/job_icons.rsi"), "Admin") }
+        { 1, "Admin" }
     };
 }
