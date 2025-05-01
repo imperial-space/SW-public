@@ -1,8 +1,11 @@
+using System.Linq;
 using System.Text;
 using Content.Server.Examine;
+using Content.Server.Imperial.Medieval.Language;
 using Content.Server.Speech;
 using Content.Server.Speech.Components;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Imperial.Medieval.Medical;
 using Content.Shared.Imperial.Medieval.Skills;
@@ -14,6 +17,7 @@ namespace Content.Server.Imperial.Medieval.Skills;
 public sealed partial class SkillsSystem
 {
     [Dependency] private readonly ExamineSystem _examine = default!;
+    [Dependency] private readonly LanguageSystem _lang = default!;
 
     private void InitializeIntelligence()
     {
@@ -45,6 +49,26 @@ public sealed partial class SkillsSystem
         {
             mana.MaxMana += (level > 10 ? proto.Modifiers["PositiveManaModifier"] : proto.Modifiers["NegativeManaModifier"]) * diff;
             Dirty(uid, mana);
+        }
+
+        if (level == 20)
+            EnsureComp<UniversalLanguageSpeakerComponent>(uid);
+
+        var skills = EnsureComp<SkillsComponent>(uid);
+        if (skills.LanguagesGain)
+            return;
+
+        if (level <= 16)
+            return;
+
+        skills.LanguagesGain = true;
+        var langs = _proto.EnumeratePrototypes<LanguagePrototype>().Where(x => x.HighIntelligenceAllowed && !_lang.CanSpeak(uid, x)).ToList();
+        for (var i = 0; i < 2; i++)
+        {
+            if (langs.Count == 1)
+                break;
+
+            _lang.AddSpokenLanguage(uid, _random.PickAndTake(langs).ID, LanguageKnowledge.BadSpeak);
         }
     }
 
