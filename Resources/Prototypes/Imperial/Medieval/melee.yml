@@ -3996,3 +3996,31 @@
         friction: 0.2
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+
+- type: entity
+  name: MedievalIronRoyalSword
+  parent: MedievalFalshionT3
+  id: MedievalIronRoyalSword
+  description: MedievalIronRoyalSword
+  components:
+  - type: Tag
+    tags:
+    - MedievalIronRoyalSword
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/royalsword.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/royalsword.rsi
+
+- type: entity
+  name: MedievalSteelRoyalSword
+  parent: MedievalFalshionT3Steel
+  id: MedievalSteelRoyalSword
+  description: MedievalSteelRoyalSword
+  components:
+  - type: Tag
+    tags:
+    - MedievalSteelRoyalSword
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/royalsword.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/royalsword.rsi
