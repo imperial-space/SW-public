@@ -831,6 +831,30 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth69
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_69.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_69.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth70
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_70.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_70.rsi
+  - type: Insulated
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiver
   name: MedievalQuiver
@@ -1578,3 +1602,78 @@
       - state: equipped-EYES
       - state: unshaded
         shader: unshaded 
+
+- type: Tag
+  id: MedievalIronRoyalSword
+- type: Tag
+  id: MedievalSteelRoyalSword
+
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase]
+  id: ClothingBeltRoyalSheath
+  name: ClothingBeltRoyalSheath
+  description: ClothingBeltRoyalSheath
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Belt/royalsheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Belt/royalsheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - MedievalIronRoyalSword
+          - MedievalSteelRoyalSword
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - MedievalIronRoyalSword
+          - MedievalSteelRoyalSword
+  - type: Appearance
+
+- type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingRoyalBoots
+  name: MedievalClothingRoyalBoots
+  description: MedievalClothingRoyalBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/royalboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/royalboots.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsRoyalGloves
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/royalgloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/royalgloves.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: MedievalClothingOuterRoyalCoat
+  name: MedievalClothingOuterRoyalCoat
+  description: MedievalClothingOuterRoyalCoat
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
