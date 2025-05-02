@@ -35,6 +35,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
         SubscribeLocalEvent<SkillsComponent, SkillLevelChangedEvent>(OnLevelChanged);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
+
+        SubscribeNetworkEvent<SetSkillLevelMessage>(OnSetSkillLevel);
     }
 
     private void OnLevelChanged(EntityUid uid, SkillsComponent comp, ref SkillLevelChangedEvent args)
@@ -64,6 +66,16 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             return;
 
         SetSkills(args.Mob, args.Profile.Skills);
+    }
+
+    private void OnSetSkillLevel(SetSkillLevelMessage msg)
+    {
+        var uid = GetEntity(msg.Target);
+        var comp = EnsureComp<SkillsComponent>(uid);
+
+        var dict = comp.Levels;
+        dict[msg.Skill] = msg.Level;
+        SetSkills(uid, dict);
     }
 
     public void SetSkills(EntityUid uid, Dictionary<string, int> skills)

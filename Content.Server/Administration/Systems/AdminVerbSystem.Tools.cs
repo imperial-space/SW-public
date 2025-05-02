@@ -24,6 +24,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Database;
 using Content.Shared.Doors.Components;
 using Content.Shared.Hands.Components;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Inventory;
 using Content.Shared.PDA;
 using Content.Shared.Stacks;
@@ -735,6 +736,27 @@ public sealed partial class AdminVerbSystem
             };
             args.Verbs.Add(setCapacity);
         }
+
+        // Imperial Medieval start
+        if (TryComp<SkillsComponent>(args.Target, out var skills))
+        {
+            Verb setCapacity = new()
+            {
+                Text = "Характеристики",
+                Category = VerbCategory.Tricks,
+                Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")),
+                Act = () =>
+                {
+                    var ev = new OpenAdminSkillsMenuMessage(GetNetEntity(args.Target), skills.Levels);
+                    RaiseNetworkEvent(ev, player);
+                },
+                Impact = LogImpact.Medium,
+                Message = "Просмотреть и настроить характеристики указанного персонажа",
+                Priority = (int) TricksVerbPriorities.SetSkills,
+            };
+            args.Verbs.Add(setCapacity);
+        }
+        // Imperial Medieval end
     }
 
     private void RefillEquippedTanks(EntityUid target, Gas gasType)
@@ -880,5 +902,6 @@ public sealed partial class AdminVerbSystem
         SnapJoints = -27,
         MakeMinigun = -28,
         SetBulletAmount = -29,
+        SetSkills = -30,    // Imperial Medieval
     }
 }
