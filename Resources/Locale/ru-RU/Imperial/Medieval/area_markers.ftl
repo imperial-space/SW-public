@@ -1,7 +1,7 @@
 ent-AreaMarkerPortNearby = маркер локации окрестности порта
     .desc = гол
     .suffix = { "Средневековье" }
-area-map1-port-nearby = Окрестности порта легиона
+area-map1-port-nearby = Окрестности порта
 ent-AreaMarkerPortLegion = маркер локации порта легиона
     .desc = гол
     .suffix = { "Средневековье" }
