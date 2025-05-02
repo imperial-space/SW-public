@@ -5344,3 +5344,6 @@ ent-MedievalIronRoyalSword = длинный меч святых Белосвет
 ent-MedievalSteelRoyalSword = длинный меч святых Белосветов
     .desc = Длинный меч украшенный в самоцветах, на поверхности металла - позолота.
     .suffix = { "Средневековье, ближка" }
+ent-ChemistryBottleRobustHarvest = фермерское зелье
+    .desc = Это повысит потенцию ваших растений.
+    .suffix = { "" }
