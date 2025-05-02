@@ -2264,6 +2264,7 @@
   footstepSounds:
     collection: FootstepAsteroid
   heatCapacity: 99910000
+  badSmellMod: 1.5
 
 - type: tile
   id: MedievalFloorPlanetGrass3
@@ -2294,6 +2295,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass4
@@ -2324,6 +2326,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass5
@@ -2354,6 +2357,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass6
@@ -2384,6 +2388,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.25
 
 - type: entity
   id: MedievalDecorCastle3

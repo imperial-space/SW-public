@@ -8,6 +8,7 @@
     collection: FootstepPlating
   friction: 0.3
   heatCapacity: 10000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: PlatingDamaged
@@ -24,6 +25,7 @@
     collection: FootstepPlating
   friction: 0.3
   heatCapacity: 10000
+  badSmellMod: 0.5 # imperial medieval badsmell
 
 - type: tile
   id: PlatingAsteroid
@@ -35,6 +37,7 @@
     collection: FootstepPlating
   friction: 0.3
   heatCapacity: 10000
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
   id: PlatingBrass
@@ -46,6 +49,7 @@
     collection: FootstepPlating
   friction: 0.3
   heatCapacity: 10000
+  badSmellMod: 0.25 # imperial medieval badsmell
 
 - type: tile
   id: PlatingSnow
@@ -57,6 +61,7 @@
     collection: FootstepPlating
   friction: 0.15 #a little less then actual snow
   heatCapacity: 10000
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 - type: tile
   id: Lattice
@@ -72,6 +77,7 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0 # imperial medieval badsmell
 
 - type: tile
   id: TrainLattice
@@ -87,3 +93,4 @@
   isSpace: true
   itemDrop: PartRodMetal1
   heatCapacity: 10000
+  badSmellMod: 0 # imperial medieval badsmell

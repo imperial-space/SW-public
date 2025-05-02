@@ -1518,9 +1518,9 @@
     - name: outerClothing
       slotTexture: suit
       slotFlags: OUTERCLOTHING
-      stripTime: 3
+      stripTime: 5
       uiWindowPos: 1,1
-      strippingWindowPos: 2,2
+      strippingWindowPos: 1,2
       displayName: Suit
     - name: gloves
       slotTexture: gloves
@@ -3520,6 +3520,7 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.75
 
 - type: tile
   id: MedievalFloorWood2
@@ -3540,6 +3541,7 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.75
 
 - type: tile
   id: MedievalFloorWood3
@@ -3560,6 +3562,7 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.75
 
 - type: soundCollection
   id: FootstepMedievalStone
@@ -3588,6 +3591,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.5
 
 - type: tile
   id: MedievalFloorStone2
@@ -3606,6 +3610,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.5
 
 - type: tile
   id: MedievalFloorStone3
@@ -3624,6 +3629,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.5
 
 - type: tile
   id: MedievalFloorStone4
@@ -3642,6 +3648,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.5
 
 - type: tile
   id: MedievalFloorStone5
@@ -3660,6 +3667,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.5
 
 - type: tile
   id: MedievalFloorStone6
@@ -3678,6 +3686,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.5
 
 - type: tile
   id: MedievalFloorStone7
@@ -3696,6 +3705,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.5
 
 - type: tile
   id: MedievalFloorStone8
@@ -3714,6 +3724,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.5
 
 - type: tile
   id: MedievalFloorStone9
@@ -3732,6 +3743,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.5
 
 - type: tile
   id: MedievalFloorSandStone1
@@ -3750,6 +3762,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.6
 
 - type: tile
   id: MedievalFloorSandStone2
@@ -3768,6 +3781,7 @@
     collection: FootstepMedievalStone
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
+  badSmellMod: 0.6
 
 - type: entity
   parent: BaseItem
@@ -4421,6 +4435,7 @@
     collection: FootstepAsteroid
   heatCapacity: 999100000
   weather: true
+  badSmellMod: 2
 
 - type: tile
   editorHidden: false
@@ -4451,6 +4466,7 @@
     collection: FootstepAsteroid
   heatCapacity: 999100000
   weather: true
+  badSmellMod: 2
 
 - type: tile
   editorHidden: false
@@ -4482,6 +4498,7 @@
     collection: FootstepSnow #TODO
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5
 
 - type: tile
   editorHidden: false
@@ -4513,6 +4530,7 @@
     collection: FootstepSnow #TODO
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5
 
 - type: tile
   editorHidden: false
@@ -4544,6 +4562,7 @@
     collection: FootstepSnow #TODO
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5
 
 - type: tile
   editorHidden: false
@@ -4575,6 +4594,7 @@
     collection: FootstepSnow #TODO
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5
 
 - type: tile
   editorHidden: false
@@ -4606,6 +4626,7 @@
     collection: FootstepSnow #TODO
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5
 
 - type: tile
   editorHidden: false
@@ -4637,6 +4658,7 @@
     collection: FootstepSnow #TODO
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5
 
 - type: tile
   editorHidden: false
@@ -4668,6 +4690,7 @@
     collection: FootstepSnow #TODO
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5
 
 - type: tile
   editorHidden: false
@@ -4699,6 +4722,7 @@
     collection: FootstepSnow #TODO
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5
 
 - type: tile
   editorHidden: false
@@ -4730,6 +4754,7 @@
     collection: FootstepSnow #TODO
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.5
 
 - type: tile
   id: FloorAsteroidSand2
@@ -4756,6 +4781,7 @@
     collection: FootstepAsteroid
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25
 
 - type: tile
   id: FloorAstroGrass
@@ -4788,6 +4814,7 @@
     collection: FootstepGrass
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25
 
 - type: tile
   id: FloorPlanetGrass
@@ -4820,6 +4847,7 @@
     collection: FootstepGrass
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass2
@@ -4852,6 +4880,7 @@
     collection: FootstepGrass
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass1
@@ -4884,6 +4913,7 @@
     collection: FootstepGrass
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 0
 
 
 # AUTUMN
@@ -4920,6 +4950,7 @@
     collection: FootstepGrass
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass2Autumn
@@ -4952,6 +4983,7 @@
     collection: FootstepGrass
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25
 
 - type: tile
   id: MedievalFloorPlanetGrass1Autumn
@@ -4984,6 +5016,7 @@
     collection: FootstepGrass
   heatCapacity: 99910000
   weather: true
+  badSmellMod: 1.25
 
 - type: entity
   id: MedievalTrapdoorNew
@@ -7243,6 +7276,7 @@
     collection: FootstepFloor
   itemDrop: FloorTileItemSteel
   heatCapacity: 10000
+  badSmellMod: 0.5
 
 - type: localizedDataset
   id: PlushDog
@@ -7624,3 +7658,53 @@
               amount: 8
     - node: MedievalClothingOuterArmorGoblinWood
       entity: MedievalClothingOuterArmorGoblinWood
+
+- type: construction
+  name: Алхимическая ступка
+  id: MedievalMortarNew
+  graph: MedievalMortarNew
+  startNode: start
+  targetNode: MedievalMortarNew
+  category: construction-category-misc
+  description: "Ступка, в которой можно измельчать алхимические ингредиенты с помощью пестика"
+  icon: { sprite: Imperial/Medieval/Chem/mortar.rsi, state: stupca }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalMortarNew
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalMortarNew
+          steps:
+            - material: MedievalGlina
+              amount: 8
+              doAfter: 8
+    - node: MedievalMortarNew
+      entity: MedievalMortarNew
+
+- type: construction
+  name: Пестик
+  id: MortarTool
+  graph: MortarTool
+  startNode: start
+  targetNode: MortarTool
+  category: construction-category-misc
+  description: "Необходим для измельчения ингредиентов в ступке"
+  icon: { sprite: Imperial/Medieval/Chem/mortartool.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: MortarTool
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MortarTool
+          steps:
+            - material: MedievalGlina
+              amount: 2
+              doAfter: 4
+    - node: MortarTool
+      entity: MortarTool

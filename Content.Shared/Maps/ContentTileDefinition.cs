@@ -119,5 +119,6 @@ namespace Content.Shared.Maps
         {
             TileId = id;
         }
+        [DataField("badSmellMod")] public float BadSmellModifier = 1f; // Imperial Medieval BadSmell
     }
 }

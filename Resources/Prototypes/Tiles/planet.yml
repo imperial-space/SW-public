@@ -55,6 +55,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 # Grass
 # Imperial Medieval Start
@@ -99,6 +100,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 1.5 # imperial medieval badsmell
 
 # Snow
 - type: tile
@@ -136,6 +138,7 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 # Ice
 - type: tile
@@ -150,6 +153,7 @@
   mobFrictionNoInput: 0.05
   mobAcceleration: 2
   indestructible: true
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 # Dug snow
 - type: tile
@@ -172,5 +176,6 @@
   heatCapacity: 99910000
   weather: true
   indestructible: true
+  badSmellMod: 0.75 # imperial medieval badsmell
 
 # Wasteland

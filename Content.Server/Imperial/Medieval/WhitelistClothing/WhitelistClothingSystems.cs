@@ -1,9 +1,8 @@
 using Content.Shared.Imperial.WhitelistClothing.Components;
 using Content.Shared.Tag;
 using Content.Shared.Inventory.Events;
-using Content.Server.Actions;
-using Content.Server.Popups;
 using Content.Shared.Inventory;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace Content.Server.Imperial.WhitelistClothing.Systems;
 
@@ -15,11 +14,13 @@ public sealed class WhitelistClothingSystems : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<WhitelistClothingComponent, DidEquipEvent>(OnEquipAttempt);
+        SubscribeLocalEvent<DidEquipEvent>(OnEquipAttempt);
     }
-    private void OnEquipAttempt(EntityUid uid, WhitelistClothingComponent component, ref DidEquipEvent args)
+    private void OnEquipAttempt(DidEquipEvent args)
     {
-        if (!_tagSystem.HasTag(args.Equipment, component.Whitelist) && args.Slot.Equals("outerclothing", StringComparison.CurrentCultureIgnoreCase))
+        if (TryComp<WhitelistClothingComponent>(args.Equipee, out var component) && component.WhitelistState == "humanoid" && !_tagSystem.HasTag(args.Equipment, component.Whitelist) && args.Slot.Equals("outerclothing", StringComparison.CurrentCultureIgnoreCase))
+            _inventorySystem.TryUnequip(args.Equipee, args.Slot);
+        else if (TryComp<WhitelistClothingComponent>(args.Equipment, out var componentEquipment) && componentEquipment.WhitelistState == "clothing" && !HasComp<WhitelistClothingComponent>(args.Equipee))
             _inventorySystem.TryUnequip(args.Equipee, args.Slot);
     }
 }

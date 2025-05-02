@@ -13,6 +13,9 @@ using Content.Shared.Stacks;
 using Content.Shared.Storage;
 using Content.Shared.Destructible;
 using Content.Server.Stack;
+using Robust.Server.Audio;
+using Robust.Shared.Player;
+using Robust.Shared.Audio;
 
 namespace Content.Server.ChemistryRandomization;
 
@@ -22,6 +25,7 @@ public sealed class MortarSystem : EntitySystem
     [Dependency] private readonly IEntityManager _ent = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
     [Dependency] private readonly StackSystem _stackSystem = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<MortarComponent, InteractUsingEvent>(Interact);
@@ -37,7 +41,11 @@ public sealed class MortarSystem : EntitySystem
             return;
         foreach (var item in storage.Container.ContainedEntities)
         {
-            var transfer = EnsureComp<ExtractableComponent>(item).JuiceSolution!;
+            if (!TryComp<ExtractableComponent>(item, out var extractable))
+                continue;
+            if (extractable.JuiceSolution == null)
+                continue;
+            var transfer = extractable.JuiceSolution;
             if (TryComp<StackComponent>(item, out var stack))
             {
                 var totalVolume = transfer.Volume * stack.Count;
@@ -66,6 +74,7 @@ public sealed class MortarSystem : EntitySystem
             }
             _solution.TryAddSolution(solutioncont.Value, transfer);
         }
+        _audio.PlayEntity(new SoundPathSpecifier("/Audio/Machines/blender.ogg"), Filter.Broadcast(), uid, true);
     }
     public void Interact(EntityUid uid, MortarComponent component, InteractUsingEvent args)
     {

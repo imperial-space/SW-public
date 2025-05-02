@@ -1694,6 +1694,8 @@
   - type: Construction
     graph: MedievalClothingOuterArmorGoblinWood
     node: ground
+  - type: WhitelistClothing
+    whitelistState: clothing
 
 - type: entity
   parent: ClothingOuterBase

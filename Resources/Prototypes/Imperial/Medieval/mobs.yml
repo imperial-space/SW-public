@@ -1125,6 +1125,7 @@
     stripTimeReduction: 3
     stealthy: true
   - type: Stripping
+  - type: SSDFree
   - type: MobsterAccent
   - type: GhostTakeoverAvailable
   - type: GhostRole
@@ -1202,6 +1203,7 @@
       Common: Understand
   - type: WhitelistClothing
     whitelist: GoblinArmor
+    whitelistState: humanoid
 
 - type: entity
   parent: MobChicken
