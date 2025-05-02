@@ -6482,6 +6482,34 @@
     flammableStacks: 0.5
     igniteSound: /Audio/Imperial/Medieval/Misk/flinter_strike.ogg
     effectPrototype: EffectSparks
+  - type: Construction
+    graph: MedievalFlinter
+    node: ground
+
+- type: construction
+  name: огниво
+  id: MedievalFlinter
+  graph: MedievalFlinter
+  startNode: start
+  targetNode: MedievalFlinter
+  category: construction-category-misc
+  description: "Лучший способ добычи огня"
+  icon: { sprite: Imperial/Medieval/Misc/flint.rsi, state: flint }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalFlinter
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalFlinter
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 4
+    - node: MedievalFlinter
+      entity: MedievalFlinter
 
 - type: entity
   name: torch
@@ -7686,25 +7714,25 @@
 
 - type: construction
   name: Пестик
-  id: MortarTool
-  graph: MortarTool
+  id: MedievalMortarTool
+  graph: MedievalMortarTool
   startNode: start
-  targetNode: MortarTool
+  targetNode: MedievalMortarTool
   category: construction-category-misc
   description: "Необходим для измельчения ингредиентов в ступке"
   icon: { sprite: Imperial/Medieval/Chem/mortartool.rsi, state: icon }
   objectType: Item
 
 - type: constructionGraph
-  id: MortarTool
+  id: MedievalMortarTool
   start: start
   graph:
     - node: start
       edges:
-        - to: MortarTool
+        - to: MedievalMortarTool
           steps:
             - material: MedievalGlina
               amount: 2
               doAfter: 4
-    - node: MortarTool
-      entity: MortarTool
+    - node: MedievalMortarTool
+      entity: MedievalMortarTool

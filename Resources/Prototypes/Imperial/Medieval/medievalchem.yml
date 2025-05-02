@@ -1139,7 +1139,7 @@
   name: mortar
   parent: [ BaseItem, BaseStorageItem ]
   id: MedievalMortarNew
-  description: .
+  description: Medieval Mortar for crushing herbs and other plant materials.
   components:
     - type: SolutionContainerManager
       solutions:
@@ -1205,7 +1205,7 @@
   name: mortar tool
   parent: BaseItem
   id: MedievalMortarTool
-  description: .
+  description: Medieval Mortar Tool for crushing herbs and other plant materials.
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Chem/mortartool.rsi

@@ -664,6 +664,7 @@
   - Gauze
   - MedievalMaskFace
   - MedievalPaper
+  - MedievalFlinter
 
 - type: loadoutGroup
   id: MedievalTrinkets3
@@ -4727,3 +4728,8 @@
   - MedievalTrinkets
   - MedievalGloves
 
+- type: loadout
+  id: MedievalFlinter
+  storage:
+    back:
+    - MedievalFlinter
