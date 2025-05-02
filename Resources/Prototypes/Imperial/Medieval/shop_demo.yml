@@ -1975,14 +1975,6 @@
   categories:
   - MedievalMiscDemo
 
-- type: listing
-  id: DemoMdvPaperOnValuableCargo
-  productEntity: MedievalPaperOnValuableCargo
-  cost:
-    Revent: 220
-  categories:
-  - MedievalMiscDemo
-
 #- type: listing
 #  id: MdvShopSoap
 #  productEntity: Soap
@@ -2168,8 +2160,8 @@
 #  - MedievalPlantsDemo
 
 - type: listing
-  id: DemoMdvShopRobustHarvestChemistryBottle
-  productEntity: RobustHarvestChemistryBottle
+  id: DemoMdvShopChemistryBottleRobustHarvest
+  productEntity: ChemistryBottleRobustHarvest
   cost:
     UnknownMedieval: 1
   categories:
@@ -2430,3 +2422,11 @@
     UnknownMedieval: 1
   categories:
   - MedievalQuestDemo
+
+- type: listing
+  id: DemoMdvShopMedievalFlinter
+  productEntity: MedievalFlinter
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMiscDemo

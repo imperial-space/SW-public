@@ -2359,8 +2359,8 @@
 #  - MedievalPlants
 
 - type: listing
-  id: MdvShopRobustHarvestChemistryBottle
-  productEntity: RobustHarvestChemistryBottle
+  id: MdvShopChemistryBottleRobustHarvest
+  productEntity: ChemistryBottleRobustHarvest
   cost:
     Revent: 15
   categories:
@@ -2917,3 +2917,11 @@
    MedievalPaperOnValuableCargoCurrencyLeg: 1
   categories:
   - MedievalPalletLeg
+
+- type: listing
+  id: MdvShopMedievalFlinter
+  productEntity: MedievalFlinter
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMisc
