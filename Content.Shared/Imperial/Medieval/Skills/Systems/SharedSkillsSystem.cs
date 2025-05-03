@@ -13,7 +13,7 @@ public abstract partial class SharedSkillsSystem : EntitySystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
 
-    public const int Points = 53;
+    public const int Points = 187;
 
     public override void Initialize()
     {
@@ -56,10 +56,10 @@ public abstract partial class SharedSkillsSystem : EntitySystem
                 <= 8 => 2,
                 <= 9 => 1,
                 10 => 0,
-                >= 20 => -4,
-                >= 17 => -3,
-                >= 14 => -2,
-                >= 11 => -1,
+                >= 20 => 4,
+                >= 17 => 3,
+                >= 14 => 2,
+                >= 11 => 1,
             };
         }
 

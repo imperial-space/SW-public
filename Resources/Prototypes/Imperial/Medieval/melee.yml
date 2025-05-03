@@ -3076,12 +3076,12 @@
     size: Small
     sprite: Imperial/Medieval/Melee/iron_short_sword.rsi
   - type: MeleeParry
-    parryChanse: 0.52
+    parryChanse: 0.55
   - type: MeleeWeapon
     clickDamageModifier: 1.29
     #resetOnHandSelected: false
     attackRate: 1
-    range: 1.28
+    range: 1.4
     damage:
       types:
         Slash: 14.5
@@ -3194,12 +3194,12 @@
     size: Small
     sprite: Imperial/Medieval/Melee/iron_short_sword.rsi
   - type: MeleeParry
-    parryChanse: 0.52
+    parryChanse: 0.65
   - type: MeleeWeapon
     clickDamageModifier: 1.3
     #resetOnHandSelected: false
-    attackRate: 1.02
-    range: 1.29
+    attackRate: 1.05
+    range: 1.4
     damage:
       types:
         Slash: 17

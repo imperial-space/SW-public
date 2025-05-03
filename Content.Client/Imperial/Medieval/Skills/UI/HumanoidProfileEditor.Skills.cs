@@ -16,7 +16,7 @@ public sealed partial class HumanoidProfileEditor
 
         SkillsContainer.RemoveAllChildren();
 
-        TabContainer.SetTabTitle(1, "Навыки");
+        TabContainer.SetTabTitle(1, "Характеристики");
 
         var sum = 0;
         foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())

@@ -42,6 +42,8 @@
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadAltHelmetCharmerIns]
     MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterAltArmorCharmerLightLegion]
     MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadAltHelmetCharmerLegion]
+    MedievalShortSword: [MedievalShortSwordGoblinSlayer]
+    MedievalShortSwordSteel: [MedievalShortSwordSteelGoblinSlayer]
 
 - type: customization
   id: game123456
@@ -89,3 +91,9 @@
     MedaljonDark: [ MedaljonDarkSkin ]
     MedaljonSpeed: [ MedaljonSpeedSkin ]
 
+- type: customization
+  id: abiby228
+  holder: a4005af8-718f-424e-9f1c-64df39f8ee58
+  map:
+    MedievalFalshionT3: [ MedievalFalshionT3DarkSword ]
+    MedievalFalshionT3Steel: [ MedievalFalshionT3DarkSwordSteel ]
