@@ -91,7 +91,9 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var distEv = new CheckDashDistanceModifiersEvent(1f);
         RaiseLocalEvent(player, ref distEv);
 
-        _physicsSystem.ApplyLinearImpulse(player, impulse * distEv.Modifier);
+        // TODO модификатор расстояния
+
+        _physicsSystem.ApplyLinearImpulse(player, impulse);
 
         var shadowComponent = EnsureComp<PhaseSpaceShadowComponent>(player);
 

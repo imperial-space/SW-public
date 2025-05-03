@@ -4,18 +4,18 @@
   color: "#96fff3"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/agility.rsi
   icons:
-    2: worst
-    9: bad
-    10: ok
-    18: good
+    1: worst
+    5: bad
+    8: ok
+    15: good
     20: best
   modifiers:
     PositiveAttackRate: 0.02
     NegativeAttackRate: -0.01
     PositiveDashCooldownBonus: -0.1
     NegativeDashCooldownBonus: 0.2
-    PositiveDashDistanceBonus: 0.2
-    NegativeDashDistanceBonus: -0.3
+    PositiveDashDistanceBonus: 0.04
+    NegativeDashDistanceBonus: -0.03
     PositiveClimbDelayModifier: -0.1
     NegativeClimbDelayModifier: 0.1
     PositiveLockpickChanceModifier: 0.2
@@ -33,10 +33,10 @@
   color: "#ff9696"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/strength.rsi
   icons:
-    2: worst
-    9: bad
-    10: ok
-    18: good
+    1: worst
+    5: bad
+    8: ok
+    15: good
     20: best
   modifiers:
     FistPositiveDamageModifier: 0.1
@@ -56,10 +56,10 @@
   color: "#99ff96"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/vitality.rsi
   icons:
-    2: worst
-    9: bad
-    10: ok
-    18: good
+    1: worst
+    5: bad
+    8: ok
+    15: good
     20: best
   modifiers:
     AliveHealthPerLevel: 1
@@ -80,10 +80,10 @@
   color: "#ffec96"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/endurance.rsi
   icons:
-    2: worst
-    9: bad
-    10: ok
-    18: good
+    1: worst
+    5: bad
+    8: ok
+    15: good
     20: best
   modifiers:
     PositiveSprintStaminaDamageModifier: -0.03
@@ -102,10 +102,10 @@
   color: "#ea96ff"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/intelligence.rsi
   icons:
-    2: worst
-    9: bad
-    10: ok
-    18: good
+    1: worst
+    5: bad
+    8: ok
+    15: good
     20: best
   modifiers:
     PositiveConstructionSpeedModifier: -0.07

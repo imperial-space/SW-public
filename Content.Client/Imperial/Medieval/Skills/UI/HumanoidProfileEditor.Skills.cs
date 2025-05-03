@@ -18,14 +18,13 @@ public sealed partial class HumanoidProfileEditor
 
         TabContainer.SetTabTitle(1, "Навыки");
 
-        var sum = Profile.Skills.Values.Sum();
+        var sum = 0;
         foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())
         {
-            if (!Profile.Skills.ContainsKey(item.ID))
-                sum += 10;
+            sum += SharedSkillsSystem.GetPointsCost(Profile.Skills.GetValueOrDefault(item.ID, 10));
         }
 
-        SkillPointsCountLabel.Text = $"{sum} / {SharedSkillsSystem.Points}";
+        SkillPointsCountLabel.Text = $"Доступно очков: {SharedSkillsSystem.Points - sum}";
         SetDefaultSkillsButton.OnPressed += args =>
         {
             HumanoidCharacterProfile prof = new(Profile);
@@ -63,16 +62,14 @@ public sealed partial class HumanoidProfileEditor
 
                 entry.Level = level;
 
-                var sum = Profile.Skills.Values.Sum();
+                var sum = 0;
                 foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())
-                {
-                    if (!Profile.Skills.ContainsKey(item.ID))
-                        sum += 10;
-                }
+                    sum += SharedSkillsSystem.GetPointsCost(Profile.Skills.GetValueOrDefault(item.ID, 10));
 
-                entry.IncreaseButton.Disabled = sum >= SharedSkillsSystem.Points;
+                SkillsContainer.Children.OfType<SkillEntry>().ToList()
+                        .ForEach(x => entry.IncreaseButton.Disabled = sum >= SharedSkillsSystem.Points);
 
-                SkillPointsCountLabel.Text = $"{sum} / {SharedSkillsSystem.Points}";
+                SkillPointsCountLabel.Text = $"Доступно очков: {SharedSkillsSystem.Points - sum}";
                 SetDirty();
             };
         }

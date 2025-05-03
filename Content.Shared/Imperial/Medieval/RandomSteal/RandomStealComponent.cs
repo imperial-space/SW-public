@@ -9,7 +9,7 @@ public sealed partial class RandomStealComponent : Component
     public int Chance = 40;
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public List<EntityUid> Items;
+    public List<EntityUid> Items = new();
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan TimeNeed = TimeSpan.FromSeconds(1.8f);

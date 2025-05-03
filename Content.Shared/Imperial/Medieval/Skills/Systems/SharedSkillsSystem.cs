@@ -43,4 +43,26 @@ public abstract partial class SharedSkillsSystem : EntitySystem
 
         return (proto, skillComponent.Levels.TryGetValue(id, out var val) ? val : 10);
     }
+
+    public static int GetPointsCost(int level)
+    {
+        var sum = 10;
+        for (var i = 0; i < level; i++)
+        {
+            sum += i switch
+            {
+                <= 1 => 4,
+                <= 4 => 3,
+                <= 8 => 2,
+                <= 9 => 1,
+                10 => 0,
+                >= 20 => -4,
+                >= 17 => -3,
+                >= 14 => -2,
+                >= 11 => -1,
+            };
+        }
+
+        return sum;
+    }
 }

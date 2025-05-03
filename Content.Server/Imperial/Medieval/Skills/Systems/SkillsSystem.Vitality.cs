@@ -1,9 +1,11 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Medieval.Body;
 using Content.Server.Imperial.Medieval.NeedSleep;
 using Content.Server.Popups;
+using Content.Shared.Damage.ForceSay;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Pulling.Components;
@@ -84,9 +86,11 @@ public sealed partial class SkillsSystem
             Dirty(uid, pullable);
         }
 
-        _threshold.SetMobStateThreshold(uid,
-                                        _threshold.GetThresholdForState(uid, MobState.Alive) + proto.Modifiers["AliveHealthPerLevel"] * diff,
-                                        MobState.Alive);
+        if (level > 16)
+        {
+            RemComp<EmoteOnDamageComponent>(uid);
+            RemComp<DamageForceSayComponent>(uid);
+        }
 
         // _threshold.SetMobStateThreshold(uid,
         //                                 _threshold.GetThresholdForState(uid, MobState.Wounded) + proto.Modifiers["AliveHealthPerLevel"] * diff,
@@ -124,7 +128,7 @@ public sealed partial class SkillsSystem
         var query = EntityQueryEnumerator<SkillsComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.Timers.TryGetValue(VitalityId, out var timer) || _timing.CurTime < timer)
+            if (!comp.Timers.TryGetValue(VitalityId, out var timer) || _timing.CurTime < timer)
                 continue;
 
             if (GetSkill(uid, VitalityId).Item2 > 1)
