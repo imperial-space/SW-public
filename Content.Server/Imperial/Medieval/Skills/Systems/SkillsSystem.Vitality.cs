@@ -120,7 +120,7 @@ public sealed partial class SkillsSystem
         var query = EntityQueryEnumerator<SkillsComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.Timers.TryGetValue(VitalityId, out var timer) || _timing.CurTime < timer)
+            if (!comp.Timers.TryGetValue(VitalityId, out var timer) || _timing.CurTime < timer)
                 continue;
 
             if (GetSkill(uid, VitalityId).Item2 > 1)

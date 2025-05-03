@@ -4,6 +4,7 @@ using Content.Server.Stunnable;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
@@ -71,7 +72,7 @@ public sealed partial class SkillsSystem
         if (level <= 1)
             Comp<SkillsComponent>(uid).Timers.Add("AgilityDrop", _timing.CurTime + TimeSpan.FromSeconds(60f));
         if (level < 5)
-            Comp<SkillsComponent>(uid).Timers.Add("AgilityFall", _timing.CurTime + TimeSpan.FromSeconds(60f));
+            Comp<SkillsComponent>(uid).Timers.Add("AgilityFall", _timing.CurTime + TimeSpan.FromSeconds(120f));
     }
 
     private void UpdateAgility(float frameTime)
@@ -81,7 +82,7 @@ public sealed partial class SkillsSystem
         {
             if (comp.Timers.TryGetValue("AgilityFall", out var timer) || _timing.CurTime < timer)
             {
-                comp.Timers["AgilityFall"] = _timing.CurTime + TimeSpan.FromSeconds(60f);
+                comp.Timers["AgilityFall"] = _timing.CurTime + TimeSpan.FromSeconds(120f);
 
                 if (mover.HeldMoveButtons == MoveButtons.None)
                     continue;
@@ -93,11 +94,12 @@ public sealed partial class SkillsSystem
                     continue;
 
                 _stun.TryParalyze(uid, TimeSpan.FromSeconds(0.5f), false);
+                _popup.PopupEntity("Вы споткнулись на ровном месте!", uid, uid, PopupType.MediumCaution);
             }
 
             if (comp.Timers.TryGetValue("AgilityDrop", out var dropTimer) || _timing.CurTime < dropTimer)
             {
-                comp.Timers["AgilityFall"] = _timing.CurTime + TimeSpan.FromSeconds(60f);
+                comp.Timers["AgilityDrop"] = _timing.CurTime + TimeSpan.FromSeconds(60f);
 
                 if (GetSkill(uid, AgilityId).Item2 > 1)
                     continue;
@@ -106,6 +108,11 @@ public sealed partial class SkillsSystem
                     continue;
 
                 var coords = Transform(uid).Coordinates;
+                var ent = _hands.GetActiveItem(uid);
+                if (!ent.HasValue)
+                    continue;
+
+                _popup.PopupEntity($"{Name(ent.Value)} выскальзывает из ваших рук!", uid, uid, PopupType.MediumCaution);
                 _hands.ThrowHeldItem(uid, new EntityCoordinates(coords.EntityId, _random.NextFloat(coords.X - 2, coords.X + 2), _random.NextFloat(coords.Y - 2, coords.Y + 2)));
             }
         }
