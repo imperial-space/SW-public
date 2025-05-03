@@ -65,7 +65,7 @@ public sealed partial class SkillsSystem
         var langs = _proto.EnumeratePrototypes<LanguagePrototype>().Where(x => x.HighIntelligenceAllowed && !_lang.CanSpeak(uid, x)).ToList();
         for (var i = 0; i < 2; i++)
         {
-            if (langs.Count == 1)
+            if (langs.Count <= i)
                 break;
 
             _lang.AddSpokenLanguage(uid, _random.PickAndTake(langs).ID, LanguageKnowledge.BadSpeak);
