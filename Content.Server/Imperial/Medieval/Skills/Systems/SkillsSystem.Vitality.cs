@@ -75,16 +75,6 @@ public sealed partial class SkillsSystem
             crit.MinDamage += proto.Modifiers["AliveHealthPerLevel"] * diff;
             crit.Emote = level > 16;
         }
-        if (TryComp<PullerComponent>(uid, out var puller))
-        {
-            puller.PseudoMass += proto.Modifiers["PseudoMassModifier"] * diff;
-            Dirty(uid, puller);
-        }
-        if (TryComp<PullableComponent>(uid, out var pullable))
-        {
-            pullable.PseudoMass += proto.Modifiers["PseudoMassModifier"] * diff;
-            Dirty(uid, pullable);
-        }
 
         if (level > 16)
         {
@@ -104,22 +94,22 @@ public sealed partial class SkillsSystem
                                         _threshold.GetThresholdForState(uid, MobState.Dead) + proto.Modifiers["AliveHealthPerLevel"] * diff,
                                         MobState.Dead);
 
-        // var woundedThreshold = _threshold.GetThresholdForState(uid, MobState.Alive) + proto.Modifiers["AliveHealthPerLevel"] * diff;
+        // var toAdd = 0;
         // if (level >= 20)
-        //     woundedThreshold += proto.Modifiers["MaxHealthBonus"];
+        //     toAdd += proto.Modifiers["MaxHealthBonus"];
         // else if (oldLevel >= 20 && level < 20)
-        //     woundedThreshold -= proto.Modifiers["MaxHealthBonus"];
+        //     toAdd -= proto.Modifiers["MaxHealthBonus"];
 
         // _threshold.SetMobStateThreshold(uid,
-        //                                 woundedThreshold,
+        //                                 _threshold.GetThresholdForState(uid, MobState.Wounded) + toAdd,
         //                                 MobState.Wounded);
 
         // _threshold.SetMobStateThreshold(uid,
-        //                                 woundedThreshold,
+        //                                 _threshold.GetThresholdForState(uid, MobState.Critical) + toAdd,
         //                                 MobState.Critical);
 
         // _threshold.SetMobStateThreshold(uid,
-        //                                 woundedThreshold,
+        //                                 _threshold.GetThresholdForState(uid, MobState.Dead) + toAdd,
         //                                 MobState.Dead);
     }
 

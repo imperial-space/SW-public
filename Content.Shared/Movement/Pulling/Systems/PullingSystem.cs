@@ -235,8 +235,8 @@ public sealed class PullingSystem : EntitySystem
             args.ModifySpeed(walkMod, sprintMod);
             return;
         }
-        var massMod = CompOrNull<PullableComponent>(component.Pulling)?.PseudoMass ?? 1 - component.PseudoMass; // Imperial Medieval Skills
-        args.ModifySpeed(component.WalkSpeedModifier + component.WalkSpeedModifier * massMod, component.SprintSpeedModifier + component.SprintSpeedModifier * massMod); // Imperial Medievel - modifiers added
+
+        args.ModifySpeed(component.WalkSpeedModifier + component.WalkSpeedModifier, component.SprintSpeedModifier + component.SprintSpeedModifier); // Imperial Medievel - modifiers added
     }
 
     private void OnPullableMoveInput(EntityUid uid, PullableComponent component, ref MoveInputEvent args)

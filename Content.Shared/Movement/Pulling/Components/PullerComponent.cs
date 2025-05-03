@@ -44,11 +44,6 @@ public sealed partial class PullerComponent : Component
 
     [DataField]
     public ProtoId<AlertPrototype> PullingAlert = "Pulling";
-
-    // Imperial Medieval start
-    [DataField, AutoNetworkedField]
-    public float PseudoMass = 1f;
-    // Imperial Medieval end
 }
 
 public sealed partial class StopPullingAlertEvent : BaseAlertEvent;

@@ -72,7 +72,6 @@
     NegativeSuffocationDamageModifier: 0.03
     PositiveBloodRegenModifier: 0.05
     NegativeBloodRegenModifier: -0.03
-    PseudoMassModifier: 0.04
 
 - type: skill
   id: Endurance
