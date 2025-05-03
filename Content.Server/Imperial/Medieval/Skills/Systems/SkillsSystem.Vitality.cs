@@ -1,9 +1,11 @@
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Chat;
 using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Medieval.Body;
 using Content.Server.Imperial.Medieval.NeedSleep;
 using Content.Server.Popups;
+using Content.Shared.Damage.ForceSay;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs;
 using Content.Shared.Movement.Pulling.Components;
@@ -82,6 +84,12 @@ public sealed partial class SkillsSystem
         {
             pullable.PseudoMass += proto.Modifiers["PseudoMassModifier"] * diff;
             Dirty(uid, pullable);
+        }
+
+        if (level > 16)
+        {
+            RemComp<EmoteOnDamageComponent>(uid);
+            RemComp<DamageForceSayComponent>(uid);
         }
 
         // _threshold.SetMobStateThreshold(uid,
