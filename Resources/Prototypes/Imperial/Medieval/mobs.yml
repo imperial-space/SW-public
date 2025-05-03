@@ -368,7 +368,7 @@
     factions:
     - Xeno
   - type: MedievalDash
-    distance: 2.2
+    force: 750
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -469,7 +469,7 @@
       0: Alive
       14: Dead
   - type: MedievalDash
-    distance: 2.5
+    force: 790
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.0
     baseSprintSpeed: 5.8
@@ -1165,7 +1165,7 @@
       Female: Goblins
       Unsexed: Goblins
   - type: MedievalDash
-    distance: 2.1
+    force: 715
   - type: SoftCritEmotes
     minDamage: 45
     emotes:
@@ -2000,7 +2000,7 @@
         Base: dead
   - type: IgnoreSpiderWeb
   - type: MedievalDash
-    distance: 2.1
+    force: 720
   - type: HTN
     rootTask:
       task: SimpleHostileCompound

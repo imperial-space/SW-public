@@ -10,10 +10,10 @@ namespace Content.Shared.Imperial.Dash;
 public sealed partial class MedievalDashComponent : Component
 {
     /// <summary>
-    /// Dash distance
+    /// Force of dash
     /// </summary>
     [DataField]
-    public float Distance = 2.0f;
+    public float Force = 770.0f;
 
     /// <summary>
     /// Stamina damage on dash
