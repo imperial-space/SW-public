@@ -10,7 +10,7 @@ namespace Content.Shared.Weapons.Melee.Components;
 /// until it hits a wall or a time limit is exhausted.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(MeleeThrowOnHitSystem))]
+//[Access(typeof(MeleeThrowOnHitSystem))]   // Imperial Medieval - removed access
 public sealed partial class MeleeThrowOnHitComponent : Component
 {
     /// <summary>

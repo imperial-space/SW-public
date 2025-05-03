@@ -52,6 +52,9 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             case AgilityId:
                 AgilityLevelSet(uid, args.Level, args.OldLevel);
                 break;
+            case StrengthId:
+                StrengthLevelSet(uid, args.Level, args.OldLevel);
+                break;
             default:
                 break;
         }
