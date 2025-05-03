@@ -236,7 +236,7 @@ public sealed class PullingSystem : EntitySystem
             return;
         }
 
-        args.ModifySpeed(component.WalkSpeedModifier + component.WalkSpeedModifier, component.SprintSpeedModifier + component.SprintSpeedModifier); // Imperial Medievel - modifiers added
+        args.ModifySpeed(component.WalkSpeedModifier, component.SprintSpeedModifier);
     }
 
     private void OnPullableMoveInput(EntityUid uid, PullableComponent component, ref MoveInputEvent args)
