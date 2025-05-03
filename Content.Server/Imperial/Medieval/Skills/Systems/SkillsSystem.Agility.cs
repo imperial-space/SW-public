@@ -80,9 +80,9 @@ public sealed partial class SkillsSystem
         var query = EntityQueryEnumerator<SkillsComponent, InputMoverComponent>();
         while (query.MoveNext(out var uid, out var comp, out var mover))
         {
-            if (comp.Timers.TryGetValue("AgilityFall", out var timer) || _timing.CurTime < timer)
+            if (comp.Timers.TryGetValue("AgilityFall", out var timer) || _timing.CurTime > timer)
             {
-                comp.Timers["AgilityFall"] = _timing.CurTime + TimeSpan.FromSeconds(120f);
+                comp.Timers["AgilityFall"] = _timing.CurTime + TimeSpan.FromSeconds(30f);
 
                 if (mover.HeldMoveButtons == MoveButtons.None)
                     continue;
@@ -97,7 +97,7 @@ public sealed partial class SkillsSystem
                 _popup.PopupEntity("Вы споткнулись на ровном месте!", uid, uid, PopupType.MediumCaution);
             }
 
-            if (comp.Timers.TryGetValue("AgilityDrop", out var dropTimer) || _timing.CurTime < dropTimer)
+            if (comp.Timers.TryGetValue("AgilityDrop", out var dropTimer) || _timing.CurTime > dropTimer)
             {
                 comp.Timers["AgilityDrop"] = _timing.CurTime + TimeSpan.FromSeconds(60f);
 
