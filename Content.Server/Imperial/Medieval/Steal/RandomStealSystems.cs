@@ -96,6 +96,7 @@ public sealed partial class RandomStealSystem : EntitySystem
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = true,
+            Hidden = true,
             CancelDuplicate = true
         };
         _doAfterSystem.TryStartDoAfter(doAfterSteal);
