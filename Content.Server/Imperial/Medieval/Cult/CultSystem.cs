@@ -147,6 +147,9 @@ namespace Content.Server.Cult
                         {
                             if (tp.Base != teleport.Base && tp.Sector == teleport.Sector && HasComp<MedievalSpikeTargetComponent>(target))
                             {
+                                var txform = Transform(target);
+                                var tcoords = txform.Coordinates;
+                                Spawn("MedievalTeleportEffect", tcoords);
                                 var newxform = Transform(tp.Owner);
                                 var newcoords = newxform.Coordinates;
                                 _transform.SetCoordinates(target, newcoords);
