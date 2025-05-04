@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Text;
+using Content.Server._CP14.Workbench;
 using Content.Server.Examine;
 using Content.Server.Imperial.Medieval.Language;
 using Content.Server.Speech;
@@ -22,6 +23,7 @@ public sealed partial class SkillsSystem
     private void InitializeIntelligence()
     {
         SubscribeLocalEvent<SkillsComponent, GetHealingSpeedModifiersEvent>(OnGetHealingSpeedModifiers);
+        SubscribeLocalEvent<SkillsComponent, CheckWorkbenchCraftSpeedModifiersEvent>(OnGetCraftingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, AccentGetEvent>(OnAccent);
 
         SubscribeNetworkEvent<GetEnteredChatTextResponseMessage>(OnGetMessage);
@@ -37,6 +39,21 @@ public sealed partial class SkillsSystem
         var diff = Math.Abs(level - 10);
 
         args.Modifier += (level > 10 ? proto.Modifiers["PositiveHealingSpeedModifier"] : proto.Modifiers["NegativeHealingSpeedModifier"]) * diff;
+    }
+
+    private void OnGetCraftingSpeedModifiers(EntityUid uid, SkillsComponent comp, ref CheckWorkbenchCraftSpeedModifiersEvent args)
+    {
+        if (args.User != uid)
+            return;
+
+        var (proto, level) = GetSkill(uid, IntelligenceId);
+
+        if (level == 10)
+            return;
+
+        var diff = Math.Abs(level - 10);
+
+        args.Modifier += (level > 10 ? proto.Modifiers["PositiveConstructionSpeedModifier"] : proto.Modifiers["NegativeConstructionSpeedModifier"]) * diff;
     }
 
     private void IntelligenceLevelSet(EntityUid uid, int level, int oldLevel)

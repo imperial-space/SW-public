@@ -85,15 +85,12 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     {
         var comp = EnsureComp<SkillsComponent>(uid);
 
-        foreach (var skill in skills)
+        foreach (var skill in _proto.EnumeratePrototypes<SkillPrototype>())
         {
-            if (!_proto.TryIndex<SkillPrototype>(skill.Key, out var skillProto))
-                continue;
+            var oldLevel = comp.Levels.GetValueOrDefault(skill.ID, 10);
 
-            var oldLevel = comp.Levels.GetValueOrDefault(skill.Key, 10);
-
-            comp.Levels[skillProto.ID] = skill.Value;
-            var ev = new SkillLevelChangedEvent(skill.Key, skill.Value, oldLevel);
+            comp.Levels[skill.ID] = skills.GetValueOrDefault(skill.ID, 10);
+            var ev = new SkillLevelChangedEvent(skill.ID, comp.Levels[skill.ID], oldLevel);
             RaiseLocalEvent(uid, ref ev);
         }
 

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat;
@@ -8,6 +9,7 @@ using Content.Server.Popups;
 using Content.Shared.Damage.ForceSay;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Physics.Components;
@@ -73,7 +75,7 @@ public sealed partial class SkillsSystem
         if (TryComp<SoftCritEmotesComponent>(uid, out var crit))
         {
             crit.MinDamage += proto.Modifiers["AliveHealthPerLevel"] * diff;
-            crit.Emote = level > 16;
+            crit.Emote = level <= 16;
         }
 
         if (level > 16)
@@ -82,17 +84,21 @@ public sealed partial class SkillsSystem
             RemComp<DamageForceSayComponent>(uid);
         }
 
-        _threshold.SetMobStateThreshold(uid,
-                                        _threshold.GetThresholdForState(uid, MobState.Dead) + proto.Modifiers["AliveHealthPerLevel"] * diff,
-                                        MobState.Dead);
+        if (!TryComp<MobThresholdsComponent>(uid, out var thresholds))
+            return;
 
-        _threshold.SetMobStateThreshold(uid,
-                                        _threshold.GetThresholdForState(uid, MobState.Critical) + proto.Modifiers["AliveHealthPerLevel"] * diff,
-                                        MobState.Critical);
+        foreach (var item in thresholds.Thresholds.Reverse())
+        {
+            if (item.Value is MobState.Alive or MobState.Invalid)
+                continue;
 
-        // _threshold.SetMobStateThreshold(uid,
-        //                                 _threshold.GetThresholdForState(uid, MobState.Wounded) + proto.Modifiers["AliveHealthPerLevel"] * diff,
-        //                                 MobState.Wounded);
+            _threshold.SetMobStateThreshold(uid,
+                                            item.Key + proto.Modifiers["AliveHealthPerLevel"] * diff,
+                                            item.Value);
+        }
+
+        // if (!thresholds.Thresholds.Values.Contains(MobState.Wounded))
+        //     return;
 
         // var toAdd = 0f;
         // if (level >= 20)
@@ -126,7 +132,7 @@ public sealed partial class SkillsSystem
 
             comp.Timers[VitalityId] = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(30f, 60f));
 
-            var i = _random.Next(0, 3);
+            var i = _random.Next(0, 2);
             switch (i)
             {
                 case 0:
@@ -137,6 +143,8 @@ public sealed partial class SkillsSystem
                     break;
                 case 2:
                     _popup.PopupEntity("Ух, как же тяжело...", uid, uid, Shared.Popups.PopupType.SmallCaution);
+                    break;
+                default:
                     break;
             };
 

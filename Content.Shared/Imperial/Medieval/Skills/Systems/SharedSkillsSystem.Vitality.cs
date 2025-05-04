@@ -30,7 +30,7 @@ public abstract partial class SharedSkillsSystem
         if (level <= 10)
             return;
 
-        if (args.WalkMod > 1f || args.SprintMod > 1f)
+        if (args.WalkMod >= 1f || args.SprintMod >= 1f)
             return;
 
         var diff = Math.Abs(level - 10);
