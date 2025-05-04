@@ -132,7 +132,7 @@ public sealed partial class SkillsSystem
 
             comp.Timers[VitalityId] = _timing.CurTime + TimeSpan.FromSeconds(_random.NextFloat(30f, 60f));
 
-            var i = _random.Next(0, 3);
+            var i = _random.Next(0, 2);
             switch (i)
             {
                 case 0:
@@ -143,6 +143,8 @@ public sealed partial class SkillsSystem
                     break;
                 case 2:
                     _popup.PopupEntity("Ух, как же тяжело...", uid, uid, Shared.Popups.PopupType.SmallCaution);
+                    break;
+                default:
                     break;
             };
 
