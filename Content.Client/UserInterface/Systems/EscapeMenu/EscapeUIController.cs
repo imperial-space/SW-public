@@ -1,4 +1,5 @@
 ﻿using Content.Client.Gameplay;
+using Content.Client.Imperial.Medieval.Exam.UI;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Client.UserInterface.Systems.Info;
@@ -25,6 +26,9 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
     [Dependency] private readonly InfoUIController _info = default!;
     [Dependency] private readonly OptionsUIController _options = default!;
     [Dependency] private readonly GuidebookUIController _guidebook = default!;
+    // Imperial-Medieval-Exam-Start
+    [Dependency] private readonly ExamUIController _exam = default!;
+    // Imperial-Medieval-Exam-End
 
     private Options.UI.EscapeMenu? _escapeWindow;
 
@@ -86,6 +90,14 @@ public sealed class EscapeUIController : UIController, IOnStateEntered<GameplayS
             CloseEscapeWindow();
             _options.OpenWindow();
         };
+
+        // Imperial-Medieval-Exam-Start
+        _escapeWindow.ExamButton.OnPressed += _ =>
+        {
+            CloseEscapeWindow();
+            _exam.OpenWindow();
+        };
+        // Imperial-Medieval-Exam-End
 
         _escapeWindow.QuitButton.OnPressed += _ =>
         {
