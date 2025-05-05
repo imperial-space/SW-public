@@ -8,6 +8,7 @@ using Content.Client.GameTicking.Managers;
 using Content.Client.GhostKick;
 using Content.Client.Guidebook;
 using Content.Client.Imperial.Medieval.CharacterBlock;
+using Content.Client.Imperial.Medieval.Exam.Manager;
 using Content.Client.Imperial.Medieval.JoinQueue;
 using Content.Client.Input;
 using Content.Client.IoC;
@@ -140,6 +141,7 @@ namespace Content.Client.Entry
             _extendedDisconnectInformation.Initialize();
             _jobRequirements.Initialize();
             _playbackMan.Initialize();
+            IoCManager.Resolve<IExamManager>().Initialize(); // Imperial-Medieval-Exam
             IoCManager.Resolve<JoinQueueManager>().Initialize(); // Imperial-Medieval-JoinQueue
 
             //AUTOSCALING default Setup!

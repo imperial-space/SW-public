@@ -7,19 +7,21 @@ namespace Content.Client.Imperial.Medieval.Exam.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ExamTaskInputControl : Control
 {
-    public event Action? OnPressed;
+    public event Action<int>? OnPressed;
 
-    public ExamTaskInputControl(LocId text)
+    public ExamTaskInputControl(LocId text, int index)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
         Label.Text = Loc.GetString(text);
-        Checkbox.OnCheckboxToggled += _ => OnPressed?.Invoke();
+        Checkbox.OnPressed += _ => OnPressed?.Invoke(index);
+        //Checkbox.OnCheckboxToggled += _ => OnPressed?.Invoke(index);
     }
 
     public void SetToggled(bool value)
     {
-        Checkbox.Toggled = value;
+        Checkbox.Pressed = value;
+        //Checkbox.Toggled = value;
     }
 }

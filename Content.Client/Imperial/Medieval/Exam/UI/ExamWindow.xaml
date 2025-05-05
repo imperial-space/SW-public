@@ -33,12 +33,11 @@
                         <controls:HLine Color="#404040" Thickness="2" Margin="0 5"/>
 
                         <ScrollContainer HorizontalExpand="True" VerticalExpand="True" Margin="8">
-                            <BoxContainer Name="TaskContainers" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True"/>
+                            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+                                <BoxContainer Name="TaskContainers" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" />
+                                <Button Name="SendButton" Text="Send" Margin="8" HorizontalExpand="False" VerticalExpand="False" Disabled="True" />
+                            </BoxContainer>
                         </ScrollContainer>
-
-                        <controls:HLine Color="#404040" Thickness="2" Margin="0 5"/>
-
-                        <Button Name="SendButton" Text="Send" Margin="8" />
                     </BoxContainer>
                 </PanelContainer>
             </BoxContainer>

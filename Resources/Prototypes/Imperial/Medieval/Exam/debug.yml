@@ -16,7 +16,7 @@
   - Two
   - Three
   - Four
-  correct: Two
+  correct: 1
 
 - type: examTask
   id: Debug2
@@ -26,7 +26,7 @@
   - Two
   - Three
   - Four
-  correct: Three
+  correct: 2
 
 - type: examTask
   id: Debug3
@@ -36,7 +36,7 @@
   - Two
   - Three
   - Four
-  correct: One
+  correct: 0
 
 - type: examTask
   id: Debug4
@@ -46,4 +46,4 @@
   - Two
   - Three
   - Four
-  correct: Four
+  correct: 3

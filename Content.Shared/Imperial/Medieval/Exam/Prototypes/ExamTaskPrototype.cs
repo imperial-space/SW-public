@@ -1,6 +1,6 @@
 ﻿using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Imperial.Medieval.Exam;
+namespace Content.Shared.Imperial.Medieval.Exam.Prototypes;
 
 [Prototype("examTask")]
 public sealed class ExamTaskPrototype : IPrototype
@@ -15,5 +15,5 @@ public sealed class ExamTaskPrototype : IPrototype
     public List<LocId> Answers = new();
 
     [DataField]
-    public LocId Correct;
+    public int Correct;
 }

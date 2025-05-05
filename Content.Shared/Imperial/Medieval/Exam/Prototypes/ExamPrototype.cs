@@ -1,7 +1,7 @@
 ﻿using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Imperial.Medieval.Exam;
+namespace Content.Shared.Imperial.Medieval.Exam.Prototypes;
 
 [Prototype("exam")]
 public sealed partial class ExamPrototype : IPrototype
@@ -14,6 +14,9 @@ public sealed partial class ExamPrototype : IPrototype
 
     [DataField]
     public ResPath IconPath = ResPath.Empty;
+
+    [DataField]
+    public int MaxIncorrect = 2;
 
     [DataField]
     public List<ProtoId<ExamTaskPrototype>> Tasks = new();

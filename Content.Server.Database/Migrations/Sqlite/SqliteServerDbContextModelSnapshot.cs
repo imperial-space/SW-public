@@ -791,6 +791,63 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.ToTable("preference", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.PreferenceExamData", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_exam_data_id");
+
+                    b.Property<int>("Attempts")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("attempts");
+
+                    b.Property<DateTime>("LastAttemptTime")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("last_attempt_time");
+
+                    b.Property<bool>("Passed")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("passed");
+
+                    b.Property<int>("PreferenceExamsId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("preference_exams_id");
+
+                    b.Property<string>("Prototype")
+                        .IsRequired()
+                        .HasColumnType("TEXT")
+                        .HasColumnName("prototype");
+
+                    b.HasKey("Id")
+                        .HasName("PK_profile_exam_data");
+
+                    b.HasIndex("PreferenceExamsId")
+                        .HasDatabaseName("IX_profile_exam_data_preference_exams_id");
+
+                    b.ToTable("profile_exam_data", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.PreferenceExams", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("profile_exams_id");
+
+                    b.Property<int>("PreferenceId")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("preference_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_profile_exams");
+
+                    b.HasIndex("PreferenceId")
+                        .HasDatabaseName("IX_profile_exams_preference_id");
+
+                    b.ToTable("profile_exams", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.Profile", b =>
                 {
                     b.Property<int>("Id")
@@ -1727,6 +1784,16 @@ namespace Content.Server.Database.Migrations.Sqlite
                     b.Navigation("LastSeenHWId");
                 });
 
+            modelBuilder.Entity("Content.Server.Database.PreferenceExamData", b =>
+                {
+                    b.HasOne("Content.Server.Database.PreferenceExams", null)
+                        .WithMany("Data")
+                        .HasForeignKey("PreferenceExamsId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired()
+                        .HasConstraintName("FK_profile_exam_data_profile_exams_preference_exams_id");
+                });
+
             modelBuilder.Entity("Content.Server.Database.Profile", b =>
                 {
                     b.HasOne("Content.Server.Database.Preference", "Preference")
@@ -2062,6 +2129,11 @@ namespace Content.Server.Database.Migrations.Sqlite
             modelBuilder.Entity("Content.Server.Database.Preference", b =>
                 {
                     b.Navigation("Profiles");
+                });
+
+            modelBuilder.Entity("Content.Server.Database.PreferenceExams", b =>
+                {
+                    b.Navigation("Data");
                 });
 
             modelBuilder.Entity("Content.Server.Database.Profile", b =>

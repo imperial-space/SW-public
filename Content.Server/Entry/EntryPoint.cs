@@ -10,6 +10,7 @@ using Content.Server.EUI;
 using Content.Server.GameTicking;
 using Content.Server.GhostKick;
 using Content.Server.GuideGenerator;
+using Content.Server.Imperial.Medieval.Exam.Manager;
 using Content.Server.Imperial.Medieval.JoinQueue;
 using Content.Server.Info;
 using Content.Server.IoC;
@@ -108,6 +109,7 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<IServerPreferencesManager>().Init();
                 IoCManager.Resolve<INodeGroupFactory>().Initialize();
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();
+                IoCManager.Resolve<IExamManager>().Initialize(); // Imperial-Medieval-Exam
                 IoCManager.Resolve<JoinQueueManager>().Initialize(); // Imperial-Medieval-JoinQueue
                 IoCManager.Resolve<GhostKickManager>().Initialize();
                 IoCManager.Resolve<ServerInfoManager>().Initialize();

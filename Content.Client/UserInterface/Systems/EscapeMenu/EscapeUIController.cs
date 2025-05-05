@@ -1,4 +1,5 @@
 ﻿using Content.Client.Gameplay;
+using Content.Client.Imperial.Medieval.Exam;
 using Content.Client.Imperial.Medieval.Exam.UI;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Guidebook;

@@ -1,15 +1,6 @@
-﻿<Control xmlns="https://spacestation14.io"
-         xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
-         xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls">
-    <PanelContainer HorizontalExpand="True" VerticalExpand="True" Margin="8">
-        <PanelContainer.PanelOverride>
-            <graphics:StyleBoxFlat BackgroundColor="#1a1a1a"/>
-        </PanelContainer.PanelOverride>
-
-        <BoxContainer VerticalExpand="True" Orientation="Vertical">
-            <Label Name="DescriptionLabel" Access="Public" Margin="4" />
-            <controls:HLine Color="#2d2d2d" Thickness="2" Margin="0 5"/>
-            <BoxContainer Name="Container" Orientation="Vertical" VerticalExpand="True" Margin="4"/>
-        </BoxContainer>
-    </PanelContainer>
+﻿<Control xmlns="https://spacestation14.io">
+    <BoxContainer VerticalExpand="True" Orientation="Vertical">
+        <Label Name="DescriptionLabel" Access="Public" Margin="4" />
+        <BoxContainer Name="Container" Orientation="Vertical" VerticalExpand="True" Margin="4"/>
+    </BoxContainer>
 </Control>

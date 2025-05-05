@@ -9,6 +9,7 @@ using Content.Client.GameTicking.Managers;
 using Content.Client.GhostKick;
 using Content.Client.Guidebook;
 using Content.Client.Imperial.Medieval.CharacterBlock;
+using Content.Client.Imperial.Medieval.Exam.Manager;
 using Content.Client.Imperial.Medieval.JoinQueue;
 using Content.Client.Launcher;
 using Content.Client.Mapping;
@@ -60,6 +61,7 @@ namespace Content.Client.IoC
             collection.Register<MappingManager>();
             collection.Register<DebugMonitorManager>();
             collection.Register<SponsorsManager>(); //Imperial sponsors
+            collection.Register<IExamManager, ExamManager>(); // Imperial-Medieval-Exam
             collection.Register<JoinQueueManager>(); // Imperial-Medieval-JoinQueue
             collection.Register<PlayerRateLimitManager>();
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
