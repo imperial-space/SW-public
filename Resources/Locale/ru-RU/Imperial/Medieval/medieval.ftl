@@ -4445,7 +4445,7 @@ ent-MedievalDecorPerekatiPole = перекати-поле
     .suffix = { "Средневековье" }
 medieval-necro-sender-name = Посланник темного повелителя
 medieval-necro-sender-desc = Расскажите всем!
-medieval-necro-sender-rules = Расскажите всем о том, что ваш повелитель скоро прийдет на эти грешные земли! А после умрите [color=green](При этом желательно никого не убить, но сделать свою смерть красивой)[/color]
+medieval-necro-sender-rules = Расскажите всем о том, что ваш повелитель скоро прийдет на эти грешные земли! А после умрите [color=green](Вам запрещено кого-либо убивать, вы должны сделать свою смерть красивой)[/color]
 store-currency-display-unholy-medieval = темная сила
 ent-BaseMagicNecroShop = покупка проклятого снаряжения
     .desc = Аплинк от мира некромантов.
