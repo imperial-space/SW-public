@@ -118,14 +118,15 @@ namespace Content.Server.Nocturn
 
                     if (comp.BloodLevel >= 200f && TryComp<DamageableComponent>(comp.Owner, out var damageable) && damageable.TotalDamage < 61f && damageable.TotalDamage > 5f)
                     {
-                        _damageableSystem.TryChangeDamage(uid, -comp.RegenDamage, true, false);
-                        comp.BloodLevel -= comp.BloodDrainPerSecond * 2;
+                        _damageableSystem.TryChangeDamage(uid, -comp.BloodLostDamage, true, false);
+                        //comp.BloodLevel -= comp.BloodDrainPerSecond * 2;
                     }
 
                     if (comp.BloodLevel >= 200f && TryComp<DamageableComponent>(comp.Owner, out var damag) && damag.TotalDamage < 105f && damag.TotalDamage > 60f)
                     {
-                        _damageableSystem.TryChangeDamage(uid, -comp.RegenDamage * 3.5f, true, false);
-                        comp.BloodLevel -= comp.BloodDrainPerSecond * 39;
+                        _damageableSystem.TryChangeDamage(uid, -comp.BloodLostDamage, true, false);
+                        //_damageableSystem.TryChangeDamage(uid, -comp.RegenDamage * 3.5f, true, false);
+                        //comp.BloodLevel -= comp.BloodDrainPerSecond * 39;
                     }
 
                     if (comp.BloodDrainPerSecond > comp.BloodLevel)
@@ -267,7 +268,7 @@ namespace Content.Server.Nocturn
                             var txform = Transform(args.Args.Target.Value);
                             var tcoords = txform.Coordinates;
                             Spawn("BloodParticles", tcoords);
-                            _damageableSystem.TryChangeDamage(component.Owner, -component.RegenDamage * 3 * food.BloodMultiplier, true, false);
+                            _damageableSystem.TryChangeDamage(component.Owner, -component.RegenDamage * 15 * food.BloodMultiplier, true, false);
                             component.FreshDrinkTimer = 60f;
                             if (!HasComp<NocturnBittenComponent>(args.Args.Target))
                             {
