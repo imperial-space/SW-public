@@ -18,13 +18,13 @@ public sealed partial class HumanoidProfileEditor
 
         TabContainer.SetTabTitle(1, "Характеристики");
 
-        var sum = 0;
+        var sum = SharedSkillsSystem.Points;
         foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())
         {
             sum += SharedSkillsSystem.GetPointsCost(Profile.Skills.GetValueOrDefault(item.ID, 10));
         }
 
-        SkillPointsCountLabel.Text = $"Доступно очков: {SharedSkillsSystem.Points - sum}";
+        SkillPointsCountLabel.Text = $"Доступно очков: {sum}";
         SetDefaultSkillsButton.OnPressed += args =>
         {
             HumanoidCharacterProfile prof = new(Profile);
@@ -47,7 +47,7 @@ public sealed partial class HumanoidProfileEditor
             var icon = item.Icons[item.Icons.Keys.Where(x => x <= level).Max()];
 
             var entry = new SkillEntry(item.Name, level, new SpriteSpecifier.Rsi(new(item.RsiPath), icon), item.Color);
-            entry.IncreaseButton.Disabled = sum >= SharedSkillsSystem.Points;
+            entry.IncreaseButton.Disabled = sum <= 0;
 
             SkillsContainer.AddChild(entry);
             entry.LevelSet += level =>
@@ -62,14 +62,14 @@ public sealed partial class HumanoidProfileEditor
 
                 entry.Level = level;
 
-                var sum = 0;
+                var sum = SharedSkillsSystem.Points;
                 foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())
                     sum += SharedSkillsSystem.GetPointsCost(Profile.Skills.GetValueOrDefault(item.ID, 10));
 
                 SkillsContainer.Children.OfType<SkillEntry>().ToList()
-                        .ForEach(x => entry.IncreaseButton.Disabled = sum >= SharedSkillsSystem.Points);
+                        .ForEach(x => x.IncreaseButton.Disabled = sum <= 0);
 
-                SkillPointsCountLabel.Text = $"Доступно очков: {SharedSkillsSystem.Points - sum}";
+                SkillPointsCountLabel.Text = $"Доступно очков: {sum}";
                 SetDirty();
             };
         }

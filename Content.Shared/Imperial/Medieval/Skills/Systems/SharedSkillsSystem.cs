@@ -13,7 +13,7 @@ public abstract partial class SharedSkillsSystem : EntitySystem
     [Dependency] private readonly INetManager _netMan = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
 
-    public const int Points = 186;
+    public const int Points = 3;
 
     public override void Initialize()
     {
@@ -22,6 +22,7 @@ public abstract partial class SharedSkillsSystem : EntitySystem
         InitializeAgility();
         InitializeEndurance();
         InitializeIntelligence();
+        InitializeVitality();
 
         InitializeDesc();
 
@@ -46,21 +47,36 @@ public abstract partial class SharedSkillsSystem : EntitySystem
 
     public static int GetPointsCost(int level)
     {
-        var sum = 10;
-        for (var i = 0; i < level; i++)
+        if (level == 10)
+            return 0;
+        var sum = 0;
+
+        if (level > 10)
         {
-            sum += i switch
+            for (var i = 0; i < level; i++)
             {
-                <= 1 => 3,
-                <= 4 => 2,
-                <= 8 => 2,
-                <= 9 => 1,
-                10 => 0,
-                >= 20 => 4,
-                >= 17 => 3,
-                >= 14 => 2,
-                >= 11 => 1,
-            };
+                sum += i switch
+                {
+                    <= 9 => 0,
+                    >= 19 => -4,
+                    >= 17 => -3,
+                    >= 14 => -2,
+                    >= 10 => -1,
+                };
+            }
+        }
+        else
+        {
+            for (var i = 9; i >= level; i--)
+            {
+                sum += (i - level) switch
+                {
+                    <= 0 => 1,
+                    <= 4 => 2,
+                    <= 7 => 2,
+                    >= 8 => 3,
+                };
+            }
         }
 
         return sum;

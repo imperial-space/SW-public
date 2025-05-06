@@ -14,7 +14,6 @@ public sealed class CharacterBlockSystem : EntitySystem
     [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-
     private Dictionary<NetUserId, List<string>> _blockedCharacters = new();
 
     public override void Initialize()
@@ -23,6 +22,7 @@ public sealed class CharacterBlockSystem : EntitySystem
 
         _netManager.RegisterNetMessage<UpdateBlockerCharactersMessage>();
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
+        SubscribeLocalEvent<RoundEndMessageEvent>(OnRoundEnd);
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawned);
     }
 
@@ -47,12 +47,14 @@ public sealed class CharacterBlockSystem : EntitySystem
     private void OnPlayerSpawned(PlayerSpawnCompleteEvent ev)
     {
         var userId = ev.Player.UserId;
-
         var id = ev.Profile.BuildId();
 
         if (_blockedCharacters.TryGetValue(ev.Player.State.UserId, out var blockedCharacters))
         {
-            blockedCharacters.Add(id);
+            if (!blockedCharacters.Contains(id))
+            {
+                blockedCharacters.Add(id);
+            }
         }
         else
         {
@@ -68,6 +70,16 @@ public sealed class CharacterBlockSystem : EntitySystem
     }
 
     private void OnRoundRestart(RoundRestartCleanupEvent ev)
+    {
+        ClearBlockedCharacters();
+    }
+
+    private void OnRoundEnd(RoundEndMessageEvent ev)
+    {
+        ClearBlockedCharacters();
+    }
+
+    private void ClearBlockedCharacters()
     {
         _blockedCharacters.Clear();
     }

@@ -692,12 +692,12 @@ namespace Content.Shared.Preferences
             if (_languages.Count <= 0)
                 _languages = prototypeManager.Index(Species).DefaultLanguages.ToHashSet();
 
-            var sum = 0;
+            var sum = SharedSkillsSystem.Points;
             foreach (var skill in Skills)
             {
                 sum += SharedSkillsSystem.GetPointsCost(skill.Value);
             }
-            if (sum > SharedSkillsSystem.Points)
+            if (sum < 0)
             {
                 Skills.Clear();
                 foreach (var item in prototypeManager.EnumeratePrototypes<SkillPrototype>())
@@ -873,13 +873,13 @@ namespace Content.Shared.Preferences
             success = false;
             Skills.TryAdd(id, 10);
 
-            var sum = 0;
+            var sum = SharedSkillsSystem.Points;
             foreach (var item in IoCManager.Resolve<IPrototypeManager>().EnumeratePrototypes<SkillPrototype>())
             {
                 sum += item.ID == id ? SharedSkillsSystem.GetPointsCost(level) : Skills.GetValueOrDefault(item.ID, 10);
             }
 
-            if (sum > SharedSkillsSystem.Points || level < 1)
+            if (sum < 0 || level < 1)
                 return new(this);
 
             success = true;

@@ -1,6 +1,7 @@
 using Content.Server.Hands.Systems;
 using Content.Server.Imperial.DeviceLinking;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
@@ -38,5 +39,15 @@ public sealed partial class SkillsSystem
 
         var coords = Transform(uid).Coordinates;
         _hands.ThrowHeldItem(uid, new EntityCoordinates(coords.EntityId, _random.NextFloat(coords.X - 2, coords.X + 2), _random.NextFloat(coords.Y - 2, coords.Y + 2)));
+    }
+
+    private void StrengthLevelSet(EntityUid uid, int level, int oldLevel)
+    {
+        if (level < 16)
+            return;
+
+        var comp = EnsureComp<MeleeThrowOnHitComponent>(uid);
+        comp.Distance = 0.25f;
+        Dirty(uid, comp);
     }
 }

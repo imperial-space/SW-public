@@ -73,29 +73,23 @@ public sealed partial class RandomStealSystem : EntitySystem
     }
     private void TrySteal(EntityUid first, EntityUid second, RandomStealComponent comp, List<EntityUid> entities)
     {
-        var chosen = _random.Pick(entities);
-        var item = chosen;
-
         if (TryComp<StealChanceIncreaserComponent>(first, out var increaser))
             comp.Chance += increaser.Bonus;
 
         if (TryComp<StealRaceChanceIncreaserComponent>(first, out var raceIncreaser))
             comp.Chance += raceIncreaser.Bonus;
 
-        comp.Items.Add(item);
-        entities.Remove(item);
-
         var ev = new TryGetAdditionalStealTargetEvent();
         RaiseLocalEvent(first, ref ev);
 
-        if (ev.Success && entities.Any())
-            comp.Items.Add(_random.Pick(entities));
+        _random.Shuffle(entities);
 
-        var doAfterSteal = new DoAfterArgs(EntityManager, first, comp.TimeNeed, new StealDoAfterArgs(), target: second, eventTarget: first)
+        var doAfterSteal = new DoAfterArgs(EntityManager, first, comp.TimeNeed, new StealDoAfterArgs(entities.Take(ev.Success ? 2 : 1).ToList()), target: second, eventTarget: first)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             NeedHand = true,
+            Hidden = true,
             CancelDuplicate = true
         };
         _doAfterSystem.TryStartDoAfter(doAfterSteal);
@@ -112,7 +106,7 @@ public sealed partial class RandomStealSystem : EntitySystem
         var nameStealer = Identity.Name(uid, EntityManager);
         var nameFrom = Identity.Name(target, EntityManager);
 
-        var modEv = new GetStealChanceModifiersEvent();
+        var modEv = new GetStealChanceModifiersEvent(1f);
         RaiseLocalEvent(ev.User, ref modEv);
 
         if (_random.Next(100) > comp.Chance * modEv.Modifier)
@@ -127,7 +121,7 @@ public sealed partial class RandomStealSystem : EntitySystem
 
         _popupSystem.PopupEntity(Loc.GetString("stealSuccessSpellward", ("entity1", nameFrom)), uid, uid);
 
-        foreach (var item in comp.Items)
+        foreach (var item in ev.Entities)
         {
             _transform.SetCoordinates(item, Transform(uid).Coordinates);
             _hands.TryForcePickupAnyHand(uid, item);

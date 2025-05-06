@@ -25,6 +25,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StunSystem _stun = default!;
 
+    private TimeSpan _nextUpdate = TimeSpan.Zero;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -51,6 +53,9 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
                 break;
             case AgilityId:
                 AgilityLevelSet(uid, args.Level, args.OldLevel);
+                break;
+            case StrengthId:
+                StrengthLevelSet(uid, args.Level, args.OldLevel);
                 break;
             default:
                 break;
@@ -82,15 +87,12 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     {
         var comp = EnsureComp<SkillsComponent>(uid);
 
-        foreach (var skill in skills)
+        foreach (var skill in _proto.EnumeratePrototypes<SkillPrototype>())
         {
-            if (!_proto.TryIndex<SkillPrototype>(skill.Key, out var skillProto))
-                continue;
+            var oldLevel = comp.Levels.GetValueOrDefault(skill.ID, 10);
 
-            var oldLevel = comp.Levels.GetValueOrDefault(skill.Key, 10);
-
-            comp.Levels[skillProto.ID] = skill.Value;
-            var ev = new SkillLevelChangedEvent(skill.Key, skill.Value, oldLevel);
+            comp.Levels[skill.ID] = skills.GetValueOrDefault(skill.ID, 10);
+            var ev = new SkillLevelChangedEvent(skill.ID, comp.Levels[skill.ID], oldLevel);
             RaiseLocalEvent(uid, ref ev);
         }
 
@@ -100,6 +102,11 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        if (_timing.CurTime < _nextUpdate)
+            return;
+
+        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1f);
+
         UpdateAgility(frameTime);
         UpdateVitality(frameTime);
     }
