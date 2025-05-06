@@ -1200,7 +1200,6 @@
     - type: Construction
       graph: MedievalMortarNew
       node: ground
-
 - type: entity
   name: mortar tool
   parent: BaseItem
