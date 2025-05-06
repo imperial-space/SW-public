@@ -970,7 +970,11 @@
   craftTime: 14
   iconOverride: MedievalClothingOuterArmorGoblinIron
   stacks:
-    MedievalIronIngot: 8
+    MedievalIronPlateSmall: 9
+    MedievalIronPlate: 1
+    MedievalRivets: 12
+    MedievalChain: 6
     MedievalRope: 2
     MedievalLeatherBelt: 1
+    MedievalShoulder: 2
   result: WorkpieceMedievalClothingOuterArmorGoblinIron
