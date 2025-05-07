@@ -58,16 +58,16 @@ public sealed class ClothingSpeedModifierSystem : EntitySystem
         if (_toggle.IsActivated(uid))
         {
             // Imperial Medieval Skills start
-            var (walkMod, sprintMod) = (0f, 0f);
+            var (walk, sprint) = (component.WalkModifier, component.SprintModifier);
             if (_container.TryGetContainingContainer((uid, null, null), out var container))
             {
                 var ev = new ModifyClothingMovespeedModifierEvent(component.WalkModifier, component.SprintModifier);
                 RaiseLocalEvent(container.Owner, ref ev);
-                (walkMod, sprintMod) = (ev.Walk, ev.Sprint);
+                (walk, sprint) = (ev.Walk, ev.Sprint);
             }
             // Imperial Medieval Skills end
 
-            args.Args.ModifySpeed(component.WalkModifier + walkMod, component.SprintModifier + sprintMod);  // Imperial Medieval - modifiers added
+            args.Args.ModifySpeed(walk, sprint);  // Imperial Medieval - modifiers added
         }
 
     }
