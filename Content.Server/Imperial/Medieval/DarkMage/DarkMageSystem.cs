@@ -121,7 +121,7 @@ public sealed class DarkMageSystem : EntitySystem
                 .Where(e => e != uid && TryComp<MindContainerComponent>(e, out var mindE) && mindE.HasMind && TryComp<MobStateComponent>(e, out var eComp) && eComp.CurrentState == MobState.Alive && HasComp<HumanoidAppearanceComponent>(e)) // Много
                 .ToList();
 
-            if (entitiesNearby.Count >= 2)
+            if (entitiesNearby.Count >= 2 && !darkMageComponent.IsMoved)
             {
                 if (HasComp<HTNComponent>(uid))
                     RemComp<HTNComponent>(uid);
@@ -132,12 +132,13 @@ public sealed class DarkMageSystem : EntitySystem
                 darkMageComponent.Target = closest;
 
                 EnsureComp<MedievalFollowerComponent>(darkMageComponent.Flame).Target = closest;
-                _lastClosest = darkMageComponent.Target;
+
                 if (_lastClosest != darkMageComponent.Target && _lastClosest != null)
                 {
                     if (HasComp<DarkMageAddOverlayComponent>(_lastClosest.Value)) RemComp<DarkMageAddOverlayComponent>(_lastClosest.Value);
                     _lastClosest = darkMageComponent.Target;
                 }
+
                 EnsureComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
                 if (_gameTiming.CurTime > darkMageComponent.LastTiming + darkMageComponent.Timing) // 9 секунд по умолчанию
                 {
