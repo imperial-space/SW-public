@@ -106,7 +106,7 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
         base.CastSpell(args);
 
         var spellData = GetSpellData(args);
-        SpellCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
+        SpellSuccessCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
     }
 
     #region Helpers
