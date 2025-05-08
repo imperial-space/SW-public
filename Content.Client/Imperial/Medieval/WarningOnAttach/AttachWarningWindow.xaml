@@ -8,18 +8,19 @@
                       VerticalExpand="True"
                       HScrollEnabled="False"
                       SizeFlagsStretchRatio="4">
-            <BoxContainer Orientation="Vertical">
-                <RichTextLabel Name="TopBanner" VerticalExpand="True" SizeFlagsStretchRatio="1" Margin="4"/>
+            <BoxContainer Orientation="Vertical"
+                          HorizontalExpand="True"
+                          VerticalExpand="True">
+                <RichTextLabel Name="TopBanner" VerticalExpand="True" SizeFlagsStretchRatio="1"/>
             </BoxContainer>
         </ScrollContainer>
-        <CheckBox Name="Checkbox" Text="Я прочитал текст и буду соответствовать роли" VerticalExpand="True" SizeFlagsStretchRatio="1" Margin="4"/>
+        <CheckBox Name="Checkbox" Text="Я прочитал текст и буду соответствовать роли" SizeFlagsStretchRatio="1" Margin="1"/>
         <Button Name="RequestButton"
                 Text="{Loc 'ghost-roles-window-request-role-button'}"
                 Disabled="True"
                 TextAlign="Center"
                 HorizontalAlignment="Center"
-                VerticalExpand="True"
                 SizeFlagsStretchRatio="1"
-                Margin="4"/>
+                Margin="1"/>
     </BoxContainer>
 </DefaultWindow>
