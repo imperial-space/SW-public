@@ -221,7 +221,7 @@
     chance: 0.35
     intervalSeconds: 1200
     minimumEntitiesSpawned: 2
-    maximumEntitiesSpawned: 4
+    maximumEntitiesSpawned: 3
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSpiderCave
