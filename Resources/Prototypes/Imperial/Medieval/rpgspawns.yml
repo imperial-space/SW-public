@@ -202,9 +202,26 @@
     prototypes:
     - MedievalLateMobSpawnerMedievalMobGoblin
     chance: 0.35
-    intervalSeconds: 600
+    intervalSeconds: 60
     minimumEntitiesSpawned: 5
     maximumEntitiesSpawned: 9
+
+- type: entity
+  name: MedievalTimedSpawnerMedievalMobHobGoblin
+  id: MedievalTimedSpawnerMedievalMobHobGoblin
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalLateMobSpawnerMedievalMobHobGoblin
+    chance: 0.35
+    intervalSeconds: 1200
+    minimumEntitiesSpawned: 2
+    maximumEntitiesSpawned: 4
 
 - type: entity
   name: MedievalTimedSpawnerMedievalMobSpiderCave
