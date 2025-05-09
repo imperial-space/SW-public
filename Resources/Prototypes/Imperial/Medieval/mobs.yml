@@ -1245,7 +1245,6 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: hobgoblin
       sprite: Imperial/Medieval/Mobs/hobgoblin.rsi
-  - type: Hands
   - type: Body
     prototype: Reptilian
     requiredLegs: 2
@@ -1255,7 +1254,6 @@
         Base: base
   - type: Appearance
   - type: Puller
-    needsHands: true
   - type: CanHostGuardian
   - type: MeleeWeapon
     range: 2.25
