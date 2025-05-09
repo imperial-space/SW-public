@@ -3977,8 +3977,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 39
-        Blunt: 2
+        Piercing: 43
+        Blunt: 4
   - type: EmbeddableProjectile
     offset: 0.15,0.15
   - type: ThrowingAngle
