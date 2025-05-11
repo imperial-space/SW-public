@@ -207,6 +207,29 @@
     maximumEntitiesSpawned: 9
 
 - type: entity
+  id: MedievalClothingShoesFancy
+  parent: MarkerBase
+  components:
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalLateMobSpawnerMedievalMobGoblin2
+    chance: 0.6
+    intervalSeconds: 1
+    minimumEntitiesSpawned: 15
+    maximumEntitiesSpawned: 100
+
+- type: entity
+  id: MedievalLateMobSpawnerMedievalMobGoblin2
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - MedievalHitMarkerBarrel2
+      chance: 1
+      offset: 100
+
+- type: entity
   name: MedievalTimedSpawnerMedievalMobSpiderCave
   id: MedievalTimedSpawnerMedievalMobSpiderCave
   parent: MarkerBase
