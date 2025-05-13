@@ -1,4 +1,5 @@
 # Imperial Contributor License Agreement - ICLA (RUS)
+# Russian
 Соглашение о передаче лицензии на вклад (ICLA) от Imperial Space
 
 **Imperial Space**, который принадлежит гражданину Российской Федерации Волкову Михаилу Борисовичу. По всем вопросам, касающимся контента, защищенного ICLA - обращайтесь по электронной почте: contact@ecspezi.com
@@ -29,7 +30,9 @@
 ## **ICLA и использование контента третьими лицами**
 Все права защищены. Вы не имеете права использовать, распространять, передавать, редактировать, изменять, публиковать, продавать, перепродавать, лицензировать и сублицензировать этот контент без письменного согласия: либо Imperial Space, в соответствии с ICLA имеющим право на передачу прав на этот контент, либо изначального правообладателя, передавшего права Imperial Space в соответствии с этой лицензией. Этот запрет включает в себя любое использование контента в любых видах и проявлениях.
 
+
 # Imperial Contributor License Agreement - ICLA (ENG)
+# English
 Contribution License Agreement (ICLA) by Imperial Space
 
 **Imperial Space**, owned by Russian Federation citizen Mikhail Borisovich Volkov. For all questions regarding content protected by ICLA, contact us via email at: contact@ecspezi.com
@@ -112,7 +115,7 @@ This translation is provided for convenience only and has no legal force. Please
 
 
 
-MIT License
+# MIT License
 
 Copyright (c) 2017-2025 Space Wizards Federation
 
