@@ -1,4 +1,4 @@
-<p align="center"> <img alt="Space Station 14" width="880" height="300" src="https://github.com/imperial-space/SW-public/Resources/Textures/Imperial/Logo/imperial.png" /></p>
+<p align="center"> <img alt="Space Station 14" width="880" height="300" src="https://github.com/imperial-space/SW-public/Resources/Textures/Imperial/Logo/imperial.png](https://github.com/imperial-space/SW-public/blob/develop/Resources/Textures/Logo/imperial.png?raw=true" /></p>
 
 # Spellward
 English text below.
