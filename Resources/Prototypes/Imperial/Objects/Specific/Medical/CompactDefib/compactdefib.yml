@@ -4,16 +4,9 @@
   name: Compact defibrillator
   components:
   - type: Sprite
-    sprite: Imperial/Objects/Specific/Medical/CompactDefib/compactdefib.rsi
+    sprite: Imperial/Medieval/Magic/rebirthstone.rsi
     layers:
     - state: icon
-    - state: screen
-      map: [ "enum.ToggleVisuals.Layer" ]
-      visible: false
-      shader: unshaded
-    - state: ready
-      map: [ "enum.PowerDeviceVisualLayers.Powered" ]
-      shader: unshaded
   - type: Item
     size: Normal
   - type: Defibrillator
