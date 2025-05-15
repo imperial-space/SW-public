@@ -38,7 +38,7 @@
         shader: unshaded
     - type: Battery
       maxCharge: 900
-      startingCharge: 1000
+      startingCharge: 900
     - type: BatterySelfRecharger
       autoRecharge: true
       autoRechargeRate: 5
