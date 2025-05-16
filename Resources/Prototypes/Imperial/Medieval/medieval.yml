@@ -7738,3 +7738,30 @@
               doAfter: 4
     - node: MedievalMortarTool
       entity: MedievalMortarTool
+
+- type: entity
+  parent: BaseItem
+  id: AhrimanStaffMedieval
+  name: AhrimanStaffMedieval
+  description: AhrimanStaffMedieval
+  components:
+  - type: Item
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    state: icon
+  - type: EmitSoundOnCollide
+    sound:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+      params:
+        variation: 0.65
+        volume: -10
+  - type: EmitSoundOnUse
+    sound:
+      path: /Audio/Effects/Lightning/lightningshock.ogg
+      params:
+        variation: 0.65
+        volume: -10
+  - type: UseDelay
+    delay: 2.0

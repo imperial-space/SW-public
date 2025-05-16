@@ -1188,3 +1188,37 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadRoyalHelmet
+  name: MedievalClothingHeadRoyalHelmet
+  description: MedievalClothingHeadRoyalHelmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: MedievalClothingHeadRoyalHoop
+  name: MedievalClothingHeadRoyalHoop
+  description: MedievalClothingHeadRoyalHoop
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalhoop.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalhoop.rsi
+    equipSound:
+      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.85
+        Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
+  - type: ExplosionResistance
+    damageCoefficient: 0.9

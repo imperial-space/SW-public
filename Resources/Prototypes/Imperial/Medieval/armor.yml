@@ -1781,3 +1781,34 @@
     - GoblinArmor
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron
+  id: MedievalClothingOuterRoyalArmorUpIron
+  name: MedievalClothingOuterRoyalArmorUpIron
+  description: MedievalClothingOuterRoyalArmorUpIron
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/up_ironroyalarmor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/up_ironroyalarmor.rsi
+
+- type: entity
+  parent: MedievalClothingFeetSteel
+  id: MedievalClothingRoyalFeetSteel
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/up_royalboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/up_royalboots.rsi
+
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalRoyalIronGloves
+  name: MedievalRoyalIronGloves
+  description: MedievalRoyalIronGloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/up_royalgloves.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/up_royalgloves.rsi
