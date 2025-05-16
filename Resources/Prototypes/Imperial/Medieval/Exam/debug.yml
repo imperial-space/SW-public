@@ -1,0 +1,49 @@
+- type: exam
+  id: Debug
+  name: Debug test for debugging
+  iconPath: /Textures/Imperial/Other/TFG/GoldenLife/presentableToolbox.rsi/icon.png
+  tasks:
+  - Debug1
+  - Debug2
+  - Debug3
+  - Debug4
+
+- type: examTask
+  id: Debug1
+  description: Random number 1
+  answers:
+  - One
+  - Two
+  - Three
+  - Four
+  correct: 1
+
+- type: examTask
+  id: Debug2
+  description: Random number 2
+  answers:
+  - One
+  - Two
+  - Three
+  - Four
+  correct: 2
+
+- type: examTask
+  id: Debug3
+  description: Random number 3
+  answers:
+  - One
+  - Two
+  - Three
+  - Four
+  correct: 0
+
+- type: examTask
+  id: Debug4
+  description: Random number 4
+  answers:
+  - One
+  - Two
+  - Three
+  - Four
+  correct: 3

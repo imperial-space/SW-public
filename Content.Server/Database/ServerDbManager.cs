@@ -8,6 +8,7 @@ using Content.Server.Administration.Logs;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
+using Content.Shared.Imperial.Medieval.Exam;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
 using Microsoft.Data.Sqlite;
@@ -360,6 +361,11 @@ namespace Content.Server.Database
         Task SendNotification(DatabaseNotification notification);
 
         #endregion
+
+        // Imperial-Medieval-Exam-Start
+        Task<PlayerPreferenceExams?> GetPlayerPreferenceExamsAsync(NetUserId userId, CancellationToken cancel);
+        Task SavePlayerPreferenceExamsAsync(NetUserId userId, PlayerPreferenceExams exams);
+        // Imperial-Medieval-Exam-End
     }
 
     /// <summary>
@@ -1041,6 +1047,20 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.CleanIPIntelCache(range));
         }
 
+        // Imperial-Medieval-Exam-Start
+        public Task<PlayerPreferenceExams?> GetPlayerPreferenceExamsAsync(NetUserId userId, CancellationToken cancel = default)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPlayerPreferenceExamsAsync(userId, cancel));
+        }
+
+        public Task SavePlayerPreferenceExamsAsync(NetUserId userId, PlayerPreferenceExams exams)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.SavePlayerPreferenceExamsAsync(userId, exams));
+        }
+        // Imperial-Medieval-Exam-End
+
         public void SubscribeToNotifications(Action<DatabaseNotification> handler)
         {
             lock (_notificationHandlers)
@@ -1070,6 +1090,7 @@ namespace Content.Server.Database
                 }
             }
         }
+
 
         // Wrapper functions to run DB commands from the thread pool.
         // This will avoid SynchronizationContext capturing and avoid running CPU work on the main thread.

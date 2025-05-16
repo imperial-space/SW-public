@@ -10,6 +10,7 @@ using Content.Server.Discord;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.EUI;
 using Content.Server.GhostKick;
+using Content.Server.Imperial.Medieval.Exam.Manager;
 using Content.Server.Imperial.Medieval.JoinQueue;
 using Content.Server.Info;
 using Content.Server.Mapping;
@@ -64,6 +65,7 @@ namespace Content.Server.IoC
             IoCManager.Register<IAdminLogManager, AdminLogManager>();
             IoCManager.Register<PlayTimeTrackingManager>();
             IoCManager.Register<UserDbDataManager>();
+            IoCManager.Register<IExamManager, ExamManager>(); // Imperial-Medieval-Exam
             IoCManager.Register<JoinQueueManager>(); // Imperial-Medieval-JoinQueue
             IoCManager.Register<ServerInfoManager>();
             IoCManager.Register<PoissonDiskSampler>();

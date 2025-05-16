@@ -46,6 +46,10 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
+        // Imperial-Medieval-Exam-Start
+        public DbSet<PreferenceExams> PreferenceExams { get; set; } = null!;
+        public DbSet<PreferenceExamData> PreferenceExamData { get; set; } = null!;
+        // Imperial-Medieval-Exam-End
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -1367,4 +1371,43 @@ namespace Content.Server.Database
         /// </summary>
         public float Score { get; set; }
     }
+
+    // Imperial-Medieval-Exam-Start
+    [Table("profile_exams")]
+    [Index(nameof(PreferenceId))]
+    public sealed class PreferenceExams
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
+        public int Id { get; set; }
+
+        [ForeignKey(nameof(Preference)), Required]
+        public int PreferenceId { get; set; }
+
+        [Required]
+        public List<PreferenceExamData> Data { get; set; } = new();
+    }
+
+    [Table("profile_exam_data")]
+    [Index(nameof(PreferenceExamsId))]
+    public sealed class PreferenceExamData
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
+        public int Id { get; set; }
+
+        [ForeignKey(nameof(PreferenceExams)), Required]
+        public int PreferenceExamsId { get; set; }
+
+        [Required]
+        public string Prototype { get; set; } = string.Empty;
+
+        [Required]
+        public bool Passed { get; set; }
+
+        [Required]
+        public int Attempts { get; set; }
+
+        [Required]
+        public DateTime LastAttemptTime { get; set; }
+    }
+    // Imperial-Medieval-Exam-End
 }

@@ -1,0 +1,46 @@
+﻿<windows:BaseImperialWindow xmlns="https://spacestation14.io"
+                            HeaderText="Exam"
+                            MinSize="700 600"
+                            xmlns:graphics="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                            xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                            xmlns:windows="clr-namespace:Content.Client.Imperial.UI.Windows">
+    <BoxContainer Orientation="Vertical">
+        <!-- Main -->
+        <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Horizontal">
+            <!-- Selection -->
+            <ScrollContainer Name="ExamsSelectionContainer" HorizontalExpand="True" VerticalExpand="True" MinSize="0 200">
+                <BoxContainer Name="ExamsScroll" Orientation="Vertical" HorizontalExpand="True"/>
+            </ScrollContainer>
+
+            <!-- Exam view -->
+            <BoxContainer Name="ExamsContainer" HorizontalExpand="True" VerticalExpand="True" Orientation="Vertical">
+                <PanelContainer HorizontalExpand="True" VerticalExpand="True">
+                    <!-- Background -->
+                    <PanelContainer.PanelOverride>
+                        <graphics:StyleBoxFlat BackgroundColor="#131313"/>
+                    </PanelContainer.PanelOverride>
+
+                    <!-- Content -->
+                    <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Vertical">
+                        <TextureRect Name="ExamIcon"
+                                     Margin="0,0,4,0"
+                                     MinSize="128 128"
+                                     HorizontalAlignment="Center"
+                                     Stretch="KeepAspectCentered"/>
+
+                        <Label Name="ExamName" Text="Name" HorizontalAlignment="Center" VerticalAlignment="Top" />
+
+                        <controls:HLine Color="#404040" Thickness="2" Margin="0 5"/>
+
+                        <ScrollContainer HorizontalExpand="True" VerticalExpand="True" Margin="8">
+                            <BoxContainer Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True">
+                                <BoxContainer Name="TaskContainers" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" />
+                                <Button Name="SendButton" Text="Send" Margin="8" HorizontalExpand="False" VerticalExpand="False" Disabled="True" />
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </BoxContainer>
+                </PanelContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</windows:BaseImperialWindow>

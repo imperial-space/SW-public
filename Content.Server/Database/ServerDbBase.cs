@@ -13,6 +13,7 @@ using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Database;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
+using Content.Shared.Imperial.Medieval.Exam;
 using Content.Shared.Preferences;
 using Content.Shared.Preferences.Loadouts;
 using Content.Shared.Roles;
@@ -1828,6 +1829,101 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
         }
 
         #endregion
+
+        // Imperial-Medieval-Exam-Start
+        public async Task<PlayerPreferenceExams?> GetPlayerPreferenceExamsAsync(NetUserId userId, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var preference = await db.DbContext
+                .Preference
+                .AsSplitQuery()
+                .SingleOrDefaultAsync(p => p.UserId == userId.UserId, cancel);
+
+            if (preference is null)
+                return null;
+
+            var preferenceExams = await db.DbContext
+                .PreferenceExams
+                .Include(p => p.Data)
+                .AsSplitQuery()
+                .SingleOrDefaultAsync(p => p.Id == preference.Id, cancel);
+
+            if (preferenceExams is null)
+            {
+                preferenceExams = new PreferenceExams
+                {
+                    PreferenceId = preference.Id,
+                    Data = [],
+                };
+
+                db.DbContext.PreferenceExams.Add(preferenceExams);
+                await db.DbContext.SaveChangesAsync();
+            }
+
+            var result = new Dictionary<string, PlayerPreferenceExamsData>();
+            foreach (var data in preferenceExams.Data)
+            {
+                result[data.Prototype] =
+                    new PlayerPreferenceExamsData(data.Passed, data.Attempts, data.LastAttemptTime);
+            }
+
+            return new PlayerPreferenceExams
+            {
+                Data = result,
+            };
+        }
+
+        public async Task SavePlayerPreferenceExamsAsync(NetUserId userId, PlayerPreferenceExams exams)
+        {
+            await using var db = await GetDb();
+            var preference = await db.DbContext
+                .Preference
+                .AsSplitQuery()
+                .SingleOrDefaultAsync(p => p.UserId == userId.UserId);
+
+            if (preference is null)
+                return;
+
+            var preferenceExams = await db.DbContext
+                .PreferenceExams
+                .Include(p => p.Data)
+                .AsSplitQuery()
+                .SingleOrDefaultAsync(p => p.PreferenceId == preference.Id);
+
+            if (preferenceExams is null)
+                return;
+
+            foreach (var (prototype, data) in exams.Data)
+            {
+                var examData = await db.DbContext
+                    .PreferenceExamData
+                    .AsSplitQuery()
+                    .SingleOrDefaultAsync(p => p.PreferenceExamsId == preferenceExams.Id && p.Prototype == prototype);
+
+                if (examData is null)
+                {
+                    db.DbContext.PreferenceExamData.Add(new PreferenceExamData
+                    {
+                        Prototype = prototype,
+                        PreferenceExamsId = preferenceExams.Id,
+                        Passed = data.Passed,
+                        Attempts = data.Attempts,
+                        LastAttemptTime = data.LastAttemptTime,
+                    });
+
+                    continue;
+                }
+
+                examData.Attempts = data.Attempts;
+                examData.LastAttemptTime = data.LastAttemptTime;
+                examData.Passed = data.Passed;
+
+                preferenceExams.Data.Add(examData);
+            }
+
+            await db.DbContext.SaveChangesAsync();
+        }
+        // Imperial-Medieval-Exam-End
 
         public abstract Task SendNotification(DatabaseNotification notification);
 

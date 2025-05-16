@@ -2062,6 +2062,8 @@
     species:
     - Skeleton
     inverted: true
+  - !type:ExamRequirement
+    exam: Debug
   #- !type:DepartmentTimeRequirement
   #  department: Legion
   #  time: 7200 # Imperial medieval role timers (2 hours)

@@ -1,0 +1,6 @@
+﻿<Control xmlns="https://spacestation14.io">
+    <BoxContainer VerticalExpand="True" Orientation="Vertical">
+        <Label Name="DescriptionLabel" Access="Public" Margin="4" />
+        <BoxContainer Name="Container" Orientation="Vertical" VerticalExpand="True" Margin="4"/>
+    </BoxContainer>
+</Control>
