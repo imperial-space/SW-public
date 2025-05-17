@@ -1679,7 +1679,7 @@
     sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
 
 - type: entity
-  parent: ClothingMaskPlague
+  parent: ClothingEyesBase
   id: MedievalClothingRoyalMask
   name: MedievalClothingRoyalMask
   description: MedievalClothingRoyalMask
