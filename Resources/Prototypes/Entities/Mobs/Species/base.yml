@@ -60,6 +60,12 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
+# Imperial Medieval Surrender Begin
+    - map: [ "surrender" ]
+      sprite: Imperial/Medieval/Surrender/flag.rsi
+      state: flag
+      visible: false
+# Imperial Medieval Surrender End
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:
@@ -90,6 +96,12 @@
           3: {visible: true, state: dirty3}
           4: {visible: true, state: dirty4}
   # Imperial Medieval BadSmell End
+  # Imperial Medieval Surrender Begin
+      enum.SurrenderVisuals.Key:
+        surrender:
+          True: {visible: true}
+          False: {visible: false}
+  # Imperial Medieval Surrender End
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
   - type: RotationVisuals
@@ -301,6 +313,7 @@
     - Gasp
     - PassiveScream
   - type: AreaMarkerInvoker
+  - type: CanSurrender
 # Imperial Medieval End
 
 - type: entity
