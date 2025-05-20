@@ -629,9 +629,9 @@
   description: MedievalClothingHeadHelmetCharmerLightBaronSaturday
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/head/charmerbaron.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmerbaron.rsi
   - type: Clothing
-    sprite: Imperial/Medieval/Clothing/head/charmerbaron.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmerbaron.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
@@ -640,9 +640,9 @@
   description: MedievalClothingHeadHelmetCharmerLightPurpleScar
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/head/charmerpurple.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
   - type: Clothing
-    sprite: Imperial/Medieval/Clothing/head/charmerpurple.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
@@ -746,9 +746,9 @@
   description: MedievalClothingHeadHelmetCharmerWeakPurpleScar
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/head/charmerpurple.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
   - type: Clothing
-    sprite: Imperial/Medieval/Clothing/head/charmerpurple.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
