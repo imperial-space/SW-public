@@ -1,18 +1,23 @@
-<p align="center"> <img alt="Space Station 14" width="880" height="300" src="https://raw.githubusercontent.com/space-wizards/asset-dump/de329a7898bb716b9d5ba9a0cd07f38e61f1ed05/github-logo.svg" /></p>
+<p align="center"> <img alt="Space Station 14" width="880" height="auto" src="https://github.com/imperial-space/SW-public/blob/develop/Resources/Textures/Logo/imperial.png?raw=true" /></p>
 
-Space Station 14 is a remake of SS13 that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), our homegrown engine written in C#.
+# Spellward
+English text below.
 
-This is the primary repo for Space Station 14. To prevent people forking RobustToolbox, a "content" pack is loaded by the client and server. This content pack contains everything needed to play the game on one specific server.
+Это репозиторий для приема добровольных вкладов в пользу Spellward. [Spellward](https://spellward.net) - это мод-глобальная конверсия на игру Space Station 14, созданную [Wizard Den](https://spacestation14.io/), и лицензированную под лицензией [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT). Обратите внимание, что эта сборка не имеет полного контента и намеренно сделана неиграбельной. Пожалуйста, не используйте эту сборку для хостинга серверов.
 
-If you want to host or create content for SS14, this is the repo you need. It contains both RobustToolbox and the content pack for development of new content packs.
+This repository is for accepting voluntary contributions in support of [Spellward](https://spellward.net). Spellward is a global conversion mod for the game Space Station 14, created by [Wizard Den](https://spacestation14.io/) and licensed under the [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT). Please note that this build does not include the full content and is intentionally unplayable. Do not use this build to host servers.
 
-## Links
+## Spellward License RUS
 
-[Website](https://spacestation14.io/) | [Discord](https://discord.ss14.io/) | [Forum](https://forum.spacestation14.io/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.io/about/nightlies/)
+Этот репозиторий представляет собой глобальную конверсию на игру Space Station 14. Практически все изменения, внесенные в оригинальную игру, защищены лицензиями [ICLA](https://wiki.imperialspace.net/icla) и [IELA](https://wiki.imperialspace.net/iela). Поэтому использование сборки в целях хостинга серверов без письменного разрешения правообладателя запрещено и отслеживается.
+В этом репозитории содержится в том числе код оригинальной игры, который защищен лицензией [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT). Помимо этого, в этом репозитории содержится контент, защищенный лицензями [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). 
+Все ассеты имеют собственную лицензию, указанную в файле metadata. [Пример](https://github.com/imperial-space/SW-public/blob/develop/Resources/Textures/Imperial/Medieval/Clothing/Armor/brigantin.rsi/meta.json)
 
-## Documentation/Wiki
+## Spellward License ENG
 
-Our [docs site](https://docs.spacestation14.io/) has documentation on SS14s content, engine, game design and more. We also have lots of resources for new contributors to the project.
+This repository is a global conversion mod for the game Space Station 14. Nearly all modifications made to the original game are protected by the [ICLA](https://wiki.imperialspace.net/icla) and [IELA](https://wiki.imperialspace.net/iela) licenses. Therefore, using this build to host servers without the copyright holder’s written permission is prohibited and monitored.
+This repository also includes original game code, which is licensed under the [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT) License. In addition, it contains content licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
+Assets have their license and the copyright in the metadata file. [Example](https://github.com/imperial-space/SW-public/blob/develop/Resources/Textures/Imperial/Medieval/Clothing/Armor/brigantin.rsi/meta.json).
 
 ## Building
 
@@ -22,16 +27,8 @@ Our [docs site](https://docs.spacestation14.io/) has documentation on SS14s cont
 
 [More detailed instructions on building the project.](https://docs.spacestation14.com/en/general-development/setup.html)
 
-## License
 
-All code for the content repository is licensed under [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT).
+## About Space Station 14
 
-Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/) unless stated otherwise. Assets have their license and the copyright in the metadata file. [Example](https://github.com/space-wizards/space-station-14/blob/master/Resources/Textures/Objects/Tools/crowbar.rsi/meta.json).
-
-Note that some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
-
-## Spellward License
-
-Этот репозиторий представляет собой глобальную конверсию на игру Space Station 14. Все изменения, внесенные в игру, защищены лицензиями [ICLA](https://wiki.imperialspace.net/icla) и [IELA](https://wiki.imperialspace.net/iela). Использование сборки в целях хостинга серверов без письменного разрешения правообладателя запрещено.
-
-This repository is a total conversion mod for the game Space Station 14. All changes made to the game are protected under the [ICLA](https://wiki.imperialspace.net/icla) and [IELA](https://wiki.imperialspace.net/iela) licenses. Using this build for server hosting purposes without the copyright holder's written permission is prohibited.
+Space Station 14 is a remake of SS13 that runs on [Robust Toolbox](https://github.com/space-wizards/RobustToolbox), Wizard's Den homegrown engine written in C#.
+[Website](https://spacestation14.io/) | [Discord](https://discord.ss14.io/) | [Forum](https://forum.spacestation14.io/) | [Steam](https://store.steampowered.com/app/1255460/Space_Station_14/) | [Standalone Download](https://spacestation14.io/about/nightlies/)
