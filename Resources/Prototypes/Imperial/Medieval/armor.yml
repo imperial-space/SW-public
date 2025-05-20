@@ -1192,6 +1192,32 @@
     sprite: Imperial/Medieval/Clothing/Armor/insbloodmagic.rsi
 
 - type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightBaronSaturday
+  name: MedievalClothingOuterArmorCharmerLightBaronSaturday
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmerbaron.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmerbaron.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightPurpleScar
+  name: MedievalClothingOuterArmorCharmerLightPurpleScar
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmerpurple.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmerpurple.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorCharmerWeak
   name: MedievalClothingOuterArmorCharmerWeak
@@ -1228,6 +1254,19 @@
     damageCoefficient: 0.75
   - type: ManaRegen
     regen: 0.7
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakPurpleScar
+  name: MedievalClothingOuterArmorCharmerWeakPurpleScar
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmerpurple.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmerpurple.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerWeak

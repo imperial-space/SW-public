@@ -1087,6 +1087,31 @@
 
 - type: entity
   parent: MedievalShoesChamber
+  id: MedievalShoesCharmerPurpleScar
+  name: MedievalShoesCharmerPurpleScar
+  description: MedievalShoesCharmerPurpleScar
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/charmerpurple.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/charmerpurple.rsi
+
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPurpleScar
+  name: MedievalClothingHandsGlovesPurpleScar
+  description: MedievalClothingHandsGlovesPurpleScar
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/charmerpurple.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/charmerpurple.rsi
+  - type: Fiber
+    fiberColor: fibers-purple
+
+- type: entity
+  parent: MedievalShoesChamber
   id: MedievalWhiteShoesCharmerIns
   name: MedievalWhiteShoesCharmer
   description: MedievalWhiteShoesCharmer

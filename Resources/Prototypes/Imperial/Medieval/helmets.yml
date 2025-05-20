@@ -621,6 +621,28 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  
+- type: entity
+  parent: MedievalClothingHeadHelmetCollegiumPurpleHat
+  id: MedievalClothingHeadHelmetCollegiumHatBaronSaturday
+  name: MedievalClothingHeadHelmetCollegiumHatBaronSaturday
+  description: MedievalClothingHeadHelmetCharmerLightBaronSaturday
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/head/charmerbaron.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/head/charmerbaron.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightPurpleScar
+  name: MedievalClothingHeadHelmetCharmerLightPurpleScar
+  description: MedievalClothingHeadHelmetCharmerLightPurpleScar
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/head/charmerpurple.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/head/charmerpurple.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
@@ -716,6 +738,17 @@
   - type: HideLayerClothing
     slots:
     - Hair
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakPurpleScar
+  name: MedievalClothingHeadHelmetCharmerWeakPurpleScar
+  description: MedievalClothingHeadHelmetCharmerWeakPurpleScar
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/head/charmerpurple.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/head/charmerpurple.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
