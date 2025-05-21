@@ -22,6 +22,19 @@
           - HumanoidAppearance
           - NocturnBadFood
 
+- type: entity
+  id: NocturnDisguiseAction
+  name: Apply a disguise
+  description: Use a disguise to take on a human form. If there is a lack of blood, the ability will become unavailable.
+  components:
+    - type: InstantAction
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
+        state: disguise
+      event: !type:NocturnDisguiseActionEvent
+      useDelay: 120
+
 - type: alert
   id: NocturnBlood
   icons:
