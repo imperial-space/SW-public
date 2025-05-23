@@ -5207,6 +5207,7 @@ ent-MedievalLootShieldSlug = кости щитомордого слизня.
     .suffix = { "Средневековье" }
 lock-door-popup-unlock = Замок открыт
 lock-door-popup-lock = Замок закрыт
+lock-door-popup-low-intelligence = Вы не понимаете, как это использовать
 job-name-villagerLeader-medieval = Старейшина деревни
 job-descriptionvillagerLeader-medieval = Руководите деревней, занимайтесь торговлей
 job-name-villager-def-medieval = Ополчение деревни

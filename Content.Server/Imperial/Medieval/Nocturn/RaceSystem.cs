@@ -52,6 +52,7 @@ namespace Content.Server.Nocturn
         public override void Initialize()
         {
             base.Initialize();
+            SubscribeLocalEvent<NocturnComponent, MapInitEvent>(OnComponentInit);
             SubscribeLocalEvent<NocturnComponent, ComponentStartup>(OnStart);
             SubscribeLocalEvent<ZveresScreamComponent, ComponentStartup>(OnZveresStart);
             SubscribeLocalEvent<NocturnBadFoodComponent, ComponentStartup>(OnFoodStart);
@@ -173,6 +174,12 @@ namespace Content.Server.Nocturn
                 }
             }
         }
+
+        private void OnComponentInit(Entity<NocturnComponent> ent, ref MapInitEvent args)
+        {
+            _action.AddAction(ent.Owner, ref ent.Comp.DisguiseActionEntity, ent.Comp.DisguiseAction, ent.Owner);
+        }
+
         public void OnZveresStart(EntityUid uid, ZveresScreamComponent component, ComponentStartup args)
         {
             _action.AddAction(uid, "ZveresScreamAction", uid);
@@ -189,7 +196,6 @@ namespace Content.Server.Nocturn
             }
 
             _action.AddAction(uid, "NocturnDrinkAction", uid);
-            _action.AddAction(uid, "NocturnDisguiseAction", uid);
         }
 
         public void OnZveresScreamAction(EntityUid uid, ZveresScreamComponent comp, ZveresScreamActionEvent args)
@@ -397,6 +403,7 @@ namespace Content.Server.Nocturn
             component.BloodLevel -= 10;
 
             component.IsDisguised = true;
+            _action.SetToggled(component.DisguiseActionEntity, component.IsDisguised);
             Dirty(uid, appearance);
         }
 
@@ -406,6 +413,7 @@ namespace Content.Server.Nocturn
             component.BloodDrainPerSecond /= 2;
 
             component.IsDisguised = false;
+            _action.SetToggled(component.DisguiseActionEntity, component.IsDisguised);
             Dirty(uid, appearance);
         }
 

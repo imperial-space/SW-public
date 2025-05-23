@@ -78,4 +78,23 @@ public abstract partial class SharedSkillsSystem
 
         return true;
     }
+    public bool CanOpenDoorKey(EntityUid uid)
+    {
+        var (_, level) = GetSkill(uid, IntelligenceId);
+
+        if (level > 5)
+            return false;
+
+        return true;
+    }
+
+    public bool IntelligenceMin(EntityUid uid)
+    {
+        var (_, level) = GetSkill(uid, IntelligenceId);
+
+        if (level == 1)
+            return true;
+
+        return false;
+    }
 }

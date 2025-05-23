@@ -31,7 +31,10 @@
       itemIconStyle: BigAction
       icon:
         sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
-        state: disguise
+        state: disguise_off
+      iconOn:
+        sprite: /Textures/Imperial/Medieval/Vampire/actions.rsi
+        state: disguise_on
       event: !type:NocturnDisguiseActionEvent
       useDelay: 30
 
