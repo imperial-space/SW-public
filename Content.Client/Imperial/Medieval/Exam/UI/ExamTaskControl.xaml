@@ -1,6 +1,13 @@
-﻿<Control xmlns="https://spacestation14.io">
+﻿<Control xmlns="https://spacestation14.io"
+         Margin="0 0 0 16">
     <BoxContainer VerticalExpand="True" Orientation="Vertical">
-        <Label Name="DescriptionLabel" Access="Public" Margin="4" />
-        <BoxContainer Name="Container" Orientation="Vertical" VerticalExpand="True" Margin="4"/>
+        <RichTextLabel Access="Public"
+                       Name="DescriptionLabel"
+                       StyleClasses="SourceCodePro-Bold"
+                       Margin="0 0 0 8" />
+        <BoxContainer Name="Container"
+                      Orientation="Vertical"
+                      VerticalExpand="True"
+                      Margin="4" />
     </BoxContainer>
 </Control>

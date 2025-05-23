@@ -10,6 +10,15 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Exam.Manager;
 
+/*
+ * Interlude (by TornadoTech)
+ * Yes, this code can be exploited by changing DLL or data in RAM.
+ * I won't write protection because
+ * it's absolutely pointless and
+ * won't help from those who break it,
+ * and I don't advise you to do it either
+ */
+
 public sealed class ExamManager : IExamManager
 {
     [Dependency] private readonly IServerDbManager _db = default!;
@@ -53,14 +62,15 @@ public sealed class ExamManager : IExamManager
             if (!message.Answers.TryGetValue(task, out var answer))
             {
                 incorrect += examPrototype.Tasks.Count;
-                break;
+                continue;
             }
 
             if (taskPrototype.Correct != answer)
                 incorrect++;
         }
 
-        data.Passed = incorrect <= examPrototype.MaxIncorrect;
+        data.Passed = incorrect <= examPrototype.MaxIncorrect &&
+                      examPrototype.Selection == message.Answers.Count;
 
         await _db.SavePlayerPreferenceExamsAsync(message.MsgChannel.UserId, preferenceExams);
         await SendState(message.MsgChannel);

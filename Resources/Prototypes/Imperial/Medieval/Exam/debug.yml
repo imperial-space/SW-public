@@ -1,49 +1,111 @@
 - type: exam
-  id: Debug
-  name: Debug test for debugging
+  id: AdvancedDebugExam
+  name: "Продвинутый тест по отладке кода"
   iconPath: /Textures/Imperial/Other/TFG/GoldenLife/presentableToolbox.rsi/icon.png
+  maxIncorrect: 2
+  selection: 5
   tasks:
-  - Debug1
-  - Debug2
-  - Debug3
-  - Debug4
+  - DebugTask1
+  - DebugTask2
+  - DebugTask3
+  - DebugTask4
+  - DebugTask5
+  - DebugTask6
+  - DebugTask7
+  - DebugTask8
 
 - type: examTask
-  id: Debug1
-  description: Random number 1
+  id: DebugTask1
+  description: "Что выведет этот код на Python?\n\nx = 9\ny = 4\nprint(x // y)"
   answers:
-  - One
-  - Two
-  - Three
-  - Four
+  - "[color=#FF0000]2.25[/color]"
+  - "[color=#00FF00]2[/color]"
+  - "[color=#FF0000]3[/color]"
+  - "[color=#FF0000]2.5[/color]"
+  - "[color=#FF0000]Ошибку деления[/color]"
+  - "[color=#FF0000]Ничего не выведет[/color]"
   correct: 1
 
 - type: examTask
-  id: Debug2
-  description: Random number 2
+  id: DebugTask2
+  description: "Какой инструмент НЕ используется для отладки кода?"
   answers:
-  - One
-  - Two
-  - Three
-  - Four
-  correct: 2
+  - "[color=#FF0000]Отладчик (debugger)[/color]"
+  - "[color=#FF0000]Логирование (logging)[/color]"
+  - "[color=#FF0000]Профилировщик (profiler)[/color]"
+  - "[color=#FF0000]Система контроля версий[/color]"
+  - "[color=#00FF00]Графический редактор[/color]"
+  - "[color=#FF0000]REPL-окружение[/color]"
+  correct: 4
 
 - type: examTask
-  id: Debug3
-  description: Random number 3
+  id: DebugTask3
+  description: "Что означает термин breakpoint в отладке?"
   answers:
-  - One
-  - Two
-  - Three
-  - Four
+  - "[color=#00FF00]Точка останова программы[/color]"
+  - "[color=#FF0000]Место поломки кода[/color]"
+  - "[color=#FF0000]Критическая ошибка[/color]"
+  - "[color=#FF0000]Разрыв соединения[/color]"
+  - "[color=#FF0000]Прерывание выполнения[/color]"
+  - "[color=#FF0000]Фиксированный баг[/color]"
   correct: 0
 
 - type: examTask
-  id: Debug4
-  description: Random number 4
+  id: DebugTask4
+  description: "Какой метод НЕ помогает при поиске сложных багов?"
   answers:
-  - One
-  - Two
-  - Three
-  - Four
+  - "[color=#FF0000]Пошаговое выполнение[/color]"
+  - "[color=#FF0000]Логирование состояния[/color]"
+  - "[color=#FF0000]Юнит-тесты[/color]"
+  - "[color=#00FF00]Удаление случайных частей кода[/color]"
+  - "[color=#FF0000]Просмотр стека вызовов[/color]"
+  - "[color=#FF0000]Анализ дампа памяти[/color]"
   correct: 3
+
+- type: examTask
+  id: DebugTask5
+  description: "Что такое watch expression в отладчике?"
+  answers:
+  - "[color=#FF0000]Часы выполнения программы[/color]"
+  - "[color=#00FF00]Отслеживаемое выражение[/color]"
+  - "[color=#FF0000]Таймер отладки[/color]"
+  - "[color=#FF0000]Наблюдаемый объект[/color]"
+  - "[color=#FF0000]Временная метка[/color]"
+  - "[color=#FF0000]Выражение контроля[/color]"
+  correct: 1
+
+- type: examTask
+  id: DebugTask6
+  description: "Какой параметр НЕ важен при логировании?"
+  answers:
+  - "[color=#FF0000]Уровень логирования[/color]"
+  - "[color=#FF0000]Формат сообщений[/color]"
+  - "[color=#00FF00]Цвет терминала[/color]"
+  - "[color=#FF0000]Контекст выполнения[/color]"
+  - "[color=#FF0000]Временные метки[/color]"
+  - "[color=#FF0000]Идентификатор запроса[/color]"
+  correct: 2
+
+- type: examTask
+  id: DebugTask7
+  description: "Что делает команда step over в отладчике?"
+  answers:
+  - "[color=#FF0000]Пропускает текущую строку[/color]"
+  - "[color=#00FF00]Выполняет текущую строку без входа в функции[/color]"
+  - "[color=#FF0000]Переходит к следующему файлу[/color]"
+  - "[color=#FF0000]Продолжает выполнение до конца[/color]"
+  - "[color=#FF0000]Пропускает все точки останова[/color]"
+  - "[color=#FF0000]Переходит на следующий уровень стека[/color]"
+  correct: 1
+
+- type: examTask
+  id: DebugTask8
+  description: "Какой тип ошибки сложнее всего отлаживать?"
+  answers:
+  - "[color=#FF0000]Синтаксические ошибки[/color]"
+  - "[color=#FF0000]Ошибки компиляции[/color]"
+  - "[color=#00FF00]Гонки условий (race conditions)[/color]"
+  - "[color=#FF0000]Ошибки типизации[/color]"
+  - "[color=#FF0000]Арифметические ошибки[/color]"
+  - "[color=#FF0000]Логические ошибки в алгоритмах[/color]"
+  correct: 2

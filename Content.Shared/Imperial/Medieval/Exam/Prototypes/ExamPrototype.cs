@@ -19,5 +19,8 @@ public sealed partial class ExamPrototype : IPrototype
     public int MaxIncorrect = 2;
 
     [DataField]
+    public int Selection = 3;
+
+    [DataField]
     public List<ProtoId<ExamTaskPrototype>> Tasks = new();
 }
