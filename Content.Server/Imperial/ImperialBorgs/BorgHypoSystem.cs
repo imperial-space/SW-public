@@ -9,7 +9,6 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Log;
 using System.Collections.Generic;
 using Content.Shared.Chemistry;
 
@@ -19,15 +18,10 @@ namespace Content.Server.Imperial.ImperialBorgs
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         [Dependency] private readonly SolutionContainerSystem _solutionSystem = default!;
-        [Dependency] private readonly ILogManager _logManager = default!;
-
-        private ISawmill _sawmill = default!;
 
         public override void Initialize()
         {
             base.Initialize();
-
-            _sawmill = _logManager.GetSawmill("borg.hypo");
 
             SubscribeLocalEvent<BorgHypoComponent, GetVerbsEvent<AlternativeVerb>>(AddSwitchVerb);
             SubscribeLocalEvent<BorgHypoComponent, GetItemActionsEvent>(OnGetActions);
@@ -54,11 +48,9 @@ namespace Content.Server.Imperial.ImperialBorgs
             var uid = GetEntity(msg.Entity);
             if (!TryComp<BorgHypoComponent>(uid, out var component))
             {
-                _sawmill.Warning($"Failed to get BorgHypoComponent for entity {uid}");
                 return;
             }
 
-            _sawmill.Info($"OnReagentChange: ReagentId={msg.ReagentId}, Entity={msg.Entity}");
 
             if (msg.ReagentId == null)
                 return;
@@ -66,10 +58,6 @@ namespace Content.Server.Imperial.ImperialBorgs
             if (_prototypeManager.TryIndex(msg.ReagentId, out ReagentPrototype? reagent))
             {
                 SwitchReagent(uid, component, reagent);
-            }
-            else
-            {
-                _sawmill.Warning($"Failed to get ReagentPrototype for {msg.ReagentId}");
             }
         }
 
@@ -95,7 +83,6 @@ namespace Content.Server.Imperial.ImperialBorgs
 
         private void SwitchReagent(EntityUid uid, BorgHypoComponent component, ReagentPrototype? reagent = null)
         {
-            _sawmill.Info($"SwitchReagent: uid={uid}, reagent={reagent?.ID}");
 
             if (!TryComp<SolutionRegenerationComponent>(uid, out var solutionRegenerationComponent))
             {
@@ -104,48 +91,36 @@ namespace Content.Server.Imperial.ImperialBorgs
 
             if (!_solutionSystem.TryGetSolution(uid, solutionRegenerationComponent.SolutionName, out var solution))
             {
-                _sawmill.Warning($"Failed to get solution {solutionRegenerationComponent.SolutionName} for {uid}");
                 return;
             }
 
-            _sawmill.Info($"Found solution {solutionRegenerationComponent.SolutionName} for {uid}");
 
             if (reagent != null)
             {
                 var index = component.Solutions.FindIndex(x => x.GetPrimaryReagentId() == reagent.ID);
                 if (index == -1)
                 {
-                    _sawmill.Warning($"Reagent {reagent.ID} not found in solutions");
                     return;
                 }
 
-                _sawmill.Info($"Found reagent at index {index}");
                 component.CurrentIndex = index;
             }
             else
             {
                 component.CurrentIndex = (component.CurrentIndex + 1) % component.Solutions.Count;
-                _sawmill.Info($"Cycling to next reagent at index {component.CurrentIndex}");
             }
 
             var newSolution = component.Solutions[component.CurrentIndex];
             var primaryId = newSolution.GetPrimaryReagentId();
             if (primaryId == null)
             {
-                _sawmill.Warning("Primary reagent ID is null");
                 return;
             }
 
             if (!_prototypeManager.TryIndex(primaryId, out ReagentPrototype? proto) || proto == null)
             {
-                _sawmill.Warning($"Failed to get prototype for {primaryId}");
                 return;
             }
-
-            _sawmill.Info($"Switching to solution with primary reagent {primaryId}");
-
-            // Очищаем текущий раствор
-            _sawmill.Info($"Clearing current solution");
             solution.Value.Comp.Solution.RemoveAllSolution();
 
             var generated = solutionRegenerationComponent.Generated;

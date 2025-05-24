@@ -3,6 +3,7 @@ using Content.Client.UserInterface.Controls;
 using Content.Shared.Borgs;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Input;
+using Content.Client.Popups;
 using JetBrains.Annotations;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controllers;
@@ -12,7 +13,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Network;
 using Robust.Shared.GameObjects;
-using Robust.Shared.Log;
 using Robust.Client.GameObjects;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +26,8 @@ public sealed class BorgHypoUIController : UIController, IOnStateChanged<Gamepla
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IEntityNetworkManager _net = default!;
 
-    private ISawmill _sawmill = default!;
     private SimpleRadialMenu? _menu;
     private EntityUid? _activeHypo;
 
@@ -40,7 +38,6 @@ public sealed class BorgHypoUIController : UIController, IOnStateChanged<Gamepla
     public override void Initialize()
     {
         base.Initialize();
-        _sawmill = _logManager.GetSawmill("borg.hypo");
         SubscribeNetworkEvent<OpenBorgHypoUIEvent>(OnOpenUI);
     }
 
@@ -159,17 +156,18 @@ public sealed class BorgHypoUIController : UIController, IOnStateChanged<Gamepla
     {
         if (_activeHypo == null || !_entityManager.TryGetComponent<BorgHypoComponent>(_activeHypo.Value, out var hypo))
         {
-            _sawmill.Warning($"No active hypo or component when trying to switch to {prototype.ID}");
             return;
         }
 
         var netEntity = _entityManager.GetNetEntity(_activeHypo.Value);
-        _sawmill.Info($"Sending ChangeReagentEvent: ReagentId={prototype.ID}, Entity={netEntity}");
-
         var msg = new ChangeReagentEvent(prototype.ID, netEntity);
         _net.SendSystemNetworkMessage(msg);
 
-        _sawmill.Info($"Event sent");
+        var popup = _entityManager.System<PopupSystem>();
+        popup.PopupClient(Loc.GetString("borghypo-ui-controller-change-reagent-popup", ("reagent", prototype.LocalizedName)),
+            _activeHypo.Value,
+            _playerManager.LocalSession?.AttachedEntity);
+
         CloseMenu();
     }
 }
