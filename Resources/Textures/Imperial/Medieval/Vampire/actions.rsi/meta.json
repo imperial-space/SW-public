@@ -59,7 +59,10 @@
         "name": "create"
       },
       {
-        "name": "disguise"
+        "name": "disguise_off"
+      },
+      {
+        "name": "disguise_on"
       }
     ]
   }

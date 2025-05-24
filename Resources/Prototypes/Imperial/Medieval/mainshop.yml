@@ -653,6 +653,17 @@
   - MedievalArmor
 
 - type: listing
+  id: MdvShopMedievalClothingOuterArmorGambeson
+  productEntity: MedievalClothingOuterArmorGambeson
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 10
+  cost:
+    Revent: 20
+  categories:
+  - MedievalArmor
+  
+- type: listing
   id: MdvShopMedievalIronGloves
   productEntity: MedievalIronGloves
   discountCategory: medievalDiscounts

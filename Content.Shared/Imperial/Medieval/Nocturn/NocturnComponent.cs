@@ -20,7 +20,7 @@ namespace Content.Shared.Nocturn.Components
 
     public sealed partial class ZveresScreamActionEvent : InstantActionEvent { }
 
-    [RegisterComponent, NetworkedComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class NocturnComponent : Component
     {
         [DataField]
@@ -78,5 +78,11 @@ namespace Content.Shared.Nocturn.Components
 
         [DataField]
         public bool IsDisguised = false;
+
+        [DataField, AutoNetworkedField]
+        public EntProtoId DisguiseAction = "NocturnDisguiseAction";
+
+        [DataField, AutoNetworkedField]
+        public EntityUid? DisguiseActionEntity;
     }
 }
