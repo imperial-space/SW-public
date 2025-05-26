@@ -93,6 +93,19 @@
 
 - type: entity
   parent: MedievalAirlock
+  id: MedievalAirlockCathedralLocked
+  components:
+  #- type: AccessReader
+#    access: [["ResearchDirector"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - ResearchDirector
+
+
+- type: entity
+  parent: MedievalAirlock
   id: MedievalAirlockJanitorLocked
   components:
   - type: AccessReader
@@ -459,6 +472,18 @@
 
 - type: entity
   parent: MedievalAirlockGrille
+  id: MedievalAirlockGrilleCathedralLocked
+  components:
+  #- type: AccessReader
+#    access: [["ResearchDirector"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - ResearchDirector
+
+- type: entity
+  parent: MedievalAirlockGrille
   id: MedievalAirlockGrilleJanitorLocked
   components:
   - type: AccessReader
@@ -698,6 +723,18 @@
   - type: LockDoor
     accessLists:
     - Hydroponics
+
+- type: entity
+  parent: MedievalAirlockReinforced
+  id: MedievalAirlockReinforcedCathedralLocked
+  components:
+  #- type: AccessReader
+#    access: [["ResearchDirector"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - ResearchDirector
 
 - type: entity
   parent: MedievalAirlockReinforced
