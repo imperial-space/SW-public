@@ -26,6 +26,7 @@
     NegativeSpreadModifier: 0.05
     PositiveStealChanceModifier: 3
     NegativeStealChanceModifier: -2
+    PositiveLockpickLossModifier: -0.05
 
 - type: skill
   id: Strength
