@@ -161,6 +161,7 @@
         Slash: 0.6
         Piercing: 0.3
         Heat: 0.9
+        Stamina: 0.90 # Stamina resistance Imperial
   - type: ExplosionResistance
     damageCoefficient: 0.9
 
@@ -187,6 +188,7 @@
         Heat: 0.3
         Radiation: 0.5
         Caustic: 0.5
+        Stamina: 0.75 # Stamina resistance Imperial
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: FireProtection

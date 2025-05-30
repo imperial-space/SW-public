@@ -34,6 +34,7 @@
       - id: PlushieKainov
       - id: PlushieYesenia
       - id: PlushieCSCC
+      - id: PlushieIsaac
 
 - type: cargoProduct
   id: FunPlushieCommunity

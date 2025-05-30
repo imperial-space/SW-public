@@ -540,6 +540,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
 
 - type: entity
   id: Biogenerator
@@ -613,6 +614,7 @@
       idleState: icon
       runningState: building
       defaultProductionAmount: 10
+      priceModifier: 2 # Imperial Lathe Nerf
       staticPacks:
       - OreSmelting
       - RGlassSmelting
@@ -701,3 +703,4 @@
         - Wooden
         - RawMaterial
         - Plastic
+  - type: OreSiloClient
