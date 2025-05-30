@@ -37,7 +37,7 @@
 
 - type: antag
   id: CaptainPirate
-  name: roles-antag-captain-pirate-name
+  name: roles-antag-captainpirate-name
   antagonist: true
   setPreference: true
   objective: roles-antag-pirate-objective
