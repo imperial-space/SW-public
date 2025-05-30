@@ -197,6 +197,11 @@
   - type: Produce
     seedId: towercap
   - type: Log
+  #imperial-medieval-start
+  - type: Tag
+    tags:
+    - Log
+  #imperial-medieval-end
 
 - type: entity
   name: steel-cap log

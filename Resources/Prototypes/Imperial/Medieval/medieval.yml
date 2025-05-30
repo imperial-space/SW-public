@@ -7738,3 +7738,73 @@
               doAfter: 4
     - node: MedievalMortarTool
       entity: MedievalMortarTool
+
+- type: entity
+  id: MedievalBonfire
+  parent: BaseStructure
+  name: Campfire
+  description: A source of light and heat!
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/campfire.rsi
+    layers:
+      - state: wood
+        map: ["enum.BonfireVisualLayers.Bonfire"]
+      - state: fire
+        map: ["enum.BonfireVisualLayers.Fire"]
+        visible: false
+  - type: Appearance
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 50
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Construction
+    graph: Campfire
+    node: campfire
+  - type: Bonfire
+  - type: ItemPlacer
+    maxEntities: 2
+    whitelist:
+      components:
+      - Temperature
+  - type: PlaceableSurface
+
+- type: construction
+  name: Костер
+  id: CampfireConstruction
+  graph: Campfire
+  startNode: start
+  targetNode: campfire
+  category: construction-category-misc
+  description: Тёплый огонь для ночных посиделок.
+  icon:
+    sprite: Imperial/Medieval/Decor/campfire.rsi
+    state: wood
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: Campfire
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: campfire
+          steps:
+            - tag: Log
+              name: "Бревно"
+              doAfter: 3
+
+    - node: campfire
+      entity: MedievalBonfire
