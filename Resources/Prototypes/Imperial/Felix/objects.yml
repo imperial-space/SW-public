@@ -405,17 +405,6 @@
     sprite: Imperial/Felix/Objects/walls/shuttle.rsi
 
 - type: entity
-  parent: WallShuttle
-  id: DarkWallShuttleStarCorps
-  name: starcorps wall
-  suffix: Felix
-  components:
-  - type: Sprite
-    sprite: Imperial/Felix/Objects/walls/dark_shuttle.rsi
-  - type: Icon
-    sprite: Imperial/Felix/Objects/walls/dark_shuttle.rsi
-
-- type: entity
   parent: WallShuttleDiagonal
   id: DiagonalWallShuttleStarCorps
   name: starcorps wall
@@ -598,3 +587,25 @@
         acts: [ "Destruction" ]
   - type: Climbable
   - type: Appearance
+
+- type: entity
+  id: ElysiumBannerFlag
+  parent: PosterBase
+  name: знамя Элизиум Прайма
+  suffix: 5ОКО
+  description: Знамя великой федерации.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Secret/Objects/flags.rsi
+    state: elysium
+
+- type: entity
+  id: FifthEyeBannerFlag
+  parent: PosterBase
+  name: знамя 5-ого ОКА
+  suffix: 5ОКО
+  description: Знамя неизвестной вам организации.
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Secret/Objects/flags.rsi
+    state: eyev

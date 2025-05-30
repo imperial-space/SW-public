@@ -6,7 +6,12 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/hypospray.rsi
-    state: hypo
+    layers:
+      - state: hypo
+        map: ["enum.SolutionContainerLayers.Base"]
+      - state: hypo_fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
   - type: Item
     sprite: Objects/Specific/Medical/hypospray.rsi
   - type: SolutionContainerManager
@@ -32,6 +37,12 @@
   - type: GPSTrackerPrice
     startprice: 0
     endprice: 7000
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: hypo_fill
+    solutionName: hypospray
+
 - type: entity
   name: gorlex hypospray
   parent: BaseItem
@@ -40,7 +51,12 @@
   components:
   - type: Sprite
     sprite: Objects/Specific/Medical/syndihypo.rsi
-    state: hypo
+    layers:
+      - state: hypo
+        map: ["enum.SolutionContainerLayers.Base"]
+      - state: hypo_fill1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
   - type: Item
     sprite: Objects/Specific/Medical/syndihypo.rsi
   - type: SolutionContainerManager
@@ -55,6 +71,11 @@
     onlyAffectsMobs: false
   - type: UseDelay
     delay: 0.5
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 4
+    fillBaseName: hypo_fill
+    solutionName: hypospray
 
 - type: entity
   name: borghypo
@@ -172,8 +193,6 @@
           Quantity: 12
         - ReagentId: TranexamicAcid
           Quantity: 3
-  # - type: Tag # Imperial Space для корректной работы аптечек
-  #   tags: []
 
 - type: entity
   name: poison auto-injector
@@ -211,8 +230,6 @@
           Quantity: 10
         - ReagentId: Epinephrine
           Quantity: 5
-  # - type: Tag # Imperial Space для корректной работы аптечек
-  #   tags: []
 
 - type: entity
   name: brute auto-injector
@@ -255,8 +272,6 @@
           Quantity: 15
         - ReagentId: TranexamicAcid
           Quantity: 5
-  # - type: Tag # Для корректной работы аптечек Imperial Space
-  #   tags: []
 
 - type: entity
   name: burn auto-injector
@@ -299,8 +314,6 @@
           Quantity: 10
         - ReagentId: Leporazine
           Quantity: 10
-  # - type: Tag # Для корректной работы аптечек Imperial Space
-  #   tags: []
 
 - type: entity
   name: rad auto-injector
@@ -343,8 +356,6 @@
           Quantity: 15
         - ReagentId: Bicaridine
           Quantity: 5
-  # - type: Tag # Imperial Space для корректной работы аптечек
-  #   tags: []
 
 - type: entity
   name: puncturase auto-injector
@@ -387,8 +398,6 @@
           Quantity: 10
         - ReagentId: TranexamicAcid
           Quantity: 5
-  - type: Tag
-    tags: []
 
 - type: entity
   name: pyrazine auto-injector
@@ -431,8 +440,6 @@
           Quantity: 10
         - ReagentId: Dermaline
           Quantity: 10
-  - type: Tag
-    tags: []
 
 - type: entity
   name: airloss auto-injector
@@ -475,8 +482,6 @@
           Quantity: 20
         - ReagentId: DexalinPlus
           Quantity: 20
-  - type: Tag
-    tags: []
 
 - type: entity
   name: space medipen
@@ -520,8 +525,6 @@
             Quantity: 10
           - ReagentId: Barozine
             Quantity: 20
-  - type: Tag
-    tags: []
 
 - type: entity
   name: hyperzine injector
@@ -566,8 +569,6 @@
     injectOnly: true
   - type: StaticPrice
     price: 500
-  - type: Tag
-    tags: []
 
 - type: entity
   name: hyperzine microinjector
@@ -607,8 +608,6 @@
     emptySpriteName: microstimpen_empty
   - type: StaticPrice
     price: 100
-  # - type: Tag # Для корректной работы аптечек Imperial Space
-  #   tags: []
 
 - type: entity
   name: combat medipen
@@ -653,8 +652,6 @@
     injectOnly: true
   - type: StaticPrice
     price: 500
-  - type: Tag
-    tags: []
 
 - type: entity
   name: pen
@@ -725,5 +722,3 @@
     transferAmount: 1
     onlyAffectsMobs: false
     injectOnly: true
-  - type: Tag
-    tags: []
