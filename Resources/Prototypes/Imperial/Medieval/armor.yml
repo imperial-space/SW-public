@@ -567,6 +567,18 @@
   - type: MedievalIronHitSound
 
 - type: entity
+  parent: MedievalClothingOuterArmorUpIron
+  id: MedievalClothingOuterArmorUpIronDarkArmorArchaont
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/dark_up_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/dark_up_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
   parent: ClothingHandsBase
   id: MedievalIronGloves
   name: IronGloves
@@ -1698,6 +1710,17 @@
     sprite: Imperial/Medieval/Clothing/Head/warhammer2.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetCrusaderDarkHelmetArchaont
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/dark_up_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/dark_up_helmet.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorGoblinWood
   name: studded armor
@@ -1840,6 +1863,15 @@
     sprite: Imperial/Medieval/Clothing/Shoes/up_royalboots.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/up_royalboots.rsi
+
+- type: entity
+  parent: MedievalClothingFeetSteel
+  id: MedievalClothingFeetSteelDarkBootsArchaont
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/dark_up_shoes.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/dark_up_shoes.rsi
 
 - type: entity
   parent: MedievalIronGloves
