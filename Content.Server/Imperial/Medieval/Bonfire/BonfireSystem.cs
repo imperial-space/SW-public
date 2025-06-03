@@ -200,6 +200,7 @@ public sealed class BonfireSystem : EntitySystem
         _ambientSound.SetSound(uid, new SoundPathSpecifier("/Audio/Ambience/Objects/fireplace.ogg"));
         _ambientSound.SetRange(uid, 5);
         _ambientSound.SetVolume(uid, -5);
+        _ambientSound.SetAmbience(uid, true);
 
         _appearance.SetData(uid, BonfireVisualLayers.Fire, true);
         _audio.PlayPvs(new SoundPathSpecifier(component.IgnitionSound), uid);
