@@ -1,0 +1,27 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by prazat911",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "wood"
+        },
+        {
+            "name": "wood-burned"
+        },
+        {
+            "name": "fire",
+            "delays": [
+            [
+            0.3,
+            0.3,
+            0.3
+            ]
+            ]
+        }
+    ]
+}
