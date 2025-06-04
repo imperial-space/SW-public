@@ -1,7 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Server.EntityEffects.Effects;
 using Content.Server.Fluids.EntitySystems;
-using Content.Server.Imperial.Medieval.Body;
 using Content.Server.Popups;
 using Content.Shared.Alert;
 using Content.Shared.Chemistry.Components;
@@ -23,6 +22,9 @@ using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server.Chemistry.Containers.EntitySystems;
+using Content.Server.Bed.Components;
+
 
 namespace Content.Server.Body.Systems;
 
@@ -40,7 +42,6 @@ public sealed class BloodstreamSystem : EntitySystem
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private readonly SharedStutteringSystem _stutteringSystem = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -106,74 +107,60 @@ public sealed class BloodstreamSystem : EntitySystem
     }
 
     public override void Update(float frameTime)
+{
+    base.Update(frameTime);
+
+    var query = EntityQueryEnumerator<BloodstreamComponent>();
+    while (query.MoveNext(out var uid, out var bloodstream))
     {
-        base.Update(frameTime);
+        if (_gameTiming.CurTime < bloodstream.NextUpdate)
+            continue;
 
-        var query = EntityQueryEnumerator<BloodstreamComponent>();
-        while (query.MoveNext(out var uid, out var bloodstream))
+        bloodstream.NextUpdate += bloodstream.UpdateInterval;
+
+        if (!_solutionContainerSystem.ResolveSolution(uid, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution))
+            continue;
+
+        // Естественный убыток крови (кровотечение)
+        if (bloodstream.BleedAmount > 0)
         {
-            if (_gameTiming.CurTime < bloodstream.NextUpdate)
-                continue;
+            TryModifyBloodLevel(uid, -bloodstream.BleedAmount, bloodstream); // Уменьшение крови
+            TryModifyBleedAmount(uid, -bloodstream.BleedReductionAmount, bloodstream); // Снижение кровотечения
+        }
 
-            bloodstream.NextUpdate += bloodstream.UpdateInterval;
+        // Естественная регенерация крови
+        if (bloodSolution.Volume < bloodSolution.MaxVolume && !_mobStateSystem.IsDead(uid))
+        {
+            TryModifyBloodLevel(uid, bloodstream.BloodRefreshAmount, bloodstream); // Естественная регенерация
+        }
 
-            if (!_solutionContainerSystem.ResolveSolution(uid, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution, out var bloodSolution))
-                continue;
+        // Урон от кровопотери
+        var bloodPercentage = GetBloodLevelPercentage(uid, bloodstream);
+        if (bloodPercentage < bloodstream.BloodlossThreshold && !_mobStateSystem.IsDead(uid))
+        {
+            var amt = bloodstream.BloodlossDamage / (0.1f + bloodPercentage);
+            _damageableSystem.TryChangeDamage(uid, amt, ignoreResistances: false, interruptsDoAfters: false);
 
-            // Adds blood to their blood level if it is below the maximum; Blood regeneration. Must be alive.
-            if (bloodSolution.Volume < bloodSolution.MaxVolume && !_mobStateSystem.IsDead(uid))
-            {
-                TryModifyBloodLevel(uid, bloodstream.BloodRefreshAmount, bloodstream);
-            }
+            _drunkSystem.TryApplyDrunkenness(uid, (float)bloodstream.UpdateInterval.TotalSeconds * 2, applySlur: false);
+            _stutteringSystem.DoStutter(uid, bloodstream.UpdateInterval * 2, refresh: false);
+            bloodstream.StatusTime += bloodstream.UpdateInterval * 2;
+        }
+        else if (!_mobStateSystem.IsDead(uid))
+        {
+            _damageableSystem.TryChangeDamage(uid, bloodstream.BloodlossHealDamage * bloodPercentage, ignoreResistances: true, interruptsDoAfters: false);
+            _drunkSystem.TryRemoveDrunkenness(uid); // Убираем второй параметр
+            _stutteringSystem.DoRemoveStutterTime(uid, bloodstream.StatusTime.TotalSeconds);
+            bloodstream.StatusTime = TimeSpan.Zero;
+        }
 
-            // Removes blood from the bloodstream based on bleed amount (bleed rate)
-            // as well as stop their bleeding to a certain extent.
-            if (bloodstream.BleedAmount > 0)
-            {
-                // Blood is removed from the bloodstream at a 1-1 rate with the bleed amount
-                TryModifyBloodLevel(uid, (-bloodstream.BleedAmount), bloodstream);
-                // Bleed rate is reduced by the bleed reduction amount in the bloodstream component.
-                TryModifyBleedAmount(uid, -bloodstream.BleedReductionAmount, bloodstream);
-            }
-
-            // deal bloodloss damage if their blood level is below a threshold.
-            var bloodPercentage = GetBloodLevelPercentage(uid, bloodstream);
-            if (bloodPercentage < bloodstream.BloodlossThreshold && !_mobStateSystem.IsDead(uid))
-            {
-                // bloodloss damage is based on the base value, and modified by how low your blood level is.
-                var amt = bloodstream.BloodlossDamage / (0.1f + bloodPercentage);
-
-                _damageableSystem.TryChangeDamage(uid, amt,
-                    ignoreResistances: false, interruptsDoAfters: false);
-
-                // Apply dizziness as a symptom of bloodloss.
-                // The effect is applied in a way that it will never be cleared without being healthy.
-                // Multiplying by 2 is arbitrary but works for this case, it just prevents the time from running out
-                _drunkSystem.TryApplyDrunkenness(
-                    uid,
-                    (float) bloodstream.UpdateInterval.TotalSeconds * 2,
-                    applySlur: false);
-                _stutteringSystem.DoStutter(uid, bloodstream.UpdateInterval * 2, refresh: false);
-
-                // storing the drunk and stutter time so we can remove it independently from other effects additions
-                bloodstream.StatusTime += bloodstream.UpdateInterval * 2;
-            }
-            else if (!_mobStateSystem.IsDead(uid))
-            {
-                // If they're healthy, we'll try and heal some bloodloss instead.
-                _damageableSystem.TryChangeDamage(
-                    uid,
-                    bloodstream.BloodlossHealDamage * bloodPercentage,
-                    ignoreResistances: true, interruptsDoAfters: false);
-
-                // Remove the drunk effect when healthy. Should only remove the amount of drunk and stutter added by low blood level
-                _drunkSystem.TryRemoveDrunkenessTime(uid, bloodstream.StatusTime.TotalSeconds);
-                _stutteringSystem.DoRemoveStutterTime(uid, bloodstream.StatusTime.TotalSeconds);
-                // Reset the drunk and stutter time to zero
-                bloodstream.StatusTime = TimeSpan.Zero;
-            }
+        // Регенерация от кровати
+        if (TryComp<BloodRegenEffectComponent>(uid, out var regenEffect) && bloodSolution.Volume < bloodSolution.MaxVolume)
+        {
+            var extraRegen = FixedPoint2.New(regenEffect.RegenerationRate * 60 * (float)frameTime); // Умножаем на 60 для компенсации frameTime
+            TryModifyBloodLevel(uid, extraRegen, bloodstream); // Используем существующий метод
         }
     }
+}
 
     private void OnComponentInit(Entity<BloodstreamComponent> entity, ref ComponentInit args)
     {
@@ -359,14 +346,7 @@ public sealed class BloodstreamSystem : EntitySystem
         }
 
         if (amount >= 0)
-        {
-            // Imperial Medieval Skills start
-            var ev = new GetBloodRegenModifiersEvent(1f);
-            RaiseLocalEvent(uid, ref ev);
-            // Imperial Medieval Skills end
-
-            return _solutionContainerSystem.TryAddReagent(component.BloodSolution.Value, component.BloodReagent, amount * ev.Modifier, null, GetEntityBloodData(uid));  // Imperial Medieval - modifier added
-        }
+            return _solutionContainerSystem.TryAddReagent(component.BloodSolution.Value, component.BloodReagent, amount, null, GetEntityBloodData(uid));
 
         // Removal is more involved,
         // since we also wanna handle moving it to the temporary solution
