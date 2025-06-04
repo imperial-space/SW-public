@@ -25,6 +25,7 @@ public sealed partial class SkillsSystem
         SubscribeLocalEvent<SkillsComponent, GetHealingSpeedModifiersEvent>(OnGetHealingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, CheckWorkbenchCraftSpeedModifiersEvent>(OnGetCraftingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, AccentGetEvent>(OnAccent);
+        SubscribeLocalEvent<SkillsComponent, MapInitEvent>(OnCanUseMana);
 
         SubscribeNetworkEvent<GetEnteredChatTextResponseMessage>(OnGetMessage);
     }
@@ -86,6 +87,14 @@ public sealed partial class SkillsSystem
                 break;
 
             _lang.AddSpokenLanguage(uid, _random.PickAndTake(langs).ID, LanguageKnowledge.BadSpeak);
+        }
+    }
+
+    private void OnCanUseMana(Entity<SkillsComponent> ent, ref MapInitEvent args)
+    {
+        if (HasComp<ManaComponent>(ent) && IntelligenceMin(ent))
+        {
+            RemComp<ManaComponent>(ent);
         }
     }
 

@@ -13,6 +13,7 @@ using Content.Server.SpikeTrap.Components;
 using Content.Server.MagicBarrier.Components;
 using Content.Shared.Doors.Components;
 using Content.Server.Doors.Systems;
+using Content.Shared.Imperial.Medieval.Skills;
 
 namespace Content.Server.CustomDoorKey
 {
@@ -25,6 +26,7 @@ namespace Content.Server.CustomDoorKey
         [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
         [Dependency] private readonly ISharedPlayerManager _sharedPlayerManager = default!;
         [Dependency] private readonly PrayerSystem _prayerSystem = default!;
+        [Dependency] private readonly SharedSkillsSystem _skillsSystem = default!;
 
         public override void Initialize()
         {
@@ -95,6 +97,12 @@ namespace Content.Server.CustomDoorKey
 
             if (TryComp<DoorHackableComponent>(target, out var door) && door != null)
             {
+                if (HasComp<SkillsComponent>(user) && _skillsSystem.IntelligenceMin(user))
+                {
+                    _popup.PopupEntity(Loc.GetString("lock-door-popup-low-intelligence"), user, user);
+                    return;
+                }
+
                 _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnSucces), door.Owner);
                 if (!_sharedPlayerManager.TryGetSessionByEntity(user, out var session)) return;
                 _quickDialog.OpenDialog(session, "Взлом", "Число от " + door.MinNumber + " до " + door.MaxNumber, (string message) =>

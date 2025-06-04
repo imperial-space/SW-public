@@ -17,6 +17,7 @@ using Content.Shared.Item;
 using Content.Shared.IdentityManagement;
 using Robust.Server.GameObjects;
 using Content.Server.Imperial.Medieval.RandomSteal;
+using Content.Shared.Imperial.Medieval.Additions;
 
 namespace Content.Shared.Imperial.RandomSteal.Systems;
 
@@ -30,6 +31,7 @@ public sealed partial class RandomStealSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly IEntitySystemManager _sys = default!;
 
     public override void Initialize()
     {
@@ -73,6 +75,8 @@ public sealed partial class RandomStealSystem : EntitySystem
     }
     private void TrySteal(EntityUid first, EntityUid second, RandomStealComponent comp, List<EntityUid> entities)
     {
+        if (!_sys.GetEntitySystem<AntiStealAfkSystem>().TryStrip(first, second))
+            return;
         if (TryComp<StealChanceIncreaserComponent>(first, out var increaser))
             comp.Chance += increaser.Bonus;
 
@@ -101,6 +105,8 @@ public sealed partial class RandomStealSystem : EntitySystem
             return;
 
         if (ev.Target is not { Valid: true } target)
+            return;
+        if (!_sys.GetEntitySystem<AntiStealAfkSystem>().TryStrip(uid, target))
             return;
 
         var nameStealer = Identity.Name(uid, EntityManager);
