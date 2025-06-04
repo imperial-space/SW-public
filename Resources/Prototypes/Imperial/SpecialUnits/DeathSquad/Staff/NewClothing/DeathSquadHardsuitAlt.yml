@@ -42,6 +42,9 @@
     chance: 1
   - type: Speech
     speechSounds: Pai
+  - type: Tag
+    tags:
+      - MonkeyWearable
 
 - type: entity
   parent: [ BaseCentcommContraband, ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
@@ -76,4 +79,4 @@
     clothingVisuals:
       head:
       - state: on-equipped-HELMET
-        shader: unshaded
+#        shader: unshaded

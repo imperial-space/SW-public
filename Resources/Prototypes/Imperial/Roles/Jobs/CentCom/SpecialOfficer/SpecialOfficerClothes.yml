@@ -33,7 +33,7 @@
     sprite: Imperial/Roles/CentCom/SpecialOfficer/specialofficerhatcap.rsi
 
 - type: entity
-  parent: ClothingShoesBootsJack ## Ботинки с уникальным звуком ОСО
+  parent: ClothingShoesBootsJack ## Ботинки с уникальным звуком ОСО ## Не таким уж теперь и уникальным)
   id: ClothingShoesBootsJackSpecialOfficer
   name: Shoes boots for Special Officer
   suffix: ДСО
@@ -43,12 +43,67 @@
     sprite: Clothing/Shoes/Boots/jackboots.rsi
   - type: Clothing
     sprite: Clothing/Shoes/Boots/jackboots.rsi
+  - type: NoSlip ## Небольшой баф.
   - type: Matchbox
-  - type: Storage
-    whitelist:
-      tags:
-        - Knife
-        - Sidearm
+  - type: ItemSlots ## Фикс хранилища ножа для ботинок ОСО
+    slots:
+      item:
+        name: clothing-boots-sidearm
+        whitelist:
+          tags:
+          - Knife
+          - Sidearm
+  - type: ContainerFill
+    containers:
+      item:
+      - CombatKnife
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSpecialOfficer
+
+- type: entity
+  parent: BasePDA
+  id: SpecialOfficerPDA ## КПК Офицера ДСО
+  name: special officer PDA
+  description: It smells of power that his father never even dreamed of.
+  suffix: ДСО
+  components:
+  - type: Pda
+    id: SpecialOfficerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-bartender
+  - type: PdaBorderColor
+    borderColor: "#333333"
+  - type: Icon
+    state: pda-bartender
+
+- type: entity
+  parent: CentcomIDCard
+  id: SpecialOfficerIDCard ## Айди карта Офицера ДСО
+  name: special officer ID card
+  description: Best card.
+  suffix: ДСО
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ErtCall/deadsquadCard.rsi
+      layers:
+        - state: blackcard
+        - state: deadsquadID
+    - type: PresetIdCard
+      job: SpecialOfficer
+
+- type: entity
+  parent: ClothingControlModsuitSpecialOfficer
+  id: ClothingControlModsuitSpecialOfficerFilled
+  name: SOO modsuit
+  description: Special hardsuit backpack.
+  suffix: ДСО
+  components:
+    - type: StorageFill
+      contents:
+        - id: BoxSurvival
+        - id: ERTUplinkDeadSquadAlt ## А чеб нет?)
+        - id: PillAmbuzolPlus

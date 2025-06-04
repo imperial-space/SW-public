@@ -1308,8 +1308,10 @@
     - map: [ "ears" ]
     - map: [ "id" ]
     - map: [ "outerClothing" ]
+    - map: [ "eyes" ] ##Imperial Space monkey upgrade
     - map: [ "mask" ]
     - map: [ "head" ]
+    - map: [ "back" ] ##Imperial Space monkey upgrade
     - map: [ "clownedon" ]
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
