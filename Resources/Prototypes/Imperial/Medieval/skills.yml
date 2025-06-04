@@ -18,14 +18,14 @@
     NegativeDashDistanceBonus: -0.03
     PositiveClimbDelayModifier: -0.1
     NegativeClimbDelayModifier: 0.1
-    PositiveLockpickChanceModifier: 0.2
+    PositiveLockpickChanceModifier: 0.1
     NegativeLockpickChanceModifier: 0
     PositiveEquipDelayModifier: -0.07
-    NegativeEquipDelayModifier: 0.04
+    NegativeEquipDelayModifier: 0.07
     PositiveSpreadModifier: -0.08
     NegativeSpreadModifier: 0.05
-    PositiveStealChanceModifier: 3
-    NegativeStealChanceModifier: -2
+    PositiveStealChanceModifier: 1.5
+    NegativeStealChanceModifier: -1.5
     PositiveLockpickLossModifier: -0.05
 
 - type: skill
@@ -40,14 +40,14 @@
     15: good
     20: best
   modifiers:
-    FistPositiveDamageModifier: 0.1
-    FistNegativeDamageModifier: -0.05
-    WeaponPositiveDamageModifier: 0.02
-    WeaponNegativeDamageModifier: -0.03
-    PositiveUncuffDurationModifier: -0.07
-    NegativeUncuffDurationModifier: 0.07
-    FistMaxDamageModifier: 0.4
-    WeaponMaxDamageModifier: 0.1
+    FistPositiveDamageModifier: 0.06
+    FistNegativeDamageModifier: -0.03
+    WeaponPositiveDamageModifier: 0.01
+    WeaponNegativeDamageModifier: -0.02
+    PositiveUncuffDurationModifier: -0.2
+    NegativeUncuffDurationModifier: 0.2
+    FistMaxDamageModifier: 0.2
+    WeaponMaxDamageModifier: 0.07
     PositiveGateInteractionTimeModifier: -0.07
     NegativeGateInteractionTimeModifier: 0.1
 
@@ -63,16 +63,16 @@
     15: good
     20: best
   modifiers:
-    AliveHealthPerLevel: 1
-    WoundedHealthPerLevel: 1
-    MaxHealthBonus: 35
-    PositiveSlowdownModifier: 0.02
-    PositiveSleepEffeciencyModifier: -0.05
-    NegativeSleepEffeciencyModifier: 0.05
-    PositiveSuffocationDamageModifier: -0.05
-    NegativeSuffocationDamageModifier: 0.03
-    PositiveBloodRegenModifier: 0.05
-    NegativeBloodRegenModifier: -0.03
+    AliveHealthPerLevel: 0.7
+    WoundedHealthPerLevel: 0.7
+    MaxHealthBonus: 25
+    PositiveSlowdownModifier: 0.01
+    PositiveSleepEffeciencyModifier: -0.03
+    NegativeSleepEffeciencyModifier: 0.03
+    PositiveSuffocationDamageModifier: -0.03
+    NegativeSuffocationDamageModifier: 0.02
+    PositiveBloodRegenModifier: 0.03
+    NegativeBloodRegenModifier: -0.02
 
 - type: skill
   id: Endurance
@@ -86,15 +86,15 @@
     15: good
     20: best
   modifiers:
-    PositiveSprintStaminaDamageModifier: -0.03
-    NegativeSprintStaminaDamageModifier: 0.03
-    PositiveSlowdownModifier: 0.02
-    PositiveStaminaRegenModifier: 0.03
-    NegativeStaminaRegenModifier: -0.03
-    PositiveStaminaCritModifier: -0.05
-    NegativeStaminaCritModifier: 0.05
-    MaxStaminaDamageModifier: 0.5
-    HighMeleeThrowDistanceModifier: 0.5
+    PositiveSprintStaminaDamageModifier: -0.012
+    NegativeSprintStaminaDamageModifier: 0.02
+    PositiveSlowdownModifier: 0.01
+    PositiveStaminaRegenModifier: 0.015
+    NegativeStaminaRegenModifier: -0.015
+    PositiveStaminaCritModifier: -0.03
+    NegativeStaminaCritModifier: 0.03
+    MaxStaminaDamageModifier: 0.3
+    HighMeleeThrowDistanceModifier: 0.4
 
 - type: skill
   id: Intelligence
@@ -108,10 +108,10 @@
     15: good
     20: best
   modifiers:
-    PositiveConstructionSpeedModifier: -0.07
+    PositiveConstructionSpeedModifier: -0.1
     NegativeConstructionSpeedModifier: 0.1
-    PositiveHealingSpeedModifier: -0.04
-    NegativeHealingSpeedModifier: 0.06
-    PositiveManaModifier: 0.03
-    NegativeManaModifier: -0.03
+    PositiveHealingSpeedModifier: -0.07
+    NegativeHealingSpeedModifier: 0.14
+    PositiveManaModifier: 0.02
+    NegativeManaModifier: -0.02
     LowStupidityChance: 0.2

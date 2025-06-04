@@ -1,9 +1,12 @@
+using System.Linq;
 using Content.Server.Light.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Shared.Imperial.Medieval.Igniter;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Light.Components;
 using Content.Shared.Temperature;
+using Content.Shared.Verbs;
 
 namespace Content.Server.Imperial.Medieval.FlammableExpendableLight;
 
@@ -22,6 +25,7 @@ public sealed partial class FlammableExpendableLightSystem : EntitySystem
         SubscribeLocalEvent<FlammableExpendableLightComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
 
         SubscribeLocalEvent<FlammableExpendableLightComponent, UseInHandEvent>(OnActivate, before: [typeof(ExpendableLightSystem)]);
+        SubscribeLocalEvent<FlammableExpendableLightComponent, GetVerbsEvent<ActivationVerb>>(RemoveIgniteVerb, after: [typeof(ExpendableLightSystem)]);
     }
 
     private void OnIgnite(EntityUid uid, FlammableExpendableLightComponent component, IgniteEvent args)
@@ -59,5 +63,16 @@ public sealed partial class FlammableExpendableLightSystem : EntitySystem
     private void OnActivate(EntityUid uid, FlammableExpendableLightComponent component, UseInHandEvent args)
     {
         args.Handled = true;
+    }
+
+    // This remove last verb. We subs to the event after ExpendableLightSystem
+    private void RemoveIgniteVerb(EntityUid uid, FlammableExpendableLightComponent component, ref GetVerbsEvent<ActivationVerb> args)
+    {
+        if (!TryComp<ExpendableLightComponent>(uid, out var expendableLightComponent)) return;
+
+        if (!args.CanAccess || !args.CanInteract) return;
+        if (expendableLightComponent.CurrentState != ExpendableLightState.BrandNew) return;
+
+        args.Verbs.Remove(args.Verbs.Last());
     }
 }

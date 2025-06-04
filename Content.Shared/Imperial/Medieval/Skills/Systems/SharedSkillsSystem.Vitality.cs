@@ -30,11 +30,11 @@ public abstract partial class SharedSkillsSystem
         if (level <= 10)
             return;
 
-        if (args.WalkMod >= 1f || args.SprintMod >= 1f)
+        if (args.Walk >= 1f || args.Sprint >= 1f)
             return;
 
         var diff = Math.Abs(level - 10);
-        args.Walk += proto.Modifiers["PositiveSlowdownModifier"] * diff * (1 - args.Walk);
-        args.Sprint += proto.Modifiers["PositiveSlowdownModifier"] * diff * (1 - args.Sprint);
+        args.Walk = Math.Clamp(args.Walk + proto.Modifiers["PositiveSlowdownModifier"] * diff, 0f, 1f);
+        args.Sprint = Math.Clamp(args.Sprint + proto.Modifiers["PositiveSlowdownModifier"] * diff, 0f, 1f);
     }
 }

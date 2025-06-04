@@ -1682,9 +1682,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.92
+        Blunt: 0.72
         Slash: 0.8
-        Piercing: 0.76
+        Piercing: 0.8
         Heat: 0.6
         Cold: 0.3
         Stamina: 0.8 ## Stamina resistance
@@ -1721,11 +1721,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.8
+        Blunt: 0.7
         Slash: 0.6
-        Piercing: 0.71
+        Piercing: 0.62
         Heat: 0.7
-        Cold: 0.51
+        Cold: 0.54
         Stamina: 0.7 ## Stamina resistance
   - type: Item
     size: Normal
@@ -1763,12 +1763,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.54
-        Slash: 0.46
-        Piercing: 0.48
-        Heat: 0.4
-        Cold: 0.8
-        Stamina: 0.5 ## Stamina resistance
+        Blunt: 0.45
+        Slash: 0.5
+        Piercing: 0.43
+        Heat: 0.5
+        Cold: 0.7
+        Stamina: 0.4 ## Stamina resistance
   - type: ClothingSpeedModifier
     walkModifier: 0.88
     sprintModifier: 0.88
@@ -1781,3 +1781,40 @@
     - GoblinArmor
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterArmorGambeson
+  name: gambeson armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: QuestItem
+    contractName: "сыромятная или легкая броня"
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/gambeson_armor.rsi
+  - type: Clothing
+    equipDelay: 2
+    unequipDelay: 2
+    sprite: Imperial/Medieval/Clothing/Armor/gambeson_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.75
+        Cold: 0.5
+        Stamina: 0.9 ## Stamina resistance
+  - type: Item
+    size: Normal
+  - type: ExplosionResistance
+    damageCoefficient: 0.9

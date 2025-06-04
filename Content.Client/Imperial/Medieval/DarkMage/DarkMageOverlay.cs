@@ -27,7 +27,8 @@ public sealed class DarkMageOverlay : Overlay
     }
     protected override void Draw(in OverlayDrawArgs args)
     {
-        var lasted = (float)(_gameTiming.CurTime - _timeSpan).TotalSeconds;
+        var time = 10f - (float)(_gameTiming.CurTime - _timeSpan).TotalSeconds;
+        var lasted = Math.Clamp(time, 0f, 10f);
         _circleMaskShader.SetParameter("color", Color.Purple);
         _circleMaskShader.SetParameter("outerCircleRadius", _outerCircleValue);
         _circleMaskShader.SetParameter("innerCircleRadius", _innerCircleValue);

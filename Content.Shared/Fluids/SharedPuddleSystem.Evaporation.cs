@@ -15,6 +15,9 @@ public abstract partial class SharedPuddleSystem
     private const string DemonsBlood = "DemonsBlood";
 
     [ValidatePrototypeId<ReagentPrototype>]
+    private const string Sap = "Sap";
+
+    [ValidatePrototypeId<ReagentPrototype>]
     private const string Protein = "Protein";
 
     [ValidatePrototypeId<ReagentPrototype>]
@@ -112,6 +115,7 @@ public abstract partial class SharedPuddleSystem
     "Water",
     "Blood",
     "DemonsBlood",
+    "Sap",
     "Ethanol",
     "Protein",
     "Vomit",

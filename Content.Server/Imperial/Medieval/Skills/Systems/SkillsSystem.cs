@@ -25,6 +25,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StunSystem _stun = default!;
 
+    private TimeSpan _nextUpdate = TimeSpan.Zero;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -100,6 +102,11 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+        if (_timing.CurTime < _nextUpdate)
+            return;
+
+        _nextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1f);
+
         UpdateAgility(frameTime);
         UpdateVitality(frameTime);
     }

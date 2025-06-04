@@ -512,8 +512,8 @@
   - MedievalArmorDemo
 
 - type: listing
-  id: DemoMdvShopMedievalClothingOuterArmorStudded
-  productEntity: MedievalClothingOuterArmorStudded
+  id: DemoMdvShopMedievalClothingOuterArmorGambeson
+  productEntity: MedievalClothingOuterArmorGambeson
   cost:
     UnknownMedieval: 1
   categories:

@@ -25,6 +25,7 @@ public sealed partial class SkillsSystem
         SubscribeLocalEvent<SkillsComponent, GetHealingSpeedModifiersEvent>(OnGetHealingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, CheckWorkbenchCraftSpeedModifiersEvent>(OnGetCraftingSpeedModifiers);
         SubscribeLocalEvent<SkillsComponent, AccentGetEvent>(OnAccent);
+        SubscribeLocalEvent<SkillsComponent, MapInitEvent>(OnCanUseMana);
 
         SubscribeNetworkEvent<GetEnteredChatTextResponseMessage>(OnGetMessage);
     }
@@ -62,11 +63,11 @@ public sealed partial class SkillsSystem
 
         var diff = level - oldLevel;
 
-        if (TryComp<ManaComponent>(uid, out var mana))
-        {
-            mana.MaxMana += (level > 10 ? proto.Modifiers["PositiveManaModifier"] : proto.Modifiers["NegativeManaModifier"]) * diff;
-            Dirty(uid, mana);
-        }
+        //if (TryComp<ManaComponent>(uid, out var mana))
+        //{
+        //    mana.MaxMana += (level > 10 ? proto.Modifiers["PositiveManaModifier"] : proto.Modifiers["NegativeManaModifier"]) * diff;
+        //    Dirty(uid, mana);
+        //}
 
         if (level == 20)
             EnsureComp<UniversalLanguageSpeakerComponent>(uid);
@@ -86,6 +87,14 @@ public sealed partial class SkillsSystem
                 break;
 
             _lang.AddSpokenLanguage(uid, _random.PickAndTake(langs).ID, LanguageKnowledge.BadSpeak);
+        }
+    }
+
+    private void OnCanUseMana(Entity<SkillsComponent> ent, ref MapInitEvent args)
+    {
+        if (HasComp<ManaComponent>(ent) && IntelligenceMin(ent))
+        {
+            RemComp<ManaComponent>(ent);
         }
     }
 

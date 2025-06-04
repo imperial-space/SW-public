@@ -943,6 +943,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Friends
       faction: Voluntary
     - type: MedievalJobSpawn
@@ -1005,6 +1007,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Friends
       faction: Voluntary
     - type: MedievalJobSpawn
@@ -1057,6 +1061,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Friends
       faction: Voluntary
     - type: MedievalJobSpawn
@@ -1381,6 +1387,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Friends
       faction: Voluntary
     - type: MedievalJobSpawn
@@ -1421,6 +1429,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Friends
       faction: Voluntary
     - type: MedievalJobSpawn
@@ -1521,6 +1531,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Friends
       faction: Voluntary
     - type: MedievalJobSpawn
@@ -1581,6 +1593,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: BibleUser #Lets them heal with bibles
     - type: AddActionOnSpawn
       actions:
@@ -1789,6 +1803,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-mag
     - type: Mana
       maxMana: 140
       regen: 0.4
@@ -1863,6 +1879,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: MedievalJobSpawn
       spawnType: LegionJailed
 
@@ -1898,6 +1916,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
     - type: Friends
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
@@ -1960,6 +1980,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
     - type: Friends
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
@@ -2048,6 +2070,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
     - type: Friends
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
@@ -2103,6 +2127,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
     - type: Friends
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
@@ -2169,6 +2195,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
     - type: Friends
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
@@ -2234,6 +2262,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
     - type: Friends
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
@@ -2300,6 +2330,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
     - type: Friends
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
@@ -2376,6 +2408,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg-mag
     - type: Mana
       maxMana: 140
       regen: 0.4
@@ -2459,6 +2493,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
     - type: Friends
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
@@ -2532,6 +2568,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-ins
     - type: Friends
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
@@ -2616,6 +2654,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-ins
     - type: Friends
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
@@ -2667,6 +2707,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-ins
     - type: Friends
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
@@ -2729,6 +2771,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-ins
     - type: Friends
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
@@ -2789,6 +2833,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-ins
     - type: Friends
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
@@ -2855,6 +2901,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-ins
     - type: Friends
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
@@ -2929,6 +2977,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-ins-mag
     - type: Mana
       maxMana: 140
       regen: 0.4
@@ -3011,6 +3061,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-ins
     - type: Friends
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
@@ -3085,6 +3137,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-band
     - type: Friends
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
@@ -3147,6 +3201,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-band
     - type: Friends
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
@@ -3210,6 +3266,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-band
     - type: Friends
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
@@ -3272,6 +3330,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-band
     - type: Friends
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
@@ -3338,6 +3398,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Mercenary
     - type: Friends
       faction: Merc
@@ -3405,6 +3467,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Mercenary
     - type: Friends
       faction: Merc
@@ -3482,6 +3546,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-coll
     - type: Mana
       maxMana: 120
       regen: 0.325
@@ -3556,6 +3622,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-coll
     - type: Mana
       maxMana: 150
       regen: 0.475
@@ -3631,6 +3699,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-coll
     - type: Mana
       maxMana: 180
       regen: 0.5
@@ -3701,6 +3771,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-tribe
     #- type: GigaMonkeyAccent
     - type: Friends
       faction: Tribe
@@ -3775,6 +3847,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-tribe
     - type: Mana
       maxMana: 180
       regen: 0.65
@@ -3845,6 +3919,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-tribe
     - type: Friends
       faction: Tribe
       factionMenuAction: TribeFactionMenuAction
@@ -3903,6 +3979,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Access
       tags:
       - ImperialLibrary
@@ -4023,6 +4101,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: Access
       tags:
       - ImperialLibrary
@@ -4127,6 +4207,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: MedievalDigger
     - type: Friends
       faction: Miner
@@ -4194,6 +4276,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: MedievalDigger
     - type: Friends
       faction: Miner
@@ -4257,6 +4341,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: CrafterTrait
     - type: Friends
       faction: Legion
@@ -4314,6 +4400,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: CrafterTrait
     - type: Friends
       faction: Insurgency
@@ -4370,6 +4458,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: CrafterTrait
     - type: Friends
       faction: Legion
@@ -4426,6 +4516,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: CrafterTrait
     - type: Friends
       faction: Insurgency
@@ -4497,6 +4589,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-cult
     - type: CultMember
     - type: Friends
       faction: Cult
@@ -4563,6 +4657,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-cult
     - type: CultMember
     - type: Friends
       faction: Cult
@@ -4610,6 +4706,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: MedievalJobSpawn
       spawnType: Village
     - type: GiveItemObjective
@@ -4655,6 +4753,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: MedievalJobSpawn
       spawnType: Village
     - type: GiveItemObjective
@@ -4712,6 +4812,8 @@
   special:
   - !type:AddComponentSpecial
     components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
     - type: MedievalJobSpawn
       spawnType: Village
     - type: GiveItemObjective

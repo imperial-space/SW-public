@@ -33,6 +33,7 @@ public abstract class SharedStrippableSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IEntitySystemManager _entity = default!; // Imperial Medieval AntiStealAfk
 
     public override void Initialize()
     {
@@ -90,6 +91,10 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (args.Actor is not { Valid: true } user ||
             !TryComp<HandsComponent>(user, out var userHands))
             return;
+        // Imperial Medieval AntiStealAfk
+        if (!_entity.GetEntitySystem<Imperial.Medieval.Additions.AntiStealAfkSystem>().TryStrip(user, strippable))
+            return;
+        // Imperial Medieval AntiStealAfk
 
         if (args.IsHand)
         {
@@ -640,6 +645,10 @@ public abstract class SharedStrippableSystem : EntitySystem
         if (!HasComp<StrippingComponent>(user))
             return false;
 
+        // Imperial Medieval AntiStealAfk
+        if (!_entity.GetEntitySystem<Imperial.Medieval.Additions.AntiStealAfkSystem>().TryStrip(user, target))
+            return false;
+        // Imperial Medieval AntiStealAfk
         _ui.OpenUi(target.Owner, StrippingUiKey.Key, user);
         return true;
     }
