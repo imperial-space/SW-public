@@ -7,6 +7,7 @@ using Robust.Shared.Audio.Systems;
 using Filter = Robust.Shared.Player.Filter;
 using Robust.Shared.Prototypes;
 using Content.Server.GameTicking;
+using Content.Shared.Imperial.Medieval.Admin;
 
 namespace Content.Server.Imperial.Medieval.Admin;
 

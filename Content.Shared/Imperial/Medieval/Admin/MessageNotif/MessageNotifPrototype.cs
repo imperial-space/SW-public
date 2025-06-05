@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Imperial.Medieval.Admin;
+namespace Content.Shared.Imperial.Medieval.Admin;
 
 [Prototype]
 public sealed partial class MessageNotifPrototype : IPrototype
