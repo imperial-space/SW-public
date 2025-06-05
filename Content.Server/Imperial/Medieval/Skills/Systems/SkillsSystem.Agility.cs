@@ -1,14 +1,12 @@
+using Content.Server.CustomDoorKey;
 using Content.Server.Imperial.Medieval.RandomSteal;
 using Content.Server.Imperial.Medieval.Weapons;
-using Content.Server.Stunnable;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Robust.Shared.Map;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Skills;
 
@@ -19,7 +17,7 @@ public sealed partial class SkillsSystem
         SubscribeLocalEvent<SkillsComponent, GetGunSpreadModifiersEvent>(OnGetSpreadMod);
         SubscribeLocalEvent<SkillsComponent, GetStealChanceModifiersEvent>(OnGetStealChanceMod);
         SubscribeLocalEvent<SkillsComponent, TryGetAdditionalStealTargetEvent>(OnTryGetAdditionalStealTarget);
-
+        SubscribeLocalEvent<SkillsComponent, ModifyLockpickLossChanceEvent>(OnModifyLockpickLossChance);
     }
 
     private void OnGetSpreadMod(EntityUid uid, SkillsComponent component, ref GetGunSpreadModifiersEvent args)
@@ -60,6 +58,17 @@ public sealed partial class SkillsSystem
             return;
 
         args.Success = true;
+    }
+
+    private void OnModifyLockpickLossChance(EntityUid uid, SkillsComponent component, ref ModifyLockpickLossChanceEvent args)
+    {
+        var (proto, level) = GetSkill(uid, AgilityId);
+
+        if (level < 10)
+            return;
+
+        var diff = Math.Abs(level - 10);
+        args.Modifier = Math.Clamp(args.Modifier + diff * proto.Modifiers["PositiveLockpickLossModifier"], 0f, 1f);
     }
 
     private void AgilityLevelSet(EntityUid uid, int level, int oldLevel)

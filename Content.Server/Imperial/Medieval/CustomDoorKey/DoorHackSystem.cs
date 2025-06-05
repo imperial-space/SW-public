@@ -127,7 +127,15 @@ namespace Content.Server.CustomDoorKey
                     return;
                 }
 
-                comp.UseCount--;
+                var lossProb = 1f;
+                if (sender.AttachedEntity is { Valid: true } senderEntity)
+                {
+                    var lossProbEv = new ModifyLockpickLossChanceEvent(1f);
+                    RaiseLocalEvent(senderEntity, ref lossProbEv);
+                }
+
+                if (_random.Prob(lossProb))
+                    comp.UseCount--;
 
                 int rightNumber = door.Numbers[door.LockPickProgress];
                 if (number == rightNumber)
