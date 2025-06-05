@@ -1142,6 +1142,8 @@
     equipDelay: 4
     unequipDelay: 4
     sprite: Imperial/Medieval/Clothing/Armor/whitecharmer_light.rsi
+  - type: ToggleableClothing
+    clothingPrototype: MedievalClothingHeadHelmetCharmerLightWhiteWizard
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight
@@ -1318,6 +1320,8 @@
     equipDelay: 3
     unequipDelay: 3
     sprite: Imperial/Medieval/Clothing/Armor/whitecharmer_weak.rsi
+  - type: ToggleableClothing
+    clothingPrototype: MedievalClothingHeadHelmetCharmerLightWhiteWizard
 
 - type: entity
   parent: ClothingOuterArmorPodWars

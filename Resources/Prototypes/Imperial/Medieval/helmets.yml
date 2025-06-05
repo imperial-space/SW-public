@@ -645,6 +645,16 @@
     sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
 
 - type: entity
+  parent: ClothingHeadBase
+  id: MedievalClothingHeadHelmetCharmerLightWhiteWizard
+  name: MedievalClothingHeadHelmetCharmerLightWhiteWizard
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/whitecharmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/whitecharmer.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
   id: MedievalClothingHeadHelmetWhiteCharmerLight
   name: MedievalClothingHeadHelmetWhiteCharmerLight
