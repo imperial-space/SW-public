@@ -929,12 +929,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.38
-        Slash: 0.38
-        Piercing: 0.38
-        Heat: 0.38
-        Cold: 0.7
-        Stamina: 0.3 ## Stamina resistance
+        Blunt: 0.48
+        Slash: 0.48
+        Piercing: 0.48
+        Heat: 0.48
+        Cold: 0.8
+        Stamina: 0.4 ## Stamina resistance
   - type: Item
     size: Large
   - type: ExplosionResistance
@@ -972,12 +972,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55
-        Slash: 0.44
-        Piercing: 0.7
-        Heat: 0.5
-        Cold: 0.7
-        Stamina: 0.5 ## Stamina resistance
+        Blunt: 0.6
+        Slash: 0.49
+        Piercing: 0.75
+        Heat: 0.55
+        Cold: 0.75
+        Stamina: 0.6 ## Stamina resistance
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1781,3 +1781,40 @@
     - GoblinArmor
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterArmorGambeson
+  name: gambeson armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: QuestItem
+    contractName: "сыромятная или легкая броня"
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/gambeson_armor.rsi
+  - type: Clothing
+    equipDelay: 2
+    unequipDelay: 2
+    sprite: Imperial/Medieval/Clothing/Armor/gambeson_armor.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.85
+        Slash: 0.8
+        Piercing: 0.85
+        Heat: 0.75
+        Cold: 0.5
+        Stamina: 0.9 ## Stamina resistance
+  - type: Item
+    size: Normal
+  - type: ExplosionResistance
+    damageCoefficient: 0.9

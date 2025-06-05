@@ -871,6 +871,7 @@
       tags:
       - Bolt
       - Arrow
+      - ThrowingSpear
   - type: Appearance
   - type: Item
     size: Ginormous
@@ -892,6 +893,7 @@
       tags:
       - Bolt
       - Arrow
+      - ThrowingSpear
   - type: Appearance
   - type: Item
     size: Ginormous
@@ -913,6 +915,7 @@
       tags:
       - Bolt
       - Arrow
+      - ThrowingSpear
   - type: Appearance
   - type: Item
     size: Ginormous
@@ -1601,7 +1604,7 @@
       eyes:
       - state: equipped-EYES
       - state: unshaded
-        shader: unshaded 
+        shader: unshaded
 
 - type: Tag
   id: MedievalIronRoyalSword
