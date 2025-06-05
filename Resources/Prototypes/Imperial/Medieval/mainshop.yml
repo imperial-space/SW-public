@@ -662,7 +662,7 @@
     Revent: 20
   categories:
   - MedievalArmor
-  
+
 - type: listing
   id: MdvShopMedievalIronGloves
   productEntity: MedievalIronGloves
@@ -2866,7 +2866,7 @@
   cost:
     MedievalPaperOnValuableCargoCurrencyIns: 1
   categories:
-  - MedievalPalletIns
+  - MedievalPalletLeg
 
 - type: entity
   id: MedievalShopHolePalletIns
@@ -2927,7 +2927,7 @@
   cost:
    MedievalPaperOnValuableCargoCurrencyLeg: 1
   categories:
-  - MedievalPalletLeg
+  - MedievalPalletIns
 
 - type: listing
   id: MdvShopMedievalFlinter

@@ -7682,10 +7682,10 @@
         - to: MedievalClothingOuterArmorGoblinWood
           steps:
             - material: WoodPlank
-              amount: 24
+              amount: 8
               doAfter: 6
             - material: MedievalGrass
-              amount: 8
+              amount: 3
     - node: MedievalClothingOuterArmorGoblinWood
       entity: MedievalClothingOuterArmorGoblinWood
 

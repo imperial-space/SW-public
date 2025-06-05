@@ -100,7 +100,7 @@
   id: MedievalMobFox
   description: They're a fox.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -191,7 +191,7 @@
   id: MedievalMobAnt
   description: They're a fox.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
     scale: 1.2, 1.2
@@ -292,7 +292,7 @@
   id: MedievalMobWolf
   description: They're a wolf.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -410,7 +410,7 @@
   id: MedievalMobRabbit
   description: They're a rabbit.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -507,7 +507,7 @@
   id: MedievalMobGolemLarge
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     drawdepth: Mobs
@@ -622,7 +622,7 @@
   id: MedievalMobGolem
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -729,7 +729,7 @@
   id: MedievalMobBear
   description: They're a bear.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -849,7 +849,7 @@
   id: MedievalMobHog
   description: They're a hog.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -1746,7 +1746,7 @@
   id: MedievalMobSpider
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -1835,7 +1835,7 @@
   id: MedievalMobSpiderCave
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -1953,7 +1953,7 @@
   id: MedievalMobSpiderStrongCave
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2172,7 +2172,7 @@
   id: MedievalMobSkeletWeak
   description: Practically no threat, you can kick back even with your fists
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
     drawdepth: Mobs
@@ -2224,7 +2224,7 @@
   id: MedievalMobSkeletMeat
   description: Slightly stronger than its previous counterpart, but still squishy.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
     drawdepth: Mobs
@@ -2276,7 +2276,7 @@
   id: MedievalMobSkeletFighter
   description: This one's already looking serious. But 1 on 1, he can still be beaten.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 540
   - type: Sprite
     drawdepth: Mobs
@@ -2329,7 +2329,7 @@
   id: MedievalMobSkeletLegion
   description: You should not approach him if you are not confident in your abilities.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2382,7 +2382,7 @@
   id: MedievalMobSkeletArcher
   description: A fairly weak ranged skeleton that doesn't pose much of a threat.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
@@ -2434,7 +2434,7 @@
   id: MedievalMobSkeletCrossbow
   description: A pretty serious ranged opponent. It is best to avoid skirmishes with him.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 210
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
@@ -2486,7 +2486,7 @@
   id: MedievalMobSkeletDark
   description: Your death.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/skelet_dark.rsi
@@ -2534,7 +2534,7 @@
   id: MedievalMobSkeletMace
   description: This skeleton has a mace and a shield.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2587,7 +2587,7 @@
   id: MedievalMobSkeletSpear
   description: This skeleton has a spear.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2640,7 +2640,7 @@
   id: MedievalMobSkeletHalberd
   description: This skeleton has a halberd.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2696,7 +2696,7 @@
   id: MedievalMobSkeletDagger
   description: This skeleton has a daggers.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2751,7 +2751,7 @@
   id: MedievalMobHunter
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     drawdepth: Mobs
@@ -2874,7 +2874,7 @@
   id: MedievalMobDevilMouse
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2987,7 +2987,7 @@
   id: MedievalMobCrab
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -3091,7 +3091,7 @@
   id: MedievalMobCrabDevil
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -3303,7 +3303,7 @@
     baseWalkSpeed: 1.65
     baseSprintSpeed: 1.65
   - type: HellRespawnAble
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 78000
   - type: TDMNaming
   - type: MeleeWeapon
@@ -3327,7 +3327,7 @@
   id: MedievalMobNastyGrowth
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
     drawdepth: Mobs
@@ -3414,7 +3414,7 @@
   id: MedievalMobShieldSlug
   description: They're a slug.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -3512,7 +3512,7 @@
   id: MedievalMobWingedShadow
   description: MedievalMobWingedShadow
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     drawdepth: Mobs

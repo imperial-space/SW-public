@@ -1449,9 +1449,7 @@
   craftTime: 6
   stacks:
     MedievalLeather1: 6
-    MedievalLeatherBelt: 2
-    WoodPlank: 5
-    MedievalRope: 4
+    MedievalRope: 2
   result: MedievalClothingOuterArmorGoblinLeather
 
 - type: CP14Recipe
