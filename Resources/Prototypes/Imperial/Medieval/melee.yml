@@ -3908,7 +3908,9 @@
     angle: 0
     animation: WeaponArcThrust
   - type: Item
-    size: Huge
+    size: Normal
+    shape:
+    - 0,0,4,0
   - type: Clothing
     quickEquip: false
     slots:
@@ -3917,7 +3919,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 38
+        Piercing: 39
+        Blunt: 3
   - type: EmbeddableProjectile
     offset: 0.15,0.15
   - type: ThrowingAngle
@@ -3925,6 +3928,7 @@
   - type: Tag
     tags:
     - Spear
+    - ThrowingSpear
   - type: LandAtCursor
   - type: Fixtures
     fixtures:
@@ -3962,7 +3966,9 @@
     angle: 0
     animation: WeaponArcThrust
   - type: Item
-    size: Huge
+    size: Normal
+    shape:
+    - 0,0,4,0
   - type: Clothing
     quickEquip: false
     slots:
@@ -3971,7 +3977,8 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Piercing: 38
+        Piercing: 39
+        Blunt: 3
   - type: EmbeddableProjectile
     offset: 0.15,0.15
   - type: ThrowingAngle
@@ -3979,6 +3986,7 @@
   - type: Tag
     tags:
     - Spear
+    - ThrowingSpear
   - type: LandAtCursor
   - type: Fixtures
     fixtures:
