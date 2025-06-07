@@ -1,4 +1,4 @@
-using Content.Shared.Imperial.OperationalErtCleaners.Components;
+using Content.Shared.Imperial.JanitorsResponseTeam.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Paper;
 using Content.Shared.Roles;
@@ -8,7 +8,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 
-namespace Content.Shared.Imperial.OperationalErtCleaners;
+namespace Content.Shared.Imperial.JanitorsResponseTeam;
 
 public sealed class SolutionDynamicColorOfStampSystem : EntitySystem
 {
@@ -42,6 +42,7 @@ public sealed class SolutionDynamicColorOfStampSystem : EntitySystem
         }
 
         stampComp.StampedColor = colorSolution;
+        Dirty(uid, stampComp);
     }
 
     private bool IsUserDefiniteJob(EntityUid user, SolutionDynamicColorOfStampComponent comp)

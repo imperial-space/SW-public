@@ -3,7 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Fax;
 using Content.Server.Station.Systems;
-using Content.Shared.Imperial.OperationalErtCleaners.Components;
+using Content.Shared.Imperial.JanitorsResponseTeam.Components;
 using Content.Shared.DeviceNetwork.Events;
 using Content.Shared.DeviceNetwork.Components;
 using Content.Shared.Database;
@@ -15,9 +15,9 @@ using Robust.Shared.Console;
 using System.Text.RegularExpressions;
 using System.Linq;
 
-namespace Content.Server.Imperial.OperationalErtCleaners;
+namespace Content.Server.Imperial.JanitorsResponseTeam;
 
-public sealed class CallErtViaCentcomFaxSystem : EntitySystem
+public sealed class CallJRTViaCentcomFaxSystem : EntitySystem
 {
     [Dependency] private readonly IConsoleHost _consoleHost = default!;
     [Dependency] private readonly IAdminLogManager _adminLog = default!;
@@ -26,11 +26,11 @@ public sealed class CallErtViaCentcomFaxSystem : EntitySystem
     [Dependency] private readonly StationSystem _stationSystem = default!;
     [Dependency] private readonly StationRecordsSystem _stationRecordsSystem = default!;
 
-    private readonly Regex _patternERTRequest1 = new(
-        @"ЗАПРОСНАВЫЗОВ",
+    private readonly Regex _patternJRTRequest1 = new(
+        @"ЗАПРОСНАВЫЗОВУБОРЩИКОВ",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
-    private readonly Regex _patternERTRequest2 = new(
-        @"ОБР-УБОРЩИКОВ",
+    private readonly Regex _patternJRTRequest2 = new(
+        @"БЫСТРОГОРЕАГИРОВАНИЯ",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
     private readonly Regex _patternShape = new(
         @"ФОРМА:NT\-([A-Z]{3})\-SOD-REQ",
@@ -47,15 +47,15 @@ public sealed class CallErtViaCentcomFaxSystem : EntitySystem
     private readonly Regex _patternProfession = new(
         @"ДОЛЖНОСТЬ\s*:\s*([а-яА-ЯёЁ\s-]+)",
         RegexOptions.Compiled | RegexOptions.IgnoreCase);
-    private int _callCounterErt = 0; // So that space assholes don't spam with the valid document
+    private int _callCounterJRT = 0; // So that space assholes don't spam with the valid document
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<CallErtViaCentcomFaxComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
+        SubscribeLocalEvent<CallJRTViaCentcomFaxComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
     }
 
-    private void OnPacketReceived(EntityUid uid, CallErtViaCentcomFaxComponent component, DeviceNetworkPacketEvent args)
+    private void OnPacketReceived(EntityUid uid, CallJRTViaCentcomFaxComponent component, DeviceNetworkPacketEvent args)
     {
         if (!HasComp<DeviceNetworkComponent>(uid))
             return;
@@ -75,17 +75,17 @@ public sealed class CallErtViaCentcomFaxSystem : EntitySystem
         Receive(uid, printout);
     }
 
-    public void Receive(EntityUid uid, FaxPrintout printout, CallErtViaCentcomFaxComponent? component = null)
+    public void Receive(EntityUid uid, FaxPrintout printout, CallJRTViaCentcomFaxComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
 
         /// If this squad has been called more than 1 time, then this is spam
-        if (_callCounterErt >= 1)
+        if (_callCounterJRT >= 1)
         {
-            _adminLog.Add(LogType.Action, LogImpact.High, $"[CentcomFax] Attempt to spam papers about the call ERT-Cleaners.");
-            _chatManager.SendAdminAnnouncement(Loc.GetString("admin-manager-fax-ert-cleaners-spam"));
-            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-spam"), component);
+            _adminLog.Add(LogType.Action, LogImpact.High, $"[CentcomFax] Attempt to spam papers about the call JRT.");
+            _chatManager.SendAdminAnnouncement(Loc.GetString("admin-manager-fax-jrt-spam"));
+            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-spam"), component);
             return;
         }
 
@@ -98,17 +98,17 @@ public sealed class CallErtViaCentcomFaxSystem : EntitySystem
         if (!IsPollutedStation(component))
             return;
 
-        _consoleHost.ExecuteCommand("callert ERT-Cleaners");
-        _chatManager.SendAdminAnnouncement(Loc.GetString("admin-manager-fax-ert-cleaners-accepted"));
-        _adminLog.Add(LogType.Action, LogImpact.Medium, $"[CentcomFax] A rapid response team (cleaners) has been called.");
+        _consoleHost.ExecuteCommand("callert JRT");
+        _chatManager.SendAdminAnnouncement(Loc.GetString("admin-manager-fax-jrt-accepted"));
+        _adminLog.Add(LogType.Action, LogImpact.Medium, $"[CentcomFax] JRT has been called.");
 
-        _callCounterErt++;
+        _callCounterJRT++;
     }
 
 
-    private bool IsValidDocument(EntityUid uid, string text, FaxPrintout printout, CallErtViaCentcomFaxComponent component)
+    private bool IsValidDocument(EntityUid uid, string text, FaxPrintout printout, CallJRTViaCentcomFaxComponent component)
     {
-        if (!IsCallingERT(text))
+        if (!IsCallingJRT(text))
             return false;
         if (!IsDocumentShape(text, component))
             return false;
@@ -128,7 +128,7 @@ public sealed class CallErtViaCentcomFaxSystem : EntitySystem
 
 
 
-    public bool IsPollutedStation(CallErtViaCentcomFaxComponent component)
+    public bool IsPollutedStation(CallJRTViaCentcomFaxComponent component)
     {
         int counter = 0;
 
@@ -160,64 +160,64 @@ public sealed class CallErtViaCentcomFaxSystem : EntitySystem
     }
 
 
-    private bool IsCallingERT(string text)
+    private bool IsCallingJRT(string text)
     {
-        var ertRequest1 = _patternERTRequest1.Match(text);
+        var ertRequest1 = _patternJRTRequest1.Match(text);
         if (!ertRequest1.Success)
             return false;
 
-        var ertRequest2 = _patternERTRequest2.Match(text);
+        var ertRequest2 = _patternJRTRequest2.Match(text);
         if (!ertRequest2.Success)
             return false;
 
-        _chatManager.SendAdminAnnouncement(Loc.GetString("admin-manager-fax-ert-cleaners-sent"));
-        _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] An attempt to send a document for a call ERT-cleaners.");
+        _chatManager.SendAdminAnnouncement(Loc.GetString("admin-manager-fax-jrt-sent"));
+        _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] An attempt to send a document for a call JRT.");
         return true;
     }
 
-    private bool IsDocumentShape(string text, CallErtViaCentcomFaxComponent component)
+    private bool IsDocumentShape(string text, CallJRTViaCentcomFaxComponent component)
     {
         var shape = _patternShape.Match(text);
         if (!shape.Success)
         {
             _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] Incorrect document FORM. The correct format: NT-XXX-SOD-REQ");
-            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-invalid-document"), component);
+            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-invalid-document"), component);
             return false;
         }
         return true;
     }
 
-    private bool IsStationNumber(string text, CallErtViaCentcomFaxComponent component)
+    private bool IsStationNumber(string text, CallJRTViaCentcomFaxComponent component)
     {
         var stationName = _patternStationName.Match(text);
         if (!stationName.Success)
         {
             _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] The station format is incorrect. The correct format: NT14-XX-###");
-            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-invalid-document"), component);
+            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-invalid-document"), component);
             return false;
         }
         return true;
     }
 
-    private bool IsDate(string text, CallErtViaCentcomFaxComponent component)
+    private bool IsDate(string text, CallJRTViaCentcomFaxComponent component)
     {
         var date = _patternDate.Match(text);
         if (!date.Success)
         {
             _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] Incorrect date format. The correct format: dd/mm/yyyy");
-            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-invalid-document"), component);
+            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-invalid-document"), component);
             return false;
         }
         return true;
     }
 
-    private bool IsNamePlayer(EntityUid uid, string text, CallErtViaCentcomFaxComponent component)
+    private bool IsNamePlayer(EntityUid uid, string text, CallJRTViaCentcomFaxComponent component)
     {
         var nameMatch = _patternNamePlayer.Match(text);
         if (!nameMatch.Success)
         {
             _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] The 'Подотчётное лицо' field was not found in the document.");
-            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-invalid-document"), component);
+            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-invalid-document"), component);
             return false;
         }
 
@@ -247,17 +247,17 @@ public sealed class CallErtViaCentcomFaxSystem : EntitySystem
         }
 
         _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] The name '{rawName}' was not found in the station records. Total records checked: {allRecords.Count()}.");
-        SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-invalid-document"), component);
+        SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-invalid-document"), component);
         return false;
     }
 
-    private bool IsProfession(EntityUid uid, string text, CallErtViaCentcomFaxComponent component)
+    private bool IsProfession(EntityUid uid, string text, CallJRTViaCentcomFaxComponent component)
     {
         var profession = _patternProfession.Match(text);
         if (!profession.Success)
         {
             _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] Incorrect profession.");
-            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-invalid-document"), component);
+            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-invalid-document"), component);
             return false;
         }
 
@@ -285,16 +285,16 @@ public sealed class CallErtViaCentcomFaxSystem : EntitySystem
         }
 
         _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] Profession '{rawProfession}' was not found in the station's records. Total records checked: {allRecords.Count()}.");
-        SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-invalid-document"), component);
+        SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-invalid-document"), component);
         return false;
     }
 
-    private bool IsStamp(FaxPrintout printout, CallErtViaCentcomFaxComponent component)
+    private bool IsStamp(FaxPrintout printout, CallJRTViaCentcomFaxComponent component)
     {
         if (printout.StampedBy.Count == 0)
         {
             _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] There are no seals. The correct format is the seal of the captain or the cleaner (then ONLY the cleaner puts the seal).");
-            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-invalid-document"), component);
+            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-invalid-document"), component);
             return false;
         }
 
@@ -303,17 +303,17 @@ public sealed class CallErtViaCentcomFaxSystem : EntitySystem
         if (hasCaptainStamp || hasMopStamp)
         {
             _adminLog.Add(LogType.Action, LogImpact.Low, $"[CentcomFax] Incorrect printing. The correct format is the seal of the captain or the cleaner (then ONLY the cleaner puts the seal).");
-            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-ert-cleaners-invalid-document"), component);
+            SendCentcomAnnouncement(Loc.GetString("centcom-announcement-jrt-invalid-document"), component);
             return false;
         }
         return true;
     }
 
-    private void SendCentcomAnnouncement(string message, CallErtViaCentcomFaxComponent comp)
+    private void SendCentcomAnnouncement(string message, CallJRTViaCentcomFaxComponent comp)
     {
         _chatSystem.DispatchGlobalAnnouncement(
             message,
-            sender: Loc.GetString("centcom-announcement-ert-cleaners-sender-name"),
+            sender: Loc.GetString("centcom-announcement-jrt-sender-name"),
             true,
             comp.Sound,
             colorOverride: Color.Gold

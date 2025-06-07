@@ -2873,7 +2873,7 @@ entities:
     - type: Transform
       pos: 0.5,1.5
       parent: 2
-- proto: SpawnERTWeakenedJanitorEVAPreset
+- proto: SpawnJRTEVAPreset
   entities:
   - uid: 17
     components:

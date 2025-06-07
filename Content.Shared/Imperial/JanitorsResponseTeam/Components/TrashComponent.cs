@@ -1,4 +1,4 @@
-namespace Content.Shared.Imperial.OperationalErtCleaners.Components;
+namespace Content.Shared.Imperial.JanitorsResponseTeam.Components;
 
 [RegisterComponent]
 public sealed partial class TrashComponent : Component

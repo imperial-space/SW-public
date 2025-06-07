@@ -1,9 +1,9 @@
 using Robust.Shared.Audio;
 
-namespace Content.Server.Imperial.OperationalErtCleaners;
+namespace Content.Server.Imperial.JanitorsResponseTeam;
 
 [RegisterComponent]
-public sealed partial class CallErtViaCentcomFaxComponent : Component
+public sealed partial class CallJRTViaCentcomFaxComponent : Component
 {
     /// <summary>
     /// How much do need TrashSmall to add to MinAcceptedTrash in the counter for this to be true?

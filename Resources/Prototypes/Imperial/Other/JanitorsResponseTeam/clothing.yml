@@ -1,7 +1,7 @@
 - type: entity
   parent: ClothingOuterHardsuitCBURN
-  id: ClothingOuterWeakenedHardsuitERTJanitor
-  name: ERT janitor's hardsuit
+  id: ClothingOuterHardsuitJRT
+  name: JRT hardsuit
   description: A protective hardsuit worn by the janitors of an emergency response team.
   components:
   - type: Sprite
@@ -9,7 +9,7 @@
   - type: Clothing
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
   - type: ToggleableClothing
-    clothingPrototype: ClothingHeadHelmetHardsuitERTJanitor
+    clothingPrototype: ClothingHeadHelmetHardsuitJRT
   - type: Armor
     modifiers:
       coefficients:
@@ -22,3 +22,16 @@
         Radiation: 0.8
         Caustic: 0.8
         Stamina: 0.8
+
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  id: ClothingHeadHelmetHardsuitJRT
+  name: JRT hardsuit helmet
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hardsuits/ERThelmets/ertjanitor.rsi
+  - type: PointLight
+    color: "#cbadff"

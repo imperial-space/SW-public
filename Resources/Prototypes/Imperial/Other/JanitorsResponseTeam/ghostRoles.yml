@@ -1,6 +1,6 @@
 - type: entity
-  id: SpawnERTWeakenedJanitorEVAPreset
-  name: ghost role ERTWeakenedJunitor spawn point
+  id: SpawnJRTEVAPreset
+  name: ghost role JRT spawn point
   parent: MarkerBase
   components:
     - type: GhostRole
@@ -10,7 +10,7 @@
       raffle:
         settings: short
     - type: GhostRoleMobSpawner
-      prototype: ERTWeakenedJanitorEVAPreset
+      prototype: JRTEVAPreset
     - type: Sprite
       sprite: Markers/jobs.rsi
       layers:
