@@ -1,22 +1,17 @@
 - type: entity
   parent: [BaseERTUplink]
   id: JRTUplink
-  suffix: JRT
+  suffix: JRT, 20
   components:
   - type: Store
     categories:
     - ERTUplinkUtilities
-    - JRTUplink
+    - ERTUplinkJunitor
     - ERTUplinkPointless
     currencyWhitelist:
     - BlueSpaceCube
     balance:
       BlueSpaceCube: 20
-
-- type: storeCategory
-  id: JRTUplink
-  name: Продвинутая уборка
-
 # Catalog:
 
 - type: listing
@@ -27,7 +22,7 @@
   cost:
     BlueSpaceCube: 1
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkTrashBag
@@ -37,7 +32,7 @@
   cost:
     BlueSpaceCube: 2
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkMopItem
@@ -47,7 +42,7 @@
   cost:
     BlueSpaceCube: 3
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 
 - type: listing
@@ -58,7 +53,7 @@
   cost:
     BlueSpaceCube: 3
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkHoloprojector
@@ -68,7 +63,7 @@
   cost:
     BlueSpaceCube: 3
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkSoapOmega
@@ -78,8 +73,17 @@
   cost:
     BlueSpaceCube: 5
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
+- type: listing
+  id: ErtCallUplinkClothingBackpackDuffelWithGrenadesCleanade
+  name: jrt-uplink-clothingbackpackduffelwithgrenadescleanade-name
+  description: jrt-uplink-clothingbackpackduffelwithgrenadescleanade-desc
+  productEntity: ClothingBackpackDuffelWithGrenadesCleanade
+  cost:
+    BlueSpaceCube: 6
+  categories:
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkSpaceMobCleanBot
@@ -87,9 +91,9 @@
   description: jrt-uplink-mobcleanbot-desc
   productEntity: MobCleanBot
   cost:
-    BlueSpaceCube: 7
+    BlueSpaceCube: 6
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkBoxCleanerGrenades
@@ -99,7 +103,7 @@
   cost:
     BlueSpaceCube: 7
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkJanitorialTrolley
@@ -109,7 +113,7 @@
   cost:
     BlueSpaceCube: 8
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkClothingBackpackDuffelWithHydra
@@ -119,7 +123,7 @@
   cost:
     BlueSpaceCube: 12
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkMegaSpaceCleanerSprayBottleFull
@@ -129,14 +133,14 @@
   cost:
     BlueSpaceCube: 14
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor
 
 - type: listing
   id: ErtCallUplinkCrateERTSpaceSprayNozzle
-  name: jrt-uplink-crateertspacespraynozzler-name
-  description: jrt-uplink-crateertspacespraynozzler-desc
+  name: jrt-uplink-crateJRTspacespraynozzler-name
+  description: jrt-uplink-crateJRTspacespraynozzler-desc
   productEntity: CrateJRTSpaceSprayNozzle
   cost:
     BlueSpaceCube: 14
   categories:
-  - JRTUplink
+  - ERTUplinkJunitor

@@ -1013,7 +1013,6 @@
     BlueSpaceCube: 6
   categories:
   - ERTUplinkJunitor
-  - JRTUplink
 
 - type: listing
   id: ErtCallUplinkWeedSpray
@@ -1024,7 +1023,6 @@
     BlueSpaceCube: 1
   categories:
   - ERTUplinkJunitor
-  - JRTUplink
 
 - type: listing
   id: ErtCallUplinkLightReplacer
@@ -1035,7 +1033,6 @@
     BlueSpaceCube: 2
   categories:
   - ERTUplinkJunitor
-  - JRTUplink
 
 - type: listing
   id: ErtCallUplinkSprayBottleSpaceCleaner
@@ -1046,7 +1043,6 @@
     BlueSpaceCube: 1
   categories:
   - ERTUplinkJunitor
-  - JRTUplink
 
 - type: listing
   id: ErtCallUplinkMopBucketFull
@@ -1057,7 +1053,6 @@
     BlueSpaceCube: 4
   categories:
   - ERTUplinkJunitor
-  - JRTUplink
 
 - type: listing
   id: ErtCallUplinkBucket
@@ -1068,7 +1063,6 @@
     BlueSpaceCube: 2
   categories:
   - ERTUplinkJunitor
-  - JRTUplink
 
 - type: listing
   id: ErtCallUplinkBoxBodyBag
@@ -1079,7 +1073,6 @@
     BlueSpaceCube: 4
   categories:
   - ERTUplinkJunitor
-  - JRTUplink
 
 #ERTUplinkUtilities
 - type: listing

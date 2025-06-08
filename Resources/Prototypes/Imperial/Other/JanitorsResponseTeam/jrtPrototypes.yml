@@ -62,3 +62,15 @@
       - id: WeaponLauncherHydra
       - id: GrenadeCleanade
         amount: 8
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelWithGrenadesCleanade
+  name: Duffel bag
+  suffix: JRT
+  description: A duffel bag of S-o.N.A. AI Dynamics corporation, with additional BlueSpace storage, which was leased from NanoTrasen.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeCleanade
+        amount: 12
