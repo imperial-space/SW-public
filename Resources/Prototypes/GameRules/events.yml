@@ -198,6 +198,7 @@
   - type: AntagLoadProfileRule
   - type: AntagObjectives
     objectives:
+    - LeaveNoTraceObjective # Imperial Space Ninja
     - StealResearchObjective
     - DoorjackObjective
     - SpiderChargeObjective
