@@ -2062,8 +2062,6 @@
     species:
     - Skeleton
     inverted: true
-  - !type:ExamRequirement
-    exam: Debug
   #- !type:DepartmentTimeRequirement
   #  department: Legion
   #  time: 7200 # Imperial medieval role timers (2 hours)
@@ -3323,10 +3321,12 @@
   name: job-name-banditLeader-medieval
   description: job-description-banditLeader-medieval
   playTimeTracker: JobMedievalBanditLeader
-  #requirements:
-  #  - !type:DepartmentTimeRequirement
-  #    department: Band
-  #    time: 7200 #Imperial role timers
+  requirements:
+  - !type:DepartmentTimeRequirement
+      department: Band
+      time: 7200 #Imperial role timers
+  - !type:ExamRequirement
+    exam: AdvancedDebugExam
   startingGear: MedievalBanditLeaderGear
   icon: "JobIconMedievalBanditLeader"
   special:

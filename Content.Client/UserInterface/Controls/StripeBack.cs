@@ -8,7 +8,13 @@ namespace Content.Client.UserInterface.Controls
     {
         private const float PadSize = 4;
         private const float EdgeSize = 2;
-        private static readonly Color EdgeColor = Color.FromHex("#525252ff");
+
+        // Why the fuck,
+        // what the fuck,
+        // I fuck you and all your coderbase,
+        // it's fucking hell.
+        //             -TornadoTech
+        public Color EdgeColor = Color.FromHex("#525252ff");
 
         private bool _hasTopEdge = true;
         private bool _hasBottomEdge = true;

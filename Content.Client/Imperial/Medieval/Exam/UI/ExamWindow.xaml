@@ -6,15 +6,6 @@
                             xmlns:ui="clr-namespace:Content.Client.Imperial.UI">
     <BoxContainer VerticalExpand="True"
                   Orientation="Vertical">
-
-        <!-- Selection -->
-        <ScrollContainer Name="ExamsSelectionContainer"
-                         HorizontalExpand="True"
-                         VerticalExpand="True"
-                         MinWidth="200">
-            <BoxContainer Name="ExamsScroll" Orientation="Vertical" HorizontalExpand="True"/>
-        </ScrollContainer>
-
         <!-- Exam view -->
         <BoxContainer Name="ExamsContainer"
                       VerticalExpand="True"

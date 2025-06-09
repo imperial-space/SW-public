@@ -1,0 +1,26 @@
+﻿<windows:BaseImperialWindow xmlns="https://spacestation14.io"
+                            HeaderText="{ Loc ui-imperial-exam-title }"
+                            MinSize="700 400"
+                            xmlns:windows="clr-namespace:Content.Client.Imperial.UI.Windows">
+    <BoxContainer HorizontalExpand="True"
+                  VerticalExpand="True"
+                  Orientation="Vertical">
+        <TextureRect Name="Icon"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Top"
+                     MinSize="196 196"
+                     Margin="4"
+                     Stretch="KeepAspectCentered" />
+
+        <RichTextLabel StyleClasses="LabelReconnectWindow30"
+                       Name="LabelTitle"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="0 0 0 32"/>
+
+        <RichTextLabel StyleClasses="LabelSubTextPassLower"
+                       Name="LabelDescription"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"/>
+    </BoxContainer>
+</windows:BaseImperialWindow>

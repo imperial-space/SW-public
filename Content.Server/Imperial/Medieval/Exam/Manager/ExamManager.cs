@@ -60,10 +60,7 @@ public sealed class ExamManager : IExamManager
                 continue;
 
             if (!message.Answers.TryGetValue(task, out var answer))
-            {
-                incorrect += examPrototype.Tasks.Count;
                 continue;
-            }
 
             if (taskPrototype.Correct != answer)
                 incorrect++;

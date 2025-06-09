@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.ContextMenu.UI;
 using Content.Client.Examine;
+using Content.Client.Imperial.UI;
 using Content.Client.PDA;
 using Content.Client.Resources;
 using Content.Client.Silicons.Laws.SiliconLawEditUi;
@@ -1503,6 +1504,33 @@ namespace Content.Client.Stylesheets
                 //    }),
                 // Imperial Pass End
                 // NanoHeading
+
+                // Imperial Medieval Exam Begin
+                Element<BoxContainer>()
+                    .Class("imperialExam")
+                    .Prop(StripeBack.StylePropertyBackground,
+                        new StyleBoxTexture
+                        {
+                            Texture = resCache.GetTexture("/Textures/Imperial/Interface/Style/exam_stripeback.svg.96dpi.png"),
+                            Mode = StyleBoxTexture.StretchMode.Tile
+                        }
+                    ),
+
+                Element<StripeBack>()
+                    .Class("imperialExam")
+                    .Prop(StripeBack.StylePropertyBackground,
+                        new StyleBoxTexture
+                        {
+                            Texture = resCache.GetTexture("/Textures/Imperial/Interface/Style/exam_stripeback.svg.96dpi.png"),
+                            Mode = StyleBoxTexture.StretchMode.Tile
+                        }
+                    ),
+
+                Element<TextButton>()
+                    .Class("LabelSubText")
+                    .Prop(Label.StylePropertyFont, notoSans10)
+                    .Prop(Label.StylePropertyFontColor, Color.DarkGray),
+                // Imperial Medieval Exam End
 
                 new StyleRule(
                     new SelectorChild(

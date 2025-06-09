@@ -34,7 +34,13 @@ public sealed partial class ExamRequirement : JobRequirement
         if (examSystem.Pass(user, Exam))
             return true;
 
-        reason = FormattedMessage.FromUnformatted($"Test {Exam} not pased");
+        // Yeah, yeah, very funny,
+        // we don't know anything other than the string on the client,
+        // so we'll just send a shizotag to avoid fucking up all the code,
+        // good luck figuring this shit out,
+        // GOOOOOOOL
+        //             -TornadoTech
+        reason = FormattedMessage.FromUnformatted($"$IMPMDExamNotPassed_{Exam}_$");
         return false;
     }
 }
