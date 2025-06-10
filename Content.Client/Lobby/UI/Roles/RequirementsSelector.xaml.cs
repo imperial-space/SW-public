@@ -1,6 +1,7 @@
 using System.Numerics;
 using System.Text.RegularExpressions;
 using Content.Client.Imperial.Medieval.Exam;
+using Content.Client.Imperial.Medieval.Exam.UI;
 using Content.Client.Imperial.UI;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
@@ -30,6 +31,8 @@ public sealed partial class RequirementsSelector : BoxContainer
 
     private readonly Label _requirementsLabel;
     private readonly TextButton _requirementsExamTypeLabel;
+
+    private readonly ExamStartWindow _examStartWindow;
 
     private List<ProtoId<GuideEntryPrototype>>? _guides;
 
@@ -81,7 +84,14 @@ public sealed partial class RequirementsSelector : BoxContainer
             StyleClasses = {StyleBase.StyleClassLabelSubText},
         };
 
-        _requirementsExamTypeLabel.OnPressed += _ => Exam.OpenWindow(_examPrototype);
+        _examStartWindow = _userInterface.CreateWindow<ExamStartWindow>();
+
+        _requirementsExamTypeLabel.OnPressed += _ =>
+        {
+            _examStartWindow.Refresh(_examPrototype);
+            _examStartWindow.OpenCentered();
+            _examStartWindow.MoveToFront();
+        };
 
         _lockStripe = new StripeBack()
         {

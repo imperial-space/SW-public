@@ -1,0 +1,35 @@
+﻿<windows:BaseImperialWindow xmlns="https://spacestation14.io"
+                            HeaderText="{ Loc ui-imperial-exam-title }"
+                            MinSize="700 400"
+                            xmlns:windows="clr-namespace:Content.Client.Imperial.UI.Windows"
+                            xmlns:ui="clr-namespace:Content.Client.Imperial.UI">
+    <BoxContainer HorizontalExpand="True"
+                  VerticalExpand="True"
+                  Orientation="Vertical">
+        <TextureRect Name="Icon"
+                     HorizontalAlignment="Center"
+                     VerticalAlignment="Top"
+                     MinSize="196 196"
+                     Margin="4"
+                     Stretch="KeepAspectCentered" />
+
+        <RichTextLabel StyleClasses="LabelReconnectWindow30"
+                       Text="Тестирование"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"
+                       Margin="8 0 8 32"/>
+
+        <RichTextLabel StyleClasses="LabelSubTextPassLower"
+                       Name="TextLabel"
+                       Margin="8"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Top"/>
+
+        <ui:BaseImperialButton StyleClasses="chatSelectorOptionButton"
+                               NormalColor="#D1992C"
+                               DisabledColor="#1F1F1F"
+                               Name="StartButton"
+                               Text="{ Loc ui-imperial-exam-send-button-disabled }"
+                               Margin="8"/>
+    </BoxContainer>
+</windows:BaseImperialWindow>

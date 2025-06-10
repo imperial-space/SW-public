@@ -10,8 +10,12 @@ public sealed class ExamSystem : SharedExamSystem
 {
     [Dependency] private readonly IExamManager _exam = default!;
 
+    private readonly Dictionary<ProtoId<ExamPrototype>, DateTime> _lastAttemptCache = new();
     private readonly List<ProtoId<ExamPrototype>> _passedCache = new();
+
     private PlayerPreferenceExams? _cache;
+
+    public IReadOnlyDictionary<ProtoId<ExamPrototype>, DateTime> LastAttempts => _lastAttemptCache;
 
     public override void Initialize()
     {
@@ -32,11 +36,14 @@ public sealed class ExamSystem : SharedExamSystem
     {
         _cache = exams;
 
+        _lastAttemptCache.Clear();
         _passedCache.Clear();
         foreach (var (prototype, data) in exams.Data)
         {
             if (data.Passed)
                 _passedCache.Add((ProtoId<ExamPrototype>) prototype);
+
+            _lastAttemptCache[prototype] = data.LastAttemptTime;
         }
     }
 
