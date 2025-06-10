@@ -137,11 +137,9 @@
         - EncryptionKeySpiderClanChannel
         - EncryptionKeyCommon
   - type: Sprite
-    sprite: Imperial/SpiderClan/Clothing/headset.rsi
-    state: green
+    sprite: Imperial/SpiderClan/Clothing/headsets/green.rsi
   - type: Clothing
-    sprite: Imperial/SpiderClan/Clothing/headset.rsi
-    state: green-equipped-EYES
+    sprite: Imperial/SpiderClan/Clothing/headsets/green.rsi
 
 - type: entity
   parent: ClothingHeadset
@@ -158,11 +156,9 @@
         - EncryptionKeySpiderClanChannel
         - EncryptionKeyCommon
   - type: Sprite
-    sprite: Imperial/SpiderClan/Clothing/headset.rsi
-    state: red
+    sprite: Imperial/SpiderClan/Clothing/headsets/red.rsi
   - type: Clothing
-    sprite: Imperial/SpiderClan/Clothing/headset.rsi
-    state: red-equipped-EYES
+    sprite: Imperial/SpiderClan/Clothing/headsets/red.rsi
 
 - type: entity
   parent: ClothingHeadset
@@ -179,8 +175,6 @@
         - EncryptionKeySpiderClanChannel
         - EncryptionKeyCommon
   - type: Sprite
-    sprite: Imperial/SpiderClan/Clothing/headset.rsi
-    state: blue
+    sprite: Imperial/SpiderClan/Clothing/headsets/blue.rsi
   - type: Clothing
-    sprite: Imperial/SpiderClan/Clothing/headset.rsi
-    state: blue-equipped-EYES
+    sprite: Imperial/SpiderClan/Clothing/headsets/blue.rsi
