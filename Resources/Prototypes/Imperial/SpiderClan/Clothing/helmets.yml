@@ -20,8 +20,6 @@
   #  overlay: true
   #  useOverLayerData: true
   #  assaultOverLay: true
-  - type: StaticPrice
-    price: 55000
 
 - type: entity
   parent: ClothingHeadHelmetSpaceNinja
@@ -45,8 +43,6 @@
   #  overlay: true
   #  useOverLayerData: true
   #  assaultOverLay: true
-  - type: StaticPrice
-    price: 55000
 
 - type: entity
   parent: ClothingHeadHelmetSpaceNinja
@@ -70,8 +66,6 @@
   #  overlay: true
   #  useOverLayerData: true
   #  assaultOverLay: true
-  - type: StaticPrice
-    price: 55000
 
 - type: entity
   parent: [ClothingHeadBase, BaseMajorContraband]
@@ -106,8 +100,6 @@
   #  overlay: true
   #  useOverLayerData: true
   #  assaultOverLay: true
-  - type: StaticPrice
-    price: 55000
 
 - type: entity
   parent: [ClothingHeadBase, BaseMajorContraband]
@@ -142,8 +134,6 @@
   #  overlay: true
   #  useOverLayerData: true
   #  assaultOverLay: true
-  - type: StaticPrice
-    price: 55000
 
 - type: entity
   parent: [ClothingHeadBase, BaseMajorContraband]
@@ -178,5 +168,3 @@
   #  overlay: true
   #  useOverLayerData: true
   #  assaultOverLay: true
-  - type: StaticPrice
-    price: 55000

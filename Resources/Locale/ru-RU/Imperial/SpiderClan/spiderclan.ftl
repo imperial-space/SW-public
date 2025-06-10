@@ -4,6 +4,7 @@ ent-SpiderClanBanner = знамя клана Паука
 ent-NinjaSleeper = анализатор разума
     .desc = Специальное устройство, которое позволит вам узнать их самые грязные секреты...
 
+chat-spiderclan-ch = Клан Паука
 ent-Ninja = ниндзя
 ent-NinjaIDCard = ID карта доступа
     .desc = Она выглядит довольно необычно...
