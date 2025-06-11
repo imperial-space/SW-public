@@ -91,7 +91,20 @@
     - Biological
   - type: ShowThirstIcons
   - type: ShowHungerIcons
+  - type: ShowSyndicateIcons
   - type: TrayScanner
+  - type: ClothingSpeedModifier
+    walkModifier: 1.5
+    sprintModifier: 1.1
+  - type: StaticPrice
+    price: 62350
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
 
 - type: entity
   parent: [ClothingEyesEyepatchEngineering, ClothingHeadEyeBaseFlipped]

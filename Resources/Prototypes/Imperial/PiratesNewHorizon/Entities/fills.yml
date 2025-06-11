@@ -52,3 +52,36 @@
       - id: CigaretteSyndicate
       - id: Cigarette
         amount: 5
+
+- type: entity
+  parent: CrateBaseSecure
+  id: CratePirateSecure
+  name: pirate chest
+  description: A space pirate chest, not for station lubbers.
+  components:
+  - type: Sprite
+    sprite: Structures/Storage/Crates/piratechest.rsi
+    layers:
+    - state: crate
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: crate_door
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: welded
+      visible: false
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: paper
+      sprite: Structures/Storage/Crates/labels.rsi
+      offset: "0.0,-0.09375"
+      map: ["enum.PaperLabelVisuals.Layer"]
+    - state: locked
+      map: ["enum.LockVisualLayers.Lock"]
+      shader: unshaded
+  - type: Icon
+    sprite: Structures/Storage/Crates/piratechest.rsi
+    state: crate_icon
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateDoorOpen: crate_open
+    stateDoorClosed: crate_door
+  - type: AccessReader
+    access: [["CaptainPirate"]]

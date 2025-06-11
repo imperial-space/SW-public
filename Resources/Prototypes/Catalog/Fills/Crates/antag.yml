@@ -2,7 +2,7 @@
   id: CratePirateChestCaptain
   name: captains pirate chest
   suffix: Filled
-  parent: [CratePirate, CrateBaseSecure] #Imperial Space Pirates: New Horizon
+  parent: CratePirateSecure #Imperial Space Pirates: New Horizon
   components:
   - type: StorageFill
     contents:
@@ -16,7 +16,7 @@
   id: CratePirateChest
   name: crews pirate chest
   suffix: Filled
-  parent: [CratePirate, CrateBaseSecure] #Imperial Space Pirates: New Horizon
+  parent: CratePirateSecure #Imperial Space Pirates: New Horizon
   components:
   - type: StorageFill
     contents:
