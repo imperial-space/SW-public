@@ -1186,6 +1186,12 @@
   name: MedievalMedicalBed
   description: MedievalMedicalBed
   components:
+  - type: Strap
+    buckleTime: 0.5
+    unbuckleTime: 0.5
+  - type: Buckle
+  - type: BloodRegenBed
+    bloodRegenMultiplier: 2.0
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: bed
@@ -1206,6 +1212,12 @@
   name: MedievalMedicalBed2
   description: MedievalMedicalBed2
   components:
+  - type: Strap
+    buckleTime: 0.5
+    unbuckleTime: 0.5
+  - type: Buckle
+  - type: BloodRegenBed
+    bloodRegenMultiplier: 5.0
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: bed2
