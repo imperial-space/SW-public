@@ -1337,21 +1337,6 @@
     sprite: Imperial/Medieval/Clothing/Armor/white_charmer_weak.rsi
 
 - type: entity
-  parent: MedievalClothingOuterArmorCharmerWeak
-  id: MedievalClothingOuterArmorWhiteWizardCharmerWeak
-  name: MedievalClothingOuterArmorWhiteWizardCharmerWeak
-  description: An upgraded armor with iron plates to protect against melee weapons.
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Armor/whitecharmer_weak.rsi
-  - type: Clothing
-    equipDelay: 3
-    unequipDelay: 3
-    sprite: Imperial/Medieval/Clothing/Armor/whitecharmer_weak.rsi
-  - type: ToggleableClothing
-    clothingPrototype: MedievalClothingHeadHelmetCharmerLightWhiteWizard
-
-- type: entity
   parent: ClothingOuterArmorPodWars
   id: MedievalClothingOuterArmorGoblinSlayer
   name: ironclad II armor
