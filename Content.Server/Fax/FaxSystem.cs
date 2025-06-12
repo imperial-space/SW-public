@@ -525,7 +525,6 @@ public sealed class FaxSystem : EntitySystem
             { FaxConstants.FaxPaperContentData, paper.Content },
             { FaxConstants.FaxPaperLockedData, paper.EditingDisabled },
         };
-
         if (metadata.EntityPrototype != null)
         {
             // TODO: Ideally, we could just make a copy of the whole entity when it's

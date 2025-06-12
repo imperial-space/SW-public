@@ -535,6 +535,8 @@
           Quantity: 5
   - type: Food
     requiresSpecialDigestion: true
+  - type: Trash # Imperial "OperationalErtCleaners"
+    size: Medium # Imperial "OperationalErtCleaners"
 
 - type: entity
   categories: [ HideSpawnMenu ]
