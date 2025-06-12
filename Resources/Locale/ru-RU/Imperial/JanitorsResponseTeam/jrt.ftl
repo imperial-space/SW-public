@@ -21,6 +21,10 @@ ent-ClothingHeadHelmetHardsuitJRT = шлем скафандра УБР
 ent-JRTEVAPreset = УБР
 
 ent-SpawnJRTEVAPreset = Спавн УБР
+    .desc = Спавнит УБРчика маленького такого ути-пути
+jrt-eva-name = УБР
+jrt-eva-desc = Уборщик Быстрого Реагирования
+jrt-eva-rules = Ваша задача очень интересна! Вам нужно убрать весь мусор со станции и вычистить её до блеска! Удачи!
 
 ent-JRTUplink = { ent-BaseERTUplink }
     .desc = { ent-BaseERTUplink.desc }

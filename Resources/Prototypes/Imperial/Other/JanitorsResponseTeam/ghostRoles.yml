@@ -4,9 +4,9 @@
   parent: MarkerBase
   components:
     - type: GhostRole
-      name: ertcall-janitor-eva-name
-      description: ertcall-janitor-eva-desc
-      rules: ertcall-janitor-eva-rules
+      name: jrt-eva-name
+      description: jrt-eva-desc
+      rules: jrt-eva-rules
       raffle:
         settings: short
     - type: GhostRoleMobSpawner
