@@ -621,6 +621,38 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  
+- type: entity
+  parent: MedievalClothingHeadHelmetCollegiumPurpleHat
+  id: MedievalClothingHeadHelmetCollegiumHatBaronSaturday
+  name: MedievalClothingHeadHelmetCollegiumHatBaronSaturday
+  description: MedievalClothingHeadHelmetCharmerLightBaronSaturday
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmerbaron.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmerbaron.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightPurpleScar
+  name: MedievalClothingHeadHelmetCharmerLightPurpleScar
+  description: MedievalClothingHeadHelmetCharmerLightPurpleScar
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalClothingHeadHelmetCharmerLightWhiteWizard
+  name: MedievalClothingHeadHelmetCharmerLightWhiteWizard
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/whitecharmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/whitecharmer.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
@@ -716,6 +748,17 @@
   - type: HideLayerClothing
     slots:
     - Hair
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakPurpleScar
+  name: MedievalClothingHeadHelmetCharmerWeakPurpleScar
+  description: MedievalClothingHeadHelmetCharmerWeakPurpleScar
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
@@ -1188,3 +1231,37 @@
         Blunt: 0.9
         Slash: 0.85
         Piercing: 0.95
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadRoyalHelmet
+  name: MedievalClothingHeadRoyalHelmet
+  description: MedievalClothingHeadRoyalHelmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: MedievalClothingHeadRoyalHoop
+  name: MedievalClothingHeadRoyalHoop
+  description: MedievalClothingHeadRoyalHoop
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalhoop.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalhoop.rsi
+    equipSound:
+      path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.85
+        Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
