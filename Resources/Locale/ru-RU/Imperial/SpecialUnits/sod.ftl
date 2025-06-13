@@ -1,2 +1,2 @@
 department-SpecialOperationsDepartment = Департамент Специальных Операций
-department-SpecialOperationsDepartment-description = Защитнки активов NT в секторе и просто суровые парни/девушки с пушками.
+department-SpecialOperationsDepartment-description = Защитники активов NT в секторе и просто суровые парни/девушки с пушками.
