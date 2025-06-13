@@ -257,9 +257,10 @@
   - KittyEnergyClaws
 
 - type: entity
-  name: energy claws
+  name: energy claws #Лазерный когти
   parent: BaseItem
   id: KittyEnergyClaws
+  categories: [ HideSpawnMenu ]
   description: A very loud & dangerous sw-... claws with a beam made of pure, concentrated plasma. Cat claws?..
   components:
   - type: EnergySword

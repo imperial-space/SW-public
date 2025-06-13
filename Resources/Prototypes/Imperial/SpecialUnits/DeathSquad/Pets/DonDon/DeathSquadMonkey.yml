@@ -16,8 +16,8 @@
     makeSentient: true
     allowSpeech: true
     allowMovement: true
-    name: ghost-role-information-dondon-name
-    description: ghost-role-information-dondon-description
+    name: ghost-role-information-dsmonkey-name
+    description: ghost-role-information-dsmonkey-description
     rules: ertcall-deathsquad-security-eva-rules
   - type: GhostTakeoverAvailable
   - type: Butcherable

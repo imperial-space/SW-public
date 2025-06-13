@@ -20,11 +20,11 @@
   - type: AmmoCounter
   - type: BallisticAmmoProvider
     proto: GrenadeFrag
-    capacity: 60
+    capacity: 40
   - type: Gun
     minAngle: 1
     maxAngle: 2
-    fireRate: 1.5
+    fireRate: 1
     soundGunshot:
       path:  /Audio/Imperial/SpecialUnits/RCU/Criminality/nuhuh.ogg
   - type: Appearance
