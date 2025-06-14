@@ -307,4 +307,3 @@
     exclusiveAntag: true
     roleType: TeamAntagonist
   - type: ZombieRole
-    subtype: role-subtype-zombie
