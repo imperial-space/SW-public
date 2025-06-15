@@ -269,7 +269,7 @@
     sprite: Clothing/Eyes/Hud/secpatch.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/secpatch.rsi
-    #Imperial Space Pirates: New Horizon
+    #Imperial Space Pirates: New Horizon start
   - type: Tag
     tags:
     - EyepatchSecurity
