@@ -317,7 +317,7 @@
     sprite: Clothing/Eyes/Hud/diagpatch.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/diagpatch.rsi
-    #Imperial Space Pirates: New Horizon
+    #Imperial Space Pirates: New Horizon start
   - type: Tag
     tags:
     - EyepatchDiagnostic
