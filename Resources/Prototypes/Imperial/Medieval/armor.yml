@@ -1175,6 +1175,19 @@
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightAncientMage
+  name: MedievalClothingOuterArmorCharmerLightAncientMage
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/ancientmage.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/ancientmage.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
   id: MedievalClothingOuterArmorCharmerLightLegion
   name: cloth
   description: An upgraded armor with iron plates to protect against melee weapons.
@@ -1335,6 +1348,19 @@
     equipDelay: 3
     unequipDelay: 3
     sprite: Imperial/Medieval/Clothing/Armor/white_charmer_weak.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakStrayMage
+  name: MedievalClothingOuterArmorCharmerWeakStrayMage
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/stray.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/stray.rsi
 
 - type: entity
   parent: ClothingOuterArmorPodWars
