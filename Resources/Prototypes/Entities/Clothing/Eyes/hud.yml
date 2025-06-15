@@ -300,7 +300,7 @@
   - type: Construction
     graph: BeerEyepatchHud
     node: beerEyepatch
-
+#Imperial Space Pirates: New Horizon end
 
 - type: entity
   parent: [ClothingEyesEyepatchHudBeer, ClothingHeadEyeBaseFlipped]
