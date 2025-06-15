@@ -25,7 +25,7 @@
       Glass: 150
   - type: StaticPrice
     price: 85
-  #Imperial Space Pirates: New Horizon
+  #Imperial Space Pirates: New Horizon start
   - type: Tag
     tags:
     - TrayScanner
