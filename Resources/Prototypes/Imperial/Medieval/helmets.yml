@@ -773,6 +773,17 @@
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakStrayMage
+  name: MedievalClothingHeadHelmetCharmerWeakStrayMage
+  description: MedievalClothingHeadHelmetCharmerWeakStrayMage
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/stray.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/stray.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
   id: MedievalClothingHeadHelmetWhiteCharmerWeak
   name: MedievalClothingHeadHelmetWhiteCharmerWeak
   description: MedievalClothingHeadHelmetWhiteCharmerWeak
