@@ -32,6 +32,7 @@
   - type: Tag
     tags:
       - Eyepatch
+      #Imperial Space Pirates: New Horizon end
 
 - type: entity
   parent: [ClothingEyesEyepatch, ClothingHeadEyeBaseFlipped]
