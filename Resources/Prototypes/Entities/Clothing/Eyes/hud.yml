@@ -89,7 +89,7 @@
   - type: StealTarget
     stealGroup: ClothingEyesHudBeer
   - type: SolutionScanner
-  #Imperial Space Pirates: New Horizon
+  #Imperial Space Pirates: New Horizon start
   - type: Tag
     tags:
     - HudBeer
