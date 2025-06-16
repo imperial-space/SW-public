@@ -8,6 +8,6 @@
     itemIconStyle: NoItem
     icon:
       sprite: Imperial/Medieval/CombatStance/point.rsi
-      state: green
+      state: marker-icon
     event: !type:CombatStancePointEvent
     useDelay: 0.5
