@@ -9,6 +9,24 @@
     "states": [
       {
         "name": "spaceninja"
+      },
+      {
+        "name": "unshaded"
+      },
+      {
+        "name": "holo",
+        "delays": [
+                [
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1,
+                    0.1
+                ]
+            ]
       }
     ]
   }

@@ -39,6 +39,9 @@
     sprite: Imperial/SpiderClan/Misc/Card.rsi
     layers:
     - state: spaceninja
+    - state: unshaded
+      shader: unshaded
+    - state: holo
   - type: Clothing
     slots:
     - idcard
@@ -62,6 +65,9 @@
     sprite: Imperial/SpiderClan/Misc/Card.rsi
     layers:
     - state: spaceninja
+    - state: unshaded
+      shader: unshaded
+    - state: holo
   - type: Clothing
     slots:
     - idcard
