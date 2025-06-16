@@ -7,7 +7,7 @@
     - Wall
   components:
   - type: Sprite
-    layers: 
+    layers:
     - map: [ "state" ]
       sprite: Imperial/Medieval/CombatStance/point.rsi
       state: red
@@ -21,7 +21,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.35
+          radius: 0.1
         density: 190
         mask:
         - MachineMask

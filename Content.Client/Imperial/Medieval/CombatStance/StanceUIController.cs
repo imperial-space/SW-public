@@ -34,7 +34,7 @@ public sealed class StanceUIController : UIController
     {
         SubscribeNetworkEvent<CombatStanceMenuEvent>((_, _) => ToggleStanceMenu(false));
         _models = new RadialMenuOption[5];
-        _models[0] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
+        _models[4] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
             new RadialMenuActionOption<FactionMemberGroup>(PlacePressed, FactionMemberGroup.Alpha)
             {
                 ToolTip = Loc.GetString("medieval-place-stancepoint"),
@@ -50,7 +50,7 @@ public sealed class StanceUIController : UIController
             ToolTip = Loc.GetString("medieval-place-alpha"),
             BackgroundColor = Color.FromHex("#794646")
         };
-        _models[1] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
+        _models[3] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
             new RadialMenuActionOption<FactionMemberGroup>(PlacePressed, FactionMemberGroup.Bravo)
             {
                 ToolTip = Loc.GetString("medieval-place-stancepoint"),
@@ -82,7 +82,7 @@ public sealed class StanceUIController : UIController
             ToolTip = Loc.GetString("medieval-place-delta"),
             BackgroundColor = Color.FromHex("#467953")
         };
-        _models[3] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
+        _models[1] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
             new RadialMenuActionOption<FactionMemberGroup>(PlacePressed, FactionMemberGroup.Gamma)
             {
                 ToolTip = Loc.GetString("medieval-place-stancepoint"),
@@ -98,7 +98,7 @@ public sealed class StanceUIController : UIController
             ToolTip = Loc.GetString("medieval-place-gamma"),
             BackgroundColor = Color.FromHex("#797746")
         };
-        _models[4] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
+        _models[0] = new RadialMenuNestedLayerOption(new RadialMenuOption[2] {
             new RadialMenuActionOption<FactionMemberGroup>(PlacePressed, FactionMemberGroup.Omega)
             {
                 ToolTip = Loc.GetString("medieval-place-stancepoint"),

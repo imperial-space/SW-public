@@ -193,7 +193,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
     {
         result = null;
         var coords = Transform(uid).MapPosition.Offset(x, y);
-        foreach (var ent in _look.GetEntitiesInRange(coords, 0.9f, LookupFlags.All))
+        foreach (var ent in _look.GetEntitiesInRange(coords, 0.7f, LookupFlags.All))
         {
             if (ent == uid)
                 continue;
