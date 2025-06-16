@@ -20,6 +20,7 @@
     price: 5
   - type: InjectableSolution
     solution: smokable
+  - type: Trash # Imperial "OperationalErtCleaners"
 
 # Base for all cigars and cigarettes.
 - type: entity

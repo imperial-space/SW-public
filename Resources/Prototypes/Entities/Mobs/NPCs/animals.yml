@@ -1339,6 +1339,8 @@
     - map: [ "ears" ]
     - map: [ "id" ]
     - map: [ "outerClothing" ]
+    - map: [ "back" ] ##Imperial Space ancestors simple rework
+    - map: [ "eyes" ] ##Imperial Space ancestors simple rework
     - map: [ "mask" ]
     - map: [ "head" ]
     - map: [ "clownedon" ]
