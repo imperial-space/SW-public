@@ -1332,8 +1332,13 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+    - type: RandomMetadata
+      nameSegments:
+      - NamesPirateFirst
+      - NamesPirateLast
+      nameFormat: name-format-standard
     - type: Loadout
-      prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear ]
+      prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
       roleLoadout: [ RoleSurvivalEVA ]
     - type: CrewSkills
       skills:
@@ -1360,6 +1365,7 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
+    - type: Pirate
 
 - type: randomHumanoidSettings
   id: PirateCaptainScooner
@@ -1376,6 +1382,11 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+    - type: RandomMetadata
+      nameSegments:
+      - NamesPirateFirst
+      - NamesPirateLast
+      nameFormat: name-format-standard
     - type: Loadout
       prototypes: [ ImperialPirateCaptainGear ]
       roleLoadout: [ RoleSurvivalEVA ]
@@ -1404,6 +1415,7 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
+    - type: PirateCaptain
 
 ### Другие
 

@@ -55,6 +55,7 @@
           - skillShooting
           - skillSurgery
           - skillNeuroSurgery
+      - type: PirateCaptain
       mindRoles:
       - MindRoleCaptainPirate
     - prefRoles: [ Pirate ]
@@ -73,7 +74,8 @@
         - NamesPirateLast
         nameFormat: name-format-standard
       - type: PirateAccent
-            - Syndicate
+      - type: Loadout
+        prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
       - type: CrewSkills
         skills:
           - skillBotany #base
@@ -98,6 +100,7 @@
           - skillShooting
           - skillSurgery
           - skillNeuroSurgery
+      - type: Pirate
       mindRoles:
       - MindRolePirate
 
@@ -128,6 +131,7 @@
         - NamesPirateFirst
         - NamesPirateLast
         nameFormat: name-format-standard
+      - type: PirateCaptain
       - type: CrewSkills
         skills:
           - skillBotany #base
@@ -171,6 +175,9 @@
         - NamesPirateLast
         nameFormat: name-format-standard
             - Syndicate
+      - type: Pirate
+      - type: Loadout
+        prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
       - type: CrewSkills
         skills:
           - skillBotany #base

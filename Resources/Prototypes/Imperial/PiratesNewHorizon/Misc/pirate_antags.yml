@@ -4,7 +4,7 @@
     jumpsuit: ClothingUniformJumpsuitPirateNewHorizon
     back: ClothingBackpackSatchelLeather
     head: ClothingHeadBandBlack
-    shoes: ClothingShoesBootsLaceup
+    shoes: ClothingShoesPirateBootsHorizon
     id: PiratePDANewHorizon
     belt: ClothingBeltUtility
     pocket1: AppraisalTool
@@ -16,15 +16,38 @@
     id: CaptainPiratePDANewHorizon
     head: ClothingHeadHatPirateCaptain
     pocket2: EnergyCutlass
+    jumpsuit: ClothingUniformJumpsuitPirateWhiteCaptain
     outerClothing: ClothingOuterCoatPirateNewHorizon
+    shoes: ClothingShoesCaptainPirateBoots
 
 - type: startingGear
   id: ImperialPirateFirstmateGear
   parent: PirateGear
   equipment:
-    head: ClothingHeadHatPirateTricord
-    outerClothing: ClothingOuterCoatGentle
+    head: ClothingHeadHatBowlerHatBrown
+    jumpsuit: ClothingUniformJumpsuitPirateWhite
 
+- type: startingGear
+  id: ImperialPirateBotsmanGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBotsmanPirate
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesPirateBootsHorizon
+    id: PiratePDANewHorizon
+    belt: ClothingBeltUtility
+    pocket1: AppraisalTool
+
+- type: startingGear
+  id: ImperialPirateTelyNyashkaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitPirateVest
+    head: ClothingHeadBandBlue
+    back: ClothingBackpackSatchelLeather
+    shoes: ClothingShoesPirateBootsHorizon
+    id: PiratePDANewHorizon
+    belt: ClothingBeltUtility
+    pocket1: AppraisalTool
+    pocket2: Doubloon1
 - type: antag
   id: Pirate
   name: roles-antag-pirate-name
