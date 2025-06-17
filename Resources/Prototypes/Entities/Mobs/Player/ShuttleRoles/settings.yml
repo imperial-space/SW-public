@@ -1323,7 +1323,7 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
+      - Pirate
     - type: GhostRole
       name: ghost-role-information-pirate-name
       description: ghost-role-information-pirate-description
@@ -1333,7 +1333,7 @@
       raffle:
         settings: default
     - type: Loadout
-      prototypes: [ PirateScoonerAltA, PirateScoonerAltB, PirateScoonerAltC, PirateScoonerAltD ]
+      prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear ]
       roleLoadout: [ RoleSurvivalEVA ]
     - type: CrewSkills
       skills:
@@ -1367,7 +1367,7 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
+      - Pirate
     - type: GhostRole
       name: ghost-role-information-pirate-captain-name
       description: ghost-role-information-pirate-captain-description
@@ -1377,7 +1377,7 @@
       raffle:
         settings: default
     - type: Loadout
-      prototypes: [ PirateCaptainScooner ]
+      prototypes: [ ImperialPirateCaptainGear ]
       roleLoadout: [ RoleSurvivalEVA ]
     - type: CrewSkills
       skills:
