@@ -108,7 +108,7 @@
   id: Pirates
   components:
   - type: GameRule
-    minPlayers: 20
+    minPlayers: 10
   - type: AntagLoadProfileRule
   - type: RuleGrids
   - type: LoadMapRule
