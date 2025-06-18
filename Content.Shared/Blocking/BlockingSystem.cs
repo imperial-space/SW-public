@@ -37,6 +37,7 @@ public sealed partial class BlockingSystem : EntitySystem
     [Dependency] private readonly ExamineSystemShared _examine = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly IEntitySystemManager _systems = default!; // Imperial Medieval CombatStance
 
     public override void Initialize()
     {
