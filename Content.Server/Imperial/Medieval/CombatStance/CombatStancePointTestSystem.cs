@@ -25,6 +25,7 @@ using Content.Shared.Friends;
 using Content.Shared.FixedPoint;
 using Content.Shared.Damage.Events;
 using Content.Shared.Explosion;
+using Content.Server.Popups;
 
 namespace Content.Server.Imperial.Medieval.CombatStance;
 
@@ -36,6 +37,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IServerNetManager _net = default!;
     [Dependency] private readonly AlwaysPvsSystem _pvs = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<CombatStancePointComponent, StartCollideEvent>(OnCollide);
@@ -204,6 +206,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
         }
         if (count >= pvslist.Count)
         {
+            _popup.PopupEntity(Loc.GetString("medieval-cant-place-toomuch-stancepoints"), uid.Value, uid.Value);
             return;
         }
         var ent = Spawn("StancePoint", EntityManager.GetCoordinates(msg.Coords));
