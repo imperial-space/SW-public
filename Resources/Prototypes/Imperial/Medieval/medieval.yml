@@ -7213,28 +7213,28 @@
   - type: SpeakOnTrigger
     pack: PlushDog
 
-- type: entity
-  name: MedievalLoot
-  parent: BaseItem
-  id: MedievalMushroom3
-  description: MedievalLoot
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Chem/gribi.rsi
-    state: grib3
-  - type: Currency
-    price:
-      Revent: 8
-  - type: Item
-    size: Tiny
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: MedievalMushroom3
-        Quantity: 10
-  - type: Tag
-    tags:
-    - AlchemicIngredient
+# - type: entity
+#   name: MedievalLoot
+#   parent: BaseItem
+#   id: MedievalMushroom3
+#   description: MedievalLoot
+#   components:
+#   - type: Sprite
+#     sprite: Imperial/Medieval/Chem/gribi.rsi
+#     state: grib3
+#   - type: Currency
+#     price:
+#       Revent: 8
+#   - type: Item
+#     size: Tiny
+#   - type: Extractable
+#     juiceSolution:
+#       reagents:
+#       - ReagentId: MedievalMushroom3
+#         Quantity: 10
+#   - type: Tag
+#     tags:
+#     - AlchemicIngredient
 
 - type: entity
   name: MedievalTimedSpawnerMushrooms
