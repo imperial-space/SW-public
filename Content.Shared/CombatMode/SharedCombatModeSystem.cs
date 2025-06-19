@@ -1,5 +1,6 @@
 using Content.Shared.Actions;
 using Content.Shared.Mind;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.MouseRotator;
 using Content.Shared.Movement.Components;
 using Content.Shared.Popups;
@@ -19,7 +20,7 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
     [Dependency] private   readonly IGameTiming _gameTiming = default!; // Imperial medieval edit
     [Dependency] private   readonly SharedAudioSystem _audioSystem = default!; // Imperial medieval edit
-
+    [Dependency] private   readonly MobStateSystem _mobStateSystem = default!;
 
     public override void Initialize()
     {
@@ -87,10 +88,12 @@ public abstract class SharedCombatModeSystem : EntitySystem
         Dirty(entity, component);
 
         // Imperial medieval edit start
-        if (component.NextTimeAudioPlay < _gameTiming.CurTime && _netMan.IsServer)
+        if (component.NextTimeAudioPlay < _gameTiming.CurTime && _netMan.IsServer && _mobStateSystem.IsAlive(entity))
         {
             var sound = component.IsInCombatMode ? component.ActivationSound : component.DeactivationSound;
-            _audioSystem.PlayPvs(sound, entity, AudioParams.Default.WithMaxDistance(3));
+            var audioParams = AudioParams.Default.WithMaxDistance(3).AddVolume(-5f).WithVariation(0.1f);
+
+            _audioSystem.PlayPvs(sound, entity, audioParams);
 
             component.NextTimeAudioPlay = _gameTiming.CurTime + component.AudioPlayCooldown;
         }

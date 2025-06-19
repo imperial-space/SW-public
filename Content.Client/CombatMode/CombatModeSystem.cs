@@ -2,6 +2,7 @@ using Content.Client.Hands.Systems;
 using Content.Client.NPC.HTN;
 using Content.Shared.CCVar;
 using Content.Shared.CombatMode;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.Graphics;
@@ -20,6 +21,7 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
     [Dependency] private readonly IInputManager _inputManager = default!;
     [Dependency] private readonly IEyeManager _eye = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // Imperial medieval edit
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
 
     /// <summary>
     /// Raised whenever combat mode changes.
@@ -39,6 +41,11 @@ public sealed class CombatModeSystem : SharedCombatModeSystem
     private void OnGetStatusIcons(Entity<CombatModeComponent> ent, ref GetStatusIconsEvent args)
     {
         if (!ent.Comp.IsInCombatMode)
+        {
+            return;
+        }
+
+        if (!_mobStateSystem.IsAlive(ent))
         {
             return;
         }

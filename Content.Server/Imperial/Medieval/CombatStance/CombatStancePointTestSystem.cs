@@ -24,6 +24,8 @@ using Content.Server.Imperial.PVS;
 using Content.Shared.Friends;
 using Content.Shared.FixedPoint;
 using Content.Shared.Damage.Events;
+using Content.Shared.Explosion;
+using Content.Server.Popups;
 
 namespace Content.Server.Imperial.Medieval.CombatStance;
 
@@ -35,6 +37,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IServerNetManager _net = default!;
     [Dependency] private readonly AlwaysPvsSystem _pvs = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<CombatStancePointComponent, StartCollideEvent>(OnCollide);
@@ -44,6 +47,39 @@ public sealed class CombatStancePointTestSystem : EntitySystem
         _net.RegisterNetMessage<CombatStancePointRemoveMessage>(RemovePoints);
         SubscribeLocalEvent<CombatStanceComponent, DamageModifyEvent>(ModifyDamage);
         SubscribeLocalEvent<CombatStanceComponent, StaminaModifyEvent>(StaminaModifyDamage);
+        SubscribeLocalEvent<CombatStanceComponent, GetExplosionResistanceEvent>(ExplosionDamage);
+        SubscribeLocalEvent<CombatStancePointComponent, ComponentShutdown>(JustIncase);
+        SubscribeLocalEvent<CombatStanceComponent, AnchorStateChangedEvent>(BlockBegin);
+    }
+    private void JustIncase(EntityUid uid, CombatStancePointComponent component, ComponentShutdown args)
+    {
+        foreach (var member in component.ValidMembers)
+        {
+            if (Deleted(member))
+                continue;
+            if (TryComp<CombatStanceComponent>(member, out var stance))
+                stance.HasDefence = false;
+        }
+    }
+    private void BlockBegin(EntityUid uid, CombatStanceComponent component, AnchorStateChangedEvent args)
+    {
+        if (!TryComp<FriendsComponent>(uid, out var friends))
+            return;
+        if (!_friends.TryGetFactionMemberData(friends.MemberID, out var data))
+            return;
+        foreach (var ent in _look.GetEntitiesInRange(Transform(uid).Coordinates, 0.7f))
+        {
+            if (!TryComp<CombatStancePointComponent>(ent, out var point))
+                continue;
+            OnCollide(ent, point, new(ent, uid, "", "", new(), new(), new(), new(), new()));
+            return;
+        }
+    }
+    private void ExplosionDamage(EntityUid uid, CombatStanceComponent component, ref GetExplosionResistanceEvent args)
+    {
+        if (!component.HasDefence)
+            return;
+        args.DamageCoefficient *= 0.25f;
     }
     private void StaminaModifyDamage(EntityUid uid, CombatStanceComponent component, StaminaModifyEvent args)
     {
@@ -170,6 +206,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
         }
         if (count >= pvslist.Count)
         {
+            _popup.PopupEntity(Loc.GetString("medieval-cant-place-toomuch-stancepoints"), uid.Value, uid.Value);
             return;
         }
         var ent = Spawn("StancePoint", EntityManager.GetCoordinates(msg.Coords));
@@ -269,56 +306,78 @@ public sealed class CombatStancePointTestSystem : EntitySystem
             comp.HasDefence = false;
         ListChanged(uid, component);
     }
-    public int Recursive(EntityUid uid, CombatStancePointComponent component, int current, ref List<EntityUid> blacklist, ref List<EntityUid> participants)
+    public List<RecursivePointData> Recursive(EntityUid uid, CombatStancePointComponent component, List<RecursivePointData> currentlist, ref RecursivePointData currentdata, List<EntityUid> blacklist)
     {
         blacklist.Add(uid);
         if (component.HasValidMember)
         {
+            if (currentdata.Negative)
+            {
+                currentlist.Add(currentdata);
+                currentdata = new();
+            }
+            currentdata.Points.Add(uid);
             foreach (var part in component.ValidMembers)
             {
-                if (participants.Contains(part))
+                if (currentdata.Participants.Contains(part))
                     continue;
-                current += 1;
-                participants.Add(part);
+                currentdata.AmountOfValid++;
+                currentdata.Participants.Add(part);
                 break;
+            }
+        }
+        else
+        {
+            if (currentdata.AmountOfValid == 0)
+            {
+                currentdata.Negative = true;
+                currentdata.Points.Add(uid);
+            }
+            else
+            {
+                currentlist.Add(currentdata);
+                currentdata = new();
             }
         }
         if (component.PointDirection.up && component.PointDirectionData.up.HasValue && !Deleted(component.PointDirectionData.up) && !blacklist.Contains(component.PointDirectionData.up.Value))
         {
-            current = Recursive(component.PointDirectionData.up.Value, EnsureComp<CombatStancePointComponent>(component.PointDirectionData.up.Value), current, ref blacklist, ref participants);
+            currentlist = Recursive(component.PointDirectionData.up.Value, EnsureComp<CombatStancePointComponent>(component.PointDirectionData.up.Value), currentlist, ref currentdata, blacklist);
         }
         if (component.PointDirection.bottom && component.PointDirectionData.bottom.HasValue && !Deleted(component.PointDirectionData.bottom) && !blacklist.Contains(component.PointDirectionData.bottom.Value))
         {
-            current = Recursive(component.PointDirectionData.bottom.Value, EnsureComp<CombatStancePointComponent>(component.PointDirectionData.bottom.Value), current, ref blacklist, ref participants);
+            currentlist = Recursive(component.PointDirectionData.bottom.Value, EnsureComp<CombatStancePointComponent>(component.PointDirectionData.bottom.Value), currentlist, ref currentdata, blacklist);
         }
         if (component.PointDirection.right && component.PointDirectionData.right.HasValue && !Deleted(component.PointDirectionData.right) && !blacklist.Contains(component.PointDirectionData.right.Value))
         {
-            current = Recursive(component.PointDirectionData.right.Value, EnsureComp<CombatStancePointComponent>(component.PointDirectionData.right.Value), current, ref blacklist, ref participants);
+            currentlist = Recursive(component.PointDirectionData.right.Value, EnsureComp<CombatStancePointComponent>(component.PointDirectionData.right.Value), currentlist, ref currentdata, blacklist);
         }
         if (component.PointDirection.left && component.PointDirectionData.left.HasValue && !Deleted(component.PointDirectionData.left) && !blacklist.Contains(component.PointDirectionData.left.Value))
         {
-            current = Recursive(component.PointDirectionData.left.Value, EnsureComp<CombatStancePointComponent>(component.PointDirectionData.left.Value), current, ref blacklist, ref participants);
+            currentlist = Recursive(component.PointDirectionData.left.Value, EnsureComp<CombatStancePointComponent>(component.PointDirectionData.left.Value), currentlist, ref currentdata, blacklist);
         }
-        return current;
+        return currentlist;
     }
     private void ListChanged(EntityUid uid, CombatStancePointComponent component)
     {
-        var recursed = new List<EntityUid>();
-        var participants = new List<EntityUid>();
-        var amountofvalid = Recursive(uid, component, 0, ref recursed, ref participants);
-        foreach (var recurs in recursed)
+        var lastdata = new RecursivePointData();
+        var result = Recursive(uid, component, new(), ref lastdata, new());
+        result.Add(lastdata);
+        foreach (var data in result)
         {
-            var comp = EnsureComp<CombatStancePointComponent>(recurs);
-            comp.Participants = amountofvalid;
-            UpdateState(recurs, comp);
-        }
-        foreach (var member in participants)
-        {
-            var stance = EnsureComp<CombatStanceComponent>(member);
-            if (amountofvalid >= 4)
-                stance.HasDefence = true;
-            else
-                stance.HasDefence = false;
+            foreach (var point in data.Points)
+            {
+                var comp = EnsureComp<CombatStancePointComponent>(point);
+                comp.Participants = data.AmountOfValid;
+                UpdateState(point, comp);
+            }
+            foreach (var participant in data.Participants)
+            {
+                var comp = EnsureComp<CombatStanceComponent>(participant);
+                if (data.AmountOfValid < 4)
+                    comp.HasDefence = false;
+                else
+                    comp.HasDefence = true;
+            }
         }
     }
     private void UpdateState(EntityUid uid, CombatStancePointComponent component)
@@ -339,4 +398,12 @@ public sealed class CombatStancePointTestSystem : EntitySystem
             return;
         }
     }
+}
+
+public class RecursivePointData
+{
+    public List<EntityUid> Points = new();
+    public List<EntityUid> Participants = new();
+    public int AmountOfValid = 0;
+    public bool Negative = false;
 }
