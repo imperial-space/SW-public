@@ -256,6 +256,8 @@
   group: Elements
   desc: .
   physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#BC8A00"
   boilingPoint: 184.3
@@ -294,6 +296,8 @@
   group: Elements
   desc: .
   physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#BC8A00"
   boilingPoint: 184.3
@@ -332,6 +336,8 @@
   group: Elements
   desc: .
   physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#BC8A00"
   boilingPoint: 184.3
@@ -370,6 +376,8 @@
   group: Elements
   desc: .
   physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#BC8A00"
   boilingPoint: 184.3
@@ -408,6 +416,8 @@
   group: Elements
   desc: .
   physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#BC8A00"
   boilingPoint: 184.3
@@ -444,6 +454,8 @@
   group: Elements
   desc: .
   physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#BC8A00"
   boilingPoint: 184.3
@@ -480,6 +492,8 @@
   group: Elements
   desc: .
   physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#BC8A00"
   boilingPoint: 184.3

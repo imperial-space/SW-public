@@ -120,6 +120,8 @@
   group: Medicine
   desc: reagent-desc-arithrazine
   physicalDesc: reagent-physical-desc-cloudy
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: medicine
   color: "#bd5902"
   metabolisms:
@@ -278,6 +280,8 @@
   group: Medicine
   desc: reagent-desc-dexalin-plus
   physicalDesc: reagent-physical-desc-cloudy
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: medicine
   color: "#4da0bd"
   metabolisms:
@@ -564,6 +568,8 @@
   group: Medicine
   desc: reagent-desc-phalanximine
   physicalDesc: reagent-physical-desc-acrid
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: medicine
   color: "#c8ff75"
   plantMetabolism:
@@ -761,7 +767,9 @@
   name: reagent-name-tranexamic-acid
   group: Medicine
   desc: reagent-desc-tranexamic-acid
-  physicalDesc: reagent-physical-desc-viscous
+  physicalDesc: reagent-physical-desc-
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: medicine
   color: "#ba7d7d"
   metabolisms:
@@ -824,6 +832,8 @@
   name: reagent-name-omnizine
   group: Medicine
   desc: reagent-desc-omnizine
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-soothing
   flavor: medicine
   color: "#fcf7f9"

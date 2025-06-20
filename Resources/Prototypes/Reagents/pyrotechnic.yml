@@ -99,6 +99,8 @@
   parent: BasePyrotechnic
   desc: reagent-desc-chlorine-trifluoride
   physicalDesc: reagent-physical-desc-blazing
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#FFC8C8"
   tileReactions:

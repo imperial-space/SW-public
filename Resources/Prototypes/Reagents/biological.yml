@@ -3,6 +3,8 @@
   name: reagent-name-blood
   group: Biological
   desc: reagent-desc-blood
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: metallic
   color: "#800000"
   metamorphicSprite:
@@ -84,6 +86,8 @@
   name: reagent-name-sap
   group: Biological
   desc: reagent-desc-sap
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: sweet
   color: "#cd7314"
   recognizable: true
@@ -203,6 +207,8 @@
   name: reagent-name-vomit
   group: Biological
   desc: reagent-desc-vomit
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: terrible
   color: "#87ab08"
   physicalDesc: reagent-physical-desc-pungent

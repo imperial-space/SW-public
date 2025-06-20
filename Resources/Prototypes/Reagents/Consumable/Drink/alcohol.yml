@@ -29,6 +29,8 @@
   name: reagent-name-ale
   parent: BaseAlcohol
   desc: reagent-desc-ale
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-bubbly
   flavor: ale
   color: "#663100"
@@ -46,6 +48,8 @@
   name: reagent-name-beer
   parent: BaseAlcohol
   desc: reagent-desc-beer
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-bubbly
   flavor: beer
   color: "#e3e77b"
@@ -132,7 +136,9 @@
   id: Ethanol
   name: reagent-name-ethanol
   parent: BaseAlcohol
-  desc: reagent-desc-ethanol
+  desc: reagent-desc-
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: alcohol
   color: "#b05b3c"
@@ -305,6 +311,8 @@
   parent: BaseAlcohol
   desc: reagent-desc-rum
   physicalDesc: reagent-physical-desc-strong-smelling
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: rum
   color: "#f09f42"
   recognizable: true
@@ -389,6 +397,8 @@
   name: reagent-name-vodka
   parent: BaseAlcohol
   desc: reagent-desc-vodka
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: vodka
   color: "#d1d1d155"
@@ -437,6 +447,8 @@
   name: reagent-name-wine
   parent: BaseAlcohol
   desc: reagent-desc-wine
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-translucent
   flavor: shittywine
   color: "#7E4043"
@@ -905,6 +917,8 @@
   name: reagent-name-demons-blood
   parent: BaseAlcohol
   desc: reagent-desc-demons-blood
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-ferrous
   flavor: demonsblood
   color: "#a70000"
@@ -1407,6 +1421,8 @@
   name: reagent-name-mead
   parent: BaseAlcohol
   desc: reagent-desc-mead
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: mead
   color: "#664300"
@@ -1454,6 +1470,8 @@
   name: reagent-name-moonshine
   parent: BaseAlcohol
   desc: reagent-desc-moonshine
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-pungent
   flavor: moonshine
   color: "#d1d7d155"
@@ -1552,6 +1570,8 @@
   name: reagent-name-red-mead
   parent: BaseAlcohol
   desc: reagent-desc-red-mead
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-ferrous
   flavor: redmead
   color: "#bc5550"

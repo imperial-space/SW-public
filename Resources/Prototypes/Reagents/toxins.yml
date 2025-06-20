@@ -278,6 +278,8 @@
   group: Toxins
   desc: reagent-desc-unstable-mutagen
   physicalDesc: reagent-physical-desc-glowing
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#00ff5f"
   boilingPoint: 340282300000000000000000000000000000000 # Ethidium bromide, which doesn't boil.
@@ -418,6 +420,8 @@
   name: reagent-name-amatoxin
   group: Toxins
   desc: reagent-desc-amatoxin
+  evaporationSpeed: 0.3
+  absorbent: true
   physicalDesc: reagent-physical-desc-nondescript
   color: "#D6CE7B"
   metabolisms:
