@@ -4273,7 +4273,7 @@
   - 1.0
   - 1.0
   - 1.0
-  edgeSpritePriority: 1
+  edgeSpritePriority: 2
   edgeSprites:
     SouthEast: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_SE.png
     NorthEast: /Textures/Imperial/Medieval/Tiles/Planet/DirtCP/single_edge_NE.png
@@ -4304,7 +4304,7 @@
   - 1.0
   - 1.0
   - 1.0
-  edgeSpritePriority: 0
+  edgeSpritePriority: 1
   edgeSprites:
     SouthEast: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/single_edge_SE.png
     NorthEast: /Textures/Imperial/Medieval/Tiles/Planet/Dirt/single_edge_NE.png
