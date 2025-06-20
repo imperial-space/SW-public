@@ -54,49 +54,6 @@
   - type: MedievalMeleeBadTarget # imperial medieval
     safeToHitGroup: structure # imperial medieval
 
-  - type: MedievalMeleeBadTarget # imperial medieval
-    safeToHitGroup: structure # imperial medieval
-
-- type: entity
-  abstract: true
-  parent: BaseStructureWall
-  id: BaseWall
-  components:
-  - type: Occluder # Breaks on diagonal walls
-
-- type: entity
-  abstract: true
-  parent: BaseStructureWall
-  id: WallDiagonalBase
-  suffix: Diagonal
-  components:
-  - type: Tag
-    tags:
-    - Wall
-    - Diagonal
-  - type: IconSmooth
-    mode: Diagonal
-    key: walls
-    base: state
-  - type: Airtight
-    noAirWhenFullyAirBlocked: false
-    airBlockedDirection:
-    - South
-    - East
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PolygonShape
-            vertices:
-            - "-0.5,-0.5"
-            - "0.5,0.5"
-            - "0.5,-0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
-
 - type: entity
   abstract: true
   parent: BaseStructureWall

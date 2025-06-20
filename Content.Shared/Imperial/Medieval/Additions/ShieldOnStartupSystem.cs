@@ -3,6 +3,7 @@ using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Damage.Events;
 
 namespace Content.Shared.Imperial.Medieval.Additions;
 

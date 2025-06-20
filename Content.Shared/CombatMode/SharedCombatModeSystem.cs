@@ -17,8 +17,9 @@ public abstract class SharedCombatModeSystem : EntitySystem
     [Dependency] private   readonly SharedActionsSystem _actionsSystem = default!;
     [Dependency] private   readonly SharedPopupSystem _popup = default!;
     [Dependency] private   readonly SharedMindSystem  _mind = default!;
-    [Dependency] private   readonly IGameTiming _gameTiming = default!; // Imperial medieval edit
-    [Dependency] private   readonly SharedAudioSystem _audioSystem = default!; // Imperial medieval edit
+    [Dependency] private   readonly IGameTiming _gameTiming = default!; // Imperial medieval edit start
+    [Dependency] private   readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly INetManager _netMan = default!; // Imperial medieval edit end
     [Dependency] private   readonly MobStateSystem _mobStateSystem = default!;
 
     public override void Initialize()

@@ -71,7 +71,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
         {
             if (!TryComp<CombatStancePointComponent>(ent, out var point))
                 continue;
-            OnCollide(ent, point, new(ent, uid, "", "", new(), new(), new(), new(), new()));
+            // OnCollide(ent, point, new(ent, uid, "", "", new(), new(), new(), new(), new()));
             return;
         }
     }

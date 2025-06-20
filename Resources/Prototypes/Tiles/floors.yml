@@ -1702,21 +1702,6 @@
     West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
 
 - type: tile
-  id: FloorAsteroidSandRed
-  parent: FloorAsteroidSandRedBorderless
-  name: tiles-asteroid-sand
-  edgeSpritePriority: 1
-  edgeSprites:
-    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
-    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
-    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
-    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
-    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
-    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
-    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
-    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
-
-- type: tile
   id: FloorAsteroidTile
   name: tiles-asteroid-tile
   sprite: /Textures/Tiles/Asteroid/asteroid_tile.png
@@ -2112,16 +2097,6 @@
   #deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroSnow
   badSmellMod: 0.75 # imperial medieval badsmell
-
-- type: tile
-  id: FloorAstroAsteroidSandBorderless
-  name: tiles-astro-asteroid-sand-borderless
-  parent: FloorAsteroidSandBorderless
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemAstroAsteroidSand
-  weather: false
 
 - type: tile
   id: FloorAstroAsteroidSandBorderless

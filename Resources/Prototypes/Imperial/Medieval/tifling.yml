@@ -194,6 +194,7 @@
 - type: typingIndicator
   id: tifling
   typingState: tifling
+  idleState: tifling
   offset: 0, 0.0625
 
 - type: entity
