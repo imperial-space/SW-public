@@ -1,6 +1,9 @@
 job-name-rcuoperator = IJYLUNIL
 job-name-rcuofficer = IZZCWYL
-
+job-name-rcuoperator-menu = Оператор RCU
+job-name-rcuofficer-menu = Офицер RCU
+job-description-rcuoperator = Руководите вверенным отрядом для выполнения цели.
+job-description-rcuofficer = Выполняйте инструкции оператора.
 ent-RCUOperatorPreset = оператор RCU
 ent-RCUOfficerPreset = офицер RCU
 ent-RCUOperatorPDA = КПК RCU
