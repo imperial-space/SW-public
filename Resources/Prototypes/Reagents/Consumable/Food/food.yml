@@ -4,8 +4,8 @@
   name: reagent-name-nutriment
   group: Foods
   desc: reagent-desc-nutriment
-  evaporationSpeed: 0.3
-  absorbent: true
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   physicalDesc: reagent-physical-desc-opaque
   flavor: nutriment
   color: "#24591F"
@@ -25,8 +25,8 @@
   name: reagent-name-vitamin
   group: Foods
   desc: reagent-desc-vitamin
-  evaporationSpeed: 0.3
-  absorbent: true
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   physicalDesc: reagent-physical-desc-chalky
   flavor: vitamin
   color: "#D3D3D3"
@@ -56,8 +56,8 @@
   name: reagent-name-protein
   group: Foods
   desc: reagent-desc-protein
-  evaporationSpeed: 0.3
-  absorbent: true
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   physicalDesc: reagent-physical-desc-clumpy
   flavor: protein
   color: "#FFFFE5"

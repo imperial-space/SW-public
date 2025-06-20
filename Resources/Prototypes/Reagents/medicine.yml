@@ -120,8 +120,8 @@
   group: Medicine
   desc: reagent-desc-arithrazine
   physicalDesc: reagent-physical-desc-cloudy
-  evaporationSpeed: 0.3
-  absorbent: true
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: medicine
   color: "#bd5902"
   metabolisms:
@@ -280,8 +280,8 @@
   group: Medicine
   desc: reagent-desc-dexalin-plus
   physicalDesc: reagent-physical-desc-cloudy
-  evaporationSpeed: 0.3
-  absorbent: true
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: medicine
   color: "#4da0bd"
   metabolisms:
@@ -568,8 +568,8 @@
   group: Medicine
   desc: reagent-desc-phalanximine
   physicalDesc: reagent-physical-desc-acrid
-  evaporationSpeed: 0.3
-  absorbent: true
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: medicine
   color: "#c8ff75"
   plantMetabolism:
@@ -768,8 +768,8 @@
   group: Medicine
   desc: reagent-desc-tranexamic-acid
   physicalDesc: reagent-physical-desc-
-  evaporationSpeed: 0.3
-  absorbent: true
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   flavor: medicine
   color: "#ba7d7d"
   metabolisms:
@@ -832,8 +832,8 @@
   name: reagent-name-omnizine
   group: Medicine
   desc: reagent-desc-omnizine
-  evaporationSpeed: 0.3
-  absorbent: true
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   physicalDesc: reagent-physical-desc-soothing
   flavor: medicine
   color: "#fcf7f9"

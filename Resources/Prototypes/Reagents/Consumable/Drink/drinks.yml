@@ -250,8 +250,8 @@
   name: reagent-name-milk
   group: Drinks
   desc: reagent-desc-milk
-  evaporationSpeed: 0.3
-  absorbent: true
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   physicalDesc: reagent-physical-desc-opaque
   flavor: milk
   color: "#DFDFDF"
