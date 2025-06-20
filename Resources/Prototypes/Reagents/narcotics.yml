@@ -113,7 +113,7 @@
   name: reagent-name-stimulants
   group: Narcotics
   desc: reagent-desc-stimulants
-  physicalDesc: reagent-physical-desc-stimulants
+  physicalDesc: reagent-physical-desc-energizing
   evaporationSpeed: 0.3 # imperial medieval
   absorbent: true # imperial medieval
   flavor: sharp
