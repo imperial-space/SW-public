@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ ClothingHeadBase ]
+  parent: ClothingHeadBase
   id: ClothingHeadHatHoodHeretic
   name: ominous hood
   suffix: Heretic, Crook

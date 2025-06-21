@@ -15,7 +15,6 @@
     modifiers:
       coefficients:
         Holy: 1.25
-  - type: UnremoveableOnEquip
   - type: Tag
     tags:
     - Mask

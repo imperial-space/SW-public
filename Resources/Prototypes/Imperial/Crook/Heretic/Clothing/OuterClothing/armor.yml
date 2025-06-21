@@ -1,9 +1,19 @@
 - type: entity
-  parent: [ ClothingOuterBaseMedium, ClothingOuterStorageToggleableBase, AllowSuitStorageClothing ]
+  parent: ClothingOuterStorageBase
   id: ClothingOuterArmorHeretic
   name: ominous armor
   description: A ragged, dusty set of robes. Strange eyes line the inside.
   components:
+  - type: ToggleableClothing
+    clothingPrototypes: ClothingHeadHatHoodHeretic
+    slot: head
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot {}
+      storagebase: !type:Container
+        ents: []
+  - type: Item
+    size: Huge
   - type: Sprite
     sprite: Imperial/Crook/Heretic/eldritch_armor.rsi
     state: icon
@@ -22,5 +32,3 @@
   - type: PressureProtection
   - type: ExplosionResistance
     damageCoefficient: 0.25
-  - type: ToggleableClothing
-    clothingPrototypes: ClothingHeadHatHoodHeretic
