@@ -11,7 +11,11 @@
     sprite: Imperial/Crook/Heretic/reality_fracture.rsi
     state: icon
   - type: Clickable
-  - type: TriggerOnActivate
+  - type: TriggerOnVoice
+    keyPhrase: "R'CH T'H TR'TH"
+    listenRange: 2
+  - type: ActiveListener
+    range: 2
   - type: DeleteOnTrigger
   - type: DamageOnInteract
     damage:
