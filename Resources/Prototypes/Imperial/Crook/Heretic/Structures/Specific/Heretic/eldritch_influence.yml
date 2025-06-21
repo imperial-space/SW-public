@@ -41,3 +41,10 @@
     sprite: Imperial/Crook/Heretic/reality_fracture.rsi
     state: icon_harvested
   - type: Clickable
+  - type: TriggerOnActivate
+  - type: DeleteOnTrigger
+  - type: DamageOnInteract
+    damage:
+      types:
+        Slash: 30
+    popupText: eldritch-influence-reaction
