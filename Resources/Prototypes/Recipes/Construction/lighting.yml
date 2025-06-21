@@ -21,6 +21,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Желтая лампа-трубка # Imperial Recipes Locale
   id: YellowLight
   graph: YellowLight
@@ -53,6 +54,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Черная лампа-трубка # Imperial Recipes Locale
   id: BlackLight
   graph: BlackLight
@@ -107,6 +109,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Желтая лампа-трубка # Imperial Recipes Locale
   id: YellowLightBulb
   graph: YellowLightBulb
@@ -139,6 +142,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   name: Черная лампа-трубка # Imperial Recipes Locale
   id: BlackLightBulb
   graph: BlackLightBulb
