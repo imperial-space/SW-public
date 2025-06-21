@@ -16,8 +16,7 @@
   - type: DamageOnInteract
     damage:
       types:
-        Slash: 40
-        Bloodloss: 50
+        Slash: 50
     popupText: eldritch-influence-reaction
 
 - type: entity
