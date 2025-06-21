@@ -1,17 +1,15 @@
 - type: entity
-  parent: ClothingOuterStorageBase
+  parent: [ ClothingOuterStorageBase, AllowSuitStorageClothing ]
   id: ClothingOuterArmorHeretic
   name: ominous armor
   description: A ragged, dusty set of robes. Strange eyes line the inside.
   components:
   - type: ToggleableClothing
-    clothingPrototypes: ClothingHeadHatHoodHeretic
+    clothingPrototype: ClothingHeadHatHoodHeretic
     slot: head
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
-      storagebase: !type:Container
-        ents: []
   - type: Item
     size: Huge
   - type: Sprite

@@ -1,8 +1,8 @@
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatHoodHeretic
+  categories: [ HideSpawnMenu ]
   name: ominous hood
-  suffix: Heretic, Crook
   description: A torn, dust-caked hood. Strange eyes line the inside.
   components:
   - type: Sprite
