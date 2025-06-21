@@ -27,6 +27,5 @@
         Caustic: 0.5
         Holy: 1.25
         Stamina: 0.5
-  - type: PressureProtection
   - type: ExplosionResistance
     damageCoefficient: 0.25
