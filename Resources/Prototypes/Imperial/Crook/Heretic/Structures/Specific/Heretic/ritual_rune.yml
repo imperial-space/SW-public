@@ -6,6 +6,8 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Transform
+    anchored: true
   - type: Sprite
     drawdepth: WallMountedItems
     sprite: Imperial/Crook/Heretic/ritual_rune.rsi
@@ -58,7 +60,7 @@
 
 - type: entity
   parent: HereticRuneRitualDrawAnimationEffect
-  id: HereticRuneRitualDrawAnimationCicatrix
+  id: HereticRuneRitualDrawAnimationCicatrixEffect
   suffix: Heretic, Crook
   placement:
     mode: SnapgridCenter
