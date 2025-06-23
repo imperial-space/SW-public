@@ -6,16 +6,11 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: EldritchInfluence
   - type: InteractionOutline
   - type: Sprite
     sprite: Imperial/Crook/Heretic/reality_fracture.rsi
     state: icon
-  - type: Clickable
-  - type: DamageOnInteract
-    damage:
-      types:
-        Slash: 50
-    popupText: eldritch-influence-reaction
   - type: AmbientSound
     range: 3
     volume: -6
@@ -44,13 +39,6 @@
     sprite: Imperial/Crook/Heretic/reality_fracture.rsi
     state: icon_harvested
   - type: Clickable
-  - type: TriggerOnActivate
-  - type: DeleteOnTrigger
-  - type: DamageOnInteract
-    damage:
-      types:
-        Slash: 30
-    popupText: eldritch-influence-reaction
   - type: AmbientSound
     range: 4
     volume: -5
