@@ -173,7 +173,6 @@
         - NamesPirateFirst
         - NamesPirateLast
         nameFormat: name-format-standard
-            - Syndicate
       - type: Pirate
       - type: Loadout
         prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
