@@ -22,7 +22,7 @@ pirates-stolen-item-entry =
        *[other] кредитов
     }[/color])
 pirates-stole-nothing = - Каперы не украли вообще [color=red]ничего[/color].
-pirates-stole-nothing2 = Тычьте пальцем и насмехайтесь.
+pirates-stole-nothing2 = Наша казна пуста, милорд!
 
 
 pirates-result-victory = Каперы [color=green][bold]УСПЕШНО[/color][/bold] нажились на жалкой станции!
