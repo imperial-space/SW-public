@@ -158,7 +158,7 @@
   id: FloorSnowDug
   name: tiles-snow-dug
   sprite: /Textures/Tiles/Planet/Snow/snow_dug.png
-  edgeSpritePriority: 2
+  edgeSpritePriority: 3
   edgeSprites:
     SouthEast: /Textures/Tiles/Planet/Snow/dug_single_edge_SE.png
     NorthEast: /Textures/Tiles/Planet/Snow/dug_single_edge_NE.png
