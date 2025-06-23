@@ -14,7 +14,7 @@
     state: icon
   - type: AmbientSound
     range: 3
-    volume: -6
+    volume: -8
     sound:
       path: /Audio/Ambience/anomaly_scary.ogg
 
@@ -44,8 +44,9 @@
     damage:
       types:
         Slash: 30
+    popupText: eldritch-influence-reaction
   - type: AmbientSound
     range: 3
-    volume: -6
+    volume: -8
     sound:
       path: /Audio/Ambience/anomaly_scary.ogg
