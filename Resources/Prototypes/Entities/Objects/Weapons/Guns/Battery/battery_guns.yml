@@ -622,7 +622,11 @@
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
     # not putting a BlockMovement component here cause that's funny.
-
+  #Imperial Space Pirates: New Horizon; Start
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 50000
+   #Imperial Space Pirates: New Horizon; End  
 - type: entity
   name: advanced laser pistol
   parent: [ BaseWeaponBatterySmall, BaseSecurityContraband]
@@ -803,6 +807,13 @@
     autoRechargeRate: 24
     autoRechargePause: true
     autoRechargePauseTime: 30
+  #Imperial Space Pirates: New Horizon; Start
+  - type: StaticPrice
+    price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 33000
+   #Imperial Space Pirates: New Horizon; End
 
 - type: entity
   name: temperature gun

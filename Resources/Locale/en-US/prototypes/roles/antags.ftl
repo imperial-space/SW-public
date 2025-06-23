@@ -47,3 +47,9 @@ roles-antag-thief-objective = Add some NT property to your personal collection w
 
 roles-antag-dragon-name = Space Dragon
 roles-antag-dragon-objective = Create a carp army to take over this quadrant.
+
+roles-antag-pirate-name = Space pirate
+roles-antag-pirate-description = Team up with yall crew to rip off anything.
+
+roles-antag-captainpirate-name = Captain pirate
+roles-antag-captainpirate-description = Lead your team to easy cash!

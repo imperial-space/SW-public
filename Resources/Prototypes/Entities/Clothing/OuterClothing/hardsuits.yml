@@ -435,6 +435,11 @@
     price: 750
   - type: StealTarget
     stealGroup: ClothingOuterHardsuitRd
+    #Imperial Space Pirates: New Horizon; Start
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 6750
+    #Imperial Space Pirates: New Horizon; End
 
 #Head of Security's Hardsuit
 - type: entity

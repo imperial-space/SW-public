@@ -156,6 +156,13 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: JetpackCaptainFilled
+  #Imperial Space Pirates: New Horizon; Start
+  - type: StaticPrice
+    price: 2000
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 25000
+  #Imperial Space Pirates: New Horizon; End
 
 # Filled captain
 - type: entity

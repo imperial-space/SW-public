@@ -1323,7 +1323,7 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
+      - Pirate #Imperial Space Pirates: New Horizon
     - type: GhostRole
       name: ghost-role-information-pirate-name
       description: ghost-role-information-pirate-description
@@ -1332,9 +1332,16 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+    #Imperial Space Pirates: New Horizon; Start    
+    - type: RandomMetadata
+      nameSegments:
+      - NamesPirateFirst
+      - NamesPirateLast
+      nameFormat: name-format-standard
     - type: Loadout
-      prototypes: [ PirateScoonerAltA, PirateScoonerAltB, PirateScoonerAltC, PirateScoonerAltD ]
+      prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
       roleLoadout: [ RoleSurvivalEVA ]
+    #Imperial Space Pirates: New Horizon; End
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1360,6 +1367,9 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
+    #Imperial Space Pirates: New Horizon; Start
+    - type: Pirate
+    #Imperial Space Pirates: New Horizon; End
 
 - type: randomHumanoidSettings
   id: PirateCaptainScooner
@@ -1367,7 +1377,7 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
+      - Pirate #Imperial Space Pirates: New Horizon
     - type: GhostRole
       name: ghost-role-information-pirate-captain-name
       description: ghost-role-information-pirate-captain-description
@@ -1376,9 +1386,16 @@
       - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+    #Imperial Space Pirates: New Horizon; Start
+    - type: RandomMetadata
+      nameSegments:
+      - NamesPirateFirst
+      - NamesPirateLast
+      nameFormat: name-format-standard
     - type: Loadout
-      prototypes: [ PirateCaptainScooner ]
+      prototypes: [ ImperialPirateCaptainGear ]
       roleLoadout: [ RoleSurvivalEVA ]
+    #Imperial Space Pirates: New Horizon; End
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1404,6 +1421,7 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
+    - type: PirateCaptain #Imperial Space Pirates: New Horizon
 
 ### Другие
 

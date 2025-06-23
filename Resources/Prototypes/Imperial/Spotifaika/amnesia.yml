@@ -1,8 +1,8 @@
 - type: entity
   parent: XenoStructuralGel
   id: AmnesiaFleshTile
-  name: волокна плоти
-  description: Мясистый органический осадок, что слегка пульсирует.
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
   suffix: Amnesia, Spotifaika
   placement:
     mode: SnapgridCenter
@@ -25,8 +25,8 @@
 - type: entity
   parent: XenoStructuralGel
   id: AmnesiaFleshTile2
-  name: волокна плоти
-  description: Мясистый органический осадок, что слегка пульсирует.
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
   suffix: Amnesia, Spotifaika
   placement:
     mode: SnapgridCenter
@@ -49,8 +49,8 @@
 - type: entity
   parent: XenoStructuralGel
   id: AmnesiaFleshTile3
-  name: волокна плоти
-  description: Мясистый органический осадок, что слегка пульсирует.
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
   suffix: Amnesia, Spotifaika
   placement:
     mode: SnapgridCenter
@@ -73,8 +73,8 @@
 - type: entity
   parent: XenoStructuralGel
   id: AmnesiaFleshTile4
-  name: волокна плоти
-  description: Мясистый органический осадок, что слегка пульсирует.
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
   suffix: Amnesia, Spotifaika
   placement:
     mode: SnapgridCenter
@@ -97,8 +97,8 @@
 - type: entity
   parent: XenoStructuralGel
   id: AmnesiaFleshTile5
-  name: волокна плоти
-  description: Мясистый органический осадок, что слегка пульсирует.
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
   suffix: Amnesia, Spotifaika
   placement:
     mode: SnapgridCenter

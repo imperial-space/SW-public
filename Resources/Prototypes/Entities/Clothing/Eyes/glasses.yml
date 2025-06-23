@@ -65,6 +65,10 @@
   - type: EyeProtection
   - type: IdentityBlocker
     coverage: EYES
+    #Imperial Space Pirates: New Horizon
+  - type: Tag 
+    tags:
+    - Meson
 
 - type: entity
   parent: ClothingEyesBase
@@ -253,6 +257,10 @@
     - type: SolutionScanner
     - type: IdentityBlocker
       coverage: EYES
+    #Imperial Space Pirates: New Horizon
+    - type: Tag
+      tags:
+      - HudChemical
 
 - type: entity
   parent: [ClothingEyesBase, BaseMajorContraband]

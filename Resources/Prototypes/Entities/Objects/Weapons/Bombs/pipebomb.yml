@@ -30,7 +30,7 @@
   - type: Construction
     graph: PipeBomb
     node: pipebomb
-
+  
 - type: entity
   parent: BaseItem
   id: PipeBombGunpowder

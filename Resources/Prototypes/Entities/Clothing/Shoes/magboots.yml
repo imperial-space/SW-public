@@ -65,6 +65,11 @@
     price: 750
   - type: StealTarget
     stealGroup: ClothingShoesBootsMagAdv
+  #Imperial Space Pirates: New Horizon; Start
+  - type: GPSTrackerPrice
+    startprice: 0
+    endprice: 1200
+  #Imperial Space Pirates: New Horizon; End
 
 - type: entity
   parent: [ClothingShoesBootsMagBase]

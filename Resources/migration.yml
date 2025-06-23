@@ -608,6 +608,9 @@ PaxChemistryBottle: ChemistryBottlePax
 MuteToxinChemistryBottle: ChemistryBottleMuteToxin
 LeadChemistryBottle: ChemistryBottleLead
 ToxinChemistryBottle: ChemistryBottleToxin
+
+# 2025-05-27 Imperial Space; Обновление пайп бомбы
+PipeBomb: PipeBombNewRemastered
 # 2025-05-05 Imperial Space Замена АВД на РФИ
 SpawnPointIAA: SpawnPointRFI
 
