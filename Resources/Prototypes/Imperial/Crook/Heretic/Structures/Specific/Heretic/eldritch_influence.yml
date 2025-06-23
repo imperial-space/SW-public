@@ -11,20 +11,14 @@
     sprite: Imperial/Crook/Heretic/reality_fracture.rsi
     state: icon
   - type: Clickable
-  - type: TriggerOnVoice
-    keyPhrase: "R'CH T'H TR'TH"
-    listenRange: 2
-  - type: ActiveListener
-    range: 2
-  - type: DeleteOnTrigger
   - type: DamageOnInteract
     damage:
       types:
         Slash: 50
     popupText: eldritch-influence-reaction
   - type: AmbientSound
-    range: 4
-    volume: -5
+    range: 3
+    volume: -6
     sound:
       path: /Audio/Ambience/anomaly_scary.ogg
 
