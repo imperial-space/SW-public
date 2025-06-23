@@ -563,7 +563,7 @@ public sealed class GrabSystem : EntitySystem
         Dirty(grabbableUid, grabbableComp);
 
         _popup.PopupEntity(Loc.GetString("grab-popup-success"), grabbableUid, grabberUid);
-        _popup.PopupEntity(Loc.GetString("grabbed"), grabberUid, grabbableUid);
+        _popup.PopupEntity(Loc.GetString("grabbed-popup"), grabberUid, grabbableUid);
     }
 
     public bool TryStopGrab(EntityUid grabbableUid, GrabbableComponent grabbableComp, EntityUid? user = null)
