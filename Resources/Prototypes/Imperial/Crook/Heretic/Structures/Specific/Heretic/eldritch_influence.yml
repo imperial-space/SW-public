@@ -7,6 +7,7 @@
     mode: SnapgridCenter
   components:
   - type: EldritchInfluence
+  - type: Clickable
   - type: InteractionOutline
   - type: Sprite
     sprite: Imperial/Crook/Heretic/reality_fracture.rsi
@@ -40,7 +41,7 @@
     state: icon_harvested
   - type: Clickable
   - type: AmbientSound
-    range: 4
-    volume: -5
+    range: 3
+    volume: -6
     sound:
       path: /Audio/Ambience/anomaly_scary.ogg
