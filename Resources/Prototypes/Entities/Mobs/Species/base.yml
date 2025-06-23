@@ -241,6 +241,10 @@
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
   - type: Puller
+# Imperial medieval Grab
+  - type: Grabbable
+  - type: Grabber
+# Imperial medieval Grab
   - type: Speech
     speechSounds: Alto
   - type: DamageForceSay
