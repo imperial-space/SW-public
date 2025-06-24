@@ -3,6 +3,8 @@ using Content.Server.Imperial.Medieval.Grab.Components;
 using Content.Server.Physics.Controllers;
 using Content.Shared.Imperial.Medieval.Grab;
 using Content.Shared.Imperial.Medieval.Grab.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs.Systems;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Controllers;
 using Robust.Shared.Physics.Systems;
@@ -29,9 +31,11 @@ public sealed class GrabController : VirtualController
 
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
     private EntityQuery<GrabberComponent> _grabberQuery;
+    private EntityQuery<MobStateComponent> _mobStateQuery;
 
     public override void Initialize()
     {
@@ -39,6 +43,7 @@ public sealed class GrabController : VirtualController
         UpdatesAfter.Add(typeof(MoverController));
         _xformQuery = GetEntityQuery<TransformComponent>();
         _grabberQuery = GetEntityQuery<GrabberComponent>();
+        _mobStateQuery = GetEntityQuery<MobStateComponent>();
         SubscribeLocalEvent<ActiveGrabberComponent, MoveEvent>(OnGrabberMove);
         SubscribeLocalEvent<GrabMovingComponent, GrabStoppedEvent>(OnGrabStopped);
     }
@@ -55,6 +60,12 @@ public sealed class GrabController : VirtualController
 
             if (!_grabberQuery.TryGetComponent(grabber, out _))
                 continue;
+
+            if (IsEntityDead(uid))
+            {
+                RemCompDeferred<GrabMovingComponent>(uid);
+                continue;
+            }
 
             EnsureComp<GrabMovingComponent>(uid);
 
@@ -101,7 +112,8 @@ public sealed class GrabController : VirtualController
             return;
         }
 
-        UpdateGrabbedRotation(uid, grabbable);
+        if (!IsEntityDead(grabbable))
+            UpdateGrabbedRotation(uid, grabbable);
 
         if (args.NewPosition.EntityId == args.OldPosition.EntityId &&
             (args.NewPosition.Position - args.OldPosition.Position).LengthSquared() < 0.0025f)
@@ -124,5 +136,13 @@ public sealed class GrabController : VirtualController
     private void OnGrabStopped(EntityUid uid, GrabMovingComponent comp, ref GrabStoppedEvent args)
     {
         RemCompDeferred<GrabMovingComponent>(uid);
+    }
+
+    private bool IsEntityDead(EntityUid uid)
+    {
+        if (!_mobStateQuery.TryGetComponent(uid, out var mobState))
+            return false;
+
+        return _mobState.IsDead(uid, mobState);
     }
 }

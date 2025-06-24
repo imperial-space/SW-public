@@ -44,8 +44,12 @@ namespace Content.Shared.Humanoid.Markings
 
         public FrozenDictionary<string, MarkingPrototype> MarkingsByCategory(MarkingCategories category)
         {
-            // all marking categories are guaranteed to have a dict entry
-            return CategorizedMarkings[category];
+            // why: [FATL] unhandled: System.Collections.Generic.KeyNotFoundException: The given key 'Hair' was not present in the dictionary.
+
+            if (!CategorizedMarkings.TryGetValue(category, out var dict))
+                return FrozenDictionary<string, MarkingPrototype>.Empty;
+
+            return dict;
         }
 
         /// <summary>

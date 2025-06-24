@@ -49,11 +49,9 @@ public sealed class GrabSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly HeldSpeedModifierSystem _clothingMoveSpeed = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtual = default!;
-    [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
@@ -463,7 +461,7 @@ public sealed class GrabSystem : EntitySystem
             BreakOnMove = false,
             BreakOnDamage = false,
             BreakOnWeightlessMove = false,
-            DistanceThreshold = 1.6f
+            DistanceThreshold = Comp<GrabberComponent>(grabberUid).GrabRange
         };
 
         _doAfter.TryStartDoAfter(doAfterArgs);
@@ -526,6 +524,9 @@ public sealed class GrabSystem : EntitySystem
         PhysicsComponent grabbablePhysics,
         GrabbableComponent grabbableComp)
     {
+        if (!CanGrab(grabberUid, grabbableUid))
+            return;
+
         _interaction.DoContactInteraction(grabbableUid, grabberUid);
 
         grabbableComp.GrabJointId = $"grab-joint-{GetNetEntity(grabbableUid)}";

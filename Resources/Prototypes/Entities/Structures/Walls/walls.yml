@@ -647,7 +647,7 @@
   - type: Tag
     tags:
     - Wall
-    - SwarmerDeconstructionBlacklist
+   #  - SwarmerDeconstructionBlacklist why: Unknown tag: SwarmerDeconstructionBlacklist
    # Imperial swarmer end
 
   - type: Fixtures
