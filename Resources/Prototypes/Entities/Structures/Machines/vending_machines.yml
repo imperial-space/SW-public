@@ -7,7 +7,7 @@
   components:
   - type: ActionGrant
     actions:
-    - ActionVendingThrow
+    - ActionVendingThrowMaggotson # Imperial Space Vending Machine
   - type: StationAiWhitelist
   - type: AmbientOnPowered
   - type: AmbientSound

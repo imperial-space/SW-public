@@ -20,6 +20,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Map;
 
 namespace Content.Server.VendingMachines
 {
@@ -44,7 +45,7 @@ namespace Content.Server.VendingMachines
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
 
-            SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
+            SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseTargetEvent>(OnSelfDispense); //Imperial Space Vending Machine
 
             SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnDoAfter);
 
@@ -121,13 +122,14 @@ namespace Content.Server.VendingMachines
             }
         }
 
-        private void OnSelfDispense(EntityUid uid, VendingMachineComponent component, VendingMachineSelfDispenseEvent args)
+        private void OnSelfDispense(EntityUid uid, VendingMachineComponent component, VendingMachineSelfDispenseTargetEvent args)
         {
             if (args.Handled)
                 return;
 
             args.Handled = true;
-            EjectRandom(uid, throwItem: true, forceEject: false, component);
+            component.TargetDirection = args.Target;
+            EjectRandom(uid, throwItem: true, forceEject: false, component); ///Imperial Space Vending Machine
         }
 
         private void OnDoAfter(EntityUid uid, VendingMachineComponent component, DoAfterEvent args)
@@ -194,7 +196,6 @@ namespace Content.Server.VendingMachines
                 return;
 
             var item = _random.Pick(availableItems);
-
             if (forceEject)
             {
                 vendComponent.NextItemToEject = item.ID;
@@ -241,9 +242,20 @@ namespace Content.Server.VendingMachines
 
             if (vendComponent.ThrowNextItem)
             {
-                var range = vendComponent.NonLimitedEjectRange;
-                var direction = new Vector2(_random.NextFloat(-range, range), _random.NextFloat(-range, range));
-                _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
+                //Imperial Space Vending Machine; Start
+                if (vendComponent.TargetDirection == null)
+                {
+                    var range = vendComponent.NonLimitedEjectRange;
+                    var direction = new Vector2(_random.NextFloat(-range, range), _random.NextFloat(-range, range));
+                    _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
+                }
+                else
+                {
+                    var direction = vendComponent.TargetDirection ?? new EntityCoordinates();
+                    vendComponent.TargetDirection = null;
+                    _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
+                }
+                //Imperial Space Vending Machine; End
             }
 
             vendComponent.NextItemToEject = null;
