@@ -615,8 +615,8 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 12
-        Structural: 34
+        Blunt: 17
+        Structural: 50
   - type: Item
     size: Huge
   - type: DamageOtherOnHit
@@ -640,6 +640,9 @@
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
 
 - type: entity
   name: hoe
@@ -1724,9 +1727,9 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 7
-        Structural: 10
-        Slash: 10
+        Blunt: 11
+        Structural: 15
+        Slash: 15
   - type: Item
     size: Huge
   - type: DamageOtherOnHit
@@ -1752,6 +1755,9 @@
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
 
 - type: entity
   name: iron halberd
@@ -1796,9 +1802,9 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 5
-        Structural: 5
-        Slash: 7
+        Blunt: 6
+        Structural: 9
+        Slash: 11
   - type: Item
     size: Huge
   - type: DamageOtherOnHit
@@ -1829,6 +1835,9 @@
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
 
 - type: entity
   name: iron halberd
@@ -1873,9 +1882,9 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 7
-        Structural: 15
-        Slash: 9
+        Blunt: 9
+        Structural: 17
+        Slash: 12
   - type: Item
     size: Huge
   - type: DamageOtherOnHit
@@ -1899,6 +1908,9 @@
     speed: 5
   - type: Meltable
     resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
 
 - type: entity
   name: falshion
@@ -2508,9 +2520,9 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 9
-        Structural: 19
-        Slash: 13
+        Blunt: 10
+        Structural: 23
+        Slash: 18
   - type: Item
     size: Huge
   - type: DamageOtherOnHit
@@ -2541,6 +2553,9 @@
     damage: 8 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
 
 - type: entity
   name: iron hammer
@@ -2581,8 +2596,8 @@
   - type: IncreaseDamageOnWield
     damage:
       types:
-        Blunt: 14
-        Structural: 79
+        Blunt: 20
+        Structural: 114
   - type: Item
     size: Huge
   - type: DamageOtherOnHit
@@ -2606,6 +2621,9 @@
     damage: 18 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
 
 - type: entity
   name: falshion
