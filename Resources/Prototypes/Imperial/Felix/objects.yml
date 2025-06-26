@@ -629,7 +629,7 @@
   suffix: ElysiumPrime
   components:
   - type: Sprite
-    sprite:
+    sprite: Imperial/Felix/Objects/paper.rsi
     layers:
     - state: passport
     - state: passport_words
