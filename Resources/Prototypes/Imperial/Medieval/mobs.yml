@@ -326,6 +326,9 @@
       amount: 3
     - id: MedievalLootWolf
       amount: 1
+    - id: MedievalLootwolf2
+      amount: 3
+      prob: 0.4
   - type: Bloodstream
     bloodMaxVolume: 40
   #- type: ReplacementAccent
@@ -443,6 +446,11 @@
     - id: MedievalLeather1
       amount: 1
       prob: 0.5
+    - id: MedievalLootrabbit
+      amount: 1
+    - id: MedievalLootrabbit
+      amount: 1
+      prob: 0.2
   - type: Bloodstream
     bloodMaxVolume: 10
   #- type: ReplacementAccent
@@ -763,6 +771,8 @@
       amount: 8
     - id: MedievalLootBear
       amount: 1
+    - id: MedievalLootbearskin
+      amount: 1
   - type: Bloodstream
     bloodMaxVolume: 200
   #- type: ReplacementAccent
@@ -882,6 +892,8 @@
     - id: MedievalLeather1
       amount: 5
     - id: MedievalLootHog
+      amount: 1
+    - id: MedievalLoothogskin
       amount: 1
   - type: Bloodstream
     bloodMaxVolume: 140
@@ -1155,6 +1167,9 @@
       amount: 1
     - id: MedievalLeather1
       amount: 1
+    - id: MedievalLootgoblin2
+      amount: 2
+      prob: 0.7
   - type: Access
     tags:
     - Maintenance
@@ -2424,6 +2439,9 @@
       amount: 1
     - id: MedievalRevent5
       amount: 1
+    - id: MedievalLootskeletonjaw
+      amount: 1
+      prob: 0.2
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -2827,6 +2845,9 @@
     spawned:
     - id: MedievalLootHunter
       amount: 1
+    - id: MedievalLoothunter2
+      amount: 2
+      prob: 0.1
   - type: IgnoreSpiderWeb
   - type: StaminaDamageOnHit
     damage: 17

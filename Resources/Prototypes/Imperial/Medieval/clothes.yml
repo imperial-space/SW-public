@@ -1755,3 +1755,26 @@
     sprite: Imperial/Medieval/Clothing/Mask/royalmask.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Mask/royalmask.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth71
+  name: песочная одежда война
+  description: Одежда предпочитаемая бандитами. С ней удобно прятаться в песках.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_71.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_71.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingShoesDeserd
+  name: светлые сапоги
+  description: Походные сапоги из крепкой кожи.
+  components:
+  - type: Sprite
+    sprite: Imperial\Medieval\Clothing\Shoes\desert_ambassador.rsi
+  - type: Clothing
+    sprite: Imperial\Medieval\Clothing\Shoes\desert_ambassador.rsi

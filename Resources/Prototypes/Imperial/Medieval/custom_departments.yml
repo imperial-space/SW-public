@@ -57,6 +57,17 @@
   - MedievalBanditLeader
 
 - type: department
+  id: Kayot
+  name: Банда койота
+  description: Воруй, убивай, сражайся против банды волка
+  color: "#CCCCCC"
+  roles:
+  - MedievalKayotRecruit
+  - MedievalKayotRegular
+  - MedievalKayotVeteran
+  - MedievalKayotLeader
+
+- type: department
   id: Collegium
   name: department-collegium
   description: department-collegium-description
@@ -142,6 +153,7 @@
   - MedievalLegionLegat
   - MedievalInsurgencyLegat
   - MedievalBanditLeader
+  - MedievalKayotLeader
   - MedievalCollegiumLeader
   - MedievalTribeLeader
   - MedievalMercLeader

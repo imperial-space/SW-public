@@ -23,7 +23,7 @@
             MedievalWanderMag: [ 4, 4 ]
             # Legion (29 total)
             MedievalLegionJailed: [ 5, 5 ]
-            JobIconMedievalLegionJailer: [ 1, 1 ]
+            MedievalLegionJailer: [ 1, 1 ]
             MedievalLegionRecruit: [ 7, 7 ]
             MedievalLegionLegioner: [ 11, 11 ]
             MedievalLegionOpcion: [ 4, 4 ]
@@ -46,6 +46,11 @@
             MedievalBanditRegular: [ 4, 4 ]
             MedievalBanditVeteran: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (10 total)
+            MedievalKayotRecruit: [ 3, 3 ]
+            MedievalKayotRegular: [ 3, 3 ]
+            MedievalKayotVeteran: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]
             # Collegium (15 total)
             MedievalCollegiumRecruit: [ 7, 7 ]
             MedievalCollegiumCommon: [ 7, 7 ]
@@ -122,6 +127,11 @@
             MedievalBanditRegular: [ 3, 3 ]
             MedievalBanditVeteran: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (8 total)
+            MedievalKayotRecruit: [ 2, 2 ]
+            MedievalKayotRegular: [ 2, 2 ]
+            MedievalKayotVeteran: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]            
             # Collegium (11 total)
             MedievalCollegiumRecruit: [ 5, 5 ]
             MedievalCollegiumCommon: [ 5, 5 ]
@@ -198,6 +208,11 @@
             MedievalBanditRegular: [ 2, 2 ]
             MedievalBanditVeteran: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (6 total)
+            MedievalKayotRecruit: [ 1, 1 ]
+            MedievalKayotRegular: [ 1, 1 ]
+            MedievalKayotVeteran: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]
             # Collegium (7 total)
             MedievalCollegiumRecruit: [ 3, 3 ]
             MedievalCollegiumCommon: [ 3, 3 ]
@@ -274,6 +289,11 @@
             MedievalBanditRegular: [ 2, 2 ]
             #MedievalBanditVeteran: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (4 total)
+            MedievalKayotRecruit: [ 1, 1 ]
+            MedievalKayotRegular: [ 2, 2 ]
+            #MedievalKayotVeteran: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]
             # Collegium (4 total)
             MedievalCollegiumRecruit: [ 1, 1 ]
             MedievalCollegiumCommon: [ 2, 2 ]
@@ -347,6 +367,11 @@
             MedievalBanditRegular: [ 1, 1 ]
             #MedievalBanditVeteran: [ 1, 1 ]
             MedievalBanditLeader: [ 1, 1 ]
+            # Kayot (3 total)
+            MedievalKayotRecruit: [ 1, 1 ]
+            MedievalKayotRegular: [ 1, 1 ]
+            #MedievalKayotVeteran: [ 1, 1 ]
+            MedievalKayotLeader: [ 1, 1 ]
             # Collegium (3 total)
             MedievalCollegiumRecruit: [ 1, 1 ]
             MedievalCollegiumCommon: [ 1, 1 ]

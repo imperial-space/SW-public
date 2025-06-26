@@ -121,6 +121,19 @@
       event: !type:CloackMessageActionEvent
 
 - type: entity
+  id: CloackMessageActionKayot
+  name: not infection
+  description: magic
+  noSpawn: true
+  components:
+    - type: InstantAction
+      useDelay: 90
+      icon:
+        sprite: /Textures/Imperial/Medieval/Misc/cloack_message.rsi
+        state: bandits
+      event: !type:CloackMessageActionEvent
+
+- type: entity
   id: CloackMessageActionMerc
   name: not infection
   description: magic

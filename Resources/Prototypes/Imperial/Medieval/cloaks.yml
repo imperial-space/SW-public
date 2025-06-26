@@ -295,6 +295,17 @@
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingNeckCloakClanWolf # imperial medieval
 
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakClanKayot
+  name: Плащ банды клана черного волка
+  description: Необходим для опознания свой/чужой
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/clan_kayot.rsi
+  - type: Insulated
+  - type: StealTarget # imperial medieval
+    stealGroup: MedievalGetMedievalClothingNeckCloakClanWolf # imperial medieval
 
 - type: entity
   parent: ClothingNeckBase
