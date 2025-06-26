@@ -25,73 +25,76 @@ public sealed partial class HereticRuneSystem : EntitySystem
     }
 
     private void OnAfterInteract(Entity<RuneScribingComponent> ent, ref AfterInteractEvent args)
-{
-    if (!args.ClickLocation.IsValid(EntityManager))
-        return;
-
-    if (!args.CanReach || !HasComp<HereticComponent>(args.User))
-        return;
-
-    var (animProto, duration) = GetRuneDrawingParameters(ent, args.Used);
-
-    var animEnt = Spawn(animProto, args.ClickLocation);
-    _transform.AttachToGridOrMap(animEnt);
-
-    var usedEntity = args.Used != null ? (EntityUid)args.Used : args.User;
-
-    var doAfterArgs = new DoAfterArgs(
-        EntityManager,
-        args.User,
-        duration,
-        new DrawRitualRuneDoAfterEvent(
-            GetNetEntity(animEnt),
-            GetNetCoordinates(args.ClickLocation)),
-        ent,
-        used: usedEntity)
     {
-        BreakOnDamage = true,
-        BreakOnMove = true,
-        NeedHand = true,
-        DistanceThreshold = 2f,
-        Broadcast = true
-    };
+        if (!args.ClickLocation.IsValid(EntityManager))
+            return;
 
-    if (!_doAfter.TryStartDoAfter(doAfterArgs))
-        QueueDel(animEnt);
-}
+        if (!args.CanReach || !HasComp<HereticComponent>(args.User))
+            return;
 
-private (string animProto, TimeSpan duration) GetRuneDrawingParameters(Entity<RuneScribingComponent> ent, EntityUid? tool)
-{
-    var animProto = ent.Comp.AnimationProto;
-    var duration = ent.Comp.ScribingDuration;
+        var (animProto, duration) = GetRuneDrawingParameters(ent, args.Used);
 
-    if (tool != null && TryComp<TransmutationRuneScriberComponent>(tool.Value, out var scriber))
-    {
-        animProto = scriber.RuneDrawingEntity;
-        duration = scriber.Time;
+        var animEnt = Spawn(animProto, args.ClickLocation);
+        _transform.AttachToGridOrMap(animEnt);
+
+        var usedEntity = args.Used != null ? (EntityUid)args.Used : args.User;
+
+        var doAfterArgs = new DoAfterArgs(
+            EntityManager,
+            args.User,
+            duration,
+            new DrawRitualRuneDoAfterEvent(
+                GetNetEntity(animEnt),
+                GetNetCoordinates(args.ClickLocation)),
+            ent,
+            used: usedEntity)
+        {
+            BreakOnDamage = true,
+            BreakOnMove = true,
+            NeedHand = true,
+            DistanceThreshold = 2f,
+            Broadcast = true
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfterArgs))
+            QueueDel(animEnt);
     }
 
-    return (animProto, duration);
-}
+    private (string animProto, TimeSpan duration) GetRuneDrawingParameters(Entity<RuneScribingComponent> ent, EntityUid? tool)
+    {
+        var animProto = ent.Comp.AnimationProto;
+        var duration = ent.Comp.ScribingDuration;
+
+        if (tool != null && TryComp<TransmutationRuneScriberComponent>(tool.Value, out var scriber))
+        {
+            animProto = scriber.RuneDrawingEntity;
+            duration = scriber.Time;
+        }
+
+        return (animProto, duration);
+    }
 
     private void OnRitualDoAfter(DrawRitualRuneDoAfterEvent ev)
     {
         if (GetEntity(ev.AnimationEntity) is { } animEnt)
             QueueDel(animEnt);
 
-        if (ev.Cancelled || ev.Handled || !TryGetEntity(ev.Coordinates.NetEntity, out var targetEntity))
+        if (ev.Cancelled || ev.Handled || !TryGetEntity(ev.Coordinates.NetEntity, out var targetEntity) ||
+            !TryComp<RuneScribingComponent>(ev.Target, out var runeComp))
+        {
             return;
+        }
 
         var spawnCoords = new EntityCoordinates(targetEntity.Value, ev.Coordinates.Position);
-        var rune = Spawn(ev.RuneProto, spawnCoords);
+        var rune = Spawn(runeComp.RuneProto, spawnCoords);
         _transform.AttachToGridOrMap(rune);
 
         var audioParams = AudioParams.Default
             .WithVolume(-5f)
             .WithMaxDistance(10f);
-        _audio.PlayPvs(ev.SoundPath, rune, audioParams);
+        _audio.PlayPvs(runeComp.SoundPath, rune, audioParams);
 
-        _popup.PopupEntity(Loc.GetString(ev.SuccessMessage), rune, ev.User);
+        _popup.PopupEntity(Loc.GetString(runeComp.SuccessMessage), rune, ev.User);
         ev.Handled = true;
     }
 }
