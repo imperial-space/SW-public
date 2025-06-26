@@ -3117,9 +3117,9 @@
     state: weak
   - type: Currency
     price:
-      Revent: 5
+      Revent: 15
   - type: Item
-    size: Small
+    size: Tiny
   - type: QuestItem
     contractName: "головы небронированных скелетов"
 
@@ -3134,9 +3134,9 @@
     state: meat
   - type: Currency
     price:
-      Revent: 7
+      Revent: 25
   - type: Item
-    size: Small
+    size: Tiny
   - type: QuestItem
     contractName: "головы небронированных скелетов"
 
@@ -3151,9 +3151,9 @@
     state: fighter
   - type: Currency
     price:
-      Revent: 11
+      Revent: 40
   - type: Item
-    size: Small
+    size: Tiny
   - type: QuestItem
     contractName: "головы бронированных скелетов"
 
@@ -3168,9 +3168,9 @@
     state: legion
   - type: Currency
     price:
-      Revent: 22
+      Revent: 60
   - type: Item
-    size: Small
+    size: Tiny
   - type: QuestItem
     contractName: "головы бронированных скелетов"
 
