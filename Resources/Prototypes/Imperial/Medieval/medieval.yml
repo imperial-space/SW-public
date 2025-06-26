@@ -3012,7 +3012,7 @@
     state: weak
   - type: Currency
     price:
-      Revent: 10
+      Revent: 15
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3029,7 +3029,7 @@
     state: meat
   - type: Currency
     price:
-      Revent: 15
+      Revent: 25
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3046,7 +3046,7 @@
     state: fighter
   - type: Currency
     price:
-      Revent: 25
+      Revent: 40
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3063,7 +3063,7 @@
     state: legion
   - type: Currency
     price:
-      Revent: 35
+      Revent: 60
   - type: Item
     size: Tiny
   - type: QuestItem
