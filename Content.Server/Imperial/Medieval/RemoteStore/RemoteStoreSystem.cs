@@ -8,7 +8,7 @@ namespace Content.Server.Imperial.Medieval.RemoteStore;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class RemoteStoreSystem : EntitySystem
+public sealed partial class RemoteStoreSystem : EntitySystem
 {
 
     [Dependency] private readonly StoreSystem _store = default!;
@@ -16,6 +16,7 @@ public sealed class RemoteStoreSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        InitReputation();
     }
 
 
