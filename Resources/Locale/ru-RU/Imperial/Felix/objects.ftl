@@ -67,3 +67,8 @@ ent-LaserFederationBlastDoor = энергетический барьер
     .desc = На нём написано «ЛАЗЕРНАЯ ОПАСНОСТЬ».
 ent-LaserFederationBlastDoorOpen = энергетический барьер
     .desc = На нём написано «ЛАЗЕРНАЯ ОПАСНОСТЬ».
+
+ent-ElysiumPrimeFelixPassportPaper = документ
+    .desc = Бумажник с важным содержанием.
+ent-ElysiumPrimeFelixKsivaPaper = документ
+    .desc = Бумажник с важным содержанием.
