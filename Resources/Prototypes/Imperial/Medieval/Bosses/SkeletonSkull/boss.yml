@@ -1,0 +1,107 @@
+- type: entity
+  id: SkeletonSkullBoss
+  name: skeleton skull
+  description: e
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/skeleton-skull.rsi
+    layers:
+    - map: [ "enum.BossStageVisuals.Layer" ]
+      state: skull
+    - map: [ "enum.AdditionalBossVisuals.Layer" ]
+      state: null
+      visible: false
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.5,-1.5,1.5,1.5"
+        density: 50
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BossStageVisuals.State:
+        enum.BossStageVisuals.Layer:
+          1: {state: skull}
+          2: {state: skull-1}
+          3: {state: skull-2}
+      enum.AdditionalBossVisuals.State:
+        enum.AdditionalBossVisuals.Layer:
+          "none": {state: null, visible: false}
+          "healing": {state: healing, visible: true}
+          "red": {state: redglow, visible: true}
+          "purple": {state: purpleglow, visible: true}
+          "green": {state: greenglow, visible: true}
+  - type: Boss
+    stages:
+      1:
+        threshold: 100
+        attacks:
+        - !type:MarkerTargetedAttack
+          markerTag: BoneSpikeSpawnPosition
+          countLimits: 1,1
+          actions:
+          - !type:SpawAtPosition
+            prototypes: BoneSpikeBig
+            randomDistance: 3
+            spawnCount: 4
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
+              soundType: Position
+        - !type:PlayerTargetedAttack
+          countLimits: 4,6
+          actions:
+          - !type:AddComponent
+            components:
+            - type: CursedMark
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/cursed-mark.ogg
+              soundType: Player
+      2:
+        threshold: 60
+        attacks:
+        - !type:MarkerTargetedAttack
+          markerTag: HealingSkullSpawnPosition
+          countLimits: 2,3
+          actions:
+          - !type:SpawAtPosition
+            prototypes: MobBossHealingSkull
+            randomDistance: 3
+            spawnCount: 2
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/heal-skulls-spawn.ogg
+              soundType: BossPvs
+        - !type:PlayerTargetedAttack
+          countLimits: 4,6
+          actions:
+          - !type:AddComponent
+            components:
+            - type: CursedMark
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/cursed-mark.ogg
+              soundType: Player
+      # 3:
+      #   threshold: 30
+      #   attacksPerTime: 1,2
+      #   attacks:
+      #   - !type:BossTargetedAttack
+      #     actions:
+      #     - !type:AddComponent
+      #       components:
+      #       - type: CursedMark

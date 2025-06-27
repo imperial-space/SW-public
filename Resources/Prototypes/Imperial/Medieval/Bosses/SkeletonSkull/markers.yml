@@ -1,0 +1,23 @@
+- type: entity
+  name: bone spike pos marker
+  id: BoneSpikeSpawnMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: Tag
+    tags:
+    - BoneSpikeSpawnPosition
+
+- type: entity
+  name: healing skull pos marker
+  id: HealingSkullSpawnMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: Tag
+    tags:
+    - HealingSkullSpawnPosition

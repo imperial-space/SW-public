@@ -1,0 +1,5 @@
+- type: tag
+  id: BoneSpikeSpawnPosition
+
+- type: tag
+  id: HealingSkullSpawnPosition

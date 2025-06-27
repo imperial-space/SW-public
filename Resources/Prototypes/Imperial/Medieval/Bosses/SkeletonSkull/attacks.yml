@@ -1,0 +1,72 @@
+- type: entity
+  id: BoneSpikeBig
+  parent: BaseStructure
+  name: bone spike
+  description: e
+  components:
+  - type: Anchorable
+  - type: Transform
+    anchored: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Skeleton
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 40
+        mask: #mouse can pass under, but I think this is can understandable by logic
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    snapCardinals: true
+    sprite: Imperial/Medieval/Structures/bone_spike_big.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 60
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageBossOnDestruction
+    damageAmount: 3
+  - type: TimedDespawn
+    time: 40
+  - type: SpawnOnDespawn
+    prototype: MobSkullBossSkeleton
+
+- type: entity
+  name: MobSkullBossSkeleton
+  id: MobBossHealingSkull
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/minion.rsi
+    layers:
+    - state: minion
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:GibBehavior { }
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Skeleton
+  - type: Clickable
+  - type: InteractionOutline
+  - type: TimedBossHeal
+    healAmount: 4
+  - type: TimedDespawn
+    time: 15.1
