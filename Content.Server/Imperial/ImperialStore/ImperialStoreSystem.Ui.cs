@@ -1,7 +1,6 @@
 using System.Linq;
 using Content.Server.Actions;
 using Content.Server.Administration.Logs;
-using Content.Server.PDA.Ringer;
 using Content.Server.Stack;
 using Content.Shared.Actions;
 using Content.Shared.Database;
@@ -166,10 +165,9 @@ public sealed partial class ImperialStoreSystem
         //subtract the cash
         foreach (var (currency, value) in listing.Cost)
         {
+            component.Balance.TryAdd(currency, FixedPoint2.Zero);
             component.Balance[currency] -= value;
-
             component.BalanceSpent.TryAdd(currency, FixedPoint2.Zero);
-
             component.BalanceSpent[currency] += value;
         }
 
