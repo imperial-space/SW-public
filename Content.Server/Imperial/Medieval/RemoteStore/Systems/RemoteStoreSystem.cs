@@ -3,7 +3,7 @@ using Content.Server.Store.Systems;
 using Content.Shared.Store.Components;
 using JetBrains.Annotations;
 
-namespace Content.Server.Imperial.Medieval.RemoteStore;
+namespace Content.Server.Imperial.Medieval.RemoteStore.Systems;
 
 /// <summary>
 /// This handles...
@@ -22,8 +22,8 @@ public sealed partial class RemoteStoreSystem : EntitySystem
 
     [PublicAPI]
     public void RegisterClient(
-        Entity<RemoteStoreServerComponent?> server,
-        Entity<RemoteStoreClientComponent?> client,
+        Entity<Components.RemoteStoreServerComponent?> server,
+        Entity<Components.RemoteStoreClientComponent?> client,
         EntityUid? requester = null
     )
     {
@@ -39,7 +39,7 @@ public sealed partial class RemoteStoreSystem : EntitySystem
     }
 
     [PublicAPI]
-    public void UnregisterClient(Entity<RemoteStoreClientComponent?> client, EntityUid? requester = null)
+    public void UnregisterClient(Entity<Components.RemoteStoreClientComponent?> client, EntityUid? requester = null)
     {
         if (!Resolve(client, ref client.Comp))
             return;
@@ -51,8 +51,8 @@ public sealed partial class RemoteStoreSystem : EntitySystem
     }
 
     [PublicAPI]
-    public void UnregisterClient(Entity<RemoteStoreServerComponent?> server,
-        Entity<RemoteStoreClientComponent?> client,
+    public void UnregisterClient(Entity<Components.RemoteStoreServerComponent?> server,
+        Entity<Components.RemoteStoreClientComponent?> client,
         EntityUid? requester = null)
     {
         if (!Resolve(server, ref server.Comp) || !Resolve(client, ref client.Comp))
@@ -62,8 +62,8 @@ public sealed partial class RemoteStoreSystem : EntitySystem
     }
 
     private void UnregisterClientPrivate(
-        Entity<RemoteStoreServerComponent> server,
-        Entity<RemoteStoreClientComponent> client,
+        Entity<Components.RemoteStoreServerComponent> server,
+        Entity<Components.RemoteStoreClientComponent> client,
         EntityUid? requester = null
     )
     {

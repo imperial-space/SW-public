@@ -1,4 +1,4 @@
-namespace Content.Server.Imperial.Medieval.RemoteStore;
+namespace Content.Server.Imperial.Medieval.RemoteStore.Components;
 
 /// <summary>
 /// This is used for
