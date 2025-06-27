@@ -1769,6 +1769,18 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth72
+  name: MedievalClothingUniformJumpsuitShitCloth72
+  description: MedievalClothingUniformJumpsuitShitCloth72
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_72.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_72.rsi
+  - type: Insulated
+
+- type: entity
   parent: ClothingShoesBase
   id: MedievalClothingShoesDeserd
   name: светлые сапоги
