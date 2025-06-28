@@ -9,7 +9,6 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Imperial.ImperialStore;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.ImperialStore;
 
@@ -21,7 +20,9 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+
+    private TimeSpan _balanceUpdateTimer;
+    public readonly TimeSpan BalanceUpdateInterval = TimeSpan.FromSeconds(5);
 
     public override void Initialize()
     {
@@ -44,16 +45,18 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
     {
         base.Update(frameTime);
 
+        _balanceUpdateTimer += TimeSpan.FromSeconds(frameTime);
+
+        if (_balanceUpdateTimer <= BalanceUpdateInterval)
+            return;
+
+        _balanceUpdateTimer = TimeSpan.Zero;
+
         var query = EntityQueryEnumerator<ImperialStoreComponent>();
         while (query.MoveNext(out var uid, out var store))
         {
-            TimeSpan time = _timing.CurTime;
-            if (time - store.LastBalanceUpdate >= store.BalanceUpdateInterval)
-            {
-                store.Balance = DepositSum(store.Balance, store.LastDepositSum);
-                store.LastBalanceUpdate = time;
-                UpdateUserInterface(null, uid, store);
-            }
+            store.Balance = store.BalanceOverride ? store.LastDepositSum : DepositSum(store.Balance, store.LastDepositSum);
+            UpdateUserInterface(null, uid, store);
         }
     }
 
@@ -121,7 +124,7 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
     }
 
     /// <summary>
-    /// Returns the sum of 'deposit1' and 'deposit2' times 'multiplier'.
+    /// Returns the sum of 'deposit1' and 'deposit2' (or their difference if 'subtract' is set).
     /// </summary>
     public Dictionary<string, FixedPoint2> DepositSum(
         Dictionary<string, FixedPoint2> deposit1,

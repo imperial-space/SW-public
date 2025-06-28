@@ -38,18 +38,6 @@ public sealed partial class ImperialStoreComponent : Component
     public bool BalanceOverride = false;
 
     /// <summary>
-    /// Interval between adding the last 'DepositCount' deposits to the balance (or overriding it).
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField]
-    public TimeSpan BalanceUpdateInterval = TimeSpan.Zero;
-
-    /// <summary>
-    /// Time of the last balance update.
-    /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField]
-    public TimeSpan LastBalanceUpdate = TimeSpan.Zero;
-
-    /// <summary>
     /// Length of the 'LastDeposits'. If it's equal to zero then 'LastDeposits' will be empty and all of the deposits will be directly added to the balance.
     /// </summary>
     [DataField]
