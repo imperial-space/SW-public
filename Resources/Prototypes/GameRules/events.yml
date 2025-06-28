@@ -208,7 +208,7 @@
   #Imperial Space Ninja; Start
   - type: AntagRandomObjectives
     sets:
-    - NinjaObjectiveGroupMisc
+    - groups: NinjaObjectiveGroupMisc
   #Imperial Space Ninja; End
   - type: AntagSelection
     agentName: ninja-round-end-agent-name
