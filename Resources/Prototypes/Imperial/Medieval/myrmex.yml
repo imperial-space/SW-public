@@ -14,20 +14,13 @@
 - type: soundCollection
   id: MyrmexFootsteps
   files:
-  - /Audio/Imperial/Medieval/ant_footstep1.ogg
   - /Audio/Imperial/Medieval/ant_footstep2.ogg
-  - /Audio/Imperial/Medieval/ant_footstep3.ogg
 
 - type: tile
-  id: MedievalMyrmexFloor
+  id: MedievalMyrmexFloor1
   name: смола мирмексов
-  sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_tiles.png
-  variants: 4
-  placementVariants:
-  - 1.0
-  - 1.0
-  - 1.0
-  - 1.0
+  sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_tiles1.png
+  variants: 1
   baseTurf: FloorCave
   isSubfloor: false
   ##deconstructTools: [ Prying ]
@@ -37,6 +30,21 @@
   heatCapacity: 99910000
   badSmellMod: 0.75
 
+- type: tile
+  id: MedievalMyrmexFloor2
+  name: смола мирмексов
+  sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_tiles2.png
+  variants: 1
+  baseTurf: FloorCave
+  isSubfloor: false
+  ##deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepMyrmexFloor
+  itemDrop: FloorTileItemWoodLarge
+  heatCapacity: 99910000
+  badSmellMod: 0.75
+
+
 # ===========================
 
 - type: entity
@@ -45,6 +53,10 @@
   name: myrmedon's door
   description: It opens, it closes, and maybe crushes you.
   components:
+  - type: Airlock
+    autoCloseDelay: 6.0
+    denyAnimationTime: 0.4
+    powered: true
   - type: DoorBolt
     #boltsDown: True
     boltUpSound:
@@ -59,6 +71,30 @@
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
+    - state: closed_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseUnlit"]
+      visible: false
+    - state: welded
+      map: ["enum.WeldableLayers.BaseWelded"]
+    - state: bolted_unlit
+      shader: unshaded
+      map: ["enum.DoorVisualLayers.BaseBolted"]
+    - state: emergency_unlit
+      map: ["enum.DoorVisualLayers.BaseEmergencyAccess"]
+      shader: unshaded
+    - state: panel_open
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.HUD"]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: ["enum.ElectrifiedLayers.Sparks"]
   - type: AnimationPlayer
   - type: Physics
   - type: Fixtures
@@ -72,9 +108,14 @@
         - FullTileMask
         layer:
         - AirlockLayer
+  - type: AccessReader
+    access: [["Service"]]
+  - type: LockDoor
+    accessLists:
+    - Service
   - type: Door
     performCollisionCheck: false
-    bumpOpen: false
+    bumpOpen: true
     clickOpen: true
     canCrush: false
     closeTimeOne: 0.2
@@ -188,7 +229,7 @@
     - FootstepSound
   - type: NpcFactionMember
     factions:
-    - Xeno
+    - Dragon
   - type: IgnoreSpiderWeb
   - type: Bloodstream
     bloodReagent: CopperBlood
@@ -224,6 +265,21 @@
       #Growling: Speak
       Hissing: Speak
       #Elf: Speak
+  - type: Access
+    tags:
+    - Service
+  - type: MedievalDash
+    force: 500
+  - type: MeleeWeapon
+    altDisarm: false
+    angle: 0
+    animation: WeaponArcBite
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+    damage:
+      types:
+        Blunt: 0
+        Slash: 0
 
 - type: entity
   name: myrmeling
@@ -239,7 +295,7 @@
       state: base
   - type: Physics
   - type: MeleeWeapon
-    animation: WeaponArcBite
+    animation: WeaponArcSlash
     range: 1.4
     attackRate: 0.55
     hidden: true
@@ -293,8 +349,14 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: Physics
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.75
+  - type: BasicEntityAmmoProvider
+    proto: BulletAcid
+    capacity: 1
+    count: 1
   - type: MeleeWeapon
-    animation: WeaponArcBite
+    animation: WeaponArcSlash
     range: 1.4
     attackRate: 0.55
     hidden: true
@@ -303,19 +365,26 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 6
+        Brute: 4
         Airloss: 6
       types:
         ParryAble: 1
         Bloodloss: 3
+  - type: Gun
+    fireRate: 0.75
+    useKey: false
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: MobThresholds
     thresholds:
       0: Alive
       100: Critical
       120: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.4
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 2.2
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
@@ -349,7 +418,7 @@
       state: base
   - type: Physics
   - type: MeleeWeapon
-    animation: WeaponArcBite
+    animation: WeaponArcSlash
     range: 1.4
     attackRate: 0.55
     hidden: true
@@ -369,8 +438,8 @@
       170: Critical
       200: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.4
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 2.2
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
@@ -404,7 +473,7 @@
       state: base
   - type: Physics
   - type: MeleeWeapon
-    animation: WeaponArcBite
+    animation: WeaponArcSlash
     range: 1.4
     attackRate: 0.55
     hidden: true
@@ -424,8 +493,8 @@
       155: Critical
       180: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3.4
+    baseWalkSpeed: 3.4
+    baseSprintSpeed: 2.2
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
@@ -449,7 +518,6 @@
   name: myrmelarva
   parent: MedievalMyrmexBase
   id: MedievalMyrmexLarva
-  description:
   components:
   - type: GhostRole
     makeSentient: true
@@ -458,6 +526,12 @@
     name: ghost-role-information-myrmex-larva-name
     description: ghost-role-information-myrmex-larva-description
     rules: ghost-role-information-myrmex-rules
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/ant_footstep1.ogg
+      params:
+        variation: 0.125
+        volume: -5
   - type: Sprite
     drawdepth: SmallMobs
     sprite: /Textures/Imperial/Medieval/Myrmex/Castes/myrmex_larva.rsi
@@ -471,9 +545,6 @@
     noMovementLayers:
       movement:
         state: base
-  - type: NpcFactionMember
-    factions:
-      - Xeno
   - type: HTN
     constantlyReplan: false
     rootTask:
@@ -497,8 +568,8 @@
       10: Critical
       20: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 0.8
-    baseSprintSpeed : 1.2
+    baseWalkSpeed : 1.2
+    baseSprintSpeed : 0.8
   - type: DamageStateVisuals
     states:
       Alive:
@@ -511,10 +582,12 @@
     soundHit:
       path: /Audio/Effects/bite.ogg
     angle: 0
-    animation: WeaponArcBite
+    animation: WeaponArcSlash
     damage:
       types:
         Piercing: 0
+  - type: MedievalDash
+    force: 300
 
 - type: entity
   name: myrmatriach
@@ -530,7 +603,7 @@
       state: base
   - type: Physics
   - type: MeleeWeapon
-    animation: WeaponArcBite
+    animation: WeaponArcSlash
     range: 1.4
     attackRate: 0.55
     hidden: true
@@ -550,8 +623,8 @@
       550: Critical
       600: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2.2
-    baseSprintSpeed: 3
+    baseWalkSpeed: 3
+    baseSprintSpeed: 2.2
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
