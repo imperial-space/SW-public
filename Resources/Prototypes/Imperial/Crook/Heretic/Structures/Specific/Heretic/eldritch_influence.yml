@@ -45,7 +45,7 @@
   - type: DamageOnInteract
     damage:
       types:
-        Slash: 30
+        Slash: 50
     popupText: eldritch-influence-reaction
   - type: AmbientSound
     range: 3
