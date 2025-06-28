@@ -8,4 +8,7 @@ public sealed partial class EldritchInfluenceDrainerComponent : Component
 {
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan TimeModifier = TimeSpan.FromSeconds(0.5);
+
+    [DataField]
+    public bool Hidden;
 }

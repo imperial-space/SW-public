@@ -63,7 +63,9 @@ public sealed class EldritchInfluenceSystem : EntitySystem
         BreakOnDamage = true,
         BreakOnMove = true,
         NeedHand = true,
-        Broadcast = false
+        Broadcast = false,
+        BreakOnWeightlessMove = false,
+        Hidden = true
     };
 
     _popup.PopupEntity(Loc.GetString(comp.StartDrainingMessage), user, user);
