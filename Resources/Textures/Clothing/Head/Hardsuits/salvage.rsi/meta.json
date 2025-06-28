@@ -42,7 +42,7 @@
             "directions": 4
         },
         {
-            "name": " off-inhand-right",
+            "name": "off-inhand-right",
             "directions": 4
         },
         {
@@ -51,10 +51,6 @@
         },
         {
             "name": "on-inhand-left",
-            "directions": 4
-        },
-        {
-            "name": "off-inhand-right",
             "directions": 4
         }
     ]
