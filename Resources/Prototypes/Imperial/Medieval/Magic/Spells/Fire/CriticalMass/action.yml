@@ -19,7 +19,7 @@
       groups:
         Burn: 12
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -29,6 +29,7 @@
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: supermass
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectCriticalMassBeginner
       spawnType: SpawnOnMousePosition

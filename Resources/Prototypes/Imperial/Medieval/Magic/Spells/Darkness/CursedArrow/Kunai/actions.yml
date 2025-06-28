@@ -14,7 +14,7 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 4
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -24,6 +24,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
       state: 2
+  - type: WorldTargetAction
     event: !type:MedievalEntityTargetProjectileSpellEvent
       projectilePrototype: MedievalProjectileCursedArrowKunaiBeginner
       speechPoints:
@@ -78,7 +79,7 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 5
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -88,6 +89,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
       state: 1
+  - type: WorldTargetAction
     event: !type:MedievalEntityTargetProjectileSpellEvent
       projectilePrototype: MedievalProjectileCursedArrowKunaiMiddle
       speechPoints:
@@ -142,7 +144,7 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 7
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -152,6 +154,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
       state: 3
+  - type: WorldTargetAction
     event: !type:MedievalEntityTargetProjectileSpellEvent
       projectilePrototype: MedievalProjectileCursedArrowKunaiSenior
       speechPoints:
