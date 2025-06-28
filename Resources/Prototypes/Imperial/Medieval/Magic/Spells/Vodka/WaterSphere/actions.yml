@@ -6,7 +6,7 @@
   description: medieval-store-spells-vodka-water-sphere-beginner-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 42
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -17,6 +17,7 @@
     icon:
       sprite: Imperial/Medieval/Magic/ice_pulse.rsi
       state: ice-basic
+  - type: WorldTargetAction
     event: !type:MedievalSpawnAimingEntityEvent
       spawnedEntity: MedievalEffectWaterSphereBeginner
       speechPoints:
@@ -58,7 +59,7 @@
   description: medieval-store-spells-vodka-water-sphere-middle-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 35
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -69,6 +70,7 @@
     icon:
       sprite: Imperial/Medieval/Magic/ice_pulse.rsi
       state: ice-mid
+  - type: WorldTargetAction
     event: !type:MedievalSpawnAimingEntityEvent
       spawnedEntity: MedievalEffectWaterSphereMiddle
       speechPoints:
@@ -100,7 +102,7 @@
   description: medieval-store-spells-vodka-water-sphere-senior-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -111,6 +113,7 @@
     icon:
       sprite: Imperial/Medieval/Magic/ice_pulse.rsi
       state: ice-adv
+  - type: WorldTargetAction
     event: !type:MedievalSpawnAimingEntityEvent
       spawnedEntity: MedievalEffectWaterSphereSenior
       speechPoints:

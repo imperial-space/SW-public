@@ -3,7 +3,7 @@
   name: Fireball
   description: Fires an explosive fireball towards the clicked location.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30 #ибо нехуй спамить заклинанием на сон
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -13,6 +13,7 @@
     icon:
       sprite: Imperial/DRGbeer/gnomeprojectile.rsi
       state: spell
+  - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: BulletGnomish
 

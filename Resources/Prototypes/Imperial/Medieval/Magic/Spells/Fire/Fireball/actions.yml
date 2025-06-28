@@ -6,7 +6,7 @@
   description: medieval-store-spells-fire-fireball-beginner-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 180
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -16,6 +16,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
       state: 1
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFireballBeginner
@@ -86,7 +87,7 @@
       groups:
         Burn: 27
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 155
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -96,6 +97,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
       state: 2
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFireballMiddle
@@ -129,7 +131,7 @@
       groups:
         Burn: 32
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 135
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -139,6 +141,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
       state: 3
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileFireballSenior

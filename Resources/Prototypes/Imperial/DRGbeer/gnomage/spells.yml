@@ -28,7 +28,7 @@
   name: Fireball
   description: Fires an explosive fireball towards the clicked location.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 60 #ибо нехуй спамить заклинанием
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -38,6 +38,7 @@
     icon:
       sprite: Imperial/DRGbeer/spells.rsi
       state: Reincarnation-Clown
+  - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: ProjectilePolyboltGnomish
 

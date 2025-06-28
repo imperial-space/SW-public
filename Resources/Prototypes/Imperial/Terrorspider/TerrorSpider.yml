@@ -1518,9 +1518,10 @@
   description: яички
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     icon: { sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi, state: lay_eggs }
     useDelay: 160
+  - type: InstantAction
     event: !type:EggLayInstantActionEvent
 
 - type: entity
@@ -2434,10 +2435,11 @@
   description: terror web
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
-    icon: Imperial/TerrorSpider/Spider/actions_animal.rsi/lay_web.png
-    event: !type:SpiderWebActionEvent
+  - type: Action
     useDelay: 8
+    icon: Imperial/TerrorSpider/Spider/actions_animal.rsi/lay_web.png
+  - type: InstantAction
+    event: !type:SpiderWebActionEvent
 
 - type: entity
   id: SpiderWebTerrorGuardian
