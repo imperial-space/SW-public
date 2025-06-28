@@ -1,0 +1,14 @@
+- type: entity
+  parent: NinjaSpawn
+  id: NinjaSpawnDebug
+  components:
+  - type: StationEvent
+    weight: 6
+    duration: null
+    earliestStart: 0
+    reoccurrenceDelay: 20
+    minimumPlayers: 0
+  - type: AntagObjectives
+    objectives:
+    - NinjaImperialKeepAliveObjective
+    - NinjaImperialDealDamageObjective
