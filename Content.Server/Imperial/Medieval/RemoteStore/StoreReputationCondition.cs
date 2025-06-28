@@ -1,5 +1,5 @@
+using Content.Server.Imperial.Medieval.RemoteStore.Components;
 using Content.Server.Imperial.Medieval.RemoteStore.Systems;
-using Content.Shared.Mind;
 using Content.Shared.Store;
 
 namespace Content.Server.Imperial.Medieval.RemoteStore;
@@ -12,7 +12,7 @@ public sealed partial class StoreReputationCondition : ListingCondition
     public override bool Condition(ListingConditionArgs args)
     {
         var ent = args.EntityManager;
-        if (!ent.TryGetComponent<Components.RemoteStoreClientComponent>(args.StoreEntity, out var clientComp))
+        if (!ent.TryGetComponent<RemoteStoreClientComponent>(args.StoreEntity, out var clientComp))
             return false;
         if (!clientComp.IsConnected)
             return false;

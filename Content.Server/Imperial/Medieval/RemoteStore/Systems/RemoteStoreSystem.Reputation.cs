@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using Content.Server.Imperial.Medieval.RemoteStore.Components;
 using Content.Server.Mind;
 using Content.Shared.Mind;
 using JetBrains.Annotations;
@@ -11,15 +12,15 @@ public sealed partial class RemoteStoreSystem
 
     private void InitReputation()
     {
-        SubscribeLocalEvent<Components.RemoteStoreServerComponent, ComponentShutdown>(OnStoreServerShutdown);
-        SubscribeLocalEvent<Components.StoreReputationKeepComponent, ComponentShutdown>(OnReputationKeepShutdown);
+        SubscribeLocalEvent<RemoteStoreServerComponent, ComponentShutdown>(OnStoreServerShutdown);
+        SubscribeLocalEvent<StoreReputationKeepComponent, ComponentShutdown>(OnReputationKeepShutdown);
     }
 
-    private void OnReputationKeepShutdown(Entity<Components.StoreReputationKeepComponent> ent, ref ComponentShutdown args)
+    private void OnReputationKeepShutdown(Entity<StoreReputationKeepComponent> ent, ref ComponentShutdown args)
     {
         foreach (var server in ent.Comp.Servers)
         {
-            if (!TryComp<Components.RemoteStoreServerComponent>(server, out var comp))
+            if (!TryComp<RemoteStoreServerComponent>(server, out var comp))
             {
                 continue; // Пох.
             }
@@ -28,7 +29,7 @@ public sealed partial class RemoteStoreSystem
         }
     }
 
-    private void OnStoreServerShutdown(Entity<Components.RemoteStoreServerComponent> ent, ref ComponentShutdown args)
+    private void OnStoreServerShutdown(Entity<RemoteStoreServerComponent> ent, ref ComponentShutdown args)
     {
         foreach (var mind in ent.Comp.MindsReputation.Keys)
         {
@@ -45,7 +46,7 @@ public sealed partial class RemoteStoreSystem
 
     [PublicAPI]
     public bool TryGetReputation(
-        Entity<Components.RemoteStoreServerComponent?> server,
+        Entity<RemoteStoreServerComponent?> server,
         EntityUid target,
         [NotNullWhen(true)] out int? reputation
     )
@@ -67,13 +68,13 @@ public sealed partial class RemoteStoreSystem
         return true;
     }
 
-    private static int GetReputation(Entity<Components.RemoteStoreServerComponent> server, EntityUid mindUid)
+    private static int GetReputation(Entity<RemoteStoreServerComponent> server, EntityUid mindUid)
     {
         return !server.Comp.MindsReputation.TryGetValue(mindUid, out var rep) ? 0 : rep;
     }
 
     [PublicAPI]
-    public bool TryChangeReputation(Entity<Components.RemoteStoreServerComponent?> server, EntityUid target, int amount)
+    public bool TryChangeReputation(Entity<RemoteStoreServerComponent?> server, EntityUid target, int amount)
     {
         if (!Resolve(server, ref server.Comp))
             return false;
@@ -91,9 +92,9 @@ public sealed partial class RemoteStoreSystem
         return true;
     }
 
-    private void ChangeReputation(Entity<Components.RemoteStoreServerComponent> server, EntityUid mindUid, int amount)
+    private void ChangeReputation(Entity<RemoteStoreServerComponent> server, EntityUid mindUid, int amount)
     {
-        EnsureComp<Components.StoreReputationKeepComponent>(mindUid).Servers.Add(server);
+        EnsureComp<StoreReputationKeepComponent>(mindUid).Servers.Add(server);
         if (!server.Comp.MindsReputation.TryAdd(mindUid, amount))
             server.Comp.MindsReputation[mindUid] += amount;
     }
