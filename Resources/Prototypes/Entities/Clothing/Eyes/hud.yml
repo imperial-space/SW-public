@@ -48,6 +48,8 @@
   - type: Tag
     tags:
     - HudMedical
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSecurityContraband]
@@ -62,6 +64,8 @@
   - type: Tag
     tags:
     - HudSecurity
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesBase, BaseCommandContraband]
@@ -74,6 +78,10 @@
   - type: Clothing
     sprite: Clothing/Eyes/Hud/command.rsi
   - type: ShowJobIcons
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: ClothingEyesBase
@@ -89,11 +97,11 @@
   - type: StealTarget
     stealGroup: ClothingEyesHudBeer
   - type: SolutionScanner
-  #Imperial Space Pirates: New Horizon start
   - type: Tag
     tags:
-    - HudBeer
-    # Imperial Space Pirates: New Horizon end
+    - CorgiWearable
+    - WhitelistChameleon
+    - HudBeer # Imperial Space Pirates: New Horizon
 
 - type: entity
   parent: ClothingEyesBase
@@ -216,6 +224,10 @@
   - type: Clothing
     sprite: Clothing/Eyes/Hud/synd.rsi
   - type: ShowSyndicateIcons
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesBase, ShowSecurityIcons, BaseSyndicateContraband]
@@ -229,6 +241,10 @@
     sprite: Clothing/Eyes/Hud/syndagent.rsi
   - type: ShowSyndicateIcons
   - type: ShowHealthBars
+  - type: Tag
+    tags:
+    - CorgiWearable
+    - WhitelistChameleon
 
 - type: entity
   parent: [ClothingEyesGlassesSunglasses, ShowSecurityIcons]
@@ -245,10 +261,13 @@
     sprite: Clothing/Eyes/Hud/medpatch.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/medpatch.rsi
-    #Imperial Space Pirates: New Horizon start
   - type: Tag
     tags:
-    - EyepatchMedical
+    - CorgiWearable
+    - WhitelistChameleon
+    - HudMedical
+    - EyepatchMedical #Imperial Space Pirates: New Horizon
+  #Imperial Space Pirates: New Horizon start
   - type: Construction
     graph: MedicalEyepatchHud
     node: medicalEyepatch
@@ -269,14 +288,17 @@
     sprite: Clothing/Eyes/Hud/secpatch.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/secpatch.rsi
-    #Imperial Space Pirates: New Horizon start
   - type: Tag
     tags:
-    - EyepatchSecurity
+    - CorgiWearable
+    - WhitelistChameleon
+    - HudSecurity
+    - EyepatchSecurity #Imperial Space Pirates: New Horizon
+  #Imperial Space Pirates: New Horizon start
   - type: Construction
     graph: SecurityEyepatchHud
     node: securityEyepatch
-    #Imperial Space Pirates: New Horizon end
+  #Imperial Space Pirates: New Horizon end
 
 - type: entity
   parent: [ClothingEyesEyepatchHudSecurity,  ClothingHeadEyeBaseFlipped]
@@ -293,14 +315,14 @@
     sprite: Clothing/Eyes/Hud/beerpatch.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/beerpatch.rsi
-    #Imperial Space Pirates: New Horizon start
+  # Imperial Space Pirates: New Horizon start
   - type: Tag
     tags:
     - EyepatchBeer
   - type: Construction
     graph: BeerEyepatchHud
     node: beerEyepatch
-#Imperial Space Pirates: New Horizon end
+  # Imperial Space Pirates: New Horizon end
 
 - type: entity
   parent: [ClothingEyesEyepatchHudBeer, ClothingHeadEyeBaseFlipped]

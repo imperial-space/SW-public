@@ -15,12 +15,11 @@
       layers:
         - state: icon-1
           map: ["spiderWebLayer"]
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: icon-1}
-            2:  {state: icon-6}
+    - type: RandomSprite
+      available:
+      - spiderWebLayer:
+        icon-1: ""
+        icon-6: ""
 
 - type: entity
   parent: XenoStructuralGel
@@ -39,12 +38,11 @@
       layers:
         - state: icon-2
           map: ["spiderWebLayer"]
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: icon-2}
-            2:  {state: icon-6}
+    - type: RandomSprite
+      available:
+      - spiderWebLayer:
+        icon-2: ""
+        icon-6: ""
 
 - type: entity
   parent: XenoStructuralGel
@@ -63,12 +61,11 @@
       layers:
         - state: icon-3
           map: ["spiderWebLayer"]
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: icon-3}
-            2:  {state: icon-6}
+    - type: RandomSprite
+      available:
+      - spiderWebLayer:
+        icon-3: ""
+        icon-6: ""
 
 - type: entity
   parent: XenoStructuralGel
@@ -87,12 +84,11 @@
       layers:
         - state: icon-4
           map: ["spiderWebLayer"]
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: icon-3}
-            2:  {state: icon-4}
+    - type: RandomSprite
+      available:
+      - spiderWebLayer:
+        icon-3: ""
+        icon-4: ""
 
 - type: entity
   parent: XenoStructuralGel
@@ -111,9 +107,8 @@
       layers:
         - state: icon-5
           map: ["spiderWebLayer"]
-    - type: GenericVisualizer
-      visuals:
-        enum.SpiderWebVisuals.Variant:
-          spiderWebLayer:
-            1:  {state: icon-4}
-            2:  {state: icon-5}
+    - type: RandomSprite
+      available:
+      - spiderWebLayer:
+        icon-4: ""
+        icon-5: ""

@@ -59,13 +59,14 @@
   name: Summon Magicarp
   description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 50
     range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/DRGbeer/spells.rsi
       state: gnomes
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: MobGnome
@@ -90,13 +91,14 @@
   name: Summon Magicarp
   description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 50
     range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/DRGbeer/spells.rsi
       state: Soporificfog
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: AdminInstantEffectTearGas
