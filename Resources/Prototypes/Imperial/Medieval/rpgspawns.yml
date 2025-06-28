@@ -222,7 +222,7 @@
     intervalSeconds: 1200
     minimumEntitiesSpawned: 2
     maximumEntitiesSpawned: 3
-    
+
 - type: entity
   id: MedievalClothingShoesFancy
   parent: MarkerBase
@@ -2328,3 +2328,16 @@
     bodyType: Static
   - type: MedievalMobSpawner
     spawnedEntity: MedievalLateMobSpawnerMedievalMobShieldSlug
+
+- type: entity
+  name: MedievalJobSpawnerKayot
+  id: MedievalJobSpawnerKayot
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Kayot
+  - type: AntiSSDFreeArea

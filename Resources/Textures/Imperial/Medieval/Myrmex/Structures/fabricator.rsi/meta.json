@@ -9,7 +9,7 @@
   "states":
   [
     {
-      "name": "base",
+      "name": "fabricator",
       "delays": [
         [
           0.4,

@@ -8,6 +8,15 @@
 
 - type: entity
   parent: MedievalPosterBase
+  id: MedievalPosterTeamBasedKayot
+  name: настенное знамя разбойников койота
+  description: Народ сильных и бесстрашных налётчиков, никто не может остановить их атаку. В их гербе изображён койот на светло-песочном фоне, олицетворяющий силу и устрашаемость.
+  components:
+  - type: Sprite
+    state: kayot
+
+- type: entity
+  parent: MedievalPosterBase
   id: MedievalPosterTeamBasedBlul
   name: "Free Tonto"
   components:

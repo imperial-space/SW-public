@@ -165,6 +165,18 @@
         },
         {
             "name": "legion_jailed"
+        },
+        {
+            "name": "kayot_molodnyak"
+        },
+        {
+            "name": "kayot_bivalit"
+        },
+        {
+            "name": "kayot_leader"
+        },
+        {
+            "name": "kayot_veteran"
         }
     ]
 }

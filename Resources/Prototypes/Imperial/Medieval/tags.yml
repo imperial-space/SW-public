@@ -71,6 +71,9 @@
   id: BanditKey
 
 - type: Tag
+  id: KayotKey
+
+- type: Tag
   id: TavernKey
 
 - type: Tag

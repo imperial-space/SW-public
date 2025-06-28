@@ -10,4 +10,6 @@ public sealed partial class MessageNotifPrototype : IPrototype
     public string ID { get; private set; } = default!;
     [ViewVariables, DataField(required: true)]
     public List<string> Notif = [];
+    [DataField(required: false)]
+    public bool IsSubword = true;
 }

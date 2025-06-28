@@ -2914,6 +2914,111 @@
   - type: QuestItem
     contractName: "волчьи хвосты или кабаньи клыки"
 
+- type: entity
+  name: шкура медведя
+  parent: BaseItem
+  id: MedievalLootbearskin
+  description: Бедный мишка...
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: bearskin
+  - type: Currency
+    price:
+      Revent: 15
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: шкура кабана
+  parent: BaseItem
+  id: MedievalLoothogskin
+  description: Ручной кабанчик
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: hogskin
+  - type: Currency
+    price:
+      Revent: 12
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: кролья лапка
+  parent: BaseItem
+  id: MedievalLootrabbit
+  description: Одна нога там, другая здесь
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: rabbit
+  - type: Currency
+    price:
+      Revent: 7
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: волчий клык
+  parent: BaseItem
+  id: MedievalLootwolf2
+  description: Где-то по лесу ходит беззубый волк.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: wolf2
+  - type: Currency
+    price:
+      Revent: 5
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: челюсть скелета
+  parent: BaseItem
+  id: MedievalLootskeletonjaw
+  description: АААВФФГ'Х ААВААФ'ГХ!!!
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: skeletonjaw
+  - type: Currency
+    price:
+      Revent: 27
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: лапа хантера
+  parent: BaseItem
+  id: MedievalLoothunter2
+  description: Безногим он кажется милее.. Верно же?
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: rabbit
+  - type: Currency
+    price:
+      Revent: 30
+  - type: Item
+    size: Tiny
+
+- type: entity
+  name: палец гоблина
+  parent: BaseItem
+  id: MedievalLootgoblin2
+  description: Ты гоблин?
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: rabbit
+  - type: Currency
+    price:
+      Revent: 12
+  - type: Item
+    size: Tiny
+
 - type: reagent
   id: MedievalLootDevilMouse
   name: ent-MedievalLootDevilMouse
@@ -3012,9 +3117,9 @@
     state: weak
   - type: Currency
     price:
-      Revent: 5
+      Revent: 15
   - type: Item
-    size: Small
+    size: Tiny
   - type: QuestItem
     contractName: "головы небронированных скелетов"
 
@@ -3029,9 +3134,9 @@
     state: meat
   - type: Currency
     price:
-      Revent: 7
+      Revent: 25
   - type: Item
-    size: Small
+    size: Tiny
   - type: QuestItem
     contractName: "головы небронированных скелетов"
 
@@ -3046,9 +3151,9 @@
     state: fighter
   - type: Currency
     price:
-      Revent: 11
+      Revent: 40
   - type: Item
-    size: Small
+    size: Tiny
   - type: QuestItem
     contractName: "головы бронированных скелетов"
 
@@ -3063,9 +3168,9 @@
     state: legion
   - type: Currency
     price:
-      Revent: 22
+      Revent: 60
   - type: Item
-    size: Small
+    size: Tiny
   - type: QuestItem
     contractName: "головы бронированных скелетов"
 
@@ -4265,6 +4370,7 @@
     disabledFore: "#FFF5EE"
     _itemstatus_content_margin_right: "#06060404"
     _itemstatus_content_margin_left: "#04060604"
+    _itemstatus_patch_margin: "#07060404"
 
 - type: tile
   editorHidden: false
@@ -7132,6 +7238,17 @@
     state: band
   - type: CloackReciever
     faction: "band"
+
+- type: entity
+  name: кристалл связи шайки койота
+  parent: MedievalCommsCrystallLeg
+  id: MedievalCommsCrystallKayot
+  description: Кристалл связи позволяет получать сообщения лидера фракции даже с другого конца острова.
+  components:
+  - type: Sprite
+    state: kayot
+  - type: CloackReciever
+    faction: "kayot"
 
 - type: entity
   name: gol
