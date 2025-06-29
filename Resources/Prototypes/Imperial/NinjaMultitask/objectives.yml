@@ -13,7 +13,7 @@
   - type: RandomSyndicateTarget
   
 - type: entity
-  parent: [BaseNinjaObjective, BaseKeepAliveObjective]
+  parent: BaseNinjaObjective
   id: NinjaImperialDealDamageObjective
   name: Устрашите цель
   description: Устрашите цель, чтобы она не смела переступать путь твоему клану. # Imperial Translate
