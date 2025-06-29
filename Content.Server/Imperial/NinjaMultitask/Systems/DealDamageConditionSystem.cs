@@ -11,8 +11,6 @@ using Content.Server.Objectives.Systems;
 using Content.Shared.Damage;
 using Content.Server.Imperial.NinjaMultitask.Components;
 using Robust.Shared.Random;
-using Content.Server.Administration.Logs;
-using Content.Shared.Database;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
 using Content.Shared.Ninja.Components;
@@ -28,7 +26,6 @@ public sealed class DealDamageConditionSystem : EntitySystem
     [Dependency] private readonly SharedMindSystem _mind = default!;
     [Dependency] private readonly TargetObjectiveSystem _target = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedMindSystem _mindManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
@@ -110,7 +107,6 @@ public sealed class DealDamageConditionSystem : EntitySystem
         }
         var damageType = comp.DamageType.Value;
         var org = args.Origin ?? EntityUid.Invalid;
-        _adminLogger.Add(LogType.Landed, LogImpact.High, $" thrown by {ToPrettyString(org):player}");
         if (!args.DamageDelta.DamageDict.TryGetValue(damageType, out var damageDelta))
         {
             return;
