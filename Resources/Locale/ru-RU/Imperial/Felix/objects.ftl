@@ -72,3 +72,7 @@ ent-ElysiumPrimeFelixPassportPaper = документ
     .desc = Бумажник с важным содержанием.
 ent-ElysiumPrimeFelixKsivaPaper = документ
     .desc = Бумажник с важным содержанием.
+ent-ElysiumPrimeFelixBlueKsivaPaper = документ
+    .desc = Бумажник с важным содержанием.
+ent-ElysiumPrimeFelixGreyKsivaPaper = документ
+    .desc = Бумажник с важным содержанием.

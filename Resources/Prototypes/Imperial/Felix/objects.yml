@@ -656,3 +656,39 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+
+- type: entity
+  name: document
+  parent: Paper
+  id: ElysiumPrimeFelixBlueKsivaPaper
+  description: document
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/paper.rsi
+    layers:
+    - state: blue
+    - state: blue_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+
+- type: entity
+  name: document
+  parent: Paper
+  id: ElysiumPrimeFelixGreyKsivaPaper
+  description: document
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/paper.rsi
+    layers:
+    - state: grey
+    - state: grey_words
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: paper_stamp-generic
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false

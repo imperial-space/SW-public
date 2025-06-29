@@ -14,10 +14,22 @@
         "name": "ksiva"
       },
       {
+        "name": "blue"
+      },
+      {
+        "name": "grey"
+      },
+      {
         "name": "passport_words"
       },
       {
         "name": "ksiva_words"
+      },
+      {
+        "name": "blue_words"
+      },
+      {
+        "name": "grey_words"
       },
       {
         "name": "paper_stamp-generic"
