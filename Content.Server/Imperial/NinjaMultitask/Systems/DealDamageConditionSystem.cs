@@ -135,7 +135,7 @@ public sealed class DealDamageConditionSystem : EntitySystem
         var ownedEntity = EntityUid.Invalid;
         if (TryComp<MindComponent>(target, out var mind) && mind.CharacterName != null)
         {
-            ownedEntity = mind.OwnedEntity;
+            ownedEntity = mind.OwnedEntity ?? EntityUid.Invalid;
             targetName = mind.CharacterName;
         }
         if (string.IsNullOrEmpty(title))
