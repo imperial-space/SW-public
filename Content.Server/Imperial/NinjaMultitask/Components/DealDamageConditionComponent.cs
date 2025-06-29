@@ -27,5 +27,5 @@ public sealed partial class DealDamageConditionComponent : Component
     [DataField]
     public EntityUid? OriginalBody;
     [DataField(required: true), ViewVariables(VVAccess.ReadWrite)]
-    public string Title = string.Empty;
+    public LocId Title = string.Empty;
 }
