@@ -352,7 +352,9 @@
       state: base
   - type: Physics
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.75
+    rechargeCooldown: 1
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/ant_acidrecharge.ogg
   - type: BasicEntityAmmoProvider
     proto: BulletAcid
     capacity: 1
@@ -373,12 +375,12 @@
         ParryAble: 1
         Bloodloss: 3
   - type: Gun
-    fireRate: 0.75
+    fireRate: 0.4
     useKey: false
     selectedMode: FullAuto
     availableModes:
       - FullAuto
-    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    soundGunshot: /Audio/Imperial/Medieval/ant_acidshot.ogg
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -590,6 +592,9 @@
         Piercing: 0
   - type: MedievalDash
     force: 300
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/ant_egg.ogg
 
 - type: entity
   name: myrmatriach
@@ -663,3 +668,83 @@
     name: ghost-role-information-myrmex-queen-name
     description: ghost-role-information-myrmex-queen-description
     rules: ghost-role-information-myrmex-rules
+
+- type: entity
+  name: "item"
+  id: BaseItemMyrmex
+  abstract: true
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: MovedByPressure
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/Effects/drop.ogg
+      params:
+        volume: 2
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      path: /Audio/Effects/hit_kick.ogg
+  - type: CollisionWake
+  - type: TileFrictionModifier
+    modifier: 0.5
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3  # fite me
+        friction: 0.2
+  - type: Pullable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: MedievalMyrmexEgg
+  parent: BaseItemMyrmex
+  name: myrmex egg
+  description: yaichki
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Myrmex/Castes/myrmex_egg.rsi
+    state: base
+  - type: DamageOnHighSpeedImpact
+    minimumSpeed: 0.1
+    damage:
+      types:
+        Blunt: 1
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: desecration
+      - !type:SpillBehavior
+        solution: food
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: TimedDespawn
+    lifetime: 60
+  - type: SpawnOnDespawn
+    prototype: MedievalMyrmexLarva
