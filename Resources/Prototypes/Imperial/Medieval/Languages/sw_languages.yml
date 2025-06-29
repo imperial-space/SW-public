@@ -235,6 +235,43 @@
     - щей
 
 - type: language
+  languageType: collectiveMind
+  id: Myrmex
+  roundstart: false
+  priority: 10
+  highIntelligenceAllowed: false
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    font: SpellwardHoneyBeeGFont
+    fontSize: 17
+    obfuscateSyllables: true
+    replacement:
+    - чищ
+    - щи
+    - щек
+    - щуч
+    - шу
+    - щус
+    - щис
+    - шес
+    - щу
+    - щьек
+    - щик
+    - щек
+    - щейс
+    - ши
+    - чущ
+    - чащ
+    - чещ
+    - чейщ
+    - щэйш
+    - щуйш
+    - щук
+    - щак
+    - щек
+    - щей
+
+- type: language
   id: Elf
   roundstart: false
   priority: 2

@@ -210,7 +210,7 @@
   - type: ExplosionResistance
     damageCoefficient: 20
 
-# =========================== 
+# ===========================
 - type: entity
   abstract: true
   parent: SimpleMobBaseNoFood
@@ -258,13 +258,14 @@
   - type: MobMover
   - type: LanguageSpeaker
     languages:
-      #Common: Understand
+      #Common: Speak
       #Goblin: Speak
       #Ancient: Speak
       #Tribe: Speak
       #Orc: Speak
       #Cursed: Speak
       #Growling: Speak
+      Myrmex: Speak
       Hissing: Speak
       #Elf: Speak
   - type: Access
@@ -359,7 +360,7 @@
     count: 1
   - type: MeleeWeapon
     animation: WeaponArcBite
-    range: 1.4
+    range: 1.65
     attackRate: 0.55
     hidden: true
     angle: 0
@@ -367,11 +368,11 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 4
-        Airloss: 6
+        Brute: 7
+        Airloss: 2
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 2
   - type: Gun
     fireRate: 0.75
     useKey: false
@@ -429,16 +430,16 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 14
-        Airloss: 10
+        Brute: 19
+        Airloss: 5
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 4
   - type: MobThresholds
     thresholds:
       0: Alive
-      170: Critical
-      200: Dead
+      220: Critical # curse of 220
+      260: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.4
     baseSprintSpeed: 2.2
@@ -649,13 +650,14 @@
     damage: 17
   - type: LanguageSpeaker
     languages:
-      Common: Speak
+      Common: Understand
       #Goblin: Speak
       #Ancient: Speak
       #Tribe: Speak
       #Orc: Speak
       #Cursed: Speak
       #Growling: Speak
+      Myrmex: Speak
       Hissing: Speak
       #Elf: Speak
   - type: GhostRole
