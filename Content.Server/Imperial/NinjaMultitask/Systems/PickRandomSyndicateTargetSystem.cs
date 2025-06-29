@@ -48,7 +48,7 @@ public sealed class PickRandomSyndicateTargetSystem : EntitySystem
                 }
             }
         }
-        bool isEmpty = (targets.Count == 0);
+        var isEmpty = (targets.Count == 0);
         if (!isEmpty)
         {
             _target.SetTarget(ent.Owner, _random.Pick(targets), target);
