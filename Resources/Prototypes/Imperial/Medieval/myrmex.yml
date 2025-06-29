@@ -629,8 +629,8 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      550: Critical
-      600: Dead
+      750: Critical
+      900: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
     baseSprintSpeed: 2.2
