@@ -7,7 +7,7 @@
   description: medieval-store-spells-fire-magic-arrow-player-follover-beginner-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 8
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -17,6 +17,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
       state: 3
+  - type: WorldTargetAction
     event: !type:MedievalHomingProjectilesSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverBeginner
       relativeAngle: 90
@@ -75,7 +76,7 @@
   description: medieval-store-spells-fire-magic-arrow-player-follover-middle-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 10
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -85,6 +86,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
       state: 2
+  - type: WorldTargetAction
     event: !type:MedievalHomingProjectilesSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverMiddle
       relativeAngle: 90
@@ -144,7 +146,7 @@
   description: medieval-store-spells-fire--magic-arrow-player-follover-senior-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 13
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -154,6 +156,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
       state: 1
+  - type: WorldTargetAction
     event: !type:MedievalHomingProjectilesSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverSenior
       relativeAngle: 90

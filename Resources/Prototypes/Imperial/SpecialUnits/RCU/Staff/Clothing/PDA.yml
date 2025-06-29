@@ -68,11 +68,11 @@
 
 - type: job
   id: JobRCUOperator
-  name: job-name-rcuoperator-menu
+  name: job-name-rcuoperator
   description: job-description-rcuoperator
   playTimeTracker: JobRCUOperator
   weight: 30
-#  setPreference: false
+  setPreference: false
   startingGear: RCUOperatorEVALodout
   icon: "JobIconRCUOpertor"
   supervisors: job-supervisors-specialofficer
@@ -87,7 +87,7 @@
 
 - type: job
   id: JobRCUOfficer
-  name: job-name-rcuofficer-menu
+  name: job-name-rcuofficer
   description: job-description-rcuofficer
   playTimeTracker: JobRCUOfficer
   weight: 20

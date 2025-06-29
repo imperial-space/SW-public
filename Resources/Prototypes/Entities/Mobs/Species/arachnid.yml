@@ -92,7 +92,7 @@
       - map: [ "shoes" ]
       - map: [ "belt" ]
       - map: [ "id" ]
-      # - map: [ "outerClothing" ]
+      # - map: [ "outerClothing" ]  # Imperial Space для корректного отображения РПС
       - map: [ "enum.HumanoidVisualLayers.Tail" ] # Mentioned in moth code: This needs renaming lol.
       - map: [ "back" ]
       - map: [ "neck" ]

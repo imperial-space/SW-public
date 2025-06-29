@@ -20,7 +20,7 @@
       groups:
         Burn: 19
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 18
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -30,6 +30,7 @@
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: diffusion
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectDiffusionMiddle
       spawnType: SpawnOnMousePosition
@@ -65,7 +66,7 @@
       groups:
         Burn: 19
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -75,6 +76,7 @@
     icon:
       sprite: Imperial/Medieval/Magic/nova.rsi
       state: diffusion2
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalEffectDiffusionSenior
       spawnType: SpawnOnMousePosition
