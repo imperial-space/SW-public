@@ -28,7 +28,7 @@
   name: Fireball
   description: Fires an explosive fireball towards the clicked location.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 60 #ибо нехуй спамить заклинанием
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -38,6 +38,7 @@
     icon:
       sprite: Imperial/DRGbeer/spells.rsi
       state: Reincarnation-Clown
+  - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: ProjectilePolyboltGnomish
 
@@ -59,13 +60,14 @@
   name: Summon Magicarp
   description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 50
     range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/DRGbeer/spells.rsi
       state: gnomes
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: MobGnome
@@ -90,13 +92,14 @@
   name: Summon Magicarp
   description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 50
     range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/DRGbeer/spells.rsi
       state: Soporificfog
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: AdminInstantEffectTearGas

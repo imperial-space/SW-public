@@ -105,13 +105,14 @@
   name: action-name-change-reagent
   description: action-description-change-reagent
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 1
     itemIconStyle: NoItem
     icon:
       sprite: Objects/Specific/Medical/hypospray.rsi
       state: borghypo
+  - type: InstantAction
     event: !type:ChangeReagentAction
-    useDelay: 1
 
 ## Медицинский киборг синдиката
 - type: entity
@@ -224,14 +225,14 @@
   name: action-name-mimicry
   description: action-description-mimicry
   components:
-  - type: InstantAction
+  - type: Action
+    useDelay: 4
     itemIconStyle: NoItem
     icon:
       sprite: Imperial/Interface/Actions/borgs_imperial.rsi
       state: mimicry
+  - type: InstantAction
     event: !type:MimicryEvent
-    useDelay: 4
-
 
 ## Борг СБ'шник
 - type: entity

@@ -23,7 +23,7 @@
       groups:
         Burn: 18
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 145
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -33,6 +33,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
       state: 1
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileSleepMiddle
@@ -61,7 +62,7 @@
       groups:
         Burn: 18
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 130
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -71,6 +72,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
       state: 2
+  - type: WorldTargetAction
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileSleepSenior

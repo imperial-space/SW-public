@@ -19,7 +19,7 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -29,6 +29,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
       state: blink
+  - type: WorldTargetAction
     event: !type:MedievalTeleportSpellEvent
       spellCastDoAfter:
         delay: 1
@@ -106,7 +107,7 @@
       groups:
         Burn: 15
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 25
     itemIconStyle: BigAction
     checkCanAccess: false
@@ -116,6 +117,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
       state: blink
+  - type: WorldTargetAction
     event: !type:MedievalTeleportSpellEvent
       spellCastDoAfter:
         delay: 1
