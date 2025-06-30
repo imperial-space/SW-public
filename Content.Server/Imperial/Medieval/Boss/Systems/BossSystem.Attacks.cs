@@ -102,7 +102,7 @@ public sealed partial class BossSystem
 
     private void OnChargingDoAfter(EntityUid uid, ChargingRuneExplosionComponent component, BossRunesChargingDoAfterEvent args)
     {
-        _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 400, 3, 0, null, 0, 0, false);
+        _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 1000f, 0.1f, 0, null, 0, 0, false);
         RemComp<ChargingRuneExplosionComponent>(uid);
 
         var runes = EntityManager.AllEntities<PurifyableExplosionRuneComponent>().Where(x => TryComp<BossAttackComponent>(x, out var attack) && attack.Boss == uid);
@@ -148,7 +148,7 @@ public sealed partial class BossSystem
                 continue;
 
             if (_lookup.GetEntitiesInRange<FightingBossComponent>(Transform(uid).Coordinates, 3f).Count > 1)
-                _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 50, 3, 0, null, 0, 0, false);
+                _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 150, 10, 0, null, 0, 0, false);
 
             RemComp<CursedMarkComponent>(uid);
         }
