@@ -1,7 +1,7 @@
 - type: entity
   id: SkeletonSkullBoss
-  name: skeleton skull
-  description: e
+  name: древний череп
+  description: Оно живое!
   placement:
     mode: AlignTileAny
   components:
@@ -23,7 +23,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-1.5,-1.5,1.5,1.5"
+          bounds: "-1,-1,1,1"
         density: 50
         mask:
         - LargeMobMask
@@ -32,7 +32,7 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.BossStageVisuals.State:
+      enum.BossStageVisuals.Stage:
         enum.BossStageVisuals.Layer:
           1: {state: skull}
           2: {state: skull-1}
@@ -44,25 +44,31 @@
           "red": {state: redglow, visible: true}
           "purple": {state: purpleglow, visible: true}
           "green": {state: greenglow, visible: true}
+  - type: Clickable
+  - type: InteractionOutline
+  - type: DoAfter
   - type: Boss
+    health: 100
     stages:
       1:
+        stageDelay: 6
         threshold: 100
         attacks:
         - !type:MarkerTargetedAttack
           markerTag: BoneSpikeSpawnPosition
-          countLimits: 1,1
+          countLimits: [1, 1]
           actions:
           - !type:SpawAtPosition
             prototypes: BoneSpikeBig
-            randomDistance: 3
+            randomDistance: 1
             spawnCount: 4
           - !type:PlaySound
             sound:
               path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
               soundType: Position
         - !type:PlayerTargetedAttack
-          countLimits: 4,6
+          countLimits: [2, 4]
+          cooldown: 30
           actions:
           - !type:AddComponent
             components:
@@ -71,37 +77,77 @@
             sound:
               path: /Audio/Imperial/Medieval/Effects/cursed-mark.ogg
               soundType: Player
+          - !type:BossAppearance
+              state: green
+              duration: 1.9
+        - !type:MarkerTargetedAttack
+          markerTag: BossSpikesSpawnPosition
+          countLimits: [2, 3]
+          priority: 2
+          actions:
+          - !type:SpawAtPosition
+            prototypes: [BossSpikesSpawnMarkerWaveRight, BossSpikesSpawnMarkerWaveLeft]
+            randomDistance: 2
+            spawnCount: 1
       2:
+        stageDelay: 5
         threshold: 60
         attacks:
         - !type:MarkerTargetedAttack
           markerTag: HealingSkullSpawnPosition
-          countLimits: 2,3
+          countLimits: [2, 3]
+          cooldown: 30
+          priority: 1.25
           actions:
           - !type:SpawAtPosition
             prototypes: MobBossHealingSkull
-            randomDistance: 3
+            randomDistance: 1
             spawnCount: 2
           - !type:PlaySound
             sound:
               path: /Audio/Imperial/Medieval/Effects/heal-skulls-spawn.ogg
               soundType: BossPvs
-        - !type:PlayerTargetedAttack
-          countLimits: 4,6
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
+          countLimits: [2, 3]
+          cooldown: 50
+          priority: 1.25
           actions:
           - !type:AddComponent
+            toBoss: true
             components:
-            - type: CursedMark
+            - type: ChargingRuneExplosion
+          - !type:SpawAtPosition
+            prototypes: SkullBossExplosionRune
+            randomDistance: 1
+            spawnCount: 2
           - !type:PlaySound
             sound:
-              path: /Audio/Imperial/Medieval/Effects/cursed-mark.ogg
-              soundType: Player
-      # 3:
-      #   threshold: 30
-      #   attacksPerTime: 1,2
-      #   attacks:
-      #   - !type:BossTargetedAttack
-      #     actions:
-      #     - !type:AddComponent
-      #       components:
-      #       - type: CursedMark
+              path: /Audio/Imperial/Medieval/Effects/rune-spawn.ogg
+              soundType: BossPvs
+          - !type:BossAppearance
+              state: purple
+              duration: 1.9
+        - !type:MarkerTargetedAttack
+          markerTag: BossSpikesSpawnPosition
+          countLimits: [2, 3]
+          priority: 1.25
+          actions:
+          - !type:SpawAtPosition
+            prototypes: BossSpikesSpawnMarkerBox
+            randomDistance: 1
+            spawnCount: 1
+        - !type:MarkerTargetedAttack
+          markerTag: BossSpikesSpawnPosition
+          countLimits: [1, 2]
+          priority: 1.25
+          actions:
+          - !type:SpawAtPosition
+            prototypes: BossSpikesSpawnMarkerChess
+            randomDistance: 1
+            spawnCount: 1
+      3:
+        stageDelay: 4
+        threshold: 30
+        attacksPerTime: 1,2
+        attacks: []

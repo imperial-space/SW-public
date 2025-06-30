@@ -1,8 +1,8 @@
 - type: entity
   id: BoneSpikeBig
   parent: BaseStructure
-  name: bone spike
-  description: e
+  name: костяной шип
+  description: Изнутри слышен скрежет.
   components:
   - type: Anchorable
   - type: Transform
@@ -31,7 +31,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 60
+        damage: 30
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -41,13 +41,15 @@
   - type: DamageBossOnDestruction
     damageAmount: 3
   - type: TimedDespawn
-    time: 40
+    lifetime: 60
   - type: SpawnOnDespawn
     prototype: MobSkullBossSkeleton
 
 - type: entity
-  name: MobSkullBossSkeleton
+  name: черепушка
+  description: Что-то с ней не так...
   id: MobBossHealingSkull
+  parent: BaseStructure
   components:
   - type: Sprite
     drawdepth: Mobs
@@ -60,13 +62,241 @@
         !type:DamageTrigger
         damage: 30
       behaviors:
-      - !type:GibBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Skeleton
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 40
+        mask: #mouse can pass under, but I think this is can understandable by logic
+        - TableMask
+        layer:
+        - TableLayer
   - type: Clickable
   - type: InteractionOutline
   - type: TimedBossHeal
     healAmount: 4
   - type: TimedDespawn
-    time: 15.1
+    lifetime: 15.1
+  - type: DoAfter
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: ShockWaveEffect
+
+- type: entity
+  name: проклятая руна
+  description: Что если на неё встать?
+  id: SkullBossExplosionRune
+  parent: CollideRune
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/runes.rsi
+    layers:
+    - state: skull
+      color: "#65007e"
+  - type: Clickable
+  - type: PhysAwakeOnSpawn
+  - type: PurifyableExplosionRune
+  - type: PointLight
+    energy: 2
+    color: "#65007e"
+
+# Spikes
+- type: entity
+  id: SkullBossSpikes
+  name: шипы
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/bone_spikes.rsi
+    layers:
+    - state: spikes
+  - type: StunOnContact
+    blacklist:
+      tags:
+      - Goliath
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn #do this shit by hand because of fucking course.
+    lifetime: 0.4
+  - type: PhysAwakeOnSpawn
+  - type: DamageOnContact
+    damage:
+      types:
+        Piercing: 24
+  - type: EmitSoundOnSpawn
+    positional: true
+    sound:
+      path: /Audio/Imperial/Medieval/Effects/blade.ogg
+
+- type: entity
+  id: EffectSkullBossSpikesSpawn
+  categories: [ HideSpawnMenu ]
+  name: шипы
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/bone_spikes.rsi
+    layers:
+    - state: spawn
+  - type: InteractionOutline
+  - type: TimedDespawn
+    lifetime: 1
+  - type: SpawnOnDespawn
+    prototype: SkullBossSpikes
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerChess
+  parent: MarkerBase
+  suffix: шахматы
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0:
+        - -2,1
+        - 0,1
+        - 2,1
+        - -1,0
+        - 1,0
+        - -2,-1
+        - 0,-1
+        - 2,-1
+      1:
+        - -1,1
+        - 1,1
+        - -2,0
+        - 0,0
+        - 2,0
+        - -1,-1
+        - 1,-1
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerWaveRight
+  parent: MarkerBase
+  suffix: волна
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0:
+        - 0,0
+      1:
+        - 1,0
+        - 1,1
+        - 1,-1
+      2:
+        - 2,0
+        - 2,1
+        - 2,-1
+        - 2,2
+        - 2,-2
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerWaveLeft
+  parent: MarkerBase
+  suffix: волна
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0:
+        - 0,0
+      1:
+        - -1,0
+        - -1,1
+        - -1,-1
+      2:
+        - -2,0
+        - -2,1
+        - -2,-1
+        - -2,2
+        - -2,-2
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerBox
+  parent: MarkerBase
+  suffix: квадрат
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0:
+        - 0,0
+      1:
+        - 1,0
+        - 1,1
+        - 1,-1
+        - 0,1
+        - 0,-1
+        - -1,0
+        - -1,1
+        - -1,-1
+      2:
+        - 2,0
+        - 2,1
+        - 2,-1
+        - 2,2
+        - 2,-2
+        - -2,0
+        - -2,1
+        - -2,-1
+        - -2,2
+        - -2,-2
+        - -1,2
+        - 0,2
+        - 1,2
+        - -1,-2
+        - 0,-2
+        - 1,-2
+  - type: TimedDespawn
+    lifetime: 3

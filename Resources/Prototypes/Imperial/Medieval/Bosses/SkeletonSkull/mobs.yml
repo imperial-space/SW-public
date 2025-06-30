@@ -1,6 +1,6 @@
 - type: entity
   name: MobSkullBossSkeleton
-  parent: [ SimpleSpaceMobBase, MobCombat ]
+  parent: [ BaseSimpleMob, MobCombat ]
   id: MobSkullBossSkeleton
   components:
   - type: Sprite
@@ -23,17 +23,23 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      70: Dead
+      50: Dead
   - type: TransferMindOnGib
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 70
+        damage: 50
       behaviors:
-      - !type:GibBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: MeleeWeapon
     range: 1.25
     attackRate: 1
     damage:
-      Slash: 10
+      types:
+        Blunt: 7
+        Slash: 7
