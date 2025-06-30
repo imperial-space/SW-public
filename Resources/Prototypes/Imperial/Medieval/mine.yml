@@ -317,7 +317,7 @@
   name: rock
   components:
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: StructuralInorganic
       damageModifierSet: Metallic
     - type: MedievalDiggAble
     - type: Destructible
@@ -435,6 +435,24 @@
   parent: MedievalWallSoilLoose
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMobAnt:
+                  min: 3
+                  max: 6
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -455,6 +473,24 @@
   parent: MedievalWallSoilLoose
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 2
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -475,6 +511,24 @@
   parent: MedievalWallSoilLoose
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 1
+                  max: 1
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -495,6 +549,30 @@
   parent: MedievalWallSoilLoose
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMushroom1:
+                  min: 0
+                  max: 2
+                MedievalMushroom2:
+                  min: 0
+                  max: 2
+                MedievalMushroom3:
+                  min: 0
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -515,6 +593,24 @@
   parent: MedievalWallSoilLoose
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 50
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRootItem:
+                  min: 2
+                  max: 4
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -535,6 +631,24 @@
   parent: MedievalWallSoilNormal
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 130
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMobAnt:
+                  min: 3
+                  max: 6
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -555,6 +669,24 @@
   parent: MedievalWallSoilNormal
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 130
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 2
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -575,6 +707,24 @@
   parent: MedievalWallSoilNormal
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 130
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 1
+                  max: 1
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -595,6 +745,30 @@
   parent: MedievalWallSoilNormal
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 130
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMushroom1:
+                  min: 0
+                  max: 2
+                MedievalMushroom2:
+                  min: 0
+                  max: 2
+                MedievalMushroom3:
+                  min: 0
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -615,6 +789,24 @@
   parent: MedievalWallSoilNormal
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 130
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRootItem:
+                  min: 2
+                  max: 4
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -635,11 +827,29 @@
   parent: MedievalWallSoilSolid
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 350
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMobAnt:
+                  min: 3
+                  max: 6
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
       layers:
-        - state: normal
+        - state: solid
         - state: ant
         - map: [ "enum.EdgeLayer.South" ]
           state: soil_s
@@ -655,11 +865,29 @@
   parent: MedievalWallSoilSolid
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 350
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 2
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
       layers:
-        - state: normal
+        - state: solid
         - state: gum
         - map: [ "enum.EdgeLayer.South" ]
           state: soil_s
@@ -675,11 +903,29 @@
   parent: MedievalWallSoilSolid
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 350
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMyrmexResourceGum:
+                  min: 1
+                  max: 1
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
       layers:
-        - state: normal
+        - state: solid
         - state: lgum
         - map: [ "enum.EdgeLayer.South" ]
           state: soil_s
@@ -695,11 +941,35 @@
   parent: MedievalWallSoilSolid
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 350
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalMushroom1:
+                  min: 0
+                  max: 2
+                MedievalMushroom2:
+                  min: 0
+                  max: 2
+                MedievalMushroom3:
+                  min: 0
+                  max: 2
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
       layers:
-        - state: normal
+        - state: solid
         - state: mushroom
         - map: [ "enum.EdgeLayer.South" ]
           state: soil_s
@@ -715,11 +985,29 @@
   parent: MedievalWallSoilSolid
   name: rock
   components:
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 350
+          behaviors:
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                MedievalRootItem:
+                  min: 2
+                  max: 4
+            - !type:PlaySoundBehavior
+              sound:
+                path: /Audio/Effects/break_stone.ogg
+                params:
+                  volume: -6
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
       layers:
-        - state: normal
+        - state: solid
         - state: root
         - map: [ "enum.EdgeLayer.South" ]
           state: soil_s
