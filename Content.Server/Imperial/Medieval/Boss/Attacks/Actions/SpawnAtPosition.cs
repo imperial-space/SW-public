@@ -25,20 +25,25 @@ public sealed partial class SpawAtPosition : BossAttackAction
         foreach (var target in targets)
         {
             var xform = entMan.GetComponent<TransformComponent>(target);
-            var targetCoords = xform.Coordinates;
             for (var i = 0; i < SpawnCount; i++)
             {
-                for (var j = 0; i < 10; j++)
+                var targetCoords = xform.Coordinates;
+
+                if (RandomDistance != 0)
                 {
-                    var result = targetCoords + new EntityCoordinates(xform.Coordinates.EntityId, random.Next(-RandomDistance, RandomDistance), random.Next(-RandomDistance, RandomDistance));
-                    if (xform.GridUid.HasValue && RandomDistance != 0 && map.AnchoredEntityCount(xform.GridUid.Value, entMan.GetComponent<MapGridComponent>(xform.GridUid.Value), (Vector2i)result.Position) == 0)
+                    for (var j = 0; j < 10; j++)
                     {
-                        targetCoords = result;
-                        break;
+                        var result = new EntityCoordinates(xform.Coordinates.EntityId, targetCoords.Position + random.NextVector2(-RandomDistance, RandomDistance));
+                        if (xform.GridUid.HasValue && map.AnchoredEntityCount(xform.GridUid.Value, entMan.GetComponent<MapGridComponent>(xform.GridUid.Value), result.Position.Floored()) == 0)
+                        {
+                            targetCoords = result;
+                            break;
+                        }
                     }
                 }
-                entMan.SpawnAtPosition(random.Pick(Prototypes), targetCoords);
-                var comp = entMan.EnsureComponent<BossAttackComponent>(target);
+
+                var spike = entMan.SpawnEntity(random.Pick(Prototypes), targetCoords);
+                var comp = entMan.EnsureComponent<BossAttackComponent>(spike);
                 comp.Boss = boss;
             }
         }

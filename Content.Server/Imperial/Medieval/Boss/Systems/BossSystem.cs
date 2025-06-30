@@ -35,12 +35,17 @@ public sealed partial class BossSystem : EntitySystem
         UpdateMark();
     }
 
-    public void StartBossfight(IEnumerable<EntityUid> players, EntityUid boss, EntityUid grid)
+    public void StartBossfight(List<EntityUid> players, EntityUid boss)
     {
         var bossComp = EnsureComp<BossComponent>(boss);
 
+        var grid = Transform(boss).GridUid;
+        if (grid == null)
+            return;
+
         List<EntityUid> positions = new();
-        while (Transform(grid).ChildEnumerator.MoveNext(out var child))
+        var enumerator = Transform(grid.Value).ChildEnumerator;
+        while (enumerator.MoveNext(out var child))
         {
             if (_tag.HasTag(child, (ProtoId<TagPrototype>)"BossSpawnPosition"))
             {
@@ -55,6 +60,9 @@ public sealed partial class BossSystem : EntitySystem
             _transform.SetCoordinates(player, Transform(_random.Pick(positions)).Coordinates);
             EnsureComp<FightingBossComponent>(player);
         }
+
+        bossComp.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(13);
+        bossComp.Active = true;
     }
 
     public void DamageBoss(EntityUid boss, float damage)
@@ -64,16 +72,16 @@ public sealed partial class BossSystem : EntitySystem
 
         bossComp.Health -= damage;
 
-        var min = bossComp.Stages.Where(x => x.Value.Threshold >= bossComp.Health).Select(x => x.Key).Min();
-        if (bossComp.Stage != min)
+        var max = bossComp.Stages.Where(x => x.Value.Threshold >= bossComp.Health).Select(x => x.Key).Max();
+        if (bossComp.Stage != max)
         {
             var stage = bossComp.Stages[bossComp.Stage];
-            _appearance.SetData(boss, BossStageVisuals.Stage, bossComp.Stage);
+            _appearance.SetData(boss, BossStageVisuals.Stage, max);
 
-            if (bossComp.Stage > min)
+            if (bossComp.Stage < max)
                 _audio.PlayPvs(stage.Sound, boss);
 
-            bossComp.Stage = min;
+            bossComp.Stage = max;
         }
 
         if (bossComp.Health <= 0)
@@ -94,7 +102,7 @@ public sealed partial class BossSystem : EntitySystem
         List<BossAttack> attacks = new();
 
         foreach (var stage in comp.Stages.Where(x => x.Key <= comp.Stage))
-            attacks.AddRange(stage.Value.Attacks.Where(x => x.NextAttack <= _timing.CurTime));
+            attacks.AddRange(stage.Value.Attacks);
 
         return attacks;
     }
@@ -107,6 +115,9 @@ public sealed partial class BossSystem : EntitySystem
             if (bossComp.Players.Count == 0 || !bossComp.Active)
                 continue;
 
+            if (bossComp.NextAttack > _timing.CurTime)
+                continue;
+
             var list = GetBossAttacks(bossComp);
             var stage = bossComp.Stages[bossComp.Stage];
             if (!list.Any())
@@ -117,7 +128,10 @@ public sealed partial class BossSystem : EntitySystem
             _random.Shuffle(list);
             for (var i = 0; i < count && i < list.Count; i++)
             {
-                var attack = list[i];
+                var attack = PickAttack(list);
+                if (attack == null)
+                    break;
+
                 if (attack.NextAttack > _timing.CurTime)
                     continue;
 
@@ -127,5 +141,27 @@ public sealed partial class BossSystem : EntitySystem
 
             bossComp.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(stage.StageDelay);
         }
+    }
+
+    private BossAttack? PickAttack(List<BossAttack> list)
+    {
+        var picks = list.Select(x => (x, x.Priority)).ToDictionary();
+        var sum = picks.Values.Sum();
+        var accumulated = 0f;
+
+        var rand = _random.NextFloat() * sum;
+
+        foreach (var (key, weight) in picks)
+        {
+            accumulated += weight;
+
+            if (accumulated >= rand)
+            {
+                list.Remove(key);
+                return key;
+            }
+        }
+
+        return null;
     }
 }

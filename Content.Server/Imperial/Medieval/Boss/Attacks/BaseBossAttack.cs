@@ -9,7 +9,10 @@ public abstract partial class BossAttack
     public List<BossAttackAction> Actions = new();
 
     [DataField]
-    public float Cooldown = 5f;
+    public float Cooldown = 0f;
+
+    [DataField]
+    public float Priority = 1f;
 
     public TimeSpan NextAttack = TimeSpan.Zero;
 

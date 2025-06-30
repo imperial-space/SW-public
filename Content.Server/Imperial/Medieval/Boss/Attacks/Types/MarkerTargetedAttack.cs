@@ -24,9 +24,11 @@ public sealed partial class MarkerTargetedAttack : BossAttack
         var gridXform = entMan.GetComponent<TransformComponent>(bossXform.GridUid.Value);
         var markers = new List<EntityUid>();
 
-        while (gridXform.ChildEnumerator.MoveNext(out var child))
+        var children = gridXform.ChildEnumerator;
+
+        while (children.MoveNext(out var child))
         {
-            if (tagSystem.HasTag(child, MarkerTag))
+            if (!tagSystem.HasTag(child, MarkerTag))
                 continue;
 
             markers.Add(child);

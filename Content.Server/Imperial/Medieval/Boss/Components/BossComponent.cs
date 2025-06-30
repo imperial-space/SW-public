@@ -15,7 +15,7 @@ public sealed partial class BossComponent : Component
     public float Health = 100f;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public int Stage = 0;
+    public int Stage = 1;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public List<EntityUid> Players = new List<EntityUid>();
