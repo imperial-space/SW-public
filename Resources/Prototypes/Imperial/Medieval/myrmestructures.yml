@@ -9,6 +9,59 @@
     - type: RandomSpawner
       prototypes:
       - SpiderWeb
+      - SpiderWeb
+      - MedievalWallSoilSolid
+      - MedievalWallSoilSolid
+      - MedievalWallSoilSolid
+      - MedievalWallSoilSolid
+      - MedievalWallSoilSolid
+      - MedievalWallSoilSolid
+      - MedievalWallSoilSolid
+      - MedievalWallSoilSolid
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilNormal
+      - MedievalWallSoilLoose
+      - MedievalWallSoilLoose
+      - MedievalWallSoilLoose
+      - MedievalWallSoilLoose
+      - MedievalWallSoilLoose
+      - MedievalWallSoilLoose
+      - MedievalWallSoilLoose
+      - MedievalWallSoilLooseAnt
+      - MedievalWallSoilLooseGum
+      - MedievalWallSoilLooseGum
+      - MedievalWallSoilLooseGum
+      - MedievalWallSoilLooseLGum
+      - MedievalWallSoilLooseMushroom
+      - MedievalWallSoilLooseRoot
+      - MedievalWallSoilLooseRoot
+      - MedievalWallSoilNormalAnt
+      - MedievalWallSoilNormalGum
+      - MedievalWallSoilNormalGum
+      - MedievalWallSoilNormalGum
+      - MedievalWallSoilNormalLGum
+      - MedievalWallSoilNormalMushroom
+      - MedievalWallSoilNormalRoot
+      - MedievalWallSoilNormalRoot
+      - MedievalWallSoilSolidAnt
+      - MedievalWallSoilSolidAnt
+      - MedievalWallSoilSolidGum
+      - MedievalWallSoilSolidGum
+      - MedievalWallSoilSolidGum
+      - MedievalWallSoilSolidLGum
+      - MedievalWallSoilSolidMushroom
+      - MedievalWallSoilSolidRoot
+      - MedievalWallSoilSolidRoot
       chance: 0.98
       offset: 0
 

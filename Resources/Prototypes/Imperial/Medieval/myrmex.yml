@@ -311,15 +311,15 @@
         Brute: 10
       types:
         ParryAble: 1
-        Structural: 25
+        Structural: 30
   - type: MobThresholds
     thresholds:
       0: Alive
       85: Critical
       110: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 2
-    baseSprintSpeed: 3.2
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 2
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
@@ -625,7 +625,7 @@
       types:
         ParryAble: 1
         Bloodloss: 3
-        Structural: 100
+        Structural: 75
   - type: MobThresholds
     thresholds:
       0: Alive
