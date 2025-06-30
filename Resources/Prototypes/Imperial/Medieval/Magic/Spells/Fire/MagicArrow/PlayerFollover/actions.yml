@@ -10,13 +10,14 @@
   - type: Action
     useDelay: 8
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
       state: 3
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
   - type: WorldTargetAction
     event: !type:MedievalHomingProjectilesSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverBeginner
@@ -79,13 +80,14 @@
   - type: Action
     useDelay: 10
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
       state: 2
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
   - type: WorldTargetAction
     event: !type:MedievalHomingProjectilesSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverMiddle
@@ -149,13 +151,14 @@
   - type: Action
     useDelay: 13
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
       state: 1
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
   - type: WorldTargetAction
     event: !type:MedievalHomingProjectilesSpellEvent
       projectilePrototype: MedievalProjectileMagicArrowPlayerFolloverSenior
