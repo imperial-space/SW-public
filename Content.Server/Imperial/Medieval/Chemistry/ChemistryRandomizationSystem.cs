@@ -504,8 +504,8 @@ public sealed class ChemistryRandomizationSystem : EntitySystem // TODO: Maybe r
                 continue;
             if (!_prototype.TryGetMapping(reactionproto, id, out var mapping))
                 continue;
-            //if (!mapping.ContainsKey(new ValueDataNode("abstract")))
-            //    mapping["abstract"] = new ValueDataNode("true");
+            if (!mapping.ContainsKey("abstract"))
+                mapping["abstract"] = new ValueDataNode("true");
             newprototypes = $"{newprototypes}{Environment.NewLine}{ConvertMappingToString(mapping)}";
         }
         _uploadManager.SendGamePrototype(newprototypes); // Todo: stop using SendGamePrototype because unoptimized
