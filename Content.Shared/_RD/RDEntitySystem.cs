@@ -8,15 +8,27 @@
  * Link: https://github.com/Rainlucid/raincidation
  */
 
-
 using System.Runtime.CompilerServices;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared._RD;
 
 public abstract class RDEntitySystem : EntitySystem
 {
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected void AddComps(EntityUid targetUid, ComponentRegistry registry)
+    {
+        EntityManager.AddComponents(targetUid, registry);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    protected void RemComps(EntityUid targetUid, ComponentRegistry registry)
+    {
+        EntityManager.RemoveComponents(targetUid, registry);
+    }
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     protected ICommonSession? GetSession(EntityUid entityUid)
     {
