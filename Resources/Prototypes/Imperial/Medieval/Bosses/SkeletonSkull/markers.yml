@@ -42,7 +42,7 @@
 
 - type: entity
   name: маркер взрывной руны босса
-  id: BossSpikesSpawnMarker
+  id: BossRuneSpawnMarker
   parent: MarkerBase
   components:
   - type: Sprite

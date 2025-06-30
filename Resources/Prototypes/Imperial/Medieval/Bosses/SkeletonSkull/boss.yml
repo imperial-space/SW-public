@@ -149,5 +149,5 @@
       3:
         stageDelay: 4
         threshold: 30
-        attacksPerTime: 1,2
+        attacksPerTime: [1,2]
         attacks: []
