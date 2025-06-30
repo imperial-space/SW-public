@@ -7716,3 +7716,14 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - type: MedievalMeleeRepairStructure
+
+- type: entity
+  parent: BaseItem
+  id: MedievalRootItem
+  name: root
+  description: MedievalLoot
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/root.rsi
+      state: icon
+
