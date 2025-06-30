@@ -5775,4 +5775,7 @@ ent-MedievalWallSoilSolidMushroom = твёрдая почва
 ent-MedievalWallSoilSolidRoot = твёрдая почва
     .desc = Её можно раздолбить.
     .suffix = { "Средневековье" }
+ent-MedievalRootItem = корень
+    .desc = Горький на вкус.
+    .suffix = { "Средневековье" }
 
