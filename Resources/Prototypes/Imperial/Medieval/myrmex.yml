@@ -589,7 +589,7 @@
       types:
         Piercing: 2
   - type: MedievalDash
-    force: 300
+    force: 0
 
 - type: entity
   name: myrmatriach
