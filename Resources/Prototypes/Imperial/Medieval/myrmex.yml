@@ -210,7 +210,52 @@
   - type: ExplosionResistance
     damageCoefficient: 20
 
-# =========================== 
+- type: entity
+  id: MedievalMyrmexTrap
+  name: trap
+  description: it's a trap!
+  components:
+  - type: SpriteFade
+  - type: Clickable
+  - type: Sprite
+    noRot: true
+    sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_trap.rsi
+    drawdepth: Mobs
+    offset: 0,0.3
+    layers:
+      - state: barrierwire1
+        map: ["random"]
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        hard: false
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.35,0.35,0.35"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/Medieval/resin_move2.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: SpeedModifierContacts
+    walkSpeedModifier: 0.30
+    sprintSpeedModifier: 0.20
+  - type: TriggerOnCollide
+    fixtureID: fix1
+
 - type: entity
   abstract: true
   parent: SimpleMobBaseNoFood
@@ -258,13 +303,14 @@
   - type: MobMover
   - type: LanguageSpeaker
     languages:
-      #Common: Understand
+      #Common: Speak
       #Goblin: Speak
       #Ancient: Speak
       #Tribe: Speak
       #Orc: Speak
       #Cursed: Speak
       #Growling: Speak
+      Myrmex: Speak
       Hissing: Speak
       #Elf: Speak
   - type: Access
@@ -361,7 +407,7 @@
     count: 1
   - type: MeleeWeapon
     animation: WeaponArcBite
-    range: 1.4
+    range: 1.65
     attackRate: 0.55
     hidden: true
     angle: 0
@@ -369,11 +415,11 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 4
-        Airloss: 6
+        Brute: 7
+        Airloss: 2
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 2
   - type: Gun
     fireRate: 0.4
     useKey: false
@@ -431,16 +477,16 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 14
-        Airloss: 10
+        Brute: 19
+        Airloss: 5
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 4
   - type: MobThresholds
     thresholds:
       0: Alive
-      170: Critical
-      200: Dead
+      220: Critical # curse of 220
+      260: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.4
     baseSprintSpeed: 2.2
@@ -654,13 +700,14 @@
     damage: 17
   - type: LanguageSpeaker
     languages:
-      Common: Speak
+      Common: Understand
       #Goblin: Speak
       #Ancient: Speak
       #Tribe: Speak
       #Orc: Speak
       #Cursed: Speak
       #Growling: Speak
+      Myrmex: Speak
       Hissing: Speak
       #Elf: Speak
   - type: GhostRole
