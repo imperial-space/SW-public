@@ -324,7 +324,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 350
+            damage: 220
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -375,7 +375,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 130
+            damage: 80
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -407,7 +407,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 30
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -439,7 +439,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 30
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -477,7 +477,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 30
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -515,7 +515,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 30
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -553,7 +553,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 30
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -597,7 +597,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 30
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -635,7 +635,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 130
+            damage: 80
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -673,7 +673,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 130
+            damage: 80
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -711,7 +711,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 130
+            damage: 80
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -749,7 +749,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 130
+            damage: 80
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -793,7 +793,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 130
+            damage: 80
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -831,7 +831,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 350
+            damage: 220
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -869,7 +869,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 350
+            damage: 220
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -907,7 +907,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 350
+            damage: 220
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -945,7 +945,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 350
+            damage: 220
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
@@ -989,7 +989,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 350
+            damage: 220
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
