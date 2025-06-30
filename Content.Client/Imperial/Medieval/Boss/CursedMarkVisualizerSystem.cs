@@ -7,7 +7,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.Medieval.Boss;
 
-public sealed class CursedMarkVisualizerSystem : SharedDamageMarkerSystem
+public sealed class CursedMarkVisualizerSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
@@ -25,7 +25,7 @@ public sealed class CursedMarkVisualizerSystem : SharedDamageMarkerSystem
             return;
 
         var layer = _sprite.LayerMapReserve((uid, sprite), DamageMarkerKey.Key);
-        _sprite.LayerSetRsi((uid, sprite), layer, new ResPath("Textures/Imperial/Medieval/Effects/cursed-mark.rsi"), "mark");
+        _sprite.LayerSetRsi((uid, sprite), layer, new ResPath("/Textures/Imperial/Medieval/Effects/cursed-mark.rsi"), "mark");
     }
 
     private void OnMarkerShutdown(EntityUid uid, CursedMarkComponent component, ComponentShutdown args)
