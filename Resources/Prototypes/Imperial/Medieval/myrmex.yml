@@ -213,6 +213,7 @@
 # ===========================
 
 - type: body
+  name: "myrmex"
   id: Myrmex
   root: torso
   slots:
