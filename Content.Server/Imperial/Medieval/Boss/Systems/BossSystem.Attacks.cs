@@ -1,11 +1,16 @@
 using System.Linq;
+using System.Numerics;
 using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
+using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
+using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Medieval.Boss;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Events;
 
 namespace Content.Server.Imperial.Medieval.Boss;
 
@@ -15,6 +20,8 @@ public sealed partial class BossSystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly ExplosionSystem _explosion = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
+    [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
 
     private void InitializeAttacks()
     {
@@ -22,6 +29,10 @@ public sealed partial class BossSystem
         SubscribeLocalEvent<CursedMarkComponent, ComponentInit>(OnMarkInit);
         SubscribeLocalEvent<TimedBossHealComponent, ComponentInit>(OnHealInit);
         SubscribeLocalEvent<TimedBossHealComponent, BossHealDoAfterEvent>(OnBossHealDoAfter);
+        SubscribeLocalEvent<PhysAwakeOnSpawnComponent, ComponentInit>(OnAwakeSpawn);
+        SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamageOnContactCollide);
+        SubscribeLocalEvent<ChargingRuneExplosionComponent, ComponentInit>(OnChargingStartup);
+        SubscribeLocalEvent<ChargingRuneExplosionComponent, BossRunesChargingDoAfterEvent>(OnChargingDoAfter);
     }
 
     private void OnDamageBossOnDestruction(EntityUid uid, DamageBossOnDestructionComponent component, DestructionEventArgs args)
@@ -71,6 +82,35 @@ public sealed partial class BossSystem
         });
     }
 
+    private void OnAwakeSpawn(EntityUid uid, PhysAwakeOnSpawnComponent component, ComponentInit args)
+        => _physics.WakeBody(uid);
+
+    private void OnDamageOnContactCollide(EntityUid uid, DamageOnContactComponent component, ref StartCollideEvent args)
+        => _damage.TryChangeDamage(args.OtherEntity, component.Damage);
+
+    private void OnChargingStartup(EntityUid uid, ChargingRuneExplosionComponent component, ComponentInit args)
+    {
+        var doAfter = new DoAfterArgs(EntityManager, uid, component.Time, new BossRunesChargingDoAfterEvent(), uid)
+        {
+            BreakOnDamage = false,
+            BreakOnMove = false,
+            NeedHand = false,
+        };
+
+        _doAfter.TryStartDoAfter(doAfter);
+    }
+
+    private void OnChargingDoAfter(EntityUid uid, ChargingRuneExplosionComponent component, BossRunesChargingDoAfterEvent args)
+    {
+        _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 400, 3, 0, null, 0, 0, false);
+        RemComp<ChargingRuneExplosionComponent>(uid);
+
+        var runes = EntityManager.AllEntities<PurifyableExplosionRuneComponent>().Where(x => TryComp<BossAttackComponent>(x, out var attack) && attack.Boss == uid);
+        foreach (var item in runes)
+            QueueDel(item);
+
+    }
+
     private void UpdateSpiked()
     {
         var query = EntityQueryEnumerator<SpikedGridComponent, MapGridComponent>();
@@ -107,10 +147,59 @@ public sealed partial class BossSystem
             if (comp.ExplodeTime > _timing.CurTime)
                 continue;
 
-            if (_lookup.GetEntitiesInRange<FightingBossComponent>(Transform(uid).Coordinates, 4f).Count > 0)
+            if (_lookup.GetEntitiesInRange<FightingBossComponent>(Transform(uid).Coordinates, 3f).Count > 1)
                 _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 50, 3, 0, null, 0, 0, false);
 
             RemComp<CursedMarkComponent>(uid);
+        }
+    }
+
+    private void UpdateSpikeMarker()
+    {
+        var query = EntityQueryEnumerator<SpikeAttackMarkerComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.NextSpawn > _timing.CurTime)
+                continue;
+
+            if (comp.Idx > comp.TargetIdx)
+            {
+                RemComp<SpikeAttackMarkerComponent>(uid);
+                continue;
+            }
+
+            var pos = Transform(uid).Coordinates;
+            foreach (var item in comp.Positions[comp.Idx])
+            {
+                SpawnAtPosition(comp.Proto, new EntityCoordinates(pos.EntityId, pos.Position + item));
+            }
+
+            comp.Idx++;
+            comp.NextSpawn = _timing.CurTime + TimeSpan.FromSeconds(comp.SpawnInterval);
+        }
+    }
+
+    private void UpdateRunes()
+    {
+        var query = EntityQueryEnumerator<ChargingRuneExplosionComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.NextCheck > _timing.CurTime)
+                continue;
+
+            comp.NextCheck = _timing.CurTime + TimeSpan.FromSeconds(1f);
+
+            var runes = EntityManager.AllEntities<PurifyableExplosionRuneComponent>().Where(x => TryComp<BossAttackComponent>(x, out var attack) && attack.Boss == uid);
+            var activeRunes = runes.Where(x => _physics.GetContactingEntities(x).Where(y => HasComp<HumanoidAppearanceComponent>(y)).ToList().Any());
+
+            if (activeRunes.Count() >= runes.Count())
+            {
+                foreach (var item in runes)
+                    QueueDel(item);
+
+                RemComp<ChargingRuneExplosionComponent>(uid);
+                continue;
+            }
         }
     }
 }

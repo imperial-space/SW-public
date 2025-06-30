@@ -33,6 +33,8 @@ public sealed partial class BossSystem : EntitySystem
         UpdateBoss();
         UpdateSpiked();
         UpdateMark();
+        UpdateSpikeMarker();
+        UpdateRunes();
     }
 
     public void StartBossfight(List<EntityUid> players, EntityUid boss)
