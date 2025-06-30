@@ -741,6 +741,6 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: TimedDespawn
-    lifetime: 3 # 00
+    lifetime: 300
   - type: SpawnOnDespawn
     prototype: MedievalMyrmexLarva
