@@ -120,7 +120,7 @@
 - type: customization
   id: drgnar
   holder: 97b2b83e-0b21-4524-8e7d-a8528b4e4076
-  map: 
+  map:
     MedievalClothingOuterArmorLeatherHeavy: [MedievalClothingOuterBlackArmorLeather]
     MedievalClothingHeadHelmetShapel: [MedievalClothingHelmetBlackLeather]
     Log: [MedievalClothingHandsBlackGloves, MedievalClothingBlackBoots]
@@ -128,7 +128,7 @@
 - type: customization
   id: salamandraes
   holder: 459e5b30-5769-484f-a929-e7528bf35df5
-  map: 
+  map:
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetCrusaderDarkHelmetArchaont]
     MedievalClothingOuterArmorUpIron: [MedievalClothingOuterArmorUpIronDarkArmorArchaont]
     MedievalClothingFeetSteel: [MedievalClothingFeetSteelDarkBootsArchaont]
@@ -138,7 +138,7 @@
 - type: customization
   id: scarlatto
   holder: 9a7c2996-6502-4bc6-b595-0c7df57c1a8d
-  map: 
+  map:
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightPurpleScar]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakPurpleScar]
     MedievalShoesChamber: [MedievalShoesCharmerPurpleScar]
@@ -149,6 +149,12 @@
 - type: customization
   id: elnet
   holder: 487e7432-1a11-45f8-b7ec-1ac0a36155dd
-  map: 
+  map:
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightAncientMage]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightAncientMage]
+
+- type: customization
+  id: fichty
+  holder: 9a0a943e-7a19-4795-8fad-7e06d8e99797
+  map:
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth72]
