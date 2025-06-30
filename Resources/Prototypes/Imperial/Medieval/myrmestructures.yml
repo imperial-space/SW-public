@@ -1,0 +1,33 @@
+- type: entity
+  name: Exception Spawner
+  id: MedievalSpawnMineCaveMyrmex
+  parent: MarkerBase
+  components:
+    - type: Sprite
+      layers:
+        - state: red
+    - type: RandomSpawner
+      prototypes:
+      - SpiderWeb
+      chance: 0.98
+      offset: 0
+
+- type: entity
+  id: MedievalMyrmexResourceGum
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Myrmex/resin.rsi
+      state: resin
+    - type: Item
+      size: Ginormous
+
+- type: entity
+  id: MedievalMyrmexResourceYant
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Myrmex/resin.rsi
+      state: clearresin
+    - type: Item
+      size: Ginormous

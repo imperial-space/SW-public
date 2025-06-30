@@ -282,6 +282,7 @@
     bloodReagent: CopperBlood
     bloodMaxVolume: 100
   - type: Puller
+    needsHands: false
   - type: Appearance
   - type: Fixtures
     fixtures:
