@@ -1,0 +1,127 @@
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: MedievalMyrmexTurret
+  name: myrmex turret
+  description: Shoots 9mm acid projectiles.
+  components:
+  - type: NpcFactionMember
+    factions:
+    - Dragon
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Turret/myrmex_tyrret.rsi
+    noRot: true
+    layers:
+    - state: base
+  - type: BallisticAmmoProvider
+    proto: MedievalMyrmexBulletAcid
+    capacity: 500
+  - type: Gun
+    fireRate: 1
+    selectedMode: FullAuto
+    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Animals/snake_hiss.ogg
+  - type: Damageable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/gib1.ogg
+  - type: Construction
+    graph: Mturret
+    node: medievalMyrmexTurret
+
+- type: entity
+  id: MedievalMyrmexBulletAcid
+  name: acid spit
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: Projectile
+      damage:
+        types:
+          Caustic: 10
+    - type: Sprite
+      sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Turret/myrmex_acid.rsi
+      layers:
+        - state: myrmex_acid
+    - type: Ammo
+      muzzleFlash: null
+
+- type: construction
+  id: MedievalMyrmexTurret
+  graph: Mturret
+  startNode: start
+  targetNode: medievalMyrmexTurret
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+    
+- type: constructionGraph
+  id: Mturret
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexTurret
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - material: MedievalMyrmexResourceGum
+        amount: 1
+        doAfter: 1
+      - material: MedievalMyrmexResourceGum
+        amount: 1
+        doAfter: 1
+      - material: MedievalMushroom1
+        amount: 1
+        doAfter: 1
+      - material: MedievalRootItem
+        amount: 1
+        doAfter: 1
+      - material: MedievalRootItem
+        amount: 1
+        doAfter: 1
+      - material: MedievalRootItem
+        amount: 1
+        doAfter: 1
+  - node: medievalMyrmexTurret
+    entity: MedievalMyrmexTurret
+
+- type: stack
+  id: MedievalMyrmexResourceGum
+  name: myrmex gum
+  icon: { sprite: Imperial/Medieval/Myrmex/resin.rsi, state: resin }
+  spawn: MedievalMyrmexResourceGum
+  maxCount: 1
+
+- type: stack
+  id: MedievalMushroom1
+  name: mushroom
+  icon: { sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi, state: produce }
+  spawn: MedievalMushroom1
+  maxCount: 1
+
+- type: stack
+  id: MedievalRootItem
+  name: root
+  icon: { sprite: Imperial/Medieval/Chem/Garden/root.rsi, state: icon }
+  spawn: MedievalRootItem
+  maxCount: 1
