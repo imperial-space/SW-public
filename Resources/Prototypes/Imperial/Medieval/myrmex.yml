@@ -16,7 +16,17 @@
   files:
   - /Audio/Imperial/Medieval/ant_footstep2.ogg
   - /Audio/Imperial/Medieval/ant_footstep3.ogg
-  - /Audio/Imperial/Medieval/ant_footstep4.ogg
+
+- type: speechSounds
+  id: Myrmex
+  saySound:
+    path: /Audio/Imperial/Medieval/ant_speak2.ogg
+  askSound:
+    path: /Audio/Imperial/Medieval/ant_speak1.ogg
+  exclaimSound:
+    path: /Audio/Imperial/Medieval/ant_speak3.ogg
+
+# ===========================
 
 - type: tile
   id: MedievalMyrmexFloor1
@@ -27,7 +37,7 @@
   isSubfloor: false
   ##deconstructTools: [ Prying ]
   footstepSounds:
-    collection: MyrmexFootsteps
+    collection: FootstepMyrmexFloor
   itemDrop: FloorTileItemWoodLarge
   heatCapacity: 99910000
   badSmellMod: 0.75
@@ -210,6 +220,74 @@
   - type: ExplosionResistance
     damageCoefficient: 20
 
+- type: entity
+  id: MedievalMyrmexWeb
+  name: myrmex web
+  description: Sticky and slippy
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: /Textures/Imperial/Medieval/Myrmex/Structures/myrmex_web.rsi
+      layers:
+        - state: icon
+          map: ["spiderWebLayer"]
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 10
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Temperature
+      heatDamage:
+        types:
+          Heat: 5
+      coldDamage: {}
+      coldDamageThreshold: 0
+    - type: Flammable
+      fireSpread: true
+      damage:
+        types:
+          Heat: 5
+    - type: Reactive
+      groups:
+        Flammable: [Touch]
+        Extinguish: [Touch]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.5
+      sprintSpeedModifier: 0.5
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+
 # ===========================
 - type: entity
   abstract: true
@@ -239,6 +317,8 @@
   - type: Puller
     needsHands: false
   - type: Appearance
+  - type: Speech
+    speechSounds: Myrmex
   - type: Fixtures
     fixtures:
       fix1:
@@ -354,6 +434,8 @@
   - type: Physics
   - type: RechargeBasicEntityAmmo
     rechargeCooldown: 0.75
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/ant_acidrecharge.ogg
   - type: BasicEntityAmmoProvider
     proto: BulletAcid
     capacity: 1
@@ -378,7 +460,7 @@
     selectedMode: FullAuto
     availableModes:
       - FullAuto
-    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    soundGunshot: /Audio/Imperial/Medieval/ant_acidshot.ogg
   - type: MobThresholds
     thresholds:
       0: Alive
