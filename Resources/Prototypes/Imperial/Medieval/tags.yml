@@ -87,3 +87,6 @@
 
 - type: Tag
   id: ThrowingSpear
+
+- type: Tag
+  id: RootItem

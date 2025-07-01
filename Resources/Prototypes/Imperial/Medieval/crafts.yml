@@ -1262,11 +1262,15 @@
   - node: start
     actions:
     - !type:DestroyEntity {}
-    edges:
-    - to: MedievalMyrmexSupportingColumnCraft
-      completed:
-      - !type:SnapToGrid {}
-      steps:
-      - material: MedievalRootItem
-        amount: 1
-        doAfter: 1
+       edges:
+         - to: MedievalMyrmexSupportingColumnCraft
+           steps:
+             - material: MedievalRootItem
+               amount: 1
+               doAfter: 1
+             - tag: RootItem
+               name: корень # Imperial Recipes Locale
+               icon:
+                 sprite: Imperial/Medieval/Chem/Garden/root.rsi
+                 state: icon
+               doAfter: 1
