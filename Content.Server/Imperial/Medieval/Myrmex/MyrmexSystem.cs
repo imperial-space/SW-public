@@ -19,7 +19,7 @@ using Content.Server.Myrmex.Components;
 using Robust.Shared.Spawners;
 using System.Numerics;
 using Content.Shared.Body.Components;
-using Robust.Shared.GameObjects;
+using Content.Shared.Jittering;
 
 namespace Content.Server.Myrmex
 {
@@ -31,6 +31,7 @@ namespace Content.Server.Myrmex
         [Dependency] protected readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+        [Dependency] private readonly SharedJitteringSystem _jitter = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly AlertsSystem _alerts = default!;
@@ -208,6 +209,8 @@ namespace Content.Server.Myrmex
             if (light == comp.LightColor && spore == comp.SporeType)
                 temp *= 1.5f;
             comp.TimeTillSpawn -= temp;
+            if (comp.TimeTillSpawn < 200)
+                _jitter.DoJitter(uid, TimeSpan.FromSeconds(12f), true);
             if (comp.TimeTillSpawn <= 0)
             {
                 var time = EnsureComp<TimedDespawnComponent>(uid);

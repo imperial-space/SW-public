@@ -15,9 +15,6 @@
       - MedievalWallSoilSolid
       - MedievalWallSoilSolid
       - MedievalWallSoilSolid
-      - MedievalWallSoilSolid
-      - MedievalWallSoilSolid
-      - MedievalWallSoilSolid
       - MedievalWallSoilNormal
       - MedievalWallSoilNormal
       - MedievalWallSoilNormal
@@ -27,17 +24,6 @@
       - MedievalWallSoilNormal
       - MedievalWallSoilNormal
       - MedievalWallSoilNormal
-      - MedievalWallSoilNormal
-      - MedievalWallSoilNormal
-      - MedievalWallSoilNormal
-      - MedievalWallSoilNormal
-      - MedievalWallSoilNormal
-      - MedievalWallSoilNormal
-      - MedievalWallSoilNormal
-      - MedievalWallSoilNormal
-      - MedievalWallSoilNormal
-      - MedievalWallSoilLoose
-      - MedievalWallSoilLoose
       - MedievalWallSoilLoose
       - MedievalWallSoilLoose
       - MedievalWallSoilLoose
@@ -51,12 +37,15 @@
       - MedievalWallSoilLooseMushroom
       - MedievalWallSoilLooseRoot
       - MedievalWallSoilLooseRoot
+      - MedievalWallSoilLooseRoot
       - MedievalWallSoilNormalAnt
       - MedievalWallSoilNormalGum
       - MedievalWallSoilNormalGum
       - MedievalWallSoilNormalGum
       - MedievalWallSoilNormalLGum
       - MedievalWallSoilNormalMushroom
+      - MedievalWallSoilNormalRoot
+      - MedievalWallSoilNormalRoot
       - MedievalWallSoilNormalRoot
       - MedievalWallSoilNormalRoot
       - MedievalWallSoilSolidAnt
@@ -66,6 +55,7 @@
       - MedievalWallSoilSolidGum
       - MedievalWallSoilSolidLGum
       - MedievalWallSoilSolidMushroom
+      - MedievalWallSoilSolidRoot
       - MedievalWallSoilSolidRoot
       - MedievalWallSoilSolidRoot
       chance: 0.98
