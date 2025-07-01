@@ -70,12 +70,10 @@
     state: resin
   - type: Item
     size: Ginormous
-  - type: Stack
-    stackType: MedievalMyrmexResourceGum
-    count: 1
   - type: Tag
     tags:
     - MyrmexCanTake
+    - MyrmexResourceGum
 
 - type: entity
   id: MedievalMyrmexResourceYant
@@ -89,6 +87,7 @@
   - type: Tag
     tags:
     - MyrmexCanTake
+    - MyrmexResourceYant
 
   # - type: Construction
   #   graph: MedievalChest4
