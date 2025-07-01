@@ -304,8 +304,8 @@
 
 - type: construction
   id: MedievalMyrmexSupportingColumnCraft
-  name: supporting column
-  description: A primitive support column to protect against unexpected falling rocks on your head
+  name: поддерживающая колонна мирмексов
+  description: Примитивная поддерживающая колонна, защищающая от неожиданного падения камней на голову
   graph: MedievalMyrmexSupportingColumnCraft
   startNode: start
   targetNode: ready
