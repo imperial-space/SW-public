@@ -512,16 +512,25 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // Sawmill.Debug($"Melee damage is {damage.Total} out of {component.Damage.Total}");
 
         // Raise event before doing damage so we can cancel damage if the event is handled
-        var hitEvent = new MeleeHitEvent(new List<EntityUid> { target.Value }, user, meleeUid, damage, null);
-        RaiseLocalEvent(meleeUid, hitEvent);
 
-        if (hitEvent.Handled)
-            return;
-
+        // imperial medieval start
         var targets = new List<EntityUid>(1)
         {
             target.Value
         };
+
+        var before = new BeforeMeleeHitEvent(targets, user);
+        RaiseLocalEvent(meleeUid, ref before);
+        if (before.Cancelled) return;
+        targets = before.HitEntities;
+
+
+        var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, null);
+        RaiseLocalEvent(meleeUid, hitEvent);
+
+        if (hitEvent.Handled)
+            return;
+        // imperial medieval end
 
         var weapon = GetEntity(ev.Weapon);
 
@@ -604,6 +613,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                     LogImpact.Low,
                     $"{ToPrettyString(user):actor} melee attacked (heavy) using {ToPrettyString(meleeUid):tool} and missed");
             }
+
             var missEvent = new MeleeHitEvent(new List<EntityUid>(), user, meleeUid, damage, direction);
             RaiseLocalEvent(meleeUid, missEvent);
 
@@ -653,6 +663,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // Sawmill.Debug($"Melee damage is {damage.Total} out of {component.Damage.Total}");
 
         // Raise event before doing damage so we can cancel damage if the event is handled
+
+        // imperial medieval start
+        var before = new BeforeMeleeHitEvent(targets, user);
+        RaiseLocalEvent(meleeUid, ref before);
+        if (before.Cancelled) return false;
+        targets = before.HitEntities;
+        // imperial medieval end
         var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, direction);
         RaiseLocalEvent(meleeUid, hitEvent);
 

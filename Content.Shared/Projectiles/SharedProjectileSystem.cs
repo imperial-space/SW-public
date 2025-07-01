@@ -244,6 +244,9 @@ public record struct ProjectileReflectAttemptEvent(EntityUid ProjUid, Projectile
     SlotFlags IInventoryRelayEvent.TargetSlots => SlotFlags.WITHOUT_POCKET;
 }
 
+[ByRefEvent]
+public record struct ProjectileBeforeHitEvent(EntityUid Target, EntityUid? Shooter = null, bool Cancelled = false); // imperial medieval
+
 /// <summary>
 /// Raised when a projectile hits an entity
 /// </summary>
