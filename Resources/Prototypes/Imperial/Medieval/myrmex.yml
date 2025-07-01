@@ -68,7 +68,7 @@
   - type: InteractionOutline
   - type: Sprite
     netsync: false
-    sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Walls/myrmedon_door.rsi
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmedon_door.rsi
     snapCardinals: true
     layers:
     - state: closed
@@ -166,9 +166,9 @@
       - Wall
       #- RCDDeconstructWhitelist
   - type: Sprite
-    sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Walls/myrmex_flimsy_wall.rsi
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmex_flimsy_wall.rsi
   - type: Icon
-    sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Walls/myrmex_flimsy_wall.rsi
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmex_flimsy_wall.rsi
   - type: Destructible
     thresholds:
     - trigger:
@@ -193,9 +193,9 @@
       - Wall
       #- RCDDeconstructWhitelist
   - type: Sprite
-    sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Walls/myrmex_strong_wall.rsi
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmex_strong_wall.rsi
   - type: Icon
-    sprite: /Textures/Imperial/Medieval/Myrmex/Structures/Walls/myrmex_strong_wall.rsi
+    sprite: Imperial/Medieval/Myrmex/Structures/Walls/myrmex_strong_wall.rsi
   - type: Destructible
     thresholds:
     - trigger:
@@ -347,7 +347,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: /Textures/Imperial/Medieval/Myrmex/Castes/myrmex_worker.rsi
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_worker.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
@@ -401,7 +401,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: /Textures/Imperial/Medieval/Myrmex/Castes/myrmex_spitter.rsi
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_spitter.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
@@ -468,7 +468,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: /Textures/Imperial/Medieval/Myrmex/Castes/myrmex_elite.rsi
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_elite.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
@@ -523,7 +523,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: /Textures/Imperial/Medieval/Myrmex/Castes/myrmex_warrior.rsi
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_warrior.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
@@ -594,7 +594,7 @@
         volume: -5
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: /Textures/Imperial/Medieval/Myrmex/Castes/myrmex_larva.rsi
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_larva.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: base
@@ -657,7 +657,7 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: /Textures/Imperial/Medieval/Myrmex/Castes/myrmex_queen.rsi
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_queen.rsi
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
@@ -683,7 +683,7 @@
       types:
         ParryAble: 1
         Bloodloss: 3
-        Structural: 75
+        Structural: 155
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -776,7 +776,7 @@
   description: yaichki
   components:
   - type: Sprite
-    sprite: /Textures/Imperial/Medieval/Myrmex/Castes/myrmex_egg.rsi
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_egg.rsi
     state: base
   - type: DamageOnHighSpeedImpact
     minimumSpeed: 0.1
@@ -798,7 +798,4 @@
         solution: food
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: TimedDespawn
-    lifetime: 300
-  - type: SpawnOnDespawn
-    prototype: MedievalMyrmexLarva
+  - type: MyrmexEgg
