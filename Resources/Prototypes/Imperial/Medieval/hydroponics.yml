@@ -439,6 +439,9 @@
       Revent: 8
   - type: Item
     size: Tiny
+  - type: Stack
+    stackType: MedievalMushroom1
+    count: 1
   - type: Extractable
     juiceSolution:
       reagents:
