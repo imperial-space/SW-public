@@ -7726,9 +7726,6 @@
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/root.rsi
     state: icon
-  - type: Stack
-    stackType: MedievalRootItem
-    count: 1
   - type: Tag
     tags:
     - MyrmexCanTake
