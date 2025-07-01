@@ -210,7 +210,10 @@ namespace Content.Server.Myrmex
                 temp *= 1.5f;
             comp.TimeTillSpawn -= temp;
             if (comp.TimeTillSpawn < 200)
+            {
+                _jitter.AddJitter(uid);
                 _jitter.DoJitter(uid, TimeSpan.FromSeconds(12f), true);
+            }
             if (comp.TimeTillSpawn <= 0)
             {
                 var time = EnsureComp<TimedDespawnComponent>(uid);
