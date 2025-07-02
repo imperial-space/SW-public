@@ -395,9 +395,19 @@ public sealed partial class AntagSelectionSystem : GameRuleSystem<AntagSelection
 
         if (!antagEnt.HasValue)
         {
-            var getEntEv = new AntagSelectEntityEvent(session, ent);
-            RaiseLocalEvent(ent, ref getEntEv, true);
-            antagEnt = getEntEv.Entity;
+            // imperial medieval myrmex start
+            // var getEntEv = new AntagSelectEntityEvent(session, ent);
+            // RaiseLocalEvent(ent, ref getEntEv, true);
+            // antagEnt = getEntEv.Entity;
+            if (def.EntityPrototype.HasValue)
+                antagEnt = Spawn(def.EntityPrototype.Value);
+            else
+            {
+                var getEntEv = new AntagSelectEntityEvent(session, ent);
+                RaiseLocalEvent(ent, ref getEntEv, true);
+                antagEnt = getEntEv.Entity;
+            }
+            // imperial medieval myrmex end
         }
 
         if (antagEnt is not { } player)

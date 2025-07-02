@@ -401,6 +401,7 @@
   description: medieval-description
   rules:
   - TDM
+  - Myrmex
 
 - type: gamePreset
   id: MedievalDevelop
