@@ -7735,6 +7735,9 @@
   id: MedievalRockfallWarning
   categories: [ HideSpawnMenu ]
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/rockfall.rsi
+    state: warning
   - type: TimedDespawn
     lifetime: 25
   - type: Tag
