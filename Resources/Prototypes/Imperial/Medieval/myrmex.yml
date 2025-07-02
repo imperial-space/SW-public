@@ -261,7 +261,7 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 10
+          damage: 30
         behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
@@ -282,8 +282,8 @@
         Extinguish: [Touch]
     - type: SpiderWebObject
     - type: SpeedModifierContacts
-      walkSpeedModifier: 0.5
-      sprintSpeedModifier: 0.5
+      walkSpeedModifier: 0.3
+      sprintSpeedModifier: 0.3
       ignoreWhitelist:
         components:
             - IgnoreSpiderWeb
