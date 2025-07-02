@@ -627,7 +627,7 @@
   description: ert-uplink-utilities-ami2-desc
   productEntity: PlushieSOO
   cost:
-    BlueSpaceCube: 1
+    BlueSpaceCube: 10
   categories:
   - RCUUtilities
 
