@@ -73,6 +73,7 @@
   - type: Tag
     tags:
     - MyrmexCanTake
+    - MyrmexResourceGum
 
 - type: entity
   id: MedievalMyrmexResourceYant
@@ -86,6 +87,7 @@
   - type: Tag
     tags:
     - MyrmexCanTake
+    - MyrmexResourceYant
 
   # - type: Construction
   #   graph: MedievalChest4
@@ -193,6 +195,9 @@
     castShadows: false
     energy: 5
     radius: 2
+  - type: Construction
+    graph: MLightBlue
+    node: medievalMyrmexLightBlue
 
 - type: entity
   id: MedievalMyrmexLightOrange
@@ -209,6 +214,9 @@
     castShadows: false
     energy: 3
     radius: 2
+  - type: Construction
+    graph: MLightOrange
+    node: medievalMyrmexLightOrange
 
 - type: entity
   id: MedievalMyrmexLightPurple
@@ -225,6 +233,9 @@
     castShadows: false
     energy: 4
     radius: 2
+  - type: Construction
+    graph: MLightPurple
+    node: medievalMyrmexLightPurple
 
 - type: entity
   id: MedievalMyrmexSporeBlue
@@ -241,6 +252,9 @@
     castShadows: false
     energy: 5
     radius: 2
+  - type: Construction
+    graph: MSporeBlue
+    node: medievalMyrmexSporeBlue
 
 - type: entity
   id: MedievalMyrmexSporeOrange
@@ -257,6 +271,9 @@
     castShadows: false
     energy: 3
     radius: 2
+  - type: Construction
+    graph: MSporeOrange
+    node: medievalMyrmexSporeOrange
 
 - type: entity
   id: MedievalMyrmexSporePurple
@@ -273,6 +290,9 @@
     castShadows: false
     energy: 4
     radius: 2
+  - type: Construction
+    graph: MSporePurple
+    node: medievalMyrmexSporePurple
 
 - type: entity
   id: MedievalMyrmexSupportingColumn
