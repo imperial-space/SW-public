@@ -492,7 +492,7 @@
     graph: MRecycler
     node: medievalMyrmexRecycler
   - type: CP14Workbench
-    craftSound: "/Audio/Imperial/Medieval/craft_cloth.ogg"
+    craftSound: "/Audio/Imperial/Medieval/blub2.ogg"
     recipes:
     - MedievalMyrmexResourceYant
     - MedievalMyrmexFibeStack5
