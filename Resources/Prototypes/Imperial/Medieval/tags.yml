@@ -87,3 +87,21 @@
 
 - type: Tag
   id: ThrowingSpear
+
+- type: Tag
+  id: RootItem
+
+- type: Tag
+  id: MyrmexResourceGum
+
+- type: Tag
+  id: MyrmexResourceYant
+
+- type: Tag
+  id: Mushroom1
+
+- type: Tag
+  id: Mushroom2
+
+- type: Tag
+  id: Mushroom3

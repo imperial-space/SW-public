@@ -7716,3 +7716,53 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
     - type: MedievalMeleeRepairStructure
+
+- type: entity
+  parent: BaseItem
+  id: MedievalRootItem
+  name: root
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/root.rsi
+    state: icon
+  - type: Tag
+    tags:
+    - MyrmexCanTake
+    - RootItem
+
+- type: entity
+  id: MedievalRockfallWarning
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 25
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/rock_warning.ogg
+
+- type: entity
+  id: MedievalRockfall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 25
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/rockfall.ogg
+
+- type: entity
+  id: MedievalRockfallWait
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: MyrmexRockFall
+    chanse: 0.2

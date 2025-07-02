@@ -71,7 +71,7 @@ public sealed class CombatStancePointTestSystem : EntitySystem
         {
             if (!TryComp<CombatStancePointComponent>(ent, out var point))
                 continue;
-            // OnCollide(ent, point, new(ent, uid, "", "", new(), new(), new(), new(), new()));
+            OnCollide(ent, point, uid);
             return;
         }
     }
@@ -284,17 +284,21 @@ public sealed class CombatStancePointTestSystem : EntitySystem
 
     private void OnCollide(EntityUid uid, CombatStancePointComponent component, StartCollideEvent args)
     {
-        if (!TryComp<FriendsComponent>(args.OtherEntity, out var friends))
+        OnCollide(uid, component, args.OtherEntity);
+    }
+    private void OnCollide(EntityUid uid, CombatStancePointComponent component, EntityUid other)
+    {
+        if (!TryComp<FriendsComponent>(other, out var friends))
             return;
         if (!_friends.TryGetFactionMemberData(friends.MemberID, out var data))
             return;
         if (data.Group != component.Group || data.Faction != component.Faction)
             return;
-        if (!HasComp<CombatStanceComponent>(args.OtherEntity))
+        if (!HasComp<CombatStanceComponent>(other))
             return;
-        if (component.ValidMembers.Contains(args.OtherEntity))
+        if (component.ValidMembers.Contains(other))
             return;
-        component.ValidMembers.Add(args.OtherEntity);
+        component.ValidMembers.Add(other);
         ListChanged(uid, component);
     }
     private void EndCollide(EntityUid uid, CombatStancePointComponent component, EndCollideEvent args)

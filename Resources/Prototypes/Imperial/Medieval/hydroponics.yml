@@ -447,6 +447,8 @@
   - type: Tag
     tags:
     - AlchemicIngredient
+    - MyrmexCanTake
+    - Mushroom1
 
 - type: reagent
   id: MedievalMushroom2
@@ -485,6 +487,8 @@
   - type: Tag
     tags:
     - AlchemicIngredient
+    - MyrmexCanTake
+    - Mushroom2
 
 - type: reagent
   id: MedievalMushroom3
@@ -523,3 +527,5 @@
   - type: Tag
     tags:
     - AlchemicIngredient
+    - MyrmexCanTake
+    - Mushroom3
