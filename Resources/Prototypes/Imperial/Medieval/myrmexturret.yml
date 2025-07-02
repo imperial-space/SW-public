@@ -70,7 +70,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-    
+
 - type: constructionGraph
   id: Mturret
   start: start
@@ -117,7 +117,7 @@
              - tag: Mushroom1
                name: едкий споровик # Imperial Recipes Locale
                icon:
-                 sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi
+                 sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
                  state: produce
                doAfter: 1
   - node: medievalMyrmexTurret

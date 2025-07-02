@@ -43,8 +43,6 @@
     - MedievalSoupYant
     - MedievalSoupRoot
     - MedievalSoupMushroom1
-    - MedievalSoupMushroom2
-    - MedievalSoupMushroom3
 
 - type: entity
   parent: BaseItem
@@ -96,42 +94,30 @@
 
 - type: CP14Recipe
   id: MedievalSoupResin
-  craftTime: 5
+  craftTime: 3
   entities:
-    MedievalMyrmexResourceGum: 1
+    MedievalMyrmexResourceGum: 2
   result: MedievalSoupResin
 
 - type: CP14Recipe
   id: MedievalSoupYant
-  craftTime: 5
+  craftTime: 3
   entities:
-    MedievalMyrmexResourceYant: 1
+    MedievalMyrmexResourceYant: 2
   result: MedievalSoupYant
 
 - type: CP14Recipe
   id: MedievalSoupRoot
-  craftTime: 5
+  craftTime: 3
   entities:
-    MedievalRootItem: 1
+    MedievalRootItem: 2
   result: MedievalSoupRoot
 
 - type: CP14Recipe
   id: MedievalSoupMushroom1
-  craftTime: 5
+  craftTime: 3
   entities:
     MedievalMushroom1: 1
-  result: MedievalSoupMushroom
-
-- type: CP14Recipe
-  id: MedievalSoupMushroom2
-  craftTime: 5
-  entities:
     MedievalMushroom2: 1
-  result: MedievalSoupMushroom
-
-- type: CP14Recipe
-  id: MedievalSoupMushroom3
-  craftTime: 5
-  entities:
     MedievalMushroom3: 1
   result: MedievalSoupMushroom

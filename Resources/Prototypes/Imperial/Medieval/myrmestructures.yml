@@ -329,7 +329,7 @@
   graph: MedievalMyrmexSupportingColumnCraft
   startNode: start
   targetNode: ready
-  category: construction-category-structures
+  category: construction-category-machines
   icon:
     sprite: Imperial/Medieval/Myrmex/Structures/column.rsi
     state: icon

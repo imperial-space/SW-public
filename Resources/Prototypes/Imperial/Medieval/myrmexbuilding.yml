@@ -9,7 +9,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-    
+
 - type: constructionGraph
   id: MSporePurple
   start: start
@@ -30,7 +30,7 @@
           state: resin
         doAfter: 1
       - tag: Mushroom1
-        name: едкий споровик # Imperial Recipes Locale
+        name: нейромицит # Imperial Recipes Locale
         icon:
           sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi
           state: produce
@@ -55,7 +55,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-    
+
 - type: constructionGraph
   id: MSporeBlue
   start: start
@@ -101,7 +101,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-    
+
 - type: constructionGraph
   id: MSporeOrange
   start: start
@@ -122,7 +122,7 @@
           state: resin
         doAfter: 1
       - tag: Mushroom3
-        name: нейромицит # Imperial Recipes Locale
+        name: едкий споровик # Imperial Recipes Locale
         icon:
           sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
           state: produce
@@ -147,7 +147,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-    
+
 - type: constructionGraph
   id: MLightPurple
   start: start
@@ -168,7 +168,7 @@
           state: resin
         doAfter: 1
       - tag: Mushroom1
-        name: едкий споровик # Imperial Recipes Locale
+        name: нейромицит # Imperial Recipes Locale
         icon:
           sprite: Imperial/Medieval/Chem/Garden/mushroom1.rsi
           state: produce
@@ -193,7 +193,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-    
+
 - type: constructionGraph
   id: MLightOrange
   start: start
@@ -214,7 +214,7 @@
           state: resin
         doAfter: 1
       - tag: Mushroom3
-        name: нейромицит # Imperial Recipes Locale
+        name: едкий споровик # Imperial Recipes Locale
         icon:
           sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
           state: produce
@@ -239,7 +239,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-    
+
 - type: constructionGraph
   id: MLightBlue
   start: start
@@ -285,7 +285,7 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-    
+
 - type: constructionGraph
   id: MSoupPlace
   start: start
