@@ -152,7 +152,7 @@ namespace Content.Server.Myrmex
         private void UpdateRockfall(EntityUid uid, MyrmexRockFallComponent comp)
         {
             var c = Transform(uid).Coordinates;
-            if (_random.Prob(comp.Chanse) && !CheckProp(c, comp.Range))
+            if (_random.Prob(comp.Chanse) && !CheckProp(c, comp.Range) && comp.BadCount < comp.MaxBadCount)
             {
                 comp.BadCount += 1;
                 Spawn(comp.WarningID, c);
