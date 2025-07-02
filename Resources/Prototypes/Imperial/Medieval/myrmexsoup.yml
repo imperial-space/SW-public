@@ -37,7 +37,7 @@
     graph: MSoupPlace
     node: medievalMyrmexSoupPlace
   - type: CP14Workbench
-    craftSound: "/Audio/Imperial/Medieval/craft_cloth.ogg"
+    craftSound: "/Audio/Imperial/Medieval/blub3.ogg"
     recipes:
     - MedievalSoupResin
     - MedievalSoupYant
@@ -121,3 +121,17 @@
     MedievalMushroom2: 1
     MedievalMushroom3: 1
   result: MedievalSoupMushroom
+
+- type: CP14Recipe
+  id: MedievalMyrmexResourceYant
+  craftTime: 10
+  entities:
+    MedievalMyrmexResourceGum: 3
+  result: MedievalMyrmexResourceYant
+
+- type: CP14Recipe
+  id: MedievalMyrmexFibeStack5
+  craftTime: 10
+  entities:
+    MedievalMyrmexResourceGum: 1
+  result: MedievalMyrmexFibeStack5
