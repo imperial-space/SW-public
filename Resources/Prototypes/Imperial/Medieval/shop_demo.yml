@@ -1848,6 +1848,14 @@
   - MedievalBackpackDemo
 
 - type: listing
+  id: DemoMdvShopMonsterBag
+  productEntity: MedievalMonsterBag
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBackpackDemo
+
+- type: listing
   id: DemoMedievalClothingBackpackSatchelLeather
   productEntity: MedievalClothingBackpackSatchelLeather
   cost:
