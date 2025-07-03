@@ -121,3 +121,6 @@ ent-MedievalMyrmexFibeStack5 = смоляная нить
 ent-MedievalMyrmexRecycler = переформовщик смолы
     .desc = Позволяет изготовить боле сложные материалы из смолы.
 .suffix = { "Средневековье, мирмексы" }
+ent-MedievalMyrmexToxicHole = токсичная яма
+    .desc = Это яма и она токсичная.
+.suffix = { "Средневековье, мирмексы" }
