@@ -22,7 +22,7 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private TimeSpan _balanceUpdateTimer;
-    public readonly TimeSpan BalanceUpdateInterval = TimeSpan.FromSeconds(5);
+    public readonly TimeSpan BalanceUpdateInterval = TimeSpan.FromSeconds(40);
 
     public override void Initialize()
     {

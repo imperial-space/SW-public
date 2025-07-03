@@ -25,8 +25,8 @@ public sealed partial class AddMagicEssence : EntityEffect
         {
             if (bindStoreOnEquipComponent.BindedEntity != magicEntityEffectsArgs.Performer) continue;
 
-            foreach (var (currencyPrototype, count) in AddedEssences)
-                TryAddEssence(currencyPrototype, count, spellBookUid, args.EntityManager);
+            //foreach (var (currencyPrototype, count) in AddedEssences) poka chto was sdelana another system of poluschenie essence
+            //    TryAddEssence(currencyPrototype, count, spellBookUid, args.EntityManager);
 
             return;
         }
