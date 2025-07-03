@@ -580,6 +580,12 @@
           sprite: Imperial/Medieval/Chem/Garden/root.rsi
           state: icon
         doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
       - tag: Mushroom2
         name: железошляпник # Imperial Recipes Locale
         icon:
