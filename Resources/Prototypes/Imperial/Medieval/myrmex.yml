@@ -403,6 +403,9 @@
     - state: trap-inactive
   - type: TimedDespawn
     lifetime: 60
+  - type: Construction
+    graph: MMyrmexTrapBase
+    node: medievalMyrmexTrapBase
   - type: SpawnOnDespawn
     prototype: MedievalMyrmexTrapFull
 

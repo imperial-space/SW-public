@@ -496,3 +496,39 @@
     recipes:
     - MedievalMyrmexResourceYant
     - MedievalMyrmexFibeStack5
+
+- type: entity
+  id: MedievalMyrmexToxicHole
+  name: toxic hole
+  description: it's a hole and it' toxic.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/toxic_hole.rsi
+    layers:
+    - state: hole
+    - state: icon
+      shader: unshaded
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Appearance
+  - type: Transform
+    anchored: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+  - type: Construction
+    graph: MToxicHole
+    node: medievalMyrmexToxicHole

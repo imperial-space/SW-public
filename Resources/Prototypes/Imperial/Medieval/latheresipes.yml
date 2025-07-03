@@ -380,6 +380,15 @@
   result: PlantBag
 
 - type: CP14Recipe
+  id: MedievalMonsterBag
+  craftTime: 10
+  stacks:
+    MedievalLeather1: 2
+    MedievalRope: 1
+    MedievalLeatherBelt: 2
+  result: MedievalMonsterBag
+
+- type: CP14Recipe
   id: MedievalWineskin
   craftTime: 6
   stacks:

@@ -105,3 +105,6 @@
 
 - type: Tag
   id: Mushroom3
+
+- type: Tag
+  id: MonsterLoot
