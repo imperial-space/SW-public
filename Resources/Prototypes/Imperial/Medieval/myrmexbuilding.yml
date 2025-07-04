@@ -341,6 +341,12 @@
           sprite: Imperial/Medieval/Chem/Garden/root.rsi
           state: icon
         doAfter: 1
+      - tag: Mushroom2
+        name: железошляпник # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/mushroom2.rsi
+          state: produce
+        doAfter: 1
   - node: medievalMyrmexSoupPlace
     entity: MedievalMyrmexSoupPlace
 
@@ -498,8 +504,8 @@
         southRotation: true
       steps:
         - material: MedievalMyrmexFibe
-          amount: 3
-          doAfter: 3
+          amount: 2
+          doAfter: 2
   - node: medievalMyrmexWeb
     entity: MedievalMyrmexWeb
 
