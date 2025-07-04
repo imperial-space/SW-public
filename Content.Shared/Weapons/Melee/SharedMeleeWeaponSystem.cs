@@ -597,12 +597,25 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         if (targetMap.MapId != userXform.MapID)
             return false;
 
+        // imperial medieval start
+        // var userPos = TransformSystem.GetWorldPosition(userXform);
+        // var direction = targetMap.Position - userPos;
+        // var distance = Math.Min(component.Range, direction.Length());
+        //
+        // var damage = GetDamage(meleeUid, user, component);
+        var entities = GetEntityList(ev.Entities);
+
+        var before = new BeforeMeleeHitEvent(entities, user);
+        RaiseLocalEvent(meleeUid, ref before);
+        if (before.Cancelled) return false;
+        entities = before.HitEntities;
+
         var userPos = TransformSystem.GetWorldPosition(userXform);
         var direction = targetMap.Position - userPos;
         var distance = Math.Min(component.Range, direction.Length());
 
         var damage = GetDamage(meleeUid, user, component);
-        var entities = GetEntityList(ev.Entities);
+        // imperial medieval end
 
         if (entities.Count == 0)
         {
@@ -668,13 +681,6 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // Sawmill.Debug($"Melee damage is {damage.Total} out of {component.Damage.Total}");
 
         // Raise event before doing damage so we can cancel damage if the event is handled
-
-        // imperial medieval start
-        var before = new BeforeMeleeHitEvent(targets, user);
-        RaiseLocalEvent(meleeUid, ref before);
-        if (before.Cancelled) return false;
-        targets = before.HitEntities;
-        // imperial medieval end
         var hitEvent = new MeleeHitEvent(targets, user, meleeUid, damage, direction);
         RaiseLocalEvent(meleeUid, hitEvent);
 
@@ -776,6 +782,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 ignore,
                 false)
                 .ToList();
+
+            // imperial medieval rideable start
+            var ev = new RayCastSort(res);
+            RaiseLocalEvent(ignore, ref ev);
+            res = ev.HitEntities;
+            // imperial medieval rideable end
 
             if (res.Count != 0)
             {
