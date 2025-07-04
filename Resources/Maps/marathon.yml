@@ -126112,7 +126112,7 @@ entities:
     - type: Transform
       pos: 43.5,43.5
       parent: 30
-  - uid: 9126690
+  - uid: 23221
     components:
     - type: Transform
       pos: 43.5,43.5

@@ -23809,7 +23809,7 @@ entities:
     - type: Transform
       pos: 25.5,-51.5
       parent: 8364
-  - uid: 60600
+  - uid: 4213
     components:
     - type: Transform
       pos: -3.5,36.5
@@ -28939,12 +28939,12 @@ entities:
     - type: Transform
       pos: -19.5,25.5
       parent: 8364
-  - uid: 60490
+  - uid: 12172
     components:
     - type: Transform
       pos: -19.5,26.5
       parent: 8364
-  - uid: 60494
+  - uid: 12173
     components:
     - type: Transform
       pos: -19.5,27.5
@@ -28959,7 +28959,7 @@ entities:
     - type: Transform
       pos: -19.5,29.5
       parent: 8364
-  - uid: 60491
+  - uid: 12171
     components:
     - type: Transform
       pos: -19.5,25.5
@@ -28974,12 +28974,12 @@ entities:
     - type: Transform
       pos: -19.5,27.5
       parent: 8364
-  - uid: 60495
+  - uid: 12174
     components:
     - type: Transform
       pos: -19.5,28.5
       parent: 8364
-  - uid: 60496
+  - uid: 12175
     components:
     - type: Transform
       pos: -19.5,29.5
@@ -61943,7 +61943,7 @@ entities:
     - type: Transform
       pos: 11.5,-24.5
       parent: 8364
-  - uid: 60497
+  - uid: 5731
     components:
     - type: Transform
       pos: 5.5,53.5
@@ -74380,7 +74380,7 @@ entities:
       parent: 8364
 - proto: ComputerFundingAllocation
   entities:
-  - uid: 60498
+  - uid: 20698
     components:
     - type: Transform
       pos: -11.5,-21.5
@@ -74638,12 +74638,12 @@ entities:
       rot: -1.5707963267948966 rad
       pos: -9.5,-26.5
       parent: 8364
-  - uid: 60499
+  - uid: 10020
     components:
     - type: Transform
       pos: -0.5,33.5
       parent: 8364
-  - uid: 60500
+  - uid: 10077
     components:
     - type: Transform
       rot: -1.5707963267948966 rad
@@ -116336,7 +116336,7 @@ entities:
       parent: 8364
     - type: AtmosPipeColor
       color: '#990000FF'
-  - uid: 60501
+  - uid: 28319
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -133521,7 +133521,7 @@ entities:
       parent: 8364
 - proto: NitrogenCanister
   entities:
-  - uid: 60503
+  - uid: 2468
     components:
     - type: Transform
       pos: -10.5,49.5
@@ -140742,7 +140742,7 @@ entities:
     - type: Transform
       pos: 12.5,-49.5
       parent: 8364
-  - uid: 60504
+  - uid: 28638
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -147113,7 +147113,7 @@ entities:
     - type: Transform
       pos: 2.5,-19.5
       parent: 8364
-  - uid: 60505
+  - uid: 24976
     components:
     - type: Transform
       pos: 6.5,46.5
@@ -152702,12 +152702,12 @@ entities:
       parent: 8364
 - proto: SpeedLoaderMagnumPractice
   entities:
-  - uid: 60506
+  - uid: 28335
     components:
     - type: Transform
       pos: 25.346834,35.803123
       parent: 8364
-  - uid: 60507
+  - uid: 28336
     components:
     - type: Transform
       pos: 25.284334,35.553123
@@ -158064,7 +158064,7 @@ entities:
     - type: Transform
       pos: 47.5,-10.5
       parent: 8364
-  - uid: 60508
+  - uid: 11609
     components:
     - type: Transform
       pos: 22.5,37.5
@@ -165814,7 +165814,7 @@ entities:
     - type: Transform
       pos: 16.5,-67.5
       parent: 8364
-  - uid: 60509
+  - uid: 4163
     components:
     - type: Transform
       pos: 6.5,39.5

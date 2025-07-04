@@ -18792,26 +18792,26 @@ entities:
       parent: 2
 - proto: EphedrineChemistryBottle
   entities:
-  - uid: 7684749
+  - uid: 7456
     components:
     - type: Transform
       pos: 12.5,13.5
       parent: 2
 - proto: EpinephrineChemistryBottle
   entities:
-  - uid: 1717153
+  - uid: 7304
     components:
     - type: Transform
       pos: 31.5,16.5
       parent: 2
-  - uid: 1327063
+  - uid: 7327
     components:
     - type: Transform
       pos: 32.5,16.5
       parent: 2
 - proto: EthanolChemistryBottle
   entities:
-  - uid: 9884402
+  - uid: 7321
     components:
     - type: Transform
       pos: 31.5,16.5
