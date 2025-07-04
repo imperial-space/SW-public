@@ -6,6 +6,7 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Imperial.Medieval.MobRiding;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Popups;
 
 namespace Content.Server.Imperial.Medieval.MobRiding
 {
@@ -15,6 +16,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
         [Dependency] private readonly NPCSystem _npc = default!;
         [Dependency] private readonly SharedBuckleSystem _buckle = default!;
         [Dependency] private readonly SharedRideableSystem _rideable = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
 
         public override void Initialize()
         {
@@ -33,7 +35,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
         {
             if (CheckAgility(args.Buckle))
                 return;
-
+            _popup.PopupEntity(Loc.GetString("imperial-medieval-rideable-skill-popup"), args.Buckle.Owner);
             args.Cancelled = true;
         }
 

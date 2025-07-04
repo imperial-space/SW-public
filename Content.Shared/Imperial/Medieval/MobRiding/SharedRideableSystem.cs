@@ -6,6 +6,7 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Physics;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {
@@ -20,11 +21,33 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             base.Initialize();
             SubscribeLocalEvent<RideableComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
             SubscribeLocalEvent<MeleeWeaponComponent, BeforeMeleeHitEvent>(OnBeforeMeleeHit);
+            SubscribeLocalEvent<BuckleComponent, RayCastSort>(OnRayCastSort);
             SubscribeLocalEvent<ProjectileComponent, ProjectileBeforeHitEvent>(OnBeforeProjectileHit);
 
             SubscribeLocalEvent<RideableComponent, StrappedEvent>(OnBuckled);
             SubscribeLocalEvent<RideableComponent, UnstrappedEvent>(OnUnbuckled);
 
+        }
+
+        private void OnRayCastSort(EntityUid uid, BuckleComponent component, ref RayCastSort args)
+        {
+            var toRemove = new List<RayCastResults>();
+
+            for (int i = 0; i < args.HitEntities.Count; i++)
+            {
+                var result = args.HitEntities[i];
+                var target = result.HitEntity;
+                if (!TryComp<RideableComponent>(target, out var rideable))
+                    continue;
+
+                if (!rideable.Rider.HasValue)
+                    continue;
+
+                if (rideable.Rider.Value == uid)
+                {
+                    args.HitEntities.RemoveAt(i);
+                }
+            }
         }
 
         private void OnBeforeProjectileHit(EntityUid uid,
@@ -50,6 +73,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
         private void OnBeforeMeleeHit(EntityUid uid, MeleeWeaponComponent component, ref BeforeMeleeHitEvent args)
         {
+            // по факту бесполезно из-за того, что всё удаляется ещё при рейкасте
             for (var i = args.HitEntities.Count - 1; i >= 0; i--)
             {
                 var target = args.HitEntities[i];
