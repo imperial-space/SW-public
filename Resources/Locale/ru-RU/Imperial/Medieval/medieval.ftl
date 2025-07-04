@@ -5783,6 +5783,6 @@ ent-MedievalWallSoilSolidRoot = твёрдая почва
 ent-MedievalRootItem = корень
     .desc = Горький на вкус.
     .suffix = { "Средневековье" }
-ent-MedievalMonsterBag = сумка охтника на монсров
+ent-MedievalMonsterBag = сумка охтника на монстров
     .desc = Сумка для настоящих охотников.
     .suffix = { "Средневековье, одежда" }
