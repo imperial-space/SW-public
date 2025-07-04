@@ -1,8 +1,8 @@
 - type: entity
-  name: электроэнергетический меч
+  name: electroenergy sword
   parent: [BaseMeleeWeaponEnergy, BaseMajorContraband]
   id: ElectroEnergySword
-  description: Очень громкий, и столь же опасный. Выключенным может храниться в кармане.
+  description: A very loud & dangerous sword with a beam made of pure, concentrated plasma.
   suffix: XxRaay
   components:
   - type: Sprite
@@ -34,7 +34,7 @@
     price: 2500
 
 - type: entity
-  name: ПП лазер
+  name: submachnine Lasergun
   suffix: XxRaay
   parent: BaseWeaponBatterySmall
   id: WeaponLaserAutoPistol
@@ -92,7 +92,7 @@
 
 - type: entity
   id: MagazineGrenadeStation
-  name: крассета гранат типа "RS-W6"
+  name: set of "RS-W6" type grenades
   parent: [ BaseMagazineGrenade, MagazineGrenadeFrag ]
   suffix: XxRaay
   components:
@@ -101,7 +101,7 @@
 
 - type: entity
   id: GrenadeStation
-  name: граната типа "RS-W6"
+  name: RS-W6 type grenade
   parent: [ BaseGrenade, GrenadeFrag ]
   suffix: XxRaay
   components:
