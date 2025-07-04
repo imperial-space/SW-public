@@ -319,8 +319,8 @@
           invert: true
         damage:
           types:
-            Heat: 2
-            Poison: 1.5
+            Heat: 1
+            Poison: 3.5
 
 - type: entity
   id: MedievalMyrmexTrapBase
