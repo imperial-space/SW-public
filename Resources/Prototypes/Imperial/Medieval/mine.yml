@@ -640,7 +640,7 @@
               spawn:
                 MedievalRootItem:
                   min: 2
-                  max: 4
+                  max: 6
             - !type:PlaySoundBehavior
               sound:
                 path: /Audio/Effects/break_stone.ogg
@@ -861,7 +861,7 @@
               spawn:
                 MedievalRootItem:
                   min: 2
-                  max: 4
+                  max: 6
             - !type:PlaySoundBehavior
               sound:
                 path: /Audio/Effects/break_stone.ogg
@@ -1082,7 +1082,7 @@
               spawn:
                 MedievalRootItem:
                   min: 2
-                  max: 4
+                  max: 6
             - !type:PlaySoundBehavior
               sound:
                 path: /Audio/Effects/break_stone.ogg
