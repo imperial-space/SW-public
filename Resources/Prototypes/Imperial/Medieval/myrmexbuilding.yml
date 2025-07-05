@@ -606,3 +606,96 @@
         doAfter: 1
   - node: medievalMyrmexToxicHole
     entity: MedievalMyrmexToxicHole
+
+- type: construction
+  id: MedievalWoodenSupport
+  graph: MWoodenSupport
+  startNode: start
+  targetNode: medievalWoodenSupport
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MWoodenSupport
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalWoodenSupport
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+        - material: WoodPlank
+          amount: 4
+          doAfter: 4
+  - node: medievalWoodenSupport
+    entity: WoodenSupport
+
+- type: construction
+  id: MedievalWoodenSupportBeam
+  graph: MWoodenSupportBeam
+  startNode: start
+  targetNode: medievalWoodenSupportBeam
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MWoodenSupportBeam
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalWoodenSupportBeam
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+        - material: WoodPlank
+          amount: 4
+          doAfter: 4
+  - node: medievalWoodenSupportBeam
+    entity: WoodenSupportBeam
+
+- type: construction
+  id: MedievalWoodenSupportWall
+  graph: MWoodenSupportWall
+  startNode: start
+  targetNode: medievalWoodenSupportWall
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MWoodenSupportWall
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalWoodenSupportWall
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+        - material: WoodPlank
+          amount: 4
+          doAfter: 4
+  - node: medievalWoodenSupportWall
+    entity: WoodenSupportWall
