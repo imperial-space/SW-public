@@ -38,11 +38,12 @@
   components:
   - type: Action
     useDelay: 2.5
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Structures/floor_web.rsi
       state: full
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -197,11 +198,12 @@
   components:
   - type: Action
     useDelay: 2
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Structures/floor_web.rsi
       state: full
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -918,11 +920,12 @@
   components:
   - type: Action
     useDelay: 3
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Structures/floor_web.rsi
       state: full
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -1329,11 +1332,12 @@
   components:
   - type: Action
     useDelay: 2
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Structures/floor_web.rsi
       state: full
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -1356,11 +1360,12 @@
   components:
   - type: Action
     useDelay: 160
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -1383,11 +1388,12 @@
   components:
   - type: Action
     useDelay: 300
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -1567,11 +1573,12 @@
   components:
   - type: Action
     useDelay: 400
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -1594,11 +1601,12 @@
   components:
   - type: Action
     useDelay: 220
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -1622,11 +1630,12 @@
   components:
   - type: Action
     useDelay: 1600
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/TerrorSpider/Spider/actions_animal.rsi
       state: lay_eggs
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:

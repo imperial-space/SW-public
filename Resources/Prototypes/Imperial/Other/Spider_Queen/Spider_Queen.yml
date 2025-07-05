@@ -737,11 +737,12 @@
   components:
   - type: Action
     useDelay: 200
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Objects/Misc/eggspider.rsi
       state: icon
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -755,11 +756,12 @@
   components:
   - type: Action
     useDelay: 300 #КД
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Objects/Misc/eggspider.rsi
       state: icon
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -773,11 +775,12 @@
   components:
   - type: Action
     useDelay: 350 #КД
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Objects/Misc/eggspider.rsi
       state: icon
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -791,11 +794,12 @@
   components:
   - type: Action
     useDelay: 380
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Objects/Misc/eggspider.rsi
       state: icon
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -810,11 +814,12 @@
   components:
   - type: Action
     useDelay: 30
-    range: 1
     itemIconStyle: BigAction
     icon:
       sprite: Structures/Decoration/crystal.rsi
       state: crystal_grey
+  - type: TargetAction
+    range: 1
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -829,11 +834,12 @@
   components:
   - type: Action
     useDelay: 40
-    range: 2
     itemIconStyle: BigAction
     icon:
       sprite: Mobs/Animals/spider.rsi
       state: viper_dead
+  - type: TargetAction
+    range: 2
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -847,11 +853,12 @@
   components:
   - type: Action
     useDelay: 8
-    range: 1.5
     itemIconStyle: BigAction
     icon:
       sprite: Structures/Walls/web.rsi
       state: full
+  - type: TargetAction
+    range: 1.5
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -865,11 +872,12 @@
   components:
   - type: Action
     useDelay: 10
-    range: 1.5
     itemIconStyle: BigAction
     icon:
       sprite: Structures/Walls/web.rsi
       state: full
+  - type: TargetAction
+    range: 1.5
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -884,11 +892,12 @@
   components:
   - type: Action
     useDelay: 5 #КД
-    range: 1.5
     itemIconStyle: BigAction
     icon:
       sprite: Structures/floor_web.rsi
       state: full
+  - type: TargetAction
+    range: 1.5
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -903,11 +912,12 @@
   components:
   - type: Action
     useDelay: 20
-    range: 1.5
     itemIconStyle: BigAction
     icon:
       sprite: Structures/floor_web.rsi
       state: full
+  - type: TargetAction
+    range: 1.5
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -922,11 +932,12 @@
   components:
   - type: Action
     useDelay: 6 #КД
-    range: 1.5
     itemIconStyle: BigAction
     icon:
       sprite: Structures/floor_web.rsi
       state: full
+  - type: TargetAction
+    range: 1.5
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -941,12 +952,13 @@
   components:
   - type: Action
     useDelay: 30 #КД
-    range: 1.3
     itemIconStyle: BigAction
     icon:
       sprite: Structures/floor_web.rsi
       state: full
       color: "#ffa3fc"
+  - type: TargetAction
+    range: 1.3
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:

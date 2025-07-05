@@ -427,9 +427,6 @@ entities:
             115: 7,-11
             116: 8,-11
             128: 5,-11
-            195: 4,-19
-            196: 5,-19
-            197: 6,-19
     - type: GridAtmosphere
       version: 2
       data:
@@ -588,21 +585,6 @@ entities:
           moles:
           - 0
           - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-          - 0
-        - volume: 2500
-          temperature: 293.14975
-          moles:
-          - 20.078888
-          - 75.53487
           - 0
           - 0
           - 0
@@ -955,16 +937,6 @@ entities:
       parent: 2
 - proto: CableApcExtension
   entities:
-  - uid: 23
-    components:
-    - type: Transform
-      pos: 5.5,-17.5
-      parent: 2
-  - uid: 29
-    components:
-    - type: Transform
-      pos: 4.5,-14.5
-      parent: 2
   - uid: 31
     components:
     - type: Transform
@@ -1050,11 +1022,6 @@ entities:
     - type: Transform
       pos: 6.5,-27.5
       parent: 2
-  - uid: 541
-    components:
-    - type: Transform
-      pos: 6.5,-17.5
-      parent: 2
   - uid: 542
     components:
     - type: Transform
@@ -1079,11 +1046,6 @@ entities:
     components:
     - type: Transform
       pos: 2.5,-4.5
-      parent: 2
-  - uid: 576
-    components:
-    - type: Transform
-      pos: 2.5,-18.5
       parent: 2
   - uid: 577
     components:
@@ -3238,67 +3200,6 @@ entities:
     - type: Transform
       pos: 1.5,-13.5
       parent: 2
-- proto: ClosetMaintenance
-  entities:
-  - uid: 96
-    components:
-    - type: Transform
-      pos: 9.5,-15.5
-      parent: 2
-    - type: EntityStorage
-      air:
-        volume: 200
-        immutable: False
-        temperature: 293.14673
-        moles:
-        - 1.7459903
-        - 6.568249
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-        - 0
-    - type: ContainerContainer
-      containers:
-        entity_storage: !type:Container
-          showEnts: False
-          occludes: True
-          ents:
-          - 149
-          - 98
-          - 97
-        paper_label: !type:ContainerSlot
-          showEnts: False
-          occludes: True
-          ent: null
-- proto: ClothingNeckCloakTrans
-  entities:
-  - uid: 149
-    components:
-    - type: Transform
-      parent: 96
-    - type: Physics
-      canCollide: False
-    - type: InsideEntityStorage
-- proto: ComputerAlert
-  entities:
-  - uid: 802
-    components:
-    - type: Transform
-      pos: 4.5,-15.5
-      parent: 2
-- proto: ComputerAtmosMonitoring
-  entities:
-  - uid: 807
-    components:
-    - type: Transform
-      pos: 6.5,-15.5
-      parent: 2
 - proto: ComputerPalletConsole
   entities:
   - uid: 894
@@ -4657,9 +4558,6 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 9.5,-17.5
       parent: 2
-    - type: DeviceNetwork
-      deviceLists:
-      - 805
     - type: AtmosPipeColor
       color: '#0055CCFF'
   - uid: 1037
@@ -5655,18 +5553,6 @@ entities:
       parent: 2
 - proto: Poweredlight
   entities:
-  - uid: 81
-    components:
-    - type: Transform
-      rot: 1.5707963267948966 rad
-      pos: 1.5,-17.5
-      parent: 2
-  - uid: 82
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: 5.5,-20.5
-      parent: 2
   - uid: 124
     components:
     - type: Transform
@@ -6230,13 +6116,6 @@ entities:
     - type: Transform
       pos: 8.5,-29.5
       parent: 2
-- proto: Table
-  entities:
-  - uid: 808
-    components:
-    - type: Transform
-      pos: 5.5,-15.5
-      parent: 2
 - proto: TableReinforced
   entities:
   - uid: 896
@@ -6691,7 +6570,7 @@ entities:
     - type: Transform
       pos: 10.5,-20.5
       parent: 2
-  - uid: 651
+  - uid: 905
     components:
     - type: Transform
       pos: 10.5,-21.5

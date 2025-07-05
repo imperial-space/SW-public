@@ -238,13 +238,20 @@ public abstract class SharedActionsSystem : EntitySystem
         var oldAction = GetAction(action);
         if (oldAction != null && oldAction.Value.Comp.AttachedEntity != null)
         {
-            var ev = new MedievalActionStopTargetingEvent()
-            {
-                ActionOwner = (EntityUid)oldAction.Value.Comp.AttachedEntity,
-                Action = oldAction.Value.Owner
-            };
-
-            EntityManager.EventBus.RaiseLocalEvent(oldAction.Value.Owner, ev);
+            RaiseLocalEvent(
+                oldAction.Value.Owner,
+                toggled
+                    ? new MedievalActionStartTargetingEvent()
+                    {
+                        ActionOwner = (EntityUid)oldAction.Value.Comp.AttachedEntity,
+                        Action = oldAction.Value.Owner
+                    }
+                    : new MedievalActionStopTargetingEvent()
+                    {
+                        ActionOwner = (EntityUid)oldAction.Value.Comp.AttachedEntity,
+                        Action = oldAction.Value.Owner
+                    }
+            );
         }
 
         // Imperial Medieval Magic End

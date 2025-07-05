@@ -5,11 +5,12 @@
   components:
   - type: Action
     useDelay: 60
-    range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Other/Witchers/SpellsIcons.rsi
       state: Vendigo_spell
+  - type: TargetAction
+    range: 4
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -26,11 +27,12 @@
   components:
   - type: Action
     useDelay: 30
-    range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Other/Witchers/SpellsIcons.rsi
       state: Ylitka_spell
+  - type: TargetAction
+    range: 4
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
@@ -47,11 +49,12 @@
   components:
   - type: Action
     useDelay: 15
-    range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Other/Witchers/SpellsIcons.rsi
       state: Voron_spell
+  - type: TargetAction
+    range: 4
   - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:

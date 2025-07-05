@@ -3,7 +3,26 @@ ent-AirlockMaintElysiumFederation = шлюз Федерации
     .suffix = Elysium_Prime
 ent-AirlockElysiumFederationLocked = Федеративный шлюз
     .desc = Выглядит очень капиталистически.
+ent-AirlockElysiumFederationadminLocked = Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
 ent-AirlockElysiumFederation = Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
+
+ent-DoorElectronicsFederation = микросхема шлюза
+    .desc = Выглядит очень капиталистически.
+ent-DoorElectronicsFederationadmin = микросхема шлюза
+    .desc = Выглядит очень капиталистически.
+
+ent-WindoorElysiumPrimeAdminLocked = армированное раздвижное окно
+    .desc = Это и прочное окно, и раздвижная дверь. Вот это да!
+ent-WindoorElysiumPrimeLocked = армированное раздвижное окно
+    .desc = Это и прочное окно, и раздвижная дверь. Вот это да!
+
+ent-CrateSecureArmoredElysiumPrime = защищённый ящик
+    .desc = Выглядит очень капиталистически.
+ent-CrateSecureElysiumPrime = защищённый ящик
+    .desc = Выглядит очень капиталистически.
+ent-CrateSecureWheelsArmoredElysiumPrime = защищённый ящик
     .desc = Выглядит очень капиталистически.
 
 ent-BannerElysiumFederationCommand = знамя Командования

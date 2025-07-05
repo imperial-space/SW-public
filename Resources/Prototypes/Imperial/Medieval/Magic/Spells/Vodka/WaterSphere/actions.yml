@@ -9,14 +9,15 @@
   - type: Action
     useDelay: 42
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icebeam_cast.ogg
     icon:
       sprite: Imperial/Medieval/Magic/ice_pulse.rsi
       state: ice-basic
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
   - type: WorldTargetAction
     event: !type:MedievalSpawnAimingEntityEvent
       spawnedEntity: MedievalEffectWaterSphereBeginner
@@ -62,14 +63,15 @@
   - type: Action
     useDelay: 35
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icebeam_cast.ogg
     icon:
       sprite: Imperial/Medieval/Magic/ice_pulse.rsi
       state: ice-mid
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 60
   - type: WorldTargetAction
     event: !type:MedievalSpawnAimingEntityEvent
       spawnedEntity: MedievalEffectWaterSphereMiddle
@@ -105,14 +107,15 @@
   - type: Action
     useDelay: 30
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icebeam_cast.ogg
     icon:
       sprite: Imperial/Medieval/Magic/ice_pulse.rsi
       state: ice-adv
+  - type: TargetAction
+    range: 60
+    checkCanAccess: false
+    targetingIndicator: false
   - type: WorldTargetAction
     event: !type:MedievalSpawnAimingEntityEvent
       spawnedEntity: MedievalEffectWaterSphereSenior

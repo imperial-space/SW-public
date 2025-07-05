@@ -806,21 +806,6 @@ public sealed class ActionUIController : UIController, IOnStateChanged<GameplayS
         // override "held-item" overlay
         var provider = action.Container;
 
-        // Imperial Medieval Magic Start
-
-        if (action.AttachedEntity != null)
-        {
-            var ev = new MedievalActionStartTargetingEvent()
-            {
-                ActionOwner = (EntityUid)action.AttachedEntity,
-                Action = uid
-            };
-
-            EntityManager.EventBus.RaiseLocalEvent(uid, ev);
-        }
-
-        // Imperial Medieval Magic End
-
         if (target.TargetingIndicator && _overlays.TryGetOverlay<ShowHandItemOverlay>(out var handOverlay))
         {
             if (action.ItemIconStyle == ItemActionIconStyle.BigItem && action.Container != null)
