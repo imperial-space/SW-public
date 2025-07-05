@@ -3115,6 +3115,7 @@
       damage: 1
       health: 0.94
       stamina: 1
+    uses: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hitin

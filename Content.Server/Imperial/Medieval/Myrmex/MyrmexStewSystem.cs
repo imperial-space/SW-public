@@ -6,6 +6,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Examine;
 
 namespace Content.Server.Imperial.Medieval.Myrmex
 {
@@ -27,8 +28,13 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             SubscribeLocalEvent<MyrmexStewComponent, UseInHandEvent>(OnUseInHand);
             SubscribeLocalEvent<MyrmexStewComponent, ActivateInWorldEvent>(OnInteractHand);
             SubscribeLocalEvent<MyrmexStewComponent, StewFeedDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<MyrmexStewComponent, ExaminedEvent>(OnExamine);
         }
 
+        private void OnExamine(EntityUid uid, MyrmexStewComponent comp, ExaminedEvent args)
+        {
+            args.PushMarkup($"[color=gray]Осталось [bold]{comp.Uses}[/bold] кусочков[/color]", 1);
+        }
         private void OnInteractHand(Entity<MyrmexStewComponent> entity, ref ActivateInWorldEvent args)
         {
             if (args.Handled)
