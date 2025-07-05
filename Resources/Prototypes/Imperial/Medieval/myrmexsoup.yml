@@ -135,3 +135,11 @@
   entities:
     MedievalMyrmexResourceGum: 1
   result: MedievalMyrmexFibeStack5
+
+- type: CP14Recipe
+  id: MedievalMyrmexResourceGum
+  craftTime: 5
+  entities:
+    Log: 3
+    MedievalGrass: 1
+  result: MedievalMyrmexResourceGum
