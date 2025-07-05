@@ -51,3 +51,12 @@ ent-BlackSteelChair = стул
 
 ent-FederationGateway = врата Федерации
     .desc = От Федерации нельзя убежать.
+
+ent-AirlockFederationPoliceLocked = шлюз
+ent-AirlockFederationPolice = шлюз
+
+ent-VendingMachineElysiumCitizenClothing = ГражданскоМат
+ent-VendingMachineElysiumSpecialForceClothing = СлужебноМат
+ent-VendingMachineElysiumAdminClothing = АдминистратоМат
+ent-VendingMachineElysiumStampMate = ШтампоМат
+ent-VendingMachineElysiumMaterialMachine = ШарфоМат
