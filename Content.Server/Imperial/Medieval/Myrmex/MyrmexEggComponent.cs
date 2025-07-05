@@ -4,7 +4,7 @@ namespace Content.Server.Myrmex.Components
     public sealed partial class MyrmexEggComponent : Component
     {
         [DataField]
-        public float TimeTillSpawn = 600f;
+        public float TimeTillSpawn = 900f;
         [DataField]
         public string LarvaID = "MedievalMyrmexLarva";
 

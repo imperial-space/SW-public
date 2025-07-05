@@ -1266,7 +1266,7 @@
     sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
 
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: MedievalClothingHeadHelmetShapel
   id: MedievalClothingHeadRoyalHoop
   name: MedievalClothingHeadRoyalHoop
   description: MedievalClothingHeadRoyalHoop

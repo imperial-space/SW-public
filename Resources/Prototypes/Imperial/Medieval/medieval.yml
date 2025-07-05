@@ -6462,6 +6462,23 @@
 - type: entity
   name: MedievalPasport
   parent: MedievalPasportBase
+  id: MedievalPasportLegionCatFireBattle
+  description: ""
+  components:
+  - type: Sprite
+    state: leg
+  - type: MedievalPasport
+    personAge: 26
+    personGender: мужской
+    personJob: "[color=yellow]Дворянин[/color]"
+    personName: "Викта Белосвет"
+    personRace: Beastmen
+    
+
+
+- type: entity
+  name: MedievalPasport
+  parent: MedievalPasportBase
   id: MedievalPasportInsurgency
   description: ""
   components:
