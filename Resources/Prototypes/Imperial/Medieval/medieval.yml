@@ -7792,6 +7792,9 @@
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/root.rsi
     state: icon
+  - type: Currency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - MyrmexCanTake
