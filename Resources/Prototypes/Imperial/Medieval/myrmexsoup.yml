@@ -120,6 +120,8 @@
   craftTime: 3
   entities:
     MedievalMyrmexResourceYant: 2
+    MedievalRootItem: 2
+    MedievalLootAnt: 2
   result: MedievalSoupYant
 
 - type: CP14Recipe
@@ -151,3 +153,11 @@
   entities:
     MedievalMyrmexResourceGum: 1
   result: MedievalMyrmexFibeStack5
+
+- type: CP14Recipe
+  id: MedievalMyrmexResourceGum
+  craftTime: 5
+  entities:
+    Log: 3
+    MedievalGrass: 1
+  result: MedievalMyrmexResourceGum

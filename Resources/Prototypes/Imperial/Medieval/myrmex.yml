@@ -319,8 +319,8 @@
           invert: true
         damage:
           types:
-            Heat: 2
-            Poison: 1.5
+            Heat: 1
+            Poison: 3.5
 
 - type: entity
   id: MedievalMyrmexTrapBase
@@ -699,19 +699,19 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      220: Critical # curse of 220
-      260: Dead
+      260: Critical # curse of 220
+      350: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.4
-    baseSprintSpeed: 2.2
+    baseWalkSpeed: 3
+    baseSprintSpeed: 1.8
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
       120: 1
       130: 0.8
-      140: 0.7
-      150: 0.6
-      160: 0.5
+      170: 0.7
+      210: 0.6
+      230: 0.5
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -746,15 +746,15 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 15
-        Airloss: 6
+        Brute: 13
+        Airloss: 4
       types:
         ParryAble: 1
         Bloodloss: 3
   - type: MobThresholds
     thresholds:
       0: Alive
-      195: Critical
+      165: Critical
       270: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.2
@@ -771,7 +771,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 15
+    damage: 10
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-warrior-name

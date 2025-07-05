@@ -496,6 +496,7 @@
     recipes:
     - MedievalMyrmexResourceYant
     - MedievalMyrmexFibeStack5
+    - MedievalMyrmexResourceGum
 
 - type: entity
   id: MedievalMyrmexToxicHole
