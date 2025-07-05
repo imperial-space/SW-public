@@ -50,6 +50,11 @@
   name: soup Resin
   description: Soup.
   components:
+  - type: MyrmexStew
+    buff:
+      damage: 1.1
+      health: 1
+      stamina: 1
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/resinsoup.rsi
     state: icon
@@ -62,6 +67,11 @@
   name: soup Yant
   description: Soup.
   components:
+  - type: MyrmexStew
+    buff:
+      damage: 1.075
+      health: 0.93
+      stamina: 0.925
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/yantsoup.rsi
     state: icon
@@ -74,6 +84,7 @@
   name: soup Root
   description: Soup.
   components:
+  - type: MyrmexStew
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/rootsoup.rsi
     state: icon
@@ -86,6 +97,11 @@
   name: soup Mushroom
   description: Soup.
   components:
+  - type: MyrmexStew
+    buff:
+      damage: 1
+      health: 1
+      stamina: 0.9
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/mushroomsoup.rsi
     state: icon

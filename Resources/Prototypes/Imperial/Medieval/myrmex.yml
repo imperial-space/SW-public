@@ -447,6 +447,7 @@
   parent: SimpleMobBaseNoFood
   id: MedievalMyrmexBase
   components:
+  - type: MyrmexHunger
   - type: BorgHandsImperial
     whitelistHandTag: MyrmexCanTake
   - type: Hands
@@ -823,6 +824,7 @@
   parent: MedievalMyrmexBase
   id: MedievalMyrmexLarva
   components:
+  - type: Larva
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -898,11 +900,22 @@
     force: 0
 
 - type: entity
+  name: Lay egg
+  parent: MedievalMyrmexBase
+  id: MedievalMyrmexQueenLayEggAction
+  components:
+  - type: InstantAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexQueenLayEggEvent
+    useDelay: 180
+
+- type: entity
   name: myrmatriach
   parent: MedievalMyrmexBase
   id: MedievalMyrmexQueen
   description: muravey ebanniy
   components:
+  - type: MyrmexQueen
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Myrmex/Castes/myrmex_queen.rsi
@@ -1047,3 +1060,4 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: MyrmexEgg
+

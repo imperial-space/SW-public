@@ -3110,6 +3110,11 @@
   id: MedievalLootAnt
   description: MedievalLoot
   components:
+  - type: MyrmexStew
+    buff:
+      damage: 1
+      health: 0.94
+      stamina: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hitin
