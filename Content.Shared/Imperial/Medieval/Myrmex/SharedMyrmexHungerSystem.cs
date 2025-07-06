@@ -35,9 +35,9 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
         private void OnExamined(EntityUid uid, MyrmexHungerComponent comp, ref ExaminedEvent args)
         {
             var buff = MyrmexBuff.MultiplyBuffs(comp.Buffs);
-            args.PushMarkup(Loc.GetString("medieval-myrmex-buff-health-examine", ("value", MathF.Round(buff.Health, 2))));
-            args.PushMarkup(Loc.GetString("medieval-myrmex-buff-damage-examine", ("value", MathF.Round(buff.Damage, 2))));
-            args.PushMarkup(Loc.GetString("medieval-myrmex-buff-stamina-examine", ("value", MathF.Round(buff.Stamina, 2))));
+            args.PushMarkup(Loc.GetString("medieval-myrmex-buff-health-examine", ("value", Math.Round(buff.Health, 2))));
+            args.PushMarkup(Loc.GetString("medieval-myrmex-buff-damage-examine", ("value", Math.Round(buff.Damage, 2))));
+            args.PushMarkup(Loc.GetString("medieval-myrmex-buff-stamina-examine", ("value", Math.Round(buff.Stamina, 2))));
         }
 
         private void OnModifyStaminaDamage(EntityUid uid, MyrmexHungerComponent comp, StaminaModifyEvent args)
