@@ -404,3 +404,6 @@
   - type: TriggerOnSpawn
   - type: SpawnOnTrigger
     proto: ShockWaveEffect
+  - type: PointLight
+    energy: 1
+    color: "#c70de0"
