@@ -31,7 +31,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 250
+        damage: 620
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -39,9 +39,9 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: DamageBossOnDestruction
-    damageAmount: 3
+    damageAmount: 100
   - type: TimedDespawn
-    lifetime: 60
+    lifetime: 20
   - type: SpawnOnDespawn
     prototype: MobSkullBossSkeleton
 
@@ -199,23 +199,89 @@
   - type: SpikeAttackMarker
     proto: EffectSkullBossSpikesSpawn
     positions:
-      0:
+      0: # Клетки, где сумма (x+y) НЕЧЁТНАЯ
+        - -4,1
+        - -4,3
+        - -3,0
+        - -3,2
+        - -3,4
         - -2,1
-        - 0,1
-        - 2,1
+        - -2,3
         - -1,0
+        - -1,2
+        - -1,4
+        - 0,1
+        - 0,3
         - 1,0
+        - 1,2
+        - 1,4
+        - 2,1
+        - 2,3
+        - 3,0
+        - 3,2
+        - 3,4
+        - 4,1
+        - 4,3
+        - -4,-1
+        - -4,-3
+        - -3,-2
+        - -3,-4
         - -2,-1
+        - -2,-3
+        - -1,-2
+        - -1,-4
         - 0,-1
+        - 0,-3
+        - 1,-2
+        - 1,-4
         - 2,-1
-      1:
-        - -1,1
-        - 1,1
+        - 2,-3
+        - 3,-2
+        - 3,-4
+        - 4,-1
+        - 4,-3
+      1: # Клетки, где сумма (x+y) ЧЁТНАЯ
+        - -4,0
+        - -4,2
+        - -4,4
+        - -3,1
+        - -3,3
         - -2,0
+        - -2,2
+        - -2,4
+        - -1,1
+        - -1,3
         - 0,0
+        - 0,2
+        - 0,4
+        - 1,1
+        - 1,3
         - 2,0
+        - 2,2
+        - 2,4
+        - 3,1
+        - 3,3
+        - 4,0
+        - 4,2
+        - 4,4
+        - -4,-2
+        - -4,-4
+        - -3,-1
+        - -3,-3
+        - -2,-2
+        - -2,-4
         - -1,-1
+        - -1,-3
+        - 0,-2
+        - 0,-4
         - 1,-1
+        - 1,-3
+        - 2,-2
+        - 2,-4
+        - 3,-1
+        - 3,-3
+        - 4,-2
+        - 4,-4
   - type: TimedDespawn
     lifetime: 2
 
@@ -243,8 +309,38 @@
         - 2,-1
         - 2,2
         - 2,-2
+      3:
+        - 3,0
+        - 3,1
+        - 3,-1
+        - 3,2
+        - 3,-2
+      4:
+        - 4,0
+        - 4,1
+        - 4,-1
+        - 4,2
+        - 4,-2
+      5:
+        - 5,0
+        - 5,1
+        - 5,-1
+        - 5,2
+        - 5,-2
+      6:
+        - 6,0
+        - 6,1
+        - 6,-1
+        - 6,2
+        - 6,-2
+      7:
+        - 7,0
+        - 7,1
+        - 7,-1
+        - 7,2
+        - 7,-2
   - type: TimedDespawn
-    lifetime: 3
+    lifetime: 8
 
 - type: entity
   name: маркер шипов
@@ -270,8 +366,38 @@
         - -2,-1
         - -2,2
         - -2,-2
+      3:
+        - -3,0
+        - -3,1
+        - -3,-1
+        - -3,2
+        - -3,-2
+      4:
+        - -4,0
+        - -4,1
+        - -4,-1
+        - -4,2
+        - -4,-2
+      5:
+        - -5,0
+        - -5,1
+        - -5,-1
+        - -5,2
+        - -5,-2
+      6:
+        - -6,0
+        - -6,1
+        - -6,-1
+        - -6,2
+        - -6,-2
+      7:
+        - -7,0
+        - -7,1
+        - -7,-1
+        - -7,2
+        - -7,-2
   - type: TimedDespawn
-    lifetime: 3
+    lifetime: 8
 
 - type: entity
   name: маркер шипов
@@ -287,7 +413,7 @@
     positions:
       0:
         - 0,0
-      1:
+      1: # Периметр квадрата 3x3
         - 1,0
         - 1,1
         - 1,-1
@@ -296,7 +422,7 @@
         - -1,0
         - -1,1
         - -1,-1
-      2:
+      2: # Периметр квадрата 5x5
         - 2,0
         - 2,1
         - 2,-1
@@ -313,8 +439,66 @@
         - -1,-2
         - 0,-2
         - 1,-2
+      3: # Периметр квадрата 7x7
+        - 3,0
+        - 3,1
+        - 3,-1
+        - 3,2
+        - 3,-2
+        - 3,3
+        - 3,-3
+        - -3,0
+        - -3,1
+        - -3,-1
+        - -3,2
+        - -3,-2
+        - -3,3
+        - -3,-3
+        - -2,3
+        - -1,3
+        - 0,3
+        - 1,3
+        - 2,3
+        - -2,-3
+        - -1,-3
+        - 0,-3
+        - 1,-3
+        - 2,-3
+      4: # Периметр квадрата 9x9
+        - 4,0
+        - 4,1
+        - 4,-1
+        - 4,2
+        - 4,-2
+        - 4,3
+        - 4,-3
+        - 4,4
+        - 4,-4
+        - -4,0
+        - -4,1
+        - -4,-1
+        - -4,2
+        - -4,-2
+        - -4,3
+        - -4,-3
+        - -4,4
+        - -4,-4
+        - -3,4
+        - -2,4
+        - -1,4
+        - 0,4
+        - 1,4
+        - 2,4
+        - 3,4
+        - -3,-4
+        - -2,-4
+        - -1,-4
+        - 0,-4
+        - 1,-4
+        - 2,-4
+        - 3,-4
   - type: TimedDespawn
-    lifetime: 3
+    lifetime: 5
 
 - type: entity
   id: WeaponSkullBossBHell
@@ -323,8 +507,8 @@
   description:
   components:
   - type: Gun
-    fireRate: 1
-    projectileSpeed: 6
+    fireRate: 100
+    projectileSpeed: 5
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
       params:
@@ -334,7 +518,7 @@
     capacity: 1
     count: 1
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 0.1
+    rechargeCooldown: 0.01
   - type: Unremoveable
   - type: Sprite
     sprite: Imperial/Medieval/Structures/bone_spikes.rsi
@@ -355,11 +539,11 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 20
+        Piercing: 30
         Blunt: 10
-        Structural: 15
+        Structural: 115
   - type: PointLight
-    energy: 1
+    energy: 3
     color: "#e00d29"
   - type: TimedDespawn
     lifetime: 90

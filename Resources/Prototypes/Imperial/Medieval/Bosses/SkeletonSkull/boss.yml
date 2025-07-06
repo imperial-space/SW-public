@@ -76,7 +76,7 @@
           - !type:SpawnAtPosition
             prototypes: BoneSpikeBig
             randomDistance: 15
-            spawnCount: 8
+            spawnCount: 5
           - !type:PlaySound
             sound:
               path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
@@ -102,7 +102,7 @@
           actions:
           - !type:SpawnAtPosition
             prototypes: [BossSpikesSpawnMarkerWaveRight, BossSpikesSpawnMarkerWaveLeft]
-            randomDistance: 4
+            randomDistance: 7
             spawnCount: 1
       2:
         stageDelay: 2.3
@@ -110,6 +110,22 @@
         sound:
           path: /Audio/Imperial/Medieval/Effects/boss-stage-2.ogg
         attacks:
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
+          countLimits: [2, 3]
+          cooldown: 50
+          actions:
+          - !type:AddComponent
+            toBoss: true
+            components:
+            - type: BossBullethellSource
+              weaponProto: WeaponSkullBossBHell
+              delay: 0.4
+              degreesPerShot: 15
+              shots: 30
+          - !type:BossAppearance
+              state: red
+              duration: 1.9
         - !type:MarkerTargetedAttack
           markerTag: HealingSkullSpawnPosition
           countLimits: [2, 3]
@@ -181,9 +197,9 @@
             components:
             - type: BossBullethellSource
               weaponProto: WeaponSkullBossBHell
-              delay: 0.25
-              degreesPerShot: 5
-              shots: 25
+              delay: 0.1
+              degreesPerShot: 9
+              shots: 60
           - !type:BossAppearance
               state: red
               duration: 1.9

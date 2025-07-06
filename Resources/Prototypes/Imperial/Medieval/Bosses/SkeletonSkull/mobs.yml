@@ -18,18 +18,18 @@
     rootTask:
       task: SimpleHumanoidHostileCompound
   - type: MovementSpeedModifier
-    baseWalkSpeed : 2
-    baseSprintSpeed : 2.7
+    baseWalkSpeed : 3.7
+    baseSprintSpeed : 3.7
   - type: MobThresholds
     thresholds:
       0: Alive
-      50: Dead
+      110: Dead
   - type: TransferMindOnGib
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 110
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -42,4 +42,4 @@
     damage:
       types:
         Blunt: 7
-        Slash: 7
+        Slash: 18
