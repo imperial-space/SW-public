@@ -23,7 +23,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                     return false;
 
                 entManager.RaisePredictiveEvent(new ToggleRideSprintEvent(message.State == BoundKeyState.Down));
-                return true;
+                return false;
             }
         }
 

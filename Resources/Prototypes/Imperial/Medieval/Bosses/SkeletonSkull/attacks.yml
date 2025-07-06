@@ -1,0 +1,409 @@
+- type: entity
+  id: BoneSpikeBig
+  parent: BaseStructure
+  name: костяной шип
+  description: Изнутри слышен скрежет.
+  components:
+  - type: Anchorable
+  - type: Transform
+    anchored: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Skeleton
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 40
+        mask: #mouse can pass under, but I think this is can understandable by logic
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Sprite
+    snapCardinals: true
+    sprite: Imperial/Medieval/Structures/bone_spike_big.rsi
+    state: icon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageBossOnDestruction
+    damageAmount: 3
+  - type: TimedDespawn
+    lifetime: 60
+  - type: SpawnOnDespawn
+    prototype: MobSkullBossSkeleton
+
+- type: entity
+  name: черепушка
+  description: Что-то с ней не так...
+  id: MobBossHealingSkull
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/minion.rsi
+    layers:
+    - state: minion
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 30
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: gib
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Skeleton
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 40
+        mask: #mouse can pass under, but I think this is can understandable by logic
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Clickable
+  - type: InteractionOutline
+  - type: TimedBossHeal
+    healAmount: 4
+  - type: TimedDespawn
+    lifetime: 15.1
+  - type: DoAfter
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: ShockWaveEffect
+
+- type: entity
+  name: проклятая руна
+  description: Что если на неё встать?
+  id: SkullBossExplosionRune
+  parent: CollideRune
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/runes.rsi
+    layers:
+    - state: skull
+      color: "#65007e"
+  - type: Clickable
+  - type: PhysAwakeOnSpawn
+  - type: PurifyableExplosionRune
+  - type: PointLight
+    energy: 2
+    color: "#65007e"
+
+- type: entity
+  id: CursedMarkPseudoEntity
+  name: e
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/cursed-mark.rsi
+    state: mark
+    noRot: true
+  - type: PointLight
+    energy: 5
+    softness: 3
+  - type: Tag
+    tags:
+    - HideContextMenu
+
+# Spikes
+- type: entity
+  id: SkullBossSpikes
+  name: шипы
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: true
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/bone_spikes.rsi
+    layers:
+    - state: spikes
+  - type: StunOnContact
+    blacklist:
+      tags:
+      - Goliath
+  - type: Fixtures
+    fixtures:
+      fix:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        mask:
+        - Impassable
+        layer:
+        - Impassable
+        hard: false
+  - type: TimedDespawn #do this shit by hand because of fucking course.
+    lifetime: 0.4
+  - type: PhysAwakeOnSpawn
+  - type: DamageOnContact
+    damage:
+      types:
+        Piercing: 24
+  - type: EmitSoundOnSpawn
+    positional: true
+    sound:
+      path: /Audio/Imperial/Medieval/Effects/blade.ogg
+
+- type: entity
+  id: EffectSkullBossSpikesSpawn
+  categories: [ HideSpawnMenu ]
+  name: шипы
+  components:
+  - type: Transform
+    anchored: True
+  - type: Physics
+    bodyType: Static
+    canCollide: false
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/bone_spikes.rsi
+    layers:
+    - state: spawn
+  - type: InteractionOutline
+  - type: TimedDespawn
+    lifetime: 1
+  - type: SpawnOnDespawn
+    prototype: SkullBossSpikes
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerChess
+  parent: MarkerBase
+  suffix: шахматы
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0:
+        - -2,1
+        - 0,1
+        - 2,1
+        - -1,0
+        - 1,0
+        - -2,-1
+        - 0,-1
+        - 2,-1
+      1:
+        - -1,1
+        - 1,1
+        - -2,0
+        - 0,0
+        - 2,0
+        - -1,-1
+        - 1,-1
+  - type: TimedDespawn
+    lifetime: 2
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerWaveRight
+  parent: MarkerBase
+  suffix: волна
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0:
+        - 0,0
+      1:
+        - 1,0
+        - 1,1
+        - 1,-1
+      2:
+        - 2,0
+        - 2,1
+        - 2,-1
+        - 2,2
+        - 2,-2
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerWaveLeft
+  parent: MarkerBase
+  suffix: волна
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0:
+        - 0,0
+      1:
+        - -1,0
+        - -1,1
+        - -1,-1
+      2:
+        - -2,0
+        - -2,1
+        - -2,-1
+        - -2,2
+        - -2,-2
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerBox
+  parent: MarkerBase
+  suffix: квадрат
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0:
+        - 0,0
+      1:
+        - 1,0
+        - 1,1
+        - 1,-1
+        - 0,1
+        - 0,-1
+        - -1,0
+        - -1,1
+        - -1,-1
+      2:
+        - 2,0
+        - 2,1
+        - 2,-1
+        - 2,2
+        - 2,-2
+        - -2,0
+        - -2,1
+        - -2,-1
+        - -2,2
+        - -2,-2
+        - -1,2
+        - 0,2
+        - 1,2
+        - -1,-2
+        - 0,-2
+        - 1,-2
+  - type: TimedDespawn
+    lifetime: 3
+
+- type: entity
+  id: WeaponSkullBossBHell
+  parent: BaseWeaponHeavyMachineGun
+  name: ы
+  description:
+  components:
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      params:
+        volume: -10
+  - type: BasicEntityAmmoProvider
+    proto: PelletSkullBoss
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.1
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/bone_spikes.rsi
+    drawdepth: Effects
+    layers:
+    - visible: false
+      state: spawn
+
+- type: entity
+  id: PelletSkullBoss
+  name: pellet
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/projectile.rsi
+    state: projectile
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+        Blunt: 10
+        Structural: 15
+  - type: PointLight
+    energy: 1
+    color: "#e00d29"
+  - type: TimedDespawn
+    lifetime: 90
+  - type: ProjectileSpread
+    proto: PelletSkullBoss
+    count: 4
+    spread: 360
+
+- type: entity
+  parent: BaseWall
+  id: WallCultIndestructible
+  name: стена
+  description: Не похоже, чтобы её можно было сломать.
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/cult.rsi
+  - type: Icon
+    sprite: Structures/Walls/cult.rsi
+  - type: IconSmooth
+    key: walls
+    base: cult
+
+- type: entity
+  name: кристалл
+  description: Внутри что-то есть.
+  id: SkullBossCrystalTrap
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/crystal.rsi
+    layers:
+    - state: crystal
+  - type: Clickable
+  - type: InteractionOutline
+  - type: DoAfter
+  - type: TrapPlayersOnMap
+    mapPath: /Maps/Imperial/Medieval/boss-crystal-trap.yml
+    spawnTag: BossTrapPlayerSpawnPosition
+    minigame: arrows
+    trapCount: 1
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: ShockWaveEffect
+  - type: PointLight
+    energy: 1
+    color: "#c70de0"
