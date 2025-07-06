@@ -1,0 +1,271 @@
+- type: Tag
+  id: HorseWearable
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterHorseArmorLeather
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/leatherarmor.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Horse/leatherarmor.rsi
+  - type: WhitelistClothing
+    whitelistState: clothing
+  - type: Tag
+    tags:
+    - HorseWearable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.65
+        Slash: 0.55
+        Piercing: 0.8
+        Heat: 0.65
+  - type: Item
+    size: Huge
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterHorseArmorChainMail
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/chainmailarmor.rsi
+  - type: Clothing
+    equipDelay: 6
+    unequipDelay: 6
+    sprite: Imperial/Medieval/Clothing/Horse/chainmailarmor.rsi
+  - type: WhitelistClothing
+    whitelistState: clothing
+  - type: Tag
+    tags:
+    - HorseWearable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.55
+        Slash: 0.4
+        Piercing: 0.65
+        Heat: 0.4
+  - type: Item
+    size: Huge
+  - type: MedievalIronHitSound
+    effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalClothingOuterHorseArmorUpIron
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/ironuparmor.rsi
+  - type: Clothing
+    equipDelay: 8
+    unequipDelay: 8
+    sprite: Imperial/Medieval/Clothing/Horse/ironuparmor.rsi
+    equipSound:
+      path: /Audio/Imperial/Medieval/iron_armor_eqiped.ogg
+    unequipSound:
+      path: /Audio/Imperial/Medieval/iron_armor_eqiped.ogg
+  - type: WhitelistClothing
+    whitelistState: clothing
+  - type: Tag
+    tags:
+    - HorseWearable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.4
+        Slash: 0.3
+        Piercing: 0.5
+        Heat: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: Item
+    size: Huge
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingHorseshoe
+  name: horseshoe
+  description: MedievalClothingHorseshoe
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/horse.rsi
+  - type: Clothing
+    equipDelay: 3
+    unequipDelay: 3
+    sprite: Imperial/Medieval/Clothing/Horse/horse.rsi
+  - type: WhitelistClothing
+    whitelistState: clothing
+  - type: Tag
+    tags:
+    - HorseWearable
+  - type: ClothingSpeedModifier
+    walkModifier: 1.02
+    sprintModifier: 1.02
+
+- type: inventoryTemplate
+  id: horse
+  slots:
+    - name: horse1
+      slotTexture: horse
+      slotFlags: FEET
+      stripTime: 3
+      uiWindowPos: 0,1
+      strippingWindowPos: 0,2
+      displayName: Horse
+      whitelist:
+        tags:
+          - HorseWearable
+    - name: horse2
+      slotTexture: horse
+      slotFlags: FEET
+      stripTime: 3
+      uiWindowPos: 0,2
+      strippingWindowPos: 0,1
+      displayName: Horse 2
+      whitelist:
+        tags:
+          - HorseWearable
+    - name: horse3
+      slotTexture: horse
+      slotFlags: FEET
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,0
+      displayName: Horse 3
+      whitelist:
+        tags:
+          - HorseWearable
+    - name: horse4
+      slotTexture: horse
+      slotFlags: FEET
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,3
+      displayName: Horse 4
+      whitelist:
+        tags:
+          - HorseWearable
+    - name: outerClothing
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      stripTime: 8
+      uiWindowPos: 1,3
+      strippingWindowPos: 1,0
+      displayName: Suit
+      whitelist:
+        tags:
+          - HorseWearable
+
+- type: entity
+  parent: SimpleMobBase
+  id: MedievalHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/horse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 30
+        mask:
+        - SmallMobMask
+        layer:
+        - SmallMobMask
+  - type: InventorySlots
+  - type: Inventory
+    speciesId: horse
+    templateId: horse
+    displacements:
+      outerclothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: outerclothing
+      shoes1:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+      shoes2:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+      shoes3:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+      shoes4:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+  - type: Appearance
+  - type: Strippable
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+  - type: WhitelistClothing
+    whitelist: HorseWearable
+    whitelistState: clothing
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      150: Dead
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: horse
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: FoodMeat
+      amount: 4
+  - type: Strap
+    position: Stand
+    buckleOffset: "-0.00, 0.00"
+    buckleTime: 1
+    maxBuckleDistance: 1
+  - type: Rideable
+  - type: RideableSprint
+

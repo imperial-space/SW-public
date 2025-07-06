@@ -7835,3 +7835,15 @@
       - HideContextMenu
   - type: MyrmexRockFall
     chanse: 0.2
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieVikta
+  name: PlushieVikta
+  description: PlushieVikta
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/ViktaPlushie.rsi
+    state: icon

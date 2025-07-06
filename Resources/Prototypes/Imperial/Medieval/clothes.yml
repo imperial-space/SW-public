@@ -291,6 +291,17 @@
     regen: 0.6
 
 - type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth73
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_73.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_73.rsi
+
+- type: entity
   parent: ClothingUniformBase
   id: MedievalClothingUniformJumpsuitShitCloth24
   name: shit cloth
@@ -1814,5 +1825,5 @@
     areaInsert: true
     whitelist:
       tags:
-        - MonsterLoot 
+        - MonsterLoot
   - type: Dumpable
