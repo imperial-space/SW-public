@@ -142,6 +142,7 @@ public sealed partial class BossSystem : EntitySystem
             _chat.DispatchGlobalAnnouncement(Loc.GetString(component.LoseMessage), playSound: false);
 
         SendPlayersBack(component.Players);
+        component.Active = false;
     }
 
     public void SendPlayersBack(List<EntityUid> players)
