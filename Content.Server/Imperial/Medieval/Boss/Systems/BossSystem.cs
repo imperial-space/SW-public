@@ -70,10 +70,6 @@ public sealed partial class BossSystem : EntitySystem
             }
         }
 
-        var songEnt = _audio.PlayGlobal(bossComp.Song, Filter.BroadcastGrid(grid.Value), false);
-        bossComp.SongEntity = songEnt?.Entity;
-        bossComp.NextSongPlay = _timing.CurTime + TimeSpan.FromSeconds(bossComp.SongDuration);
-
         foreach (var player in players)
         {
             bossComp.Players.Add(player);
@@ -84,6 +80,10 @@ public sealed partial class BossSystem : EntitySystem
 
         bossComp.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(13);
         bossComp.Active = true;
+
+        var songEnt = _audio.PlayGlobal(bossComp.Song, Filter.BroadcastGrid(grid.Value), false);
+        bossComp.SongEntity = songEnt?.Entity;
+        bossComp.NextSongPlay = _timing.CurTime + TimeSpan.FromSeconds(bossComp.SongDuration);
     }
 
     public void DamageBoss(EntityUid boss, float damage)

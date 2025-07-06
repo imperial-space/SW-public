@@ -52,18 +52,20 @@
     - Jitter
   - type: Boss
     song:
-      path: /Audio/Imperial/Medieval/Laststandofspellward.ogg
+      path: /Audio/Imperial/Medieval/Locations/Laststandofspellward.ogg
       params:
         volume: -9
-    health: 100
+    health: 3000
     loseSound:
+      path: /Audio/Imperial/Medieval/Effects/boss_fail.ogg
+    defeatSound:
       path: /Audio/Imperial/Medieval/Effects/boss_fail.ogg
     componentsOnDefeat:
     - type: ExplosionDefeatedBoss
     stages:
       1:
         stageDelay: 6
-        threshold: 100
+        threshold: 3000
         attacks:
         - !type:MarkerTargetedAttack
           markerTag: BoneSpikeSpawnPosition
@@ -103,7 +105,7 @@
             spawnCount: 1
       2:
         stageDelay: 5
-        threshold: 60
+        threshold: 2100
         sound:
           path: /Audio/Imperial/Medieval/Effects/boss-stage-2.ogg
         attacks:
@@ -162,7 +164,7 @@
               spikeProto: EffectSkullBossSpikesSpawn
       3:
         stageDelay: 4
-        threshold: 30
+        threshold: 900
         attacksPerTime: [1,2]
         sound:
           path: /Audio/Imperial/Medieval/Effects/boss-stage-3.ogg
