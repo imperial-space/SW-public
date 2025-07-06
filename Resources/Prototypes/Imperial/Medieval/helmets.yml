@@ -828,6 +828,13 @@
     sprite: Imperial/Medieval/Clothing/Head/leg1.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leg1.rsi
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-rec
+      right:
+      - state: inhand-right-rec
   - type: Armor
     modifiers:
       coefficients:
@@ -859,6 +866,13 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -874,6 +888,13 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -889,6 +910,13 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -906,6 +934,13 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -1278,7 +1313,7 @@
     sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
 
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: MedievalClothingHeadHelmetShapel
   id: MedievalClothingHeadRoyalHoop
   name: MedievalClothingHeadRoyalHoop
   description: MedievalClothingHeadRoyalHoop
