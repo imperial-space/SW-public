@@ -572,7 +572,7 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Caustic
-        damage: 50
+        damage: 100
       behaviors:
       - !type:GoSSDBehavior { } 
       - !type:SpawnEntitiesBehavior
@@ -984,6 +984,31 @@
     name: ghost-role-information-myrmex-queen-name
     description: ghost-role-information-myrmex-queen-description
     rules: ghost-role-information-myrmex-rules
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000 
+      behaviors:
+      - !type:GoSSDBehavior { } 
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500 
+      behaviors:
+      - !type:GoSSDBehavior { } 
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
 
 - type: entity
   id: BaseItemMyrmex
