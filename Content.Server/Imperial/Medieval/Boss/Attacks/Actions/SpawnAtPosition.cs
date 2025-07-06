@@ -6,7 +6,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Medieval.Boss;
 
-public sealed partial class SpawAtPosition : BossAttackAction
+public sealed partial class SpawnAtPosition : BossAttackAction
 {
     [DataField(required: true)]
     public string[] Prototypes;

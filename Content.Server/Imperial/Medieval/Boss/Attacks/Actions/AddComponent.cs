@@ -13,7 +13,10 @@ public sealed partial class AddComponent : BossAttackAction
     public override void Execute(EntityUid boss, IEnumerable<EntityUid> targets, IEntityManager entMan)
     {
         if (ToBoss)
+        {
             entMan.AddComponents(boss, Components);
+            return;
+        }
 
         foreach (var target in targets)
         {

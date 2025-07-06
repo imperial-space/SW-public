@@ -1,13 +1,22 @@
 using System.Linq;
+using Content.Server.Chat.Systems;
+using Content.Server.Explosion.EntitySystems;
+using Content.Server.Flash;
+using Content.Server.Jittering;
+using Content.Server.MagicBarrier.Components;
 using Content.Shared.Imperial.Medieval.Boss;
+using Content.Shared.Jittering;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Tag;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Threading;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Boss;
 
@@ -19,6 +28,10 @@ public sealed partial class BossSystem : EntitySystem
     [Dependency] private readonly TagSystem _tag = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly JitteringSystem _jittering = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly FlashSystem _flash = default!;
 
     public override void Initialize()
     {
@@ -31,10 +44,12 @@ public sealed partial class BossSystem : EntitySystem
         base.Update(frameTime);
 
         UpdateBoss();
+        UpdateExplodingBoss();
         UpdateSpiked();
         UpdateMark();
         UpdateSpikeMarker();
         UpdateRunes();
+        UpdateBHell();
     }
 
     public void StartBossfight(List<EntityUid> players, EntityUid boss)
@@ -54,6 +69,10 @@ public sealed partial class BossSystem : EntitySystem
                 positions.Add(child);
             }
         }
+
+        var songEnt = _audio.PlayGlobal(bossComp.Song, Filter.BroadcastGrid(grid.Value), false);
+        bossComp.SongEntity = songEnt?.Entity;
+        bossComp.NextSongPlay = _timing.CurTime + TimeSpan.FromSeconds(bossComp.SongDuration);
 
         foreach (var player in players)
         {
@@ -77,11 +96,13 @@ public sealed partial class BossSystem : EntitySystem
         var max = bossComp.Stages.Where(x => x.Value.Threshold >= bossComp.Health).Select(x => x.Key).Max();
         if (bossComp.Stage != max)
         {
-            var stage = bossComp.Stages[bossComp.Stage];
             _appearance.SetData(boss, BossStageVisuals.Stage, max);
 
             if (bossComp.Stage < max)
-                _audio.PlayPvs(stage.Sound, boss);
+            {
+                _audio.PlayPvs(bossComp.Stages[max].Sound, boss);
+                _jittering.DoJitter(boss, TimeSpan.FromSeconds(3), true);
+            }
 
             bossComp.Stage = max;
         }
@@ -96,6 +117,47 @@ public sealed partial class BossSystem : EntitySystem
 
             var ev = new BossDefeatedEvent(boss);
             RaiseLocalEvent(ref ev);
+
+            BossDefeated(boss, bossComp);
+        }
+    }
+
+    public void BossDefeated(EntityUid boss, BossComponent component)
+    {
+        _audio.PlayGlobal(_audio.ResolveSound(component.DefeatSound), Filter.Broadcast(), true);
+        if (component.DefeatMessage != string.Empty)
+            _chat.DispatchGlobalAnnouncement(Loc.GetString(component.DefeatMessage), playSound: false);
+
+        _jittering.DoJitter(boss, TimeSpan.FromSeconds(10), true, 10, 7);
+        _audio.Stop(component.SongEntity);
+        component.Active = false;
+
+        EntityManager.AddComponents(boss, component.ComponentsOnDefeat);
+    }
+
+    public void BossWon(EntityUid boss, BossComponent component)
+    {
+        _audio.PlayGlobal(_audio.ResolveSound(component.LoseSound), Filter.Broadcast(), true);
+        if (component.LoseMessage != string.Empty)
+            _chat.DispatchGlobalAnnouncement(Loc.GetString(component.LoseMessage), playSound: false);
+
+        SendPlayersBack(component.Players);
+    }
+
+    public void SendPlayersBack(List<EntityUid> players)
+    {
+        var query = AllEntityQuery<MagicBarrierComponent>();
+
+        var list = new List<EntityCoordinates>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            list.Add(Transform(uid).Coordinates);
+        }
+
+        foreach (var item in players)
+        {
+            _flash.Flash(item, null, null, 5, 1, false);
+            _transform.SetCoordinates(item, _random.Pick(list));
         }
     }
 
@@ -117,8 +179,21 @@ public sealed partial class BossSystem : EntitySystem
             if (bossComp.Players.Count == 0 || !bossComp.Active)
                 continue;
 
+            if (bossComp.NextSongPlay <= _timing.CurTime)
+            {
+                var songEnt = _audio.PlayGlobal(bossComp.Song, Filter.BroadcastGrid(Transform(uid).GridUid ?? EntityUid.Invalid), false);
+                bossComp.SongEntity = songEnt?.Entity;
+                bossComp.NextSongPlay = _timing.CurTime + TimeSpan.FromSeconds(bossComp.SongDuration);
+            }
+
             if (bossComp.NextAttack > _timing.CurTime)
                 continue;
+
+            if (!bossComp.Players.Where(x => _mobState.IsAlive(x)).Any())
+            {
+                BossWon(uid, bossComp);
+                continue;
+            }
 
             var list = GetBossAttacks(bossComp);
             var stage = bossComp.Stages[bossComp.Stage];
@@ -142,6 +217,24 @@ public sealed partial class BossSystem : EntitySystem
             }
 
             bossComp.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(stage.StageDelay);
+        }
+    }
+
+    private void UpdateExplodingBoss()
+    {
+        var query = EntityQueryEnumerator<ExplosionDefeatedBossComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (_timing.CurTime < comp.NextExplosion)
+                continue;
+
+            _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 85, 10, 0, null, 0, 0, false);
+            comp.NextExplosion = _timing.CurTime + TimeSpan.FromSeconds(comp.Delay);
+            if (comp.Index >= comp.Explosions)
+            {
+                RemComp<ExplosionDefeatedBossComponent>(uid);
+                SendPlayersBack(Comp<BossComponent>(uid).Players);
+            }
         }
     }
 

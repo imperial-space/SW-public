@@ -2,15 +2,26 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.DoAfter;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Imperial.Minigames;
+using Content.Server.Popups;
+using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Destructible;
 using Content.Shared.DoAfter;
 using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Medieval.Boss;
+using Content.Shared.Imperial.Minigames.Events;
+using Content.Shared.Interaction;
+using Content.Shared.Random.Helpers;
+using Content.Shared.Weapons.Ranged.Components;
 using Robust.Server.GameObjects;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Random;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Boss;
 
@@ -22,6 +33,10 @@ public sealed partial class BossSystem
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly GunSystem _gun = default!;
+    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly MinigamesSystem _minigames = default!;
 
     private void InitializeAttacks()
     {
@@ -33,6 +48,13 @@ public sealed partial class BossSystem
         SubscribeLocalEvent<DamageOnContactComponent, StartCollideEvent>(OnDamageOnContactCollide);
         SubscribeLocalEvent<ChargingRuneExplosionComponent, ComponentInit>(OnChargingStartup);
         SubscribeLocalEvent<ChargingRuneExplosionComponent, BossRunesChargingDoAfterEvent>(OnChargingDoAfter);
+        SubscribeLocalEvent<BossBullethellSourceComponent, MapInitEvent>(OnBHellInit);
+        SubscribeLocalEvent<BossBullethellSourceComponent, ComponentShutdown>(OnBHellShutdown);
+        SubscribeLocalEvent<TrapPlayersOnMapComponent, MapInitEvent>(OnTrapInit);
+        SubscribeLocalEvent<TrapPlayersOnMapComponent, AfterInteractUsingEvent>(OnTrapUse);
+        SubscribeLocalEvent<TrapPlayersOnMapComponent, EntityTerminatingEvent>(OnTrapTerminating);
+        SubscribeLocalEvent<BossTrapMinigameActorComponent, WinInMinigamEvent>(OnMinigameComplete);
+        SubscribeLocalEvent<SpikedGridComponent, ComponentInit>(OnSpikedInit);
     }
 
     private void OnDamageBossOnDestruction(EntityUid uid, DamageBossOnDestructionComponent component, DestructionEventArgs args)
@@ -46,6 +68,12 @@ public sealed partial class BossSystem
     private void OnMarkInit(EntityUid uid, CursedMarkComponent component, ComponentInit args)
     {
         component.ExplodeTime = _timing.CurTime + TimeSpan.FromSeconds(component.Delay);
+
+        var ent = Spawn("CursedMarkPseudoEntity");
+        _transform.SetParent(ent, uid);
+        _transform.SetLocalPositionNoLerp(ent, Vector2.Zero);
+        component.NetEntity = GetNetEntity(ent);
+        Dirty(uid, component);
     }
 
     private void OnHealInit(EntityUid uid, TimedBossHealComponent component, ComponentInit args)
@@ -102,13 +130,108 @@ public sealed partial class BossSystem
 
     private void OnChargingDoAfter(EntityUid uid, ChargingRuneExplosionComponent component, BossRunesChargingDoAfterEvent args)
     {
-        _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 1000f, 0.1f, 0, null, 0, 0, false);
+        _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 1200f, 0.1f, 15, null, 0, 0, false);
         RemComp<ChargingRuneExplosionComponent>(uid);
 
         var runes = EntityManager.AllEntities<PurifyableExplosionRuneComponent>().Where(x => TryComp<BossAttackComponent>(x, out var attack) && attack.Boss == uid);
         foreach (var item in runes)
             QueueDel(item);
+    }
 
+    private void OnBHellInit(EntityUid uid, BossBullethellSourceComponent component, MapInitEvent args)
+        => component.Weapon = Spawn(component.WeaponProto);
+
+    private void OnBHellShutdown(EntityUid uid, BossBullethellSourceComponent component, ComponentShutdown args)
+        => QueueDel(component.Weapon);
+
+    private void OnTrapInit(EntityUid uid, TrapPlayersOnMapComponent component, MapInitEvent args)
+    {
+        var players = new List<EntityUid>();
+        if (TryComp<BossAttackComponent>(uid, out var attack) && TryComp<BossComponent>(attack.Boss, out var boss))
+            players = boss.Players.Where(x => !HasComp<BossTrappedComponent>(x)).ToList();
+
+        if (component.TrapCount >= players.Count)
+        {
+            QueueDel(uid);
+            return;
+        }
+
+        if (!_mapLoader.TryLoadMap(component.MapPath, out var map, out var grids, new DeserializationOptions() { InitializeMaps = true }))
+            return;
+
+        var mapId = map.Value.Comp.MapId;
+        var ents = grids.Select(x => Transform(x.Owner).ChildEnumerator);
+        var spawns = new List<EntityCoordinates>();
+
+        foreach (var item in ents)
+        {
+            while (item.MoveNext(out var target))
+            {
+                if (_tag.HasTag(target, component.SpawnTag))
+                    spawns.Add(Transform(target).Coordinates);
+            }
+        }
+
+        _random.Shuffle(players);
+
+        for (var i = 0; i < component.TrapCount && i < players.Count; i++)
+        {
+            _transform.SetCoordinates(players[i], _random.Pick(spawns));
+            component.Trapped.Add(players[i]);
+            EnsureComp<BossTrappedComponent>(players[i]);
+        }
+    }
+
+    private void OnTrapUse(EntityUid uid, TrapPlayersOnMapComponent component, AfterInteractUsingEvent args)
+    {
+        var user = args.User;
+        if (component.ReleaseUser.HasValue)
+        {
+            _popup.PopupEntity("Кто-то уже занимается этим!", uid, user);
+            return;
+        }
+
+        if (HasComp<BossTrapMinigameActorComponent>(user))
+            return;
+
+        if (_minigames.TryStartMinigame(user, component.Minigame))
+        {
+            var comp = EnsureComp<BossTrapMinigameActorComponent>(user);
+            comp.Trap = uid;
+        }
+    }
+
+    private void OnTrapTerminating(EntityUid uid, TrapPlayersOnMapComponent component, EntityTerminatingEvent args)
+        => ReleaseTrapped(uid);
+
+    private void OnMinigameComplete(EntityUid uid, BossTrapMinigameActorComponent component, WinInMinigamEvent args)
+        => ReleaseTrapped(component.Trap);
+
+    private void OnSpikedInit(EntityUid uid, SpikedGridComponent component, ComponentInit args)
+    {
+        if (!component.RandomDirection)
+            return;
+
+        component.Direction = _random.Prob(0.5f) ? SpikedGridDirection.Left : SpikedGridDirection.Right;
+    }
+
+    private void ReleaseTrapped(EntityUid uid, TrapPlayersOnMapComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        if (component.Map is not { Valid: true })
+            return;
+
+        var coords = Transform(uid).Coordinates;
+        foreach (var item in component.Trapped)
+        {
+            _transform.SetCoordinates(item, coords);
+        }
+
+        _map.DeleteMap(Comp<MapComponent>(component.Map).MapId);
+        QueueDel(uid);
+        SpawnAtPosition(component.SpawnOnDespawn, coords);
     }
 
     private void UpdateSpiked()
@@ -148,8 +271,9 @@ public sealed partial class BossSystem
                 continue;
 
             if (_lookup.GetEntitiesInRange<FightingBossComponent>(Transform(uid).Coordinates, 3f).Count > 1)
-                _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 150, 10, 0, null, 0, 0, false);
+                _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 85, 10, 7, null, 0, 0, false);
 
+            QueueDel(GetEntity(comp.NetEntity));
             RemComp<CursedMarkComponent>(uid);
         }
     }
@@ -200,6 +324,40 @@ public sealed partial class BossSystem
                 RemComp<ChargingRuneExplosionComponent>(uid);
                 continue;
             }
+        }
+    }
+
+    private void UpdateBHell()
+    {
+        var query = EntityQueryEnumerator<BossBullethellSourceComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.NextShot > _timing.CurTime)
+                continue;
+
+            if (comp.CurShot == 1)
+            {
+                comp.TargetPos = new Vector2(0, 1);
+                if (comp.RandomRotation)
+                    comp.TargetPos = _random.NextAngle().ToVec();
+                if (comp.RandomizeNegative)
+                    comp.Negative = _random.Prob(0.5f);
+            }
+            else
+            {
+                var transform = Matrix3x2.CreateRotation((float)Angle.FromDegrees(comp.Negative ? -comp.DegreesPerShot : comp.DegreesPerShot).Theta);
+                comp.TargetPos = Vector2.Transform(comp.TargetPos, transform);
+            }
+
+            var coords = Transform(uid).Coordinates;
+            var targetCoords = new EntityCoordinates(coords.EntityId, coords.Position + comp.TargetPos);
+            _gun.AttemptShoot(uid, comp.Weapon, Comp<GunComponent>(comp.Weapon), targetCoords);
+            _audio.PlayPvs(Comp<GunComponent>(comp.Weapon).SoundGunshot, uid);
+            comp.CurShot++;
+            comp.NextShot = _timing.CurTime + TimeSpan.FromSeconds(comp.Delay);
+
+            if (comp.CurShot > comp.Shots)
+                RemComp<BossBullethellSourceComponent>(uid);
         }
     }
 }

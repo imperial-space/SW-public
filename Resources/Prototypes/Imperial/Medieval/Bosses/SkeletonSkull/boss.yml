@@ -47,8 +47,17 @@
   - type: Clickable
   - type: InteractionOutline
   - type: DoAfter
+  - type: StatusEffects
+    allowed:
+    - Jitter
   - type: Boss
+    song:
+      path: /Audio/Imperial/Medieval/Laststandofspellward.ogg
+      params:
+        volume: -9
     health: 100
+    componentsOnDefeat:
+    - type: ExplosionDefeatedBoss
     stages:
       1:
         stageDelay: 6
@@ -57,15 +66,16 @@
         - !type:MarkerTargetedAttack
           markerTag: BoneSpikeSpawnPosition
           countLimits: [1, 1]
+          cooldown: 30
           actions:
-          - !type:SpawAtPosition
+          - !type:SpawnAtPosition
             prototypes: BoneSpikeBig
             randomDistance: 1
             spawnCount: 4
           - !type:PlaySound
             sound:
               path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
-              soundType: Position
+            soundType: Position
         - !type:PlayerTargetedAttack
           countLimits: [2, 4]
           cooldown: 30
@@ -76,22 +86,24 @@
           - !type:PlaySound
             sound:
               path: /Audio/Imperial/Medieval/Effects/cursed-mark.ogg
-              soundType: Player
+            soundType: Player
           - !type:BossAppearance
               state: green
               duration: 1.9
         - !type:MarkerTargetedAttack
           markerTag: BossSpikesSpawnPosition
-          countLimits: [2, 3]
+          countLimits: [2, 4]
           priority: 2
           actions:
-          - !type:SpawAtPosition
+          - !type:SpawnAtPosition
             prototypes: [BossSpikesSpawnMarkerWaveRight, BossSpikesSpawnMarkerWaveLeft]
             randomDistance: 2
             spawnCount: 1
       2:
         stageDelay: 5
         threshold: 60
+        sound:
+          path: /Audio/Imperial/Medieval/Effects/boss-stage-2.ogg
         attacks:
         - !type:MarkerTargetedAttack
           markerTag: HealingSkullSpawnPosition
@@ -99,14 +111,14 @@
           cooldown: 30
           priority: 1.25
           actions:
-          - !type:SpawAtPosition
+          - !type:SpawnAtPosition
             prototypes: MobBossHealingSkull
             randomDistance: 1
             spawnCount: 2
           - !type:PlaySound
             sound:
               path: /Audio/Imperial/Medieval/Effects/heal-skulls-spawn.ogg
-              soundType: BossPvs
+            soundType: BossPvs
         - !type:MarkerTargetedAttack
           markerTag: BossRuneSpawnPosition
           countLimits: [2, 3]
@@ -117,37 +129,73 @@
             toBoss: true
             components:
             - type: ChargingRuneExplosion
-          - !type:SpawAtPosition
+          - !type:SpawnAtPosition
             prototypes: SkullBossExplosionRune
-            randomDistance: 1
+            randomDistance: 2
             spawnCount: 2
           - !type:PlaySound
             sound:
               path: /Audio/Imperial/Medieval/Effects/rune-spawn.ogg
-              soundType: BossPvs
+            soundType: BossPvs
           - !type:BossAppearance
               state: purple
               duration: 1.9
         - !type:MarkerTargetedAttack
           markerTag: BossSpikesSpawnPosition
-          countLimits: [2, 3]
+          countLimits: [2, 4]
           priority: 1.25
           actions:
-          - !type:SpawAtPosition
-            prototypes: BossSpikesSpawnMarkerBox
-            randomDistance: 1
+          - !type:SpawnAtPosition
+            prototypes: [BossSpikesSpawnMarkerChess, BossSpikesSpawnMarkerBox]
+            randomDistance: 2
             spawnCount: 1
-        - !type:MarkerTargetedAttack
-          markerTag: BossSpikesSpawnPosition
-          countLimits: [1, 2]
+        - !type:GridTargetedAttack
+          cooldown: 50
           priority: 1.25
           actions:
-          - !type:SpawAtPosition
-            prototypes: BossSpikesSpawnMarkerChess
-            randomDistance: 1
-            spawnCount: 1
+          - !type:AddComponent
+            components:
+            - type: SpikedGrid
+              targetIndex: 16
+              spikeProto: EffectSkullBossSpikesSpawn
       3:
         stageDelay: 4
         threshold: 30
         attacksPerTime: [1,2]
-        attacks: []
+        sound:
+          path: /Audio/Imperial/Medieval/Effects/boss-stage-3.ogg
+        attacks:
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
+          countLimits: [2, 3]
+          cooldown: 20
+          priority: 1.25
+          actions:
+          - !type:AddComponent
+            toBoss: true
+            components:
+            - type: BossBullethellSource
+              weaponProto: WeaponSkullBossBHell
+              delay: 0.25
+              degreesPerShot: 5
+              shots: 25
+          - !type:BossAppearance
+              state: red
+              duration: 1.9
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
+          countLimits: [1, 1]
+          cooldown: 50
+          priority: 2
+          actions:
+          - !type:SpawnAtPosition
+            prototypes: SkullBossCrystalTrap
+            randomDistance: 2
+            spawnCount: 1
+          - !type:PlaySound
+            sound:
+              path: /Audio/Imperial/Medieval/Effects/crystal.ogg
+            soundType: Position
+          - !type:BossAppearance
+              state: purple
+              duration: 1.9

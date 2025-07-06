@@ -110,6 +110,21 @@
     energy: 2
     color: "#65007e"
 
+- type: entity
+  id: CursedMarkPseudoEntity
+  name: e
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/cursed-mark.rsi
+    state: mark
+    noRot: true
+  - type: PointLight
+    energy: 5
+    softness: 3
+  - type: Tag
+    tags:
+    - HideContextMenu
+
 # Spikes
 - type: entity
   id: SkullBossSpikes
@@ -300,3 +315,92 @@
         - 1,-2
   - type: TimedDespawn
     lifetime: 3
+
+- type: entity
+  id: WeaponSkullBossBHell
+  parent: BaseWeaponHeavyMachineGun
+  name: ы
+  description:
+  components:
+  - type: Gun
+    fireRate: 1
+    projectileSpeed: 6
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+      params:
+        volume: -10
+  - type: BasicEntityAmmoProvider
+    proto: PelletSkullBoss
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 0.1
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/bone_spikes.rsi
+    drawdepth: Effects
+    layers:
+    - visible: false
+      state: spawn
+
+- type: entity
+  id: PelletSkullBoss
+  name: pellet
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/projectile.rsi
+    state: projectile
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 20
+        Blunt: 10
+        Structural: 15
+  - type: PointLight
+    energy: 1
+    color: "#e00d29"
+  - type: TimedDespawn
+    lifetime: 90
+  - type: ProjectileSpread
+    proto: PelletSkullBoss
+    count: 4
+    spread: 360
+
+- type: entity
+  parent: BaseWall
+  id: WallCultIndestructible
+  name: стена
+  description: Не похоже, чтобы её можно было сломать.
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/cult.rsi
+  - type: Icon
+    sprite: Structures/Walls/cult.rsi
+  - type: IconSmooth
+    key: walls
+    base: cult
+
+- type: entity
+  name: кристалл
+  description: Внутри что-то есть.
+  id: SkullBossCrystalTrap
+  parent: BaseStructure
+  components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/crystal.rsi
+    layers:
+    - state: crystal
+  - type: Clickable
+  - type: InteractionOutline
+  - type: DoAfter
+  - type: TrapPlayersOnMap
+    mapPath: /Maps/Imperial/Medieval/boss-crystal-trap.yml
+    spawnTag: BossTrapPlayerSpawnPosition
+    minigame: arrows
+    trapCount: 1
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: ShockWaveEffect

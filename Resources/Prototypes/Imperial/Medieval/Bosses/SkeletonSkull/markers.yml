@@ -66,3 +66,14 @@
     tags:
     - BossSpawnPosition
 
+- type: entity
+  name: маркер кристальной ловушки
+  id: BossTrapPlayerSpawnMarker
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: Tag
+    tags:
+    - BossSpawnPosition

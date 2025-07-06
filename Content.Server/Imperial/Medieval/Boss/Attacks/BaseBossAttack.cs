@@ -18,7 +18,7 @@ public abstract partial class BossAttack
 
     public bool Execute(EntityUid boss, IEnumerable<EntityUid> targets, IEntityManager entMan)
     {
-        var pickedTargets = PickTargets(boss, targets, entMan);
+        var pickedTargets = PickTargets(boss, targets, entMan).Where(x => x.IsValid());
         if (!pickedTargets.Any())
             return false;
 

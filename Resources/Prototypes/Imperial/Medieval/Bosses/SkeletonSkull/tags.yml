@@ -12,3 +12,6 @@
 
 - type: Tag
   id: BossSpawnPosition
+
+- type: Tag
+  id: BossTrapPlayerSpawnPosition

@@ -1,4 +1,6 @@
 using System.Threading;
+using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Medieval.Boss;
 
@@ -14,6 +16,30 @@ public sealed partial class BossComponent : Component
     [DataField(required: true)]
     public float Health = 100f;
 
+    [DataField]
+    public ComponentRegistry ComponentsOnDefeat;
+
+    [DataField]
+    public SoundSpecifier? Song;
+
+    [DataField]
+    public float SongDuration = 245f;
+
+    [DataField]
+    public SoundSpecifier DefeatSound;
+
+    [DataField]
+    public SoundSpecifier LoseSound;
+
+    [DataField]
+    public string DefeatMessage = "boss-defeated-announce";
+
+    [DataField]
+    public string LoseMessage = "boss-won-announce";
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public EntityUid? SongEntity;
+
     [ViewVariables(VVAccess.ReadWrite)]
     public int Stage = 1;
 
@@ -22,4 +48,7 @@ public sealed partial class BossComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextAttack = TimeSpan.Zero;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan NextSongPlay = TimeSpan.Zero;
 }
