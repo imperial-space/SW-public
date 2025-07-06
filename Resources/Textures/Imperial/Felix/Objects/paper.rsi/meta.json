@@ -20,6 +20,9 @@
         "name": "grey"
       },
       {
+        "name": "paper"
+      },
+      {
         "name": "passport_words"
       },
       {
@@ -30,6 +33,9 @@
       },
       {
         "name": "grey_words"
+      },
+      {
+        "name": "paper_words"
       },
       {
         "name": "paper_stamp-generic"
