@@ -1,43 +1,48 @@
 using Content.Server.Imperial.Medieval.Boss;
-using Content.Shared.Weapons.Marker;
+using Content.Shared.Humanoid;
 using Robust.Client.GameObjects;
-using Robust.Client.Graphics;
-using Robust.Shared.Timing;
-using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.Medieval.Boss;
 
 public sealed class CursedMarkVisualizerSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly PointLightSystem _light = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<CursedMarkComponent, ComponentStartup>(OnMarkerStartup);
-        SubscribeLocalEvent<CursedMarkComponent, ComponentShutdown>(OnMarkerShutdown);
+
+        SubscribeLocalEvent<CursedMarkComponent, AfterAutoHandleStateEvent>(OnHandleState);
     }
 
-    private void OnMarkerStartup(EntityUid uid, CursedMarkComponent component, ComponentStartup args)
+    private void OnHandleState(EntityUid uid, CursedMarkComponent component, ref AfterAutoHandleStateEvent args)
     {
-        if (!_timing.ApplyingState || !TryComp<SpriteComponent>(uid, out var sprite))
-            return;
-
-        var layer = _sprite.LayerMapReserve((uid, sprite), DamageMarkerKey.Key);
-        _sprite.LayerSetRsi((uid, sprite), layer, new ResPath("/Textures/Imperial/Medieval/Effects/cursed-mark.rsi"), "mark");
+        component.FlameEntity = GetEntity(component.NetEntity);
     }
 
-    private void OnMarkerShutdown(EntityUid uid, CursedMarkComponent component, ComponentShutdown args)
+    public override void FrameUpdate(float frameTime)
     {
-        if (!_timing.ApplyingState || !TryComp<SpriteComponent>(uid, out var sprite) || !_sprite.LayerMapTryGet((uid, sprite), DamageMarkerKey.Key, out var weh, false))
-            return;
+        base.FrameUpdate(frameTime);
 
-        _sprite.RemoveLayer((uid, sprite), weh);
-    }
+        var query = EntityQueryEnumerator<CursedMarkComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (!comp.FlameEntity.IsValid())
+                comp.FlameEntity = GetEntity(comp.NetEntity);
 
-    private enum DamageMarkerKey : byte
-    {
-        Key
+            if (!_sprite.TryGetLayer(comp.FlameEntity, 0, out var layer, true))
+                return;
+
+            var color = (_lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(Transform(uid).Coordinates, 1.5f).Count > 1) switch
+            {
+                true => comp.ActiveColor,
+                false => comp.InactiveColor
+            };
+
+            _light.SetColor(comp.FlameEntity, color);
+            layer.Color = color;
+        }
     }
 }
