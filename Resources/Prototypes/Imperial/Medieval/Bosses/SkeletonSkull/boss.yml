@@ -64,25 +64,26 @@
     - type: ExplosionDefeatedBoss
     stages:
       1:
-        stageDelay: 6
+        stageDelay: 3
         threshold: 3000
         attacks:
         - !type:MarkerTargetedAttack
           markerTag: BoneSpikeSpawnPosition
           countLimits: [1, 1]
-          cooldown: 30
+          priority: 7
+          cooldown: 60
           actions:
           - !type:SpawnAtPosition
             prototypes: BoneSpikeBig
-            randomDistance: 1
-            spawnCount: 4
+            randomDistance: 15
+            spawnCount: 8
           - !type:PlaySound
             sound:
               path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
             soundType: Position
         - !type:PlayerTargetedAttack
-          countLimits: [2, 4]
-          cooldown: 30
+          countLimits: [2, 6]
+          cooldown: 20
           actions:
           - !type:AddComponent
             components:
@@ -96,15 +97,15 @@
               duration: 1.9
         - !type:MarkerTargetedAttack
           markerTag: BossSpikesSpawnPosition
-          countLimits: [2, 4]
+          countLimits: [2, 5]
           priority: 2
           actions:
           - !type:SpawnAtPosition
             prototypes: [BossSpikesSpawnMarkerWaveRight, BossSpikesSpawnMarkerWaveLeft]
-            randomDistance: 2
+            randomDistance: 4
             spawnCount: 1
       2:
-        stageDelay: 5
+        stageDelay: 2.3
         threshold: 2100
         sound:
           path: /Audio/Imperial/Medieval/Effects/boss-stage-2.ogg
@@ -163,7 +164,7 @@
               targetIndex: 16
               spikeProto: EffectSkullBossSpikesSpawn
       3:
-        stageDelay: 4
+        stageDelay: 1.6
         threshold: 900
         attacksPerTime: [1,2]
         sound:

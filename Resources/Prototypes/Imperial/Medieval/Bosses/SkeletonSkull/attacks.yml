@@ -31,7 +31,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 30
+        damage: 250
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -60,7 +60,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 30
+        damage: 130
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -84,7 +84,7 @@
   - type: Clickable
   - type: InteractionOutline
   - type: TimedBossHeal
-    healAmount: 4
+    healAmount: 150
   - type: TimedDespawn
     lifetime: 15.1
   - type: DoAfter
