@@ -1476,3 +1476,45 @@
     WoodPlank: 2
     MedievalIronIngot: 2
   result: MedievalHammerBlacksmith
+
+- type: CP14Recipe
+  id: MedievalHorseLeatherArmor
+  craftTime: 20
+  iconOverride: MedievalClothingOuterHorseArmorLeather
+  stacks:
+    MedievalLeather1: 8
+    MedievalLeatherBelt: 1
+    WoodPlank: 6
+    MedievalRope: 3
+  result: MedievalClothingOuterHorseArmorLeather
+
+- type: CP14Recipe
+  id: MedievalHorseChainMailArmor
+  craftTime: 35
+  iconOverride: MedievalClothingOuterHorseArmorChainMail
+  stacks:
+    MedievalLeather1: 5
+    MedievalRope: 3
+    WoodPlank: 7
+    Cloth: 7
+    MedievalIronIngot: 6
+  result: MedievalClothingOuterHorseArmorChainMail
+
+- type: CP14Recipe
+  id: MedievalHorseUpIronArmor
+  craftTime: 45
+  iconOverride: MedievalClothingOuterHorseArmorUpIron
+  stacks:
+    MedievalRope: 6
+    WoodPlank: 10
+    MedievalIronIngot: 15
+  result: MedievalClothingOuterHorseArmorUpIron
+
+- type: CP14Recipe
+  id: MedievalHorseHorseshoe
+  craftTime: 7
+  iconOverride: MedievalClothingHorseshoe
+  stacks:
+    MedievalRope: 2
+    MedievalIronIngot: 2
+  result: MedievalClothingHorseshoe
