@@ -65,7 +65,7 @@
     stages:
       1:
         stageDelay: 3
-        threshold: 3000
+        threshold: 3500
         attacks:
         - !type:MarkerTargetedAttack
           markerTag: BoneSpikeSpawnPosition
@@ -205,8 +205,7 @@
               state: red
               duration: 1.9
         - !type:PlayerTargetedAttack
-          #markerTag: BossRuneSpawnPosition
-          countLimits: [1, 1]
+          targetLimits: [1, 1]
           cooldown: 50
           priority: 3
           actions:
