@@ -147,8 +147,12 @@ public sealed partial class BossSystem
     private void OnTrapInit(EntityUid uid, TrapPlayersOnMapComponent component, MapInitEvent args)
     {
         var players = new List<EntityUid>();
-        if (TryComp<BossAttackComponent>(uid, out var attack) && TryComp<BossComponent>(attack.Boss, out var boss))
-            players = boss.Players.Where(x => !HasComp<BossTrappedComponent>(x)).ToList();
+        var query = AllEntityQuery<FightingBossComponent>();
+        while (query.MoveNext(out var target, out var comp))
+        {
+            if (Transform(target).GridUid != null && Transform(target).GridUid == Transform(uid).GridUid)
+                players.Add(target);
+        }
 
         if (component.TrapCount >= players.Count)
         {
@@ -241,6 +245,7 @@ public sealed partial class BossSystem
         foreach (var item in component.Trapped)
         {
             _transform.SetCoordinates(item, coords);
+            RemComp<BossTrappedComponent>(item);
         }
 
         _map.DeleteMap(Comp<MapComponent>(component.Map).MapId);
