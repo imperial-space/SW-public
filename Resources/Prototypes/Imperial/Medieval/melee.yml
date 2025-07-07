@@ -3926,9 +3926,12 @@
     angle: 0
     animation: WeaponArcThrust
   - type: Item
-    size: Normal
+    storedSprite:
+      state: storage
+      sprite: Imperial/Medieval/Melee/pilum_storage_64x.rsi
     shape:
-    - 0,0,4,0
+    - 0,0,5,0
+    - 0,1,5,1
   - type: Clothing
     quickEquip: false
     slots:
