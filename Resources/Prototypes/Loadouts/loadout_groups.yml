@@ -214,6 +214,28 @@
   loadouts:
   - GreyJumpsuit
   - GreyJumpskirt
+  - BlueJumpsuit
+  - BlueJumpskirt
+  - BlackJumpsuit
+  - BlackJumpskirt
+  - RedJumpsuit
+  - RedJumpskirt
+  - GreenJumpsuit
+  - GreenJumpskirt
+  - PinkJumpsuit
+  - PinkJumpskirt
+  - WhiteJumpsuit
+  - WhiteJumpskirt
+  - BrownJumpsuit
+  - BrownJumpskirt
+  - PurpleJumpsuit
+  - PurpleJumpskirt
+  - OrangeJumpsuit
+  - OrangeJumpskirt
+  - YellowJumpsuit
+  - YellowJumpskirt
+  - TealJumpsuit
+  - TealJumpskirt
   - AncientJumpsuit
   - RainbowJumpsuit
   - RainbowJumpskirt
@@ -231,6 +253,15 @@
   minLimit: 0
   loadouts:
   - PassengerGloves
+  - BlackGloves
+  - BrownGloves
+  - WhiteGloves
+  - RedGloves
+  - BlueGloves
+  - TealGloves
+  - GreenGloves
+  - OrangeGloves
+  - PurpleGloves
 
 - type: loadoutGroup
   id: CommonBackpack
@@ -246,19 +277,47 @@
   minLimit: 0
   loadouts:
   - Mantle
+  - ScarfRainbow
+  - ScarfRed
+  - ScarfBlue
+  - ScarfGreen
+  - ScarfBlack
+  - ScarfBrown
+  - ScarfLightBlue
+  - ScarfOrange
+  - ScarfPurple
+  - ScarfZebra
 
 - type: loadoutGroup
   id: PassengerOuterClothing
   name: loadout-group-passenger-outerclothing
   minLimit: 0
   loadouts:
+  - Trenchcoat
   - PassengerWintercoat
+  - BlackWintercoat
+  - GreyWintercoat
+  - BrownWintercoat
+  - WhiteWintercoat
+  - RedWintercoat
+  - BlueWintercoat
+  - GreenWintercoat
+  - OrangeWintercoat
+  - PurpleWintercoat
 
 - type: loadoutGroup
   id: PassengerShoes
   name: loadout-group-passenger-shoes
   loadouts:
   - BlackShoes
+  - RedShoes
+  - BlueShoes
+  - GreenShoes
+  - YellowShoes
+  - OrangeShoes
+  - PurpleShoes
+  - BrownShoes
+  - WhiteShoes
   - WinterBoots
 
 - type: loadoutGroup
