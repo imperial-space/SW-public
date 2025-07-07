@@ -20,22 +20,22 @@ public sealed class RDWeightExamineSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RDWeightExamineCoponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<RDWeightExamineCoponent, RDWeightRefreshEvent>(OnRefresh);
+        SubscribeLocalEvent<RDWeightExamineComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<RDWeightExamineComponent, RDWeightRefreshEvent>(OnRefresh);
     }
 
-    private void OnExamined(Entity<RDWeightExamineCoponent> entity, ref ExaminedEvent args)
+    private void OnExamined(Entity<RDWeightExamineComponent> entity, ref ExaminedEvent args)
     {
         if (entity.Comp.Current is null)
             return;
 
-        using (args.PushGroup(nameof(RDWeightExamineCoponent), 1))
+        using (args.PushGroup(nameof(RDWeightExamineComponent), 1))
         {
             args.PushMarkup(Loc.GetString("mc-weight-examine", ("name", Loc.GetString(entity.Comp.Current))));
         }
     }
 
-    private void OnRefresh(Entity<RDWeightExamineCoponent> entity, ref RDWeightRefreshEvent args)
+    private void OnRefresh(Entity<RDWeightExamineComponent> entity, ref RDWeightRefreshEvent args)
     {
         var previous = entity.Comp.Current;
         LocId? current = null;
@@ -50,6 +50,6 @@ public sealed class RDWeightExamineSystem : EntitySystem
             return;
 
         entity.Comp.Current = current;
-        DirtyField(entity, entity.Comp, nameof(RDWeightExamineCoponent.Current));
+        DirtyField(entity, entity.Comp, nameof(RDWeightExamineComponent.Current));
     }
 }
