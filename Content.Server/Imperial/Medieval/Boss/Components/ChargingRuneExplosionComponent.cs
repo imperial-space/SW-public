@@ -1,4 +1,5 @@
 using Content.Shared.Damage;
+using Content.Shared.DoAfter;
 
 namespace Content.Server.Imperial.Medieval.Boss;
 
@@ -8,7 +9,7 @@ public sealed partial class ChargingRuneExplosionComponent : Component
     [DataField]
     public float Time = 25f;
 
-    public TimeSpan ExplodeTime = TimeSpan.Zero;
+    public DoAfterId? DoAfter;
 
     public TimeSpan NextCheck = TimeSpan.Zero;
 }

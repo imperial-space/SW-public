@@ -32,7 +32,7 @@ public abstract class SharedFloatingVisualizerSystem : EntitySystem
         if (transform.MapID == MapId.Nullspace)
             return false;
 
-        component.CanFloat = GravitySystem.IsWeightless(uid, xform: transform);
+        component.CanFloat = GravitySystem.IsWeightless(uid, xform: transform) || component.IgnoreGravity; // Imperial Medieval - ignoring gravity
         Dirty(uid, component);
         return component.CanFloat;
     }
@@ -57,7 +57,7 @@ public abstract class SharedFloatingVisualizerSystem : EntitySystem
             floating.CanFloat = !args.HasGravity;
             Dirty(uid, floating);
 
-            if (!args.HasGravity)
+            if (!args.HasGravity || floating.IgnoreGravity) // Imperial Medieval - ignoring gravity
                 FloatAnimation(uid, floating.Offset, floating.AnimationKey, floating.AnimationTime);
         }
     }
