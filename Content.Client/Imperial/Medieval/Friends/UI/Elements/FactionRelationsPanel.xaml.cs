@@ -5,7 +5,7 @@ using Content.Client.Friends;
 using Content.Client.Stylesheets;
 using Content.Shared.Friends;
 using Content.Shared.Friends.Prototypes;
-using Microsoft.CodeAnalysis.Elfie.Diagnostics;
+// using Microsoft.CodeAnalysis.Elfie.Diagnostics;
 using Microsoft.Extensions.Logging;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
