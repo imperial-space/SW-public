@@ -75,7 +75,7 @@
           actions:
           - !type:SpawnAtPosition
             prototypes: BoneSpikeBig
-            randomDistance: 15
+            randomDistance: 12
             spawnCount: 5
           - !type:PlaySound
             sound:
@@ -199,20 +199,20 @@
             - type: BossBullethellSource
               weaponProto: WeaponSkullBossBHell
               delay: 0.1
-              degreesPerShot: 9
+              degreesPerShot: 11
               shots: 60
           - !type:BossAppearance
               state: red
               duration: 1.9
-        - !type:MarkerTargetedAttack
-          markerTag: BossRuneSpawnPosition
+        - !type:PlayerTargetedAttack
+          #markerTag: BossRuneSpawnPosition
           countLimits: [1, 1]
           cooldown: 50
-          priority: 2
+          priority: 3
           actions:
           - !type:SpawnAtPosition
             prototypes: SkullBossCrystalTrap
-            randomDistance: 2
+            randomDistance: 0
             spawnCount: 1
           - !type:PlaySound
             sound:
