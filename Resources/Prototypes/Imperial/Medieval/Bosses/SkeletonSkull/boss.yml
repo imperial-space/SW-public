@@ -204,14 +204,15 @@
           - !type:BossAppearance
               state: red
               duration: 1.9
-        - !type:PlayerTargetedAttack
-          targetLimits: [1, 1]
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
+          countLimits: [1, 1]
           cooldown: 50
           priority: 3
           actions:
           - !type:SpawnAtPosition
             prototypes: SkullBossCrystalTrap
-            randomDistance: 0
+            randomDistance: 2
             spawnCount: 1
           - !type:PlaySound
             sound:
