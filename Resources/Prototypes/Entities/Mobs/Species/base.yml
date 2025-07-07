@@ -326,7 +326,6 @@
   - type: LocalLight
     energy: 0.3
     radius: 1.18
-  - type: RDWeightSpeedModifier
   - type: RDWeight
     value: 75
 # Imperial Medieval End
