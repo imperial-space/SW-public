@@ -101,12 +101,12 @@
           priority: 2
           actions:
           - !type:SpawnAtPosition
-            prototypes: [BossSpikesSpawnMarkerWaveRight, BossSpikesSpawnMarkerWaveLeft]
+            prototypes: [BossSpikesSpawnMarkerWaveRight, BossSpikesSpawnMarkerWaveLeft, BossSpikesSpawnMarkerCross, BossSpikesSpawnMarkerSpiralOut]
             randomDistance: 7
             spawnCount: 1
       2:
         stageDelay: 2.3
-        threshold: 2100
+        threshold: 2150
         sound:
           path: /Audio/Imperial/Medieval/Effects/boss-stage-2.ogg
         attacks:
@@ -167,7 +167,7 @@
           priority: 1.25
           actions:
           - !type:SpawnAtPosition
-            prototypes: [BossSpikesSpawnMarkerChess, BossSpikesSpawnMarkerBox]
+            prototypes: [BossSpikesSpawnMarkerChess, BossSpikesSpawnMarkerBox, BossSpikesSpawnMarkerPincerVertical, BossSpikesSpawnMarkerRandomBurst, BossSpikesSpawnMarkerDiagonalSweep]
             randomDistance: 2
             spawnCount: 1
         - !type:GridTargetedAttack

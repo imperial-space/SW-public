@@ -31,7 +31,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 620
+        damage: 720
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -501,6 +501,408 @@
     lifetime: 5
 
 - type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerSpiralOut
+  parent: MarkerBase
+  suffix: спираль
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0: # Центр
+        - 0,0
+      1: # Первый виток
+        - 1,0
+        - 1,1
+        - 0,1
+        - -1,1
+        - -1,0
+        - -1,-1
+        - 0,-1
+        - 1,-1
+      2: # Второй виток
+        - 2,0
+        - 2,1
+        - 2,2
+        - 1,2
+        - 0,2
+        - -1,2
+        - -2,2
+        - -2,1
+        - -2,0
+        - -2,-1
+        - -2,-2
+        - -1,-2
+        - 0,-2
+        - 1,-2
+        - 2,-2
+      3: # Третий виток
+        - 3,0
+        - 3,1
+        - 3,2
+        - 3,3
+        - 2,3
+        - 1,3
+        - 0,3
+        - -1,3
+        - -2,3
+        - -3,3
+        - -3,2
+        - -3,1
+        - -3,0
+        - -3,-1
+        - -3,-2
+        - -3,-3
+        - -2,-3
+        - -1,-3
+        - 0,-3
+        - 1,-3
+        - 2,-3
+        - 3,-3
+      4: # Четвертый, финальный виток
+        - 4,0
+        - 4,1
+        - 4,2
+        - 4,3
+        - 4,4
+        - 3,4
+        - 2,4
+        - 1,4
+        - 0,4
+        - -1,4
+        - -2,4
+        - -3,4
+        - -4,4
+        - -4,3
+        - -4,2
+        - -4,1
+        - -4,0
+        - -4,-1
+        - -4,-2
+        - -4,-3
+        - -4,-4
+        - -3,-4
+        - -2,-4
+        - -1,-4
+        - 0,-4
+        - 1,-4
+        - 2,-4
+        - 3,-4
+        - 4,-4
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerCross
+  parent: MarkerBase
+  suffix: крест
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0: # Центральная точка
+        - 0,0
+      1: # Расширение на 1 клетку
+        - 1,0
+        - -1,0
+        - 0,1
+        - 0,-1
+      2: # Расширение на 2 клетки
+        - 2,0
+        - -2,0
+        - 0,2
+        - 0,-2
+      3: # Расширение на 3 клетки
+        - 3,0
+        - -3,0
+        - 0,3
+        - 0,-3
+      4: # Расширение на 4 клетки
+        - 4,0
+        - -4,0
+        - 0,4
+        - 0,-4
+      5: # Расширение на 5 клеток (если арена больше)
+        - 5,0
+        - -5,0
+        - 0,5
+        - 0,-5
+  - type: TimedDespawn
+    lifetime: 6
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerPincerVertical
+  parent: MarkerBase
+  suffix: тиски верт
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0: # Внешние края
+        - -4,-4
+        - -4,-3
+        - -4,-2
+        - -4,-1
+        - -4,0
+        - -4,1
+        - -4,2
+        - -4,3
+        - -4,4
+        - 4,-4
+        - 4,-3
+        - 4,-2
+        - 4,-1
+        - 4,0
+        - 4,1
+        - 4,2
+        - 4,3
+        - 4,4
+      1: # Сходятся на 1 шаг
+        - -3,-4
+        - -3,-3
+        - -3,-2
+        - -3,-1
+        - -3,0
+        - -3,1
+        - -3,2
+        - -3,3
+        - -3,4
+        - 3,-4
+        - 3,-3
+        - 3,-2
+        - 3,-1
+        - 3,0
+        - 3,1
+        - 3,2
+        - 3,3
+        - 3,4
+      2: # Сходятся на 2 шага
+        - -2,-4
+        - -2,-3
+        - -2,-2
+        - -2,-1
+        - -2,0
+        - -2,1
+        - -2,2
+        - -2,3
+        - -2,4
+        - 2,-4
+        - 2,-3
+        - 2,-2
+        - 2,-1
+        - 2,0
+        - 2,1
+        - 2,2
+        - 2,3
+        - 2,4
+      3: # Финальное сужение
+        - -1,-4
+        - -1,-3
+        - -1,-2
+        - -1,-1
+        - -1,0
+        - -1,1
+        - -1,2
+        - -1,3
+        - -1,4
+        - 1,-4
+        - 1,-3
+        - 1,-2
+        - 1,-1
+        - 1,0
+        - 1,1
+        - 1,2
+        - 1,3
+        - 1,4
+      4: # Центральная линия - нет спасения
+        - 0,-4
+        - 0,-3
+        - 0,-2
+        - 0,-1
+        - 0,0
+        - 0,1
+        - 0,2
+        - 0,3
+        - 0,4
+  - type: TimedDespawn
+    lifetime: 5
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerRandomBurst
+  parent: MarkerBase
+  suffix: случайный
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0:
+        - -4,4
+        - 0,3
+        - 3,2
+        - -2,1
+        - 1,-4
+        - 4,0
+        - -3,-3
+        - 0,0
+      1:
+        - 2,4
+        - -1,3
+        - 4,-2
+        - -4,-1
+        - 0,-3
+        - 3,3
+        - -2,0
+        - 1,1
+      2:
+        - -3,1
+        - 1,4
+        - 3,-4
+        - -4,0
+        - 2,-2
+        - -1,-1
+        - 4,3
+        - 0,-2
+      3:
+        - 1,-2
+        - 3,0
+        - -3,4
+        - 4,-4
+        - -1,2
+        - -4,-3
+        - 2,2
+        - -2,-4
+  - type: TimedDespawn
+    lifetime: 4
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerDiagonalSweep
+  parent: MarkerBase
+  suffix: диагональ
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0: # Начало в углу
+        - -4,4
+      1:
+        - -3,4
+        - -4,3
+      2:
+        - -2,4
+        - -3,3
+        - -4,2
+      3:
+        - -1,4
+        - -2,3
+        - -3,2
+        - -4,1
+      4: # Главная диагональ
+        - 0,4
+        - -1,3
+        - -2,2
+        - -3,1
+        - -4,0
+      5:
+        - 1,4
+        - 0,3
+        - -1,2
+        - -2,1
+        - -3,0
+        - -4,-1
+      6:
+        - 2,4
+        - 1,3
+        - 0,2
+        - -1,1
+        - -2,0
+        - -3,-1
+        - -4,-2
+      7:
+        - 3,4
+        - 2,3
+        - 1,2
+        - 0,1
+        - -1,0
+        - -2,-1
+        - -3,-2
+        - -4,-3
+      8:
+        - 4,4
+        - 3,3
+        - 2,2
+        - 1,1
+        - 0,0
+        - -1,-1
+        - -2,-2
+        - -3,-3
+        - -4,-4
+      9: # Завершение в противоположном углу
+        - 4,3
+        - 3,2
+        - 2,1
+        - 1,0
+        - 0,-1
+        - -1,-2
+        - -2,-3
+        - -3,-4
+      10:
+        - 4,2
+        - 3,1
+        - 2,0
+        - 1,-1
+        - 0,-2
+        - -1,-3
+        - -2,-4
+      11:
+        - 4,1
+        - 3,0
+        - 2,-1
+        - 1,-2
+        - 0,-3
+        - -1,-4
+      12:
+        - 4,0
+        - 3,-1
+        - 2,-2
+        - 1,-3
+        - 0,-4
+      13:
+        - 4,-1
+        - 3,-2
+        - 2,-3
+        - 1,-4
+      14:
+        - 4,-2
+        - 3,-3
+        - 2,-4
+      15:
+        - 4,-3
+        - 3,-4
+      16:
+        - 4,-4
+  - type: TimedDespawn
+    lifetime: 17
+
+- type: entity
   id: WeaponSkullBossBHell
   parent: BaseWeaponHeavyMachineGun
   name: ы
@@ -539,7 +941,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 30
+        Piercing: 35
         Blunt: 10
         Structural: 115
   - type: PointLight
