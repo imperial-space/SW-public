@@ -262,14 +262,13 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth63
     back: MedievalClothingBackpackSatchelLeather
     belt: MedievalHatchet
-    storage:
-      back:
-      - Brutepack
-      - Brutepack
-      - Ointment
-      - Gauze
-      suit:
-      - MedievalIronSekir
+    pocket1: MedievalIronSekir
+  storage:
+    back:
+    - Brutepack
+    - Brutepack
+    - Ointment
+    - Gauze
 
 - type: startingGear
   id: MedievalFastGearLightAlt2
@@ -281,12 +280,12 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth62
     back: MedievalClothingBackpackSatchelLeather
     belt: MedievalHatchet
-    storage:
-      back:
-      - Brutepack
-      - Brutepack
-      - Ointment
-      - Gauze
+  storage:
+    back:
+    - Brutepack
+    - Brutepack
+    - Ointment
+    - Gauze
 
 - type: startingGear
   id: MedievalFastGearMediumAlt3
@@ -299,14 +298,14 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
     back: MedievalClothingBackpackSatchelLeather
     belt: MedievalFalshionT3
-    inhand:
-      - MedievalWoodenShieldKnight
-    storage:
-      back:
-      - Brutepack
-      - Brutepack
-      - Ointment
-      - Gauze
+  inhand:
+    - MedievalWoodenShieldKnight
+  storage:
+    back:
+    - Brutepack
+    - Brutepack
+    - Ointment
+    - Gauze
 
 - type: startingGear
   id: MedievalFastGearLightAlt3
@@ -317,11 +316,11 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     back: MedievalClothingBackpackSatchelLeather
     belt: MedievalShortSword
-    inhand:
-      - WoodenBuckler
-    storage:
-      back:
-      - Brutepack
-      - Brutepack
-      - Ointment
-      - Gauze
+  inhand:
+    - WoodenBuckler
+  storage:
+    back:
+    - Brutepack
+    - Brutepack
+    - Ointment
+    - Gauze
