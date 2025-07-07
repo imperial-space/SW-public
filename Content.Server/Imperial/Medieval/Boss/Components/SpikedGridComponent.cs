@@ -20,6 +20,9 @@ public sealed partial class SpikedGridComponent : Component
     [DataField]
     public int TargetIndex = 10;
 
+    [DataField]
+    public List<int> TargetIndexesPossible = new() { 10, 17 };
+
     public int NextIndex = 0;
 
     public TimeSpan NextSpawn = TimeSpan.Zero;
@@ -28,5 +31,7 @@ public sealed partial class SpikedGridComponent : Component
 public enum SpikedGridDirection
 {
     Right,
-    Left
+    Left,
+    Up,
+    Down
 }

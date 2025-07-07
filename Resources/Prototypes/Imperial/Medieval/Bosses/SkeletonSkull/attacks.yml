@@ -51,6 +51,9 @@
   id: MobBossHealingSkull
   parent: BaseStructure
   components:
+  - type: RandomWalk
+    maxSpeed: 3.5
+    minSpeed: 2
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/minion.rsi
@@ -107,7 +110,7 @@
   - type: PhysAwakeOnSpawn
   - type: PurifyableExplosionRune
   - type: PointLight
-    energy: 2
+    energy: 6
     color: "#65007e"
 
 - type: entity
@@ -119,7 +122,7 @@
     state: mark
     noRot: true
   - type: PointLight
-    energy: 5
+    energy: 7
     softness: 3
   - type: Tag
     tags:
@@ -149,7 +152,7 @@
       fix:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          bounds: "-0.35,-0.35,0.35,0.35"
         mask:
         - Impassable
         layer:
@@ -634,6 +637,26 @@
         - -5,0
         - 0,5
         - 0,-5
+      6: # Расширение на 5 клеток (если арена больше)
+        - 6,0
+        - -6,0
+        - 0,6
+        - 0,-6
+      7: # Расширение на 5 клеток (если арена больше)
+        - 7,0
+        - -7,0
+        - 0,7
+        - 0,-7
+      8: # Расширение на 5 клеток (если арена больше)
+        - 8,0
+        - -8,0
+        - 0,8
+        - 0,-8
+      9: # Расширение на 5 клеток (если арена больше)
+        - 9,0
+        - -9,0
+        - 0,9
+        - 0,-9
   - type: TimedDespawn
     lifetime: 6
 
@@ -903,6 +926,177 @@
     lifetime: 17
 
 - type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerCrossInverted
+  parent: MarkerBase
+  suffix: крест инверт
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      # Поэтапно заполняются все квадранты арены, оставляя центральный крест пустым
+      0: # Верхний правый квадрант (x > 0, y > 0)
+        - 1,1
+        - 1,2
+        - 1,3
+        - 1,4
+        - 2,1
+        - 2,2
+        - 2,3
+        - 2,4
+        - 3,1
+        - 3,2
+        - 3,3
+        - 3,4
+        - 4,1
+        - 4,2
+        - 4,3
+        - 4,4
+      1: # Нижний левый квадрант (x < 0, y < 0)
+        - -1,-1
+        - -1,-2
+        - -1,-3
+        - -1,-4
+        - -2,-1
+        - -2,-2
+        - -2,-3
+        - -2,-4
+        - -3,-1
+        - -3,-2
+        - -3,-3
+        - -3,-4
+        - -4,-1
+        - -4,-2
+        - -4,-3
+        - -4,-4
+      2: # Верхний левый квадрант (x < 0, y > 0)
+        - -1,1
+        - -1,2
+        - -1,3
+        - -1,4
+        - -2,1
+        - -2,2
+        - -2,3
+        - -2,4
+        - -3,1
+        - -3,2
+        - -3,3
+        - -3,4
+        - -4,1
+        - -4,2
+        - -4,3
+        - -4,4
+      3: # Нижний правый квадрант (x > 0, y < 0)
+        - 1,-1
+        - 1,-2
+        - 1,-3
+        - 1,-4
+        - 2,-1
+        - 2,-2
+        - 2,-3
+        - 2,-4
+        - 3,-1
+        - 3,-2
+        - 3,-3
+        - 3,-4
+        - 4,-1
+        - 4,-2
+        - 4,-3
+        - 4,-4
+  - type: TimedDespawn
+    lifetime: 5 # 4 шага + 1 секунда
+
+- type: entity
+  name: маркер шипов
+  id: BossSpikesSpawnMarkerCrossRotating
+  parent: MarkerBase
+  suffix: крест вращ
+  components:
+  - type: Sprite
+    layers:
+    - state: green
+  - type: SpikeAttackMarker
+    proto: EffectSkullBossSpikesSpawn
+    positions:
+      0: # Шаг 1: Кардинальный крест (+)
+        - 0,1
+        - 0,2
+        - 0,3
+        - 0,4
+        - 0,-1
+        - 0,-2
+        - 0,-3
+        - 0,-4
+        - 1,0
+        - 2,0
+        - 3,0
+        - 4,0
+        - -1,0
+        - -2,0
+        - -3,0
+        - -4,0
+        - 0,0 # Центр всегда опасен
+      1: # Шаг 2: Диагональный крест (X)
+        - 1,1
+        - 2,2
+        - 3,3
+        - 4,4
+        - -1,-1
+        - -2,-2
+        - -3,-3
+        - -4,-4
+        - 1,-1
+        - 2,-2
+        - 3,-3
+        - 4,-4
+        - -1,1
+        - -2,2
+        - -3,3
+        - -4,4
+        - 0,0
+      2: # Шаг 3: Снова кардинальный крест (+)
+        - 0,1
+        - 0,2
+        - 0,3
+        - 0,4
+        - 0,-1
+        - 0,-2
+        - 0,-3
+        - 0,-4
+        - 1,0
+        - 2,0
+        - 3,0
+        - 4,0
+        - -1,0
+        - -2,0
+        - -3,0
+        - -4,0
+        - 0,0
+      3: # Шаг 4: Снова диагональный крест (X)
+        - 1,1
+        - 2,2
+        - 3,3
+        - 4,4
+        - -1,-1
+        - -2,-2
+        - -3,-3
+        - -4,-4
+        - 1,-1
+        - 2,-2
+        - 3,-3
+        - 4,-4
+        - -1,1
+        - -2,2
+        - -3,3
+        - -4,4
+        - 0,0
+  - type: TimedDespawn
+    lifetime: 4 # Очень быстрая смена, 4 шага за 4 секунды
+
+- type: entity
   id: WeaponSkullBossBHell
   parent: BaseWeaponHeavyMachineGun
   name: ы
@@ -948,7 +1142,7 @@
     energy: 3
     color: "#e00d29"
   - type: TimedDespawn
-    lifetime: 90
+    lifetime: 40
   - type: ProjectileSpread
     proto: PelletSkullBoss
     count: 4
@@ -991,5 +1185,5 @@
   - type: SpawnOnTrigger
     proto: ShockWaveEffect
   - type: PointLight
-    energy: 1
+    energy: 4
     color: "#c70de0"

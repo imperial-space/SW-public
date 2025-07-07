@@ -212,7 +212,21 @@ public sealed partial class BossSystem
         if (!component.RandomDirection)
             return;
 
-        component.Direction = _random.Prob(0.5f) ? SpikedGridDirection.Left : SpikedGridDirection.Right;
+        component.Direction = (SpikedGridDirection)_random.Next(4);
+        component.TargetIndex = _random.Pick(component.TargetIndexesPossible);
+
+        // Это если вдруг будет грид с разными значениями горизонтали и вертикали, а не квадрат как щас
+        //switch (component.Direction)
+        //{
+        //    case SpikedGridDirection.Left:
+        //    case SpikedGridDirection.Right:
+        //        component.TargetIndex = _random.Prob(0.5f) ? 17 : 10;
+        //        break;
+        //    case SpikedGridDirection.Up:
+        //    case SpikedGridDirection.Down:
+        //        component.TargetIndex = _random.Prob(0.5f) ? 17 : 10;
+        //        break;
+        //}
     }
 
     private void ReleaseTrapped(EntityUid uid, TrapPlayersOnMapComponent? component = null)
@@ -249,10 +263,42 @@ public sealed partial class BossSystem
             }
 
             var tiles = _map.GetAllTiles(uid, grid);
-            var indicies = tiles.Select(t => t.GridIndices.X);
-            var idx = spikedComp.Direction == SpikedGridDirection.Right ? indicies.Min() + spikedComp.NextIndex : indicies.Max() - spikedComp.NextIndex;
 
-            foreach (var tile in tiles.Where(t => t.GridIndices.X == idx))
+            // Используем Func<T, bool> для фильтрации плиток, чтобы избежать дублирования кода.
+            Func<TileRef, bool> filter;
+            int idx;
+
+            switch (spikedComp.Direction)
+            {
+                case SpikedGridDirection.Right:
+                    var xIndicesRight = tiles.Select(t => t.GridIndices.X);
+                    idx = xIndicesRight.Min() + spikedComp.NextIndex;
+                    filter = t => t.GridIndices.X == idx;
+                    break;
+
+                case SpikedGridDirection.Left:
+                    var xIndicesLeft = tiles.Select(t => t.GridIndices.X);
+                    idx = xIndicesLeft.Max() - spikedComp.NextIndex;
+                    filter = t => t.GridIndices.X == idx;
+                    break;
+
+                case SpikedGridDirection.Up:
+                    var yIndicesUp = tiles.Select(t => t.GridIndices.Y);
+                    idx = yIndicesUp.Min() + spikedComp.NextIndex;
+                    filter = t => t.GridIndices.Y == idx;
+                    break;
+
+                case SpikedGridDirection.Down:
+                    var yIndicesDown = tiles.Select(t => t.GridIndices.Y);
+                    idx = yIndicesDown.Max() - spikedComp.NextIndex;
+                    filter = t => t.GridIndices.Y == idx;
+                    break;
+
+                default:
+                    continue;
+            }
+
+            foreach (var tile in tiles.Where(filter))
             {
                 SpawnAtPosition(spikedComp.SpikeProto, new(uid, tile.GridIndices));
             }
