@@ -114,7 +114,7 @@
                  sprite: Imperial/Medieval/Myrmex/resin.rsi
                  state: resin
                doAfter: 1
-             - tag: Mushroom1
+             - tag: Mushroom3
                name: едкий споровик # Imperial Recipes Locale
                icon:
                  sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
