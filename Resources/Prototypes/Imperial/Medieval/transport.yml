@@ -253,13 +253,15 @@
     - Critical
     - Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 4
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 3
     baseSprintSpeed: 3
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      150: Dead
+      270: Critical
+      390: Dead
   - type: DamageStateVisuals
     states:
       Alive:
@@ -279,4 +281,5 @@
     maxBuckleDistance: 1
   - type: Rideable
   - type: RideableSprint
-
+    accelerationTime: 8
+    maxSpeedModifier: 1.76
