@@ -50,6 +50,8 @@
   - type: StatusEffects
     allowed:
     - Jitter
+  - type: FloatingVisuals
+    ignoreGravity: true
   - type: Boss
     song:
       path: /Audio/Imperial/Medieval/Locations/Laststandofspellward.ogg
