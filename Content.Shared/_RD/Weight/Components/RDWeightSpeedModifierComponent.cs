@@ -36,10 +36,10 @@ public abstract partial class RDWeightSpeedModifierCurve
 public sealed partial class RDWeightSpeedModifierLinearCurve : RDWeightSpeedModifierCurve
 {
     [DataField]
-    public float Min;
+    public float Min = 90f;
 
     [DataField]
-    public float Max;
+    public float Max = 180f;
 
     public override float Calculate(float total)
     {
