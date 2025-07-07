@@ -51,6 +51,8 @@
   id: MobBossHealingSkull
   parent: BaseStructure
   components:
+  - type: Physics
+    bodyType: Dynamic
   - type: RandomWalk
     maxSpeed: 3.5
     minSpeed: 2
@@ -63,7 +65,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 130
+        damage: 160
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -102,10 +104,22 @@
   parent: CollideRune
   components:
   - type: Sprite
+    scale: 2, 2
     sprite: Imperial/Medieval/Mobs/Bosses/SkeletonSkull/runes.rsi
     layers:
     - state: skull
       color: "#65007e"
+  - type: Fixtures
+    fixtures:
+      rune:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.9,-0.9,0.9,0.9"
+        hard: false
+        mask:
+          - ItemMask
+        layer:
+          - SlipLayer
   - type: Clickable
   - type: PhysAwakeOnSpawn
   - type: PurifyableExplosionRune
