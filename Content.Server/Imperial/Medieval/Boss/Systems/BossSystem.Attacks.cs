@@ -125,7 +125,7 @@ public sealed partial class BossSystem
             NeedHand = false,
         };
 
-        _doAfter.TryStartDoAfter(doAfter);
+        _doAfter.TryStartDoAfter(doAfter, out component.DoAfter);
     }
 
     private void OnChargingDoAfter(EntityUid uid, ChargingRuneExplosionComponent component, BossRunesChargingDoAfterEvent args)
@@ -373,6 +373,7 @@ public sealed partial class BossSystem
                     QueueDel(item);
 
                 RemComp<ChargingRuneExplosionComponent>(uid);
+                _doAfter.Cancel(comp.DoAfter);
                 continue;
             }
         }
