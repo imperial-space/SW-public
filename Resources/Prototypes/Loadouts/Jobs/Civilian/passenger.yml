@@ -79,17 +79,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorBlack
 
-# Red
-- type: loadout
-  id: RedJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorRed
-
-- type: loadout
-  id: RedJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtColorRed
-
 # Green
 - type: loadout
   id: GreenJumpsuit
@@ -112,17 +101,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorOrange
 
-# Yellow
-- type: loadout
-  id: YellowJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorYellow
-
-- type: loadout
-  id: YellowJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtColorYellow
-
 # Pink
 - type: loadout
   id: PinkJumpsuit
@@ -133,17 +111,6 @@
   id: PinkJumpskirt
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorPink
-
-# White
-- type: loadout
-  id: WhiteJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorWhite
-
-- type: loadout
-  id: WhiteJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtColorWhite
 
 # Brown
 - type: loadout
@@ -231,7 +198,6 @@
   equipment:
     gloves: ClothingHandsGlovesColorBlack
 
-
 - type: loadout
   id: BrownGloves
   equipment:
@@ -261,16 +227,6 @@
   id: GreenGloves
   equipment:
     gloves: ClothingHandsGlovesColorGreen
-
-- type: loadout
-  id: OrangeGloves
-  equipment:
-    gloves: ClothingHandsGlovesColorOrange
-
-- type: loadout
-  id: PurpleGloves
-  equipment:
-    gloves: ClothingHandsGlovesColorPurple
 
 # Outerclothing
 - type: loadout
@@ -355,11 +311,6 @@
     shoes: ClothingShoesColorRed
 
 - type: loadout
-  id: BlueShoes
-  equipment:
-    shoes: ClothingShoesColorBlue
-
-- type: loadout
   id: GreenShoes
   equipment:
     shoes: ClothingShoesColorGreen
@@ -378,17 +329,6 @@
   id: PurpleShoes
   equipment:
     shoes: ClothingShoesColorPurple
-
-- type: loadout
-  id: BrownShoes
-  equipment:
-    shoes: ClothingShoesColorBrown
-
-- type: loadout
-  id: WhiteShoes
-  equipment:
-    shoes: ClothingShoesColorWhite
-
 # Scarves
 - type: loadout
   id: ScarfRed
