@@ -59,6 +59,10 @@
     MedievalClothingNeckCloakClanFox: [MedievalClothingNeckCloakRoyalInsFox]
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadRoyalHelmet]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth73]
+    MedievalClothingOuterHorseArmorUpIron: [MedievalClothingOuterHorseRoyalArmorUpIron]
+    MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuteRoyalArmorIronCuirassLight]
+    MedievalWoodenShieldKnight: [MedievalRoyalWoodenShieldKnight]
+    MedievalWoodenShield: [MedievalRoyalWoodenShield]
 
 - type: customization
   id: game123456

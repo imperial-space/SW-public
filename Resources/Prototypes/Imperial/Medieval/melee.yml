@@ -1007,6 +1007,44 @@
 
 - type: entity
   name: wooden shield
+  parent: MedievalWoodenShieldKnight
+  id: MedievalRoyalWoodenShieldKnight
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/royalwoodknight.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/royalwoodknight.rsi
+      size: Ginormous
+    - type: Clothing
+      equipDelay: 3
+      unequipDelay: 3
+      quickEquip: false
+      slots:
+      - suitStorage
+
+- type: entity
+  name: wooden shield
+  parent: MedievalWoodenShield
+  id: MedievalRoyalWoodenShield
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/royalwooden.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/royalwooden.rsi
+      size: Ginormous
+    - type: Clothing
+      equipDelay: 3
+      unequipDelay: 3
+      quickEquip: false
+      slots:
+      - suitStorage
+
+- type: entity
+  name: wooden shield
   parent: BaseShield
   id: MedievalWoodenShield
   description: Wooden shield.

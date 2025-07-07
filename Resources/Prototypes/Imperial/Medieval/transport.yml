@@ -96,6 +96,17 @@
   - type: MedievalIronHitSound
 
 - type: entity
+  parent: MedievalClothingOuterHorseArmorUpIron
+  id: MedievalClothingOuterHorseRoyalArmorUpIron
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Horse/royalarmor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Horse/royalarmor.rsi
+
+- type: entity
   parent: ClothingShoesBase
   id: MedievalClothingHorseshoe
   name: horseshoe
