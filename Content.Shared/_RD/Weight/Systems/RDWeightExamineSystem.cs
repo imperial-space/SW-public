@@ -16,11 +16,14 @@ namespace Content.Shared._RD.Weight.Systems;
 
 public sealed class RDWeightExamineSystem : EntitySystem
 {
+    [Dependency] private readonly RDWeightSystem _weight = default!;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<RDWeightExamineComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<RDWeightExamineComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<RDWeightExamineComponent, RDWeightRefreshEvent>(OnRefresh);
     }
 
@@ -35,14 +38,26 @@ public sealed class RDWeightExamineSystem : EntitySystem
         }
     }
 
+    private void OnStartup(Entity<RDWeightExamineComponent> entity, ref ComponentStartup args)
+    {
+        Refresh(entity);
+    }
+
     private void OnRefresh(Entity<RDWeightExamineComponent> entity, ref RDWeightRefreshEvent args)
     {
+        Refresh(entity, args.Total);
+    }
+
+    private void Refresh(Entity<RDWeightExamineComponent> entity, float? total = null)
+    {
+        total ??= _weight.GetTotal(entity.Owner);
+
         var previous = entity.Comp.Current;
         LocId? current = null;
 
         foreach (var (id, range) in entity.Comp.Examines)
         {
-            if (args.Total <= range.Max && args.Total >= range.Min)
+            if (total <= range.Max && total >= range.Min)
                 current = id;
         }
 
