@@ -240,6 +240,8 @@ public sealed partial class BossSystem : EntitySystem
 
             _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 85, 10, 0, null, 0, 0, false);
             comp.NextExplosion = _timing.CurTime + TimeSpan.FromSeconds(comp.Delay);
+            comp.Index++;
+
             if (comp.Index >= comp.Explosions)
             {
                 RemComp<ExplosionDefeatedBossComponent>(uid);
