@@ -32,10 +32,16 @@ public sealed class RDWeightSystem : RDEntitySystem
         _configuration.OnValueChanged(RDConfigVars.WeightMaxUpdates, value => _maxUpdates = value, true);
 
         SubscribeLocalEvent<RDWeightComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<RDWeightComponent, StackCountChangedEvent>(OnStackChanged);
         SubscribeLocalEvent<RDWeightComponent, EntParentChangedMessage>(OnParentChanged);
     }
 
-    private void OnStartup(Entity<RDWeightComponent> entity, ref ComponentStartup _)
+    private void OnStartup(Entity<RDWeightComponent> entity, ref ComponentStartup args)
+    {
+        Refresh((entity, entity));
+    }
+
+    private void OnStackChanged(Entity<RDWeightComponent> entity, ref StackCountChangedEvent args)
     {
         Refresh((entity, entity));
     }
