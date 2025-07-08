@@ -358,6 +358,7 @@
       "[color=#8B0000]Обездвижен переносимым весом[/color]":
         min: 180
         max: 20000      # несет более 105 кг (не может двигаться без посторонней помощи)
+  - type: RDWeightThrowerModifier
 # Imperial Medieval End
 
 - type: entity
