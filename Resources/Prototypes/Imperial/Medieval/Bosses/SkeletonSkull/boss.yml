@@ -170,7 +170,7 @@
           priority: 1.25
           actions:
           - !type:SpawnAtPosition
-            prototypes: [BossSpikesSpawnMarkerPincerVertical, BossSpikesSpawnMarkerRandomBurst, BossSpikesSpawnMarkerDiagonalSweep, BossSpikesSpawnMarkerCrossInverted]
+            prototypes: [BossSpikesSpawnMarkerPincerVertical, BossSpikesSpawnMarkerRandomBurst, BossSpikesSpawnMarkerDiagonalSweep, BossSpikesSpawnMarkerBox]
             randomDistance: 2
             spawnCount: 1
         - !type:GridTargetedAttack

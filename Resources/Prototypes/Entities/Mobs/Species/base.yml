@@ -335,7 +335,7 @@
   - type: RDWeightExamine
     examines:
       "[color=#ADFF2F]Налегке[/color]":
-        min: 75
+        min: 0
         max: 85       # несет до 10 кг (легкая сумка, пистолет)
       "[color=#FFFF00]Слегка загружен[/color]":
         min: 85
