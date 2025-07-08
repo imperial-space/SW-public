@@ -5837,3 +5837,6 @@ ent-MedievalClothingOuterHorseRoyalArmorUpIron = латная лошадиная
 boss-defeated-announce = Скелетрон сокрушён! Смертные доказали, что даже воля Морбиуса не вечна!
 boss-won-announce = Воля Морбиуса восторжествовала. Ваши кости пополнят его костяной трон. Смерть неизбежна.
 mc-weight-examine = {$name}
+ent-MedievalScrollBarrier = магический свиток
+    .desc = Свиток, нуждающийся в расшифровке
+    .suffix = { "Средневековье" }
