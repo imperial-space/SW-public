@@ -17,13 +17,15 @@ public enum MagicScrollUiKey : byte
 }
 
 [Serializable, NetSerializable]
-public sealed class MagicScrollBoundUserInterfaceState(int scrollPower, List<MagicRune> encryptedRunes, HashSet<MagicRune> decodedRunes, HashSet<MagicRune> knownRunes, int playerIntelligence) : BoundUserInterfaceState
+public sealed class MagicScrollBoundUserInterfaceState(int scrollPower, List<MagicRune> encryptedRunes, HashSet<MagicRune> decodedRunes, HashSet<MagicRune> knownRunes, int playerIntelligence, int gridSize, int totalMines) : BoundUserInterfaceState
 {
     public int ScrollPower = scrollPower;
     public List<MagicRune> EncryptedRunes = encryptedRunes;
     public HashSet<MagicRune> DecodedRunes = decodedRunes;
     public HashSet<MagicRune> KnownRunes = knownRunes;
     public int PlayerIntelligence = playerIntelligence;
+    public int GridSize = gridSize;
+    public int TotalMines = totalMines;
 }
 
 [Serializable, NetSerializable]
