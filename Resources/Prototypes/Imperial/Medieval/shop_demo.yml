@@ -2304,22 +2304,6 @@
   - MedievalMagicDemo
 
 - type: listing
-  id: DemoMdvShopMedievalScrollBarrierWeak
-  productEntity: MedievalScrollBarrierWeak
-  cost:
-    UnknownMedieval: 1
-  categories:
-  - MedievalMagicDemo
-
-- type: listing
-  id: DemoMdvShopMedievalScrollBarrierNormal
-  productEntity: MedievalScrollBarrierNormal
-  cost:
-    UnknownMedieval: 1
-  categories:
-  - MedievalMagicDemo
-
-- type: listing
   id: DemoMdvShopBible
   productEntity: Bible
   cost:

@@ -3,6 +3,8 @@
   id: MedievalClothingHeadBase
   abstract: true
   components:
+  - type: RDWeight
+    value: 0.5
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -24,6 +26,8 @@
   id: MedievalClothingHelmetBaseHeavy
   abstract: true
   components:
+  - type: RDWeight
+    value: 2.5
   - type: Clothing
     equipSound:
       path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
@@ -51,6 +55,8 @@
   id: MedievalClothingHelmetBaseLight
   abstract: true
   components:
+  - type: RDWeight
+    value: 1.5
   - type: Tag
 
 
@@ -621,7 +627,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  
+
 - type: entity
   parent: MedievalClothingHeadHelmetCollegiumPurpleHat
   id: MedievalClothingHeadHelmetCollegiumHatBaronSaturday
@@ -772,7 +778,7 @@
     sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
 
 - type: entity
-  parent: MedievalClothingHeadHelmetCharmerWeak
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetCharmerWeakStrayMage
   name: MedievalClothingHeadHelmetCharmerWeakStrayMage
   description: MedievalClothingHeadHelmetCharmerWeakStrayMage
@@ -781,6 +787,18 @@
     sprite: Imperial/Medieval/Clothing/Head/stray.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/stray.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.85
+        Piercing: 0.95
+  - type: Meltable
+    resourceCount: 2
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ManaRegen
+    regen: 0.25
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
@@ -816,6 +834,13 @@
     sprite: Imperial/Medieval/Clothing/Head/leg1.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/leg1.rsi
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-rec
+      right:
+      - state: inhand-right-rec
   - type: Armor
     modifiers:
       coefficients:
@@ -847,6 +872,13 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -862,6 +894,13 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -877,6 +916,13 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -894,6 +940,13 @@
     enabled: false
   - type: IdentityBlocker
     enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -1266,7 +1319,7 @@
     sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
 
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: MedievalClothingHeadHelmetShapel
   id: MedievalClothingHeadRoyalHoop
   name: MedievalClothingHeadRoyalHoop
   description: MedievalClothingHeadRoyalHoop

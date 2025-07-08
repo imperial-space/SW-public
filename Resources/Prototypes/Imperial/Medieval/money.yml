@@ -44,7 +44,8 @@
   - type: Appearance
   - type: StealTarget
     stealGroup: MedievalMoney
-
+  - type: RDWeight
+    value: 0.005
 
 - type: entity
   name: MedievalRevent

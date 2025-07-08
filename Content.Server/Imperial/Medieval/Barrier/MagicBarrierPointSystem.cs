@@ -20,8 +20,15 @@ using Content.Shared.Speech;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 using Content.Server.BadSmell.Components;
+using Content.Server.MagicSpellcraft.Components;
+using Content.Shared.DoAfter;
+using Content.Shared.Imperial.Medieval.MagicRunes.Components;
+using Content.Shared.Imperial.Medieval.MagicRunes.Data;
+using Content.Shared.Imperial.Medieval.MagicRunes.Systems;
 using Content.Shared.Nocturn.Components;
 using Content.Shared.Interaction;
+using Content.Shared.Popups;
+using Content.Shared.Verbs;
 
 namespace Content.Server.MagicBarrier
 {
@@ -37,6 +44,10 @@ namespace Content.Server.MagicBarrier
         [Dependency] private readonly MobStateSystem _mobState = default!;
         [Dependency] private readonly DayTimeSystem _dayTime = default!;
         [Dependency] private readonly TipsSystem _tips = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+        [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+        [Dependency] private readonly MagicRuneSystem _rune = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
 
         public override void Initialize()
         {
@@ -49,6 +60,50 @@ namespace Content.Server.MagicBarrier
             SubscribeLocalEvent<MedievalSpikeTargetComponent, MobStateChangedEvent>(OnDeath);
             SubscribeLocalEvent<MedievalSpikeTargetComponent, BeforeDamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<MedievalSpikeTargetComponent, ScreamActionEvent>(OnScreamAction);
+            SubscribeLocalEvent<MagicBarrierComponent, GetVerbsEvent<AlternativeVerb>>(AddSuicideVerb);
+            SubscribeLocalEvent<MagicRuneKnowledgeComponent, BarrierSuicideDoAfterEvent>(OnBarrierSuicideDoAfterEvent);
+        }
+
+        private void OnBarrierSuicideDoAfterEvent(EntityUid uid, MagicRuneKnowledgeComponent component, BarrierSuicideDoAfterEvent args)
+        {
+            if (args.Cancelled || args.Handled)
+                return;
+
+            var points = _rune.CalculateIntegrityGiven(args.User);
+            if (TryComp<MagicBarrierComponent>(args.Target, out var barrierComponent))
+            {
+                barrierComponent.Stability += points;
+            }
+
+            var dspec = new DamageSpecifier();
+            dspec.DamageDict.Add("Slash", 10000);
+            _damageable.TryChangeDamage(uid, dspec, true, false);
+
+            args.Handled = true;
+        }
+
+        private void AddSuicideVerb(EntityUid uid, MagicBarrierComponent component, GetVerbsEvent<AlternativeVerb> args)
+        {
+            AlternativeVerb verb = new()
+            {
+                Text = "Выполнить преподношение",
+                Act = () => TrySuicide(args.User, uid),
+            };
+            args.Verbs.Add(verb);
+        }
+
+        private void TrySuicide(EntityUid uid, EntityUid barrier)
+        {
+            if (!HasComp<MagicRuneKnowledgeComponent>(uid))
+            {
+                _popupSystem.PopupEntity("Я слишком бесполезен..", uid, uid);
+                return;
+            }
+
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, uid, 5, new BarrierSuicideDoAfterEvent(), uid, target: barrier, used: uid)
+            {
+                BreakOnMove = true,
+            });
         }
 
 
@@ -68,6 +123,15 @@ namespace Content.Server.MagicBarrier
             {
                 barrier.Stability += comp.Power;
                 Audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), barrier.Owner);
+                QueueDel(used);
+                return;
+            }
+
+            if (TryComp<MagicSpellcraftComponent>(target, out var magicSpellcraft))
+            {
+                magicSpellcraft.Charge += comp.Power;
+
+                Audio.PlayPvs(new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd), target.Value);
                 QueueDel(used);
             }
         }
@@ -453,28 +517,27 @@ namespace Content.Server.MagicBarrier
                         }
                     }
 
-                    if (comp.Cycle == 85)
-                    {
-                        var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
-                        var choosenSpawner = _random.Pick(cursespawners);
-                        var cursexform = Transform(choosenSpawner.Owner);
-                        var cursecoords = cursexform.Coordinates;
-                        Spawn("MedievalSpawnNecroSenderPreset", cursecoords);
-                        _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
-                    }
+                    //if (comp.Cycle == 85)
+                    //{
+                    //    var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
+                    //    var choosenSpawner = _random.Pick(cursespawners);
+                    //    var cursexform = Transform(choosenSpawner.Owner);
+                    //    var cursecoords = cursexform.Coordinates;
+                    //    Spawn("MedievalSpawnNecroSenderPreset", cursecoords);
+                    //    _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                    //}
 
-                    if (comp.Cycle == 161)
-                    {
-                        var cursespawners = EntityManager.EntityQuery<MagicBarrierNecroSpawnComponent>().ToArray();
-                        var choosenSpawner = _random.Pick(cursespawners);
-                        var cursexform = Transform(choosenSpawner.Owner);
-                        var cursecoords = cursexform.Coordinates;
-                        for (int i = 0; i < 100; i++)
-                            Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroLeaderPreset", cursecoords);
-                        _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
-
-                    }
+                    //if (comp.Cycle == 161)
+                    //{
+                    //    var cursespawners = EntityManager.EntityQuery<MagicBarrierNecroSpawnComponent>().ToArray();
+                    //    var choosenSpawner = _random.Pick(cursespawners);
+                    //    var cursexform = Transform(choosenSpawner.Owner);
+                    //    var cursecoords = cursexform.Coordinates;
+                    //    for (int i = 0; i < 100; i++)
+                    //        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                    //    Spawn("MedievalSpawnNecroLeaderPreset", cursecoords);
+                    //    _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                    //}
 
                     if (comp.Cycle == 180)
                     {
