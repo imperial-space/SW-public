@@ -1,9 +1,11 @@
 using System.Linq;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Flash;
 using Content.Server.Jittering;
 using Content.Server.MagicBarrier.Components;
+using Content.Shared.Chat;
 using Content.Shared.Imperial.Medieval.Boss;
 using Content.Shared.Jittering;
 using Content.Shared.Mobs.Systems;
@@ -30,7 +32,7 @@ public sealed partial class BossSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly JitteringSystem _jittering = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly FlashSystem _flash = default!;
 
     public override void Initialize()
@@ -124,9 +126,12 @@ public sealed partial class BossSystem : EntitySystem
 
     public void BossDefeated(EntityUid boss, BossComponent component)
     {
+        if (!component.Active)
+            return;
+
         _audio.PlayGlobal(_audio.ResolveSound(component.DefeatSound), Filter.Broadcast(), true);
         if (component.DefeatMessage != string.Empty)
-            _chat.DispatchGlobalAnnouncement(Loc.GetString(component.DefeatMessage), playSound: false);
+            _chat.ChatMessageToAll(ChatChannel.Radio, Loc.GetString(component.DefeatMessage), Loc.GetString(component.DefeatMessage), EntityUid.Invalid, false, true, Color.FromHex("#92ec00"));
 
         _jittering.DoJitter(boss, TimeSpan.FromSeconds(10), true, 10, 7);
         _audio.Stop(component.SongEntity);
@@ -137,9 +142,12 @@ public sealed partial class BossSystem : EntitySystem
 
     public void BossWon(EntityUid boss, BossComponent component)
     {
+        if (!component.Active)
+            return;
+
         _audio.PlayGlobal(_audio.ResolveSound(component.LoseSound), Filter.Broadcast(), true);
         if (component.LoseMessage != string.Empty)
-            _chat.DispatchGlobalAnnouncement(Loc.GetString(component.LoseMessage), playSound: false);
+            _chat.ChatMessageToAll(ChatChannel.Radio, Loc.GetString(component.LoseMessage), Loc.GetString(component.LoseMessage), EntityUid.Invalid, false, true, Color.FromHex("#cc3a00"));
 
         SendPlayersBack(component.Players);
         component.Active = false;
@@ -193,6 +201,7 @@ public sealed partial class BossSystem : EntitySystem
             if (!bossComp.Players.Where(x => _mobState.IsAlive(x)).Any())
             {
                 BossWon(uid, bossComp);
+                QueueDel(uid);
                 continue;
             }
 

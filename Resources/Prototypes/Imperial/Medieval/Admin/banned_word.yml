@@ -96,6 +96,7 @@
     - тильт
     - трап
     - квадробер
+    - донат
 
 - type: messageNotif
   id: second

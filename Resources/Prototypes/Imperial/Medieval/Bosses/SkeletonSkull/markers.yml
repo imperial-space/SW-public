@@ -76,4 +76,4 @@
     - state: red
   - type: Tag
     tags:
-    - BossSpawnPosition
+    - BossTrapPlayerSpawnPosition

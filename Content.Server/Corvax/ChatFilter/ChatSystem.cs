@@ -152,7 +152,8 @@ public sealed partial class ChatSystem
         { "чилить", "отдыхать" },
         { "чил", "отдых" },
         { "чечик", "человек" },
-        { "скуф", "старик" }
+        { "скуф", "старик" },
+        { "увы", "сожалею" }
     };
 
     private string ReplaceWords(string message)

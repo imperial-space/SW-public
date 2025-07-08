@@ -57,8 +57,8 @@
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.88
+    sprintModifier: 0.88
 
 - type: entity
   parent: ClothingOuterBase
@@ -89,8 +89,8 @@
         Piercing: 0.5
         Heat: 0.2
   - type: ClothingSpeedModifier
-    walkModifier: 0.7
-    sprintModifier: 0.7
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Item
     size: Huge
   - type: MedievalIronHitSound
@@ -198,12 +198,12 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.35
+          radius: 0.49
         density: 30
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
-        - SmallMobMask
+        - MobLayer
   - type: InventorySlots
   - type: Inventory
     speciesId: horse
@@ -253,13 +253,20 @@
     - Critical
     - Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 4
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 3
     baseSprintSpeed: 3
   - type: MobThresholds
     thresholds:
       0: Alive
-      100: Critical
-      150: Dead
+      270: Critical
+      390: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 1
+      150: 0.9
+      205: 0.8
   - type: DamageStateVisuals
     states:
       Alive:
@@ -274,9 +281,10 @@
       amount: 4
   - type: Strap
     position: Stand
-    buckleOffset: "-0.00, 0.00"
+    buckleOffset: "-0.00, -0.02"
     buckleTime: 1
     maxBuckleDistance: 1
   - type: Rideable
   - type: RideableSprint
-
+    accelerationTime: 8
+    maxSpeedModifier: 1.76

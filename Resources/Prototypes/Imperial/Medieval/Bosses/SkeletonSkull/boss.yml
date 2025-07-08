@@ -50,6 +50,8 @@
   - type: StatusEffects
     allowed:
     - Jitter
+  - type: FloatingVisuals
+    ignoreGravity: true
   - type: Boss
     song:
       path: /Audio/Imperial/Medieval/Locations/Laststandofspellward.ogg
@@ -65,7 +67,7 @@
     stages:
       1:
         stageDelay: 3
-        threshold: 3000
+        threshold: 3500
         attacks:
         - !type:MarkerTargetedAttack
           markerTag: BoneSpikeSpawnPosition
@@ -204,15 +206,15 @@
           - !type:BossAppearance
               state: red
               duration: 1.9
-        - !type:PlayerTargetedAttack
-          #markerTag: BossRuneSpawnPosition
+        - !type:MarkerTargetedAttack
+          markerTag: BossRuneSpawnPosition
           countLimits: [1, 1]
           cooldown: 50
           priority: 3
           actions:
           - !type:SpawnAtPosition
             prototypes: SkullBossCrystalTrap
-            randomDistance: 0
+            randomDistance: 2
             spawnCount: 1
           - !type:PlaySound
             sound:

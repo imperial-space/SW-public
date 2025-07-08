@@ -192,6 +192,8 @@
     damage:
       types:
         Blunt: 6 # imperial medieval start
+  - type: RDWeight
+    value: 3
   - type: QuestItem
     contractName: "бревна"  # imperial medieval end
   - type: Produce
