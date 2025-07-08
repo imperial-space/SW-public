@@ -211,7 +211,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
 
         var price = ev.Price;
         price += GetMaterialsPrice(prototype);
-        price += GetSolutionsPrice(prototype);
+        // Imperial Lathe Nerf
         // Can't use static price with stackprice
         var oldPrice = price;
         price += GetStackPrice(prototype);
@@ -222,8 +222,11 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         }
 
         // TODO: Proper container support.
-
-        return ApplyPrototypePriceModifier(prototype, price); // Imperial Lathe Nerf
+        // Imperial Lathe Nerf; Start
+        price = ApplyPrototypePriceModifier(prototype, price);
+        price += GetSolutionsPrice(prototype);
+        return price;
+        // Imperial Lathe Nerf; end
     }
 
     /// <summary>
@@ -247,8 +250,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         //TODO: Add an OpaqueToAppraisal component or similar for blocking the recursive descent into containers, or preventing material pricing.
         // DO NOT FORGET TO UPDATE ESTIMATED PRICING
         price += GetMaterialsPrice(uid);
-        price += GetSolutionsPrice(uid);
-
+        // Imperial Lathe Nerf
         // Can't use static price with stackprice
         var oldPrice = price;
         price += GetStackPrice(uid);
@@ -270,8 +272,11 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
                 }
             }
         }
-
-        return ApplyPriceModifier(uid, price); // Imperial Lathe Nerf
+        // Imperial Lathe Nerf; Start
+        price = ApplyPriceModifier(uid, price);
+        price += GetSolutionsPrice(uid);
+        return price; 
+        // Imperial Lathe Nerf; End
     }
 
     private double GetMaterialsPrice(EntityUid uid)
