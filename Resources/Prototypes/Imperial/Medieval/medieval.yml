@@ -3578,6 +3578,26 @@
     base: water
 
 - type: entity
+  name: Magic Stone Random Spawner
+  id: MedievalMagicStoneRandom
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - MedievalMagicStoneKael
+    - MedievalMagicStoneRyn
+    - MedievalMagicStoneVel
+    - MedievalMagicStoneOth
+    - MedievalMagicStoneThar
+    - MedievalMagicStoneLun
+    - MedievalMagicStoneSeth
+    - MedievalMagicStoneMira
+
+- type: entity
   id: MedievalMagicStoneKael
   name: Камень магии Каэль
   description: Камень, в котором заключена руна огня и разрушения.
