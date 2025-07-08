@@ -35,6 +35,6 @@ public sealed partial class MagicScrollComponent : Component
     public int GridSize = 10;
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int TotalMines = 14;
+    public int TotalMines = 13;
 }
 
