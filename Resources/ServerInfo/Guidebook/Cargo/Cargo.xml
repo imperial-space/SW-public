@@ -1,23 +1,25 @@
 <Document>
-  # Cargo
+  # Поставки
 
-  The Supply department, also known as [color=cyan]Cargo[/color], supplies the station with necessary resources, such as fuel and raw materials, and comfort resources, such as lottery tickets and plushies.
+  Отдел Поставок, более известный как [color=cyan]Карго[/color], обеспечивает станцию необходимым ресурсами, такими как топливо, чистые материалы, оборудование и т.п.
+  
+  Добыча [color=cyan]кредитов[/color] (валюты станции) может осуществляться множеством методов. Например, выполнением задач от ЦК, продажей редких предметов, а также утилизацией обломков и астеройдов из космоса. Кредиты позволяют Карго покупать большое количество экипировки, машин и материалов для станции и отделов. 
 
-  They raise the [color=cyan]spesos[/color] (the currency of the station) for this through many methods, such as taking bounties, selling miscellaneous items, and salvaging, allowing them to purchase a wide variety of equipment from off-station for any crew member's needs. It is Cargo's job to fulfill the needs of the rest of the station.
+  ## Сотрудники
 
-  ## Personnel
-
-  Cargo is made up of [color=cyan]Cargo Technicians[/color] and [color=cyan]Salvage Specialists[/color] and is led by the [color=cyan]Quartermaster[/color].
+  Карго состоит иж [color=cyan]Грузчиков[/color] и [color=cyan]Утилизаторов[/color], управляемых [color=cyan]Квартирмейстером[/color].
 
   <Box>
-    <GuideEntityEmbed Entity="ToyFigurineCargoTech" Caption="Cargo Tech"/>
-    <GuideEntityEmbed Entity="ToyFigurineSalvage" Caption="Salvage"/>
-    <GuideEntityEmbed Entity="ToyFigurineQuartermaster" Caption="QM"/>
+    <GuideEntityEmbed Entity="ToyFigurineCargoTech" Caption="Грузчик"/>
+    <GuideEntityEmbed Entity="ToyFigurineSalvage" Caption="Утилизатор"/>
+    <GuideEntityEmbed Entity="ToyFigurineQuartermaster" Caption="КМ"/>
   </Box>
 
-  ## Making Money
+  ## Время денег
 
-  The main struggle of any Cargo department is not having enough money.
+  Главное проблема каждого Карго отдела — отсутствие денег. 
+  
+  Карго получает деньги, продавая вещи на [color=cyan]Торговом Аванпосте[/color]. Почти всё на станции имеет стоимость, которую можно проверить с посощью [color=cyan]оценочного инструмента[/color] 
 
   Cargo makes their money by selling things at the [color=cyan]Trading Station[/color]. Almost everything on the station has economic value that you can sell, as seen via the [color=cyan]appraisal tool[/color]. That value then further increases when you sell it as part of a [textlink="bounty" link="CargoBounties"].
 
