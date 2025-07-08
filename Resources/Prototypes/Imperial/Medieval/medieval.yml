@@ -7821,41 +7821,6 @@
   - type: UseDelay
     delay: 2.0
 
-- type: hitscan
-  id: MedievalMagicBeam
-  damage:
-    types:
-      Heat: 5
-  muzzleFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: muzzle_laser
-  travelFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: beam
-  impactFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: impact_laser
-
-- type: entity
-  id: BaseWeaponPowerCell
-  parent: BaseItem
-  abstract: true
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Gun/prism.rsi
-  - type: Item
-    size: Huge
-  - type: Gun
-    fireRate: 25
-    selectedMode: FullAuto
-    availableModes:
-    - FullAuto
-    soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
-  - type: HitscanBatteryAmmoProvider
-    proto: MedievalMagicBeam
-  - type: Appearance
-
 - type: entity
   parent: BaseStructureMedieval
   id: MedievalSharpeningMachine
