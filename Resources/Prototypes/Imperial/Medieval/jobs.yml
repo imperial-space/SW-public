@@ -3806,6 +3806,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
+    - type: MagicRuneKnowledge
     - type: MedievalPasportPerson
       personJob: "[color=purple]Послушник коллегии[/color]"
       pasport: MedievalPasportCollegium
@@ -3886,6 +3887,7 @@
       personJob: "[color=purple]Маг коллегии[/color]"
       pasport: MedievalPasportCollegium
       jobPrefix: "[МагК]"
+    - type: MagicRuneKnowledge
 
 - type: roleLoadout
   id: JobMedievalCollegiumCommon
@@ -3968,6 +3970,7 @@
     - type: CloackMessage
       action: CloackMessageActionCollegium
       faction: "collegium"
+    - type: MagicRuneKnowledge
 
 - type: roleLoadout
   id: JobMedievalCollegiumLeader
