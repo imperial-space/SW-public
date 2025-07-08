@@ -1,6 +1,6 @@
 ﻿/*
  * Project: raincidation
- * File: RDWeightSpeedModifierComponent.cs
+ * File: RDWeightThrowModifierComponent.cs
  * License: All rights reserved
  * Copyright: (c) 2025 TornadoTechnology
  *
@@ -15,12 +15,9 @@ using Robust.Shared.GameStates;
 namespace Content.Shared._RD.Weight.Components;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true)]
-[Access(typeof(RDWeightSpeedModifierSystem), Other = AccessPermissions.None)]
-public sealed partial class RDWeightSpeedModifierComponent : Component
+[Access(typeof(RDWeightThrowModifierSystem))]
+public sealed partial class RDWeightThrowModifierComponent : Component
 {
-    [ViewVariables, AutoNetworkedField]
-    public float Value = 1;
-
     [DataField, ViewVariables, AutoNetworkedField]
     public RDWeightModifierCurve Curve = new RDWeightModifierLinearCurve();
 }
