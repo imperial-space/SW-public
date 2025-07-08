@@ -3577,14 +3577,113 @@
     key: water
     base: water
 
-
-
+- type: entity
+  id: MedievalMagicStoneKael
+  name: Камень магии Каэль
+  description: Камень, в котором заключена руна огня и разрушения.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Kael
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: kael
 
 - type: entity
-  id: MedievalScrollBarrierWeak
+  id: MedievalMagicStoneRyn
+  name: Камень магии Рин
+  description: Камень, в котором заключена руна воды и адаптации.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Ryn
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: ryn
+
+- type: entity
+  id: MedievalMagicStoneVel
+  name: Камень магии Вэль
+  description: Камень, в котором заключена руна тени и наведения.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Vel
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: vel
+
+- type: entity
+  id: MedievalMagicStoneOth
+  name: Камень магии От
+  description: Камень, в котором заключена руна иллюзии и магии.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Oth
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: oth
+
+- type: entity
+  id: MedievalMagicStoneThar
+  name: Камень магии Тар
+  description: Камень, в котором заключена руна пустоты и ничто.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Thar
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: thar
+
+- type: entity
+  id: MedievalMagicStoneLun
+  name: Камень магии Лун
+  description: Камень, в котором заключена руна тьмы и звезды смерти.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Lun
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: lun
+
+- type: entity
+  id: MedievalMagicStoneSeth
+  name: Камень магии Сет
+  description: Камень, в котором заключена руна яда и проклятия.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Seth
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: seth
+
+- type: entity
+  id: MedievalMagicStoneMira
+  name: Камень магии Мира
+  description: Камень, в котором заключена руна защиты и барьера.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Mira
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: mira
+
+- type: entity
+  id: MedievalScrollBarrier
   name: scroll of runes
   parent: BaseItem
   components:
+  - type: ActivatableUI
+    key: enum.MagicScrollUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MagicScrollUiKey.Key:
+        type: MagicScrollBoundUserInterface
   - type: Item
     size: Small
   - type: Sprite
@@ -3592,50 +3691,18 @@
     layers:
     - state: scroll1
   - type: MagicScroll
-    power: 3
   - type: Tag
     tags:
     - MagicScroll
   - type: TrashClear # imperial medieval
     safe: true # imperial medieval
-
-- type: entity
-  id: MedievalScrollBarrierNormal
-  name: scroll of runes
-  parent: BaseItem
-  components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
-    layers:
-    - state: scroll2
-  - type: MagicScroll
-    power: 7
-  - type: Tag
-    tags:
-    - MagicScroll
-  - type: TrashClear # imperial medieval
-    safe: true # imperial medieval
-
-- type: entity
-  id: MedievalScrollBarrierGood
-  name: scroll of runes
-  parent: BaseItem
-  components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
-    layers:
-    - state: scroll3
-  - type: MagicScroll
-    power: 12
-  - type: Tag
-    tags:
-    - MagicScroll
-  - type: TrashClear # imperial medieval
-    safe: true # imperial medieval
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1.1
+    intensitySlope: 8
+    totalIntensity: 36
+    maxTileBreak: 0
+    deleteAfterExplosion: true
 
 - type: entity
   id: MedievalScrollBarrierBad
@@ -3647,47 +3714,10 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     layers:
-    - state: scroll3
+    - state: scroll1
   - type: MagicScroll
-    power: -15
-  - type: Tag
-    tags:
-    - MagicScroll
-  - type: TrashClear # imperial medieval
-    safe: true # imperial medieval
-
-- type: entity
-  id: MedievalScrollBarrierDebug
-  name: scroll of runes
-  parent: BaseItem
-  components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: spell_default
-  - type: MagicScroll
-    power: 60
-  - type: Tag
-    tags:
-    - MagicScroll
-  - type: TrashClear # imperial medieval
-    safe: true # imperial medieval
-
-- type: entity
-  id: MedievalScrollBarrierDebugBad
-  name: scroll of runes
-  parent: BaseItem
-  components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: spell_default
-  - type: MagicScroll
-    power: -60
+    bad: true
+    basicPower: -15
   - type: Tag
     tags:
     - MagicScroll
@@ -6479,7 +6509,7 @@
     personJob: "[color=yellow]Дворянин[/color]"
     personName: "Викта Белосвет"
     personRace: Beastmen
-    
+
 
 
 - type: entity

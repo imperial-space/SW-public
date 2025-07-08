@@ -2591,22 +2591,6 @@
   - MedievalMagic
 
 - type: listing
-  id: MdvShopMedievalScrollBarrierWeak
-  productEntity: MedievalScrollBarrierWeak
-  cost:
-    Revent: 32
-  categories:
-  - MedievalMagic
-
-- type: listing
-  id: MdvShopMedievalScrollBarrierNormal
-  productEntity: MedievalScrollBarrierNormal
-  cost:
-    Revent: 75
-  categories:
-  - MedievalMagic
-
-- type: listing
   id: MdvShopBible
   productEntity: Bible
   discountCategory: medievalDiscounts
