@@ -82,6 +82,6 @@
       speechPoints:
         0:
           speech: medieval-spell-speach-prism
-          color: "#00981C"
+          color: "#FFE57E"
           hideChat: true
   - type: MedievalSpawnOnlyInFreeHands
