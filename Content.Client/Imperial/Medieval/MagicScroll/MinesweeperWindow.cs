@@ -142,6 +142,8 @@ public sealed partial class MinesweeperWindow : DefaultWindow
     {
         MinesweeperGrid.RemoveAllChildren();
 
+        MinesweeperGrid.Columns = _gridSize;
+
         for (int i = 0; i < _gridSize; i++)
         {
             for (int j = 0; j < _gridSize; j++)
