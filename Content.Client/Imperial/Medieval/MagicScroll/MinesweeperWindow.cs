@@ -35,7 +35,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
     private int _totalMines = 2;
     private const float GameEndDelay = 3.0f;
 
-    public event Action<bool>? GameCompleted;
+    public event Action<bool, bool>? GameCompleted;
 
     public MinesweeperWindow()
     {
@@ -47,7 +47,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         OnClose += () =>
         {
             if (!_gameOver)
-                GameCompleted?.Invoke(false);
+                GameCompleted?.Invoke(false, false);
         };
         HintButton.OnPressed += _ =>
         {
@@ -357,9 +357,11 @@ public sealed partial class MinesweeperWindow : DefaultWindow
 
         if (won)
         {
+            _revealedCount = _gridSize * _gridSize - _mineCount;
+
             StatusLabel.Text = "Победа! Руна расшифрована! (Окно закроется через 3 секунды)";
             StatusLabel.Modulate = Color.Green;
-            GameCompleted?.Invoke(true);
+            GameCompleted?.Invoke(true, false);
         }
         else
         {
@@ -382,15 +384,21 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                 }
             }
 
-            GameCompleted?.Invoke(false);
+            GameCompleted?.Invoke(false, true);
         }
 
+        UpdateStatus();
         _gameEndTime = _gameTiming.CurTime + TimeSpan.FromSeconds(GameEndDelay);
     }
 
     private void UpdateStatus()
     {
-        if (_gameOver) return;
+        if (_gameOver)
+        {
+            var totalSafeCells = _gridSize * _gridSize - _mineCount;
+            OpenedLabel.Text = $"Открыто: {totalSafeCells}/{totalSafeCells}";
+            return;
+        }
 
         var flaggedCount = 0;
         for (int i = 0; i < _gridSize; i++)
