@@ -66,7 +66,9 @@ public partial class MagicRuneSystem
             encryptedRunes: scroll.EncryptedRunes,
             decodedRunes: scroll.DecodedRunes,
             knownRunes: knowledge.KnownRunes,
-            playerIntelligence: intelligence
+            playerIntelligence: intelligence,
+            scroll.GridSize,
+            scroll.TotalMines
         );
 
         _uiSystem.SetUiState(scrollUid, MagicScrollUiKey.Key, state);

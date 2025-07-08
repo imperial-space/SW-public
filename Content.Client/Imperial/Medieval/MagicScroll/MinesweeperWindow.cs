@@ -31,8 +31,8 @@ public sealed partial class MinesweeperWindow : DefaultWindow
     private bool _hintUsed = false;
     private int _playerIntelligence = 10;
 
-    private const int GridSize = 5;
-    private const int TotalMines = 2;
+    private int _gridSize = 5;
+    private int _totalMines = 2;
     private const float GameEndDelay = 3.0f;
 
     public event Action<bool>? GameCompleted;
@@ -60,9 +60,9 @@ public sealed partial class MinesweeperWindow : DefaultWindow
 
     private void UseHint()
     {
-        for (int i = 0; i < GridSize; i++)
+        for (int i = 0; i < _gridSize; i++)
         {
-            for (int j = 0; j < GridSize; j++)
+            for (int j = 0; j < _gridSize; j++)
             {
                 if (!_revealed[i, j] && !_mineField[i, j] && !_flagged[i, j])
                 {
@@ -91,20 +91,22 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         }
     }
 
-    public void StartGame(MagicRune rune, int playerIntelligence)
+    public void StartGame(MagicRune rune, int playerIntelligence, int gridSize, int totalMines)
     {
         _currentRune = rune;
         _playerIntelligence = playerIntelligence;
+        _gridSize = gridSize;
+        _totalMines = totalMines;
         RuneLabel.Text = $"Расшифровка руны: {MagicRuneData.GetSymbol(rune)} ({MagicRuneData.GetMeaning(rune)})";
         InitializeGame();
     }
 
     private void InitializeGame()
     {
-        _mineField = new bool[GridSize, GridSize];
-        _revealed = new bool[GridSize, GridSize];
-        _flagged = new bool[GridSize, GridSize];
-        _mineCount = TotalMines;
+        _mineField = new bool[_gridSize, _gridSize];
+        _revealed = new bool[_gridSize, _gridSize];
+        _flagged = new bool[_gridSize, _gridSize];
+        _mineCount = _totalMines;
         _revealedCount = 0;
         _gameOver = false;
         _gameEndTime = null;
@@ -112,9 +114,9 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         HintButton.Disabled = false;
 
         var positions = new List<(int, int)>();
-        for (int i = 0; i < GridSize; i++)
+        for (int i = 0; i < _gridSize; i++)
         {
-            for (int j = 0; j < GridSize; j++)
+            for (int j = 0; j < _gridSize; j++)
             {
                 positions.Add((i, j));
             }
@@ -140,9 +142,9 @@ public sealed partial class MinesweeperWindow : DefaultWindow
     {
         MinesweeperGrid.RemoveAllChildren();
 
-        for (int i = 0; i < GridSize; i++)
+        for (int i = 0; i < _gridSize; i++)
         {
-            for (int j = 0; j < GridSize; j++)
+            for (int j = 0; j < _gridSize; j++)
             {
                 var button = new Button
                 {
@@ -210,7 +212,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                 var nx = x + dx;
                 var ny = y + dy;
 
-                if (nx >= 0 && nx < GridSize && ny >= 0 && ny < GridSize)
+                if (nx >= 0 && nx < _gridSize && ny >= 0 && ny < _gridSize)
                 {
                     neighbors.Add((nx, ny));
                 }
@@ -257,7 +259,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                         var nx = x + dx;
                         var ny = y + dy;
 
-                        if (nx >= 0 && nx < GridSize && ny >= 0 && ny < GridSize)
+                        if (nx >= 0 && nx < _gridSize && ny >= 0 && ny < _gridSize)
                         {
                             if (!_revealed[nx, ny] && !_flagged[nx, ny])
                             {
@@ -268,7 +270,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                 }
             }
 
-            if (_revealedCount == GridSize * GridSize - _mineCount)
+            if (_revealedCount == _gridSize * _gridSize - _mineCount)
             {
                 EndGame(true);
             }
@@ -302,7 +304,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
 
     private Button? GetButtonAt(int x, int y)
     {
-        var index = x * GridSize + y;
+        var index = x * _gridSize + y;
         if (index < 0 || index >= MinesweeperGrid.ChildCount) return null;
 
         return MinesweeperGrid.GetChild(index) as Button;
@@ -321,7 +323,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                 var nx = x + dx;
                 var ny = y + dy;
 
-                if (nx >= 0 && nx < GridSize && ny >= 0 && ny < GridSize)
+                if (nx >= 0 && nx < _gridSize && ny >= 0 && ny < _gridSize)
                 {
                     if (_mineField[nx, ny]) count++;
                 }
@@ -359,9 +361,9 @@ public sealed partial class MinesweeperWindow : DefaultWindow
             StatusLabel.Text = "Поражение! Вы наступили на мину! (Окно закроется через 3 секунды)";
             StatusLabel.Modulate = Color.Red;
 
-            for (int i = 0; i < GridSize; i++)
+            for (int i = 0; i < _gridSize; i++)
             {
-                for (int j = 0; j < GridSize; j++)
+                for (int j = 0; j < _gridSize; j++)
                 {
                     if (_mineField[i, j])
                     {
@@ -386,16 +388,16 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         if (_gameOver) return;
 
         var flaggedCount = 0;
-        for (int i = 0; i < GridSize; i++)
+        for (int i = 0; i < _gridSize; i++)
         {
-            for (int j = 0; j < GridSize; j++)
+            for (int j = 0; j < _gridSize; j++)
             {
                 if (_flagged[i, j]) flaggedCount++;
             }
         }
 
         MinesLabel.Text = $"Мины: {_mineCount - flaggedCount}";
-        OpenedLabel.Text = $"Открыто: {_revealedCount}/{GridSize * GridSize - _mineCount}";
+        OpenedLabel.Text = $"Открыто: {_revealedCount}/{_gridSize * _gridSize - _mineCount}";
         StatusLabel.Text = "Найдите все безопасные клетки!";
         StatusLabel.Modulate = Color.White;
     }

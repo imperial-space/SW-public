@@ -23,6 +23,8 @@ public sealed partial class MagicScrollWindow : DefaultWindow
     private readonly Dictionary<MagicRune, Label> _encryptedRuneLabels = new();
     private MinesweeperWindow? _minesweeperWindow;
     private int _playerIntelligence = 10;
+    private int _gridSize = 5;
+    private int _totalMines = 2;
 
     public MagicScrollBoundUserInterface? Owner;
 
@@ -35,6 +37,8 @@ public sealed partial class MagicScrollWindow : DefaultWindow
     {
         _currentState = state;
         _playerIntelligence = state.PlayerIntelligence;
+        _gridSize = state.GridSize;
+        _totalMines = state.TotalMines;
         UpdatePowerDisplay();
         UpdateEncryptedRunes();
         UpdateKnownRunes();
@@ -148,7 +152,7 @@ public sealed partial class MagicScrollWindow : DefaultWindow
 
         _minesweeperWindow = new MinesweeperWindow();
         _minesweeperWindow.GameCompleted += success => OnMinesweeperCompleted(rune, success);
-        _minesweeperWindow.StartGame(rune, _playerIntelligence);
+        _minesweeperWindow.StartGame(rune, _playerIntelligence, _gridSize, _totalMines);
         _minesweeperWindow.OpenCentered();
     }
 
