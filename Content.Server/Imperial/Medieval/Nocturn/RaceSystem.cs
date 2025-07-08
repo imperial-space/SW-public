@@ -25,6 +25,7 @@ using Content.Server.NeedSleep.Components;
 using Content.Server.Nutrition.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Chat;
+using Content.Shared.Chat.TypingIndicator;
 
 namespace Content.Server.Nocturn
 {
@@ -47,6 +48,7 @@ namespace Content.Server.Nocturn
         [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
+        [Dependency] private readonly SharedTypingIndicatorSystem _typing = default!;
 
 
         public override void Initialize()
@@ -405,6 +407,11 @@ namespace Content.Server.Nocturn
             component.IsDisguised = true;
             _action.SetToggled(component.DisguiseActionEntity, component.IsDisguised);
             Dirty(uid, appearance);
+            if (TryComp<TypingIndicatorComponent>(uid, out var typing))
+            {
+                typing.TypingIndicatorPrototype = component.TypingIndicatorPrototypeBase;
+                Dirty(uid, typing);
+            }
         }
 
         private void RevertToOriginalForm(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
@@ -415,6 +422,11 @@ namespace Content.Server.Nocturn
             component.IsDisguised = false;
             _action.SetToggled(component.DisguiseActionEntity, component.IsDisguised);
             Dirty(uid, appearance);
+            if (TryComp<TypingIndicatorComponent>(uid, out var typing))
+            {
+                typing.TypingIndicatorPrototype = component.TypingIndicatorPrototypeMod;
+                Dirty(uid, typing);
+            }
         }
 
         public void ShowEyes(EntityUid uid)

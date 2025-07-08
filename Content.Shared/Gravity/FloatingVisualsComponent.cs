@@ -26,4 +26,10 @@ public sealed partial class FloatingVisualsComponent : Component
     public bool CanFloat = false;
 
     public readonly string AnimationKey = "gravity";
+
+    // Impreial Medieval start
+    [DataField]
+    [AutoNetworkedField]
+    public bool IgnoreGravity = false;
+    // Imperial Medieval end
 }

@@ -2030,6 +2030,14 @@
   - MedievalBackpack
 
 - type: listing
+  id: MdvShopMonsterBag
+  productEntity: MedievalMonsterBag
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
   id: MedievalClothingBackpackSatchelLeather
   productEntity: MedievalClothingBackpackSatchelLeather
   cost:
@@ -2864,7 +2872,7 @@
   id: MedievalPalletContractIns
   productEntity: MedievalDecorStoragePalletIns
   cost:
-    MedievalPaperOnValuableCargoCurrencyIns: 1
+    MedievalPaperOnValuableCargoCurrencyLeg: 1
   categories:
   - MedievalPalletLeg
 
@@ -2925,7 +2933,7 @@
   id: MedievalPalletContractLeg
   productEntity: MedievalDecorStoragePallet
   cost:
-   MedievalPaperOnValuableCargoCurrencyLeg: 1
+   MedievalPaperOnValuableCargoCurrencyIns: 1
   categories:
   - MedievalPalletIns
 

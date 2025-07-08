@@ -201,6 +201,9 @@
     modifier: 1.35
   - type: Damageable
     damageModifierSet: Zveres
+  - type: LocalLight
+    energy: 0.2
+    radius: 2
 
 - type: damageModifierSet
   id: Zveres

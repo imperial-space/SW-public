@@ -235,6 +235,15 @@
     - щей
 
 - type: language
+  id: Myrmex
+  roundstart: false
+  priority: 10
+  highIntelligenceAllowed: false
+  speech: !type:CollectiveMind
+    showRank: false
+    color: orange
+
+- type: language
   id: Elf
   roundstart: false
   priority: 2

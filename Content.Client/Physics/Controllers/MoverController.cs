@@ -1,5 +1,6 @@
 using Content.Shared.Alert;
 using Content.Shared.CCVar;
+using Content.Shared.Imperial.Medieval.Grab.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Systems;
@@ -29,6 +30,7 @@ public sealed class MoverController : SharedMoverController
         SubscribeLocalEvent<InputMoverComponent, UpdateIsPredictedEvent>(OnUpdatePredicted);
         SubscribeLocalEvent<MovementRelayTargetComponent, UpdateIsPredictedEvent>(OnUpdateRelayTargetPredicted);
         SubscribeLocalEvent<PullableComponent, UpdateIsPredictedEvent>(OnUpdatePullablePredicted);
+        SubscribeLocalEvent<GrabbableComponent, UpdateIsPredictedEvent>(OnUpdateGrabbablePredicted);
     }
 
     private void OnUpdatePredicted(Entity<InputMoverComponent> entity, ref UpdateIsPredictedEvent args)
@@ -57,6 +59,16 @@ public sealed class MoverController : SharedMoverController
         // TODO recursive pulling checks?
         // What if the entity is being pulled by a vehicle controlled by the player?
     }
+
+    // Imperial medieval Grab Start
+    private void OnUpdateGrabbablePredicted(EntityUid uid, GrabbableComponent component, ref UpdateIsPredictedEvent args)
+    {
+        if (component.Grabber == _playerManager.LocalEntity)
+            args.IsPredicted = true;
+        else if (component.Grabber != null)
+            args.BlockPrediction = true;
+    }
+    // Imperial medieval Grab End
 
     private void OnRelayPlayerAttached(Entity<RelayInputMoverComponent> entity, ref LocalPlayerAttachedEvent args)
     {

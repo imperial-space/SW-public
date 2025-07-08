@@ -2,12 +2,15 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
 using Content.Shared.Buckle.Components;
+    using Content.Shared.CombatMode;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Database;
 using Content.Shared.Hands;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.Grab.Components;
+using Content.Shared.Imperial.Medieval.Grab.Systems;
 using Content.Shared.Input;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory.VirtualItem;
@@ -52,6 +55,8 @@ public sealed class PullingSystem : EntitySystem
     [Dependency] private readonly HeldSpeedModifierSystem _clothingMoveSpeed = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtual = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combat = default!; // Imperial medieval Grab
+    [Dependency] private readonly GrabSystem _grab = default!; // Imperial medieval Grab
 
     public override void Initialize()
     {
@@ -457,6 +462,16 @@ public sealed class PullingSystem : EntitySystem
 
     public bool TogglePull(Entity<PullableComponent?> pullable, EntityUid pullerUid)
     {
+        // Imperial medieval Grab Start
+
+        if (_combat.IsInCombatMode(pullerUid))
+        {
+            _grab.ToggleGrab(pullable.Owner, pullerUid);
+            return true;
+        }
+
+        // Imperial medieval Grab End
+
         if (!Resolve(pullable, ref pullable.Comp, false))
             return false;
 
@@ -479,6 +494,18 @@ public sealed class PullingSystem : EntitySystem
     public bool TryStartPull(EntityUid pullerUid, EntityUid pullableUid,
         PullerComponent? pullerComp = null, PullableComponent? pullableComp = null)
     {
+
+        // Imperial medieval Grab Start
+
+        if (TryComp<GrabberComponent>(pullerUid, out var grab)
+            && grab.GrabbedEntity.HasValue
+            && TryComp<GrabbableComponent>(grab.GrabbedEntity.Value, out var grabbed))
+        {
+            _grab.TryStopGrab(grab.GrabbedEntity.Value, grabbed, pullerUid);
+        }
+
+        // Imperial medieval Grab End
+
         if (!Resolve(pullerUid, ref pullerComp, false) ||
             !Resolve(pullableUid, ref pullableComp, false))
         {

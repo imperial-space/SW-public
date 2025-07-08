@@ -878,6 +878,7 @@
     - MedievaldDiceBag
     - MedievalPlantBag
     - MedievalOreBag
+    - MedievalMonsterBag
     - MedievalAlchemicBelt
     - MedievalClothingHeadHatCowboyBrown
 
@@ -1180,6 +1181,10 @@
     - MedievalChemistryEmptyBottle04
     - MedievalKotel
     - Syringe
+    - MedievalHorseLeatherArmor
+    - MedievalHorseChainMailArmor
+    - MedievalHorseUpIronArmor
+    - MedievalHorseHorseshoe
 
 - type: entity
   parent: CP14BaseWorkbench

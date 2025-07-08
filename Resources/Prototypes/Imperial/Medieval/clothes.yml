@@ -291,6 +291,17 @@
     regen: 0.6
 
 - type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth73
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_73.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_73.rsi
+
+- type: entity
   parent: ClothingUniformBase
   id: MedievalClothingUniformJumpsuitShitCloth24
   name: shit cloth
@@ -1755,3 +1766,64 @@
     sprite: Imperial/Medieval/Clothing/Mask/royalmask.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Mask/royalmask.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth71
+  name: песочная одежда война
+  description: Одежда предпочитаемая бандитами. С ней удобно прятаться в песках.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_71.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_71.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth72
+  name: MedievalClothingUniformJumpsuitShitCloth72
+  description: MedievalClothingUniformJumpsuitShitCloth72
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_72.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_72.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingShoesDeserd
+  name: светлые сапоги
+  description: Походные сапоги из крепкой кожи.
+  components:
+  - type: Sprite
+    sprite: Imperial\Medieval\Clothing\Shoes\desert_ambassador.rsi
+  - type: Clothing
+    sprite: Imperial\Medieval\Clothing\Shoes\desert_ambassador.rsi
+
+- type: entity
+  name: monster bag
+  id: MedievalMonsterBag
+  parent: BaseStorageItem
+  description: A bag for real monster hunters
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/monster_bag.rsi
+    state: icon
+  - type: Item
+    storedRotation: -90
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: Storage
+    grid:
+    - 0,0,7,4
+    maxItemSize: Small
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+        - MonsterLoot
+  - type: Dumpable
