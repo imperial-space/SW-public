@@ -201,6 +201,7 @@ public sealed partial class BossSystem : EntitySystem
             if (!bossComp.Players.Where(x => _mobState.IsAlive(x)).Any())
             {
                 BossWon(uid, bossComp);
+                QueueDel(uid);
                 continue;
             }
 
