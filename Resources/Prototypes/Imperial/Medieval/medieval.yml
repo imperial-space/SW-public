@@ -981,6 +981,8 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/medieval_paper.rsi
+  - type: RDWeight
+    value: 0.01
 
 - type: entity
   name: handcuffs
@@ -1006,6 +1008,8 @@
     damage:
       types:
         Blunt: 3
+  - type: RDWeight
+    value: 4
 
 - type: entity
   parent: Grille
@@ -1055,6 +1059,8 @@
   parent: GrenadeBase
   id: MedievalGrenade
   components:
+  - type: RDWeight
+    value: 2
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: MedievalDefault

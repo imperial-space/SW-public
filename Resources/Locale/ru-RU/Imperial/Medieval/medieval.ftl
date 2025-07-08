@@ -5836,3 +5836,4 @@ ent-MedievalClothingOuterHorseRoyalArmorUpIron = латная лошадиная
     .suffix = { "Средневековье, одежда, транспорт" }
 boss-defeated-announce = Скелетрон сокрушён! Смертные доказали, что даже воля Морбиуса не вечна!
 boss-won-announce = Воля Морбиуса восторжествовала. Ваши кости пополнят его костяной трон. Смерть неизбежна.
+mc-weight-examine = {$name}

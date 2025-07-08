@@ -93,3 +93,7 @@
   - type: Construction
     graph: ImprovisedBow
     node: ImprovisedBow
+  # imperial medieval start
+  - type: RDWeight
+    value: 1.5
+  # imperial medieval end

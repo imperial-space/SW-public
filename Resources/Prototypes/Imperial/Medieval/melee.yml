@@ -4,6 +4,8 @@
   id: SpearBone
   description: A spear made of bones.
   components:
+  - type: RDWeight
+    value: 4
   - type: Sprite
     sprite: Objects/Weapons/Melee/bone_spear.rsi
     layers:
@@ -208,6 +210,8 @@
   id: MedievalSpearNecro
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: RDWeight
+    value: 4
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: Sprite
@@ -319,6 +323,8 @@
   id: MedievalWoodenSword
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/wooden_sword.rsi
@@ -377,6 +383,8 @@
   id: MedievalBanjoInstrument
   description: music!
   components:
+  - type: RDWeight
+    value: 1
   - type: MeleeWeapon
     clickDamageModifier: 1.15
     wideAnimationRotation: -320
@@ -412,6 +420,8 @@
   id: MedievalMaceNecro
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
   - type: EmitSoundOnLand
@@ -471,6 +481,8 @@
   id: MedievalIronHalberdNecro
   description: A medieval poleaxe.
   components:
+  - type: RDWeight
+    value: 7
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: EmitSoundOnLand
@@ -531,6 +543,8 @@
   id: MedievalIronHalberdAdmin
   description: A medieval poleaxe.
   components:
+  - type: RDWeight
+    value: 7
   - type: EmitSoundOnLand
     sound:
       collection: MedievalIronDrop
@@ -582,6 +596,8 @@
   id: MedievalIronHammer
   description: A medieval hammer.
   components:
+  - type: RDWeight
+    value: 11
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: EmitSoundOnLand
@@ -687,6 +703,8 @@
   id: MedievalHatchet
   description: A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood.
   components:
+  - type: RDWeight
+    value: 1
   - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/medieval_hatchet.rsi
@@ -749,6 +767,8 @@
   id: MedievalScythe
   description: A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow.
   components:
+  - type: RDWeight
+    value: 1
   - type: EmitSoundOnLand
     sound:
       collection: MedievalIronDrop
@@ -808,6 +828,8 @@
   id: MedievalClippers
   description: A tool used to take samples from plants.
   components:
+  - type: RDWeight
+    value: 1
   - type: Tag
     tags:
     - PlantSampleTaker
@@ -844,6 +866,8 @@
   name: MedievalPickaxe
   description: MedievalPickaxe
   components:
+  - type: RDWeight
+    value: 2.5
   - type: EmitSoundOnLand
     sound:
       collection: MedievalIronDrop
@@ -885,6 +909,8 @@
   name: MedievalPickaxe
   description: MedievalPickaxe
   components:
+  - type: RDWeight
+    value: 3
   - type: EmitSoundOnLand
     sound:
       collection: MedievalIronDrop
@@ -957,6 +983,8 @@
   id: MedievalWoodenShieldKnight
   description: Wooden shield.
   components:
+    - type: RDWeight
+      value: 10
     - type: Sprite
       sprite: Imperial/Medieval/Shields/woodknight.rsi
       state: shield
@@ -1049,6 +1077,8 @@
   id: MedievalWoodenShield
   description: Wooden shield.
   components:
+    - type: RDWeight
+      value: 7
     - type: Sprite
       sprite: Imperial/Medieval/Shields/wooden.rsi
       state: shield
@@ -1103,6 +1133,8 @@
   id: MedievalWoodenShieldBuckler
   description: Wooden shield.
   components:
+    - type: RDWeight
+      value: 4
     - type: Sprite
       sprite: Imperial/Medieval/Shields/buckler.rsi
       state: shield
@@ -1157,6 +1189,8 @@
   id: MedievalIronShield
   description: Iron shield.
   components:
+    - type: RDWeight
+      value: 14
     - type: EmitSoundOnLand
       sound:
         collection: MedievalIronDrop
@@ -1213,6 +1247,8 @@
   id: MedievalIronShieldBuckler
   description: Iron shield.
   components:
+    - type: RDWeight
+      value: 6
     - type: EmitSoundOnLand
       sound:
         collection: MedievalIronDrop
@@ -1380,6 +1416,8 @@
   id: MedievalFalshionT3
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: QuestItem
     contractName: "любые одноручные мечи"
   - type: EmitSoundOnLand
@@ -1514,6 +1552,8 @@
   id: MedievalSpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: RDWeight
+    value: 4
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: Sharp
@@ -1601,6 +1641,8 @@
   id: MedievalMaceT3
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
   - type: EmitSoundOnLand
@@ -1662,6 +1704,8 @@
   id: MedievalMaceT3Heavy
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 3
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
   - type: EmitSoundOnLand
@@ -1723,6 +1767,8 @@
   id: MedievalIronHalberdT3
   description: A medieval poleaxe.
   components:
+  - type: RDWeight
+    value: 7
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: EmitSoundOnLand
@@ -1803,6 +1849,8 @@
   id: MedievalIronSekir
   description: A medieval poleaxe.
   components:
+  - type: RDWeight
+    value: 7
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: EmitSoundOnLand
@@ -1883,6 +1931,8 @@
   id: MedievalIronSekirSteel
   description: A medieval poleaxe.
   components:
+  - type: RDWeight
+    value: 7
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: EmitSoundOnLand
@@ -1956,6 +2006,8 @@
   id: MedievalFalshionT3Legion
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: QuestItem
     contractName: "любые одноручные мечи"
   - type: EmitSoundOnLand
@@ -2186,6 +2238,8 @@
   id: MedievalFalshionT3Steel
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: QuestItem
     contractName: "любые одноручные мечи"
   - type: EmitSoundOnLand
@@ -2312,6 +2366,8 @@
   id: MedievalSpearT3Steel
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: RDWeight
+    value: 4
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: Sharp
@@ -2399,6 +2455,8 @@
   id: MedievalMaceT3Steel
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
   - type: EmitSoundOnLand
@@ -2460,6 +2518,8 @@
   id: MedievalMaceT3SteelHeavy
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 4
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
   - type: EmitSoundOnLand
@@ -2521,6 +2581,8 @@
   id: MedievalIronHalberdT3Steel
   description: A medieval poleaxe.
   components:
+  - type: RDWeight
+    value: 7
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: EmitSoundOnLand
@@ -2601,6 +2663,8 @@
   id: MedievalIronHammerSteel
   description: A medieval hammer.
   components:
+  - type: RDWeight
+    value: 11
   - type: QuestItem
     contractName: "любое двуручное оружие"
   - type: EmitSoundOnLand
@@ -2864,6 +2928,8 @@
   id: MedievalLongAxe
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 35
   - type: EmitSoundOnLand
     sound:
       collection: MedievalIronDrop
@@ -2974,6 +3040,8 @@
   id: MedievalGoblinFalshion
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 1.5
   - type: QuestItem
     contractName: "любые одноручные мечи"
   - type: EmitSoundOnLand
@@ -3046,6 +3114,8 @@
   id: MedievalFalshionNecro
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: EmitSoundOnLand
     sound:
       collection: MedievalIronDrop
@@ -3116,6 +3186,8 @@
   id: MedievalShortSword
   description: A deadly knife intended for melee confrontations.
   components:
+  - type: RDWeight
+    value: 1.5
   - type: QuestItem
     contractName: "любые одноручные мечи"
   - type: EmitSoundOnLand
@@ -3323,6 +3395,8 @@
   id: MedievalSaber
   description: A deadly knife intended for melee confrontations.
   components:
+  - type: RDWeight
+    value: 1.7
   - type: QuestItem
     contractName: "любые одноручные мечи"
   - type: EmitSoundOnLand
@@ -3499,6 +3573,8 @@
   id: MedievalPalice
   description: A deadly knife intended for melee confrontations.
   components:
+  - type: RDWeight
+    value: 3.5
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
   - type: EmitSoundOnLand
@@ -3568,6 +3644,8 @@
   id: MedievalPaliceSteel
   description: A deadly knife intended for melee confrontations.
   components:
+  - type: RDWeight
+    value: 3.5
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
   - type: EmitSoundOnLand
@@ -3637,6 +3715,8 @@
   id: MedievalMaceT3HeavyBone
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 3
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
   - type: Sharp
@@ -3731,6 +3811,8 @@
   id: MedievalWoodenShieldBucklerGoblin
   description: Wooden shield.
   components:
+    - type: RDWeight
+      value: 3
     - type: Sprite
       sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
       state: shield
@@ -3837,6 +3919,8 @@
   id: MedievalPickaxeEbonit
   description: Ebonit pickaxe.
   components:
+  - type: RDWeight
+    value: 6
   - type: EmitSoundOnLand
     sound:
       collection: MedievalIronDrop
@@ -3894,6 +3978,8 @@
   id: MedievalPickaxeForStone
   description: ForStone pickaxe.
   components:
+  - type: RDWeight
+    value: 1
   - type: EmitSoundOnLand
     sound:
       collection: MedievalIronDrop
@@ -3951,6 +4037,8 @@
   id: MedievalSpearPilum
   description: Just a spear
   components:
+  - type: RDWeight
+    value: 4
   - type: Sprite
     sprite: Imperial/Medieval/Melee/pilum.rsi
     state: spear
@@ -4013,6 +4101,8 @@
   id: MedievalSpearSulica
   description: Just a spear
   components:
+  - type: RDWeight
+    value: 4
   - type: Sprite
     sprite: Imperial/Medieval/Melee/sulica.rsi
     state: spear

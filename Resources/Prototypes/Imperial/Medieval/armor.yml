@@ -4,6 +4,8 @@
   name: fur armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 1
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -37,6 +39,8 @@
   name: studded armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 1.5
   - type: QuestItem
     contractName: "сыромятная или легкая броня"
   #- type: QualityOfItem
@@ -144,6 +148,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 1.5
   - type: QuestItem
     contractName: "сыромятная или легкая броня"
   #- type: QualityOfItem
@@ -182,6 +188,8 @@
   description: An armored vest with fur plates to protect against melee weapons.
   noSpawn: true
   components:
+  - type: RDWeight
+    value: 1.5
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -217,6 +225,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 2
   - type: QuestItem
     contractName: "любая кожаная кираса"
   #- type: QualityOfItem
@@ -254,6 +264,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 8
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Armor/chainmail_armor.rsi
   - type: Clothing
@@ -282,6 +294,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 5
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Armor/chainmail_armor_light.rsi
   - type: Clothing
@@ -310,6 +324,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 8
   - type: QuestItem
     contractName: "любая кожаная кираса"
   #- type: QualityOfItem
@@ -375,6 +391,8 @@
   name: iron armor cuirass
   description: An armored iron plate to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 12
   - type: QuestItem
     contractName: "любая железная кираса"
   #- type: QualityOfItem
@@ -420,6 +438,8 @@
   name: iron armor cuirass
   description: An armored iron plate to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 7
   - type: QuestItem
     contractName: "любая железная кираса"
   #- type: QualityOfItem
@@ -476,6 +496,8 @@
   name: iron armor
   description: An armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 22
   - type: QuestItem
     contractName: "любая пластинчатая или прочная железная броня"
   #- type: QualityOfItem
@@ -522,6 +544,8 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 30
   - type: QuestItem
     contractName: "латная броня"
   #- type: QualityOfItem
@@ -623,6 +647,8 @@
   name: IronGloves
   description: gloves
   components:
+  - type: RDWeight
+    value: 3
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Gloves/iron_gloves.rsi
   - type: Clothing
@@ -756,6 +782,8 @@
   name: MedievalAlchemicBelt
   description: MedievalAlchemicBelt
   components:
+  - type: RDWeight
+    value: 1
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -792,6 +820,8 @@
   parent: Clothing
   id: MedievalClothingFeetSteel
   components:
+  - type: RDWeight
+    value: 3
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -838,6 +868,8 @@
   parent: Clothing
   id: MedievalClothingFeetNecromancer
   components:
+  - type: RDWeight
+    value: 3
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -887,6 +919,8 @@
   name: IronGloves
   description: gloves
   components:
+  - type: RDWeight
+    value: 3
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -915,6 +949,8 @@
   name: IronGloves
   description: gloves
   components:
+  - type: RDWeight
+    value: 2
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -943,6 +979,8 @@
   name: IronGloves
   description: gloves
   components:
+  - type: RDWeight
+    value: 0.6
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Gloves/blacksmith_gloves.rsi
   - type: Clothing
@@ -958,6 +996,8 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 25
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1001,6 +1041,8 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1042,6 +1084,8 @@
   parent: Clothing
   id: MedievalClothingFeetNecromancerLight
   components:
+  - type: RDWeight
+    value: 3
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1086,6 +1130,8 @@
   name: MedievalClothingOuterArmorCharmer
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 3
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1124,6 +1170,8 @@
   name: MedievalClothingOuterArmorCharmerLight
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 3
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1302,6 +1350,8 @@
   name: MedievalClothingOuterArmorCharmerWeak
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 3
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1390,6 +1440,8 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 7
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Armor/forstone_armor.rsi
   - type: Clothing
@@ -1426,6 +1478,8 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 36
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1480,6 +1534,8 @@
   parent: Clothing
   id: MedievalClothingFeetEbonit
   components:
+  - type: RDWeight
+    value: 4
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1548,6 +1604,8 @@
   name: IronGloves
   description: gloves
   components:
+  - type: RDWeight
+    value: 4
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1622,6 +1680,8 @@
   name: iron armor cuirass
   description: An armored iron plate to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 11
   - type: QuestItem
     contractName: "любая железная кираса"
   #- type: QualityOfItem
@@ -1699,6 +1759,8 @@
   id: MedievalClothingFeetNorthern
   name: northern shoes
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Shoes/northern.rsi
     state: icon
@@ -1817,6 +1879,8 @@
   name: studded armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 6
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1856,6 +1920,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 2
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1894,6 +1960,8 @@
   name: iron armor cuirass
   description: An armored iron plate to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 8
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -1992,6 +2060,8 @@
   name: gambeson armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 1
   - type: QuestItem
     contractName: "сыромятная или легкая броня"
   #- type: QualityOfItem

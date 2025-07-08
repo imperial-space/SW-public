@@ -3,6 +3,8 @@
   id: MedievalClothingHeadBase
   abstract: true
   components:
+  - type: RDWeight
+    value: 0.5
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -24,6 +26,8 @@
   id: MedievalClothingHelmetBaseHeavy
   abstract: true
   components:
+  - type: RDWeight
+    value: 2.5
   - type: Clothing
     equipSound:
       path: /Audio/Imperial/Medieval/iron_helmet_equiped.ogg
@@ -51,6 +55,8 @@
   id: MedievalClothingHelmetBaseLight
   abstract: true
   components:
+  - type: RDWeight
+    value: 1.5
   - type: Tag
 
 
