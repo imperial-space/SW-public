@@ -20,6 +20,7 @@ using Content.Shared.Speech;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 using Content.Server.BadSmell.Components;
+using Content.Server.MagicSpellcraft.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.MagicRunes.Components;
 using Content.Shared.Imperial.Medieval.MagicRunes.Data;
@@ -118,13 +119,21 @@ namespace Content.Server.MagicBarrier
             if (target == null)
                 return;
 
-            if (!TryComp<MagicBarrierComponent>(target, out var barrier))
+            if (TryComp<MagicBarrierComponent>(target, out var barrier))
+            {
+                barrier.Stability += comp.Power;
+                Audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), barrier.Owner);
+                QueueDel(used);
                 return;
+            }
 
-            barrier.Stability += comp.Power;
+            if (TryComp<MagicSpellcraftComponent>(target, out var magicSpellcraft))
+            {
+                magicSpellcraft.Charge += comp.Power;
 
-            Audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), barrier.Owner);
-            QueueDel(used);
+                Audio.PlayPvs(new SoundPathSpecifier(magicSpellcraft.EffectSoundOnScrollAdd), target.Value);
+                QueueDel(used);
+            }
         }
 
         private void OnRoundEnd(RoundEndTextAppendEvent ev)
