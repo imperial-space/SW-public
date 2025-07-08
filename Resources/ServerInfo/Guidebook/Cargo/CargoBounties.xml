@@ -1,35 +1,35 @@
 <Document>
-  # Cargo Bounties
-  While [textlink="Cargo" link="Cargo"] can make [color=cyan]spesos[color] selling just about anything, more spesos can be made by fulfilling [color=cyan]bounties[/color] found through the Cargo Bounty Computer.
+  # Задачи Карго
+  Конечно, [textlink="Карго" link="Cargo"] может делать [color=cyan]кредиты[color], продавая почти всё что угодно, но намного больше кредитов может быть сделано, если Карго будет выполнять [color=cyan]Задачи[/color], которые можно найти на Консоли задач Карно.
 
-  ## Starting Bounties
+  ## Начало выполнения задач
 
   <Box>
     <GuideEntityEmbed Entity="ComputerCargoBounty"/>
     <GuideEntityEmbed Entity="PaperCargoBountyManifest"/>
   </Box>
 
-  To start a bounty, open the bounty screen by interacting with the [color=cyan]Cargo Bounty Computer[/color]. The Cargo Bounty Computer maintains a list of all the current bounties and lets you either print out a label or skip it.
+  Чтобы начать выполнять задачу, используйте [color=cyan]Консоль Задач Карно[/color]. Она содержит в себе список всех Задач и позволяет распечатать их на манифесте или же пропустить.
 
-  - Printing the label gives you a [color=cyan]Bounty Manifest[/color] listing the goods that need to be acquired. You can print out infinite Bounty Manifests, so ensure you are not repeating the same work as another Cargo Technician.
+  - [color=cyan]Манифест Задачи[/color] показывает предметы, необходимые для выполнения задачи. Количество распечатанный манифестов не ограничено, так что уточните, не выполняете ли Вы работу, которой уже занят другой грузчик. 
 
-  - Skipping a bounty replaces that bounty with a new one, as there can only be six active bounties at any time. Skipping has a 15-minute cooldown and voids that bounty, which may anger other Cargo Technicians working on it.
+  - Пропуск Задачи заменяет её на новую, так как всего может быть 6 активных Задач. Пропуск имеет перезарядку в 15 минут и заканчивает пропущенную задачу, что может разозлить Грузчика, который ради неё вырезал себе почку. 
 
-  ## Fulfilling Bounties
+  ## Выполнение Задач
 
   <Box>
     <GuideEntityEmbed Entity="PaperCargoBountyManifest"/>
     <GuideEntityEmbed Entity="CrateGenericSteel"/>
     <GuideEntityEmbed Entity="AppraisalTool"/>
   </Box>
+  
+  Когда Вы получили [color=cyan]Манифест Задачи[/color], осталось только собрать необходимые предметы. Большинство отделов согласится отдать Вам нужные предметы при условии, что Вы покажите им Манифест. 
 
-  With the [color=cyan]Bounty Manifest[/color], it is now up to you to collect the required goods. Most departments will give you what you need by asking for it with a Bounty Manifest.
+  Когда Вы нашли всё необходимое, вернитесь в Карго и положите предметы в пустой [color=cyan]ящик[/color], закройте его, а затем, держа в руке Манифест, нажмите на него Alt+ЛКМ. 
 
-  Once you have collected the goods, return to the cargo bay and put the goods inside an empty [color=cyan]Crate[/color]. After everything is in the crate, close it, and then apply the Bounty Manifest to it.
+  Чтобы подтвердить, что Вы выполнили Заказ, используйте [color=cyan]оценочныц инструмент[/color] на ящике с Заказом.
 
-  To verify the completion of a bounty, use the [color=cyan]Appraisal Tool[/color] on it. It should say that it confirms that the bounty has been completed.
-
-  ## Selling Bounties
+  ## Продажа Заказов
 
   <Box>
     <GuideEntityEmbed Entity="PaperCargoBountyManifest"/>
@@ -37,9 +37,6 @@
     <GuideEntityEmbed Entity="CargoPalletSell"/>
   </Box>
 
-  Once you have verified that you have completed the bounty, follow the same steps as selling anything else.
+  Когда Вы удостоверились в Выполнении заказа, продайте его как обычный ящик. Просто доставьте его на [color=cyan]Торговый Аванпост[/color] и продайте его. После этого на Консоли Задач Карго появится новый Заказ. 
 
-  Just transport it to the [color=cyan]Trading Station[/color], sell it, and you are done!
-
-  When you return, there should be a new bounty to take its place.
 </Document>
