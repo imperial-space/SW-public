@@ -20,7 +20,7 @@
   </Box>
 
 ## Вступление на должность
-Поздравляем с повышением! Если забыть про бумажную работу, ваши новые [color=#a4885c] обязанности[/color] включают в себя поддержание работы вашего отдела, введение изменений и выбор приоритетов в этой самой работе. Нельзя забывать про безопасность Ваших сотрудников и экипировки, за неё Вы тоже в ответе.
+Поздравляем с повышением! Если забыть про бумажную работу, Ваши новые [color=#a4885c] обязанности[/color] включают в себя поддержание работы вашего отдела, введение изменений и выбор приоритетов в этой самой работе. Нельзя забывать про безопасность Ваших сотрудников и экипировки, за неё Вы тоже в ответе.
 
 Не забывайте, у Вас все ещё есть работа! Ваши красивые и понтовые инструментики за вас её не сделают, идите помогайте новичкам в отделе или выполняйте работу, которой никто не занимается! 
 
@@ -28,28 +28,28 @@
 
 ## Ваш шкафчик
 
-To deal with your new soul-crushing tasks, every head is given special items to lead your subordinates. Most of your new shiny tools can be found in your [color=#a4885c]locker[/color].
+Чтобы справляться с новыми душераздирающими задачами, каждой главе были выданы специальные предметы для ведения работы. Большая их часть может быть найдена в Вашем [color=#a4885c]шкафчике[/color]. 
   <Box>
     <GuideEntityEmbed Entity="LockerCaptain"/>
   </Box>
 
-Your [color=#a4885c]remote[/color] is very simple but profoundly underestimated. A small but mighty force, your remote can open and close [color=#a4885c]airlocks[/color], spin the [color=#a4885c]bolts[/color] to lock them, or toggle [color=#a4885c]emergency access[/color]. It can do this from a distance.
+Ваш [color=#a4885c]пульт[/color] — очень важный инструмент. С помощью небольшой смекалки, Ваш пульт может открывать и закрывать [color=#a4885c]шлюзы[/color], закручивать [color=#a4885c]болты[/color] на них, или переключать [color=#a4885c]аварийный доступ[/color]. И всё это пульт может делать издалека.
   <Box>
     <GuideEntityEmbed Entity="DoorRemoteCommand"/>
   </Box>
-The remote influences where people move around. Heads can lock personnel out of dangerous areas or let people in to grab something really quickly.
+Пульт выбирает места, где будут ходить люди. Закрывайте места, где им лучше не быть или ставьте двери на аварийный доступ в случае ЧС... Возможности не безграничны, но огромны.
 
-You also have access to your very own [color=#1b67a5]Command[/color] channel, like every other department. However, yours is particularly special as the people who can hear you have [color=#a4885c]entire departments[/color] at their fingertips.
-Use this to communicate with other heads and be a representative of what your workers want or need.
+У Вас также есть доступ к собственному [color=#1b67a5]Командному[/color] каналу, как и у других отделу. Однако, этот не такой как все — у людей, которые Вас слышат под управлением [color=#a4885c]целые отделы[/color]. 
+Пользуйтесь этой возможностью чтобы передавать запросы Ваших сотрудников в другие отделы и принимать запросы других.
 
-The [color=#1b67a5]Captain[/color] and the [color=#9fed58]Head of Personnel[/color] get access to the lucrative [color=#a4885c]master encryption key[/color], letting them tune into every radio channel on the station. This is extremly valuable, as you can coordinate between departments yourself.
-[color=#a4885c]Don't waste this vital advantage![/color]
+[color=#1b67a5]Капитан[/color] и [color=#9fed58]Глава Персонала[/color] получают доступ к [color=#a4885c]мастер-включу шифрования[/color], позволяющему слышать почти все каналы на станции. Это очень полезный инструмент, позволяющий вручную координировать целые отделы.
+[color=#a4885c] Не профукайте этот потенциал![/color]
   <Box>
     <GuideEntityEmbed Entity="ClothingHeadsetCommand"/>
     <GuideEntityEmbed Entity="EncryptionKeyStationMaster"/>
   </Box>
 
-To make the swamp of paperwork (that will definitely overwhelm you) even harder to deal with, you have generously been given a [color=#a4885c]stamp[/color] in your locker. Use this to sign paperwork. After you stamp it, it can't be edited. Look it over first.
+Чтобы Вам было ещё сложнее справляться с бумажной работой, Центральное Командование выдало Вам персонализированный под Вашу профессию [color=#a4885c]штамп[/color]! Лежит в Вашем шкафу и прям ждёт чтобы Вы его прижали к бумаге. Не забывайте читать то, что одобряете.
   <Box>
     <GuideEntityEmbed Entity="RubberStampCaptain"/>
   </Box>
