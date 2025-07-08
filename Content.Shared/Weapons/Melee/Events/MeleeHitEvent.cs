@@ -2,8 +2,12 @@ using System.Numerics;
 using Content.Shared.Damage;
 using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
+using Robust.Shared.Physics;
 
 namespace Content.Shared.Weapons.Melee.Events;
+
+[ByRefEvent] public record struct BeforeMeleeHitEvent(List<EntityUid> HitEntities, EntityUid User, bool Cancelled = false); // imperial medieval rideable
+[ByRefEvent] public record struct RayCastSort(List<RayCastResults> HitEntities); // imperial medieval rideable
 
 /// <summary>
 ///     Raised directed on the melee weapon entity used to attack something in combat mode,

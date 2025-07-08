@@ -201,6 +201,9 @@ public partial struct AntagSelectionDefinition()
     /// </remarks>
     [DataField]
     public EntProtoId? SpawnerPrototype;
+
+    [DataField]
+    public EntProtoId? EntityPrototype; // imperial medieval myrmex edit
 }
 
 /// <summary>
