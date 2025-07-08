@@ -9,6 +9,8 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using Content.Shared.Imperial.ImperialStore;
+using Robust.Shared.Configuration;
+using Content.Shared.Imperial.ICCVar;
 
 namespace Content.Server.Imperial.ImperialStore;
 
@@ -18,11 +20,12 @@ namespace Content.Server.Imperial.ImperialStore;
 /// </summary>
 public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     private TimeSpan _balanceUpdateTimer;
-    public readonly TimeSpan BalanceUpdateInterval = TimeSpan.FromSeconds(5);
+    public TimeSpan BalanceUpdateInterval = TimeSpan.FromSeconds(40);
 
     public override void Initialize()
     {
@@ -39,6 +42,8 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
         InitializeUi();
         InitializeCommand();
         InitializeRefund();
+
+        Subs.CVar(_cfg, ICCVars.StoreBalanceUpdateInterval, value => BalanceUpdateInterval = value, true);
     }
 
     public override void Update(float frameTime)

@@ -67,7 +67,7 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 550 # imperial medieval
+        damage: 1000 # imperial medieval
       behaviors:
       - !type:GoSSDBehavior { } # imperial medieval
       - !type:GibBehavior { }

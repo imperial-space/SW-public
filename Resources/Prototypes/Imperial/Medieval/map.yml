@@ -403,6 +403,17 @@
   - TDM
 
 - type: gamePreset
+  id: MedievalMyrmex
+  alias:
+  - medieval
+  name: medieval-myrmex-title
+  showInVote: true
+  description: medieval-myrmex-description
+  rules:
+  - TDM
+  - Myrmex
+
+- type: gamePreset
   id: MedievalDevelop
   alias:
   - medievaldevelop

@@ -4255,7 +4255,7 @@
 - type: roleLoadout
   id: JobMedievalTrader
   groups:
-  - TraderHead
+  - SouthTraderHead
   - TraderJumpsuit
   - MedievalBackpack
   - MedievalShoes
@@ -4373,7 +4373,7 @@
 - type: roleLoadout
   id: JobMedievalTraderN
   groups:
-  - TraderHead
+  - NordTraderHead
   - TraderJumpsuit
   - MedievalBackpack
   - MedievalShoes
@@ -4383,7 +4383,7 @@
   - MedievalGloves
 
 - type: loadoutGroup
-  id: TraderHead
+  id: SouthTraderHead
   name: loadout-group-traveller-head
   minLimit: 0
   loadouts:
@@ -4397,6 +4397,24 @@
   - MedievalFeatherHat
   - MedievalWanderHat
   - MedievalGreenHat
+  - MedievalTraderLegionHat
+
+- type: loadoutGroup
+  id: NordTraderHead
+  name: loadout-group-traveller-head
+  minLimit: 0
+  loadouts:
+  - TraderMedievalClothingHeadCloth
+  - ClothingHeadHatCowboyBrown
+  - MedievalClothingHeadFurHatLoadout
+  - MedievalStrawHat #New Hats
+  - MedievalMotleyHat
+  - MedievalWreath
+  - MedievalGrayHat
+  - MedievalFeatherHat
+  - MedievalWanderHat
+  - MedievalGreenHat
+  - MedievalTraderFoxHat
 
 
 - type: loadout
@@ -4406,6 +4424,22 @@
     proto: TradersTimer5hours
   equipment:
     outerClothing: MedievalClothingHeadCloth
+
+- type: loadout
+  id: MedievalTraderLegionHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer50hours
+  equipment:
+    outerClothing: MedievalTraderLegionHat
+
+- type: loadout
+  id: MedievalTraderFoxHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer50hours
+  equipment:
+    outerClothing: MedievalTraderFoxHat
 
 # MEDIEVAL Miner REGULAR
 

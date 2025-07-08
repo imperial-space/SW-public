@@ -2030,6 +2030,14 @@
   - MedievalBackpack
 
 - type: listing
+  id: MdvShopMonsterBag
+  productEntity: MedievalMonsterBag
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
   id: MedievalClothingBackpackSatchelLeather
   productEntity: MedievalClothingBackpackSatchelLeather
   cost:

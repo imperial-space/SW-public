@@ -2708,6 +2708,9 @@
       reagents:
       - ReagentId: MedievalLootGoblin
         Quantity: 10
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: stack
   id: MedievalLootGoblin
@@ -2791,6 +2794,9 @@
       reagents:
       - ReagentId: MedievalLootHog
         Quantity: 10
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: reagent
   id: MedievalLootHunter
@@ -2826,6 +2832,9 @@
       reagents:
       - ReagentId: MedievalLootHunter
         Quantity: 10
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: reagent
   id: MedievalLootCrab
@@ -2861,6 +2870,9 @@
       reagents:
       - ReagentId: MedievalLootCrab
         Quantity: 10
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: reagent
   id: MedievalLootCrabDevil
@@ -2896,6 +2908,9 @@
       reagents:
       - ReagentId: MedievalLootCrabDevil
         Quantity: 10
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: MedievalLoot
@@ -2913,6 +2928,9 @@
     size: Tiny
   - type: QuestItem
     contractName: "волчьи хвосты или кабаньи клыки"
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: шкура медведя
@@ -2928,6 +2946,9 @@
       Revent: 15
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: шкура кабана
@@ -2943,6 +2964,9 @@
       Revent: 12
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: кролья лапка
@@ -2958,6 +2982,9 @@
       Revent: 7
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: волчий клык
@@ -2973,6 +3000,9 @@
       Revent: 5
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: челюсть скелета
@@ -3003,6 +3033,9 @@
       Revent: 30
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: палец гоблина
@@ -3018,6 +3051,9 @@
       Revent: 12
   - type: Item
     size: Tiny
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: reagent
   id: MedievalLootDevilMouse
@@ -3051,6 +3087,9 @@
       reagents:
       - ReagentId: MedievalLootDevilMouse
         Quantity: 10
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: reagent
   id: MedievalLootAnt
@@ -3071,6 +3110,12 @@
   id: MedievalLootAnt
   description: MedievalLoot
   components:
+  - type: MyrmexStew
+    buff:
+      damage: 1
+      health: 0.94
+      stamina: 1
+    uses: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hitin
@@ -3086,6 +3131,9 @@
       reagents:
       - ReagentId: MedievalLootAnt
         Quantity: 10
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: MedievalLoot
@@ -3105,6 +3153,9 @@
     stealGroup: MedievalGetMedievalLootBear # imperial medieval
   - type: QuestItem
     contractName: "волчьи хвосты или кабаньи клыки"
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: MedievalLoot
@@ -3122,6 +3173,9 @@
     size: Tiny
   - type: QuestItem
     contractName: "головы небронированных скелетов"
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: MedievalLoot
@@ -3139,6 +3193,9 @@
     size: Tiny
   - type: QuestItem
     contractName: "головы небронированных скелетов"
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: MedievalLoot
@@ -3156,6 +3213,9 @@
     size: Tiny
   - type: QuestItem
     contractName: "головы бронированных скелетов"
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: MedievalLoot
@@ -3173,6 +3233,9 @@
     size: Tiny
   - type: QuestItem
     contractName: "головы бронированных скелетов"
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: reagent
   id: MedievalLootEgg
@@ -3208,6 +3271,9 @@
       reagents:
       - ReagentId: MedievalLootEgg
         Quantity: 10
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 #- type: entity
 #  name: MedievalRandom
@@ -3234,6 +3300,9 @@
       Revent: 20
   - type: Item
     size: Normal
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: MedievalLoot
@@ -3249,6 +3318,9 @@
       Revent: 30
   - type: Item
     size: Normal
+  - type: Tag
+    tags:
+      - MonsterLoot
 
 - type: entity
   name: multitool
@@ -6396,6 +6468,23 @@
 - type: entity
   name: MedievalPasport
   parent: MedievalPasportBase
+  id: MedievalPasportLegionCatFireBattle
+  description: ""
+  components:
+  - type: Sprite
+    state: leg
+  - type: MedievalPasport
+    personAge: 26
+    personGender: мужской
+    personJob: "[color=yellow]Дворянин[/color]"
+    personName: "Викта Белосвет"
+    personRace: Beastmen
+    
+
+
+- type: entity
+  name: MedievalPasport
+  parent: MedievalPasportBase
   id: MedievalPasportInsurgency
   description: ""
   components:
@@ -7723,7 +7812,64 @@
   name: root
   description: MedievalLoot
   components:
-    - type: Sprite
-      sprite: Imperial/Medieval/Chem/Garden/root.rsi
-      state: icon
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/root.rsi
+    state: icon
+  - type: Currency
+    price:
+      Revent: 5
+  - type: Tag
+    tags:
+    - MyrmexCanTake
+    - RootItem
 
+- type: entity
+  id: MedievalRockfallWarning
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Effects/rockfall.rsi
+    state: warning
+  - type: TimedDespawn
+    lifetime: 25
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/rock_warning.ogg
+
+- type: entity
+  id: MedievalRockfall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: TimedDespawn
+    lifetime: 25
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/rockfall.ogg
+
+- type: entity
+  id: MedievalRockfallWait
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: MyrmexRockFall
+    chanse: 0.2
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieVikta
+  name: PlushieVikta
+  description: PlushieVikta
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/ViktaPlushie.rsi
+    state: icon

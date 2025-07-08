@@ -453,28 +453,27 @@ namespace Content.Server.MagicBarrier
                         }
                     }
 
-                    if (comp.Cycle == 85)
-                    {
-                        var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
-                        var choosenSpawner = _random.Pick(cursespawners);
-                        var cursexform = Transform(choosenSpawner.Owner);
-                        var cursecoords = cursexform.Coordinates;
-                        Spawn("MedievalSpawnNecroSenderPreset", cursecoords);
-                        _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
-                    }
+                    //if (comp.Cycle == 85)
+                    //{
+                    //    var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
+                    //    var choosenSpawner = _random.Pick(cursespawners);
+                    //    var cursexform = Transform(choosenSpawner.Owner);
+                    //    var cursecoords = cursexform.Coordinates;
+                    //    Spawn("MedievalSpawnNecroSenderPreset", cursecoords);
+                    //    _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                    //}
 
-                    if (comp.Cycle == 161)
-                    {
-                        var cursespawners = EntityManager.EntityQuery<MagicBarrierNecroSpawnComponent>().ToArray();
-                        var choosenSpawner = _random.Pick(cursespawners);
-                        var cursexform = Transform(choosenSpawner.Owner);
-                        var cursecoords = cursexform.Coordinates;
-                        for (int i = 0; i < 100; i++)
-                            Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
-                        Spawn("MedievalSpawnNecroLeaderPreset", cursecoords);
-                        _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
-
-                    }
+                    //if (comp.Cycle == 161)
+                    //{
+                    //    var cursespawners = EntityManager.EntityQuery<MagicBarrierNecroSpawnComponent>().ToArray();
+                    //    var choosenSpawner = _random.Pick(cursespawners);
+                    //    var cursexform = Transform(choosenSpawner.Owner);
+                    //    var cursecoords = cursexform.Coordinates;
+                    //    for (int i = 0; i < 100; i++)
+                    //        Spawn("MedievalSpawnNecroFighterPreset", cursecoords);
+                    //    Spawn("MedievalSpawnNecroLeaderPreset", cursecoords);
+                    //    _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                    //}
 
                     if (comp.Cycle == 180)
                     {
