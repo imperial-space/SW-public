@@ -18,7 +18,7 @@
   parent: BaseItem
   components:
   - type: TimedDespawn
-    lifetime: 6
+    lifetime: 8
   - type: Unremoveable
   - type: Sprite
     sprite: Imperial/Medieval/Gun/prism.rsi
