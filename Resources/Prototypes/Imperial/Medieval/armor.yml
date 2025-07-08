@@ -1119,6 +1119,17 @@
     regen: 2.2
 
 - type: entity
+  parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterYamuroArmorCharmer
+  name: MedievalClothingOuterYamuroArmorCharmer
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/archimageyamuro.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/archimageyamuro.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorCharmerLight
   name: MedievalClothingOuterArmorCharmerLight

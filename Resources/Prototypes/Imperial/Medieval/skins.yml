@@ -122,6 +122,10 @@
   map:
     MedievalFalshionT3: [ MedievalFalshionT3DarkSword ]
     MedievalFalshionT3Steel: [ MedievalFalshionT3DarkSwordSteel ]
+    MedievalClothingNeckCloakRedIns: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakBlueLegion: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanKayot: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanWolf: [MedievalClothingNeckCloakDarkBlueGold]
 
 - type: customization
   id: drgnar
@@ -140,6 +144,8 @@
     MedievalClothingFeetSteel: [MedievalClothingFeetSteelDarkBootsArchaont]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorWhiteWizardCharmerLight]
     Log: [MedievalClothingHandsGlovesWhiteWizard]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer]
 
 - type: customization
   id: scarlatto
