@@ -194,6 +194,9 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                     var randomNeighbor = neighbors[_random.Next(neighbors.Count)];
                     targetX = randomNeighbor.x;
                     targetY = randomNeighbor.y;
+
+                    StatusLabel.Text = "Промах! Нажали не на ту клетку из-за низкого уровня интеллекта!";
+                    StatusLabel.Modulate = Color.Orange;
                 }
             }
         }
@@ -400,7 +403,18 @@ public sealed partial class MinesweeperWindow : DefaultWindow
 
         MinesLabel.Text = $"Мины: {_mineCount - flaggedCount}";
         OpenedLabel.Text = $"Открыто: {_revealedCount}/{_gridSize * _gridSize - _mineCount}";
-        StatusLabel.Text = "Найдите все безопасные клетки!";
-        StatusLabel.Modulate = Color.White;
+
+        if (_playerIntelligence < 10)
+        {
+            var intelligenceDeficit = 10 - _playerIntelligence;
+            var misfireChance = intelligenceDeficit * 5;
+            StatusLabel.Text = $"Найдите все безопасные клетки! ВНИМАНИЕ: Шанс промаха {misfireChance}%. Слишком низкий уровень интеллекта!";
+            StatusLabel.Modulate = Color.Yellow;
+        }
+        else
+        {
+            StatusLabel.Text = "Найдите все безопасные клетки!";
+            StatusLabel.Modulate = Color.White;
+        }
     }
 }
