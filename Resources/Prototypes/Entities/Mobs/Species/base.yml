@@ -327,11 +327,11 @@
     energy: 0.3
     radius: 1.18
   - type: RDWeight
-    value: 75
+    value: 63
   - type: RDWeightSpeedModifier
     curve: !type:RDWeightModifierLinearCurve
       min: 90
-      max: 180
+      max: 220 # CURSE OF 220
   - type: RDWeightExamine
     examines:
       "[color=#ADFF2F]Налегке[/color]":

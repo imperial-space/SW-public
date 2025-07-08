@@ -170,12 +170,12 @@
           priority: 1.25
           actions:
           - !type:SpawnAtPosition
-            prototypes: [BossSpikesSpawnMarkerChess, BossSpikesSpawnMarkerBox, BossSpikesSpawnMarkerPincerVertical, BossSpikesSpawnMarkerRandomBurst, BossSpikesSpawnMarkerDiagonalSweep, BossSpikesSpawnMarkerCrossInverted]
+            prototypes: [BossSpikesSpawnMarkerPincerVertical, BossSpikesSpawnMarkerRandomBurst, BossSpikesSpawnMarkerDiagonalSweep, BossSpikesSpawnMarkerCrossInverted]
             randomDistance: 2
             spawnCount: 1
         - !type:GridTargetedAttack
           cooldown: 50
-          priority: 1.25
+          priority: 2
           actions:
           - !type:AddComponent
             components:
