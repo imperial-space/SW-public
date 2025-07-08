@@ -1,7 +1,7 @@
-namespace Content.Shared.Imperial.Medieval.New;
+namespace Content.Shared.Imperial.Medieval.Actions;
 
 [RegisterComponent]
-public sealed partial class NewComponent : Component
+public sealed partial class AddActionOnUseComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
     public string ActionId = "idkreally";
