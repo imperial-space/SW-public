@@ -433,6 +433,17 @@
   - type: MedievalIronHitSound
 
 - type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterRoyalArmorIronCuirass
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/royalcuirass.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/royalcuirass.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorIronCuirassLight
   name: iron armor cuirass
@@ -1163,6 +1174,17 @@
     damageCoefficient: 0.75
   - type: ManaRegen
     regen: 2.2
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterYamuroArmorCharmer
+  name: MedievalClothingOuterYamuroArmorCharmer
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/archimageyamuro.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/archimageyamuro.rsi
 
 - type: entity
   parent: ClothingOuterBase

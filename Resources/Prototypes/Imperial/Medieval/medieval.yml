@@ -7821,21 +7821,6 @@
   - type: UseDelay
     delay: 2.0
 
-- type: hitscan
-  id: MedievalMagicBeam
-  damage:
-    types:
-      Heat: 4
-  muzzleFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: muzzle_laser
-  travelFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: beam
-  impactFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: impact_laser
-
 - type: entity
   parent: BaseStructureMedieval
   id: MedievalSharpeningMachine
