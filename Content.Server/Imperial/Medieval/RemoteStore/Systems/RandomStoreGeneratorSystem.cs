@@ -1,4 +1,5 @@
 using Content.Server.Imperial.Medieval.RemoteStore.Components;
+using Content.Server.Sprite;
 using Content.Shared.Random.Helpers;
 using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
@@ -14,6 +15,8 @@ public sealed class RandomStoreGeneratorSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly MetaDataSystem _meta = default!;
+
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -30,6 +33,7 @@ public sealed class RandomStoreGeneratorSystem : EntitySystem
 
         store.Categories = preset.Categories;
         store.Name = _random.Pick(names);
+        _meta.SetEntityName(ent, store.Name);
 
         GenerateRandomListings(store, preset.PriceRandomModifier);
     }
