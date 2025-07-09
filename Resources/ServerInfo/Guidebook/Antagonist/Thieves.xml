@@ -19,7 +19,7 @@
   Ваши ловкие ручки дают Вам одно огромное преимущество: [bold]возможность снимать с людей вещи без того, чтобы они это заметили[/bold]. После небольшой практики, Вы сможете воровать даже рюкзаки с людьми, с которыми ведёте разговор.
 
   <Box>
-    <GuideEntityEmbed Entity="ClothingHandsChameleonThief" Caption="your thieving gloves"/>
+    <GuideEntityEmbed Entity="ClothingHandsChameleonThief" Caption="ваши ловкие ручки"/>
   </Box>
 
   ## Инструменты
@@ -37,18 +37,18 @@
   А Ваша [color=cyan]сумка[/color]... Ну, в ней всё что Вы успели взять. [bold]Вы можете выбрать один из готовых наборов[/bold], которые могут помочь Вам в поисках богатств.
 
   <Box>
-    <GuideEntityEmbed Entity="SatchelThief"/>
+    <GuideEntityEmbed Entity="SatchelThief" Caption="неопределённая сумка вора"/>
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="StorageImplanter" Caption="Anatomy"/>
-    <GuideEntityEmbed Entity="C4" Caption="Breacher"/>
-    <GuideEntityEmbed Entity="ChameleonProjector" Caption="Chameleon"/>
-    <GuideEntityEmbed Entity="EncryptionKeyStationMaster" Caption="Communicator"/>
+    <GuideEntityEmbed Entity="StorageImplanter" Caption="химик"/>
+    <GuideEntityEmbed Entity="C4" Caption="медвежатник"/>
+    <GuideEntityEmbed Entity="ChameleonProjector" Caption="хамелеон"/>
+    <GuideEntityEmbed Entity="EncryptionKeyStationMaster" Caption="связист"/>
   </Box>
   <Box>
-    <GuideEntityEmbed Entity="NitrousOxideTank" Caption="Sleeper"/>
-    <GuideEntityEmbed Entity="Emag" Caption="Smuggler"/>
-    <GuideEntityEmbed Entity="Telecrystal" Caption="Syndie"/>
+    <GuideEntityEmbed Entity="NitrousOxideTank" Caption="лунатик"/>
+    <GuideEntityEmbed Entity="Emag" Caption="контрабандист"/>
+    <GuideEntityEmbed Entity="Telecrystal" Caption="синдикатовец"/>
   </Box>
 
   ## Главный предмет в коллекции
@@ -63,10 +63,10 @@
   Некоторые предметы, которые Вы можете заиметь включают, но не ограничиваются:
 
   <Box>
-   <GuideEntityEmbed Entity="ToyFigurineGreytider" Caption="Figurines"/>
-   <GuideEntityEmbed Entity="PassengerIDCard" Caption="ID cards"/>
-   <GuideEntityEmbed Entity="ChemDispenser" Caption="Structures"/>
-   <GuideEntityEmbed Entity="MobCorgiIan" Caption="Animals/Pets"/>
+   <GuideEntityEmbed Entity="ToyFigurineGreytider" Caption="фигурки"/>
+   <GuideEntityEmbed Entity="PassengerIDCard" Caption="ID карты"/>
+   <GuideEntityEmbed Entity="ChemDispenser" Caption="структуры"/>
+   <GuideEntityEmbed Entity="MobCorgiIan" Caption="животные/питомцы"/>
   </Box>
 
 </Document>

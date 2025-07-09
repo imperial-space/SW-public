@@ -73,8 +73,8 @@
 
   Цель может быть в их офисе или где угодно. Если необходимо, убейте того у кого она в карманах.
 
-  В задачи входят:
-  - Кража [color=yellow]Капитанской[/color] экипировки в виде: [bold]ID карты[/bold], [bold]антикварного лазерного пистолета[/bold], [bold]джетпака[/bold] или [bold]диска ядерной авторизации[/bold].
+  В Ваши задачи может входить:
+  - Кража [color=yellow]Капитанской[/color] экипировки в виде [bold]ID карты[/bold], [bold]антикварного лазерного пистолета[/bold], [bold]джетпака[/bold] или [bold]диска ядерной авторизации[/bold].
   <Box>
     <GuideEntityEmbed Entity="CaptainIDCard" Caption=""/>
     <GuideEntityEmbed Entity="WeaponAntiqueLaser" Caption=""/>
