@@ -1,5 +1,6 @@
 ﻿using Content.Shared.Buckle.Components;
 using Content.Shared.Input;
+using Content.Shared.Mobs;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Input;
@@ -17,12 +18,19 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
         private sealed class SprintInputCmdHandler : InputCmdHandler
         {
+            private readonly RideableSprintSystem _rideable;
+
+            public SprintInputCmdHandler(RideableSprintSystem system)
+            {
+                _rideable = system;
+            }
+
             public override bool HandleCmdMessage(IEntityManager entManager, ICommonSession? session, IFullInputCmdMessage message)
             {
                 if (session?.AttachedEntity is not { Valid: true } player || !entManager.EntityExists(player))
                     return false;
-
-                entManager.RaisePredictiveEvent(new ToggleRideSprintEvent(message.State == BoundKeyState.Down));
+                _rideable.RaiseNetworkEvent(new ToggleRideSprintEvent(message.State == BoundKeyState.Down));
+                //entManager.RaisePredictiveEvent(new ToggleRideSprintEvent(message.State == BoundKeyState.Down));
                 return false;
             }
         }
@@ -32,12 +40,13 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             base.Initialize();
 
             SubscribeLocalEvent<RideableSprintComponent, RefreshMovementSpeedModifiersEvent>(OnSpeedRefresh);
+            SubscribeLocalEvent<RideableSprintComponent, StopRideEvent>(OnUnbuckled);
             SubscribeAllEvent<ToggleRideSprintEvent>(OnToggleSprint);
 
 
 
             CommandBinds.Builder
-                .Bind(ContentKeyFunctions.MedievalDash, new SprintInputCmdHandler())
+                .Bind(ContentKeyFunctions.MedievalDash, new SprintInputCmdHandler(this))
                 .Register<RideableSprintSystem>();
         }
         public override void Update(float frameTime)
@@ -96,6 +105,16 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 return;
 
             sprintComp.Sprinting = ev.Sprinting;
+        }
+
+        private void OnUnbuckled(EntityUid uid, RideableSprintComponent comp, StopRideEvent args)
+        {
+            comp.Sprinting = false;
+            comp.CurrentTime = 0;
+            comp.CurrentSpeedModifier = comp.BaseSpeedModifier;
+
+            comp.Dirty();
+            _speedModifier.RefreshMovementSpeedModifiers(uid);
         }
     }
 }
