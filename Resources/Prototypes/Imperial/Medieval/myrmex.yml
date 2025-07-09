@@ -162,6 +162,9 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
+  - type: Construction
+    graph: MMyrmexDoor
+    node: medievalMyrmexDoor
   - type: Occluder
   placement:
     mode: SnapgridCenter
@@ -192,6 +195,9 @@
     base: flimsy
   - type: ExplosionResistance
     damageCoefficient: 10
+  - type: Construction
+    graph: MMyrmexFlimsyWall
+    node: medievalMyrmexFlimsyWall
 
 - type: entity
   parent: BaseWall
@@ -219,6 +225,9 @@
     base: strong
   - type: ExplosionResistance
     damageCoefficient: 20
+  - type: Construction
+    graph: MMyrmexStrongWall
+    node: medievalMyrmexStrongWall
 
 - type: entity
   id: MedievalMyrmexWeb
