@@ -359,6 +359,17 @@
 
 - type: entity
   parent: MedievalClothingOuterArmorLeatherHeavy
+  id: MedievalClothingOuterLeafRoyalArmorLeatherHeavy
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/leafleatherroyalarmor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/leafleatherroyalarmor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorLeatherHeavy
   id: MedievalClothingOuterBlackArmorLeather
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
