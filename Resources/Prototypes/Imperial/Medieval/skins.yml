@@ -64,6 +64,7 @@
     MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterRoyalArmorIronCuirass]
     MedievalWoodenShieldKnight: [MedievalRoyalWoodenShieldKnight]
     MedievalWoodenShield: [MedievalRoyalWoodenShield]
+    MedievalClothingOuterArmorLeatherHeavy: [MedievalClothingOuterLeafRoyalArmorLeatherHeavy]
 
 - type: customization
   id: game123456
