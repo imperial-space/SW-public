@@ -210,3 +210,24 @@
         Stamina: 0.60
   - type: ExplosionResistance
     damageCoefficient: 0.70
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: USSPMarshalCoat
+  name: marshal armor vest
+  description: A slim Type I armored vest that provides decent protection against most types of damage.
+  components:
+  - type: Sprite
+    sprite: Imperial/ussp/highcommand/coat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/highcommand/coat.rsi
+  - type: Armor 
+    modifiers:
+      coefficients:
+        Blunt: 0.40
+        Slash: 0.40
+        Piercing: 0.40
+        Heat: 0.50
+        Stamina: 0.50
+  - type: ExplosionResistance
+    damageCoefficient: 0.60

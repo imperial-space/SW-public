@@ -378,3 +378,51 @@
     tags:
     - WhitelistChameleon
     - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPMarshalHelm
+  name: general cap
+  description: All remaining systems will BOW TO THE SOVIET UNION! FIRE!
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/highcommand/hat.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/highcommand/hat.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: USSPRedSecHelm
+  name: general cap
+  description: the most cool beret
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: Imperial/ussp/highcommand/hat2.rsi
+  - type: Clothing
+    sprite: Imperial/ussp/highcommand/hat2.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HamsterWearable
