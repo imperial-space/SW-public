@@ -63,21 +63,29 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             args.Handled = result.Handled;
         }
 
-        private (bool Success, bool Handled) TryFeed(Entity<MyrmexStewComponent> stew, Entity<MyrmexHungerComponent> user)
+        private bool FeedCheck(Entity<MyrmexStewComponent> stew, Entity<MyrmexHungerComponent> user, bool silent = false)
         {
             var curTime = _gameTiming.CurTime;
 
             var diff = (curTime - user.Comp.LastEaten);
 
             if (HasComp<LarvaComponent>(user.Owner) && !stew.Comp.EdibleByLarva)
-                return (false, true);
+                return false;
 
-            // TODO: надо будет вынести в константу
             if(diff.HasValue && diff.Value.Duration() < TimeSpan.FromSeconds(user.Comp.EatCooldownSeconds))
             {
-                _popup.PopupEntity(Loc.GetString("medieval-myrmex-stew-cooldown"), user.Owner, user.Owner);
-                return (false, true);
+                if(!silent)
+                    _popup.PopupEntity(Loc.GetString("medieval-myrmex-stew-cooldown"), user.Owner, user.Owner);
+                return false;
             }
+
+            return true;
+        }
+
+        private (bool Success, bool Handled) TryFeed(Entity<MyrmexStewComponent> stew, Entity<MyrmexHungerComponent> user)
+        {
+            if (!FeedCheck(stew, user))
+                return (false, true);
 
 
             var sound = _random.Pick(_feedSounds);
@@ -92,6 +100,9 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             )
             {
                 BreakOnDamage = true,
+                CancelDuplicate = true,
+                DistanceThreshold = 2,
+                BreakOnMove = true,
             };
             _doAfter.TryStartDoAfter(doAfterArgs);
             return (true, true);
@@ -104,15 +115,18 @@ namespace Content.Server.Imperial.Medieval.Myrmex
 
             if (!TryComp(args.User, out MyrmexHungerComponent? hunger))
                 return;
-
-            args.Handled = true;
-
-            entity.Comp.Uses--;
-
             if (!TryComp(entity.Owner, out MetaDataComponent? metadata))
                 return;
             if (!TryComp(entity.Owner, out TransformComponent? transform))
                 return;
+
+            args.Handled = true;
+
+            var userEntity = new Entity<MyrmexHungerComponent>(args.User, hunger);
+            if (!FeedCheck(entity, userEntity))
+                return;
+
+            entity.Comp.Uses--;
 
             hunger.LastEaten = _gameTiming.CurTime;
             if(entity.Comp.Buff != null)
