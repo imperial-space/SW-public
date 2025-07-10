@@ -5867,3 +5867,7 @@ ent-MedievalFalshionT3ChainMace = булава на цепи
 ent-MedievalFalshionT3SteelChainMace = булава на цепи
     .desc = Ха-ха, смешная взбучка крестьян.
     .suffix = { "Средневековье, ближка" }
+ent-MedievalHorseWhistle = свисток
+    .desc = Свисток для призыва вашего верного спутника - лошади. Одноразовый.
+    .suffix = { "Средневековье" }
+medieval-category-transport = Верховые животные
