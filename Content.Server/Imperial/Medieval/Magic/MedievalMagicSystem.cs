@@ -98,7 +98,7 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
         base.OnSpellDoAfterCast(uid, component, args);
 
         var spellData = GetSpellData(args);
-        SpellCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
+        //SpellCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
     }
 
     protected override void CastSpell(MedievalSpellDoAfterEvent args)
@@ -106,7 +106,7 @@ public sealed partial class MedievalMagicSystem : SharedMedievalMagicSystem
         base.CastSpell(args);
 
         var spellData = GetSpellData(args);
-        SpellSuccessCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
+        //SpellSuccessCastedMetrics.WithLabels(MetaData(GetEntity(spellData.Action)).EntityName).Inc();
     }
 
     #region Helpers
