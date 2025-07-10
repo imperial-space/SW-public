@@ -39,7 +39,7 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
-
+  - type: AffectRoundStats
 
 - type: damageContainer
   id: SkeletonNecro
