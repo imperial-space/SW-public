@@ -7,6 +7,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: HorseArmor
+    bluntModifier: 1.2
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Horse/leatherarmor.rsi
   - type: Clothing
@@ -34,6 +36,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: HorseArmor
+    bluntModifier: 2.2
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Horse/chainmailarmor.rsi
   - type: Clothing
@@ -66,6 +70,8 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: HorseArmor
+    bluntModifier: 3
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Horse/ironuparmor.rsi
   - type: Clothing

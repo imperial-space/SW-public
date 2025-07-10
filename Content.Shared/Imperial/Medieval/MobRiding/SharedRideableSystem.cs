@@ -121,3 +121,6 @@ public readonly record struct StartRideEvent(Entity<StrapComponent> Strap, Entit
 
 [ByRefEvent]
 public readonly record struct StopRideEvent(Entity<StrapComponent> Strap, Entity<BuckleComponent> Buckle);
+
+[ByRefEvent]
+public readonly record struct TryUnbuckleEvent(Entity<BuckleComponent> Buckle);
