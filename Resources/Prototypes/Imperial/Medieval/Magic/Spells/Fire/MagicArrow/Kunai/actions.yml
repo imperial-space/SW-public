@@ -34,9 +34,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.00035
+        essenceAddProbability: 0.00035
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
@@ -98,9 +101,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.0004
+        essenceAddProbability: 0.0004
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
@@ -146,9 +152,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.00045
+        essenceAddProbability: 0.00045
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
