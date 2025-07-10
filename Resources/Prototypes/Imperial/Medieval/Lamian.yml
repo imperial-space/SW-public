@@ -129,8 +129,8 @@
       Common: Speak
       #Goblin: Speak
       #Ancient: Speak
-      Tribe: Understand
-      Orc: Speak
+      #Tribe: Understand
+      #Orc: Speak
       #Cursed: Speak
       #Growling: Speak
       #Hissing: Speak
