@@ -21,6 +21,7 @@
     categories:
     - MedievalLegionWeapon
     - MedievalLegionArmor
+    - MedievalLegionTransport
     currencyWhitelist:
     - MedalLegion
     balance:
@@ -38,6 +39,11 @@
   id: MedievalLegionArmor
   name: medieval-category-armor
   priority: 1
+
+- type: storeCategory
+  id: MedievalLegionTransport
+  name: medieval-category-transport
+  priority: 2
 
 - type: currency
   id: MedalLegion
@@ -375,5 +381,13 @@
     MedalLegion: 10
   categories:
   - MedievalLegionArmor
+
+- type: listing
+  id: MdvLegionMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    MedalLegion: 20
+  categories:
+  - MedievalLegionTransport
 
 

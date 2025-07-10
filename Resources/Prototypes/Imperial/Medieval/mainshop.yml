@@ -29,6 +29,7 @@
     - MedievalMagic
     #- MedievalUpgrade
     - MedievalPlants
+    - MedievalTransport
     currencyWhitelist:
     - Revent
     balance:
@@ -85,6 +86,7 @@
     - MedievalMagic
     - MedievalQuestLegion
     - MedievalPlants
+    - MedievalTransport
     currencyWhitelist:
     - Revent
     balance:
@@ -113,6 +115,7 @@
     - MedievalMagic
     - MedievalQuestIns
     - MedievalPlants
+    - MedievalTransport
     currencyWhitelist:
     - Revent
     balance:
@@ -151,6 +154,11 @@
 - type: storeCategory
   id: MedievalMisc
   name: medieval-category-misc
+  priority: 9
+
+- type: storeCategory
+  id: MedievalTransport
+  name: medieval-category-transport
   priority: 9
 
 - type: storeCategory
@@ -2474,6 +2482,7 @@
     - MedievalQuestDemo
     - MedievalPlantsDemo
     - MedievalMagicDemo
+    - MedievalTransportDemo
     currencyWhitelist:
     - UnknownMedieval
     balance:
@@ -2928,3 +2937,11 @@
     Revent: 10
   categories:
   - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    Revent: 750
+  categories:
+  - MedievalTransport

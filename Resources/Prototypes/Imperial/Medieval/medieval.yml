@@ -7936,3 +7936,23 @@
   - type: Sprite
     sprite: Imperial/Medieval/Misc/ViktaPlushie.rsi
     state: icon
+
+- type: entity
+  parent: BaseItem
+  id: MedievalHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/whistle.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: TriggerOnUse
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+  - type: DeleteOnTrigger

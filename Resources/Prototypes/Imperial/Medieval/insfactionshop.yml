@@ -21,6 +21,7 @@
     categories:
     - MedievalInsWeapon
     - MedievalInsArmor
+    - MedievalInsTransport
     currencyWhitelist:
     - MedalIns
     balance:
@@ -39,6 +40,11 @@
   id: MedievalInsArmor
   name: medieval-category-armor
   priority: 1
+
+- type: storeCategory
+  id: MedievalInsTransport
+  name: medieval-category-transport
+  priority: 2
 
 - type: currency
   id: MedalIns
@@ -376,6 +382,14 @@
     MedalIns: 10
   categories:
   - MedievalInsArmor
+
+- type: listing
+  id: MdvInsMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    MedalIns: 20
+  categories:
+  - MedievalInsTransport
 
 
 
