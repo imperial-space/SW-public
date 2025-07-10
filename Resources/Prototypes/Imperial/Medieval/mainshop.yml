@@ -2659,6 +2659,18 @@
   categories:
   - MedievalMagic
 
+- type: listing
+  id: MdvShopMedievalScrollBarrier
+  productEntity: MedievalScrollBarrier
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 30
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+
 - type: discountCategory
   id: medievalDiscounts
   weight: 22
