@@ -133,7 +133,7 @@
       #Orc: Speak
       #Cursed: Speak
       #Growling: Speak
-      #Hissing: Speak
+      Hissing: Speak
       #Elf: Speak
   - type: Butcherable
     butcheringType: Spike
