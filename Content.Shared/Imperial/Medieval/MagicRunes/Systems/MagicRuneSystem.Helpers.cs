@@ -39,7 +39,7 @@ public partial class MagicRuneSystem
             return;
         }
 
-        scroll.Power = scroll.BasicPower + scroll.DecodedRunes.Count * 3;
+        scroll.Power = scroll.BasicPower + scroll.DecodedRunes.Count * scroll.PointsPerDecodedRune;
         Dirty(uid, scroll);
     }
 

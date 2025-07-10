@@ -597,6 +597,17 @@
     - Hair
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadYamuroHelmetCharmer
+  name: MedievalClothingHeadYamuroHelmetCharmer
+  description: Medieval salad helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/archimageyamuro.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/archimageyamuro.rsi
+
+- type: entity
   parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetCharmerLight
   name: MedievalClothingHeadHelmetCharmerLight

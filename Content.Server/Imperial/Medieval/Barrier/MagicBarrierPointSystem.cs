@@ -86,7 +86,7 @@ namespace Content.Server.MagicBarrier
         {
             AlternativeVerb verb = new()
             {
-                Text = "Выполнить преподношение",
+                Text = "Пожертвовать собой",
                 Act = () => TrySuicide(args.User, uid),
             };
             args.Verbs.Add(verb);

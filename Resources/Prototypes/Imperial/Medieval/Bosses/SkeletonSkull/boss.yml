@@ -57,7 +57,7 @@
       path: /Audio/Imperial/Medieval/Locations/Laststandofspellward.ogg
       params:
         volume: -9
-    health: 3000
+    health: 5000
     loseSound:
       path: /Audio/Imperial/Medieval/Effects/boss_fail.ogg
     defeatSound:
@@ -67,7 +67,7 @@
     stages:
       1:
         stageDelay: 3
-        threshold: 3500
+        threshold: 4500
         attacks:
         - !type:MarkerTargetedAttack
           markerTag: BoneSpikeSpawnPosition
@@ -108,7 +108,7 @@
             spawnCount: 1
       2:
         stageDelay: 2.3
-        threshold: 2150
+        threshold: 2950
         attacksPerTime: [1,2]
         sound:
           path: /Audio/Imperial/Medieval/Effects/boss-stage-2.ogg
@@ -170,12 +170,12 @@
           priority: 1.25
           actions:
           - !type:SpawnAtPosition
-            prototypes: [BossSpikesSpawnMarkerChess, BossSpikesSpawnMarkerBox, BossSpikesSpawnMarkerPincerVertical, BossSpikesSpawnMarkerRandomBurst, BossSpikesSpawnMarkerDiagonalSweep, BossSpikesSpawnMarkerCrossInverted]
+            prototypes: [BossSpikesSpawnMarkerPincerVertical, BossSpikesSpawnMarkerRandomBurst, BossSpikesSpawnMarkerDiagonalSweep, BossSpikesSpawnMarkerBox]
             randomDistance: 2
             spawnCount: 1
         - !type:GridTargetedAttack
           cooldown: 50
-          priority: 1.25
+          priority: 2
           actions:
           - !type:AddComponent
             components:

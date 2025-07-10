@@ -23,18 +23,31 @@ public sealed partial class MagicScrollWindow : DefaultWindow
     private readonly Dictionary<MagicRune, Label> _encryptedRuneLabels = new();
     private MinesweeperWindow? _minesweeperWindow;
     private int _playerIntelligence = 10;
+    private int _gridSize = 5;
+    private int _totalMines = 2;
 
     public MagicScrollBoundUserInterface? Owner;
 
     public MagicScrollWindow()
     {
         RobustXamlLoader.Load(this);
+
+        OnClose += () =>
+        {
+            if (_minesweeperWindow != null)
+            {
+                _minesweeperWindow.Close();
+                _minesweeperWindow = null;
+            }
+        };
     }
 
     public void UpdateState(MagicScrollBoundUserInterfaceState state)
     {
         _currentState = state;
         _playerIntelligence = state.PlayerIntelligence;
+        _gridSize = state.GridSize;
+        _totalMines = state.TotalMines;
         UpdatePowerDisplay();
         UpdateEncryptedRunes();
         UpdateKnownRunes();
@@ -113,8 +126,9 @@ public sealed partial class MagicScrollWindow : DefaultWindow
             };
 
             var canUse = CanUseRuneForDecryption(rune);
+            var isMinesweeperOpen = _minesweeperWindow != null;
 
-            if (canUse)
+            if (canUse && !isMinesweeperOpen)
             {
                 button.Modulate = Color.White;
                 button.OnPressed += _ => StartMinesweeper(rune);
@@ -123,7 +137,15 @@ public sealed partial class MagicScrollWindow : DefaultWindow
             {
                 button.Modulate = Color.Gray;
                 button.Disabled = true;
-                button.ToolTip += " (уже использована или нет подходящих рун для расшифровки)";
+
+                if (isMinesweeperOpen)
+                {
+                    button.ToolTip += " (сапёр уже открыт)";
+                }
+                else if (!canUse)
+                {
+                    button.ToolTip += " (уже использована или нет подходящих рун для расшифровки)";
+                }
             }
 
             KnownRunesGrid.AddChild(button);
@@ -143,22 +165,29 @@ public sealed partial class MagicScrollWindow : DefaultWindow
     {
         if (_minesweeperWindow != null)
         {
-            _minesweeperWindow.Close();
+            return;
         }
 
         _minesweeperWindow = new MinesweeperWindow();
-        _minesweeperWindow.GameCompleted += success => OnMinesweeperCompleted(rune, success);
-        _minesweeperWindow.StartGame(rune, _playerIntelligence);
+        _minesweeperWindow.GameCompleted += (success, blow) => OnMinesweeperCompleted(rune, success, blow);
+        _minesweeperWindow.OnClose += () =>
+        {
+            _minesweeperWindow = null;
+            UpdateKnownRunes();
+        };
+        _minesweeperWindow.StartGame(rune, _playerIntelligence, _gridSize, _totalMines);
         _minesweeperWindow.OpenCentered();
+
+        UpdateKnownRunes();
     }
 
-    private void OnMinesweeperCompleted(MagicRune rune, bool success)
+    private void OnMinesweeperCompleted(MagicRune rune, bool success, bool blow)
     {
         if (success)
         {
             Owner?.SendMessage(new MagicScrollRuneUnlockedMessage(rune));
         }
-        else
+        else if (blow)
         {
             Owner?.SendMessage(new MagicScrollExplosionMessage());
         }

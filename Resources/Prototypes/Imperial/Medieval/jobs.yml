@@ -1796,6 +1796,7 @@
       regen: 0.4
     - type: MedievalJobSpawn
       spawnType: Default
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -2404,6 +2405,7 @@
     #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -2973,6 +2975,7 @@
     #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
