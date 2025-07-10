@@ -2785,6 +2785,8 @@
   id: MedievalLootHog
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hog
@@ -2823,6 +2825,8 @@
   id: MedievalLootHunter
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hunter
@@ -2861,6 +2865,8 @@
   id: MedievalLootCrab
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: crab
@@ -2899,6 +2905,8 @@
   id: MedievalLootCrabDevil
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: dcrab
@@ -2924,6 +2932,8 @@
   id: MedievalLootWolf
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: wolf
@@ -3147,6 +3157,8 @@
   id: MedievalLootBear
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: bear
@@ -3169,6 +3181,8 @@
   id: MedievalLootWeak
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: weak
@@ -3189,6 +3203,8 @@
   id: MedievalLootMeat
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: meat
@@ -3209,6 +3225,8 @@
   id: MedievalLootFighter
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: fighter
@@ -3229,6 +3247,8 @@
   id: MedievalLootLegion
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: legion
@@ -3316,6 +3336,8 @@
   id: MedievalLootShieldSlug
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 4
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: slugbones
@@ -7914,3 +7936,23 @@
   - type: Sprite
     sprite: Imperial/Medieval/Misc/ViktaPlushie.rsi
     state: icon
+
+- type: entity
+  parent: BaseItem
+  id: MedievalHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/whistle.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: TriggerOnUse
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+  - type: DeleteOnTrigger

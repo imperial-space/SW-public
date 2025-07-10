@@ -1,8 +1,8 @@
 using Content.Shared.Actions;
-using Content.Shared.Imperial.Medieval.Actions;
+using Content.Shared.Imperial.Medieval.DoOnUse.Action;
 using Content.Shared.Interaction.Events;
 
-namespace Content.Server.Imperial.Medieval.Actions;
+namespace Content.Server.Imperial.Medieval.DoOnUse.Action;
 
 public sealed partial class AddActionOnUseSystem : EntitySystem
 {

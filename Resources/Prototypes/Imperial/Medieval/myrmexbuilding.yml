@@ -699,3 +699,123 @@
           doAfter: 4
   - node: medievalWoodenSupportWall
     entity: WoodenSupportWall
+
+- type: construction
+  id: MedievalMyrmexStrongWall
+  graph: MMyrmexStrongWall
+  startNode: start
+  targetNode: medievalMyrmexStrongWall
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexStrongWall
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexStrongWall
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexStrongWall
+    entity: MedievalMyrmexStrongWall
+
+- type: construction
+  id: MedievalMyrmexFlimsyWall
+  graph: MMyrmexFlimsyWall
+  startNode: start
+  targetNode: medievalMyrmexFlimsyWall
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexFlimsyWall
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexFlimsyWall
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceGum
+        name: живица # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: resin
+        doAfter: 1
+  - node: medievalMyrmexFlimsyWall
+    entity: MedievalMyrmexFlimsyWall
+
+- type: construction
+  id: MedievalMyrmexDoor
+  graph: MMyrmexDoor
+  startNode: start
+  targetNode: medievalMyrmexDoor
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MMyrmexDoor
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexDoor
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+  - node: medievalMyrmexDoor
+    entity: MedievalMyrmexDoor

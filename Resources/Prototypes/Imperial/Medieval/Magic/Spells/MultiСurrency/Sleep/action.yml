@@ -8,11 +8,11 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 1
+        probability: 0.0001
         addedEssences:
           MagicMedievalLight1: 1
       - !type:AddMagicEssence
-        probability: 1
+        probability: 0.0001
         addedEssences:
           MagicMedievalVodka1: 1
   - type: ManaDrainSpell

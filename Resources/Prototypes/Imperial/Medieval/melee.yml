@@ -1382,6 +1382,17 @@
 
 - type: entity
   name: falshion
+  parent: MedievalFalshionT3
+  id: MedievalFalshionT3ChainMace
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_chainmace.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_chainmace.rsi
+
+- type: entity
+  name: falshion
   parent: MedievalFalshionT3Steel
   id: MedievalFalshionT3SteelGold
   description: An ancient war blade.
@@ -1390,6 +1401,17 @@
     sprite: Imperial/Medieval/Melee/iron_sword_gold.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Melee/iron_sword_gold.rsi
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3Steel
+  id: MedievalFalshionT3SteelChainMace
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/iron_chainmace.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/iron_chainmace.rsi
 
 - type: entity
   name: falshion

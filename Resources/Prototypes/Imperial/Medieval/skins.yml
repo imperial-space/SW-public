@@ -8,6 +8,8 @@
     MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2, MedievalClothingHeadHelmetCrusaderMorbius ]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightInsBlood]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerInsBlood]
+    MedievalFalshionT3: [MedievalFalshionT3ChainMace]
+    MedievalFalshionT3Steel: [MedievalFalshionT3SteelChainMace]
     Log: [AhrimanStaffMedieval]
 
 - type: customization
@@ -82,7 +84,7 @@
   id: arelover
   holder: f074e865-f7f4-435e-807d-3a62280dc462
   map:
-    Log: [ MedievalClothingHeadHelmetNimbus ]
+    Log: [ MedievalClothingHeadHelmetNimbus, MedievalMagicWeaponPrism ]
 
 - type: customization
   id: the_greatkeeper

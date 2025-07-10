@@ -210,6 +210,13 @@
         - MobMask
         layer:
         - MobLayer
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-soft-floofy
+    interactFailureString: petting-failure-generic
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Imperial/Medieval/animal_horse.ogg
   - type: InventorySlots
   - type: Inventory
     speciesId: horse
@@ -290,6 +297,9 @@
     buckleOffset: "-0.00, -0.02"
     buckleTime: 1
     maxBuckleDistance: 1
+  - type: EmitSoundOnSpawn
+    sound: 
+      path: /Audio/Imperial/Medieval/animal_horse.ogg
   - type: Rideable
   - type: RideableSprint
     accelerationTime: 8
