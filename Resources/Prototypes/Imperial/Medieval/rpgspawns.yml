@@ -202,7 +202,7 @@
     prototypes:
     - MedievalLateMobSpawnerMedievalMobGoblin
     chance: 0.35
-    intervalSeconds: 1200
+    intervalSeconds: 900
     minimumEntitiesSpawned: 5
     maximumEntitiesSpawned: 9
 
