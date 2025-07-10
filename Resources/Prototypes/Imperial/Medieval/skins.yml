@@ -84,7 +84,7 @@
   id: arelover
   holder: f074e865-f7f4-435e-807d-3a62280dc462
   map:
-    Log: [ MedievalClothingHeadHelmetNimbus ]
+    Log: [ MedievalClothingHeadHelmetNimbus, MedievalMagicWeaponPrism ]
 
 - type: customization
   id: the_greatkeeper
