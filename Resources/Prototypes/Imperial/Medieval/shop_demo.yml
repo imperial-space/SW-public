@@ -39,6 +39,11 @@
   priority: 9
 
 - type: storeCategory
+  id: MedievalTransportDemo
+  name: medieval-category-transport
+  priority: 9
+
+- type: storeCategory
   id: MedievalQuestDemo
   name: medieval-category-quest
   priority: 7
@@ -2422,3 +2427,11 @@
     Revent: 10
   categories:
   - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalTransportDemo
