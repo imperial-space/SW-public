@@ -34,13 +34,13 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.35
+        probability: 0.00035
         addedEssences:
           MagicMedievalDarkness1: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.25
+        probability: 0.00025
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -48,7 +48,7 @@
         addedEssences:
           MagicMedievalDarkness1: 1
       - !type:AddMagicEssence
-        probability: 0.25
+        probability: 0.00025
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -102,13 +102,13 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.4
+        probability: 0.0004
         addedEssences:
           MagicMedievalDarkness1: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.2
+        probability: 0.0002
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -116,7 +116,7 @@
         addedEssences:
           MagicMedievalDarkness1: 1
       - !type:AddMagicEssence
-        probability: 0.25
+        probability: 0.00025
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -162,13 +162,13 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.46
+        probability: 0.00046
         addedEssences:
           MagicMedievalDarkness1: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.3
+        probability: 0.0003
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -176,7 +176,7 @@
         addedEssences:
           MagicMedievalDarkness1: 1
       - !type:AddMagicEssence
-        probability: 0.35
+        probability: 0.00035
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:

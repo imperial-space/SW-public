@@ -558,16 +558,16 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 1000 
+        damage: 1000
       behaviors:
-      - !type:GoSSDBehavior { } 
+      - !type:GoSSDBehavior { }
       - !type:GibBehavior { }
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
-        damage: 1500 
+        damage: 1500
       behaviors:
-      - !type:GoSSDBehavior { } 
+      - !type:GoSSDBehavior { }
       - !type:SpawnEntitiesBehavior
         spawnInContainer: true
         spawn:
@@ -583,7 +583,7 @@
         damageType: Caustic
         damage: 100
       behaviors:
-      - !type:GoSSDBehavior { } 
+      - !type:GoSSDBehavior { }
       - !type:SpawnEntitiesBehavior
         spawn:
           MedievalLootAnt:
@@ -618,7 +618,7 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 10
+        Brute: 8
       types:
         ParryAble: 1
         Structural: 85
@@ -626,7 +626,7 @@
     thresholds:
       0: Alive
       65: Critical
-      110: Dead
+      140: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
     baseSprintSpeed: 2
@@ -680,7 +680,7 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 7
+        Brute: 5
         Airloss: 2
       types:
         ParryAble: 1
@@ -695,7 +695,7 @@
     thresholds:
       0: Alive
       100: Critical
-      120: Dead
+      170: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.4
     baseSprintSpeed: 2.2
@@ -741,16 +741,16 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 22
-        Airloss: 5
+        Brute: 14
+        Airloss: 3
       types:
         ParryAble: 1
         Bloodloss: 4
   - type: MobThresholds
     thresholds:
       0: Alive
-      260: Critical # curse of 220
-      350: Dead
+      310: Critical # curse of 220. no. 310
+      450: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
     baseSprintSpeed: 1.8
@@ -796,15 +796,15 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 13
-        Airloss: 4
+        Brute: 10
+        Airloss: 2
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 2
   - type: MobThresholds
     thresholds:
       0: Alive
-      165: Critical
+      155: Critical
       270: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.2
@@ -948,11 +948,11 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 23
-        Airloss: 9
+        Brute: 20
+        Airloss: 3
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 5
         Structural: 155
   - type: MobThresholds
     thresholds:
@@ -998,16 +998,16 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 1000 
+        damage: 1000
       behaviors:
-      - !type:GoSSDBehavior { } 
+      - !type:GoSSDBehavior { }
       - !type:GibBehavior { }
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
-        damage: 1500 
+        damage: 1500
       behaviors:
-      - !type:GoSSDBehavior { } 
+      - !type:GoSSDBehavior { }
       - !type:SpawnEntitiesBehavior
         spawnInContainer: true
         spawn:

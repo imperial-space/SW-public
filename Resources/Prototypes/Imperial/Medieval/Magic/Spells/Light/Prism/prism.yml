@@ -43,14 +43,26 @@
   - type: Appearance
 
 - type: entity
-  id: MedievalActionPrism
+  id: MedievalMagicWeaponBeam
+  parent: MedievalMagicWeaponPrism
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/magic_beam.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: AddActionOnUse
+    actionId: MedievalActionMagicBeam
+
+- type: entity
+  id: MedievalActionMagicBeam
   name: medieval-store-spells-light-prism-name
   description: medieval-store-spells-light-prism-desc
   components:
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.85
+        probability: 0.00085
         addedEssences:
           MagicMedievalLight1: 1
   - type: ManaDrainSpell
@@ -70,7 +82,7 @@
       sprite: Imperial/Medieval/Gun/prism.rsi
       state: base
     event: !type:MedievalSpawnInHandSpellEvent
-      spawnedEntityPrototype: MedievalMagicWeaponPrism
+      spawnedEntityPrototype: MedievalMagicWeaponBeam
       spellCastDoAfter:
         delay: 3.5
         breakOnDropItem: false
