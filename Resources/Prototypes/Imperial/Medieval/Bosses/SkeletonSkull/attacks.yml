@@ -89,7 +89,7 @@
   - type: Clickable
   - type: InteractionOutline
   - type: TimedBossHeal
-    healAmount: 55
+    healAmount: 45
   - type: TimedDespawn
     lifetime: 15.1
   - type: DoAfter
