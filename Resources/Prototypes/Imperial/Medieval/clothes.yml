@@ -1806,9 +1806,9 @@
   description: Походные сапоги из крепкой кожи.
   components:
   - type: Sprite
-    sprite: Imperial\Medieval\Clothing\Shoes\desert_ambassador.rsi
+    sprite: Imperial/Medieval/Clothing/Shoes/desert_ambassador.rsi
   - type: Clothing
-    sprite: Imperial\Medieval\Clothing\Shoes\desert_ambassador.rsi
+    sprite: Imperial/Medieval/Clothing/Shoes/desert_ambassador.rsi
 
 - type: entity
   name: monster bag
