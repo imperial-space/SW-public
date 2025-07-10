@@ -11,9 +11,9 @@
         essenceAddProbability: 0.00085
         bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire: 1
+          MagicMedievalDarkness: 1
         bonusEssences:
-          MagicMedievalFire: 1
+          MagicMedievalDarkness: 1
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 60
