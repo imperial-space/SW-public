@@ -288,10 +288,6 @@
     contents:
       - id: MedievalChemistryRecipe
         prob: 0.1
-      - id: MedievalScrollBarrierWeak
-        prob: 0.15
-      - id: MedievalScrollBarrierNormal
-        prob: 0.005
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalLockpickPack
@@ -333,6 +329,8 @@
       - id: MedievalPen
         prob: 0.1
       - id: MedievalRepairStone
+        prob: 0.05
+      - id: MedievalScrollBarrier
         prob: 0.05
       - id: MedievalDrugChemistryBottle
         prob: 0.04
@@ -784,14 +782,6 @@
   #  prototype: MedievalChestWithLoot2
   - type: StorageFill
     contents:
-      - id: MedievalScrollBarrierWeak
-        prob: 0.25
-      - id: MedievalScrollBarrierWeak
-        prob: 0.25
-      - id: MedievalScrollBarrierWeak
-        prob: 0.2
-      - id: MedievalScrollBarrierNormal
-        prob: 0.4
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
@@ -1210,6 +1200,8 @@
         prob: 0.07
       - id: MedievalKnut
         prob: 0.09
+      - id: MedievalScrollBarrier
+        prob: 0.1
       - id: MedaljonDark
         prob: 0.015
       - id: MedaljonExpl
@@ -1280,26 +1272,6 @@
   #  prototype: MedievalChestWithLoot3
   - type: StorageFill
     contents:
-      - id: MedievalScrollBarrierWeak
-        prob: 0.4
-      - id: MedievalScrollBarrierWeak
-        prob: 0.4
-      - id: MedievalScrollBarrierWeak
-        prob: 0.15
-      - id: MedievalScrollBarrierWeak
-        prob: 0.03
-      - id: MedievalScrollBarrierWeak
-        prob: 0.03
-      - id: MedievalScrollBarrierNormal
-        prob: 0.01
-      - id: MedievalScrollBarrierNormal
-        prob: 0.1
-      - id: MedievalScrollBarrierNormal
-        prob: 0.2
-      - id: MedievalScrollBarrierGood
-        prob: 0.07
-      - id: MedievalScrollBarrierDebug
-        prob: 0.01
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
@@ -1442,6 +1414,8 @@
         prob: 0.04
       - id: MedievalBanjoInstrument
         prob: 0.1
+      - id: MedievalScrollBarrier
+        prob: 0.2
       - id: MedievalShovel
         prob: 0.03
       #- id: MedievalWrench
@@ -1842,8 +1816,6 @@
   #  prototype: MedievalChestWithLoot4
   - type: StorageFill
     contents:
-      - id: MedievalScrollBarrierWeak
-        prob: 0.15
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag

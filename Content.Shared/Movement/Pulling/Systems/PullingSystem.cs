@@ -464,10 +464,13 @@ public sealed class PullingSystem : EntitySystem
     {
         // Imperial medieval Grab Start
 
-        if (_combat.IsInCombatMode(pullerUid))
+        if (HasComp<GrabbableComponent>(pullable))
         {
-            _grab.ToggleGrab(pullable.Owner, pullerUid);
-            return true;
+            if (_combat.IsInCombatMode(pullerUid))
+            {
+                _grab.ToggleGrab(pullable.Owner, pullerUid);
+                return true;
+            }
         }
 
         // Imperial medieval Grab End

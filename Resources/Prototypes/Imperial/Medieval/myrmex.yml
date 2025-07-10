@@ -162,6 +162,9 @@
   - type: IconSmooth
     key: walls
     mode: NoSprite
+  - type: Construction
+    graph: MMyrmexDoor
+    node: medievalMyrmexDoor
   - type: Occluder
   placement:
     mode: SnapgridCenter
@@ -192,6 +195,9 @@
     base: flimsy
   - type: ExplosionResistance
     damageCoefficient: 10
+  - type: Construction
+    graph: MMyrmexFlimsyWall
+    node: medievalMyrmexFlimsyWall
 
 - type: entity
   parent: BaseWall
@@ -219,6 +225,9 @@
     base: strong
   - type: ExplosionResistance
     damageCoefficient: 20
+  - type: Construction
+    graph: MMyrmexStrongWall
+    node: medievalMyrmexStrongWall
 
 - type: entity
   id: MedievalMyrmexWeb
@@ -319,8 +328,8 @@
           invert: true
         damage:
           types:
-            Heat: 2
-            Poison: 1.5
+            Heat: 1
+            Poison: 3.5
 
 - type: entity
   id: MedievalMyrmexTrapBase
@@ -447,6 +456,7 @@
   parent: SimpleMobBaseNoFood
   id: MedievalMyrmexBase
   components:
+  - type: MyrmexHunger
   - type: BorgHandsImperial
     whitelistHandTag: MyrmexCanTake
   - type: Hands
@@ -543,6 +553,47 @@
   - type: LocalLight
     energy: 1
     radius: 6
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Caustic
+        damage: 100
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalLootAnt:
+            min: 2
+            max: 4
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/lightburn.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   name: myrmeling
@@ -567,7 +618,7 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 10
+        Brute: 8
       types:
         ParryAble: 1
         Structural: 85
@@ -575,7 +626,7 @@
     thresholds:
       0: Alive
       65: Critical
-      110: Dead
+      140: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.2
     baseSprintSpeed: 2
@@ -629,7 +680,7 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 7
+        Brute: 5
         Airloss: 2
       types:
         ParryAble: 1
@@ -644,7 +695,7 @@
     thresholds:
       0: Alive
       100: Critical
-      120: Dead
+      170: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.4
     baseSprintSpeed: 2.2
@@ -690,27 +741,27 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 22
-        Airloss: 5
+        Brute: 14
+        Airloss: 3
       types:
         ParryAble: 1
         Bloodloss: 4
   - type: MobThresholds
     thresholds:
       0: Alive
-      220: Critical # curse of 220
-      260: Dead
+      310: Critical # curse of 220. no. 310
+      450: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3.4
-    baseSprintSpeed: 2.2
+    baseWalkSpeed: 3
+    baseSprintSpeed: 1.8
   - type: InputMover
   - type: SlowOnDamage
     speedModifierThresholds:
       120: 1
       130: 0.8
-      140: 0.7
-      150: 0.6
-      160: 0.5
+      170: 0.7
+      210: 0.6
+      230: 0.5
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -745,15 +796,15 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 15
-        Airloss: 6
+        Brute: 10
+        Airloss: 2
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 2
   - type: MobThresholds
     thresholds:
       0: Alive
-      195: Critical
+      155: Critical
       270: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.2
@@ -770,7 +821,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 15
+    damage: 10
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-warrior-name
@@ -782,6 +833,7 @@
   parent: MedievalMyrmexBase
   id: MedievalMyrmexLarva
   components:
+  - type: Larva
   - type: Butcherable
     spawned:
     - id: FoodMeat
@@ -857,11 +909,22 @@
     force: 0
 
 - type: entity
+  name: Lay egg
+  parent: MedievalMyrmexBase
+  id: MedievalMyrmexQueenLayEggAction
+  components:
+  - type: InstantAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexQueenLayEggEvent
+    useDelay: 180
+
+- type: entity
   name: myrmatriach
   parent: MedievalMyrmexBase
   id: MedievalMyrmexQueen
   description: muravey ebanniy
   components:
+  - type: MyrmexQueen
   - type: Sprite
     drawdepth: Mobs
     sprite: Imperial/Medieval/Myrmex/Castes/myrmex_queen.rsi
@@ -885,11 +948,11 @@
       collection: MyrmexAttack
     damage:
       groups:
-        Brute: 23
-        Airloss: 9
+        Brute: 20
+        Airloss: 3
       types:
         ParryAble: 1
-        Bloodloss: 3
+        Bloodloss: 5
         Structural: 155
   - type: MobThresholds
     thresholds:
@@ -930,6 +993,31 @@
     name: ghost-role-information-myrmex-queen-name
     description: ghost-role-information-myrmex-queen-description
     rules: ghost-role-information-myrmex-rules
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
 
 - type: entity
   id: BaseItemMyrmex
@@ -1006,3 +1094,4 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: MyrmexEgg
+

@@ -1796,6 +1796,7 @@
       regen: 0.4
     - type: MedievalJobSpawn
       spawnType: Default
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -2404,6 +2405,7 @@
     #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -2973,6 +2975,7 @@
     #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -3806,6 +3809,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
+    - type: MagicRuneKnowledge
     - type: MedievalPasportPerson
       personJob: "[color=purple]Послушник коллегии[/color]"
       pasport: MedievalPasportCollegium
@@ -3886,6 +3890,7 @@
       personJob: "[color=purple]Маг коллегии[/color]"
       pasport: MedievalPasportCollegium
       jobPrefix: "[МагК]"
+    - type: MagicRuneKnowledge
 
 - type: roleLoadout
   id: JobMedievalCollegiumCommon
@@ -3968,6 +3973,7 @@
     - type: CloackMessage
       action: CloackMessageActionCollegium
       faction: "collegium"
+    - type: MagicRuneKnowledge
 
 - type: roleLoadout
   id: JobMedievalCollegiumLeader
@@ -4255,7 +4261,7 @@
 - type: roleLoadout
   id: JobMedievalTrader
   groups:
-  - TraderHead
+  - SouthTraderHead
   - TraderJumpsuit
   - MedievalBackpack
   - MedievalShoes
@@ -4373,7 +4379,7 @@
 - type: roleLoadout
   id: JobMedievalTraderN
   groups:
-  - TraderHead
+  - NordTraderHead
   - TraderJumpsuit
   - MedievalBackpack
   - MedievalShoes
@@ -4383,7 +4389,7 @@
   - MedievalGloves
 
 - type: loadoutGroup
-  id: TraderHead
+  id: SouthTraderHead
   name: loadout-group-traveller-head
   minLimit: 0
   loadouts:
@@ -4397,6 +4403,24 @@
   - MedievalFeatherHat
   - MedievalWanderHat
   - MedievalGreenHat
+  - MedievalTraderLegionHat
+
+- type: loadoutGroup
+  id: NordTraderHead
+  name: loadout-group-traveller-head
+  minLimit: 0
+  loadouts:
+  - TraderMedievalClothingHeadCloth
+  - ClothingHeadHatCowboyBrown
+  - MedievalClothingHeadFurHatLoadout
+  - MedievalStrawHat #New Hats
+  - MedievalMotleyHat
+  - MedievalWreath
+  - MedievalGrayHat
+  - MedievalFeatherHat
+  - MedievalWanderHat
+  - MedievalGreenHat
+  - MedievalTraderFoxHat
 
 
 - type: loadout
@@ -4406,6 +4430,22 @@
     proto: TradersTimer5hours
   equipment:
     outerClothing: MedievalClothingHeadCloth
+
+- type: loadout
+  id: MedievalTraderLegionHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer50hours
+  equipment:
+    outerClothing: MedievalTraderLegionHat
+
+- type: loadout
+  id: MedievalTraderFoxHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer50hours
+  equipment:
+    outerClothing: MedievalTraderFoxHat
 
 # MEDIEVAL Miner REGULAR
 

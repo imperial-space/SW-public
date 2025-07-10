@@ -39,6 +39,11 @@
   priority: 9
 
 - type: storeCategory
+  id: MedievalTransportDemo
+  name: medieval-category-transport
+  priority: 9
+
+- type: storeCategory
   id: MedievalQuestDemo
   name: medieval-category-quest
   priority: 7
@@ -2304,22 +2309,6 @@
   - MedievalMagicDemo
 
 - type: listing
-  id: DemoMdvShopMedievalScrollBarrierWeak
-  productEntity: MedievalScrollBarrierWeak
-  cost:
-    UnknownMedieval: 1
-  categories:
-  - MedievalMagicDemo
-
-- type: listing
-  id: DemoMdvShopMedievalScrollBarrierNormal
-  productEntity: MedievalScrollBarrierNormal
-  cost:
-    UnknownMedieval: 1
-  categories:
-  - MedievalMagicDemo
-
-- type: listing
   id: DemoMdvShopBible
   productEntity: Bible
   cost:
@@ -2362,6 +2351,14 @@
 - type: listing
   id: DemoMdvShopMedievalClothingHeadHelmetCharmerWeak
   productEntity: MedievalClothingHeadHelmetCharmerWeak
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollBarrier
+  productEntity: MedievalScrollBarrier
   cost:
     UnknownMedieval: 1
   categories:
@@ -2438,3 +2435,11 @@
     Revent: 10
   categories:
   - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalTransportDemo

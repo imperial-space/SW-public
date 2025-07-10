@@ -56,3 +56,10 @@ medieval-store-spells-light-lightning-senior-fire-name = Плазменная м
 medieval-store-spells-light-lightning-senior-fire-desc = Выпустите одну мощную огненную молнию в выбранное место.
 
 medieval-spell-speach-fire-lightning = F̴̥̀İ̴̞R̸̛̞Ẹ̸͊B̷̳́O̵̺͗L̸̳̔T̴̲͝
+
+# Prism
+
+medieval-store-spells-light-prism-name = потусторонний луч
+medieval-store-spells-light-prism-desc = Переливающаяся призма, резонирующая в воздухе, обжигает и расплавляет то, во что попадёт.
+
+medieval-spell-speach-prism = G̵͉̀R̴̺͐Ȃ̴͎N̶̪̕T̸̳̾ ̵̼̀M̷͎̈́E̶͙͝ ̸̗̈́Ṛ̸̈́Ã̷̧Ǵ̴̥N̵̬̑Ȧ̸̹Ȓ̷͇Ó̶͈K̴̘̒

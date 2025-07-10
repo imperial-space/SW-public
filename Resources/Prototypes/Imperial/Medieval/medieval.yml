@@ -981,6 +981,8 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/medieval_paper.rsi
+  - type: RDWeight
+    value: 0.01
 
 - type: entity
   name: handcuffs
@@ -1006,6 +1008,8 @@
     damage:
       types:
         Blunt: 3
+  - type: RDWeight
+    value: 4
 
 - type: entity
   parent: Grille
@@ -1055,6 +1059,8 @@
   parent: GrenadeBase
   id: MedievalGrenade
   components:
+  - type: RDWeight
+    value: 2
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: MedievalDefault
@@ -2779,6 +2785,8 @@
   id: MedievalLootHog
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hog
@@ -2817,6 +2825,8 @@
   id: MedievalLootHunter
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hunter
@@ -2855,6 +2865,8 @@
   id: MedievalLootCrab
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: crab
@@ -2893,6 +2905,8 @@
   id: MedievalLootCrabDevil
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: dcrab
@@ -2918,6 +2932,8 @@
   id: MedievalLootWolf
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: wolf
@@ -3110,6 +3126,12 @@
   id: MedievalLootAnt
   description: MedievalLoot
   components:
+  - type: MyrmexStew
+    buff:
+      damage: 1
+      health: 0.94
+      stamina: 1
+    uses: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hitin
@@ -3135,6 +3157,8 @@
   id: MedievalLootBear
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: bear
@@ -3157,6 +3181,8 @@
   id: MedievalLootWeak
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: weak
@@ -3177,6 +3203,8 @@
   id: MedievalLootMeat
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: meat
@@ -3197,6 +3225,8 @@
   id: MedievalLootFighter
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: fighter
@@ -3217,6 +3247,8 @@
   id: MedievalLootLegion
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: legion
@@ -3304,6 +3336,8 @@
   id: MedievalLootShieldSlug
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 4
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: slugbones
@@ -3424,6 +3458,9 @@
   - type: MovementSpeedModifier
     walkSpeedModifier: 0.25
     sprintSpeedModifier: 0.25
+    ignoreWhitelist:
+      tags:
+      - Lamian
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -3451,6 +3488,7 @@
     ignoreWhitelist:
       tags:
       - MedievalMob
+      - Lamian
 
 - type: entity
   id: MedievalDeepWaterFake
@@ -3571,14 +3609,155 @@
     key: water
     base: water
 
+- type: entity
+  name: Magic Stone Random Spawner
+  id: MedievalMagicStoneRandom
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+    - state: green
+  - type: ConditionalSpawner
+    prototypes:
+    - MedievalMagicStoneKael
+    - MedievalMagicStoneRyn
+    - MedievalMagicStoneVel
+    - MedievalMagicStoneOth
+    - MedievalMagicStoneThar
+    - MedievalMagicStoneLun
+    - MedievalMagicStoneSeth
+    - MedievalMagicStoneMira
 
+- type: entity
+  id: MedievalMagicStoneRandomChance15
+  parent: MedievalMagicStoneRandom
+  components:
+  - type: ConditionalSpawner
+    chance: 0.15
+
+- type: entity
+  id: MedievalMagicStoneRandomChance5
+  parent: MedievalMagicStoneRandom
+  components:
+  - type: ConditionalSpawner
+    chance: 0.05
+
+- type: entity
+  id: MedievalMagicStoneRandomChance2
+  parent: MedievalMagicStoneRandom
+  components:
+  - type: ConditionalSpawner
+    chance: 0.02
 
 
 - type: entity
-  id: MedievalScrollBarrierWeak
+  id: MedievalMagicStoneKael
+  name: камень магии Каэль
+  description: Камень, в котором заключена руна огня и разрушения.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Kael
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: kael
+
+- type: entity
+  id: MedievalMagicStoneRyn
+  name: камень магии Рин
+  description: Камень, в котором заключена руна воды и адаптации.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Ryn
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: ryn
+
+- type: entity
+  id: MedievalMagicStoneVel
+  name: камень магии Вэль
+  description: Камень, в котором заключена руна тени и наведения.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Vel
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: vel
+
+- type: entity
+  id: MedievalMagicStoneOth
+  name: камень магии От
+  description: Камень, в котором заключена руна иллюзии и магии.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Oth
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: oth
+
+- type: entity
+  id: MedievalMagicStoneThar
+  name: камень магии Тар
+  description: Камень, в котором заключена руна пустоты и ничто.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Thar
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: thar
+
+- type: entity
+  id: MedievalMagicStoneLun
+  name: камень магии Лун
+  description: Камень, в котором заключена руна тьмы и звезды смерти.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Lun
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: lun
+
+- type: entity
+  id: MedievalMagicStoneSeth
+  name: камень магии Сет
+  description: Камень, в котором заключена руна яда и проклятия.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Seth
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: seth
+
+- type: entity
+  id: MedievalMagicStoneMira
+  name: камень магии Мира
+  description: Камень, в котором заключена руна защиты и барьера.
+  parent: BaseItem
+  components:
+  - type: MagicStone
+    rune: Mira
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/stone.rsi
+    state: mira
+
+- type: entity
+  id: MedievalScrollBarrier
   name: scroll of runes
   parent: BaseItem
   components:
+  - type: ActivatableUI
+    key: enum.MagicScrollUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.MagicScrollUiKey.Key:
+        type: MagicScrollBoundUserInterface
   - type: Item
     size: Small
   - type: Sprite
@@ -3586,50 +3765,18 @@
     layers:
     - state: scroll1
   - type: MagicScroll
-    power: 3
   - type: Tag
     tags:
     - MagicScroll
   - type: TrashClear # imperial medieval
     safe: true # imperial medieval
-
-- type: entity
-  id: MedievalScrollBarrierNormal
-  name: scroll of runes
-  parent: BaseItem
-  components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
-    layers:
-    - state: scroll2
-  - type: MagicScroll
-    power: 7
-  - type: Tag
-    tags:
-    - MagicScroll
-  - type: TrashClear # imperial medieval
-    safe: true # imperial medieval
-
-- type: entity
-  id: MedievalScrollBarrierGood
-  name: scroll of runes
-  parent: BaseItem
-  components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
-    layers:
-    - state: scroll3
-  - type: MagicScroll
-    power: 12
-  - type: Tag
-    tags:
-    - MagicScroll
-  - type: TrashClear # imperial medieval
-    safe: true # imperial medieval
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1.1
+    intensitySlope: 8
+    totalIntensity: 36
+    maxTileBreak: 0
+    deleteAfterExplosion: true
 
 - type: entity
   id: MedievalScrollBarrierBad
@@ -3641,47 +3788,10 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     layers:
-    - state: scroll3
+    - state: scroll1
   - type: MagicScroll
-    power: -15
-  - type: Tag
-    tags:
-    - MagicScroll
-  - type: TrashClear # imperial medieval
-    safe: true # imperial medieval
-
-- type: entity
-  id: MedievalScrollBarrierDebug
-  name: scroll of runes
-  parent: BaseItem
-  components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: spell_default
-  - type: MagicScroll
-    power: 60
-  - type: Tag
-    tags:
-    - MagicScroll
-  - type: TrashClear # imperial medieval
-    safe: true # imperial medieval
-
-- type: entity
-  id: MedievalScrollBarrierDebugBad
-  name: scroll of runes
-  parent: BaseItem
-  components:
-  - type: Item
-    size: Small
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: spell_default
-  - type: MagicScroll
-    power: -60
+    bad: true
+    basicPower: -15
   - type: Tag
     tags:
     - MagicScroll
@@ -6462,6 +6572,23 @@
 - type: entity
   name: MedievalPasport
   parent: MedievalPasportBase
+  id: MedievalPasportLegionCatFireBattle
+  description: ""
+  components:
+  - type: Sprite
+    state: leg
+  - type: MedievalPasport
+    personAge: 26
+    personGender: мужской
+    personJob: "[color=yellow]Дворянин[/color]"
+    personName: "Викта Белосвет"
+    personRace: Beastmen
+
+
+
+- type: entity
+  name: MedievalPasport
+  parent: MedievalPasportBase
   id: MedievalPasportInsurgency
   description: ""
   components:
@@ -7742,21 +7869,6 @@
   - type: UseDelay
     delay: 2.0
 
-- type: hitscan
-  id: MedievalMagicBeam
-  damage:
-    types:
-      Heat: 4
-  muzzleFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: muzzle_laser
-  travelFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: beam
-  impactFlash:
-    sprite: Imperial/Medieval/Magic/beam.rsi
-    state: impact_laser
-
 - type: entity
   parent: BaseStructureMedieval
   id: MedievalSharpeningMachine
@@ -7792,6 +7904,9 @@
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/root.rsi
     state: icon
+  - type: Currency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - MyrmexCanTake
@@ -7835,3 +7950,35 @@
       - HideContextMenu
   - type: MyrmexRockFall
     chanse: 0.2
+
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieVikta
+  name: PlushieVikta
+  description: PlushieVikta
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/ViktaPlushie.rsi
+    state: icon
+
+- type: entity
+  parent: BaseItem
+  id: MedievalHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/whistle.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: TriggerOnUse
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+  - type: DeleteOnTrigger

@@ -12,6 +12,10 @@
   # Inherited
   - type: StaticPrice
     price: 0
+  # imperial medieval start
+  - type: RDWeight
+    value: 0.05
+  # imperial medieval end
 
 - type: entity
   name: ointment

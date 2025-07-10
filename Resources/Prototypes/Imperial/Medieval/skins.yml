@@ -8,6 +8,8 @@
     MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2, MedievalClothingHeadHelmetCrusaderMorbius ]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightInsBlood]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerInsBlood]
+    MedievalFalshionT3: [MedievalFalshionT3ChainMace]
+    MedievalFalshionT3Steel: [MedievalFalshionT3SteelChainMace]
     Log: [AhrimanStaffMedieval]
 
 - type: customization
@@ -43,8 +45,9 @@
     MedievalClothingHeadHelmetHoodHelmet: [MedievalClothingHeadHelmetGoblinSlayer]
     MedievalIronShieldBuckler: [MedievalIronShieldBucklerGoblinSlayer]
     MedievalIronGloves: [MedievalIronGlovesGoblinSlayer, MedievalRoyalIronGloves]
-    Log: [MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth67, MedievalClothingUniformJumpsuitShitCloth70, MedievalClothingHandsRoyalGloves, MedievalClothingNeckRoyalCloakAlt, MedievalClothingNeckRoyalCloak, ClothingBeltRoyalSheath, MedievalClothingRoyalBoots, MedievalClothingOuterRoyalCoat, MedievalClothingRoyalMask, MedievalClothingHeadRoyalHoop]
+    Log: [MedievalPasportLegionCatFireBattle, MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth67, MedievalClothingUniformJumpsuitShitCloth70, MedievalClothingHandsRoyalGloves, MedievalClothingNeckRoyalCloakAlt, MedievalClothingNeckRoyalCloak, ClothingBeltRoyalSheath, MedievalClothingRoyalBoots, MedievalClothingOuterRoyalCoat, MedievalClothingRoyalMask, MedievalClothingHeadRoyalHoop, MedievalClothingHeadRoyalHelmet, PlushieVikta]
     MedievalFalshionT3: [MedievalIronRoyalSword]
+    MedievalClothingUniformJumpsuitShitCloth1: [MedievalClothingUniformJumpsuitShitCloth67]
     MedievalFalshionT3Steel: [MedievalSteelRoyalSword]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterAltArmorCharmerLightIns]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadAltHelmetCharmerIns]
@@ -57,6 +60,13 @@
     MedievalClothingNeckCloakClanEagle: [MedievalClothingNeckCloakRoyalLegionEagle]
     MedievalClothingNeckCloakClanFox: [MedievalClothingNeckCloakRoyalInsFox]
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadRoyalHelmet]
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth73]
+    MedievalClothingOuterHorseArmorUpIron: [MedievalClothingOuterHorseRoyalArmorUpIron]
+    MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuteRoyalArmorIronCuirassLight]
+    MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterRoyalArmorIronCuirass]
+    MedievalWoodenShieldKnight: [MedievalRoyalWoodenShieldKnight]
+    MedievalWoodenShield: [MedievalRoyalWoodenShield]
+    MedievalClothingOuterArmorLeatherHeavy: [MedievalClothingOuterLeafRoyalArmorLeatherHeavy]
 
 - type: customization
   id: game123456
@@ -74,7 +84,7 @@
   id: arelover
   holder: f074e865-f7f4-435e-807d-3a62280dc462
   map:
-    Log: [ MedievalClothingHeadHelmetNimbus ]
+    Log: [ MedievalClothingHeadHelmetNimbus, MedievalMagicWeaponPrism ]
 
 - type: customization
   id: the_greatkeeper
@@ -116,6 +126,10 @@
   map:
     MedievalFalshionT3: [ MedievalFalshionT3DarkSword ]
     MedievalFalshionT3Steel: [ MedievalFalshionT3DarkSwordSteel ]
+    MedievalClothingNeckCloakRedIns: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakBlueLegion: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanKayot: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanWolf: [MedievalClothingNeckCloakDarkBlueGold]
 
 - type: customization
   id: drgnar
@@ -134,6 +148,8 @@
     MedievalClothingFeetSteel: [MedievalClothingFeetSteelDarkBootsArchaont]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorWhiteWizardCharmerLight]
     Log: [MedievalClothingHandsGlovesWhiteWizard]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer]
 
 - type: customization
   id: scarlatto

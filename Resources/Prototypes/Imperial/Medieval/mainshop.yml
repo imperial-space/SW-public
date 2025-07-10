@@ -29,6 +29,7 @@
     - MedievalMagic
     #- MedievalUpgrade
     - MedievalPlants
+    - MedievalTransport
     currencyWhitelist:
     - Revent
     balance:
@@ -85,6 +86,7 @@
     - MedievalMagic
     - MedievalQuestLegion
     - MedievalPlants
+    - MedievalTransport
     currencyWhitelist:
     - Revent
     balance:
@@ -113,6 +115,7 @@
     - MedievalMagic
     - MedievalQuestIns
     - MedievalPlants
+    - MedievalTransport
     currencyWhitelist:
     - Revent
     balance:
@@ -151,6 +154,11 @@
 - type: storeCategory
   id: MedievalMisc
   name: medieval-category-misc
+  priority: 9
+
+- type: storeCategory
+  id: MedievalTransport
+  name: medieval-category-transport
   priority: 9
 
 - type: storeCategory
@@ -2474,6 +2482,7 @@
     - MedievalQuestDemo
     - MedievalPlantsDemo
     - MedievalMagicDemo
+    - MedievalTransportDemo
     currencyWhitelist:
     - UnknownMedieval
     balance:
@@ -2591,22 +2600,6 @@
   - MedievalMagic
 
 - type: listing
-  id: MdvShopMedievalScrollBarrierWeak
-  productEntity: MedievalScrollBarrierWeak
-  cost:
-    Revent: 32
-  categories:
-  - MedievalMagic
-
-- type: listing
-  id: MdvShopMedievalScrollBarrierNormal
-  productEntity: MedievalScrollBarrierNormal
-  cost:
-    Revent: 75
-  categories:
-  - MedievalMagic
-
-- type: listing
   id: MdvShopBible
   productEntity: Bible
   discountCategory: medievalDiscounts
@@ -2665,6 +2658,18 @@
     Revent: 100
   categories:
   - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollBarrier
+  productEntity: MedievalScrollBarrier
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 30
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
 
 - type: discountCategory
   id: medievalDiscounts
@@ -2944,3 +2949,11 @@
     Revent: 10
   categories:
   - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    Revent: 750
+  categories:
+  - MedievalTransport
