@@ -3458,6 +3458,9 @@
   - type: MovementSpeedModifier
     walkSpeedModifier: 0.25
     sprintSpeedModifier: 0.25
+    ignoreWhitelist:
+      tags:
+      - Lamian
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -3485,6 +3488,7 @@
     ignoreWhitelist:
       tags:
       - MedievalMob
+      - Lamian
 
 - type: entity
   id: MedievalDeepWaterFake
