@@ -102,7 +102,8 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
         if (ev.Cancelled)
             return;
 
-        args.Handled = TryAddCurrency(GetCurrencyValue(uid, component), args.Target.Value, store);
+        //not adding to deposits to prevent duping
+        args.Handled = TryAddCurrency(GetCurrencyValue(uid, component), args.Target.Value, store, false);
 
         if (args.Handled)
         {
@@ -186,7 +187,7 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
     /// <param name="uid"></param>
     /// <param name="store">The store to add it to</param>
     /// <returns>Whether or not the currency was succesfully added</returns>
-    public bool TryAddCurrency(Dictionary<string, FixedPoint2> currency, EntityUid uid, ImperialStoreComponent? store = null)
+    public bool TryAddCurrency(Dictionary<string, FixedPoint2> currency, EntityUid uid, ImperialStoreComponent? store = null, bool addToDeposits = true)
     {
         if (!Resolve(uid, ref store))
             return false;
@@ -200,16 +201,19 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
 
         store.Balance = DepositSum(store.Balance, currency);
 
-        if (store.DepositCount > 0)
+        if (addToDeposits)
         {
-            store.LastDepositIndex = --store.LastDepositIndex < 0 ? store.DepositCount - 1 : store.LastDepositIndex;
-            store.LastDeposits[store.LastDepositIndex] = currency;
-            store.LastDepositSum.Clear();
-
-            foreach (Dictionary<string, FixedPoint2> deposit in store.LastDeposits)
+            if (store.DepositCount > 0)
             {
-                if (deposit != null)
-                    store.LastDepositSum = DepositSum(store.LastDepositSum, deposit);
+                store.LastDepositIndex = --store.LastDepositIndex < 0 ? store.DepositCount - 1 : store.LastDepositIndex;
+                store.LastDeposits[store.LastDepositIndex] = currency;
+                store.LastDepositSum.Clear();
+
+                foreach (Dictionary<string, FixedPoint2> deposit in store.LastDeposits)
+                {
+                    if (deposit != null)
+                        store.LastDepositSum = DepositSum(store.LastDepositSum, deposit);
+                }
             }
         }
 
