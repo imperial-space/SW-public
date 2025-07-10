@@ -6,11 +6,13 @@
   description: medieval-store-spells-vodka-ice-barrier-beginner-desc
   components:
   - type: CastTraining
-    trainingResults:
       - !type:AddMagicEssence
-        probability: 0.0007
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalVodka1: 1
+          MagicMedievalVodka: 1
+        bonusEssences:
+          MagicMedievalVodka: 1
   - type: ManaDrainSpell
     manaDrain: 28
     canUseWithoutMana: true
