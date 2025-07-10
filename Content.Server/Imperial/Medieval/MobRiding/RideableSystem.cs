@@ -35,6 +35,13 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             SubscribeLocalEvent<RideableComponent, StrapAttemptEvent>(OnTryRide);
 
             SubscribeLocalEvent<RideableComponent, MobStateChangedEvent>(OnMobStateChanged);
+
+            SubscribeLocalEvent<BuckleComponent, TryUnbuckleEvent>(OnTryUnbuckle);
+        }
+
+        private void OnTryUnbuckle(EntityUid uid, BuckleComponent comp, ref TryUnbuckleEvent args)
+        {
+            _buckle.TryUnbuckle(args.Buckle, args.Buckle);
         }
 
         private void OnTryRide(EntityUid uid, RideableComponent component, ref StrapAttemptEvent args)

@@ -1,4 +1,5 @@
-﻿using Robust.Shared.GameStates;
+﻿using Content.Shared.Damage;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {
@@ -14,5 +15,25 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
         [DataField, AutoNetworkedField] public float CurrentTime;
         [DataField, AutoNetworkedField] public bool Sprinting;
+
+        [DataField, AutoNetworkedField] public Dictionary<EntityUid, TimeSpan> StunList = new();
+
+        [DataField]
+        public DamageSpecifier BluntDamage = new()
+        {
+            DamageDict = new()
+            {
+                { "Blunt", 15 },
+            }
+        };
+
+        [DataField]
+        public DamageSpecifier BluntBaseDamage = new()
+        {
+            DamageDict = new()
+            {
+                { "Blunt", 12 },
+            }
+        };
     }
 }
