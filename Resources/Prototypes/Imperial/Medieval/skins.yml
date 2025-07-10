@@ -8,6 +8,8 @@
     MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2, MedievalClothingHeadHelmetCrusaderMorbius ]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightInsBlood]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerInsBlood]
+    MedievalFalshionT3: [MedievalFalshionT3ChainMace]
+    MedievalFalshionT3Steel: [MedievalFalshionT3SteelChainMace]
     Log: [AhrimanStaffMedieval]
 
 - type: customization
