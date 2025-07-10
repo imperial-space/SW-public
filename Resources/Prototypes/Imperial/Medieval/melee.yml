@@ -4,6 +4,7 @@
   id: SpearBone
   description: A spear made of bones.
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: Sprite
@@ -210,6 +211,7 @@
   id: MedievalSpearNecro
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: QuestItem
@@ -272,6 +274,7 @@
   id: MedievalSpearAdmin
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: Spear
   - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_spear.rsi
@@ -1552,6 +1555,7 @@
   id: MedievalSpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: QuestItem
@@ -2366,6 +2370,7 @@
   id: MedievalSpearT3Steel
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: QuestItem
@@ -4037,6 +4042,7 @@
   id: MedievalSpearPilum
   description: Just a spear
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: Sprite
@@ -4101,6 +4107,7 @@
   id: MedievalSpearSulica
   description: Just a spear
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: Sprite
