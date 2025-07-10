@@ -105,9 +105,9 @@
   abstract: true
   components:
   - type: Hunger
-    baseDecayRate: 0.6
+    baseDecayRate: 0.0096
   - type: Thirst
-    baseDecayRate: 1.5
+    baseDecayRate: 0.15
   - type: Icon
     sprite: Mobs/Species/Slime/parts.rsi # It was like this beforehand, no idea why.
     state: full
