@@ -1,12 +1,15 @@
 ﻿using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Wieldable.Components;
 using Robust.Shared.Physics;
+using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {
@@ -15,6 +18,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
         [Dependency] private readonly SharedMoverController _mover = default!;
         [Dependency] private readonly SharedSkillsSystem _skillsSystem = default!;
+        [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
+        [Dependency] private readonly SharedHandsSystem _hands = default!;
 
         public override void Initialize()
         {
@@ -27,6 +32,23 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             SubscribeLocalEvent<RideableComponent, StrappedEvent>(OnBuckled);
             SubscribeLocalEvent<RideableComponent, UnstrappedEvent>(OnUnbuckled);
 
+        }
+
+        private bool CheckPike(EntityUid uid, out EntityUid? item)
+        {
+            item = _hands.GetActiveItem(uid);
+
+            if (!item.HasValue)
+                return false;
+
+            //TODO: изменить на PikeComponent
+            if (!HasComp<SpearComponent>(item.Value))
+                return false;
+
+            if (!TryComp<WieldableComponent>(item.Value, out var weldable))
+                return false;
+
+            return weldable.Wielded;
         }
 
         private void OnRayCastSort(EntityUid uid, BuckleComponent component, ref RayCastSort args)
@@ -97,8 +119,17 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             component.IsRiding = true;
             _mover.SetRelay(buckle.Owner, uid);
 
+
+            if (TryComp<RideableSprintComponent>(uid, out var sprint))
+            {
+                if (CheckPike(buckle.Owner, out var pike))
+                {
+                    _fixtureSystem.TryCreateFixture(uid, sprint.PikeShape, sprint.PikeShapeId);
+                }
+            }
+
             var ev = new StartRideEvent(strap, buckle);
-            RaiseLocalEvent(uid, ref ev);
+            RaiseLocalEvent(uid, ref ev);   
         }
 
         public void OnUnbuckled(EntityUid uid, RideableComponent component, ref UnstrappedEvent args)
@@ -106,6 +137,11 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             if (!component.Rider.HasValue)
                 return;
             RemComp<RelayInputMoverComponent>(component.Rider.Value);
+            if (TryComp<RideableSprintComponent>(uid, out var sprint))
+            {
+                _fixtureSystem.DestroyFixture(uid, sprint.PikeShapeId);
+            }
+
             component.Rider = null;
             component.IsRiding = false;
             var ev = new StopRideEvent(args.Strap, args.Buckle);

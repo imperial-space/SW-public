@@ -1,4 +1,7 @@
-﻿using Content.Shared.Body.Components;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
+using Content.Shared.Body.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Hands.EntitySystems;
@@ -9,12 +12,15 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
+using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -32,6 +38,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [Dependency] private readonly ThrowingSystem _throwing = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
+        [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
 
         #region Handler
         private sealed class SprintInputCmdHandler : InputCmdHandler
@@ -62,6 +69,10 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             SubscribeLocalEvent<RideableSprintComponent, RefreshMovementSpeedModifiersEvent>(OnSpeedRefresh);
             SubscribeLocalEvent<RideableSprintComponent, StopRideEvent>(OnUnbuckled);
             SubscribeLocalEvent<RideableSprintComponent, StartCollideEvent>(HandleCollide);
+            // TODO: поменять на PikeComponent
+            SubscribeLocalEvent<SpearComponent, ItemWieldedEvent>(OnWielded);
+            SubscribeLocalEvent<SpearComponent, ItemUnwieldedEvent>(OnUnwielded);
+
             SubscribeAllEvent<ToggleRideSprintEvent>(OnToggleSprint);
             CommandBinds.Builder
                 .Bind(ContentKeyFunctions.MedievalDash, new SprintInputCmdHandler(this))
@@ -105,6 +116,75 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             }
             #endregion
         }
+
+        #region Other functions
+
+        private bool TryGetRideable(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableComponent? rideable, [NotNullWhen(true)] out RideableSprintComponent? sprint)
+        {
+            rideable = null;
+            sprint = null;
+            entity = null;
+
+            if (!TryComp<BuckleComponent>(rider, out var buckle) || !buckle.BuckledTo.HasValue)
+                return false;
+
+            entity = buckle.BuckledTo.Value;
+            return TryComp(buckle.BuckledTo.Value, out rideable) && TryComp(buckle.BuckledTo.Value, out sprint);
+        }
+
+        private bool TryGetRideable(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableComponent? rideable) =>
+            TryGetRideable(rider, out entity, out rideable, out _);
+
+        private bool TryGetSprint(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableSprintComponent? sprint) =>
+            TryGetRideable(rider, out entity, out _, out sprint);
+
+        #endregion
+
+        #region Pikes
+
+        // TODO: поменять на PikeComponent
+        private void OnWielded(EntityUid uid, SpearComponent comp, ref ItemWieldedEvent args)
+        {
+            var rider = args.User;
+
+            if (!TryGetSprint(rider, out var rideableEntity, out var sprint))
+                return;
+
+            if (sprint.Pike != null)
+                return;
+
+            sprint.Pike = uid;
+
+            CreatePikeFixture(rideableEntity.Value, sprint);
+        }
+
+        // TODO: это тоже
+        private void OnUnwielded(EntityUid uid, SpearComponent comp, ref ItemUnwieldedEvent args)
+        {
+            var rider = args.User;
+
+            if (!TryGetSprint(rider, out var rideableEntity, out var sprint))
+                return;
+
+            if (sprint.Pike != uid)
+                return;
+
+            sprint.Pike = null;
+
+            RemovePikeFixture(rideableEntity.Value, sprint);
+        }
+
+        private void CreatePikeFixture(EntityUid uid, RideableSprintComponent sprint)
+        {
+            _fixtureSystem.TryCreateFixture(uid, sprint.PikeShape, sprint.PikeShapeId);
+        }
+
+        private void RemovePikeFixture(EntityUid uid, RideableSprintComponent sprint)
+        {
+            _fixtureSystem.DestroyFixture(uid, sprint.PikeShapeId);
+        }
+
+        #endregion
 
         #region Collide
         private void HandleCollide(EntityUid uid, RideableSprintComponent comp, ref StartCollideEvent args)
