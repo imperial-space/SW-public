@@ -145,4 +145,4 @@ ent-MedievalMyrmexSpawnAction = Возвести стену
 ent-MedievalMyrmexToggleStealthAction = Переключить маскировку
     .desc = Позволяет мирмексу слиться с местностью.
 ent-MedievalMyrmexHealAction = Восстановление
-    .desc = Позволяет мирмексу излечить свои раны.
+    .desc = Позволяет мирмексу излечить чужие раны.

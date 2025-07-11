@@ -95,6 +95,7 @@ namespace Content.Server.Myrmex
             ladderEx.GroupID = f1;
             ladderEntr.LadderID = f2;
             ladderEx.LadderID = f2;
+            QueueDel(choosenSpawner.Owner);
             // ahahah nihuya ya pridumal costyli smotrite
         }
         private void OnStartEgg(EntityUid uid, MyrmexEggComponent comp, ComponentStartup args)

@@ -587,7 +587,7 @@
     activationTime: 4
     canLocked: false
   - type: MyrmexHole
-    exit: false
+    entrance: false
 
 - type: entity
   parent: MedievalMyrmexBigHole
@@ -596,9 +596,10 @@
     mode: SnapgridCenter
   components:
   - type: MyrmexHole
-    exit: true
+    entrance: true
 
 - type: entity
+  parent: CP14BaseWorkbench
   id: MedievalMyrmexIncubator
   name: incubator
   placement:

@@ -543,13 +543,15 @@
     event: !type:ActionMyrmexToggleStealthEvent
     priority: -12
     checkCanAccess: false
-    useDelay: 5
+    useDelay: 15
 
 - type: entity
   name: Heal
   id: MedievalMyrmexHealAction
   components:
   - type: EntityTargetAction
+    itemIconStyle: BigAction
+    canTargetSelf: false
     icon: Imperial/Medieval/Myrmex/Icons/heal.png
     event: !type:ActionMyrmexHealEvent
       healedDamage:
@@ -558,7 +560,7 @@
           Burn: -50
     priority: -12
     checkCanAccess: false
-    useDelay: 90
+    useDelay: 40
 
 - type: entity
   name: Lay egg
