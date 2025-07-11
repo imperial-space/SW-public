@@ -4215,3 +4215,43 @@
     sprite: Imperial/Medieval/Melee/royalsword.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Melee/royalsword.rsi
+
+- type: entity
+  name: medieval cavalery spear
+  parent: BaseItem
+  id: MedievalCavalerySpearT3
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: RDWeight
+    value: 4
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/cavalery_spear.rsi
+    state: spear
+  - type: MeleeParry
+    parryChanse: 0.45
+  - type: MedievalMeleeResource
+    resourceWaste: 0.7
+  - type: Item
+    size: Huge
+  - type: Tag
+    tags:
+    - Spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: StaminaDamageOnHit
+    damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 4
