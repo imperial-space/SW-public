@@ -4222,10 +4222,6 @@
     sprite: Imperial/Medieval/Melee/cavalery_spear.rsi
     state: spear
   - type: Wieldable
-  - type: IncreaseDamageOnWield
-    damage:
-      types:
-        Piercing: 14
   - type: MeleeParry
     parryChanse: 0.45
   - type: MedievalMeleeResource
