@@ -1,6 +1,14 @@
 - type: Tag
   id: HorseWearable
 
+- type: soundCollection
+  id: MedievalHorseFootstep
+  files:
+  - /Audio/Imperial/Medieval/horsestep1.ogg
+  - /Audio/Imperial/Medieval/horsestep2.ogg
+  - /Audio/Imperial/Medieval/horsestep3.ogg
+  - /Audio/Imperial/Medieval/horsestep4.ogg
+
 - type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterHorseArmorLeather
@@ -247,6 +255,12 @@
           32:
             sprite: Mobs/Animals/mothroach/displacement.rsi
             state: shoes
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: MedievalHorseFootstep
+      params:
+        variation: 0.125
+        volume: -5
   - type: Appearance
   - type: Strippable
   - type: Tag
