@@ -61,7 +61,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
 
         _bossUid = EntityManager.AllEntities<BossComponent>().Where(x => Transform(x).MapUid == map.Value.Owner).First();
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>().Select(x => x.Owner).ToList();
-        _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+        _chat.DispatchGlobalAnnouncement("Посланники темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
         component.NextSpawn = _timing.CurTime;
     }
 
