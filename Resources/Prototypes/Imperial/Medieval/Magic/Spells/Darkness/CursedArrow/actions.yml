@@ -8,9 +8,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.0003
+        essenceAddProbability: 0.0003
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalDarkness1: 1
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
