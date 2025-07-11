@@ -4222,6 +4222,16 @@
   id: MedievalCavalerySpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -140
+    attackRate: 0.65
+    damage:
+      types:
+        Piercing: 10
+    angle: 0
+  - type: UseDelay
+    delay: 2
+  - type: Pike
   - type: RDWeight
     value: 7
   - type: Sharp

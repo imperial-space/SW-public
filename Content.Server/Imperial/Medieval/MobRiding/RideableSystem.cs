@@ -47,6 +47,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
         [Dependency] private readonly UseDelaySystem _useDelay = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly SharedWieldableSystem _wieldable = default!;
 
         #region Const
         private readonly string[] _clashOne = new[] {
@@ -75,9 +76,8 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
             SubscribeLocalEvent<BuckleComponent, TryUnbuckleEvent>(OnTryUnbuckle);
 
-            // TODO: поменять на PikeComponent
-            SubscribeLocalEvent<SpearComponent, ItemWieldedEvent>(OnWielded);
-            SubscribeLocalEvent<SpearComponent, ItemUnwieldedEvent>(OnUnwielded);
+            SubscribeLocalEvent<PikeComponent, ItemWieldedEvent>(OnWielded);
+            SubscribeLocalEvent<PikeComponent, ItemUnwieldedEvent>(OnUnwielded);
 
             SubscribeLocalEvent<RideableComponent, StartCollideEvent>(HandleCollide);
         }
@@ -107,9 +107,8 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             if (!TryComp<BuckleComponent>(uid, out var buckle))
                 return;
 
-            var ev = new TryUnbuckleEvent(new Entity<BuckleComponent>(uid, buckle));
+            _buckle.TryUnbuckle(uid, uid);
 
-            RaiseLocalEvent(uid, ref ev);
             if(damage != null)
                 _damageable.TryChangeDamage(uid, damage);
             if(stunSeconds > 0)
@@ -137,41 +136,28 @@ namespace Content.Server.Imperial.Medieval.MobRiding
         {
             if (args.OurFixtureId != comp.PikeShapeId)
                 return;
-
             if (args.OtherEntity == comp.Rider)
                 return;
-
-            Logger.Debug(args.OurFixtureId);
-            Logger.Debug(args.OtherFixtureId);
-            Logger.Debug(args.OtherEntity.Id.ToString());
-
             if (!TryComp<MobStateComponent>(args.OtherEntity, out var mobState))
                 return;
-
             if (mobState.CurrentState != MobState.Alive)
                 return;
-
+            if (!comp.Rider.HasValue)
+                return;
+            if (!TryGetPike(comp.Rider.Value, out var item, out var melee))
+                return;
+            if (TryComp<UseDelayComponent>(item, out var useDelay) && _useDelay.IsDelayed((item.Value, useDelay)))
+                return;
             if(args.OtherFixtureId != comp.PikeShapeId)
-                PikeHitEntity(uid, comp, args.OtherEntity);
+                PikeHitEntity(uid, comp, args.OtherEntity, comp.Rider.Value, melee);
             else
                 PikeClash(uid, comp, args.OtherEntity);
         }
 
-        private void PikeHitEntity(EntityUid uid, RideableComponent comp, EntityUid other, uint stunSeconds = 2, bool throwOther = true)
+        private void PikeHitEntity(EntityUid uid, RideableComponent comp, EntityUid other, EntityUid rider, MeleeWeaponComponent melee, uint stunSeconds = 2, bool throwOther = true)
         {
-            Logger.Debug("Hit entity");
             if (!TryComp<PhysicsComponent>(uid, out var rideablePhysics))
                 return;
-
-            if (!comp.Rider.HasValue)
-                return;
-
-            if (!TryGetPike(comp.Rider.Value, out var item, out var melee))
-                return;
-
-            if (TryComp<UseDelayComponent>(item, out var useDelay) && _useDelay.IsDelayed((item.Value, useDelay)))
-                return;
-
 
             var direction = rideablePhysics.LinearVelocity;
 
@@ -181,6 +167,23 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                 _stun.TryKnockdown(other, TimeSpan.FromSeconds(stunSeconds), true);
 
             _damageable.TryChangeDamage(other, melee.Damage);
+
+            DelayPike(rider);
+        }
+
+        private void DelayPike(EntityUid rider, EntityUid? item = null)
+        {
+            if(item == null)
+            {
+                if (!TryGetPike(rider, out item, out _))
+                    return;
+            }
+
+            if (TryComp<UseDelayComponent>(item, out var useDelay) && _useDelay.IsDelayed((item.Value, useDelay)))
+                return;
+
+            if (TryComp<WieldableComponent>(item.Value, out var wieldable))
+                _wieldable.TryUnwield(item.Value, wieldable, rider);
 
             if (useDelay != null)
                 _useDelay.TryResetDelay((item.Value, useDelay));
@@ -192,7 +195,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             comp = null;
 
             pike = _hands.GetActiveItem(uid);
-            return pike.HasValue && TryComp(pike, out comp);
+            return pike.HasValue && HasComp<PikeComponent>(pike) && TryComp(pike, out comp);
         }
 
         private sealed class Skills
@@ -283,7 +286,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
         {
             if (!TryComp<PhysicsComponent>(rideable, out var rideablePhysics))
                 return;
-            var velocity = rideablePhysics.AngularVelocity;
+            var velocity = rideablePhysics.LinearVelocity.Length();
             if (!TryGetPike(rider, out var pike, out var pikeComp))
                 return;
             ThrowFromRideable(otherRider, 2, pikeComp.Damage * velocity);
@@ -292,8 +295,6 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
         private void PikeClash(EntityUid uid, RideableComponent comp, EntityUid other)
         {
-            Logger.Debug("Hit clash");
-
             if (uid.Id < other.Id)
                 return;
 
@@ -336,10 +337,12 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                         case CheckResult.Self:
                             _audio.PlayPvs(oneSound, rider.Value);
                             ThrowClash(uid, rider.Value, otherRider.Value);
+                            DelayPike(rider.Value);
                             break;
                         case CheckResult.Other:
                             _audio.PlayPvs(oneSound, otherRider.Value);
                             ThrowClash(other, otherRider.Value, rider.Value);
+                            DelayPike(otherRider.Value);
                             break;
                         case CheckResult.Draw:
                             _audio.PlayPvs(_clashBoth, uid);
@@ -347,11 +350,16 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                             ThrowClash(other, otherRider.Value, rider.Value);
                             break;
                         case CheckResult.Both:
+                            DelayPike(rider.Value);
+                            DelayPike(otherRider.Value);
                             _audio.PlayPvs(_clashNone, rider.Value);
                             break;
                     }
+                    Logger.Debug($"Clash Draw: stb: {finalStability} vs {otherFinalStability}, result: {stabilityResult}");
                     break;
+
             }
+            Logger.Debug($"Clash: {rider} vs {otherRider}, atk: {finalAttack} vs {otherFinalAttack}, result: {hitResult}");
         }
 
         private bool CheckPike(EntityUid uid, out EntityUid? item)
@@ -361,8 +369,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             if (!item.HasValue)
                 return false;
 
-            //TODO: изменить на PikeComponent
-            if (!HasComp<SpearComponent>(item.Value))
+            if (!HasComp<PikeComponent>(item.Value))
                 return false;
 
             if (!TryComp<WieldableComponent>(item.Value, out var wieldable))
@@ -371,8 +378,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             return wieldable.Wielded;
         }
 
-        // TODO: поменять на PikeComponent
-        private void OnWielded(EntityUid uid, SpearComponent comp, ref ItemWieldedEvent args)
+        private void OnWielded(EntityUid uid, PikeComponent comp, ref ItemWieldedEvent args)
         {
             var rider = args.User;
 
@@ -388,8 +394,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             CreatePikeFixture(rideableEntity.Value, rideable);
         }
 
-        // TODO: это тоже
-        private void OnUnwielded(EntityUid uid, SpearComponent comp, ref ItemUnwieldedEvent args)
+        private void OnUnwielded(EntityUid uid, PikeComponent comp, ref ItemUnwieldedEvent args)
         {
             var rider = args.User;
 
@@ -412,7 +417,6 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
         private void RemovePikeFixture(EntityUid uid, RideableComponent rideable)
         {
-            Logger.Debug("removing");
             _fixtureSystem.DestroyFixture(uid, rideable.PikeShapeId);
         }
 
