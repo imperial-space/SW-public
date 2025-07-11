@@ -200,11 +200,11 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
         private sealed class Skills
         {
-            public int Intelligence;
-            public int Endurance;
-            public int Agility;
-            public int Strength;
-            public int Vitality;
+            public readonly int Intelligence;
+            public readonly int Endurance;
+            public readonly int Agility;
+            public readonly int Strength;
+            public readonly int Vitality;
 
             public Skills(RideableSystem system, EntityUid uid)
             {
