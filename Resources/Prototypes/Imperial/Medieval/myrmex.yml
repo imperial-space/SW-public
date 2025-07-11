@@ -915,9 +915,9 @@
     - MedievalMyrmexToggleArmorAction
     - MedievalMyrmexToggleStunAction
     stunDuration: 3
-    standardArmorProto: Glass
-    activeArmorProto: Rock
-    activeArmorSpeedMultiplier: 0.7
+    standardArmorProto: MyrmexArmorOff
+    activeArmorProto: MyrmexArmorOn
+    activeArmorSpeedMultiplier: 0.4
 
 - type: entity
   name: myrmedon
@@ -1140,9 +1140,9 @@
     - MedievalMyrmexToggleStunAction
     - MedievalMyrmexHealAction
     stunDuration: 5
-    standardArmorProto: Glass
-    activeArmorProto: Rock
-    activeArmorSpeedMultiplier: 0.7
+    standardArmorProto: MyrmexArmorOff
+    activeArmorProto: MyrmexArmorOn
+    activeArmorSpeedMultiplier: 0.4
   - type: Destructible
     thresholds:
     - trigger:
@@ -1261,4 +1261,20 @@
   - type: MagicScroll
     bad: true
     basicPower: -15
+
+- type: damageModifierSet
+  id: MyrmexArmorOff
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9 
+    Piercing: 0.9
+    Heat: 0.9
+
+- type: damageModifierSet
+  id: MyrmexArmorOn
+  coefficients:
+    Blunt: 0.35
+    Slash: 0.35
+    Piercing: 0.35
+    Heat: 0.35
 
