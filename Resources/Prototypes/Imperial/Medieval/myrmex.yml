@@ -492,73 +492,73 @@
   id: MedievalMyrmexBoostAction
   components:
   - type: InstantAction
-    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    icon: Imperial/Medieval/Myrmex/Icons/boost.png
     event: !type:ActionMyrmexBoostEvent
       duration: 5
       multiplier: 0.5
     priority: -12
     checkCanAccess: false
-    useDelay: 5
+    useDelay: 60
 
 - type: entity
   name: Toggle armor
   id: MedievalMyrmexToggleArmorAction
   components:
   - type: InstantAction
-    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    icon: Imperial/Medieval/Myrmex/Icons/armor.png
     event: !type:ActionMyrmexToggleArmorEvent
     priority: -12
     checkCanAccess: false
-    useDelay: 0
+    useDelay: 5
 
 - type: entity
   name: Enable stun
   id: MedievalMyrmexToggleStunAction
   components:
   - type: InstantAction
-    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    icon: Imperial/Medieval/Myrmex/Icons/stun.png
     event: !type:ActionMyrmexToggleStunEvent
     priority: -12
     checkCanAccess: false
-    useDelay: 5
+    useDelay: 120
 
 - type: entity
   name: Spawn
   id: MedievalMyrmexSpawnAction
   components:
   - type: InstantAction
-    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    icon: Imperial/Medieval/Myrmex/Icons/wall.png
     event: !type:ActionMyrmexSpawnEvent
-      proto: FoodSnackChocolate
+      proto: MedievalMyrmexFlimsyWall
     priority: -12
     checkCanAccess: false
-    useDelay: 5
+    useDelay: 60
 
 - type: entity
   name: Toggle stealth
   id: MedievalMyrmexToggleStealthAction
   components:
   - type: InstantAction
-    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    icon: Imperial/Medieval/Myrmex/Icons/invis.png
     event: !type:ActionMyrmexToggleStealthEvent
     priority: -12
     checkCanAccess: false
-    useDelay: 0
+    useDelay: 5
 
 - type: entity
   name: Heal
   id: MedievalMyrmexHealAction
   components:
   - type: EntityTargetAction
-    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    icon: Imperial/Medieval/Myrmex/Icons/heal.png
     event: !type:ActionMyrmexHealEvent
       healedDamage:
         groups:
-          Brute: 50
-          Burn: 50
+          Brute: -50
+          Burn: -50
     priority: -12
     checkCanAccess: false
-    useDelay: 5
+    useDelay: 90
 
 - type: entity
   name: Lay egg
@@ -582,19 +582,6 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
-  - type: Myrmex
-    actions:
-    - MedievalMyrmexShootAction
-    - MedievalMyrmexBoostAction
-    - MedievalMyrmexToggleArmorAction
-    - MedievalMyrmexToggleStunAction
-    - MedievalMyrmexSpawnAction
-    - MedievalMyrmexToggleStealthAction
-    - MedievalMyrmexHealAction
-    stunDuration: 5
-    standardArmorProto: Glass
-    activeArmorProto: Rock
-    activeArmorSpeedMultiplier: 0.7
   - type: MyrmexHunger
   - type: Stealth
     enabled: false
@@ -792,6 +779,10 @@
     name: ghost-role-information-myrmex-worker-name
     description: ghost-role-information-myrmex-worker-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexSpawnAction
+    - MedievalMyrmexHealAction
 
 - type: entity
   name: myrmacrid
@@ -861,6 +852,9 @@
     name: ghost-role-information-myrmex-spitter-name
     description: ghost-role-information-myrmex-spitter-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexToggleStealthAction
 
 - type: entity
   name: myrmalisk
@@ -916,6 +910,14 @@
     name: ghost-role-information-myrmex-elite-name
     description: ghost-role-information-myrmex-elite-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexToggleArmorAction
+    - MedievalMyrmexToggleStunAction
+    stunDuration: 3
+    standardArmorProto: MyrmexArmorOff
+    activeArmorProto: MyrmexArmorOn
+    activeArmorSpeedMultiplier: 0.4
 
 - type: entity
   name: myrmedon
@@ -971,6 +973,10 @@
     name: ghost-role-information-myrmex-warrior-name
     description: ghost-role-information-myrmex-warrior-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexBoostAction
+    - MedievalMyrmexToggleStealthAction
 
 - type: entity
   name: myrmelarva
@@ -1127,6 +1133,16 @@
     name: ghost-role-information-myrmex-queen-name
     description: ghost-role-information-myrmex-queen-description
     rules: ghost-role-information-myrmex-rules
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexBoostAction
+    - MedievalMyrmexToggleArmorAction
+    - MedievalMyrmexToggleStunAction
+    - MedievalMyrmexHealAction
+    stunDuration: 5
+    standardArmorProto: MyrmexArmorOff
+    activeArmorProto: MyrmexArmorOn
+    activeArmorSpeedMultiplier: 0.4
   - type: Destructible
     thresholds:
     - trigger:
@@ -1245,4 +1261,20 @@
   - type: MagicScroll
     bad: true
     basicPower: -15
+
+- type: damageModifierSet
+  id: MyrmexArmorOff
+  coefficients:
+    Blunt: 0.9
+    Slash: 0.9 
+    Piercing: 0.9
+    Heat: 0.9
+
+- type: damageModifierSet
+  id: MyrmexArmorOn
+  coefficients:
+    Blunt: 0.35
+    Slash: 0.35
+    Piercing: 0.35
+    Heat: 0.35
 
