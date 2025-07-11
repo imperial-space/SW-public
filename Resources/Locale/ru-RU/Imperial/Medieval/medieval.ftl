@@ -5834,8 +5834,14 @@ ent-MedievalClothingOuteRoyalArmorIronCuirassLight = облегчённая ки
 ent-MedievalClothingOuterHorseRoyalArmorUpIron = латная лошадиная броня Белосвет
     .desc = Броня из пластин белоснежного цвета, украшена золотыми вставками, по бокам красуются знамёна с гербом Белосвет.
     .suffix = { "Средневековье, одежда, транспорт" }
+
 boss-defeated-announce = Скелетрон сокрушён! Смертные доказали, что даже воля Морбиуса не вечна!
 boss-won-announce = Воля Морбиуса восторжествовала. Ваши кости пополнят его костяной трон. Смерть неизбежна.
+skeletron-roundend-no-boss = Кажется, слуги Морбиуса забыли о своей миссии.
+skeletron-roundend-defeated = [color=green]Скелетрон был сокрушён бравыми героями![/color]
+skeletron-roundend-lost = [color=crimson]Бросившие вызов Морбиусу потерпели крах.[/color]
+skeletron-roundend-skeletons = [color=crimson]Подданные Морбиуса не встретили должного сопротивления.[/color]
+
 mc-weight-examine = {$name}
 ent-MedievalScrollBarrier = магический свиток
     .desc = Свиток, нуждающийся в расшифровке
