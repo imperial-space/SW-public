@@ -841,6 +841,10 @@
     - !type:DeleteEntity {}
     edges:
     - to: medievalMyrmexBigHole
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
       - tag: MyrmexResourceYant
         name: янтарь # Imperial Recipes Locale
         icon:
