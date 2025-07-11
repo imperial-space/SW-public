@@ -30,15 +30,6 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
         #region Dependencies
         [Dependency] private readonly SharedMoverController _mover = default!;
-        [Dependency] private readonly SharedSkillsSystem _skillsSystem = default!;
-        [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
-        [Dependency] private readonly SharedHandsSystem _hands = default!;
-        [Dependency] private readonly ThrowingSystem _throwing = default!;
-        [Dependency] private readonly SharedStunSystem _stun = default!;
-        [Dependency] private readonly DamageableSystem _damageable = default!;
-        [Dependency] private readonly UseDelaySystem _useDelay = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
         #endregion
 
         #region Initialize

@@ -15,6 +15,7 @@ using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
@@ -40,6 +41,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
 
         #region Handler
         private sealed class SprintInputCmdHandler : InputCmdHandler
@@ -175,7 +177,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                     return;
 
                 var dmg = melee.Damage * 4;
-                ThrowFromRideable(rider, 4, dmg);
+                ThrowFromRideable(rider, 4, dmg, 0.6f);
                 return;
             }
 
@@ -206,6 +208,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             if (!rideableComp.StunList.TryAdd(otherPlayer, _gameTiming.CurTime))
                 rideableComp.StunList[otherPlayer] = _gameTiming.CurTime;
+
+            rideableComp.Dirty();
         }
 
         private void CollideObject(EntityUid uid, RideableSprintComponent sprintComp, RideableComponent rideableComp, ref StartCollideEvent args)
@@ -214,10 +218,10 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 return;
 
             var rider = rideableComp.Rider.Value;
-            ThrowFromRideable(rider, damage:sprintComp.RiderDamageOnCollide);
+            ThrowFromRideable(rider, damage:sprintComp.RiderDamageOnCollide, throwingDistance: 0.6f);
         }
 
-        private void ThrowFromRideable(EntityUid uid, uint stunSeconds = 2, DamageSpecifier? damage = null)
+        private void ThrowFromRideable(EntityUid uid, uint stunSeconds = 2, DamageSpecifier? damage = null, float throwingDistance = 0)
         {
             if (!TryComp<BuckleComponent>(uid, out var buckle))
                 return;
@@ -232,6 +236,17 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 _stun.TryStun(uid, TimeSpan.FromSeconds(stunSeconds), true);
                 _stun.TryKnockdown(uid, TimeSpan.FromSeconds(stunSeconds), true);
             }
+
+            if (!(throwingDistance > 0))
+                return;
+            if (!buckle.BuckledTo.HasValue)
+                return;
+            if (!TryComp<PhysicsComponent>(buckle.BuckledTo.Value, out var physics))
+                return;
+
+            var direction = physics.LinearVelocity;
+            _throwing.TryThrow(uid, direction * throwingDistance);
+            _audio.PlayPvs("/Audio/Imperial/Medieval/animal_horse.ogg", buckle.BuckledTo.Value);
         }
 
         #endregion

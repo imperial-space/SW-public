@@ -3,6 +3,7 @@ using Content.Shared.Buckle.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.MobRiding;
 using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
@@ -83,6 +84,15 @@ public abstract partial class SharedBuckleSystem
 
         if (!TryComp(args.User, out BuckleComponent? buckle))
             return;
+
+        // imperial medieval riding start
+        // TODO: сделать DoAfter
+        if (TryComp<RideableComponent>(uid, out var rideable))
+        {
+            if (rideable.IsRiding && rideable.Rider.HasValue)
+                return;
+        }
+        // imperial medieval riding end
 
         // Buckle self
         if (buckle.BuckledTo == null && component.BuckleOnInteractHand && StrapHasSpace(uid, buckle, component))
