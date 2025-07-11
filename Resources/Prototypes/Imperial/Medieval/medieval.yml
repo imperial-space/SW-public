@@ -957,6 +957,8 @@
   name: MedievalPaper
   description: MedievalPaper
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Misc/medieval_paper.rsi
   - type: TrashClear # imperial medieval
@@ -5566,6 +5568,8 @@
   id: MedievalFlagPaintLegion
   description: gol
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/paint_blue.rsi
     state: icon
@@ -5579,6 +5583,8 @@
   id: MedievalFlagPaintInsurgency
   description: gol
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/paint_red.rsi
     state: icon

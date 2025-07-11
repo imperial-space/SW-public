@@ -15,6 +15,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 9
   - type: HorseArmor
     bluntModifier: 1.2
   - type: Sprite
@@ -44,6 +46,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 27
   - type: HorseArmor
     bluntModifier: 2.2
   - type: Sprite
@@ -78,6 +82,8 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 46
   - type: HorseArmor
     bluntModifier: 3
   - type: Sprite
@@ -312,7 +318,7 @@
     buckleTime: 1
     maxBuckleDistance: 1
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: /Audio/Imperial/Medieval/animal_horse.ogg
   - type: Rideable
   - type: RideableSprint
