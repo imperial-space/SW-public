@@ -315,7 +315,7 @@
   - type: Strap
     position: Stand
     buckleOffset: "-0.00, -0.02"
-    buckleTime: 1
+    buckleDoafterTime: 5
     maxBuckleDistance: 1
   - type: EmitSoundOnSpawn
     sound:
