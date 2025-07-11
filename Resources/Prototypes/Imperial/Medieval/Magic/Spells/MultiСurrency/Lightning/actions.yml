@@ -9,9 +9,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.65
+        essenceAddProbability: 0.00065
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 1
+          MagicMedievalLight: 1
+        bonusEssences:
+          MagicMedievalLight: 1
   - type: WorldTargetAction
     useDelay: 22
     itemIconStyle: BigAction

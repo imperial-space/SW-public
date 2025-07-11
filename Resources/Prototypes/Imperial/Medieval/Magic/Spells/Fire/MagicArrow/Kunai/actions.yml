@@ -34,13 +34,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.35
+        essenceAddProbability: 0.00035
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.3
+        probability: 0.0003
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -48,7 +51,7 @@
         addedEssences:
           MagicMedievalFire1: 1
       - !type:AddMagicEssence
-        probability: 0.35
+        probability: 0.00035
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -98,13 +101,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.4
+        essenceAddProbability: 0.0004
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.25
+        probability: 0.00025
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -112,7 +118,7 @@
         addedEssences:
           MagicMedievalFire1: 1
       - !type:AddMagicEssence
-        probability: 0.3
+        probability: 0.0003
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -146,13 +152,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.45
+        essenceAddProbability: 0.00045
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.25
+        probability: 0.00025
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -160,7 +169,7 @@
         addedEssences:
           MagicMedievalFire1: 1
       - !type:AddMagicEssence
-        probability: 0.3
+        probability: 0.0003
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:

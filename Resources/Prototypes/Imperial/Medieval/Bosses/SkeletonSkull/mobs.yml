@@ -18,8 +18,8 @@
     rootTask:
       task: SimpleHumanoidHostileCompound
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.7
-    baseSprintSpeed : 3.7
+    baseWalkSpeed : 3.2
+    baseSprintSpeed : 3.2
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -37,9 +37,9 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: MeleeWeapon
-    range: 1.25
+    range: 1.1
     attackRate: 1
     damage:
       types:
-        Blunt: 7
-        Slash: 18
+        Blunt: 5
+        Slash: 14

@@ -21,7 +21,7 @@ public sealed partial class SpikedGridComponent : Component
     public int TargetIndex = 10;
 
     [DataField]
-    public List<int> TargetIndexesPossible = new() { 10, 17 };
+    public List<int> TargetIndexesPossible = new() { 24, 17 };
 
     public int NextIndex = 0;
 

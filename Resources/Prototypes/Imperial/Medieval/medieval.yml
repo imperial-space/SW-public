@@ -2785,6 +2785,8 @@
   id: MedievalLootHog
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hog
@@ -2823,6 +2825,8 @@
   id: MedievalLootHunter
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hunter
@@ -2861,6 +2865,8 @@
   id: MedievalLootCrab
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: crab
@@ -2899,6 +2905,8 @@
   id: MedievalLootCrabDevil
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: dcrab
@@ -2924,6 +2932,8 @@
   id: MedievalLootWolf
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: wolf
@@ -3147,6 +3157,8 @@
   id: MedievalLootBear
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: bear
@@ -3169,6 +3181,8 @@
   id: MedievalLootWeak
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: weak
@@ -3189,6 +3203,8 @@
   id: MedievalLootMeat
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: meat
@@ -3209,6 +3225,8 @@
   id: MedievalLootFighter
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: fighter
@@ -3229,6 +3247,8 @@
   id: MedievalLootLegion
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: legion
@@ -3316,6 +3336,8 @@
   id: MedievalLootShieldSlug
   description: MedievalLoot
   components:
+  - type: RDWeight
+    value: 4
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: slugbones
@@ -3436,6 +3458,9 @@
   - type: MovementSpeedModifier
     walkSpeedModifier: 0.25
     sprintSpeedModifier: 0.25
+    ignoreWhitelist:
+      tags:
+      - Lamian
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -3463,6 +3488,7 @@
     ignoreWhitelist:
       tags:
       - MedievalMob
+      - Lamian
 
 - type: entity
   id: MedievalDeepWaterFake
@@ -3604,8 +3630,30 @@
     - MedievalMagicStoneMira
 
 - type: entity
+  id: MedievalMagicStoneRandomChance15
+  parent: MedievalMagicStoneRandom
+  components:
+  - type: ConditionalSpawner
+    chance: 0.15
+
+- type: entity
+  id: MedievalMagicStoneRandomChance5
+  parent: MedievalMagicStoneRandom
+  components:
+  - type: ConditionalSpawner
+    chance: 0.05
+
+- type: entity
+  id: MedievalMagicStoneRandomChance2
+  parent: MedievalMagicStoneRandom
+  components:
+  - type: ConditionalSpawner
+    chance: 0.02
+
+
+- type: entity
   id: MedievalMagicStoneKael
-  name: Камень магии Каэль
+  name: камень магии Каэль
   description: Камень, в котором заключена руна огня и разрушения.
   parent: BaseItem
   components:
@@ -3617,7 +3665,7 @@
 
 - type: entity
   id: MedievalMagicStoneRyn
-  name: Камень магии Рин
+  name: камень магии Рин
   description: Камень, в котором заключена руна воды и адаптации.
   parent: BaseItem
   components:
@@ -3629,7 +3677,7 @@
 
 - type: entity
   id: MedievalMagicStoneVel
-  name: Камень магии Вэль
+  name: камень магии Вэль
   description: Камень, в котором заключена руна тени и наведения.
   parent: BaseItem
   components:
@@ -3641,7 +3689,7 @@
 
 - type: entity
   id: MedievalMagicStoneOth
-  name: Камень магии От
+  name: камень магии От
   description: Камень, в котором заключена руна иллюзии и магии.
   parent: BaseItem
   components:
@@ -3653,7 +3701,7 @@
 
 - type: entity
   id: MedievalMagicStoneThar
-  name: Камень магии Тар
+  name: камень магии Тар
   description: Камень, в котором заключена руна пустоты и ничто.
   parent: BaseItem
   components:
@@ -3665,7 +3713,7 @@
 
 - type: entity
   id: MedievalMagicStoneLun
-  name: Камень магии Лун
+  name: камень магии Лун
   description: Камень, в котором заключена руна тьмы и звезды смерти.
   parent: BaseItem
   components:
@@ -3677,7 +3725,7 @@
 
 - type: entity
   id: MedievalMagicStoneSeth
-  name: Камень магии Сет
+  name: камень магии Сет
   description: Камень, в котором заключена руна яда и проклятия.
   parent: BaseItem
   components:
@@ -3689,7 +3737,7 @@
 
 - type: entity
   id: MedievalMagicStoneMira
-  name: Камень магии Мира
+  name: камень магии Мира
   description: Камень, в котором заключена руна защиты и барьера.
   parent: BaseItem
   components:

@@ -230,6 +230,9 @@
     spawned:
     - id: MedievalLootAnt
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.01
   - type: Bloodstream
     bloodMaxVolume: 0
   #- type: ReplacementAccent
@@ -276,16 +279,16 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 1000 
+        damage: 1000
       behaviors:
-      - !type:GoSSDBehavior { } 
+      - !type:GoSSDBehavior { }
       - !type:GibBehavior { }
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
-        damage: 1500 
+        damage: 1500
       behaviors:
-      - !type:GoSSDBehavior { } 
+      - !type:GoSSDBehavior { }
       - !type:SpawnEntitiesBehavior
         spawnInContainer: true
         spawn:
@@ -301,7 +304,7 @@
         damageType: Caustic
         damage: 1
       behaviors:
-      - !type:GoSSDBehavior { } 
+      - !type:GoSSDBehavior { }
       - !type:SpawnEntitiesBehavior
         spawn:
           MedievalLootAnt:
@@ -370,6 +373,9 @@
     - id: MedievalLootwolf2
       amount: 3
       prob: 0.4
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.04
   - type: Bloodstream
     bloodMaxVolume: 40
   #- type: ReplacementAccent
@@ -492,6 +498,9 @@
     - id: MedievalLootrabbit
       amount: 1
       prob: 0.2
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.01
   - type: Bloodstream
     bloodMaxVolume: 10
   #- type: ReplacementAccent
@@ -814,6 +823,9 @@
       amount: 1
     - id: MedievalLootbearskin
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.18
   - type: Bloodstream
     bloodMaxVolume: 200
   #- type: ReplacementAccent
@@ -936,6 +948,9 @@
       amount: 1
     - id: MedievalLoothogskin
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.13
   - type: Bloodstream
     bloodMaxVolume: 140
   #- type: ReplacementAccent
@@ -1211,6 +1226,9 @@
     - id: MedievalLootgoblin2
       amount: 2
       prob: 0.7
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.1
   - type: Access
     tags:
     - Maintenance
@@ -1351,6 +1369,9 @@
       amount: 2
     - id: MedievalLeather1
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.1
   - type: Access
     tags:
     - Maintenance
@@ -1794,6 +1815,9 @@
       max: 6
     - id: FoodMeatSpiderLeg
       amount: 4
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.08
   - type: IgnoreSpiderWeb
 
 - type: entity
@@ -1883,6 +1907,9 @@
       amount: 2
     - id: MedievalSpiderHair
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.08
   - type: IgnoreSpiderWeb
 
 - type: entity
@@ -1968,6 +1995,9 @@
       amount: 1
     - id: MedievalSpiderHair
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.08
   - type: IgnoreSpiderWeb
   - type: HTN
     rootTask:
@@ -2089,6 +2119,9 @@
       amount: 1
     - id: MedievalSpiderEye
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.08
   - type: IgnoreSpiderWeb
   - type: HTN
     rootTask:
@@ -2260,6 +2293,9 @@
     spawned:
     - id: MedievalLootWeak
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.025
 
 - type: entity
   name: weak skeleton
@@ -2312,6 +2348,9 @@
     spawned:
     - id: MedievalLootMeat
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.04
 
 - type: entity
   name: meat skeleton
@@ -2365,6 +2404,9 @@
     spawned:
     - id: MedievalLootFighter
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.09
 
 - type: entity
   name: fighter skeleton
@@ -2418,6 +2460,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.16
 
 - type: entity
   name: legion skeleton
@@ -2483,6 +2528,9 @@
     - id: MedievalLootskeletonjaw
       amount: 1
       prob: 0.2
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.05
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -2535,6 +2583,9 @@
       amount: 1
     - id: MedievalRevent10
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.12
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -2586,6 +2637,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
 
 - type: entity
   name: skeleton with a mace
@@ -2626,6 +2680,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
 
 - type: entity
   name: skeleton with a mace
@@ -2679,6 +2736,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
 
 - type: entity
   name: skeleton with a spear
@@ -2735,6 +2795,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
 
 - type: entity
   name: skeleton with a halberd
@@ -2788,6 +2851,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
 
 - type: entity
   name: skeleton with a dagger
@@ -2888,6 +2954,9 @@
       amount: 1
     - id: MedievalLoothunter2
       amount: 2
+      prob: 0.1
+    - id: MedievalMagicStoneRandom
+      amount: 1
       prob: 0.1
   - type: IgnoreSpiderWeb
   - type: StaminaDamageOnHit
@@ -3232,6 +3301,9 @@
     spawned:
     - id: MedievalLootCrabDevil
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.06
   - type: IgnoreSpiderWeb
   - type: StaminaDamageOnHit
     damage: 8
@@ -3463,6 +3535,9 @@
     spawned:
     - id: MedievalLootNastyGrowth
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.3
   - type: DamageStateVisuals
     states:
       Alive:
@@ -3506,6 +3581,9 @@
     spawned:
     - id: MedievalLootShieldSlug
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.35
   - type: Bloodstream
     bloodMaxVolume: 0
   #- type: ReplacementAccent
