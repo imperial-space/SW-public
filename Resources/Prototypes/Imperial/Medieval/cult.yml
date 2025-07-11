@@ -110,6 +110,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 12
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Armor/cult_armor_up.rsi
   - type: Clothing
@@ -126,12 +128,12 @@
         Cold: 0.75
         Stamina: 0.45 ## Stamina resistance
   - type: ClothingSpeedModifier
-    walkModifier: 0.86
-    sprintModifier: 0.86
+    walkModifier: 0.93
+    sprintModifier: 0.93
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.82
+    damageCoefficient: 0.45
   - type: CultClothing
 
 - type: entity

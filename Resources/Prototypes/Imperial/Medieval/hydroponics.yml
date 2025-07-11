@@ -269,6 +269,8 @@
   id: MedievalFlowerVetr
   description: gol
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/vetr.rsi
     state: produce
@@ -309,6 +311,8 @@
   id: MedievalFlowerLipad
   description: gol
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/lipad.rsi
     state: produce
@@ -349,6 +353,8 @@
   id: MedievalFlowerLava
   description: gol
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/lava.rsi
     state: produce
@@ -389,6 +395,8 @@
   id: MedievalFlowerCryo
   description: gol
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Chem/Garden/cryo.rsi
     state: produce

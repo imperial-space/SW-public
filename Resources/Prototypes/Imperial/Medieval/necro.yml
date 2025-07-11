@@ -508,6 +508,14 @@
   - MedievalNecroWeapon
 
 - type: listing
+  id: MagicNecroShopMedievalCavaleryNecroSpearT3
+  productEntity: MedievalCavaleryNecroSpearT3
+  cost:
+    UnholyMedieval: 22
+  categories:
+  - MedievalNecroWeapon
+
+- type: listing
   id: MagicNecroShopMedievalGrenade
   productEntity: MedievalGrenade
   cost:
@@ -576,6 +584,14 @@
   productEntity: MedaljonNoslip
   cost:
     UnholyMedieval: 5
+  categories:
+  - MedievalNecroOther
+
+- type: listing
+  id: MagicNecroShopMedievalHorseNecroWhistle
+  productEntity: MedievalHorseNecroWhistle
+  cost:
+    UnholyMedieval: 70
   categories:
   - MedievalNecroOther
 

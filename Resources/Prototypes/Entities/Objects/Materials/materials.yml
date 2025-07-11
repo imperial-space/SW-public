@@ -231,6 +231,8 @@
   name: wood
   suffix: Full
   components:
+  - type: RDWeight # imperial medieval start
+    value: 0.5 # imperial medieval end
   - type: Material
   - type: PhysicalComposition
     materialComposition:

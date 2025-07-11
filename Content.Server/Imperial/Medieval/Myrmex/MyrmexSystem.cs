@@ -14,12 +14,15 @@ using Content.Shared.Damage;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Content.Shared.Maps;
-using Content.Shared.Clothing.Components;
+using Content.Server.MagicBarrier.Components;
 using Content.Server.Myrmex.Components;
 using Robust.Shared.Spawners;
 using System.Numerics;
 using Content.Shared.Body.Components;
 using Content.Shared.Jittering;
+using Content.Server.Actions;
+using System.Linq;
+using Content.Shared.Imperial.Zlevels; 
 
 namespace Content.Server.Myrmex
 {
@@ -39,6 +42,7 @@ namespace Content.Server.Myrmex
         [Dependency] private readonly MapSystem _map = default!;
         [Dependency] private readonly ITileDefinitionManager _tile = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
+        [Dependency] private readonly ActionsSystem _actions = default!;
 
         public List<string> SporesPull = new()
         {
@@ -58,11 +62,42 @@ namespace Content.Server.Myrmex
         public override void Initialize()
         {
             base.Initialize();
+            SubscribeLocalEvent<MyrmexComponent, ComponentStartup>(OnMyrmexStartup);
             SubscribeLocalEvent<MyrmexEggComponent, ExaminedEvent>(OnExamine);
             SubscribeLocalEvent<MyrmexEggComponent, ComponentStartup>(OnStartEgg);
             SubscribeLocalEvent<MyrmexGrowerComponent, ComponentStartup>(OnStartGrower);
+            SubscribeLocalEvent<MyrmexHoleComponent, ComponentStartup>(OnStartHole);
+            InitializeActions();
         }
 
+        private void OnMyrmexStartup(EntityUid uid, MyrmexComponent myrmex, ref ComponentStartup args)
+        {
+            foreach (string actionProto in myrmex.Actions)
+            {
+                _actions.AddAction(uid, actionProto);
+            }
+        }
+
+        private void OnStartHole(EntityUid uid, MyrmexHoleComponent comp, ComponentStartup args)
+        {
+            string f1 = _random.Next(0, 10000).ToString();
+            string f2 = _random.Next(0, 10000).ToString();
+            if (comp.Entrance) return;
+            var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
+            if (cursespawners.Count() == 0) return;
+            var choosenSpawner = _random.Pick(cursespawners);
+            var cursexform = Transform(choosenSpawner.Owner);
+            var cursecoords = cursexform.Coordinates;
+            var secondHole = Spawn("MedievalMyrmexBigHoleExit", cursecoords);
+            var ladderEntr = EnsureComp<LadderComponent>(secondHole);
+            var ladderEx = EnsureComp<LadderComponent>(uid);
+            ladderEntr.GroupID = f1;
+            ladderEx.GroupID = f1;
+            ladderEntr.LadderID = f2;
+            ladderEx.LadderID = f2;
+            QueueDel(choosenSpawner.Owner);
+            // ahahah nihuya ya pridumal costyli smotrite
+        }
         private void OnStartEgg(EntityUid uid, MyrmexEggComponent comp, ComponentStartup args)
         {
             comp.SporeType = SporesPull[_random.Next(0, SporesPull.Count)];

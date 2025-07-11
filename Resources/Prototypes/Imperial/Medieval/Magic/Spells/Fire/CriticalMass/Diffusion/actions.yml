@@ -9,9 +9,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.8
+        essenceAddProbability: 0.0008
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalFire1: 1
+          MagicMedievalFire: 1
+        bonusEssences:
+          MagicMedievalFire: 1
   - type: ManaDrainSpell
     manaDrain: 40
     canUseWithoutMana: true

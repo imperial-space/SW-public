@@ -8,6 +8,8 @@
     MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2, MedievalClothingHeadHelmetCrusaderMorbius ]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightInsBlood]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerInsBlood]
+    MedievalFalshionT3: [MedievalFalshionT3ChainMace]
+    MedievalFalshionT3Steel: [MedievalFalshionT3SteelChainMace]
     Log: [AhrimanStaffMedieval]
 
 - type: customization
@@ -61,8 +63,10 @@
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth73]
     MedievalClothingOuterHorseArmorUpIron: [MedievalClothingOuterHorseRoyalArmorUpIron]
     MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuteRoyalArmorIronCuirassLight]
+    MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterRoyalArmorIronCuirass]
     MedievalWoodenShieldKnight: [MedievalRoyalWoodenShieldKnight]
     MedievalWoodenShield: [MedievalRoyalWoodenShield]
+    MedievalClothingOuterArmorLeatherHeavy: [MedievalClothingOuterLeafRoyalArmorLeatherHeavy]
 
 - type: customization
   id: game123456
@@ -80,7 +84,7 @@
   id: arelover
   holder: f074e865-f7f4-435e-807d-3a62280dc462
   map:
-    Log: [ MedievalClothingHeadHelmetNimbus ]
+    Log: [ MedievalClothingHeadHelmetNimbus, MedievalMagicWeaponPrism ]
 
 - type: customization
   id: the_greatkeeper
@@ -122,6 +126,10 @@
   map:
     MedievalFalshionT3: [ MedievalFalshionT3DarkSword ]
     MedievalFalshionT3Steel: [ MedievalFalshionT3DarkSwordSteel ]
+    MedievalClothingNeckCloakRedIns: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakBlueLegion: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanKayot: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanWolf: [MedievalClothingNeckCloakDarkBlueGold]
 
 - type: customization
   id: drgnar
@@ -140,6 +148,8 @@
     MedievalClothingFeetSteel: [MedievalClothingFeetSteelDarkBootsArchaont]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorWhiteWizardCharmerLight]
     Log: [MedievalClothingHandsGlovesWhiteWizard]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer]
 
 - type: customization
   id: scarlatto
@@ -158,6 +168,10 @@
   map:
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightAncientMage]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightAncientMage]
+    MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightAncientMage]
+    MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightAncientMage]
+    MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightAncientMage]
+    MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightAncientMage]
 
 - type: customization
   id: fichty

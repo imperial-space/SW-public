@@ -87,5 +87,8 @@ public enum CollisionGroup
     // FlyingMob can go past
     FullTileLayer = Opaque | HighImpassable | MidImpassable | LowImpassable | BulletImpassable | InteractImpassable,
 
-    SubfloorMask = Impassable | LowImpassable
+    SubfloorMask = Impassable | LowImpassable,
+
+    PikeLayer = MidImpassable | LowImpassable, // imperial medieval mobriding
+    PikeMask = MidImpassable | LowImpassable | MobLayer // imperial medieval mobriding
 }
