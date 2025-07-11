@@ -7,6 +7,7 @@ using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Buckle;
+using Content.Shared.Popups;
 using Robust.Shared.Network;
 
 
@@ -23,6 +24,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly INetManager _netManager = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
 
         #endregion
 
@@ -93,8 +95,10 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             var direction = physics.LinearVelocity;
             _throwing.TryThrow(uid, direction * throwingDistance);
-            if(_netManager.IsServer)
-                _audio.PlayPvs("/Audio/Imperial/Medieval/animal_horse.ogg", buckle.BuckledTo.Value);
+            _popup.PopupClient("Вы теряете равновесие и падаете с лошади.", uid, uid);
+            if (!_netManager.IsServer)
+                return;
+            _audio.PlayPvs("/Audio/Imperial/Medieval/animal_horse.ogg", rideable.Value);
         }
 
         protected bool TryGetSkill(EntityUid uid, string skill, out int level)

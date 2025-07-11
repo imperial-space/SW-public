@@ -8,6 +8,7 @@ using Content.Shared.Input;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
@@ -33,6 +34,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [Dependency] private readonly ThrowingSystem _throwing = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
 
         #region Handler
         private sealed class SprintInputCmdHandler : InputCmdHandler
@@ -196,6 +198,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             _damageable.TryChangeDamage(otherPlayer, damage * modifier);
 
+            _popup.PopupClient("Вы сшибаете пехотинца с дороги.", rider, rider);
+
             if (!rideableComp.StunList.TryAdd(otherPlayer, _gameTiming.CurTime))
                 rideableComp.StunList[otherPlayer] = _gameTiming.CurTime;
 
@@ -233,6 +237,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             if (!TryComp<RideableSprintComponent>(rideable, out var sprintComp))
                 return;
+
+            _popup.PopupClient(ev.Sprinting ? "Вы ускоряетесь!" : "Вы сбавляете ход.", player.Value, player.Value);
 
             sprintComp.Sprinting = ev.Sprinting;
         }
