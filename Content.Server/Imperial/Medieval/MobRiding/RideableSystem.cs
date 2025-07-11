@@ -30,6 +30,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.MobRiding
 {
@@ -48,6 +49,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly SharedWieldableSystem _wieldable = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
 
         #region Const
         private readonly string[] _clashOne = new[] {
@@ -111,8 +113,11 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
             if(damage != null)
                 _damageable.TryChangeDamage(uid, damage);
-            if(stunSeconds > 0)
+            if (stunSeconds > 0)
+            {
+                _stun.TryStun(uid, TimeSpan.FromSeconds(stunSeconds), true);
                 _stun.TryKnockdown(uid, TimeSpan.FromSeconds(stunSeconds), true);
+            }
         }
 
         private bool TryGetSkill(EntityUid uid, string skill, out int level)
@@ -144,31 +149,44 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                 return;
             if (!comp.Rider.HasValue)
                 return;
-            if (!TryGetPike(comp.Rider.Value, out var item, out var melee))
+            if (!TryGetPike(comp.Rider.Value, out var item, out var pikeComp))
                 return;
             if (TryComp<UseDelayComponent>(item, out var useDelay) && _useDelay.IsDelayed((item.Value, useDelay)))
                 return;
             if(args.OtherFixtureId != comp.PikeShapeId)
-                PikeHitEntity(uid, comp, args.OtherEntity, comp.Rider.Value, melee);
+                PikeHitEntity(uid, comp, args.OtherEntity, comp.Rider.Value, pikeComp);
             else
                 PikeClash(uid, comp, args.OtherEntity);
         }
 
-        private void PikeHitEntity(EntityUid uid, RideableComponent comp, EntityUid other, EntityUid rider, MeleeWeaponComponent melee, uint stunSeconds = 2, bool throwOther = true)
+        private void PikeHitEntity(EntityUid uid, RideableComponent comp, EntityUid other, EntityUid rider, PikeComponent pikeComp, uint stunSeconds = 2, bool throwOther = true)
         {
             if (!TryComp<PhysicsComponent>(uid, out var rideablePhysics))
                 return;
+
+            if (comp.StunList.TryGetValue(other, out var time))
+            {
+                var diff = _gameTiming.CurTime - time;
+                if (diff.Duration() < TimeSpan.FromSeconds(5))
+                    return;
+            }
 
             var direction = rideablePhysics.LinearVelocity;
 
             if(throwOther)
                 _throwing.TryThrow(other, direction * 0.6f);
-            if(stunSeconds > 0)
+            if (stunSeconds > 0)
+            {
+                _stun.TryStun(other, TimeSpan.FromSeconds(stunSeconds), true);
                 _stun.TryKnockdown(other, TimeSpan.FromSeconds(stunSeconds), true);
+            }
 
-            _damageable.TryChangeDamage(other, melee.Damage);
+            _damageable.TryChangeDamage(other, pikeComp.RidingDamage);
+            var oneSound = _random.Pick(_clashOne);
+            _audio.PlayPvs(oneSound, other);
 
             DelayPike(rider);
+            comp.StunList.TryAdd(other, _gameTiming.CurTime);
         }
 
         private void DelayPike(EntityUid rider, EntityUid? item = null)
@@ -189,13 +207,13 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                 _useDelay.TryResetDelay((item.Value, useDelay));
         }
 
-        private bool TryGetPike(EntityUid uid, [NotNullWhen(true)] out EntityUid? pike, [NotNullWhen(true)] out MeleeWeaponComponent? comp)
+        private bool TryGetPike(EntityUid uid, [NotNullWhen(true)] out EntityUid? pike, [NotNullWhen(true)] out PikeComponent? comp)
         {
             pike = null;
             comp = null;
 
             pike = _hands.GetActiveItem(uid);
-            return pike.HasValue && HasComp<PikeComponent>(pike) && TryComp(pike, out comp);
+            return pike.HasValue && TryComp(pike, out comp);
         }
 
         private sealed class Skills
@@ -289,7 +307,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             var velocity = rideablePhysics.LinearVelocity.Length();
             if (!TryGetPike(rider, out var pike, out var pikeComp))
                 return;
-            ThrowFromRideable(otherRider, 2, pikeComp.Damage * velocity);
+            ThrowFromRideable(otherRider, 2, pikeComp.RidingDamage * velocity);
         }
 
 

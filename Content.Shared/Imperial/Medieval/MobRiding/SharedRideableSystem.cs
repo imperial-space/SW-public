@@ -75,34 +75,6 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
         private bool TryGetSprint(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableSprintComponent? sprint) =>
             TryGetRideable(rider, out entity, out _, out sprint);
-
-        private void ThrowFromRideable(EntityUid uid, uint stunSeconds = 2, DamageSpecifier? damage = null)
-        {
-            if (!TryComp<BuckleComponent>(uid, out var buckle))
-                return;
-
-            var ev = new TryUnbuckleEvent(new Entity<BuckleComponent>(uid, buckle));
-
-            RaiseLocalEvent(uid, ref ev);
-            if(damage != null)
-                _damageable.TryChangeDamage(uid, damage);
-            if(stunSeconds > 0)
-                _stun.TryKnockdown(uid, TimeSpan.FromSeconds(stunSeconds), true);
-        }
-
-        private bool TryGetSkill(EntityUid uid, string skill, out int level)
-        {
-            level = 0;
-
-            if (!TryComp<SkillsComponent>(uid, out var skills))
-                return false;
-
-            if (!skills.Levels.TryGetValue(skill, out level))
-                return false;
-
-            return true;
-        }
-
         #endregion
 
         #region Damage ignore

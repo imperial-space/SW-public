@@ -18,8 +18,6 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [DataField, AutoNetworkedField] public float CurrentTime;
         [DataField, AutoNetworkedField] public bool Sprinting;
 
-        [DataField, AutoNetworkedField] public Dictionary<EntityUid, TimeSpan> StunList = new();
-
         [DataField]
         public DamageSpecifier BluntDamage = new()
         {

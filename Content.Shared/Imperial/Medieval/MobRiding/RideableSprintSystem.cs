@@ -4,6 +4,7 @@ using System.Numerics;
 using Content.Shared.Body.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
+using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Input;
 using Content.Shared.Inventory;
@@ -122,7 +123,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             if (!args.OurFixture.Hard)
                 return;
 
-            if (comp.CurrentTime > 0.02f)
+            if (comp.CurrentTime < 0.02f)
                 return;
 
             if (!TryComp<RideableComponent>(uid, out var rideable))
@@ -132,14 +133,20 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 return;
 
 
-            if (HasComp<BodyComponent>(args.OtherEntity))
+            if (HasComp<BodyComponent>(args.OtherEntity)
+                && !HasComp<RideableComponent>(args.OtherEntity)
+                && (!TryComp<BuckleComponent>(args.OtherEntity, out var buckle) || !buckle.Buckled))
                 CollidePlayer(uid, comp, rideable, ref args);
-            else if(args.OtherFixture.Hard)
+            else if(args.OtherFixture.Hard && !HasComp<IgnoredByRideableSprintComponent>(args.OtherEntity) && !HasComp<BodyComponent>(args.OtherEntity))
                 CollideObject(uid, comp, rideable, ref args);
         }
 
-        private bool CheckSpear(EntityUid uid, out EntityUid? item)
+        private bool CheckSpear(EntityUid uid, [NotNullWhen(true)] out EntityUid? item)
         {
+            item = null;
+            if (!HasComp<HandsComponent>(uid))
+                return false;
+
             item = _hands.GetActiveItem(uid);
 
             if (!item.HasValue)
@@ -172,7 +179,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 return;
             }
 
-            if (sprintComp.StunList.TryGetValue(otherPlayer, out var time))
+            if (rideableComp.StunList.TryGetValue(otherPlayer, out var time))
             {
                 var diff = _gameTiming.CurTime - time;
                 if (diff.Duration() < TimeSpan.FromSeconds(5))
@@ -184,6 +191,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             var direction = rideablePhysics.LinearVelocity;
 
             _throwing.TryThrow(otherPlayer, direction * 0.6f);
+            _stun.TryStun(otherPlayer, TimeSpan.FromSeconds(2), true);
             _stun.TryKnockdown(otherPlayer, TimeSpan.FromSeconds(2), true);
             var ev = new GetHorseDamageModifier();
             RaiseLocalEvent(uid, ref ev);
@@ -196,7 +204,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             _damageable.TryChangeDamage(otherPlayer, damage * modifier);
 
-            sprintComp.StunList.TryAdd(otherPlayer, _gameTiming.CurTime);
+            rideableComp.StunList.TryAdd(otherPlayer, _gameTiming.CurTime);
         }
 
         private void CollideObject(EntityUid uid, RideableSprintComponent sprintComp, RideableComponent rideableComp, ref StartCollideEvent args)
@@ -218,8 +226,11 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             RaiseLocalEvent(uid, ref ev);
             if(damage != null)
                 _damageable.TryChangeDamage(uid, damage);
-            if(stunSeconds > 0)
+            if (stunSeconds > 0)
+            {
+                _stun.TryStun(uid, TimeSpan.FromSeconds(stunSeconds), true);
                 _stun.TryKnockdown(uid, TimeSpan.FromSeconds(stunSeconds), true);
+            }
         }
 
         #endregion
