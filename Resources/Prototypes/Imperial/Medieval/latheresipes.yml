@@ -1523,3 +1523,12 @@
     MedievalRivets: 1
     MedievalIronIngot: 2
   result: MedievalClothingHorseshoe
+
+- type: CP14Recipe
+  id: MedievalSpearCavalerySpear
+  craftTime: 12
+  iconOverride: MedievalCavalerySpearT3
+  stacks:
+    WoodPlank: 12
+    MedievalIronIngot: 14
+  result: MedievalCavalerySpearT3

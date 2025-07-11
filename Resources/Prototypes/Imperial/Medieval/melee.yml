@@ -4216,17 +4216,26 @@
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
   - type: RDWeight
-    value: 4
+    value: 7
   - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/cavalery_spear.rsi
     state: spear
+  - type: Wieldable
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Piercing: 14
   - type: MeleeParry
     parryChanse: 0.45
   - type: MedievalMeleeResource
     resourceWaste: 0.7
   - type: Item
     size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - suitStorage
   - type: Tag
     tags:
     - Spear

@@ -2659,6 +2659,14 @@
   categories:
   - MedievalMagic
 
+- type: listing
+  id: MdvMedievalCavalerySpearT3
+  productEntity: MedievalCavalerySpearT3
+  cost:
+    Revent: 220
+  categories:
+  - MedievalWeapon
+
 - type: discountCategory
   id: medievalDiscounts
   weight: 22

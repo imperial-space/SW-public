@@ -256,6 +256,14 @@
   - MedievalInsWeapon
 
 - type: listing
+  id: MdvInsMedievalCavalerySpearT3
+  productEntity: MedievalCavalerySpearT3
+  cost:
+    MedalIns: 5
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
   id: MdvInsMedievalClothingOuterArmorLeather
   productEntity: MedievalClothingOuterArmorLeather
   cost:
