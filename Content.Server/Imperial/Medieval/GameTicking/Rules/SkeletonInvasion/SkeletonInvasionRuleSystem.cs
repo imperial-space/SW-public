@@ -120,18 +120,17 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         }
 
         var xform = Transform(args.Stand);
-        var players = EntityManager.AllEntities<HumanoidAppearanceComponent>().Where(x => !HasComp<IgnoreBossStartComponent>(x.Owner));
-        players = players.OrderBy(x => (Transform(x.Owner).Coordinates.Position - xform.Coordinates.Position).Length());
+        var players = EntityManager.AllEntities<HumanoidAppearanceComponent>().Where(x => !HasComp<IgnoreBossStartComponent>(x.Owner) && Transform(x).MapUid == Transform(args.Stand).MapUid);
 
         var bossfightPlayers = new List<EntityUid>();
-        for (var i = 0; i < 30 && i < players.Count(); i++)
+        foreach (var item in players)
         {
-            if (!_mobState.IsAlive(players.ElementAt(i).Owner))
+            if (!_mobState.IsAlive(item.Owner))
                 continue;
 
-            bossfightPlayers.Add(players.ElementAt(i).Owner);
-            _flash.Flash(players.ElementAt(i).Owner, null, null, 5, 0.3f, false);
-            _audio.PlayGlobal(new SoundPathSpecifier(new ResPath("/Audio/Imperial/Medieval/Effects/teleport.ogg")), players.ElementAt(i).Owner);
+            bossfightPlayers.Add(item.Owner);
+            _flash.Flash(item.Owner, null, null, 5, 0.3f, false);
+            _audio.PlayGlobal(new SoundPathSpecifier(new ResPath("/Audio/Imperial/Medieval/Effects/teleport.ogg")), item.Owner);
         }
 
         if (bossfightPlayers.Count == 0)
