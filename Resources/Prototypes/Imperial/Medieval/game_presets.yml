@@ -20,7 +20,7 @@
 - type: gamePreset
   id: MedievalMyrmex
   alias:
-  - medieval
+  - medievalmyrmex
   name: medieval-myrmex-title
   showInVote: true
   description: medieval-myrmex-description
@@ -32,9 +32,9 @@
 - type: gamePreset
   id: Skeletron
   alias:
-  - скелетрон
-  name: Скелетрон
-  description: Слуги Морбиуса прибывают! Остановите их, пока не стало слишком поздно!
+  - skeletron
+  name: medieval-skeletron-title
+  description: medieval-skeletron-description 
   showInVote: true
   rules:
   - MedievalStatsCounter
