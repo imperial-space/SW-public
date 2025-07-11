@@ -39,7 +39,7 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
-
+  - type: AffectRoundStats
 
 - type: damageContainer
   id: SkeletonNecro
@@ -125,6 +125,7 @@
         #Growling: Speak
         #Hissing: Speak
         #Elf: Speak
+    - type: IgnoreBossStart
 
 - type: startingGear
   id: MedievalNecroSender
@@ -180,6 +181,7 @@
         #Growling: Speak
         #Hissing: Speak
         # Elf: Speak
+    - type: IgnoreBossStart
 
 - type: startingGear
   id: MedievalNecroFighter
@@ -230,6 +232,7 @@
   - type: Mana
     maxManaRaceModifier: 3.9
     regenRaceModifier: 3.9
+  - type: IgnoreBossStart
 
 - type: startingGear
   id: MedievalNecroLeader

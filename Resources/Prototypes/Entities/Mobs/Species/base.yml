@@ -359,6 +359,7 @@
         min: 180
         max: 20000      # несет более 105 кг (не может двигаться без посторонней помощи)
   - type: RDWeightThrowerModifier
+  - type: AffectRoundStats
 # Imperial Medieval End
 
 - type: entity
