@@ -586,6 +586,17 @@
   - type: Ladder
     activationTime: 4
     canLocked: false
+  - type: MyrmexHole
+    exit: false
+
+- type: entity
+  parent: MedievalMyrmexBigHole
+  id: MedievalMyrmexBigHoleExit
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: MyrmexHole
+    exit: true
 
 - type: entity
   id: MedievalMyrmexIncubator
