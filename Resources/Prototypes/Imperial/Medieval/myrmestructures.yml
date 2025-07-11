@@ -580,22 +580,23 @@
   - type: Appearance
   - type: Transform
     anchored: true
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallic
-  - type: Destructible
-    thresholds:
-    - trigger: !type:DamageTrigger
-        damage: 1000
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Construction
     graph: MBigHole
     node: medievalMyrmexBigHole
   - type: Ladder
     activationTime: 4
     canLocked: false
+  - type: MyrmexHole
+    exit: false
+
+- type: entity
+  parent: MedievalMyrmexBigHole
+  id: MedievalMyrmexBigHoleExit
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: MyrmexHole
+    exit: true
 
 - type: entity
   id: MedievalMyrmexIncubator
