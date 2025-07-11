@@ -99,7 +99,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 if (rideableSprintComp.Sprinting)
                     rideableSprintComp.CurrentTime = MathF.Min(rideableSprintComp.CurrentTime + frameTime, rideableSprintComp.AccelerationTime);
                 else
-                    rideableSprintComp.CurrentTime = 0;
+                    rideableSprintComp.CurrentTime = MathF.Max(rideableSprintComp.CurrentTime - frameTime * 2, 0);
                 var progress = rideableSprintComp.CurrentTime / rideableSprintComp.AccelerationTime;
 
                 rideableSprintComp.CurrentSpeedModifier = MathHelper.Lerp(
@@ -122,7 +122,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             if (!args.OurFixture.Hard)
                 return;
 
-            if (!comp.Sprinting)
+            if (comp.CurrentTime > 0.02f)
                 return;
 
             if (!TryComp<RideableComponent>(uid, out var rideable))
