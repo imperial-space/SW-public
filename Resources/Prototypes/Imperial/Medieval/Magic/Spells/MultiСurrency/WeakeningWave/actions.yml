@@ -39,14 +39,14 @@
         addedEssences:
           MagicMedievalLight: 2
         bonusEssences:
-          MagicMedievalLight: 2
+          MagicMedievalLight: 1
       - !type:AddMagicEssence
         essenceAddProbability: 0.0001
         bonusAddProbability: 1
         addedEssences:
           MagicMedievalVodka: 2
         bonusEssences:
-          MagicMedievalVodka: 2
+          MagicMedievalVodka: 1
   - type: ManaDrainSpell
     manaDrain: 95
     canUseWithoutMana: true
