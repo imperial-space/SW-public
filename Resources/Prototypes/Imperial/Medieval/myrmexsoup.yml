@@ -36,6 +36,10 @@
   - type: Construction
     graph: MSoupPlace
     node: medievalMyrmexSoupPlace
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/blub3.ogg"
     recipes:
