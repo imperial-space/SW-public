@@ -168,6 +168,10 @@
   map:
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightAncientMage]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightAncientMage]
+    MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightAncientMage]
+    MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightAncientMage]
+    MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightAncientMage]
+    MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightAncientMage]
 
 - type: customization
   id: fichty

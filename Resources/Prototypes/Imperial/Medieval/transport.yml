@@ -1,12 +1,22 @@
 - type: Tag
   id: HorseWearable
 
+- type: soundCollection
+  id: MedievalHorseFootstep
+  files:
+  - /Audio/Imperial/Medieval/horsestep1.ogg
+  - /Audio/Imperial/Medieval/horsestep2.ogg
+  - /Audio/Imperial/Medieval/horsestep3.ogg
+  - /Audio/Imperial/Medieval/horsestep4.ogg
+
 - type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterHorseArmorLeather
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 9
   - type: HorseArmor
     bluntModifier: 1.2
   - type: Sprite
@@ -36,6 +46,8 @@
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 27
   - type: HorseArmor
     bluntModifier: 2.2
   - type: Sprite
@@ -70,6 +82,8 @@
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 46
   - type: HorseArmor
     bluntModifier: 3
   - type: Sprite
@@ -247,6 +261,12 @@
           32:
             sprite: Mobs/Animals/mothroach/displacement.rsi
             state: shoes
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: MedievalHorseFootstep
+      params:
+        variation: 0.125
+        volume: -5
   - type: Appearance
   - type: Strippable
   - type: Tag

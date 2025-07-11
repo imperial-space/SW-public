@@ -2660,6 +2660,14 @@
   - MedievalMagic
 
 - type: listing
+  id: MdvMedievalCavalerySpearT3
+  productEntity: MedievalCavalerySpearT3
+  cost:
+    Revent: 220
+  categories:
+  - MedievalWeapon
+
+- type: listing
   id: MdvShopMedievalScrollBarrier
   productEntity: MedievalScrollBarrier
   discountCategory: medievalDiscounts
@@ -2669,7 +2677,6 @@
     Revent: 50
   categories:
   - MedievalMagic
-
 
 - type: discountCategory
   id: medievalDiscounts

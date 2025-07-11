@@ -16,6 +16,8 @@
   id: MedievalKotel
   parent: BaseItem
   components:
+  - type: RDWeight
+    value: 4
   - type: MeleeWeapon
     soundNoDamage:
       path: "/Audio/Effects/Fluids/splat.ogg"
@@ -463,7 +465,7 @@
   desc: ""
   physicalDesc: ""
   evaporationSpeed: 0.3
-  absorbent: true 
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -499,7 +501,7 @@
   desc: ""
   physicalDesc: ""
   evaporationSpeed: 0.3
-  absorbent: true 
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -560,7 +562,7 @@
   desc: ""
   physicalDesc: ""
   evaporationSpeed: 0.3
-  absorbent: true 
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -717,7 +719,7 @@
 - type: reagent
   id: medievaladvancedhealpiercing
   evaporationSpeed: 0.3
-  absorbent: true 
+  absorbent: true
   name: ""
   desc: ""
   physicalDesc: ""
