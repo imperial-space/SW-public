@@ -562,7 +562,7 @@
     node: medievalMyrmexToxicHole
 
 - type: entity
-  parent: CP14BaseWorkbench
+  parent: BaseLadder
   id: MedievalMyrmexBigHole
   name: big hole
   description: it's a BIG hole.
@@ -577,10 +577,6 @@
     sprite: Imperial/Medieval/Myrmex/Structures/myrmex_hole.rsi
     state: icon
     drawdepth: FloorObjects
-  - type: Physics
-    bodyType: Static
-  - type: InteractionOutline
-  - type: Clickable
   - type: Appearance
   - type: Transform
     anchored: true
