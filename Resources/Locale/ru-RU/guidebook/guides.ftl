@@ -53,6 +53,7 @@ guide-entry-defusal = Обезвреживание большой бомбы
 guide-entry-criminal-records = Криминальные записи
 guide-entry-species = Расы
 guide-entry-botanical = Ботаника
+guide-entry-special = Специальные химикаты
 
 guide-entry-pizza-recipes = Пиццы
 guide-entry-savory-recipes = Пикантная кулинария
