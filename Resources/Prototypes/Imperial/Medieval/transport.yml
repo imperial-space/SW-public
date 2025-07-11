@@ -330,3 +330,28 @@
   - type: RideableSprint
     accelerationTime: 8
     maxSpeedModifier: 1.76
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalSkeletonHorseTransport
+  name: horse
+  description: MedievalSkeletonHorseTransport
+  components:
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/skeletonhorse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-soft-skeletonhorse
+    interactFailureString: petting-failure-skeletonhorse
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Imperial/Medieval/skeletonhorse_pet.ogg
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/skeletonhorse_arrive.ogg

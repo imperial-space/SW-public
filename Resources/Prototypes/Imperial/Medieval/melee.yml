@@ -4257,3 +4257,16 @@
         friction: 0.2
   - type: Meltable
     resourceCount: 4
+
+- type: entity
+  name: medieval cavalery spear
+  parent: MedievalCavalerySpearT3
+  id: MedievalCavaleryNecroSpearT3
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/cavalery_necro_spear.rsi
+    state: spear
+  - type: RadiationSource
+    intensity: 1
+    slope: 1
