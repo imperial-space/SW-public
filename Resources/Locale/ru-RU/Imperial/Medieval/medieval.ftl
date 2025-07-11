@@ -5871,3 +5871,6 @@ ent-MedievalHorseWhistle = свисток
     .desc = Свисток для призыва вашего верного спутника - лошади. Одноразовый.
     .suffix = { "Средневековье" }
 medieval-category-transport = Верховые животные
+ent-MedievalFalshionT3SteelChainMace = кавалерийская пика
+    .desc = Разновидность копья, которое используется в кавалерии.
+    .suffix = { "Средневековье, ближка" }
