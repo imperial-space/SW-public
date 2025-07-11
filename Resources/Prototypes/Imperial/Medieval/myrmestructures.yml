@@ -548,3 +548,48 @@
   - type: Construction
     graph: MToxicHole
     node: medievalMyrmexToxicHole
+
+- type: entity
+  parent: CP14BaseWorkbench
+  id: MedievalMyrmexIncubator
+  name: incubator
+  description:
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/incubator.rsi
+    state: icon
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepWood
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: CP14Workbench
+    craftSound: "/Audio/Imperial/Medieval/blub2.ogg"
+    recipes:
+      - MedievalMyrmexCurseClot
+  - type: Construction
+    graph: MMyrmexIncubatorCraft
+    node: medievalMyrmexIncubator

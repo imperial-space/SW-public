@@ -4260,3 +4260,16 @@
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 4
+
+- type: entity
+  name: medieval cavalery spear
+  parent: MedievalCavalerySpearT3
+  id: MedievalCavaleryNecroSpearT3
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/cavalery_necro_spear.rsi
+    state: spear
+  - type: RadiationSource
+    intensity: 1
+    slope: 1

@@ -298,8 +298,122 @@
     buckleTime: 1
     maxBuckleDistance: 1
   - type: EmitSoundOnSpawn
-    sound: 
+    sound:
       path: /Audio/Imperial/Medieval/animal_horse.ogg
+  - type: Rideable
+  - type: RideableSprint
+    accelerationTime: 8
+    maxSpeedModifier: 1.76
+
+- type: entity
+  parent: MedievalMobSkeletBase
+  id: MedievalSkeletonHorseTransport
+  name: horse
+  description: MedievalSkeletonHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/skeletonhorse.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.49
+        density: 30
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: petting-success-soft-skeletonhorse
+    interactFailureString: petting-failure-skeletonhorse
+    interactSuccessSpawn: EffectHearts
+    interactSuccessSound:
+      path: /Audio/Imperial/Medieval/skeletonhorse_pet.ogg
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/skeletonhorse_arrive.ogg
+  - type: InventorySlots
+  - type: Inventory
+    speciesId: horse
+    templateId: horse
+    displacements:
+      outerclothing:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: outerclothing
+      shoes1:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+      shoes2:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+      shoes3:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+      shoes4:
+        sizeMaps:
+          32:
+            sprite: Mobs/Animals/mothroach/displacement.rsi
+            state: shoes
+  - type: Appearance
+  - type: Strippable
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - FootstepSound
+  - type: WhitelistClothing
+    whitelist: HorseWearable
+    whitelistState: clothing
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Critical
+    - Dead
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 3
+    baseSprintSpeed: 3
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      270: Critical
+      390: Dead
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      30: 1
+      150: 0.9
+      205: 0.8
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: horse
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: Strap
+    position: Stand
+    buckleOffset: "-0.00, -0.02"
+    buckleTime: 1
+    maxBuckleDistance: 1
   - type: Rideable
   - type: RideableSprint
     accelerationTime: 8

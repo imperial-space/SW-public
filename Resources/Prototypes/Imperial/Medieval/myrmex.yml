@@ -1095,3 +1095,20 @@
         acts: [ "Destruction" ]
   - type: MyrmexEgg
 
+- type: entity
+  id: MedievalCurseClot
+  parent: BaseItemMyrmex
+  name: myrmex curse clot
+  description: slizen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/curse.rsi
+    state: clot
+  - type: Tag
+    tags:
+    - MyrmexCanTake
+    - MagicScroll
+  - type: MagicScroll
+    bad: true
+    basicPower: -15
+
