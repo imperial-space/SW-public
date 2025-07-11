@@ -155,6 +155,10 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         if (bossfightPlayers.Count == 0)
             return;
 
+        var msgBoss = "Древний череп собран. Его проклятие не сломлено, но искажено святым пламенем. Равновесие пало, и теперь судьба этого острова решится в битве!";
+        _chatMan.ChatMessageToAll(ChatChannel.Radio, msgBoss, msgBoss, EntityUid.Invalid, false, true, colorOverride: Color.OrangeRed);
+        _audio.PlayGlobal(new SoundPathSpecifier(new ResPath("/Audio/Imperial/Medieval/Effects/skull-announce.ogg")), Filter.Broadcast(), true);
+
         _boss.StartBossfight(bossfightPlayers, _bossUid);
         _result = RoundResult.BossWon;
     }
