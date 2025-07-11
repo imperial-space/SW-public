@@ -887,40 +887,29 @@
           sprite: Imperial/Medieval/Myrmex/resin.rsi
           state: clearresin
         doAfter: 1
-      - tag: RootItem
-        name: корень # Imperial Recipes Locale
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
         icon:
-          sprite: Imperial/Medieval/Chem/Garden/root.rsi
-          state: icon
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
         doAfter: 1
-      - tag: RootItem
-        name: корень # Imperial Recipes Locale
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
         icon:
-          sprite: Imperial/Medieval/Chem/Garden/root.rsi
-          state: icon
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
         doAfter: 1
-      - tag: RootItem
-        name: корень # Imperial Recipes Locale
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
         icon:
-          sprite: Imperial/Medieval/Chem/Garden/root.rsi
-          state: icon
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
         doAfter: 1
-      - tag: RootItem
-        name: корень # Imperial Recipes Locale
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
         icon:
-          sprite: Imperial/Medieval/Chem/Garden/root.rsi
-          state: icon
-      - tag: RootItem
-        name: корень # Imperial Recipes Locale
-        icon:
-          sprite: Imperial/Medieval/Chem/Garden/root.rsi
-          state: icon
-        doAfter: 1
-      - tag: RootItem
-        name: корень # Imperial Recipes Locale
-        icon:
-          sprite: Imperial/Medieval/Chem/Garden/root.rsi
-          state: icon
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
         doAfter: 1
       - tag: RootItem
         name: корень # Imperial Recipes Locale
@@ -945,12 +934,104 @@
         icon:
           sprite: Imperial/Medieval/Chem/Garden/root.rsi
           state: icon
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
         doAfter: 1
       - tag: RootItem
         name: корень # Imperial Recipes Locale
         icon:
           sprite: Imperial/Medieval/Chem/Garden/root.rsi
           state: icon
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
         doAfter: 1
       - tag: MedievalAntHitin
         name: муравьиный хитин # Imperial Recipes Locale
