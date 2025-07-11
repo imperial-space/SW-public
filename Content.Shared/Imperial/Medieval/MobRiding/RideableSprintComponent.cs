@@ -19,7 +19,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [DataField, AutoNetworkedField] public bool Sprinting;
 
         [DataField]
-        public DamageSpecifier BluntDamage = new()
+        public DamageSpecifier RiderDamageOnCollide = new()
         {
             DamageDict = new()
             {
@@ -28,11 +28,11 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         };
 
         [DataField]
-        public DamageSpecifier BluntBaseDamage = new()
+        public DamageSpecifier DamageOnCollide = new()
         {
             DamageDict = new()
             {
-                { "Blunt", 12 },
+                { "Blunt", 8 },
             }
         };
     }

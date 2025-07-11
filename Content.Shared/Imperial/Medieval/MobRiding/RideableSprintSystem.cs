@@ -200,11 +200,12 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 _inventory.RelayEvent((uid, inv), ref ev);
 
             var modifier = ev.Modifier;
-            var damage = sprintComp.BluntBaseDamage;
+            var damage = sprintComp.DamageOnCollide;
 
             _damageable.TryChangeDamage(otherPlayer, damage * modifier);
 
-            rideableComp.StunList.TryAdd(otherPlayer, _gameTiming.CurTime);
+            if (!rideableComp.StunList.TryAdd(otherPlayer, _gameTiming.CurTime))
+                rideableComp.StunList[otherPlayer] = _gameTiming.CurTime;
         }
 
         private void CollideObject(EntityUid uid, RideableSprintComponent sprintComp, RideableComponent rideableComp, ref StartCollideEvent args)
@@ -213,7 +214,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 return;
 
             var rider = rideableComp.Rider.Value;
-            ThrowFromRideable(rider, damage:sprintComp.BluntDamage);
+            ThrowFromRideable(rider, damage:sprintComp.RiderDamageOnCollide);
         }
 
         private void ThrowFromRideable(EntityUid uid, uint stunSeconds = 2, DamageSpecifier? damage = null)
