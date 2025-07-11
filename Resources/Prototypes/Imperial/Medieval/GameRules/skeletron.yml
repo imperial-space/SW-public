@@ -1,0 +1,20 @@
+- type: entity
+  parent: BaseGameRule
+  id: MedievalSkeletonInvasionRule
+  components:
+  # - type: GameRule
+  #   delay:
+  #     min: 5400
+  #     max: 7200
+  - type: SkeletonInvasionRule
+    arena: /Maps/Imperial/Medieval/boss-test-arena.yml
+    spawnDelay: [1, 1]
+    skullParts:
+    - SkeletonSkullPart1
+    - SkeletonSkullPart2
+    - SkeletonSkullPart3
+    - SkeletonSkullPart4
+    - SkeletonSkullPart5
+    - SkeletonSkullPart6
+    - SkeletonSkullPart7
+    - SkeletonSkullPart8

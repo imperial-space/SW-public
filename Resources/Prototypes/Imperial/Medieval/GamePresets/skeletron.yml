@@ -1,0 +1,10 @@
+- type: gamePreset
+  id: Skeletron
+  alias:
+  - скелетрон
+  name: Скелетрон
+  description: Слуги Морбиуса прибывают! Остановите их, пока не стало слишком поздно!
+  showInVote: true
+  rules:
+    - MedievalStatsCounter
+    - MedievalSkeletonInvasionRule
