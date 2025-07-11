@@ -7,6 +7,7 @@ using Content.Shared.Throwing;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics.Components;
 using Content.Shared.Buckle;
+using Robust.Shared.Network;
 
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
@@ -21,6 +22,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [Dependency] private readonly SharedStunSystem _stun = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly INetManager _netManager = default!;
 
         #endregion
 
@@ -91,7 +93,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             var direction = physics.LinearVelocity;
             _throwing.TryThrow(uid, direction * throwingDistance);
-            _audio.PlayPvs("/Audio/Imperial/Medieval/animal_horse.ogg", buckle.BuckledTo.Value);
+            if(_netManager.IsServer)
+                _audio.PlayPvs("/Audio/Imperial/Medieval/animal_horse.ogg", buckle.BuckledTo.Value);
         }
 
         protected bool TryGetSkill(EntityUid uid, string skill, out int level)
