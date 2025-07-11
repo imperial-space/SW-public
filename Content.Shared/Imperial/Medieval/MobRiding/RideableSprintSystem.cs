@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using System.Diagnostics.CodeAnalysis;
-using System.Numerics;
+﻿using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Body.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
@@ -10,27 +8,23 @@ using Content.Shared.Input;
 using Content.Shared.Inventory;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
-using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
-using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {
-    public sealed partial class RideableSprintSystem : EntitySystem
+    public sealed partial class RideableSprintSystem : AbstractRideableSystem
     {
         [Dependency] private readonly MovementSpeedModifierSystem _speedModifier = default!;
         [Dependency] private readonly INetManager _netManager = default!;
@@ -40,8 +34,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [Dependency] private readonly ThrowingSystem _throwing = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
-        [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
 
         #region Handler
         private sealed class SprintInputCmdHandler : InputCmdHandler
@@ -58,7 +51,6 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 if (session?.AttachedEntity is not { Valid: true } player || !entManager.EntityExists(player))
                     return false;
                 _rideable.RaiseNetworkEvent(new ToggleRideSprintEvent(message.State == BoundKeyState.Down));
-                //entManager.RaisePredictiveEvent(new ToggleRideSprintEvent(message.State == BoundKeyState.Down));
                 return false;
             }
         }
@@ -206,6 +198,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             _damageable.TryChangeDamage(otherPlayer, damage * modifier);
 
+            _popup.PopupClient("Вы сшибаете пехотинца с дороги.", rider, rider);
+
             if (!rideableComp.StunList.TryAdd(otherPlayer, _gameTiming.CurTime))
                 rideableComp.StunList[otherPlayer] = _gameTiming.CurTime;
 
@@ -220,35 +214,6 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             var rider = rideableComp.Rider.Value;
             ThrowFromRideable(rider, damage:sprintComp.RiderDamageOnCollide, throwingDistance: 0.6f);
         }
-
-        private void ThrowFromRideable(EntityUid uid, uint stunSeconds = 2, DamageSpecifier? damage = null, float throwingDistance = 0)
-        {
-            if (!TryComp<BuckleComponent>(uid, out var buckle))
-                return;
-
-            var ev = new TryUnbuckleEvent(new Entity<BuckleComponent>(uid, buckle));
-
-            RaiseLocalEvent(uid, ref ev);
-            if(damage != null)
-                _damageable.TryChangeDamage(uid, damage);
-            if (stunSeconds > 0)
-            {
-                _stun.TryStun(uid, TimeSpan.FromSeconds(stunSeconds), true);
-                _stun.TryKnockdown(uid, TimeSpan.FromSeconds(stunSeconds), true);
-            }
-
-            if (!(throwingDistance > 0))
-                return;
-            if (!buckle.BuckledTo.HasValue)
-                return;
-            if (!TryComp<PhysicsComponent>(buckle.BuckledTo.Value, out var physics))
-                return;
-
-            var direction = physics.LinearVelocity;
-            _throwing.TryThrow(uid, direction * throwingDistance);
-            _audio.PlayPvs("/Audio/Imperial/Medieval/animal_horse.ogg", buckle.BuckledTo.Value);
-        }
-
         #endregion
 
         #region Sprinting events
@@ -272,6 +237,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             if (!TryComp<RideableSprintComponent>(rideable, out var sprintComp))
                 return;
+
+            _popup.PopupClient(ev.Sprinting ? "Вы ускоряетесь!" : "Вы сбавляете ход.", player.Value, player.Value);
 
             sprintComp.Sprinting = ev.Sprinting;
         }
