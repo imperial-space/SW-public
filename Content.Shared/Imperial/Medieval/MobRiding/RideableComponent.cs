@@ -20,6 +20,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [DataField] public string PikeShapeId = "PikeShape";
         [DataField] public IPhysShape PikeShape;
 
+        [DataField, AutoNetworkedField] public Dictionary<EntityUid, TimeSpan> StunList = new();
+
     }
 
     public enum CheckResult
