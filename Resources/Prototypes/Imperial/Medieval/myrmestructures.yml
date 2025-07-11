@@ -566,35 +566,40 @@
   id: MedievalMyrmexBigHole
   name: big hole
   description: it's a BIG hole.
-- type: ReplaceFloorOnSpawn
-  replaceableTiles:
-  replacementTiles:
-  - MedievalMyrmexFloor2
-- type: Sprite
-  sprite: Imperial/Medieval/Myrmex/Structures/myrmex_hole.rsi
-  state: icon
-  drawdepth: FloorObjects
-- type: Physics
-  bodyType: Static
-- type: InteractionOutline
-- type: Clickable
-- type: Appearance
-- type: Transform
-  anchored: true
-- type: Damageable
-  damageContainer: StructuralInorganic
-  damageModifierSet: StructuralMetallic
-- type: Destructible
-  thresholds:
-    - trigger:
-          type:DamageTrigger
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/myrmex_hole.rsi
+    state: icon
+    drawdepth: FloorObjects
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Appearance
+  - type: Transform
+    anchored: true
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
         damage: 1000
       behaviors:
-        - !type:DoActsBehavior
-          acts: [ "Destruction" ]
-- type: Construction
-  graph: MBigHole
-  node: medievalMyrmexBigHole
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: MBigHole
+    node: medievalMyrmexBigHole
+  - type: Ladder
+    activationTime: 4
+    canLocked: false
 
 - type: entity
   id: MedievalMyrmexIncubator
