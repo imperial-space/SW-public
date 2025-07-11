@@ -595,10 +595,6 @@
 - type: Construction
   graph: MBigHole
   node: medievalMyrmexBigHole
-- type: ReplaceFloorOnSpawn
-  replaceableTiles:
-  replacementTiles:
-  - MedievalMyrmexFloor2
 
 - type: entity
   id: MedievalMyrmexIncubator
