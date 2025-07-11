@@ -84,6 +84,7 @@ public sealed class SkullBossStandSystem : EntitySystem
         }
 
         stand.AttachedParts.Add(comp.Idx, comp.Purified);
+        stand.AttachedProtos.Add(Prototype(uid)!.ID);
         _appearance.SetData(args.Target.Value, SkullStandAppearance.Key, comp.Purified ? comp.Idx : -comp.Idx);
         PartAttached(args.Target.Value, stand);
         QueueDel(uid);

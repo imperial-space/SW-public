@@ -8,6 +8,8 @@ public sealed partial class SkullBossStandComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public Dictionary<int, bool> AttachedParts = new();
 
+    public List<string> AttachedProtos = new();
+
     [DataField]
     public Dictionary<int, string> Announcements = new();
 
