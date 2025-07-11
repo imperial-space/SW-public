@@ -214,6 +214,10 @@
   loadouts:
   - GreyJumpsuit
   - GreyJumpskirt
+  - AncientJumpsuit
+  - RainbowJumpsuit
+  - RainbowJumpskirt
+  # Imperial Passenger Loadouts Start
   - BlueJumpsuit
   - BlueJumpskirt
   - BlackJumpsuit
@@ -236,9 +240,7 @@
   - YellowJumpskirt
   - TealJumpsuit
   - TealJumpskirt
-  - AncientJumpsuit
-  - RainbowJumpsuit
-  - RainbowJumpskirt
+  # Imperial Passenger Loadouts End
 
 - type: loadoutGroup
   id: PassengerFace
@@ -253,6 +255,7 @@
   minLimit: 0
   loadouts:
   - PassengerGloves
+  # Imperial Passenger Loadouts Start
   - BlackGloves
   - BrownGloves
   - WhiteGloves
@@ -262,6 +265,7 @@
   - GreenGloves
   - OrangeGloves
   - PurpleGloves
+  # Imperial Passenger Loadouts End
 
 - type: loadoutGroup
   id: CommonBackpack
@@ -277,6 +281,7 @@
   minLimit: 0
   loadouts:
   - Mantle
+  # Imperial Passenger Loadouts Start
   - ScarfRainbow
   - ScarfRed
   - ScarfBlue
@@ -287,14 +292,16 @@
   - ScarfOrange
   - ScarfPurple
   - ScarfZebra
+  # Imperial Passenger Loadouts End
 
 - type: loadoutGroup
   id: PassengerOuterClothing
   name: loadout-group-passenger-outerclothing
   minLimit: 0
   loadouts:
-  - Trenchcoat
   - PassengerWintercoat
+  # Imperial Passenger Loadouts Start
+  - Trenchcoat
   - BlackWintercoat
   - GreyWintercoat
   - BrownWintercoat
@@ -304,12 +311,15 @@
   - GreenWintercoat
   - OrangeWintercoat
   - PurpleWintercoat
-
+  # Imperial Passenger Loadouts End
+  
 - type: loadoutGroup
   id: PassengerShoes
   name: loadout-group-passenger-shoes
   loadouts:
   - BlackShoes
+  - WinterBoots
+  # Imperial Passenger Loadouts Start
   - RedShoes
   - BlueShoes
   - GreenShoes
@@ -317,8 +327,7 @@
   - OrangeShoes
   - PurpleShoes
   - BrownShoes
-  - WhiteShoes
-  - WinterBoots
+  # Imperial Passenger Loadouts End
 
 - type: loadoutGroup
   id: BartenderHead
