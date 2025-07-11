@@ -451,12 +451,136 @@
 - type: Tag
   id: MyrmexCanTake
 
+# ===========================
+
+- type: entity
+  name: Shoot
+  id: MedievalMyrmexShootAction
+  components:
+  - type: WorldTargetAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexShootEvent
+      projectileProto: MedievalProjectileFireballBeginner
+      speed: 10
+    priority: -12
+    checkCanAccess: false
+    range: 60
+    useDelay: 5
+
+- type: entity
+  name: Boost
+  id: MedievalMyrmexBoostAction
+  components:
+  - type: InstantAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexBoostEvent
+      duration: 5
+      multiplier: 0.5
+    priority: -12
+    checkCanAccess: false
+    useDelay: 5
+
+- type: entity
+  name: Toggle armor
+  id: MedievalMyrmexToggleArmorAction
+  components:
+  - type: InstantAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexToggleArmorEvent
+    priority: -12
+    checkCanAccess: false
+    useDelay: 0
+
+- type: entity
+  name: Enable stun
+  id: MedievalMyrmexToggleStunAction
+  components:
+  - type: InstantAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexToggleStunEvent
+    priority: -12
+    checkCanAccess: false
+    useDelay: 5
+
+- type: entity
+  name: Spawn
+  id: MedievalMyrmexSpawnAction
+  components:
+  - type: InstantAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexSpawnEvent
+      proto: FoodSnackChocolate
+    priority: -12
+    checkCanAccess: false
+    useDelay: 5
+
+- type: entity
+  name: Toggle stealth
+  id: MedievalMyrmexToggleStealthAction
+  components:
+  - type: InstantAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexToggleStealthEvent
+    priority: -12
+    checkCanAccess: false
+    useDelay: 0
+
+- type: entity
+  name: Heal
+  id: MedievalMyrmexHealAction
+  components:
+  - type: EntityTargetAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexHealEvent
+      healedDamage:
+        groups:
+          Brute: 50
+          Burn: 50
+    priority: -12
+    checkCanAccess: false
+    useDelay: 5
+
+- type: entity
+  name: Lay egg
+  id: MedievalMyrmexQueenLayEggAction
+  components:
+  - type: InstantAction
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    event: !type:ActionMyrmexQueenLayEggEvent
+    useDelay: 180
+
+# ===========================
+
 - type: entity
   abstract: true
   parent: SimpleMobBaseNoFood
   id: MedievalMyrmexBase
   components:
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Myrmex/Castes/myrmex_worker.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Myrmex
+    actions:
+    - MedievalMyrmexShootAction
+    - MedievalMyrmexBoostAction
+    - MedievalMyrmexToggleArmorAction
+    - MedievalMyrmexToggleStunAction
+    - MedievalMyrmexSpawnAction
+    - MedievalMyrmexToggleStealthAction
+    - MedievalMyrmexHealAction
+    stunDuration: 5
+    standardArmorProto: Glass
+    activeArmorProto: Rock
+    activeArmorSpeedMultiplier: 0.7
   - type: MyrmexHunger
+  - type: Stealth
+    enabled: false
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.3
+    movementVisibilityRate: 0.7
   - type: BorgHandsImperial
     whitelistHandTag: MyrmexCanTake
   - type: Hands
@@ -907,16 +1031,6 @@
         Piercing: 1
   - type: MedievalDash
     force: 0
-
-- type: entity
-  name: Lay egg
-  parent: MedievalMyrmexBase
-  id: MedievalMyrmexQueenLayEggAction
-  components:
-  - type: InstantAction
-    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
-    event: !type:ActionMyrmexQueenLayEggEvent
-    useDelay: 180
 
 - type: entity
   name: myrmatriach
