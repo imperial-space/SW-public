@@ -2357,6 +2357,14 @@
   - MedievalMagicDemo
 
 - type: listing
+  id: DemoMdvShopMedievalScrollBarrier
+  productEntity: MedievalScrollBarrier
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
   id: DemoMdvShopMedievalQuestContractInsMobsLight
   productEntity: MedievalQuestContractInsMobsLight
   cost:

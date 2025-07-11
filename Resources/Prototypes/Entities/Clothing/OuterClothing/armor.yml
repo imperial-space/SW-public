@@ -483,6 +483,8 @@
   - type: ProtectedFromStepTriggers
     slots: WITHOUT_POCKET
   # Imperial Medieval Start
+  - type: RDWeight
+    value: 14
   - type: Armor
     modifiers:
       coefficients:

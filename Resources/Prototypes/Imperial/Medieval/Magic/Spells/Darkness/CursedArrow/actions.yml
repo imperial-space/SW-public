@@ -8,13 +8,16 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.3
+        essenceAddProbability: 0.0003
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalDarkness1: 1
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
   - type: DamageTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.4
+        probability: 0.0004
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:
@@ -22,7 +25,7 @@
         addedEssences:
           MagicMedievalDarkness1: 1
       - !type:AddMagicEssence
-        probability: 0.4
+        probability: 0.0004
         conditions:
           - !type:TargetContainsComponentsCondition
             componentsWhitelist:

@@ -8,9 +8,12 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.8
+        essenceAddProbability: 0.0008
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalDarkness1: 1
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
   - type: MedievalInstantSpell
   - type: InstantAction
     useDelay: 40
@@ -57,7 +60,7 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.85
+        probability: 0.00085
         addedEssences:
           MagicMedievalDarkness1: 1
   - type: ManaDrainSpell
