@@ -131,3 +131,6 @@ ent-MedievalMyrmexIncubator = инкубатор сгустков
     .desc = Вырабатывает проклятые сгустки. Пахнет ужасно.
 .suffix = { "Средневековье, мирмексы" }
 ent-MedievalMyrmexQueenLayEggAction = Снести яйцо
+ent-MedievalMyrmexBigHole = большая смоляная яма
+    .desc = Эта огромная яма позволяет перемещаться даже самым большим созданиям.
+.suffix = { "Средневековье, мирмексы" }

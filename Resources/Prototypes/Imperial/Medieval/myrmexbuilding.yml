@@ -821,6 +821,173 @@
     entity: MedievalMyrmexDoor
 
 - type: construction
+  id: MedievalMyrmexBigHole
+  graph: MBigHole
+  startNode: start
+  targetNode: medievalMyrmexBigHole
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: constructionGraph
+  id: MBigHole
+  start: start
+  graph:
+  - node: start
+    actions:
+    - !type:DeleteEntity {}
+    edges:
+    - to: medievalMyrmexBigHole
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: MyrmexResourceYant
+        name: янтарь # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Myrmex/resin.rsi
+          state: clearresin
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: RootItem
+        name: корень # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Chem/Garden/root.rsi
+          state: icon
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+      - tag: MedievalAntHitin
+        name: муравьиный хитин # Imperial Recipes Locale
+        icon:
+          sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+          state: hitin
+        doAfter: 1
+  - node: medievalMyrmexBigHole
+    entity: MedievalMyrmexBigHole
+
+- type: construction
   id: MedievalMyrmexIncubator
   graph: MMyrmexIncubatorCraft
   startNode: start
@@ -887,25 +1054,25 @@
           sprite: Imperial/Medieval/Myrmex/resin.rsi
           state: clearresin
         doAfter: 1
-      - tag: LootAnt
+      - tag: MedievalAntHitin
         name: хитин # Imperial Recipes Locale
         icon:
           sprite: Imperial/Medieval/Misc/mdv_loot.rsi
           state: hitin
         doAfter: 1
-      - tag: LootAnt
+      - tag: MedievalAntHitin
         name: хитин # Imperial Recipes Locale
         icon:
           sprite: Imperial/Medieval/Misc/mdv_loot.rsi
           state: hitin
         doAfter: 1
-      - tag: LootAnt
+      - tag: MedievalAntHitin
         name: хитин # Imperial Recipes Locale
         icon:
           sprite: Imperial/Medieval/Misc/mdv_loot.rsi
           state: hitin
         doAfter: 1
-      - tag: LootAnt
+      - tag: MedievalAntHitin
         name: хитин # Imperial Recipes Locale
         icon:
           sprite: Imperial/Medieval/Misc/mdv_loot.rsi

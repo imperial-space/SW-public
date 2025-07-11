@@ -46,6 +46,7 @@
   - type: Climbable
     delay: 5.0
   - type: Appearance
+  - type: IgnoredByRideableSprint # imperial medieval
 
 - type: entity
   parent: BaseFenceWood

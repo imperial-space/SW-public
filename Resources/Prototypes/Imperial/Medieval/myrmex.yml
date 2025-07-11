@@ -165,6 +165,10 @@
   - type: Construction
     graph: MMyrmexDoor
     node: medievalMyrmexDoor
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
   - type: Occluder
   placement:
     mode: SnapgridCenter
@@ -198,6 +202,10 @@
   - type: Construction
     graph: MMyrmexFlimsyWall
     node: medievalMyrmexFlimsyWall
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
 
 - type: entity
   parent: BaseWall
@@ -228,6 +236,10 @@
   - type: Construction
     graph: MMyrmexStrongWall
     node: medievalMyrmexStrongWall
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
 
 - type: entity
   id: MedievalMyrmexWeb
@@ -304,6 +316,10 @@
     - type: Construction
       graph: MMyrmexWeb
       node: medievalMyrmexWeb
+    - type: ReplaceFloorOnSpawn
+      replaceableTiles:
+      replacementTiles:
+      - MedievalMyrmexFloor2
     - type: SpeedModifierContacts
       walkSpeedModifier: 0.3
       sprintSpeedModifier: 0.3
@@ -415,6 +431,10 @@
   - type: Construction
     graph: MMyrmexTrapBase
     node: medievalMyrmexTrapBase
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
   - type: SpawnOnDespawn
     prototype: MedievalMyrmexTrapFull
 

@@ -957,6 +957,8 @@
   name: MedievalPaper
   description: MedievalPaper
   components:
+  - type: RDWeight
+    value: 0.05
   - type: Sprite
     sprite: Imperial/Medieval/Misc/medieval_paper.rsi
   - type: TrashClear # imperial medieval
@@ -3120,9 +3122,6 @@
   boilingPoint: 184.3
   meltingPoint: 113.7
 
-- type: Tag
-  id: LootAnt
-
 - type: entity
   name: MedievalLoot
   parent: BaseItem
@@ -3153,7 +3152,7 @@
   - type: Tag
     tags:
       - MonsterLoot
-      - LootAnt
+      - MedievalAntHitin
 
 - type: entity
   name: MedievalLoot
@@ -5570,6 +5569,8 @@
   id: MedievalFlagPaintLegion
   description: gol
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/paint_blue.rsi
     state: icon
@@ -5583,6 +5584,8 @@
   id: MedievalFlagPaintInsurgency
   description: gol
   components:
+  - type: RDWeight
+    value: 2
   - type: Sprite
     sprite: Imperial/Medieval/Misc/paint_red.rsi
     state: icon

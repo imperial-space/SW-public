@@ -4222,6 +4222,9 @@
   id: MedievalCavalerySpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: UseDelay
+    delay: 2.5
+  - type: Pike
   - type: RDWeight
     value: 7
   - type: Sharp
@@ -4229,10 +4232,6 @@
     sprite: Imperial/Medieval/Melee/cavalery_spear.rsi
     state: spear
   - type: Wieldable
-  - type: MeleeParry
-    parryChanse: 0.45
-  - type: MedievalMeleeResource
-    resourceWaste: 0.7
   - type: Item
     size: Huge
   - type: Clothing
@@ -4256,8 +4255,6 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
-  - type: StaminaDamageOnHit
-    damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Meltable
     resourceCount: 4
 

@@ -31,7 +31,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 520
+        damage: 450
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -41,7 +41,7 @@
   - type: DamageBossOnDestruction
     damageAmount: 100
   - type: TimedDespawn
-    lifetime: 35
+    lifetime: 30
   - type: SpawnOnDespawn
     prototype: MobSkullBossSkeleton
 
@@ -179,7 +179,7 @@
   - type: DamageOnContact
     damage:
       types:
-        Piercing: 10
+        Piercing: 9
   - type: EmitSoundOnSpawn
     positional: true
     sound:
