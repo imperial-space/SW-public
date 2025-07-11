@@ -69,9 +69,6 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             SubscribeLocalEvent<RideableSprintComponent, RefreshMovementSpeedModifiersEvent>(OnSpeedRefresh);
             SubscribeLocalEvent<RideableSprintComponent, StopRideEvent>(OnUnbuckled);
             SubscribeLocalEvent<RideableSprintComponent, StartCollideEvent>(HandleCollide);
-            // TODO: поменять на PikeComponent
-            SubscribeLocalEvent<SpearComponent, ItemWieldedEvent>(OnWielded);
-            SubscribeLocalEvent<SpearComponent, ItemUnwieldedEvent>(OnUnwielded);
 
             SubscribeAllEvent<ToggleRideSprintEvent>(OnToggleSprint);
             CommandBinds.Builder
@@ -117,74 +114,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             #endregion
         }
 
-        #region Other functions
 
-        private bool TryGetRideable(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableComponent? rideable, [NotNullWhen(true)] out RideableSprintComponent? sprint)
-        {
-            rideable = null;
-            sprint = null;
-            entity = null;
-
-            if (!TryComp<BuckleComponent>(rider, out var buckle) || !buckle.BuckledTo.HasValue)
-                return false;
-
-            entity = buckle.BuckledTo.Value;
-            return TryComp(buckle.BuckledTo.Value, out rideable) && TryComp(buckle.BuckledTo.Value, out sprint);
-        }
-
-        private bool TryGetRideable(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableComponent? rideable) =>
-            TryGetRideable(rider, out entity, out rideable, out _);
-
-        private bool TryGetSprint(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableSprintComponent? sprint) =>
-            TryGetRideable(rider, out entity, out _, out sprint);
-
-        #endregion
-
-        #region Pikes
-
-        // TODO: поменять на PikeComponent
-        private void OnWielded(EntityUid uid, SpearComponent comp, ref ItemWieldedEvent args)
-        {
-            var rider = args.User;
-
-            if (!TryGetSprint(rider, out var rideableEntity, out var sprint))
-                return;
-
-            if (sprint.Pike != null)
-                return;
-
-            sprint.Pike = uid;
-
-            CreatePikeFixture(rideableEntity.Value, sprint);
-        }
-
-        // TODO: это тоже
-        private void OnUnwielded(EntityUid uid, SpearComponent comp, ref ItemUnwieldedEvent args)
-        {
-            var rider = args.User;
-
-            if (!TryGetSprint(rider, out var rideableEntity, out var sprint))
-                return;
-
-            if (sprint.Pike != uid)
-                return;
-
-            sprint.Pike = null;
-
-            RemovePikeFixture(rideableEntity.Value, sprint);
-        }
-
-        private void CreatePikeFixture(EntityUid uid, RideableSprintComponent sprint)
-        {
-            _fixtureSystem.TryCreateFixture(uid, sprint.PikeShape, sprint.PikeShapeId);
-        }
-
-        private void RemovePikeFixture(EntityUid uid, RideableSprintComponent sprint)
-        {
-            _fixtureSystem.DestroyFixture(uid, sprint.PikeShapeId);
-        }
-
-        #endregion
 
         #region Collide
         private void HandleCollide(EntityUid uid, RideableSprintComponent comp, ref StartCollideEvent args)
@@ -196,6 +126,9 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 return;
 
             if (!TryComp<RideableComponent>(uid, out var rideable))
+                return;
+
+            if (args.OurFixtureId == rideable.PikeShapeId)
                 return;
 
 
@@ -242,7 +175,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             if (sprintComp.StunList.TryGetValue(otherPlayer, out var time))
             {
                 var diff = _gameTiming.CurTime - time;
-                if (diff.Duration() < TimeSpan.FromMinutes(5))
+                if (diff.Duration() < TimeSpan.FromSeconds(5))
                     return;
             }
 
@@ -250,8 +183,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 return;
             var direction = rideablePhysics.LinearVelocity;
 
-            _throwing.TryThrow(otherPlayer, direction * 1.3f);
-            _stun.TryStun(otherPlayer, TimeSpan.FromSeconds(2), true);
+            _throwing.TryThrow(otherPlayer, direction * 0.6f);
+            _stun.TryKnockdown(otherPlayer, TimeSpan.FromSeconds(2), true);
             var ev = new GetHorseDamageModifier();
             RaiseLocalEvent(uid, ref ev);
 
@@ -286,7 +219,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             if(damage != null)
                 _damageable.TryChangeDamage(uid, damage);
             if(stunSeconds > 0)
-                _stun.TryStun(uid, TimeSpan.FromSeconds(stunSeconds), true);
+                _stun.TryKnockdown(uid, TimeSpan.FromSeconds(stunSeconds), true);
         }
 
         #endregion

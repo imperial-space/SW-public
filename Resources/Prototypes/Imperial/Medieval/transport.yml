@@ -301,11 +301,11 @@
     sound:
       path: /Audio/Imperial/Medieval/animal_horse.ogg
   - type: Rideable
-  - type: RideableSprint
     pikeShape: !type:PolygonShape
       vertices:
       - -0.75, -1.6
       - 0.75, -1.6
       - 0, 0
+  - type: RideableSprint
     accelerationTime: 8
     maxSpeedModifier: 1.76

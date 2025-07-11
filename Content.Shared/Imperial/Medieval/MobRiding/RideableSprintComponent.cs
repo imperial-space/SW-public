@@ -20,11 +20,6 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
         [DataField, AutoNetworkedField] public Dictionary<EntityUid, TimeSpan> StunList = new();
 
-        [DataField, AutoNetworkedField] public EntityUid? Pike;
-
-        [DataField] public string PikeShapeId = "PikeShape";
-        [DataField] public IPhysShape PikeShape;
-
         [DataField]
         public DamageSpecifier BluntDamage = new()
         {
