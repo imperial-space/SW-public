@@ -4223,7 +4223,7 @@
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
   - type: UseDelay
-    delay: 5
+    delay: 2.5
   - type: Pike
   - type: RDWeight
     value: 7
