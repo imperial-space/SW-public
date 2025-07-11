@@ -41,6 +41,10 @@
   - type: Construction
     graph: Mturret
     node: medievalMyrmexTurret
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
 
 - type: entity
   id: MedievalMyrmexBulletAcid

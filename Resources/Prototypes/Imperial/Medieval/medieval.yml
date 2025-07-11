@@ -3152,6 +3152,7 @@
   - type: Tag
     tags:
       - MonsterLoot
+      - MedievalAntHitin
 
 - type: entity
   name: MedievalLoot
