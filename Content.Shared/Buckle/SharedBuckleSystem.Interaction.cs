@@ -124,8 +124,20 @@ public abstract partial class SharedBuckleSystem
         if (args.Handled)
             return;
 
-        if (ent.Comp.BuckledTo != null)
-            args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+        // imperial medieval riding starts
+        // if (ent.Comp.BuckledTo != null)
+        //     args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+
+        // TODO: сделать DoAfter
+        if (ent.Comp.BuckledTo == null)
+            return;
+        if (TryComp<RideableComponent>(ent.Comp.BuckledTo, out var rideable))
+        {
+            if (rideable.IsRiding && rideable.Rider.HasValue)
+                return;
+        }
+        args.Handled = TryUnbuckle(ent!, args.User, popup: true);
+        // imperial medieval riding end
 
         // TODO BUCKLE add out bool for whether a pop-up was generated or not.
     }
