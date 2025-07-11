@@ -1,7 +1,7 @@
 - type: entity
   id: SkeletonSkullStand
   name: пьедестал
-  description: ы
+  description: На нём выкладываются части зловещего черепа.
   placement:
     mode: AlignTileAny
   components:
