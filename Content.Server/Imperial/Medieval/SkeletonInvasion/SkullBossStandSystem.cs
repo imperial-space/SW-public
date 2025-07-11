@@ -1,15 +1,20 @@
 using System.Linq;
 using Content.Server.Bible.Components;
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
 using Content.Server.Jittering;
 using Content.Server.Popups;
+using Content.Shared.Chat;
 using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.SkeletonInvasion;
 using Content.Shared.Interaction;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Containers;
+using Robust.Shared.Player;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.SkeletonInvasion;
 
@@ -18,7 +23,7 @@ public sealed class SkullBossStandSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly JitteringSystem _jitter = default!;
 
@@ -122,7 +127,8 @@ public sealed class SkullBossStandSystem : EntitySystem
         if (!comp.Announcements.TryGetValue(comp.AttachedParts.Count, out var announce))
             return;
 
-        _chat.DispatchGlobalAnnouncement(announce, playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+        _chat.ChatMessageToAll(ChatChannel.Radio, announce, announce, EntityUid.Invalid, false, true, colorOverride: Color.DeepPink);
+        _audio.PlayGlobal(new SoundPathSpecifier(new ResPath("/Audio/Imperial/Medieval/Effects/skull-announce.ogg")), Filter.Broadcast(), true);
     }
 }
 

@@ -19,5 +19,5 @@ public sealed partial class SkeletonInvasionRuleComponent : Component
     public TimeSpan NextSpawn = TimeSpan.Zero;
 
     [ViewVariables]
-    public int SpawnCount = 4;
+    public int SpawnCount = 3;
 }

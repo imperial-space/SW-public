@@ -20,12 +20,16 @@ using Robust.Shared.Utility;
 using Content.Shared.Inventory;
 using Content.Shared.Storage;
 using Content.Server.Storage.EntitySystems;
+using Content.Server.Chat.Managers;
+using Content.Shared.Chat;
+using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 
 public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasionRuleComponent>
 {
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly IChatManager _chatMan = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly MobStateSystem _mobState = default!;
@@ -57,9 +61,8 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
 
         _bossUid = EntityManager.AllEntities<BossComponent>().Where(x => Transform(x).MapUid == map.Value.Owner).First();
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>().Select(x => x.Owner).ToList();
-        Spawn("MedievalSpawnNecroSenderPreset", Transform(_random.Pick(cursespawners)).Coordinates);
         _chat.DispatchGlobalAnnouncement("Посланник темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
-        component.NextSpawn = _timing.CurTime + TimeSpan.FromMinutes(_random.NextFloat(component.SpawnDelay.Item1, component.SpawnDelay.Item2));
+        component.NextSpawn = _timing.CurTime;
     }
 
     protected override void ActiveTick(EntityUid uid, SkeletonInvasionRuleComponent component, GameRuleComponent gameRule, float frameTime)
@@ -71,8 +74,6 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
 
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
         var cursecoords = Transform(_random.Pick(cursespawners).Owner).Coordinates;
-
-        Spawn("MedievalSpawnNecroLeaderPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
 
         for (var i = 0; i < component.SpawnCount; i++)
         {
@@ -87,7 +88,9 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         }
 
         if (component.SpawnCount == 10)
+        {
             _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+        }
 
         component.SpawnCount++;
         component.NextSpawn = _timing.CurTime + TimeSpan.FromMinutes(_random.NextFloat(component.SpawnDelay.Item1, component.SpawnDelay.Item2));
@@ -113,9 +116,25 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
     {
         if (args.PurifiedParts < args.Parts / 2)
         {
-            _chat.DispatchGlobalAnnouncement("Морбиус добился своего...", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+            var msg = "Проклятый череп полностью собран. Трепещите смертные,  армия тьмы грядет и мир уже не будет прежним. Объединение - единственный шанс на спасение...";
+            _chatMan.ChatMessageToAll(ChatChannel.Radio, msg, msg, EntityUid.Invalid, false, true, colorOverride: Color.OrangeRed);
+            _audio.PlayGlobal(new SoundPathSpecifier(new ResPath("/Audio/Imperial/Medieval/Effects/skull-announce.ogg")), Filter.Broadcast(), true);
             _result = RoundResult.SkeletonsWon;
-            GameTicker.EndRound();
+
+            var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
+            var cursecoords = Transform(_random.Pick(cursespawners).Owner).Coordinates;
+
+            Spawn("MedievalSpawnNecroSenderPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
+            for (var i = 0; i < 70; i++)
+            {
+                Spawn("MedievalSpawnNecroFighterPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
+            }
+
+            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(20), () =>
+            {
+                GameTicker.EndRound();
+            });
+
             return;
         }
 
@@ -143,12 +162,27 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
     private void OnBossDefeated(ref BossDefeatedEvent args)
     {
         _result = RoundResult.BossDefeated;
-        GameTicker.EndRound();
+        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(5), () =>
+        {
+            GameTicker.EndRound();
+        });
     }
 
     private void OnBossWin(ref BossWonEvent args)
     {
-        GameTicker.EndRound();
+        var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
+        var cursecoords = Transform(_random.Pick(cursespawners).Owner).Coordinates;
+
+        Spawn("MedievalSpawnNecroSenderPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
+        for (var i = 0; i < 70; i++)
+        {
+            Spawn("MedievalSpawnNecroFighterPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
+        }
+
+        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(20), () =>
+        {
+            GameTicker.EndRound();
+        });
     }
 
     private enum RoundResult

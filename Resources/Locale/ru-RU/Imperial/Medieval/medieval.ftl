@@ -5837,10 +5837,10 @@ ent-MedievalClothingOuterHorseRoyalArmorUpIron = латная лошадиная
 
 boss-defeated-announce = Скелетрон сокрушён! Смертные доказали, что даже воля Морбиуса не вечна!
 boss-won-announce = Воля Морбиуса восторжествовала. Ваши кости пополнят его костяной трон. Смерть неизбежна.
-skeletron-roundend-no-boss = Кажется, слуги Морбиуса забыли о своей миссии.
-skeletron-roundend-defeated = [color=green]Скелетрон был сокрушён бравыми героями![/color]
-skeletron-roundend-lost = [color=crimson]Бросившие вызов Морбиусу потерпели крах.[/color]
-skeletron-roundend-skeletons = [color=crimson]Подданные Морбиуса не встретили должного сопротивления.[/color]
+skeletron-roundend-no-boss = Осколки древнего черепа так и не были соединены.
+skeletron-roundend-defeated = [color=green]Жители острова успешно прошли испытание Морбиуса![/color]
+skeletron-roundend-lost = [color=crimson]Жители острова не справились с испытанием Морбиуса.[/color]
+skeletron-roundend-skeletons = [color=crimson]Жители острова не справились с испытанием Морбиуса.[/color]
 
 mc-weight-examine = {$name}
 ent-MedievalScrollBarrier = магический свиток
