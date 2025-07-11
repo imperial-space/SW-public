@@ -1,27 +1,12 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Imperial.Medieval.Skills;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Content.Shared.Physics;
 using Content.Shared.Projectiles;
-using Content.Shared.Stunnable;
-using Content.Shared.Throwing;
-using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.Wieldable;
-using Content.Shared.Wieldable.Components;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Physics.Systems;
-using Robust.Shared.Random;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {
@@ -30,15 +15,6 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
         #region Dependencies
         [Dependency] private readonly SharedMoverController _mover = default!;
-        [Dependency] private readonly SharedSkillsSystem _skillsSystem = default!;
-        [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
-        [Dependency] private readonly SharedHandsSystem _hands = default!;
-        [Dependency] private readonly ThrowingSystem _throwing = default!;
-        [Dependency] private readonly SharedStunSystem _stun = default!;
-        [Dependency] private readonly DamageableSystem _damageable = default!;
-        [Dependency] private readonly UseDelaySystem _useDelay = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
         #endregion
 
         #region Initialize

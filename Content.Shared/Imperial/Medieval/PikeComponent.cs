@@ -11,7 +11,7 @@ namespace Content.Shared.Imperial.Medieval
         {
             DamageDict = new()
             {
-                { "Piercing", 42 },
+                { "Piercing", 14 },
             }
         };
     }

@@ -7979,7 +7979,7 @@
   - type: Appearance
   - type: Sprite
     sprite: Imperial/Medieval/Misc/whistle.rsi
-    state: icon
+    state: default
   - type: Item
     size: Normal
   - type: TriggerOnUse
@@ -7989,3 +7989,26 @@
     sound:
       path: /Audio/Items/Whistle/trench_whistle_1.ogg
   - type: DeleteOnTrigger
+
+- type: entity
+  parent: BaseItem
+  id: MedievalHorseNecroWhistle
+  name: necro whistle
+  description: summon horse
+  components:
+  - type: Appearance
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/whistle.rsi
+    state: necro
+  - type: Item
+    size: Normal
+  - type: TriggerOnUse
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalSkeletonHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+  - type: DeleteOnTrigger
+  - type: RadiationSource
+    intensity: 1
+    slope: 1

@@ -2,8 +2,6 @@
 using Content.Server.NPC.Systems;
 using Content.Shared.Buckle;
 using Content.Shared.Buckle.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 using Content.Shared.Imperial.Medieval.MobRiding;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs;
@@ -11,21 +9,16 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using System.Diagnostics.CodeAnalysis;
-using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval;
 using Content.Shared.Physics;
-using Content.Shared.Projectiles;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
-using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
@@ -34,7 +27,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.MobRiding
 {
-    public sealed partial class RideableSystem : EntitySystem
+    public sealed partial class RideableSystem : AbstractRideableSystem
     {
         [Dependency] private readonly NPCSystem _npc = default!;
         [Dependency] private readonly SharedBuckleSystem _buckle = default!;
@@ -82,58 +75,9 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             SubscribeLocalEvent<PikeComponent, ItemUnwieldedEvent>(OnUnwielded);
 
             SubscribeLocalEvent<RideableComponent, StartCollideEvent>(HandleCollide);
+
+            SubscribeLocalEvent<EntityTerminatingEvent>(OnEntityTerminating);
         }
-
-        #region Other functions
-        private bool TryGetRideable(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableComponent? rideable, [NotNullWhen(true)] out RideableSprintComponent? sprint)
-        {
-            rideable = null;
-            sprint = null;
-            entity = null;
-
-            if (!TryComp<BuckleComponent>(rider, out var buckle) || !buckle.BuckledTo.HasValue)
-                return false;
-
-            entity = buckle.BuckledTo.Value;
-            return TryComp(buckle.BuckledTo.Value, out rideable) && TryComp(buckle.BuckledTo.Value, out sprint);
-        }
-
-        private bool TryGetRideable(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableComponent? rideable) =>
-            TryGetRideable(rider, out entity, out rideable, out _);
-
-        private bool TryGetSprint(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableSprintComponent? sprint) =>
-            TryGetRideable(rider, out entity, out _, out sprint);
-
-        private void ThrowFromRideable(EntityUid uid, uint stunSeconds = 2, DamageSpecifier? damage = null)
-        {
-            if (!TryComp<BuckleComponent>(uid, out var buckle))
-                return;
-
-            _buckle.TryUnbuckle(uid, uid);
-
-            if(damage != null)
-                _damageable.TryChangeDamage(uid, damage);
-            if (stunSeconds > 0)
-            {
-                _stun.TryStun(uid, TimeSpan.FromSeconds(stunSeconds), true);
-                _stun.TryKnockdown(uid, TimeSpan.FromSeconds(stunSeconds), true);
-            }
-        }
-
-        private bool TryGetSkill(EntityUid uid, string skill, out int level)
-        {
-            level = 0;
-
-            if (!TryComp<SkillsComponent>(uid, out var skills))
-                return false;
-
-            if (!skills.Levels.TryGetValue(skill, out level))
-                return false;
-
-            return true;
-        }
-
-        #endregion
 
         #region Pikes
 
@@ -171,6 +115,14 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                     return;
             }
 
+            if (TryComp<RideableComponent>(other, out var otherRideable))
+            {
+                if (otherRideable.IsRiding && otherRideable.Rider.HasValue)
+                {
+                    ThrowFromRideable(otherRideable.Rider.Value, damage: pikeComp.RidingDamage, throwingDistance: 0.6f);
+                }
+            }
+
             var direction = rideablePhysics.LinearVelocity;
 
             if(throwOther)
@@ -181,12 +133,19 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                 _stun.TryKnockdown(other, TimeSpan.FromSeconds(stunSeconds), true);
             }
 
-            _damageable.TryChangeDamage(other, pikeComp.RidingDamage);
+            var velocity = rideablePhysics.LinearVelocity.Length();
+
+            _popup.PopupEntity("Вы сшибаете пехотинца с дороги.", rider, rider);
+
+            _damageable.TryChangeDamage(other, pikeComp.RidingDamage * velocity);
             var oneSound = _random.Pick(_clashOne);
             _audio.PlayPvs(oneSound, other);
 
             DelayPike(rider);
-            comp.StunList.TryAdd(other, _gameTiming.CurTime);
+            if (!comp.StunList.TryAdd(other, _gameTiming.CurTime))
+                comp.StunList[other] = _gameTiming.CurTime;
+
+            comp.Dirty();
         }
 
         private void DelayPike(EntityUid rider, EntityUid? item = null)
@@ -307,9 +266,27 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             var velocity = rideablePhysics.LinearVelocity.Length();
             if (!TryGetPike(rider, out var pike, out var pikeComp))
                 return;
-            ThrowFromRideable(otherRider, 2, pikeComp.RidingDamage * velocity);
+            ThrowFromRideable(otherRider, 2, pikeComp.RidingDamage * velocity, throwingDistance: 0.6f);
         }
 
+        private void ThrowClashBoth(EntityUid rideable, EntityUid otherRideable, EntityUid rider, EntityUid otherRider)
+        {
+            if (!TryComp<PhysicsComponent>(rideable, out var rideablePhysics))
+                return;
+            if (!TryComp<PhysicsComponent>(otherRideable, out var otherRideablePhysics))
+                return;
+
+            var velocity = rideablePhysics.LinearVelocity.Length();
+            var otherVelocity = otherRideablePhysics.LinearVelocity.Length();
+
+            if (!TryGetPike(rider, out var pike, out var pikeComp))
+                return;
+            if (!TryGetPike(otherRider, out var otherPike, out var otherPikeComp))
+                return;
+
+            ThrowFromRideable(otherRider, 2, pikeComp.RidingDamage * velocity, throwingDistance: 0.6f);
+            ThrowFromRideable(rider, 2, otherPikeComp.RidingDamage * otherVelocity, throwingDistance: 0.6f);
+        }
 
         private void PikeClash(EntityUid uid, RideableComponent comp, EntityUid other)
         {
@@ -352,25 +329,30 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                     var oneSound = _random.Pick(_clashOne);
                     switch (stabilityResult)
                     {
+                        // TODO: текст в Loc, посмотреть, почему не работают звуки
+                        // TODO: сделаю после ОБТ, сейчас впадлу
                         case CheckResult.Self:
-                            _audio.PlayPvs(oneSound, rider.Value);
+                            _popup.PopupEntity("Противник не удерживается в седле и падает.", rider.Value, rider.Value);
+                            _audio.PlayPvs(oneSound, uid);
                             ThrowClash(uid, rider.Value, otherRider.Value);
                             DelayPike(rider.Value);
                             break;
                         case CheckResult.Other:
-                            _audio.PlayPvs(oneSound, otherRider.Value);
+                            _popup.PopupEntity("Противник не удерживается в седле и падает.", otherRider.Value, otherRider.Value);
+                            _audio.PlayPvs(oneSound, other);
                             ThrowClash(other, otherRider.Value, rider.Value);
                             DelayPike(otherRider.Value);
                             break;
                         case CheckResult.Draw:
                             _audio.PlayPvs(_clashBoth, uid);
-                            ThrowClash(uid, rider.Value, otherRider.Value);
-                            ThrowClash(other, otherRider.Value, rider.Value);
+                            ThrowClashBoth(uid, other, rider.Value, otherRider.Value);
                             break;
                         case CheckResult.Both:
+                            _popup.PopupEntity("Вы сталкиваетесь, но оба удерживаетесь в седле.", rider.Value, rider.Value);
+                            _popup.PopupEntity("Вы сталкиваетесь, но оба удерживаетесь в седле.", otherRider.Value, otherRider.Value);
                             DelayPike(rider.Value);
                             DelayPike(otherRider.Value);
-                            _audio.PlayPvs(_clashNone, rider.Value);
+                            _audio.PlayPvs(_clashNone, uid);
                             break;
                     }
                     Logger.Debug($"Clash Draw: stb: {finalStability} vs {otherFinalStability}, result: {stabilityResult}");
@@ -528,6 +510,16 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
             if(component.Rider.HasValue)
                 _buckle.TryUnbuckle(component.Rider.Value, component.Rider.Value);
+        }
+
+        private void OnEntityTerminating(ref EntityTerminatingEvent args)
+        {
+            var enumerator = EntityQueryEnumerator<RideableComponent>();
+
+            while (enumerator.MoveNext(out var uid, out var rideable))
+            {
+                rideable.StunList.Remove(args.Entity.Owner);
+            }
         }
     }
 
