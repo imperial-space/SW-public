@@ -51,8 +51,24 @@ guide-entry-forensics = Криминалистика
 guide-entry-dna = ДНК
 guide-entry-defusal = Обезвреживание большой бомбы
 guide-entry-criminal-records = Криминальные записи
-guide-entry-species = Виды
+guide-entry-species = Расы
 guide-entry-botanical = Ботаника
+
+guide-entry-pizza-recipes = Пиццы
+guide-entry-savory-recipes = Пикантная кулинария
+guide-entry-bread-recipes = Хлеба
+guide-entry-breakfast-recipes = Завтраки
+guide-entry-moth-recipes = Еда для Молей
+guide-entry-pasta-recipes = Паста & Лапша
+guide-entry-dessert-recipes = Выпечка & Десерты
+guide-entry-soup-recipes = Супы & Тушёные блюда
+guide-entry-pie-recipes = Пироги
+guide-entry-barsandcookies-recipes = Батончики & Печенье
+guide-entry-cake-recipes = Торты
+guide-entry-salad-recipes = Салаты
+guide-entry-medicinal-recipes = Медицинские блюда
+guide-entry-other-recipes = Другое
+guide-entry-secret-recipes = Секретные блюда
 
 guide-entry-antagonists = Антагонисты
 guide-entry-nuclear-operatives = Ядерные Оперативники

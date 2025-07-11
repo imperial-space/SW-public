@@ -1,7 +1,7 @@
 <Document>
-  # Виды
+  # Расы
 
-  Nanotrasen нанимает на работу представителей многих разумных видов.
+  Nanotrasen нанимает на работу представителей многих разумных рас.
 
   <Box>
   <GuideEntityEmbed Entity="MobArachnid" Caption="Арахнид"/>
