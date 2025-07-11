@@ -585,7 +585,6 @@
     node: medievalMyrmexBigHole
   - type: Ladder
     activationTime: 4
-    canLocked: false
   - type: MyrmexHole
     entrance: false
 
