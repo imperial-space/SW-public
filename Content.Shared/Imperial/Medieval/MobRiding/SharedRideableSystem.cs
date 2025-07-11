@@ -1,21 +1,47 @@
-﻿using Content.Shared.Buckle.Components;
+﻿using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Physics;
 using Content.Shared.Projectiles;
+using Content.Shared.Stunnable;
+using Content.Shared.Throwing;
+using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Wieldable;
+using Content.Shared.Wieldable.Components;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {
     public sealed partial class SharedRideableSystem : EntitySystem
     {
 
+        #region Dependencies
         [Dependency] private readonly SharedMoverController _mover = default!;
         [Dependency] private readonly SharedSkillsSystem _skillsSystem = default!;
+        [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
+        [Dependency] private readonly SharedHandsSystem _hands = default!;
+        [Dependency] private readonly ThrowingSystem _throwing = default!;
+        [Dependency] private readonly SharedStunSystem _stun = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
+        [Dependency] private readonly UseDelaySystem _useDelay = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
+        #endregion
 
+        #region Initialize
         public override void Initialize()
         {
             base.Initialize();
@@ -28,7 +54,30 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             SubscribeLocalEvent<RideableComponent, UnstrappedEvent>(OnUnbuckled);
 
         }
+        #endregion
 
+        #region Other functions
+        private bool TryGetRideable(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableComponent? rideable, [NotNullWhen(true)] out RideableSprintComponent? sprint)
+        {
+            rideable = null;
+            sprint = null;
+            entity = null;
+
+            if (!TryComp<BuckleComponent>(rider, out var buckle) || !buckle.BuckledTo.HasValue)
+                return false;
+
+            entity = buckle.BuckledTo.Value;
+            return TryComp(buckle.BuckledTo.Value, out rideable) && TryComp(buckle.BuckledTo.Value, out sprint);
+        }
+
+        private bool TryGetRideable(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableComponent? rideable) =>
+            TryGetRideable(rider, out entity, out rideable, out _);
+
+        private bool TryGetSprint(EntityUid rider, [NotNullWhen(true)] out EntityUid? entity, [NotNullWhen(true)] out RideableSprintComponent? sprint) =>
+            TryGetRideable(rider, out entity, out _, out sprint);
+        #endregion
+
+        #region Damage ignore
         private void OnRayCastSort(EntityUid uid, BuckleComponent component, ref RayCastSort args)
         {
             var toRemove = new List<RayCastResults>();
@@ -87,7 +136,9 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 }
             }
         }
+        #endregion
 
+        #region Buckle
         public void OnBuckled(EntityUid uid, RideableComponent component, ref StrappedEvent args)
         {
             var strap = args.Strap;
@@ -99,6 +150,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             var ev = new StartRideEvent(strap, buckle);
             RaiseLocalEvent(uid, ref ev);
+            component.Dirty();
         }
 
         public void OnUnbuckled(EntityUid uid, RideableComponent component, ref UnstrappedEvent args)
@@ -106,16 +158,19 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             if (!component.Rider.HasValue)
                 return;
             RemComp<RelayInputMoverComponent>(component.Rider.Value);
+
             component.Rider = null;
             component.IsRiding = false;
             var ev = new StopRideEvent(args.Strap, args.Buckle);
             RaiseLocalEvent(uid, ref ev);
+            component.Dirty();
         }
+        #endregion
     }
 
 }
 
-
+#region Events
 [ByRefEvent]
 public readonly record struct StartRideEvent(Entity<StrapComponent> Strap, Entity<BuckleComponent> Buckle);
 
@@ -124,3 +179,4 @@ public readonly record struct StopRideEvent(Entity<StrapComponent> Strap, Entity
 
 [ByRefEvent]
 public readonly record struct TryUnbuckleEvent(Entity<BuckleComponent> Buckle);
+#endregion

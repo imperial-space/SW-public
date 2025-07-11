@@ -14,5 +14,5 @@ public sealed partial class ICCVars
         CVarDef.Create("lang.enable_fonts", true, CVar.CLIENTONLY | CVar.ARCHIVE);
 
     public static readonly CVarDef<TimeSpan> StoreBalanceUpdateInterval =
-        CVarDef.Create("store.balance_update_interval", TimeSpan.FromSeconds(30), CVar.SERVERONLY);
+        CVarDef.Create("store.balance_update_interval", TimeSpan.FromSeconds(60), CVar.SERVERONLY);
 }
