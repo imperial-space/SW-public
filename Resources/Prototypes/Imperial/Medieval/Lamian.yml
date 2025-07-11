@@ -246,6 +246,10 @@
     FacialHair:
       points: 0
       required: false
+    Tail: 
+      points: 1 
+      required: true
+      defaultMarkings: [ LamianTail ]
 
 - type: speciesBaseSprites
   id: MobLamianSprites
@@ -264,14 +268,8 @@
     RLeg: MobLamianRLeg
     LFoot: MobLamianLFoot
     RFoot: MobLamianRFoot
-    Tail: MobLamianTail # imperial HairAndTail
+    Tail: MobHumanoidAnyMarking 
     HeadTop: MobLamianEars # imperial HairAndTail
-
-- type: humanoidBaseSprite
-  id: MobLamianTail
-  baseSprite:
-    sprite: Imperial/Medieval/Species/Lamian/parts.rsi
-    state: tail
 
 - type: humanoidBaseSprite
   id: MobLamianEars
@@ -362,3 +360,12 @@
   baseSprite:
     sprite: Imperial/Medieval/Species/Lamian/parts.rsi
     state: r_foot
+
+- type: marking
+  id: LamianTail
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: [Lamian]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: tail_lamian_prime
