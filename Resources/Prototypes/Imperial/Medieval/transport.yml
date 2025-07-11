@@ -73,8 +73,8 @@
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
   - type: ClothingSpeedModifier
-    walkModifier: 0.88
-    sprintModifier: 0.88
+    walkModifier: 0.93
+    sprintModifier: 0.93
 
 - type: entity
   parent: ClothingOuterBase
@@ -109,8 +109,8 @@
         Piercing: 0.5
         Heat: 0.2
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.86
+    sprintModifier: 0.86
   - type: Item
     size: Huge
   - type: MedievalIronHitSound
