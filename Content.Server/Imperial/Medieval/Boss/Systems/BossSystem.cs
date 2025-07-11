@@ -149,6 +149,9 @@ public sealed partial class BossSystem : EntitySystem
         if (component.LoseMessage != string.Empty)
             _chat.ChatMessageToAll(ChatChannel.Radio, Loc.GetString(component.LoseMessage), Loc.GetString(component.LoseMessage), EntityUid.Invalid, false, true, Color.FromHex("#cc3a00"));
 
+        var ev = new BossWonEvent(boss);
+        RaiseLocalEvent(ref ev);
+
         SendPlayersBack(component.Players);
         component.Active = false;
     }
