@@ -1,4 +1,7 @@
-﻿using Content.Shared.Body.Components;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Numerics;
+using Content.Shared.Body.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Damage;
 using Content.Shared.Hands.EntitySystems;
@@ -9,12 +12,15 @@ using Content.Shared.Movement.Systems;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Wieldable;
 using Content.Shared.Wieldable.Components;
 using Robust.Shared.Input;
 using Robust.Shared.Input.Binding;
 using Robust.Shared.Network;
+using Robust.Shared.Physics.Collision.Shapes;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -32,6 +38,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
         [Dependency] private readonly ThrowingSystem _throwing = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
+        [Dependency] private readonly FixtureSystem _fixtureSystem = default!;
 
         #region Handler
         private sealed class SprintInputCmdHandler : InputCmdHandler
@@ -62,6 +69,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             SubscribeLocalEvent<RideableSprintComponent, RefreshMovementSpeedModifiersEvent>(OnSpeedRefresh);
             SubscribeLocalEvent<RideableSprintComponent, StopRideEvent>(OnUnbuckled);
             SubscribeLocalEvent<RideableSprintComponent, StartCollideEvent>(HandleCollide);
+
             SubscribeAllEvent<ToggleRideSprintEvent>(OnToggleSprint);
             CommandBinds.Builder
                 .Bind(ContentKeyFunctions.MedievalDash, new SprintInputCmdHandler(this))
@@ -106,6 +114,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             #endregion
         }
 
+
+
         #region Collide
         private void HandleCollide(EntityUid uid, RideableSprintComponent comp, ref StartCollideEvent args)
         {
@@ -116,6 +126,9 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 return;
 
             if (!TryComp<RideableComponent>(uid, out var rideable))
+                return;
+
+            if (args.OurFixtureId == rideable.PikeShapeId)
                 return;
 
 
@@ -162,7 +175,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             if (sprintComp.StunList.TryGetValue(otherPlayer, out var time))
             {
                 var diff = _gameTiming.CurTime - time;
-                if (diff.Duration() < TimeSpan.FromMinutes(5))
+                if (diff.Duration() < TimeSpan.FromSeconds(5))
                     return;
             }
 
@@ -170,8 +183,8 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
                 return;
             var direction = rideablePhysics.LinearVelocity;
 
-            _throwing.TryThrow(otherPlayer, direction * 1.3f);
-            _stun.TryStun(otherPlayer, TimeSpan.FromSeconds(2), true);
+            _throwing.TryThrow(otherPlayer, direction * 0.6f);
+            _stun.TryKnockdown(otherPlayer, TimeSpan.FromSeconds(2), true);
             var ev = new GetHorseDamageModifier();
             RaiseLocalEvent(uid, ref ev);
 
@@ -206,7 +219,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             if(damage != null)
                 _damageable.TryChangeDamage(uid, damage);
             if(stunSeconds > 0)
-                _stun.TryStun(uid, TimeSpan.FromSeconds(stunSeconds), true);
+                _stun.TryKnockdown(uid, TimeSpan.FromSeconds(stunSeconds), true);
         }
 
         #endregion

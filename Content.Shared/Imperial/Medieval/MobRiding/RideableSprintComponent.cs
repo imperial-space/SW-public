@@ -1,5 +1,7 @@
 ﻿using Content.Shared.Damage;
 using Robust.Shared.GameStates;
+using Robust.Shared.Physics.Collision.Shapes;
+using Robust.Shared.Physics.Dynamics;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding
 {
