@@ -1,0 +1,299 @@
+- type: entity
+  id: SkeletonSkullStand
+  name: пьедестал
+  description: ы
+  placement:
+    mode: AlignTileAny
+  components:
+  - type: Sprite
+    snapCardinals: true
+    sprite: Imperial/Medieval/Structures/skull-stand.rsi
+    layers:
+    - state: stand
+    - map: [ "1" ]
+      state: null
+      visible: false
+    - map: [ "2" ]
+      state: null
+      visible: false
+    - map: [ "3" ]
+      state: null
+      visible: false
+    - map: [ "4" ]
+      state: null
+      visible: false
+    - map: [ "5" ]
+      state: null
+      visible: false
+    - map: [ "6" ]
+      state: null
+      visible: false
+    - map: [ "7" ]
+      state: null
+      visible: false
+    - map: [ "8" ]
+      state: null
+      visible: false
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-1,1,1"
+        density: 50
+        mask:
+        - LargeMobMask
+        layer:
+        - WallLayer
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SkullStandAppearance.Key:
+        "1":
+          -1: {state: skull1, visible: true}
+          1: {state: holy-skull1, visible: true}
+        "2":
+          -2: {state: skull2, visible: true}
+          2: {state: holy-skull2, visible: true}
+        "3":
+          -3: {state: skull3, visible: true}
+          3: {state: holy-skull3, visible: true}
+        "4":
+          -4: {state: skull4, visible: true}
+          4: {state: holy-skull4, visible: true}
+        "5":
+          -5: {state: skull5, visible: true}
+          5: {state: holy-skull5, visible: true}
+        "6":
+          -6: {state: skull6, visible: true}
+          6: {state: holy-skull6, visible: true}
+        "7":
+          -7: {state: skull7, visible: true}
+          7: {state: holy-skull7, visible: true}
+        "8":
+          -8: {state: skull8, visible: true}
+          8: {state: holy-skull8, visible: true}
+  - type: Clickable
+  - type: InteractionOutline
+  - type: DoAfter
+  - type: StatusEffects
+    allowed:
+    - Jitter
+  - type: SkullBossStand
+    attachSound: /Audio/Imperial/Medieval/Effects/skull-part-attach.ogg
+    completeSound: /Audio/Imperial/Medieval/Effects/skull-part-attach.ogg
+    announcements:
+      1: "одын"
+      4: "половына"
+
+- type: entity
+  id: BaseSkeletonSkullPart
+  parent: BaseItem
+  name: кусок черепа
+  description: Нечто, что ни в коем случае не должно попасть в не те руки.
+  abstract: true
+  components:
+  - type: Item
+    size: Huge
+  - type: MultiHandedItem
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/skull-stand-parts.rsi
+  - type: SkullBossStandPart
+  - type: RDWeight
+    value: 12
+
+- type: entity
+  id: SkeletonSkullPart1
+  parent: BaseSkeletonSkullPart
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: skull1-inhand-left
+      right:
+      - state: skull1-inhand-right
+  - type: Sprite
+    layers:
+    - state: skull1
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SkullStandPartAppearance.Key:
+        base:
+          True: { state: holy-skull1 }
+          False: { state: skull1 }
+  - type: SkullBossStandPart
+    idx: 1
+
+- type: entity
+  id: SkeletonSkullPart2
+  parent: BaseSkeletonSkullPart
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: skull2-inhand-left
+      right:
+      - state: skull2-inhand-right
+  - type: Sprite
+    layers:
+    - state: skull2
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SkullStandPartAppearance.Key:
+        base:
+          True: { state: holy-skull2 }
+          False: { state: skull2 }
+  - type: SkullBossStandPart
+    idx: 2
+
+- type: entity
+  id: SkeletonSkullPart3
+  parent: BaseSkeletonSkullPart
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: skull3-inhand-left
+      right:
+      - state: skull3-inhand-right
+  - type: Sprite
+    layers:
+    - state: skull3
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SkullStandPartAppearance.Key:
+        base:
+          True: { state: holy-skull3 }
+          False: { state: skull3 }
+  - type: SkullBossStandPart
+    idx: 3
+
+- type: entity
+  id: SkeletonSkullPart4
+  parent: BaseSkeletonSkullPart
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: skull4-inhand-left
+      right:
+      - state: skull4-inhand-right
+  - type: Sprite
+    layers:
+    - state: skull4
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SkullStandPartAppearance.Key:
+        base:
+          True: { state: holy-skull4 }
+          False: { state: skull4 }
+  - type: SkullBossStandPart
+    idx: 4
+
+- type: entity
+  id: SkeletonSkullPart5
+  parent: BaseSkeletonSkullPart
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: skull5-inhand-left
+      right:
+      - state: skull5-inhand-right
+  - type: Sprite
+    layers:
+    - state: skull5
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SkullStandPartAppearance.Key:
+        base:
+          True: { state: holy-skull5 }
+          False: { state: skull5 }
+  - type: SkullBossStandPart
+    idx: 5
+
+- type: entity
+  id: SkeletonSkullPart6
+  parent: BaseSkeletonSkullPart
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: skull6-inhand-left
+      right:
+      - state: skull6-inhand-right
+  - type: Sprite
+    layers:
+    - state: skull6
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SkullStandPartAppearance.Key:
+        base:
+          True: { state: holy-skull6 }
+          False: { state: skull6 }
+  - type: SkullBossStandPart
+    idx: 6
+
+- type: entity
+  id: SkeletonSkullPart7
+  parent: BaseSkeletonSkullPart
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: skull7-inhand-left
+      right:
+      - state: skull7-inhand-right
+  - type: Sprite
+    layers:
+    - state: skull7
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SkullStandPartAppearance.Key:
+        base:
+          True: { state: holy-skull7 }
+          False: { state: skull7 }
+  - type: SkullBossStandPart
+    idx: 7
+
+- type: entity
+  id: SkeletonSkullPart8
+  parent: BaseSkeletonSkullPart
+  components:
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: skull8-inhand-left
+      right:
+      - state: skull8-inhand-right
+  - type: Sprite
+    layers:
+    - state: skull8
+      map: [ "base" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.SkullStandPartAppearance.Key:
+        base:
+          True: { state: holy-skull8 }
+          False: { state: skull8 }
+  - type: SkullBossStandPart
+    idx: 8
