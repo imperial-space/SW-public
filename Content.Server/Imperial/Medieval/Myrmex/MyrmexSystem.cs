@@ -20,6 +20,7 @@ using Robust.Shared.Spawners;
 using System.Numerics;
 using Content.Shared.Body.Components;
 using Content.Shared.Jittering;
+using Content.Server.Actions;
 
 namespace Content.Server.Myrmex
 {
@@ -39,6 +40,7 @@ namespace Content.Server.Myrmex
         [Dependency] private readonly MapSystem _map = default!;
         [Dependency] private readonly ITileDefinitionManager _tile = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
+        [Dependency] private readonly ActionsSystem _actions = default!;
 
         public List<string> SporesPull = new()
         {
@@ -58,9 +60,19 @@ namespace Content.Server.Myrmex
         public override void Initialize()
         {
             base.Initialize();
+            SubscribeLocalEvent<MyrmexComponent, ComponentStartup>(OnMyrmexStartup);
             SubscribeLocalEvent<MyrmexEggComponent, ExaminedEvent>(OnExamine);
             SubscribeLocalEvent<MyrmexEggComponent, ComponentStartup>(OnStartEgg);
             SubscribeLocalEvent<MyrmexGrowerComponent, ComponentStartup>(OnStartGrower);
+            InitializeActions();
+        }
+
+        private void OnMyrmexStartup(EntityUid uid, MyrmexComponent myrmex, ref ComponentStartup args)
+        {
+            foreach (string actionProto in myrmex.Actions)
+            {
+                _actions.AddAction(uid, actionProto);
+            }
         }
 
         private void OnStartEgg(EntityUid uid, MyrmexEggComponent comp, ComponentStartup args)

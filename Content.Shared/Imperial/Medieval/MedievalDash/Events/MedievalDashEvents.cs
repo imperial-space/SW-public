@@ -1,4 +1,11 @@
+using Content.Shared.Actions;
+
 namespace Content.Shared.Imperial.Dash;
+
+public sealed partial class MedievalDashEvent : WorldTargetActionEvent;
+
+[ByRefEvent]
+public record struct CanDashEvent(bool Cancelled = false);
 
 [ByRefEvent]
 public record struct CheckDashCooldownModifiersEvent(float Modifier = 1f);
