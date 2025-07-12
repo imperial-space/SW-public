@@ -781,7 +781,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 10
+    damage: 4
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-worker-name
@@ -854,7 +854,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 15
+    damage: 7
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-spitter-name
@@ -912,7 +912,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 17
+    damage: 6
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-elite-name
@@ -975,7 +975,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 10
+    damage: 3
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-warrior-name
@@ -1123,7 +1123,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 17
+    damage: 12
   - type: LanguageSpeaker
     languages:
       Common: Understand
