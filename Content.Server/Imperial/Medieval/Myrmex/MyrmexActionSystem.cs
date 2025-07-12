@@ -1,14 +1,16 @@
 using System.Numerics;
+using Content.Server.DoAfter;
 using Content.Server.Myrmex.Components;
 using Content.Server.Stealth;
 using Content.Server.Stunnable;
 using Content.Server.Weapons.Ranged.Systems;
-using Content.Shared.Damage;
+using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.Myrmex;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Myrmex;
@@ -19,6 +21,7 @@ public sealed partial class MyrmexSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _moveSpeedSys = default!;
     [Dependency] private readonly GunSystem _gunSys = default!;
     [Dependency] private readonly StunSystem _stunSys = default!;
+    [Dependency] private readonly DoAfterSystem _doAfterSys = default!;
     [Dependency] private readonly StealthSystem _stealthSys = default!;
     [Dependency] private readonly ITimerManager _timerMan = default!;
 
@@ -33,6 +36,7 @@ public sealed partial class MyrmexSystem : EntitySystem
         SubscribeLocalEvent<MyrmexComponent, ActionMyrmexHealEvent>(OnHeal);
 
         SubscribeLocalEvent<MyrmexComponent, MeleeHitEvent>(OnHit);
+        SubscribeLocalEvent<MyrmexComponent, ActionMyrmexSpawnDoAfterEvent>(OnSpawnDoAfter);
     }
 
     private void OnShoot(Entity<MyrmexComponent> ent, ref ActionMyrmexShootEvent args)
@@ -40,6 +44,7 @@ public sealed partial class MyrmexSystem : EntitySystem
         EntityUid projectileEnt = Spawn(args.ProjectileProto, _formSys.GetMapCoordinates(ent));
         Vector2 userPos = _formSys.GetWorldPosition(args.Performer);
         _gunSys.ShootProjectile(projectileEnt, _formSys.ToMapCoordinates(args.Target).Position - userPos, Vector2.Zero, null, args.Performer, args.Speed);
+
         args.Handled = true;
     }
 
@@ -53,6 +58,7 @@ public sealed partial class MyrmexSystem : EntitySystem
                 ModifyMoveSpeed(ent, -multiplier);
         });
         _timerMan.AddTimer(timer);
+
         args.Handled = true;
     }
 
@@ -61,6 +67,7 @@ public sealed partial class MyrmexSystem : EntitySystem
         ent.Comp.ArmorActive = !ent.Comp.ArmorActive;
         _damageableSystem.SetDamageModifierSetId(ent, ent.Comp.ArmorActive ? ent.Comp.ActiveArmorProto : ent.Comp.StandardArmorProto);
         ModifyMoveSpeed(ent, ent.Comp.ArmorActive ? -ent.Comp.ActiveArmorSpeedMultiplier : ent.Comp.ActiveArmorSpeedMultiplier);
+
         args.Handled = true;
     }
 
@@ -72,7 +79,10 @@ public sealed partial class MyrmexSystem : EntitySystem
 
     private void OnSpawn(Entity<MyrmexComponent> ent, ref ActionMyrmexSpawnEvent args)
     {
-        Spawn(args.Proto, _formSys.GetMapCoordinates(args.Performer));
+        ActionMyrmexSpawnDoAfterEvent ev = new() { Proto = args.Proto };
+        DoAfterArgs doAfterArgs = new(EntityManager, ent, args.DoAfterDuration, ev, ent) { BreakOnMove = true, BreakOnDamage = true };
+        _doAfterSys.TryStartDoAfter(doAfterArgs);
+
         args.Handled = true;
     }
 
@@ -108,9 +118,27 @@ public sealed partial class MyrmexSystem : EntitySystem
 
     private void OnHit(Entity<MyrmexComponent> ent, ref MeleeHitEvent args)
     {
+        if (!ent.Comp.StunActive)
+            return;
+
+        ent.Comp.StunActive = false;
+
         foreach (EntityUid hitEnt in args.HitEntities)
         {
             _stunSys.TryStun(hitEnt, ent.Comp.StunDuration, false);
         }
+    }
+
+    private void OnSpawnDoAfter(Entity<MyrmexComponent> ent, ref ActionMyrmexSpawnDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled)
+            return;
+
+        TransformComponent form = Transform(ent);
+        Vector2 localPos = form.LocalPosition.Floored() + new Vector2(0.5f) + form.LocalRotation.GetCardinalDir().ToVec();
+        MapCoordinates coords = new MapCoordinates(Vector2.Transform(localPos, _formSys.GetWorldMatrix(form.ParentUid)), form.MapID);
+        Spawn(args.Proto, coords);
+
+        args.Handled = true;
     }
 }

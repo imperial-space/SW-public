@@ -530,6 +530,7 @@
     icon: Imperial/Medieval/Myrmex/Icons/wall.png
     event: !type:ActionMyrmexSpawnEvent
       proto: MedievalMyrmexFlimsyWall
+      doAfterDuration: 3
     priority: -12
     checkCanAccess: false
     useDelay: 18
@@ -1271,7 +1272,7 @@
   id: MyrmexArmorOff
   coefficients:
     Blunt: 0.9
-    Slash: 0.9 
+    Slash: 0.9
     Piercing: 0.9
     Heat: 0.9
 
