@@ -564,7 +564,7 @@
           Brute: -50
           Burn: -50
     priority: -12
-    range: 60
+    range: 2
     checkCanAccess: false
     useDelay: 40
 
