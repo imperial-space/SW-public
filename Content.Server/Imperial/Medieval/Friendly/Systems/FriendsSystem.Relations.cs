@@ -35,6 +35,10 @@ public sealed partial class FriendsSystem
         if (friends.Faction == comp.Faction)
             return;
 
+        if (Proto.Index(friends.Faction).BlockedRelations.Contains(comp.Faction) ||
+            Proto.Index(comp.Faction).BlockedRelations.Contains(friends.Faction))
+            return;
+
         AlternativeVerb verb = new()
         {
             Text = "Изменить отношения",
