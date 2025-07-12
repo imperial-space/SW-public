@@ -90,26 +90,29 @@ public sealed class RoundStatCounterRuleSystem : GameRuleSystem<RoundStatCounter
         string alcoholickName = "никто";
 
         var targets = EntityManager.AllEntities<AffectRoundStatsComponent>();
-        potionsCount = targets.MaxBy(x => x.Comp.Potions).Comp.Potions;
-        potionsName = Name(targets.MaxBy(x => x.Comp.Potions).Owner);
+        if (targets.Count() > 0)
+        {
+            potionsCount = targets.MaxBy(x => x.Comp.Potions).Comp.Potions;
+            potionsName = Name(targets.MaxBy(x => x.Comp.Potions).Owner);
 
-        lockpickCount = targets.MaxBy(x => x.Comp.Lockpicks).Comp.Lockpicks;
-        potionsName = Name(targets.MaxBy(x => x.Comp.Lockpicks).Owner);
+            lockpickCount = targets.MaxBy(x => x.Comp.Lockpicks).Comp.Lockpicks;
+            potionsName = Name(targets.MaxBy(x => x.Comp.Lockpicks).Owner);
 
-        diggsCount = targets.MaxBy(x => x.Comp.Diggs).Comp.Diggs;
-        diggerName = Name(targets.MaxBy(x => x.Comp.Diggs).Owner);
+            diggsCount = targets.MaxBy(x => x.Comp.Diggs).Comp.Diggs;
+            diggerName = Name(targets.MaxBy(x => x.Comp.Diggs).Owner);
 
-        alcoholDrinks = targets.MaxBy(x => x.Comp.Alcohol / 2).Comp.Alcohol / 2;
-        alcoholickName = Name(targets.MaxBy(x => x.Comp.Alcohol / 2).Owner);
+            alcoholDrinks = targets.MaxBy(x => x.Comp.Alcohol / 2).Comp.Alcohol / 2;
+            alcoholickName = Name(targets.MaxBy(x => x.Comp.Alcohol / 2).Owner);
 
-        craftsCount = targets.MaxBy(x => x.Comp.Crafts).Comp.Crafts;
-        crafterName = Name(targets.MaxBy(x => x.Comp.Crafts).Owner);
+            craftsCount = targets.MaxBy(x => x.Comp.Crafts).Comp.Crafts;
+            crafterName = Name(targets.MaxBy(x => x.Comp.Crafts).Owner);
 
-        screamerScreams = targets.MaxBy(x => x.Comp.Screams).Comp.Screams;
-        screamerName = Name(targets.MaxBy(x => x.Comp.Screams).Owner);
+            screamerScreams = targets.MaxBy(x => x.Comp.Screams).Comp.Screams;
+            screamerName = Name(targets.MaxBy(x => x.Comp.Screams).Owner);
 
-        punchingBagHits = targets.MaxBy(x => x.Comp.HitCount).Comp.HitCount;
-        punchingBagName = Name(targets.MaxBy(x => x.Comp.HitCount).Owner);
+            punchingBagHits = targets.MaxBy(x => x.Comp.HitCount).Comp.HitCount;
+            punchingBagName = Name(targets.MaxBy(x => x.Comp.HitCount).Owner);
+        }
 
         foreach (var (target, comp) in targets)
         {
@@ -128,11 +131,14 @@ public sealed class RoundStatCounterRuleSystem : GameRuleSystem<RoundStatCounter
         string bestSmellName = "никто";
 
         var smell = EntityManager.AllEntities<BadSmellComponent>();
-        worstSmell = smell.MaxBy(x => x.Comp.WorstSmell).Comp.WorstSmell;
-        worstSmellName = Name(smell.MaxBy(x => x.Comp.WorstSmell).Owner);
+        if (smell.Count() > 0)
+        {
+            worstSmell = smell.MaxBy(x => x.Comp.WorstSmell).Comp.WorstSmell;
+            worstSmellName = Name(smell.MaxBy(x => x.Comp.WorstSmell).Owner);
 
-        bestSmell = smell.MaxBy(x => x.Comp.BestSmell).Comp.BestSmell;
-        bestSmellName = Name(smell.MaxBy(x => x.Comp.BestSmell).Owner);
+            bestSmell = smell.MaxBy(x => x.Comp.BestSmell).Comp.BestSmell;
+            bestSmellName = Name(smell.MaxBy(x => x.Comp.BestSmell).Owner);
+        }
 
         _dayTime.ChangePreset("0", "bloody", true);
 
@@ -159,14 +165,18 @@ public sealed class RoundStatCounterRuleSystem : GameRuleSystem<RoundStatCounter
         string nocturnHumansMostName = "никто";
 
         var nocturns = EntityManager.AllEntities<NocturnComponent>();
-        nocturnAnimalsMost = nocturns.MaxBy(x => x.Comp.DrinkAnimals).Comp.DrinkAnimals;
-        nocturnAnimalsMostName = Name(nocturns.MaxBy(x => x.Comp.DrinkAnimals).Owner);
+        if (nocturns.Count() > 0)
+        {
+            nocturnAnimalsMost = nocturns.MaxBy(x => x.Comp.DrinkAnimals).Comp.DrinkAnimals;
+            nocturnAnimalsMostName = Name(nocturns.MaxBy(x => x.Comp.DrinkAnimals).Owner);
 
-        nocturnHumansMost = nocturns.MaxBy(x => x.Comp.DrinkHumans).Comp.DrinkHumans;
-        nocturnHumansMostName = Name(nocturns.MaxBy(x => x.Comp.DrinkHumans).Owner);
+            nocturnHumansMost = nocturns.MaxBy(x => x.Comp.DrinkHumans).Comp.DrinkHumans;
+            nocturnHumansMostName = Name(nocturns.MaxBy(x => x.Comp.DrinkHumans).Owner);
 
-        nocturnAnimals += nocturns.Select(x => x.Comp.DrinkAnimals).Sum();
-        nocturnHumans += nocturns.Select(x => x.Comp.DrinkHumans).Sum();
+            nocturnAnimals += nocturns.Select(x => x.Comp.DrinkAnimals).Sum();
+            nocturnHumans += nocturns.Select(x => x.Comp.DrinkHumans).Sum();
+        }
+
 
         int nocturnTotal = nocturnAnimals + nocturnHumans;
 
