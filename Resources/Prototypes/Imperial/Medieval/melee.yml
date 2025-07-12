@@ -1382,8 +1382,8 @@
 
 - type: entity
   name: falshion
-  parent: MedievalFalshionT3
-  id: MedievalFalshionT3ChainMace
+  parent: MedievalFalshionT3Legion
+  id: MedievalFalshionT3LegionChainMace
   description: An ancient war blade.
   components:
   - type: Sprite
@@ -1404,8 +1404,8 @@
 
 - type: entity
   name: falshion
-  parent: MedievalFalshionT3Steel
-  id: MedievalFalshionT3SteelChainMace
+  parent: MedievalFalshionT3LegionSteel
+  id: MedievalFalshionT3LegionSteelChainMace
   description: An ancient war blade.
   components:
   - type: Sprite

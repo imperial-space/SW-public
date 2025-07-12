@@ -8,8 +8,8 @@
     MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2, MedievalClothingHeadHelmetCrusaderMorbius ]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightInsBlood]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerInsBlood]
-    MedievalFalshionT3: [MedievalFalshionT3ChainMace]
-    MedievalFalshionT3Steel: [MedievalFalshionT3SteelChainMace]
+    MedievalFalshionT3Legion: [MedievalFalshionT3LegionChainMace]
+    MedievalFalshionT3LegionSteel: [MedievalFalshionT3LegionSteelChainMace]
     Log: [AhrimanStaffMedieval]
 
 - type: customization
@@ -126,8 +126,9 @@
   map:
     MedievalFalshionT3: [ MedievalFalshionT3DarkSword ]
     MedievalFalshionT3Steel: [ MedievalFalshionT3DarkSwordSteel ]
-    MedievalClothingNeckCloakRedIns: [MedievalClothingNeckCloakDarkBlueGold]
-    MedievalClothingNeckCloakBlueLegion: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanFox: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanEagle: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanMerc: [MedievalClothingNeckCloakDarkBlueGold]
     MedievalClothingNeckCloakClanKayot: [MedievalClothingNeckCloakDarkBlueGold]
     MedievalClothingNeckCloakClanWolf: [MedievalClothingNeckCloakDarkBlueGold]
 
@@ -137,6 +138,7 @@
   map:
     MedievalClothingOuterArmorLeatherHeavy: [MedievalClothingOuterBlackArmorLeather]
     MedievalClothingHeadHelmetShapel: [MedievalClothingHelmetBlackLeather]
+    MedievalWeaponCrossbow: [MedievalWeaponMiniCrossbow]
     Log: [MedievalClothingHandsBlackGloves, MedievalClothingBlackBoots]
 
 - type: customization
@@ -178,3 +180,10 @@
   holder: 9a0a943e-7a19-4795-8fad-7e06d8e99797
   map:
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth72]
+
+- type: customization
+  id: ungabunga
+  holder: e80d956f-e819-4cc0-96d2-97996cb4e3c9
+  map:
+    Log: [ MedievalClothingUniformJumpsuitShitCloth74, MedievalClothingNeckCloakSpookyVendigo ]
+
