@@ -85,7 +85,7 @@ public sealed partial class MyrmexSystem : EntitySystem
 
     private void OnHeal(Entity<MyrmexComponent> ent, ref ActionMyrmexHealEvent args)
     {
-        _damageableSystem.TryChangeDamage(ent, args.HealedDamage, true);
+        _damageableSystem.TryChangeDamage(args.Target, args.HealedDamage, true);
         args.Handled = true;
     }
 

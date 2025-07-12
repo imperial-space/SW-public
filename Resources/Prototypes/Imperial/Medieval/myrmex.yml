@@ -494,11 +494,11 @@
   - type: InstantAction
     icon: Imperial/Medieval/Myrmex/Icons/boost.png
     event: !type:ActionMyrmexBoostEvent
-      duration: 5
-      multiplier: 0.5
+      duration: 3.5
+      multiplier: 0.7
     priority: -12
     checkCanAccess: false
-    useDelay: 60
+    useDelay: 90
 
 - type: entity
   name: Toggle armor
@@ -532,7 +532,7 @@
       proto: MedievalMyrmexFlimsyWall
     priority: -12
     checkCanAccess: false
-    useDelay: 60
+    useDelay: 18
 
 - type: entity
   name: Toggle stealth
@@ -543,7 +543,7 @@
     event: !type:ActionMyrmexToggleStealthEvent
     priority: -12
     checkCanAccess: false
-    useDelay: 15
+    useDelay: 1
 
 - type: entity
   name: Heal
@@ -551,6 +551,9 @@
   components:
   - type: EntityTargetAction
     itemIconStyle: BigAction
+    whitelist:
+      components:
+        - Myrmex
     canTargetSelf: false
     icon: Imperial/Medieval/Myrmex/Icons/heal.png
     event: !type:ActionMyrmexHealEvent

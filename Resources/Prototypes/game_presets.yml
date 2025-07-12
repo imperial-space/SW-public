@@ -102,7 +102,7 @@
     - secret
     - sekrit
   name: secret-title
-  showInVote: false # imperial medieval
+  showInVote: true # imperial medieval
   description: secret-description
   rules:
     - Secret
