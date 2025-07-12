@@ -87,11 +87,6 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
             }
         }
 
-        if (component.SpawnCount == 10)
-        {
-            _chat.DispatchGlobalAnnouncement("Бойтесь, ОНИ идут... Объединение - единственный шанс на спасение.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
-        }
-
         component.SpawnCount++;
         component.NextSpawn = _timing.CurTime + TimeSpan.FromMinutes(_random.NextFloat(component.SpawnDelay.Item1, component.SpawnDelay.Item2));
     }
