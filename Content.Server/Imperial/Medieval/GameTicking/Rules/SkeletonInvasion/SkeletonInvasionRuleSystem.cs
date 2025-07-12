@@ -75,11 +75,10 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
             return;
 
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
-        var cursecoords = Transform(_random.Pick(cursespawners).Owner).Coordinates;
 
         for (var i = 0; i < component.SpawnCount; i++)
         {
-            var fighter = Spawn("MedievalSpawnNecroFighterPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
+            var fighter = Spawn("MedievalSpawnNecroFighterPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
             var comp = EnsureComp<SpawnSkullPartOnGhostRoleTakeComponent>(fighter);
             comp.Prototypes = component.SkullParts.Where(x => !EntityManager.AllEntities<SkullBossStandComponent>().First().Comp.AttachedProtos.Contains(x)).ToList();
         }
@@ -127,12 +126,11 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
             _result = RoundResult.SkeletonsWon;
 
             var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
-            var cursecoords = Transform(_random.Pick(cursespawners).Owner).Coordinates;
 
-            Spawn("MedievalSpawnNecroSenderPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
+            Spawn("MedievalSpawnNecroSenderPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
             for (var i = 0; i < 70; i++)
             {
-                Spawn("MedievalSpawnNecroFighterPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
+                Spawn("MedievalSpawnNecroFighterPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
             }
 
             Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(25), () =>
@@ -180,12 +178,11 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
     private void OnBossWin(ref BossWonEvent args)
     {
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
-        var cursecoords = Transform(_random.Pick(cursespawners).Owner).Coordinates;
 
-        Spawn("MedievalSpawnNecroSenderPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
+        Spawn("MedievalSpawnNecroSenderPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
         for (var i = 0; i < 70; i++)
         {
-            Spawn("MedievalSpawnNecroFighterPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
+            Spawn("MedievalSpawnNecroFighterPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
         }
 
         Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(25), () =>
