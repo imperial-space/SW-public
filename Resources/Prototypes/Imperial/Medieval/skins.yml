@@ -126,8 +126,9 @@
   map:
     MedievalFalshionT3: [ MedievalFalshionT3DarkSword ]
     MedievalFalshionT3Steel: [ MedievalFalshionT3DarkSwordSteel ]
-    MedievalClothingNeckCloakRedIns: [MedievalClothingNeckCloakDarkBlueGold]
-    MedievalClothingNeckCloakBlueLegion: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanFox: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanEagle: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalClothingNeckCloakClanMerc: [MedievalClothingNeckCloakDarkBlueGold]
     MedievalClothingNeckCloakClanKayot: [MedievalClothingNeckCloakDarkBlueGold]
     MedievalClothingNeckCloakClanWolf: [MedievalClothingNeckCloakDarkBlueGold]
 
