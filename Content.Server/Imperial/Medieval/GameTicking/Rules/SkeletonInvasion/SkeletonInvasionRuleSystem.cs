@@ -23,6 +23,7 @@ using Content.Server.Storage.EntitySystems;
 using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
 using Robust.Shared.Player;
+using Content.Server.Ghost.Roles.Events;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 
@@ -47,6 +48,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
     {
         base.Initialize();
 
+        SubscribeLocalEvent<IgnoreBossStartComponent, GhostRoleSpawnerUsedEvent>(OnSkeletonSpawn);
         SubscribeLocalEvent<SkullBossStandCompletedEvent>(OnSkullStandCompleted);
         SubscribeLocalEvent<BossDefeatedEvent>(OnBossDefeated);
         SubscribeLocalEvent<BossWonEvent>(OnBossWin);
@@ -78,13 +80,8 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         for (var i = 0; i < component.SpawnCount; i++)
         {
             var fighter = Spawn("MedievalSpawnNecroFighterPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
-            _inventory.TryGetSlotEntity(fighter, "back", out var fighterBack);
-            if (HasComp<StorageComponent>(fighterBack))
-            {
-                var parts = component.SkullParts.Where(x => !EntityManager.AllEntities<SkullBossStandComponent>().First().Comp.AttachedProtos.Contains(x));
-                var item = Spawn(_random.Pick(component.SkullParts));
-                _storage.Insert(fighterBack.Value, item, out _);
-            }
+            var comp = EnsureComp<SpawnSkullPartOnGhostRoleTakeComponent>(fighter);
+            comp.Prototypes = component.SkullParts.Where(x => !EntityManager.AllEntities<SkullBossStandComponent>().First().Comp.AttachedProtos.Contains(x)).ToList();
         }
 
         component.SpawnCount++;
@@ -105,6 +102,19 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         };
 
         args.AddLine(resultText);
+    }
+
+    private void OnSkeletonSpawn(EntityUid uid, IgnoreBossStartComponent comp, GhostRoleSpawnerUsedEvent args)
+    {
+        if (!TryComp<SpawnSkullPartOnGhostRoleTakeComponent>(args.Spawner, out var list))
+            return;
+
+        _inventory.TryGetSlotEntity(uid, "back", out var fighterBack);
+        if (HasComp<StorageComponent>(fighterBack))
+        {
+            var item = Spawn(_random.Pick(list.Prototypes));
+            _storage.Insert(fighterBack.Value, item, out _);
+        }
     }
 
     private void OnSkullStandCompleted(SkullBossStandCompletedEvent args)
