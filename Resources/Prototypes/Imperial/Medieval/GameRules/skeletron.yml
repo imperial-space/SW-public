@@ -4,8 +4,8 @@
   components:
   - type: GameRule
     delay:
-      min: 5400
-      max: 7200
+      min: 4800
+      max: 6000
   - type: SkeletonInvasionRule
     arena: /Maps/Imperial/Medieval/boss-test-arena.yml
     spawnDelay: [12, 17]
