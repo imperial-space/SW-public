@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Server.DoAfter;
+using Content.Server.Interaction;
 using Content.Server.Myrmex.Components;
 using Content.Server.Stealth;
 using Content.Server.Stunnable;
@@ -22,6 +23,7 @@ public sealed partial class MyrmexSystem : EntitySystem
     [Dependency] private readonly GunSystem _gunSys = default!;
     [Dependency] private readonly StunSystem _stunSys = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSys = default!;
+    [Dependency] private readonly InteractionSystem _actSys = default!;
     [Dependency] private readonly StealthSystem _stealthSys = default!;
     [Dependency] private readonly ITimerManager _timerMan = default!;
 
@@ -79,6 +81,9 @@ public sealed partial class MyrmexSystem : EntitySystem
 
     private void OnSpawn(Entity<MyrmexComponent> ent, ref ActionMyrmexSpawnEvent args)
     {
+        if (!_actSys.InRangeUnobstructed(ent, GetPosInfront(ent)))
+            return;
+
         ActionMyrmexSpawnDoAfterEvent ev = new() { Proto = args.Proto };
         DoAfterArgs doAfterArgs = new(EntityManager, ent, args.DoAfterDuration, ev, ent) { BreakOnMove = true, BreakOnDamage = true };
         _doAfterSys.TryStartDoAfter(doAfterArgs);
@@ -129,16 +134,23 @@ public sealed partial class MyrmexSystem : EntitySystem
         }
     }
 
+    private MapCoordinates GetPosInfront(EntityUid ent)
+    {
+        TransformComponent form = Transform(ent);
+        Vector2 localPos = form.LocalPosition.Floored() + new Vector2(0.5f) + form.LocalRotation.GetCardinalDir().ToVec();
+        return new MapCoordinates(Vector2.Transform(localPos, _formSys.GetWorldMatrix(form.ParentUid)), form.MapID);
+    }
+
     private void OnSpawnDoAfter(Entity<MyrmexComponent> ent, ref ActionMyrmexSpawnDoAfterEvent args)
     {
         if (args.Handled || args.Cancelled)
             return;
 
-        TransformComponent form = Transform(ent);
-        Vector2 localPos = form.LocalPosition.Floored() + new Vector2(0.5f) + form.LocalRotation.GetCardinalDir().ToVec();
-        MapCoordinates coords = new MapCoordinates(Vector2.Transform(localPos, _formSys.GetWorldMatrix(form.ParentUid)), form.MapID);
-        Spawn(args.Proto, coords);
-
-        args.Handled = true;
+        MapCoordinates coords = GetPosInfront(ent);
+        if (_actSys.InRangeUnobstructed(ent, coords))
+        {
+            Spawn(args.Proto, coords);
+            args.Handled = true;
+        }
     }
 }
