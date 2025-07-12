@@ -130,7 +130,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
                 Spawn("MedievalSpawnNecroFighterPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
             }
 
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(20), () =>
+            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(25), () =>
             {
                 GameTicker.EndRound();
             });
@@ -166,7 +166,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
     private void OnBossDefeated(ref BossDefeatedEvent args)
     {
         _result = RoundResult.BossDefeated;
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(5), () =>
+        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(5), () =>
         {
             GameTicker.EndRound();
         });
@@ -183,7 +183,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
             Spawn("MedievalSpawnNecroFighterPreset", new EntityCoordinates(cursecoords.EntityId, cursecoords.Position + _random.NextVector2(3)));
         }
 
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromSeconds(20), () =>
+        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(25), () =>
         {
             GameTicker.EndRound();
         });
