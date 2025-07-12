@@ -52,8 +52,20 @@ public sealed partial class ActionMyrmexToggleStunEvent : InstantActionEvent;
 
 public sealed partial class ActionMyrmexSpawnEvent : InstantActionEvent
 {
+    [DataField]
+    public TimeSpan DoAfterDuration;
+
     [DataField(required: true)]
     public EntProtoId Proto;
+}
+
+[Serializable, NetSerializable]
+public sealed partial class ActionMyrmexSpawnDoAfterEvent : DoAfterEvent
+{
+    [DataField(required: true)]
+    public EntProtoId Proto;
+
+    public override DoAfterEvent Clone() => this;
 }
 
 public sealed partial class ActionMyrmexToggleStealthEvent : InstantActionEvent;
