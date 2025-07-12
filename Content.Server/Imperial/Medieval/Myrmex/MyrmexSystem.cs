@@ -22,7 +22,8 @@ using Content.Shared.Body.Components;
 using Content.Shared.Jittering;
 using Content.Server.Actions;
 using System.Linq;
-using Content.Shared.Imperial.Zlevels; 
+using Content.Shared.Imperial.Zlevels;
+using Content.Server.Chat.Systems;
 
 namespace Content.Server.Myrmex
 {
@@ -43,6 +44,7 @@ namespace Content.Server.Myrmex
         [Dependency] private readonly ITileDefinitionManager _tile = default!;
         [Dependency] private readonly AppearanceSystem _appearance = default!;
         [Dependency] private readonly ActionsSystem _actions = default!;
+        [Dependency] private readonly ChatSystem _chat = default!;
 
         public List<string> SporesPull = new()
         {
@@ -96,6 +98,7 @@ namespace Content.Server.Myrmex
             ladderEntr.LadderID = f2;
             ladderEx.LadderID = f2;
             QueueDel(choosenSpawner.Owner);
+            _chat.DispatchGlobalAnnouncement("Земля под ногами содрагается... древние мирмексы, что когда-то жили под землей вырылись наружу...", playSound: true, colorOverride: Color.Pink, sender: "Барьер");
             // ahahah nihuya ya pridumal costyli smotrite
         }
         private void OnStartEgg(EntityUid uid, MyrmexEggComponent comp, ComponentStartup args)
