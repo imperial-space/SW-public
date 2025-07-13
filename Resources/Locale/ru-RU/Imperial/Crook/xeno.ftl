@@ -1,4 +1,4 @@
-ent-XenoStructuralGelBase = структурный гель
+ent-XenoStructuralGel = структурный гель
     .desc = Чёрное жидкое вещество.
 ent-XenoStructuralGelOne = структурный гель
     .desc = Чёрное жидкое вещество.
