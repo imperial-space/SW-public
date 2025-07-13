@@ -32,12 +32,12 @@ public sealed partial class MagicScrollComponent : Component
     public HashSet<MagicRune> DecodedRunes = new();
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int GridSize = 10;
+    public int GridSize = 8;
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int TotalMines = 12;
+    public int TotalMines = 9;
 
     [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadWrite)]
-    public int PointsPerDecodedRune = 7;
+    public int PointsPerDecodedRune = 6;
 }
 
