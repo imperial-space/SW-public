@@ -53,3 +53,6 @@
     - type: Stealth
       minVisibility: 0.3
       lastVisibility: 0.3
+  - type: Speech
+    speechSounds: Pai
+  - type: ClothingFactionExplosion
