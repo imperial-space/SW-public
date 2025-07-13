@@ -124,6 +124,9 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         if (!TryComp<SpawnSkullPartOnGhostRoleTakeComponent>(args.Spawner, out var list))
             return;
 
+        if (!list.Prototypes.Any())
+            return;
+
         _inventory.TryGetSlotEntity(uid, "back", out var fighterBack);
         if (HasComp<StorageComponent>(fighterBack))
         {
@@ -144,7 +147,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
             var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
 
             Spawn("MedievalSpawnNecroSenderPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
-            for (var i = 0; i < 70; i++)
+            for (var i = 0; i < 40; i++)
             {
                 Spawn("MedievalSpawnNecroFighterPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
             }
@@ -190,7 +193,8 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
 
         Spawn("MedievalSpawnNecroSenderPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
-        for (var i = 0; i < 70; i++)
+
+        for (var i = 0; i < 40; i++)
         {
             Spawn("MedievalSpawnNecroFighterPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
         }
