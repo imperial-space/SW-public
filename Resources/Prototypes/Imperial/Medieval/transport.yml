@@ -37,6 +37,8 @@
         Slash: 0.55
         Piercing: 0.8
         Heat: 0.65
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
   - type: Item
     size: Huge
 
@@ -68,6 +70,8 @@
         Slash: 0.4
         Piercing: 0.65
         Heat: 0.4
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
   - type: Item
     size: Huge
   - type: MedievalIronHitSound
@@ -108,6 +112,8 @@
         Slash: 0.3
         Piercing: 0.5
         Heat: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
   - type: ClothingSpeedModifier
     walkModifier: 0.86
     sprintModifier: 0.86
