@@ -3,8 +3,8 @@
   holder: 8f1283cf-ea3c-4dad-812f-bcec4ec05484
   map:
     MedievalClothingOuterArmorCharmerLightLegion: [ MedievalClothingOuterArmorCeremonialRobe ]
-    MedievalClothingOuterArmorIron: [ MedievalClothingOuterArmorPodWarsSkinWarhammer ]
-    MedievalClothingOuterArmorUpIron: [ MedievalClothingOuterArmorPodWarsSkinWarhammerUp, MedievalClothingOuterArmorUpIronMorbius ]
+    MedievalClothingOuterArmorIron: [ MedievalClothingOuterArmorPodWarsSkinWarhammer, MedievalClothingOuterArmorUpIronMorbius ]
+    MedievalClothingOuterArmorUpIron: [ MedievalClothingOuterArmorPodWarsSkinWarhammerUp ]
     MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2, MedievalClothingHeadHelmetCrusaderMorbius ]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightInsBlood]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerInsBlood]
