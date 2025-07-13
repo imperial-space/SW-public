@@ -199,6 +199,7 @@
     sleepLevelPerUpdate: 0.36
   - type: BadSmellRaceModifier
     modifier: 1.35
+  - type: Wagging
   - type: Damageable
     damageModifierSet: Zveres
   - type: LocalLight
