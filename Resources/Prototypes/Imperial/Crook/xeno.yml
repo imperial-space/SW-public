@@ -20,11 +20,12 @@
         - state: icon-1
           map: ["spiderWebLayer"]
     - type: Appearance
-    - type: RandomSprite
-      available:
-      - spiderWebLayer:
-        icon-3: ""
-        icon-1: ""
+    - type: GenericVisualizer
+      visuals:
+        enum.SpiderWebVisuals.Variant:
+          spiderWebLayer:
+            1:  {state: icon-1}
+            2:  {state: icon-3}
     - type: Clickable
     - type: Transform
       anchored: true
@@ -89,11 +90,12 @@
         - state: icon-3
           map: ["spiderWebLayer"]
     - type: Appearance
-    - type: RandomSprite
-      available:
-      - spiderWebLayer:
-        icon-2: ""
-        icon-3: ""
+    - type: GenericVisualizer
+      visuals:
+        enum.SpiderWebVisuals.Variant:
+          spiderWebLayer:
+            1:  {state: icon-2}
+            2:  {state: icon-3}
 
 - type: entity
   name: facehugger
