@@ -4437,7 +4437,7 @@
   - !type:GroupLoadoutEffect
     proto: TradersTimer50hours
   equipment:
-    outerClothing: MedievalTraderLegionHat
+    head: MedievalTraderLegionHat
 
 - type: loadout
   id: MedievalTraderFoxHat
@@ -4445,7 +4445,7 @@
   - !type:GroupLoadoutEffect
     proto: TradersTimer50hours
   equipment:
-    outerClothing: MedievalTraderFoxHat
+    head: MedievalTraderFoxHat
 
 # MEDIEVAL Miner REGULAR
 
