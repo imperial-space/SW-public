@@ -154,6 +154,7 @@
     - ImperialNutrimentPumpImplanter
     - FreedomImplant
     - ImperialSmokeImplant
+    - ScramImplanter
   - type: RandomHumanoidAppearance
     randomizeName: false
 
@@ -190,5 +191,6 @@
     - ImperialNutrimentPumpImplanter
     - FreedomImplant
     - ImperialSmokeImplant
+    - ScramImplanter
   - type: RandomHumanoidAppearance
     randomizeName: false
