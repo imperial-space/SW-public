@@ -394,7 +394,7 @@
   id: MdvLegionMedievalHorseWhistle
   productEntity: MedievalHorseWhistle
   cost:
-    MedalLegion: 20
+    MedalLegion: 18
   categories:
   - MedievalLegionTransport
 
