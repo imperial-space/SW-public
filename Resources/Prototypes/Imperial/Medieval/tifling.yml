@@ -292,6 +292,7 @@
     regenRaceModifier: 1.07
   - type: NeedSleep
     sleepLevelPerUpdate: 0.32
+  - type: Wagging
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -327,6 +328,15 @@
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/tails.rsi
     state: tail_smooth_primary
+
+- type: marking
+  id: TiflingTailSmoothAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: Imperial/Medieval/Species/Tifling/tails.rsi
+    state: tail_smooth_wagging
 
 - type: marking
   id: TiflingChestPlatesOne
