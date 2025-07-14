@@ -2961,6 +2961,6 @@
   id: MdvShopMedievalHorseWhistle
   productEntity: MedievalHorseWhistle
   cost:
-    Revent: 750
+    Revent: 680
   categories:
   - MedievalTransport
