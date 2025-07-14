@@ -5,9 +5,9 @@
   description: For true drinkers of all ages.
   components:
   - type: Sprite
-    sprite: Imperial/Aquila/Clothing/Uniform/beerzavr.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/beerzavr.rsi
   - type: Clothing
-    sprite: Imperial/Aquila/Clothing/Uniform/beerzavr.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/beerzavr.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -16,9 +16,9 @@
   description: Limited edition clothing for women. I wonder where it came from...
   components:
   - type: Sprite
-    sprite: Imperial/Aquila/Clothing/Uniform/womenoriental.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/womenoriental.rsi
   - type: Clothing
-    sprite: Imperial/Aquila/Clothing/Uniform/womenoriental.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/womenoriental.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -27,9 +27,9 @@
   description: Limited edition clothing for men. I wonder where it came from...
   components:
   - type: Sprite
-    sprite: Imperial/Aquila/Clothing/Uniform/menoriental.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/menoriental.rsi
   - type: Clothing
-    sprite: Imperial/Aquila/Clothing/Uniform/menoriental.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/menoriental.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -38,9 +38,9 @@
   description: Limited edition clothing for women. I wonder where it came from...
   components:
   - type: Sprite
-    sprite: Imperial/Aquila/Clothing/Uniform/altwomenoriental.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/altwomenoriental.rsi
   - type: Clothing
-    sprite: Imperial/Aquila/Clothing/Uniform/altwomenoriental.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/altwomenoriental.rsi
 
 - type: entity
   parent: ClothingUniformBase
@@ -49,9 +49,9 @@
   description: Limited edition clothing for men. I wonder where it came from...
   components:
   - type: Sprite
-    sprite: Imperial/Aquila/Clothing/Uniform/altmenoriental.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/altmenoriental.rsi
   - type: Clothing
-    sprite: Imperial/Aquila/Clothing/Uniform/altmenoriental.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/altmenoriental.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -71,9 +71,9 @@
   description: Oh, it's you, Manager!
   components:
   - type: Sprite
-    sprite: Imperial/Aquila/Clothing/Uniform/janedoe.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/janedoe.rsi
   - type: Clothing
-    sprite: Imperial/Aquila/Clothing/Uniform/janedoe.rsi
+    sprite: Imperial/Aquila/Clothing/Uniforms/janedoe.rsi
 
 - type: entity
   parent: ClothingHeadBase
