@@ -9,7 +9,7 @@ ent-RedShoesSpaceSamurai = самурайские ботинки
 ent-SpaceSamurai = космический самурай
 ent-SpaceSamuraiGhostRole = космический самурай
 ghost-role-information-space-samurai-name = космический самурай
-ghost-role-information-space-samurai-description = Нечто странное случилось и вы оказались здесь.
+ghost-role-information-space-samurai-description = Вы блуждающий ронин. Сражайтесь с честью, не предавайте свои принципы. Умрите достойно, в бою, или исполните вашу собственную цель.
 ghost-role-information-space-samurai-rules =
     Вы - [color=yellow][bold]Свободный агент[/bold][/color]. Вы вольны действовать как антагонист или неантагонист.
     Вы не помните ничего из своей предыдущей жизни и не помните ничего из того, что узнали, будучи призраком.
