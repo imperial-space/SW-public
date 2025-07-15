@@ -7,7 +7,7 @@
     - type: GhostRole
       name: ghost-role-information-ashwalker-leader-name
       description: ghost-role-information-ashwalker-leader-desc
-      rules: ghost-role-information-rules-default-team-antagonist
+      rules: ghost-role-information-rules-team-antagonist
       raffle:
         settings: short
       mindRoles:
@@ -30,7 +30,7 @@
     - type: GhostRole
       name: ghost-role-information-ashwalker-name
       description: ghost-role-information-ashwalker-desc
-      rules: ghost-role-information-rules-default-team-antagonist
+      rules: ghost-role-information-rules-team-antagonist
       raffle:
         settings: short
       mindRoles:
