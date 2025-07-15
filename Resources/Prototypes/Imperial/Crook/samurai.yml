@@ -33,7 +33,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: FireProtection
-    reduction: 0.2
+    reduction: 0.8
   - type: PowerCellDraw
     drawRate: 0
   - type: ToggleCellDraw
