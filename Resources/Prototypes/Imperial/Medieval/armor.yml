@@ -1404,7 +1404,7 @@
     modifiers:
       coefficients:
         Blunt: 0.92
-        Slash: 0.1
+        Slash: 0.9
         Piercing: 0.97
         Heat: 0.87
         Cold: 0.87
