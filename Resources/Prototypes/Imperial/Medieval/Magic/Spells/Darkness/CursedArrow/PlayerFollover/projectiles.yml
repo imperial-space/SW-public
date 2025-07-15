@@ -17,7 +17,7 @@
     explosionType: Cryo
     maxIntensity: 1
     intensitySlope: 1
-    totalIntensity: 1
+    totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
     damage:
@@ -44,7 +44,7 @@
     explosionType: Cryo
     maxIntensity: 1
     intensitySlope: 1
-    totalIntensity: 1
+    totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
     damage:
@@ -71,7 +71,7 @@
     explosionType: Cryo
     maxIntensity: 1
     intensitySlope: 1
-    totalIntensity: 5
+    totalIntensity: 0
     maxTileBreak: 0
   - type: Projectile
     damage:
