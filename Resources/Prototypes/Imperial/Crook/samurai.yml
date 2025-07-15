@@ -130,12 +130,12 @@
   id: SpaceSamuraiGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    suitstorage: OxygenTank
     shoes: ShoesSpaceSamurai
     head: ClothingHeadHelmetSpaceSamurai
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterSuitSpaceSamurai
     pocket1: PinpointerStation
+    pocket2: DoubleEmergencyOxygenTankFilled
     belt: RedEnergyKatanaSamurai
   inhand:
     - JetpackBlackFilled
