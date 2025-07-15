@@ -30,6 +30,10 @@
         Radiation: 0.05
         Caustic: 0.05
         Stamina: 0.45
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.2
   - type: PowerCellDraw
     drawRate: 0
   - type: ToggleCellDraw
