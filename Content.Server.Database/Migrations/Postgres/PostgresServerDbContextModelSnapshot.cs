@@ -726,6 +726,31 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("language", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.NrpResolves", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("nrp_resolves_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Resolves")
+                        .HasColumnType("integer")
+                        .HasColumnName("resolves");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_nrp_resolves");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("nrp_resolves", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.NrpViolation", b =>
                 {
                     b.Property<int>("Id")
