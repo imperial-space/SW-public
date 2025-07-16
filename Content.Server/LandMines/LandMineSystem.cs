@@ -5,6 +5,7 @@ using Content.Shared.LandMines;
 using Content.Shared.Popups;
 using Content.Shared.StepTrigger.Systems;
 using Robust.Shared.Audio.Systems;
+using Content.Server.Myrmex.Components; // imperial medieval
 
 namespace Content.Server.LandMines;
 
@@ -28,14 +29,15 @@ public sealed class LandMineSystem : EntitySystem
     /// </summary>
     private void HandleStepOnTriggered(EntityUid uid, LandMineComponent component, ref StepTriggeredOnEvent args)
     {
+        if (HasComp<MyrmexComponent>(args.Tripper)) return; // imperial medieval
       if (!string.IsNullOrEmpty(component.TriggerText))
-      {
-          _popupSystem.PopupCoordinates(
-              Loc.GetString(component.TriggerText, ("mine", uid)),
-              Transform(uid).Coordinates,
-              args.Tripper,
-              PopupType.LargeCaution);
-      }
+        {
+            _popupSystem.PopupCoordinates(
+                Loc.GetString(component.TriggerText, ("mine", uid)),
+                Transform(uid).Coordinates,
+                args.Tripper,
+                PopupType.LargeCaution);
+        }
       _audioSystem.PlayPvs(component.Sound, uid);
     }
 
@@ -53,6 +55,7 @@ public sealed class LandMineSystem : EntitySystem
     /// </summary>
     private void HandleStepTriggerAttempt(EntityUid uid, LandMineComponent component, ref StepTriggerAttemptEvent args)
     {
+        if (HasComp<MyrmexComponent>(args.Tripper)) return; // imperial medieval
         args.Continue = true;
 
         if (HasComp<ArmableComponent>(uid) && TryComp<ItemToggleComponent>(uid, out var itemToggle))

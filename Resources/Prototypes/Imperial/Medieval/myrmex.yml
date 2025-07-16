@@ -391,8 +391,12 @@
   name: myrmex trap
   description: goal
   components:
+  - type: Stealth
+    maxVisibility: 0.33
+    minVisibility: 0.33
+    lastVisibility: 0.33
   - type: SmokeOnTrigger
-    duration: 10
+    duration: 15
     spreadAmount: 30
     solution:
       reagents:
