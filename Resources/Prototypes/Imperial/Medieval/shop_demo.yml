@@ -2443,3 +2443,35 @@
     UnknownMedieval: 1
   categories:
   - MedievalTransportDemo
+
+- type: listing
+  id: DemoMdvShopMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelStone
+  productEntity: MedievalCatapultAmmoBarrelStone
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelGunpowder
+  productEntity: MedievalCatapultAmmoBarrelGunpowder
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelAp
+  productEntity: MedievalCatapultAmmoBarrelAp
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
