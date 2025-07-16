@@ -596,6 +596,7 @@
   - type: Hands
     throwRange: 2
   - type: Body
+    requiredLegs: 0
     prototype: Myrmex
   - type: Strippable
   - type: UserInterface

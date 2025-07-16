@@ -2453,7 +2453,7 @@
   - MedievalWeaponDemo
 
 - type: listing
-  id: MdvShopMedievalCatapultAmmoBarrelStone
+  id: DemoMdvShopMedievalCatapultAmmoBarrelStone
   productEntity: MedievalCatapultAmmoBarrelStone
   cost:
     UnknownMedieval: 1
@@ -2461,7 +2461,7 @@
   - MedievalWeaponDemo
 
 - type: listing
-  id: MdvShopMedievalCatapultAmmoBarrelGunpowder
+  id: DemoMdvShopMedievalCatapultAmmoBarrelGunpowder
   productEntity: MedievalCatapultAmmoBarrelGunpowder
   cost:
     UnknownMedieval: 1
@@ -2469,7 +2469,7 @@
   - MedievalWeaponDemo
 
 - type: listing
-  id: MdvShopMedievalCatapultAmmoBarrelAp
+  id: DemoMdvShopMedievalCatapultAmmoBarrelAp
   productEntity: MedievalCatapultAmmoBarrelAp
   cost:
     UnknownMedieval: 1
