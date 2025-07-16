@@ -396,7 +396,7 @@
     minVisibility: 0.33
     lastVisibility: 0.33
   - type: SmokeOnTrigger
-    duration: 15
+    duration: 25 # Я ЕБНУТЫЙ, БЕГИТЕ
     spreadAmount: 30
     solution:
       reagents:
