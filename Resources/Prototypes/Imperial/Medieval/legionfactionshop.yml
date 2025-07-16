@@ -258,7 +258,7 @@
   id: MdvLegionMedievalCatapultCraft
   productEntity: MedievalCatapultCraft
   cost:
-    MedalLegion: 30
+    MedalLegion: 15
   categories:
   - MedievalLegionWeapon
 
@@ -394,7 +394,7 @@
   id: MdvLegionMedievalHorseWhistle
   productEntity: MedievalHorseWhistle
   cost:
-    MedalLegion: 20
+    MedalLegion: 18
   categories:
   - MedievalLegionTransport
 

@@ -251,7 +251,7 @@
   id: MdvInsMedievalCatapultCraft
   productEntity: MedievalCatapultCraft
   cost:
-    MedalIns: 30
+    MedalIns: 15
   categories:
   - MedievalInsWeapon
 
@@ -395,7 +395,7 @@
   id: MdvInsMedievalHorseWhistle
   productEntity: MedievalHorseWhistle
   cost:
-    MedalIns: 20
+    MedalIns: 18
   categories:
   - MedievalInsTransport
 
