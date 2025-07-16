@@ -367,6 +367,8 @@
       Agility: 10
       Intelligence: 10
       Endurance: 10
+  - type: MedievalDoAfterEvery
+    name: дать хит
 # Imperial Medieval End
 
 - type: entity
