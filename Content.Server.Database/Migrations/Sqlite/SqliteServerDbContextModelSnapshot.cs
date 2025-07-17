@@ -693,9 +693,13 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("nrp_resolves_id");
 
-                    b.Property<int>("Resolves")
+                    b.Property<int>("Nrp")
                         .HasColumnType("INTEGER")
-                        .HasColumnName("resolves");
+                        .HasColumnName("nrp");
+
+                    b.Property<int>("Rp")
+                        .HasColumnType("INTEGER")
+                        .HasColumnName("rp");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("TEXT")
