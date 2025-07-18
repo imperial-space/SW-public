@@ -9,6 +9,8 @@
     - Vocal
   chatMessages: ["chat-emote-msg-scream"]
   chatTriggers:
+    - кричит
+    - орёт
     - scream
     - screams
     - screaming
@@ -39,6 +41,7 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-laugh"]
   chatTriggers:
+    - смеётся
     - laugh
     - laughs
     - laughing
@@ -86,6 +89,7 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-sigh"]
   chatTriggers:
+    - вздыхает
     - sigh
     - sighs
     - sighed
@@ -103,6 +107,7 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-whistle"]
   chatTriggers:
+    - свистит
     - whistle
     - whistles
     - whistleblowing
@@ -120,6 +125,8 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-crying"]
   chatTriggers:
+    - плачет
+    - ревёт
     - cry
     - crying
     - cries
@@ -212,6 +219,7 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-clap"]
   chatTriggers:
+    - хлопает
     - claps
     - clapping
     - clapped
@@ -229,6 +237,7 @@
     - SiliconEmotes
   chatMessages: [ "chat-emote-msg-clap-single" ]
   chatTriggers:
+    - хлопает один раз
     - clap
     - claps their hands together
     - claps her hands together
@@ -248,6 +257,7 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-snap"]
   chatTriggers:
+    - щёлкает пальцами
     - snap
     - snaps
     - snapping
@@ -299,6 +309,8 @@
     - SiliconEmotes
   chatMessages: ["chat-emote-msg-salute"]
   chatTriggers:
+    - салютует
+    - отдаёт честь
     - salute
     - salutes
 
@@ -310,6 +322,7 @@
     - Respirator
   chatMessages: ["chat-emote-msg-gasp"]
   chatTriggers:
+   - вздыхает
    - gasp
    - gasps
    - gasped
