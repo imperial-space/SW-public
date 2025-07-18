@@ -322,7 +322,6 @@
     - Respirator
   chatMessages: ["chat-emote-msg-gasp"]
   chatTriggers:
-   - вздыхает
    - gasp
    - gasps
    - gasped
