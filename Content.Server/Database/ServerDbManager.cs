@@ -172,6 +172,11 @@ namespace Content.Server.Database
         Task AddNrpViolation(Guid player, CancellationToken cancel = default);
         Task RemoveNrpViolation(Guid player, CancellationToken cancel = default);
 
+        Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel = default);
+        Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel = default);
+        Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel = default);
+        Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel = default);
+
         #endregion
 
         #region Playtime
@@ -635,6 +640,29 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.RemoveNrpViolation(player, cancel));
+        }
+
+        public Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetNrpResolves(player, cancel));
+        }
+
+        public Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetNrpResolves(cancel));
+        }
+
+        public Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddNrpResolve(player, isRp, cancel));
+        }
+        public Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveNrpResolve(player, isRp, cancel));
         }
         #endregion
 
