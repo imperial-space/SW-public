@@ -6,7 +6,3 @@ electromouse-harvested = Вы уже высосали энергию из это
 electromouse-startharvest = {CAPITALIZE($target)} начинает искриться.
 electromouse-endharvest = {CAPITALIZE($target)} перестает искриться.
 electromouse-elevation = Внимание. В системах электропитания мы обнаружили резкий скачок энергии. Возможна серьезная угроза. Обезопасьте инженерный отдел, включая источники питания.
-
-ent-MobElectroMouse = мышь
-    .desc = Пии!
-    .suffix = Шокомышь
