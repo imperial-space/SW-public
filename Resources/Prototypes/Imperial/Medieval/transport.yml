@@ -361,3 +361,93 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/skeletonhorse_arrive.ogg
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalBlackHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/black.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: RideableSprint
+    accelerationTime: 8
+    maxSpeedModifier: 1.15
+    riderDamageOnCollide: 5
+    damageOnCollide: 15
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalBlackSpotHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/blackspot.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: RideableSprint
+    accelerationTime: 18
+    maxSpeedModifier: 2.2
+    riderDamageOnCollide: 5
+    damageOnCollide: 4
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalBlackWhiteHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/blackwhite.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: RideableSprint
+    accelerationTime: 12
+    maxSpeedModifier: 1.8
+    riderDamageOnCollide: 18
+    damageOnCollide: 20
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalGreyHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/grey.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: RideableSprint
+    accelerationTime: 12
+    maxSpeedModifier: 1.5
+    riderDamageOnCollide: 10
+    damageOnCollide: 12
+
+- type: entity
+  parent: MedievalHorseTransport
+  id: MedievalWhiteHorseTransport
+  name: horse
+  description: MedievalHorseTransport
+  components:
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Imperial/Medieval/Transport/white.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: horse
+  - type: RideableSprint
+    accelerationTime: 7
+    maxSpeedModifier: 2.3
+    riderDamageOnCollide: 25
+    damageOnCollide: 4
