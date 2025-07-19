@@ -374,11 +374,23 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 3.2
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      240: Critical
+      360: Dead
   - type: RideableSprint
-    accelerationTime: 8
-    maxSpeedModifier: 1.15
-    riderDamageOnCollide: 5
-    damageOnCollide: 15
+    accelerationTime: 2
+    maxSpeedModifier: 1.4
+    riderDamageOnCollide:
+      types:
+        Blunt: 12
+    damageOnCollide: 16
 
 - type: entity
   parent: MedievalHorseTransport
@@ -392,10 +404,22 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 2.5
+    baseSprintSpeed: 2.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      90: Critical
+      120: Dead
   - type: RideableSprint
-    accelerationTime: 18
-    maxSpeedModifier: 2.2
-    riderDamageOnCollide: 5
+    accelerationTime: 16
+    maxSpeedModifier: 1.6
+    riderDamageOnCollide:
+      types:
+        Blunt: 15
     damageOnCollide: 4
 
 - type: entity
@@ -410,11 +434,23 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: horse
+  - type: MovementSpeedModifier
+    acceleration: 1
+    friction: 1
+    baseWalkSpeed: 2.4
+    baseSprintSpeed: 2.4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      330: Critical
+      430: Dead
   - type: RideableSprint
     accelerationTime: 12
-    maxSpeedModifier: 1.8
-    riderDamageOnCollide: 18
-    damageOnCollide: 20
+    maxSpeedModifier: 1.7
+    riderDamageOnCollide:
+      types:
+        Blunt: 5
+    damageOnCollide: 5
 
 - type: entity
   parent: MedievalHorseTransport
@@ -428,11 +464,18 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: horse
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      170: Critical
+      260: Dead
   - type: RideableSprint
-    accelerationTime: 12
-    maxSpeedModifier: 1.5
-    riderDamageOnCollide: 10
-    damageOnCollide: 12
+    accelerationTime: 16
+    maxSpeedModifier: 1.8
+    riderDamageOnCollide:
+      types:
+        Blunt: 12
+    damageOnCollide: 7
 
 - type: entity
   parent: MedievalHorseTransport
@@ -446,8 +489,15 @@
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: horse
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      160: Dead
   - type: RideableSprint
-    accelerationTime: 7
-    maxSpeedModifier: 2.3
-    riderDamageOnCollide: 25
-    damageOnCollide: 4
+    accelerationTime: 5
+    maxSpeedModifier: 2.2
+    riderDamageOnCollide:
+      types:
+        Blunt: 22
+    damageOnCollide: 6

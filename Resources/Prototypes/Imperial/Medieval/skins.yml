@@ -60,7 +60,7 @@
     MedievalClothingFeetSteel: [MedievalClothingRoyalFeetSteel]
     MedievalClothingNeckCloakClanEagle: [MedievalClothingNeckCloakRoyalLegionEagle]
     MedievalClothingNeckCloakClanFox: [MedievalClothingNeckCloakRoyalInsFox]
-    MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadRoyalHelmet]
+    MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadRoyalHelmet, MedievalClothingHeadHelmetRoyalLegioner]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth73]
     MedievalClothingOuterHorseArmorUpIron: [MedievalClothingOuterHorseRoyalArmorUpIron]
     MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuteRoyalArmorIronCuirassLight]

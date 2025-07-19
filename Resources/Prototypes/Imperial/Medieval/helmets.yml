@@ -960,6 +960,28 @@
       - state: inhand-right-leg
 
 - type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetRoyalLegioner
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
+
+- type: entity
   parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetFox1
   name: shapel helmet
