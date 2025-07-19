@@ -46,7 +46,7 @@
     MedievalClothingHeadHelmetHoodHelmet: [MedievalClothingHeadHelmetGoblinSlayer]
     MedievalIronShieldBuckler: [MedievalIronShieldBucklerGoblinSlayer]
     MedievalIronGloves: [MedievalIronGlovesGoblinSlayer, MedievalRoyalIronGloves]
-    Log: [MedievalPasportLegionCatFireBattle, MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth67, MedievalClothingUniformJumpsuitShitCloth70, MedievalClothingHandsRoyalGloves, MedievalClothingNeckRoyalCloakAlt, MedievalClothingNeckRoyalCloak, ClothingBeltRoyalSheath, MedievalClothingRoyalBoots, MedievalClothingOuterRoyalCoat, MedievalClothingRoyalMask, MedievalClothingHeadRoyalHoop, MedievalClothingHeadRoyalHelmet, PlushieVikta]
+    Log: [MedievalPasportLegionCatFireBattle, MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth67, MedievalClothingUniformJumpsuitShitCloth70, MedievalClothingHandsRoyalGloves, MedievalClothingNeckRoyalCloakAlt, MedievalClothingNeckRoyalCloak, ClothingBeltRoyalSheath, MedievalClothingRoyalBoots, MedievalClothingOuterRoyalCoat, MedievalClothingRoyalMask, MedievalClothingHeadRoyalHoop, MedievalClothingHeadRoyalHelmet, PlushieVikta, MedievalClothingUniformJumpsuitShitCloth75]
     MedievalFalshionT3: [MedievalIronRoyalSword]
     MedievalClothingUniformJumpsuitShitCloth1: [MedievalClothingUniformJumpsuitShitCloth67]
     MedievalFalshionT3Steel: [MedievalSteelRoyalSword]
@@ -67,7 +67,7 @@
     MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterRoyalArmorIronCuirass]
     MedievalWoodenShieldKnight: [MedievalRoyalWoodenShieldKnight]
     MedievalWoodenShield: [MedievalRoyalWoodenShield]
-    MedievalClothingOuterArmorLeatherHeavy: [MedievalClothingOuterLeafRoyalArmorLeatherHeavy]
+    MedievalClothingOuterArmorLeatherLight: [MedievalClothingOuterRoyalArmorLeatherLight]
 
 - type: customization
   id: game123456

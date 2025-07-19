@@ -878,6 +878,18 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth75
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Insulated
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiver
   name: MedievalQuiver

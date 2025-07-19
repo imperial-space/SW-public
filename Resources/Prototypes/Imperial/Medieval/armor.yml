@@ -259,6 +259,17 @@
     damageCoefficient: 0.8
 
 - type: entity
+  parent: MedievalClothingOuterArmorLeatherLight
+  id: MedievalClothingOuterRoyalArmorLeatherLight
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/royal_leather_light.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/royal_leather_light.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorChainMail
   name: leather armor
