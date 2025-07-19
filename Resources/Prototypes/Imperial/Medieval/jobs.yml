@@ -3097,7 +3097,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetHood
-    neck: MedievalClothingNeckCloakClanKayot
+    neck: MedievalClothingNeckCloakClanWolf
     id: MedievalKeyAlchem
 
 - type: playTimeTracker
@@ -3160,7 +3160,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetBand1
-    neck: MedievalClothingNeckCloakClanKayot
+    neck: MedievalClothingNeckCloakClanWolf
     id: MedievalKeyAlchem
 
 - type: playTimeTracker
@@ -3224,7 +3224,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetBand2
-    neck: MedievalClothingNeckCloakClanKayot
+    neck: MedievalClothingNeckCloakClanWolf
     id: MedievalKeyAlchem
 
 - type: playTimeTracker
@@ -3289,7 +3289,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth16
     mask: MedievalMaskFace
     head: MedievalClothingHeadHelmetBand3
-    neck: MedievalClothingNeckCloakClanKayot
+    neck: MedievalClothingNeckCloakClanWolf
     id: MedievalKeyAlchem
 
 - type: playTimeTracker
@@ -4437,7 +4437,7 @@
   - !type:GroupLoadoutEffect
     proto: TradersTimer50hours
   equipment:
-    outerClothing: MedievalTraderLegionHat
+    head: MedievalTraderLegionHat
 
 - type: loadout
   id: MedievalTraderFoxHat
@@ -4445,7 +4445,7 @@
   - !type:GroupLoadoutEffect
     proto: TradersTimer50hours
   equipment:
-    outerClothing: MedievalTraderFoxHat
+    head: MedievalTraderFoxHat
 
 # MEDIEVAL Miner REGULAR
 

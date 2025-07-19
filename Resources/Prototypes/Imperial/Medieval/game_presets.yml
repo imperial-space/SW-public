@@ -37,5 +37,6 @@
   description: medieval-skeletron-description 
   showInVote: true
   rules:
+  - TDM
   - MedievalStatsCounter
   - MedievalSkeletonInvasionRule

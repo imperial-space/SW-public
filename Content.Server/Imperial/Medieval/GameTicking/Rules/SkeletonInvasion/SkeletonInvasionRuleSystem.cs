@@ -43,6 +43,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
 
     private EntityUid _bossUid = EntityUid.Invalid;
     private RoundResult _result = RoundResult.NoBoss;
+    private TimeSpan? _endTime;
 
     public override void Initialize()
     {
@@ -70,6 +71,14 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
     protected override void ActiveTick(EntityUid uid, SkeletonInvasionRuleComponent component, GameRuleComponent gameRule, float frameTime)
     {
         base.ActiveTick(uid, component, gameRule, frameTime);
+
+        if (_endTime != null && _endTime <= _timing.CurTime)
+        {
+            _endTime = null;
+            GameTicker.EndRound();
+            GameTicker.RestartRound();
+            return;
+        }
 
         if (component.NextSpawn > _timing.CurTime)
             return;
@@ -103,9 +112,19 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         args.AddLine(resultText);
     }
 
+    protected override void Ended(EntityUid uid, SkeletonInvasionRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
+    {
+        base.Ended(uid, component, gameRule, args);
+
+        _endTime = null;
+    }
+
     private void OnSkeletonSpawn(EntityUid uid, IgnoreBossStartComponent comp, GhostRoleSpawnerUsedEvent args)
     {
         if (!TryComp<SpawnSkullPartOnGhostRoleTakeComponent>(args.Spawner, out var list))
+            return;
+
+        if (!list.Prototypes.Any())
             return;
 
         _inventory.TryGetSlotEntity(uid, "back", out var fighterBack);
@@ -128,15 +147,12 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
             var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
 
             Spawn("MedievalSpawnNecroSenderPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
-            for (var i = 0; i < 70; i++)
+            for (var i = 0; i < 40; i++)
             {
                 Spawn("MedievalSpawnNecroFighterPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
             }
 
-            Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(25), () =>
-            {
-                GameTicker.EndRound();
-            });
+            _endTime = _timing.CurTime + TimeSpan.FromMinutes(25);
 
             return;
         }
@@ -169,10 +185,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
     private void OnBossDefeated(ref BossDefeatedEvent args)
     {
         _result = RoundResult.BossDefeated;
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(5), () =>
-        {
-            GameTicker.EndRound();
-        });
+        _endTime = _timing.CurTime + TimeSpan.FromMinutes(10);
     }
 
     private void OnBossWin(ref BossWonEvent args)
@@ -180,15 +193,13 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>();
 
         Spawn("MedievalSpawnNecroSenderPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
-        for (var i = 0; i < 70; i++)
+
+        for (var i = 0; i < 40; i++)
         {
             Spawn("MedievalSpawnNecroFighterPreset", Transform(_random.Pick(cursespawners).Owner).Coordinates);
         }
 
-        Robust.Shared.Timing.Timer.Spawn(TimeSpan.FromMinutes(25), () =>
-        {
-            GameTicker.EndRound();
-        });
+        _endTime = _timing.CurTime + TimeSpan.FromMinutes(25);
     }
 
     private enum RoundResult

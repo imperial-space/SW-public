@@ -331,7 +331,7 @@
       - id: MedievalRepairStone
         prob: 0.05
       - id: MedievalScrollBarrier
-        prob: 0.05
+        prob: 0.12
       - id: MedievalDrugChemistryBottle
         prob: 0.04
       - id: MedievalBrutepack
@@ -1201,7 +1201,7 @@
       - id: MedievalKnut
         prob: 0.09
       - id: MedievalScrollBarrier
-        prob: 0.1
+        prob: 0.25
       - id: MedaljonDark
         prob: 0.015
       - id: MedaljonExpl
@@ -1415,7 +1415,11 @@
       - id: MedievalBanjoInstrument
         prob: 0.1
       - id: MedievalScrollBarrier
-        prob: 0.2
+        prob: 0.6
+      - id: MedievalScrollBarrier
+        prob: 0.6
+      - id: MedievalScrollBarrier
+        prob: 0.6
       - id: MedievalShovel
         prob: 0.03
       #- id: MedievalWrench
@@ -1850,6 +1854,8 @@
         prob: 0.075
       - id: MedievalPaper
         prob: 0.22
+      - id: MedievalScrollBarrier
+        prob: 0.05
       - id: MedievalRepairStone
         prob: 0.05
       - id: MedievalPen

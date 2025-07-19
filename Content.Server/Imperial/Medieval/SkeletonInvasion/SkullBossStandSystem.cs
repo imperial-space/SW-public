@@ -3,6 +3,7 @@ using Content.Server.Bible.Components;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
+using Content.Server.Hands.Systems;
 using Content.Server.Jittering;
 using Content.Server.Popups;
 using Content.Shared.Chat;
@@ -26,6 +27,8 @@ public sealed class SkullBossStandSystem : EntitySystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly JitteringSystem _jitter = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly HandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -92,7 +95,8 @@ public sealed class SkullBossStandSystem : EntitySystem
         stand.AttachedProtos.Add(Prototype(uid)!.ID);
         _appearance.SetData(args.Target.Value, SkullStandAppearance.Key, comp.Purified ? comp.Idx : -comp.Idx);
         PartAttached(args.Target.Value, stand);
-        QueueDel(uid);
+
+        _transform.DetachEntity(uid, Transform(uid));
     }
 
     private void OnPurifyDoAfter(EntityUid uid, SkullBossStandPartComponent comp, SkullPartPurifyingDoAfterEvent args)

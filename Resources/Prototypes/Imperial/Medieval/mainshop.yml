@@ -3004,3 +3004,35 @@
     Revent: 730
   categories:
   - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    Revent: 500
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelStone
+  productEntity: MedievalCatapultAmmoBarrelStone
+  cost:
+    Revent: 12
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelGunpowder
+  productEntity: MedievalCatapultAmmoBarrelGunpowder
+  cost:
+    Revent: 60
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelAp
+  productEntity: MedievalCatapultAmmoBarrelAp
+  cost:
+    Revent: 80
+  categories:
+  - MedievalWeapon

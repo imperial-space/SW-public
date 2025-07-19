@@ -17,7 +17,7 @@
     explosionType: Cryo
     maxIntensity: 1
     intensitySlope: 1
-    totalIntensity: 1
+    totalIntensity: 0
     maxTileBreak: 0
   - type: ProjectileCursorFollower
     relativeAngle: 90
@@ -46,7 +46,7 @@
     explosionType: Cryo
     maxIntensity: 1
     intensitySlope: 1
-    totalIntensity: 1
+    totalIntensity: 0
     maxTileBreak: 0
   - type: ProjectileCursorFollower
     relativeAngle: 90
@@ -75,7 +75,7 @@
     explosionType: Cryo
     maxIntensity: 1
     intensitySlope: 1
-    totalIntensity: 2
+    totalIntensity: 0
     maxTileBreak: 0
   - type: ProjectileCursorFollower
     relativeAngle: 90

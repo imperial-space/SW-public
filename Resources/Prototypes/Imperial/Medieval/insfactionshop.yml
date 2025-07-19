@@ -251,7 +251,7 @@
   id: MdvInsMedievalCatapultCraft
   productEntity: MedievalCatapultCraft
   cost:
-    MedalIns: 30
+    MedalIns: 15
   categories:
   - MedievalInsWeapon
 

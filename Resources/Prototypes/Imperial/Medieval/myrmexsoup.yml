@@ -56,9 +56,9 @@
   components:
   - type: MyrmexStew
     buff:
-      damage: 1.07
-      health: 1
-      stamina: 1
+      damage: 1.05
+      health: 1.02
+      stamina: 0.98
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/resinsoup.rsi
     state: icon
@@ -73,9 +73,9 @@
   components:
   - type: MyrmexStew
     buff:
-      damage: 1.05
-      health: 0.96
-      stamina: 0.94
+      damage: 1.03
+      health: 0.98
+      stamina: 0.97
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/yantsoup.rsi
     state: icon
@@ -103,9 +103,9 @@
   components:
   - type: MyrmexStew
     buff:
-      damage: 1
-      health: 1
-      stamina: 0.9
+      damage: 0.98
+      health: 1.02
+      stamina: 0.84
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Soups/mushroomsoup.rsi
     state: icon

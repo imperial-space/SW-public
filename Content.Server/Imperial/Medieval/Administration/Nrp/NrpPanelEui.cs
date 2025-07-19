@@ -69,6 +69,12 @@ public sealed class NrpPanelEui : BaseEui
                 SendMessage(new NrpMessagesResponse(messages));
                 break;
             case ResolveNrpMessageMsg resolve:
+                if (!_nrpSystem.ContainsMessage(resolve.Message))
+                {
+                    SendMessage(new RemoveNrpMessageMsg(resolve.Message));
+                    return;
+                }
+
                 var isNrp = resolve.IsNrp;
                 if (isNrp)
                 {
@@ -78,11 +84,12 @@ public sealed class NrpPanelEui : BaseEui
                     _nrpSystem.OnViolation(resolve.Message, violations, Player.UserId);
                 }
                 _nrpSystem.RemoveMessage(resolve.Message);
-                _nrpSystem.AddResolveToStats(Player.Name);
+                _nrpSystem.AddResolveToStats(Player.Name, !isNrp, Player.UserId);
                 break;
             case NrpStatsRequest:
-                var stats = _nrpSystem.GetStats();
-                SendMessage(new NrpStatsResponse(stats));
+                var roundStats = _nrpSystem.GetRoundStats();
+                var stats = await _nrpSystem.GetDbStats();
+                SendMessage(new NrpStatsResponse(stats, roundStats));
                 break;
         }
     }

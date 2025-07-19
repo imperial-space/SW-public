@@ -224,7 +224,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 800
+        damage: 1600
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -391,8 +391,12 @@
   name: myrmex trap
   description: goal
   components:
+  - type: Stealth
+    maxVisibility: 0.33
+    minVisibility: 0.33
+    lastVisibility: 0.33
   - type: SmokeOnTrigger
-    duration: 10
+    duration: 25 # Я ЕБНУТЫЙ, БЕГИТЕ
     spreadAmount: 30
     solution:
       reagents:
@@ -530,6 +534,7 @@
     icon: Imperial/Medieval/Myrmex/Icons/wall.png
     event: !type:ActionMyrmexSpawnEvent
       proto: MedievalMyrmexFlimsyWall
+      doAfterDuration: 3
     priority: -12
     checkCanAccess: false
     useDelay: 18
@@ -552,8 +557,9 @@
   - type: EntityTargetAction
     itemIconStyle: BigAction
     whitelist:
+      requireAll: true
       components:
-        - Myrmex
+      - Myrmex
     canTargetSelf: false
     icon: Imperial/Medieval/Myrmex/Icons/heal.png
     event: !type:ActionMyrmexHealEvent
@@ -562,6 +568,7 @@
           Brute: -50
           Burn: -50
     priority: -12
+    range: 2
     checkCanAccess: false
     useDelay: 40
 
@@ -588,16 +595,12 @@
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: base
   - type: MyrmexHunger
-  - type: Stealth
-    enabled: false
-  - type: StealthOnMove
-    passiveVisibilityRate: -0.3
-    movementVisibilityRate: 0.7
   - type: BorgHandsImperial
     whitelistHandTag: MyrmexCanTake
   - type: Hands
     throwRange: 2
   - type: Body
+    requiredLegs: 0
     prototype: Myrmex
   - type: Strippable
   - type: UserInterface
@@ -778,7 +781,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 10
+    damage: 4
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-worker-name
@@ -851,7 +854,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 15
+    damage: 7
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-spitter-name
@@ -860,6 +863,11 @@
   - type: Myrmex
     actions:
     - MedievalMyrmexToggleStealthAction
+  - type: Stealth
+    enabled: false
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.3
+    movementVisibilityRate: 0.7
 
 - type: entity
   name: myrmalisk
@@ -909,7 +917,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 17
+    damage: 6
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-elite-name
@@ -972,7 +980,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 10
+    damage: 3
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-myrmex-warrior-name
@@ -982,6 +990,11 @@
     actions:
     - MedievalMyrmexBoostAction
     - MedievalMyrmexToggleStealthAction
+  - type: Stealth
+    enabled: false
+  - type: StealthOnMove
+    passiveVisibilityRate: -0.3
+    movementVisibilityRate: 0.7
 
 - type: entity
   name: myrmelarva
@@ -1120,7 +1133,7 @@
     rootTask:
       task: SimpleHostileCompound
   - type: StaminaDamageOnHit
-    damage: 17
+    damage: 12
   - type: LanguageSpeaker
     languages:
       Common: Understand
@@ -1271,7 +1284,7 @@
   id: MyrmexArmorOff
   coefficients:
     Blunt: 0.9
-    Slash: 0.9 
+    Slash: 0.9
     Piercing: 0.9
     Heat: 0.9
 

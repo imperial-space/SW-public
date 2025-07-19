@@ -4,6 +4,14 @@ using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Content.Server.Administration;
 using Content.Server.Imperial.Medieval.Administration.Nrp;
+using System.Linq;
+using Content.Server.Administration.Managers;
+using Content.Shared.Administration;
+using Content.Shared.CCVar;
+using Content.Shared.Database;
+using Content.Shared.Imperial.Medieval.Administration.Nrp;
+using Robust.Server.Player;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Imperial.Medieval.Administration.Commands;
 
@@ -16,10 +24,16 @@ public sealed class NrpWarnCommand : IConsoleCommand
 
     [Dependency] private readonly IPlayerLocator _locator = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     private NrpMessagesSystem _nrpSystem = default!;
 
     public async void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
+        {
+            shell.WriteLine("Command is disabled on server");
+            return;
+        }
         _nrpSystem = _entitySystemManager.GetEntitySystem<NrpMessagesSystem>();
 
         if (shell.Player is not { } player)
@@ -56,5 +70,6 @@ public sealed class NrpWarnCommand : IConsoleCommand
         await _nrpSystem.AddPlayerNrpViolation(targetUid);
         var violations = await _nrpSystem.GetPlayerNrpViolations(targetUid, 3);
         _nrpSystem.OnViolation(targetUid, targetName, reason, violations, player.UserId);
+        _nrpSystem.AddResolveToStats(player.Name, true, located.UserId);
     }
 }

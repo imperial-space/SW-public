@@ -187,7 +187,7 @@ public sealed class RoundStatCounterRuleSystem : GameRuleSystem<RoundStatCounter
         int openedDungeons = component.OpenedDungeons;
         string firstDungeonVisiter = component.FirstDungeonVisiter;
         int screams = component.Screams;
-        double zveresHeat = component.ZveresHeat;
+        double zveresHeat = Math.Round(component.ZveresHeat, 2);
         int alcohol = component.AlcoholDrink;
         int ghostBoo = component.GhostBoo;
         int ghostBooPlayers = component.GhostBooPlayers;

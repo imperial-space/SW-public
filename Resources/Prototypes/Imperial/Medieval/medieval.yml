@@ -3130,9 +3130,9 @@
   components:
   - type: MyrmexStew
     buff:
-      damage: 1
-      health: 0.94
-      stamina: 1
+      damage: 0.99
+      health: 0.95
+      stamina: 1.02
     uses: 1
   - type: Sprite
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
