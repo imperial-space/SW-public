@@ -390,7 +390,9 @@
     riderDamageOnCollide:
       types:
         Blunt: 12
-    damageOnCollide: 16
+    damageOnCollide:
+      types:
+        Blunt: 16
 
 - type: entity
   parent: MedievalHorseTransport
@@ -420,7 +422,9 @@
     riderDamageOnCollide:
       types:
         Blunt: 15
-    damageOnCollide: 4
+    damageOnCollide:
+      types:
+        Blunt: 4
 
 - type: entity
   parent: MedievalHorseTransport
@@ -450,7 +454,9 @@
     riderDamageOnCollide:
       types:
         Blunt: 5
-    damageOnCollide: 5
+    damageOnCollide:
+      types:
+        Blunt: 5
 
 - type: entity
   parent: MedievalHorseTransport
@@ -475,7 +481,9 @@
     riderDamageOnCollide:
       types:
         Blunt: 12
-    damageOnCollide: 7
+    damageOnCollide:
+      types:
+        Blunt: 7
 
 - type: entity
   parent: MedievalHorseTransport
@@ -500,4 +508,6 @@
     riderDamageOnCollide:
       types:
         Blunt: 22
-    damageOnCollide: 6
+    damageOnCollide:
+      types:
+        Blunt: 6
