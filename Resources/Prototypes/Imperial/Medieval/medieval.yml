@@ -8051,6 +8051,18 @@
       path: /Audio/Items/Whistle/trench_whistle_1.ogg
 
 - type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalWhiteRoyalHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalWhiteRoyalHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
   parent: BaseItem
   id: MedievalHorseNecroWhistle
   name: necro whistle

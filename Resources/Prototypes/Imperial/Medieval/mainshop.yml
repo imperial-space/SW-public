@@ -3006,6 +3006,14 @@
   - MedievalTransport
 
 - type: listing
+  id: MdvShopMedievalWhiteRoyalHorseWhistle
+  productEntity: MedievalWhiteRoyalHorseWhistle
+  cost:
+    Revent: 1200
+  categories:
+  - MedievalTransport
+
+- type: listing
   id: MdvShopMedievalCatapultCraft
   productEntity: MedievalCatapultCraft
   cost:

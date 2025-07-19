@@ -439,4 +439,12 @@
   categories:
   - MedievalInsTransport
 
+- type: listing
+  id: MdvInsMedievalWhiteRoyalHorseWhistle
+  productEntity: MedievalWhiteRoyalHorseWhistle
+  cost:
+    MedalIns: 32
+  categories:
+  - MedievalInsTransport
+
 
