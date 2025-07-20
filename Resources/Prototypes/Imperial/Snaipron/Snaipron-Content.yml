@@ -1,0 +1,125 @@
+- type: entity
+  parent: BaseLightbulb
+  name: старая лампа накаливания
+  id: SemiPowerLightBulb
+  suffix: Snaipron, Gigahrush
+  description: Эта лампа была потрёпана жизнью, от старости почти перегорела...
+  components:
+  - type: LightBulb
+    bulb: Bulb
+    color: "#947507FF"
+    lightEnergy: 1
+    lightRadius: 5
+    lightSoftness: 0.5
+
+- type: entity
+  id: EgidaComplexComms
+  parent: ComputerComms
+  name: Консоль связи комплекса "Недра"
+  suffix: seriozha, Недра, Snaipron
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm_wizard
+    - map: ["computerLayerKeys"]
+      state: wizard_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-egida
+    color: "#ff7e2e"
+    canShuttle: false
+    global: false #announce to everyone they're about to fuck shit up
+    announceSentBy: true
+    sound: /Audio/Announcements/war.ogg
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#F317F3"
+
+- type: entity
+  id: NoCollisionCatwalk
+  name: мостик
+  suffix: Fake, SG, Zevs622
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          collection: GlassBreak
+    - type: Sprite
+      sprite: Structures/catwalk.rsi
+      drawdepth: FloorTiles
+    - type: Icon
+      sprite: Structures/catwalk.rsi
+      state: catwalk_preview
+    - type: Transform
+      anchored: true
+    - type: IconSmooth
+      key: catwalk
+      base: catwalk_
+    - type: Clickable
+    - type: Tag
+      tags: [ Ice ]
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 10
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: hitscan
+  id: ChefEngeneerLaser
+  damage:
+    types:
+      Structural: 40
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_blue
+
+- type: entity
+  id: ChefEngeneerRevolverLaser
+  parent: WeaponLaserSvalinn
+  name: Револьвер "Новый рассвет"
+  description: Удобный инструмент, разработанный по специальному заказу для старших инженеров, который позволит ему уничтожать любые препятствия на своём пути за считанные секунды!
+  components:
+    - type: Gun
+      fireRate: 2
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser.ogg
+    - type: HitscanBatteryAmmoProvider
+      proto: ChefEngeneerLaser
+      fireCost: 33
+    
+
+
+  
+      
+        
+

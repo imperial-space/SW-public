@@ -20400,6 +20400,7 @@
 /Locale/en-US/communications/communications-console-component.ftl鎰comms-console-announcement-sent-by = Sent by
 /Locale/en-US/communications/communications-console-component.ftl鎰comms-console-announcement-unknown-sender = Unknown
 /Locale/en-US/communications/communications-console-component.ftl鎰# Comms console variant titles
+/Locale/en-US/communications/communications-console-component.ftl鎰comms-console-announcement-title-egida = Complex "Egida"
 /Locale/en-US/communications/communications-console-component.ftl鎰comms-console-announcement-title-station = Communications Console
 /Locale/en-US/communications/communications-console-component.ftl鎰comms-console-announcement-title-centcom = Central Command
 /Locale/en-US/communications/communications-console-component.ftl鎰comms-console-announcement-title-nukie = Syndicate Nuclear Operative
