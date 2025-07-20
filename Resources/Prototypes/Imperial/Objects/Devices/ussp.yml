@@ -71,7 +71,7 @@
   - type: StationAiVision
   - type: Sprite
     sprite: Imperial/ussp/holopad.rsi
-    drawdepth: Items
+    drawdepth: HighFloorObjects
     snapCardinals: true
     layers:
     - state: base
