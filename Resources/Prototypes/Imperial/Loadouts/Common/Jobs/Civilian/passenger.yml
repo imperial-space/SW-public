@@ -191,11 +191,6 @@
     shoes: ClothingShoesColorRed
 
 - type: loadout
-  id: BlueShoes
-  equipment:
-    shoes: ClothingShoesColorBlue
-
-- type: loadout
   id: GreenShoes
   equipment:
     shoes: ClothingShoesColorGreen
@@ -219,12 +214,7 @@
   id: BrownShoes
   equipment:
     shoes: ClothingShoesColorBrown
-
-- type: loadout
-  id: WhiteShoes
-  equipment:
-    shoes: ClothingShoesColorWhite
-
+    
 # Scarves
 - type: loadout
   id: ScarfRed
