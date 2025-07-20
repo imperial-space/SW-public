@@ -20,17 +20,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorBlack
 
-# Red
-- type: loadout
-  id: RedJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorRed
-
-- type: loadout
-  id: RedJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtColorRed
-
 # Green
 - type: loadout
   id: GreenJumpsuit
