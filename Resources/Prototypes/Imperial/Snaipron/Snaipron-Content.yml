@@ -148,7 +148,8 @@
   id: ChefEngeneerLaser
   damage:
     types:
-      Structural: 40
+      Heat: 1
+      Structural: 150
   muzzleFlash:
     sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
     state: muzzle_blue
@@ -166,7 +167,7 @@
   description: Удобный инструмент, разработанный по специальному заказу для старших инженеров, который позволит ему уничтожать любые препятствия на своём пути за считанные секунды!
   components:
     - type: Gun
-      fireRate: 2
+      fireRate: 1.2
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
@@ -174,7 +175,7 @@
       path: /Audio/Weapons/Guns/Gunshots/laser.ogg
     - type: HitscanBatteryAmmoProvider
       proto: ChefEngeneerLaser
-      fireCost: 33
+      fireCost: 80
     
 
 

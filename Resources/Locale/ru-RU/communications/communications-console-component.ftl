@@ -26,4 +26,4 @@ comms-console-announcement-title-centcom = Центральное Командо
 comms-console-announcement-title-nukie = Ядерные оперативники
 comms-console-announcement-title-station-ai = Станционный ИИ
 comms-console-announcement-title-wizard = Космической Федерации Магов
-comms-console-announcement-title-egida = Комплекс "Недра"
+

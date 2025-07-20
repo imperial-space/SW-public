@@ -42,7 +42,7 @@ artifact-trigger-hint-land = Активное замедление
 artifact-trigger-hint-examine = Внимательное изучение
 artifact-trigger-hint-medical = Медицинские химикаты
 
-xenoarch-trigger-tip-music =  звуковые вибрации
+xenoarch-trigger-tip-music = Гармоничные звуковые вибрации
 xenoarch-trigger-tip-heat = Высокотемпературный газ
 xenoarch-trigger-tip-cold = Низкотемпературный газ
 xenoarch-trigger-tip-no-oxygen = Бескислородная среда
