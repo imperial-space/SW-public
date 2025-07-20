@@ -25,9 +25,15 @@
       coefficients:
         Blunt: 0.7
         Slash: 0.7
-        Piercing: 0.3
+        Piercing: 0.2
         Heat: 0.4
+        Radiation: 0.05
+        Caustic: 0.05
         Stamina: 0.45
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
   - type: PowerCellDraw
     drawRate: 0
   - type: ToggleCellDraw
@@ -68,6 +74,8 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: FlashImmunity
+  - type: EyeProtection
   - type: Sprite
     sprite: Imperial/Crook/Samurai/helmet.rsi
   - type: Clothing
@@ -111,6 +119,15 @@
   id: RedEnergyKatanaSamurai
   description: A katana infused with strong energy. It has a red glow.
   components:
+  - type: PointLight
+    radius: 5
+    energy: 1.6
+    color: "#6a0b0b"
+  - type: AmbientSound
+    range: 7
+    volume: 2
+    sound:
+      path: /Audio/Weapons/ebladehum.ogg
   - type: Reflect
     reflectProb: 0.8
     spread: 90
@@ -119,13 +136,12 @@
   id: SpaceSamuraiGear
   equipment:
     jumpsuit: ClothingUniformJumpsuitOperative
-    suitstorage: OxygenTank
     shoes: ShoesSpaceSamurai
-    mask: ClothingMaskGasSyndicate
     head: ClothingHeadHelmetSpaceSamurai
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterSuitSpaceSamurai
     pocket1: PinpointerStation
+    pocket2: DoubleEmergencyOxygenTankFilled
     belt: RedEnergyKatanaSamurai
   inhand:
     - JetpackBlackFilled
@@ -136,6 +152,15 @@
   parent: MobHuman
   id: SpaceSamurai
   components:
+  - type: TypingIndicator
+    proto: syndibot
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
   - type: RandomMetadata
     nameSegments:
     - NamesNinjaTitle
@@ -155,7 +180,6 @@
     - DeathAcidifierImplant
     - ImperialNutrimentPumpImplanter
     - FreedomImplant
-    - ImperialSmokeImplant
     - ScramImplant
     - EmpImplant
   - type: RandomHumanoidAppearance
@@ -167,6 +191,15 @@
   parent: MobHuman
   id: SpaceSamuraiGhostRole
   components:
+  - type: TypingIndicator
+    proto: syndibot
+  - type: Speech
+    speechSounds: SyndieBorg
+    allowedEmotes:
+    - Laugh
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSiliconSyndicate
   - type: GhostRole
     name: ghost-role-information-space-samurai-name
     description: ghost-role-information-space-samurai-description
@@ -193,7 +226,6 @@
     - DeathAcidifierImplant
     - ImperialNutrimentPumpImplanter
     - FreedomImplant
-    - ImperialSmokeImplant
     - ScramImplant
     - EmpImplant
   - type: RandomHumanoidAppearance
