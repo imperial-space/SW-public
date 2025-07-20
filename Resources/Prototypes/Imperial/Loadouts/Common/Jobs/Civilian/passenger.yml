@@ -92,12 +92,6 @@
     gloves: ClothingHandsGlovesColorBlack
 
 # Gloves
-
-- type: loadout
-  id: BrownGloves
-  equipment:
-    gloves: ClothingHandsGlovesColorBrown
-
 - type: loadout
   id: WhiteGloves
   equipment:
@@ -214,7 +208,7 @@
   id: BrownShoes
   equipment:
     shoes: ClothingShoesColorBrown
-    
+
 # Scarves
 - type: loadout
   id: ScarfRed
