@@ -39,6 +39,11 @@
   priority: 9
 
 - type: storeCategory
+  id: MedievalTransportDemo
+  name: medieval-category-transport
+  priority: 9
+
+- type: storeCategory
   id: MedievalQuestDemo
   name: medieval-category-quest
   priority: 7
@@ -1848,6 +1853,14 @@
   - MedievalBackpackDemo
 
 - type: listing
+  id: DemoMdvShopMonsterBag
+  productEntity: MedievalMonsterBag
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBackpackDemo
+
+- type: listing
   id: DemoMedievalClothingBackpackSatchelLeather
   productEntity: MedievalClothingBackpackSatchelLeather
   cost:
@@ -2296,22 +2309,6 @@
   - MedievalMagicDemo
 
 - type: listing
-  id: DemoMdvShopMedievalScrollBarrierWeak
-  productEntity: MedievalScrollBarrierWeak
-  cost:
-    UnknownMedieval: 1
-  categories:
-  - MedievalMagicDemo
-
-- type: listing
-  id: DemoMdvShopMedievalScrollBarrierNormal
-  productEntity: MedievalScrollBarrierNormal
-  cost:
-    UnknownMedieval: 1
-  categories:
-  - MedievalMagicDemo
-
-- type: listing
   id: DemoMdvShopBible
   productEntity: Bible
   cost:
@@ -2354,6 +2351,14 @@
 - type: listing
   id: DemoMdvShopMedievalClothingHeadHelmetCharmerWeak
   productEntity: MedievalClothingHeadHelmetCharmerWeak
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollBarrier
+  productEntity: MedievalScrollBarrier
   cost:
     UnknownMedieval: 1
   categories:
@@ -2430,3 +2435,43 @@
     Revent: 10
   categories:
   - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalTransportDemo
+
+- type: listing
+  id: DemoMdvShopMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
+
+- type: listing
+  id: DemoMdvShopMedievalCatapultAmmoBarrelStone
+  productEntity: MedievalCatapultAmmoBarrelStone
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
+
+- type: listing
+  id: DemoMdvShopMedievalCatapultAmmoBarrelGunpowder
+  productEntity: MedievalCatapultAmmoBarrelGunpowder
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
+
+- type: listing
+  id: DemoMdvShopMedievalCatapultAmmoBarrelAp
+  productEntity: MedievalCatapultAmmoBarrelAp
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo

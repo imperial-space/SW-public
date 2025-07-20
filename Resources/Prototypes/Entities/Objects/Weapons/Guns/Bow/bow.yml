@@ -1,6 +1,6 @@
 - type: entity
   name: bow
-  parent: [BaseItem, BaseMinorContraband]
+  parent: BaseItem # imperial medieval no contraband
   id: BaseBow
   description: The original rooty tooty point and shooty.
   abstract: true
@@ -93,3 +93,7 @@
   - type: Construction
     graph: ImprovisedBow
     node: ImprovisedBow
+  # imperial medieval start
+  - type: RDWeight
+    value: 1.5
+  # imperial medieval end

@@ -61,35 +61,35 @@ public sealed class MedievalLockpickSystem : EntitySystem
         if (args.Handled || args.Cancelled || !_timing.IsFirstTimePredicted)
             return;
 
-        if (args.Args.Target is not null)
+        if (args.Args.Target is not { Valid: true } door)
+            return;
+
+        if (!TryComp<DoorComponent>(door, out var doorcomp))
+            return;
+
+        var ev = new GetLockpickChanceModifiersEvent(1f);
+        RaiseLocalEvent(args.Args.User, ref ev);
+
+        if (!_random.Prob(DefaultChance * ev.Modifier))
         {
-            if (TryComp<DoorComponent>(args.Args.Target.Value, out var doorcomp) && doorcomp != null)
-            {
-                var ev = new GetLockpickChanceModifiersEvent(1f);
-                RaiseLocalEvent(args.Args.User, ref ev);
-
-                if (_random.Prob(DefaultChance * ev.Modifier))
-                {
-                    _popupSystem.PopupEntity("Взлом успешный", args.Args.User, PopupType.LargeCaution);
-                    var door = args.Args.Target.Value;
-                    if (doorcomp.State == DoorState.Open)
-                    {
-                        _door.StartClosing(door, doorcomp, args.Args.User, false);
-                    }
-                    if (doorcomp.State == DoorState.Closed)
-                    {
-                        _door.StartOpening(door, doorcomp, args.Args.User, false);
-                    }
-                }
-                else
-                {
-                    _popupSystem.PopupEntity("Взлом неудачный, попробуйте еще раз", args.Args.User, PopupType.LargeCaution);
-                }
-                args.Handled = true;
-            }
+            _popupSystem.PopupEntity("Взлом неудачный, попробуйте еще раз", args.Args.User, PopupType.LargeCaution);
+            return;
         }
+
+        _popupSystem.PopupEntity("Взлом успешный", args.Args.User, PopupType.LargeCaution);
+
+        switch (doorcomp.State)
+        {
+            case DoorState.Open:
+                _door.StartClosing(door, doorcomp, args.Args.User, false);
+                break;
+            case DoorState.Closed:
+                _door.StartOpening(door, doorcomp, args.Args.User, false);
+                break;
+            default:
+                break;
+        }
+
+        args.Handled = true;
     }
-
-
-
 }

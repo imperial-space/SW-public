@@ -47,7 +47,7 @@ public sealed class RDDeathScreenControl : RDControl
             FontOverride = _resourceCache.GetFont("/Fonts/_RD/KosmoletFuturism.otf", 86),
             HorizontalAlignment = HAlignment.Center,
             VerticalAlignment = VAlignment.Center,
-            FontColorOverride = Color.Red,
+            FontColorOverride = Color.DarkRed,
         };
 
         AddChild(_label);
@@ -73,7 +73,7 @@ public sealed class RDDeathScreenControl : RDControl
             case AnimationPhase.FadeIn:
             {
                 var alpha = MathHelper.Clamp(_elapsedTime / FadeInDuration, 0f, 1f);
-                BackgroundColor = Color.Red.WithAlpha(alpha);
+                BackgroundColor = Color.DarkRed.WithAlpha(alpha);
 
                 if (_elapsedTime >= FadeInDuration)
                 {
@@ -87,7 +87,7 @@ public sealed class RDDeathScreenControl : RDControl
             case AnimationPhase.FadeOut:
             {
                 var alpha = MathHelper.Clamp(1f - _elapsedTime / FadeOutDuration, 0f, 1f);
-                BackgroundColor = Color.Red.WithAlpha(alpha);
+                BackgroundColor = Color.DarkRed.WithAlpha(alpha);
 
                 if (_elapsedTime >= FadeOutDuration)
                     _phase = AnimationPhase.Delay;
@@ -96,7 +96,7 @@ public sealed class RDDeathScreenControl : RDControl
 
             case AnimationPhase.Delay:
             {
-                BackgroundColor = Color.Red.WithAlpha(0);
+                BackgroundColor = Color.DarkRed.WithAlpha(0);
                 if (_elapsedTime >= DelayTime)
                     _phase = AnimationPhase.Done;
 

@@ -202,9 +202,26 @@
     prototypes:
     - MedievalLateMobSpawnerMedievalMobGoblin
     chance: 0.35
-    intervalSeconds: 600
+    intervalSeconds: 900
     minimumEntitiesSpawned: 5
     maximumEntitiesSpawned: 9
+
+- type: entity
+  name: MedievalTimedSpawnerMedievalMobHobGoblin
+  id: MedievalTimedSpawnerMedievalMobHobGoblin
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalLateMobSpawnerMedievalMobHobGoblin
+    chance: 0.35
+    intervalSeconds: 1200
+    minimumEntitiesSpawned: 2
+    maximumEntitiesSpawned: 3
 
 - type: entity
   id: MedievalClothingShoesFancy
@@ -2311,3 +2328,16 @@
     bodyType: Static
   - type: MedievalMobSpawner
     spawnedEntity: MedievalLateMobSpawnerMedievalMobShieldSlug
+
+- type: entity
+  name: MedievalJobSpawnerKayot
+  id: MedievalJobSpawnerKayot
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MedievalJobPoint
+    spawnType: Kayot
+  - type: AntiSSDFreeArea

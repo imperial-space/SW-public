@@ -29,6 +29,7 @@
     - MedievalMagic
     #- MedievalUpgrade
     - MedievalPlants
+    - MedievalTransport
     currencyWhitelist:
     - Revent
     balance:
@@ -85,6 +86,7 @@
     - MedievalMagic
     - MedievalQuestLegion
     - MedievalPlants
+    - MedievalTransport
     currencyWhitelist:
     - Revent
     balance:
@@ -113,6 +115,7 @@
     - MedievalMagic
     - MedievalQuestIns
     - MedievalPlants
+    - MedievalTransport
     currencyWhitelist:
     - Revent
     balance:
@@ -151,6 +154,11 @@
 - type: storeCategory
   id: MedievalMisc
   name: medieval-category-misc
+  priority: 9
+
+- type: storeCategory
+  id: MedievalTransport
+  name: medieval-category-transport
   priority: 9
 
 - type: storeCategory
@@ -662,7 +670,7 @@
     Revent: 20
   categories:
   - MedievalArmor
-  
+
 - type: listing
   id: MdvShopMedievalIronGloves
   productEntity: MedievalIronGloves
@@ -2030,6 +2038,14 @@
   - MedievalBackpack
 
 - type: listing
+  id: MdvShopMonsterBag
+  productEntity: MedievalMonsterBag
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
   id: MedievalClothingBackpackSatchelLeather
   productEntity: MedievalClothingBackpackSatchelLeather
   cost:
@@ -2466,6 +2482,7 @@
     - MedievalQuestDemo
     - MedievalPlantsDemo
     - MedievalMagicDemo
+    - MedievalTransportDemo
     currencyWhitelist:
     - UnknownMedieval
     balance:
@@ -2583,22 +2600,6 @@
   - MedievalMagic
 
 - type: listing
-  id: MdvShopMedievalScrollBarrierWeak
-  productEntity: MedievalScrollBarrierWeak
-  cost:
-    Revent: 32
-  categories:
-  - MedievalMagic
-
-- type: listing
-  id: MdvShopMedievalScrollBarrierNormal
-  productEntity: MedievalScrollBarrierNormal
-  cost:
-    Revent: 75
-  categories:
-  - MedievalMagic
-
-- type: listing
   id: MdvShopBible
   productEntity: Bible
   discountCategory: medievalDiscounts
@@ -2655,6 +2656,25 @@
     Revent: 75
   cost:
     Revent: 100
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvMedievalCavalerySpearT3
+  productEntity: MedievalCavalerySpearT3
+  cost:
+    Revent: 220
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalScrollBarrier
+  productEntity: MedievalScrollBarrier
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 30
+  cost:
+    Revent: 50
   categories:
   - MedievalMagic
 
@@ -2864,9 +2884,9 @@
   id: MedievalPalletContractIns
   productEntity: MedievalDecorStoragePalletIns
   cost:
-    MedievalPaperOnValuableCargoCurrencyIns: 1
+    MedievalPaperOnValuableCargoCurrencyLeg: 1
   categories:
-  - MedievalPalletIns
+  - MedievalPalletLeg
 
 - type: entity
   id: MedievalShopHolePalletIns
@@ -2925,9 +2945,9 @@
   id: MedievalPalletContractLeg
   productEntity: MedievalDecorStoragePallet
   cost:
-   MedievalPaperOnValuableCargoCurrencyLeg: 1
+   MedievalPaperOnValuableCargoCurrencyIns: 1
   categories:
-  - MedievalPalletLeg
+  - MedievalPalletIns
 
 - type: listing
   id: MdvShopMedievalFlinter
@@ -2936,3 +2956,43 @@
     Revent: 10
   categories:
   - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    Revent: 680
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    Revent: 500
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelStone
+  productEntity: MedievalCatapultAmmoBarrelStone
+  cost:
+    Revent: 12
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelGunpowder
+  productEntity: MedievalCatapultAmmoBarrelGunpowder
+  cost:
+    Revent: 60
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelAp
+  productEntity: MedievalCatapultAmmoBarrelAp
+  cost:
+    Revent: 80
+  categories:
+  - MedievalWeapon

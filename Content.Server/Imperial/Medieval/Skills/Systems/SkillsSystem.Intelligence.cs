@@ -69,9 +69,6 @@ public sealed partial class SkillsSystem
         //    Dirty(uid, mana);
         //}
 
-        if (level == 20)
-            EnsureComp<UniversalLanguageSpeakerComponent>(uid);
-
         var skills = EnsureComp<SkillsComponent>(uid);
         if (skills.LanguagesGain)
             return;
@@ -87,6 +84,14 @@ public sealed partial class SkillsSystem
                 break;
 
             _lang.AddSpokenLanguage(uid, _random.PickAndTake(langs).ID, LanguageKnowledge.BadSpeak);
+        }
+
+        if (level < 20)
+            return;
+
+        foreach (var item in _proto.EnumeratePrototypes<LanguagePrototype>().Where(x => x.HighIntelligenceAllowed && !_lang.CanSpeak(uid, x)))
+        {
+            _lang.AddSpokenLanguage(uid, item.ID, LanguageKnowledge.Speak);
         }
     }
 

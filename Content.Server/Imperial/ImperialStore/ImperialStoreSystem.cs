@@ -7,9 +7,10 @@ using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
 using System.Linq;
 using Content.Shared.Imperial.ImperialStore;
+using Robust.Shared.Configuration;
+using Content.Shared.Imperial.ICCVar;
 
 namespace Content.Server.Imperial.ImperialStore;
 
@@ -19,8 +20,12 @@ namespace Content.Server.Imperial.ImperialStore;
 /// </summary>
 public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
 {
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+    private TimeSpan _balanceUpdateTimer;
+    public TimeSpan BalanceUpdateInterval = TimeSpan.FromSeconds(30);
 
     public override void Initialize()
     {
@@ -37,6 +42,27 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
         InitializeUi();
         InitializeCommand();
         InitializeRefund();
+
+        Subs.CVar(_cfg, ICCVars.StoreBalanceUpdateInterval, value => BalanceUpdateInterval = value, true);
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        _balanceUpdateTimer += TimeSpan.FromSeconds(frameTime);
+
+        if (_balanceUpdateTimer <= BalanceUpdateInterval)
+            return;
+
+        _balanceUpdateTimer = TimeSpan.Zero;
+
+        var query = EntityQueryEnumerator<ImperialStoreComponent>();
+        while (query.MoveNext(out var uid, out var store))
+        {
+            store.Balance = CurrencySum(store.Balance, store.BonusSum);
+            UpdateUserInterface(null, uid, store);
+        }
     }
 
     private void OnMapInit(EntityUid uid, ImperialStoreComponent component, MapInitEvent args)
@@ -76,6 +102,7 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
         if (ev.Cancelled)
             return;
 
+        //not adding to deposits to prevent duping
         args.Handled = TryAddCurrency(GetCurrencyValue(uid, component), args.Target.Value, store);
 
         if (args.Handled)
@@ -103,6 +130,27 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
     }
 
     /// <summary>
+    /// Returns the sum of 'currency1' and 'currency2' (or their difference if 'subtract' is set).
+    /// </summary>
+    public Dictionary<string, FixedPoint2> CurrencySum(
+        Dictionary<string, FixedPoint2> currency1,
+        Dictionary<string, FixedPoint2> currency2,
+        bool subtract = false)
+    {
+        Dictionary<string, FixedPoint2> result = [];
+        IEnumerable<string> keys = currency1.Keys.Union(currency2.Keys);
+
+        foreach (string currency in keys)
+        {
+            FixedPoint2 value1 = currency1.GetValueOrDefault(currency);
+            FixedPoint2 value2 = currency2.GetValueOrDefault(currency);
+            result[currency] = subtract ? value1 - value1 : value1 + value2;
+        }
+
+        return result;
+    }
+
+    /// <summary>
     /// Gets the value from an entity's currency component.
     /// Scales with stacks.
     /// </summary>
@@ -113,6 +161,19 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
     {
         var amount = EntityManager.GetComponentOrNull<StackComponent>(uid)?.Count ?? 1;
         return component.Price.ToDictionary(v => v.Key, p => p.Value * amount);
+    }
+
+    //exists solely because whoever made store system couldn't settle on using just strings or just entprotoid
+    public Dictionary<string, FixedPoint2> ConvertCurrency(Dictionary<EntProtoId, FixedPoint2> currency)
+    {
+        Dictionary<string, FixedPoint2> convertedCurrency = [];
+
+        foreach ((EntProtoId k, FixedPoint2 v) in currency)
+        {
+            convertedCurrency[k.ToString()] = v;
+        }
+
+        return convertedCurrency;
     }
 
     /// <summary>
@@ -128,7 +189,13 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
     {
         if (!Resolve(currencyEnt, ref currency) || !Resolve(storeEnt, ref store))
             return false;
+
         return TryAddCurrency(GetCurrencyValue(currencyEnt, currency), storeEnt, store);
+    }
+
+    public bool TryAddCurrency(Dictionary<EntProtoId, FixedPoint2> currency, EntityUid uid, ImperialStoreComponent? store = null)
+    {
+        return TryAddCurrency(ConvertCurrency(currency), uid, store);
     }
 
     /// <summary>
@@ -150,13 +217,34 @@ public sealed partial class ImperialStoreSystem : SharedImperialStoreSystem
                 return false;
         }
 
-        foreach (var type in currency)
+        store.Balance = CurrencySum(store.Balance, currency);
+        UpdateUserInterface(null, uid, store);
+        return true;
+    }
+
+    public bool TryAddBonus(Dictionary<EntProtoId, FixedPoint2> currency, EntityUid uid, ImperialStoreComponent? store = null)
+    {
+        return TryAddBonus(ConvertCurrency(currency), uid, store);
+    }
+
+    public bool TryAddBonus(Dictionary<string, FixedPoint2> currency, EntityUid uid, ImperialStoreComponent? store = null)
+    {
+        if (!Resolve(uid, ref store))
+            return false;
+
+        if (store.BonusCount > 0)
         {
-            if (!store.Balance.TryAdd(type.Key, type.Value))
-                store.Balance[type.Key] += type.Value;
+            store.LastBonusIndex = --store.LastBonusIndex < 0 ? store.BonusCount - 1 : store.LastBonusIndex;
+            store.Bonuses[store.LastBonusIndex] = currency;
+            store.BonusSum.Clear();
+
+            foreach (Dictionary<string, FixedPoint2> bonus in store.Bonuses)
+            {
+                if (bonus != null)
+                    store.BonusSum = CurrencySum(store.BonusSum, bonus);
+            }
         }
 
-        UpdateUserInterface(null, uid, store);
         return true;
     }
 

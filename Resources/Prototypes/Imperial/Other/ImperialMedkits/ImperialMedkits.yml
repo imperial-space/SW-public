@@ -153,8 +153,8 @@
       - id: AntiPoisonMedipen
       - id: SyringeIpecac
       - id: SyringeEthylredoxrazine
-      - id: PillCanister
-        amount: 2
+      - id: PillCanisterCharcoal
+      - id: PillCanisterDylovene
       - id: AmpulaDylo
         amount: 2
 
@@ -565,7 +565,7 @@
     grid:
     - 0,0,5,1
   - type: Item
-    size: Large
+    size: Normal
     sprite: Imperial/Other/ImperialMedkits/combatmedkit.rsi
     heldPrefix: cobmat
   - type: Tag

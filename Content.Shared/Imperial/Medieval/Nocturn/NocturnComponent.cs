@@ -7,6 +7,7 @@ using Content.Shared.DoAfter;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 using Content.Shared.Alert;
+using Content.Shared.Chat.TypingIndicator;
 
 namespace Content.Shared.Nocturn.Components
 {
@@ -39,6 +40,12 @@ namespace Content.Shared.Nocturn.Components
         public float FreshDrinkTimer = 0f;
         public float defaultWalkSpeed;
         public float defaultSprintSpeed;
+
+        [DataField]
+        public ProtoId<TypingIndicatorPrototype> TypingIndicatorPrototypeBase = "default";
+
+        [DataField]
+        public ProtoId<TypingIndicatorPrototype> TypingIndicatorPrototypeMod = "drou";
 
         public ProtoId<AlertPrototype> BloodAlert = "NocturnBlood";
 

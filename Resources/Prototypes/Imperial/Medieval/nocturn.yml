@@ -177,6 +177,7 @@
 - type: typingIndicator
   id: drou
   typingState: drou
+  idleState: drou
   offset: 0, 0.0625
 
 - type: entity
@@ -270,6 +271,9 @@
     maxManaRaceModifier: 0.95
     regenRaceModifier: 0.95
   - type: Nocturn
+  - type: LocalLight
+    energy: 0.22
+    radius: 3.5
   #- type: Thieving
   #  stripTimeReduction: 1.5
   #  stealthy: false

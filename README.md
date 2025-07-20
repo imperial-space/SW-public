@@ -10,7 +10,7 @@ This repository is for accepting voluntary contributions in support of [Spellwar
 ## Spellward License RUS
 
 Этот репозиторий представляет собой глобальную конверсию на игру Space Station 14. Практически все изменения, внесенные в оригинальную игру, защищены лицензиями [ICLA](https://wiki.imperialspace.net/icla) и [IELA](https://wiki.imperialspace.net/iela). Поэтому использование сборки в целях хостинга серверов без письменного разрешения правообладателя запрещено и отслеживается.
-В этом репозитории содержится в том числе код оригинальной игры, который защищен лицензией [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT). Помимо этого, в этом репозитории содержится контент, защищенный лицензями [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/). 
+В этом репозитории содержится в том числе код оригинальной игры, который защищен лицензией [MIT](https://github.com/space-wizards/space-station-14/blob/master/LICENSE.TXT). Помимо этого, в этом репозитории содержится контент, защищенный лицензями [CC-BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/).
 Все ассеты имеют собственную лицензию, указанную в файле metadata. [Пример](https://github.com/imperial-space/SW-public/blob/develop/Resources/Textures/Imperial/Medieval/Clothing/Armor/brigantin.rsi/meta.json)
 
 ## Spellward License ENG
@@ -21,9 +21,18 @@ Assets have their license and the copyright in the metadata file. [Example](http
 
 ## Building
 
-1. Clone this repo.
-2. Run `RUN_THIS.py` to init submodules and download the engine.
-3. Compile the solution.
+1. Clone this repo:
+```shell
+git clone https://github.com/space-wizards/space-station-14.git
+```
+2. Go to the project folder and run `RUN_THIS.py` to initialize the submodules and load the engine:
+```shell
+cd space-station-14
+python RUN_THIS.py
+```
+3. Compile the solution:
+
+Build the server using `dotnet build`.
 
 [More detailed instructions on building the project.](https://docs.spacestation14.com/en/general-development/setup.html)
 

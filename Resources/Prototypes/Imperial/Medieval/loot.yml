@@ -288,10 +288,6 @@
     contents:
       - id: MedievalChemistryRecipe
         prob: 0.1
-      - id: MedievalScrollBarrierWeak
-        prob: 0.15
-      - id: MedievalScrollBarrierNormal
-        prob: 0.005
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalLockpickPack
@@ -334,6 +330,8 @@
         prob: 0.1
       - id: MedievalRepairStone
         prob: 0.05
+      - id: MedievalScrollBarrier
+        prob: 0.12
       - id: MedievalDrugChemistryBottle
         prob: 0.04
       - id: MedievalBrutepack
@@ -731,27 +729,27 @@
       - id: MedievalClothingHeadHelmetExecutor1
         prob: 0.03
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent5
-        prob: 0.3
+        prob: 0.15
       - id: MedievalRevent10
-        prob: 0.085
+        prob: 0.045
 
 - type: entity
   parent: MedievalCrateGeneric
@@ -784,14 +782,6 @@
   #  prototype: MedievalChestWithLoot2
   - type: StorageFill
     contents:
-      - id: MedievalScrollBarrierWeak
-        prob: 0.25
-      - id: MedievalScrollBarrierWeak
-        prob: 0.25
-      - id: MedievalScrollBarrierWeak
-        prob: 0.2
-      - id: MedievalScrollBarrierNormal
-        prob: 0.4
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
@@ -1210,14 +1200,16 @@
         prob: 0.07
       - id: MedievalKnut
         prob: 0.09
+      - id: MedievalScrollBarrier
+        prob: 0.25
       - id: MedaljonDark
-        prob: 0.03
+        prob: 0.015
       - id: MedaljonExpl
-        prob: 0.02
+        prob: 0.01
       - id: MedaljonNoslip
-        prob: 0.02
+        prob: 0.01
       - id: MedaljonFlashImmune
-        prob: 0.07
+        prob: 0.035
       - id: MedievalRevent
         prob: 0.1
       - id: MedievalRevent
@@ -1280,26 +1272,6 @@
   #  prototype: MedievalChestWithLoot3
   - type: StorageFill
     contents:
-      - id: MedievalScrollBarrierWeak
-        prob: 0.4
-      - id: MedievalScrollBarrierWeak
-        prob: 0.4
-      - id: MedievalScrollBarrierWeak
-        prob: 0.15
-      - id: MedievalScrollBarrierWeak
-        prob: 0.03
-      - id: MedievalScrollBarrierWeak
-        prob: 0.03
-      - id: MedievalScrollBarrierNormal
-        prob: 0.01
-      - id: MedievalScrollBarrierNormal
-        prob: 0.1
-      - id: MedievalScrollBarrierNormal
-        prob: 0.2
-      - id: MedievalScrollBarrierGood
-        prob: 0.07
-      - id: MedievalScrollBarrierDebug
-        prob: 0.01
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
@@ -1442,6 +1414,12 @@
         prob: 0.04
       - id: MedievalBanjoInstrument
         prob: 0.1
+      - id: MedievalScrollBarrier
+        prob: 0.6
+      - id: MedievalScrollBarrier
+        prob: 0.6
+      - id: MedievalScrollBarrier
+        prob: 0.6
       - id: MedievalShovel
         prob: 0.03
       #- id: MedievalWrench
@@ -1643,13 +1621,13 @@
       - id: MedievalKnut
         prob: 0.09
       - id: MedaljonDark
-        prob: 0.07
+        prob: 0.035
       - id: MedaljonExpl
-        prob: 0.03
+        prob: 0.015
       - id: MedaljonNoslip
-        prob: 0.03
+        prob: 0.015
       - id: MedaljonFlashImmune
-        prob: 0.09
+        prob: 0.045
       - id: MedievalIngotGold
         prob: 0.7
       - id: MedievalIngotGold
@@ -1661,11 +1639,11 @@
       - id: MedievalIngotGold
         prob: 0.7
       - id: MedaljonSpeed
-        prob: 0.08
+        prob: 0.04
       - id: MedaljonMana
-        prob: 0.08
+        prob: 0.04
       - id: MedaljonDef
-        prob: 0.09
+        prob: 0.045
       #- id: MedaljonThieving
       #  prob: 0.15
       - id: MedievalShoesSpeed
@@ -1842,8 +1820,6 @@
   #  prototype: MedievalChestWithLoot4
   - type: StorageFill
     contents:
-      - id: MedievalScrollBarrierWeak
-        prob: 0.15
       - id: MedievalClothingUniformJumpsuitShitCloth24
         prob: 0.02
       - id: MedievalCoinBag
@@ -1878,6 +1854,8 @@
         prob: 0.075
       - id: MedievalPaper
         prob: 0.22
+      - id: MedievalScrollBarrier
+        prob: 0.05
       - id: MedievalRepairStone
         prob: 0.05
       - id: MedievalPen
@@ -1941,22 +1919,22 @@
       - id: MedievalClothingUniformJumpsuitShitCloth1
         prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent
-        prob: 0.1
+        prob: 0.05
       - id: MedievalRevent5
-        prob: 0.06
+        prob: 0.03
       - id: MedievalRevent5
-        prob: 0.06
+        prob: 0.03

@@ -192,6 +192,8 @@
     damage:
       types:
         Blunt: 6 # imperial medieval start
+  - type: RDWeight
+    value: 3
   - type: QuestItem
     contractName: "бревна"  # imperial medieval end
   - type: Produce
@@ -449,6 +451,8 @@
   - type: Extractable
     grindableSolutionName: food
   - type: SpaceGarbage
+  - type: Food
+    requiresSpecialDigestion: true
 
 - type: entity
   name: baked banana peel
@@ -1324,6 +1328,7 @@
   - type: Tag
     tags:
     - Vegetable
+    - Mushroom
 
 # Slices
 
@@ -1635,6 +1640,9 @@
     entries:
       Taco: Lingzhi
       Burger: Lingzhi
+  - type: Tag
+    tags:
+    - Mushroom
 
 - type: entity
   name: ambrosia vulgaris
@@ -1856,6 +1864,9 @@
     entries:
       Taco: FlyAmanita
       Burger: FlyAmanita
+  - type: Tag
+    tags:
+    - Mushroom
 
 - type: entity
   name: gatfruit
@@ -2591,6 +2602,9 @@
     tags:
     - ClothMade
     - CottonBoll
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: CottonBol
 
 - type: entity
   name: pyrotton boll
@@ -2624,6 +2638,9 @@
     - CottonBoll
   - type: Extractable
     grindableSolutionName: food
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PyrottonBol
 
 - type: entity
   name: cherry

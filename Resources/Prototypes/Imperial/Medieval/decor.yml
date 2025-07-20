@@ -8,6 +8,15 @@
 
 - type: entity
   parent: MedievalPosterBase
+  id: MedievalPosterTeamBasedKayot
+  name: настенное знамя разбойников койота
+  description: Народ сильных и бесстрашных налётчиков, никто не может остановить их атаку. В их гербе изображён койот на светло-песочном фоне, олицетворяющий силу и устрашаемость.
+  components:
+  - type: Sprite
+    state: kayot
+
+- type: entity
+  parent: MedievalPosterBase
   id: MedievalPosterTeamBasedBlul
   name: "Free Tonto"
   components:
@@ -1186,6 +1195,12 @@
   name: MedievalMedicalBed
   description: MedievalMedicalBed
   components:
+  - type: Strap
+    buckleTime: 0.5
+    unbuckleTime: 0.5
+  - type: Buckle
+  - type: BloodRegenBed
+    bloodRegenMultiplier: 2.0
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: bed
@@ -1206,6 +1221,12 @@
   name: MedievalMedicalBed2
   description: MedievalMedicalBed2
   components:
+  - type: Strap
+    buckleTime: 0.5
+    unbuckleTime: 0.5
+  - type: Buckle
+  - type: BloodRegenBed
+    bloodRegenMultiplier: 5.0
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: bed2

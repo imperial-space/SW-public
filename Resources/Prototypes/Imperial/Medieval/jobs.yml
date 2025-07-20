@@ -945,8 +945,6 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
-      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1009,8 +1007,6 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
-      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1063,8 +1059,6 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
-      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1389,8 +1383,6 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
-      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: BadSmell
@@ -1431,8 +1423,6 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
-      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: LegionTrader
     - type: GiveItemObjective
@@ -1533,8 +1523,6 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
-      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: InsurgencyTrader
     - type: GiveItemObjective
@@ -1599,8 +1587,6 @@
     - type: AddActionOnSpawn
       actions:
       - MedievalActionDivineTouchBeginner
-    - type: Friends
-      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
     - type: GiveItemObjective
@@ -1808,10 +1794,9 @@
     - type: Mana
       maxMana: 140
       regen: 0.4
-    - type: Friends
-      faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: Default
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -2420,6 +2405,7 @@
     #  faction: Legion
     - type: MedievalJobSpawn
       spawnType: Legion
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -2989,6 +2975,7 @@
     #  faction: Insurgency
     - type: MedievalJobSpawn
       spawnType: Insurgency
+    - type: MagicRuneKnowledge
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
@@ -3361,6 +3348,267 @@
   - MedievalTrinkets3
   - MedievalGlovesWithIron
 
+# MEDIEVAL BANDIT KAYOT RECRUIT
+
+- type: startingGear
+  id: MedievalKayotRecruitGear
+  equipment:
+    pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallKayot
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth71
+    shoes: MedievalClothingShoesDeserd
+    mask: MedievalMaskFace
+    head: MedievalClothingHeadHelmetHood
+    neck: MedievalClothingNeckCloakClanKayot
+    id: MedievalKeyKayot
+
+- type: playTimeTracker
+  id: JobMedievalKayotRecruit
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalKayotRecruit
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: kayot_molodnyak
+  jobName: Молодняк
+
+- type: job
+  id: MedievalKayotRecruit
+  name: Молодняк
+  description: Самый неопытный разбойник в банде.
+  playTimeTracker: JobMedievalKayotRecruit
+  #requirements:
+  #  - !type:OverallPlaytimeRequirement
+  #    time: 6000 #Imperial role timers
+  startingGear: MedievalKayotRecruitGear
+  icon: "JobIconMedievalKayotRecruit"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-band
+    - type: Friends
+      faction: Kayot
+      factionMenuAction: KayotFactionMenuAction
+    #- type: IdentityFaction
+    #  faction: Bandit
+    - type: MedievalJobSpawn
+      spawnType: Kayot
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective300500
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Молодняк банды[/color]"
+      pasport: "no"
+      jobPrefix: "[МолБ]"
+
+- type: roleLoadout
+  id: JobMedievalKayotRecruit
+  groups:
+  - MedievalBackpack
+  - MedievalBelt
+  - MedievalTrinkets
+  - MedievalGloves
+
+# MEDIEVAL BANDI KAYOT REGULAR
+
+- type: startingGear
+  id: MedievalKayotRegularGear
+  equipment:
+    pocket1: MedievalRevent25
+    pocket2: MedievalCommsCrystallKayot
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth71
+    shoes: MedievalClothingShoesDeserd
+    mask: MedievalMaskFace
+    head: MedievalClothingHeadHelmetBand1
+    neck: MedievalClothingNeckCloakClanKayot
+    id: MedievalKeyKayot
+
+- type: playTimeTracker
+  id: JobMedievalKayotRegular
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalKayotRegular
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: kayot_bivalit
+  jobName: job-name-KayotRegular-medieval
+
+- type: job
+  id: MedievalKayotRegular
+  name: Бывалый разбойник
+  description: Обычный член банды с хоть каким-то опытом.
+  playTimeTracker: JobMedievalKayotRegular
+  #requirements:
+  #  - !type:DepartmentTimeRequirement
+  #    department: Band
+  #    time: 3600 #Imperial role timers
+  startingGear: MedievalKayotRegularGear
+  icon: "JobIconMedievalKayotRegular"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-band
+    - type: Friends
+      faction: Kayot
+      factionMenuAction: KayotFactionMenuAction
+    #- type: IdentityFaction
+    #  faction: Bandit
+    - type: MedievalJobSpawn
+      spawnType: Kayot
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Бывалый разбойник банды[/color]"
+      pasport: "no"
+      jobPrefix: "[БывБ]"
+
+- type: roleLoadout
+  id: JobMedievalKayotRegular
+  groups:
+  - MedievalBackpack
+  - MedievalBelt
+  - MedievalTrinkets
+  - MedievalGloves
+
+# MEDIEVAL BANDIT VETERAN
+
+- type: startingGear
+  id: MedievalKayotVeteranGear
+  equipment:
+    pocket1: MedievalRevent50
+    pocket2: MedievalCommsCrystallKayot
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth71
+    shoes: MedievalClothingShoesDeserd
+    mask: MedievalMaskFace
+    head: MedievalClothingHeadHelmetBand2
+    neck: MedievalClothingNeckCloakClanKayot
+    id: MedievalKeyKayot
+
+- type: playTimeTracker
+  id: JobMedievalKayotVeteran
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalKayotVeteran
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: kayot_veteran
+  jobName: job-name-KayotVeteran-medieval
+
+- type: job
+  id: MedievalKayotVeteran
+  sponsorsOnly: true
+  name: Ветеран
+  description: Правая рука главаря. Разбойник, прошедший немало боев.
+  playTimeTracker: JobMedievalKayotVeteran
+  #requirements:
+  #  - !type:DepartmentTimeRequirement
+  #    department: Band
+  #    time: 7200 #Imperial role timers
+  startingGear: MedievalKayotVeteranGear
+  icon: "JobIconMedievalKayotVeteran"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-band
+    - type: Friends
+      faction: Kayot
+      factionMenuAction: KayotFactionMenuAction
+    #- type: IdentityFaction
+    #  faction: Bandit
+    - type: MedievalJobSpawn
+      spawnType: Kayot
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Ветеран банды[/color]"
+      pasport: "no"
+      jobPrefix: "[ВетБ]"
+
+- type: roleLoadout
+  id: JobMedievalKayotVeteran
+  groups:
+  - MedievalBackpack
+  - MedievalBelt
+  - MedievalTrinkets3
+  - MedievalGlovesWithIron
+
+# MEDIEVAL BANDIT LEADER
+
+- type: startingGear
+  id: MedievalKayotLeaderGear
+  equipment:
+    eyes: ClothingEyesEyepatch
+    pocket1: MedievalRevent50
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth71
+    shoes: MedievalClothingShoesDeserd
+    mask: MedievalMaskFace
+    head: MedievalClothingHeadHelmetBand3
+    neck: MedievalClothingNeckCloakClanKayot
+    id: MedievalKeyKayot
+
+- type: playTimeTracker
+  id: JobMedievalKayotLeader
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalKayotLeader
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: kayot_leader
+  jobName: job-name-KayotLeader-medievals
+
+- type: job
+  id: MedievalKayotLeader
+  name: Главарь шайки
+  description: Руководите шайкой разбойников, богайтейте.
+  playTimeTracker: JobMedievalKayotLeader
+  #requirements:
+  #  - !type:DepartmentTimeRequirement
+  #    department: Band
+  #    time: 7200 #Imperial role timers
+  startingGear: MedievalKayotLeaderGear
+  icon: "JobIconMedievalKayotLeader"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-band
+    - type: Friends
+      faction: Kayot
+      factionMenuAction: KayotFactionMenuAction
+      menuAccess: Full
+      priority: 2
+    #- type: IdentityFaction
+    #  faction: Bandit
+    - type: MedievalJobSpawn
+      spawnType: Kayot
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective5001000
+    - type: MedievalPasportPerson
+      personJob: "[color=gray]Главарь шайки[/color]"
+      pasport: "no"
+      jobPrefix: "[ГлБ]"
+    - type: CloackMessage
+      action: CloackMessageActionKayot
+      faction: "kayot"
+
+- type: roleLoadout
+  id: JobMedievalKayotLeader
+  groups:
+  - MedievalBackpack
+  - MedievalBelt
+  - MedievalTrinkets3
+  - MedievalGlovesWithIron
+
 # MEDIEVAL MERC REGULAR
 
 - type: startingGear
@@ -3561,6 +3809,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
+    - type: MagicRuneKnowledge
     - type: MedievalPasportPerson
       personJob: "[color=purple]Послушник коллегии[/color]"
       pasport: MedievalPasportCollegium
@@ -3641,6 +3890,7 @@
       personJob: "[color=purple]Маг коллегии[/color]"
       pasport: MedievalPasportCollegium
       jobPrefix: "[МагК]"
+    - type: MagicRuneKnowledge
 
 - type: roleLoadout
   id: JobMedievalCollegiumCommon
@@ -3723,6 +3973,7 @@
     - type: CloackMessage
       action: CloackMessageActionCollegium
       faction: "collegium"
+    - type: MagicRuneKnowledge
 
 - type: roleLoadout
   id: JobMedievalCollegiumLeader
@@ -3984,10 +4235,6 @@
     - type: Access
       tags:
       - ImperialLibrary
-    - type: Friends
-      faction: Voluntary
-    #- type: IdentityFaction
-    #  faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: LegionTrader
     - type: MedievalTradeCurse
@@ -4014,7 +4261,7 @@
 - type: roleLoadout
   id: JobMedievalTrader
   groups:
-  - TraderHead
+  - SouthTraderHead
   - TraderJumpsuit
   - MedievalBackpack
   - MedievalShoes
@@ -4106,10 +4353,6 @@
     - type: Access
       tags:
       - ImperialLibrary
-    - type: Friends
-      faction: Voluntary
-    #- type: IdentityFaction
-    #  faction: Voluntary
     - type: MedievalJobSpawn
       spawnType: InsurgencyTrader
     - type: MedievalTradeCurse
@@ -4136,7 +4379,7 @@
 - type: roleLoadout
   id: JobMedievalTraderN
   groups:
-  - TraderHead
+  - NordTraderHead
   - TraderJumpsuit
   - MedievalBackpack
   - MedievalShoes
@@ -4146,7 +4389,7 @@
   - MedievalGloves
 
 - type: loadoutGroup
-  id: TraderHead
+  id: SouthTraderHead
   name: loadout-group-traveller-head
   minLimit: 0
   loadouts:
@@ -4160,6 +4403,24 @@
   - MedievalFeatherHat
   - MedievalWanderHat
   - MedievalGreenHat
+  - MedievalTraderLegionHat
+
+- type: loadoutGroup
+  id: NordTraderHead
+  name: loadout-group-traveller-head
+  minLimit: 0
+  loadouts:
+  - TraderMedievalClothingHeadCloth
+  - ClothingHeadHatCowboyBrown
+  - MedievalClothingHeadFurHatLoadout
+  - MedievalStrawHat #New Hats
+  - MedievalMotleyHat
+  - MedievalWreath
+  - MedievalGrayHat
+  - MedievalFeatherHat
+  - MedievalWanderHat
+  - MedievalGreenHat
+  - MedievalTraderFoxHat
 
 
 - type: loadout
@@ -4169,6 +4430,22 @@
     proto: TradersTimer5hours
   equipment:
     outerClothing: MedievalClothingHeadCloth
+
+- type: loadout
+  id: MedievalTraderLegionHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer50hours
+  equipment:
+    head: MedievalTraderLegionHat
+
+- type: loadout
+  id: MedievalTraderFoxHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: TradersTimer50hours
+  equipment:
+    head: MedievalTraderFoxHat
 
 # MEDIEVAL Miner REGULAR
 
@@ -4708,6 +4985,13 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
+    - type: Friends
+      faction: Village
+      factionMenuAction: VillageFactionMenuAction
+    - type: MedievalPasportPerson
+      personJob: "Деревенщина"
+      pasport: "no"
+      jobPrefix: "[Дер]"
     - type: MedievalJobSpawn
       spawnType: Village
     - type: GiveItemObjective
@@ -4755,6 +5039,13 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
+    - type: Friends
+      faction: Village
+      factionMenuAction: VillageFactionMenuAction
+    - type: MedievalPasportPerson
+      personJob: "Ополчение деревни"
+      pasport: "no"
+      jobPrefix: "[ОпД]"
     - type: MedievalJobSpawn
       spawnType: Village
     - type: GiveItemObjective
@@ -4814,6 +5105,15 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
+    - type: Friends
+      faction: Village
+      factionMenuAction: VillageFactionMenuAction
+      menuAccess: Full
+      priority: 2
+    - type: MedievalPasportPerson
+      personJob: "Старейшина деревни"
+      pasport: "no"
+      jobPrefix: "[СтД]"
     - type: MedievalJobSpawn
       spawnType: Village
     - type: GiveItemObjective

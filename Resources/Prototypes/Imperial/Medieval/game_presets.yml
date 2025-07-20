@@ -1,0 +1,42 @@
+- type: gamePreset
+  id: Medieval
+  alias:
+  - medieval
+  name: medieval-title
+  showInVote: true
+  description: medieval-description
+  rules:
+  - TDM
+  - MedievalStatsCounter
+
+- type: gamePreset
+  id: MedievalDevelop
+  alias:
+  - medievaldevelop
+  name: medieval-title
+  showInVote: false
+  description: medieval-description
+
+- type: gamePreset
+  id: MedievalMyrmex
+  alias:
+  - medievalmyrmex
+  name: medieval-myrmex-title
+  showInVote: true
+  description: medieval-myrmex-description
+  rules:
+  - TDM
+  - Myrmex
+  - MedievalStatsCounter
+
+- type: gamePreset
+  id: MedievalSkeletron
+  alias:
+  - medievalskeletron
+  name: medieval-skeletron-title
+  description: medieval-skeletron-description 
+  showInVote: true
+  rules:
+  - TDM
+  - MedievalStatsCounter
+  - MedievalSkeletonInvasionRule

@@ -16,6 +16,8 @@
   id: MedievalKotel
   parent: BaseItem
   components:
+  - type: RDWeight
+    value: 4
   - type: MeleeWeapon
     soundNoDamage:
       path: "/Audio/Effects/Fluids/splat.ogg"
@@ -141,6 +143,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: bitter
   color: "#FFC8C8"
 
@@ -168,6 +172,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#215263"
   abstract: true
@@ -187,6 +193,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#0041a8"
   abstract: true
@@ -204,6 +212,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#a1000b"
   boilingPoint: 78.2 # This isn't a real chemical...
@@ -250,6 +260,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#00ff5f"
   boilingPoint: 340282300000000000000000000000000000000 # Ethidium bromide, which doesn't boil.
@@ -281,6 +293,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -304,6 +318,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -318,6 +334,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -333,6 +351,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -348,6 +368,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -365,6 +387,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#FFC8C8"
   abstract: true
@@ -392,6 +416,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#FFC8C8"
   abstract: true
@@ -420,6 +446,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -436,6 +464,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -452,6 +482,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -468,6 +500,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -486,6 +520,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -525,6 +561,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -541,6 +579,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -563,6 +603,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -587,6 +629,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -638,6 +682,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#215263"
   abstract: true
@@ -657,6 +703,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -670,6 +718,8 @@
 
 - type: reagent
   id: medievaladvancedhealpiercing
+  evaporationSpeed: 0.3
+  absorbent: true
   name: ""
   desc: ""
   physicalDesc: ""
@@ -686,6 +736,8 @@
 
 - type: reagent
   id: medievaladvancedhealblunt
+  evaporationSpeed: 0.3
+  absorbent: true
   name: ""
   desc: ""
   physicalDesc: ""
@@ -705,6 +757,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#215263"
   abstract: true
@@ -723,6 +777,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#a1000b"
   boilingPoint: 78.2 # This isn't a real chemical...
@@ -771,6 +827,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -786,6 +844,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -801,6 +861,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -818,6 +880,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -840,6 +904,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -858,6 +924,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#9A040E"
   abstract: true
@@ -908,6 +976,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -932,6 +1002,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -946,6 +1018,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#FFC8C8"
   reactiveEffects:
@@ -1009,6 +1083,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -1041,6 +1117,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true
@@ -1063,6 +1141,8 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
   flavor: ""
   color: "#63806e"
   abstract: true

@@ -9,6 +9,7 @@ using Robust.Shared.Timing;
 using Content.Shared.Humanoid;
 using Content.Shared.Damage;
 using Content.Server.MagicBarrier.Components;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server.MagicPotionsMaker
 {
@@ -113,7 +114,7 @@ namespace Content.Server.MagicPotionsMaker
                 if (TryComp<MedievalSpikeTargetComponent>(entity, out var target) && target.Enabled && _mobState.IsAlive(entity))
                 {
                     _damageableSystem.TryChangeDamage(entity, comp.SpikeDamage, false, true);
-                    foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+                    foreach (var barrier in EntityManager.EntityQuery<RoundStatCounterRuleComponent>())
                     {
                         barrier.SpikeTrapActiveted++;
                     }

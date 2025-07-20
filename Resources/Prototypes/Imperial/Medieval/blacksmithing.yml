@@ -11,6 +11,8 @@
   id: MedievalHammerBlacksmith
   description: An ancient war blade.
   components:
+  - type: RDWeight
+    value: 2
   - type: Sharp
   - type: Tag
     tags:
@@ -20,6 +22,7 @@
     state: icon
   - type: MeleeWeapon
     attackRate: 1
+    wideAnimationRotation: -140
     damage:
       types:
         Blunt: 6
@@ -29,7 +32,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 7
+        Blunt: 12
   - type: Tool
     qualities:
       - MedievalBlacksmithing

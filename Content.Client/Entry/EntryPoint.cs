@@ -21,6 +21,7 @@ using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Singularity;
 using Content.Client.Stylesheets;
+using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared.Ame.Components;
@@ -78,6 +79,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsors
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
         [Dependency] private readonly CharacterBlockManager _characterBlock = default!; // Imperial medieval edit1
+        [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
 
         public override void Init()
         {
@@ -236,6 +238,15 @@ namespace Content.Client.Entry
             if (level == ModUpdateLevel.FramePreEngine)
             {
                 _debugMonitorManager.FrameUpdate();
+            }
+
+            if (level == ModUpdateLevel.PreEngine)
+            {
+                if (_baseClient.RunLevel is ClientRunLevel.InGame or ClientRunLevel.SinglePlayerGame)
+                {
+                    var updateSystem = _entitySystemManager.GetEntitySystem<BuiPreTickUpdateSystem>();
+                    updateSystem.RunUpdates();
+                }
             }
         }
     }

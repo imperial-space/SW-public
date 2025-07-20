@@ -54,6 +54,17 @@
   - type: CultClothing
 
 - type: entity
+  parent: MedievalClothingOuterArmorCult
+  id: MedievalClothingOuterAltArmorCult
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorCultMana
   name: leather armor
@@ -68,12 +79,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.6
-        Slash: 0.66
-        Piercing: 0.55
-        Heat: 0.5
-        Cold: 0.45
-        Stamina: 0.7
+        Blunt: 0.8
+        Slash: 0.83
+        Piercing: 0.77
+        Heat: 0.75
+        Cold: 0.72
+        Stamina: 0.85
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -83,11 +94,24 @@
   - type: CultClothing
 
 - type: entity
+  parent: MedievalClothingOuterArmorCultMana
+  id: MedievalClothingOuterAltArmorCultMana
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_mana.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_mana.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorCultUp
   name: leather armor
   description: An armored vest with fur plates to protect against melee weapons.
   components:
+  - type: RDWeight
+    value: 12
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Armor/cult_armor_up.rsi
   - type: Clothing
@@ -104,14 +128,24 @@
         Cold: 0.75
         Stamina: 0.45 ## Stamina resistance
   - type: ClothingSpeedModifier
-    walkModifier: 0.86
-    sprintModifier: 0.86
+    walkModifier: 0.93
+    sprintModifier: 0.93
   - type: Item
     size: Normal
   - type: ExplosionResistance
-    damageCoefficient: 0.82
+    damageCoefficient: 0.45
   - type: CultClothing
 
+- type: entity
+  parent: MedievalClothingOuterArmorCultUp
+  id: MedievalClothingOuterAltArmorCultUp
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_up.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_up.rsi
 
 - type: entity
   parent: ClothingOuterBase
@@ -128,12 +162,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.55
-        Slash: 0.5
-        Piercing: 0.45
-        Heat: 0.56
-        Cold: 0.65
-        Stamina: 0.75 ## Stamina resistance
+        Blunt: 0.77
+        Slash: 0.75
+        Piercing: 0.73
+        Heat: 0.78
+        Cold: 0.85
+        Stamina: 0.87 ## Stamina resistance
   - type: ClothingSpeedModifier
     walkModifier: 0.94
     sprintModifier: 0.94
@@ -144,6 +178,17 @@
   - type: ManaRegen
     regen: 1
   - type: CultClothing
+
+- type: entity
+  parent: MedievalClothingOuterArmorCultLeader
+  id: MedievalClothingOuterAltArmorCultLeader
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_leader.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor_leader.rsi
 
 - type: entity
   parent: ClothingShoesBase
@@ -157,6 +202,17 @@
     sprite: Imperial/Medieval/Clothing/Shoes/cult_shoes.rsi
 
 - type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingAltShoesCult
+  name: galoshes
+  description: Rubber boots.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/cult_altshoes.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/cult_altshoes.rsi
+
+- type: entity
   parent: ClothingHandsBase
   id: MedievalGlovesCult
   name: IronGloves
@@ -166,6 +222,17 @@
     sprite: Imperial/Medieval/Clothing/Gloves/cult_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/cult_gloves.rsi
+
+- type: entity
+  parent: ClothingHandsBase
+  id: MedievalAltGlovesCult
+  name: IronGloves
+  description: gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/cult_altgloves.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/cult_altgloves.rsi
 
 - type: entity
   parent: ClothingHeadBase
@@ -199,6 +266,28 @@
     slots:
     - Hair
   - type: CultClothing
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCult
+  id: MedievalClothingHeadAltHelmetCult
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/altcult.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/altcult.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCult
+  id: MedievalClothingHeadAltHelmetCultLeader
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/altcult_leader.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/altcult_leader.rsi
 
 - type: entity
   name: dagger

@@ -1,3 +1,5 @@
+using Content.Shared.Interaction.Components;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Content.Shared.SSDIndicator;
 using Robust.Shared.Network;
@@ -25,6 +27,10 @@ public partial class AntiStealAfkSystem : EntitySystem
         if (TryComp<AntiStealAfkComponent>(target, out var comp))
             if (TryComp<SSDIndicatorComponent>(target, out var ssd) && ssd.IsSSD)
             {
+                if (TryComp<MobStateComponent>(target, out var mobstate) && mobstate.CurrentState != Mobs.MobState.Alive)
+                    return true;
+                if (HasComp<BypassInteractionChecksComponent>(user))
+                    return true;
                 var difference = ((comp.Leaved + TimeSpan.FromMinutes(5)) - _tick.CurTime).TotalSeconds;
                 if (difference > 0)
                 {

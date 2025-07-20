@@ -148,3 +148,29 @@
     sprite: Imperial/Medieval/Clothing/Head/black_hat.rsi
   - type: Item
     size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalTraderLegionHat
+  name: Hat
+  description: 1 
+  components: 
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/traderlegioneagle.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/traderlegioneagle.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalTraderFoxHat
+  name: Hat
+  description: 1 
+  components: 
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/traderfox.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/traderfox.rsi
+  - type: Item
+    size: Normal

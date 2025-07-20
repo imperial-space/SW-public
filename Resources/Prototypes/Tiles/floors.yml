@@ -1134,7 +1134,7 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemArcadeBlue
   heatCapacity: 99910000
   badSmellMod: 0.75 # imperial medieval badsmell
@@ -1150,7 +1150,7 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemArcadeBlue2
   heatCapacity: 99910000
   badSmellMod: 0.75 # imperial medieval badsmell
@@ -1166,7 +1166,7 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemArcadeRed
   heatCapacity: 99910000
   badSmellMod: 0.75 # imperial medieval badsmell
@@ -1182,7 +1182,7 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemEighties
   heatCapacity: 99910000
   badSmellMod: 0.75 # imperial medieval badsmell
@@ -1198,7 +1198,7 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemCarpetClown
   heatCapacity: 99910000
   badSmellMod: 0.75 # imperial medieval badsmell
@@ -1214,7 +1214,7 @@
     collection: FootstepCarpet
   barestepSounds:
     collection: BarestepCarpet
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemCarpetOffice
   heatCapacity: 99910000
   badSmellMod: 0.75 # imperial medieval badsmell
@@ -1234,7 +1234,7 @@
   #deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemBoxing
   heatCapacity: 99910000
   badSmellMod: 0.5 # imperial medieval badsmell
@@ -1254,7 +1254,7 @@
   #deconstructTools: [ Prying ]
   footstepSounds:
     collection: FootstepFloor
-  friction: 0.25
+  friction: 1.25
   itemDrop: FloorTileItemGym
   heatCapacity: 99910000
   badSmellMod: 0.25 # imperial medieval badsmell
@@ -1591,8 +1591,8 @@
 # Asteroid
 
 - type: tile
-  id: FloorAsteroidSand
-  name: tiles-asteroid-sand
+  id: FloorAsteroidSandBorderless
+  name: tiles-asteroid-sand-borderless
   sprite: /Textures/Tiles/Asteroid/asteroid.png
   variants: 13
   placementVariants:
@@ -1618,8 +1618,23 @@
   badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidSandDug
+  id: FloorAsteroidSand
+  parent: FloorAsteroidSandBorderless
   name: tiles-asteroid-sand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+
+- type: tile
+  id: FloorAsteroidSandDugBorderless
+  name: tiles-asteroid-sand-borderless
   sprite: /Textures/Tiles/Asteroid/asteroid_dug.png
   baseTurf: Space
   isSubfloor: true
@@ -1630,8 +1645,23 @@
   badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidSandRed
+  id: FloorAsteroidSandDug
+  parent: FloorAsteroidSandDugBorderless
   name: tiles-asteroid-sand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+
+- type: tile
+  id: FloorAsteroidSandRedBorderless
+  name: tiles-asteroid-sand-borderless
   sprite: /Textures/Tiles/Asteroid/asteroid_red.png
   variants: 13
   placementVariants:
@@ -1657,6 +1687,21 @@
   badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
+  id: FloorAsteroidSandRed
+  parent: FloorAsteroidSandRedBorderless
+  name: tiles-asteroid-sand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+
+- type: tile
   id: FloorAsteroidTile
   name: tiles-asteroid-tile
   sprite: /Textures/Tiles/Asteroid/asteroid_tile.png
@@ -1670,8 +1715,8 @@
   badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidIronsand
-  name: tiles-asteroid-ironsand
+  id: FloorAsteroidIronsandBorderless
+  name: tiles-asteroid-ironsand-borderless
   sprite: /Textures/Tiles/Asteroid/ironsand.png
   variants: 15
   placementVariants:
@@ -1699,8 +1744,23 @@
   badSmellMod: 1.25 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidSandUnvariantized
-  name: tiles-asteroid-sand
+  id: FloorAsteroidIronsand
+  parent: FloorAsteroidIronsandBorderless
+  name: tiles-asteroid-ironsand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/iron_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/iron_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/iron_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/iron_single_edge.png
+    South: /Textures/Tiles/Asteroid/iron_double_edge.png
+    East: /Textures/Tiles/Asteroid/iron_double_edge.png
+    North: /Textures/Tiles/Asteroid/iron_double_edge.png
+    West: /Textures/Tiles/Asteroid/iron_double_edge.png
+
+- type: tile
+  id: FloorAsteroidSandUnvariantizedBorderless
+  name: tiles-asteroid-sand-borderless
   sprite: /Textures/Tiles/Asteroid/asteroid0.png
   baseTurf: Space
   isSubfloor: true
@@ -1711,8 +1771,23 @@
   badSmellMod: 1.5 # imperial medieval badsmell
 
 - type: tile
-  id: FloorAsteroidIronsandUnvariantized
-  name: tiles-asteroid-ironsand
+  id: FloorAsteroidSandUnvariantized
+  parent: FloorAsteroidSandUnvariantizedBorderless
+  name: tiles-asteroid-sand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/asteroid_single_edge.png
+    South: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    East: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    North: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+    West: /Textures/Tiles/Asteroid/asteroid_double_edge.png
+
+- type: tile
+  id: FloorAsteroidIronsandUnvariantizedBorderless
+  name: tiles-asteroid-ironsand-borderless
   sprite: /Textures/Tiles/Asteroid/ironsand0.png
   baseTurf: Space
   isSubfloor: true
@@ -1721,6 +1796,21 @@
   heatCapacity: 99910000
   weather: true
   badSmellMod: 1.25 # imperial medieval badsmell
+
+- type: tile
+  id: FloorAsteroidIronsandUnvariantized
+  parent: FloorAsteroidIronsandUnvariantizedBorderless
+  name: tiles-asteroid-ironsand
+  edgeSpritePriority: 1
+  edgeSprites:
+    SouthEast: /Textures/Tiles/Asteroid/iron_single_edge.png
+    NorthEast: /Textures/Tiles/Asteroid/iron_single_edge.png
+    NorthWest: /Textures/Tiles/Asteroid/iron_single_edge.png
+    SouthWest: /Textures/Tiles/Asteroid/iron_single_edge.png
+    South: /Textures/Tiles/Asteroid/iron_double_edge.png
+    East: /Textures/Tiles/Asteroid/iron_double_edge.png
+    North: /Textures/Tiles/Asteroid/iron_double_edge.png
+    West: /Textures/Tiles/Asteroid/iron_double_edge.png
 
 # Caves
 #- type: tile
@@ -1779,7 +1869,7 @@
   footstepSounds:
     collection: FootstepBlood
   itemDrop: FloorTileItemFlesh
-  friction: 0.05 #slippy
+  friction: 0.25 #slippy
   heatCapacity: 99910000
   badSmellMod: 2 # imperial medieval badsmell
 
@@ -1993,9 +2083,8 @@
   #deconstructTools: [ Prying ]
   friction: 0.05
   heatCapacity: 99910000
-  mobFriction: 0.5
-  mobFrictionNoInput: 0.05
-  mobAcceleration: 2
+  mobFriction: 0.05
+  mobAcceleration: 0.1
   itemDrop: FloorTileItemAstroIce
   badSmellMod: 0.75 # imperial medieval badsmell
 
@@ -2008,6 +2097,16 @@
   #deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroSnow
   badSmellMod: 0.75 # imperial medieval badsmell
+
+- type: tile
+  id: FloorAstroAsteroidSandBorderless
+  name: tiles-astro-asteroid-sand-borderless
+  parent: FloorAsteroidSandBorderless
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  itemDrop: FloorTileItemAstroAsteroidSand
+  weather: false
 
 - type: tile
   id: FloorWoodLarge
