@@ -204,11 +204,6 @@
   equipment:
     shoes: ClothingShoesColorPurple
 
-- type: loadout
-  id: BrownShoes
-  equipment:
-    shoes: ClothingShoesColorBrown
-
 # Scarves
 - type: loadout
   id: ScarfRed
