@@ -312,8 +312,8 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
     private async void CheckMessage(EntitySpokeEvent ev)
     {
-        if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
-            return;
+        //if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
+        //    return;
 
         if (_bannedWords.Count == 0)
             return;
