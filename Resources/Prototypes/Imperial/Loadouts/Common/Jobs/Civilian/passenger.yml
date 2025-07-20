@@ -42,17 +42,6 @@
   equipment:
     jumpsuit: ClothingUniformJumpskirtColorOrange
 
-# Yellow
-- type: loadout
-  id: YellowJumpsuit
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorYellow
-
-- type: loadout
-  id: YellowJumpskirt
-  equipment:
-    jumpsuit: ClothingUniformJumpskirtColorYellow
-
 # Pink
 - type: loadout
   id: PinkJumpsuit
