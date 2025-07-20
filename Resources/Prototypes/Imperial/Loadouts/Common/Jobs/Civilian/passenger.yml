@@ -124,16 +124,6 @@
     gloves: ClothingHandsGlovesColorGreen
 
 - type: loadout
-  id: OrangeGloves
-  equipment:
-    gloves: ClothingHandsGlovesColorOrange
-
-- type: loadout
-  id: PurpleGloves
-  equipment:
-    gloves: ClothingHandsGlovesColorPurple
-
-- type: loadout
   id: Trenchcoat
   equipment:
     outerClothing: ClothingOuterCoatTrench
