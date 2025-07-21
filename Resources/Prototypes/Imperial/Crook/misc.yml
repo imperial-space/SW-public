@@ -639,3 +639,43 @@
   - type: Icon
     sprite: Structures/Magic/forcewall.rsi
     state: forcewall
+
+- type: entity
+  parent: WeaponEnergyTurretStationControlPanelBase
+  id: WeaponEnergyTurretSyndicateControlPanel
+  suffix: Crook, Syndicate
+  components:
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - NuclearOperative
+    - SyndicateAgent
+
+- type: entity
+  parent: WeaponEnergyTurretStationMachineCircuitboardBase
+  id: WeaponEnergyTurretSyndicateMachineCircuitboard
+  suffix: Crook, Syndicate
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/module.rsi
+    state: security
+  - type: MachineBoard
+    prototype: WeaponEnergyTurretSyndicate
+
+- type: entity
+  parent: WeaponEnergyTurretStationBase
+  id: WeaponEnergyTurretSyndicate
+  suffix: Crook, Syndicate
+  components:
+  - type: AccessReader
+    access: [["NuclearOperative"], ["SyndicateAgent"]]
+  - type: TurretTargetSettings
+    exemptAccessLevels:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: Machine
+    board: WeaponEnergyTurretSyndicateMachineCircuitboard
+  - type: DeviceNetwork
+    receiveFrequencyId: TurretControl
+    transmitFrequencyId: Turret
