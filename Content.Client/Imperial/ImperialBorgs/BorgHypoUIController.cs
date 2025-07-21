@@ -122,8 +122,19 @@ public sealed class BorgHypoUIController : UIController
 
     private void HandleRadialButtonClick(ReagentPrototype prototype)
     {
-        if (_activeHypo == null || !_entityManager.TryGetComponent<BorgHypoComponent>(_activeHypo.Value, out _))
+        if (_activeHypo == null || !_entityManager.TryGetComponent<BorgHypoComponent>(_activeHypo.Value, out var component))
+            return;
+
+        var currentReagentId = component.Solutions.ElementAtOrDefault(component.CurrentIndex)?.GetPrimaryReagentId();
+
+        if (currentReagentId == prototype.ID)
         {
+            var samePopup = _entityManager.System<PopupSystem>();
+            samePopup.PopupClient(Loc.GetString("borghypo-ui-controller-same-reagent-popup"),
+                _activeHypo.Value,
+                _playerManager.LocalSession?.AttachedEntity);
+
+            CloseMenu();
             return;
         }
 
@@ -131,8 +142,8 @@ public sealed class BorgHypoUIController : UIController
         var msg = new ChangeReagentEvent(prototype.ID, netEntity);
         _net.SendSystemNetworkMessage(msg);
 
-        var popup = _entityManager.System<PopupSystem>();
-        popup.PopupClient(Loc.GetString("borghypo-ui-controller-change-reagent-popup", ("reagent", prototype.LocalizedName)),
+        var changedPopup = _entityManager.System<PopupSystem>();
+        changedPopup.PopupClient(Loc.GetString("borghypo-ui-controller-change-reagent-popup", ("reagent", prototype.LocalizedName)),
             _activeHypo.Value,
             _playerManager.LocalSession?.AttachedEntity);
 

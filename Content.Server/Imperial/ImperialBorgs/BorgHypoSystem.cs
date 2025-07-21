@@ -99,6 +99,7 @@ namespace Content.Server.Imperial.ImperialBorgs
                 return;
             }
 
+            int newIndex;
 
             if (reagent != null)
             {
@@ -108,12 +109,24 @@ namespace Content.Server.Imperial.ImperialBorgs
                     return;
                 }
 
-                component.CurrentIndex = index;
+                if (index == component.CurrentIndex)
+                {
+                    return;
+                }
+
+                newIndex = index;
             }
             else
             {
-                component.CurrentIndex = (component.CurrentIndex + 1) % component.Solutions.Count;
+                newIndex = (component.CurrentIndex + 1) % component.Solutions.Count;
+
+                if (newIndex == component.CurrentIndex)
+                {
+                    return;
+                }
             }
+
+            component.CurrentIndex = newIndex;
 
             var newSolution = component.Solutions[component.CurrentIndex];
             var primaryId = newSolution.GetPrimaryReagentId();
