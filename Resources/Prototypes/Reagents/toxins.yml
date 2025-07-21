@@ -168,6 +168,7 @@
   name: reagent-name-ferrochromic-acid
   group: Toxins
   desc: reagent-desc-ferrochromic-acid
+  absorbent: true
   flavor: sour
   color: "#48b3b8"
   physicalDesc: reagent-physical-desc-ferrous

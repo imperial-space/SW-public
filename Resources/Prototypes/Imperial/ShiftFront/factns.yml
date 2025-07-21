@@ -353,7 +353,7 @@
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
     mask: gp7ShiftFront
-    head: ClothingHeadHelmetIibada
+    head: ClothingHeadHelmetIibadaShiftFront
     eyes: ClothingEyesHudCommandShiftFront
     gloves: MedievalClothingHandsGlovesColorBlackShiftFront
     outerClothing: BodyArmorTacticalRaptorShiftFront
