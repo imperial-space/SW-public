@@ -48,6 +48,8 @@
   parent: BaseWeaponLightMachineGun
   description: An ultra-large machine gun with 125 rounds of ammunition. It has a black color mixed with a set of wooden body parts. Uses 7x62x51 ammo.
   components:
+  - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/LMG/AssaultPKM-inhand.rsi
   - type: Gun
     soundGunshot:
       path: /Audio/Imperial/ShiftFront/shot_mg.ogg

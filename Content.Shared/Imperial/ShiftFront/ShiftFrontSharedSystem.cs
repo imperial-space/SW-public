@@ -18,6 +18,7 @@ using Robust.Shared.Physics.Systems;   // Нужно для управления
 using Content.Shared.ShiftFront.Components; // Остальные зависимости оставлены как были
 using Content.Shared.Actions;
 using Content.Shared.Projectiles;
+using Robust.Shared.Physics.Events;
 
 namespace Content.Shared.XCOM;
 
@@ -35,6 +36,7 @@ public sealed partial class ShiftFrontSharedSystem : EntitySystem
     {
         base.Initialize();
         SubscribeLocalEvent<ShiftTankBulletComponent, ProjectileBeforeHitEvent>(OnBeforeProjectileHit);
+        SubscribeLocalEvent<ShiftTankBulletComponent, PreventCollideEvent>(OnBeforeProjectileCollide);
 
         CommandBinds.Builder
             .Bind(EngineKeyFunctions.MoveUp, new PointerInputCmdHandler(MovementUp))
@@ -43,7 +45,16 @@ public sealed partial class ShiftFrontSharedSystem : EntitySystem
             .Bind(EngineKeyFunctions.MoveLeft, new PointerInputCmdHandler(MovementLeft))
             .Register<ShiftFrontSharedSystem>();
     }
+    private void OnBeforeProjectileCollide(EntityUid uid, ShiftTankBulletComponent component, ref PreventCollideEvent args)
+    {
+        if (!TryComp<ShiftTankHullComponent>(args.OtherEntity, out var hull)) return;
+        if (!hull.LinkedTurret.HasValue) return;
+        if (!TryComp<ProjectileComponent>(args.OurEntity, out var proj)) return;
+        if (!proj.Shooter.HasValue) return;
 
+        if (hull.LinkedTurret.Value == proj.Shooter.Value)
+            args.Cancelled = true;
+    }
     private void OnBeforeProjectileHit(EntityUid uid, ShiftTankBulletComponent component, ref ProjectileBeforeHitEvent args)
     {
         if (!TryComp<ShiftTankHullComponent>(args.Target, out var hull)) return;

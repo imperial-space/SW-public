@@ -313,21 +313,13 @@
     - Gasp
     - PassiveScream
   - type: AreaMarkerInvoker
-  - type: ShieldOnStartup
-  - type: AntiStealAfk
   - type: CanSurrender
   - type: RDDeathScreen
   - type: CombatStance
   - type: Grabbable
   - type: Grabber
-  - type: PointLight
-    netsync: false
-    enabled: false
-  - type: LocalLight
-    energy: 0.3
-    radius: 1.18
   - type: RDWeight
-    value: 63
+    value: 1
   - type: RDWeightSpeedModifier
     curve: !type:RDWeightModifierLinearCurve
       min: 90

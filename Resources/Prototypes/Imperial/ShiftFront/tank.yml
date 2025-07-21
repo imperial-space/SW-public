@@ -19,8 +19,8 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-          radius: 0.85
+          !type:PhysShapeAabb
+          bounds: "-0.75,-1.2,0.75,1.3"
         density: 60000
         mask:
         - MobMask
@@ -190,6 +190,7 @@
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
+  - type: ShiftTankBullet
   - type: Projectile
     suppression: 15
     damage:
@@ -225,6 +226,7 @@
   parent: BaseBulletTrigger
   categories: [ HideSpawnMenu ]
   components:
+  - type: ShiftTankBullet
   - type: Projectile
     suppression: 55
     damage:
@@ -348,7 +350,7 @@
   - type: InteractionOutline
   - type: Actions
   - type: Sprite
-    scale: 2, 2
+    scale: 1.7, 1.7
     sprite: Imperial/ShiftFront/tank.rsi
     drawdepth: Mobs
     layers:
@@ -468,6 +470,9 @@
   - type: ShiftTankHull
     faction: Blue
     turretProto: ShiftFrontBMPTurretBlue
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
 
 - type: entity
   parent: MobShiftTankTurret
@@ -497,6 +502,9 @@
   parent: MobShiftTankHullBase
   id: ShiftFrontBMPRed
   components:
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
   - type: Sprite
     scale: 1.5, 1.5
     layers:
@@ -562,6 +570,9 @@
   parent: MobShiftTankHullBase
   id: ShiftFrontBMPGreen
   components:
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
   - type: Sprite
     scale: 1.5, 1.5
     layers:
@@ -628,6 +639,9 @@
   parent: MobShiftTankHullBase
   id: ShiftFrontBMPYellow
   components:
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
   - type: Sprite
     scale: 1.5, 1.5
     layers:
@@ -993,7 +1007,7 @@
   id: ShiftFrontTankBlue
   components:
   - type: Sprite
-    scale: 2, 2
+    scale: 1.7, 1.7
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: tankcorpusblue
@@ -1061,7 +1075,7 @@
   id: ShiftFrontTankRed
   components:
   - type: Sprite
-    scale: 2, 2
+    scale: 1.7, 1.7
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: tankcorpusred
@@ -1129,7 +1143,7 @@
   id: ShiftFrontTankGreen
   components:
   - type: Sprite
-    scale: 2, 2
+    scale: 1.7, 1.7
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: tankcorpusgreen
@@ -1197,7 +1211,7 @@
   id: ShiftFrontTankYellow
   components:
   - type: Sprite
-    scale: 2, 2
+    scale: 1.7, 1.7
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: tankcorpusyellow

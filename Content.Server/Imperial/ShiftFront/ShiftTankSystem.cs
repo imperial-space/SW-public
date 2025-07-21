@@ -58,6 +58,7 @@ namespace Content.Server.ShiftFront
                 _transform.SetParent(turret, uid);
                 EnsureComp<ShiftTankTurretComponent>(turret, out var turretcomp);
                 turretcomp.LinkedTank = uid;
+                component.LinkedTurret = turret;
             }
         }
 

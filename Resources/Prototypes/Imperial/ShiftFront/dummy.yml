@@ -820,7 +820,7 @@
       Heat: 25
       Blunt: 25
       Piercing: 25
-      AntiTank: 50
+      AntiTank: 250
       AntiLightTank: 550
   tileBreakChance: [ 0, 0.5, 1 ]
   tileBreakIntensity: [ 0, 10, 30 ]

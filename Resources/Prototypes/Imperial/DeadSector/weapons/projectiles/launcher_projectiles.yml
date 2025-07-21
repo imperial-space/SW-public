@@ -9,10 +9,10 @@
       - state: grenade
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: Default
-    maxIntensity: 25
-    intensitySlope: 4
-    totalIntensity: 130
+    explosionType: AntiTankLandmine
+    maxIntensity: 2.5
+    intensitySlope: 2
+    totalIntensity: 25
     maxTileBreak: 1
   - type: PointLight
     radius: 3.5

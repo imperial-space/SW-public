@@ -12,17 +12,6 @@
   - type: Clothing
     sprite: Imperial/Other/Sona/Belt.rsi
   - type: Storage
-    whitelist:
-      tags:
-        - CigPack
-        - Taser
-        - SecBeltEquip
-        - Radio
-      components:
-        - Stunbaton
-        - FlashOnTrigger
-        - Flash
-        - Handcuff
   - type: ItemMapper
     mapLayers:
       flashbang:
