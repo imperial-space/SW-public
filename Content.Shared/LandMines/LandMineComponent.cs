@@ -20,4 +20,10 @@ public sealed partial class LandMineComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? Sound;
+
+    [DataField]
+    public bool InstantTrigger = false;
+
+    [DataField]
+    public bool AntiTank = false;
 }
