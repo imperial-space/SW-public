@@ -37,5 +37,6 @@ namespace Content.Server.Imperial.Power.Components
         // --- Катастрофа ---
         public bool CatastropheActive = false;
         public float CatastropheTimer = 0f;
+        public float CatastropheLightningCooldown = 0f;
     }
 }

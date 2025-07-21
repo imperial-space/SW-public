@@ -74,9 +74,9 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 if (EntityManager.TryGetComponent<SupermatterEventComponent>(nearest.Owner, out var events))
                 {
                     float next = events.NextEventTimer;
-                    float approx = MathF.Max(0, next + _random.Next(-60, 61));
-                    int minutes = (int)MathF.Round(approx / 60f);
-                    args.PushMarkup($"[color=yellow]До следующего энергетического всплеска: ~{minutes} мин.[/color]\n");
+                float approx = MathF.Max(0, next + _random.Next(-60, 61));
+                int minutes = (int)MathF.Round(approx / 60f);
+                args.PushMarkup($"[color=yellow]До следующего энергетического всплеска: ~{minutes} мин.[/color]\n");
                 }
             }
             else
