@@ -66,8 +66,6 @@
   - type: ContentEye
   - type: CameraRecoil
   - type: MindContainer
-  - type: RequireProjectileTarget
-    active: True
   #- type: MovementSpeedModifier
   #  baseWalkSpeed : 3.5
   #  baseSprintSpeed : 3.5
@@ -121,19 +119,19 @@
   id: ShiftFrontTank
   coefficients:
     Slash: 0.7
-    Piercing: 0.6
+    Piercing: 0.2
   flatReductions:
     Slash: 2
-    Piercing: 14
+    Piercing: 10
 
 - type: damageModifierSet
   id: ShiftFrontLightTank
   coefficients:
     Slash: 0.7
-    Piercing: 0.8
+    Piercing: 0.3
   flatReductions:
     Slash: 2
-    Piercing: 6
+    Piercing: 8
 
 - type: damageContainer
   id: ShiftFrontTank
@@ -291,7 +289,7 @@
   - type: InteractionOutline
   - type: Actions
   - type: Sprite
-    scale: 1.4, 1.4
+    scale: 1.5, 1.5
     sprite: Imperial/ShiftFront/tank.rsi
     drawdepth: Mobs
     layers:
@@ -350,7 +348,7 @@
   - type: InteractionOutline
   - type: Actions
   - type: Sprite
-    scale: 1.4, 1.4
+    scale: 2, 2
     sprite: Imperial/ShiftFront/tank.rsi
     drawdepth: Mobs
     layers:
@@ -436,6 +434,7 @@
   id: ShiftFrontBMPBlue
   components:
   - type: Sprite
+    scale: 1.5, 1.5
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: BMPblue
@@ -499,6 +498,7 @@
   id: ShiftFrontBMPRed
   components:
   - type: Sprite
+    scale: 1.5, 1.5
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: BMPred
@@ -563,6 +563,7 @@
   id: ShiftFrontBMPGreen
   components:
   - type: Sprite
+    scale: 1.5, 1.5
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: BMPgreen
@@ -628,6 +629,7 @@
   id: ShiftFrontBMPYellow
   components:
   - type: Sprite
+    scale: 1.5, 1.5
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: BMPyellow
@@ -707,6 +709,7 @@
   id: ShiftFrontMTLBBlue
   components:
   - type: Sprite
+    scale: 1.4, 1.4
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: BMPblue
@@ -742,8 +745,6 @@
     faction: Blue
     moveSpeed: 4.3
     turnRate: 0.04
-  - type: RequireProjectileTarget
-    active: False
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -772,6 +773,7 @@
   id: ShiftFrontMTLBRed
   components:
   - type: Sprite
+    scale: 1.4, 1.4
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: BMPred
@@ -807,8 +809,6 @@
     faction: Red
     moveSpeed: 4.3
     turnRate: 0.04
-  - type: RequireProjectileTarget
-    active: False
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -837,6 +837,7 @@
   id: ShiftFrontMTLBGreen
   components:
   - type: Sprite
+    scale: 1.4, 1.4
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: BMPgreen
@@ -872,8 +873,6 @@
     faction: Green
     moveSpeed: 4.3
     turnRate: 0.04
-  - type: RequireProjectileTarget
-    active: False
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -903,6 +902,7 @@
   id: ShiftFrontMTLBYellow
   components:
   - type: Sprite
+    scale: 1.4, 1.4
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: BMPyellow
@@ -938,8 +938,6 @@
     faction: Yellow
     moveSpeed: 4.3
     turnRate: 0.04
-  - type: RequireProjectileTarget
-    active: False
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -995,6 +993,7 @@
   id: ShiftFrontTankBlue
   components:
   - type: Sprite
+    scale: 2, 2
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: tankcorpusblue
@@ -1062,6 +1061,7 @@
   id: ShiftFrontTankRed
   components:
   - type: Sprite
+    scale: 2, 2
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: tankcorpusred
@@ -1129,6 +1129,7 @@
   id: ShiftFrontTankGreen
   components:
   - type: Sprite
+    scale: 2, 2
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: tankcorpusgreen
@@ -1196,6 +1197,7 @@
   id: ShiftFrontTankYellow
   components:
   - type: Sprite
+    scale: 2, 2
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: tankcorpusyellow
