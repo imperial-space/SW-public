@@ -170,6 +170,7 @@
   desc: reagent-desc-ferrochromic-acid
   absorbent: true
   flavor: sour
+  evaporationSpeed: 1
   color: "#48b3b8"
   physicalDesc: reagent-physical-desc-ferrous
   metabolisms:
