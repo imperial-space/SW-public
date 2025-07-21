@@ -1,0 +1,709 @@
+
+- type: entity
+  parent: BaseMobHumanShiftFront
+  id: BaseMobHumanShiftFrontGreen
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontGreen
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenBase ]
+  - type: LanguageSpeaker
+    languages:
+      German: Speak
+  - type: ShiftPlayer
+    suppressionPhrases:
+    - Feindkontakt! In Deckung!!
+    - Treffer! Panzerung beschädigt!!
+    - Scharfschütze! Position unbekannt!
+    - Achtung! Kreuzfeuer!
+    - Sperrfeuer, sofort! Bin festgenagelt!
+    - Woher kam dieser Schuss?!
+    - Massives Feuer! Position halten!!
+    faction: Green
+    name: Assault
+  - type: GhostRole
+    name: Штурмовик
+    description: Технократическая Германия
+
+- type: entity
+  parent: BaseMobHumanShiftFront
+  id: BaseMobHumanShiftFrontYellow
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontYellow
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowBase ]
+  - type: LanguageSpeaker
+    languages:
+      Chineese: Speak
+  - type: ShiftPlayer
+    suppressionPhrases:
+    - Di xi! Pa xia!!
+    - Wo zhongdan le! Yihubing!
+    - Jujishou! Xiaoxin!!
+    - Cao! Cong nar da de?!
+    - Huoli yanhu!
+    - Yazhi zhu le! Dong bu liao!!
+    - Tamen chong wo lai de!!
+    - Hao xian! Chadian bei dazhong!!
+    faction: Yellow
+    name: Assault
+  - type: GhostRole
+    name: Штурмовик
+    description: Единая Китайская партия
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenFast
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenFast ]
+  - type: GhostRole
+    name: Скаут
+    description: Технократическая Германия
+  - type: ShiftPlayer
+    name: Scout
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowFast
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowFast ]
+  - type: GhostRole
+    name: Скаут
+    description: Единая Китайская партия
+  - type: ShiftPlayer
+    name: Scout
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenSniper
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenSniper ]
+  - type: GhostRole
+    name: Снайпер
+    description: Технократическая Германия
+  - type: ShiftPlayer
+    name: Sniper
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowSniper
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowSniper ]
+  - type: GhostRole
+    name: Снайпер
+    description: Единая Китайская партия
+  - type: ShiftPlayer
+    name: Sniper
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenHeavy
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenHeavy ]
+  - type: GhostRole
+    name: Пулеметчик
+    description: Технократическая Германия
+  - type: ShiftPlayer
+    name: HMG
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowHeavy
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowHeavy ]
+  - type: GhostRole
+    name: Пулеметчик
+    description: Единая Китайская партия
+  - type: ShiftPlayer
+    name: HMG
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenEng
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenEng ]
+  - type: GhostRole
+    name: Инженер
+    description: Технократическая Германия
+  - type: ShiftPlayer
+    name: Eng
+    eng: true
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowEng
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowEng ]
+  - type: GhostRole
+    name: Инженер
+    description: Единая Китайская партия
+  - type: ShiftPlayer
+    name: Eng
+    eng: true
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenMed
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenMed ]
+  - type: GhostRole
+    name: Медик
+    description: Технократическая Германия
+  - type: ShiftPlayer
+    name: Med
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowMed
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowMed ]
+  - type: GhostRole
+    name: Медик
+    description: Единая Китайская партия
+  - type: ShiftPlayer
+    name: Med
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenNinja
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenNinja ]
+  - type: GhostRole
+    name: Ассасин
+    description: Технократическая Германия
+  - type: Stealth
+  - type: StealthOnMove
+  - type: ShiftPlayer
+    name: Assasin
+    ninja: true
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowNinja
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowNinja ]
+  - type: GhostRole
+    name: Ассасин
+    description: Единая Китайская партия
+  - type: Stealth
+  - type: StealthOnMove
+  - type: ShiftPlayer
+    name: Assasin
+    ninja: true
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenHQ
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenHQ ]
+  - type: GhostRole
+    name: Командир
+    description: Брать, только если уже играли на ивенте
+  - type: ShiftPlayer
+    name: HQ
+    leader: true
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowHQ
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowHQ ]
+  - type: GhostRole
+    name: Командир
+    description: Брать, только если уже играли на ивенте
+  - type: ShiftPlayer
+    name: HQ
+    leader: true
+
+- type: language
+  id: Chineese
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    obfuscateSyllables: true
+    replacement:
+    - ци
+    - сунь
+    - хуй
+    - чай
+    - ца
+    - ци
+
+- type: language
+  id: German
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    obfuscateSyllables: true
+    replacement:
+    - gü
+    - hei
+    - der
+    - lla
+    - fön
+    - spät
+    - nä
+    - hä
+    - zä
+    - hne
+
+- type: npcFaction
+  id: ShiftFrontGreen
+  hostile:
+  - ShiftFrontRed
+  - ShiftFrontYellow
+  - ShiftFrontBlue
+  - SimpleHostile
+  - AllHostile
+  - ShiftFrontXeno
+
+- type: npcFaction
+  id: ShiftFrontYellow
+  hostile:
+  - ShiftFrontBlue
+  - ShiftFrontGreen
+  - ShiftFrontRed
+  - SimpleHostile
+  - AllHostile
+  - ShiftFrontXeno
+
+- type: startingGear
+  id: ShiftFrontGreenBase
+  equipment:
+    jumpsuit: VlOldStationMercJumpsuitShiftFront
+    mask: ClothingMaskGasMinuteManSBShiftFront
+    head: ClothingHeadForestHelmetMinutemanShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: BodyArmorMultikamRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    #back: EncryptionKeyRadio3
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+  inhand:
+    - WeaponAR15ShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+
+- type: startingGear
+  id: ShiftFrontYellowBase
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
+    mask: gp7ShiftFront
+    head: ClothingHeadHelmetIibada
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: BodyArmorTacticalRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    #back: EncryptionKeyRadio4
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponRifleAkShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+
+- type: startingGear
+  id: ShiftFrontGreenFast
+  equipment:
+    jumpsuit: VlOldStationMercJumpsuitShiftFront
+    mask: ClothingMaskGasSecurityShiftFront
+    head: ClothingHeadHatCapcapSheriff
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    #outerClothing: BodyArmorMultikamRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    #back: EncryptionKeyRadio3
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+  inhand:
+    - WeaponPistolAstra60ShiftingFront
+  storage:
+    belt:
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontYellowFast
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
+    mask: ClothingMaskNeckGaiterShiftFront
+    head: ClothingHeadHatYellowsoftShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    #outerClothing: BodyArmorTacticalRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    #back: EncryptionKeyRadio4
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponPistolM2108ShiftingFront
+  storage:
+    belt:
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontGreenSniper
+  equipment:
+    jumpsuit: VlOldStationMercJumpsuitShiftFront
+    mask: ClothingHeadBandSkullShiftFront
+    head: ClothingHeadHelmetIibadaShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ArmoredUnloading6B43RaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    #back: EncryptionKeyRadio3
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+  inhand:
+    - WeaponSniperHristovShiftingFront
+  storage:
+    belt:
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+
+- type: startingGear
+  id: ShiftFrontYellowSniper
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
+    mask: gp7ShiftFront
+    head: ClothingHeadHatBeretQMShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterArmorMinutemanAdmiralShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    #back: EncryptionKeyRadio4
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponSniperHristovShiftingFront
+  storage:
+    belt:
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+
+- type: startingGear
+  id: ShiftFrontGreenHeavy
+  equipment:
+    jumpsuit: VlOldStationMercJumpsuitShiftFront
+    mask: ClothingMaskNeckGaiterShiftFront
+    head: ClothingHeadHelmetArgeoShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ClothingOuterArmorArgeoShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    #back: EncryptionKeyRadio3
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+    neck: CapSheriffcloackShiftFront
+  inhand:
+    - WeaponLightMachineGunL6ShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+
+- type: startingGear
+  id: ShiftFrontYellowHeavy
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
+    mask: ClothingMaskRCUShiftFront
+    head: ClothingHeadHelmetAaltawilaShiftFront2
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterArmorAaltawilaShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    #back: EncryptionKeyRadio4
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+    neck: ClothingNeckMantleQMShiftFront
+  inhand:
+    - WeaponAssaultPKMShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+
+- type: startingGear
+  id: ShiftFrontGreenEng
+  equipment:
+    jumpsuit: VlOldStationMercJumpsuitShiftFront
+    mask: ClothingMaskNeckGaiterShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ClothingOuterSuitAtmosFireShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    #back: EncryptionKeyRadio3
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+  inhand:
+    - WeaponHK416ShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - PartRodMetal
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontYellowEng
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
+    mask: ClothingMaskNeckGaiterShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterHardsuitERTImperialEngineer
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    #back: EncryptionKeyRadio4
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponAKS74yShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - PartRodMetal
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontGreenMed
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCETGMCShiftFront
+    mask: ClothingMaskBreathMedicalShiftFront
+    head: ClothingHeadHelmetBrigmedicShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ClothingOuterArmorBulletproofShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    #back: EncryptionKeyRadio3
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+  inhand:
+    - WeaponShotgunEnforcerShiftingFront
+  storage:
+    belt:
+    - BoxLethalshot
+    - BoxLethalshot
+    - MedicatedSuture
+    - MedicatedSuture
+    - MedicatedSuture
+    - RollerBedSpawnFolded
+    - RollerBedSpawnFolded
+    - Fulton
+    - FultonBeacon
+
+- type: startingGear
+  id: ShiftFrontYellowMed
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCETGMCShiftFront
+    mask: ClothingMaskSterileShiftFront
+    head: ClothingHeadHelmetScienceMaskShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterArmorBulletproofShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    #back: EncryptionKeyRadio4
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponShotgunKammererShiftingFront
+  storage:
+    belt:
+    - BoxLethalshot
+    - BoxLethalshot
+    - MedicatedSuture
+    - MedicatedSuture
+    - MedicatedSuture
+    - SindicateRollerBedSpawnFolded
+    - SindicateRollerBedSpawnFolded
+    - Fulton
+    - FultonBeacon
+
+- type: startingGear
+  id: ShiftFrontGreenHQ
+  equipment:
+    jumpsuit: USSPSoldierUniformShiftFront
+    head: MedievalGreenHatShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    #back: EncryptionKeyRadio3
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+  inhand:
+    - WeaponPistolM2108ShiftingFront
+  storage:
+    belt:
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontYellowHQ
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitQMTurtleneckShiftFront
+    head: ClothingHeadHatBeretQMShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    #back: EncryptionKeyRadio4
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponPistolM2108ShiftingFront
+  storage:
+    belt:
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontGreenNinja
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
+    head: GreenHelmetSpaceNinja
+    outerClothing: GreenSuitSpaceNinja
+    eyes: ClothingEyesHudCommandShiftFront ###
+    gloves: ClothingHandsGlovesCombatShiftFront ###
+    shoes: ClothingShoesSpaceNinja ###
+    id: ElysiumFederationIDCardShiftFront
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench ###
+    pocket2: DeadSectorTourniquet ###
+    belt: USSPBeltAssaultShiftFront ###
+  inhand:
+    - EnergyKatana
+
+- type: startingGear
+  id: ShiftFrontYellowNinja
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
+    head: YellowHelmetSpaceNinja
+    outerClothing: YellowAltSuitSpaceNinja
+    eyes: ClothingEyesHudCommandShiftFront ###
+    gloves: ClothingHandsGlovesCombatShiftFront ###
+    shoes: ClothingShoesSpaceNinja ###
+    id: SeniorEngineerIDCardShiftFront
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench ###
+    pocket2: DeadSectorTourniquet ###
+    belt: USSPBeltAssaultShiftFront ###
+  inhand:
+    - YellowEnergyKatana

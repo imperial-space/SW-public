@@ -16,6 +16,22 @@
       "directions": 8
     },
     {
+      "name": "turretyellow",
+      "directions": 8
+    },
+    {
+      "name": "turretgreen",
+      "directions": 8
+    },
+    {
+      "name": "turretred",
+      "directions": 8
+    },
+    {
+      "name": "turretblue",
+      "directions": 8
+    },
+    {
       "name": "syndie_broken"
     },
     {

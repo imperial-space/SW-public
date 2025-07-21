@@ -1,0 +1,650 @@
+# Sniper rifle
+- type: entity
+  name: Hristov
+  parent: [BaseWeaponSniper, BaseGunWieldable]
+  id: WeaponSniperHristovShiftingFront
+  suffix: Shifting Front
+  description: A portable anti-materiel rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-materiel ammo.
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_sniper.ogg
+      params:
+        maxDistance: 45
+    projectileSpeed: 50 # Imperial Balance
+    fireRate: 0.4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeAntiMateriel
+    capacity: 5
+    proto: CartridgeAntiMateriel
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.2 # Imperial balance
+    sprintModifier: 0.2 # Imperial balance
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -20
+    maxAngle: -20
+  - type: EyeCursorOffset
+    maxOffset: 18
+    pvsIncrease: 0.7
+    offsetSpeed: 0.022
+  - type: CursorOffsetRequiresWield
+
+# Machine gun
+- type: entity
+  name: Assault PKM
+  id: WeaponAssaultPKMShiftingFront
+  suffix: Shifting Front
+  parent: BaseWeaponLightMachineGun
+  description: An ultra-large machine gun with 125 rounds of ammunition. It has a black color mixed with a set of wooden body parts. Uses 7x62x51 ammo.
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_mg.ogg
+      params:
+        maxDistance: 45
+    fireRate: 11
+    angleIncrease: 1
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/LMG/AssaultPKM.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.7
+    offsetSpeed: 0.035
+  - type: CursorOffsetRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.6 # Imperial balance
+    sprintModifier: 0.6 # Imperial balance
+
+- type: entity
+  name: L6 SAW
+  id: WeaponLightMachineGunL6ShiftingFront
+  suffix: Shifting Front
+  parent: BaseWeaponLightMachineGun
+  description: A rather traditionally made LMG with a pleasantly lacquered wooden pistol grip. Uses .30 rifle ammo.
+  components:
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_mg.ogg
+      params:
+        maxDistance: 45
+    fireRate: 11
+    angleIncrease: 1
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-3
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.7
+    offsetSpeed: 0.035
+  - type: CursorOffsetRequiresWield
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.6 # Imperial balance
+    sprintModifier: 0.6 # Imperial balance
+
+# Rifle
+- type: entity
+  id: WeaponAR15ShiftingFront
+  parent: WeaponRifleAk
+  suffix: Shifting Front
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_rifle.ogg
+      params:
+        maxDistance: 45
+    fireRate: 5
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      awnings: !type:Container
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -15
+    maxAngle: -15
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.7
+    offsetSpeed: 0.035
+  - type: CursorOffsetRequiresWield
+
+- type: entity
+  name: AKMS
+  parent: WeaponRifleAk
+  id: WeaponRifleAkShiftingFront
+  suffix: Shifting Front
+  description: An iconic weapon of war. Uses .30 rifle ammo.
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_rifle.ogg
+      params:
+        maxDistance: 45
+    fireRate: 5
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -15
+    maxAngle: -15
+  - type: EyeCursorOffset
+    maxOffset: 2.5
+    pvsIncrease: 0.7
+    offsetSpeed: 0.035
+  - type: CursorOffsetRequiresWield
+
+# Shotguns
+- type: entity
+  name: Enforcer
+  parent: [BaseWeaponShotgun, BaseGunWieldable]
+  id: WeaponShotgunEnforcerShiftingFront
+  suffix: Shifting Front
+  description: A premium semi-automatic shotgun, and the pride of all security forces. Uses .50 shotgun shells.
+  components:
+  - type: Unremoveable # intend for Enforcer to have wider choke for semi-auto function
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer.rsi
+  - type: Item
+    sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
+  - type: BallisticAmmoProvider
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_shotgun.ogg
+      params:
+        maxDistance: 25
+    fireRate: 1
+
+- type: entity
+  name: Kammerer
+  parent: [BaseWeaponShotgun, BaseGunWieldable]
+  id: WeaponShotgunKammererShiftingFront
+  suffix: Shifting Front
+  description: An old yet faithful design, and a favorite among irregular forces of many worlds. Uses .50 shotgun shells.
+  components:
+  - type: Unremoveable # intend for Kammerer to have tighter choke for slower fire rate and/or manual cycling
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,0
+    sprite: Objects/Weapons/Guns/Shotguns/pump_inhands_64x.rsi
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
+  - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: BallisticAmmoProvider
+  - type: Tag
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_shotgun.ogg
+      params:
+        maxDistance: 25
+    fireRate: 1
+
+# Submachine gun
+- type: entity
+  id: WeaponHK416ShiftingFront
+  parent: WeaponRifleAk
+  suffix: Shifting Front
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/HK416.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/HK416.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 8
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_rifle.ogg
+      params:
+        maxDistance: 35
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleShiftingFront
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifleShiftingFront
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleShiftingFront
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifleShiftingFront
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      awnings: !type:Container
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,4,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -5
+    maxAngle: -7
+
+- type: entity
+  id: WeaponAKS74yShiftingFront
+  parent: WeaponRifleAk
+  suffix: Shifting Front
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AKS74y.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AKS74y.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 8
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_rifle.ogg
+      params:
+        maxDistance: 35
+  - type: ChamberMagazineAmmoProvider
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleShiftingFront
+        insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+          - MagazineLightRifleShiftingFront
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifleShiftingFront
+        priority: 1
+        whitelist:
+          tags:
+          - CartridgeLightRifleShiftingFront
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+      awnings: !type:Container
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -5
+    maxAngle: -7
+
+# Pistol
+- type: entity
+  name: Astra-60
+  parent: BaseWeaponPistol
+  id: WeaponPistolAstra60ShiftingFront
+  suffix: Shifting Front
+  description: Small-sized pistol with medium ammunition. It has a silver color throughout the body. Uses 9x19 auto ammo.
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/pistol/Astra60.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_pistol.ogg
+      params:
+        maxDistance: 15
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+
+- type: entity
+  id: WeaponPistolM2108ShiftingFront
+  suffix: Shifting Front
+  parent: BaseWeaponPistol
+  name: pistol 2108
+  description: This is what happens when ancient quality is combined with modern materials.
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/Other/TFG/Weapon/M2108/m2108.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-0
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_pistol.ogg
+      params:
+        maxDistance: 15
+    fireRate: 3
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+
+# Laser
+- type: entity
+  name: pistol NDF-1
+  parent: BaseWeaponBatterySmall
+  id: WeaponPistolNDF1ShiftingFront
+  suffix: Shifting Front
+  description: Plasma pistol technology NDF Mod 1. Rapid-fire, but weak. It has plasma charge cells.
+  components:
+  - type: Unremoveable
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponPistolNDF1.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/pulse/WeaponPistolNDF1.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: PulseShiftingFront
+    fireCost: 200
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+
+# Magazine
+- type: entity
+  id: MagazineLightRifleShiftingFront
+  name: "magazine (.30 rifle any)"
+  suffix: Shifting Front
+  parent: BaseMagazineLightRifleShiftingFront
+  components:
+  #- type: Unremoveable
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleShiftingFront
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+
+- type: entity
+  id: BaseMagazineLightRifleShiftingFront
+  suffix: Shifting Front
+  name: "magazine (.30 rifle)"
+  parent: BaseItem
+  abstract: true
+  components:
+  #- type: Unremoveable
+  - type: Tag
+    tags:
+      - MagazineLightRifleShiftingFront
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeLightRifleShiftingFront
+    proto: CartridgeLightRifleShiftingFront
+    capacity: 40
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_mag.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: CartridgeLightRifleShiftingFront
+  suffix: Shifting Front
+  parent: BaseCartridgeLightRifle
+  name: cartridge
+  components:
+  #- type: Unremoveable
+  - type: CartridgeAmmo
+    proto: BulletHeavyRifleShiftingFront
+  - type: Tag
+    tags:
+    - CartridgeLightRifleShiftingFront
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: BulletHeavyRifleShiftingFront
+  suffix: Shifting Front
+  name: bullet
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  #- type: Unremoveable
+  - type: Projectile
+    suppression: 1.2
+    damage:
+      types:
+        Piercing: 11
+
+- type: hitscan
+  id: PulseShiftingFront
+  suffix: Shifting Front
+  damage:
+    types:
+      Heat: 15
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_blue

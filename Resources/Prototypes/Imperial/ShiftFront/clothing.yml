@@ -1,0 +1,699 @@
+- type: entity
+  parent: ClothingUniformJumpsuitSonaSec
+  id: ClothingUniformJumpsuitSonaSecShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingUniformJumpsuitColorDarkGreen
+  id: ClothingUniformJumpsuitColorDarkGreenShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingUniformJumpsuitColorYellow
+  id: ClothingUniformJumpsuitColorYellowShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingShoesBootsCombatFilled
+  id: ClothingShoesBootsCombatFilledShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingMaskGas
+  id: ClothingMaskGasMinuteManSBShiftFront
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/Private_Textures/gasmask.rsi
+  - type: Clothing
+    sprite: Imperial/ShiftFront/Private_Textures/gasmask.rsi
+  - type: Unremoveable
+
+- type: entity
+  parent: BodyArmorMultikamRaptor
+  id: BodyArmorMultikamRaptorShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetAaltawilaShiftFront
+  components:
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+  - type: Sprite
+    sprite: Imperial/TGMC/Clothing/Helmets/aaltawila.rsi
+  - type: Clothing
+    sprite: Imperial/TGMC/Clothing/Helmets/aaltawila.rsi
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesCombatShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingEyesHudCommand
+  id: ClothingEyesHudCommandShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: WardenIDCard
+  id: SeniorOfficerIDCardShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ElysiumFederationIDCard
+  id: ElysiumFederationIDCardShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: SeniorEngineerIDCard
+  id: SeniorEngineerIDCardShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: IDCardStandard
+  id: BlueShieldIDCardShiftFront
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    layers:
+    - state: silver
+    - state: idblueshield
+  - type: PresetIdCard
+    job: BlueShieldOfficerS
+
+- type: job
+  id: BlueShieldOfficerS
+  name: job-name-blueshield
+  description: job-description-blueshield
+  playTimeTracker: JobBlueShieldOfficer
+  startingGear: BlueShieldOfficerGear
+  icon: "JobIconBlueshield"
+  supervisors: job-supervisors-captain
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  sponsorsOnly: true
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+  - !type:AddComponentSpecial
+    components:
+      - type: CommandStaff
+  skills:
+  - skillBotany
+  - skillBaseMed
+  - skillBaseConstraction
+  - skillShooting
+  - skillPiloting
+  - skillPharmacology
+  - skillMedicalEquipment
+
+- type: accessLevel
+  id: BlueshieldAccessS
+  name: id-card-access-level-blueshield
+
+- type: entity
+  parent: ClothingBeltSona
+  id: ClothingBeltSonaShiftFront
+  components:
+  - type: Unremoveable
+  - type: Storage
+    grid:
+    - 0,0,14,1
+
+- type: entity
+  parent: ClothingBeltMercWebbing
+  id: ClothingBeltMercWebbingShiftFront
+  components:
+  - type: Unremoveable
+  - type: Storage
+    grid:
+    - 0,0,14,1
+
+- type: entity
+  parent: ClothingHeadsetAltSyndicate
+  id: ClothingHeadsetAltSyndicateShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: MedievalGreenHat
+  id: MedievalGreenHatShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: USSPSoldierUniform
+  id: USSPSoldierUniformShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadsetAltCentCom
+  id: ClothingHeadsetAltCentComShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingUniformJumpsuitSec
+  id: ClothingUniformJumpsuitSecShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHelmetK63
+  id: ClothingHeadHelmetK63ShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: gp7
+  id: gp7ShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: MedievalClothingHandsGlovesColorBlack
+  id: MedievalClothingHandsGlovesColorBlackShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: BodyArmorTacticalRaptor
+  id: BodyArmorTacticalRaptorShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.7
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+
+- type: entity
+  parent: USSPBeltAssault
+  id: USSPBeltAssaultShiftFront
+  components:
+  - type: Unremoveable
+  - type: Storage
+    grid:
+    - 0,0,14,1
+
+- type: entity
+  parent: ClothingHeadHatSecsoft
+  id: ClothingHeadHatSecsoftShiftFront
+  components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1.15
+    sprintModifier: 1.15
+  - type: ExplosionResistance
+    damageCoefficient: 1.15
+
+- type: entity
+  parent: ClothingHeadHatYellowsoft
+  id: ClothingHeadHatYellowsoftShiftFront
+  components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1.15
+    sprintModifier: 1.15
+  - type: ExplosionResistance
+    damageCoefficient: 1.15
+
+- type: entity
+  parent: ClothingHeadHatCapcapSheriff
+  id: ClothingHeadHatCapcapSheriffShiftFront
+  components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1.15
+    sprintModifier: 1.15
+  - type: ExplosionResistance
+    damageCoefficient: 1.15
+
+- type: entity
+  parent: ClothingHeadHatCapSona
+  id: ClothingHeadHatCapSonaShiftFront
+  components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 1.15
+    sprintModifier: 1.15
+  - type: ExplosionResistance
+    damageCoefficient: 1.15
+
+- type: entity
+  parent: ClothingMaskGasSecurity
+  id: ClothingMaskGasSecurityShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingUniformJumpsuitQMTurtleneck
+  id: ClothingUniformJumpsuitQMTurtleneckShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHatBeretQM
+  id: ClothingHeadHatBeretQMShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ArmoredUnloading6B43Raptor
+  id: ArmoredUnloading6B43RaptorShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingHeadBandSkull
+  id: ClothingHeadBandSkullShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHatSeniorOfficerBeret
+  id: ClothingHeadHatSeniorOfficerBeretShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingUniformJumpskirtHoSAlt
+  id: VlOldStationMercJumpsuitShiftFront
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/ShiftFront/Private_Textures/Jumpsuit.rsi
+  - type: Clothing
+    sprite: Imperial/ShiftFront/Private_Textures/Jumpsuit.rsi
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetIibadaShiftFront
+  components:
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+  - type: Sprite
+    sprite: Imperial/TGMC/Clothing/Helmets/iibada.rsi
+  - type: Clothing
+    sprite: Imperial/TGMC/Clothing/Helmets/iibada.rsi
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingHeadForestHelmetMinuteman
+  id: ClothingHeadForestHelmetMinutemanShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingMaskRCU
+  id: ClothingMaskRCUShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingOuterCoatSyndieCapArmored
+  id: ClothingOuterCoatSyndieCapArmoredShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingOuterArmorMinutemanAdmiral
+  id: ClothingOuterArmorMinutemanAdmiralShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: ClothingOuterArmorArgeoShiftFront
+  components:
+  - type: Sprite
+    sprite: Imperial/TGMC/Clothing/Armor/argeo.rsi
+  - type: Clothing
+    sprite: Imperial/TGMC/Clothing/Armor/argeo.rsi
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.55
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+
+- type: entity
+  parent: ClothingHeadBase # lost
+  id: ClothingHeadHelmetArgeoShiftFront
+  components:
+  - type: Sprite
+    sprite: Imperial/TGMC/Clothing/Helmets/argeo.rsi
+  - type: Clothing
+    sprite: Imperial/TGMC/Clothing/Helmets/argeo.rsi
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+
+- type: entity
+  parent: ClothingMaskNeckGaiter
+  id: ClothingMaskNeckGaiterShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingNeckBase
+  id: BlueShieldMantleShiftFront
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/ShiftFront/Private_Textures/blueshieldmantle.rsi
+  - type: Clothing
+    sprite: Imperial/ShiftFront/Private_Textures/blueshieldmantle.rsi
+
+- type: entity
+  parent: ClothingOuterBaseLarge
+  id: ClothingOuterArmorAaltawilaShiftFront
+  components:
+  - type: Sprite
+    sprite: Imperial/TGMC/Clothing/Armor/aaltawila.rsi
+  - type: Clothing
+    sprite: Imperial/TGMC/Clothing/Armor/aaltawila.rsi
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.55
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetAaltawilaShiftFront2
+  components:
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HidesHair
+  - type: Sprite
+    sprite: Imperial/TGMC/Clothing/Helmets/aaltawila.rsi
+  - type: Clothing
+    sprite: Imperial/TGMC/Clothing/Helmets/aaltawila.rsi
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.85
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: WardenMantleID
+  id: WardenMantleIDShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingOuterHardsuitCCAgent
+  id: ClothingOuterHardsuitCCAgentShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+
+- type: entity
+  parent: ClothingOuterHardsuitERTEngineer
+  id: ClothingOuterHardsuitERTImperialEngineerShiftFront
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/Private_Textures/ertengineer.rsi
+  - type: Clothing
+    sprite: Imperial/ShiftFront/Private_Textures/ertengineer.rsi
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+
+- type: entity
+  parent: ClothingOuterHardsuitSecurityRed
+  id: ClothingOuterHardsuitSecurityRedShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+
+- type: entity
+  parent: ClothingOuterSuitAtmosFire
+  id: ClothingOuterSuitAtmosFireShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+
+- type: entity
+  parent: ClothingOuterArmorBulletproof
+  id: ClothingOuterArmorBulletproofShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.75
+  - type: ClothingSpeedModifier
+    walkModifier: 1.08
+    sprintModifier: 1.08
+  - type: ExplosionResistance
+    damageCoefficient: 0.8
+
+- type: entity
+  parent: ClothingUniformJumpsuitCMOTurtle
+  id: ClothingUniformJumpsuitCMOTurtleShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingNeckMantleQM
+  id: ClothingNeckMantleQMShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: CapSheriffcloack
+  id: CapSheriffcloackShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHelmetBrigmedic
+  id: ClothingHeadHelmetBrigmedicShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingMaskBreathMedical
+  id: ClothingMaskBreathMedicalShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCETGMCShiftFront
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/ShiftFront/Private_Textures/CE.rsi
+  - type: Clothing
+    sprite: Imperial/ShiftFront/Private_Textures/CE.rsi
+
+- type: entity
+  parent: ClothingHeadHelmetScienceMask
+  id: ClothingHeadHelmetScienceMaskShiftFront
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.9
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskSterileShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingUniformJumpsuitColorBlack
+  id: ClothingUniformJumpsuitColorBlackShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  name: medicated suture
+  description: A suture soaked in medicine, treats blunt-force trauma effectively and closes wounds.
+  parent: BaseHealingItem
+  id: MedicatedSutureShiftFront
+  suffix: Full
+  components:
+  - type: Tag
+    tags:
+    - Brutepack
+  - type: Sprite
+    state: medicated-suture
+  - type: Item
+    heldPrefix: medicated-suture
+    storedRotation: -90
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      groups:
+        Brute: -30 # 10 for each type in the group
+    bloodlossModifier: -10 # a suture should stop ongoing bleeding
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+  - type: Stack
+    stackType: MedicatedSuture
+    count: 1000
+    maxCountOverride: 1000
+
+- type: entity
+  parent: ClothingHeadHatWarden
+  id: ClothingHeadHatWardenShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingUniformJumpsuitHoSParadeMale
+  id: ClothingUniformJumpsuitHoSParadeMaleShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingUniformJumpskirtCapFormalDress
+  id: ClothingUniformJumpskirtCapFormalDressShiftFront
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHatCapcapWhite
+  id: ClothingHeadHatCapcapWhiteShiftFront
+  components:
+  - type: Unremoveable

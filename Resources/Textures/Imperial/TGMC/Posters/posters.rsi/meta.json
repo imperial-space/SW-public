@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from baystation & sprited by azlan",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "Ares"
+    },
+    {
+      "name": "cybersun"
+    },
+    {
+      "name": "engicargo"
+    },
+    {
+      "name": "Enlist"
+    },
+    {
+      "name": "Kepler"
+    },
+    {
+      "name": "Loski"
+    },
+    {
+      "name": "Luna"
+    },
+    {
+      "name": "nanotrasen"
+    },
+    {
+      "name": "syndicate"
+    },
+    {
+      "name": "Terra"
+    },
+    {
+      "name": "TG"
+    }
+  ]
+}

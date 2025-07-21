@@ -104,6 +104,7 @@
     damage:
       types:
         Slash: 12
+        Structural: 20 # sf
   - type: EmbeddableProjectile
     sound: /Audio/Weapons/star_hit.ogg
     offset: -0.15,0.0

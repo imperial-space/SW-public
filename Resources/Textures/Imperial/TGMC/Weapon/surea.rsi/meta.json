@@ -1,0 +1,21 @@
+{
+    "version": 1,
+    "size": {
+        "x": 35,
+        "y": 17
+    },
+    "states": [
+        {
+            "name": "icon"
+        },
+        {
+            "name": "base"
+        },
+        {
+            "name": "bolt-open"
+        },
+        {
+            "name": "mag-0"
+        }
+    ]
+}

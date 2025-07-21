@@ -1,0 +1,830 @@
+- type: entity
+  parent: BaseMobHuman
+  id: BaseMobHumanShiftFront
+  components:
+  - type: Eye
+    pvsScale: 2
+  - type: EyeCursorOffset
+    maxOffset: 1.3
+    pvsIncrease: 1.5
+    offsetSpeed: 0.06
+  - type: Thirst
+    baseDecayRate: 0
+  - type: Hunger
+    baseDecayRate: 0
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      250: Dead
+  - type: GhostRole
+    name: Солдат
+    rules: Выполняйте приказы
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: NameIdentifier
+    group: GenericNumber
+
+- type: entity
+  parent: BaseMobHumanShiftFront
+  id: BaseMobHumanShiftFrontBlue
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontBlue
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueBase ]
+  - type: LanguageSpeaker
+    languages:
+      English: Speak
+  - type: ShiftPlayer
+    suppressionPhrases:
+    - Contact! Taking fire!!
+    - Incoming shots! Get down!
+    - Suppressive fire, now! Pinned down!
+    - Shit!
+    - Taking effective fire! Need cover!!
+    - Too close! That was too damn close!
+    - FUCK!!
+    - Taking fire!! Need help right the fuck now!
+    faction: Blue
+    name: Assault
+  - type: GhostRole
+    name: Штурмовик
+    description: НАТО
+
+- type: entity
+  parent: BaseMobHumanShiftFront
+  id: BaseMobHumanShiftFrontRed
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontRed
+  - type: Loadout
+    prototypes: [ ShiftFrontRedBase ]
+  - type: LanguageSpeaker
+    languages:
+      Russian: Speak
+  - type: ShiftPlayer
+    suppressionPhrases:
+    - Огонь! Ложись!!
+    - Блять!! Откуда?!
+    - Прижали, суки!!
+    - Плотный огонь! Не высовываться!
+    - Чуть не попали! Рядом совсем!
+    - Совсем рядом пролетело!
+    - БЛЯТЬ!!
+    faction: Red
+    name: Assault
+  - type: GhostRole
+    name: Штурмовик
+    description: ПСБ (пост-совет. блок)
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueFast
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueFast ]
+  - type: GhostRole
+    name: Скаут
+    description: НАТО
+  - type: ShiftPlayer
+    name: Scout
+
+- type: entity
+  parent: MobArgocyteHarvester
+  id: MobArgocyteHarvesterShiftFront
+  components:
+  - type: GhostRole
+    name: Пришелец
+    description: Мешайте фракциям
+    raffle:
+      settings: short
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: ShiftFaun
+  - type: GhostTakeoverAvailable
+  - type: LanguageSpeaker
+    languages:
+      Hissing: Speak
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontXeno
+
+- type: entity
+  id: MobArgocyteHarvesterShiftFrontSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ai
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MobArgocyteHarvesterShiftFront
+    chance: 0.1
+    intervalSeconds: 60
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 1
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedFast
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedFast ]
+  - type: GhostRole
+    name: Скаут
+    description: ПСБ (пост-совет. блок)
+  - type: ShiftPlayer
+    name: Scout
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueSniper
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueSniper ]
+  - type: GhostRole
+    name: Снайпер
+    description: НАТО
+  - type: ShiftPlayer
+    name: Sniper
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedSniper
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedSniper ]
+  - type: GhostRole
+    name: Снайпер
+    description: ПСБ (пост-совет. блок)
+  - type: ShiftPlayer
+    name: Sniper
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueHeavy
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueHeavy ]
+  - type: GhostRole
+    name: Пулеметчик
+    description: НАТО
+  - type: ShiftPlayer
+    name: HMG
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedHeavy
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedHeavy ]
+  - type: GhostRole
+    name: Пулеметчик
+    description: ПСБ (пост-совет. блок)
+  - type: ShiftPlayer
+    name: HMG
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueEng
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueEng ]
+  - type: ShiftPlayer
+    eng: true
+    name: Eng
+  - type: GhostRole
+    name: Инженер
+    description: НАТО
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedEng
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedEng ]
+  - type: ShiftPlayer
+    eng: true
+    name: Eng
+  - type: GhostRole
+    name: Инженер
+    description: ПСБ (пост-совет. блок)
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueMed
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueMed ]
+  - type: GhostRole
+    name: Медик
+    description: НАТО
+  - type: ShiftPlayer
+    name: Med
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedMed
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedMed ]
+  - type: GhostRole
+    name: Медик
+    description: ПСБ (пост-совет. блок)
+  - type: ShiftPlayer
+    name: Med
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueNinja
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueNinja ]
+  - type: GhostRole
+    name: Ассасин
+    description: НАТО
+  - type: Stealth
+  - type: StealthOnMove
+  - type: ShiftPlayer
+    ninja: true
+    name: Assasin
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedNinja
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedNinja ]
+  - type: GhostRole
+    name: Ассасин
+    description: ПСБ (пост-совет. блок)
+  - type: Stealth
+  - type: StealthOnMove
+  - type: ShiftPlayer
+    name: Assasin
+    ninja: true
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueHQ
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueHQ ]
+  - type: GhostRole
+    name: Командир
+    description: Брать, только если уже играли на ивенте
+  - type: ShiftPlayer
+    name: HQ
+    leader: true
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedHQ
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedHQ ]
+  - type: GhostRole
+    name: Командир
+    description: Брать, только если уже играли на ивенте
+  - type: ShiftPlayer
+    name: HQ
+    leader: true
+
+- type: language
+  id: Russian
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    obfuscateSyllables: true
+    replacement:
+    - ра
+    - бе
+    - ту
+    - гы
+    - га
+    - хы
+    - бу
+    - ка
+    - ту
+    - по
+    - ъы
+    - су
+    - ка
+    - бля
+
+- type: language
+  id: English
+  roundstart: false
+  priority: 2
+  parent: BaseVocalLanguage
+  speech: !type:Generic
+    obfuscateSyllables: true
+    replacement:
+    - se
+    - re
+    - me
+    - lla
+    - fu
+    - cu
+    - le
+    - jay
+    - tha
+    - tho
+
+- type: npcFaction
+  id: ShiftFrontBlue
+  hostile:
+  - ShiftFrontRed
+  - ShiftFrontGreen
+  - ShiftFrontYellow
+  - SimpleHostile
+  - AllHostile
+  - ShiftFrontXeno
+
+- type: npcFaction
+  id: ShiftFrontRed
+  hostile:
+  - ShiftFrontBlue
+  - ShiftFrontGreen
+  - ShiftFrontYellow
+  - SimpleHostile
+  - AllHostile
+  - ShiftFrontXeno
+
+- type: npcFaction
+  id: ShiftFrontXeno
+  hostile:
+  - ShiftFrontBlue
+  - ShiftFrontRed
+  - ShiftFrontGreen
+  - ShiftFrontYellow
+  - SimpleHostile
+  - AllHostile
+
+- type: startingGear
+  id: ShiftFrontBlueBase
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    mask: ClothingMaskGasMinuteManSBShiftFront
+    head: ClothingHeadHelmetAaltawilaShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: BodyArmorMultikamRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponAR15ShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+
+- type: startingGear
+  id: ShiftFrontRedBase
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecShiftFront
+    mask: gp7ShiftFront
+    head: ClothingHeadHelmetK63ShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: BodyArmorTacticalRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponRifleAkShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+
+- type: startingGear
+  id: ShiftFrontBlueFast
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    mask: ClothingMaskGasSecurityShiftFront
+    head: ClothingHeadHatCapSonaShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    #outerClothing: BodyArmorMultikamRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponPistolAstra60ShiftingFront
+  storage:
+    belt:
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontRedFast
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecShiftFront
+    mask: ClothingMaskNeckGaiterShiftFront
+    head: ClothingHeadHatSecsoftShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    #outerClothing: BodyArmorTacticalRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponPistolM2108ShiftingFront
+  storage:
+    belt:
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontBlueSniper
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    mask: ClothingHeadBandSkullShiftFront
+    head: ClothingHeadHelmetIibadaShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ArmoredUnloading6B43RaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponSniperHristovShiftingFront
+  storage:
+    belt:
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+
+- type: startingGear
+  id: ShiftFrontRedSniper
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecShiftFront
+    mask: ClothingMaskRCUShiftFront
+    head: ClothingHeadHatSeniorOfficerBeretShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterCoatSyndieCapArmoredShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponSniperHristovShiftingFront
+  storage:
+    belt:
+    - MagazineBoxAntiMateriel
+    - MagazineBoxAntiMateriel
+
+- type: startingGear
+  id: ShiftFrontBlueHeavy
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    mask: ClothingMaskNeckGaiterShiftFront
+    head: ClothingHeadHelmetArgeoShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ClothingOuterArmorArgeoShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+    neck: BlueShieldMantleShiftFront
+  inhand:
+    - WeaponLightMachineGunL6ShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+
+- type: startingGear
+  id: ShiftFrontRedHeavy
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecShiftFront
+    mask: ClothingMaskRCUShiftFront
+    head: ClothingHeadHelmetAaltawilaShiftFront2
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterArmorAaltawilaShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+    neck: WardenMantleIDShiftFront
+  inhand:
+    - WeaponAssaultPKMShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+
+- type: startingGear
+  id: ShiftFrontBlueEng
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    mask: ClothingMaskNeckGaiterShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ClothingOuterHardsuitCCAgentShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponHK416ShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - PartRodMetal
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontRedEng
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecShiftFront
+    mask: ClothingMaskNeckGaiterShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterHardsuitSecurityRedShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+    #neck: WardenMantleIDShiftFront
+  inhand:
+    - WeaponAKS74yShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - PartRodMetal
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontBlueMed
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCMOTurtleShiftFront
+    mask: ClothingMaskBreathMedicalShiftFront
+    head: ClothingHeadHelmetBrigmedicShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ClothingOuterArmorBulletproofShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponShotgunEnforcerShiftingFront
+  storage:
+    belt:
+    - BoxLethalshot
+    - BoxLethalshot
+    - MedicatedSuture
+    - MedicatedSuture
+    - MedicatedSuture
+    - RollerBedSpawnFolded
+    - RollerBedSpawnFolded
+    - Fulton
+    - FultonBeacon
+
+- type: startingGear
+  id: ShiftFrontRedMed
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitCETGMCShiftFront
+    mask: ClothingMaskSterileShiftFront
+    head: ClothingHeadHelmetScienceMaskShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterArmorBulletproofShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+    #neck: WardenMantleIDShiftFront
+  inhand:
+    - WeaponShotgunKammererShiftingFront
+  storage:
+    belt:
+    - BoxLethalshot
+    - BoxLethalshot
+    - MedicatedSuture
+    - MedicatedSuture
+    - MedicatedSuture
+    - SindicateRollerBedSpawnFolded
+    - SindicateRollerBedSpawnFolded
+    - Fulton
+    - FultonBeacon
+
+- type: startingGear
+  id: ShiftFrontBlueHQ
+  equipment:
+    jumpsuit: ClothingUniformJumpskirtCapFormalDressShiftFront
+    head: ClothingHeadHatCapcapWhiteShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponPistolM2108ShiftingFront
+  storage:
+    belt:
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontRedHQ
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitHoSParadeMaleShiftFront
+    head: ClothingHeadHatWardenShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+    #neck: WardenMantleIDShiftFront
+  inhand:
+    - WeaponPistolM2108ShiftingFront
+  storage:
+    belt:
+    - MagazinePistol
+    - MagazinePistol
+    - MagazinePistol
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontBlueNinja
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
+    head: BlueHelmetSpaceNinja
+    outerClothing: BlueSuitSpaceNinja
+    eyes: ClothingEyesHudCommandShiftFront ###
+    gloves: ClothingHandsGlovesCombatShiftFront ###
+    shoes: ClothingShoesSpaceNinja ###
+    id: BlueShieldIDCardShiftFront
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench ###
+    pocket2: DeadSectorTourniquet ###
+    belt: USSPBeltAssaultShiftFront ###
+  inhand:
+    - BlueEnergyKatana
+
+- type: startingGear
+  id: ShiftFrontRedNinja
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
+    head: RedHelmetSpaceNinja
+    outerClothing: RedSuitSpaceNinja
+    eyes: ClothingEyesHudCommandShiftFront ###
+    gloves: ClothingHandsGlovesCombatShiftFront ###
+    shoes: ClothingShoesSpaceNinja ###
+    id: SeniorOfficerIDCardShiftFront
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench ###
+    pocket2: DeadSectorTourniquet ###
+    belt: USSPBeltAssaultShiftFront ###
+  inhand:
+    - RedEnergyKatana
+
+- type: entity
+  name: explosive mine
+  parent: BaseLandMine
+  id: AntitankLandMineExplosive
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: AntiTankLandmine
+    maxIntensity: 5
+    intensitySlope: 7
+    totalIntensity: 50 # about a ~4 tile radius
+    canCreateVacuum: false
+  - type: LandMine
+    instantTrigger: true
+    antiTank: true
+  - type: Stealth
+  - type: StealthOnMove
+
+- type: explosion
+  id: AntiTankLandmine
+  damagePerIntensity:
+    types:
+      Heat: 25
+      Blunt: 25
+      Piercing: 25
+      AntiTank: 50
+      AntiLightTank: 550
+  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakIntensity: [ 0, 10, 30 ]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3

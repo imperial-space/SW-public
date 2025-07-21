@@ -1,0 +1,1274 @@
+- type: entity
+  id: MobShiftTankHullBase
+  parent: ContentsExplosionResistanceBase
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.25
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+  - type: Sprite
+    scale: 1.4, 1.4
+    drawdepth: SmallObjects
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: tankhull
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: Speech
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.85
+        density: 60000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - StaminaModifier
+    - Flashed
+    - RadiationProtection
+    - Drowsiness
+    - Adrenaline
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: MobCollision
+  - type: Physics
+    bodyType: KinematicController
+  - type: Clickable
+  - type: InteractionOutline
+  #- type: InputMover
+  #- type: Input
+  #  context: "human"
+  - type: LagCompensation
+  #- type: MobMover
+  - type: Actions
+  - type: Alerts
+  - type: Appearance
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: DoAfter
+  - type: Examiner
+  - type: Eye
+    pvsScale: 2
+  - type: ContentEye
+  - type: CameraRecoil
+  - type: MindContainer
+  - type: RequireProjectileTarget
+    active: True
+  #- type: MovementSpeedModifier
+  #  baseWalkSpeed : 3.5
+  #  baseSprintSpeed : 3.5
+  #  acceleration: 4
+  #  friction: 5
+  - type: Damageable
+    damageContainer: ShiftFrontTank
+    damageModifierSet: ShiftFrontTank
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      750: Dead
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: ShiftTankHull
+    turretProto: MedievalTavernMarker3
+    moveSpeed: 1.9
+    turnRate: 0.0172
+  - type: GhostRole
+    name: Танк (Механик-водитель)
+    rules: Выполняйте приказы
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: MouseRotator
+    angleTolerance: 0
+    rotationSpeed: 0
+    simple4DirMode: false
+  - type: NoRotateOnInteract
+  - type: EyeCursorOffset
+    maxOffset: 1.3
+    pvsIncrease: 1.5
+    offsetSpeed: 0.06
+  - type: AmbientSound
+    volume: -6
+    range: 14
+    sound:
+      path: /Audio/Imperial/ShiftFront/bmp_ambient.ogg
+
+- type: damageModifierSet
+  id: ShiftFrontTank
+  coefficients:
+    Slash: 0.7
+    Piercing: 0.6
+  flatReductions:
+    Slash: 2
+    Piercing: 14
+
+- type: damageModifierSet
+  id: ShiftFrontLightTank
+  coefficients:
+    Slash: 0.7
+    Piercing: 0.8
+  flatReductions:
+    Slash: 2
+    Piercing: 6
+
+- type: damageContainer
+  id: ShiftFrontTank
+  supportedGroups:
+    - Brute
+  supportedTypes:
+    - Heat
+    - Shock
+    - AntiTank
+
+- type: damageContainer
+  id: ShiftFrontLightTank
+  supportedGroups:
+    - Brute
+  supportedTypes:
+    - Heat
+    - Shock
+    - AntiTank
+    - AntiLightTank
+
+- type: Tag
+  id: MagazineLightRifleBoxBMP
+
+- type: Tag
+  id: MagazineLightRifleHard
+
+- type: entity
+  id: MagazineLightRifleBoxBMP
+  name: "L6 SAW magazine box (.30 rifle)"
+  parent: BaseMagazineLightRifle
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightRifleBoxBMP
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleBMP
+    capacity: 50
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: CartridgeLightRifleBMP
+  parent: BaseCartridgeLightRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifleBMP
+
+- type: entity
+  id: BulletLightRifleBMP
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    suppression: 15
+    damage:
+      types:
+        Piercing: 23
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 3
+    intensitySlope: 3
+    totalIntensity: 10
+  - type: PointLight
+    radius: 2.5
+    color: orange
+    energy: 2.5
+    castShadows: false
+
+- type: entity
+  id: MagazineLightRifleHard
+  parent: BaseCartridge
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTank
+  - type: Tag
+    tags:
+      - MagazineLightRifleHard
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: blast
+
+- type: entity
+  id: BulletLightRifleTank
+  parent: BaseBulletTrigger
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    suppression: 55
+    damage:
+      types:
+        Piercing: 190
+        #AntiTank: 220
+        AntiLightTank: 220
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 30
+    intensitySlope: 6
+    totalIntensity: 240
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 4.5
+    castShadows: false
+
+- type: entity
+  id: MobShiftTankTurret
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.85
+        density: 60000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Physics
+    bodyType: KinematicController
+  - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.7
+    offsetSpeed: 0.035
+  - type: GhostRole
+    name: Танк (Командир-наводчик)
+    rules: Выполняйте приказы
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBoxBMP
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleBoxBMP
+  - type: Gun
+    fireRate: 3
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_bmp.ogg
+      params:
+        maxDistance: 45
+  - type: MagazineAmmoProvider
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Actions
+  - type: Sprite
+    scale: 1.4, 1.4
+    sprite: Imperial/ShiftFront/tank.rsi
+    drawdepth: Mobs
+    layers:
+    - state: tankturret
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: Damageable
+    damageContainer: ShiftFrontTank
+  - type: MouseRotator
+    angleTolerance: 5
+    rotationSpeed: 45
+    simple4DirMode: false
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: Input
+    context: "human"
+  - type: Examiner
+  - type: Eye
+    pvsScale: 2
+  - type: ContentEye
+  - type: CameraRecoil
+
+- type: entity
+  id: MobShiftTankHardTurret
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.85
+        density: 60000
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Physics
+    bodyType: KinematicController
+  - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 12
+    pvsIncrease: 0.7
+    offsetSpeed: 0.035
+  - type: GhostRole
+    name: Танк (Командир-наводчик)
+    rules: Выполняйте приказы
+    raffle:
+      settings: short
+  - type: GhostTakeoverAvailable
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 0.15
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_tank.ogg
+      params:
+        maxDistance: 45
+  - type: BallisticAmmoProvider
+    capacity: 12
+    proto: MagazineLightRifleHard
+    whitelist:
+      tags:
+      - MagazineLightRifleHard
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Actions
+  - type: Sprite
+    scale: 1.4, 1.4
+    sprite: Imperial/ShiftFront/tank.rsi
+    drawdepth: Mobs
+    layers:
+    - state: tankbashnya
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: Damageable
+    damageContainer: ShiftFrontTank
+  - type: MouseRotator
+    angleTolerance: 5
+    rotationSpeed: 45
+    simple4DirMode: false
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: Input
+    context: "human"
+  - type: Examiner
+  - type: Eye
+    pvsScale: 2
+  - type: ContentEye
+  - type: CameraRecoil
+
+- type: entity
+  id: TankStartMoveAction
+  components:
+  - type: InstantAction
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/ShiftFront/light.rsi
+      state: tankstart
+    event: !type:TankStartMoveEvent
+
+- type: entity
+  id: TankStopMoveAction
+  components:
+  - type: InstantAction
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/ShiftFront/light.rsi
+      state: tankstop
+    event: !type:TankStopMoveEvent
+
+- type: entity
+  id: TankChangeMoveDirectionAction
+  components:
+  - type: InstantAction
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/ShiftFront/light.rsi
+      state: tankback
+    event: !type:TankChangeMoveDirectionEvent
+
+
+- type: entity
+  id: TankToggleRotateAction
+  components:
+  - type: InstantAction
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/ShiftFront/light.rsi
+      state: tankrotate
+    event: !type:TankToggleRotateEvent
+
+- type: entity
+  id: TankToggleRotationDirectionAction
+  components:
+  - type: InstantAction
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/ShiftFront/light.rsi
+      state: tankdirection
+    event: !type:TankToggleRotationDirectionEvent
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontBMPBlue
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BMPblue
+      sprite: Imperial/ShiftFront/tank.rsi
+    - map: ["enum.StorageVisualLayers.Door"]
+      state: closed
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontBlue
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio2
+  - type: ActiveRadio
+    channels:
+    - Radio2
+  - type: LanguageSpeaker
+    languages:
+      English: Speak
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: EntityStorage
+    airtight: false
+    capacity: 6
+    enteringRange: 0.9
+  - type: GhostRole
+    name: БМП (Механик-водитель)
+    description: НАТО
+  - type: ShiftTankHull
+    faction: Blue
+    turretProto: ShiftFrontBMPTurretBlue
+
+- type: entity
+  parent: MobShiftTankTurret
+  id: ShiftFrontBMPTurretBlue
+  components:
+  - type: GhostRole
+    name: БМП (Командир-наводчик)
+    description: НАТО
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio2
+  - type: ActiveRadio
+    channels:
+    - Radio2
+  - type: LanguageSpeaker
+    languages:
+      English: Speak
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontBMPRed
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BMPred
+      sprite: Imperial/ShiftFront/tank.rsi
+    - map: ["enum.StorageVisualLayers.Door"]
+      state: closed
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontRed
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: LanguageSpeaker
+    languages:
+      Russian: Speak
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: EntityStorage
+    airtight: false
+    capacity: 6
+    enteringRange: 0.9
+  - type: GhostRole
+    name: БМП (Механик-водитель)
+    description: ПСБ (пост совет. блок)
+  - type: ShiftTankHull
+    faction: Red
+    turretProto: ShiftFrontBMPTurretRed
+
+- type: entity
+  parent: MobShiftTankTurret
+  id: ShiftFrontBMPTurretRed
+  components:
+  - type: GhostRole
+    name: БМП (Командир-наводчик)
+    description: ПСБ (пост совет. блок)
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: LanguageSpeaker
+    languages:
+      Russian: Speak
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontBMPGreen
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BMPgreen
+      sprite: Imperial/ShiftFront/tank.rsi
+    - map: ["enum.StorageVisualLayers.Door"]
+      state: closed
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontGreen
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio3
+  - type: ActiveRadio
+    channels:
+    - Radio3
+  - type: LanguageSpeaker
+    languages:
+      German: Speak
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: EntityStorage
+    airtight: false
+    capacity: 6
+    enteringRange: 0.9
+  - type: GhostRole
+    name: БМП (Механик-водитель)
+    description: Технократическая Германия
+  - type: ShiftTankHull
+    faction: Green
+    turretProto: ShiftFrontBMPTurretGreen
+
+- type: entity
+  parent: MobShiftTankTurret
+  id: ShiftFrontBMPTurretGreen
+  components:
+  - type: GhostRole
+    name: БМП (Командир-наводчик)
+    description: Технократическая Германия
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio3
+  - type: ActiveRadio
+    channels:
+    - Radio3
+  - type: LanguageSpeaker
+    languages:
+      German: Speak
+
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontBMPYellow
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BMPyellow
+      sprite: Imperial/ShiftFront/tank.rsi
+    - map: ["enum.StorageVisualLayers.Door"]
+      state: closed
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontYellow
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio4
+  - type: ActiveRadio
+    channels:
+    - Radio4
+  - type: LanguageSpeaker
+    languages:
+      Chineese: Speak
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: EntityStorage
+    airtight: false
+    capacity: 6
+    enteringRange: 0.9
+  - type: GhostRole
+    name: БМП (Механик-водитель)
+    description: Единая Китайская партия
+  - type: ShiftTankHull
+    faction: Yellow
+    turretProto: ShiftFrontBMPTurretYellow
+
+- type: entity
+  parent: MobShiftTankTurret
+  id: ShiftFrontBMPTurretYellow
+  components:
+  - type: GhostRole
+    name: БМП (Командир-наводчик)
+    description: Единая Китайская партия
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio4
+  - type: ActiveRadio
+    channels:
+    - Radio4
+  - type: LanguageSpeaker
+    languages:
+      Chineese: Speak
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontMTLBBlue
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BMPblue
+      sprite: Imperial/ShiftFront/tank.rsi
+    - map: ["enum.StorageVisualLayers.Door"]
+      state: closed
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontBlue
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio2
+  - type: ActiveRadio
+    channels:
+    - Radio2
+  - type: LanguageSpeaker
+    languages:
+      English: Speak
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: EntityStorage
+    airtight: false
+    capacity: 6
+    enteringRange: 0.9
+  - type: GhostRole
+    name: МТЛБ (Механик-водитель)
+    description: НАТО
+  - type: ShiftTankHull
+    fPVResist: 1.3
+    faction: Blue
+    moveSpeed: 4.3
+    turnRate: 0.04
+  - type: RequireProjectileTarget
+    active: False
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontMTLBRed
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BMPred
+      sprite: Imperial/ShiftFront/tank.rsi
+    - map: ["enum.StorageVisualLayers.Door"]
+      state: closed
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontRed
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: LanguageSpeaker
+    languages:
+      Russian: Speak
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: EntityStorage
+    airtight: false
+    capacity: 6
+    enteringRange: 0.9
+  - type: GhostRole
+    name: МТЛБ (Механик-водитель)
+    description: ПСБ (пост совет. блок)
+  - type: ShiftTankHull
+    fPVResist: 1.3
+    faction: Red
+    moveSpeed: 4.3
+    turnRate: 0.04
+  - type: RequireProjectileTarget
+    active: False
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontMTLBGreen
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BMPgreen
+      sprite: Imperial/ShiftFront/tank.rsi
+    - map: ["enum.StorageVisualLayers.Door"]
+      state: closed
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontGreen
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio3
+  - type: ActiveRadio
+    channels:
+    - Radio3
+  - type: LanguageSpeaker
+    languages:
+      German: Speak
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: EntityStorage
+    airtight: false
+    capacity: 6
+    enteringRange: 0.9
+  - type: GhostRole
+    name: МТЛБ (Механик-водитель)
+    description: Технократическая Германия
+  - type: ShiftTankHull
+    fPVResist: 1.3
+    faction: Green
+    moveSpeed: 4.3
+    turnRate: 0.04
+  - type: RequireProjectileTarget
+    active: False
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
+
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontMTLBYellow
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BMPyellow
+      sprite: Imperial/ShiftFront/tank.rsi
+    - map: ["enum.StorageVisualLayers.Door"]
+      state: closed
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontYellow
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio4
+  - type: ActiveRadio
+    channels:
+    - Radio4
+  - type: LanguageSpeaker
+    languages:
+      Chineese: Speak
+  - type: EntityStorageVisuals
+    stateDoorOpen: open
+    stateDoorClosed: closed
+  - type: EntityStorage
+    airtight: false
+    capacity: 6
+    enteringRange: 0.9
+  - type: GhostRole
+    name: МТЛБ (Механик-водитель)
+    description: Единая Китайская партия
+  - type: ShiftTankHull
+    fPVResist: 1.3
+    faction: Yellow
+    moveSpeed: 4.3
+    turnRate: 0.04
+  - type: RequireProjectileTarget
+    active: False
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      450: Dead
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 450
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
+
+- type: damageType
+  id: AntiTank
+  name: damage-type-antitank
+  armorCoefficientPrice: 2
+  armorFlatPrice: 10
+
+- type: damageType
+  id: AntiLightTank
+  name: damage-type-antilighttank
+  armorCoefficientPrice: 2
+  armorFlatPrice: 10
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontTankBlue
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: tankcorpusblue
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontBlue
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio2
+  - type: ActiveRadio
+    channels:
+    - Radio2
+  - type: LanguageSpeaker
+    languages:
+      English: Speak
+  - type: GhostRole
+    name: Танк (Механик-водитель)
+    description: НАТО
+  - type: ShiftTankHull
+    fPVResist: 0.8
+    faction: Blue
+    turretProto: ShiftFrontTankTurretBlue
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Dead
+
+- type: entity
+  parent: MobShiftTankHardTurret
+  id: ShiftFrontTankTurretBlue
+  components:
+  - type: GhostRole
+    name: Танк (Командир-наводчик)
+    description: НАТО
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio2
+  - type: ActiveRadio
+    channels:
+    - Radio2
+  - type: LanguageSpeaker
+    languages:
+      English: Speak
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontTankRed
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: tankcorpusred
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontRed
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: LanguageSpeaker
+    languages:
+      Russian: Speak
+  - type: GhostRole
+    name: Танк (Механик-водитель)
+    description: ПСБ
+  - type: ShiftTankHull
+    fPVResist: 0.8
+    faction: Red
+    turretProto: ShiftFrontTankTurretRed
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Dead
+
+- type: entity
+  parent: MobShiftTankHardTurret
+  id: ShiftFrontTankTurretRed
+  components:
+  - type: GhostRole
+    name: Танк (Командир-наводчик)
+    description: ПСБ
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: LanguageSpeaker
+    languages:
+      Russian: Speak
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontTankGreen
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: tankcorpusgreen
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontGreen
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio3
+  - type: ActiveRadio
+    channels:
+    - Radio3
+  - type: LanguageSpeaker
+    languages:
+      German: Speak
+  - type: GhostRole
+    name: Танк (Механик-водитель)
+    description: ТГ
+  - type: ShiftTankHull
+    fPVResist: 0.8
+    faction: Green
+    turretProto: ShiftFrontTankTurretGreen
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Dead
+
+- type: entity
+  parent: MobShiftTankHardTurret
+  id: ShiftFrontTankTurretGreen
+  components:
+  - type: GhostRole
+    name: Танк (Командир-наводчик)
+    description: ТГ
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio3
+  - type: ActiveRadio
+    channels:
+    - Radio3
+  - type: LanguageSpeaker
+    languages:
+      German: Speak
+
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+########################################################
+
+- type: entity
+  parent: MobShiftTankHullBase
+  id: ShiftFrontTankYellow
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: tankcorpusyellow
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontYellow
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio4
+  - type: ActiveRadio
+    channels:
+    - Radio4
+  - type: LanguageSpeaker
+    languages:
+      Chineese: Speak
+  - type: GhostRole
+    name: Танк (Механик-водитель)
+    description: ЕКП
+  - type: ShiftTankHull
+    fPVResist: 0.8
+    faction: Yellow
+    turretProto: ShiftFrontTankTurretYellow
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      1000: Dead
+
+- type: entity
+  parent: MobShiftTankHardTurret
+  id: ShiftFrontTankTurretYellow
+  components:
+  - type: GhostRole
+    name: Танк (Командир-наводчик)
+    description: ЕКП
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio4
+  - type: ActiveRadio
+    channels:
+    - Radio4
+  - type: LanguageSpeaker
+    languages:
+      Chineese: Speak

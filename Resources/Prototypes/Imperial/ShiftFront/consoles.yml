@@ -1,0 +1,1272 @@
+- type: entity
+  parent: BaseStructure
+  id: BaseComputerShiftFront
+  name: computer
+  placement:
+    mode: SnapgridCenter
+  abstract: true
+  components:
+  - type: Animateable
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: Sprite
+    drawdepth: Objects
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: generic
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: Appearance
+  - type: PointLight
+    radius: 1.5
+    energy: 2.6
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    offset: "0, 0.4" # shine from the top, not bottom of the computer
+    castShadows: false
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.35,0.25,0.35"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: InteractionOutline
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Electronic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 10000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+
+- type: entity
+  parent: BaseStructure
+  id: BaseStrtuctureShiftFront
+  placement:
+    mode: SnapgridCenter
+  abstract: true
+  components:
+  - type: MeleeSound
+    soundGroups:
+      Brute:
+        collection: GlassSmash
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.6
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: InteractionOutline
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Electronic
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/ShiftFront/build_ready.ogg
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleBuildBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleBuild
+    faction: Blue
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleResearchBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleResearch
+    faction: Blue
+  - type: ShiftResearchGenerate
+    faction: Blue
+    points: 10
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleResearchRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleResearch
+    faction: Red
+  - type: ShiftResearchGenerate
+    faction: Red
+    points: 10
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleResearchGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleResearch
+    faction: Green
+  - type: ShiftResearchGenerate
+    faction: Green
+    points: 10
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleResearchYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleResearch
+    faction: Yellow
+  - type: ShiftResearchGenerate
+    faction: Yellow
+    points: 10
+
+# - type: entity
+#   parent: BaseComputerShiftFront
+#   id: BaseComputerShiftFrontConsoleBuildBlueFFA
+#   placement:
+#     mode: SnapgridCenter
+#   components:
+#   - type: ShiftConsoleBuild
+#     faction: Blue
+#   - type: ShiftConsoleResource
+#     faction: Blue
+#   - type: ActivatableUI
+#     key: enum.ShiftConsoleUiKey.Key
+#   - type: UserInterface
+#     interfaces:
+#       enum.ShiftConsoleUiKey.Key:
+#         type: ShiftConsoleResourceBoundUserInterface
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleBuildRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleBuild
+    faction: Red
+
+- type: entity
+  name: Medieval
+  parent: BaseItem
+  id: ShiftFrontBuildLight
+  description: ""
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: ShiftBuildLight
+  - type: HandheldGPS
+  - type: PointLight
+    color: green
+    castShadows: false
+    radius: 1.5
+    energy: 1.6
+  - type: Anchorable
+
+- type: entity
+  parent: BaseWeaponBallisticTurret
+  id: WeaponTurretShiftFrontBlue
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontBlue
+  - type: Sprite
+    layers:
+    - state: turretblue
+  - type: Gun
+    fireRate: 4.5
+    minAngle: 12
+    maxAngle: 12
+  - type: ShiftFPVDrone
+    explosive: false
+    pacif: false
+  - type: ShiftStructure
+    faction: Blue
+    structure: Turret
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 550
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: WeaponTurretShiftFrontBlue ###
+  id: WeaponTurretShiftFrontRed
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontRed
+  - type: Sprite
+    layers:
+    - state: turretred
+  - type: ShiftStructure
+    faction: Red
+    structure: Turret
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleResourceBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleResource
+    faction: Blue
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleResourceRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleResource
+    faction: Red
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontREBBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftREB
+    faction: Blue
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: rebblue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: REB
+
+- type: entity
+  parent: ShiftFrontREBBlue ###
+  id: ShiftFrontREBRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftREB
+    faction: Red
+  - type: Sprite
+    state: rebred
+  - type: ShiftStructure
+    faction: Red
+
+- type: entity
+  parent: ShiftFrontREBBlue ###
+  id: ShiftFrontREBGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftREB
+    faction: Green
+  - type: Sprite
+    state: rebgreen
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: ShiftFrontREBBlue ###
+  id: ShiftFrontREBYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftREB
+    faction: Yellow
+  - type: Sprite
+    state: rebyellow
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontMedTowerBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftMedTower
+    faction: Blue
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: healtow
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.36
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: MedTower
+
+- type: entity
+  parent: ShiftFrontMedTowerBlue ###
+  id: ShiftFrontMedTowerRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftMedTower
+    faction: Red
+  - type: ShiftStructure
+    faction: Red
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontSuppliesBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: factoryblue
+  - type: ShiftSupplies
+    faction: Blue
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: Supplies
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontSuppliesRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: factoryred
+  - type: ShiftSupplies
+    faction: Red
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Red
+    structure: Supplies
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontBarracksBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: humanbarrackblue
+  - type: ShiftBarracks
+    faction: Blue
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: Barracks
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontBarracksRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: humanbarrackred
+  - type: ShiftBarracks
+    faction: Red
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Red
+    structure: Barracks
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontExtractorBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftExtractor
+    faction: Blue
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: minerblue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.36
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: Extractor
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontExtractorRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftExtractor
+    faction: Red
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: minerred
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.36
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Red
+    structure: Extractor
+
+- type: entity
+  id: ShiftFrontResPointPolymer
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: orepolymer
+    drawdepth: FloorTiles
+  - type: InteractionOutline
+  - type: ShiftResPoint
+    resType: Polymer
+    amount: 10
+  - type: Clickable
+
+- type: entity
+  id: ShiftFrontResPointBioShlak
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: orebio
+    drawdepth: FloorTiles
+  - type: InteractionOutline
+  - type: ShiftResPoint
+    resType: BioShlak
+    amount: 10
+  - type: Clickable
+
+- type: entity
+  id: ShiftFrontResPointNanoCarbon
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: orenano
+    drawdepth: FloorTiles
+  - type: InteractionOutline
+  - type: ShiftResPoint
+    resType: NanoCarbon
+    amount: 5
+  - type: Clickable
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftConverterBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: recyclerblue
+  - type: ShiftConverter
+    faction: Blue
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: Converter
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftConverterRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: recyclerred
+  - type: ShiftConverter
+    faction: Red
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Red
+    structure: Converter
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleBuildGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleBuild
+    faction: Green
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleBuildYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleBuild
+    faction: Yellow
+
+- type: entity
+  parent: WeaponTurretShiftFrontBlue ###
+  id: WeaponTurretShiftFrontGreen
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontGreen
+  - type: Sprite
+    layers:
+    - state: turretgreen
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: WeaponTurretShiftFrontBlue ###
+  id: WeaponTurretShiftFrontYellow
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontYellow
+  - type: Sprite
+    layers:
+    - state: turretyellow
+  - type: ShiftStructure
+    faction: Yellow
+
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleResourceGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleResource
+    faction: Green
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleResourceYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleResource
+    faction: Yellow
+
+- type: entity
+  parent: ShiftFrontMedTowerBlue ###
+  id: ShiftFrontMedTowerGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftMedTower
+    faction: Green
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: ShiftFrontMedTowerBlue ###
+  id: ShiftFrontMedTowerYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftMedTower
+    faction: Yellow
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: ShiftFrontSuppliesBlue ###
+  id: ShiftFrontSuppliesGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: factorygreen
+  - type: ShiftSupplies
+    faction: Green
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: ShiftFrontSuppliesBlue ###
+  id: ShiftFrontSuppliesYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: factoryyellow
+  - type: ShiftSupplies
+    faction: Yellow
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: ShiftFrontBarracksBlue ###
+  id: ShiftFrontBarracksGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: humanbarrackgreen
+  - type: ShiftBarracks
+    faction: Green
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: ShiftFrontBarracksBlue ###
+  id: ShiftFrontBarracksYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: humanbarrackyellow
+  - type: ShiftBarracks
+    faction: Yellow
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: ShiftFrontExtractorBlue ###
+  id: ShiftFrontExtractorGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftExtractor
+    faction: Green
+  - type: Sprite
+    state: minergreen
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: ShiftFrontExtractorBlue ###
+  id: ShiftFrontExtractorYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftExtractor
+    faction: Yellow
+  - type: Sprite
+    state: mineryellow
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: ShiftConverterBlue ###
+  id: ShiftConverterGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: recyclergreen
+  - type: ShiftConverter
+    faction: Green
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: ShiftConverterBlue ###
+  id: ShiftConverterYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: recycleryellow
+  - type: ShiftConverter
+    faction: Yellow
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: BaseItem
+  id: AnomalyCoreFleshShiftFront
+  components:
+  - type: ShiftResourceExtract
+  - type: PointLight
+    radius: 1.2
+    energy: 1
+    color: "#cb5b7e"
+    castShadows: false
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/Cores/flesh_core.rsi
+    noRot: true
+    layers:
+    - state: core
+    - state: pulse
+      map: ["decay"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.AnomalyCoreVisuals.Decaying:
+        decay:
+          True: { visible: true }
+          False: { visible: false }
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+    - ForceableFollow
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontMortarBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SiegeWeapon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Appearance
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/ShiftFront/mortar_blue.rsi
+    layers:
+      - state: ready
+        map: ["enum.CatapultVisualKey.Ready"]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: MedievalCatapultAmmoMortar
+  parent: BaseItem
+  name: moon battlemap
+  description: A battlemap for your epic moon exploring to begin, pieces not included!
+  components:
+    - type: Sprite
+      sprite: Imperial/ShiftFront/light.rsi
+      state: ammo
+    - type: SiegeAmmo
+      ammoType: mortar
+    - type: Item
+      size: Normal
+
+- type: entity
+  id: MedievalExplodeMortar
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: FlashOnTrigger
+    range: 6
+  - type: Explosive
+    explosionType: MedievalDemolitionCharge
+    maxIntensity: 20
+    intensitySlope: 5
+    totalIntensity: 350
+    canCreateVacuum: false
+  - type: SpawnOnTrigger
+    proto: MedievalExplosionEffect
+
+- type: entity
+  parent: ShiftFrontMortarBlue ###
+  id: ShiftFrontMortarRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/mortar_red.rsi
+
+- type: entity
+  parent: ShiftFrontMortarBlue ###
+  id: ShiftFrontMortarGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/mortar_green.rsi
+
+- type: entity
+  parent: ShiftFrontMortarBlue ###
+  id: ShiftFrontMortarYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/mortar_yellow.rsi
+
+- type: entity
+  id: FPVExplodeEffect
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DemolitionCharge
+    maxIntensity: 15
+    intensitySlope: 35
+    totalIntensity: 200
+    canCreateVacuum: false
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontDroneBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: robotbarracksblue
+  - type: ShiftSupplies
+    drone: true
+    faction: Blue
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: DroneFactory
+
+- type: entity
+  parent: ShiftFrontDroneBlue ###
+  id: ShiftFrontDroneRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: robotbarracksred
+  - type: ShiftSupplies
+    faction: Red
+  - type: ShiftStructure
+    faction: Red
+
+- type: entity
+  parent: ShiftFrontDroneBlue ###
+  id: ShiftFrontDroneYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: robotbarracksyellow
+  - type: ShiftSupplies
+    faction: Yellow
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: ShiftFrontDroneBlue ###
+  id: ShiftFrontDroneGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: robotbarracksgreen
+  - type: ShiftSupplies
+    faction: Green
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontScienceBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: laboratoryblue
+  - type: ShiftResearchGenerate
+    faction: Blue
+    points: 5
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: Science
+
+- type: entity
+  parent: ShiftFrontScienceBlue ###
+  id: ShiftFrontScienceRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: laboratoryred
+  - type: ShiftResearchGenerate
+    faction: Red
+  - type: ShiftStructure
+    faction: Red
+
+- type: entity
+  parent: ShiftFrontScienceBlue ###
+  id: ShiftFrontScienceGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: laboratorygreen
+  - type: ShiftResearchGenerate
+    faction: Green
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: ShiftFrontScienceBlue ###
+  id: ShiftFrontScienceYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: laboratoryyellow
+  - type: ShiftResearchGenerate
+    faction: Yellow
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: [CrateGenericSteel, ContentsExplosionResistanceBase]
+  id: ExplodeResistiveCrate
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.01
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftConsoleAnalisBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleAnalis
+    faction: Blue
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftConsoleAnalisRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleAnalis
+    faction: Red
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftConsoleAnalisGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleAnalis
+    faction: Green
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftConsoleAnalisYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleAnalis
+    faction: Yellow
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftConsoleAnalisInfBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleAnalis
+    faction: Blue
+    soljers: true
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftConsoleAnalisInfRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleAnalis
+    faction: Red
+    soljers: true
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftConsoleAnalisInfGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleAnalis
+    faction: Green
+    soljers: true
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftConsoleAnalisInfYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftConsoleAnalis
+    faction: Yellow
+    soljers: true
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontStorageBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: storageblue
+  - type: ShiftStorage
+    faction: Blue
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: Storage
+
+- type: entity
+  parent: ShiftFrontStorageBlue ###
+  id: ShiftFrontStorageRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: storagered
+  - type: ShiftStorage
+    faction: Red
+  - type: ShiftStructure
+    faction: Red
+
+- type: entity
+  parent: ShiftFrontStorageBlue ###
+  id: ShiftFrontStorageGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: storagegreen
+  - type: ShiftStorage
+    faction: Green
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: ShiftFrontStorageBlue ###
+  id: ShiftFrontStorageYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    state: storageyellow
+  - type: ShiftStorage
+    faction: Yellow
+  - type: ShiftStructure
+    faction: Yellow

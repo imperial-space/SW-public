@@ -87,5 +87,9 @@ namespace Content.Shared.Verbs
         public static readonly VerbCategory PowerLevel = new("verb-categories-power-level", null);
 
         public static readonly VerbCategory Customization = new("verb-categories-customization", null);
+        public static readonly VerbCategory ShiftFrontResearchT0 = new("verb-categories-research-shift-front-t0", null);
+        public static readonly VerbCategory ShiftFrontResearchT1 = new("verb-categories-research-shift-front-t1", null);
+        public static readonly VerbCategory ShiftFrontResearchT2 = new("verb-categories-research-shift-front-t2", null);
+        public static readonly VerbCategory ShiftFrontResearchT3 = new("verb-categories-research-shift-front-t3", null);
     }
 }

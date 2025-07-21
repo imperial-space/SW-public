@@ -27,9 +27,9 @@
   id: RFIIDCard
   name: regional frontier inspector ID card
   components:
-    - type: Sprite
-      layers:
-        - state: rficard
-        - state: idrfi
+    #- type: Sprite # shiftfront don't need this shit
+    #  layers:
+    #    - state: rficard
+    #    - state: idrfi
     - type: PresetIdCard
       job: RFI

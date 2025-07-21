@@ -1,0 +1,46 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "By Magic.",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "full"
+      },
+      {
+        "name": "xeno0",
+        "directions": 4
+      },
+      {
+        "name": "xeno1",
+        "directions": 4
+      },
+      {
+        "name": "xeno2",
+        "directions": 4
+      },
+      {
+        "name": "xeno3",
+        "directions": 4
+      },
+      {
+        "name": "xeno4",
+        "directions": 4
+      },
+      {
+        "name": "xeno5",
+        "directions": 4
+      },
+      {
+        "name": "xeno6",
+        "directions": 4
+      },
+      {
+        "name": "xeno7",
+        "directions": 4
+      }
+    ]
+  }

@@ -1,0 +1,83 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by crookielv",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "factoryblue"
+        },
+        {
+            "name": "storageblue"
+        },
+        {
+            "name": "storagered"
+        },
+        {
+            "name": "storagegreen"
+        },
+        {
+            "name": "storageyellow"
+        },
+        {
+            "name": "laboratoryblue"
+        },
+        {
+            "name": "laboratoryred"
+        },
+        {
+            "name": "laboratoryyellow"
+        },
+        {
+            "name": "laboratorygreen"
+        },
+        {
+            "name": "factoryred"
+        },
+        {
+            "name": "recyclerblue"
+        },
+        {
+            "name": "recyclerred"
+        },
+        {
+            "name": "humanbarrackblue"
+        },
+        {
+            "name": "humanbarrackred"
+        },
+        {
+            "name": "factorygreen"
+        },
+        {
+            "name": "factoryyellow"
+        },
+        {
+            "name": "recyclergreen"
+        },
+        {
+            "name": "recycleryellow"
+        },
+        {
+            "name": "humanbarrackgreen"
+        },
+        {
+            "name": "humanbarrackyellow"
+        },
+        {
+            "name": "robotbarracksblue"
+        },
+        {
+            "name": "robotbarracksred"
+        },
+        {
+            "name": "robotbarracksyellow"
+        },
+        {
+            "name": "robotbarracksgreen"
+        }
+    ]
+}

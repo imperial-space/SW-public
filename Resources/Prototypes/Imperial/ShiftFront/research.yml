@@ -1,0 +1,286 @@
+- type: ShiftFrontResearch
+  id: ShiftFrontAssault
+  tier: 0
+  researchName: штурмовик
+  price: 50
+  #requredResearches:
+  #- noth
+  #bannedResearches:
+  # - noth
+  #UnicForFaction: noth
+
+- type: ShiftFrontResearch
+  id: ShiftFrontSupplies
+  tier: 1
+  researchName: завод припасов
+  price: 30
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
+  id: ShiftFrontSupport
+  tier: 1
+  researchName: юниты поддержки
+  price: 70
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
+  id: ShiftFrontScience
+  tier: 2
+  researchName: лаборатория
+  price: 80
+  requiredResearches:
+  - ShiftFrontSupplies
+
+- type: ShiftFrontResearch
+  id: ShiftFrontMedTower
+  tier: 2
+  researchName: эффективность мед. вышек
+  price: 120
+  requiredResearches:
+  - ShiftFrontMeds
+  - ShiftFrontScience
+
+- type: ShiftFrontResearch
+  id: ShiftFrontMeds
+  tier: 1
+  researchName: продвинутая медицина
+  price: 80
+  requiredResearches:
+  - ShiftFrontSupport
+
+- type: ShiftFrontResearch
+  id: ShiftFrontGrenadesSupport
+  tier: 1
+  researchName: тактические гранаты
+  price: 55
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
+  id: ShiftFrontREB
+  tier: 1
+  researchName: станции РЭБ
+  price: 85
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
+  id: ShiftFrontGrenades0
+  tier: 1
+  researchName: тактические гранаты 2
+  price: 35
+  requiredResearches:
+  - ShiftFrontGrenadesSupport
+
+- type: ShiftFrontResearch
+  id: ShiftFrontExplodeResistiveCrate
+  tier: 1
+  researchName: взрывоустойчивые ящики
+  price: 25
+  requiredResearches:
+  - ShiftFrontGrenades0
+
+- type: ShiftFrontResearch
+  id: ShiftFrontGrenades
+  tier: 2
+  researchName: боевые гранаты
+  price: 120
+  requiredResearches:
+  - ShiftFrontGrenades0
+
+- type: ShiftFrontResearch
+  id: ShiftFrontGrenades2
+  tier: 3
+  researchName: боевые гранаты 2
+  price: 230
+  requiredResearches:
+  - ShiftFrontGrenades
+
+- type: ShiftFrontResearch
+  id: ShiftFrontDrone
+  tier: 1
+  researchName: дроны-наблюдатели
+  price: 45
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
+  id: ShiftFrontFPV
+  tier: 2
+  researchName: дроны-камикадзе
+  price: 110
+  requiredResearches:
+  - ShiftFrontGrenades
+  - ShiftFrontSupport
+  - ShiftFrontDrone
+
+- type: ShiftFrontResearch
+  id: ShiftFrontWeaponLauncherRPG8
+  tier: 2
+  researchName: РПГ
+  price: 110
+  requiredResearches:
+  - ShiftFrontGrenades
+
+- type: ShiftFrontResearch
+  id: ShiftFrontFPV2
+  tier: 3
+  researchName: продвинутые пульты
+  price: 60
+  requiredResearches:
+  - ShiftFrontFPV
+
+- type: ShiftFrontResearch
+  id: ShiftFrontPsycho
+  tier: 2
+  researchName: псих. подготовка
+  price: 120
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
+  id: ShiftFrontPsycho2
+  tier: 3
+  researchName: псих. подготовка 2
+  price: 190
+  requiredResearches:
+  - ShiftFrontPsycho
+
+- type: ShiftFrontResearch
+  id: ShiftFrontAssasin
+  tier: 3
+  researchName: ассасин
+  price: 240
+  requiredResearches:
+  - ShiftFrontSniper
+
+- type: ShiftFrontResearch
+  id: ShiftFrontBarricade
+  tier: 1
+  researchName: простые заграждения
+  price: 30
+  requiredResearches:
+  - ShiftFrontSupport
+
+- type: ShiftFrontResearch
+  id: ShiftFrontATLM
+  tier: 1
+  researchName: противотанковые мины
+  price: 60
+  requiredResearches:
+  - ShiftFrontBarricade
+
+- type: ShiftFrontResearch
+  id: ShiftFrontStorage
+  tier: 1
+  researchName: хранилища ресурсов
+  price: 50
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
+  id: ShiftFrontBarricade2
+  tier: 2
+  researchName: прочные заграждения
+  price: 80
+  requiredResearches:
+  - ShiftFrontSupport
+
+- type: ShiftFrontResearch
+  id: ShiftFrontSniper
+  tier: 2
+  researchName: снайпера
+  price: 145
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
+  id: ShiftFrontHmg
+  tier: 2
+  researchName: пулеметчики
+  price: 150
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
+  id: ShiftFrontMortar
+  tier: 3
+  researchName: мортира
+  price: 350
+  requiredResearches:
+  - ShiftFrontGrenades2
+
+- type: ShiftFrontResearch
+  id: ShiftFrontClonSpeedUp
+  tier: 2
+  researchName: ускорение клон-станций
+  price: 115
+  requiredResearches:
+  - ShiftFrontBarricade2
+
+- type: ShiftFrontResearch
+  id: ShiftFrontClonSpeedUp2
+  tier: 2
+  researchName: ускорение клон-станций 2
+  price: 245
+  requiredResearches:
+  - ShiftFrontClonSpeedUp
+
+- type: ShiftFrontResearch
+  id: ShiftFrontFactorySpeedUp
+  tier: 2
+  researchName: ускорение заводов
+  price: 115
+  requiredResearches:
+  - ShiftFrontBarricade2
+
+- type: ShiftFrontResearch
+  id: ShiftFrontConverter
+  tier: 2
+  researchName: конвертер ресурсов
+  price: 60
+  requiredResearches:
+  - ShiftFrontStorage
+
+- type: ShiftFrontResearch
+  id: ShiftFrontFactorySpeedUp2
+  tier: 3
+  researchName: ускорение заводов 2
+  price: 185
+  requiredResearches:
+  - ShiftFrontFactorySpeedUp
+
+- type: ShiftFrontResearch
+  id: ShiftFrontMTLB
+  tier: 1
+  researchName: МТЛБ
+  price: 115
+  requiredResearches:
+  - ShiftFrontSupplies
+
+- type: ShiftFrontResearch
+  id: ShiftFrontBMP
+  tier: 2
+  researchName: БМП
+  price: 195
+  requiredResearches:
+  - ShiftFrontMTLB
+
+- type: ShiftFrontResearch
+  id: ShiftFrontTank
+  tier: 3
+  researchName: Танк
+  price: 255
+  requiredResearches:
+  - ShiftFrontBMP
+
+# Turret
+# MedTower
+# Supplies
+# Barracks
+# Extractor
+# Converter
+# DroneFactory
+# Science

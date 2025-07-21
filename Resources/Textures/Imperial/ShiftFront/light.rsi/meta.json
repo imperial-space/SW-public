@@ -1,0 +1,115 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "pult by dantanat, drone by TornadoTech, other is by crookielv,",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon",
+      "delays": [
+        [
+          0.3,
+          0.25
+        ]
+      ]
+        },
+        {
+            "name": "healtow",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+        },
+        {
+            "name": "minerblue"
+        },
+        {
+            "name": "dronewatch"
+        },
+        {
+            "name": "dronewatchred"
+        },
+        {
+            "name": "dronewatchgreen"
+        },
+        {
+            "name": "dronewatchyellow"
+        },
+        {
+            "name": "pult"
+        },
+        {
+            "name": "drone"
+        },
+        {
+            "name": "tankback"
+        },
+        {
+            "name": "rebblue"
+        },
+        {
+            "name": "rebred"
+        },
+        {
+            "name": "rebgreen"
+        },
+        {
+            "name": "rebyellow"
+        },
+        {
+            "name": "tankdirection"
+        },
+        {
+            "name": "tankrotate"
+        },
+        {
+            "name": "tankstart"
+        },
+        {
+            "name": "tankstop"
+        },
+        {
+            "name": "dronered"
+        },
+        {
+            "name": "dronegreen"
+        },
+        {
+            "name": "droneyellow"
+        },
+        {
+            "name": "ammo"
+        },
+        {
+            "name": "minerred"
+        },
+        {
+            "name": "minergreen"
+        },
+        {
+            "name": "mineryellow"
+        },
+        {
+            "name": "orebio"
+        },
+        {
+            "name": "orenano"
+        },
+        {
+            "name": "orepolymer"
+        }
+    ]
+}

@@ -1,0 +1,58 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by crookielv",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "tankhull",
+            "directions": 8
+        },
+        {
+            "name": "BMPblue",
+            "directions": 8
+        },
+        {
+            "name": "BMPgreen",
+            "directions": 8
+        },
+        {
+            "name": "BMPred",
+            "directions": 8
+        },
+        {
+            "name": "BMPyellow",
+            "directions": 8
+        },
+        {
+            "name": "open",
+            "directions": 8
+        },
+        {
+            "name": "closed",
+            "directions": 8
+        },
+        {
+            "name": "tankcorpusblue"
+        },
+        {
+            "name": "tankcorpusgreen"
+        },
+        {
+            "name": "tankcorpusred"
+        },
+        {
+            "name": "tankcorpusyellow"
+        },
+        {
+            "name": "tankbashnya"
+        },
+        {
+            "name": "tankturret",
+            "directions": 8
+        }
+    ]
+}

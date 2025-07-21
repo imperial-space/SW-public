@@ -3,7 +3,7 @@
   alias:
   - medieval
   name: medieval-title
-  showInVote: true
+  showInVote: false
   description: medieval-description
   rules:
   - TDM
@@ -13,16 +13,16 @@
   id: MedievalDevelop
   alias:
   - medievaldevelop
-  name: medieval-title
-  showInVote: false
-  description: medieval-description
+  name: shiftfront-title
+  showInVote: true
+  description: shiftfront-description
 
 - type: gamePreset
   id: MedievalMyrmex
   alias:
   - medievalmyrmex
   name: medieval-myrmex-title
-  showInVote: true
+  showInVote: false
   description: medieval-myrmex-description
   rules:
   - TDM
@@ -34,8 +34,8 @@
   alias:
   - medievalskeletron
   name: medieval-skeletron-title
-  description: medieval-skeletron-description 
-  showInVote: true
+  description: medieval-skeletron-description
+  showInVote: false
   rules:
   - TDM
   - MedievalStatsCounter

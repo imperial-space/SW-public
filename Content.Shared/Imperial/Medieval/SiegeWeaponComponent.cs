@@ -21,10 +21,10 @@ public sealed partial class SiegeWeaponComponent : Component
     public float TargetY = 0;
 
     [DataField]
-    public float MinTarget = 8;
+    public float MinTarget = 12;
 
     [DataField]
-    public float MaxTarget = 50;
+    public float MaxTarget = 200;
 
     [DataField]
     public string LoadedShot = "";
@@ -38,11 +38,12 @@ public sealed partial class SiegeWeaponComponent : Component
     public bool SpringCharged = false;
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
-    public string EffectSoundOnAim = "/Audio/Imperial/Medieval/Siege/catapult_aim.ogg";
+    public string EffectSoundOnAim = "/Audio/Imperial/ShiftFront/mortar_aim.ogg";
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
-    public string EffectSoundOnLoad = "/Audio/Imperial/Medieval/Siege/catapult_load.ogg";
+    public string EffectSoundOnLoad = "/Audio/Imperial/ShiftFront/mortar_load.ogg";
 
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadOnly)]
-    public string EffectSoundOnShoot = "/Audio/Imperial/Medieval/Siege/catapult_shot.ogg";
+    public string EffectSoundOnShoot = "/Audio/Imperial/ShiftFront/mortar_shot.ogg";
+
 }

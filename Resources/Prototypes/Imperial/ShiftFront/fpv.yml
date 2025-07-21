@@ -1,0 +1,288 @@
+
+- type: entity
+  parent: [ SimpleMobBase, FlyingMobBase ]
+  id: MobFPVDrone
+  components:
+  - type: Eye
+    pvsScale: 2
+  - type: HTN
+    enabled: false
+  - type: Item
+    size: Normal
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 7
+    baseSprintSpeed : 7
+    acceleration: 1.8
+    friction: 1.4
+  - type: MedievalDash
+    force: 0
+    staminaDamage: 0
+  - type: Sprite
+    scale: 0.6, 0.6
+    drawdepth: Mobs
+    noRot: false
+    sprite: Imperial/ShiftFront/light.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: drone
+  - type: AmbientSound
+    enabled: false
+    volume: -3
+    range: 14
+    sound:
+      path: /Audio/Imperial/ShiftFront/drone_active.ogg
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.23
+        density: 10
+        mask:
+        - FlyingMobMask
+        layer:
+        - FlyingMobLayer
+  - type: ShiftFPVDrone
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneBlue
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontBlue
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: drone
+  - type: ShiftFPVDrone
+    faction: Blue
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio2
+  - type: ActiveRadio
+    channels:
+    - Radio2
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneRed
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontRed
+  - type: ShiftFPVDrone
+    faction: Red
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronered
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: ActiveRadio
+    channels:
+    - Radio1
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneGreen
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontGreen
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronegreen
+  - type: ShiftFPVDrone
+    faction: Green
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio3
+  - type: ActiveRadio
+    channels:
+    - Radio3
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneYellow
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontYellow
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: droneyellow
+  - type: ShiftFPVDrone
+    faction: Yellow
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio4
+  - type: ActiveRadio
+    channels:
+    - Radio4
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadFPVMask
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/fpvmask.rsi
+  - type: Clothing
+    sprite: Imperial/ShiftFront/fpvmask.rsi
+  - type: IdentityBlocker
+  - type: ShiftFPVMask
+
+- type: entity
+  parent: BaseItem
+  id: FPVController
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: pult
+  - type: ShiftFPVController
+  - type: UseDelay
+
+- type: entity
+  parent: BaseItem
+  id: FPVControllerUp
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: pult
+  - type: ShiftFPVController
+    needVR: false
+  - type: UseDelay
+
+- type: entity
+  id: StopFPVControll
+  components:
+  - type: InstantAction
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/ShiftFront/light.rsi
+      state: drone
+    event: !type:FPVStopControlEvent
+
+#- type: entity
+#  id: CommanderBoostUp
+#  components:
+#  - type: InstantAction
+#    itemIconStyle: BigAction
+#    icon:
+#      sprite: Imperial/ShiftFront/light.rsi
+#      state: healtower
+#    event: !type:CommanderBoostUp
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneObserverBlue
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontBlue
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronewatch
+  - type: ShiftFPVDrone
+    faction: Blue
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio2
+  - type: ActiveRadio
+    channels:
+    - Radio2
+  - type: LanguageSpeaker
+    languages:
+      English: Speak
+  - type: Speech
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneObserverRed
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontRed
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronewatchred
+  - type: ShiftFPVDrone
+    faction: Red
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: LanguageSpeaker
+    languages:
+      Russian: Speak
+  - type: Speech
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneObserverGreen
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontGreen
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronewatchgreen
+  - type: ShiftFPVDrone
+    faction: Green
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio3
+  - type: ActiveRadio
+    channels:
+    - Radio3
+  - type: LanguageSpeaker
+    languages:
+      German: Speak
+  - type: Speech
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneObserverYellow
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontYellow
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronewatchyellow
+  - type: ShiftFPVDrone
+    faction: Yellow
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio4
+  - type: ActiveRadio
+    channels:
+    - Radio4
+  - type: LanguageSpeaker
+    languages:
+      Chineese: Speak
+  - type: Speech
