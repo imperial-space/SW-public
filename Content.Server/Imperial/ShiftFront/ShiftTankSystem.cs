@@ -10,6 +10,15 @@ using Robust.Shared.Physics.Components; // Нужно для управлени�
 using Robust.Shared.Physics.Systems;   // Нужно для управления физикой
 using Content.Shared.ShiftFront.Components; // Остальные зависимости оставлены как были
 using Content.Shared.Actions;
+using Content.Server.GameTicking.Rules.Components;
+using Robust.Shared.Map;
+using Robust.Shared.Random;
+using Robust.Shared.Utility;
+using Content.Shared.GameTicking.Components;
+using Robust.Shared.EntitySerialization.Systems;
+using Robust.Server.GameObjects;
+using Robust.Shared.EntitySerialization;
+using Robust.Shared.Spawners;
 
 namespace Content.Server.ShiftFront
 {
@@ -22,6 +31,9 @@ namespace Content.Server.ShiftFront
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] private readonly SharedActionsSystem _action = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly MapSystem _mapSystem = default!;
+        [Dependency] private readonly MapLoaderSystem _mapLoaderSystem = default!;
 
         public override void Initialize()
         {
@@ -38,7 +50,7 @@ namespace Content.Server.ShiftFront
         private void OnExamine(EntityUid uid, ShiftTankHullComponent comp, ExaminedEvent args)
         {
             if (TryComp<DamageableComponent>(uid, out var dam) && dam.TotalDamage.Float() > 0)
-                args.PushMarkup($"У техники [color=red]{Math.Round(dam.TotalDamage.Float(), 2)}[/color] единиц  повреждений, подъедьте к мед. вышке ремонта", 5);
+                args.PushMarkup($"У техники [color=red]{Math.Round(dam.TotalDamage.Float(), 2)}[/color] единиц  повреждений", 5);
         }
         public void TankStart(EntityUid uid, ShiftTankHullComponent component, ComponentStartup args)
         {
@@ -60,8 +72,71 @@ namespace Content.Server.ShiftFront
                 turretcomp.LinkedTank = uid;
                 component.LinkedTurret = turret;
             }
+            var map = SpawnMap(component.GridLink);
+            if (!map.HasValue) return;
+            component.LinkedGrid = map.Value;
+            var query = EntityQueryEnumerator<ShiftInsideMarkerComponent>();
+            while (query.MoveNext(out var insuid, out var inside))
+            {
+                switch (inside.Inside)
+                {
+                    case "Controller":
+                        if (component.InsideController == null) continue;
+                        component.InsideControllerEntity = Spawn(component.InsideController, Transform(insuid).Coordinates);
+                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn);
+                        despawn.Lifetime = 0.05f;
+                        break;
+                    case "Gunner":
+                        if (component.InsideGunner == null) continue;
+                        component.InsideGunnerEntity = Spawn(component.InsideGunner, Transform(insuid).Coordinates);
+                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn2);
+                        despawn2.Lifetime = 0.05f;
+                        break;
+                    case "Cartridge":
+                        if (component.InsideCartridge == null) continue;
+                        component.InsideCartridgeEntity = Spawn(component.InsideCartridge, Transform(insuid).Coordinates);
+                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn3);
+                        despawn3.Lifetime = 0.05f;
+                        break;
+                    case "Exit":
+                        if (component.InsideExit == null) continue;
+                        component.InsideExitEntity = Spawn(component.InsideExit, Transform(insuid).Coordinates);
+                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn4);
+                        despawn4.Lifetime = 0.05f;
+                        break;
+                    case "Entry":
+                        if (component.InsideEntry == null) continue;
+                        component.InsideEntryEntity = Spawn(component.InsideEntry, Transform(insuid).Coordinates);
+                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn5);
+                        despawn5.Lifetime = 0.05f;
+                        break;
+                    case "Motor":
+                        if (component.InsideMotor == null) continue;
+                        component.InsideMotorEntity = Spawn(component.InsideMotor, Transform(insuid).Coordinates);
+                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn6);
+                        despawn6.Lifetime = 0.05f;
+                        break;
+                    case "Observer":
+                        if (component.InsideObserver == null) continue;
+                        component.InsideObserverEntity = Spawn(component.InsideObserver, Transform(insuid).Coordinates);
+                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn7);
+                        despawn7.Lifetime = 0.05f;
+                        break;
+                }
+            }
         }
+        private Entity<Robust.Shared.Map.Components.MapComponent>? SpawnMap(ResPath[] mappath)
+        {
+            var path = _random.Pick(mappath);
+            var options = new DeserializationOptions
+            {
+                InitializeMaps = true,
+            };
 
+            if (_mapLoaderSystem.TryLoadMap(path, out var first, out var second, options))
+                return first;
+            return null;
+        }
         private void OnTankShutdown(EntityUid uid, ShiftTankHullComponent component, ComponentShutdown args)
         {
             // Можно добавить другую логику очистки, если нужно

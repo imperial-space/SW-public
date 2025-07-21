@@ -1,8 +1,5 @@
-using Robust.Shared.GameStates;
-using Content.Shared.Damage;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
+using Robust.Shared.Utility;
 
 namespace Content.Shared.ShiftFront.Components;
 
@@ -11,6 +8,57 @@ public sealed partial class ShiftTankHullComponent : Component
 {
     [DataField]
     public EntityUid? LinkedTurret;
+
+    [DataField]
+    public Entity<Robust.Shared.Map.Components.MapComponent>? LinkedGrid;
+    [DataField]
+    public ResPath[] GridLink = new ResPath[] //Imperal additional maps
+    {
+        //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
+        new ResPath("/Maps/Imperial/map.yml")
+    };
+
+    [DataField]
+    public string InsideController = "";
+
+    [DataField]
+    public string InsideGunner = "";
+
+    [DataField]
+    public string InsideCartridge = "";
+
+    [DataField]
+    public string InsideExit = "";
+
+    [DataField]
+    public string InsideEntry = "";
+
+    [DataField]
+    public string InsideMotor = "";
+
+    [DataField]
+    public string InsideObserver = "";
+
+    [DataField]
+    public EntityUid? InsideControllerEntity;
+
+    [DataField]
+    public EntityUid? InsideGunnerEntity;
+
+    [DataField]
+    public EntityUid? InsideCartridgeEntity;
+
+    [DataField]
+    public EntityUid? InsideExitEntity;
+
+    [DataField]
+    public EntityUid? InsideEntryEntity;
+
+    [DataField]
+    public EntityUid? InsideMotorEntity;
+
+    [DataField]
+    public EntityUid? InsideObserverEntity;
 
     [DataField]
     public string TurretProto = "";
