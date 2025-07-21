@@ -33,7 +33,7 @@ public sealed partial class CCVars
     ///     Controls the default game preset.
     /// </summary>
     public static readonly CVarDef<string>
-        GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "Medieval", CVar.ARCHIVE); // imperial medieval
+        GameLobbyDefaultPreset = CVarDef.Create("game.defaultpreset", "MedievalDevelop", CVar.ARCHIVE); // imperial medieval
 
     /// <summary>
     ///     Controls if the game can force a different preset if the current preset's criteria are not met.
@@ -45,7 +45,7 @@ public sealed partial class CCVars
     ///     The preset for the game to fall back to if the selected preset could not be used, and fallback is enabled.
     /// </summary>
     public static readonly CVarDef<string>
-        GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "Medieval", CVar.ARCHIVE); // imperial medieval
+        GameLobbyFallbackPreset = CVarDef.Create("game.fallbackpreset", "MedievalDevelop", CVar.ARCHIVE); // imperial medieval
 
     /// <summary>
     ///     Controls if people can win the game in Suspicion or Deathmatch.

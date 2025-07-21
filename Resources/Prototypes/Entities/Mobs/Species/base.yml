@@ -271,7 +271,7 @@
   #- type: Mana
   #  maxMana: 100
   #  regen: 0.25
-  - type: SSDFree
+  #- type: SSDFree
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
   - type: EmoteOnDamage
@@ -284,15 +284,15 @@
   #- type: BadSmellFeel
   #- type: BadSmell
   - type: MeleeParryAble
-  - type: NeedSleep
-    emotes:
-    - Yawn
+  #- type: NeedSleep
+  #  emotes:
+  #  - Yawn
   - type: ReligionMember
   - type: NocturnBadFood
     timesCanBeBiten: 6
     bloodMultiplier: 1
     fresh: true
-  - type: RandomSteal
+  #- type: RandomSteal
   - type: Customizer
   - type: IdentityRequiresKnowledge
   #- type: LanguageSpeaker

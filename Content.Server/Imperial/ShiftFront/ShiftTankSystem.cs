@@ -33,14 +33,8 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftTankHullComponent, TankToggleRotateEvent>(OnToggleRotate);
             SubscribeLocalEvent<ShiftTankHullComponent, TankToggleRotationDirectionEvent>(OnToggleRotationDirection);
             SubscribeLocalEvent<ShiftTankHullComponent, ExaminedEvent>(OnExamine);
-            SubscribeLocalEvent<ShiftTankTurretComponent, DamageChangedEvent>(OnDamage);
         }
 
-        private void OnDamage(EntityUid uid, ShiftTankTurretComponent comp, ref DamageChangedEvent args)
-        {
-            if (args.DamageDelta != null && args.DamageDelta.GetTotal() > 1f && comp.LinkedTank != null)
-                _damageableSystem.TryChangeDamage(comp.LinkedTank, comp.Damage * args.DamageDelta.GetTotal(), false);
-        }
         private void OnExamine(EntityUid uid, ShiftTankHullComponent comp, ExaminedEvent args)
         {
             if (TryComp<DamageableComponent>(uid, out var dam) && dam.TotalDamage.Float() > 0)

@@ -43,7 +43,7 @@ public sealed partial class NeedSleepComponent : Component
     /// Скорость, с которой сонливость будет накапливаться
     /// </summary>
     [DataField]
-    public float SleepLevelPerUpdate = 0.25f;
+    public float SleepLevelPerUpdate = 0f;
 
     /// <summary>
     /// Скорость, с которой сонливость будет восстанавливаться при сне

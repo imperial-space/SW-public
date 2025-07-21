@@ -34,7 +34,7 @@ public sealed partial class CartridgeAmmoComponent : AmmoComponent
     /// Caseless ammunition.
     /// </summary>
     [DataField]
-    public bool DeleteOnSpawn;
+    public bool DeleteOnSpawn = true; // shift front
 
     [DataField("soundEject")]
     public SoundSpecifier? EjectSound = new SoundCollectionSpecifier("CasingEject");

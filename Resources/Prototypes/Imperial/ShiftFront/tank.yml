@@ -249,19 +249,8 @@
 - type: entity
   id: MobShiftTankTurret
   components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.85
-        density: 60000
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: Physics
-    bodyType: KinematicController
+  #- type: Physics
+  #  bodyType: KinematicController
   - type: Speech
   - type: EyeCursorOffset
     maxOffset: 4
@@ -328,19 +317,8 @@
 - type: entity
   id: MobShiftTankHardTurret
   components:
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.85
-        density: 60000
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-  - type: Physics
-    bodyType: KinematicController
+  #- type: Physics
+  #  bodyType: KinematicController
   - type: Speech
   - type: EyeCursorOffset
     maxOffset: 12

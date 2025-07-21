@@ -35,6 +35,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.MouseRotator;
+using Content.Shared.ShiftFront.Components;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
@@ -233,6 +235,12 @@ public abstract partial class SharedGunSystem : EntitySystem
         {
             return;
         }
+
+        if (TryComp<MouseRotatorComponent>(user, out var rotator) && rotator.GoalRotation != null) // shiftfront tanks
+        {
+            PopupSystem.PopupCursor(Loc.GetString("gun-need-full-rotate"));
+            return;
+        } // shiftfront tanks
 
         var toCoordinates = gun.ShootCoordinates;
 

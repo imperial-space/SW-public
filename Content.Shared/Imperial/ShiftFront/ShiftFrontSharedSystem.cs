@@ -17,6 +17,7 @@ using Robust.Shared.Physics.Components; // Нужно для управлени�
 using Robust.Shared.Physics.Systems;   // Нужно для управления физикой
 using Content.Shared.ShiftFront.Components; // Остальные зависимости оставлены как были
 using Content.Shared.Actions;
+using Content.Shared.Projectiles;
 
 namespace Content.Shared.XCOM;
 
@@ -33,6 +34,7 @@ public sealed partial class ShiftFrontSharedSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<ShiftTankBulletComponent, ProjectileBeforeHitEvent>(OnBeforeProjectileHit);
 
         CommandBinds.Builder
             .Bind(EngineKeyFunctions.MoveUp, new PointerInputCmdHandler(MovementUp))
@@ -40,6 +42,16 @@ public sealed partial class ShiftFrontSharedSystem : EntitySystem
             .Bind(EngineKeyFunctions.MoveDown, new PointerInputCmdHandler(MovementDown))
             .Bind(EngineKeyFunctions.MoveLeft, new PointerInputCmdHandler(MovementLeft))
             .Register<ShiftFrontSharedSystem>();
+    }
+
+    private void OnBeforeProjectileHit(EntityUid uid, ShiftTankBulletComponent component, ref ProjectileBeforeHitEvent args)
+    {
+        if (!TryComp<ShiftTankHullComponent>(args.Target, out var hull)) return;
+        if (!hull.LinkedTurret.HasValue) return;
+        if (!args.Shooter.HasValue) return;
+
+        if (hull.LinkedTurret.Value == args.Shooter.Value)
+            args.Cancelled = true;
     }
     private bool MovementUp(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
     {

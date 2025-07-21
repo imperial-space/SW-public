@@ -25,6 +25,7 @@ using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
+using Content.Shared.MouseRotator;
 
 namespace Content.Server.Pointing.EntitySystems
 {
@@ -158,7 +159,8 @@ namespace Content.Server.Pointing.EntitySystems
                 return false;
             }
             var mapCoordsPointed = _transform.ToMapCoordinates(coordsPointed);
-            _rotateToFaceSystem.TryFaceCoordinates(player, mapCoordsPointed.Position);
+            if (!HasComp<MouseRotatorComponent>(player))
+                _rotateToFaceSystem.TryFaceCoordinates(player, mapCoordsPointed.Position);
 
             var arrow = EntityManager.SpawnEntity("PointingArrow", coordsPointed);
 

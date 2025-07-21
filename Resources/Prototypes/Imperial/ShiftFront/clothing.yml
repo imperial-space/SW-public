@@ -115,7 +115,7 @@
   description: job-description-blueshield
   playTimeTracker: JobBlueShieldOfficer
   startingGear: BlueShieldOfficerGear
-  icon: "JobIconBlueshield"
+  icon: "JobIconBlueshieldS"
   supervisors: job-supervisors-captain
   canBeAntag: false
   accessGroups:
@@ -697,3 +697,11 @@
   id: ClothingHeadHatCapcapWhiteShiftFront
   components:
   - type: Unremoveable
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconBlueshieldS
+  icon:
+    sprite: /Textures/Interface/Misc/job_icons.rsi
+    state: Blueshield
+  jobName: job-name-blueshield
