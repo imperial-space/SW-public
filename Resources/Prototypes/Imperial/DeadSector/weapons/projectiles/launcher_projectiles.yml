@@ -10,8 +10,8 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: AntiTankLandmine
-    maxIntensity: 2.5
-    intensitySlope: 2
+    maxIntensity: 2
+    intensitySlope: 1
     totalIntensity: 25
     maxTileBreak: 1
   - type: PointLight
