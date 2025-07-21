@@ -215,7 +215,7 @@ namespace Content.Server.ShiftFront
                         comp.TimeTillNextGen -= 1;
                     else
                     {
-                        _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                        if (comp.ChosenGen != "") _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
                         var xform = Transform(uid);
                         var coords = xform.Coordinates;
                         switch (comp.ChosenGen)
