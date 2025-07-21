@@ -222,11 +222,14 @@ namespace Content.Server.ShiftFront
                         {
                             case "скаут":
                                 Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
                                 break;
                             case "штурмовик":
                                 Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
+                                Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
                                 break;
                             case "медик":
+                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
                                 Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
                                 break;
                             case "инженер":
