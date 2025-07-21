@@ -130,7 +130,7 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15-inhand.rsi
     quickEquip: false
     slots:
     - Back
@@ -169,6 +169,7 @@
       gun_chamber: !type:ContainerSlot
       awnings: !type:Container
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/rifle/AR15-inhand.rsi
     size: Normal
     shape:
     - 0,0,4,1
