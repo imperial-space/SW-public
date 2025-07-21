@@ -5,6 +5,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Content.Server.Prayer;
 using Content.Server.ShiftFront.Components;
+using Content.Shared.ShiftFront.Components;
 using Content.Shared.Damage;
 using Content.Server.Mind;
 using Content.Shared.Interaction.Events;

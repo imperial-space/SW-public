@@ -117,12 +117,12 @@
 
 - type: entity
   id: MobArgocyteHarvesterShiftFrontSpawner
-  parent: MarkerBase
+  #parent: MarkerBase
   components:
-  - type: Sprite
-    layers:
-      - state: green
-      - state: ai
+  #- type: Sprite
+  #  layers:
+  #    - state: green
+  #    - state: ai
   - type: Timer
   - type: TimedSpawner
     prototypes:
@@ -242,35 +242,35 @@
   - type: ShiftPlayer
     name: Med
 
-- type: entity
-  parent: BaseMobHumanShiftFrontBlue
-  id: BaseMobHumanShiftFrontBlueNinja
-  components:
-  - type: Loadout
-    prototypes: [ ShiftFrontBlueNinja ]
-  - type: GhostRole
-    name: Ассасин
-    description: НАТО
-  - type: Stealth
-  - type: StealthOnMove
-  - type: ShiftPlayer
-    ninja: true
-    name: Assasin
-
-- type: entity
-  parent: BaseMobHumanShiftFrontRed
-  id: BaseMobHumanShiftFrontRedNinja
-  components:
-  - type: Loadout
-    prototypes: [ ShiftFrontRedNinja ]
-  - type: GhostRole
-    name: Ассасин
-    description: ПСБ (пост-совет. блок)
-  - type: Stealth
-  - type: StealthOnMove
-  - type: ShiftPlayer
-    name: Assasin
-    ninja: true
+#- type: entity
+#  parent: BaseMobHumanShiftFrontBlue
+#  id: BaseMobHumanShiftFrontBlueNinja
+#  components:
+#  - type: Loadout
+#    prototypes: [ ShiftFrontBlueNinja ]
+#  - type: GhostRole
+#    name: Ассасин
+#    description: НАТО
+#  - type: Stealth
+#  - type: StealthOnMove
+#  - type: ShiftPlayer
+#    ninja: true
+#    name: Assasin
+#
+#- type: entity
+#  parent: BaseMobHumanShiftFrontRed
+#  id: BaseMobHumanShiftFrontRedNinja
+#  components:
+#  - type: Loadout
+#    prototypes: [ ShiftFrontRedNinja ]
+#  - type: GhostRole
+#    name: Ассасин
+#    description: ПСБ (пост-совет. блок)
+#  - type: Stealth
+#  - type: StealthOnMove
+#  - type: ShiftPlayer
+#    name: Assasin
+#    ninja: true
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -761,39 +761,39 @@
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
 
-- type: startingGear
-  id: ShiftFrontBlueNinja
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
-    head: BlueHelmetSpaceNinja
-    outerClothing: BlueSuitSpaceNinja
-    eyes: ClothingEyesHudCommandShiftFront ###
-    gloves: ClothingHandsGlovesCombatShiftFront ###
-    shoes: ClothingShoesSpaceNinja ###
-    id: BlueShieldIDCardShiftFront
-    ears: ClothingHeadsetAlt1ShiftingFront
-    pocket1: Wrench ###
-    pocket2: DeadSectorTourniquet ###
-    belt: USSPBeltAssaultShiftFront ###
-  inhand:
-    - BlueEnergyKatana
-
-- type: startingGear
-  id: ShiftFrontRedNinja
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
-    head: RedHelmetSpaceNinja
-    outerClothing: RedSuitSpaceNinja
-    eyes: ClothingEyesHudCommandShiftFront ###
-    gloves: ClothingHandsGlovesCombatShiftFront ###
-    shoes: ClothingShoesSpaceNinja ###
-    id: SeniorOfficerIDCardShiftFront
-    ears: ClothingHeadsetAlt2ShiftingFront
-    pocket1: Wrench ###
-    pocket2: DeadSectorTourniquet ###
-    belt: USSPBeltAssaultShiftFront ###
-  inhand:
-    - RedEnergyKatana
+#- type: startingGear
+#  id: ShiftFrontBlueNinja
+#  equipment:
+#    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
+#    head: BlueHelmetSpaceNinja
+#    outerClothing: BlueSuitSpaceNinja
+#    eyes: ClothingEyesHudCommandShiftFront ###
+#    gloves: ClothingHandsGlovesCombatShiftFront ###
+#    shoes: ClothingShoesSpaceNinja ###
+#    id: BlueShieldIDCardShiftFront
+#    ears: ClothingHeadsetAlt1ShiftingFront
+#    pocket1: Wrench ###
+#    pocket2: DeadSectorTourniquet ###
+#    belt: USSPBeltAssaultShiftFront ###
+#  inhand:
+#    - BlueEnergyKatana
+#
+#- type: startingGear
+#  id: ShiftFrontRedNinja
+#  equipment:
+#    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
+#    head: RedHelmetSpaceNinja
+#    outerClothing: RedSuitSpaceNinja
+#    eyes: ClothingEyesHudCommandShiftFront ###
+#    gloves: ClothingHandsGlovesCombatShiftFront ###
+#    shoes: ClothingShoesSpaceNinja ###
+#    id: SeniorOfficerIDCardShiftFront
+#    ears: ClothingHeadsetAlt2ShiftingFront
+#    pocket1: Wrench ###
+#    pocket2: DeadSectorTourniquet ###
+#    belt: USSPBeltAssaultShiftFront ###
+#  inhand:
+#    - RedEnergyKatana
 
 - type: entity
   name: explosive mine

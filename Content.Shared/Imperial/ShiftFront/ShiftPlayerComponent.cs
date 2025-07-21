@@ -1,6 +1,6 @@
 using Robust.Shared.GameStates;
 
-namespace Content.Server.ShiftFront.Components;
+namespace Content.Shared.ShiftFront.Components;
 
 [RegisterComponent]
 public sealed partial class ShiftPlayerComponent : Component

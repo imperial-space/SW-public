@@ -148,13 +148,13 @@
   requiredResearches:
   - ShiftFrontPsycho
 
-- type: ShiftFrontResearch
-  id: ShiftFrontAssasin
-  tier: 3
-  researchName: ассасин
-  price: 240
-  requiredResearches:
-  - ShiftFrontSniper
+#- type: ShiftFrontResearch
+#  id: ShiftFrontAssasin
+#  tier: 3
+#  researchName: ассасин
+#  price: 240
+#  requiredResearches:
+#  - ShiftFrontSniper
 
 - type: ShiftFrontResearch
   id: ShiftFrontBarricade

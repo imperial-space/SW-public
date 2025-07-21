@@ -15,6 +15,7 @@ using System.Numerics;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 using Content.Server.ShiftFront.Components;
+using Content.Shared.ShiftFront.Components;
 using Content.Shared.Speech;
 using Content.Server.Chat.Systems;
 using Robust.Shared.Map.Components;

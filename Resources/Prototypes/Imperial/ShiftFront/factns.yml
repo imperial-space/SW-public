@@ -176,35 +176,35 @@
   - type: ShiftPlayer
     name: Med
 
-- type: entity
-  parent: BaseMobHumanShiftFrontGreen
-  id: BaseMobHumanShiftFrontGreenNinja
-  components:
-  - type: Loadout
-    prototypes: [ ShiftFrontGreenNinja ]
-  - type: GhostRole
-    name: Ассасин
-    description: Технократическая Германия
-  - type: Stealth
-  - type: StealthOnMove
-  - type: ShiftPlayer
-    name: Assasin
-    ninja: true
-
-- type: entity
-  parent: BaseMobHumanShiftFrontYellow
-  id: BaseMobHumanShiftFrontYellowNinja
-  components:
-  - type: Loadout
-    prototypes: [ ShiftFrontYellowNinja ]
-  - type: GhostRole
-    name: Ассасин
-    description: Единая Китайская партия
-  - type: Stealth
-  - type: StealthOnMove
-  - type: ShiftPlayer
-    name: Assasin
-    ninja: true
+#- type: entity
+#  parent: BaseMobHumanShiftFrontGreen
+#  id: BaseMobHumanShiftFrontGreenNinja
+#  components:
+#  - type: Loadout
+#    prototypes: [ ShiftFrontGreenNinja ]
+#  - type: GhostRole
+#    name: Ассасин
+#    description: Технократическая Германия
+#  - type: Stealth
+#  - type: StealthOnMove
+#  - type: ShiftPlayer
+#    name: Assasin
+#    ninja: true
+#
+#- type: entity
+#  parent: BaseMobHumanShiftFrontYellow
+#  id: BaseMobHumanShiftFrontYellowNinja
+#  components:
+#  - type: Loadout
+#    prototypes: [ ShiftFrontYellowNinja ]
+#  - type: GhostRole
+#    name: Ассасин
+#    description: Единая Китайская партия
+#  - type: Stealth
+#  - type: StealthOnMove
+#  - type: ShiftPlayer
+#    name: Assasin
+#    ninja: true
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
@@ -530,7 +530,7 @@
     mask: ClothingMaskNeckGaiterShiftFront
     eyes: ClothingEyesHudCommandShiftFront
     gloves: MedievalClothingHandsGlovesColorBlackShiftFront
-    outerClothing: ClothingOuterHardsuitERTImperialEngineer
+    outerClothing: ClothingOuterHardsuitERTImperialEngineerShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: SeniorEngineerIDCardShiftFront
     #back: EncryptionKeyRadio4
@@ -674,36 +674,36 @@
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
 
-- type: startingGear
-  id: ShiftFrontGreenNinja
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
-    head: GreenHelmetSpaceNinja
-    outerClothing: GreenSuitSpaceNinja
-    eyes: ClothingEyesHudCommandShiftFront ###
-    gloves: ClothingHandsGlovesCombatShiftFront ###
-    shoes: ClothingShoesSpaceNinja ###
-    id: ElysiumFederationIDCardShiftFront
-    ears: ClothingHeadsetAlt4ShiftingFront
-    pocket1: Wrench ###
-    pocket2: DeadSectorTourniquet ###
-    belt: USSPBeltAssaultShiftFront ###
-  inhand:
-    - EnergyKatana
+#- type: startingGear
+#  id: ShiftFrontGreenNinja
+#  equipment:
+#    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
+#    head: GreenHelmetSpaceNinja
+#    outerClothing: GreenSuitSpaceNinja
+#    eyes: ClothingEyesHudCommandShiftFront ###
+#    gloves: ClothingHandsGlovesCombatShiftFront ###
+#    shoes: ClothingShoesSpaceNinja ###
+#    id: ElysiumFederationIDCardShiftFront
+#    ears: ClothingHeadsetAlt4ShiftingFront
+#    pocket1: Wrench ###
+#    pocket2: DeadSectorTourniquet ###
+#    belt: USSPBeltAssaultShiftFront ###
+#  inhand:
+#    - EnergyKatana
 
-- type: startingGear
-  id: ShiftFrontYellowNinja
-  equipment:
-    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
-    head: YellowHelmetSpaceNinja
-    outerClothing: YellowAltSuitSpaceNinja
-    eyes: ClothingEyesHudCommandShiftFront ###
-    gloves: ClothingHandsGlovesCombatShiftFront ###
-    shoes: ClothingShoesSpaceNinja ###
-    id: SeniorEngineerIDCardShiftFront
-    ears: ClothingHeadsetAlt3ShiftingFront
-    pocket1: Wrench ###
-    pocket2: DeadSectorTourniquet ###
-    belt: USSPBeltAssaultShiftFront ###
-  inhand:
-    - YellowEnergyKatana
+#- type: startingGear
+#  id: ShiftFrontYellowNinja
+#  equipment:
+#    jumpsuit: ClothingUniformJumpsuitColorBlackShiftFront ###
+#    head: YellowHelmetSpaceNinja
+#    outerClothing: YellowAltSuitSpaceNinja
+#    eyes: ClothingEyesHudCommandShiftFront ###
+#    gloves: ClothingHandsGlovesCombatShiftFront ###
+#    shoes: ClothingShoesSpaceNinja ###
+#    id: SeniorEngineerIDCardShiftFront
+#    ears: ClothingHeadsetAlt3ShiftingFront
+#    pocket1: Wrench ###
+#    pocket2: DeadSectorTourniquet ###
+#    belt: USSPBeltAssaultShiftFront ###
+#  inhand:
+#    - YellowEnergyKatana

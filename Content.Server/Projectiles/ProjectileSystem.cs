@@ -9,6 +9,10 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Projectiles;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
+using Content.Shared.ShiftFront.Components;
+using System.Linq;
+using Content.Shared.Movement.Systems;
+using System.Numerics;
 
 namespace Content.Server.Projectiles;
 
@@ -20,6 +24,8 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly DestructibleSystem _destructibleSystem = default!;
     [Dependency] private readonly GunSystem _guns = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
+    [Dependency] private readonly SharedContentEyeSystem _eye = default!;
+
 
     public override void Initialize()
     {
@@ -29,6 +35,20 @@ public sealed class ProjectileSystem : SharedProjectileSystem
 
     private void OnStartCollide(EntityUid uid, ProjectileComponent component, ref StartCollideEvent args)
     {
+        if (TryComp<ProjectileComponent>(uid, out var comp) && args.OurFixtureId != ProjectileFixture)
+        {
+            if (TryComp<ShiftPlayerComponent>(args.OtherEntity, out var player) && args.OtherEntity != comp.Shooter && !comp.Suppressed.Contains(args.OtherEntity))
+            {
+                comp.Suppressed.Append(args.OtherEntity);
+                player.Suppression -= comp.Suppression;
+                float zoom = 1f * (player.Suppression / 100f);
+                zoom = Math.Clamp(zoom, 0.4f, 1f);
+                player.Suppression = Math.Clamp(player.Suppression, player.SuppressionMin, player.SuppressionMax);
+                _eye.SetZoom(args.OtherEntity, new Vector2(zoom, zoom));
+                _eye.SetMaxZoom(args.OtherEntity, new Vector2(zoom, zoom));
+                //_audio.PlayEntity("/Audio/Imperial/ShiftFront/shot_swing.ogg", Filter.Entities(target), target, false, AudioParams.Default.WithVolume(6f));
+            }
+        }
         // This is so entities that shouldn't get a collision are ignored.
         if (args.OurFixtureId != ProjectileFixture || !args.OtherFixture.Hard
             || component.ProjectileSpent || component is { Weapon: null, OnlyCollideWhenShot: true })

@@ -15,6 +15,7 @@ using System.Numerics;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 using Content.Server.ShiftFront.Components;
+using Content.Shared.ShiftFront.Components;
 using Content.Shared.Speech;
 using Content.Server.Chat.Systems;
 using Robust.Shared.Map.Components;
@@ -157,7 +158,7 @@ namespace Content.Server.ShiftFront
                     Priority = 10,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Guns/Snipers/heavy_sniper.rsi"), "base")
                 });
-            if (CheckResearch("ShiftFrontAssasin", comp.Faction))
+            if (CheckResearch("ShiftFrontAssasin", comp.Faction) && 1 == 0) // kostyli ebaniye
                 ev.Verbs.Add(new AlternativeVerb
                 {
                     Act = () =>

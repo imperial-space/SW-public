@@ -13,7 +13,12 @@
     baseWalkSpeed : 7
     baseSprintSpeed : 7
     acceleration: 1.8
-    friction: 1.4
+    baseAcceleration: 1.8
+    weightlessAcceleration: 1.8
+    baseWeightlessAcceleration: 1.8
+    friction: 0.17
+    frictionNoInput: 0.17
+    baseFriction: 0.17
   - type: MedievalDash
     force: 0
     staminaDamage: 0

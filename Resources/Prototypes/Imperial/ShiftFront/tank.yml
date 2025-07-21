@@ -2,6 +2,10 @@
   id: MobShiftTankHullBase
   parent: ContentsExplosionResistanceBase
   components:
+  - type: AlwaysInFov
+  - type: FieldOfView
+    angle: 90
+    minDistance: 1.5
   - type: ExplosionResistance
     damageCoefficient: 0.25
   - type: ContainerContainer
@@ -47,7 +51,7 @@
   - type: Physics
     bodyType: KinematicController
   - type: Clickable
-  - type: InteractionOutline
+  #- type: InteractionOutline
   #- type: InputMover
   #- type: Input
   #  context: "human"
@@ -195,7 +199,7 @@
     suppression: 15
     damage:
       types:
-        Piercing: 23
+        Piercing: 27
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
@@ -232,7 +236,7 @@
     damage:
       types:
         Piercing: 190
-        #AntiTank: 220
+        AntiTank: 130
         AntiLightTank: 220
   - type: ExplodeOnTrigger
   - type: Explosive
@@ -249,6 +253,10 @@
 - type: entity
   id: MobShiftTankTurret
   components:
+  - type: AlwaysInFov
+  - type: FieldOfView
+    angle: 90
+    minDistance: 1.5
   #- type: Physics
   #  bodyType: KinematicController
   - type: Speech
@@ -288,7 +296,7 @@
       gun_magazine: !type:ContainerSlot
       gun_chamber: !type:ContainerSlot
   - type: Clickable
-  - type: InteractionOutline
+  #- type: InteractionOutline
   - type: Actions
   - type: Sprite
     scale: 1.5, 1.5
@@ -317,6 +325,10 @@
 - type: entity
   id: MobShiftTankHardTurret
   components:
+  - type: AlwaysInFov
+  - type: FieldOfView
+    angle: 90
+    minDistance: 1.5
   #- type: Physics
   #  bodyType: KinematicController
   - type: Speech
@@ -347,7 +359,7 @@
       tags:
       - MagazineLightRifleHard
   - type: Clickable
-  - type: InteractionOutline
+  #- type: InteractionOutline
   - type: Actions
   - type: Sprite
     scale: 1.7, 1.7

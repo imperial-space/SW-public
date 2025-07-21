@@ -15,6 +15,7 @@ using System.Numerics;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
 using Content.Server.ShiftFront.Components;
+using Content.Shared.ShiftFront.Components;
 using Content.Shared.Speech;
 using Content.Server.Chat.Systems;
 using Robust.Shared.Map.Components;
@@ -36,7 +37,7 @@ using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.SSDIndicator;
 using Content.Server.Jittering;
 using Content.Shared.Random.Helpers;
-using Content.Shared.ShiftFront.Components;
+using Robust.Shared.Physics.Events;
 using Content.Server.Stunnable;
 
 namespace Content.Server.ShiftFront
@@ -864,26 +865,26 @@ namespace Content.Server.ShiftFront
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
-            var pquery = EntityQueryEnumerator<ProjectileComponent>();
-            while (pquery.MoveNext(out var uid, out var comp))
-            {
-                var xform = Transform(uid);
-                var coords = xform.Coordinates;
-                foreach (var target in _lookup.GetEntitiesInRange(coords, 1.6f))
-                {
-                    if (TryComp<ShiftPlayerComponent>(target, out var player) && target != comp.Shooter && !comp.Suppressed.Contains(target))
-                    {
-                        comp.Suppressed.Append(target);
-                        player.Suppression -= comp.Suppression;
-                        float zoom = 1f * (player.Suppression / 100f);
-                        zoom = Math.Clamp(zoom, 0.4f, 1f);
-                        player.Suppression = Math.Clamp(player.Suppression, player.SuppressionMin, player.SuppressionMax);
-                        _eye.SetZoom(target, new Vector2(zoom, zoom));
-                        _eye.SetMaxZoom(target, new Vector2(zoom, zoom));
-                        //_audio.PlayEntity("/Audio/Imperial/ShiftFront/shot_swing.ogg", Filter.Entities(target), target, false, AudioParams.Default.WithVolume(6f));
-                    }
-                }
-            }
+            //var pquery = EntityQueryEnumerator<ProjectileComponent>();
+            //while (pquery.MoveNext(out var uid, out var comp))
+            //{
+            //    var xform = Transform(uid);
+            //    var coords = xform.Coordinates;
+            //    foreach (var target in _lookup.GetEntitiesInRange(coords, 1.6f))
+            //    {
+            //        if (TryComp<ShiftPlayerComponent>(target, out var player) && target != comp.Shooter && !comp.Suppressed.Contains(target))
+            //        {
+            //            comp.Suppressed.Append(target);
+            //            player.Suppression -= comp.Suppression;
+            //            float zoom = 1f * (player.Suppression / 100f);
+            //            zoom = Math.Clamp(zoom, 0.4f, 1f);
+            //            player.Suppression = Math.Clamp(player.Suppression, player.SuppressionMin, player.SuppressionMax);
+            //            _eye.SetZoom(target, new Vector2(zoom, zoom));
+            //            _eye.SetMaxZoom(target, new Vector2(zoom, zoom));
+            //            //_audio.PlayEntity("/Audio/Imperial/ShiftFront/shot_swing.ogg", Filter.Entities(target), target, false, AudioParams.Default.WithVolume(6f));
+            //        }
+            //    }
+            //}
 
             if (_timing.CurTime > EndTime)
             {
