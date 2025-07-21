@@ -207,6 +207,7 @@
     - AnomalyHost
   - type: Damageable
     damageModifierSet: Lamian
+  - type: Wagging
 
 - type: damageModifierSet
   id: Lamian
@@ -249,7 +250,7 @@
     Tail: 
       points: 1 
       required: true
-      defaultMarkings: [ LamianTail ]
+      defaultMarkings: [ LamianTailSmooth ]
 
 - type: speciesBaseSprites
   id: MobLamianSprites
@@ -362,10 +363,20 @@
     state: r_foot
 
 - type: marking
-  id: LamianTail
+  id: LamianTailSmooth
   bodyPart: Tail
   markingCategory: Tail
   speciesRestriction: [Lamian]
   sprites:
   - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
-    state: tail_lamian_prime
+    state: tail_smooth_primary
+
+- type: marking
+  id: LamianTailSmoothAnimated
+  bodyPart: Tail
+  markingCategory: Tail
+  speciesRestriction: []
+  sprites:
+  - sprite: Imperial/Medieval/Species/Lamian/lamian_parts.rsi
+    state: tail_smooth_wagging
+
