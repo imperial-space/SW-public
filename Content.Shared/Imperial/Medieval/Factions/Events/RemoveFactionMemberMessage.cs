@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Friends;
+namespace Content.Shared.Imperial.Medieval.Factions;
 
 /// <summary>
 /// Отправляется с клиента на сервер при подтверждении удаления участника фракции.

@@ -1,10 +1,10 @@
 using System.Diagnostics;
 using System.Linq;
 using System.Numerics;
-using Content.Client.Friends;
+using Content.Client.Imperial.Medieval.Factions;
 using Content.Client.Stylesheets;
-using Content.Shared.Friends;
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Microsoft.Extensions.Logging;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
@@ -14,8 +14,9 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using Serilog;
+using Content.Shared.Imperial.Medieval.Factions.Components;
 
-namespace Content.Client.Imperial.Medieval.Friends.UI.Elements;
+namespace Content.Client.Imperial.Medieval.Factions.UI.Elements;
 
 public sealed partial class FactionRelationsPanel : GridContainer
 {
@@ -42,7 +43,7 @@ public sealed partial class FactionRelationsPanel : GridContainer
                 continue;
             }
 
-            Add(data.Faction, factions.ToList()[i], data.Relations[factions.ElementAt(i)], data.Access == Shared.Friends.Components.FactionMenuAccess.Full);
+            Add(data.Faction, factions.ToList()[i], data.Relations[factions.ElementAt(i)], data.Access == FactionMenuAccess.Full);
         }
     }
 

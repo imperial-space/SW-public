@@ -1,12 +1,12 @@
-﻿using Content.Shared.Friends.Components;
+﻿using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Actions;
 using Robust.Shared.Player;
 using Content.Server.Administration;
 using Content.Shared.Speech;
 using Content.Server.Chat.Systems;
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 
-namespace Content.Server.Friends;
+namespace Content.Server.Imperial.Medieval.Factions;
 
 public sealed partial class FriendsSystem : SharedFriendsSystem
 {

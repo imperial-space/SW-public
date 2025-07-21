@@ -1,10 +1,10 @@
-using Content.Shared.Friends;
-using Content.Shared.Friends.Components;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Imperial.ImperialStore;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Imperial.Medieval.Friends.UI;
+namespace Content.Client.Imperial.Medieval.Factions.UI;
 
 
 public sealed class WantedDeskBoundUserInterface : BoundUserInterface

@@ -1,11 +1,12 @@
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Friends.Components;
+namespace Content.Shared.Imperial.Medieval.Factions.Components;
+
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-public sealed partial class FriendsComponent : Component
+public sealed partial class MedievalFactionMemberComponent : Component
 {
 
     [DataField]

@@ -1,13 +1,13 @@
-using Content.Client.Friends;
-using Content.Shared.Friends;
-using Content.Shared.Friends.Components;
-using Content.Shared.Friends.Prototypes;
+using Content.Client.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using JetBrains.Annotations;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Imperial.Medieval.Friends.UI;
+namespace Content.Client.Imperial.Medieval.Factions.UI;
 
 [UsedImplicitly]
 public sealed class FactionMenuUiController : UIController
@@ -61,7 +61,7 @@ public sealed class FactionMenuUiController : UIController
     private void Fire(int ent, string details, bool headhunt = false)
     {
         var playerMan = IoCManager.Resolve<IPlayerManager>();
-        if (_entityManager.TryGetComponent<FriendsComponent>(playerMan.LocalEntity, out var friends))
+        if (_entityManager.TryGetComponent<MedievalFactionMemberComponent>(playerMan.LocalEntity, out var friends))
             _entityManager.RaisePredictiveEvent(new RemoveFactionMemberMessage(ent, friends.MemberID, details, headhunt));
     }
 

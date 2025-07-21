@@ -1,9 +1,9 @@
 using System.Linq;
 using Content.Shared.DetailExaminable;
 using Content.Server.MedievalPasport.Components;
-using Content.Shared.Friends;
-using Content.Shared.Friends.Components;
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -13,7 +13,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Friends;
+namespace Content.Server.Imperial.Medieval.Factions;
 
 public sealed partial class FriendsSystem
 {
@@ -41,7 +41,7 @@ public sealed partial class FriendsSystem
 
     public void AddWanted(EntityUid uid, string job, string performer, string details, ProtoId<MedievalFactionPrototype> proto)
     {
-        if (!TryComp<FriendsComponent>(uid, out var friends))
+        if (!TryComp<MedievalFactionMemberComponent>(uid, out var friends))
             return;
         if (WantedList.ContainsKey(friends.MemberID))
             return;
@@ -118,7 +118,7 @@ public sealed partial class FriendsSystem
 
     public void RemoveWanted(EntityUid uid)
     {
-        if (!TryComp<FriendsComponent>(uid, out var friends))
+        if (!TryComp<MedievalFactionMemberComponent>(uid, out var friends))
             return;
         if (!WantedList.ContainsKey(friends.MemberID))
             return;

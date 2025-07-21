@@ -9,9 +9,9 @@ using Content.Server.Mind;
 using Content.Server.Popups;
 using Content.Server.Roles.Jobs;
 using Content.Server.Station.Components;
-using Content.Shared.Friends;
-using Content.Shared.Friends.Components;
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.IdentityManagement;
 using Robust.Server.Audio;
@@ -20,7 +20,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Friends;
+namespace Content.Server.Imperial.Medieval.Factions;
 
 public sealed partial class FriendsSystem
 {
@@ -34,8 +34,8 @@ public sealed partial class FriendsSystem
 
     private void InitializeMenu()
     {
-        SubscribeLocalEvent<FriendsComponent, StartupFactionDataEvent>(OnFriendsInit);
-        SubscribeLocalEvent<FriendsComponent, EntityTerminatingEvent>(OnFriendsTerminating);
+        SubscribeLocalEvent<MedievalFactionMemberComponent, StartupFactionDataEvent>(OnFriendsInit);
+        SubscribeLocalEvent<MedievalFactionMemberComponent, EntityTerminatingEvent>(OnFriendsTerminating);
 
         SubscribeNetworkEvent<SetFactionMemberObjectiveMessage>(OnSetObjective);
         SubscribeNetworkEvent<SetFactionMemberGroupMessage>(OnSetGroup);
@@ -43,7 +43,7 @@ public sealed partial class FriendsSystem
         SubscribeNetworkEvent<SetGroupLeaderMessage>(OnSetLeader);
     }
 
-    private void OnFriendsInit(EntityUid uid, FriendsComponent comp, StartupFactionDataEvent args)
+    private void OnFriendsInit(EntityUid uid, MedievalFactionMemberComponent comp, StartupFactionDataEvent args)
     {
         if (!EnsureFactionDataContainer(out var container))
             return;
@@ -86,7 +86,7 @@ public sealed partial class FriendsSystem
         Dirty(uid, selfIdent);
     }
 
-    private void OnFriendsTerminating(EntityUid uid, FriendsComponent comp, EntityTerminatingEvent args)
+    private void OnFriendsTerminating(EntityUid uid, MedievalFactionMemberComponent comp, EntityTerminatingEvent args)
     {
         if (!TryGetFactionMemberData(comp.MemberID, out var data))
             return;
@@ -123,7 +123,7 @@ public sealed partial class FriendsSystem
             return;
         if (!uid.Value.IsValid())
             return;
-        if (!TryComp<FriendsComponent>(uid, out var comp))
+        if (!TryComp<MedievalFactionMemberComponent>(uid, out var comp))
             return;
         if (!TryGetFactionMemberData(args.Ent, out var data))
             return;
@@ -161,7 +161,7 @@ public sealed partial class FriendsSystem
         }
         if (args.Headhunt)
         {
-            if (TryComp<FriendsComponent>(uid, out var comp) && _mind.TryGetMind(uid.Value, out var mindId, out _) && _job.MindTryGetJob(mindId, out var job))
+            if (TryComp<MedievalFactionMemberComponent>(uid, out var comp) && _mind.TryGetMind(uid.Value, out var mindId, out _) && _job.MindTryGetJob(mindId, out var job))
                 AddWanted(uid.Value, job.ID, headData.Name, args.Details, comp.Faction);
         }
 
@@ -174,7 +174,7 @@ public sealed partial class FriendsSystem
             return;
         if (!uid.Value.IsValid())
             return;
-        if (!TryComp<FriendsComponent>(uid, out var comp))
+        if (!TryComp<MedievalFactionMemberComponent>(uid, out var comp))
             return;
         if (!TryGetFactionMemberData(args.Ent, out var data))
             return;
@@ -187,7 +187,7 @@ public sealed partial class FriendsSystem
 
     public void SetJob(EntityUid uid, ProtoId<MedievalFactionPrototype> faction, string job, string jobPrefix = "")
     {
-        var comp = EnsureComp<FriendsComponent>(uid);
+        var comp = EnsureComp<MedievalFactionMemberComponent>(uid);
         var oldFaction = comp.Faction;
 
         if (!EnsureFactionDataContainer(out var container))
@@ -221,9 +221,9 @@ public sealed partial class FriendsSystem
         var list = dict.ToList();
         list.Sort((x, y) =>
         {
-            if (!GetFactionMemberById(x.Key, out var xEnt) || !TryComp<FriendsComponent>(xEnt, out var xFriends))
+            if (!GetFactionMemberById(x.Key, out var xEnt) || !TryComp<MedievalFactionMemberComponent>(xEnt, out var xFriends))
                 return 1;
-            if (!GetFactionMemberById(y.Key, out var yEnt) || !TryComp<FriendsComponent>(yEnt, out var yFriends))
+            if (!GetFactionMemberById(y.Key, out var yEnt) || !TryComp<MedievalFactionMemberComponent>(yEnt, out var yFriends))
                 return -1;
 
             return yFriends.Priority.CompareTo(xFriends.Priority);

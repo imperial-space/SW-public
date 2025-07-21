@@ -1,11 +1,11 @@
 using Content.Shared.Examine;
-using Content.Shared.Friends.Components;
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Friends;
+namespace Content.Shared.Imperial.Medieval.Factions;
 public abstract partial class SharedFriendsSystem : EntitySystem
 {
     [Dependency] protected readonly IPrototypeManager Proto = default!;
@@ -13,13 +13,13 @@ public abstract partial class SharedFriendsSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<FriendsComponent, ExaminedEvent>(OnExamine);
-        SubscribeLocalEvent<FriendsComponent, OpenFactionMenuActionEvent>(OnFactionMenuAction);
+        SubscribeLocalEvent<MedievalFactionMemberComponent, ExaminedEvent>(OnExamine);
+        SubscribeLocalEvent<MedievalFactionMemberComponent, OpenFactionMenuActionEvent>(OnFactionMenuAction);
     }
 
-    private void OnExamine(EntityUid uid, FriendsComponent comp, ExaminedEvent args)
+    private void OnExamine(EntityUid uid, MedievalFactionMemberComponent comp, ExaminedEvent args)
     {
-        if (!TryComp<FriendsComponent>(args.Examiner, out var me) || uid == args.Examiner)
+        if (!TryComp<MedievalFactionMemberComponent>(args.Examiner, out var me) || uid == args.Examiner)
             return;
         if (!Identity.Name(uid, EntityManager).Equals(Name(uid)))
             return;
@@ -38,7 +38,7 @@ public abstract partial class SharedFriendsSystem : EntitySystem
             args.PushMarkup(comp.Wanted.Value.Value);
     }
 
-    private void OnFactionMenuAction(EntityUid uid, FriendsComponent comp, OpenFactionMenuActionEvent args)
+    private void OnFactionMenuAction(EntityUid uid, MedievalFactionMemberComponent comp, OpenFactionMenuActionEvent args)
     {
         if (args.Handled)
             return;

@@ -1,8 +1,8 @@
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Friends.Components
+namespace Content.Shared.Imperial.Medieval.Factions.Components
 {
     /// <summary>
     /// Компонент, добавляемый доске розыска. Позволяет настроить чёрный список фракций.

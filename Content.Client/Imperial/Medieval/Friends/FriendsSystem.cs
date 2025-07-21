@@ -1,13 +1,13 @@
-using Content.Client.Imperial.Medieval.Friends.UI;
-using Content.Shared.Friends;
-using Content.Shared.Friends.Components;
-using Content.Shared.Friends.Prototypes;
+using Content.Client.Imperial.Medieval.Factions.UI;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Client.Friends;
+namespace Content.Client.Imperial.Medieval.Factions;
 
 public sealed partial class FriendsSystem : SharedFriendsSystem
 {
@@ -38,7 +38,7 @@ public sealed partial class FriendsSystem : SharedFriendsSystem
         if (!_player.LocalEntity.HasValue)
             return;
         var player = _player.LocalEntity.Value;
-        if (!TryComp<FriendsComponent>(player, out var friends))
+        if (!TryComp<MedievalFactionMemberComponent>(player, out var friends))
             return;
         if (!TryGetFactionDataContainer(out var container) || !container.Value.Comp.CachedMembers.TryGetValue(friends.Faction, out var val))
             return;
@@ -68,7 +68,7 @@ public sealed partial class FriendsSystem : SharedFriendsSystem
     {
         if (_time.IsFirstTimePredicted)
         {
-            if (!TryComp<FriendsComponent>(_player.LocalEntity, out var friends))
+            if (!TryComp<MedievalFactionMemberComponent>(_player.LocalEntity, out var friends))
                 return;
 
             _uiMan.GetUIController<FactionMenuUiController>().ToggleMenu();

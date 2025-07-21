@@ -1903,7 +1903,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -1967,7 +1967,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2057,7 +2057,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2114,7 +2114,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2182,7 +2182,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2249,7 +2249,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2317,7 +2317,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
       menuAccess: Full
@@ -2398,7 +2398,7 @@
     - type: Mana
       maxMana: 140
       regen: 0.4
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2481,7 +2481,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-leg
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -2556,7 +2556,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2642,7 +2642,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2695,7 +2695,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2759,7 +2759,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2821,7 +2821,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -2889,7 +2889,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
       menuAccess: Full
@@ -2968,7 +2968,7 @@
     - type: Mana
       maxMana: 140
       regen: 0.4
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -3050,7 +3050,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-ins
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -3126,7 +3126,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
@@ -3190,7 +3190,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
@@ -3255,7 +3255,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
     #- type: IdentityFaction
@@ -3319,7 +3319,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Bandit
       factionMenuAction: BanditFactionMenuAction
       menuAccess: Full
@@ -3388,7 +3388,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Kayot
       factionMenuAction: KayotFactionMenuAction
     #- type: IdentityFaction
@@ -3452,7 +3452,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Kayot
       factionMenuAction: KayotFactionMenuAction
     #- type: IdentityFaction
@@ -3517,7 +3517,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Kayot
       factionMenuAction: KayotFactionMenuAction
     #- type: IdentityFaction
@@ -3581,7 +3581,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-band
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Kayot
       factionMenuAction: KayotFactionMenuAction
       menuAccess: Full
@@ -3649,7 +3649,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: Mercenary
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Merc
       factionMenuAction: MercFactionMenuAction
     #- type: IdentityFaction
@@ -3718,7 +3718,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: Mercenary
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Merc
       factionMenuAction: MercFactionMenuAction
       menuAccess: Full
@@ -3799,7 +3799,7 @@
     - type: Mana
       maxMana: 120
       regen: 0.325
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Collegium
       factionMenuAction: CollegiumFactionMenuAction
     #- type: IdentityFaction
@@ -3876,7 +3876,7 @@
     - type: Mana
       maxMana: 150
       regen: 0.475
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Collegium
       factionMenuAction: CollegiumFactionMenuAction
     #- type: IdentityFaction
@@ -3954,7 +3954,7 @@
     - type: Mana
       maxMana: 180
       regen: 0.5
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Collegium
       factionMenuAction: CollegiumFactionMenuAction
       menuAccess: Full
@@ -4025,7 +4025,7 @@
     - type: WarningOnAttach
       message: medieval-warning-tribe
     #- type: GigaMonkeyAccent
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Tribe
       factionMenuAction: TribeFactionMenuAction
     #- type: IdentityFaction
@@ -4104,7 +4104,7 @@
       maxMana: 180
       regen: 0.65
     #- type: GigaMonkeyAccent
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Tribe
       factionMenuAction: TribeFactionMenuAction
     #- type: IdentityFaction
@@ -4172,7 +4172,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-tribe
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Tribe
       factionMenuAction: TribeFactionMenuAction
       menuAccess: Full
@@ -4487,7 +4487,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: MedievalDigger
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Miner
       factionMenuAction: MinerFactionMenuAction
     #- type: IdentityFaction
@@ -4556,7 +4556,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: MedievalDigger
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Miner
       factionMenuAction: MinerFactionMenuAction
       menuAccess: Full
@@ -4621,7 +4621,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: CrafterTrait
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -4680,7 +4680,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: CrafterTrait
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -4738,7 +4738,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: CrafterTrait
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Legion
       factionMenuAction: LegionFactionMenuAction
     #- type: IdentityFaction
@@ -4796,7 +4796,7 @@
     - type: WarningOnAttach
       message: medieval-warning-base
     - type: CrafterTrait
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Insurgency
       factionMenuAction: InsurgencyFactionMenuAction
     #- type: IdentityFaction
@@ -4869,7 +4869,7 @@
     - type: WarningOnAttach
       message: medieval-warning-cult
     - type: CultMember
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Cult
       factionMenuAction: CultFactionMenuAction
     #- type: IdentityFaction
@@ -4937,7 +4937,7 @@
     - type: WarningOnAttach
       message: medieval-warning-cult
     - type: CultMember
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Cult
       factionMenuAction: CultFactionMenuAction
       menuAccess: Full
@@ -4985,7 +4985,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Village
       factionMenuAction: VillageFactionMenuAction
     - type: MedievalPasportPerson
@@ -5039,7 +5039,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Village
       factionMenuAction: VillageFactionMenuAction
     - type: MedievalPasportPerson
@@ -5105,7 +5105,7 @@
     components:
     - type: WarningOnAttach
       message: medieval-warning-base
-    - type: Friends
+    - type: MedievalFactionMember
       faction: Village
       factionMenuAction: VillageFactionMenuAction
       menuAccess: Full

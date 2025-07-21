@@ -1,6 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Shared.Database;
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.IdentityManagement;
 using Robust.Shared.Player;
 

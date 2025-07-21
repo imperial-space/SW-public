@@ -1,7 +1,7 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Friends.Prototypes;
+namespace Content.Shared.Imperial.Medieval.Factions.Prototypes;
 
 [Prototype]
 public sealed class MedievalFactionPrototype : IPrototype

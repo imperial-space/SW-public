@@ -1,7 +1,7 @@
 using Content.Shared.Humanoid;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Friends;
+namespace Content.Shared.Imperial.Medieval.Factions;
 
 [Serializable, NetSerializable]
 public sealed class WantedDeskBoundUserInterfaceState : BoundUserInterfaceState

@@ -1,11 +1,11 @@
 using System.Reflection.Metadata;
-using Content.Shared.Friends;
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface.Controllers;
 using Robust.Shared.Prototypes;
 
-namespace Content.Client.Imperial.Medieval.Friends.UI;
+namespace Content.Client.Imperial.Medieval.Factions.UI;
 
 [UsedImplicitly]
 public sealed class FactionRelationsUiController : UIController

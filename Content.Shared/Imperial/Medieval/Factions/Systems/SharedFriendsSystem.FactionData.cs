@@ -1,11 +1,11 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Examine;
-using Content.Shared.Friends.Components;
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Friends;
+namespace Content.Shared.Imperial.Medieval.Factions;
 public abstract partial class SharedFriendsSystem
 {
     public bool TryGetFactionDataContainer([NotNullWhen(true)] out Entity<FactionDataContainerComponent>? ent)
@@ -49,7 +49,7 @@ public abstract partial class SharedFriendsSystem
     {
         entity = null;
 
-        var query = EntityQueryEnumerator<FriendsComponent>();
+        var query = EntityQueryEnumerator<MedievalFactionMemberComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             if (comp.MemberID == id)

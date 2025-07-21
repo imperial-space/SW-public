@@ -1,15 +1,15 @@
 using System.Linq;
 using Content.Server.Chat.Managers;
-using Content.Shared.Friends;
-using Content.Shared.Friends.Components;
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Friends;
+namespace Content.Server.Imperial.Medieval.Factions;
 
 public sealed partial class FriendsSystem
 {
@@ -17,19 +17,19 @@ public sealed partial class FriendsSystem
 
     private void InitializeRelations()
     {
-        SubscribeLocalEvent<FriendsComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
+        SubscribeLocalEvent<MedievalFactionMemberComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
         SubscribeLocalEvent<FactionDataContainerComponent, MapInitEvent>(OnFactionDataContainerInit);
         SubscribeNetworkEvent<OfferFactionRelationsEvent>(OnOfferRelations);
         SubscribeNetworkEvent<AcceptFactionRelationsEvent>(OnAcceptRelations);
         SubscribeNetworkEvent<DispatchWarEvent>(OnDispatchWar);
     }
 
-    private void OnGetAltVerbs(EntityUid uid, FriendsComponent comp, GetVerbsEvent<AlternativeVerb> args)
+    private void OnGetAltVerbs(EntityUid uid, MedievalFactionMemberComponent comp, GetVerbsEvent<AlternativeVerb> args)
     {
         if (comp.MenuAccess != FactionMenuAccess.Full)
             return;
 
-        if (!TryComp<FriendsComponent>(args.User, out var friends) || friends.MenuAccess != FactionMenuAccess.Full)
+        if (!TryComp<MedievalFactionMemberComponent>(args.User, out var friends) || friends.MenuAccess != FactionMenuAccess.Full)
             return;
 
         if (friends.Faction == comp.Faction)
