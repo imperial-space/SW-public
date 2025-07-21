@@ -116,10 +116,10 @@
     sprintModifier: 0.7
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHardsuitCCAgent
-  - type: Reflect
-    reflectProb: 0.3
-    reflects:
-      - NonEnergy
+  #- type: Reflect
+  #  reflectProb: 0.3
+  #  reflects:
+  #    - NonEnergy
   # - type: QualityOfItem
   #   qualityWeights:
   #     0: 0
