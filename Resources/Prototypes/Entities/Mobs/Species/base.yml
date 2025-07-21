@@ -268,9 +268,9 @@
   # Imperial Medieval Start
   - type: MedievalMobTrigger
     fixtureId: "medieval-spawner"
-  - type: Mana
-    maxMana: 100
-    regen: 0.25
+  #- type: Mana
+  #  maxMana: 100
+  #  regen: 0.25
   - type: SSDFree
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
@@ -281,8 +281,8 @@
     withChat: true
     emoteCooldown: 3.5
   - type: MedievalSpikeTarget
-  - type: BadSmellFeel
-  - type: BadSmell
+  #- type: BadSmellFeel
+  #- type: BadSmell
   - type: MeleeParryAble
   - type: NeedSleep
     emotes:

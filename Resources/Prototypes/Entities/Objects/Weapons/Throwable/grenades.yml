@@ -48,9 +48,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 10
+    maxIntensity: 7
     intensitySlope: 3
-    totalIntensity: 120 # about a ~4 tile radius
+    totalIntensity: 90 # about a ~4 tile radius
     canCreateVacuum: false
   - type: OnUseTimerTrigger
     beepSound:

@@ -5,10 +5,12 @@
   name: bullet (.60 anti-materiel)
   components:
   - type: Projectile
+    ignoreResistances: true
+    suppression: 17
     damage:
       types:
-        Piercing: 75
-        Structural: 226
+        Piercing: 50
+        Structural: 50
     penetrationThreshold: 360
     penetrationDamageTypeRequirement:
     - Structural

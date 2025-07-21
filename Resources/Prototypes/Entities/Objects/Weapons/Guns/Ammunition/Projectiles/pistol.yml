@@ -8,6 +8,7 @@
     damage:
       types:
         Piercing: 16
+    suppression: 1.5
 
 - type: entity
   id: BulletPistolPractice

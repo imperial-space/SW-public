@@ -12,7 +12,7 @@
       types:
         Piercing: 40
         Structural: 15
-
+    suppression: 1
 
 - type: entity
   id: PelletShotgunBeanbag
@@ -27,6 +27,7 @@
     damage:
       types:
         Blunt: 10
+    suppression: 1
   - type: StaminaDamageOnCollide
     damage: 40 # 3 hits to stun
 
@@ -44,7 +45,7 @@
       types:
         Piercing: 10
         Structural: 15
-
+    suppression: 1
 
 - type: entity
   id: PelletShotgunSpread
