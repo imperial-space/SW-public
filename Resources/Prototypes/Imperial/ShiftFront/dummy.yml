@@ -273,6 +273,24 @@
 #    ninja: true
 
 - type: entity
+  id: ShiftFrontBlueHQGhostRole
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: Командир
+      description: Брать, только если уже играли на ивенте
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: BaseMobHumanShiftFrontBlueHQ
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
+
+- type: entity
   parent: BaseMobHumanShiftFrontBlue
   id: BaseMobHumanShiftFrontBlueHQ
   components:
@@ -284,6 +302,24 @@
   - type: ShiftPlayer
     name: HQ
     leader: true
+
+- type: entity
+  id: ShiftFrontRedHQGhostRole
+  parent: MarkerBase
+  components:
+    - type: GhostRole
+      name: Командир
+      description: Брать, только если уже играли на ивенте
+      raffle:
+        settings: short
+    - type: GhostRoleMobSpawner
+      prototype: BaseMobHumanShiftFrontRedHQ
+    - type: Sprite
+      sprite: Markers/jobs.rsi
+      layers:
+        - state: green
+        - sprite: Markers/jobs.rsi
+          state: ertleadereva
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
