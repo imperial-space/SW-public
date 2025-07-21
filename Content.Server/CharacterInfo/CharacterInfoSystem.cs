@@ -18,7 +18,7 @@ public sealed class CharacterInfoSystem : EntitySystem
     [Dependency] private readonly MindSystem _minds = default!;
     [Dependency] private readonly RoleSystem _roles = default!;
     [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
-    [Dependency] private readonly FriendsSystem _friends = default!;
+    [Dependency] private readonly MedievalFactionsSystem _friends = default!;
 
     public override void Initialize()
     {

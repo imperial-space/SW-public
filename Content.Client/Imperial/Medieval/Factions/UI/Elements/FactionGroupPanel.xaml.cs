@@ -26,7 +26,7 @@ public sealed partial class FactionGroupPanel : BorderedPanelContainer
     {
         RobustXamlLoader.Load(this);
 
-        GroupNamePanel.PanelOverride = new StyleBoxFlat(FriendsSystem.GroupColors[group]);
+        GroupNamePanel.PanelOverride = new StyleBoxFlat(MedievalFactionsSystem.GroupColors[group]);
         Group = group;
         if (group != FactionMemberGroup.None)
             GroupNameText.Text = Loc.GetString($"group-{group}");

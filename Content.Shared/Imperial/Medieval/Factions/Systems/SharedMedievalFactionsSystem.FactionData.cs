@@ -6,7 +6,8 @@ using Content.Shared.IdentityManagement;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.Factions;
-public abstract partial class SharedFriendsSystem
+
+public abstract partial class SharedMedievalFactionsSystem
 {
     public bool TryGetFactionDataContainer([NotNullWhen(true)] out Entity<FactionDataContainerComponent>? ent)
     {

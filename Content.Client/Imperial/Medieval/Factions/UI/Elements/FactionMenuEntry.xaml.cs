@@ -41,17 +41,17 @@ public sealed partial class FactionMenuEntry : Control
 
         if (data.Group == FactionMemberGroup.None)
         {
-            for (var i = 0; i < FriendsSystem.GroupColors.Count; i++)
+            for (var i = 0; i < MedievalFactionsSystem.GroupColors.Count; i++)
             {
-                if (FriendsSystem.GroupColors.ElementAt(i).Key == FactionMemberGroup.None)
+                if (MedievalFactionsSystem.GroupColors.ElementAt(i).Key == FactionMemberGroup.None)
                     continue;
 
-                var item = FriendsSystem.GroupColors.ElementAt(i);
+                var item = MedievalFactionsSystem.GroupColors.ElementAt(i);
                 GroupSelector.AddItem(Loc.GetString($"group-{item.Key}"), item.Value, i);
             }
             GroupSelector.Select(0);
             Objective.Visible = false;
-            GroupSelector.OnItemSelected += args => GroupSet?.Invoke(ent, FriendsSystem.GroupColors.ElementAt(args.Id).Key);
+            GroupSelector.OnItemSelected += args => GroupSet?.Invoke(ent, MedievalFactionsSystem.GroupColors.ElementAt(args.Id).Key);
             GroupSelector.Visible = access == FactionMenuAccess.Full;
         }
         else
@@ -65,7 +65,7 @@ public sealed partial class FactionMenuEntry : Control
 
             // Кнопка исключения из группы
             GroupRemoveButtonText.Text = Loc.GetString($"group-{data.Group}");
-            GroupRemovePanel.BackgroundPanelColor = FriendsSystem.GroupColors[data.Group];
+            GroupRemovePanel.BackgroundPanelColor = MedievalFactionsSystem.GroupColors[data.Group];
             GroupRemoveButton.OnPressed += args => GroupSet?.Invoke(ent, FactionMemberGroup.None);
 
             // Доступ

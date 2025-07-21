@@ -16,7 +16,7 @@ namespace Content.Client.Imperial.Medieval.Factions.UI;
 public sealed partial class FactionMenu : DefaultWindow
 {
     [Dependency] private readonly IEntityManager _entMan = default!;
-    private readonly FriendsSystem _friends;
+    private readonly MedievalFactionsSystem _friends;
 
     public Action<FactionMemberGroup, string>? ObjectiveSet;
     public Action<int, FactionMemberGroup>? GroupSet;
@@ -35,7 +35,7 @@ public sealed partial class FactionMenu : DefaultWindow
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _friends = _entMan.System<FriendsSystem>();
+        _friends = _entMan.System<MedievalFactionsSystem>();
 
         ButtonGroup modeGroup = new(false);
 

@@ -8,7 +8,7 @@ using Content.Shared.Imperial.Medieval.Factions;
 
 namespace Content.Server.Imperial.Medieval.Factions;
 
-public sealed partial class FriendsSystem : SharedFriendsSystem
+public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSystem
 {
     [Dependency] private readonly SharedActionsSystem _action = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;

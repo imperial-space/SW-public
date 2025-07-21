@@ -11,7 +11,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Factions;
 
-public sealed partial class FriendsSystem
+public sealed partial class MedievalFactionsSystem
 {
     [Dependency] private readonly IChatManager _chatMan = default!;
 

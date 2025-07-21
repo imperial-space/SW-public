@@ -16,7 +16,7 @@ public sealed class MedievalIdentitySystem : SharedMedievalIdentitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedFriendsSystem) });
+        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedMedievalFactionsSystem) });
         SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, PlayerAttachedEvent>(OnPlayerAttached);
     }
 

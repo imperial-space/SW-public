@@ -6,7 +6,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Medieval.Factions;
-public abstract partial class SharedFriendsSystem : EntitySystem
+
+public abstract partial class SharedMedievalFactionsSystem : EntitySystem
 {
     [Dependency] protected readonly IPrototypeManager Proto = default!;
 

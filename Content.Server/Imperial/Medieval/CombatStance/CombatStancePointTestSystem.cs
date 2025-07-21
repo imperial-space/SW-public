@@ -31,7 +31,7 @@ namespace Content.Server.Imperial.Medieval.CombatStance;
 
 public sealed class CombatStancePointTestSystem : EntitySystem
 {
-    [Dependency] private readonly FriendsSystem _friends = default!;
+    [Dependency] private readonly MedievalFactionsSystem _friends = default!;
     [Dependency] private readonly EntityLookupSystem _look = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly IPlayerManager _players = default!;

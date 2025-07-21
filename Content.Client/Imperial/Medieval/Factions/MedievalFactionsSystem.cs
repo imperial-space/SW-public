@@ -9,7 +9,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.Medieval.Factions;
 
-public sealed partial class FriendsSystem : SharedFriendsSystem
+public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSystem
 {
     [Dependency] private readonly IUserInterfaceManager _uiMan = default!;
     [Dependency] private readonly IGameTiming _time = default!;
