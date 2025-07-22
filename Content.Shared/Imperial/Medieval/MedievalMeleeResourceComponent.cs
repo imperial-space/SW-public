@@ -17,7 +17,7 @@ public sealed partial class MedievalMeleeResourceComponent : Component
     public float MaxResource = 107f;
 
     [DataField]
-    public float ResourceWaste = 0.35f;
+    public float ResourceWaste = 0f;
 
     [DataField, AutoNetworkedField]
     public string DamageState = "Full";

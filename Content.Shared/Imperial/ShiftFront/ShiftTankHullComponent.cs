@@ -7,15 +7,19 @@ namespace Content.Shared.ShiftFront.Components;
 public sealed partial class ShiftTankHullComponent : Component
 {
     [DataField]
+    public EntityUid? User;
+    [DataField]
     public EntityUid? LinkedTurret;
+    [DataField]
+    public EntityUid? LinkedObserver;
 
     [DataField]
-    public Entity<Robust.Shared.Map.Components.MapComponent>? LinkedGrid;
+    public EntityUid? LinkedGrid;
     [DataField]
     public ResPath[] GridLink = new ResPath[] //Imperal additional maps
     {
         //new ResPath("/Maps/Imperial/Medieval/dotamapV0.4.yml"),
-        new ResPath("/Maps/Imperial/map.yml")
+        new ResPath("/Maps/Imperial/tank.yml")
     };
 
     [DataField]
@@ -62,6 +66,9 @@ public sealed partial class ShiftTankHullComponent : Component
 
     [DataField]
     public string TurretProto = "";
+
+    [DataField]
+    public string ObserverProto = "";
 
     [DataField]
     public string Faction = "";

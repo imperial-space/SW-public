@@ -11,6 +11,8 @@ public sealed partial class ShiftTankTurretComponent : Component
 {
     [DataField]
     public EntityUid? LinkedTank;
+    [DataField]
+    public EntityUid? User;
 
     public DamageSpecifier Damage = new()
     {

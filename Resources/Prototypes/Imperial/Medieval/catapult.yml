@@ -227,6 +227,21 @@
     proto: MedievalExplosionEffect
 
 - type: entity
+  id: MedievalExplodeAp2
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: MedievalDemolitionCharge
+    maxIntensity: 200
+    intensitySlope: 10
+    totalIntensity: 10000
+    canCreateVacuum: false
+  - type: SpawnOnTrigger
+    proto: MedievalExplosionEffect
+
+
+- type: entity
   id: MedievalHitMarkerStone
   parent: BaseItem
   components:
