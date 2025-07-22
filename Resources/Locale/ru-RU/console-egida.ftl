@@ -1,0 +1,1 @@
+comms-console-announcement-title-egida = Комплекс "Недра"
