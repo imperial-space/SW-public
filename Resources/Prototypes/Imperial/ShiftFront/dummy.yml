@@ -333,6 +333,9 @@
   - type: ShiftPlayer
     name: HQ
     leader: true
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ClothingHeadHatCapcapWhiteShiftFront
 
 - type: language
   id: Russian
@@ -864,3 +867,13 @@
   lightColor: Orange
   texturePath: /Textures/Effects/fire.rsi
   fireStates: 3
+
+- type: entity
+  id: ShiftFrontMapRed
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map.rsi
+    state: sand
+    scale: 1.04,1.04
+  - type: ShiftMap
+    faction: Red

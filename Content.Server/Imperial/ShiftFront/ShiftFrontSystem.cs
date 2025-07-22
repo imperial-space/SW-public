@@ -39,6 +39,8 @@ using Content.Server.Jittering;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Physics.Events;
 using Content.Server.Stunnable;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Maths;
 
 namespace Content.Server.ShiftFront
 {
@@ -64,6 +66,7 @@ namespace Content.Server.ShiftFront
         [Dependency] protected readonly SharedAudioSystem Audio = default!;
         [Dependency] private readonly JitteringSystem _jitter = default!;
         [Dependency] private readonly StunSystem _stun = default!;
+        [Dependency] private readonly MetaDataSystem _metaData = default!;
 
         public override void Initialize()
         {
@@ -77,6 +80,7 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftBuildLightComponent, MoveEvent>(OnChangeParent);
             SubscribeLocalEvent<ShiftPlayerComponent, MobStateChangedEvent>(OnMobStateChanged);
             SubscribeLocalEvent<ShiftPlayerComponent, ComponentStartup>(OnPlayerStart);
+            SubscribeLocalEvent<ShiftShowOnMapComponent, ComponentStartup>(OnShowOnMapStart);
             SubscribeLocalEvent<ShiftBarracksComponent, ComponentStartup>(OnBarracksStart);
             SubscribeLocalEvent<ShiftSuppliesComponent, ComponentStartup>(OnSuppliesStart);
             SubscribeLocalEvent<ShiftStorageComponent, ComponentStartup>(OnStorageStart);
@@ -295,8 +299,57 @@ namespace Content.Server.ShiftFront
             if (CheckResearch("ShiftFrontPsycho2", comp.Faction))
                 comp.SuppressionMax += 15;
             if (comp.Ninja && HasComp<StatusIconComponent>(uid)) RemComp<StatusIconComponent>(uid);
+
         }
 
+        public void OnShowOnMapStart(EntityUid uid, ShiftShowOnMapComponent comp, ComponentStartup args)
+        {
+            if (comp.MippleProto != "")
+            {
+                var dquery = EntityQueryEnumerator<ShiftMapComponent>();
+                while (dquery.MoveNext(out var reuid, out var recomp))
+                {
+                    if (recomp.Faction != comp.Faction && comp.Faction != "") continue;
+                    comp.LinkedMipple = Spawn(comp.MippleProto, Transform(reuid).Coordinates);
+                    _metaData.SetEntityName(comp.LinkedMipple.Value, EnsureComp<MetaDataComponent>(uid).EntityName);
+                    EnsureComp<ShiftMippleComponent>(comp.LinkedMipple.Value, out var mipplecomp);
+                    mipplecomp.LinkedMap = reuid;
+                    mipplecomp.LinkedPlayer = uid;
+                    var nc = CalculateTabletIconPosition(new Vector2(Transform(uid).Coordinates.X, Transform(uid).Coordinates.Y),
+                        new Vector2(Transform(reuid).Coordinates.X, Transform(reuid).Coordinates.Y),
+                        new Vector2(recomp.entX, recomp.entY),
+                        new Vector2(recomp.offsetX, recomp.offsetY),
+                        new Vector2(recomp.mapX, recomp.mapY));
+                    _transform.SetWorldPosition(comp.LinkedMipple.Value, nc);
+                }
+            }
+        }
+
+        public static Vector2 CalculateTabletIconPosition(
+            Vector2 entityCoords,         // Координаты сущности на карте
+            Vector2 tabletCoords,         // Координаты планшета на карте
+            Vector2 tabletSize,           // Размеры планшета (X, Y)
+            Vector2 mapOffset,            // Смещение карты относительно центра (X, Y)
+            Vector2 mapSize)              // Общий размер карты (X, Y)
+        {
+            // Вычисляем относительное положение сущности от центра карты
+
+            Vector2 relativeEntityPos = entityCoords - mapOffset;
+            Logger.Debug($"RelativeEntityPost: {relativeEntityPos}");
+
+            float normx = tabletSize.X / mapSize.X;
+            float normy = tabletSize.Y / mapSize.Y;
+
+            Vector2 relativeEntityPosnorm = new Vector2(
+                relativeEntityPos.X * normx,
+                relativeEntityPos.Y * normy);
+            Logger.Debug($"relativeEntityPosnorm: {relativeEntityPosnorm}");
+
+            Vector2 ontabletPosition = relativeEntityPosnorm + tabletCoords;
+            Logger.Debug($"ontabletPosition: {ontabletPosition}");
+
+            return ontabletPosition;
+        }
         public void OnUseInHand(EntityUid uid, ShiftResourceExtractComponent comp, BeforeRangedInteractEvent args)
         {
             if (!args.CanReach)
