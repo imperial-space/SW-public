@@ -4,6 +4,7 @@
   parent: BaseBulletTrigger
   components:
   - type: Sprite
+    scale: 1, 1
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
       - state: grenade
@@ -15,9 +16,9 @@
     totalIntensity: 25
     maxTileBreak: 1
   - type: PointLight
-    radius: 3.5
+    radius: 2.5
     color: orange
-    energy: 0.5
+    energy: 9.5
 
 - type: entity
   id: BulletRPG8LargeRadius

@@ -1,5 +1,6 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Utility;
+using Content.Shared.Mind;
 
 namespace Content.Shared.ShiftFront.Components;
 
@@ -7,7 +8,11 @@ namespace Content.Shared.ShiftFront.Components;
 public sealed partial class ShiftTankHullComponent : Component
 {
     [DataField]
+    public MindComponent? Mind;
+    [DataField]
     public EntityUid? User;
+    [DataField]
+    public EntityUid? OriginalUserBody { get; set; } // Сохраняем оригинальное тело
     [DataField]
     public EntityUid? LinkedTurret;
     [DataField]

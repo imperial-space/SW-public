@@ -7,7 +7,10 @@ public sealed partial class FPVStopControlEvent : InstantActionEvent
 {
 
 }
+public sealed partial class TankStopControlEvent : InstantActionEvent
+{
 
+}
 public sealed partial class CommanderBoostUpEvent : InstantActionEvent
 {
 

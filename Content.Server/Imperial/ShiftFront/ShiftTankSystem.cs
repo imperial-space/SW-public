@@ -43,6 +43,7 @@ using Content.Shared.Movement.Systems;
 using System.Numerics;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Interaction.Components;
+using System.Linq;
 
 namespace Content.Server.ShiftFront
 {
@@ -101,13 +102,21 @@ namespace Content.Server.ShiftFront
         private void OnStopAction(EntityUid uid, ShiftTankHullComponent comp, ref FPVStopControlEvent args)
         {
             if (comp.User == null) return;
-            _mind.TransferTo(uid, comp.User.Value, true, false);
+            if (comp.Mind == null) return;
+            _mind.TransferTo(uid, comp.User.Value, true, false, comp.Mind);
+            RemComp<ShiftTankPilotComponent>(comp.User.Value);
+            //comp.Mind = null;
+            comp.User = null;
+
         }
 
         private void OnStopActionTurret(EntityUid uid, ShiftTankTurretComponent comp, ref FPVStopControlEvent args)
         {
             if (comp.User == null) return;
-            _mind.TransferTo(uid, comp.User.Value, true, false);
+            if (comp.Mind == null) return;
+            _mind.TransferTo(uid, comp.User.Value, true, false, comp.Mind);
+            RemComp<ShiftTankPilotComponent>(comp.User.Value);
+            comp.User = null;
         }
         public void TurretStart(EntityUid uid, ShiftTankTurretComponent component, ComponentStartup args)
         {
@@ -116,22 +125,42 @@ namespace Content.Server.ShiftFront
 
         private void OnActivate(EntityUid uid, ShiftTankpartComponent comp, ActivateInWorldEvent args)
         {
+            Shared.Mind.MindComponent? mindcomp = null;
             if (args.Handled)
                 return;
             if (comp.Tank == null) return;
-            if (!_mind.TryGetMind(args.User, out _, out var mindcomp)) return;
+
             var tank = EnsureComp<ShiftTankHullComponent>(comp.Tank.Value);
+            if (tank.Mind == null)
+            {
+                if (!_mind.TryGetMind(args.User, out _, out var mindcompn)) return;
+                if (mindcompn == null) return;
+                mindcomp = mindcompn;
+            }
+            else
+            {
+                mindcomp = tank.Mind;
+            }
+            if (mindcomp == null) return;
             switch (comp.Part)
             {
                 case "Controller":
                     _mind.TransferTo(args.User, comp.Tank.Value, true, false, mindcomp);
                     tank.User = args.User;
+                    EnsureComp<ShiftTankPilotComponent>(args.User, out var pilot);
+                    tank.Mind = mindcomp;
+                    pilot.Tank = comp.Tank.Value;
+                    _action.AddAction(comp.Tank.Value, "StopFPVControll");
                     break;
                 case "Gunner":
                     if (tank.LinkedTurret == null) return;
                     _mind.TransferTo(args.User, tank.LinkedTurret.Value, true, false, mindcomp);
                     var turret = EnsureComp<ShiftTankTurretComponent>(tank.LinkedTurret.Value);
                     turret.User = args.User;
+                    EnsureComp<ShiftTankPilotComponent>(args.User, out var pilot2);
+                    tank.Mind = mindcomp;
+                    pilot2.Tank = comp.Tank.Value;
+                    _action.AddAction(comp.Tank.Value, "StopFPVControll");
                     break;
                 case "Exit":
                     var xform = Transform(comp.Tank.Value);
@@ -143,6 +172,10 @@ namespace Content.Server.ShiftFront
                     _mind.TransferTo(args.User, tank.LinkedObserver.Value, true, false, mindcomp);
                     var observ = EnsureComp<ShiftTankTurretComponent>(tank.LinkedObserver.Value);
                     observ.User = args.User;
+                    EnsureComp<ShiftTankPilotComponent>(args.User, out var pilot3);
+                    tank.Mind = mindcomp;
+                    pilot3.Tank = comp.Tank.Value;
+                    _action.AddAction(comp.Tank.Value, "StopFPVControll");
                     break;
             }
 
@@ -155,7 +188,6 @@ namespace Content.Server.ShiftFront
         }
         public void TankStart(EntityUid uid, ShiftTankHullComponent component, ComponentStartup args)
         {
-            _action.AddAction(uid, "StopFPVControll");
             //_action.AddAction(uid, "TankStartMoveAction");
             //_action.AddAction(uid, "TankStopMoveAction");
             //_action.AddAction(uid, "TankChangeMoveDirectionAction");
@@ -174,7 +206,7 @@ namespace Content.Server.ShiftFront
                 turretcomp.LinkedTank = uid;
                 component.LinkedTurret = turret;
             }
-            if (component.ObserverProto != null)
+            if (component.ObserverProto != "")
             {
                 var observ = Spawn(component.ObserverProto, Transform(uid).Coordinates);
                 _transform.SetParent(observ, uid);
@@ -189,7 +221,7 @@ namespace Content.Server.ShiftFront
                 switch (inside.Inside)
                 {
                     case "Controller":
-                        if (component.InsideController == null) continue;
+                        if (component.InsideController == "") continue;
                         component.InsideControllerEntity = Spawn(component.InsideController, Transform(insuid).Coordinates);
                         EnsureComp<TimedDespawnComponent>(insuid, out var despawn);
                         EnsureComp<ShiftTankpartComponent>(component.InsideControllerEntity.Value, out var controller);
@@ -197,7 +229,7 @@ namespace Content.Server.ShiftFront
                         despawn.Lifetime = 0.05f;
                         break;
                     case "Gunner":
-                        if (component.InsideGunner == null) continue;
+                        if (component.InsideGunner == "") continue;
                         component.InsideGunnerEntity = Spawn(component.InsideGunner, Transform(insuid).Coordinates);
                         EnsureComp<TimedDespawnComponent>(insuid, out var despawn2);
                         EnsureComp<ShiftTankpartComponent>(component.InsideGunnerEntity.Value, out var gunner);
@@ -205,7 +237,7 @@ namespace Content.Server.ShiftFront
                         despawn2.Lifetime = 0.05f;
                         break;
                     case "Cartridge":
-                        if (component.InsideCartridge == null) continue;
+                        if (component.InsideCartridge == "") continue;
                         component.InsideCartridgeEntity = Spawn(component.InsideCartridge, Transform(insuid).Coordinates);
                         EnsureComp<TimedDespawnComponent>(insuid, out var despawn3);
                         EnsureComp<ShiftTankpartComponent>(component.InsideCartridgeEntity.Value, out var cartridge);
@@ -213,7 +245,7 @@ namespace Content.Server.ShiftFront
                         despawn3.Lifetime = 0.05f;
                         break;
                     case "Exit":
-                        if (component.InsideExit == null) continue;
+                        if (component.InsideExit == "") continue;
                         component.InsideExitEntity = Spawn(component.InsideExit, Transform(insuid).Coordinates);
                         EnsureComp<TimedDespawnComponent>(insuid, out var despawn4);
                         EnsureComp<ShiftTankpartComponent>(component.InsideExitEntity.Value, out var exit);
@@ -221,7 +253,7 @@ namespace Content.Server.ShiftFront
                         despawn4.Lifetime = 0.05f;
                         break;
                     case "Entry":
-                        if (component.InsideEntry == null) continue;
+                        if (component.InsideEntry == "") continue;
                         component.InsideEntryEntity = Spawn(component.InsideEntry, Transform(insuid).Coordinates);
                         EnsureComp<TimedDespawnComponent>(insuid, out var despawn5);
                         EnsureComp<ShiftTankpartComponent>(component.InsideEntryEntity.Value, out var entry);
@@ -229,7 +261,7 @@ namespace Content.Server.ShiftFront
                         despawn5.Lifetime = 0.05f;
                         break;
                     case "Motor":
-                        if (component.InsideMotor == null) continue;
+                        if (component.InsideMotor == "") continue;
                         component.InsideMotorEntity = Spawn(component.InsideMotor, Transform(insuid).Coordinates);
                         EnsureComp<TimedDespawnComponent>(insuid, out var despawn6);
                         EnsureComp<ShiftTankpartComponent>(component.InsideMotorEntity.Value, out var motor);
@@ -237,7 +269,7 @@ namespace Content.Server.ShiftFront
                         despawn6.Lifetime = 0.05f;
                         break;
                     case "Observer":
-                        if (component.InsideObserver == null) continue;
+                        if (component.InsideObserver == "") continue;
                         component.InsideObserverEntity = Spawn(component.InsideObserver, Transform(insuid).Coordinates);
                         EnsureComp<TimedDespawnComponent>(insuid, out var despawn7);
                         EnsureComp<ShiftTankpartComponent>(component.InsideObserverEntity.Value, out var observer);
