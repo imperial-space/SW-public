@@ -874,6 +874,40 @@
   - type: Sprite
     sprite: Imperial/ShiftFront/map.rsi
     state: sand
-    scale: 1.04,1.04
+    scale: 1,1
+    drawdepth: FloorObjects
   - type: ShiftMap
     faction: Red
+
+- type: entity
+  id: ShiftFrontMapBlue
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map.rsi
+    state: sand
+    scale: 1,1
+    drawdepth: FloorObjects
+  - type: ShiftMap
+    faction: Blue
+
+- type: entity
+  id: ShiftFrontMapYellow
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map.rsi
+    state: sand
+    scale: 1,1
+    drawdepth: FloorObjects
+  - type: ShiftMap
+    faction: Yellow
+
+- type: entity
+  id: ShiftFrontMapGreen
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map.rsi
+    state: sand
+    scale: 1,1
+    drawdepth: FloorObjects
+  - type: ShiftMap
+    faction: Green

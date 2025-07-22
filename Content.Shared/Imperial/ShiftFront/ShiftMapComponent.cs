@@ -8,11 +8,11 @@ public sealed partial class ShiftMapComponent : Component
     [DataField]
     public string Faction = "";
     [DataField]
-    public float mapX = 131f;
+    public float mapX = 134f;
     [DataField]
-    public float mapY = 100f;
+    public float mapY = 103f;
     [DataField]
-    public float offsetX = 35f;
+    public float offsetX = 33f;
     [DataField]
     public float offsetY = -123f;
     [DataField]

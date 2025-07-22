@@ -10,6 +10,8 @@ public sealed partial class ShiftShowOnMapComponent : Component
     [DataField]
     public string MippleProto = "";
     [DataField]
-    public EntityUid? LinkedMipple;
+    public string DeathEffectProto = "";
+    [DataField]
+    public List<EntityUid> LinkedMipples = new();
 
 }

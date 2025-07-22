@@ -41,6 +41,7 @@ using Robust.Shared.Physics.Events;
 using Content.Server.Stunnable;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
+using Robust.Shared.Spawners;
 
 namespace Content.Server.ShiftFront
 {
@@ -81,6 +82,7 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftPlayerComponent, MobStateChangedEvent>(OnMobStateChanged);
             SubscribeLocalEvent<ShiftPlayerComponent, ComponentStartup>(OnPlayerStart);
             SubscribeLocalEvent<ShiftShowOnMapComponent, ComponentStartup>(OnShowOnMapStart);
+            SubscribeLocalEvent<ShiftShowOnMapComponent, ComponentShutdown>(OnShowOnMapEnd);
             SubscribeLocalEvent<ShiftBarracksComponent, ComponentStartup>(OnBarracksStart);
             SubscribeLocalEvent<ShiftSuppliesComponent, ComponentStartup>(OnSuppliesStart);
             SubscribeLocalEvent<ShiftStorageComponent, ComponentStartup>(OnStorageStart);
@@ -302,6 +304,16 @@ namespace Content.Server.ShiftFront
 
         }
 
+        public void OnShowOnMapEnd(EntityUid uid, ShiftShowOnMapComponent comp, ComponentShutdown args)
+        {
+            foreach (var mipple in comp.LinkedMipples)
+            {
+                if (comp.DeathEffectProto != "") Spawn(comp.DeathEffectProto, Transform(mipple).Coordinates);
+                EnsureComp<TimedDespawnComponent>(mipple, out var despawn);
+                despawn.Lifetime = 0.05f;
+            }
+        }
+
         public void OnShowOnMapStart(EntityUid uid, ShiftShowOnMapComponent comp, ComponentStartup args)
         {
             if (comp.MippleProto != "")
@@ -310,9 +322,9 @@ namespace Content.Server.ShiftFront
                 while (dquery.MoveNext(out var reuid, out var recomp))
                 {
                     if (recomp.Faction != comp.Faction && comp.Faction != "") continue;
-                    comp.LinkedMipple = Spawn(comp.MippleProto, Transform(reuid).Coordinates);
-                    _metaData.SetEntityName(comp.LinkedMipple.Value, EnsureComp<MetaDataComponent>(uid).EntityName);
-                    EnsureComp<ShiftMippleComponent>(comp.LinkedMipple.Value, out var mipplecomp);
+                    var LinkedMipple = Spawn(comp.MippleProto, Transform(reuid).Coordinates);
+                    _metaData.SetEntityName(LinkedMipple, EnsureComp<MetaDataComponent>(uid).EntityName);
+                    EnsureComp<ShiftMippleComponent>(LinkedMipple, out var mipplecomp);
                     mipplecomp.LinkedMap = reuid;
                     mipplecomp.LinkedPlayer = uid;
                     var nc = CalculateTabletIconPosition(new Vector2(Transform(uid).Coordinates.X, Transform(uid).Coordinates.Y),
@@ -320,7 +332,8 @@ namespace Content.Server.ShiftFront
                         new Vector2(recomp.entX, recomp.entY),
                         new Vector2(recomp.offsetX, recomp.offsetY),
                         new Vector2(recomp.mapX, recomp.mapY));
-                    _transform.SetWorldPosition(comp.LinkedMipple.Value, nc);
+                    _transform.SetWorldPosition(LinkedMipple, nc);
+                    comp.LinkedMipples.Add(LinkedMipple);
                 }
             }
         }
