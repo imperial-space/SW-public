@@ -1,4 +1,5 @@
 using Robust.Shared.GameObjects;
+using Content.Shared.Damage;
 
 namespace Content.Server.Imperial.Power.Components
 {
@@ -6,27 +7,38 @@ namespace Content.Server.Imperial.Power.Components
     public sealed partial class SupermatterIntegrityComponent : Component
     {
         // Текущая целостность кристалла
-        [ViewVariables(VVAccess.ReadWrite)]
+        [ViewVariables(VVAccess.ReadWrite), DataField]
         public float Integrity = 100f;
 
         // Максимальная целостность
-        [ViewVariables(VVAccess.ReadWrite)]
+        [ViewVariables(VVAccess.ReadWrite), DataField]
         public float MaxIntegrity = 100f;
 
         // Сколько урона наносится за тик при опасных условиях
-        [ViewVariables(VVAccess.ReadWrite)]
-        public float TickDamage = 0.8f;
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public DamageSpecifier TickDamage = new();
+        // Интервал между тиками урона
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public TimeSpan TickInterval = TimeSpan.FromSeconds(1);
+
+        // Индивидуальный таймер для тиков урона
+        [DataField]
+        public TimeSpan TickAccumulator = TimeSpan.Zero;
 
         // Минимальная целостность, при которой начинается катастрофа
-        [ViewVariables(VVAccess.ReadWrite)]
+        [ViewVariables(VVAccess.ReadWrite), DataField]
         public float CatastropheThreshold = 0f;
 
-        // Флаги для стадий радио-предупреждений
-        public bool _warned90 = false;
-        public bool _warned75 = false;
-        public bool _warned50 = false;
-        public bool _warned25 = false;
-        public bool _warned10 = false;
+        // Флаги для стадий радио-предупреждений (ключ — порог процента)
+        [DataField]
+        public Dictionary<float, bool> WarningFlags = new()
+        {
+            { 0.9f, false },
+            { 0.75f, false },
+            { 0.5f, false },
+            { 0.25f, false },
+            { 0.10f, false }
+        };
         // Флаги для сброса стадий
         public bool _reset90 = false;
         public bool _reset75 = false;
@@ -36,7 +48,21 @@ namespace Content.Server.Imperial.Power.Components
 
         // --- Катастрофа ---
         public bool CatastropheActive = false;
-        public float CatastropheTimer = 0f;
-        public float CatastropheLightningCooldown = 0f;
+        public TimeSpan CatastropheTimer = TimeSpan.Zero;
+
+        // Тег, который считается лечащим для суперматерии (например, болт эмиттера)
+        [DataField]
+        public string HealTag = "EmitterBolt";
+
+        // Описания состояния кристалла по проценту целостности
+        [DataField]
+        public Dictionary<float, LocId> IntegrityDescriptions = new()
+        {
+            { 0.95f, "supermatter-desc-pristine" },
+            { 0.75f, "supermatter-desc-scratched" },
+            { 0.5f,  "supermatter-desc-cracked" },
+            { 0.25f, "supermatter-desc-badly-cracked" },
+            { 0.0f,  "supermatter-desc-critical" }
+        };
     }
 }

@@ -63,10 +63,14 @@
     # - type: StealTarget
     #   stealGroup: SupermatterSliver # uses to verify sm existense on map
     - type: SupermatterTouch
+    - type: Damageable
+      damageContainer: Biological
     - type: SupermatterIntegrity
       integrity: 100
       maxIntegrity: 100
-      tickDamage: 1
+      tickDamage:
+        types:
+          Blunt: 0.5
       catastropheThreshold: 0
     - type: SupermatterEvent
     - type: GuideHelp

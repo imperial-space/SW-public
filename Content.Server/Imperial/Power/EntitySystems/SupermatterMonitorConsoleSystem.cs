@@ -11,6 +11,8 @@ using Content.Shared.Atmos;
 using Robust.Shared.Random;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using System;
+using Robust.Shared.Localization;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
@@ -36,99 +38,96 @@ namespace Content.Server.Imperial.Power.EntitySystems
             var pos = _xforms.GetMapCoordinates(xform).Position;
 
             // Найти ближайший кристалл суперматерии
-            SupermatterIntegrityComponent? nearest = null;
-            float minDist = float.MaxValue;
-            foreach (var sm in EntityManager.EntityQuery<SupermatterIntegrityComponent>())
-            {
-                var smXform = Transform(sm.Owner);
-                if (smXform.MapID != mapId)
-                    continue;
-                var smPos = _xforms.GetMapCoordinates(smXform).Position;
-                var dist = (smPos - pos).LengthSquared();
-                if (dist < minDist)
-                {
-                    minDist = dist;
-                    nearest = sm;
-                }
-            }
-
-            if (nearest != null)
+            var nearestUid = FindNearestSupermatter(uid, xform);
+            if (nearestUid != null && EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest))
             {
                 // Цвет по уровню прочности
                 float percent = nearest.Integrity / MathF.Max(1f, nearest.MaxIntegrity);
-                string color = percent > 0.75f ? "green" : percent > 0.25f ? "yellow" : "red";
-                args.PushMarkup($"[color={color}]Целостность ближайшей суперматерии: {nearest.Integrity:0.##} / {nearest.MaxIntegrity:0.##}[/color]\n");
+                var color = percent > 0.75f ? "green" : percent > 0.25f ? "yellow" : "red";
+                var integrityPrefix = Loc.GetString("supermatter-monitor-integrity-prefix");
+                var integrityText = $"{integrityPrefix} {nearest.Integrity:0} / {nearest.MaxIntegrity:0}";
+                args.PushMarkup($"[color={color}]{integrityText}[/color]\n");
                 // Пиликанье при низкой прочности
                 if (percent <= 0.25f)
                 {
-                    _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/beep.ogg"), uid);
+                    _audio.PlayPvs(component.BeepSound, uid);
                 }
                 // Получаем атмосферу вокруг кристалла
-                var smXform = Transform(nearest.Owner);
-                var gas = _atmos.GetContainingMixture((nearest.Owner, smXform));
+                var smXform = Transform(nearestUid.Value);
+                var gas = _atmos.GetContainingMixture((nearestUid.Value, smXform));
                 if (gas != null)
                 {
-                    args.PushMarkup($"[color=yellow]Атмосфера: давление {gas.Pressure:0.0} кПа, температура {gas.Temperature:0.0} K[/color]\n");
+                    var atmosPrefix = Loc.GetString("supermatter-monitor-atmos-prefix");
+                    var pressure = gas.Pressure.ToString("0.0");
+                    var temperature = gas.Temperature.ToString("0.0");
+                    args.PushMarkup($"{atmosPrefix} pressure {pressure} kPa, temperature {temperature} K\n");
                 }
                 // Примерное время до следующего всплеска
-                if (EntityManager.TryGetComponent<SupermatterEventComponent>(nearest.Owner, out var events))
+                if (EntityManager.TryGetComponent<SupermatterEventComponent>(nearestUid.Value, out var events))
                 {
-                    float next = events.NextEventTimer;
-                float approx = MathF.Max(0, next + _random.Next(-60, 61));
-                int minutes = (int)MathF.Round(approx / 60f);
-                args.PushMarkup($"[color=yellow]До следующего энергетического всплеска: ~{minutes} мин.[/color]\n");
+                    var nextEventPrefix = Loc.GetString("supermatter-monitor-next-event-prefix");
+                    double next = events.NextEventTimer.TotalSeconds;
+                    double approx = Math.Max(0, next + _random.Next(-60, 61));
+                    int minutes = (int)Math.Round(approx / 60.0);
+                    args.PushMarkup($"{nextEventPrefix} {minutes} min.\n");
                 }
             }
             else
             {
-                args.PushMarkup("[color=gray]Поблизости не найдено кристаллов суперматерии.[/color]");
+                args.PushMarkup(Loc.GetString("supermatter-monitor-none-nearby"));
             }
+        }
+
+        private EntityUid? FindNearestSupermatter(EntityUid consoleUid, TransformComponent xform)
+        {
+            var mapId = xform.MapID;
+            var pos = _xforms.GetMapCoordinates(consoleUid).Position;
+            EntityUid? nearest = null;
+            float minDist = float.MaxValue;
+            var smEnumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
+            while (smEnumerator.MoveNext(out var smUid, out var sm, out var smXform))
+            {
+                if (smXform.MapID != mapId)
+                    continue;
+                var smPos = _xforms.GetMapCoordinates(smUid).Position;
+                var dist = (smPos - pos).LengthSquared();
+                if (dist < minDist)
+                {
+                    minDist = dist;
+                    nearest = smUid;
+                }
+            }
+            return nearest;
         }
 
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
-            foreach (var (console, xform) in EntityQuery<SupermatterMonitorConsoleComponent, TransformComponent>())
+            var enumerator = EntityQueryEnumerator<SupermatterMonitorConsoleComponent, TransformComponent>();
+            while (enumerator.MoveNext(out var console, out var xform))
             {
                 // Найти ближайший кристалл суперматерии
-                var mapId = xform.MapID;
-                var pos = _xforms.GetMapCoordinates(xform).Position;
-                SupermatterIntegrityComponent? nearest = null;
-                float minDist = float.MaxValue;
-                foreach (var sm in EntityManager.EntityQuery<SupermatterIntegrityComponent>())
-                {
-                    var smXform = Transform(sm.Owner);
-                    if (smXform.MapID != mapId)
-                        continue;
-                    var smPos = _xforms.GetMapCoordinates(smXform).Position;
-                    var dist = (smPos - pos).LengthSquared();
-                    if (dist < minDist)
-                    {
-                        minDist = dist;
-                        nearest = sm;
-                    }
-                }
-                // Если есть опасная суперматерия — пиликаем раз в 2 секунды
-                if (nearest != null)
+                var nearestUid = FindNearestSupermatter(console.Owner, xform);
+                if (nearestUid != null && EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest))
                 {
                     float percent = nearest.Integrity / MathF.Max(1f, nearest.MaxIntegrity);
                     if (percent <= 0.25f)
                     {
-                        console.BeepCooldownTimer -= frameTime;
-                        if (console.BeepCooldownTimer <= 0f)
+                        console.BeepCooldownTimer -= TimeSpan.FromSeconds(frameTime);
+                        if (console.BeepCooldownTimer <= TimeSpan.Zero)
                         {
-                            _audio.PlayPvs(new SoundPathSpecifier("/Audio/Machines/beep.ogg"), console.Owner);
-                            console.BeepCooldownTimer = 2f;
+                            _audio.PlayPvs(console.BeepSound, console.Owner);
+                            console.BeepCooldownTimer = TimeSpan.FromSeconds(2);
                         }
                     }
                     else
                     {
-                        console.BeepCooldownTimer = 0f;
+                        console.BeepCooldownTimer = TimeSpan.Zero;
                     }
                 }
                 else
                 {
-                    console.BeepCooldownTimer = 0f;
+                    console.BeepCooldownTimer = TimeSpan.Zero;
                 }
             }
         }

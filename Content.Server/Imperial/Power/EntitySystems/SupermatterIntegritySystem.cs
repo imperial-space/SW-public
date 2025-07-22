@@ -16,7 +16,6 @@ using Content.Server.Chat.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.Station.Systems;
 using Content.Server.Lightning;
-using Content.Server.Radiation.Systems;
 using Robust.Shared.Random;
 using Content.Shared.Radiation.Components;
 using Robust.Shared.Map;
@@ -26,6 +25,11 @@ using System;
 using Content.Shared.Mobs.Components;
 using Content.Server.Explosion.EntitySystems;
 using Robust.Shared.GameObjects;
+using Content.Shared.Damage;
+using Robust.Shared.Localization;
+using System.Collections.Generic;
+using System.Linq;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
@@ -39,13 +43,20 @@ namespace Content.Server.Imperial.Power.EntitySystems
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
-        [Dependency] private readonly LightningSystem _lightning = default!;
-        [Dependency] private readonly RadiationSystem _radiation = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-        [Dependency] private readonly IGameTiming Timing = default!;
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
         [Dependency] private readonly SharedTransformSystem _xforms = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
+
+        // Внутренний таймер для тиков урона
+
+        private static readonly Dictionary<float, LocId> IntegrityDescriptions = new()
+        {
+            { 0.95f, "supermatter-desc-pristine" },
+            { 0.75f, "supermatter-desc-scratched" },
+            { 0.5f,  "supermatter-desc-cracked" },
+            { 0.25f, "supermatter-desc-badly-cracked" },
+            { 0.0f,  "supermatter-desc-critical" }
+        };
 
         public override void Initialize()
         {
@@ -53,11 +64,21 @@ namespace Content.Server.Imperial.Power.EntitySystems
             SubscribeLocalEvent<SupermatterIntegrityComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<SupermatterIntegrityComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<SupermatterIntegrityComponent, StartCollideEvent>(OnStartCollide);
+            // Новое: обновлять Integrity при изменении урона
+            SubscribeLocalEvent<DamageableComponent, DamageChangedEvent>(OnDamageChanged);
         }
 
         private void OnInit(EntityUid uid, SupermatterIntegrityComponent comp, ComponentInit args)
         {
-            // 
+            //
+        }
+
+        private void OnDamageChanged(EntityUid uid, DamageableComponent comp, DamageChangedEvent args)
+        {
+            if (EntityManager.TryGetComponent<SupermatterIntegrityComponent>(uid, out var integrity))
+            {
+                integrity.Integrity = MathF.Max(0, integrity.MaxIntegrity - (float)comp.TotalDamage);
+            }
         }
 
         private void OnExamined(EntityUid uid, SupermatterIntegrityComponent component, ExaminedEvent args)
@@ -66,37 +87,51 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 return;
 
             var percent = component.Integrity / MathF.Max(1f, component.MaxIntegrity);
-            string desc = "";
-            if (percent > 0.95f)
-                desc = "Кристалл выглядит абсолютно целым.";
-            else if (percent > 0.75f)
-                desc = "На кристалле видны небольшие царапины.";
-            else if (percent > 0.5f)
-                desc = "На кристалле появились трещины.";
-            else if (percent > 0.25f)
-                desc = "Кристалл покрыт множеством трещин и выглядит нестабильно.";
-            else
-                desc = "Кристалл вот-вот разрушится! Он светится и вибрирует.";
-
+            LocId descId = default;
+            foreach (var pair in component.IntegrityDescriptions.OrderByDescending(p => p.Key))
+            {
+                if (percent > pair.Key)
+                {
+                    descId = pair.Value;
+                    break;
+                }
+            }
+            if (descId == default)
+                descId = "supermatter-desc-critical";
+            var desc = Loc.GetString(descId);
             args.PushMarkup(desc);
         }
 
         private void OnStartCollide(EntityUid uid, SupermatterIntegrityComponent component, ref StartCollideEvent args)
         {
             var other = args.OtherEntity;
-            if (_tagSystem.HasTag(other, "EmitterBolt"))
+            if (_tagSystem.HasTag(other, component.HealTag))
             {
                 var heal = 0.5f;
                 component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + heal);
+                // Синхронизируем DamageableComponent
+                if (EntityManager.TryGetComponent<DamageableComponent>(uid, out var dmg))
+                {
+                    var newTotal = component.MaxIntegrity - component.Integrity;
+                    var diff = newTotal - (float)dmg.TotalDamage;
+                    if (Math.Abs(diff) > 0.01f)
+                    {
+                        // Применяем отрицательный урон (исцеление)
+                        var healSpec = new DamageSpecifier();
+                        foreach (var type in dmg.Damage.DamageDict.Keys)
+                            healSpec.DamageDict[type] = -diff;
+                        _damageable.TryChangeDamage(uid, healSpec, false, true, origin: null);
+                    }
+                }
             }
         }
 
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
-            foreach (var (comp, xform) in EntityQuery<SupermatterIntegrityComponent, TransformComponent>())
+            var enumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
+            while (enumerator.MoveNext(out var uid, out var comp, out var xform))
             {
-                var uid = xform.Owner;
                 var gas = _atmos.GetContainingMixture((uid, xform), true, false);
                 bool bad = false;
                 if (gas != null)
@@ -106,75 +141,58 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 }
 
                 var percent = comp.Integrity / MathF.Max(1f, comp.MaxIntegrity);
-                if (percent > 0.9f && comp._warned90)
-                    comp._warned90 = false;
-                if (percent > 0.75f && comp._warned75)
-                    comp._warned75 = false;
-                if (percent > 0.5f && comp._warned50)
-                    comp._warned50 = false;
-                if (percent > 0.25f && comp._warned25)
-                    comp._warned25 = false;
-                if (percent > 0.10f && comp._warned10)
-                    comp._warned10 = false;
-
-                if (percent < 0.10f && !comp._warned10)
+                // Сброс флагов предупреждений, если целостность снова поднялась выше порога
+                foreach (var key in comp.WarningFlags.Keys.ToList())
                 {
-                    var msg = "!!! СУПЕРМАТЕРИЯ НА ГРАНИ РАЗРУШЕНИЯ !!!";
-                    SendSupermatterRadio(uid, msg);
-                    _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
-                    var station = _stationSystem.GetOwningStation(uid);
-                    if (station != null)
-                    {
-                        _chat.DispatchStationAnnouncement(station.Value, "ВНИМАНИЕ! Суперматерия на грани разрушения! Немедленно стабилизируйте кристалл!", playDefaultSound: true, colorOverride: Color.Yellow);
-                        _alertLevelSystem.SetLevel(station.Value, "yellow", true, true, true);
-                    }
-                    comp._warned10 = true;
-                }
-                else if (percent < 0.25f && !comp._warned25)
-                {
-                    var msg = "ВНИМАНИЕ! Целостность суперматерии критически низкая! Немедленно стабилизируйте кристалл!";
-                    SendSupermatterRadio(uid, msg);
-                    _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
-                    comp._warned25 = true;
-                }
-                else if (percent < 0.5f && !comp._warned50)
-                {
-                    var msg = "Внимание! Суперматерия сильно повреждена. Ситуация опасна.";
-                    SendSupermatterRadio(uid, msg);
-                    _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
-                    comp._warned50 = true;
-                }
-                else if (percent < 0.75f && !comp._warned75)
-                {
-                    var msg = "Суперматерия получила повреждения. Рекомендуется проверить состояние кристалла.";
-                    SendSupermatterRadio(uid, msg);
-                    _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
-                    comp._warned75 = true;
-                }
-                else if (percent < 0.9f && !comp._warned90)
-                {
-                    var msg = "Зарегистрированы незначительные повреждения суперматерии.";
-                    SendSupermatterRadio(uid, msg);
-                    _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
-                    comp._warned90 = true;
+                    if (percent > key && comp.WarningFlags[key])
+                        comp.WarningFlags[key] = false;
                 }
 
-                if (comp.Integrity <= comp.CatastropheThreshold)
+                // Выдача предупреждений по порогам
+                foreach (var pair in comp.WarningFlags.OrderByDescending(p => p.Key))
                 {
-                    if (!comp.CatastropheActive)
+                    var key = pair.Key;
+                    if (percent < key && !comp.WarningFlags[key])
                     {
-                        // Запуск катастрофы
-                        comp.CatastropheActive = true;
-                        comp.CatastropheTimer = 120f; // 2 минуты
-                        AnnounceFromConsole(uid, "!!! СУПЕРМАТЕРИЯ КРИТИЧЕСКИ НЕСТАБИЛЬНА: УНИЧТОЖИТЕЛЬНЫЙ ВЫПУСК ЭНЕРГИИ !!!");
+                        var msgKey = key switch
+                        {
+                            0.10f => "supermatter-warn-10",
+                            0.25f => "supermatter-warn-25",
+                            0.5f => "supermatter-warn-50",
+                            0.75f => "supermatter-warn-75",
+                            0.9f => "supermatter-warn-90",
+                            _ => null
+                        };
+                        if (msgKey != null)
+                        {
+                            var msg = Loc.GetString(msgKey);
+                            SendSupermatterRadio(uid, msg);
+                            _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
+                            if (key == 0.10f)
+                            {
+                                var station = _stationSystem.GetOwningStation(uid);
+                                if (station != null)
+                                {
+                                    _chat.DispatchStationAnnouncement(station.Value, Loc.GetString("supermatter-station-critical"), playDefaultSound: true, colorOverride: Color.Yellow);
+                                    _alertLevelSystem.SetLevel(station.Value, "yellow", true, true, true);
+                                }
+                            }
+                            comp.WarningFlags[key] = true;
+                            break;
+                    }
                     }
                 }
-                // Катастрофа
+
+                if (!comp.CatastropheActive && comp.Integrity <= comp.CatastropheThreshold)
+                {
+                    comp.CatastropheActive = true;
+                    comp.CatastropheTimer = TimeSpan.FromSeconds(120); // 2 минуты
+                }
+
                 if (comp.CatastropheActive)
                 {
-                    comp.CatastropheTimer -= frameTime;
-
-                    if (comp.CatastropheTimer <= 0f)
+                    comp.CatastropheTimer -= TimeSpan.FromSeconds(frameTime);
+                    if (comp.CatastropheTimer <= TimeSpan.Zero)
                     {
                         // Взрыв
                         if (TryComp(uid, out TransformComponent? xformCat))
@@ -183,35 +201,38 @@ namespace Content.Server.Imperial.Power.EntitySystems
                             _explosionSystem.QueueExplosion(
                                 coords,
                                 "Default", // TODO: Отдельный прототип взрыва
-                                20000f,      // totalIntensity 
-                                1f,         // slope 
+                                20000f,      // totalIntensity
+                                1f,         // slope
                                 70f,        // maxTileIntensity
                                 cause: uid
                             );
                         }
-                        EntityManager.QueueDeleteEntity(uid);
-                        continue;
+                    EntityManager.QueueDeleteEntity(uid);
+                    continue;
                     }
                 }
-                else
-                {
-                    comp.CatastropheLightningCooldown = 0f;
-                    // if (comp.Integrity <= comp.CatastropheThreshold)
-                    // {
-                    //     EntityManager.QueueDeleteEntity(uid);
-                    //     continue;
-                    // }
-                }
+                // else
+                // {
+                //     comp.CatastropheLightningCooldown = TimeSpan.Zero;
+                // }
 
                 if (bad)
                 {
-                    comp.Integrity = MathF.Max(comp.CatastropheThreshold, comp.Integrity - comp.TickDamage * frameTime);
+                    comp.TickAccumulator += TimeSpan.FromSeconds(frameTime);
+                    while (comp.TickAccumulator >= comp.TickInterval)
+                    {
+                        comp.TickAccumulator -= comp.TickInterval;
+                        if (EntityManager.TryGetComponent<DamageableComponent>(uid, out var dmg))
+                        {
+                            _damageable.TryChangeDamage(uid, comp.TickDamage, false, true, origin: null);
+                        }
+                    }
                 }
             }
         }
 
         // Отправка сообщения в общую рацию от имени суперматерии
-        private void SendSupermatterRadio(EntityUid source, string message)
+        public void SendSupermatterRadio(EntityUid source, string message)
         {
             var channel = _proto.Index<RadioChannelPrototype>("Common");
             _radio.SendRadioMessage(source, message, channel, source);
@@ -222,19 +243,18 @@ namespace Content.Server.Imperial.Power.EntitySystems
             // Найти ближайшую консоль мониторинга
             EntityUid? nearestConsole = null;
             float minDist = float.MaxValue;
-            var xform = Transform(crystal);
-            var pos = xform.MapPosition.Position;
-            foreach (var console in EntityManager.EntityQuery<SupermatterMonitorConsoleComponent>())
+            var pos = _xforms.GetMapCoordinates(crystal).Position;
+            var enumerator = EntityQueryEnumerator<SupermatterMonitorConsoleComponent, TransformComponent>();
+            while (enumerator.MoveNext(out var consoleUid, out var cComp, out var cXform))
             {
-                var cXform = Transform(console.Owner);
-                if (cXform.MapID != xform.MapID)
+                if (cXform.MapID != _xforms.GetMapCoordinates(crystal).MapId)
                     continue;
-                var cPos = cXform.MapPosition.Position;
+                var cPos = _xforms.GetMapCoordinates(consoleUid).Position;
                 var dist = (cPos - pos).LengthSquared();
                 if (dist < minDist)
                 {
                     minDist = dist;
-                    nearestConsole = console.Owner;
+                    nearestConsole = consoleUid;
                 }
             }
             // Сообщение в инженерный канал

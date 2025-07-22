@@ -7,13 +7,16 @@ using Content.Server.Radio.EntitySystems;
 using Content.Shared.Radio;
 using Robust.Shared.Prototypes;
 using Content.Server.Lightning;
-using Content.Server.Radiation.Systems;
 using Robust.Shared.Random;
 using Content.Shared.Radiation.Components;
 using Robust.Shared.Map;
 using Content.Shared.Maps;
 using Robust.Shared.Map.Components;
 using System;
+using Robust.Shared.Localization;
+using Content.Server.Imperial.ImperialLightning;
+using Robust.Server.GameObjects;
+using Content.Shared.Damage;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
@@ -23,89 +26,103 @@ namespace Content.Server.Imperial.Power.EntitySystems
         [Dependency] private readonly RadioSystem _radio = default!;
         [Dependency] private readonly IPrototypeManager _proto = default!;
         [Dependency] private readonly LightningSystem _lightning = default!;
-        [Dependency] private readonly RadiationSystem _radiation = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly SharedMapSystem _mapSystem = default!;
-        [Dependency] private readonly IGameTiming Timing = default!;
+        [Dependency] private readonly ImperialLightningSystem _imperialLightning = default!;
+        [Dependency] private readonly TransformSystem _transformSystem = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
 
         public override void Initialize()
         {
+            SupermatterLightningEvent.Random = _random;
+            SupermatterLightningEvent.ImperialLightning = _imperialLightning;
+            SupermatterRadiationEvent.Random = _random;
+            SupermatterPlasmaEvent.Random = _random;
             base.Initialize();
             SubscribeLocalEvent<SupermatterEventComponent, ComponentInit>(OnInit);
+            SubscribeLocalEvent<SupermatterEventComponent, SupermatterTouchedEvent>(OnTouched);
         }
 
         private void OnInit(EntityUid uid, SupermatterEventComponent comp, ComponentInit args)
         {
-            comp.NextEventTimer = 900f; // 15 минут
+            comp.NextEventTimer = TimeSpan.FromSeconds(900f); // 15 минут
+            comp.AllowedEvents.Clear();
+            comp.AllowedEvents.Add(new SupermatterNoneEvent());
+            comp.AllowedEvents.Add(new SupermatterLightningEvent());
+            comp.AllowedEvents.Add(new SupermatterRadiationEvent());
+            comp.AllowedEvents.Add(new SupermatterPlasmaEvent());
+        }
+
+        private void OnTouched(EntityUid uid, SupermatterEventComponent comp, SupermatterTouchedEvent args)
+        {
+            TriggerEventNow(uid);
+        }
+
+        public void TriggerEventNow(EntityUid uid)
+        {
+            if (!EntityManager.TryGetComponent<SupermatterEventComponent>(uid, out var comp))
+                return;
+            comp.EventEndTime = TimeSpan.Zero;
+            comp.NextEventTimer = TimeSpan.Zero;
         }
 
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
-            foreach (var (comp, xform) in EntityQuery<SupermatterEventComponent, TransformComponent>())
+            var enumerator = EntityQueryEnumerator<SupermatterEventComponent, TransformComponent>();
+            while (enumerator.MoveNext(out var uid, out var comp, out var xform))
             {
-                var uid = xform.Owner;
                 var gas = _atmos.GetContainingMixture((uid, xform), true, false);
 
                 // Сохраняем предыдущее событие
-                int lastEvent = comp.CurrentEvent;
-
-                // Принудительный запуск события
-                if (comp.ForceEvent)
-                {
-                    comp.EventEndTime = 0f;
-                    comp.NextEventTimer = 0f;
-                    comp.ForceEvent = false;
-                }
+                var lastEvent = comp.CurrentEvent;
 
                 // Сначала уменьшаем EventEndTime
-                if (comp.EventEndTime > 0f)
-                    comp.EventEndTime -= frameTime;
+                if (comp.EventEndTime > TimeSpan.Zero)
+                    comp.EventEndTime -= TimeSpan.FromSeconds(frameTime);
                 // Затем NextEventTimer
-                if (comp.NextEventTimer > 0f)
-                    comp.NextEventTimer -= frameTime;
+                if (comp.NextEventTimer > TimeSpan.Zero)
+                    comp.NextEventTimer -= TimeSpan.FromSeconds(frameTime);
 
                 // Запуск нового события
-                if (comp.EventEndTime <= 0f && comp.NextEventTimer <= 0f)
+                if (comp.EventEndTime <= TimeSpan.Zero && comp.NextEventTimer <= TimeSpan.Zero)
                 {
                     // Если только что закончилось радиационное событие — сбросить радиацию
-                    if (lastEvent == 2 && HasComp<RadiationSourceComponent>(uid))
+                    if (lastEvent == SupermatterEventType.Radiation && HasComp<RadiationSourceComponent>(uid))
                     {
                         var rad = Comp<RadiationSourceComponent>(uid);
                         rad.Intensity = 5f;
                     }
-                    int evt = _random.Next(0, 4);
-                    comp.CurrentEvent = evt;
-                    comp.EventEndTime = evt == 0 ? 0f : 120f;
-                    comp.NextEventTimer = _random.NextFloat(180f, 420f);
-                    comp.ForceEvent = false;
-                    if (evt == 1)
-                        comp.LightningCooldown = 0f;
-                    string msg = evt switch
-                    {
-                        0 => "Суперматерия стабилизирована. Нет аномальных всплесков.",
-                        1 => "ВНИМАНИЕ: Зафиксирован энергетический всплеск! Кристалл выпускает молнии!",
-                        2 => "ВНИМАНИЕ: Зафиксирован радиационный выброс! Уровень радиации повышен!",
-                        3 => "ВНИМАНИЕ: Зафиксирован выброс плазмы! Вокруг кристалла появляется горящая плазма!",
-                        _ => ""
-                    };
+                    // Выбор события из AllowedEvents
+                    if (comp.AllowedEvents.Count == 0)
+                        continue;
+                    var evtIndex = _random.Next(0, comp.AllowedEvents.Count);
+                    var evt = comp.AllowedEvents[evtIndex];
+                    evt.Activate(uid, EntityManager, comp);
+                    var msg = evt.GetAnnouncement(uid, EntityManager, comp);
                     AnnounceFromConsole(uid, msg);
                 }
 
                 // Активные эффекты событий
-                if (comp.EventEndTime > 0f)
+                if (comp.EventEndTime > TimeSpan.Zero)
                 {
                     switch (comp.CurrentEvent)
                     {
-                        case 1: // Молнии
-                            comp.LightningCooldown -= frameTime;
-                            if (comp.LightningCooldown <= 0f)
+                        case SupermatterEventType.Lightning:
+                            comp.LightningCooldown -= TimeSpan.FromSeconds(frameTime);
+                            if (comp.LightningCooldown <= TimeSpan.Zero)
                             {
-                                _lightning.ShootRandomLightnings(uid, 8f, _random.Next(2, 5), arcDepth: 2);
-                                comp.LightningCooldown = 2f;
+                                _imperialLightning.SpawnLightningBetween(uid, uid, null, null, TimeSpan.FromSeconds(1));
+                                // Наносим урон суперматерии при каждом срабатывании молний
+                                if (EntityManager.TryGetComponent<SupermatterIntegrityComponent>(uid, out var integrity) &&
+                                    EntityManager.TryGetComponent<DamageableComponent>(uid, out var dmg))
+                                {
+                                    _damageable.TryChangeDamage(uid, integrity.TickDamage, false, true, origin: null);
+                                }
+                                comp.LightningCooldown = TimeSpan.FromSeconds(2);
                             }
                             break;
-                        case 2: // Радиоактивный выброс
+                        case SupermatterEventType.Radiation:
                             if (HasComp<RadiationSourceComponent>(uid))
                             {
                                 var rad = Comp<RadiationSourceComponent>(uid);
@@ -117,8 +134,11 @@ namespace Content.Server.Imperial.Power.EntitySystems
                                 rad.Intensity = 10f;
                             }
                             break;
-                        case 3: // Плазма
-                            if ((int)comp.EventEndTime % 10 == 0 && gas != null)
+                        case SupermatterEventType.Plasma:
+                            if (!comp.PlasmaTickAccumulator.HasValue)
+                                comp.PlasmaTickAccumulator = TimeSpan.Zero;
+                            comp.PlasmaTickAccumulator += TimeSpan.FromSeconds(frameTime);
+                            if (comp.PlasmaTickAccumulator >= TimeSpan.FromSeconds(10) && gas != null)
                             {
                                 gas.AdjustMoles((int)Gas.Plasma, 5f);
                                 gas.AdjustMoles((int)Gas.Oxygen, 5f);
@@ -127,40 +147,114 @@ namespace Content.Server.Imperial.Power.EntitySystems
                                 var grid = Comp<MapGridComponent>(gridUid);
                                 var tile = _mapSystem.TileIndicesFor(gridUid, grid, coords);
                                 _atmos.HotspotExpose(gridUid, tile, 1500f, 50f, uid, true);
+                                comp.PlasmaTickAccumulator -= TimeSpan.FromSeconds(10);
                             }
                             break;
                     }
                 }
                 else
                 {
+                    comp.PlasmaTickAccumulator = null;
                     // Сбросить эффекты после окончания события (оставляем только для молний)
-                    if (comp.CurrentEvent == 1)
-                        comp.LightningCooldown = 0f;
-                    comp.CurrentEvent = 0;
+                    if (comp.CurrentEvent == SupermatterEventType.Lightning)
+                        comp.LightningCooldown = TimeSpan.Zero;
+                    comp.CurrentEvent = SupermatterEventType.None;
                 }
             }
         }
 
         private void AnnounceFromConsole(EntityUid crystal, string message)
         {
-            EntityUid? nearestConsole = null;
-            float minDist = float.MaxValue;
-            var xform = Transform(crystal);
-            var pos = xform.MapPosition.Position;
-            foreach (var console in EntityManager.EntityQuery<SupermatterMonitorConsoleComponent>())
+            var nearestConsole = (EntityUid?)null;
+            var minDist = float.MaxValue;
+            var pos = _transformSystem.GetMapCoordinates(crystal).Position;
+            var enumerator = EntityQueryEnumerator<SupermatterMonitorConsoleComponent, TransformComponent>();
+            while (enumerator.MoveNext(out var consoleUid, out var cComp, out var cXform))
             {
-                var cXform = Transform(console.Owner);
-                if (cXform.MapID != xform.MapID)
+                if (cXform.MapID != _transformSystem.GetMapCoordinates(crystal).MapId)
                     continue;
-                var cPos = cXform.MapPosition.Position;
+                var cPos = _transformSystem.GetMapCoordinates(consoleUid).Position;
                 var dist = (cPos - pos).LengthSquared();
                 if (dist < minDist)
                 {
                     minDist = dist;
-                    nearestConsole = console.Owner;
+                    nearestConsole = consoleUid;
                 }
             }
-            _radio.SendRadioMessage(nearestConsole ?? crystal, message, "Engineering", nearestConsole ?? crystal);
+            if (EntityManager.TryGetComponent<SupermatterEventComponent>(crystal, out var eventComp))
+            {
+                foreach (var channel in eventComp.RadioChannels)
+                {
+                    _radio.SendRadioMessage(nearestConsole ?? crystal, message, channel, nearestConsole ?? crystal);
+                }
+            }
+        }
+    }
+
+    public sealed class SupermatterNoneEvent : ISupermatterEvent
+    {
+        public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
+        {
+            // Нет эффекта
+            comp.EventEndTime = TimeSpan.Zero;
+            comp.NextEventTimer = TimeSpan.FromSeconds(300); // 5 минут до следующего события
+        }
+        public string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
+        {
+            return Loc.GetString("supermatter-event-none");
+        }
+    }
+
+    public sealed class SupermatterLightningEvent : ISupermatterEvent
+    {
+        public static IRobustRandom? Random = null;
+        public static ImperialLightningSystem? ImperialLightning = null;
+        public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
+        {
+            comp.EventEndTime = TimeSpan.FromSeconds(120);
+            comp.NextEventTimer = TimeSpan.FromSeconds(Random!.NextFloat(180f, 420f));
+            comp.LightningCooldown = TimeSpan.Zero;
+            // Красивые молнии через ImperialLightningSystem
+            ImperialLightning!.SpawnLightningBetween(crystal, crystal, null, null, TimeSpan.FromSeconds(1));
+        }
+        public string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
+        {
+            return Loc.GetString("supermatter-event-lightning");
+        }
+    }
+
+    public sealed class SupermatterRadiationEvent : ISupermatterEvent
+    {
+        public static IRobustRandom? Random = null;
+        public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
+        {
+            comp.EventEndTime = TimeSpan.FromSeconds(120);
+            comp.NextEventTimer = TimeSpan.FromSeconds(Random!.NextFloat(180f, 420f));
+            if (entityManager.TryGetComponent<RadiationSourceComponent>(crystal, out var radComponent))
+                radComponent.Intensity = 10f;
+            else
+            {
+                var newRad = entityManager.EnsureComponent<RadiationSourceComponent>(crystal);
+                newRad.Intensity = 10f;
+            }
+        }
+        public string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
+        {
+            return Loc.GetString("supermatter-event-radiation");
+        }
+    }
+
+    public sealed class SupermatterPlasmaEvent : ISupermatterEvent
+    {
+        public static IRobustRandom? Random = null;
+        public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
+        {
+            comp.EventEndTime = TimeSpan.FromSeconds(120);
+            comp.NextEventTimer = TimeSpan.FromSeconds(Random!.NextFloat(180f, 420f));
+        }
+        public string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
+        {
+            return Loc.GetString("supermatter-event-plasma");
         }
     }
 }

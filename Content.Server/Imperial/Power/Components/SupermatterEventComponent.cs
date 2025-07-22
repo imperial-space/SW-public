@@ -1,19 +1,46 @@
 using Robust.Shared.GameObjects;
+using Robust.Shared.Prototypes;
+using Content.Shared.Radio;
 
 namespace Content.Server.Imperial.Power.Components
 {
+    public enum SupermatterEventType
+    {
+        None = 0,
+        Lightning = 1,
+        Radiation = 2,
+        Plasma = 3
+    }
+
+    public interface ISupermatterEvent
+    {
+        void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp);
+        string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp);
+    }
+
     [RegisterComponent]
     public sealed partial class SupermatterEventComponent : Component
     {
         // Время до следующего случайного события (секунды)
-        public float NextEventTimer = 0f;
+        [DataField]
+        public TimeSpan NextEventTimer = TimeSpan.Zero;
         // Тип текущего события (0 - ничего, 1 - молнии, 2 - радиация, 3 - плазма)
-        public int CurrentEvent = 0;
+        [DataField]
+        public SupermatterEventType CurrentEvent = SupermatterEventType.None;
         // Время окончания текущего события (секунды, если 0 - нет активного события)
-        public float EventEndTime = 0f;
-        // Принудительный запуск всплеска (например, при испепелении)
-        public bool ForceEvent = false;
+        [DataField]
+        public TimeSpan EventEndTime = TimeSpan.Zero;
         // Кулдаун для всплеска молний
-        public float LightningCooldown = 0f;
+        [DataField]
+        public TimeSpan LightningCooldown = TimeSpan.Zero;
+        // Таймер для генерации плазмы во время PlasmaEvent
+        [DataField]
+        public TimeSpan? PlasmaTickAccumulator = null;
+        // Допустимые события для этого кристалла
+        [DataField]
+        public List<ISupermatterEvent> AllowedEvents = new();
+        // Каналы рации для оповещений
+        [DataField]
+        public ProtoId<RadioChannelPrototype>[] RadioChannels = { "Engineering" };
     }
 }

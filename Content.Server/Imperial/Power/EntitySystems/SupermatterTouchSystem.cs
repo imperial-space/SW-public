@@ -21,9 +21,6 @@ namespace Content.Server.Imperial.Power.EntitySystems
         [Dependency] private readonly IPrototypeManager _proto = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
 
-        private static readonly Color RedFlash = new(1f, 0f, 0f, 0.8f);
-        private static readonly SoundSpecifier GibSound = new SoundCollectionSpecifier("gib"); // or use new SoundPathSpecifier("/Audio/Effects/MeatLaserImpact.ogg")
-
         public override void Initialize()
         {
             base.Initialize();
@@ -38,18 +35,20 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
             // Play gib sound at the mob's location
             var xform = Transform(other);
-            _audio.PlayPvs(GibSound, xform.Coordinates);
+            _audio.PlayPvs(component.GibSound, xform.Coordinates);
 
             // Spawn Ash at the mob's location
-            EntityManager.SpawnEntity("Ash", xform.Coordinates);
+            EntityManager.SpawnEntity(component.AshPrototype, xform.Coordinates);
             EntityManager.QueueDeleteEntity(other);
 
-            // Уменьшить таймер всплеска у кристалла
-            if (EntityManager.TryGetComponent<SupermatterEventComponent>(uid, out var events))
-            {
-                events.NextEventTimer = 0f;
-                events.ForceEvent = true;
-            }
+            // Вспышка цвета из компонента
+            _colorFlash.RaiseEffect(component.FlashColor, new List<EntityUid> { other }, Filter.Pvs(other));
+
+            // Публикуем ивент о касании суперматерии
+            var ev = new SupermatterTouchedEvent();
+            RaiseLocalEvent(uid, ev);
         }
     }
+
+    public sealed class SupermatterTouchedEvent : EntityEventArgs {}
 }

@@ -329,8 +329,6 @@
           bounds: "-0.2,-0.2,0.2,0.2"
         hard: false
         mask:
-        - Impassable
-        - BulletImpassable
         - Opaque
       fly-by: *flybyfixture
   - type: Projectile
