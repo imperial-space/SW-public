@@ -127,9 +127,56 @@
       - GasCanisters
 
 - type: entity
+  parent: BaseStructureDynamic
   id: ThermoniumCanisterBroken
   categories: [ HideSpawnMenu ]
+  name: broken gas canister
+  description: A broken gas canister. Not useless yet, as it can be salvaged for high quality materials.
   components:
-  - type: Sprite
-    sprite: /Textures/Imperial/Gases/Thermonium/thermoniumCanister.rsi
-    state: thermonium-1
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 200
+        behaviors:
+          - !type:DoActsBehavior
+            acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalBreak
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            SheetPlasteel1:
+              min: 1
+              max: 2
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: InteractionOutline
+    - type: Sprite
+      sprite: /Textures/Imperial/Gases/Thermonium/thermoniumCanister.rsi
+      state: thermonium-1
+    - type: Physics
+      bodyType: Dynamic
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.4,-0.3,0.4,0.3"
+          density: 190
+          mask:
+          - MachineMask
+          layer:
+          - MachineLayer
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 500
+    - type: StaticPrice
+      price: 125
