@@ -177,8 +177,23 @@
       proto: ChefEngeneerLaser
       fireCost: 80
     
-
-
+- type: entity
+  parent: BasePlushieCharacter
+  id: PlushieZevs
+  name: Александа Шанс
+  suffix: Snaipron, COMMUNITY, TOY
+  description: Известный в узких кругах музыкант, готовый помочь каждому. Она никогда не расстаётся со своей гитарой, а в её карманах чего только не найдешь. Ходят слухи, что в детстве её ударила молния..
+  components:
+  - type: Item
+    size: Normal
+  - type: StaminaDamageOnHit
+    damage: 10
+  - type: Sprite
+    sprite: Imperial/Snaipron-Content/pushie-zevs.rsi
+    state: icon
+  - type: StorageFill
+    contents:
+      - id: CombatMedipen
   
       
         
