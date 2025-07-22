@@ -1019,7 +1019,17 @@ namespace Content.Server.ShiftFront
                         }
                     }
                 }
-
+                var tankquery = EntityQueryEnumerator<ShiftTankHullComponent>();
+                while (tankquery.MoveNext(out var uid, out var comp))
+                {
+                    if (TryComp<DamageableComponent>(uid, out var dam) && dam.TotalDamage.Float() > comp.SmokeStep)
+                    {
+                        if (_random.Prob(0.05f) && comp.InsideEntryEntity != null)
+                        {
+                            Spawn("ShiftTankSmoke", Transform(comp.InsideEntryEntity.Value).Coordinates);
+                        }
+                    }
+                }
                 var exquery = EntityQueryEnumerator<ShiftExtractorComponent>();
                 while (exquery.MoveNext(out var uid, out var comp))
                 {

@@ -34,6 +34,21 @@
       ]
         },
         {
+            "name": "breech"
+        },
+        {
+            "name": "hatch"
+        },
+        {
+            "name": "periscope0"
+        },
+        {
+            "name": "periscope1"
+        },
+        {
+            "name": "overview"
+        },
+        {
             "name": "minerblue"
         },
         {

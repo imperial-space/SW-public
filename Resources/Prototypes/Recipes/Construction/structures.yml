@@ -1,5 +1,5 @@
 - type: construction
-  hide: true # imperial medieval craft disable
+  hide: false # imperial medieval craft disable
   name: Каркас # Imperial Recipes Locale
   id: Girder
   graph: Girder
@@ -15,7 +15,7 @@
     - !type:TileNotBlocked
 
 - type: construction
-  hide: true # imperial medieval craft disable
+  hide: false # imperial medieval craft disable
   name: Укреплённый каркас # Imperial Recipes Locale
   id: ReinforcedGirder
   graph: Girder
@@ -47,7 +47,7 @@
     - !type:TileNotBlocked
 
 - type: construction
-  hide: true # imperial medieval craft disable
+  hide: false # imperial medieval craft disable
   name: Стена # Imperial Recipes Locale
   id: Wall
   graph: Girder
@@ -63,7 +63,7 @@
     - !type:TileNotBlocked
 
 - type: construction
-  hide: true # imperial medieval craft disable
+  hide: false # imperial medieval craft disable
   name: Укреплённая стена # Imperial Recipes Locale
   id: ReinforcedWall
   graph: Girder

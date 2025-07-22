@@ -21,7 +21,6 @@ using Content.Shared.Movement.Systems;
 using System.Numerics;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Interaction.Components;
-using Content.Shared.ShiftFront.Components;
 
 namespace Content.Server.ShiftFront
 {
@@ -44,6 +43,7 @@ namespace Content.Server.ShiftFront
             base.Initialize();
             SubscribeLocalEvent<ShiftFPVControllerComponent, BeforeRangedInteractEvent>(OnUseInHand);
             SubscribeLocalEvent<ShiftFPVControllerComponent, UseInHandEvent>(OnActivate);
+            SubscribeLocalEvent<ShiftFPVControllerComponent, ActivateInWorldEvent>(OnActivateInWorld);
             SubscribeLocalEvent<ShiftFPVDroneComponent, StartCollideEvent>(OnCollide);
             SubscribeLocalEvent<ShiftFPVDroneComponent, DamageChangedEvent>(OnDamageDrone);
             SubscribeLocalEvent<ShiftFPVDroneComponent, FPVStopControlEvent>(OnStopAction);
@@ -53,7 +53,6 @@ namespace Content.Server.ShiftFront
         public void OnStart(EntityUid uid, ShiftFPVDroneComponent comp, ComponentStartup args)
         {
             _action.AddAction(uid, "StopFPVControll");
-            if (HasComp<CombatModeComponent>(uid) && comp.Pacif) RemComp<CombatModeComponent>(uid);
         }
         private bool CheckMaskWearing(EntityUid uid)
         {
@@ -78,6 +77,7 @@ namespace Content.Server.ShiftFront
         }
         private void OnCollide(EntityUid uid, ShiftFPVDroneComponent comp, ref StartCollideEvent args)
         {
+            if (comp.TankPart) return;
             if (TryComp<MobStateComponent>(args.OtherEntity, out var mob) && mob.CurrentState == MobState.Dead)
                 return;
             if (comp.CMD)
@@ -86,7 +86,6 @@ namespace Content.Server.ShiftFront
             {
                 if (TryComp<ShiftTankHullComponent>(args.OtherEntity, out var tank))
                     _damageableSystem.TryChangeDamage(args.OtherEntity, comp.Damage * tank.FPVResist);
-
             }
             DroneExplode(uid, comp, true);
         }
@@ -116,6 +115,8 @@ namespace Content.Server.ShiftFront
         }
         private void OnActivate(EntityUid uid, ShiftFPVControllerComponent comp, ref UseInHandEvent args)
         {
+            if (comp.TankPart) return;
+
             args.Handled = true;
             if (!_sharedPlayerManager.TryGetSessionByEntity(args.User, out var session)) return;
             if (!_mind.TryGetMind(args.User, out _, out var mindcomp)) return;
@@ -144,11 +145,43 @@ namespace Content.Server.ShiftFront
             if (HasComp<AmbientSoundComponent>(drone.Owner)) _ambient.SetAmbience(drone.Owner, true);
             EnsureComp<UnremoveableComponent>(uid);
             _audio.PlayPvs(new SoundPathSpecifier(drone.EffectSoundOnStart), drone.Owner);
+            if (HasComp<CombatModeComponent>(drone.Owner) && drone.Pacif) RemComp<CombatModeComponent>(drone.Owner);
             _mind.TransferTo(mindcomp.Owner, drone.Owner, true, false, mindcomp);
         }
+        private void OnActivateInWorld(EntityUid uid, ShiftFPVControllerComponent comp, ref ActivateInWorldEvent args)
+        {
+            if (comp.InUse) return;
+            comp.InUse = true;
+            if (!comp.TankPart) return;
+            args.Handled = true;
+            if (!_sharedPlayerManager.TryGetSessionByEntity(args.User, out var session)) return;
+            if (!_mind.TryGetMind(args.User, out _, out var mindcomp)) return;
+            if (comp.LinkedDrone == null)
+            {
+                _prayerSystem.SendSubtleMessage(session, session, "В данный момент к контроллеру не привязан дрон", "Нет дрона");
+                return;
+            }
+
+            _prayerSystem.SendSubtleMessage(session, session, "Управление танком запущено", "Управление");
+
+            var drone = EnsureComp<ShiftFPVDroneComponent>(comp.LinkedDrone.Value);
+            drone.Pilot = args.User;
+            drone.Controller = uid;
+
+            var pilot = EnsureComp<ShiftFPVPilotComponent>(args.User);
+            pilot.Drone = comp.LinkedDrone;
+
+            if (HasComp<GhostTakeoverAvailableComponent>(args.User)) RemComp<GhostTakeoverAvailableComponent>(args.User);
+            if (HasComp<GhostRoleComponent>(args.User)) RemComp<GhostRoleComponent>(args.User);
+            EnsureComp<UnremoveableComponent>(uid);
+            _mind.TransferTo(mindcomp.Owner, drone.Owner, true, false, mindcomp);
+        }
+
         public void StopControl(EntityUid uid, ShiftFPVDroneComponent comp, bool resetController)
         {
             if (TryComp<ShiftFPVControllerComponent>(comp.Controller, out var contoller) && resetController) contoller.LinkedDrone = null;
+            if (contoller != null)
+                contoller.InUse = false;
             if (HasComp<UnremoveableComponent>(comp.Controller)) RemComp<UnremoveableComponent>(comp.Controller.Value);
             if (comp.Pilot == null) return;
             if (!_mind.TryGetMind(uid, out _, out var mindcomp)) return;
@@ -156,7 +189,7 @@ namespace Content.Server.ShiftFront
             if (HasComp<ShiftFPVPilotComponent>(comp.Pilot)) RemComp<ShiftFPVPilotComponent>(comp.Pilot.Value);
             if (!_sharedPlayerManager.TryGetSessionByEntity(comp.Pilot.Value, out var session)) return;
             comp.Pilot = null;
-            _prayerSystem.SendSubtleMessage(session, session, "Управление FPV дроном прекращено", "Управление");
+            _prayerSystem.SendSubtleMessage(session, session, "Управление прекращено", "Управление");
         }
         public void OnUseInHand(EntityUid uid, ShiftFPVControllerComponent comp, BeforeRangedInteractEvent args)
         {

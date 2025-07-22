@@ -25,7 +25,8 @@
   - type: ContentEye
   - type: CameraRecoil
   - type: LagCompensation
-  #- type: MobCollision
+  - type: MobCollision
+    strength: 500
   - type: StatusEffects
     allowed:
     - Stun
@@ -113,9 +114,6 @@
     volume: -6
     range: 14
     sound: {path: /Audio/Imperial/ShiftFront/bmp_ambient.ogg}
-  - type: EntityStorageVisuals
-    stateDoorOpen: open
-    stateDoorClosed: closed
 
 ### БМП ###
 - type: entity
@@ -123,13 +121,6 @@
   parent: BaseVehicleHull
   abstract: true
   components:
-  - type: EntityStorage
-    airtight: false
-    capacity: 6
-    enteringRange: 0.9
-  - type: ContainerContainer
-    containers:
-      entity_storage: !type:Container
   - type: Sprite
     scale: 1.5,1.5
     drawdepth: SmallObjects
@@ -150,6 +141,12 @@
     - trigger: !type:DamageTrigger {damage: 450}
       behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
   - type: ShiftTankHull
+    insideController: TankPartController
+    insideGunner: TankPartGunner
+    insideEntry: TankPartEntry
+    insideExit: TankPartExit
+    gridLink:
+    - "/Maps/Imperial/bmp.yml"
     moveSpeed: 1.9
     turnRate: 0.0172
 
@@ -262,11 +259,13 @@
     - trigger: !type:DamageTrigger {damage: 1000}
       behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
   - type: ShiftTankHull
+    smokeStep: 500
     insideController: TankPartController
     insideGunner: TankPartGunner
     insideEntry: TankPartEntry
     insideExit: TankPartExit
     insideObserver: TankPartObserver
+    insideCartridge: TankPartCartridge
     observerProto: MobShiftTankObserver
     fPVResist: 0.8
     turnRate: 0.015
@@ -384,13 +383,6 @@
   parent: BaseVehicleHull
   abstract: true
   components:
-  - type: EntityStorage
-    airtight: false
-    capacity: 6
-    enteringRange: 0.9
-  - type: ContainerContainer
-    containers:
-      entity_storage: !type:Container
   - type: Sprite
     scale: 1.4,1.4
     drawdepth: SmallObjects
@@ -405,6 +397,11 @@
     fPVResist: 1.3
     moveSpeed: 4.3
     turnRate: 0.04
+    insideController: TankPartController
+    insideEntry: TankPartEntry
+    insideExit: TankPartExit
+    gridLink:
+    - "/Maps/Imperial/mtlb.yml"
   - type: MobThresholds
     thresholds: {0: Alive, 450: Dead}
   - type: Destructible
@@ -741,14 +738,20 @@
     inside: Observer
 
 - type: entity
+  id: TankPartMarkerCartridge
+  parent: TankPartMarkerController
+  components:
+  - type: ShiftInsideMarker
+    inside: Cartridge
+
+- type: entity
   id: TankPartController
   components:
   - type: Clickable
   - type: InteractionOutline
   - type: Sprite
-    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
-    state: plushie_archer
-    scale: 0.5,0.5
+    sprite: Imperial/ShiftFront/light.rsi
+    state: overview
   - type: ShiftTankpart
     part: Controller
 
@@ -758,6 +761,9 @@
   components:
   - type: ShiftTankpart
     part: Gunner
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: periscope0
 
 - type: entity
   id: TankPartExit
@@ -765,6 +771,9 @@
   components:
   - type: ShiftTankpart
     part: Exit
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: hatch
 
 - type: entity
   id: TankPartEntry
@@ -781,3 +790,16 @@
   components:
   - type: ShiftTankpart
     part: Observer
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: periscope1
+
+- type: entity
+  id: TankPartCartridge
+  parent: TankPartController
+  components:
+  - type: ShiftTankpart
+    part: Cartridge
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: breech

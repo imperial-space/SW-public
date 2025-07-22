@@ -4,8 +4,8 @@ meta:
   engineVersion: 260.2.0
   forkId: ""
   forkVersion: ""
-  time: 07/22/2025 13:41:21
-  entityCount: 24
+  time: 07/22/2025 12:34:59
+  entityCount: 30
 maps:
 - 1
 grids:
@@ -248,6 +248,14 @@ entities:
       pendingMarkers: {}
       loadedChunks:
       - 24,32
+      - 16,32
+      - 8,32
+      - 0,32
+      - -8,32
+      - -16,32
+      - -24,32
+      - -32,32
+      - -40,32
       - 24,24
       - 24,16
       - 24,8
@@ -256,7 +264,7 @@ entities:
       - 24,-16
       - 24,-24
       - 24,-32
-      - 16,32
+      - -40,24
       - 16,24
       - 16,16
       - 16,8
@@ -265,7 +273,7 @@ entities:
       - 16,-16
       - 16,-24
       - 16,-32
-      - 8,32
+      - -40,16
       - 8,24
       - 8,16
       - 8,8
@@ -274,7 +282,7 @@ entities:
       - 8,-16
       - 8,-24
       - 8,-32
-      - 0,32
+      - -40,8
       - 0,24
       - 0,16
       - 0,8
@@ -283,7 +291,7 @@ entities:
       - 0,-16
       - 0,-24
       - 0,-32
-      - -8,32
+      - -40,0
       - -8,24
       - -8,16
       - -8,8
@@ -292,7 +300,7 @@ entities:
       - -8,-16
       - -8,-24
       - -8,-32
-      - -16,32
+      - -40,-8
       - -16,24
       - -16,16
       - -16,8
@@ -301,7 +309,7 @@ entities:
       - -16,-16
       - -16,-24
       - -16,-32
-      - -24,32
+      - -40,-16
       - -24,24
       - -24,16
       - -24,8
@@ -310,7 +318,7 @@ entities:
       - -24,-16
       - -24,-24
       - -24,-32
-      - -32,32
+      - -40,-24
       - -32,24
       - -32,16
       - -32,8
@@ -319,17 +327,17 @@ entities:
       - -32,-16
       - -32,-24
       - -32,-32
-      - -40,32
-      - -40,24
-      - -40,16
-      - -40,8
-      - -40,0
-      - -40,-8
-      - -40,-16
-      - -40,-24
       - -40,-32
       entities:
         24,32: {}
+        16,32: {}
+        8,32: {}
+        0,32: {}
+        -8,32: {}
+        -16,32: {}
+        -24,32: {}
+        -32,32: {}
+        -40,32: {}
         24,24: {}
         24,16: {}
         24,8: {}
@@ -338,7 +346,7 @@ entities:
         24,-16: {}
         24,-24: {}
         24,-32: {}
-        16,32: {}
+        -40,24: {}
         16,24: {}
         16,16: {}
         16,8: {}
@@ -347,7 +355,7 @@ entities:
         16,-16: {}
         16,-24: {}
         16,-32: {}
-        8,32: {}
+        -40,16: {}
         8,24: {}
         8,16: {}
         8,8: {}
@@ -356,7 +364,7 @@ entities:
         8,-16: {}
         8,-24: {}
         8,-32: {}
-        0,32: {}
+        -40,8: {}
         0,24: {}
         0,16: {}
         0,8: {}
@@ -365,7 +373,7 @@ entities:
         0,-16: {}
         0,-24: {}
         0,-32: {}
-        -8,32: {}
+        -40,0: {}
         -8,24: {}
         -8,16: {}
         -8,8: {}
@@ -374,7 +382,7 @@ entities:
         -8,-16: {}
         -8,-24: {}
         -8,-32: {}
-        -16,32: {}
+        -40,-8: {}
         -16,24: {}
         -16,16: {}
         -16,8: {}
@@ -383,7 +391,7 @@ entities:
         -16,-16: {}
         -16,-24: {}
         -16,-32: {}
-        -24,32: {}
+        -40,-16: {}
         -24,24: {}
         -24,16: {}
         -24,8: {}
@@ -392,7 +400,7 @@ entities:
         -24,-16: {}
         -24,-24: {}
         -24,-32: {}
-        -32,32: {}
+        -40,-24: {}
         -32,24: {}
         -32,16: {}
         -32,8: {}
@@ -401,17 +409,17 @@ entities:
         -32,-16: {}
         -32,-24: {}
         -32,-32: {}
-        -40,32: {}
-        -40,24: {}
-        -40,16: {}
-        -40,8: {}
-        -40,0: {}
-        -40,-8: {}
-        -40,-16: {}
-        -40,-24: {}
         -40,-32: {}
       decals:
         24,32: {}
+        16,32: {}
+        8,32: {}
+        0,32: {}
+        -8,32: {}
+        -16,32: {}
+        -24,32: {}
+        -32,32: {}
+        -40,32: {}
         24,24: {}
         24,16: {}
         24,8: {}
@@ -420,7 +428,7 @@ entities:
         24,-16: {}
         24,-24: {}
         24,-32: {}
-        16,32: {}
+        -40,24: {}
         16,24: {}
         16,16: {}
         16,8: {}
@@ -429,7 +437,7 @@ entities:
         16,-16: {}
         16,-24: {}
         16,-32: {}
-        8,32: {}
+        -40,16: {}
         8,24: {}
         8,16: {}
         8,8: {}
@@ -438,7 +446,7 @@ entities:
         8,-16: {}
         8,-24: {}
         8,-32: {}
-        0,32: {}
+        -40,8: {}
         0,24: {}
         0,16: {}
         0,8: {}
@@ -447,7 +455,7 @@ entities:
         0,-16: {}
         0,-24: {}
         0,-32: {}
-        -8,32: {}
+        -40,0: {}
         -8,24: {}
         -8,16: {}
         -8,8: {}
@@ -456,7 +464,7 @@ entities:
         -8,-16: {}
         -8,-24: {}
         -8,-32: {}
-        -16,32: {}
+        -40,-8: {}
         -16,24: {}
         -16,16: {}
         -16,8: {}
@@ -465,7 +473,7 @@ entities:
         -16,-16: {}
         -16,-24: {}
         -16,-32: {}
-        -24,32: {}
+        -40,-16: {}
         -24,24: {}
         -24,16: {}
         -24,8: {}
@@ -474,7 +482,7 @@ entities:
         -24,-16: {}
         -24,-24: {}
         -24,-32: {}
-        -32,32: {}
+        -40,-24: {}
         -32,24: {}
         -32,16: {}
         -32,8: {}
@@ -483,14 +491,6 @@ entities:
         -32,-16: {}
         -32,-24: {}
         -32,-32: {}
-        -40,32: {}
-        -40,24: {}
-        -40,16: {}
-        -40,8: {}
-        -40,0: {}
-        -40,-8: {}
-        -40,-16: {}
-        -40,-24: {}
         -40,-32: {}
       modifiedTiles:
         -32,8:
@@ -28006,15 +28006,51 @@ entities:
   - uid: 2
     components:
     - type: Transform
-      rot: 3.141592653589793 rad
+      rot: -1.5707963267948966 rad
       pos: -0.5,1.5
       parent: 1
-  - uid: 3
+  - uid: 5
     components:
     - type: Transform
       rot: 3.141592653589793 rad
-      pos: -1.5,0.5
+      pos: -0.5,2.5
       parent: 1
+  - uid: 25
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,1.5
+      parent: 1
+  - uid: 26
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: -1.5,2.5
+      parent: 1
+  - uid: 27
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -0.5,0.5
+      parent: 1
+- proto: MagazineLightRifleBoxBMP
+  entities:
+  - uid: 29
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.2421131,2.996
+      parent: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий[/color]'
+  - uid: 30
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.1371698,2.9894447
+      parent: 1
+    - type: RDWeightExamine
+      current: 'Вес: [color=#7DFF66]легкий[/color]'
 - proto: SmallLight
   entities:
   - uid: 4
@@ -28023,26 +28059,19 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -1.5,2.5
       parent: 1
-- proto: TankPartMarkerCartridge
-  entities:
-  - uid: 8
-    components:
-    - type: Transform
-      pos: -1.5,2.5
-      parent: 1
 - proto: TankPartMarkerController
   entities:
-  - uid: 5
+  - uid: 28
     components:
     - type: Transform
-      pos: -0.42216706,2.5769863
+      pos: -0.5,3.5
       parent: 1
 - proto: TankPartMarkerEntry
   entities:
   - uid: 6
     components:
     - type: Transform
-      pos: -0.5,0.5
+      pos: -0.94254684,0.57831883
       parent: 1
 - proto: TankPartMarkerExit
   entities:
@@ -28053,20 +28082,29 @@ entities:
       parent: 1
 - proto: TankPartMarkerGunner
   entities:
-  - uid: 24
+  - uid: 8
     components:
     - type: Transform
-      pos: -1.0228072,1.9099501
+      pos: -1.5820524,3.5315402
       parent: 1
-- proto: TankPartMarkerObserver
+- proto: TegCenter
+  entities:
+  - uid: 3
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: -1.5,0.5
+      parent: 1
+    - type: ApcPowerReceiver
+      powerDisabled: True
+- proto: WallPlastitaniumIndestructible
   entities:
   - uid: 9
     components:
     - type: Transform
-      pos: -1.5,1.5
+      rot: 3.141592653589793 rad
+      pos: -0.5,4.5
       parent: 1
-- proto: WallPlastitaniumIndestructible
-  entities:
   - uid: 10
     components:
     - type: Transform
@@ -28090,7 +28128,8 @@ entities:
   - uid: 14
     components:
     - type: Transform
-      pos: -1.5,3.5
+      rot: 3.141592653589793 rad
+      pos: -1.5,4.5
       parent: 1
   - uid: 15
     components:
@@ -28120,7 +28159,8 @@ entities:
   - uid: 20
     components:
     - type: Transform
-      pos: -0.5,3.5
+      rot: 3.141592653589793 rad
+      pos: -2.5,4.5
       parent: 1
   - uid: 21
     components:
@@ -28136,5 +28176,11 @@ entities:
     components:
     - type: Transform
       pos: -0.5,-1.5
+      parent: 1
+  - uid: 24
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 0.5,4.5
       parent: 1
 ...

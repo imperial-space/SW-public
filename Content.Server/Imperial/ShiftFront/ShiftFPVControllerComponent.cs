@@ -11,4 +11,10 @@ public sealed partial class ShiftFPVControllerComponent : Component
     [DataField]
     public bool NeedVR = true;
 
+    [DataField]
+    public bool TankPart = false;
+
+    [DataField]
+    public bool InUse = false;
+
 }

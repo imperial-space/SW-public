@@ -72,8 +72,6 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftTankTurretComponent, ComponentStartup>(TurretStart);
             SubscribeLocalEvent<ShiftTankHullComponent, TankStartMoveEvent>(OnTankStartMove);
             SubscribeLocalEvent<ShiftTankHullComponent, TankStopMoveEvent>(OnTankStopMove);
-            SubscribeLocalEvent<ShiftTankHullComponent, FPVStopControlEvent>(OnStopAction);
-            SubscribeLocalEvent<ShiftTankTurretComponent, FPVStopControlEvent>(OnStopActionTurret);
             SubscribeLocalEvent<ShiftTankHullComponent, TankChangeMoveDirectionEvent>(OnChangeMoveDirection);
             SubscribeLocalEvent<ShiftTankHullComponent, TankToggleRotateEvent>(OnToggleRotate);
             SubscribeLocalEvent<ShiftTankHullComponent, TankToggleRotationDirectionEvent>(OnToggleRotationDirection);
@@ -92,75 +90,30 @@ namespace Content.Server.ShiftFront
         {
             if (args.Handled)
                 return;
+            if (!HasComp<ShiftPlayerComponent>(args.User) && !HasComp<BypassInteractionChecksComponent>(args.User)) return;
             if (TryComp<ShiftPlayerComponent>(args.User, out var player) && player.Faction != comp.Faction) return;
             if (comp.InsideEntryEntity == null) return;
             var xform = Transform(comp.InsideEntryEntity.Value);
             var coords = xform.Coordinates;
             _transform.SetCoordinates(args.User, coords);
         }
-
-        private void OnStopAction(EntityUid uid, ShiftTankHullComponent comp, ref FPVStopControlEvent args)
-        {
-            if (comp.User == null) return;
-            if (comp.Mind == null) return;
-            _mind.TransferTo(uid, comp.User.Value, true, false, comp.Mind);
-            RemComp<ShiftTankPilotComponent>(comp.User.Value);
-            //comp.Mind = null;
-            comp.User = null;
-
-        }
-
-        private void OnStopActionTurret(EntityUid uid, ShiftTankTurretComponent comp, ref FPVStopControlEvent args)
-        {
-            if (comp.User == null) return;
-            if (comp.Mind == null) return;
-            _mind.TransferTo(uid, comp.User.Value, true, false, comp.Mind);
-            RemComp<ShiftTankPilotComponent>(comp.User.Value);
-            comp.User = null;
-        }
         public void TurretStart(EntityUid uid, ShiftTankTurretComponent component, ComponentStartup args)
         {
-            _action.AddAction(uid, "StopFPVControll");
+            //_action.AddAction(uid, "StopFPVControll");
         }
 
         private void OnActivate(EntityUid uid, ShiftTankpartComponent comp, ActivateInWorldEvent args)
         {
-            Shared.Mind.MindComponent? mindcomp = null;
             if (args.Handled)
                 return;
             if (comp.Tank == null) return;
 
             var tank = EnsureComp<ShiftTankHullComponent>(comp.Tank.Value);
-            if (tank.Mind == null)
-            {
-                if (!_mind.TryGetMind(args.User, out _, out var mindcompn)) return;
-                if (mindcompn == null) return;
-                mindcomp = mindcompn;
-            }
-            else
-            {
-                mindcomp = tank.Mind;
-            }
-            if (mindcomp == null) return;
             switch (comp.Part)
             {
                 case "Controller":
-                    _mind.TransferTo(args.User, comp.Tank.Value, true, false, mindcomp);
-                    tank.User = args.User;
-                    EnsureComp<ShiftTankPilotComponent>(args.User, out var pilot);
-                    tank.Mind = mindcomp;
-                    pilot.Tank = comp.Tank.Value;
-                    _action.AddAction(comp.Tank.Value, "StopFPVControll");
                     break;
                 case "Gunner":
-                    if (tank.LinkedTurret == null) return;
-                    _mind.TransferTo(args.User, tank.LinkedTurret.Value, true, false, mindcomp);
-                    var turret = EnsureComp<ShiftTankTurretComponent>(tank.LinkedTurret.Value);
-                    turret.User = args.User;
-                    EnsureComp<ShiftTankPilotComponent>(args.User, out var pilot2);
-                    tank.Mind = mindcomp;
-                    pilot2.Tank = comp.Tank.Value;
-                    _action.AddAction(comp.Tank.Value, "StopFPVControll");
                     break;
                 case "Exit":
                     var xform = Transform(comp.Tank.Value);
@@ -168,14 +121,6 @@ namespace Content.Server.ShiftFront
                     _transform.SetCoordinates(args.User, coords);
                     break;
                 case "Observer":
-                    if (tank.LinkedObserver == null) return;
-                    _mind.TransferTo(args.User, tank.LinkedObserver.Value, true, false, mindcomp);
-                    var observ = EnsureComp<ShiftTankTurretComponent>(tank.LinkedObserver.Value);
-                    observ.User = args.User;
-                    EnsureComp<ShiftTankPilotComponent>(args.User, out var pilot3);
-                    tank.Mind = mindcomp;
-                    pilot3.Tank = comp.Tank.Value;
-                    _action.AddAction(comp.Tank.Value, "StopFPVControll");
                     break;
             }
 
@@ -198,7 +143,7 @@ namespace Content.Server.ShiftFront
             {
                 _physics.SetFixedRotation(uid, false, body: physics);
             }
-            if (component.TurretProto != null)
+            if (component.TurretProto != "")
             {
                 var turret = Spawn(component.TurretProto, Transform(uid).Coordinates);
                 _transform.SetParent(turret, uid);
@@ -225,6 +170,14 @@ namespace Content.Server.ShiftFront
                         component.InsideControllerEntity = Spawn(component.InsideController, Transform(insuid).Coordinates);
                         EnsureComp<TimedDespawnComponent>(insuid, out var despawn);
                         EnsureComp<ShiftTankpartComponent>(component.InsideControllerEntity.Value, out var controller);
+                        EnsureComp<ShiftFPVControllerComponent>(component.InsideControllerEntity.Value, out var control);
+                        control.TankPart = true;
+                        control.LinkedDrone = uid;
+                        EnsureComp<ShiftFPVDroneComponent>(uid, out var drone);
+                        drone.Controller = component.InsideControllerEntity.Value;
+                        drone.Explosive = false;
+                        drone.Pacif = false;
+                        drone.TankPart = true;
                         controller.Tank = uid;
                         despawn.Lifetime = 0.05f;
                         break;
@@ -233,6 +186,15 @@ namespace Content.Server.ShiftFront
                         component.InsideGunnerEntity = Spawn(component.InsideGunner, Transform(insuid).Coordinates);
                         EnsureComp<TimedDespawnComponent>(insuid, out var despawn2);
                         EnsureComp<ShiftTankpartComponent>(component.InsideGunnerEntity.Value, out var gunner);
+                        EnsureComp<ShiftFPVControllerComponent>(component.InsideGunnerEntity.Value, out var control2);
+                        control2.TankPart = true;
+                        if (component.LinkedTurret == null) continue;
+                        control2.LinkedDrone = component.LinkedTurret.Value;
+                        EnsureComp<ShiftFPVDroneComponent>(component.LinkedTurret.Value, out var drone2);
+                        drone2.Controller = component.InsideGunnerEntity.Value;
+                        drone2.Explosive = false;
+                        drone2.Pacif = false;
+                        drone2.TankPart = true;
                         gunner.Tank = uid;
                         despawn2.Lifetime = 0.05f;
                         break;
@@ -275,6 +237,16 @@ namespace Content.Server.ShiftFront
                         EnsureComp<ShiftTankpartComponent>(component.InsideObserverEntity.Value, out var observer);
                         observer.Tank = uid;
                         despawn7.Lifetime = 0.05f;
+                        EnsureComp<ShiftFPVControllerComponent>(component.InsideObserverEntity.Value, out var control3);
+                        if (component.InsideObserverEntity == null) continue;
+                        if (component.LinkedObserver == null) continue;
+                        control3.LinkedDrone = component.LinkedObserver.Value;
+                        control3.TankPart = true;
+                        EnsureComp<ShiftFPVDroneComponent>(component.LinkedObserver.Value, out var drone3);
+                        drone3.Controller = component.InsideObserverEntity.Value;
+                        drone3.Explosive = false;
+                        drone3.Pacif = false;
+                        drone3.TankPart = true;
                         break;
                 }
             }

@@ -41,6 +41,9 @@ public sealed partial class ShiftFPVDroneComponent : Component
     public bool CMD = false;
 
     [DataField]
+    public bool TankPart = false;
+
+    [DataField]
     public string Faction = "";
 }
 

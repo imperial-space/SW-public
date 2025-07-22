@@ -172,7 +172,7 @@
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/ShiftFront/light.rsi
-      state: drone
+      state: tankrotate
     event: !type:FPVStopControlEvent
 
 #- type: entity

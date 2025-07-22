@@ -39,8 +39,10 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         {
             if (TryComp<ShiftPlayerComponent>(args.OtherEntity, out var player) && args.OtherEntity != comp.Shooter && !comp.Suppressed.Contains(args.OtherEntity))
             {
+                var sup = comp.Suppression;
+                if (TryComp<ShiftPlayerComponent>(component.Shooter, out var shooterPlayer) && shooterPlayer.Faction == player.Faction) sup /= 2.5f;
                 comp.Suppressed.Append(args.OtherEntity);
-                player.Suppression -= comp.Suppression;
+                player.Suppression -= sup;
                 float zoom = 1f * (player.Suppression / 100f);
                 zoom = Math.Clamp(zoom, 0.4f, 1f);
                 player.Suppression = Math.Clamp(player.Suppression, player.SuppressionMin, player.SuppressionMax);
