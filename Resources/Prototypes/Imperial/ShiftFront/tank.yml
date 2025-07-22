@@ -1018,6 +1018,12 @@
   parent: MobShiftTankHullBase
   id: ShiftFrontTankBlue
   components:
+  - type: StunOnContact
+    duration: 6
+  - type: DamageOnContact
+    damage:
+      types:
+        Blunt: 22
   - type: Sprite
     scale: 1.7, 1.7
     layers:
@@ -1086,6 +1092,12 @@
   parent: MobShiftTankHullBase
   id: ShiftFrontTankRed
   components:
+  - type: StunOnContact
+    duration: 6
+  - type: DamageOnContact
+    damage:
+      types:
+        Blunt: 22
   - type: Sprite
     scale: 1.7, 1.7
     layers:
@@ -1154,6 +1166,12 @@
   parent: MobShiftTankHullBase
   id: ShiftFrontTankGreen
   components:
+  - type: StunOnContact
+    duration: 6
+  - type: DamageOnContact
+    damage:
+      types:
+        Blunt: 22
   - type: Sprite
     scale: 1.7, 1.7
     layers:
@@ -1222,6 +1240,12 @@
   parent: MobShiftTankHullBase
   id: ShiftFrontTankYellow
   components:
+  - type: StunOnContact
+    duration: 6
+  - type: DamageOnContact
+    damage:
+      types:
+        Blunt: 22
   - type: Sprite
     scale: 1.7, 1.7
     layers:
