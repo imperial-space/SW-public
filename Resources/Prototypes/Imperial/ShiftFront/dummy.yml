@@ -53,6 +53,9 @@
   - type: GhostRole
     name: Штурмовик
     description: НАТО
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontShtormEN
 
 - type: entity
   parent: BaseMobHumanShiftFront
@@ -80,6 +83,9 @@
   - type: GhostRole
     name: Штурмовик
     description: ПСБ (пост-совет. блок)
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontShtorm
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -92,6 +98,9 @@
     description: НАТО
   - type: ShiftPlayer
     name: Scout
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontScout
 
 - type: entity
   parent: MobArgocyteHarvester
@@ -143,6 +152,9 @@
     description: ПСБ (пост-совет. блок)
   - type: ShiftPlayer
     name: Scout
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontScout
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -155,6 +167,9 @@
     description: НАТО
   - type: ShiftPlayer
     name: Sniper
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontSniper
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
@@ -167,6 +182,9 @@
     description: ПСБ (пост-совет. блок)
   - type: ShiftPlayer
     name: Sniper
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontSniper
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -179,6 +197,9 @@
     description: НАТО
   - type: ShiftPlayer
     name: HMG
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontHMG
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
@@ -191,6 +212,9 @@
     description: ПСБ (пост-совет. блок)
   - type: ShiftPlayer
     name: HMG
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontHMG
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -204,6 +228,9 @@
   - type: GhostRole
     name: Инженер
     description: НАТО
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontEng
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
@@ -217,6 +244,9 @@
   - type: GhostRole
     name: Инженер
     description: ПСБ (пост-совет. блок)
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontEng
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -229,6 +259,9 @@
     description: НАТО
   - type: ShiftPlayer
     name: Med
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontMed
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
@@ -241,6 +274,9 @@
     description: ПСБ (пост-совет. блок)
   - type: ShiftPlayer
     name: Med
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontMed
 
 #- type: entity
 #  parent: BaseMobHumanShiftFrontBlue
@@ -276,19 +312,19 @@
   id: ShiftFrontBlueHQGhostRole
   parent: MarkerBase
   components:
-    - type: GhostRole
-      name: Командир
-      description: Брать, только если уже играли на ивенте
-      raffle:
-        settings: short
-    - type: GhostRoleMobSpawner
-      prototype: BaseMobHumanShiftFrontBlueHQ
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertleadereva
+  - type: GhostRole
+    name: Командир
+    description: Брать, только если уже играли на ивенте
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BaseMobHumanShiftFrontBlueHQ
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Markers/jobs.rsi
+        state: ertleadereva
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -302,24 +338,27 @@
   - type: ShiftPlayer
     name: HQ
     leader: true
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontHQ
 
 - type: entity
   id: ShiftFrontRedHQGhostRole
   parent: MarkerBase
   components:
-    - type: GhostRole
-      name: Командир
-      description: Брать, только если уже играли на ивенте
-      raffle:
-        settings: short
-    - type: GhostRoleMobSpawner
-      prototype: BaseMobHumanShiftFrontRedHQ
-    - type: Sprite
-      sprite: Markers/jobs.rsi
-      layers:
-        - state: green
-        - sprite: Markers/jobs.rsi
-          state: ertleadereva
+  - type: GhostRole
+    name: Командир
+    description: Брать, только если уже играли на ивенте
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: BaseMobHumanShiftFrontRedHQ
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Markers/jobs.rsi
+        state: ertleadereva
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
@@ -335,7 +374,7 @@
     leader: true
   - type: ShiftShowOnMap
     faction: Red
-    mippleProto: ClothingHeadHatCapcapWhiteShiftFront
+    mippleProto: ShiftFrontHQ
 
 - type: language
   id: Russian
@@ -911,3 +950,13 @@
     drawdepth: FloorObjects
   - type: ShiftMap
     faction: Green
+
+- type: entity
+  id: ShiftFrontMapAdmin
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map.rsi
+    state: sand
+    scale: 1,1
+    drawdepth: FloorObjects
+  - type: ShiftMap

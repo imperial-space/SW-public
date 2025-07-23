@@ -8,6 +8,8 @@ public sealed partial class ShiftShowOnMapComponent : Component
     [DataField]
     public string Faction = "";
     [DataField]
+    public bool Dynamic = true;
+    [DataField]
     public string MippleProto = "";
     [DataField]
     public string DeathEffectProto = "";

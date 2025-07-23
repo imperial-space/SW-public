@@ -25,6 +25,9 @@
   - type: GhostRole
     name: Штурмовик
     description: Технократическая Германия
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontShtormEN
 
 - type: entity
   parent: BaseMobHumanShiftFront
@@ -53,6 +56,9 @@
   - type: GhostRole
     name: Штурмовик
     description: Единая Китайская партия
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontShtorm
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
@@ -65,6 +71,9 @@
     description: Технократическая Германия
   - type: ShiftPlayer
     name: Scout
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontScout
 
 - type: entity
   parent: BaseMobHumanShiftFrontYellow
@@ -77,6 +86,9 @@
     description: Единая Китайская партия
   - type: ShiftPlayer
     name: Scout
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontScout
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
@@ -89,6 +101,9 @@
     description: Технократическая Германия
   - type: ShiftPlayer
     name: Sniper
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontSniper
 
 - type: entity
   parent: BaseMobHumanShiftFrontYellow
@@ -101,6 +116,9 @@
     description: Единая Китайская партия
   - type: ShiftPlayer
     name: Sniper
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontSniper
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
@@ -113,6 +131,9 @@
     description: Технократическая Германия
   - type: ShiftPlayer
     name: HMG
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontHMG
 
 - type: entity
   parent: BaseMobHumanShiftFrontYellow
@@ -125,6 +146,9 @@
     description: Единая Китайская партия
   - type: ShiftPlayer
     name: HMG
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontHMG
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
@@ -138,6 +162,9 @@
   - type: ShiftPlayer
     name: Eng
     eng: true
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontEng
 
 - type: entity
   parent: BaseMobHumanShiftFrontYellow
@@ -151,6 +178,9 @@
   - type: ShiftPlayer
     name: Eng
     eng: true
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontEng
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
@@ -163,6 +193,9 @@
     description: Технократическая Германия
   - type: ShiftPlayer
     name: Med
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontMed
 
 - type: entity
   parent: BaseMobHumanShiftFrontYellow
@@ -175,6 +208,9 @@
     description: Единая Китайская партия
   - type: ShiftPlayer
     name: Med
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontMed
 
 #- type: entity
 #  parent: BaseMobHumanShiftFrontGreen
@@ -236,6 +272,9 @@
   - type: ShiftPlayer
     name: HQ
     leader: true
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontHQ
 
 - type: entity
   id: ShiftFrontYellowHQGhostRole
@@ -267,6 +306,9 @@
   - type: ShiftPlayer
     name: HQ
     leader: true
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontHQ
 
 - type: language
   id: Chineese

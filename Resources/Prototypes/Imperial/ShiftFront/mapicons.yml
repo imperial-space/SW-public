@@ -1,0 +1,107 @@
+- type: entity
+  id: ShiftIconBase
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: Clickable
+  - type: Sprite
+    scale: 0.2, 0.2
+    drawDepth: Overlays
+
+- type: entity
+  id: ShiftFrontResPointNanoCarbonIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: orenano
+
+- type: entity
+  id: ShiftFrontResPointBioShlakIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: orebio
+
+- type: entity
+  id: ShiftFrontResPointPolymerIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: orepolymer
+
+- type: entity
+  id: ShiftFrontShtorm
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.3, 0.3
+    sprite: Objects/Weapons/Guns/Rifles/ak.rsi
+    state: icon
+
+- type: entity
+  id: ShiftFrontShtormEN
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.3, 0.3
+    sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
+    state: icon
+
+- type: entity
+  id: ShiftFrontScout
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.3, 0.3
+    sprite: Objects/Tools/binoculars.rsi
+    state: icon
+
+- type: entity
+  id: ShiftFrontSniper
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.3, 0.3
+    sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
+    state: base
+
+- type: entity
+  id: ShiftFrontHMG
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.3, 0.3
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    state: icon
+
+- type: entity
+  id: ShiftFrontEng
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.3, 0.3
+    sprite: Objects/Tools/wrench.rsi
+    state: icon
+
+- type: entity
+  id: ShiftFrontMed
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.25, 0.25
+    sprite: Objects/Specific/Robotics/cyborg_parts.rsi
+    state: medical_head
+
+- type: entity
+  id: ShiftFrontHQ
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.33, 0.33
+    sprite: Objects/Consumable/Food/Baked/nuggets.rsi
+    state: star
+
+

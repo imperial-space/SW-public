@@ -591,19 +591,9 @@
     amount: 10
   - type: Clickable
   - type: ShiftShowOnMap
+    dynamic: false
     #faction: Red
     mippleProto: ShiftFrontResPointPolymerIcon
-
-- type: entity
-  id: ShiftFrontResPointPolymerIcon
-  components:
-  - type: Sprite
-    scale: 0.15, 0.15
-    sprite: Imperial/ShiftFront/light.rsi
-    state: orepolymer
-    drawDepth: Overlays
-  - type: InteractionOutline
-  - type: Clickable
 
 - type: entity
   id: ShiftFrontResPointBioShlak
@@ -620,19 +610,9 @@
     amount: 10
   - type: Clickable
   - type: ShiftShowOnMap
+    dynamic: false
     #faction: Red
     mippleProto: ShiftFrontResPointBioShlakIcon
-
-- type: entity
-  id: ShiftFrontResPointBioShlakIcon
-  components:
-  - type: InteractionOutline
-  - type: Clickable
-  - type: Sprite
-    scale: 0.15, 0.15
-    sprite: Imperial/ShiftFront/light.rsi
-    state: orebio
-    drawDepth: Overlays
 
 - type: entity
   id: ShiftFrontResPointNanoCarbon
@@ -649,19 +629,9 @@
     amount: 5
   - type: Clickable
   - type: ShiftShowOnMap
+    dynamic: false
     #faction: Red
     mippleProto: ShiftFrontResPointNanoCarbonIcon
-
-- type: entity
-  id: ShiftFrontResPointNanoCarbonIcon
-  components:
-  - type: InteractionOutline
-  - type: Clickable
-  - type: Sprite
-    scale: 0.15, 0.15
-    sprite: Imperial/ShiftFront/light.rsi
-    state: orenano
-    drawDepth: Overlays
 
 - type: entity
   parent: BaseStrtuctureShiftFront

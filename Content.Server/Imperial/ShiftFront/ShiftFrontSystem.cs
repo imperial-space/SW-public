@@ -81,7 +81,7 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftBuildLightComponent, MoveEvent>(OnChangeParent);
             SubscribeLocalEvent<ShiftPlayerComponent, MobStateChangedEvent>(OnMobStateChanged);
             SubscribeLocalEvent<ShiftPlayerComponent, ComponentStartup>(OnPlayerStart);
-            SubscribeLocalEvent<ShiftShowOnMapComponent, ComponentStartup>(OnShowOnMapStart);
+            SubscribeLocalEvent<ShiftShowOnMapComponent, ComponentInit>(OnShowOnMapStart);
             SubscribeLocalEvent<ShiftShowOnMapComponent, ComponentShutdown>(OnShowOnMapEnd);
             SubscribeLocalEvent<ShiftBarracksComponent, ComponentStartup>(OnBarracksStart);
             SubscribeLocalEvent<ShiftSuppliesComponent, ComponentStartup>(OnSuppliesStart);
@@ -314,14 +314,14 @@ namespace Content.Server.ShiftFront
             }
         }
 
-        public void OnShowOnMapStart(EntityUid uid, ShiftShowOnMapComponent comp, ComponentStartup args)
+        public void OnShowOnMapStart(EntityUid uid, ShiftShowOnMapComponent comp, ComponentInit args)
         {
             if (comp.MippleProto != "")
             {
                 var dquery = EntityQueryEnumerator<ShiftMapComponent>();
                 while (dquery.MoveNext(out var reuid, out var recomp))
                 {
-                    if (recomp.Faction != comp.Faction && comp.Faction != "") continue;
+                    if (recomp.Faction != comp.Faction && comp.Faction != "" && recomp.Faction != "") continue;
                     var LinkedMipple = Spawn(comp.MippleProto, Transform(reuid).Coordinates);
                     _metaData.SetEntityName(LinkedMipple, EnsureComp<MetaDataComponent>(uid).EntityName);
                     EnsureComp<ShiftMippleComponent>(LinkedMipple, out var mipplecomp);
@@ -939,9 +939,7 @@ namespace Content.Server.ShiftFront
                 var smquery = EntityQueryEnumerator<ShiftShowOnMapComponent>();
                 while (smquery.MoveNext(out var uid, out var comp))
                 {
-                    var xform = Transform(uid);
-                    var coords = xform.Coordinates;
-
+                    if (!comp.Dynamic) continue;
                     foreach (var LinkedMipple in comp.LinkedMipples)
                     {
                         EnsureComp<ShiftMippleComponent>(LinkedMipple, out var mipplecomp);
