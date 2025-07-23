@@ -1436,3 +1436,36 @@
     dynamic: false
     faction: Yellow
     mippleProto: ShiftFrontStorage
+
+- type: entity
+  id: ShiftFrontSandbags
+  parent: MedievalBannerBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Shiftfront/light.rsi
+    state: bags
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
