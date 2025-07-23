@@ -72,34 +72,62 @@
       node: bulbLight
 
 - type: entity
-  id: EgidaComplexComms
+  id: EgidaComplexCommsStationAllert
   parent: ComputerComms
   name: Консоль связи комплекса "Недра"
-  suffix: seriozha, Недра, Snaipron
+  suffix: seriozha, Недра, Snaipron, СТАНЦИИ НЕ РЕАГИРОВАТЬ
   components:
   - type: Sprite
+    sprite: Imperial/Snaipron-Content/communication-egida.rsi
     layers:
     - map: ["computerLayerBody"]
       state: computer
     - map: ["computerLayerKeyboard"]
       state: generic_keyboard
     - map: ["computerLayerScreen"]
-      state: comm_wizard
+      state: scp_comm
     - map: ["computerLayerKeys"]
-      state: wizard_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
+      state: scp_comm_key
+  - type: CommunicationsConsole
+    title: comms-console-announcement-title-egida-station
+    color: "#ff7e2e"
+    canShuttle: false
+    global: true #announce to everyone they're about to fuck shit up
+    announceSentBy: true
+    sound: /Audio/Announcements/war.ogg
+  - type: PointLight
+    radius: 3
+    energy: 3.2
+    color: "#ff7e2e"
+
+- type: entity
+  id: EgidaComplexComms
+  parent: ComputerComms
+  name: Консоль связи комплекса "Недра"
+  suffix: seriozha, Недра, Snaipron
+  components:
+  - type: Sprite
+    sprite: Imperial/Snaipron-Content/communication-egida.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: scp_comm
+    - map: ["computerLayerKeys"]
+      state: scp_comm_key
   - type: CommunicationsConsole
     title: comms-console-announcement-title-egida
     color: "#ff7e2e"
     canShuttle: false
-    global: false #announce to everyone they're about to fuck shit up
+    global: true #announce to everyone they're about to fuck shit up
     announceSentBy: true
     sound: /Audio/Announcements/war.ogg
   - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#F317F3"
+    radius: 3
+    energy: 3.2
+    color: "#ff7e2e"
 
 - type: entity
   id: NoCollisionCatwalk
