@@ -931,32 +931,32 @@ namespace Content.Server.ShiftFront
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
-            //var pquery = EntityQueryEnumerator<ProjectileComponent>();
-            //while (pquery.MoveNext(out var uid, out var comp))
-            //{
-            //    var xform = Transform(uid);
-            //    var coords = xform.Coordinates;
-            //    foreach (var target in _lookup.GetEntitiesInRange(coords, 1.6f))
-            //    {
-            //        if (TryComp<ShiftPlayerComponent>(target, out var player) && target != comp.Shooter && !comp.Suppressed.Contains(target))
-            //        {
-            //            comp.Suppressed.Append(target);
-            //            player.Suppression -= comp.Suppression;
-            //            float zoom = 1f * (player.Suppression / 100f);
-            //            zoom = Math.Clamp(zoom, 0.4f, 1f);
-            //            player.Suppression = Math.Clamp(player.Suppression, player.SuppressionMin, player.SuppressionMax);
-            //            _eye.SetZoom(target, new Vector2(zoom, zoom));
-            //            _eye.SetMaxZoom(target, new Vector2(zoom, zoom));
-            //            //_audio.PlayEntity("/Audio/Imperial/ShiftFront/shot_swing.ogg", Filter.Entities(target), target, false, AudioParams.Default.WithVolume(6f));
-            //        }
-            //    }
-            //}
 
             if (_timing.CurTime > EndTime)
             {
                 StartTime = _timing.CurTime;
                 EndTime = StartTime + TimeSpan.FromSeconds(1f);
+                var smquery = EntityQueryEnumerator<ShiftShowOnMapComponent>();
+                while (smquery.MoveNext(out var uid, out var comp))
+                {
+                    var xform = Transform(uid);
+                    var coords = xform.Coordinates;
 
+                    foreach (var LinkedMipple in comp.LinkedMipples)
+                    {
+                        EnsureComp<ShiftMippleComponent>(LinkedMipple, out var mipplecomp);
+                        if (!mipplecomp.LinkedMap.HasValue) continue;
+                        EnsureComp<ShiftMapComponent>(mipplecomp.LinkedMap.Value, out var recomp);
+                        var reuid = mipplecomp.LinkedMap.Value;
+                        var nc = CalculateTabletIconPosition(new Vector2(Transform(uid).Coordinates.X, Transform(uid).Coordinates.Y),
+                            new Vector2(Transform(reuid).Coordinates.X, Transform(reuid).Coordinates.Y),
+                            new Vector2(recomp.entX, recomp.entY),
+                            new Vector2(recomp.offsetX, recomp.offsetY),
+                            new Vector2(recomp.mapX, recomp.mapY));
+                        _transform.SetWorldPosition(LinkedMipple, nc);
+                        comp.LinkedMipples.Add(LinkedMipple);
+                    }
+                }
 
                 var spquery = EntityQueryEnumerator<ShiftPlayerComponent>();
                 while (spquery.MoveNext(out var uid, out var comp))
