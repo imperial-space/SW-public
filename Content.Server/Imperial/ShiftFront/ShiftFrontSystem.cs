@@ -875,7 +875,7 @@ namespace Content.Server.ShiftFront
                         return;
                     break;
                 case "МТЛБ":
-                    if (!TryWasteResource(rescomp, 175, 45, 0, session))
+                    if (!TryWasteResource(rescomp, 145, 45, 0, session))
                         return;
                     break;
                 case "БМП":
