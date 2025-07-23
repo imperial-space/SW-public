@@ -3,6 +3,7 @@
   name: grenade RPG-8
   parent: BaseBulletTrigger
   components:
+  - type: AlwaysInFov
   - type: Sprite
     scale: 1, 1
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
