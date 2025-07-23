@@ -112,7 +112,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.6, 0.6
+    scale: 0.35, 0.35
     sprite: Objects/Vehicles/wheelchair.rsi
     state: vehicle_folded
 
@@ -151,7 +151,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.35, 0.35
+    scale: 0.21, 0.21
     sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
     state: turretblue
     drawdepth: Mobs
@@ -161,7 +161,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.35, 0.35
+    scale: 0.21, 0.21
     sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
     state: turretred
     drawdepth: Mobs
@@ -171,7 +171,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.35, 0.35
+    scale: 0.21, 0.21
     sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
     state: turretgreen
     drawdepth: Mobs
@@ -181,7 +181,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.35, 0.35
+    scale: 0.21, 0.21
     sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
     state: turretyellow
     drawdepth: Mobs

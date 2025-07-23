@@ -348,7 +348,7 @@ namespace Content.Server.ShiftFront
             // Вычисляем относительное положение сущности от центра карты
 
             Vector2 relativeEntityPos = entityCoords - mapOffset;
-            Logger.Debug($"RelativeEntityPost: {relativeEntityPos}");
+            //Logger.Debug($"RelativeEntityPost: {relativeEntityPos}");
 
             float normx = tabletSize.X / mapSize.X;
             float normy = tabletSize.Y / mapSize.Y;
@@ -356,10 +356,10 @@ namespace Content.Server.ShiftFront
             Vector2 relativeEntityPosnorm = new Vector2(
                 relativeEntityPos.X * normx,
                 relativeEntityPos.Y * normy);
-            Logger.Debug($"relativeEntityPosnorm: {relativeEntityPosnorm}");
+            //Logger.Debug($"relativeEntityPosnorm: {relativeEntityPosnorm}");
 
             Vector2 ontabletPosition = relativeEntityPosnorm + tabletCoords;
-            Logger.Debug($"ontabletPosition: {ontabletPosition}");
+            //Logger.Debug($"ontabletPosition: {ontabletPosition}");
 
             return ontabletPosition;
         }

@@ -25,6 +25,24 @@
   - type: GhostTakeoverAvailable
   - type: NameIdentifier
     group: GenericNumber
+  - type: Tag
+    tags:
+    - CanPilot
+    - DoorBumpOpener
+    - FootstepSound
+    - AnomalyHost
+
+- type: Tag
+  id: ShiftFrontFactBlue
+
+- type: Tag
+  id: ShiftFrontFactRed
+
+- type: Tag
+  id: ShiftFrontFactGreen
+
+- type: Tag
+  id: ShiftFrontFactYellow
 
 - type: entity
   parent: BaseMobHumanShiftFront
@@ -56,6 +74,13 @@
   - type: ShiftShowOnMap
     faction: Blue
     mippleProto: ShiftFrontShtormEN
+  - type: Tag
+    tags:
+    - CanPilot
+    - DoorBumpOpener
+    - FootstepSound
+    - AnomalyHost
+    - ShiftFrontFactBlue
 
 - type: entity
   parent: BaseMobHumanShiftFront
@@ -86,6 +111,13 @@
   - type: ShiftShowOnMap
     faction: Red
     mippleProto: ShiftFrontShtorm
+  - type: Tag
+    tags:
+    - CanPilot
+    - DoorBumpOpener
+    - FootstepSound
+    - AnomalyHost
+    - ShiftFrontFactRed
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue

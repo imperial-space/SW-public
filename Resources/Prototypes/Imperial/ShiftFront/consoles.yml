@@ -230,8 +230,8 @@
     - state: turretblue
   - type: Gun
     fireRate: 6
-    minAngle: 16
-    maxAngle: 16
+    minAngle: 25
+    maxAngle: 25
   - type: ShiftFPVDrone
     explosive: false
     pacif: false
@@ -242,7 +242,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 700
+        damage: 720
       behaviors:
       - !type:PlaySoundBehavior
         sound:

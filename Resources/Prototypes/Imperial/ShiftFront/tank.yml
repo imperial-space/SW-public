@@ -57,6 +57,13 @@
     channels: [Radio2]
   - type: LanguageSpeaker
     languages: {English: Speak}
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 50
+    ignoreWhitelist:
+      tags:
+      - ShiftFrontFactBlue
 
 - type: entity
   id: BaseRedFaction
@@ -71,6 +78,13 @@
     channels: [Radio1]
   - type: LanguageSpeaker
     languages: {Russian: Speak}
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 50
+    ignoreWhitelist:
+      tags:
+      - ShiftFrontFactRed
 
 ### Корпуса техники ###
 - type: entity
@@ -377,6 +391,13 @@
     channels: [Radio3]
   - type: LanguageSpeaker
     languages: {German: Speak}
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 50
+    ignoreWhitelist:
+      tags:
+      - ShiftFrontFactGreen
 
 - type: entity
   id: BaseYellowFaction
@@ -391,6 +412,13 @@
     channels: [Radio4]
   - type: LanguageSpeaker
     languages: {Chineese: Speak}
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 50
+    ignoreWhitelist:
+      tags:
+      - ShiftFrontFactYellow
 
 ### Прототипы МТЛБ ###
 - type: entity

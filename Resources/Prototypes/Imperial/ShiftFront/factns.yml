@@ -28,6 +28,13 @@
   - type: ShiftShowOnMap
     faction: Green
     mippleProto: ShiftFrontShtormEN
+  - type: Tag
+    tags:
+    - CanPilot
+    - DoorBumpOpener
+    - FootstepSound
+    - AnomalyHost
+    - ShiftFrontFactGreen
 
 - type: entity
   parent: BaseMobHumanShiftFront
@@ -59,6 +66,13 @@
   - type: ShiftShowOnMap
     faction: Yellow
     mippleProto: ShiftFrontShtorm
+  - type: Tag
+    tags:
+    - CanPilot
+    - DoorBumpOpener
+    - FootstepSound
+    - AnomalyHost
+    - ShiftFrontFactYellow
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
