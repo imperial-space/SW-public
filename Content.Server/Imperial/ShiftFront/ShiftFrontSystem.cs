@@ -1088,9 +1088,9 @@ namespace Content.Server.ShiftFront
                 {
                     if (TryComp<DamageableComponent>(uid, out var dam) && dam.TotalDamage.Float() > comp.SmokeStep && dam.TotalDamage.Float() < comp.FireStep)
                     {
-                        if (_random.Prob(0.4f) && comp.InsideEntryEntity != null)
+                        if (_random.Prob(0.4f) && comp.InsideControllerEntity != null)
                         {
-                            Spawn("AdminInstantEffectSmoke3", Transform(comp.InsideEntryEntity.Value).Coordinates);
+                            Spawn("AdminInstantEffectSmoke3", Transform(comp.InsideControllerEntity.Value).Coordinates);
                         }
                     }
                     if (TryComp<DamageableComponent>(uid, out var dam2) && dam2.TotalDamage.Float() > comp.FireStep)
