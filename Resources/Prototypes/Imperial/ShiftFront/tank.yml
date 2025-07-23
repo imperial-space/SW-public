@@ -135,12 +135,14 @@
     damageContainer: ShiftFrontLightTank
     damageModifierSet: ShiftFrontLightTank
   - type: MobThresholds
-    thresholds: {0: Alive, 450: Dead}
+    thresholds: {0: Alive, 650: Dead}
   - type: Destructible
     thresholds:
-    - trigger: !type:DamageTrigger {damage: 450}
+    - trigger: !type:DamageTrigger {damage: 650}
       behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
   - type: ShiftTankHull
+    smokeStep: 350
+    fireStep: 500
     insideController: TankPartController
     insideGunner: TankPartGunner
     insideEntry: TankPartEntry
@@ -163,6 +165,9 @@
   - type: ShiftTankHull
     faction: Blue
     turretProto: ShiftFrontBMPTurretBlue
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontVehicle
 
 ### Башни ###
 - type: entity
@@ -231,6 +236,9 @@
   - type: ShiftTankHull
     faction: Red
     turretProto: ShiftFrontBMPTurretRed
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontBMPTurretRed
@@ -260,6 +268,7 @@
       behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
   - type: ShiftTankHull
     smokeStep: 500
+    fireStep: 850
     insideController: TankPartController
     insideGunner: TankPartGunner
     insideEntry: TankPartEntry
@@ -324,6 +333,9 @@
   - type: ShiftTankHull
     faction: Red
     turretProto: ShiftFrontTankTurretRed
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontTankTurretRed
@@ -342,6 +354,9 @@
   - type: ShiftTankHull
     faction: Blue
     turretProto: ShiftFrontTankTurretBlue
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontTankTurretBlue
@@ -394,6 +409,8 @@
       state: closed
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
+    smokeStep: 200
+    fireStep: 315
     fPVResist: 1.3
     moveSpeed: 4.3
     turnRate: 0.04
@@ -425,6 +442,9 @@
   - type: ShiftTankHull
     faction: Green
     turretProto: ShiftFrontBMPTurretGreen
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontBMPTurretGreen
@@ -443,6 +463,9 @@
   - type: ShiftTankHull
     faction: Yellow
     turretProto: ShiftFrontBMPTurretYellow
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontBMPTurretYellow
@@ -461,6 +484,9 @@
   - type: ShiftTankHull
     faction: Green
     turretProto: ShiftFrontTankTurretGreen
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontTankTurretGreen
@@ -479,6 +505,9 @@
   - type: ShiftTankHull
     faction: Yellow
     turretProto: ShiftFrontTankTurretYellow
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontTankTurretYellow
@@ -496,6 +525,9 @@
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
     faction: Blue
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontMTLBRed
@@ -508,6 +540,9 @@
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
     faction: Red
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontMTLBGreen
@@ -520,6 +555,9 @@
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
     faction: Green
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontVehicle
 
 - type: entity
   id: ShiftFrontMTLBYellow
@@ -532,6 +570,9 @@
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
     faction: Yellow
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontVehicle
 
 
 ### Типы урона ###
@@ -783,6 +824,10 @@
     scale: 0.01,0.01
   - type: ShiftTankpart
     part: Entry
+  - type: AmbientSound
+    volume: -6
+    range: 14
+    sound: {path: /Audio/Imperial/ShiftFront/bmp_ambient.ogg}
 
 - type: entity
   id: TankPartObserver

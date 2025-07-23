@@ -1086,12 +1086,20 @@ namespace Content.Server.ShiftFront
                 var tankquery = EntityQueryEnumerator<ShiftTankHullComponent>();
                 while (tankquery.MoveNext(out var uid, out var comp))
                 {
-                    if (TryComp<DamageableComponent>(uid, out var dam) && dam.TotalDamage.Float() > comp.SmokeStep)
+                    if (TryComp<DamageableComponent>(uid, out var dam) && dam.TotalDamage.Float() > comp.SmokeStep && dam.TotalDamage.Float() < comp.FireStep)
                     {
-                        if (_random.Prob(0.05f) && comp.InsideEntryEntity != null)
+                        if (_random.Prob(0.4f) && comp.InsideEntryEntity != null)
                         {
-                            Spawn("ShiftTankSmoke", Transform(comp.InsideEntryEntity.Value).Coordinates);
+                            Spawn("AdminInstantEffectSmoke3", Transform(comp.InsideEntryEntity.Value).Coordinates);
                         }
+                    }
+                    if (TryComp<DamageableComponent>(uid, out var dam2) && dam2.TotalDamage.Float() > comp.FireStep)
+                    {
+                        if (_random.Prob(0.7f) && comp.InsideEntryEntity != null)
+                        {
+                            Spawn("MedievalHitMarkerTankFire", Transform(comp.InsideEntryEntity.Value).Coordinates);
+                        }
+
                     }
                 }
                 var exquery = EntityQueryEnumerator<ShiftExtractorComponent>();

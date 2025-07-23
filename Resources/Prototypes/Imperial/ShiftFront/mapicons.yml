@@ -6,7 +6,7 @@
   - type: Clickable
   - type: Sprite
     scale: 0.2, 0.2
-    drawDepth: Overlays
+    drawdepth: Overdoors
 
 - type: entity
   id: ShiftFrontResPointNanoCarbonIcon
@@ -15,6 +15,7 @@
   - type: Sprite
     sprite: Imperial/ShiftFront/light.rsi
     state: orenano
+    drawdepth: Items
 
 - type: entity
   id: ShiftFrontResPointBioShlakIcon
@@ -23,6 +24,7 @@
   - type: Sprite
     sprite: Imperial/ShiftFront/light.rsi
     state: orebio
+    drawdepth: Items
 
 - type: entity
   id: ShiftFrontResPointPolymerIcon
@@ -31,13 +33,14 @@
   - type: Sprite
     sprite: Imperial/ShiftFront/light.rsi
     state: orepolymer
+    drawdepth: Items
 
 - type: entity
   id: ShiftFrontShtorm
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.3, 0.3
+    scale: 0.4, 0.4
     sprite: Objects/Weapons/Guns/Rifles/ak.rsi
     state: icon
 
@@ -46,7 +49,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.3, 0.3
+    scale: 0.4, 0.4
     sprite: Objects/Weapons/Guns/Rifles/carbine.rsi
     state: icon
 
@@ -55,7 +58,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.3, 0.3
+    scale: 0.45, 0.45
     sprite: Objects/Tools/binoculars.rsi
     state: icon
 
@@ -64,7 +67,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.3, 0.3
+    scale: 0.4, 0.4
     sprite: Objects/Weapons/Guns/Snipers/heavy_sniper.rsi
     state: base
 
@@ -73,7 +76,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.3, 0.3
+    scale: 0.4, 0.4
     sprite: Objects/Weapons/Guns/LMGs/l6.rsi
     state: icon
 
@@ -82,7 +85,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.3, 0.3
+    scale: 0.4, 0.4
     sprite: Objects/Tools/wrench.rsi
     state: icon
 
@@ -91,7 +94,7 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.25, 0.25
+    scale: 0.4, 0.4
     sprite: Objects/Specific/Robotics/cyborg_parts.rsi
     state: medical_head
 
@@ -100,8 +103,19 @@
   parent: ShiftIconBase
   components:
   - type: Sprite
-    scale: 0.33, 0.33
+    scale: 0.43, 0.43
     sprite: Objects/Consumable/Food/Baked/nuggets.rsi
     state: star
 
+- type: entity
+  id: ShiftFrontVehicle
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.6, 0.6
+    sprite: Objects/Vehicles/wheelchair.rsi
+    state: vehicle_folded
 
+
+
+    #drawdepth: Mobs
