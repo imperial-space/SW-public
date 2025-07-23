@@ -551,344 +551,301 @@ namespace Content.Server.ShiftFront
 
         private void OnGetAlternativeVerbs(EntityUid uid, ShiftConsoleBuildComponent comp, GetVerbsEvent<AlternativeVerb> ev)
         {
-            if (!ev.CanAccess || !ev.CanInteract) return;
-            if (!_sharedPlayerManager.TryGetSessionByEntity(ev.User, out var session)) return;
-            if (TryComp<ShiftPlayerComponent>(ev.User, out var shiftPlayer) && !shiftPlayer.Leader) return;
-            if (comp.BuildingLight.HasValue)
-            {
-                ev.Verbs.Add(new AlternativeVerb
-                {
-                    Act = () =>
-                    {
-                        TryBuild(uid, comp, session, comp.BuildingLight.Value);
-                    },
-                    Text = "Начать строительство",
-                    Priority = 15,
-                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "construction")
-                });
-            }
-            if (comp.IsBuilding) return;
+            if (!ev.CanAccess || !ev.CanInteract)
+                return;
+
+            if (!_sharedPlayerManager.TryGetSessionByEntity(ev.User, out var session))
+                return;
+
+            if (TryComp<ShiftPlayerComponent>(ev.User, out var shiftPlayer) && !shiftPlayer.Leader)
+                return;
+
+            // Основные постройки
             ev.Verbs.Add(new AlternativeVerb
             {
-                Act = () =>
-                {
-                    _quickDialog.OpenDialog(session, "Код", "Код маячка", (string message) =>
-                    {
-                        var buildquery = EntityQueryEnumerator<ShiftBuildLightComponent>();
-                        bool found = false;
-                        while (buildquery.MoveNext(out var buildLightUid, out var buildLightComp))
-                        {
-                            if (buildLightComp.BuildingCode == message)
-                            {
-                                found = true;
-                                _prayerSystem.SendSubtleMessage(session, session, "Вы успешно ввели код", "Код корректен");
-                                comp.BuildingCode = message;
-                                comp.BuildingLight = buildLightUid;
-                            }
-                        }
-                        if (!found)
-                            _prayerSystem.SendSubtleMessage(session, session, "Используйте shift + ЛКМ на строительном маячке, чтобы узнать его код", "Код неверный");
-                    });
-                },
-                Text = "Код строй-маячка",
-                Priority = 14,
-                Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "beacon_code")
-            });
-            ev.Verbs.Add(new AlternativeVerb
-            {
-                Act = () =>
-                {
-                    SelectBuildType(uid, comp, "казарма");
-                    comp.FutureTimer = 60;
-                    _prayerSystem.SendSubtleMessage(session, session, "Казарма", "Выбрано");
-                },
+                Act = () => SelectBuildType(uid, comp, session, "казарма"),
                 Text = "Клон-станция",
                 Priority = 13,
                 Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "barracks")
             });
+
             ev.Verbs.Add(new AlternativeVerb
             {
-                Act = () =>
-                {
-                    SelectBuildType(uid, comp, "турель");
-                    comp.FutureTimer = 25;
-                    _prayerSystem.SendSubtleMessage(session, session, "Турель", "Выбрано");
-                },
+                Act = () => SelectBuildType(uid, comp, session, "турель"),
                 Text = "Турель",
                 Priority = 12,
                 Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "turret")
             });
+
             ev.Verbs.Add(new AlternativeVerb
             {
-                Act = () =>
-                {
-                    SelectBuildType(uid, comp, "вышка");
-                    comp.FutureTimer = 35;
-                    _prayerSystem.SendSubtleMessage(session, session, "Медицинская вышка", "Выбрано");
-                },
+                Act = () => SelectBuildType(uid, comp, session, "вышка"),
                 Text = "Мед. вышка",
                 Priority = 11,
                 Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "healtower")
             });
+
+            // Постройки, требующие исследования
             if (CheckResearch("ShiftFrontSupplies", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "припасы");
-                        comp.FutureTimer = 25;
-                        _prayerSystem.SendSubtleMessage(session, session, "Завод припасов", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "припасы"),
                     Text = "Припасы",
                     Priority = 10,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "ammostorage")
                 });
+            }
+
             ev.Verbs.Add(new AlternativeVerb
             {
-                Act = () =>
-                {
-                    SelectBuildType(uid, comp, "экстрактор");
-                    comp.FutureTimer = 10;
-                    _prayerSystem.SendSubtleMessage(session, session, "Экстрактор", "Выбрано");
-                },
+                Act = () => SelectBuildType(uid, comp, session, "экстрактор"),
                 Text = "Экстрактор",
                 Priority = 9,
                 Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "minerblue")
             });
+
             if (CheckResearch("ShiftFrontConverter", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "конвертер");
-                        comp.FutureTimer = 40;
-                        _prayerSystem.SendSubtleMessage(session, session, "Конвертер", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "конвертер"),
                     Text = "Конвертер",
                     Priority = 8,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "recycler")
                 });
+            }
+
             if (CheckResearch("ShiftFrontMortar", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "мортира");
-                        comp.FutureTimer = 90;
-                        _prayerSystem.SendSubtleMessage(session, session, "Мортира", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "мортира"),
                     Text = "Мортира",
                     Priority = 7,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "ammostorage")
                 });
+            }
+
             if (CheckResearch("ShiftFrontScience", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "лаборатория");
-                        comp.FutureTimer = 40;
-                        _prayerSystem.SendSubtleMessage(session, session, "Лаборатория", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "лаборатория"),
                     Text = "Лаборатория",
                     Priority = 6,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "laboratory")
                 });
+            }
+
             if (CheckResearch("ShiftFrontDrone", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "фабрикатор дронов");
-                        comp.FutureTimer = 40;
-                        _prayerSystem.SendSubtleMessage(session, session, "Фабрикатор дронов", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "фабрикатор дронов"),
                     Text = "Фабрикатор дронов",
                     Priority = 5,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "ammostorage")
                 });
+            }
+
             if (CheckResearch("ShiftFrontREB", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "станция РЭБ");
-                        comp.FutureTimer = 20;
-                        _prayerSystem.SendSubtleMessage(session, session, "Станция РЭБ", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "станция РЭБ"),
                     Text = "Станция РЭБ",
                     Priority = 5,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "rebblue")
                 });
+            }
+
             if (CheckResearch("ShiftFrontStorage", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "хранилище");
-                        comp.FutureTimer = 20;
-                        _prayerSystem.SendSubtleMessage(session, session, "Хранилище", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "хранилище"),
                     Text = "Хранилище",
                     Priority = 4,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "barracks")
                 });
+            }
+
             if (CheckResearch("ShiftFrontATLM", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "мина");
-                        comp.FutureTimer = 10;
-                        _prayerSystem.SendSubtleMessage(session, session, "Мина", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "мина"),
                     Text = "Противотанковая мина",
                     Priority = 4,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Misc/landmine.rsi"), "landmine")
                 });
+            }
+
             if (CheckResearch("ShiftFrontMTLB", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "МТЛБ");
-                        comp.FutureTimer = 120;
-                        _prayerSystem.SendSubtleMessage(session, session, "МТЛБ", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "МТЛБ"),
                     Text = "МТЛБ",
                     Priority = 4,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon")
                 });
+            }
+
             if (CheckResearch("ShiftFrontBMP", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "БМП");
-                        comp.FutureTimer = 120;
-                        _prayerSystem.SendSubtleMessage(session, session, "БМП", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "БМП"),
                     Text = "БМП",
                     Priority = 4,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon")
                 });
+            }
+
             if (CheckResearch("ShiftFrontTank", comp.Faction))
+            {
                 ev.Verbs.Add(new AlternativeVerb
                 {
-                    Act = () =>
-                    {
-                        SelectBuildType(uid, comp, "танк");
-                        comp.FutureTimer = 120;
-                        _prayerSystem.SendSubtleMessage(session, session, "Танк", "Выбрано");
-                    },
+                    Act = () => SelectBuildType(uid, comp, session, "танк"),
                     Text = "Танк",
                     Priority = 4,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon")
                 });
-
+            }
         }
-        public void SelectBuildType(EntityUid uid, ShiftConsoleBuildComponent comp, string type)
+
+        public void SelectBuildType(EntityUid uid, ShiftConsoleBuildComponent comp, ICommonSession session, string type)
         {
             comp.BuildingType = type;
+            comp.FutureTimer = GetBuildTimeForType(type); // Добавляем метод для получения времени постройки
+
+            // Сразу открываем диалог ввода кода
+            _quickDialog.OpenDialog(session, "Код маячка", "Введите код строительного маячка:", (string message) =>
+            {
+                var found = false;
+                var buildQuery = EntityQueryEnumerator<ShiftBuildLightComponent>();
+
+                while (buildQuery.MoveNext(out var lightUid, out var lightComp))
+                {
+                    if (lightComp.BuildingCode == message)
+                    {
+                        found = true;
+                        comp.BuildingLight = lightUid;
+                        _prayerSystem.SendSubtleMessage(session, session, "Код принят, начинаем строительство", "Успешно");
+
+                        // Пытаемся сразу начать строительство
+                        TryBuild(uid, comp, session, lightUid);
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    _prayerSystem.SendSubtleMessage(session, session, "Неверный код маячка", "Ошибка");
+                }
+            });
         }
 
+        private int GetBuildTimeForType(string type)
+        {
+            return type switch
+            {
+                "казарма" => 60,
+                "турель" => 25,
+                "вышка" => 35,
+                "припасы" => 25,
+                "экстрактор" => 10,
+                "конвертер" => 40,
+                "мортира" => 90,
+                "лаборатория" => 40,
+                "фабрикатор дронов" => 40,
+                "станция РЭБ" => 20,
+                "хранилище" => 20,
+                "мина" => 10,
+                "МТЛБ" => 120,
+                "БМП" => 120,
+                "танк" => 120,
+                _ => 30
+            };
+        }
         public void TryBuild(EntityUid uid, ShiftConsoleBuildComponent comp, ICommonSession session, EntityUid light)
         {
-            if (comp.IsBuilding)
-            {
-                _prayerSystem.SendSubtleMessage(session, session, "Сейчас уже что-то строится", "Отказано");
-                return;
-            }
-            if (comp.BuildingCode == "")
-            {
-                _prayerSystem.SendSubtleMessage(session, session, "Используйте shift + лкм на строительном маячке, чтобы узнать его код и введите его в строительную консоль", "Нужен код");
-                return;
-            }
-            if (comp.BuildingType == "")
-            {
-                _prayerSystem.SendSubtleMessage(session, session, "Вам необходимо выбрать тип постройки через ПКМ-меню", "Выберите постройку");
-                return;
-            }
+            // Проверка размещения маячка
             if (!HasComp<MapComponent>(Transform(light).ParentUid))
             {
-                _prayerSystem.SendSubtleMessage(session, session, "Строительный маячок должен находиться на земле", "Положите маячок");
+                _prayerSystem.SendSubtleMessage(session, session,
+                    "Строительный маячок должен находиться на земле",
+                    "Положите маячок");
                 return;
             }
+
+            // Проверка расстояния до других структур
             if (!CheckForStructures(light))
             {
-                _prayerSystem.SendSubtleMessage(session, session, "Постройка не может быть расположена слишком близко к другой структуре", "Соблюдайте интервал");
+                _prayerSystem.SendSubtleMessage(session, session,
+                    "Постройка не может быть расположена слишком близко к другой структуре",
+                    "Соблюдайте интервал");
                 return;
             }
+
+            // Получаем консоль ресурсов
             if (!TryComp<ShiftConsoleResourceComponent>(GetResourceConsole(uid, comp), out var rescomp))
             {
-                _prayerSystem.SendSubtleMessage(session, session, "Необходима консоль размещения ресурсов", "Нет консоли ресурсов");
+                _prayerSystem.SendSubtleMessage(session, session,
+                    "Необходима консоль размещения ресурсов",
+                    "Нет консоли ресурсов");
                 return;
             }
-            switch (comp.BuildingType)
+
+            // Определяем стоимость постройки
+            var (polymerCost, bioCost, nanoCost) = comp.BuildingType switch
             {
-                case "казарма":
-                    if (!TryWasteResource(rescomp, 150, 0, 0, session))
-                        return;
-                    break;
-                case "турель":
-                    if (!TryWasteResource(rescomp, 60, 0, 0, session))
-                        return;
-                    break;
-                case "вышка":
-                    if (!TryWasteResource(rescomp, 75, 100, 0, session))
-                        return;
-                    break;
-                case "припасы":
-                    if (!TryWasteResource(rescomp, 115, 65, 0, session))
-                        return;
-                    break;
-                case "экстрактор":
-                    if (!TryWasteResource(rescomp, 40, 0, 0, session))
-                        return;
-                    break;
-                case "конвертер":
-                    if (!TryWasteResource(rescomp, 75, 75, 5, session))
-                        return;
-                    break;
-                case "мортира":
-                    if (!TryWasteResource(rescomp, 750, 1000, 200, session))
-                        return;
-                    break;
-                case "лаборатория":
-                    if (!TryWasteResource(rescomp, 115, 150, 5, session))
-                        return;
-                    break;
-                case "фабрикатор дронов":
-                    if (!TryWasteResource(rescomp, 180, 50, 10, session))
-                        return;
-                    break;
-                case "станция РЭБ":
-                    if (!TryWasteResource(rescomp, 35, 15, 0, session))
-                        return;
-                    break;
-                case "хранилище":
-                    if (!TryWasteResource(rescomp, 70, 0, 0, session))
-                        return;
-                    break;
-                case "мина":
-                    if (!TryWasteResource(rescomp, 10, 10, 0, session))
-                        return;
-                    break;
-                case "МТЛБ":
-                    if (!TryWasteResource(rescomp, 145, 45, 0, session))
-                        return;
-                    break;
-                case "БМП":
-                    if (!TryWasteResource(rescomp, 455, 100, 40, session))
-                        return;
-                    break;
-                case "танк":
-                    if (!TryWasteResource(rescomp, 545, 175, 80, session))
-                        return;
-                    break;
+                "казарма" => (150, 0, 0),
+                "турель" => (60, 0, 0),
+                "вышка" => (75, 100, 0),
+                "припасы" => (115, 65, 0),
+                "экстрактор" => (40, 0, 0),
+                "конвертер" => (75, 75, 5),
+                "мортира" => (750, 1000, 200),
+                "лаборатория" => (115, 150, 5),
+                "фабрикатор дронов" => (180, 50, 10),
+                "станция РЭБ" => (35, 15, 0),
+                "хранилище" => (70, 0, 0),
+                "мина" => (10, 10, 0),
+                "МТЛБ" => (145, 45, 0),
+                "БМП" => (455, 100, 40),
+                "танк" => (545, 175, 80),
+                _ => (0, 0, 0)
+            };
+
+            // Проверяем и списываем ресурсы
+            if (rescomp.Polymer < polymerCost || rescomp.BioShlak < bioCost || rescomp.NanoCarbon < nanoCost)
+            {
+                _prayerSystem.SendSubtleMessage(session, session,
+                    $"Необходимо: {polymerCost} полимера, {bioCost} биошлака, {nanoCost} нанокарбона",
+                    "Недостаточно ресурсов");
+                return;
             }
+
+            // Списание ресурсов
+            rescomp.Polymer -= polymerCost;
+            rescomp.BioShlak -= bioCost;
+            rescomp.NanoCarbon -= nanoCost;
+
+            // Начинаем строительство
             comp.IsBuilding = true;
             comp.CurrentBuildTimer = comp.FutureTimer;
+            comp.BuildingLight = light;
+
+            // Сообщение об успешном начале строительства
+            _prayerSystem.SendSubtleMessage(session, session,
+                $"Строительство {comp.BuildingType} начато! Не двигайте маячок.",
+                "Строительство");
+
+            // Логирование для отладки
+            Logger.Info($"Started building {comp.BuildingType} at {Transform(light).Coordinates}");
         }
 
         public EntityUid GetResourceConsole(EntityUid uid, ShiftConsoleBuildComponent comp)
