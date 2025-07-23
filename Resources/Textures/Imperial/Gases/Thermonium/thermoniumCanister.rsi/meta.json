@@ -8,6 +8,45 @@
   },
   "states": [
     {
+      "name": "scrubber-connector"
+    },
+    {
+      "name": "scrubber-open"
+    },
+    {
+      "name": "can-connector"
+    },
+    {
+      "name": "locked"
+    },
+    {
+      "name": "unlocked"
+    },
+    {
+      "name": "can-o0",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "can-o1"
+    },
+    {
+      "name": "can-o2"
+    },
+    {
+      "name": "can-o3"
+    },
+    {
+      "name": "can-oa1"
+    },
+    {
+      "name": "can-open"
+    },
+    {
       "name": "thermonium"
     },
     {
