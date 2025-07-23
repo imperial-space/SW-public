@@ -116,6 +116,153 @@
     sprite: Objects/Vehicles/wheelchair.rsi
     state: vehicle_folded
 
+- type: entity
+  id: ShiftFrontBarracks
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.15, 0.15
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: humanbarrackblue
+    drawdepth: Mobs
 
+- type: entity
+  id: ShiftFrontSupplies
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.15, 0.15
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: factoryblue
+    drawdepth: Mobs
 
-    #drawdepth: Mobs
+- type: entity
+  id: ShiftFrontConverter
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.15, 0.15
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: recyclerblue
+    drawdepth: Mobs
+####
+- type: entity
+  id: ShiftFrontTurretBlue
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.35, 0.35
+    sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+    state: turretblue
+    drawdepth: Mobs
+
+- type: entity
+  id: ShiftFrontTurretRed
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.35, 0.35
+    sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+    state: turretred
+    drawdepth: Mobs
+
+- type: entity
+  id: ShiftFrontTurretGreen
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.35, 0.35
+    sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+    state: turretgreen
+    drawdepth: Mobs
+
+- type: entity
+  id: ShiftFrontTurretYellow
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.35, 0.35
+    sprite: Objects/Weapons/Guns/Turrets/turrets.rsi
+    state: turretyellow
+    drawdepth: Mobs
+####
+
+- type: entity
+  id: ShiftFrontScience
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.15, 0.15
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: laboratoryblue
+    drawdepth: Mobs
+
+- type: entity
+  id: ShiftFrontDrone
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.15, 0.15
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: robotbarracksblue
+    drawdepth: Mobs
+
+- type: entity
+  id: ShiftFrontStorage
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.15, 0.15
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: storageblue
+    drawdepth: Mobs
+####
+- type: entity
+  id: ShiftFrontExtractorYellowIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.4, 0.4
+    sprite: Imperial/ShiftFront/light.rsi
+    state: mineryellow
+    drawdepth: Mobs
+
+- type: entity
+  id: ShiftFrontExtractorGreenIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.4, 0.4
+    sprite: Imperial/ShiftFront/light.rsi
+    state: minergreen
+    drawdepth: Mobs
+
+- type: entity
+  id: ShiftFrontExtractorRedIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.4, 0.4
+    sprite: Imperial/ShiftFront/light.rsi
+    state: minerred
+    drawdepth: Mobs
+
+- type: entity
+  id: ShiftFrontExtractorBlueIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.4, 0.4
+    sprite: Imperial/ShiftFront/light.rsi
+    state: minerblue
+    drawdepth: Mobs
+####
+
+- type: entity
+  id: ShiftFrontREB
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.3, 0.3
+    sprite: Imperial/ShiftFront/light.rsi
+    state: rebblue

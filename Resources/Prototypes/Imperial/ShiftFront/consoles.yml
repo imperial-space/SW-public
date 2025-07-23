@@ -214,6 +214,14 @@
   parent: BaseWeaponBallisticTurret
   id: WeaponTurretShiftFrontBlue
   components:
+  - type: HTN
+    rootTask:
+      task: TurretCompound
+    blackboard:
+      RotateSpeed: !type:Single
+        4.141
+      SoundTargetInLOS: !type:SoundPathSpecifier
+        path: /Audio/Effects/double_beep.ogg
   - type: NpcFactionMember
     factions:
       - ShiftFrontBlue
@@ -221,9 +229,9 @@
     layers:
     - state: turretblue
   - type: Gun
-    fireRate: 4.5
-    minAngle: 12
-    maxAngle: 12
+    fireRate: 6
+    minAngle: 16
+    maxAngle: 16
   - type: ShiftFPVDrone
     explosive: false
     pacif: false
@@ -234,13 +242,17 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 550
+        damage: 700
       behaviors:
       - !type:PlaySoundBehavior
         sound:
           collection: GlassBreak
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontTurretBlue
 
 - type: entity
   parent: WeaponTurretShiftFrontBlue ###
@@ -255,6 +267,10 @@
   - type: ShiftStructure
     faction: Red
     structure: Turret
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontTurretRed
 
 - type: entity
   parent: BaseComputerShiftFront
@@ -310,6 +326,10 @@
   - type: ShiftStructure
     faction: Blue
     structure: REB
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontREB
 
 - type: entity
   parent: ShiftFrontREBBlue ###
@@ -323,6 +343,10 @@
     state: rebred
   - type: ShiftStructure
     faction: Red
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontREB
 
 - type: entity
   parent: ShiftFrontREBBlue ###
@@ -336,6 +360,10 @@
     state: rebgreen
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontREB
 
 - type: entity
   parent: ShiftFrontREBBlue ###
@@ -349,6 +377,10 @@
     state: rebyellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontREB
 
 - type: entity
   parent: BaseStrtuctureShiftFront
@@ -423,6 +455,10 @@
   - type: ShiftStructure
     faction: Blue
     structure: Supplies
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontSupplies
 
 - type: entity
   parent: BaseStrtuctureShiftFront
@@ -449,6 +485,10 @@
   - type: ShiftStructure
     faction: Red
     structure: Supplies
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontSupplies
 
 - type: entity
   parent: BaseStrtuctureShiftFront
@@ -475,6 +515,10 @@
   - type: ShiftStructure
     faction: Blue
     structure: Barracks
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontBarracks
 
 - type: entity
   parent: BaseStrtuctureShiftFront
@@ -501,6 +545,10 @@
   - type: ShiftStructure
     faction: Red
     structure: Barracks
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontBarracks
 
 - type: entity
   parent: BaseStrtuctureShiftFront
@@ -538,6 +586,10 @@
   - type: ShiftStructure
     faction: Blue
     structure: Extractor
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontExtractorBlueIcon
 
 - type: entity
   parent: BaseStrtuctureShiftFront
@@ -575,6 +627,10 @@
   - type: ShiftStructure
     faction: Red
     structure: Extractor
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontExtractorRedIcon
 
 - type: entity
   id: ShiftFrontResPointPolymer
@@ -658,6 +714,10 @@
   - type: ShiftStructure
     faction: Blue
     structure: Converter
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontConverter
 
 - type: entity
   parent: BaseStrtuctureShiftFront
@@ -684,6 +744,10 @@
   - type: ShiftStructure
     faction: Red
     structure: Converter
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontConverter
 
 - type: entity
   parent: BaseComputerShiftFront
@@ -715,6 +779,10 @@
     - state: turretgreen
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontTurretGreen
 
 - type: entity
   parent: WeaponTurretShiftFrontBlue ###
@@ -728,6 +796,10 @@
     - state: turretyellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontTurretYellow
 
 
 - type: entity
@@ -782,6 +854,10 @@
     faction: Green
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontSupplies
 
 - type: entity
   parent: ShiftFrontSuppliesBlue ###
@@ -795,6 +871,10 @@
     faction: Yellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontSupplies
 
 - type: entity
   parent: ShiftFrontBarracksBlue ###
@@ -808,6 +888,10 @@
     faction: Green
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontBarracks
 
 - type: entity
   parent: ShiftFrontBarracksBlue ###
@@ -821,6 +905,10 @@
     faction: Yellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontBarracks
 
 - type: entity
   parent: ShiftFrontExtractorBlue ###
@@ -834,6 +922,10 @@
     state: minergreen
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontExtractorGreenIcon
 
 - type: entity
   parent: ShiftFrontExtractorBlue ###
@@ -847,6 +939,10 @@
     state: mineryellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontExtractorYellowIcon
 
 - type: entity
   parent: ShiftConverterBlue ###
@@ -860,6 +956,10 @@
     faction: Green
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontConverter
 
 - type: entity
   parent: ShiftConverterBlue ###
@@ -873,6 +973,10 @@
     faction: Yellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontConverter
 
 - type: entity
   parent: BaseItem
@@ -1027,6 +1131,10 @@
   - type: ShiftStructure
     faction: Blue
     structure: DroneFactory
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontDrone
 
 - type: entity
   parent: ShiftFrontDroneBlue ###
@@ -1040,6 +1148,10 @@
     faction: Red
   - type: ShiftStructure
     faction: Red
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontDrone
 
 - type: entity
   parent: ShiftFrontDroneBlue ###
@@ -1053,6 +1165,10 @@
     faction: Yellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontDrone
 
 - type: entity
   parent: ShiftFrontDroneBlue ###
@@ -1066,6 +1182,10 @@
     faction: Green
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontDrone
 
 - type: entity
   parent: BaseStrtuctureShiftFront
@@ -1093,6 +1213,11 @@
   - type: ShiftStructure
     faction: Blue
     structure: Science
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontScience
+
 
 - type: entity
   parent: ShiftFrontScienceBlue ###
@@ -1106,6 +1231,11 @@
     faction: Red
   - type: ShiftStructure
     faction: Red
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontScience
+
 
 - type: entity
   parent: ShiftFrontScienceBlue ###
@@ -1119,6 +1249,10 @@
     faction: Green
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontScience
 
 - type: entity
   parent: ShiftFrontScienceBlue ###
@@ -1132,6 +1266,10 @@
     faction: Yellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontScience
 
 - type: entity
   parent: [CrateGenericSteel, ContentsExplosionResistanceBase]
@@ -1243,6 +1381,10 @@
   - type: ShiftStructure
     faction: Blue
     structure: Storage
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontStorage
 
 - type: entity
   parent: ShiftFrontStorageBlue ###
@@ -1256,6 +1398,10 @@
     faction: Red
   - type: ShiftStructure
     faction: Red
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontStorage
 
 - type: entity
   parent: ShiftFrontStorageBlue ###
@@ -1269,6 +1415,10 @@
     faction: Green
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontStorage
 
 - type: entity
   parent: ShiftFrontStorageBlue ###
@@ -1282,3 +1432,7 @@
     faction: Yellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontStorage
