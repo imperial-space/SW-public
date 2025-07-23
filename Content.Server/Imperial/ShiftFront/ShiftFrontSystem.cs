@@ -1091,6 +1091,7 @@ namespace Content.Server.ShiftFront
                         if (_random.Prob(0.4f) && comp.InsideControllerEntity != null)
                         {
                             Spawn("AdminInstantEffectSmoke3", Transform(comp.InsideControllerEntity.Value).Coordinates);
+                            Spawn("AdminInstantEffectSmoke3", Transform(uid).Coordinates);
                         }
                     }
                     if (TryComp<DamageableComponent>(uid, out var dam2) && dam2.TotalDamage.Float() > comp.FireStep)
@@ -1098,6 +1099,7 @@ namespace Content.Server.ShiftFront
                         if (_random.Prob(0.7f) && comp.InsideEntryEntity != null)
                         {
                             Spawn("MedievalHitMarkerTankFire", Transform(comp.InsideEntryEntity.Value).Coordinates);
+                            Spawn("AdminInstantEffectSmoke3", Transform(uid).Coordinates);
                         }
 
                     }
