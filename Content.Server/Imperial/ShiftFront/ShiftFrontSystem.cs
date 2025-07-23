@@ -1074,7 +1074,7 @@ namespace Content.Server.ShiftFront
                     var coords = xform.Coordinates;
                     foreach (var target in _lookup.GetEntitiesInRange(coords, 8.5f))
                     {
-                        if (TryComp<ShiftFPVDroneComponent>(target, out var drone) && drone.Faction != comp.Faction)
+                        if (TryComp<ShiftFPVDroneComponent>(target, out var drone) && drone.Faction != comp.Faction && !drone.TankPart)
                         {
                             _jitter.DoJitter(target, TimeSpan.FromSeconds(1f), true, amplitude: 5f);
                             _stun.TryParalyze(target, TimeSpan.FromSeconds(3f), true);
