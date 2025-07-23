@@ -12,7 +12,7 @@ public sealed partial class ShiftMapComponent : Component
     [DataField]
     public float mapY = 103f;
     [DataField]
-    public float offsetX = 33f;
+    public float offsetX = 29f;
     [DataField]
     public float offsetY = -123f;
     [DataField]
