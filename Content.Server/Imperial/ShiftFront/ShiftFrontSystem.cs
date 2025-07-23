@@ -952,6 +952,7 @@ namespace Content.Server.ShiftFront
                             new Vector2(recomp.offsetX, recomp.offsetY),
                             new Vector2(recomp.mapX, recomp.mapY));
                         _transform.SetWorldPosition(LinkedMipple, nc);
+                        _metaData.SetEntityName(LinkedMipple, EnsureComp<MetaDataComponent>(uid).EntityName);
                     }
                 }
 
