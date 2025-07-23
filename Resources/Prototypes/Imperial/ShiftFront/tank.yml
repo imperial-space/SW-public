@@ -280,7 +280,7 @@
     - trigger: !type:DamageTrigger {damage: 1000}
       behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
   - type: ShiftTankHull
-    smokeStep: 500
+    smokeStep: 600
     fireStep: 850
     insideController: TankPartController
     insideGunner: TankPartGunner
@@ -436,8 +436,8 @@
       state: closed
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
-    smokeStep: 200
-    fireStep: 315
+    smokeStep: 250
+    fireStep: 425
     fPVResist: 1.3
     moveSpeed: 4.3
     turnRate: 0.04
@@ -447,10 +447,10 @@
     gridLink:
     - "/Maps/Imperial/mtlb.yml"
   - type: MobThresholds
-    thresholds: {0: Alive, 450: Dead}
+    thresholds: {0: Alive, 550: Dead}
   - type: Destructible
     thresholds:
-    - trigger: !type:DamageTrigger {damage: 450}
+    - trigger: !type:DamageTrigger {damage: 550}
       behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
   - type: Damageable
     damageContainer: ShiftFrontLightTank
