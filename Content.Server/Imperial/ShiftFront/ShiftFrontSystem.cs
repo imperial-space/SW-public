@@ -170,6 +170,7 @@ namespace Content.Server.ShiftFront
 
             args.PushMarkup($"Фракция: {comp.Faction}");
             args.PushMarkup($"Запрос: [color=yellow]{comp.BuildingTypeId}[/color]");
+            args.PushMarkup($"Код маячка: [color=green]{comp.BuildingTypeId}[/color]");
             args.PushMarkup($"Солдат: [color=cyan]{comp.RequesterName}[/color]");
             args.PushMarkup($"Время: [color=gray]{timeText}[/color]");
         }
