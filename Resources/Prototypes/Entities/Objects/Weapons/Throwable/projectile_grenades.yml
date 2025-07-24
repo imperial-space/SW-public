@@ -45,7 +45,7 @@
     capacity: 30
   - type: EmitSoundOnTrigger
     sound:
-      path: "/Audio/Effects/flash_bang.ogg"
+      path: "/Audio/Imperial/ShiftFront/grenade_init.ogg"
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
   - type: OnUseTimerTrigger
@@ -98,7 +98,7 @@
     capacity: 30
   - type: OnUseTimerTrigger
     beepSound:
-      path: "/Audio/Effects/beep1.ogg"
+      path: "/Audio/Imperial/ShiftFront/grenade_init.ogg"
       params:
         volume: 5
     initialBeepDelay: 0

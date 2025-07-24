@@ -22,7 +22,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 10
+        damage: 100000 # shiftfront
       behaviors:
       - !type:TriggerBehavior
       - !type:DoActsBehavior
@@ -48,17 +48,17 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 7
+    maxIntensity: 5
     intensitySlope: 3
     totalIntensity: 90 # about a ~4 tile radius
     canCreateVacuum: false
   - type: OnUseTimerTrigger
     beepSound:
-      path: "/Audio/Effects/beep1.ogg"
+      path: "/Audio/Imperial/ShiftFront/grenade_init.ogg"
       params:
         volume: 5
     initialBeepDelay: 0
-    beepInterval: 2 # 2 beeps total (at 0 and 2)
+    beepInterval: 10 # 2 beeps total (at 0 and 2)
 
 - type: entity
   name: flashbang
@@ -72,7 +72,7 @@
     range: 7
   - type: SoundOnTrigger
     sound:
-      path: "/Audio/Effects/flash_bang.ogg"
+      path: "/Audio/Imperial/ShiftFront/grenade_init.ogg"
   - type: DeleteOnTrigger
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect

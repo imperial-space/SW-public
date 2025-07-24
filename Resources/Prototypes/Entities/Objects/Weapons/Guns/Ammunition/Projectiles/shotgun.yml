@@ -43,8 +43,8 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 7
-        Structural: 10
+        Piercing: 7.5
+        Structural: 2
     suppression: 0.6
 
 - type: entity
