@@ -206,7 +206,7 @@
     sprite: Imperial/ShiftFront/tank.rsi
     drawdepth: Mobs
     layers:
-    - state: tankturret
+    - state: BMPbashnya
   - type: ItemSlots
     slots:
       gun_magazine:

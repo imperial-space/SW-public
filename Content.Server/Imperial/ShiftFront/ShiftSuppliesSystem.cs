@@ -424,8 +424,8 @@ namespace Content.Server.ShiftFront
                         {
                             Act = () =>
                             {
-                                comp.ChosenGen = "дрон FPV";
-                                _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить выбранный дрон FPV раз в какое-то время", "Выбрано");
+                                comp.ChosenGen = "камикадзе FPV";
+                                _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить выбранный камикадзе FPV раз в какое-то время", "Выбрано");
                             },
                             Text = "Камикадзе FPV",
                             Priority = 2,
@@ -435,7 +435,7 @@ namespace Content.Server.ShiftFront
                         Act = () =>
                         {
                             comp.ChosenGen = "наблюдатель FPV";
-                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить выбранный дрон FPV раз в какое-то время", "Выбрано");
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить выбранный наблюдатель FPV раз в какое-то время", "Выбрано");
                         },
                         Text = "Наблюдатель FPV",
                         Priority = 1,
@@ -569,11 +569,11 @@ namespace Content.Server.ShiftFront
                             case "очки для FPV":
                                 Spawn("ClothingHeadFPVMask", coords);
                                 break;
-                            case "дрон FPV":
-                                Spawn("MobFPVDrone" + comp.Faction, coords);
+                            case "камикадзе FPV":
+                                Spawn("ShiftFPVBoxEx" + comp.Faction, coords);
                                 break;
                             case "наблюдатель FPV":
-                                Spawn("MobFPVDroneObserver" + comp.Faction, coords);
+                                Spawn("ShiftFPVBoxObserver" + comp.Faction, coords);
                                 break;
                             case "":
                                 break;

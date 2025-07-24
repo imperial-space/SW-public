@@ -291,3 +291,115 @@
     languages:
       Chineese: Speak
   - type: Speech
+
+- type: entity
+  id: ShiftFPVBoxObserverBlue
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxw
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneObserverBlue
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxObserverRed
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxw
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneObserverRed
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxObserverGreen
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxw
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneObserverGreen
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxObserverYellow
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxw
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneObserverYellow
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxExBlue
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvbox
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneBlue
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxExRed
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvbox
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneRed
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxExGreen
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvbox
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneGreen
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxExYellow
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvbox
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneYellow
+    doAfter: 3
+    deleteOnInteract: true
