@@ -20,6 +20,8 @@
     radius: 2.5
     color: orange
     energy: 9.5
+  - type: Projectile
+    flyByCoverTime: 10
 
 - type: entity
   id: BulletRPG8LargeRadius

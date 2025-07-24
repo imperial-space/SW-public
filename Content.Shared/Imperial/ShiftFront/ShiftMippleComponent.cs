@@ -45,4 +45,10 @@ public sealed partial class ShiftFrontRequestConsoleComponent : Component
 public sealed partial class ShiftFrontTrashComponent : Component
 {
 }
+[RegisterComponent]
+public sealed partial class ShiftFrontCoverComponent : Component
+{
+    [DataField]
+    public float CoverChanse = 0.65f;
+}
 

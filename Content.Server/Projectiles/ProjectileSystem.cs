@@ -13,6 +13,8 @@ using Content.Shared.ShiftFront.Components;
 using System.Linq;
 using Content.Shared.Movement.Systems;
 using System.Numerics;
+using Robust.Shared.Timing;
+using Robust.Shared.Random;
 
 namespace Content.Server.Projectiles;
 
@@ -25,12 +27,20 @@ public sealed class ProjectileSystem : SharedProjectileSystem
     [Dependency] private readonly GunSystem _guns = default!;
     [Dependency] private readonly SharedCameraRecoilSystem _sharedCameraRecoil = default!;
     [Dependency] private readonly SharedContentEyeSystem _eye = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<ProjectileComponent, StartCollideEvent>(OnStartCollide);
+        SubscribeLocalEvent<ProjectileComponent, ComponentStartup>(OnStartup);
+    }
+
+    private void OnStartup(EntityUid uid, ProjectileComponent component, ref ComponentStartup args)
+    {
+        component.SpawnTime = _timing.CurTime;
     }
 
     private void OnStartCollide(EntityUid uid, ProjectileComponent component, ref StartCollideEvent args)
@@ -50,6 +60,19 @@ public sealed class ProjectileSystem : SharedProjectileSystem
                 _eye.SetZoom(args.OtherEntity, new Vector2(zoom, zoom));
                 _eye.SetMaxZoom(args.OtherEntity, new Vector2(zoom, zoom));
                 //_audio.PlayEntity("/Audio/Imperial/ShiftFront/shot_swing.ogg", Filter.Entities(target), target, false, AudioParams.Default.WithVolume(6f));
+            }
+        }
+        if (args.OurFixtureId == ProjectileFixture)
+        {
+            if (TryComp<ShiftFrontCoverComponent>(args.OtherEntity, out var cover))
+            {
+                if (component.SpawnTime + component.FlyByCoverTime <= _timing.CurTime)
+                {
+                    if (_random.Prob(1f - cover.CoverChanse))
+                        return;
+                }
+                else
+                    return;
             }
         }
         // This is so entities that shouldn't get a collision are ignored.

@@ -401,6 +401,10 @@
   - type: ShiftStructure
     faction: Blue
     structure: MedTower
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontMedIcon
 
 - type: entity
   parent: ShiftFrontMedTowerBlue ###
@@ -412,6 +416,10 @@
     faction: Red
   - type: ShiftStructure
     faction: Red
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontMedIcon
 
 - type: entity
   parent: BaseStrtuctureShiftFront
@@ -813,6 +821,10 @@
     faction: Green
   - type: ShiftStructure
     faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontMedIcon
 
 - type: entity
   parent: ShiftFrontMedTowerBlue ###
@@ -824,6 +836,10 @@
     faction: Yellow
   - type: ShiftStructure
     faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontMedIcon
 
 - type: entity
   parent: ShiftFrontSuppliesBlue ###
@@ -1422,36 +1438,45 @@
 
 - type: entity
   id: ShiftFrontSandbags
-  parent: MedievalBannerBase
+  parent: BaseStructure
   components:
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
+  - type: PlaceableSurface
+  - type: Climbable
+    delay: 4.0
+  - type: Clickable
+  - type: Transform
+    anchored: true
   - type: Sprite
     sprite: Imperial/Shiftfront/light.rsi
     state: bags
-  - type: Physics
-    bodyType: Static
-  - type: Damageable
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
-        density: 190
+        density: 55
         mask:
-        - MachineMask
+        - FullTileMask
         layer:
-        - Opaque
         - MidImpassable
-        - HighImpassable
+        - LowImpassable
         - BulletImpassable
+  - type: ShiftFrontCover
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 550
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/cig_snuff.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: BaseComputerShiftFront

@@ -274,7 +274,7 @@
   - !type:TileNotBlocked
 
 - type: construction
-  hide: true # imperial medieval craft disable
+  hide: false # imperial medieval craft disable
   name: Решётка # Imperial Recipes Locale
   id: Grille
   graph: Grille

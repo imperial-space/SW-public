@@ -104,4 +104,10 @@ public sealed partial class ProjectileComponent : Component
 
     [DataField]
     public List<EntityUid> Suppressed = new();
+
+    [DataField]
+    public TimeSpan SpawnTime = TimeSpan.Zero;
+
+    [DataField]
+    public TimeSpan FlyByCoverTime = TimeSpan.FromSeconds(0.04f);
 }

@@ -266,3 +266,14 @@
     scale: 0.3, 0.3
     sprite: Imperial/ShiftFront/light.rsi
     state: rebblue
+
+
+- type: entity
+  id: ShiftFrontMedIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.28, 0.28
+    sprite: Imperial/ShiftFront/light.rsi
+    state: healtow
+    drawdepth: Mobs

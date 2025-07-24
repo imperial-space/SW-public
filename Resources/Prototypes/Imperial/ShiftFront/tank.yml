@@ -107,11 +107,11 @@
         restitution: 0
         friction: 0.4
         mask:
-          - Impassable 
-          - MobMask 
+          - Impassable
+          - MobMask
         layer:
-          - Impassable 
-          - MobLayer 
+          - Impassable
+          - MobLayer
   - type: NameIdentifier
     group: GenericNumber
   - type: MouseRotator
@@ -679,6 +679,7 @@
   components:
   - type: ShiftTankBullet
   - type: Projectile
+    flyByCoverTime: 0.6
     suppression: 15
     damage:
       types:
@@ -714,6 +715,7 @@
   components:
   - type: ShiftTankBullet
   - type: Projectile
+    flyByCoverTime: 0.6
     suppression: 55
     damage:
       types:
