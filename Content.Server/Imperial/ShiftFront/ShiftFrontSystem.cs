@@ -992,11 +992,18 @@ namespace Content.Server.ShiftFront
                         if (!mipplecomp.LinkedMap.HasValue) continue;
                         EnsureComp<ShiftMapComponent>(mipplecomp.LinkedMap.Value, out var recomp);
                         var reuid = mipplecomp.LinkedMap.Value;
+
                         var nc = CalculateTabletIconPosition(new Vector2(Transform(uid).Coordinates.X, Transform(uid).Coordinates.Y),
                             new Vector2(Transform(reuid).Coordinates.X, Transform(reuid).Coordinates.Y),
                             new Vector2(recomp.entX, recomp.entY),
                             new Vector2(recomp.offsetX, recomp.offsetY),
                             new Vector2(recomp.mapX, recomp.mapY));
+                        if (TryComp<ShiftPlayerComponent>(uid, out var p) && p.Vehicle != null)
+                            nc = CalculateTabletIconPosition(new Vector2(Transform(p.Vehicle.Value).Coordinates.X, Transform(p.Vehicle.Value).Coordinates.Y),
+                                                        new Vector2(Transform(reuid).Coordinates.X, Transform(reuid).Coordinates.Y),
+                                                        new Vector2(recomp.entX, recomp.entY),
+                                                        new Vector2(recomp.offsetX, recomp.offsetY),
+                                                        new Vector2(recomp.mapX, recomp.mapY));
                         _transform.SetWorldPosition(LinkedMipple, nc);
                         _metaData.SetEntityName(LinkedMipple, EnsureComp<MetaDataComponent>(uid).EntityName);
                     }

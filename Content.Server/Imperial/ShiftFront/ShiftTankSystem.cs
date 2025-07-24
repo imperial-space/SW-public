@@ -44,6 +44,15 @@ using System.Numerics;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Interaction.Components;
 using System.Linq;
+using Content.Server.Chat.Systems;
+using Content.Server.Emp;
+using Content.Server.Radio.Components;
+using Content.Shared.Inventory.Events;
+using Content.Shared.Radio;
+using Content.Shared.Radio.Components;
+using Content.Shared.Radio.EntitySystems;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 
 namespace Content.Server.ShiftFront
 {
@@ -63,6 +72,7 @@ namespace Content.Server.ShiftFront
         [Dependency] private readonly SharedMoverController _mover = default!;
         [Dependency] private readonly SharedEyeSystem _eye = default!;
         [Dependency] private readonly MindSystem _mind = default!;
+        [Dependency] private readonly ChatSystem _chat = default!;
 
         public override void Initialize()
         {
@@ -78,6 +88,14 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftTankHullComponent, ExaminedEvent>(OnExamine);
             SubscribeLocalEvent<ShiftTankpartComponent, ActivateInWorldEvent>(OnActivate);
             SubscribeLocalEvent<ShiftTankHullComponent, ActivateInWorldEvent>(OnActivateTank);
+            SubscribeLocalEvent<ShiftPlayerComponent, EntitySpokeEvent>(OnSpeak);
+
+        }
+
+        private void OnSpeak(EntityUid uid, ShiftPlayerComponent comp, EntitySpokeEvent args)
+        {
+            if (comp.Vehicle == null) return;
+            _chat.TrySendInGameICMessage(comp.Vehicle.Value, args.Message, InGameICChatType.Whisper, false, nameOverride: "голос изнутри техники");
         }
         private void TankEnd(EntityUid uid, ShiftTankHullComponent comp, ref ComponentShutdown args)
         {
@@ -96,6 +114,8 @@ namespace Content.Server.ShiftFront
             var xform = Transform(comp.InsideEntryEntity.Value);
             var coords = xform.Coordinates;
             _transform.SetCoordinates(args.User, coords);
+            if (player != null)
+                player.Vehicle = uid;
         }
         public void TurretStart(EntityUid uid, ShiftTankTurretComponent component, ComponentStartup args)
         {
@@ -119,6 +139,8 @@ namespace Content.Server.ShiftFront
                     var xform = Transform(comp.Tank.Value);
                     var coords = xform.Coordinates;
                     _transform.SetCoordinates(args.User, coords);
+                    if (TryComp<ShiftPlayerComponent>(args.User, out var player))
+                        player.Vehicle = null;
                     break;
                 case "Observer":
                     break;

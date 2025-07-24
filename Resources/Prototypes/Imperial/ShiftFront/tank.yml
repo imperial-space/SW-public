@@ -8,7 +8,6 @@
   - type: Input
     context: "human"
   - type: MindContainer
-  - type: Muted
   - type: AlwaysInFov
   - type: FieldOfView
     angle: 90
@@ -548,7 +547,7 @@
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: BMPblue
+      state: MTLBblue
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
     faction: Blue
@@ -563,7 +562,7 @@
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: BMPred
+      state: MTLBred
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
     faction: Red
@@ -578,7 +577,7 @@
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: BMPgreen
+      state: MTLBgreen
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
     faction: Green
@@ -593,7 +592,7 @@
   - type: Sprite
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: BMPyellow
+      state: MTLByellow
       sprite: Imperial/ShiftFront/tank.rsi
   - type: ShiftTankHull
     faction: Yellow
@@ -744,7 +743,6 @@
 - type: entity
   id: MobShiftTankObserver
   components:
-  - type: Muted
   - type: AlwaysInFov
   - type: Speech
   - type: EyeCursorOffset

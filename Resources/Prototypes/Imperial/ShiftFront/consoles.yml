@@ -1442,7 +1442,7 @@
   components:
   - type: Damageable
     damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: FrontBags
   - type: PlaceableSurface
   - type: Climbable
     delay: 4.0
@@ -1450,7 +1450,7 @@
   - type: Transform
     anchored: true
   - type: Sprite
-    sprite: Imperial/Shiftfront/light.rsi
+    sprite: Imperial/ShiftFront/light.rsi
     state: bags
   - type: Fixtures
     fixtures:
@@ -1477,6 +1477,20 @@
           path: /Audio/Effects/cig_snuff.ogg
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
+- type: damageModifierSet
+  id: FrontBags
+  coefficients:
+    Blunt: 0.6
+    Slash: 3.5
+    Piercing: 0.5
+    Shock: 1.2
+    Structural: 0.01
+  flatReductions:
+    Structural: 15
+    Blunt: 5
+    Piercing: 5
+    Heat: 5
 
 - type: entity
   parent: BaseComputerShiftFront
@@ -1528,3 +1542,26 @@
   - type: Item
     size: Tiny
   - type: ShiftFrontRequest
+
+- type: entity
+  parent: BaseItem
+  id: ShiftFrontSandbagsItem
+  suffix: White
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: bag
+  - type: Item
+  - type: Stack
+    stackType: FrontSandbags
+    count: 3
+  - type: SpawnAfterInteract #Nuke after convert to FloorTile
+    prototype: ShiftFrontSandbags
+    doAfter: 10
+    removeOnInteract: true
+
+- type: stack
+  id: FrontSandbags
+  name: stack-frontbags-tile
+  spawn: ShiftFrontSandbagsItem
+  maxCount: 3

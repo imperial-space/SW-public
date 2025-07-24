@@ -35,4 +35,7 @@ public sealed partial class ShiftPlayerComponent : Component
     [DataField]
     public List<string> SuppressionPhrases = new();
 
+    [DataField]
+    public EntityUid? Vehicle;
+
 }

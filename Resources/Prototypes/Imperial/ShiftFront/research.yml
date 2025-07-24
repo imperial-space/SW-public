@@ -186,7 +186,15 @@
   researchName: прочные заграждения
   price: 80
   requiredResearches:
-  - ShiftFrontSupport
+  - ShiftFrontBarricade
+
+- type: ShiftFrontResearch
+  id: ShiftFrontBarricadeSandBags
+  tier: 1
+  researchName: мешки с песком
+  price: 40
+  requiredResearches:
+  - ShiftFrontBarricade
 
 - type: ShiftFrontResearch
   id: ShiftFrontSniper
@@ -256,7 +264,7 @@
   id: ShiftFrontMTLB
   tier: 1
   researchName: МТЛБ
-  price: 75
+  price: 55
   requiredResearches:
   - ShiftFrontSupplies
 
@@ -264,7 +272,7 @@
   id: ShiftFrontBMP
   tier: 2
   researchName: БМП
-  price: 195
+  price: 140
   requiredResearches:
   - ShiftFrontMTLB
 
@@ -272,7 +280,7 @@
   id: ShiftFrontTank
   tier: 3
   researchName: Танк
-  price: 255
+  price: 225
   requiredResearches:
   - ShiftFrontBMP
 

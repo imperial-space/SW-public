@@ -358,13 +358,25 @@ namespace Content.Server.ShiftFront
                         Priority = 4,
                         //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
                     });
+                if (CheckResearch("ShiftFrontBarricadeSandBags", comp.Faction))
+                    ev.Verbs.Add(new AlternativeVerb
+                    {
+                        Act = () =>
+                        {
+                            comp.ChosenGen = "мешки с песком";
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить мешки с песком раз в какое-то время", "Выбрано");
+                        },
+                        Text = "Мешки с песком",
+                        Priority = 4,
+                        //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
+                    });
                 if (CheckResearch("ShiftFrontBarricade2", comp.Faction))
                     ev.Verbs.Add(new AlternativeVerb
                     {
                         Act = () =>
                         {
                             comp.ChosenGen = "сталь";
-                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить стержни раз в какое-то время", "Выбрано");
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить сталь раз в какое-то время", "Выбрано");
                         },
                         Text = "Сталь",
                         Priority = 4,
@@ -538,6 +550,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "стержни":
                                 Spawn("PartRodMetal", coords);
+                                break;
+                            case "мешки с песком":
+                                Spawn("ShiftFrontSandbagsItem", coords);
                                 break;
                             case "сталь":
                                 Spawn("SheetSteel10", coords);
