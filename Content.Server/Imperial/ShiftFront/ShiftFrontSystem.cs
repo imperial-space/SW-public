@@ -92,7 +92,96 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftResourceExtractComponent, BeforeRangedInteractEvent>(OnUseInHand);
             SubscribeLocalEvent<ShiftPlayerComponent, CommanderBoostUpEvent>(OnCommanderBoost);
             SubscribeLocalEvent<ShiftWrenchComponent, MeleeHitEvent>(OnMeleeHit);
+            SubscribeLocalEvent<ShiftBuildLightComponent, GetVerbsEvent<AlternativeVerb>>(OnGetBuildVerbs);
+            SubscribeLocalEvent<ShiftFrontRequestComponent, ExaminedEvent>(OnExamineRequest);
+            SubscribeLocalEvent<ShiftFrontRequestComponent, AfterInteractEvent>(OnPaperUsed);
+            SubscribeLocalEvent<ShiftFrontRequestConsoleComponent, MapInitEvent>(OnRequestConsoleInit);
         }
+        private void OnRequestConsoleInit(EntityUid uid, ShiftFrontRequestConsoleComponent comp, MapInitEvent args)
+        {
+            // Устанавливаем фракцию консоли при инициализации
+            if (TryComp<ShiftStructureComponent>(uid, out var structure))
+            {
+                comp.Faction = structure.Faction;
+            }
+        }
+
+        private void OnGetBuildVerbs(EntityUid uid, ShiftBuildLightComponent comp, GetVerbsEvent<AlternativeVerb> ev)
+        {
+            if (!ev.CanAccess || !ev.CanInteract)
+                return;
+
+            if (!_sharedPlayerManager.TryGetSessionByEntity(ev.User, out var session))
+                return;
+
+            if (TryComp<ShiftPlayerComponent>(ev.User, out var shiftPlayer) && shiftPlayer.Leader)
+                return; // Для лидеров обычное меню
+
+            ev.Verbs.Add(new AlternativeVerb
+            {
+                Act = () => RequestConstruction(comp.BuildingCode, ev.User, session),
+                Text = "Запросить строительство",
+                Priority = 10,
+                Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "construction")
+            });
+        }
+
+        private void RequestConstruction(string lightUid, EntityUid requesterUid, ICommonSession session)
+        {
+            if (!TryComp<ShiftPlayerComponent>(requesterUid, out var playerComp))
+                return;
+
+            _quickDialog.OpenDialog(session, "Тип постройки", "Выберите тип постройки:", (string buildingType) =>
+            {
+                CreateRequest(requesterUid, buildingType, lightUid, playerComp.Faction);
+            });
+        }
+
+
+        private void CreateRequest(EntityUid requesterUid, string buildingType, string lightUid, string faction)
+        {
+            var query = EntityQueryEnumerator<ShiftFrontRequestConsoleComponent>();
+            while (query.MoveNext(out var consoleUid, out var consoleComp))
+            {
+                // Проверяем совпадение фракций
+                if (consoleComp.Faction != faction)
+                    continue;
+
+                var paper = Spawn("ShiftFrontPaper", _transform.GetMapCoordinates(consoleUid));
+                var requestComp = EnsureComp<ShiftFrontRequestComponent>(paper);
+
+                requestComp.RequesterName = MetaData(requesterUid).EntityName;
+                requestComp.RequestTime = _timing.CurTime;
+                requestComp.BuildingTypeId = buildingType;
+                requestComp.RequesterUid = lightUid;
+                requestComp.Faction = faction;
+
+                _metaData.SetEntityName(paper, $"[{faction}] Запрос: {buildingType}");
+                consoleComp.ActiveRequests.Add(paper);
+
+            }
+        }
+        private void OnExamineRequest(EntityUid uid, ShiftFrontRequestComponent comp, ExaminedEvent args)
+        {
+            var timePassed = _timing.CurTime - comp.RequestTime;
+            string timeText = timePassed.TotalMinutes >= 1
+                ? $"{(int)timePassed.TotalMinutes} минут назад"
+                : $"{(int)timePassed.TotalSeconds} секунд назад";
+
+            args.PushMarkup($"Фракция: {comp.Faction}");
+            args.PushMarkup($"Запрос: [color=yellow]{comp.BuildingTypeId}[/color]");
+            args.PushMarkup($"Солдат: [color=cyan]{comp.RequesterName}[/color]");
+            args.PushMarkup($"Время: [color=gray]{timeText}[/color]");
+        }
+
+        private void OnPaperUsed(EntityUid uid, ShiftFrontRequestComponent comp, AfterInteractEvent args)
+        {
+            if (args.Target == null || !HasComp<ShiftFrontTrashComponent>(args.Target))
+                return;
+            QueueDel(uid);
+
+        }
+
 
         private void OnExamineAnalis(EntityUid uid, ShiftConsoleAnalisComponent comp, ExaminedEvent args)
         {

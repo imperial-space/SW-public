@@ -8,32 +8,37 @@
     },
     "states": [
         {
-            "name": "tankhull",
-            "directions": 8
+            "name": "BMPbashnya"
         },
         {
-            "name": "BMPblue",
-            "directions": 8
+            "name": "BMPblue"
         },
         {
-            "name": "BMPgreen",
-            "directions": 8
+            "name": "BMPgreen"
         },
         {
-            "name": "BMPred",
-            "directions": 8
+            "name": "BMPred"
         },
         {
-            "name": "BMPyellow",
-            "directions": 8
+            "name": "BMPyellow"
         },
         {
-            "name": "open",
-            "directions": 8
+            "name": "MTLBblue"
         },
         {
-            "name": "closed",
-            "directions": 8
+            "name": "MTLBgreen"
+        },
+        {
+            "name": "MTLBred"
+        },
+        {
+            "name": "MTLByellow"
+        },
+        {
+            "name": "open"
+        },
+        {
+            "name": "closed"
         },
         {
             "name": "tankcorpusblue"
@@ -48,11 +53,11 @@
             "name": "tankcorpusyellow"
         },
         {
-            "name": "tankbashnya"
-        },
-        {
             "name": "tankturret",
             "directions": 8
+        },
+        {
+            "name": "tankbashnya"
         }
     ]
 }

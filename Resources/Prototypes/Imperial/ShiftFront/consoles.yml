@@ -164,23 +164,6 @@
     faction: Yellow
     points: 10
 
-# - type: entity
-#   parent: BaseComputerShiftFront
-#   id: BaseComputerShiftFrontConsoleBuildBlueFFA
-#   placement:
-#     mode: SnapgridCenter
-#   components:
-#   - type: ShiftConsoleBuild
-#     faction: Blue
-#   - type: ShiftConsoleResource
-#     faction: Blue
-#   - type: ActivatableUI
-#     key: enum.ShiftConsoleUiKey.Key
-#   - type: UserInterface
-#     interfaces:
-#       enum.ShiftConsoleUiKey.Key:
-#         type: ShiftConsoleResourceBoundUserInterface
-
 - type: entity
   parent: BaseComputerShiftFront
   id: BaseComputerShiftFrontConsoleBuildRed
@@ -1469,3 +1452,54 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleRequestBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftFrontRequestConsole
+  - type: ShiftStructure
+    faction: Blue
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleRequestRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftFrontRequestConsole
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleRequestGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftFrontRequestConsole
+  - type: ShiftStructure
+    faction: Green
+
+- type: entity
+  parent: BaseComputerShiftFront
+  id: BaseComputerShiftFrontConsoleRequestYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftFrontRequestConsole
+  - type: ShiftStructure
+    faction: Yellow
+
+- type: entity
+  parent: BaseItem
+  id: ShiftFrontPaper
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: paper
+  - type: Item
+    size: Tiny
+  - type: ShiftFrontRequest
