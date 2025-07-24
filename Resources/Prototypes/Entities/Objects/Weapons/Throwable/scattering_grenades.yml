@@ -98,6 +98,8 @@
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Machines/door_lock_off.ogg"
+  - type: Item
+    size: Huge
 
 - type: entity
   parent: [ScatteringGrenadeBase, BaseSyndicateContraband]

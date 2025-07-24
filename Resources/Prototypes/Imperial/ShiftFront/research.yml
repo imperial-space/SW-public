@@ -93,8 +93,16 @@
 - type: ShiftFrontResearch
   id: ShiftFrontGrenades2
   tier: 3
-  researchName: боевые гранаты 2
-  price: 230
+  researchName: светошумовые кластерные гранаты
+  price: 120
+  requiredResearches:
+  - ShiftFrontGrenades
+
+- type: ShiftFrontResearch
+  id: ShiftFrontGrenades3
+  tier: 3
+  researchName: разрывные кластерные гранаты
+  price: 170
   requiredResearches:
   - ShiftFrontGrenades
 

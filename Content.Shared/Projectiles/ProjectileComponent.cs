@@ -109,5 +109,5 @@ public sealed partial class ProjectileComponent : Component
     public TimeSpan SpawnTime = TimeSpan.Zero;
 
     [DataField]
-    public TimeSpan FlyByCoverTime = TimeSpan.FromSeconds(0.04f);
+    public TimeSpan FlyByCoverTime = TimeSpan.FromSeconds(0.05f);
 }

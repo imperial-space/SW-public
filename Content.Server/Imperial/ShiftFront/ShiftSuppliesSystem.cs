@@ -334,7 +334,7 @@ namespace Content.Server.ShiftFront
                         Priority = 3,
                         //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
                     });
-                if (CheckResearch("ShiftFrontGrenades2", comp.Faction))
+                if (CheckResearch("ShiftFrontGrenades3", comp.Faction))
                     ev.Verbs.Add(new AlternativeVerb
                     {
                         Act = () =>

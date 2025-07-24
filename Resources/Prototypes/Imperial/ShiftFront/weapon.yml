@@ -587,7 +587,7 @@
       tags:
         - CartridgeLightRifleShiftingFront
     proto: CartridgeLightRifleShiftingFront
-    capacity: 40
+    capacity: 35
   - type: Item
     size: Small
   - type: ContainerContainer
@@ -633,10 +633,10 @@
   components:
   #- type: Unremoveable
   - type: Projectile
-    suppression: 1.2
+    suppression: 1.4
     damage:
       types:
-        Piercing: 11
+        Piercing: 15
 
 - type: hitscan
   id: PulseShiftingFront
