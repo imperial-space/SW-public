@@ -32,9 +32,15 @@ namespace Content.Server.Imperial.Power.Components
         // Таймер для генерации плазмы во время PlasmaEvent
         [DataField]
         public TimeSpan? PlasmaTickAccumulator = null;
-        // Допустимые события для этого кристалла
+        // Допустимые типы событий для этого кристалла
         [DataField]
-        public List<Content.Server.Imperial.Power.EntitySystems.ISupermatterEvent> AllowedEvents = new();
+        public List<SupermatterEventType> AllowedEventTypes { get; set; } = new()
+        {
+            SupermatterEventType.None,
+            SupermatterEventType.Lightning,
+            SupermatterEventType.Radiation,
+            SupermatterEventType.Plasma
+        };
         // Каналы рации для оповещений
         [DataField]
         public ProtoId<RadioChannelPrototype>[] RadioChannels = { "Engineering" };
