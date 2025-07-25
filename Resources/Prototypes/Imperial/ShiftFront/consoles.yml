@@ -1134,7 +1134,7 @@
         acts: ["Destruction"]
 
 - type: entity
-  id: MedievalCatapultAmmoMM
+  id: MedievalCatapultAmmoMm
   parent: BaseItem
   components:
     - type: Sprite
