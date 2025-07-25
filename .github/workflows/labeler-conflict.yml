@@ -8,6 +8,10 @@ on:
       - reopened
       - ready_for_review
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   Label:
     if: ( github.event.pull_request.draft == false ) && ( github.actor != 'PJBot' )
@@ -18,4 +22,4 @@ jobs:
         with:
           dirtyLabel: "S: Merge Conflict"
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          commentOnDirty: "This pull request has conflicts, please resolve those before we can evaluate the pull request."
+          commentOnDirty: "В этом запросе на извлечение есть конфликты, пожалуйста, устраните их, прежде чем мы сможем оценить запрос на извлечение."
