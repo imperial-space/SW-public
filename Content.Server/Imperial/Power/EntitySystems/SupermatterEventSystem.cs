@@ -50,12 +50,8 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void OnInit(EntityUid uid, SupermatterEventComponent comp, ComponentInit args)
         {
-            comp.NextEventTimer = TimeSpan.FromSeconds(InitialEventDelaySeconds);
-            comp.AllowedEvents.Clear();
-            comp.AllowedEvents.Add(new SupermatterNoneEvent());
-            comp.AllowedEvents.Add(new SupermatterLightningEvent());
-            comp.AllowedEvents.Add(new SupermatterRadiationEvent());
-            comp.AllowedEvents.Add(new SupermatterPlasmaEvent());
+            // Инициализация событий должна происходить из конфигурации компонента
+            InitializeEventsFromPrototype(uid, comp);
         }
 
         private void OnTouched(EntityUid uid, SupermatterEventComponent comp, SupermatterTouchedEvent args)
@@ -153,7 +149,10 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 gas.AdjustMoles((int)Gas.Oxygen, 5f);
                 var coords = xform.Coordinates;
                 if (xform.GridUid == null)
+                {
+                    Log.Warning($"Supermatter plasma event triggered for entity {uid} without grid");
                     return;
+                }
                 var gridUid = xform.GridUid.Value;
                 var grid = Comp<MapGridComponent>(gridUid);
                 var tile = _mapSystem.TileIndicesFor(gridUid, grid, coords);

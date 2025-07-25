@@ -328,11 +328,8 @@
           !type:PhysShapeAabb
           bounds: "-0.2,-0.2,0.2,0.2"
         hard: false
-        layer:
-        - BulletImpassable
         mask:
-        - Impassable
-        - BulletImpassable
+        - Opaque
       fly-by: *flybyfixture
   - type: Projectile
 #   soundHit:  Waiting on serv3
