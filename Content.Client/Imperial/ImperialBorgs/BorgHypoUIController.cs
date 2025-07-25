@@ -32,7 +32,7 @@ public sealed class BorgHypoUIController : UIController
     {
         base.Initialize();
         SubscribeNetworkEvent<OpenBorgHypoUIEvent>(OnOpenUI);
-        
+
         //_input.SetInputCommand(ContentKeyFunctions.OpenEmotesMenu,
         //  InputCmdHandler.FromDelegate(_ => ToggleMenu()));
     }
@@ -125,25 +125,12 @@ public sealed class BorgHypoUIController : UIController
         if (_activeHypo == null || !_entityManager.TryGetComponent<BorgHypoComponent>(_activeHypo.Value, out var component))
             return;
 
-        var currentReagentId = component.Solutions.ElementAtOrDefault(component.CurrentIndex)?.GetPrimaryReagentId();
-
-        if (currentReagentId == prototype.ID)
-        {
-            var samePopup = _entityManager.System<PopupSystem>();
-            samePopup.PopupClient(Loc.GetString("borghypo-ui-controller-same-reagent-popup"),
-                _activeHypo.Value,
-                _playerManager.LocalSession?.AttachedEntity);
-
-            CloseMenu();
-            return;
-        }
-
         var netEntity = _entityManager.GetNetEntity(_activeHypo.Value);
         var msg = new ChangeReagentEvent(prototype.ID, netEntity);
         _net.SendSystemNetworkMessage(msg);
 
-        var changedPopup = _entityManager.System<PopupSystem>();
-        changedPopup.PopupClient(Loc.GetString("borghypo-ui-controller-change-reagent-popup", ("reagent", prototype.LocalizedName)),
+        var popup = _entityManager.System<PopupSystem>();
+        popup.PopupClient(Loc.GetString("borghypo-ui-controller-change-reagent-popup", ("reagent", prototype.LocalizedName)),
             _activeHypo.Value,
             _playerManager.LocalSession?.AttachedEntity);
 
