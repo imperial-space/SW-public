@@ -32,7 +32,7 @@ public sealed class BorgHypoUIController : UIController
     {
         base.Initialize();
         SubscribeNetworkEvent<OpenBorgHypoUIEvent>(OnOpenUI);
-
+        
         //_input.SetInputCommand(ContentKeyFunctions.OpenEmotesMenu,
         //  InputCmdHandler.FromDelegate(_ => ToggleMenu()));
     }
@@ -122,7 +122,7 @@ public sealed class BorgHypoUIController : UIController
 
     private void HandleRadialButtonClick(ReagentPrototype prototype)
     {
-        if (_activeHypo == null || !_entityManager.TryGetComponent<BorgHypoComponent>(_activeHypo.Value, out var component))
+        if (_activeHypo == null || !_entityManager.TryGetComponent<BorgHypoComponent>(_activeHypo.Value, out var _))
         {
             return;
         }
