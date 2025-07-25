@@ -238,6 +238,18 @@ namespace Content.Server.ShiftFront
                         Priority = 3,
                         Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
                     });
+                if (CheckResearch("ShiftFrontMm", comp.Faction))
+                    ev.Verbs.Add(new AlternativeVerb
+                    {
+                        Act = () =>
+                        {
+                            comp.ChosenGen = "боеприпас миномета";
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить боеприпас миномета раз в какое-то время", "Выбрано");
+                        },
+                        Text = "Боеприпас миномета",
+                        Priority = 3,
+                        Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammomm")
+                    });
                 if (CheckResearch("ShiftFrontWeaponLauncherRPG8", comp.Faction))
                     ev.Verbs.Add(new AlternativeVerb
                     {
@@ -517,6 +529,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "строительный маячок":
                                 Spawn("ShiftFrontBuildLight", coords);
+                                break;
+                            case "боеприпас миномета":
+                                Spawn("MedievalCatapultAmmoMm", coords);
                                 break;
                             case "боеприпас мортиры":
                                 Spawn("MedievalCatapultAmmoMortar", coords);

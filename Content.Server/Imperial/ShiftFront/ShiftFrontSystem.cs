@@ -751,6 +751,17 @@ namespace Content.Server.ShiftFront
                 });
             }
 
+            if (CheckResearch("ShiftFrontMm", comp.Faction))
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => SelectBuildType(uid, comp, session, "миномет"),
+                    Text = "Миномет",
+                    Priority = 7,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "ammostorage")
+                });
+            }
+
             if (CheckResearch("ShiftFrontScience", comp.Faction))
             {
                 ev.Verbs.Add(new AlternativeVerb
@@ -883,6 +894,7 @@ namespace Content.Server.ShiftFront
                 "экстрактор" => 10,
                 "конвертер" => 40,
                 "мортира" => 90,
+                "миномет" => 40,
                 "лаборатория" => 40,
                 "фабрикатор дронов" => 40,
                 "станция РЭБ" => 20,
@@ -933,6 +945,7 @@ namespace Content.Server.ShiftFront
                 "экстрактор" => (40, 0, 0),
                 "конвертер" => (75, 75, 5),
                 "мортира" => (750, 1000, 200),
+                "миномет" => (130, 50, 10),
                 "лаборатория" => (115, 150, 5),
                 "фабрикатор дронов" => (180, 50, 10),
                 "станция РЭБ" => (35, 15, 0),
@@ -1108,6 +1121,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "мортира":
                                 Spawn("ShiftFrontMortar" + comp.Faction, coords);
+                                break;
+                            case "миномет":
+                                Spawn("ShiftFrontMm" + comp.Faction, coords);
                                 break;
                             case "лаборатория":
                                 Spawn("ShiftFrontScience" + comp.Faction, coords);

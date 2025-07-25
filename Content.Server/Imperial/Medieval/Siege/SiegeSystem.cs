@@ -236,6 +236,10 @@ namespace Content.Server.Siege
                 Spawn("MedievalHitMarkerAp", targetCoords);
             else if (comp.LoadedShot == "stone")
                 Spawn("MedievalHitMarkerStone", targetCoords);
+            else if (comp.LoadedShot == "mortar")
+                Spawn("MedievalHitMarkerMortar", targetCoords);
+            else if (comp.LoadedShot == "mm")
+                Spawn("MedievalHitMarkerMm", targetCoords);
             comp.LoadedShot = "";
         }
         public void TryAimX(EntityUid user, EntityUid siegeUid, SiegeWeaponComponent comp)

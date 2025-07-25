@@ -354,3 +354,53 @@
     range: 6
     sound:
       path: /Audio/Imperial/Medieval/fireball_inflight.ogg
+
+
+- type: entity
+  id: MedievalHitMarkerMortar
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - MedievalHitMarkerMortar2
+      chance: 1
+      offset: 2
+
+
+- type: entity
+  id: MedievalHitMarkerMortar2
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: MedievalDemolitionCharge
+    maxIntensity: 5
+    intensitySlope: 3
+    totalIntensity: 100
+    canCreateVacuum: false
+  - type: SpawnOnTrigger
+    proto: MedievalExplosionEffect
+
+- type: entity
+  id: MedievalHitMarkerMm
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - MedievalHitMarkerMm2
+      chance: 1
+      offset: 5
+
+- type: entity
+  id: MedievalHitMarkerMm2
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: MedievalDemolitionCharge
+    maxIntensity: 3
+    intensitySlope: 3
+    totalIntensity: 60
+    canCreateVacuum: false
+  - type: SpawnOnTrigger
+    proto: MedievalExplosionEffect

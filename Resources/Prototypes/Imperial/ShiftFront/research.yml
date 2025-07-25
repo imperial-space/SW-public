@@ -225,7 +225,15 @@
   id: ShiftFrontMortar
   tier: 3
   researchName: мортира
-  price: 220
+  price: 380
+  requiredResearches:
+  - ShiftFrontMm
+
+- type: ShiftFrontResearch
+  id: ShiftFrontMm
+  tier: 2
+  researchName: миномет
+  price: 110
   requiredResearches:
   - ShiftFrontGrenades
 

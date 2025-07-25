@@ -1106,6 +1106,74 @@
         acts: ["Destruction"]
 
 - type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontMmBlue
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: SiegeWeapon
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Appearance
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/ShiftFront/minelauncher/blue.rsi
+    layers:
+      - state: ready
+        map: ["enum.CatapultVisualKey.Ready"]
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  id: MedievalCatapultAmmoMM
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: Imperial/ShiftFront/light.rsi
+      state: ammomm
+    - type: SiegeAmmo
+      ammoType: mm
+    - type: Item
+      size: Normal
+
+- type: entity
+  parent: ShiftFrontMmBlue ###
+  id: ShiftFrontMmRed
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/minelauncher/red.rsi
+
+- type: entity
+  parent: ShiftFrontMmGreen ###
+  id: ShiftFrontMmGreen
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/minelauncher/green.rsi
+
+- type: entity
+  parent: ShiftFrontMmBlue ###
+  id: ShiftFrontMmYellow
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/minelauncher/yellow.rsi
+
+
+- type: entity
   id: MedievalCatapultAmmoMortar
   parent: BaseItem
   name: moon battlemap
