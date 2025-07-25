@@ -93,12 +93,6 @@ namespace Content.Server.Imperial.Power.EntitySystems
         {
             comp.Integrity = MathF.Max(0, comp.Integrity - 10f); // 10 урона за выстрел
             SyncDamageable(uid, comp);
-            // Если uid — это пуля эмиттера, удаляем её
-            var meta = EntityManager.GetComponentOrNull<MetaDataComponent>(uid);
-            if (meta != null && meta.EntityPrototype?.ID == "EmitterBolt")
-            {
-                EntityManager.QueueDeleteEntity(uid);
-            }
         }
 
         private void OnExamined(EntityUid uid, SupermatterIntegrityComponent component, ExaminedEvent args)
