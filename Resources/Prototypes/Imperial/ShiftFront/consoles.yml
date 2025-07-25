@@ -681,6 +681,76 @@
     mippleProto: ShiftFrontResPointNanoCarbonIcon
 
 - type: entity
+  id: ShiftFrontResPointNanoCarbonSp
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - ShiftFrontResPointNanoCarbon
+      chance: 1
+      offset: 0
+
+- type: entity
+  id: ShiftFrontResPointPolymerSp
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - ShiftFrontResPointPolymer
+      chance: 1
+      offset: 0
+
+- type: entity
+  id: ShiftFrontResPointBioShlakSp
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - ShiftFrontResPointBioShlak
+      chance: 1
+      offset: 0
+
+- type: entity
+  id: WeaponTurretShiftFrontBlueSp
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - WeaponTurretShiftFrontBlue
+      chance: 1
+      offset: 0
+
+- type: entity
+  id: WeaponTurretShiftFrontRedSp
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - WeaponTurretShiftFrontRed
+      chance: 1
+      offset: 0
+
+- type: entity
+  id: WeaponTurretShiftFrontGreenSp
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - WeaponTurretShiftFrontGreen
+      chance: 1
+      offset: 0
+
+- type: entity
+  id: WeaponTurretShiftFrontYellowSp
+  parent: BaseItem
+  components:
+    - type: RandomSpawner
+      prototypes:
+        - WeaponTurretShiftFrontYellow
+      chance: 1
+      offset: 0
+
+- type: entity
   parent: BaseStrtuctureShiftFront
   id: ShiftConverterBlue
   placement:
@@ -1557,7 +1627,7 @@
     count: 3
   - type: SpawnAfterInteract #Nuke after convert to FloorTile
     prototype: ShiftFrontSandbags
-    doAfter: 10
+    doAfter: 8
     removeOnInteract: true
 
 - type: stack
@@ -1573,7 +1643,7 @@
     color: yellow
     castShadows: false
     radius: 1.12
-    energy: 12
+    energy: 25
   - type: Anchorable
   - type: TimedDespawn
     lifetime: 0.3
@@ -1584,8 +1654,8 @@
   - type: PointLight
     color: red
     castShadows: false
-    radius: 1.09
-    energy: 12
+    radius: 1.1
+    energy: 25
   - type: Anchorable
   - type: TimedDespawn
     lifetime: 0.4
@@ -1596,8 +1666,8 @@
   - type: PointLight
     color: purple
     castShadows: false
-    radius: 1.09
-    energy: 12
+    radius: 1.1
+    energy: 25
   - type: Anchorable
   - type: TimedDespawn
     lifetime: 0.4

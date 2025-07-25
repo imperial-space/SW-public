@@ -641,12 +641,12 @@
 - type: damageContainer
   id: ShiftFrontTank
   supportedGroups: [Brute]
-  supportedTypes: [Heat, Shock, AntiTank]
+  supportedTypes: [AntiTank]
 
 - type: damageContainer
   id: ShiftFrontLightTank
   supportedGroups: [Brute]
-  supportedTypes: [Heat, Shock, AntiTank, AntiLightTank]
+  supportedTypes: [AntiTank, AntiLightTank]
 
 ### Боеприпасы ###
 - type: entity

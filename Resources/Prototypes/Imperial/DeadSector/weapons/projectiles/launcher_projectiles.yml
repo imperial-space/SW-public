@@ -27,11 +27,11 @@
   id: RPG8Explosion
   damagePerIntensity:
     types:
-      Heat: 15
-      Blunt: 10
+      Heat: 35
+      Blunt: 12
       Piercing: 15
       AntiTank: 30
-      AntiLightTank: 30
+      AntiLightTank: 35
   tileBreakChance: [ 0, 0.5, 1 ]
   tileBreakIntensity: [ 0, 10, 30 ]
   tileBreakRerollReduction: 20
