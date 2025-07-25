@@ -345,6 +345,7 @@
   - type: ShiftTankHull
     faction: Red
     turretProto: ShiftFrontTankTurretRed
+    observerProto: MobShiftTankObserverRed
   - type: ShiftShowOnMap
     faction: Red
     mippleProto: ShiftFrontVehicle
@@ -366,6 +367,7 @@
   - type: ShiftTankHull
     faction: Blue
     turretProto: ShiftFrontTankTurretBlue
+    observerProto: MobShiftTankObserverBlue
   - type: ShiftShowOnMap
     faction: Blue
     mippleProto: ShiftFrontVehicle
@@ -510,6 +512,7 @@
   - type: ShiftTankHull
     faction: Green
     turretProto: ShiftFrontTankTurretGreen
+    observerProto: MobShiftTankObserverGreen
   - type: ShiftShowOnMap
     faction: Green
     mippleProto: ShiftFrontVehicle
@@ -531,6 +534,7 @@
   - type: ShiftTankHull
     faction: Yellow
     turretProto: ShiftFrontTankTurretYellow
+    observerProto: MobShiftTankObserverYellow
   - type: ShiftShowOnMap
     faction: Yellow
     mippleProto: ShiftFrontVehicle
@@ -618,19 +622,19 @@
 - type: damageModifierSet
   id: ShiftFrontTank
   coefficients:
-    Slash: 0.7
+    Slash: 0.5
     Piercing: 0.2
   flatReductions:
-    Slash: 2
+    Slash: 7
     Piercing: 10
 
 - type: damageModifierSet
   id: ShiftFrontLightTank
   coefficients:
-    Slash: 0.7
+    Slash: 0.5
     Piercing: 0.3
   flatReductions:
-    Slash: 2
+    Slash: 3
     Piercing: 8
 
 ### Контейнеры урона ###
@@ -765,6 +769,24 @@
     pvsScale: 2
   - type: ContentEye
   - type: CameraRecoil
+
+- type: entity
+  parent: [MobShiftTankObserver, BaseBlueFaction]
+  id: MobShiftTankObserverBlue
+
+- type: entity
+  parent: [MobShiftTankObserver, BaseRedFaction]
+  id: MobShiftTankObserverRed
+
+- type: entity
+  parent: [MobShiftTankObserver, BaseGreenFaction]
+  id: MobShiftTankObserverGreen
+
+- type: entity
+  parent: [MobShiftTankObserver, BaseYellowFaction]
+  id: MobShiftTankObserverYellow
+
+
 
 ### Маркеры и компоненты ###
 - type: entity

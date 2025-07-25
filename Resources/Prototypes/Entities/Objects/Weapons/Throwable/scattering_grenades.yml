@@ -86,6 +86,8 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ScatteringGrenade
+    capacity: 5
+    unspawnedCount: 5
     fillPrototype: ExGrenade
     distance: 4
   - type: OnUseTimerTrigger

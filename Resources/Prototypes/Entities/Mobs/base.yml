@@ -67,14 +67,14 @@
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 1000 # imperial medieval
+        damage: 1000000 # imperial medieval
       behaviors:
       - !type:GoSSDBehavior { } # imperial medieval
       - !type:GibBehavior { }
     - trigger:
         !type:DamageTypeTrigger
         damageType: Heat
-        damage: 1500 # imperial medieval
+        damage: 1599900 # imperial medieval
       behaviors:
       - !type:GoSSDBehavior { } # imperial medieval
       - !type:SpawnEntitiesBehavior

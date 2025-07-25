@@ -100,6 +100,7 @@
     curve: !type:RDWeightModifierLinearCurve
       min: 5
       max: 20
+  - type: ShiftFrontGun
   - type: TrashClear # imperial medieval end
 
 - type: entity

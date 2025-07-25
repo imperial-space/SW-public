@@ -3,6 +3,8 @@
   parent: BaseItem
   id: ProjectileGrenadeBase
   components:
+  - type: Item
+    size: Normal
   - type: Appearance
   - type: Damageable
     damageContainer: Inorganic
@@ -11,7 +13,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 10
+        damage: 10000
       behaviors:
       - !type:TriggerBehavior
   - type: ContainerContainer
@@ -95,15 +97,15 @@
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ProjectileGrenade
     fillPrototype: PelletClusterLethal
-    capacity: 30
+    capacity: 40
   - type: OnUseTimerTrigger
     beepSound:
       path: "/Audio/Imperial/ShiftFront/grenade_init.ogg"
       params:
         volume: 5
     initialBeepDelay: 0
-    beepInterval: 2
-    delay: 3.5
+    beepInterval: 8
+    delay: 5.5
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"

@@ -11,7 +11,7 @@
       - state: grenade
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: AntiTankLandmine
+    explosionType: RPG8Explosion
     maxIntensity: 3
     intensitySlope: 1
     totalIntensity: 25
@@ -28,10 +28,10 @@
   damagePerIntensity:
     types:
       Heat: 15
-      Blunt: 15
+      Blunt: 10
       Piercing: 15
-      AntiTank: 40
-      AntiLightTank: 60
+      AntiTank: 30
+      AntiLightTank: 30
   tileBreakChance: [ 0, 0.5, 1 ]
   tileBreakIntensity: [ 0, 10, 30 ]
   tileBreakRerollReduction: 20

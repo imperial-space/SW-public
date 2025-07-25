@@ -9,7 +9,7 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: Item
-    size: Small
+    size: Normal
   - type: Clothing
     quickEquip: false
     slots:

@@ -93,7 +93,7 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 35, 105, 0, session))
+                        if (!TryWasteResource(rescomp, 45, 105, 0, session))
                             return;
                         comp.ChosenGen = "штурмовик";
                         comp.TimeTillNextGen = 65 - comp.Boost;
@@ -107,7 +107,7 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 45, 115, 0, session))
+                        if (!TryWasteResource(rescomp, 35, 120, 0, session))
                             return;
                         comp.ChosenGen = "медик";
                         comp.TimeTillNextGen = 60 - comp.Boost;
@@ -135,7 +135,7 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 70, 150, 30, session))
+                        if (!TryWasteResource(rescomp, 70, 150, 15, session))
                             return;
                         comp.ChosenGen = "пулеметчик";
                         comp.TimeTillNextGen = 100 - comp.Boost * 2;
@@ -149,7 +149,7 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 75, 115, 25, session))
+                        if (!TryWasteResource(rescomp, 75, 115, 10, session))
                             return;
                         comp.ChosenGen = "снайпер";
                         comp.TimeTillNextGen = 90 - comp.Boost * 2;

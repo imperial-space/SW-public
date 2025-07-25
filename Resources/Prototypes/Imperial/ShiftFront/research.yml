@@ -62,7 +62,7 @@
   id: ShiftFrontREB
   tier: 1
   researchName: станции РЭБ
-  price: 85
+  price: 55
   requiredResearches:
   - ShiftFrontAssault
 
@@ -78,7 +78,7 @@
   id: ShiftFrontExplodeResistiveCrate
   tier: 1
   researchName: взрывоустойчивые ящики
-  price: 25
+  price: 15
   requiredResearches:
   - ShiftFrontGrenades0
 
@@ -144,7 +144,7 @@
   id: ShiftFrontPsycho
   tier: 2
   researchName: псих. подготовка
-  price: 120
+  price: 80
   requiredResearches:
   - ShiftFrontAssault
 
@@ -152,7 +152,7 @@
   id: ShiftFrontPsycho2
   tier: 3
   researchName: псих. подготовка 2
-  price: 190
+  price: 120
   requiredResearches:
   - ShiftFrontPsycho
 
@@ -219,14 +219,15 @@
   price: 150
   requiredResearches:
   - ShiftFrontAssault
+  - ShiftFrontBarricade
 
 - type: ShiftFrontResearch
   id: ShiftFrontMortar
   tier: 3
   researchName: мортира
-  price: 350
+  price: 220
   requiredResearches:
-  - ShiftFrontGrenades2
+  - ShiftFrontGrenades
 
 - type: ShiftFrontResearch
   id: ShiftFrontClonSpeedUp
@@ -288,10 +289,10 @@
   id: ShiftFrontTank
   tier: 3
   researchName: Танк
-  price: 225
+  price: 180
   requiredResearches:
   - ShiftFrontBMP
-
+  - ShiftFrontScience
 # Turret
 # MedTower
 # Supplies

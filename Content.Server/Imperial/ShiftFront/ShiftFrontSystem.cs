@@ -42,6 +42,7 @@ using Content.Server.Stunnable;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using Robust.Shared.Spawners;
+using Content.Shared.Weapons.Ranged.Systems;
 
 namespace Content.Server.ShiftFront
 {
@@ -96,6 +97,39 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftFrontRequestComponent, ExaminedEvent>(OnExamineRequest);
             SubscribeLocalEvent<ShiftFrontRequestComponent, AfterInteractEvent>(OnPaperUsed);
             SubscribeLocalEvent<ShiftFrontRequestConsoleComponent, MapInitEvent>(OnRequestConsoleInit);
+            SubscribeLocalEvent<ShiftFrontGunComponent, GunShotEvent>(OnShoot);
+            SubscribeLocalEvent<ShiftShowOnMapComponent, DamageChangedEvent>(OnDamageMap);
+        }
+        private void OnDamageMap(EntityUid uid, ShiftShowOnMapComponent comp, DamageChangedEvent args)
+        {
+            if (TryComp<DamageableComponent>(uid, out var damageable) && args.DamageIncreased && args.DamageDelta != null)
+            {
+                if (damageable.TotalDamage < 100f)
+                {
+                    if (args.DamageDelta.GetTotal() > 5f)
+                        foreach (var entity in comp.LinkedMipples)
+                        {
+                            Spawn("ShiftFrontMapDamageEffect", Transform(entity).Coordinates);
+                        }
+                }
+                else
+                {
+                    if (args.DamageDelta.GetTotal() > 0f)
+                        foreach (var entity in comp.LinkedMipples)
+                        {
+                            Spawn("ShiftFrontMapSuffEffect", Transform(entity).Coordinates);
+                        }
+                }
+
+            }
+        }
+        private void OnShoot(EntityUid uid, ShiftFrontGunComponent comp, GunShotEvent args)
+        {
+            if (!TryComp<ShiftShowOnMapComponent>(args.User, out var showComp)) return;
+            foreach (var entity in showComp.LinkedMipples)
+            {
+                Spawn("ShiftFrontMapShootEffect", Transform(entity).Coordinates);
+            }
         }
         private void OnRequestConsoleInit(EntityUid uid, ShiftFrontRequestConsoleComponent comp, MapInitEvent args)
         {

@@ -41,7 +41,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.23
+          radius: 0.18
         density: 10
         mask:
         - FlyingMobMask

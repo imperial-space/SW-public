@@ -1565,3 +1565,39 @@
   name: stack-frontbags-tile
   spawn: ShiftFrontSandbagsItem
   maxCount: 3
+
+- type: entity
+  id: ShiftFrontMapShootEffect
+  components:
+  - type: PointLight
+    color: yellow
+    castShadows: false
+    radius: 1.12
+    energy: 12
+  - type: Anchorable
+  - type: TimedDespawn
+    lifetime: 0.3
+
+- type: entity
+  id: ShiftFrontMapDamageEffect
+  components:
+  - type: PointLight
+    color: red
+    castShadows: false
+    radius: 1.09
+    energy: 12
+  - type: Anchorable
+  - type: TimedDespawn
+    lifetime: 0.4
+
+- type: entity
+  id: ShiftFrontMapSuffEffect
+  components:
+  - type: PointLight
+    color: purple
+    castShadows: false
+    radius: 1.09
+    energy: 12
+  - type: Anchorable
+  - type: TimedDespawn
+    lifetime: 0.4
