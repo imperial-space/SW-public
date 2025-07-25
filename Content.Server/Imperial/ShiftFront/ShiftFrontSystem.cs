@@ -104,6 +104,8 @@ namespace Content.Server.ShiftFront
         {
             if (TryComp<DamageableComponent>(uid, out var damageable) && args.DamageIncreased && args.DamageDelta != null)
             {
+                if (damageable.TotalDamage > 1000f)
+                    QueueDel(uid);
                 if (damageable.TotalDamage < 100f)
                 {
                     if (args.DamageDelta.GetTotal() > 5f)

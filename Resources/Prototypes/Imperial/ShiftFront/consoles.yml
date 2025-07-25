@@ -1648,7 +1648,7 @@
   components:
   - type: ShiftFrontRequestConsole
   - type: ShiftStructure
-    faction: Yellow
+    faction: Red
 
 - type: entity
   parent: BaseComputerShiftFront
