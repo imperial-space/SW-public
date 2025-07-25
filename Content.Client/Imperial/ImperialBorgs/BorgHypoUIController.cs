@@ -122,7 +122,7 @@ public sealed class BorgHypoUIController : UIController
 
     private void HandleRadialButtonClick(ReagentPrototype prototype)
     {
-        if (_activeHypo == null || !_entityManager.TryGetComponent<BorgHypoComponent>(_activeHypo.Value, out var _))
+        if (_activeHypo == null || !_entityManager.TryGetComponent<BorgHypoComponent>(_activeHypo.Value, out _))
         {
             return;
         }
