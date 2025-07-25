@@ -1,13 +1,14 @@
 <Document>
-  # Atmos Tools
-  Atmospheric Technicians have the same core toolset as Engineers, but they also have access to two new tools, the Holofan Projector and the Gas Analyzer.
+  # Инструменты атмосов
+  Атмосферные техники имеют такой же основной набор инструментов, что и инженеры. Однако, они получают два эксклюзивных - атмос-голопроектор и газоанализатор.
 
   <Box>
     <GuideEntityEmbed Entity="HolofanProjector"/>
     <GuideEntityEmbed Entity="GasAnalyzer"/>
   </Box>
 
-  ## Holofan Projector
+  ## Атмос-голопроектор
+  Проецирует барьер, не дающий газам проходить на его другую сторону. Проход других объектов не ограничен.
   The Holofan Projector is a tool that can project a barrier of hard-light which blocks air and gas flow, while still allowing people to pass through.
 
   <Box>
