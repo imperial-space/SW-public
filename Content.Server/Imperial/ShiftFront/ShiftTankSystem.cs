@@ -178,6 +178,8 @@ namespace Content.Server.ShiftFront
                 var observ = Spawn(component.ObserverProto, Transform(uid).Coordinates);
                 _transform.SetParent(observ, uid);
                 component.LinkedObserver = observ;
+                EnsureComp<ShiftTankTurretComponent>(observ, out var turretcomp2);
+                turretcomp2.LinkedTank = uid;
             }
             var map = SpawnMap(component.GridLink);
             if (!map.HasValue) return;

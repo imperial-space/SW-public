@@ -327,7 +327,7 @@
       path: /Audio/Imperial/ShiftFront/shot_tank.ogg
       params: {maxDistance: 45}
   - type: BallisticAmmoProvider
-    capacity: 12
+    capacity: 30
     proto: MagazineLightRifleHard
     whitelist:
       tags: [MagazineLightRifleHard]
@@ -658,7 +658,7 @@
     tags: [MagazineLightRifleBoxBMP]
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleBMP
-    capacity: 50
+    capacity: 200
   - type: Item
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
@@ -746,24 +746,56 @@
 
 - type: entity
   id: MobShiftTankObserver
+  parent: BaseShiftVehicle
   components:
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: Input
+    context: "human"
+  - type: Sprite
+    scale: 1.5,1.5
+    sprite: Imperial/ShiftFront/tank.rsi
+    drawdepth: Overdoors
+    layers:
+    - state: tankmachinegun
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: "Magazine"
+        startingItem: MagazineLightRifleBoxBig
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags: [MagazineLightRifleBox]
+  - type: Gun
+    fireRate: 4.5
+    selectedMode: FullAuto
+    availableModes: [FullAuto]
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_mg.ogg
+      params: {maxDistance: 45}
+  - type: MagazineAmmoProvider
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
   - type: AlwaysInFov
   - type: Speech
   - type: EyeCursorOffset
-    maxOffset: 25
+    maxOffset: 10
     pvsIncrease: 0.7
-    offsetSpeed: 0.3
+    offsetSpeed: 1
   - type: Actions
-  - type: CombatMode
-    toggleMouseRotator: false
   - type: Damageable
     damageContainer: ShiftFrontTank
   - type: MouseRotator
     angleTolerance: 5
-    rotationSpeed: 90
+    rotationSpeed: 150
     simple4DirMode: false
-  - type: NoRotateOnInteract
-  - type: NoRotateOnMove
   - type: Examiner
   - type: Eye
     pvsScale: 2

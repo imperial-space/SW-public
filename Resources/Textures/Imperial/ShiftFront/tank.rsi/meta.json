@@ -53,6 +53,9 @@
             "name": "tankcorpusyellow"
         },
         {
+            "name": "tankmachinegun"
+        },
+        {
             "name": "tankturret",
             "directions": 8
         },

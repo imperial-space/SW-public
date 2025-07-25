@@ -52,7 +52,7 @@ public sealed partial class ShiftFrontSharedSystem : EntitySystem
         if (!TryComp<ProjectileComponent>(args.OurEntity, out var proj)) return;
         if (!proj.Shooter.HasValue) return;
 
-        if (hull.LinkedTurret.Value == proj.Shooter.Value)
+        if ((hull.LinkedTurret.Value == proj.Shooter.Value || hull.LinkedObserver == proj.Shooter) && proj.Shooter != null)
             args.Cancelled = true;
     }
     private void OnBeforeProjectileHit(EntityUid uid, ShiftTankBulletComponent component, ref ProjectileBeforeHitEvent args)

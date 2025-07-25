@@ -4,6 +4,7 @@
   parent: BaseBullet
   categories: [ HideSpawnMenu ]
   components:
+  - type: ShiftTankBullet
   - type: Projectile
     damage:
       types:
