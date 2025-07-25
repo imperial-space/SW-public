@@ -32,19 +32,30 @@ namespace Content.Server.Imperial.Power.EntitySystems
             if (!EntityManager.HasComponent<MobStateComponent>(other))
                 return;
 
-            // Play gib sound at the mob's location
-            var xform = Transform(other);
+            var xform = EntityManager.GetComponentOrNull<TransformComponent>(other);
+            if (xform == null)
+                return;
+
+            PlayGibSound(component, xform);
+            ShowColorFlash(component, other);
+            SpawnAshAndDelete(component, xform, other);
+            RaiseLocalEvent(uid, new SupermatterTouchedEvent());
+        }
+
+        private void PlayGibSound(SupermatterTouchComponent component, TransformComponent xform)
+        {
             _audio.PlayPvs(component.GibSound, xform.Coordinates);
+        }
 
-            // Вспышка цвета из компонента
+        private void ShowColorFlash(SupermatterTouchComponent component, EntityUid other)
+        {
             _colorFlash.RaiseEffect(component.FlashColor, new List<EntityUid> { other }, Filter.Pvs(other));
+        }
 
-            // Spawn Ash at the mob's location
+        private void SpawnAshAndDelete(SupermatterTouchComponent component, TransformComponent xform, EntityUid other)
+        {
             EntityManager.SpawnEntity(component.AshPrototype, xform.Coordinates);
             EntityManager.QueueDeleteEntity(other);
-
-            // Публикуем ивент о касании суперматерии
-            RaiseLocalEvent(uid, new SupermatterTouchedEvent());
         }
     }
 

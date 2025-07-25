@@ -100,21 +100,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                         continue;
                     var evtIndex = _random.Next(0, comp.AllowedEvents.Count);
                     var evt = comp.AllowedEvents[evtIndex];
-                    switch (evt)
-                    {
-                        case SupermatterLightningEvent lightningEvt:
-                            lightningEvt.Activate(uid, EntityManager, comp, _random, _imperialLightning);
-                            break;
-                        case SupermatterRadiationEvent radiationEvt:
-                            radiationEvt.Activate(uid, EntityManager, comp, _random);
-                            break;
-                        case SupermatterPlasmaEvent plasmaEvt:
-                            plasmaEvt.Activate(uid, EntityManager, comp, _random);
-                            break;
-                        default:
-                            evt.Activate(uid, EntityManager, comp);
-                            break;
-                    }
+                    evt.ActivateWithDeps(uid, EntityManager, comp, _random, _imperialLightning);
                     var msg = evt.GetAnnouncement(uid, EntityManager, comp);
                     AnnounceFromConsole(uid, msg);
                 }
@@ -153,16 +139,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void ProcessRadiationEvent(EntityUid uid)
         {
-            if (HasComp<RadiationSourceComponent>(uid))
-            {
-                var rad = Comp<RadiationSourceComponent>(uid);
-                rad.Intensity = 10f;
-            }
-            else
-            {
-                var rad = EnsureComp<RadiationSourceComponent>(uid);
-                rad.Intensity = 10f;
-            }
+            SetRadiation(uid, EntityManager, 10f);
         }
 
         private void ProcessPlasmaEvent(EntityUid uid, SupermatterEventComponent comp, TransformComponent xform, GasMixture? gas, float frameTime)
@@ -222,37 +199,50 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 }
             }
         }
+
+        private void SetRadiation(EntityUid uid, EntityManager entityManager, float intensity)
+        {
+            if (entityManager.TryGetComponent<RadiationSourceComponent>(uid, out var radComponent))
+                radComponent.Intensity = intensity;
+            else
+            {
+                var newRad = entityManager.EnsureComponent<RadiationSourceComponent>(uid);
+                newRad.Intensity = intensity;
+            }
+        }
     }
 
     public sealed class SupermatterNoneEvent : ISupermatterEvent
     {
         public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
-            // Нет эффекта
             comp.EventEndTime = TimeSpan.Zero;
-            comp.NextEventTimer = TimeSpan.FromSeconds(300); // 5 минут до следующего события
+            comp.NextEventTimer = TimeSpan.FromSeconds(300);
         }
         public string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
             return Loc.GetString("supermatter-event-none");
         }
+        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null)
+        {
+            Activate(crystal, entityManager, comp);
+        }
     }
 
     public sealed class SupermatterLightningEvent : ISupermatterEvent
     {
-        // Реализация интерфейса для совместимости
         public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
             var random = IoCManager.Resolve<IRobustRandom>();
             var imperialLightning = IoCManager.Resolve<ImperialLightningSystem>();
-            Activate(crystal, entityManager, comp, random, imperialLightning);
+            ActivateWithDeps(crystal, entityManager, comp, random, imperialLightning);
         }
-        public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem imperialLightning)
+        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null)
         {
             comp.EventEndTime = TimeSpan.FromSeconds(120);
             comp.NextEventTimer = TimeSpan.FromSeconds(random.NextFloat(180f, 420f));
             comp.LightningCooldown = TimeSpan.Zero;
-            imperialLightning.SpawnLightningBetween(crystal, crystal, null, null, TimeSpan.FromSeconds(1));
+            lightning?.SpawnLightningBetween(crystal, crystal, null, null, TimeSpan.FromSeconds(1));
         }
         public string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
@@ -265,19 +255,15 @@ namespace Content.Server.Imperial.Power.EntitySystems
         public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
             var random = IoCManager.Resolve<IRobustRandom>();
-            Activate(crystal, entityManager, comp, random);
+            ActivateWithDeps(crystal, entityManager, comp, random);
         }
-        public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random)
+        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null)
         {
             comp.EventEndTime = TimeSpan.FromSeconds(120);
             comp.NextEventTimer = TimeSpan.FromSeconds(random.NextFloat(180f, 420f));
-            if (entityManager.TryGetComponent<RadiationSourceComponent>(crystal, out var radComponent))
-                radComponent.Intensity = 10f;
-            else
-            {
-                var newRad = entityManager.EnsureComponent<RadiationSourceComponent>(crystal);
-                newRad.Intensity = 10f;
-            }
+            // Устанавливаем радиацию через общий метод
+            var eventSystem = EntitySystem.Get<SupermatterEventSystem>();
+            eventSystem.SetRadiation(crystal, entityManager, 10f);
         }
         public string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
@@ -290,9 +276,9 @@ namespace Content.Server.Imperial.Power.EntitySystems
         public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
             var random = IoCManager.Resolve<IRobustRandom>();
-            Activate(crystal, entityManager, comp, random);
+            ActivateWithDeps(crystal, entityManager, comp, random);
         }
-        public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random)
+        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null)
         {
             comp.EventEndTime = TimeSpan.FromSeconds(120);
             comp.NextEventTimer = TimeSpan.FromSeconds(random.NextFloat(180f, 420f));

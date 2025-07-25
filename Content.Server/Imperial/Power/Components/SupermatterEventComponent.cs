@@ -16,6 +16,7 @@ namespace Content.Server.Imperial.Power.Components
     {
         void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp);
         string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp);
+        void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null);
     }
 
     [RegisterComponent]
