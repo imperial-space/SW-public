@@ -1,7 +1,7 @@
 name: Check Merge Conflicts
 
 on:
-  pull_request_target:
+  pull_request: # даёт доступ к текущему PR, но если PR из форка, то метки всё равно не добавятся.
     types:
       - opened
       - synchronize
