@@ -10,7 +10,6 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Effects;
-using System.Numerics;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
@@ -45,8 +44,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
             EntityManager.QueueDeleteEntity(other);
 
             // Публикуем ивент о касании суперматерии
-            var ev = new SupermatterTouchedEvent();
-            RaiseLocalEvent(uid, ev);
+            RaiseLocalEvent(uid, new SupermatterTouchedEvent());
         }
     }
 

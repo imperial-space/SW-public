@@ -32,6 +32,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
         [Dependency] private readonly ImperialLightningSystem _imperialLightning = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
 
         // Кеш ближайших консолей для кристаллов
         private readonly Dictionary<EntityUid, (EntityUid console, float time)> _nearestConsoleCache = new();
@@ -174,7 +175,9 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 gas.AdjustMoles((int)Gas.Plasma, 5f);
                 gas.AdjustMoles((int)Gas.Oxygen, 5f);
                 var coords = xform.Coordinates;
-                var gridUid = xform.GridUid!.Value;
+                if (xform.GridUid == null)
+                    return;
+                var gridUid = xform.GridUid.Value;
                 var grid = Comp<MapGridComponent>(gridUid);
                 var tile = _mapSystem.TileIndicesFor(gridUid, grid, coords);
                 _atmos.HotspotExpose(gridUid, tile, 1500f, 50f, uid, true);
@@ -184,8 +187,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void AnnounceFromConsole(EntityUid crystal, string message)
         {
-            var gameTiming = IoCManager.Resolve<IGameTiming>();
-            var now = (float)gameTiming.CurTime.TotalSeconds;
+            var now = (float)_gameTiming.CurTime.TotalSeconds;
             EntityUid? nearestConsole = null;
             var pos = _transformSystem.GetMapCoordinates(crystal).Position;
             var mapId = _transformSystem.GetMapCoordinates(crystal).MapId;
