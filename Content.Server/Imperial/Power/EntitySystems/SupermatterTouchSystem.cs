@@ -37,12 +37,12 @@ namespace Content.Server.Imperial.Power.EntitySystems
             var xform = Transform(other);
             _audio.PlayPvs(component.GibSound, xform.Coordinates);
 
+            // Вспышка цвета из компонента
+            _colorFlash.RaiseEffect(component.FlashColor, new List<EntityUid> { other }, Filter.Pvs(other));
+
             // Spawn Ash at the mob's location
             EntityManager.SpawnEntity(component.AshPrototype, xform.Coordinates);
             EntityManager.QueueDeleteEntity(other);
-
-            // Вспышка цвета из компонента
-            _colorFlash.RaiseEffect(component.FlashColor, new List<EntityUid> { other }, Filter.Pvs(other));
 
             // Публикуем ивент о касании суперматерии
             var ev = new SupermatterTouchedEvent();

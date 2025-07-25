@@ -1,7 +1,5 @@
 using Content.Server.Imperial.Power.Components;
-using Content.Server.Imperial.Power.Components;
 using Content.Shared.Examine;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using System.Linq;

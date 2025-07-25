@@ -39,15 +39,11 @@ namespace Content.Server.Imperial.Power.Components
             { 0.25f, false },
             { 0.10f, false }
         };
-        // Флаги для сброса стадий
-        public bool _reset90 = false;
-        public bool _reset75 = false;
-        public bool _reset50 = false;
-        public bool _reset25 = false;
-        public bool _reset10 = false;
 
         // --- Катастрофа ---
+        [DataField]
         public bool CatastropheActive = false;
+        [DataField]
         public TimeSpan CatastropheTimer = TimeSpan.Zero;
 
         // Тег, который считается лечащим для суперматерии (например, болт эмиттера)

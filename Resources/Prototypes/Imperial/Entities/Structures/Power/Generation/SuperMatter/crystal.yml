@@ -7,11 +7,11 @@
   components:
     - type: RadiationSource
       intensity: 5
-    # - type: AmbientSound
-    #   range: 5
-    #   volume: 0
-    #   sound:
-    #     path: /Audio/_Goobstation/Supermatter/calm.ogg
+    - type: AmbientSound
+      range: 5
+      volume: 0
+      sound:
+        path: /Audio/Ambience/Objects/engine_hum.ogg
     - type: Physics
     - type: Speech
       speechSounds: Pai
@@ -64,7 +64,7 @@
     #   stealGroup: SupermatterSliver # uses to verify sm existense on map
     - type: SupermatterTouch
     - type: Damageable
-      damageContainer: Biological
+      damageContainer: Structural
     - type: SupermatterIntegrity
       integrity: 100
       maxIntegrity: 100
