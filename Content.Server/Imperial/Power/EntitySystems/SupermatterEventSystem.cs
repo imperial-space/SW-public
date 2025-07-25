@@ -50,7 +50,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void OnInit(EntityUid uid, SupermatterEventComponent comp, ComponentInit args)
         {
-            InitializeEventsFromPrototype(uid, comp);
+            comp.NextEventTimer = TimeSpan.FromSeconds(InitialEventDelaySeconds); // 15 минут до первого ивента
         }
 
         private void OnTouched(EntityUid uid, SupermatterEventComponent comp, SupermatterTouchedEvent args)
@@ -91,11 +91,19 @@ namespace Content.Server.Imperial.Power.EntitySystems
                         var rad = Comp<RadiationSourceComponent>(uid);
                         rad.Intensity = 5f;
                     }
-                    if (comp.AllowedEvents.Count == 0)
+                    if (comp.AllowedEventTypes.Count == 0)
                         continue;
-                    var evtIndex = _random.Next(0, comp.AllowedEvents.Count);
-                    var evt = comp.AllowedEvents[evtIndex];
-                    evt.ActivateWithDeps(uid, EntityManager, comp, _random, _imperialLightning);
+                    var evtIndex = _random.Next(0, comp.AllowedEventTypes.Count);
+                    var evtType = comp.AllowedEventTypes[evtIndex];
+                    ISupermatterEvent evt = evtType switch
+                    {
+                        SupermatterEventType.None => new SupermatterNoneEvent(),
+                        SupermatterEventType.Lightning => new SupermatterLightningEvent(),
+                        SupermatterEventType.Radiation => new SupermatterRadiationEvent(),
+                        SupermatterEventType.Plasma => new SupermatterPlasmaEvent(),
+                        _ => new SupermatterNoneEvent()
+                    };
+                    evt.ActivateWithDeps(uid, EntityManager, comp, _random, _imperialLightning, this);
                     var msg = evt.GetAnnouncement(uid, EntityManager, comp);
                     AnnounceFromConsole(uid, msg);
                 }
@@ -198,7 +206,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
         }
 
-        private void SetRadiation(EntityUid uid, EntityManager entityManager, float intensity)
+        public void SetRadiation(EntityUid uid, EntityManager entityManager, float intensity)
         {
             if (entityManager.TryGetComponent<RadiationSourceComponent>(uid, out var radComponent))
                 radComponent.Intensity = intensity;
