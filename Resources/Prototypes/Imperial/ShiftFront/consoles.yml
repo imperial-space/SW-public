@@ -1155,7 +1155,7 @@
     sprite: Imperial/ShiftFront/minelauncher/red.rsi
 
 - type: entity
-  parent: ShiftFrontMmGreen ###
+  parent: ShiftFrontMmBlue ###
   id: ShiftFrontMmGreen
   placement:
     mode: SnapgridCenter
