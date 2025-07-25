@@ -100,7 +100,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                         continue;
                     var evtIndex = _random.Next(0, comp.AllowedEvents.Count);
                     var evt = comp.AllowedEvents[evtIndex];
-                    evt.ActivateWithDeps(uid, EntityManager, comp, _random, _imperialLightning, this);
+                    evt.ActivateWithDeps(uid, EntityManager, comp, _random, _imperialLightning);
                     var msg = evt.GetAnnouncement(uid, EntityManager, comp);
                     AnnounceFromConsole(uid, msg);
                 }
@@ -200,7 +200,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
         }
 
-        public void SetRadiation(EntityUid uid, EntityManager entityManager, float intensity)
+        private void SetRadiation(EntityUid uid, EntityManager entityManager, float intensity)
         {
             if (entityManager.TryGetComponent<RadiationSourceComponent>(uid, out var radComponent))
                 radComponent.Intensity = intensity;
@@ -244,6 +244,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
         }
         public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning, SupermatterEventSystem eventSystem)
         {
+            comp.CurrentEvent = SupermatterEventType.Lightning;
             comp.EventEndTime = TimeSpan.FromSeconds(120);
             comp.NextEventTimer = TimeSpan.FromSeconds(random.NextFloat(180f, 420f));
             comp.LightningCooldown = TimeSpan.Zero;
