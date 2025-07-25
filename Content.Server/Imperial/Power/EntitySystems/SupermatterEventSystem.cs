@@ -50,8 +50,13 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void OnInit(EntityUid uid, SupermatterEventComponent comp, ComponentInit args)
         {
-            // Инициализация событий должна происходить из конфигурации компонента
-            InitializeEventsFromPrototype(uid, comp);
+            // Инициализация базовых событий
+            comp.AllowedEvents.Clear();
+            comp.AllowedEvents.Add(new SupermatterNoneEvent());
+            comp.AllowedEvents.Add(new SupermatterLightningEvent());
+            comp.AllowedEvents.Add(new SupermatterRadiationEvent());
+            comp.AllowedEvents.Add(new SupermatterPlasmaEvent());
+            comp.NextEventTimer = TimeSpan.FromSeconds(InitialEventDelaySeconds);
         }
 
         private void OnTouched(EntityUid uid, SupermatterEventComponent comp, SupermatterTouchedEvent args)
@@ -263,6 +268,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
         }
         public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning, SupermatterEventSystem eventSystem)
         {
+            comp.CurrentEvent = SupermatterEventType.Radiation;
             comp.EventEndTime = TimeSpan.FromSeconds(120);
             comp.NextEventTimer = TimeSpan.FromSeconds(random.NextFloat(180f, 420f));
             eventSystem.SetRadiation(crystal, entityManager, 10f);
@@ -281,6 +287,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
         }
         public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning, SupermatterEventSystem eventSystem)
         {
+            comp.CurrentEvent = SupermatterEventType.Plasma;
             comp.EventEndTime = TimeSpan.FromSeconds(120);
             comp.NextEventTimer = TimeSpan.FromSeconds(random.NextFloat(180f, 420f));
         }
