@@ -50,13 +50,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void OnInit(EntityUid uid, SupermatterEventComponent comp, ComponentInit args)
         {
-            // Инициализация базовых событий
-            comp.AllowedEvents.Clear();
-            comp.AllowedEvents.Add(new SupermatterNoneEvent());
-            comp.AllowedEvents.Add(new SupermatterLightningEvent());
-            comp.AllowedEvents.Add(new SupermatterRadiationEvent());
-            comp.AllowedEvents.Add(new SupermatterPlasmaEvent());
-            comp.NextEventTimer = TimeSpan.FromSeconds(InitialEventDelaySeconds);
+            InitializeEventsFromPrototype(uid, comp);
         }
 
         private void OnTouched(EntityUid uid, SupermatterEventComponent comp, SupermatterTouchedEvent args)
