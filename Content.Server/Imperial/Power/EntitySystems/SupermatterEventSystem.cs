@@ -100,7 +100,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                         continue;
                     var evtIndex = _random.Next(0, comp.AllowedEvents.Count);
                     var evt = comp.AllowedEvents[evtIndex];
-                    evt.ActivateWithDeps(uid, EntityManager, comp, _random, _imperialLightning);
+                    evt.ActivateWithDeps(uid, EntityManager, comp, _random, _imperialLightning, this);
                     var msg = evt.GetAnnouncement(uid, EntityManager, comp);
                     AnnounceFromConsole(uid, msg);
                 }
@@ -200,7 +200,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
         }
 
-        private void SetRadiation(EntityUid uid, EntityManager entityManager, float intensity)
+        public void SetRadiation(EntityUid uid, EntityManager entityManager, float intensity)
         {
             if (entityManager.TryGetComponent<RadiationSourceComponent>(uid, out var radComponent))
                 radComponent.Intensity = intensity;
@@ -210,6 +210,13 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 newRad.Intensity = intensity;
             }
         }
+    }
+
+    public interface ISupermatterEvent
+    {
+        void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp);
+        string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp);
+        void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning, SupermatterEventSystem eventSystem);
     }
 
     public sealed class SupermatterNoneEvent : ISupermatterEvent
@@ -223,7 +230,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
         {
             return Loc.GetString("supermatter-event-none");
         }
-        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null)
+        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning, SupermatterEventSystem eventSystem)
         {
             Activate(crystal, entityManager, comp);
         }
@@ -233,11 +240,9 @@ namespace Content.Server.Imperial.Power.EntitySystems
     {
         public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
-            var random = IoCManager.Resolve<IRobustRandom>();
-            var imperialLightning = IoCManager.Resolve<ImperialLightningSystem>();
-            ActivateWithDeps(crystal, entityManager, comp, random, imperialLightning);
+            throw new InvalidOperationException("Use ActivateWithDeps and pass dependencies explicitly.");
         }
-        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null)
+        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning, SupermatterEventSystem eventSystem)
         {
             comp.EventEndTime = TimeSpan.FromSeconds(120);
             comp.NextEventTimer = TimeSpan.FromSeconds(random.NextFloat(180f, 420f));
@@ -254,15 +259,12 @@ namespace Content.Server.Imperial.Power.EntitySystems
     {
         public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
-            var random = IoCManager.Resolve<IRobustRandom>();
-            ActivateWithDeps(crystal, entityManager, comp, random);
+            throw new InvalidOperationException("Use ActivateWithDeps and pass dependencies explicitly.");
         }
-        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null)
+        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning, SupermatterEventSystem eventSystem)
         {
             comp.EventEndTime = TimeSpan.FromSeconds(120);
             comp.NextEventTimer = TimeSpan.FromSeconds(random.NextFloat(180f, 420f));
-            // Устанавливаем радиацию через общий метод
-            var eventSystem = EntitySystem.Get<SupermatterEventSystem>();
             eventSystem.SetRadiation(crystal, entityManager, 10f);
         }
         public string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
@@ -275,10 +277,9 @@ namespace Content.Server.Imperial.Power.EntitySystems
     {
         public void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp)
         {
-            var random = IoCManager.Resolve<IRobustRandom>();
-            ActivateWithDeps(crystal, entityManager, comp, random);
+            throw new InvalidOperationException("Use ActivateWithDeps and pass dependencies explicitly.");
         }
-        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null)
+        public void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning, SupermatterEventSystem eventSystem)
         {
             comp.EventEndTime = TimeSpan.FromSeconds(120);
             comp.NextEventTimer = TimeSpan.FromSeconds(random.NextFloat(180f, 420f));

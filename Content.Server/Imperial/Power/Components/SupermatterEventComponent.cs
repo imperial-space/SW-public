@@ -1,6 +1,8 @@
 using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
+using Robust.Shared.Random;
+using Content.Server.Imperial.ImperialLightning;
 
 namespace Content.Server.Imperial.Power.Components
 {
@@ -10,13 +12,6 @@ namespace Content.Server.Imperial.Power.Components
         Lightning = 1,
         Radiation = 2,
         Plasma = 3
-    }
-
-    public interface ISupermatterEvent
-    {
-        void Activate(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp);
-        string GetAnnouncement(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp);
-        void ActivateWithDeps(EntityUid crystal, EntityManager entityManager, SupermatterEventComponent comp, IRobustRandom random, ImperialLightningSystem? lightning = null);
     }
 
     [RegisterComponent]
@@ -39,7 +34,7 @@ namespace Content.Server.Imperial.Power.Components
         public TimeSpan? PlasmaTickAccumulator = null;
         // Допустимые события для этого кристалла
         [DataField]
-        public List<ISupermatterEvent> AllowedEvents = new();
+        public List<Content.Server.Imperial.Power.EntitySystems.ISupermatterEvent> AllowedEvents = new();
         // Каналы рации для оповещений
         [DataField]
         public ProtoId<RadioChannelPrototype>[] RadioChannels = { "Engineering" };

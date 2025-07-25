@@ -6,30 +6,45 @@ namespace Content.Server.Imperial.Power.Components
     [RegisterComponent]
     public sealed partial class SupermatterIntegrityComponent : Component
     {
-        // Текущая целостность кристалла
+        /// <summary>
+        /// Текущая целостность кристалла
+        /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
         public float Integrity = 100f;
 
-        // Максимальная целостность
+        /// <summary>
+        /// Максимальная целостность
+        /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
         public float MaxIntegrity = 100f;
 
-        // Сколько урона наносится за тик при опасных условиях
+        /// <summary>
+        /// Сколько урона наносится за тик при опасных условиях
+        /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
         public DamageSpecifier TickDamage = new();
-        // Интервал между тиками урона
+
+        /// <summary>
+        /// Интервал между тиками урона
+        /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
         public TimeSpan TickInterval = TimeSpan.FromSeconds(1);
 
-        // Индивидуальный таймер для тиков урона
+        /// <summary>
+        /// Индивидуальный таймер для тиков урона
+        /// </summary>
         [DataField]
         public TimeSpan TickAccumulator = TimeSpan.Zero;
 
-        // Минимальная целостность, при которой начинается катастрофа
+        /// <summary>
+        /// Минимальная целостность, при которой начинается катастрофа
+        /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
         public float CatastropheThreshold = 0f;
 
-        // Флаги для стадий радио-предупреждений (ключ — порог процента)
+        /// <summary>
+        /// Флаги для стадий радио-предупреждений (ключ — порог процента)
+        /// </summary>
         [DataField]
         public Dictionary<float, bool> WarningFlags = new()
         {
@@ -40,13 +55,21 @@ namespace Content.Server.Imperial.Power.Components
             { 0.10f, false }
         };
 
-        // --- Катастрофа ---
+        /// <summary>
+        /// Активна ли катастрофа
+        /// </summary>
         [DataField]
         public bool CatastropheActive = false;
+
+        /// <summary>
+        /// Таймер катастрофы
+        /// </summary>
         [DataField]
         public TimeSpan CatastropheTimer = TimeSpan.Zero;
 
-        // Тег, который считается лечащим для суперматерии (например, болт эмиттера)
+        /// <summary>
+        /// Тег для исцеления (например, "SupermatterHeal")
+        /// </summary>
         [DataField]
         public string HealTag = "EmitterBolt";
 

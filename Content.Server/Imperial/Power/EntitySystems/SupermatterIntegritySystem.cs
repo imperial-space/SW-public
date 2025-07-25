@@ -30,6 +30,7 @@ using Robust.Shared.Localization;
 using System.Collections.Generic;
 using System.Linq;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Damage.Prototypes;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
@@ -64,21 +65,35 @@ namespace Content.Server.Imperial.Power.EntitySystems
             SubscribeLocalEvent<SupermatterIntegrityComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<SupermatterIntegrityComponent, ComponentInit>(OnInit);
             SubscribeLocalEvent<SupermatterIntegrityComponent, StartCollideEvent>(OnStartCollide);
-            // Новое: обновлять Integrity при изменении урона
-            SubscribeLocalEvent<DamageableComponent, DamageChangedEvent>(OnDamageChanged);
+            SubscribeLocalEvent<SupermatterIntegrityComponent, ProjectileHitEvent>(OnProjectileHit);
+        }
+
+        private void SyncDamageable(EntityUid uid, SupermatterIntegrityComponent comp)
+        {
+            if (EntityManager.TryGetComponent<DamageableComponent>(uid, out var dmg))
+            {
+                var newTotal = comp.MaxIntegrity - comp.Integrity;
+                var diff = newTotal - (float)dmg.TotalDamage;
+                if (Math.Abs(diff) > 0.01f)
+                {
+                    var spec = new DamageSpecifier();
+                    foreach (var type in dmg.Damage.DamageDict.Keys)
+                        spec.DamageDict[type] = diff;
+                    _damageable.TryChangeDamage(uid, spec, false, true, origin: null);
+                }
+            }
         }
 
         private void OnInit(EntityUid uid, SupermatterIntegrityComponent comp, ComponentInit args)
         {
-            //
+            SyncDamageable(uid, comp);
         }
 
-        private void OnDamageChanged(EntityUid uid, DamageableComponent comp, DamageChangedEvent args)
+        private void OnProjectileHit(EntityUid uid, SupermatterIntegrityComponent comp, ref ProjectileHitEvent args)
         {
-            if (EntityManager.TryGetComponent<SupermatterIntegrityComponent>(uid, out var integrity))
-            {
-                integrity.Integrity = MathF.Max(0, integrity.MaxIntegrity - (float)comp.TotalDamage);
-            }
+            comp.Integrity = MathF.Max(0, comp.Integrity - 10f); // 10 урона за выстрел
+            SyncDamageable(uid, comp);
+            EntityManager.QueueDeleteEntity(uid);
         }
 
         private void OnExamined(EntityUid uid, SupermatterIntegrityComponent component, ExaminedEvent args)
@@ -109,20 +124,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
             {
                 var heal = 0.5f;
                 component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + heal);
-                // Синхронизируем DamageableComponent
-                if (EntityManager.TryGetComponent<DamageableComponent>(uid, out var dmg))
-                {
-                    var newTotal = component.MaxIntegrity - component.Integrity;
-                    var diff = newTotal - (float)dmg.TotalDamage;
-                    if (Math.Abs(diff) > 0.01f)
-                    {
-                        // Применяем отрицательный урон (исцеление)
-                        var healSpec = new DamageSpecifier();
-                        foreach (var type in dmg.Damage.DamageDict.Keys)
-                            healSpec.DamageDict[type] = -diff;
-                        _damageable.TryChangeDamage(uid, healSpec, false, true, origin: null);
-                    }
-                }
+                SyncDamageable(uid, component);
             }
         }
 
@@ -222,10 +224,12 @@ namespace Content.Server.Imperial.Power.EntitySystems
                     while (comp.TickAccumulator >= comp.TickInterval)
                     {
                         comp.TickAccumulator -= comp.TickInterval;
-                        if (EntityManager.TryGetComponent<DamageableComponent>(uid, out var dmg))
-                        {
-                            _damageable.TryChangeDamage(uid, comp.TickDamage, false, true, origin: null);
-                        }
+                        // Прямое уменьшение Integrity
+                        var tickAmount = 0f;
+                        foreach (var v in comp.TickDamage.DamageDict.Values)
+                            tickAmount += (float)v;
+                        comp.Integrity = MathF.Max(0, comp.Integrity - tickAmount);
+                        SyncDamageable(uid, comp);
                     }
                 }
             }

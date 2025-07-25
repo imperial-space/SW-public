@@ -17,8 +17,6 @@ namespace Content.Server.Imperial.Power.EntitySystems
     {
         [Dependency] private readonly ColorFlashEffectSystem _colorFlash = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly IPrototypeManager _proto = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
 
         public override void Initialize()
         {
