@@ -210,6 +210,10 @@
     languages:
       English: Speak
   - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 15
+    pvsIncrease: 2
+    offsetSpeed: 1
 
 
 - type: entity
@@ -237,6 +241,10 @@
     languages:
       Russian: Speak
   - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 15
+    pvsIncrease: 2
+    offsetSpeed: 1
 
 
 - type: entity
@@ -264,6 +272,10 @@
     languages:
       German: Speak
   - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 15
+    pvsIncrease: 2
+    offsetSpeed: 1
 
 
 - type: entity
@@ -291,6 +303,10 @@
     languages:
       Chineese: Speak
   - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 15
+    pvsIncrease: 2
+    offsetSpeed: 1
 
 - type: entity
   id: ShiftFPVBoxObserverBlue

@@ -152,11 +152,21 @@ namespace Content.Server.ShiftFront
         }
         private void OnShoot(EntityUid uid, ShiftFrontGunComponent comp, GunShotEvent args)
         {
-            if (!TryComp<ShiftShowOnMapComponent>(args.User, out var showComp)) return;
-            foreach (var entity in showComp.LinkedMipples)
+            if (TryComp<ShiftShowOnMapComponent>(args.User, out var showComp))
             {
-                Spawn("ShiftFrontMapShootEffect", Transform(entity).Coordinates);
+                foreach (var entity in showComp.LinkedMipples)
+                {
+                    Spawn("ShiftFrontMapShootEffect", Transform(entity).Coordinates);
+                }
             }
+            if (TryComp<ShiftShowOnMapComponent>(uid, out var showComp2))
+            {
+                foreach (var entity2 in showComp2.LinkedMipples)
+                {
+                    Spawn("ShiftFrontMapShootEffect", Transform(entity2).Coordinates);
+                }
+            }
+
         }
         private void OnRequestConsoleInit(EntityUid uid, ShiftFrontRequestConsoleComponent comp, MapInitEvent args)
         {

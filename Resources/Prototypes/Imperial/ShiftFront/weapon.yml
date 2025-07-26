@@ -35,9 +35,9 @@
     minAngle: -20
     maxAngle: -20
   - type: EyeCursorOffset
-    maxOffset: 18
-    pvsIncrease: 0.7
-    offsetSpeed: 0.022
+    maxOffset: 25
+    pvsIncrease: 2
+    offsetSpeed: 0.03
   - type: CursorOffsetRequiresWield
 
 # Machine gun
