@@ -327,7 +327,7 @@
       path: /Audio/Imperial/ShiftFront/shot_tank.ogg
       params: {maxDistance: 45}
   - type: BallisticAmmoProvider
-    capacity: 30
+    capacity: 50
     proto: MagazineLightRifleHard
     whitelist:
       tags: [MagazineLightRifleHard]

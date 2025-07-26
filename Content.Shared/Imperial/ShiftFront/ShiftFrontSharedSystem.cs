@@ -13,9 +13,9 @@ using Content.Shared.Interaction;
 using Content.Shared.Siege.Events;
 using System.Numerics;
 using Content.Shared.Damage;
-using Robust.Shared.Physics.Components; // Нужно для управления физикой
-using Robust.Shared.Physics.Systems;   // Нужно для управления физикой
-using Content.Shared.ShiftFront.Components; // Остальные зависимости оставлены как были
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
+using Content.Shared.ShiftFront.Components;
 using Content.Shared.Actions;
 using Content.Shared.Projectiles;
 using Robust.Shared.Physics.Events;
@@ -24,7 +24,6 @@ namespace Content.Shared.XCOM;
 
 public sealed partial class ShiftFrontSharedSystem : EntitySystem
 {
-
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] protected readonly SharedAudioSystem _audio = default!;
     [Dependency] internal readonly IEntityManager _entityManager = default!;
@@ -39,12 +38,13 @@ public sealed partial class ShiftFrontSharedSystem : EntitySystem
         SubscribeLocalEvent<ShiftTankBulletComponent, PreventCollideEvent>(OnBeforeProjectileCollide);
 
         CommandBinds.Builder
-            .Bind(EngineKeyFunctions.MoveUp, new PointerInputCmdHandler(MovementUp))
-            .Bind(EngineKeyFunctions.MoveRight, new PointerInputCmdHandler(MovementRight))
-            .Bind(EngineKeyFunctions.MoveDown, new PointerInputCmdHandler(MovementDown))
-            .Bind(EngineKeyFunctions.MoveLeft, new PointerInputCmdHandler(MovementLeft))
+            .Bind(EngineKeyFunctions.MoveUp, new PointerStateInputCmdHandler(MovementUpPressed, MovementUpReleased))
+            .Bind(EngineKeyFunctions.MoveRight, new PointerStateInputCmdHandler(MovementRightPressed, MovementRightReleased))
+            .Bind(EngineKeyFunctions.MoveDown, new PointerStateInputCmdHandler(MovementDownPressed, MovementDownReleased))
+            .Bind(EngineKeyFunctions.MoveLeft, new PointerStateInputCmdHandler(MovementLeftPressed, MovementLeftReleased))
             .Register<ShiftFrontSharedSystem>();
     }
+
     private void OnBeforeProjectileCollide(EntityUid uid, ShiftTankBulletComponent component, ref PreventCollideEvent args)
     {
         if (!TryComp<ShiftTankHullComponent>(args.OtherEntity, out var hull)) return;
@@ -55,6 +55,7 @@ public sealed partial class ShiftFrontSharedSystem : EntitySystem
         if ((hull.LinkedTurret.Value == proj.Shooter.Value || hull.LinkedObserver == proj.Shooter) && proj.Shooter != null)
             args.Cancelled = true;
     }
+
     private void OnBeforeProjectileHit(EntityUid uid, ShiftTankBulletComponent component, ref ProjectileBeforeHitEvent args)
     {
         if (!TryComp<ShiftTankHullComponent>(args.Target, out var hull)) return;
@@ -64,77 +65,128 @@ public sealed partial class ShiftFrontSharedSystem : EntitySystem
         if (hull.LinkedTurret.Value == args.Shooter.Value)
             args.Cancelled = true;
     }
-    private bool MovementUp(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
+
+    private bool MovementUpPressed(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
     {
         if (!_timing.IsFirstTimePredicted) return false;
         if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
-        if (playerSession.AttachedEntity == null) return false;
         if (TryComp<ShiftTankHullComponent>(player, out var comp))
-            OnTankMove(playerSession.AttachedEntity.Value, comp, true);
-        return false;
-    }
-
-    private void OnTankMove(EntityUid uid, ShiftTankHullComponent comp, bool forward)
-    {
-        if (forward && comp.MoveDirection == 0)
+        {
             comp.MoveDirection = 1;
-        if (forward && comp.MoveDirection == -1)
-            comp.MoveDirection = 0;
-        if (!forward && comp.MoveDirection == 0)
-            comp.MoveDirection = -1;
-        if (!forward && comp.MoveDirection == 1)
-            comp.MoveDirection = 0;
-
-        if (comp.MoveDirection != 0)
             comp.IsMoving = true;
-        else
-            comp.IsMoving = false;
-        Dirty(uid, comp); // Синхронизировать состояние с клиентом, если нужно
-        if (TryComp<PhysicsComponent>(uid, out var physics) && comp.MoveDirection == 0)
-            _physics.SetLinearVelocity(uid, Vector2.Zero, body: physics);
-    }
-    private void OnTankRotate(EntityUid uid, ShiftTankHullComponent comp, bool right)
-    {
-        if (right && comp.RotationDirection == 0)
-            comp.RotationDirection = 1;
-        if (right && comp.RotationDirection == -1)
-            comp.RotationDirection = 0;
-        if (!right && comp.RotationDirection == 0)
-            comp.RotationDirection = -1;
-        if (!right && comp.RotationDirection == 1)
-            comp.RotationDirection = 0;
-        if (comp.RotationDirection != 0)
-            comp.IsRotating = true;
-        else
-            comp.IsRotating = false;
-        Dirty(uid, comp);
-    }
-    private bool MovementRight(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
-    {
-        if (!_timing.IsFirstTimePredicted) return false;
-        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
-        if (playerSession.AttachedEntity == null) return false;
-        if (TryComp<ShiftTankHullComponent>(player, out var comp))
-            OnTankRotate(playerSession.AttachedEntity.Value, comp, true);
-        return false;
-    }
-    private bool MovementDown(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
-    {
-        if (!_timing.IsFirstTimePredicted) return false;
-        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
-        if (playerSession.AttachedEntity == null) return false;
-        if (TryComp<ShiftTankHullComponent>(player, out var comp))
-            OnTankMove(playerSession.AttachedEntity.Value, comp, false);
-        return false;
-    }
-    private bool MovementLeft(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
-    {
-        if (!_timing.IsFirstTimePredicted) return false;
-        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
-        if (playerSession.AttachedEntity == null) return false;
-        if (TryComp<ShiftTankHullComponent>(player, out var comp))
-            OnTankRotate(playerSession.AttachedEntity.Value, comp, false);
+            Dirty(player, comp);
+        }
         return false;
     }
 
+    private bool MovementUpReleased(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
+    {
+        if (!_timing.IsFirstTimePredicted) return false;
+        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
+        if (TryComp<ShiftTankHullComponent>(player, out var comp))
+        {
+            // Останавливаем движение только если не нажата противоположная клавиша
+            if (comp.MoveDirection == 1)
+            {
+                comp.MoveDirection = 0;
+                comp.IsMoving = false;
+                Dirty(player, comp);
+                if (TryComp<PhysicsComponent>(player, out var physics))
+                    _physics.SetLinearVelocity(player, Vector2.Zero, body: physics);
+            }
+        }
+        return false;
+    }
+
+    private bool MovementRightPressed(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
+    {
+        if (!_timing.IsFirstTimePredicted) return false;
+        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
+        if (TryComp<ShiftTankHullComponent>(player, out var comp))
+        {
+            comp.RotationDirection = 1;
+            comp.IsRotating = true;
+            Dirty(player, comp);
+        }
+        return false;
+    }
+
+    private bool MovementRightReleased(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
+    {
+        if (!_timing.IsFirstTimePredicted) return false;
+        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
+        if (TryComp<ShiftTankHullComponent>(player, out var comp))
+        {
+            // Останавливаем вращение только если не нажата противоположная клавиша
+            if (comp.RotationDirection == 1)
+            {
+                comp.RotationDirection = 0;
+                comp.IsRotating = false;
+                Dirty(player, comp);
+            }
+        }
+        return false;
+    }
+
+    private bool MovementDownPressed(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
+    {
+        if (!_timing.IsFirstTimePredicted) return false;
+        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
+        if (TryComp<ShiftTankHullComponent>(player, out var comp))
+        {
+            comp.MoveDirection = -1;
+            comp.IsMoving = true;
+            Dirty(player, comp);
+        }
+        return false;
+    }
+
+    private bool MovementDownReleased(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
+    {
+        if (!_timing.IsFirstTimePredicted) return false;
+        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
+        if (TryComp<ShiftTankHullComponent>(player, out var comp))
+        {
+            // Останавливаем движение только если не нажата противоположная клавиша
+            if (comp.MoveDirection == -1)
+            {
+                comp.MoveDirection = 0;
+                comp.IsMoving = false;
+                Dirty(player, comp);
+                if (TryComp<PhysicsComponent>(player, out var physics))
+                    _physics.SetLinearVelocity(player, Vector2.Zero, body: physics);
+            }
+        }
+        return false;
+    }
+
+    private bool MovementLeftPressed(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
+    {
+        if (!_timing.IsFirstTimePredicted) return false;
+        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
+        if (TryComp<ShiftTankHullComponent>(player, out var comp))
+        {
+            comp.RotationDirection = -1;
+            comp.IsRotating = true;
+            Dirty(player, comp);
+        }
+        return false;
+    }
+
+    private bool MovementLeftReleased(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid uid)
+    {
+        if (!_timing.IsFirstTimePredicted) return false;
+        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player)) return false;
+        if (TryComp<ShiftTankHullComponent>(player, out var comp))
+        {
+            // Останавливаем вращение только если не нажата противоположная клавиша
+            if (comp.RotationDirection == -1)
+            {
+                comp.RotationDirection = 0;
+                comp.IsRotating = false;
+                Dirty(player, comp);
+            }
+        }
+        return false;
+    }
 }
