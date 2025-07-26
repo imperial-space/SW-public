@@ -282,7 +282,7 @@
 - type: startingGear
   id: ImperialDocGear
   equipment:
-    id: SCPIDCardFour
+    id: SCPIDCardCI
     pocket1: PillAmbuzolPlus
   inhand:
   - CaneSheathFilled
