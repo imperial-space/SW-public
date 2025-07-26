@@ -21,6 +21,7 @@ using Content.Shared.Movement.Systems;
 using System.Numerics;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Interaction.Components;
+using Content.Shared.Fluids.Components;
 
 namespace Content.Server.ShiftFront
 {
@@ -79,6 +80,8 @@ namespace Content.Server.ShiftFront
         {
             if (comp.TankPart) return;
             if (TryComp<MobStateComponent>(args.OtherEntity, out var mob) && mob.CurrentState == MobState.Dead)
+                return;
+            if (HasComp<PuddleComponent>(args.OtherEntity))
                 return;
             if (comp.CMD)
                 return;

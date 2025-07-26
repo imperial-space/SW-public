@@ -131,20 +131,20 @@ namespace Content.Server.ShiftFront
             {
                 if (damageable.TotalDamage > 1000f)
                     QueueDel(uid);
-                if (damageable.TotalDamage < 100f)
-                {
-                    if (args.DamageDelta.GetTotal() > 5f)
-                        foreach (var entity in comp.LinkedMipples)
-                        {
-                            Spawn("ShiftFrontMapDamageEffect", Transform(entity).Coordinates);
-                        }
-                }
-                else
+                if (damageable.TotalDamage > 100f && !HasComp<ShiftStructureComponent>(uid))
                 {
                     if (args.DamageDelta.GetTotal() > 0f)
                         foreach (var entity in comp.LinkedMipples)
                         {
                             Spawn("ShiftFrontMapSuffEffect", Transform(entity).Coordinates);
+                        }
+                }
+                else
+                {
+                    if (args.DamageDelta.GetTotal() > 5f)
+                        foreach (var entity in comp.LinkedMipples)
+                        {
+                            Spawn("ShiftFrontMapDamageEffect", Transform(entity).Coordinates);
                         }
                 }
 
