@@ -48,7 +48,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
-        sprite: Imperial/Seriozha/SCP/Ded.rsi
+        sprite: Imperial/Seriozha/SCP/objects/Ded.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -111,9 +111,9 @@
   description: idc
   components:
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/Mask.rsi
+    sprite: Imperial/Seriozha/SCP/objects/Mask.rsi
   - type: Clothing
-    sprite: Imperial/Seriozha/SCP/Mask.rsi
+    sprite: Imperial/Seriozha/SCP/objects/Mask.rsi
   - type: Armor
     modifiers:
       coefficients:
@@ -138,7 +138,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
-        sprite: Imperial/Seriozha/SCP/Doc.rsi
+        sprite: Imperial/Seriozha/SCP/objects/Doc.rsi
     - type: DamageStateVisuals
       states:
         Alive:
@@ -158,7 +158,7 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 111
+          Blunt: 122
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
@@ -282,7 +282,8 @@
 - type: startingGear
   id: ImperialDocGear
   equipment:
-    id: WardenIDCard
+    id: SCPIDCardFour
     pocket1: PillAmbuzolPlus
   inhand:
   - CaneSheathFilled
+
