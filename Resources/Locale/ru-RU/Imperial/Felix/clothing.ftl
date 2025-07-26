@@ -39,7 +39,7 @@ ent-ClothingNeckShoulderPadYellow = тактические наплечники
 ent-ClothingNeckFelixGreenMedal = медаль
     .desc = Зелёная медаль за заслуги.
 ent-ClothingNeckFelixSilverMedal = медаль
-    .desc = Серебрянная медаль за заслуги.
+    .desc = Серебряная медаль за заслуги.
 ent-ClothingNeckFelixSapphireMedal = медаль
     .desc = Сапфировая медаль за заслуги.
 

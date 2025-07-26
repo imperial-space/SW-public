@@ -217,6 +217,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckFelixGreenMedal
   name: medal
+  description: medal
   suffix: ElysiumPrime
   components:
   - type: Sprite
@@ -228,6 +229,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckFelixSilverMedal
   name: medal
+  description: medal
   suffix: ElysiumPrime
   components:
   - type: Sprite
@@ -239,6 +241,7 @@
   parent: ClothingNeckBase
   id: ClothingNeckFelixSapphireMedal
   name: medal
+  description: medal
   suffix: ElysiumPrime
   components:
   - type: Sprite
