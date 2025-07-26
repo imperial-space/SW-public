@@ -285,13 +285,13 @@
       thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 100
+          damage: 1000000
         behaviors: #excess damage, don't spawn entities.
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
       - trigger:
           !type:DamageTrigger
-          damage: 25
+          damage: 250000
         behaviors:
         - !type:EmptyAllContainersBehaviour
         - !type:SpawnEntitiesBehavior
