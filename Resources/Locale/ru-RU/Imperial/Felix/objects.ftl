@@ -171,3 +171,6 @@ ent-FelixXenoPylonDecor = пилон
     .desc = Мерзкая структура ксеноморфов.
 ent-FelixXenoRecoDecor = восстановитель
     .desc = Мерзкая структура ксеноморфов.
+
+ent-FelixWeaponQuroMachineGun = пулемёт "Куро"
+    .desc = Пулемёт с боезапасом 125 патронов. Использует патроны 7x62x51.
