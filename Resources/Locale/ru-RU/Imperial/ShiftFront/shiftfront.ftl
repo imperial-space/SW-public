@@ -617,3 +617,16 @@ ent-ShiftFPVBoxExGreen = разобранный дрон камикадзе ТГ
 ent-ShiftFPVBoxExYellow = разобранный дрон камикадзе ЕКП
     .desc = Запчасти дрона в защищенном взрывоустойчивом кейсе
     .suffix = { "Зыбучий фронт" }
+ent-MobShiftTankObserverBlue = пулемет НАТО
+    .desc = Пулемет, установленный на технику
+    .suffix = { "Зыбучий фронт" }
+ent-MobShiftTankObserverRed = пулемет ПСБ
+    .desc = Пулемет, установленный на технику
+    .suffix = { "Зыбучий фронт" }
+ent-MobShiftTankObserverGreen = пулемет ТГ
+    .desc = Пулемет, установленный на технику
+    .suffix = { "Зыбучий фронт" }
+ent-MobShiftTankObserverYellow = пулемет ЕКП
+    .desc = Пулемет, установленный на технику
+    .suffix = { "Зыбучий фронт" }
+
