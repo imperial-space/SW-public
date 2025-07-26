@@ -42,6 +42,7 @@ using Content.Server.Stunnable;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
 using Robust.Shared.Spawners;
+using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 
 namespace Content.Server.ShiftFront
@@ -99,6 +100,30 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftFrontRequestConsoleComponent, MapInitEvent>(OnRequestConsoleInit);
             SubscribeLocalEvent<ShiftFrontGunComponent, GunShotEvent>(OnShoot);
             SubscribeLocalEvent<ShiftShowOnMapComponent, DamageChangedEvent>(OnDamageMap);
+            SubscribeLocalEvent<ShiftTankTurretComponent, GunShotEvent>(OnShootTurret);
+            SubscribeLocalEvent<ShiftTankHullComponent, DamageChangedEvent>(OnDamageTank);
+        }
+
+        private void OnDamageTank(EntityUid uid, ShiftTankHullComponent comp, DamageChangedEvent args)
+        {
+            if (comp.InsideEntryEntity == null) return;
+            if (args.DamageDelta == null) return;
+            if (args.DamageDelta.GetTotal() <= 0f) return;
+            if (args.DamageDelta.GetTotal() < 110)
+                _audio.PlayPvs(comp.SoundHit, comp.InsideEntryEntity.Value);
+            else
+            {
+                _audio.PlayPvs(comp.SoundHitLarge, comp.InsideEntryEntity.Value);
+                Spawn("MedievalExplodeApNew", Transform(comp.InsideEntryEntity.Value).Coordinates);
+            }
+        }
+        private void OnShootTurret(EntityUid uid, ShiftTankTurretComponent comp, GunShotEvent args)
+        {
+            if (comp.LinkedTank == null) return;
+            if (!TryComp<ShiftTankHullComponent>(comp.LinkedTank, out var hull)) return;
+            if (hull.InsideGunnerEntity == null) return;
+            if (!TryComp<GunComponent>(uid, out var gun)) return;
+            _audio.PlayPvs(gun.SoundGunshot, hull.InsideGunnerEntity.Value);
         }
         private void OnDamageMap(EntityUid uid, ShiftShowOnMapComponent comp, DamageChangedEvent args)
         {

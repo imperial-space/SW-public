@@ -31,6 +31,12 @@ public sealed partial class ShiftTankHullComponent : Component
         new ResPath("/Maps/Imperial/tank.yml")
     };
 
+
+    [DataField]
+    public SoundSpecifier SoundHit = new SoundPathSpecifier("/Audio/Weapons/Guns/Hits/hit_small.ogg");
+    [DataField]
+    public SoundSpecifier SoundHitLarge = new SoundPathSpecifier("/Audio/Weapons/Guns/Hits/hit_ouch.ogg");
+
     [DataField]
     public string InsideController = "";
 

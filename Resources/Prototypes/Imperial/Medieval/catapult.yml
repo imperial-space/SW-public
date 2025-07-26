@@ -242,6 +242,18 @@
 
 
 - type: entity
+  id: MedievalExplodeApNew
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: DemolitionCharge
+    maxIntensity: 3.2
+    intensitySlope: 2
+    totalIntensity: 60
+    canCreateVacuum: false
+
+- type: entity
   id: MedievalHitMarkerStone
   parent: BaseItem
   components:

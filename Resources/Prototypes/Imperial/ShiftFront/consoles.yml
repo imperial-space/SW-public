@@ -1112,6 +1112,7 @@
     mode: SnapgridCenter
   components:
   - type: SiegeWeapon
+    maxTarget: 60
   - type: Clickable
   - type: InteractionOutline
   - type: Appearance
