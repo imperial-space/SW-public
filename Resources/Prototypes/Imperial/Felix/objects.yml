@@ -1418,15 +1418,15 @@
   description: An ultra-large machine gun with 125 rounds of ammunition. It has a black color mixed with a set of wooden body parts. Uses 7x62x51 ammo.
   components:
   - type: Item
-    sprite: Imperial/Felix/Objects/Weapon/QuroMachineGun/qyj_72_inhands.rsi
+    sprite: Imperial/Felix/Objects/Weapons/QuroMachineGun/qyj_72_inhands.rsi
     size: Huge
   - type: Clothing
-    sprite: Imperial/Felix/Objects/Weapon/QuroMachineGun/qyj_72_inhands.rsi
+    sprite: Imperial/Felix/Objects/Weapons/QuroMachineGun/qyj_72_inhands.rsi
     quickEquip: false
     slots:
     - Back
   - type: Sprite
-    sprite: Imperial/Felix/Objects/Weapon/QuroMachineGun/qyj_72_icon.rsi
+    sprite: Imperial/Felix/Objects/Weapons/QuroMachineGun/qyj_72_icon.rsi
     layers:
     - state: base
       map: ["enum.GunVisualLayers.Base"]
