@@ -140,7 +140,7 @@
       path: /Audio/Imperial/ShiftFront/shot_rifle.ogg
       params:
         maxDistance: 45
-    fireRate: 5
+    fireRate: 6
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg
@@ -207,7 +207,7 @@
       path: /Audio/Imperial/ShiftFront/shot_rifle.ogg
       params:
         maxDistance: 45
-    fireRate: 5
+    fireRate: 6
   - type: ChamberMagazineAmmoProvider
     soundRack:
       path: /Audio/Weapons/Guns/Cock/ltrifle_cock.ogg

@@ -85,9 +85,10 @@ namespace Content.Server.Cult
         private void OnPlayerAttached(EntityUid uid, TakeNameComponent comp, PlayerAttachedEvent args)
         {
             if (!_playerManager.TryGetSessionByEntity(uid, out var session) || comp.HasName) return;
-            _quickDialog.OpenDialog(session, "Введите имя", "Имя", (string message) =>
+            if (!TryComp<MetaDataComponent>(uid, out var metaData)) return;
+            _quickDialog.OpenDialog(session, "Введите позывной", "Позывной", (string message) =>
             {
-                _metaData.SetEntityName(uid, message);
+                _metaData.SetEntityName(uid, metaData.EntityName + message);
                 comp.HasName = true;
             });
         }

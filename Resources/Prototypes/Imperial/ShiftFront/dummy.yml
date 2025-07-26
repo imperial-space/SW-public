@@ -2,6 +2,7 @@
   parent: BaseMobHuman
   id: BaseMobHumanShiftFront
   components:
+  - type: TakeName
   - type: Eye
     pvsScale: 2
   - type: EyeCursorOffset
