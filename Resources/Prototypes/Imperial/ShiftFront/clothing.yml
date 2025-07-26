@@ -406,9 +406,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Piercing: 0.5
+        Piercing: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.55
+    damageCoefficient: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7
@@ -461,9 +461,9 @@
   - type: Armor
     modifiers:
       coefficients:
-        Piercing: 0.5
+        Piercing: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.55
+    damageCoefficient: 0.4
   - type: ClothingSpeedModifier
     walkModifier: 0.7
     sprintModifier: 0.7

@@ -796,7 +796,7 @@
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
     belt: USSPBeltAssaultShiftFront
-    #neck: WardenMantleIDShiftFront
+    neck: WardenMantleIDShiftFront
   inhand:
     - WeaponShotgunKammererShiftingFront
   storage:

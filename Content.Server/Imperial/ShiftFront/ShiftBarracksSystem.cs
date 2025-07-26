@@ -135,7 +135,7 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 70, 150, 15, session))
+                        if (!TryWasteResource(rescomp, 85, 150, 20, session))
                             return;
                         comp.ChosenGen = "пулеметчик";
                         comp.TimeTillNextGen = 100 - comp.Boost * 2;
