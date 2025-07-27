@@ -44,6 +44,7 @@ using Robust.Shared.Maths;
 using Robust.Shared.Spawners;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
+using Robust.Shared.Enums;
 
 namespace Content.Server.ShiftFront
 {
@@ -93,6 +94,7 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftConsoleAnalisComponent, ExaminedEvent>(OnExamineAnalis);
             SubscribeLocalEvent<ShiftResourceExtractComponent, BeforeRangedInteractEvent>(OnUseInHand);
             SubscribeLocalEvent<ShiftPlayerComponent, CommanderBoostUpEvent>(OnCommanderBoost);
+            SubscribeLocalEvent<ShiftPlayerComponent, PlayerDetachedEvent>(OnPlayerDetached);
             SubscribeLocalEvent<ShiftWrenchComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<ShiftBuildLightComponent, GetVerbsEvent<AlternativeVerb>>(OnGetBuildVerbs);
             SubscribeLocalEvent<ShiftFrontRequestComponent, ExaminedEvent>(OnExamineRequest);
@@ -102,7 +104,123 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftShowOnMapComponent, DamageChangedEvent>(OnDamageMap);
             SubscribeLocalEvent<ShiftTankTurretComponent, GunShotEvent>(OnShootTurret);
             SubscribeLocalEvent<ShiftTankHullComponent, DamageChangedEvent>(OnDamageTank);
+            SubscribeLocalEvent<ShiftCommandComponent, GetVerbsEvent<AlternativeVerb>>(OnGetComVerbs);
         }
+
+        private void OnGetComVerbs(EntityUid uid, ShiftCommandComponent comp, GetVerbsEvent<AlternativeVerb> ev)
+        {
+            if (!ev.CanAccess || !ev.CanInteract)
+                return;
+
+            if (!_sharedPlayerManager.TryGetSessionByEntity(ev.User, out var session))
+                return;
+
+            // Проверяем, состоит ли игрок уже в какой-то команде
+            if (!TryComp<MindContainerComponent>(ev.User, out var mindContainer) || mindContainer.Mind == null) return;
+            var isInAnyTeam = TryComp<ShiftCommandPlayerComponent>(mindContainer.Mind, out var playerTeam);
+
+            ev.Verbs.Add(new AlternativeVerb
+            {
+                Act = () =>
+                {
+                    if (isInAnyTeam)
+                        LeaveCurrentTeam(mindContainer.Mind.Value);
+                    JoinCommand(uid, comp, ev.User);
+                },
+                Text = isInAnyTeam ? "Сменить команду" : "Выбрать эту команду",
+                Priority = 10,
+                Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "beacon_code")
+            });
+
+            // Добавляем отдельный глагол для выхода из команды
+            if (isInAnyTeam)
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => LeaveCurrentTeam(mindContainer.Mind.Value),
+                    Text = "Покинуть команду",
+                    Priority = 5,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "beacon_code")
+                });
+            }
+        }
+
+        private void LeaveCurrentTeam(EntityUid user)
+        {
+            if (!TryComp<ShiftCommandPlayerComponent>(user, out var player))
+                return;
+            if (!TryComp<ShiftCommandComponent>(player.Command, out var command))
+                return;
+
+            if (!TryComp<MindComponent>(user, out var mind)) return;
+            // Удаляем игрока из команды
+            command.Players.Remove(player.Owner);
+
+            // Удаляем из очереди возрождения (если нужно)
+            command.RespawnQueue.Remove(user);
+
+            // Уведомление
+            if (mind.CurrentEntity != null)
+                _chat.TrySendInGameICMessage(mind.CurrentEntity.Value, $"Вы покинули команду {player.Faction}!", InGameICChatType.Speak, false);
+
+            // Удаляем компонент игрока
+            RemComp<ShiftCommandPlayerComponent>(user);
+        }
+
+        private void JoinCommand(EntityUid uid, ShiftCommandComponent comp, EntityUid user)
+        {
+            // Проверяем, что у игрока есть Mind (сознание)
+            if (!TryComp<MindContainerComponent>(user, out var mindContainer) || mindContainer.Mind == null)
+                return;
+
+            var mind = mindContainer.Mind.Value;
+
+            // Если игрок уже в этой команде - выходим
+            if (comp.Players.Contains(mind))
+                return;
+
+            // Получаем все команды (ShiftCommandComponent) на сервере
+            var allCommands = EntityQuery<ShiftCommandComponent>().ToList();
+
+            // Находим минимальное количество игроков в командах (кроме текущей)
+            var otherTeamsPlayerCounts = allCommands
+                .Where(c => c.Faction != comp.Faction)
+                .Select(c => c.Players.Count)
+                .ToList();
+
+            // Если есть другие команды, проверяем баланс
+            if (otherTeamsPlayerCounts.Any())
+            {
+                var minPlayersInOtherTeams = otherTeamsPlayerCounts.Min();
+                var currentTeamCount = comp.Players.Count;
+
+                // Если в текущей команде уже больше игроков, чем минимальное в других - запрещаем вступление
+                if (currentTeamCount > minPlayersInOtherTeams)
+                {
+                    _chat.TrySendInGameICMessage(user, $"Невозможно присоединиться: перевес в команде {comp.Faction}!", InGameICChatType.Speak, false);
+                    return;
+                }
+            }
+
+            // Если игрок уже в другой команде - сначала выходим из неё
+            if (TryComp<ShiftCommandPlayerComponent>(mind, out var currentTeam))
+            {
+                LeaveCurrentTeam(mind);
+            }
+
+            // Добавляем игрока в новую команду
+            EnsureComp<ShiftCommandPlayerComponent>(mind, out var complayer);
+            complayer.Command = comp.Owner;
+            complayer.Faction = comp.Faction;
+            comp.RespawnQueue.Add(mind);
+            comp.Players.Add(mind);
+
+            // Уведомление
+            _chat.TrySendInGameICMessage(user, $"Вы присоединились к команде {comp.Faction}!", InGameICChatType.Speak, false);
+            QueueDel(user);
+        }
+
+
 
         private void OnDamageTank(EntityUid uid, ShiftTankHullComponent comp, DamageChangedEvent args)
         {
@@ -185,15 +303,15 @@ namespace Content.Server.ShiftFront
             if (!_sharedPlayerManager.TryGetSessionByEntity(ev.User, out var session))
                 return;
 
-            if (TryComp<ShiftPlayerComponent>(ev.User, out var shiftPlayer) && shiftPlayer.Leader)
-                return; // Для лидеров обычное меню
+            if (!TryComp<ShiftPlayerComponent>(ev.User, out var shiftPlayer))
+                return;
 
             ev.Verbs.Add(new AlternativeVerb
             {
                 Act = () => RequestConstruction(comp.BuildingCode, ev.User, session),
                 Text = "Запросить строительство",
                 Priority = 10,
-                Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "construction")
+                Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "beacon_code")
             });
         }
 
@@ -384,7 +502,7 @@ namespace Content.Server.ShiftFront
         }
         private void OnExamineStructure(EntityUid uid, ShiftStructureComponent comp, ExaminedEvent args)
         {
-            if (TryComp<DamageableComponent>(uid, out var dam) && dam.TotalDamage.Float() > 0)
+            if (TryComp<DamageableComponent>(uid, out var dam) && dam.TotalDamage.Float() > 5)
                 args.PushMarkup($"У этой постройки [color=red]{Math.Round(dam.TotalDamage.Float(), 2)}[/color] единиц  повреждений, бейте красным гаечным ключом для ремонта", 5);
         }
 
@@ -463,8 +581,17 @@ namespace Content.Server.ShiftFront
                 comp.SuppressionMax += 15;
             if (comp.Ninja && HasComp<StatusIconComponent>(uid)) RemComp<StatusIconComponent>(uid);
 
+            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+            while (dquery.MoveNext(out var reuid, out var recomp))
+            {
+                if (recomp.Faction != comp.Faction) continue;
+                if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind) continue;
+                if (recomp.RespawnQueue.Count <= 0) continue;
+                if (!TryComp<MindComponent>(recomp.RespawnQueue.First(), out var mindcomp)) continue;
+                _minds.Visit(recomp.RespawnQueue.First(), uid, mindcomp);
+                recomp.RespawnQueue.Remove(recomp.RespawnQueue.First());
+            }
         }
-
         public void OnShowOnMapEnd(EntityUid uid, ShiftShowOnMapComponent comp, ComponentShutdown args)
         {
             foreach (var mipple in comp.LinkedMipples)
@@ -585,6 +712,17 @@ namespace Content.Server.ShiftFront
             var coords = xform.Coordinates;
             QueueDel(ent);
             Spawn("AnomalyCoreFleshShiftFront", coords);
+        }
+
+        private void OnPlayerDetached(Entity<ShiftPlayerComponent> ent, ref PlayerDetachedEvent args)
+        {
+            if (TryComp<MindContainerComponent>(ent, out var mind) && mind.Mind != null)
+            {
+                if (TryComp<ShiftCommandPlayerComponent>(mind.Mind.Value, out var shiftp) && TryComp<ShiftCommandComponent>(shiftp.Command, out var shiftc))
+                {
+                    shiftc.RespawnQueue.Add(mind.Mind.Value);
+                }
+            }
         }
 
         private void OnDamage(EntityUid uid, ShiftExtractorComponent comp, DamageChangedEvent args)
@@ -720,6 +858,8 @@ namespace Content.Server.ShiftFront
 
             if (TryComp<ShiftPlayerComponent>(ev.User, out var shiftPlayer) && !shiftPlayer.Leader)
                 return;
+
+            if (comp.CurrentBuildTimer > 0) return;
 
             // Основные постройки
             ev.Verbs.Add(new AlternativeVerb
@@ -1109,6 +1249,30 @@ namespace Content.Server.ShiftFront
                         {
                             _jitter.DoJitter(uid, TimeSpan.FromSeconds(2f), true, amplitude: 3f);
                             _chat.TrySendInGameICMessage(uid, _random.Pick(comp.SuppressionPhrases), InGameICChatType.Speak, false);
+                        }
+                    }
+                }
+
+
+                var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                while (dquery.MoveNext(out var reuid, out var recomp))
+                {
+                    foreach (var player in recomp.Players)
+                    {
+                        if (!TryComp<ShiftCommandPlayerComponent>(player, out var pcomp)) continue;
+                        if (!TryComp<MindComponent>(player, out var mind)) continue;
+                        if (TryComp<SSDIndicatorComponent>(mind.CurrentEntity, out var indic))
+                        {
+                            if (indic.IsSSD)
+                            {
+                                pcomp.AFKTime++;
+                                if (pcomp.AFKTime > 90)
+                                {
+                                    LeaveCurrentTeam(player);
+                                }
+                            }
+                            else
+                                pcomp.AFKTime = 0;
                         }
                     }
                 }

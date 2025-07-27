@@ -277,3 +277,39 @@
     sprite: Imperial/ShiftFront/light.rsi
     state: healtow
     drawdepth: Mobs
+
+################
+
+- type: entity
+  id: ShiftFrontCommandRedFaction
+  components:
+  - type: Sprite
+    scale: 1, 1
+    sprite: Imperial/ShiftFront/light.rsi
+    state: icon
+    drawdepth: Overdoors
+  - type: InteractionOutline
+  - type: Clickable
+  - type: ShiftCommand
+    faction: Red
+
+- type: entity
+  id: ShiftFrontCommandBlueFaction
+  parent: ShiftFrontCommandRedFaction
+  components:
+  - type: ShiftCommand
+    faction: Blue
+
+- type: entity
+  id: ShiftFrontCommandYellowFaction
+  parent: ShiftFrontCommandRedFaction
+  components:
+  - type: ShiftCommand
+    faction: Yellow
+
+- type: entity
+  id: ShiftFrontCommandGreenFaction
+  parent: ShiftFrontCommandRedFaction
+  components:
+  - type: ShiftCommand
+    faction: Green

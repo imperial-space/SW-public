@@ -84,6 +84,7 @@
   - type: Tag
     tags:
     - AllowGhostShownByEvent
+  - type: SSDIndicator
 
 - type: entity
   id: ActionGhostBoo

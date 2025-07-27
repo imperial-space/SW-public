@@ -19,6 +19,134 @@
       - state: green
 
 - type: entity
+  id: SpawnPointMedievalMobPlayerRespawnFront
+  name: ghost role spawn point
+  suffix: rat king
+  parent: MarkerBase
+  components:
+  - type: GhostRole
+    name: Выбор команды
+    description: Выберите команду
+    rules: Выберите или покиньте свою команду через соответствующие объекты через ПКМ по ним. Нахождение в команде будет автоматически закидывать вас на ее гост роли солдат при их появлении
+    #raffle:
+    #  settings: default
+  - type: GhostRoleMobSpawner
+    prototype: MedievalMobPlayerRespawnFront
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+
+- type: entity
+  name: Urist GigaResp
+  id: MedievalMobPlayerRespawnFront
+  parent: [SimpleMobBase, StripableInventoryBase]
+  description: New church of neo-darwinists actually believe that EVERY animal evolved from a resp. Tastes like pork, and killing them is both fun and relaxing.
+  components:
+  #- type: AreaMarkerInvoker
+  #- type: Damageable
+  #  damageModifierSet: MedievalRespawnPlayer
+  - type: CombatMode
+  #- type: MedievalMobTrigger
+  #  fixtureId: "medieval-spawner"
+  - type: TDMNaming
+  - type: Inventory
+    templateId: goblin
+  - type: InventorySlots
+  #- type: Cuffable
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 80
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+      #medieval-spawner: # imperial medieval start
+      #  shape: !type:PhysShapeCircle
+      #    radius: 0.4
+      #  layer: []
+      #  #layer:
+      #  #- DoorPassable
+      #  mask:
+      #  - MedievalSpawnerLayer
+      #  hard: false # imperial medieval end
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: player
+      sprite: Imperial/Medieval/Mobs/Respawn/player.rsi
+    - map: ["jumpsuit"]
+    - map: [ "id" ]
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "outerClothing" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
+    - map: [ "neck" ]
+    - map: [ "back" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ]
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+  - type: Hands
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: {visible: true}
+          False: {visible: false}
+  - type: Speech
+    speechVerb: Ghost
+  - type: Body
+    prototype: Reptilian
+    requiredLegs: 2
+  - type: FactionException
+  - type: ComplexInteraction
+  - type: GhostRole
+    prob: 1
+    makeSentient: true
+    name: Выбор команды
+    description: Выберите команду
+    rules: Выберите или покиньте свою команду через соответствующие объекты через ПКМ по ним. Нахождение "в команде" будет автоматически закидывать вас на ее гост роли солдат при их появлении
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      500: Critical
+      501: Dead
+  - type: Thirst
+    baseDecayRate: 0
+  - type: Hunger
+    baseDecayRate: 0
+  - type: TriggerOnSpawn
+  - type: SpawnOnTrigger
+    proto: SpawnPointMedievalMobPlayerRespawnFront
+
+- type: entity
   name: Urist GigaResp
   id: MedievalMobPlayerRespawn
   parent: [SimpleMobBase, StripableInventoryBase]
