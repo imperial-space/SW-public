@@ -164,7 +164,7 @@
       layers:
         - state: icon
     - type: Clothing
-      sprite: Imperial/Seriozha/SCP/id/сi.rsi
+      sprite: Imperial/Seriozha/SCP/id/ci.rsi
 
 - type: entity
   id: SCPIDCardFive
