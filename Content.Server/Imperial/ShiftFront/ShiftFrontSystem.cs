@@ -623,6 +623,13 @@ namespace Content.Server.ShiftFront
                 if (TryComp<MindContainerComponent>(uid, out var mind) && mind.HasMind) continue;
                 if (recomp.RespawnQueue.Count <= 0) continue;
                 if (!TryComp<MindComponent>(recomp.RespawnQueue.First(), out var mindcomp)) continue;
+                if (!TryComp<ShiftCommandPlayerComponent>(recomp.RespawnQueue.First(), out var remind)) continue;
+                if (recomp.Faction != remind.Faction)
+                {
+                    recomp.Players.Remove(recomp.RespawnQueue.First());
+                    recomp.RespawnQueue.Remove(recomp.RespawnQueue.First());
+                    continue;
+                }
                 _minds.Visit(recomp.RespawnQueue.First(), uid, mindcomp);
                 recomp.RespawnQueue.Remove(recomp.RespawnQueue.First());
             }
