@@ -629,4 +629,15 @@ ent-MobShiftTankObserverGreen = пулемет ТГ
 ent-MobShiftTankObserverYellow = пулемет ЕКП
     .desc = Пулемет, установленный на технику
     .suffix = { "Зыбучий фронт" }
-
+ent-ShiftFrontMRAPBlue = МРАП НАТО
+    .desc = Бронированная машина
+    .suffix = { "Зыбучий фронт" }
+ent-ShiftFrontMRAPRed = МРАП ПСБ
+    .desc = Бронированная машина
+    .suffix = { "Зыбучий фронт" }
+ent-ShiftFrontMRAPGreen = МРАП ТГ
+    .desc = Бронированная машина
+    .suffix = { "Зыбучий фронт" }
+ent-ShiftFrontMRAPYellow = МРАП ЕКП
+    .desc = Бронированная машина
+    .suffix = { "Зыбучий фронт" }

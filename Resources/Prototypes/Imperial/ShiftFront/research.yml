@@ -278,12 +278,20 @@
   - ShiftFrontFactorySpeedUp
 
 - type: ShiftFrontResearch
+  id: ShiftFrontMRAP
+  tier: 1
+  researchName: МРАП
+  price: 35
+  requiredResearches:
+  - ShiftFrontSupplies
+
+- type: ShiftFrontResearch
   id: ShiftFrontMTLB
   tier: 1
   researchName: МТЛБ
   price: 55
   requiredResearches:
-  - ShiftFrontSupplies
+  - ShiftFrontMRAP
 
 - type: ShiftFrontResearch
   id: ShiftFrontBMP

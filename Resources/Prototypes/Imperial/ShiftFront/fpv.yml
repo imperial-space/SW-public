@@ -211,9 +211,21 @@
       English: Speak
   - type: Speech
   - type: EyeCursorOffset
-    maxOffset: 15
+    maxOffset: 12
     pvsIncrease: 2
     offsetSpeed: 1
+  - type: Storage
+    grid:
+    - 0,0,4,4
+    maxItemSize: Ginormous
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
 
 
 - type: entity
@@ -242,9 +254,21 @@
       Russian: Speak
   - type: Speech
   - type: EyeCursorOffset
-    maxOffset: 15
+    maxOffset: 12
     pvsIncrease: 2
     offsetSpeed: 1
+  - type: Storage
+    grid:
+    - 0,0,4,4
+    maxItemSize: Ginormous
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
 
 
 - type: entity
@@ -273,9 +297,21 @@
       German: Speak
   - type: Speech
   - type: EyeCursorOffset
-    maxOffset: 15
+    maxOffset: 12
     pvsIncrease: 2
     offsetSpeed: 1
+  - type: Storage
+    grid:
+    - 0,0,4,4
+    maxItemSize: Ginormous
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
 
 
 - type: entity
@@ -304,9 +340,21 @@
       Chineese: Speak
   - type: Speech
   - type: EyeCursorOffset
-    maxOffset: 15
+    maxOffset: 12
     pvsIncrease: 2
     offsetSpeed: 1
+  - type: Storage
+    grid:
+    - 0,0,4,4
+    maxItemSize: Ginormous
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
 
 - type: entity
   id: ShiftFPVBoxObserverBlue

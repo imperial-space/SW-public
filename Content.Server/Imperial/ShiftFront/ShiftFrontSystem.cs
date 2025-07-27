@@ -117,14 +117,26 @@ namespace Content.Server.ShiftFront
 
             // Проверяем, состоит ли игрок уже в какой-то команде
             if (!TryComp<MindContainerComponent>(ev.User, out var mindContainer) || mindContainer.Mind == null) return;
-            var isInAnyTeam = TryComp<ShiftCommandPlayerComponent>(mindContainer.Mind, out var playerTeam);
+
+            var isInAnyTeam = HasComp<ShiftCommandPlayerComponent>(mindContainer.Mind);
+
+            if (isInAnyTeam)
+                Logger.Debug($"Ис ин эни тим труе");
+
+            var n = mindContainer.Mind.Value;
+            Logger.Debug(n.ToString());
 
             ev.Verbs.Add(new AlternativeVerb
             {
                 Act = () =>
                 {
-                    if (isInAnyTeam)
-                        LeaveCurrentTeam(mindContainer.Mind.Value);
+                    if (TryComp<ShiftCommandPlayerComponent>(mindContainer.Mind, out var player) && TryComp<ShiftCommandComponent>(player.Command, out var command))
+                    {
+                        command.RespawnQueue.Remove(mindContainer.Mind.Value);
+                        command.Players.Remove(mindContainer.Mind.Value);
+                        RemComp<ShiftCommandPlayerComponent>(mindContainer.Mind.Value);
+                    }
+
                     JoinCommand(uid, comp, ev.User);
                 },
                 Text = isInAnyTeam ? "Сменить команду" : "Выбрать эту команду",
@@ -133,28 +145,39 @@ namespace Content.Server.ShiftFront
             });
 
             // Добавляем отдельный глагол для выхода из команды
-            if (isInAnyTeam)
+            //if (isInAnyTeam)
+            //{
+            ev.Verbs.Add(new AlternativeVerb
             {
-                ev.Verbs.Add(new AlternativeVerb
+                Act = () =>
                 {
-                    Act = () => LeaveCurrentTeam(mindContainer.Mind.Value),
-                    Text = "Покинуть команду",
-                    Priority = 5,
-                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "beacon_code")
-                });
-            }
+                    if (TryComp<ShiftCommandPlayerComponent>(mindContainer.Mind, out var player) && TryComp<ShiftCommandComponent>(player.Command, out var command))
+                    {
+                        command.RespawnQueue.Remove(mindContainer.Mind.Value);
+                        command.Players.Remove(mindContainer.Mind.Value);
+                        RemComp<ShiftCommandPlayerComponent>(mindContainer.Mind.Value);
+                    }
+                },
+                Text = "Покинуть команду",
+                Priority = 5,
+                Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "beacon_code")
+            });
+            //}
         }
 
         private void LeaveCurrentTeam(EntityUid user)
         {
+            Logger.Debug($"Запущен метод о ливе текущей команды");
+
             if (!TryComp<ShiftCommandPlayerComponent>(user, out var player))
                 return;
             if (!TryComp<ShiftCommandComponent>(player.Command, out var command))
                 return;
+            Logger.Debug($"Прошли проверки о ливе текущей команды");
 
             if (!TryComp<MindComponent>(user, out var mind)) return;
             // Удаляем игрока из команды
-            command.Players.Remove(player.Owner);
+            command.Players.Remove(user);
 
             // Удаляем из очереди возрождения (если нужно)
             command.RespawnQueue.Remove(user);
@@ -169,6 +192,7 @@ namespace Content.Server.ShiftFront
 
         private void JoinCommand(EntityUid uid, ShiftCommandComponent comp, EntityUid user)
         {
+            Logger.Debug("Начали попытку джоина в команду");
             // Проверяем, что у игрока есть Mind (сознание)
             if (!TryComp<MindContainerComponent>(user, out var mindContainer) || mindContainer.Mind == null)
                 return;
@@ -198,6 +222,7 @@ namespace Content.Server.ShiftFront
                 if (currentTeamCount > minPlayersInOtherTeams)
                 {
                     _chat.TrySendInGameICMessage(user, $"Невозможно присоединиться: перевес в команде {comp.Faction}!", InGameICChatType.Speak, false);
+                    Logger.Debug("Дизбаланс наху");
                     return;
                 }
             }
@@ -205,6 +230,13 @@ namespace Content.Server.ShiftFront
             // Если игрок уже в другой команде - сначала выходим из неё
             if (TryComp<ShiftCommandPlayerComponent>(mind, out var currentTeam))
             {
+                Logger.Debug("ГГ, чел уже где то был, ливаем");
+
+                if (TryComp<ShiftCommandComponent>(currentTeam.Command, out var currentTeamComp))
+                {
+                    currentTeamComp.Players.Remove(mind);
+                    currentTeamComp.RespawnQueue.Remove(mind);
+                }
                 LeaveCurrentTeam(mind);
             }
 
@@ -217,7 +249,8 @@ namespace Content.Server.ShiftFront
 
             // Уведомление
             _chat.TrySendInGameICMessage(user, $"Вы присоединились к команде {comp.Faction}!", InGameICChatType.Speak, false);
-            QueueDel(user);
+            EnsureComp<TimedDespawnComponent>(user, out var despawn);
+            despawn.Lifetime = 0.5f;
         }
 
 
@@ -344,6 +377,8 @@ namespace Content.Server.ShiftFront
                 requestComp.BuildingTypeId = buildingType;
                 requestComp.RequesterUid = lightUid;
                 requestComp.Faction = faction;
+                _chat.TrySendInGameICMessage(consoleUid, $"Пришел запрос на {buildingType} от {requestComp.RequesterName}", InGameICChatType.Speak, false);
+
 
                 _metaData.SetEntityName(paper, $"[{faction}] Запрос: {buildingType}");
                 consoleComp.ActiveRequests.Add(paper);
@@ -994,6 +1029,17 @@ namespace Content.Server.ShiftFront
                 });
             }
 
+            if (CheckResearch("ShiftFrontMRAP", comp.Faction))
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => SelectBuildType(uid, comp, session, "МРАП"),
+                    Text = "МРАП",
+                    Priority = 4,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon")
+                });
+            }
+
             if (CheckResearch("ShiftFrontMTLB", comp.Faction))
             {
                 ev.Verbs.Add(new AlternativeVerb
@@ -1077,9 +1123,10 @@ namespace Content.Server.ShiftFront
                 "станция РЭБ" => 20,
                 "хранилище" => 20,
                 "мина" => 10,
-                "МТЛБ" => 120,
-                "БМП" => 120,
-                "танк" => 120,
+                "МРАП" => 20,
+                "МТЛБ" => 40,
+                "БМП" => 90,
+                "танк" => 180,
                 _ => 30
             };
         }
@@ -1128,6 +1175,7 @@ namespace Content.Server.ShiftFront
                 "станция РЭБ" => (35, 15, 0),
                 "хранилище" => (70, 0, 0),
                 "мина" => (10, 10, 0),
+                "МРАП" => (45, 15, 0),
                 "МТЛБ" => (145, 45, 0),
                 "БМП" => (455, 100, 40),
                 "танк" => (545, 175, 80),
@@ -1268,7 +1316,14 @@ namespace Content.Server.ShiftFront
                                 pcomp.AFKTime++;
                                 if (pcomp.AFKTime > 90)
                                 {
-                                    LeaveCurrentTeam(player);
+                                    if (TryComp<ShiftCommandPlayerComponent>(player, out var currentTeam))
+                                    {
+                                        if (TryComp<ShiftCommandComponent>(currentTeam.Command, out var currentTeamComp))
+                                        {
+                                            currentTeamComp.Players.Remove(player);
+                                            currentTeamComp.RespawnQueue.Remove(player);
+                                        }
+                                    }
                                 }
                             }
                             else
@@ -1340,6 +1395,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "мина":
                                 Spawn("AntitankLandMineExplosive", coords);
+                                break;
+                            case "МРАП":
+                                Spawn("ShiftFrontMRAP" + comp.Faction, coords);
                                 break;
                             case "МТЛБ":
                                 Spawn("ShiftFrontMTLB" + comp.Faction, coords);

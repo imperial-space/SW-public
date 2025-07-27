@@ -420,6 +420,101 @@
       tags:
       - ShiftFrontFactYellow
 
+- type: entity
+  id: BaseMRAPHull
+  parent: BaseVehicleHull
+  abstract: true
+  components:
+  - type: Sprite
+    scale: 1.2,1.2
+    drawdepth: SmallObjects
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: tankhull
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    smokeStep: 130
+    fireStep: 220
+    fPVResist: 1.9
+    moveSpeed: 5.5
+    turnRate: 0.06
+    insideController: TankPartController
+    insideEntry: TankPartEntry
+    insideExit: TankPartExit
+    gridLink:
+    - "/Maps/Imperial/mrap.yml"
+  - type: MobThresholds
+    thresholds: {0: Alive, 270: Dead}
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger {damage: 270}
+      behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
+
+
+
+- type: entity
+  id: ShiftFrontMRAPBlue
+  parent: [BaseMRAPHull, BaseBlueFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: blue
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    faction: Blue
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontMRAPRed
+  parent: [BaseMRAPHull, BaseRedFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: red
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    faction: Red
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontMRAPGreen
+  parent: [BaseMRAPHull, BaseGreenFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: green
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    faction: Green
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontMRAPYellow
+  parent: [BaseMRAPHull, BaseYellowFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: yellow
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    faction: Yellow
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontVehicle
+
 ### Прототипы МТЛБ ###
 - type: entity
   id: BaseMTLBHull
