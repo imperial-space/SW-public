@@ -478,3 +478,15 @@ ent-USSPDocumentFolderDossier3=Папка для бумаг
 ent-USSPDocumentFolderDossier4=Папка для бумаг
     .desc=Стильная папка для бумаг с двумя заклепками. К сожалению, одноразовая.
     .suffix=Zevs622, СССП, , цель
+
+ent-VendingMachineTouristCoats="ВсеКуртки"
+    .desc=Торговый автомат с гражданскими куртками.
+    .suffix=Zevs622, СССП, турист
+
+ent-VendingMachineTouristJumpsuit=Одежда для Туриста
+    .desc=Торговый автомат с гражданскими комбинезонами и костюмами.
+    .suffix=Zevs622, СССП, турист
+
+ent-VendingMachineTouristHats="Каждому по Шапке"
+    .desc=Торговый автомат с гражданскими шляпами.
+    .suffix=Zevs622, СССП, турист
