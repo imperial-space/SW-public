@@ -12,7 +12,7 @@
     - map: ["computerLayerScreen"]
       state: error
   - type: AccessReader
-    access: [[ "USSPHeadAccess" ]]
+    access: [[ "Command" ]]
   - type: CommunicationsConsole
     title: comms-console-announcement-title-IMPERIALSSSP
     color: "#e74c3c"
