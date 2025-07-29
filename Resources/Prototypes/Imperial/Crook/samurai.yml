@@ -139,13 +139,29 @@
     reflectProb: 0.8
     spread: 90
 
+- type: entity
+  name: jumpsuit
+  suffix: Неснимаемое, Crook, Samurai
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitOperativeUnremoveable
+  components:
+    - type: Unremoveable
+
+- type: entity
+  name: gloves
+  suffix: Неснимаемое, Crook, Samurai
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesCombatUnremoveable
+  components:
+    - type: Unremoveable
+
 - type: startingGear
   id: SpaceSamuraiGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitOperative
+    jumpsuit: ClothingUniformJumpsuitOperativeUnremoveable
     shoes: ShoesSpaceSamurai
     head: ClothingHeadHelmetSpaceSamurai
-    gloves: ClothingHandsGlovesCombat
+    gloves: ClothingHandsGlovesCombatUnremoveable
     outerClothing: ClothingOuterSuitSpaceSamurai
     pocket1: PinpointerStation
     pocket2: DoubleEmergencyOxygenTankFilled
