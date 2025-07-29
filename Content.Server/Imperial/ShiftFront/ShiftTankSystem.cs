@@ -53,6 +53,7 @@ using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Content.Shared.Movement.Pulling.Components;
 
 namespace Content.Server.ShiftFront
 {
@@ -113,6 +114,10 @@ namespace Content.Server.ShiftFront
             if (comp.InsideEntryEntity == null) return;
             var xform = Transform(comp.InsideEntryEntity.Value);
             var coords = xform.Coordinates;
+            if (TryComp<PullerComponent>(args.User, out var puller) && puller.Pulling != null)
+            {
+                _transform.SetCoordinates(puller.Pulling.Value, coords);
+            }
             _transform.SetCoordinates(args.User, coords);
             if (player != null)
                 player.Vehicle = uid;
@@ -138,6 +143,10 @@ namespace Content.Server.ShiftFront
                 case "Exit":
                     var xform = Transform(comp.Tank.Value);
                     var coords = xform.Coordinates;
+                    if (TryComp<PullerComponent>(args.User, out var puller) && puller.Pulling != null)
+                    {
+                        _transform.SetCoordinates(puller.Pulling.Value, coords);
+                    }
                     _transform.SetCoordinates(args.User, coords);
                     if (TryComp<ShiftPlayerComponent>(args.User, out var player))
                         player.Vehicle = null;
@@ -371,6 +380,8 @@ namespace Content.Server.ShiftFront
                 // --- Обработка вращения ---
                 if (tankComp.IsRotating)
                 {
+                    if (tankComp.NeedMoveForRotating && !tankComp.IsMoving)
+                        continue;
                     // Устанавливаем угловую скорость
                     _transform.SetCoordinates(new Entity<TransformComponent, MetaDataComponent>(uid, xform, MetaData(uid)), coords, Transform(uid).LocalRotation - tankComp.RotationDirection * tankComp.TurnRate);
                 }

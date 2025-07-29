@@ -425,19 +425,34 @@
   parent: BaseVehicleHull
   abstract: true
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.55,-1,0.55,1.1"
+        density: 60000
+        restitution: 0
+        friction: 0.4
+        mask:
+          - Impassable
+          - MobMask
+        layer:
+          - Impassable
+          - MobLayer
   - type: Sprite
-    scale: 1.2,1.2
+    scale: 1.35,1.35
     drawdepth: SmallObjects
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: tankhull
       sprite: Imperial/ShiftFront/tiger.rsi
   - type: ShiftTankHull
+    needMoveForRotating: true
     smokeStep: 130
     fireStep: 220
-    fPVResist: 1.9
-    moveSpeed: 5.5
-    turnRate: 0.06
+    fPVResist: 2.5
+    moveSpeed: 6
+    turnRate: 0.04
     insideController: TankPartController
     insideEntry: TankPartEntry
     insideExit: TankPartExit
@@ -469,6 +484,10 @@
   - type: ShiftShowOnMap
     faction: Blue
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 - type: entity
   id: ShiftFrontMRAPRed
@@ -484,6 +503,10 @@
   - type: ShiftShowOnMap
     faction: Red
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 - type: entity
   id: ShiftFrontMRAPGreen
@@ -499,6 +522,10 @@
   - type: ShiftShowOnMap
     faction: Green
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 - type: entity
   id: ShiftFrontMRAPYellow
@@ -514,6 +541,10 @@
   - type: ShiftShowOnMap
     faction: Yellow
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 ### Прототипы МТЛБ ###
 - type: entity

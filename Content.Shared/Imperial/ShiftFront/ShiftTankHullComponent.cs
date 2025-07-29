@@ -133,6 +133,8 @@ public sealed partial class ShiftTankHullComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     public bool IsRotating { get; set; } = false;
+    [DataField]
+    public bool NeedMoveForRotating { get; set; } = false;
 
     // --- Опционально: Звуки ---
     [DataField("movingSound")]
