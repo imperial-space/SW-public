@@ -119,6 +119,13 @@
   id: RedEnergyKatanaSamurai
   description: A katana infused with strong energy. It has a red glow.
   components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    damage:
+      types:
+        Slash: 30
+        Heat: 5
+        Structural: 50
   - type: PointLight
     radius: 5
     energy: 1.6
@@ -158,6 +165,10 @@
     speechSounds: SyndieBorg
     allowedEmotes:
     - Laugh
+  - type: Hunger
+    baseDecayRate: 0
+  - type: Thirst
+    baseDecayRate: 0
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
@@ -178,7 +189,6 @@
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
-    - ImperialNutrimentPumpImplanter
     - FreedomImplant
     - ScramImplant
     - EmpImplant
@@ -197,6 +207,10 @@
     speechSounds: SyndieBorg
     allowedEmotes:
     - Laugh
+  - type: Hunger
+    baseDecayRate: 0
+  - type: Thirst
+    baseDecayRate: 0
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
@@ -224,7 +238,6 @@
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
-    - ImperialNutrimentPumpImplanter
     - FreedomImplant
     - ScramImplant
     - EmpImplant
