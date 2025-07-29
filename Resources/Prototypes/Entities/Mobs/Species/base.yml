@@ -313,11 +313,11 @@
     - Gasp
     - PassiveScream
   - type: AreaMarkerInvoker
-  - type: CanSurrender
+  #- type: CanSurrender
   - type: RDDeathScreen
   - type: CombatStance
-  - type: Grabbable
-  - type: Grabber
+  #- type: Grabbable
+  #- type: Grabber
   - type: RDWeight
     value: 1
   - type: RDWeightSpeedModifier

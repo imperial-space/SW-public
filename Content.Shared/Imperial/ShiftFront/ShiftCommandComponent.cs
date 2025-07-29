@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Player;
 
 namespace Content.Shared.ShiftFront.Components;
 
@@ -9,9 +10,9 @@ public sealed partial class ShiftCommandComponent : Component
     public string Faction = "";
 
     [DataField]
-    public HashSet<EntityUid> Players { get; set; } = new();
+    public HashSet<ICommonSession> Players { get; set; } = new();
 
     [DataField]
-    public HashSet<EntityUid> RespawnQueue { get; set; } = new();
+    public HashSet<ICommonSession> RespawnQueue { get; set; } = new();
 
 }
