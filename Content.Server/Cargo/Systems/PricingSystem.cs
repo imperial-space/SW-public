@@ -211,6 +211,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
 
         var price = ev.Price;
         price += GetMaterialsPrice(prototype);
+        // price += GetSolutionsPrice(prototype);
         // Imperial Lathe Nerf
         // Can't use static price with stackprice
         var oldPrice = price;
@@ -261,7 +262,9 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
             //Imperial Space Pirates: New Horizon
             price += GetGPSTrackerPrice(uid);
         }
-
+        // Imperial Lathe Nerf; Start
+        price = ApplyPriceModifier(uid, price);
+        price += GetSolutionsPrice(uid);
         if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
         {
             foreach (var container in containers.Containers.Values)
@@ -272,9 +275,6 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
                 }
             }
         }
-        // Imperial Lathe Nerf; Start
-        price = ApplyPriceModifier(uid, price);
-        price += GetSolutionsPrice(uid);
         return price; 
         // Imperial Lathe Nerf; End
     }
