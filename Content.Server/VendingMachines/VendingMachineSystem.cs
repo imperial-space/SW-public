@@ -45,7 +45,7 @@ namespace Content.Server.VendingMachines
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
 
-            SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseTargetEvent>(OnSelfDispense); //Imperial Space Vending Machine
+            SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense); //Imperial Space Vending Machine
 
             SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnDoAfter);
 
@@ -122,14 +122,13 @@ namespace Content.Server.VendingMachines
             }
         }
 
-        private void OnSelfDispense(EntityUid uid, VendingMachineComponent component, VendingMachineSelfDispenseTargetEvent args)
+        private void OnSelfDispense(EntityUid uid, VendingMachineComponent component, VendingMachineSelfDispenseEvent args)
         {
             if (args.Handled)
                 return;
 
             args.Handled = true;
-            component.TargetDirection = args.Target;
-            EjectRandom(uid, throwItem: true, forceEject: false, component); ///Imperial Space Vending Machine
+            EjectRandom(uid, throwItem: true, forceEject: false, component);
         }
 
         private void OnDoAfter(EntityUid uid, VendingMachineComponent component, DoAfterEvent args)

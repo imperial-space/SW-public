@@ -279,12 +279,7 @@ namespace Content.Shared.VendingMachines
     {
 
     };
-    //Imperial Space Vending Machine; Start
-    public sealed partial class VendingMachineSelfDispenseTargetEvent : WorldTargetActionEvent
-    {
-
-    };
-    //Imperial Space Vending Machine; End
+    
     [Serializable, NetSerializable]
     public sealed class VendingMachineComponentState : ComponentState
     {

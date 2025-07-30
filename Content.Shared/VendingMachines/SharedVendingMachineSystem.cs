@@ -48,6 +48,8 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
         {
             subs.Event<VendingMachineEjectMessage>(OnInventoryEjectMessage);
         });
+
+        InitializeVending();
     }
 
     private void OnVendingGetState(Entity<VendingMachineComponent> entity, ref ComponentGetState args)
