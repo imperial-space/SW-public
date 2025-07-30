@@ -1,5 +1,5 @@
-medieval-mana-regen = [color=cyan]Регенерация маны {$regen} в секунду[/color]
+medieval-mana-regen = [color=cyan]Mana regeneration {$regen} per second[/color]
 
-medieval-mana-cant-cast-spells = Вы не обладаете даров колдовать
-medieval-mana-not-enough-mana = Недостаточно маны
-medieval-mana-cast-spell = Потрачено {$manaCost} маны
+medieval-mana-cant-cast-spells = You don't know how to cast spells
+medieval-mana-not-enough-mana = Not enough mana
+medieval-mana-cast-spell = {$manaCost} mana used

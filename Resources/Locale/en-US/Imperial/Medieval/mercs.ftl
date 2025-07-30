@@ -1,12 +1,12 @@
-﻿ent-MercBountyBoard = Доска объявлений наемников
-    .desc = Покрытая потертыми пергаментами и кровавыми пятнами доска, где наемники находят свою работу
+﻿ent-MercBountyBoard = Mercenary Bounty Board
+    .desc = A bloodstained board covered with rugged parchment, where mercenaries find work
 
-ent-MercContract = Контракт: устранение
+ent-MercContract = Contract: elimination
 
-merc-contract-description = Устраните {$name} по профессии {$job}. Оплата за работу: {$payout}
+merc-contract-description = Eliminate {$name}, a {$job} by profession. Payment for this contract: {$payout}
 
-trait-medieval-bounty = Награда за голову
-trait-medieval-bounty-desc = Вы обокрали одного человека и смогли унести его ревенты с собой на остров, однако он узнал это и объявил награду за вашу голову. Повышенный стартовый капитал, шанс появиться на доске розыска у наемников
+trait-medieval-bounty = Bounty
+trait-medieval-bounty-desc = You picked a man's pockets and managed to bring his revents with you; however, he found out and put a bounty on your head. Increased starting savings, a chance to appear on the wanted board for mercenaries
 
-contract-wrong-target = это не та цель, что в контракте
-contract-target-still-alive = цель контракта ещё жива
+contract-wrong-target = this is not the target from your contract
+contract-target-still-alive = your contract's target is still alive

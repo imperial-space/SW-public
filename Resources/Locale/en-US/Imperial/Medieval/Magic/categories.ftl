@@ -1,4 +1,4 @@
-medieval-store-category-fire = Огонь
-medieval-store-category-light = Свет
-medieval-store-category-vodka = Вода
-medieval-store-category-darkness = Тьма
+medieval-store-category-fire = Fire
+medieval-store-category-light = Light
+medieval-store-category-vodka = Water
+medieval-store-category-darkness = Darkness

@@ -1,0 +1,16 @@
+loadout-group-traveller-fartuk = Apron
+loadout-group-traveller-head = Headwear
+loadout-group-traveller-jumpsuit = Jumpsuit
+loadout-group-medieval-backpack = Backpack
+loadout-group-medieval-shoes = Shoes
+loadout-group-medieval-belt = Belt
+loadout-group-medieval-gloves = Gloves
+loadout-group-medieval-neck = Neck
+loadout-group-trinkets-mdv = Belongings
+loadout-group-music-mdv = Mus. instruments
+loadout-group-traveller-bible = Bible
+loadout-group-traveller-mask = Mask
+loadout-group-traveller-outer = Vestments
+loadout-group-traveller-epitrahal = Stole
+loadout-group-medieval-weaapons-legion = Weapons
+loadout-group-medieval-head-collegium = Head

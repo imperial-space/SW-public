@@ -1,1 +1,1 @@
-customize-only-in-world = Положите предмет на пол, чтобы изменить его!
+customize-only-in-world = Put the item on the floor to customize it!

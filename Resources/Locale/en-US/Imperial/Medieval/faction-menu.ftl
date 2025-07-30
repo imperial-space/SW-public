@@ -1,2 +1,2 @@
-faction-menu-title = Контроль фракции
-character-info-faction-label = Фракция
+faction-menu-title = Faction control
+character-info-faction-label = Faction

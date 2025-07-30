@@ -1,20 +1,20 @@
 # Weakening Wave
 
-medieval-spell-emote-weakening-wave = Поднял руку над головой
+medieval-spell-emote-weakening-wave = raised a hand over the head
 
-action-name-spell-weakening-wave = Ослабляющая волна
-action-description-weakening-wave = Создайте оглушающую волну вокруг себя. Стоимость ДОДЕЛАТЬ маны.
+action-name-spell-weakening-wave = Weakening Wave
+action-description-weakening-wave = Emanate a disorienting wave around yourself, staggering nearby foes. Cost: -- mana.
 
-medieval-store-spells-multi-currency-weakening-wave-senior-name = Ударная волна
-medieval-store-spells-multi-currency-weakening-wave-senior-desc = Выпустите из руки волну, которая ослабит и ослепит всех в радиусе ее действия. Стоимость 95 маны.
+medieval-store-spells-multi-currency-weakening-wave-senior-name = Concussive Wave
+medieval-store-spells-multi-currency-weakening-wave-senior-desc = Unleash a shockwave from your palm that weakens and temporarily blinds everyone within its radius. Cost: 95 mana.
 
 
 # Sleep spell
 
 medieval-spell-speach-sleep = S̮̲̮̱̗̗̖̯̆̅́͜͟͟͜͝͡͡͞͝L̰̖̱̯̄̏̉͜͟͡͞È̮̲͜͟͞Ẻ̱̰̖̱͜͝P̭̯̣̤̰̭̲̅͜͞
 
-medieval-store-spells-multi-currency-sleep-middle-name = Успыление
-medieval-store-spells-multi-currency-sleep-middle-desc = Позволяет усыпить вашего противника, но будьте осторожны, если его воля окажется сильнее вашей, то уснете вы. Стоимость 80 маны.
+medieval-store-spells-multi-currency-sleep-middle-name = Lulling
+medieval-store-spells-multi-currency-sleep-middle-desc = Lull your foe into slumber — but beware: if their will overpowers yours, the spell will rebound, rendering you unconscious. Cost: 80 mana.
 
-medieval-store-spells-multi-currency-senior-senior-name = Хлороформирование
-medieval-store-spells-multi-currency-senior-senior-desc = Вторая итерация успыления. Не позволяет усыпить вас. Стоимость 80 маны.
+medieval-store-spells-multi-currency-senior-senior-name = Chloroform
+medieval-store-spells-multi-currency-senior-senior-desc = A better iteration of Lulling. The caster is immune to backlash. Cost: 80 mana.
