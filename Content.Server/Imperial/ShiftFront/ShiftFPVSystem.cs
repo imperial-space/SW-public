@@ -165,7 +165,7 @@ namespace Content.Server.ShiftFront
                 return;
             }
 
-            _prayerSystem.SendSubtleMessage(session, session, "Управление танком запущено", "Управление");
+            _prayerSystem.SendSubtleMessage(session, session, "Управление техникой запущено", "Управление");
 
             var drone = EnsureComp<ShiftFPVDroneComponent>(comp.LinkedDrone.Value);
             drone.Pilot = args.User;

@@ -294,12 +294,20 @@
   - ShiftFrontMRAP
 
 - type: ShiftFrontResearch
+  id: ShiftFrontBTR
+  tier: 2
+  researchName: БТР
+  price: 90
+  requiredResearches:
+  - ShiftFrontMTLB
+
+- type: ShiftFrontResearch
   id: ShiftFrontBMP
   tier: 2
   researchName: БМП
   price: 140
   requiredResearches:
-  - ShiftFrontMTLB
+  - ShiftFrontBTR
 
 - type: ShiftFrontResearch
   id: ShiftFrontTank

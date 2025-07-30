@@ -258,6 +258,9 @@ namespace Content.Server.ShiftFront
         }
         private void OnDamageMap(EntityUid uid, ShiftShowOnMapComponent comp, DamageChangedEvent args)
         {
+            if (!uid.IsValid() || !Exists(uid))
+                return;
+
             if (TryComp<DamageableComponent>(uid, out var damageable) && args.DamageIncreased && args.DamageDelta != null)
             {
                 if (damageable.TotalDamage > 1000f)
@@ -1051,6 +1054,17 @@ namespace Content.Server.ShiftFront
                 });
             }
 
+            if (CheckResearch("ShiftFrontBTR", comp.Faction))
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => SelectBuildType(uid, comp, session, "БТР"),
+                    Text = "БТР",
+                    Priority = 4,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon")
+                });
+            }
+
             if (CheckResearch("ShiftFrontTank", comp.Faction))
             {
                 ev.Verbs.Add(new AlternativeVerb
@@ -1115,6 +1129,7 @@ namespace Content.Server.ShiftFront
                 "МРАП" => 20,
                 "МТЛБ" => 40,
                 "БМП" => 90,
+                "БТР" => 75,
                 "танк" => 180,
                 _ => 30
             };
@@ -1378,6 +1393,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "БМП":
                                 Spawn("ShiftFrontBMP" + comp.Faction, coords);
+                                break;
+                            case "БТР":
+                                Spawn("ShiftFrontBTR" + comp.Faction, coords);
                                 break;
                             case "танк":
                                 Spawn("ShiftFrontTank" + comp.Faction, coords);

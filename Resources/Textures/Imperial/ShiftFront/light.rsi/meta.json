@@ -17,6 +17,42 @@
       ]
         },
         {
+            "name": "dronecargoyellow",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+        },
+        {
+            "name": "dronecargored",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+        },
+        {
+            "name": "dronecargogreen",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+        },
+        {
+            "name": "dronecargoblue",
+      "delays": [
+        [
+          0.1,
+          0.1
+        ]
+      ]
+        },
+        {
             "name": "healtow",
       "delays": [
         [

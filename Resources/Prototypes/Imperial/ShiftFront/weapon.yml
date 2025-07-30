@@ -362,7 +362,7 @@
     zeroVisible: true
   - type: Appearance
   - type: GunWieldBonus # Imperial balance
-    minAngle: -5
+    minAngle: -11
     maxAngle: -7
 
 - type: entity
@@ -427,7 +427,7 @@
     zeroVisible: true
   - type: Appearance
   - type: GunWieldBonus # Imperial balance
-    minAngle: -5
+    minAngle: -11
     maxAngle: -7
 
 # Pistol

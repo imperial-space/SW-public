@@ -106,11 +106,9 @@
         restitution: 0
         friction: 0.4
         mask:
-          - Impassable
-          - MobMask
+        - SmallMobMask
         layer:
-          - Impassable
-          - MobLayer
+        - MachineLayer
   - type: NameIdentifier
     group: GenericNumber
   - type: MouseRotator
@@ -123,9 +121,180 @@
     pvsIncrease: 1.5
     offsetSpeed: 0.06
   - type: AmbientSound
-    volume: -6
-    range: 14
+    volume: -5
+    range: 16
     sound: {path: /Audio/Imperial/ShiftFront/bmp_ambient.ogg}
+
+### БТР ###
+- type: entity
+  id: BaseBTRHull
+  parent: BaseVehicleHull
+  abstract: true
+  components:
+  - type: Sprite
+    scale: 1.55,1.55
+    drawdepth: SmallObjects
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: tankhull
+      sprite: Imperial/ShiftFront/tank.rsi
+    - map: ["enum.StorageVisualLayers.Door"]
+      state: closed
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: Damageable
+    damageContainer: ShiftFrontLightTank
+    damageModifierSet: ShiftFrontLightTank
+  - type: MobThresholds
+    thresholds: {0: Alive, 500: Dead}
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger {damage: 500}
+      behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
+  - type: ShiftTankHull
+    needMoveForRotating: true
+    smokeStep: 250
+    fireStep: 400
+    insideController: TankPartController
+    insideGunner: TankPartGunner
+    insideEntry: TankPartEntry
+    insideExit: TankPartExit
+    gridLink:
+    - "/Maps/Imperial/bmp.yml"
+    moveSpeed: 4.8
+    turnRate: 0.04
+
+
+- type: entity
+  id: BaseBTRTurret
+  parent: BaseShiftVehicle
+  abstract: true
+  components:
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: MouseRotator
+    angleTolerance: 5
+    rotationSpeed: 75
+    simple4DirMode: false
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: Input
+    context: "human"
+  - type: EyeCursorOffset
+    maxOffset: 4
+    pvsIncrease: 0.7
+    offsetSpeed: 0.035
+  - type: Sprite
+    scale: 1.55,1.55
+    sprite: Imperial/ShiftFront/tank.rsi
+    drawdepth: Mobs
+    layers:
+    - state: BTRbashnya
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: "Magazine"
+        startingItem: MagazineLightRifleBoxBTR
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags: [MagazineLightRifleBoxBTR]
+  - type: Gun
+    fireRate: 4
+    selectedMode: FullAuto
+    availableModes: [FullAuto]
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_btr.ogg
+      params: {maxDistance: 45}
+  - type: MagazineAmmoProvider
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+
+- type: entity
+  id: ShiftFrontBTRBlue
+  parent: [BaseBTRHull, BaseBlueFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BTRblue
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: ShiftTankHull
+    faction: Blue
+    turretProto: ShiftFrontBTRTurretBlue
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontBTRTurretBlue
+  parent: [BaseBTRTurret, BaseBlueFaction]
+
+
+- type: entity
+  id: ShiftFrontBTRRed
+  parent: [BaseBTRHull, BaseRedFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BTRred
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: ShiftTankHull
+    faction: Red
+    turretProto: ShiftFrontBTRTurretRed
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontBTRTurretRed
+  parent: [BaseBTRTurret, BaseRedFaction]
+
+
+- type: entity
+  id: ShiftFrontBTRGreen
+  parent: [BaseBTRHull, BaseGreenFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BTRgreen
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: ShiftTankHull
+    faction: Green
+    turretProto: ShiftFrontBTRTurretGreen
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontBTRTurretGreen
+  parent: [BaseBTRTurret, BaseGreenFaction]
+
+
+- type: entity
+  id: ShiftFrontBTRYellow
+  parent: [BaseBTRHull, BaseYellowFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: BTRyellow
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: ShiftTankHull
+    faction: Yellow
+    turretProto: ShiftFrontBTRTurretYellow
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontBTRTurretYellow
+  parent: [BaseBTRTurret, BaseYellowFaction]
 
 ### БМП ###
 - type: entity
@@ -302,7 +471,7 @@
     toggleMouseRotator: false
   - type: MouseRotator
     angleTolerance: 5
-    rotationSpeed: 45
+    rotationSpeed: 35
     simple4DirMode: false
   - type: NoRotateOnInteract
   - type: NoRotateOnMove
@@ -434,13 +603,11 @@
         restitution: 0
         friction: 0.4
         mask:
-          - Impassable
-          - MobMask
+        - SmallMobMask
         layer:
-          - Impassable
-          - MobLayer
+        - MachineLayer
   - type: Sprite
-    scale: 1.35,1.35
+    scale: 1.45,1.45
     drawdepth: SmallObjects
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
@@ -775,6 +942,62 @@
   supportedTypes: [AntiTank, AntiLightTank]
 
 ### Боеприпасы ###
+
+
+
+- type: entity
+  id: MagazineLightRifleBoxBTR
+  name: "L6 SAW magazine box (.30 rifle)"
+  parent: BaseMagazineLightRifle
+  components:
+  - type: Tag
+    tags: [MagazineLightRifleBoxBTR]
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleBTR
+    capacity: 500
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  id: CartridgeLightRifleBTR
+  parent: BaseCartridgeLightRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifleBTR
+
+- type: entity
+  id: BulletLightRifleBTR
+  parent: BaseBulletTrigger
+  categories: [HideSpawnMenu]
+  components:
+  - type: ShiftTankBullet
+  - type: Projectile
+    flyByCoverTime: 0.6
+    suppression: 22
+    damage:
+      types:
+        Piercing: 23
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 1
+    intensitySlope: 2
+    totalIntensity: 3
+  - type: PointLight
+    radius: 1.5
+    color: orange
+    energy: 2.5
+    castShadows: false
+
+
+
+
 - type: entity
   id: MagazineLightRifleBoxBMP
   name: "L6 SAW magazine box (.30 rifle)"
@@ -784,7 +1007,7 @@
     tags: [MagazineLightRifleBoxBMP]
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleBMP
-    capacity: 200
+    capacity: 500
   - type: Item
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
@@ -809,7 +1032,7 @@
   - type: ShiftTankBullet
   - type: Projectile
     flyByCoverTime: 0.6
-    suppression: 15
+    suppression: 35
     damage:
       types:
         Piercing: 27
@@ -822,7 +1045,7 @@
   - type: PointLight
     radius: 2.5
     color: orange
-    energy: 2.5
+    energy: 3.5
     castShadows: false
 
 - type: entity
@@ -845,7 +1068,7 @@
   - type: ShiftTankBullet
   - type: Projectile
     flyByCoverTime: 0.6
-    suppression: 55
+    suppression: 300
     damage:
       types:
         Piercing: 190
@@ -860,10 +1083,13 @@
   - type: PointLight
     radius: 3.5
     color: orange
-    energy: 4.5
+    energy: 7.5
     castShadows: false
 
 ### Теги ###
+- type: Tag
+  id: MagazineLightRifleBoxBTR
+
 - type: Tag
   id: MagazineLightRifleBoxBMP
 
@@ -897,7 +1123,7 @@
         whitelist:
           tags: [MagazineLightRifleBox]
   - type: Gun
-    fireRate: 4.5
+    fireRate: 5.5
     selectedMode: FullAuto
     availableModes: [FullAuto]
     soundGunshot:
