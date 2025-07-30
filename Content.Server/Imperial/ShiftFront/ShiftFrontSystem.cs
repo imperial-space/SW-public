@@ -166,7 +166,8 @@ namespace Content.Server.ShiftFront
             while (dquery.MoveNext(out var couid, out var command))
             {
                 command.Players.Remove(session);
-                command.RespawnQueue.Remove(session);
+                if (command.RespawnQueue.Contains(session))
+                    command.RespawnQueue.Remove(session);
             }
         }
 
@@ -210,8 +211,9 @@ namespace Content.Server.ShiftFront
                     return;
                 }
             }
-            comp.RespawnQueue.Append(session);
-            comp.Players.Append(session);
+            if (!comp.RespawnQueue.Contains(session))
+                comp.RespawnQueue.Add(session);
+            comp.Players.Add(session);
 
             // Уведомление
             _chat.TrySendInGameICMessage(user, $"Вы присоединились к команде {comp.Faction}!", InGameICChatType.Speak, false);
@@ -440,6 +442,7 @@ namespace Content.Server.ShiftFront
             }
             else
             {
+                int News = 0;
                 int Scouts = 0;
                 int Assault = 0;
                 int Med = 0;
@@ -447,6 +450,7 @@ namespace Content.Server.ShiftFront
                 int Sniper = 0;
                 int HMG = 0;
                 int Assasin = 0;
+                int NewsAlive = 0;
                 int ScoutsAlive = 0;
                 int AssaultAlive = 0;
                 int MedAlive = 0;
@@ -463,7 +467,11 @@ namespace Content.Server.ShiftFront
                     {
                         case "Scout":
                             Scouts++;
-                            if (TryComp<SSDIndicatorComponent>(puid, out var ssd) && !ssd.IsSSD || HasComp<ShiftFPVPilotComponent>(puid)) ScoutsAlive++;
+                            if (TryComp<SSDIndicatorComponent>(puid, out var ssd0) && !ssd0.IsSSD || HasComp<ShiftFPVPilotComponent>(puid)) ScoutsAlive++;
+                            break;
+                        case "New":
+                            News++;
+                            if (TryComp<SSDIndicatorComponent>(puid, out var ssd) && !ssd.IsSSD || HasComp<ShiftFPVPilotComponent>(puid)) NewsAlive++;
                             break;
                         case "Assault":
                             Assault++;
@@ -492,6 +500,7 @@ namespace Content.Server.ShiftFront
                     }
                 }
                 args.PushMarkup($"Текущие войска:", 10);
+                if (News > 0) args.PushMarkup($"  Рекруты: [color=yellow]{News}[/color], активно [color=green]{ScoutsAlive}[/color]", 9);
                 if (Scouts > 0) args.PushMarkup($"  Скауты: [color=yellow]{Scouts}[/color], активно [color=green]{ScoutsAlive}[/color]", 9);
                 if (Med > 0) args.PushMarkup($"  Медики: [color=yellow]{Med}[/color], активно [color=green]{MedAlive}[/color]", 7);
                 if (Eng > 0) args.PushMarkup($"  Инженеры: [color=yellow]{Eng}[/color], активно [color=green]{EngAlive}[/color]", 7);
@@ -699,7 +708,7 @@ namespace Content.Server.ShiftFront
                 return;
             if (ent.Comp.Leader)
             {
-                _chat.DispatchGlobalAnnouncement($"Командир фракции {ent.Comp.Faction} был ликвидирован", playSound: true, colorOverride: Color.Red, sender: "Орбитальное наблюдение", announcementSound: new SoundPathSpecifier("/Audio/Imperial/ShiftFront/lead_dead.ogg"));
+                _chat.DispatchGlobalAnnouncement($"Командир фракции {ent.Comp.Faction} был ликвидирован", playSound: true, colorOverride: Color.DeepPink, sender: "Орбитальное наблюдение", announcementSound: new SoundPathSpecifier("/Audio/Imperial/ShiftFront/lead_dead.ogg"));
                 var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
                 while (dquery.MoveNext(out var couid, out var command))
                 {
@@ -713,17 +722,18 @@ namespace Content.Server.ShiftFront
             var xform = Transform(ent);
             var coords = xform.Coordinates;
             QueueDel(ent);
-            Spawn("AnomalyCoreFleshShiftFront", coords);
+            if (!ent.Comp.Newbie)
+                Spawn("AnomalyCoreFleshShiftFront", coords);
         }
 
         private void OnPlayerDetached(Entity<ShiftPlayerComponent> ent, ref PlayerDetachedEvent args)
         {
-            if (!_sharedPlayerManager.TryGetSessionByEntity(ent, out var session)) return;
+            var session = args.Player;
             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
             while (dquery.MoveNext(out var couid, out var command))
             {
-                if (ent.Comp.Faction == command.Faction)
-                    command.RespawnQueue.Append(session);
+                if (ent.Comp.Faction == command.Faction && !command.RespawnQueue.Contains(session))
+                    command.RespawnQueue.Add(session);
             }
         }
 
@@ -1276,7 +1286,8 @@ namespace Content.Server.ShiftFront
                     {
                         if (player.Status != SessionStatus.InGame)
                         {
-                            recomp.RespawnQueue.Remove(player);
+                            if (recomp.RespawnQueue.Contains(player))
+                                recomp.RespawnQueue.Remove(player);
                             recomp.Players.Remove(player);
                         }
                         // TODO автоочистка при ливе игрока

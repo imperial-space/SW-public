@@ -18,6 +18,9 @@ public sealed partial class ShiftPlayerComponent : Component
     public bool Eng = false;
 
     [DataField]
+    public bool Newbie = false;
+
+    [DataField]
     public bool Ninja = false;
 
     [DataField]

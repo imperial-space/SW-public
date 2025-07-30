@@ -23,7 +23,7 @@
     rules: Выполняйте приказы
     raffle:
       settings: short
-  - type: GhostTakeoverAvailable
+  #- type: GhostTakeoverAvailable
   - type: NameIdentifier
     group: GenericNumber
   - type: Tag
@@ -173,6 +173,38 @@
     intervalSeconds: 60
     minimumEntitiesSpawned: 1
     maximumEntitiesSpawned: 1
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedNew
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedNew ]
+  - type: GhostRole
+    name: Скаут
+    description: ПСБ (пост-совет. блок)
+  - type: ShiftPlayer
+    newbie: true
+    name: New
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontNew
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueNew
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueNew ]
+  - type: GhostRole
+    name: Скаут
+    description: НАТО
+  - type: ShiftPlayer
+    newbie: true
+    name: New
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontNew
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
@@ -588,6 +620,32 @@
     - MagazinePistol
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontBlueNew
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    head: ClothingHeadHatCapSonaShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+
+- type: startingGear
+  id: ShiftFrontRedNew
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecShiftFront
+    head: ClothingHeadHatSecsoftShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
 
 - type: startingGear
   id: ShiftFrontBlueSniper

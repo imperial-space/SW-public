@@ -13,6 +13,6 @@ public sealed partial class ShiftCommandComponent : Component
     public HashSet<ICommonSession> Players { get; set; } = new();
 
     [DataField]
-    public HashSet<ICommonSession> RespawnQueue { get; set; } = new();
+    public List<ICommonSession> RespawnQueue { get; set; } = new();
 
 }

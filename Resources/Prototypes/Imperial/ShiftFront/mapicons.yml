@@ -63,6 +63,15 @@
     state: icon
 
 - type: entity
+  id: ShiftFrontNew
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.4, 0.4
+    sprite: Objects/Weapons/Melee/combat_knife.rsi
+    state: icon
+
+- type: entity
   id: ShiftFrontSniper
   parent: ShiftIconBase
   components:

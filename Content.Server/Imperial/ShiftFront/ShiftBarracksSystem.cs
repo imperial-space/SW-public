@@ -74,21 +74,53 @@ namespace Content.Server.ShiftFront
         {
             if (!ev.CanAccess || !ev.CanInteract) return;
             if (!_sharedPlayerManager.TryGetSessionByEntity(ev.User, out var session)) return;
-            if (TryComp<ShiftPlayerComponent>(ev.User, out var shiftPlayer) && !shiftPlayer.Leader && !shiftPlayer.Eng) return;
+            if (!TryComp<ShiftPlayerComponent>(ev.User, out var shiftPlayer)) return;
+            if (!shiftPlayer.Leader && !shiftPlayer.Eng && !shiftPlayer.Newbie) return;
+            var xform = Transform(uid);
+            var coords = xform.Coordinates;
 
             if (!TryComp<ShiftConsoleResourceComponent>(GetResourceConsole(uid, comp), out var rescomp))
             {
-                _prayerSystem.SendSubtleMessage(session, session, "Необходима консоль размещения ресурсов", "Нет консоли ресурсов");
+                _prayerSystem.SendSubtleMessage(session, session, "Необходима консоль ресурсов", "Нет консоли ресурсов");
                 return;
             }
             ev.Verbs.Add(new AlternativeVerb
             {
+                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+                //  Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
+                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
+                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Eng", coords);
+                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Heavy", coords);
+                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Sniper", coords);
+
                 Act = () =>
                 {
-                    if (!TryWasteResource(rescomp, 10, 15, 0, session))
-                        return;
-                    if (comp.dict.TryGetValue("Fast", out int value))
-                        comp.dict["Fast"]++;
+                    if (shiftPlayer.Eng || shiftPlayer.Leader)
+                    {
+                        if (!TryWasteResource(rescomp, 10, 15, 0, session))
+                            return;
+                        if (comp.dict.TryGetValue("Fast", out int value))
+                            comp.dict["Fast"]++;
+                    }
+                    else
+                    {
+                        if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
+                        var session = actComp.PlayerSession;
+                        if (comp.dict.TryGetValue("Fast", out int value))
+                            if (value > 0)
+                                comp.dict["Fast"]--;
+                            else
+                            {
+                                _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
+                                return;
+                            }
+                        var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+
+                        if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
+                        _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                        _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                        QueueDel(ev.User);
+                    }
                 },
                 Text = "Скаут",
                 Priority = 15,
@@ -99,10 +131,32 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 25, 40, 0, session))
-                            return;
-                        if (comp.dict.TryGetValue("Assault", out int value))
-                            comp.dict["Assault"]++;
+                        if (shiftPlayer.Eng || shiftPlayer.Leader)
+                        {
+                            if (!TryWasteResource(rescomp, 25, 40, 0, session))
+                                return;
+                            if (comp.dict.TryGetValue("Assault", out int value))
+                                comp.dict["Assault"]++;
+                        }
+                        else
+                        {
+                            if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
+                            var session = actComp.PlayerSession;
+                            if (comp.dict.TryGetValue("Assault", out int value))
+                                if (value > 0)
+                                    comp.dict["Assault"]--;
+                                else
+                                {
+                                    _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
+                                    return;
+                                }
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
+                            if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
+                            _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                            _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                            QueueDel(ev.User);
+
+                        }
                     },
                     Text = "Штурмовик",
                     Priority = 14,
@@ -113,10 +167,31 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 20, 65, 0, session))
-                            return;
-                        if (comp.dict.TryGetValue("Med", out int value))
-                            comp.dict["Med"]++;
+                        if (shiftPlayer.Eng || shiftPlayer.Leader)
+                        {
+                            if (!TryWasteResource(rescomp, 20, 65, 0, session))
+                                return;
+                            if (comp.dict.TryGetValue("Med", out int value))
+                                comp.dict["Med"]++;
+                        }
+                        else
+                        {
+                            if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
+                            var session = actComp.PlayerSession;
+                            if (comp.dict.TryGetValue("Med", out int value))
+                                if (value > 0)
+                                    comp.dict["Med"]--;
+                                else
+                                {
+                                    _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
+                                    return;
+                                }
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
+                            if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
+                            _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                            _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                            QueueDel(ev.User);
+                        }
                     },
                     Text = "Медик",
                     Priority = 13,
@@ -127,10 +202,32 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 45, 60, 0, session))
-                            return;
-                        if (comp.dict.TryGetValue("Eng", out int value))
-                            comp.dict["Eng"]++;
+                        if (shiftPlayer.Eng || shiftPlayer.Leader)
+                        {
+                            if (!TryWasteResource(rescomp, 45, 60, 0, session))
+                                return;
+                            if (comp.dict.TryGetValue("Eng", out int value))
+                                comp.dict["Eng"]++;
+                        }
+                        else
+                        {
+                            if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
+                            var session = actComp.PlayerSession;
+                            if (comp.dict.TryGetValue("Eng", out int value))
+                                if (value > 0)
+                                    comp.dict["Eng"]--;
+                                else
+                                {
+                                    _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
+                                    return;
+                                }
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Eng", coords);
+                            if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
+                            _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                            _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                            QueueDel(ev.User);
+
+                        }
                     },
                     Text = "Инженер",
                     Priority = 12,
@@ -141,10 +238,32 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 55, 80, 15, session))
-                            return;
-                        if (comp.dict.TryGetValue("Mg", out int value))
-                            comp.dict["Mg"]++;
+                        if (shiftPlayer.Eng || shiftPlayer.Leader)
+                        {
+                            if (!TryWasteResource(rescomp, 55, 80, 15, session))
+                                return;
+                            if (comp.dict.TryGetValue("Mg", out int value))
+                                comp.dict["Mg"]++;
+                        }
+                        else
+                        {
+                            if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
+                            var session = actComp.PlayerSession;
+                            if (comp.dict.TryGetValue("Mg", out int value))
+                                if (value > 0)
+                                    comp.dict["Mg"]--;
+                                else
+                                {
+                                    _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
+                                    return;
+                                }
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Heavy", coords);
+                            if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
+                            _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                            _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                            QueueDel(ev.User);
+
+                        }
                     },
                     Text = "Пулеметчик",
                     Priority = 11,
@@ -155,10 +274,31 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 45, 65, 10, session))
-                            return;
-                        if (comp.dict.TryGetValue("Sniper", out int value))
-                            comp.dict["Sniper"]++;
+                        if (shiftPlayer.Eng || shiftPlayer.Leader)
+                        {
+                            if (!TryWasteResource(rescomp, 45, 65, 10, session))
+                                return;
+                            if (comp.dict.TryGetValue("Sniper", out int value))
+                                comp.dict["Sniper"]++;
+                        }
+                        else
+                        {
+                            if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
+                            var session = actComp.PlayerSession;
+                            if (comp.dict.TryGetValue("Sniper", out int value))
+                                if (value > 0)
+                                    comp.dict["Sniper"]--;
+                                else
+                                {
+                                    _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
+                                    return;
+                                }
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Sniper", coords);
+                            if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
+                            _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                            _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                            QueueDel(ev.User);
+                        }
                     },
                     Text = "Снайпер",
                     Priority = 10,
@@ -216,15 +356,15 @@ namespace Content.Server.ShiftFront
                         {
                             if (command.Faction != comp.Faction)
                                 continue;
-                            command.RespawnQueue.TryFirstOrDefault(out var session);
-                            if (session == null)
+                            if (command.RespawnQueue.Count == 0)
                                 continue;
+                            var session = command.RespawnQueue[0];
                             if (session.Status != SessionStatus.InGame)
                                 command.RespawnQueue.Remove(session);
 
                             if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) continue;
                             if (session.AttachedEntity is null) continue;
-                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "New", coords);
 
                             _minds.TransferTo(mindId, soljer, true, false, mindComp);
                             _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
@@ -234,31 +374,7 @@ namespace Content.Server.ShiftFront
 
                         //switch (comp.ChosenGen)
                         //{
-                        //    case "скаут":
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
-                        //        break;
-                        //    case "штурмовик":
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
-                        //        break;
-                        //    case "медик":
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
-                        //        break;
-                        //    case "инженер":
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Eng", coords);
-                        //        break;
-                        //    case "пулеметчик":
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Heavy", coords);
-                        //        break;
-                        //    case "снайпер":
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Sniper", coords);
-                        //        break;
-                        //    case "ассасин":
-                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Ninja", coords);
-                        //        break;
-                        //}
+
                     }
                 }
             }

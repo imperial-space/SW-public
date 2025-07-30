@@ -106,6 +106,38 @@
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenNew
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenNew ]
+  - type: GhostRole
+    name: Скаут
+    description: Технократическая Германия
+  - type: ShiftPlayer
+    newbie: true
+    name: New
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontNew
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowNew
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowNew ]
+  - type: GhostRole
+    name: Скаут
+    description: Единая Китайская партия
+  - type: ShiftPlayer
+    newbie: true
+    name: New
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontNew
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
   id: BaseMobHumanShiftFrontGreenSniper
   components:
   - type: Loadout
@@ -485,6 +517,32 @@
     - MagazinePistol
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontGreenNew
+  equipment:
+    jumpsuit: VlOldStationMercJumpsuitShiftFront
+    head: ClothingHeadHatCapcapSheriff
+    eyes: ClothingEyesHudCommandShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+
+- type: startingGear
+  id: ShiftFrontYellowNew
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
+    head: ClothingHeadHatYellowsoftShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
 
 - type: startingGear
   id: ShiftFrontGreenSniper
