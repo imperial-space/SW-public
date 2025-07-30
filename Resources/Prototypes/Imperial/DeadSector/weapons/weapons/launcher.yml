@@ -15,7 +15,7 @@
     sprite: Imperial/DeadSector/weapons/weapons/launcher/RPG8.rsi
   - type: Gun
     projectileSpeed: 4.5
-    fireRate: 0.2
+    fireRate: 1
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
   - type: BallisticAmmoProvider

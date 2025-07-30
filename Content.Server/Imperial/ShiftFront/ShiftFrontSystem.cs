@@ -218,7 +218,19 @@ namespace Content.Server.ShiftFront
             // Уведомление
             _chat.TrySendInGameICMessage(user, $"Вы присоединились к команде {comp.Faction}!", InGameICChatType.Speak, false);
             EnsureComp<TimedDespawnComponent>(user, out var despawn);
+
             despawn.Lifetime = 0.5f;
+
+            // Формируем строку с раскладом сил
+            var teamInfo = string.Join(", ", allCommands.Select(t => $"{t.Faction} - {t.Players.Count}"));
+
+            _chat.DispatchGlobalAnnouncement(
+                $"Игрок {session.Name} присоединился к команде {comp.Faction}. Расклад сил: {teamInfo}",
+                playSound: false,
+                colorOverride: Color.Green,
+                sender: "Орбитальное наблюдение",
+                announcementSound: new SoundPathSpecifier("/Audio/Imperial/ShiftFront/ex_buid.ogg")
+            );
         }
 
 

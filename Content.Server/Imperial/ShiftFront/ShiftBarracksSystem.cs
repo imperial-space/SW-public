@@ -62,12 +62,21 @@ namespace Content.Server.ShiftFront
 
         private void OnExamine(EntityUid uid, ShiftBarracksComponent comp, ExaminedEvent args)
         {
-            args.PushMarkup($"До следующего клонирования осталось [color=yellow]{comp.TimeTillNextGen}[/color] секунд");
+
+            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+            while (dquery.MoveNext(out var couid, out var command))
+            {
+                if (command.Faction != comp.Faction)
+                    continue;
+                args.PushMarkup($"Всего в очередь на клонирование: [color=orange]{command.RespawnQueue.Count}[/color]", 9);
+            }
+
+            args.PushMarkup($"До следующего клонирования осталось [color=yellow]{comp.TimeTillNextGen}[/color] секунд", 10);
 
             foreach (var unit in comp.dict)
             {
                 if (unit.Value == 0) continue;
-                args.PushMarkup($"Доступно [color=cyan]{unit.Value}[/color] {Loc.GetString(unit.Key + "-clone")}");
+                args.PushMarkup($"Доступно [color=cyan]{unit.Value}[/color] {Loc.GetString(unit.Key + "-clone")}", -5);
             }
         }
         private void OnGetAlternativeVerbs(EntityUid uid, ShiftBarracksComponent comp, GetVerbsEvent<AlternativeVerb> ev)
