@@ -1,0 +1,34 @@
+using Content.Server.Atmos.EntitySystems;
+using Content.Shared.Atmos;
+using Content.Shared.Atmos.Reactions;
+using JetBrains.Annotations;
+using Content.Server.Atmos.Reactions;
+using Content.Server.Atmos;
+
+namespace Content.Server.Imperial.Atmos.Reactions;
+
+[UsedImplicitly]
+public sealed partial class PhazoniumProductionReaction : IGasReactionEffect
+{
+    public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
+    {
+        var initialTherm = mixture.GetMoles(Gas.Thermonium);
+        var initialFrezon = mixture.GetMoles(Gas.Frezon);
+        var initialOzon = mixture.GetMoles(Gas.Ozonium);
+
+        var efficiency = mixture.Temperature / Atmospherics.PhazoniumProductionMaxEfficiencyTemperature;
+        var loss = 1 - efficiency;
+
+        var ThrmConversion = initialTherm / Atmospherics.PhazoniumProductionConversionRate;
+        var OzonConversion = initialOzon / Atmospherics.PhazoniumProductionConversionRate;
+        var total = ThrmConversion + OzonConversion;
+
+        mixture.AdjustMoles(Gas.Thermonium, -ThrmConversion);
+        mixture.AdjustMoles(Gas.Ozonium, -OzonConversion);
+        mixture.AdjustMoles(Gas.Phazonium, total * efficiency);
+        mixture.AdjustMoles(Gas.Frezon, total * loss);
+
+        return ReactionResult.Reacting;
+    }
+
+}
