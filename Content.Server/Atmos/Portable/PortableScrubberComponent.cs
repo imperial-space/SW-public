@@ -32,7 +32,7 @@ namespace Content.Server.Atmos.Portable
             Gas.Frezon, /// Imperial Added Thermonium
             Gas.Thermonium, /// Imperial Added Thermonium
             Gas.Phazonium, /// Imperial Added Phazonium and Ozonium
-            Gas.Phazonium  /// Imperial Added Phazonium and Ozonium
+            Gas.Ozonium  /// Imperial Added Phazonium and Ozonium
         };
 
         [ViewVariables(VVAccess.ReadWrite)]
