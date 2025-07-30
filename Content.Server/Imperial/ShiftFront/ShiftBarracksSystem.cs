@@ -21,6 +21,8 @@ using Content.Server.Chat.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Content.Shared.Damage;
+using Content.Server.Mind;
+using Robust.Shared.Enums;
 
 namespace Content.Server.ShiftFront
 {
@@ -39,6 +41,7 @@ namespace Content.Server.ShiftFront
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+        [Dependency] private readonly MindSystem _minds = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -59,14 +62,17 @@ namespace Content.Server.ShiftFront
 
         private void OnExamine(EntityUid uid, ShiftBarracksComponent comp, ExaminedEvent args)
         {
-            if (comp.ChosenGen != "")
-                args.PushMarkup($"Сейчас клонируется с орбиты [color=cyan]{comp.ChosenGen}[/color], до завершения клонирования осталось [color=yellow]{comp.TimeTillNextGen}[/color] секунд");
-            else
-                args.PushMarkup("Сейчас [color=red]никто[/color] не клонируется");
+            args.PushMarkup($"До следующего клонирования осталось [color=yellow]{comp.TimeTillNextGen}[/color] секунд");
+
+            foreach (var unit in comp.dict)
+            {
+                if (unit.Value == 0) continue;
+                args.PushMarkup($"Доступно [color=cyan]{unit.Value}[/color] {Loc.GetString(unit.Key + "-clone")}");
+            }
         }
         private void OnGetAlternativeVerbs(EntityUid uid, ShiftBarracksComponent comp, GetVerbsEvent<AlternativeVerb> ev)
         {
-            if (!ev.CanAccess || !ev.CanInteract || comp.ChosenGen != "") return;
+            if (!ev.CanAccess || !ev.CanInteract) return;
             if (!_sharedPlayerManager.TryGetSessionByEntity(ev.User, out var session)) return;
             if (TryComp<ShiftPlayerComponent>(ev.User, out var shiftPlayer) && !shiftPlayer.Leader && !shiftPlayer.Eng) return;
 
@@ -79,10 +85,10 @@ namespace Content.Server.ShiftFront
             {
                 Act = () =>
                 {
-                    if (!TryWasteResource(rescomp, 15, 50, 0, session))
+                    if (!TryWasteResource(rescomp, 10, 15, 0, session))
                         return;
-                    comp.ChosenGen = "скаут";
-                    comp.TimeTillNextGen = 25 - comp.Boost;
+                    if (comp.dict.TryGetValue("Fast", out int value))
+                        comp.dict["Fast"]++;
                 },
                 Text = "Скаут",
                 Priority = 15,
@@ -93,10 +99,10 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 45, 105, 0, session))
+                        if (!TryWasteResource(rescomp, 25, 40, 0, session))
                             return;
-                        comp.ChosenGen = "штурмовик";
-                        comp.TimeTillNextGen = 65 - comp.Boost;
+                        if (comp.dict.TryGetValue("Assault", out int value))
+                            comp.dict["Assault"]++;
                     },
                     Text = "Штурмовик",
                     Priority = 14,
@@ -107,10 +113,10 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 35, 120, 0, session))
+                        if (!TryWasteResource(rescomp, 20, 65, 0, session))
                             return;
-                        comp.ChosenGen = "медик";
-                        comp.TimeTillNextGen = 60 - comp.Boost;
+                        if (comp.dict.TryGetValue("Med", out int value))
+                            comp.dict["Med"]++;
                     },
                     Text = "Медик",
                     Priority = 13,
@@ -121,10 +127,10 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 75, 130, 0, session))
+                        if (!TryWasteResource(rescomp, 45, 60, 0, session))
                             return;
-                        comp.ChosenGen = "инженер";
-                        comp.TimeTillNextGen = 60 - comp.Boost;
+                        if (comp.dict.TryGetValue("Eng", out int value))
+                            comp.dict["Eng"]++;
                     },
                     Text = "Инженер",
                     Priority = 12,
@@ -135,10 +141,10 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 85, 150, 20, session))
+                        if (!TryWasteResource(rescomp, 55, 80, 15, session))
                             return;
-                        comp.ChosenGen = "пулеметчик";
-                        comp.TimeTillNextGen = 100 - comp.Boost * 2;
+                        if (comp.dict.TryGetValue("Mg", out int value))
+                            comp.dict["Mg"]++;
                     },
                     Text = "Пулеметчик",
                     Priority = 11,
@@ -149,28 +155,14 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
-                        if (!TryWasteResource(rescomp, 75, 115, 10, session))
+                        if (!TryWasteResource(rescomp, 45, 65, 10, session))
                             return;
-                        comp.ChosenGen = "снайпер";
-                        comp.TimeTillNextGen = 90 - comp.Boost * 2;
+                        if (comp.dict.TryGetValue("Sniper", out int value))
+                            comp.dict["Sniper"]++;
                     },
                     Text = "Снайпер",
                     Priority = 10,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Guns/Snipers/heavy_sniper.rsi"), "base")
-                });
-            if (CheckResearch("ShiftFrontAssasin", comp.Faction) && 1 == 0) // kostyli ebaniye
-                ev.Verbs.Add(new AlternativeVerb
-                {
-                    Act = () =>
-                    {
-                        if (!TryWasteResource(rescomp, 135, 175, 35, session))
-                            return;
-                        comp.ChosenGen = "ассасин";
-                        comp.TimeTillNextGen = 110 - comp.Boost * 2;
-                    },
-                    Text = "Ассасин",
-                    Priority = 9,
-                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/SpiderClan/Weapon/bluekatana.rsi"), "icon")
                 });
         }
         public EntityUid GetResourceConsole(EntityUid uid, ShiftBarracksComponent comp)
@@ -191,7 +183,7 @@ namespace Content.Server.ShiftFront
                 comp.Polymer -= Polymer;
                 comp.BioShlak -= BioShlak;
                 comp.NanoCarbon -= NanoCarbon;
-                _prayerSystem.SendSubtleMessage(session, session, $"Было потрачено {Polymer} полимеров, {BioShlak} биошлака и {NanoCarbon} нанокарбона", "Клонирование запущено");
+                _prayerSystem.SendSubtleMessage(session, session, $"Было потрачено {Polymer} полимеров, {BioShlak} биошлака и {NanoCarbon} нанокарбона", "Успешно");
                 return true;
             }
             _prayerSystem.SendSubtleMessage(session, session, $"Для этого юнита необходимо {Polymer} полимеров, {BioShlak} биошлака и {NanoCarbon} нанокарбона", "Недостаточно ресурсов");
@@ -211,41 +203,62 @@ namespace Content.Server.ShiftFront
                 var buildquery = EntityQueryEnumerator<ShiftBarracksComponent>();
                 while (buildquery.MoveNext(out var uid, out var comp))
                 {
-                    if (comp.TimeTillNextGen > 0 && comp.ChosenGen != "")
+                    if (comp.TimeTillNextGen > 0)
                         comp.TimeTillNextGen -= 1;
                     else
                     {
-                        if (comp.ChosenGen != "") _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                        comp.TimeTillNextGen = comp.PassiveCloneTimer - comp.Boost;
                         var xform = Transform(uid);
                         var coords = xform.Coordinates;
-                        switch (comp.ChosenGen)
+
+                        var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                        while (dquery.MoveNext(out var couid, out var command))
                         {
-                            case "скаут":
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
-                                break;
-                            case "штурмовик":
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
-                                break;
-                            case "медик":
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
-                                break;
-                            case "инженер":
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Eng", coords);
-                                break;
-                            case "пулеметчик":
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Heavy", coords);
-                                break;
-                            case "снайпер":
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Sniper", coords);
-                                break;
-                            case "ассасин":
-                                Spawn("BaseMobHumanShiftFront" + comp.Faction + "Ninja", coords);
-                                break;
+                            if (command.Faction != comp.Faction)
+                                continue;
+                            command.RespawnQueue.TryFirstOrDefault(out var session);
+                            if (session == null)
+                                continue;
+                            if (session.Status != SessionStatus.InGame)
+                                command.RespawnQueue.Remove(session);
+
+                            if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) continue;
+                            if (session.AttachedEntity is null) continue;
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+
+                            _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                            _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                            command.RespawnQueue.Remove(session);
                         }
-                        comp.ChosenGen = "";
+
+
+                        //switch (comp.ChosenGen)
+                        //{
+                        //    case "скаут":
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+                        //        break;
+                        //    case "штурмовик":
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
+                        //        break;
+                        //    case "медик":
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
+                        //        break;
+                        //    case "инженер":
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Eng", coords);
+                        //        break;
+                        //    case "пулеметчик":
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Heavy", coords);
+                        //        break;
+                        //    case "снайпер":
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Sniper", coords);
+                        //        break;
+                        //    case "ассасин":
+                        //        Spawn("BaseMobHumanShiftFront" + comp.Faction + "Ninja", coords);
+                        //        break;
+                        //}
                     }
                 }
             }

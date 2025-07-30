@@ -145,7 +145,7 @@ public sealed class IdentitySystem : SharedIdentitySystem
         InventoryComponent? inventory=null,
         HumanoidAppearanceComponent? appearance=null)
     {
-        int age = 18;
+        int age = 38; // ueeeee
         Gender gender = Gender.Epicene;
         string species = SharedHumanoidAppearanceSystem.DefaultSpecies;
 

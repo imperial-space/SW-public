@@ -27,7 +27,7 @@
   - type: GhostRole
     name: Выбор команды
     description: Выберите команду
-    rules: Выберите или покиньте свою команду через соответствующие объекты через ПКМ по ним. Нахождение в команде будет автоматически закидывать вас на ее гост роли солдат при их появлении
+    rules: Выберите или покиньте свою команду через соответствующие объекты через ПКМ по ним. Нахождение в команде будет автоматически респавнить вас на клон-станциях вашей команды и даст возможность выбирать дальнейшие классы через ПКМ по клон-станции. Вы можете изменить команду в любое время.
     #raffle:
     #  settings: default
   - type: GhostRoleMobSpawner
@@ -43,6 +43,8 @@
   parent: MobHuman
   description: New church of neo-darwinists actually believe that EVERY animal evolved from a resp. Tastes like pork, and killing them is both fun and relaxing.
   components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRespawn ]
   #- type: AreaMarkerInvoker
   #- type: Damageable
   #  damageModifierSet: MedievalRespawnPlayer
@@ -85,6 +87,16 @@
   - type: TriggerOnSpawn
   - type: SpawnOnTrigger
     proto: SpawnPointMedievalMobPlayerRespawnFront
+
+
+
+- type: startingGear
+  id: ShiftFrontRespawn
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+
+
 
 - type: entity
   name: Urist GigaResp

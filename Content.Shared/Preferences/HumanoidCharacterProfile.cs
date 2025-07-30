@@ -77,7 +77,7 @@ namespace Content.Shared.Preferences
         public ProtoId<SpeciesPrototype> Species { get; set; } = SharedHumanoidAppearanceSystem.DefaultSpecies;
 
         [DataField]
-        public int Age { get; set; } = 18;
+        public int Age { get; set; } = 38; // ueee
 
         [DataField]
         public Sex Sex { get; private set; } = Sex.Male;
@@ -252,7 +252,7 @@ namespace Content.Shared.Preferences
             var random = IoCManager.Resolve<IRobustRandom>();
 
             var sex = Sex.Unsexed;
-            var age = 18;
+            var age = 18; // ueeee
             HashSet<ProtoId<LanguagePrototype>> languages = new();  // imperial medieval languages
             if (prototypeManager.TryIndex<SpeciesPrototype>(species, out var speciesPrototype))
             {

@@ -210,8 +210,8 @@ namespace Content.Server.ShiftFront
                     return;
                 }
             }
-            comp.RespawnQueue.Add(session);
-            comp.Players.Add(session);
+            comp.RespawnQueue.Append(session);
+            comp.Players.Append(session);
 
             // Уведомление
             _chat.TrySendInGameICMessage(user, $"Вы присоединились к команде {comp.Faction}!", InGameICChatType.Speak, false);
@@ -569,9 +569,9 @@ namespace Content.Server.ShiftFront
         public void OnBarracksStart(EntityUid uid, ShiftBarracksComponent comp, ComponentStartup args)
         {
             if (CheckResearch("ShiftFrontClonSpeedUp", comp.Faction))
-                comp.Boost += 10;
+                comp.Boost += 5;
             if (CheckResearch("ShiftFrontClonSpeedUp2", comp.Faction))
-                comp.Boost += 10;
+                comp.Boost += 5;
         }
 
         public void OnPlayerStart(EntityUid uid, ShiftPlayerComponent comp, ComponentStartup args)
@@ -698,7 +698,18 @@ namespace Content.Server.ShiftFront
             if (args.NewMobState != MobState.Dead)
                 return;
             if (ent.Comp.Leader)
+            {
                 _chat.DispatchGlobalAnnouncement($"Командир фракции {ent.Comp.Faction} был ликвидирован", playSound: true, colorOverride: Color.Red, sender: "Орбитальное наблюдение", announcementSound: new SoundPathSpecifier("/Audio/Imperial/ShiftFront/lead_dead.ogg"));
+                var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                while (dquery.MoveNext(out var couid, out var command))
+                {
+                    if (ent.Comp.Faction == command.Faction)
+                    {
+                        EnsureComp<TimedDespawnComponent>(couid, out var despawn);
+                        despawn.Lifetime = 0.3f;
+                    }
+                }
+            }
             var xform = Transform(ent);
             var coords = xform.Coordinates;
             QueueDel(ent);
@@ -707,8 +718,13 @@ namespace Content.Server.ShiftFront
 
         private void OnPlayerDetached(Entity<ShiftPlayerComponent> ent, ref PlayerDetachedEvent args)
         {
-
-            // TODO вставание в очередь на респ
+            if (!_sharedPlayerManager.TryGetSessionByEntity(ent, out var session)) return;
+            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+            while (dquery.MoveNext(out var couid, out var command))
+            {
+                if (ent.Comp.Faction == command.Faction)
+                    command.RespawnQueue.Append(session);
+            }
         }
 
         private void OnDamage(EntityUid uid, ShiftExtractorComponent comp, DamageChangedEvent args)
@@ -1258,6 +1274,11 @@ namespace Content.Server.ShiftFront
                 {
                     foreach (var player in recomp.Players)
                     {
+                        if (player.Status != SessionStatus.InGame)
+                        {
+                            recomp.RespawnQueue.Remove(player);
+                            recomp.Players.Remove(player);
+                        }
                         // TODO автоочистка при ливе игрока
                     }
                 }
