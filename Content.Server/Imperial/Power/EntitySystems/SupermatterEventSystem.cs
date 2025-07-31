@@ -37,9 +37,6 @@ namespace Content.Server.Imperial.Power.EntitySystems
         [Dependency] public readonly DamageableSystem Damageable = default!;
         [Dependency] public readonly IGameTiming GameTiming = default!;
 
-        // Публичное свойство для доступа к EntityManager из событий
-        public IEntityManager EntityManager => IoCManager.Resolve<IEntityManager>();
-
         // Словарь событий для быстрого доступа
         private readonly Dictionary<SupermatterEventType, ISupermatterEvent> _events = new()
         {
@@ -184,13 +181,13 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
         }
 
-        public void SetRadiation(EntityUid uid, IEntityManager entityManager, float intensity)
+        public void SetRadiation(EntityUid uid, float intensity)
         {
-            if (entityManager.TryGetComponent<RadiationSourceComponent>(uid, out var radComponent))
+            if (EntityManager.TryGetComponent<RadiationSourceComponent>(uid, out var radComponent))
                 radComponent.Intensity = intensity;
             else
             {
-                var newRad = entityManager.EnsureComponent<RadiationSourceComponent>(uid);
+                var newRad = EntityManager.EnsureComponent<RadiationSourceComponent>(uid);
                 newRad.Intensity = intensity;
             }
         }

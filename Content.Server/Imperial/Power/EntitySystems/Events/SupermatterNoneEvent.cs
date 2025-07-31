@@ -11,12 +11,45 @@ public sealed class SupermatterNoneEvent : ISupermatterEvent
 {
     public void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
     {
-        var currentTime = system.GameTiming.CurTime;
-        comp.CurrentEvent = SupermatterEventType.None;
-        comp.EventEndTime = TimeSpan.Zero;
-        comp.NextEventTimer = TimeSpan.FromSeconds(comp.NoneEventDuration);
-        comp.LastEventEndTimeUpdate = currentTime;
-        comp.LastNextEventTimerUpdate = currentTime;
+        // Валидация входных параметров
+        if (uid == EntityUid.Invalid)
+        {
+            system.Log.Error("SupermatterNoneEvent.Activate: Invalid EntityUid provided");
+            return;
+        }
+
+        if (comp == null)
+        {
+            system.Log.Error("SupermatterNoneEvent.Activate: SupermatterEventComponent is null");
+            return;
+        }
+
+        if (system == null)
+        {
+            system.Log.Error("SupermatterNoneEvent.Activate: SupermatterEventSystem is null");
+            return;
+        }
+
+        // Валидация конфигурации компонента
+        if (comp.NoneEventDuration <= 0)
+        {
+            system.Log.Warning($"SupermatterNoneEvent.Activate: Invalid NoneEventDuration: {comp.NoneEventDuration}");
+            return;
+        }
+
+        try
+        {
+            var currentTime = system.GameTiming.CurTime;
+            comp.CurrentEvent = SupermatterEventType.None;
+            comp.EventEndTime = TimeSpan.Zero;
+            comp.NextEventTimer = TimeSpan.FromSeconds(comp.NoneEventDuration);
+            comp.LastEventEndTimeUpdate = currentTime;
+            comp.LastNextEventTimerUpdate = currentTime;
+        }
+        catch (Exception ex)
+        {
+            system.Log.Error($"SupermatterNoneEvent.Activate: Exception during activation for entity {uid}: {ex.Message}");
+        }
     }
 
     public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)

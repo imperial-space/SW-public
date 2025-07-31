@@ -13,16 +13,74 @@ public sealed class SupermatterLightningEvent : ISupermatterEvent
 {
     public void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
     {
-        var currentTime = system.GameTiming.CurTime;
-        comp.CurrentEvent = SupermatterEventType.Lightning;
-        comp.EventEndTime = TimeSpan.FromSeconds(comp.LightningEventDuration);
-        comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.LightningMinNextEvent, comp.LightningMaxNextEvent));
-        comp.LightningCooldown = TimeSpan.Zero;
-        comp.LastEventEndTimeUpdate = currentTime;
-        comp.LastNextEventTimerUpdate = currentTime;
-        comp.LastLightningCooldownUpdate = currentTime;
+        // Валидация входных параметров
+        if (uid == EntityUid.Invalid)
+        {
+            system.Log.Error("SupermatterLightningEvent.Activate: Invalid EntityUid provided");
+            return;
+        }
 
-        system.ImperialLightning?.SpawnLightningBetween(uid, uid, null, null, TimeSpan.FromSeconds(comp.LightningSpawnDuration));
+        if (comp == null)
+        {
+            system.Log.Error("SupermatterLightningEvent.Activate: SupermatterEventComponent is null");
+            return;
+        }
+
+        if (system == null)
+        {
+            system.Log.Error("SupermatterLightningEvent.Activate: SupermatterEventSystem is null");
+            return;
+        }
+
+        // Валидация конфигурации компонента
+        if (comp.LightningEventDuration <= 0)
+        {
+            system.Log.Warning($"SupermatterLightningEvent.Activate: Invalid LightningEventDuration: {comp.LightningEventDuration}");
+            return;
+        }
+
+        if (comp.LightningMinNextEvent <= 0 || comp.LightningMaxNextEvent <= 0)
+        {
+            system.Log.Warning($"SupermatterLightningEvent.Activate: Invalid next event range: min={comp.LightningMinNextEvent}, max={comp.LightningMaxNextEvent}");
+            return;
+        }
+
+        if (comp.LightningMinNextEvent > comp.LightningMaxNextEvent)
+        {
+            system.Log.Warning($"SupermatterLightningEvent.Activate: Min next event time greater than max: min={comp.LightningMinNextEvent}, max={comp.LightningMaxNextEvent}");
+            return;
+        }
+
+        if (comp.LightningSpawnDuration <= 0)
+        {
+            system.Log.Warning($"SupermatterLightningEvent.Activate: Invalid LightningSpawnDuration: {comp.LightningSpawnDuration}");
+            return;
+        }
+
+        if (comp.LightningCooldownDuration <= 0)
+        {
+            system.Log.Warning($"SupermatterLightningEvent.Activate: Invalid LightningCooldownDuration: {comp.LightningCooldownDuration}");
+            return;
+        }
+
+        try
+        {
+            var currentTime = system.GameTiming.CurTime;
+            comp.CurrentEvent = SupermatterEventType.Lightning;
+            comp.EventEndTime = TimeSpan.FromSeconds(comp.LightningEventDuration);
+            comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.LightningMinNextEvent, comp.LightningMaxNextEvent));
+            comp.LightningCooldown = TimeSpan.Zero;
+            comp.LastEventEndTimeUpdate = currentTime;
+            comp.LastNextEventTimerUpdate = currentTime;
+            comp.LastLightningCooldownUpdate = currentTime;
+
+            // Обработка потенциальных исключений при создании молнии
+            system.ImperialLightning?.SpawnLightningBetween(uid, uid, null, null, TimeSpan.FromSeconds(comp.LightningSpawnDuration));
+        }
+        catch (Exception ex)
+        {
+            system.Log.Error($"SupermatterLightningEvent.Activate: Exception during activation for entity {uid}: {ex.Message}");
+        }
     }
 
     public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)
