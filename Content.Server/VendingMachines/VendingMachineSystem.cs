@@ -46,7 +46,7 @@ namespace Content.Server.VendingMachines
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
 
-            SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense); //Imperial Space Vending Machine
+            SubscribeLocalEvent<VendingMachineComponent, VendingMachineSelfDispenseEvent>(OnSelfDispense);
 
             SubscribeLocalEvent<VendingMachineComponent, RestockDoAfterEvent>(OnDoAfter);
 
@@ -244,16 +244,19 @@ namespace Content.Server.VendingMachines
                 //Imperial Space Vending Machine; Start
                 if (vendComponent.TargetDirection == null)
                 {
+                //Imperial Space Vending Machine; End
                     var range = vendComponent.NonLimitedEjectRange;
                     var direction = new Vector2(_random.NextFloat(-range, range), _random.NextFloat(-range, range));
                     _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
+                //Imperial Space Vending Machine; Start    
                 }
                 else
                 {
+
                     var direction = vendComponent.TargetDirection ?? new EntityCoordinates();
                     vendComponent.TargetDirection = null;
                     _throwingSystem.TryThrow(ent, direction, vendComponent.NonLimitedEjectForce);
-                }
+                } 
                 //Imperial Space Vending Machine; End
             }
 

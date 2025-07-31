@@ -49,7 +49,7 @@ public abstract partial class SharedVendingMachineSystem : EntitySystem
             subs.Event<VendingMachineEjectMessage>(OnInventoryEjectMessage);
         });
 
-        InitializeVending();
+        InitializeVending(); //Imperial Space Vending
     }
 
     private void OnVendingGetState(Entity<VendingMachineComponent> entity, ref ComponentGetState args)
