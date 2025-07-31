@@ -20,7 +20,8 @@
   id: ActionToggleMagbootsPirate
   parent: ActionToggleMagboots
   components:
-  - type: InstantAction
+  - type: Action
     #icon: { sprite: Imperial/PiratesNewHorizon/magboots-pirate.rsi, state: icon }
     itemIconStyle: BigItem
+  - type: InstantAction
     event: !type:ToggleActionEvent

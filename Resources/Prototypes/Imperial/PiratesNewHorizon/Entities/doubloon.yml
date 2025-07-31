@@ -17,7 +17,7 @@
   - type: StaticPrice
     price: 0
   - type: StackPrice
-    price: 100
+    price: 1
   - type: Currency
     price:
       Doubloon: 1

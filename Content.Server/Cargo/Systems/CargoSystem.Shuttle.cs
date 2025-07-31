@@ -8,8 +8,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CCVar;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
-//Imperial Space Pirates: New Horizon
-using Content.Shared.Stacks;
+using Content.Shared.Stacks; // Imperial Space Pirates: New Horizon
 
 namespace Content.Server.Cargo.Systems;
 
@@ -227,7 +226,7 @@ public sealed partial class CargoSystem
         // i hate this crap i had to rewrite it cause i change 1 single line of code (and got 6 fricking errors)
         if (!component.SpawnStack)
         {
-            if (_station.GetOwningStation(uid) is { } owningStation && 
+            if (_station.GetOwningStation(uid) is { } owningStation &&
                 TryComp<StationBankAccountComponent>(owningStation, out var account))
             {
                 station = owningStation;
@@ -260,7 +259,7 @@ public sealed partial class CargoSystem
 
             var stationEntity = new Entity<StationBankAccountComponent>(station, bankAccount);
             var baseDistribution = CreateAccountDistribution(stationEntity);
-            
+
             foreach (var (_, sellComponent, value) in goods)
             {
                 Dictionary<ProtoId<CargoAccountPrototype>, double> distribution;
@@ -278,7 +277,7 @@ public sealed partial class CargoSystem
                     distribution = baseDistribution;
                 }
 
-                UpdateBankAccount(new Entity<StationBankAccountComponent?>(station, bankAccount), 
+                UpdateBankAccount(new Entity<StationBankAccountComponent?>(station, bankAccount),
                     (int)Math.Round(value), distribution, false);
             }
 
@@ -297,7 +296,7 @@ public sealed partial class CargoSystem
         _audio.PlayPvs(ApproveSound, uid);
         UpdatePalletConsoleInterface(uid);
     }
-//Imperial Space Pirates: New Horizon; End
+    //Imperial Space Pirates: New Horizon; End
     #endregion
 }
 
