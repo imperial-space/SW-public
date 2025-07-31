@@ -106,7 +106,7 @@ namespace Content.Server.ShiftFront
                 while (spquery.MoveNext(out var suid, out var scomp))
                 {
                     if (scomp.Faction == comp.Faction)
-                        scomp.Boost += 10;
+                        scomp.Boost += 7;
                 }
             }
             if (id == "ShiftFrontClonSpeedUp2")
@@ -115,7 +115,7 @@ namespace Content.Server.ShiftFront
                 while (spquery.MoveNext(out var suid, out var scomp))
                 {
                     if (scomp.Faction == comp.Faction)
-                        scomp.Boost += 10;
+                        scomp.Boost += 7;
                 }
             }
             if (id == "ShiftFrontFactorySpeedUp")

@@ -193,7 +193,7 @@
   id: ShiftFrontATLM
   tier: 1
   researchName: противотанковые мины
-  price: 60
+  price: 50
   requiredResearches:
   - ShiftFrontBarricade
 
@@ -225,7 +225,7 @@
   id: ShiftFrontSniper
   tier: 2
   researchName: снайпера
-  price: 145
+  price: 105
   requiredResearches:
   - ShiftFrontAssault
 
@@ -266,7 +266,7 @@
   id: ShiftFrontClonSpeedUp2
   tier: 2
   researchName: ускорение клон-станций 2
-  price: 245
+  price: 155
   requiredResearches:
   - ShiftFrontClonSpeedUp
 

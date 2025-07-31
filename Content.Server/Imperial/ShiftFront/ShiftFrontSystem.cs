@@ -107,6 +107,12 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftCommandComponent, GetVerbsEvent<AlternativeVerb>>(OnGetComVerbs);
         }
 
+        public int? GetSessionPosition(List<ICommonSession> sessions, ICommonSession targetSession)
+        {
+            int index = sessions.IndexOf(targetSession);
+            return index >= 0 ? index : null;
+        }
+
         private void OnGetComVerbs(EntityUid uid, ShiftCommandComponent comp, GetVerbsEvent<AlternativeVerb> ev)
         {
             if (!ev.CanAccess || !ev.CanInteract)
@@ -593,9 +599,9 @@ namespace Content.Server.ShiftFront
         public void OnBarracksStart(EntityUid uid, ShiftBarracksComponent comp, ComponentStartup args)
         {
             if (CheckResearch("ShiftFrontClonSpeedUp", comp.Faction))
-                comp.Boost += 5;
+                comp.Boost += 7;
             if (CheckResearch("ShiftFrontClonSpeedUp2", comp.Faction))
-                comp.Boost += 5;
+                comp.Boost += 7;
         }
 
         public void OnPlayerStart(EntityUid uid, ShiftPlayerComponent comp, ComponentStartup args)
