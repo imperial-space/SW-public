@@ -63,3 +63,14 @@ medieval-store-spells-light-prism-name = потусторонний луч
 medieval-store-spells-light-prism-desc = Переливающаяся призма, резонирующая в воздухе, обжигает и расплавляет то, во что попадёт.
 
 medieval-spell-speach-prism = G̵͉̀R̴̺͐Ȃ̴͎N̶̪̕T̸̳̾ ̵̼̀M̷͎̈́E̶͙͝ ̸̗̈́Ṛ̸̈́Ã̷̧Ǵ̴̥N̵̬̑Ȧ̸̹Ȓ̷͇Ó̶͈K̴̘̒
+
+# Divine Touch
+
+medieval-spell-speach-holy-touch = ẖ̯̲̄̅o̧̰̰̯̥̩̅̂̂L̸̳̔y ̰̭T̰̰̭̰̂̅̃o̧̰̰̯̥̩̅̂̂ụ̲̲̃̄̅̆͜͡͝͡c͜͟͝͡͞ẖ̯̲̄̅
+
+medieval-store-spells-light-holy-touch-beginner-name = Освящение трупа
+medieval-store-spells-light-holy-touch-beginner-desc = Сконцентрируйте манну в своей руке для создания поля, способного освятить труп. Стоимость 25 маны.
+
+ent-HolyTouch = освящающее касание
+    .desc = ЛКМ по цели для применения эффекта.
+    .suffix = { "Средневековье" }
