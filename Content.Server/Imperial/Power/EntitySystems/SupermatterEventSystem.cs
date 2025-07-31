@@ -192,7 +192,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
         }
 
-        public bool TryGetComponent<T>(EntityUid uid, out T? component) where T : class, IComponent
+        public bool TryGetComponent<T>(EntityUid uid, out T? component) where T : IComponent
         {
             return EntityManager.TryGetComponent(uid, out component);
         }

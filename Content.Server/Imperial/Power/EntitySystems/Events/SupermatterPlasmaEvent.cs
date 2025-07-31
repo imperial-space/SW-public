@@ -3,6 +3,8 @@ using System;
 using Content.Shared.Atmos;
 using Content.Server.Imperial.Power.Components;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Map;
+using Content.Server.Atmos.EntitySystems;
 
 namespace Content.Server.Imperial.Power.EntitySystems.Events;
 
@@ -102,7 +104,7 @@ public sealed class SupermatterPlasmaEvent : ISupermatterEvent
             return;
 
         // Получаем компоненты один раз
-        if (!system.TryGetComponent<TransformComponent>(uid, out var xform))
+        if (!system.TryGetComponent<TransformComponent>(uid, out var xform) || xform == null)
         {
             return;
         }
@@ -118,29 +120,36 @@ public sealed class SupermatterPlasmaEvent : ISupermatterEvent
         gas.AdjustMoles((int)Gas.Plasma, comp.PlasmaMolesAmount);
         gas.AdjustMoles((int)Gas.Oxygen, comp.PlasmaMolesAmount);
 
-        // Проверяем наличие сетки
-        if (xform.GridUid == null)
+        // Создаём хотспот
+        if (!TryGetGridUid(xform, out var gridUid))
         {
             system.Log.Warning($"Supermatter plasma event triggered for entity {uid} without grid");
             return;
         }
-
-        // Создаём хотспот
-        var gridUid = xform.GridUid.Value;
         if (!system.TryGetComponent<MapGridComponent>(gridUid, out var grid) || grid == null)
         {
             return;
         }
-
-        if (system.MapSystem == null)
-        {
-            return;
-        }
-
         var tile = system.MapSystem!.TileIndicesFor(gridUid, grid, xform.Coordinates);
-        system.Atmos!.HotspotExpose(gridUid, tile, comp.PlasmaHotspotTemperature, comp.PlasmaHotspotVolume, uid, true);
+        CreateHotspot(system.Atmos!, gridUid, tile, comp.PlasmaHotspotTemperature, comp.PlasmaHotspotVolume, uid);
 
         comp.PlasmaTickAccumulator -= TimeSpan.FromSeconds(comp.PlasmaTickInterval);
+    }
+
+    private bool TryGetGridUid(TransformComponent xform, out EntityUid gridUid)
+    {
+        if (!xform.GridUid.HasValue)
+        {
+            gridUid = default;
+            return false;
+        }
+        gridUid = xform.GridUid.Value;
+        return true;
+    }
+
+    private void CreateHotspot(AtmosphereSystem atmos, EntityUid gridUid, Vector2i tile, float temp, float volume, EntityUid uid)
+    {
+        atmos.HotspotExpose(gridUid, tile, temp, volume, uid, true);
     }
 
     public string GetAnnouncement()
