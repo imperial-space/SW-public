@@ -20,13 +20,11 @@ public sealed class SupermatterNoneEvent : ISupermatterEvent
 
         if (comp == null)
         {
-            system.Log.Error("SupermatterNoneEvent.Activate: SupermatterEventComponent is null");
             return;
         }
 
         if (system == null)
         {
-            system.Log.Error("SupermatterNoneEvent.Activate: SupermatterEventSystem is null");
             return;
         }
 

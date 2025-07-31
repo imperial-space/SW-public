@@ -20,13 +20,11 @@ public sealed class SupermatterRadiationEvent : ISupermatterEvent
 
         if (comp == null)
         {
-            system.Log.Error("SupermatterRadiationEvent.Activate: SupermatterEventComponent is null");
             return;
         }
 
         if (system == null)
         {
-            system.Log.Error("SupermatterRadiationEvent.Activate: SupermatterEventSystem is null");
             return;
         }
 

@@ -22,13 +22,11 @@ public sealed class SupermatterLightningEvent : ISupermatterEvent
 
         if (comp == null)
         {
-            system.Log.Error("SupermatterLightningEvent.Activate: SupermatterEventComponent is null");
             return;
         }
 
         if (system == null)
         {
-            system.Log.Error("SupermatterLightningEvent.Activate: SupermatterEventSystem is null");
             return;
         }
 
@@ -93,8 +91,8 @@ public sealed class SupermatterLightningEvent : ISupermatterEvent
         {
             system.ImperialLightning?.SpawnLightningBetween(uid, uid, null, null, TimeSpan.FromSeconds(comp.LightningSpawnDuration));
 
-            if (system.EntityManager.TryGetComponent<SupermatterIntegrityComponent>(uid, out var integrity) &&
-                system.EntityManager.TryGetComponent<DamageableComponent>(uid, out var dmg))
+            if (system.TryGetComponent<SupermatterIntegrityComponent>(uid, out var integrity) && integrity != null &&
+                system.TryGetComponent<DamageableComponent>(uid, out var _))
             {
                 system.Damageable.TryChangeDamage(uid, integrity.TickDamage, false, true, origin: null);
             }

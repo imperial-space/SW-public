@@ -191,5 +191,10 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 newRad.Intensity = intensity;
             }
         }
+
+        public bool TryGetComponent<T>(EntityUid uid, out T? component) where T : class, IComponent
+        {
+            return EntityManager.TryGetComponent(uid, out component);
+        }
     }
 }

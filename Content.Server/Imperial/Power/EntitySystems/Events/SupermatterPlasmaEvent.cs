@@ -22,13 +22,11 @@ public sealed class SupermatterPlasmaEvent : ISupermatterEvent
 
         if (comp == null)
         {
-            system.Log.Error("SupermatterPlasmaEvent.Activate: SupermatterEventComponent is null");
             return;
         }
 
         if (system == null)
         {
-            system.Log.Error("SupermatterPlasmaEvent.Activate: SupermatterEventSystem is null");
             return;
         }
 
@@ -104,13 +102,15 @@ public sealed class SupermatterPlasmaEvent : ISupermatterEvent
             return;
 
         // Получаем компоненты один раз
-        if (!system.EntityManager.TryGetComponent<TransformComponent>(uid, out var xform))
+        if (!system.TryGetComponent<TransformComponent>(uid, out var xform))
         {
-            system.Log.Warning($"Supermatter plasma event triggered for entity {uid} without TransformComponent");
             return;
         }
 
-        var gas = system.Atmos.GetContainingMixture((uid, xform), true, false);
+        if (system.Atmos == null)
+            return;
+
+        var gas = system.Atmos.GetContainingMixture(uid, true, false);
         if (gas == null)
             return;
 
@@ -127,14 +127,18 @@ public sealed class SupermatterPlasmaEvent : ISupermatterEvent
 
         // Создаём хотспот
         var gridUid = xform.GridUid.Value;
-        if (!system.EntityManager.TryGetComponent<MapGridComponent>(gridUid, out var grid))
+        if (!system.TryGetComponent<MapGridComponent>(gridUid, out var grid) || grid == null)
         {
-            system.Log.Warning($"Supermatter plasma event triggered for grid {gridUid} without MapGridComponent");
             return;
         }
 
-        var tile = system.MapSystem.TileIndicesFor(gridUid, grid, xform.Coordinates);
-        system.Atmos.HotspotExpose(gridUid, tile, comp.PlasmaHotspotTemperature, comp.PlasmaHotspotVolume, uid, true);
+        if (system.MapSystem == null)
+        {
+            return;
+        }
+
+        var tile = system.MapSystem!.TileIndicesFor(gridUid, grid, xform.Coordinates);
+        system.Atmos!.HotspotExpose(gridUid, tile, comp.PlasmaHotspotTemperature, comp.PlasmaHotspotVolume, uid, true);
 
         comp.PlasmaTickAccumulator -= TimeSpan.FromSeconds(comp.PlasmaTickInterval);
     }
