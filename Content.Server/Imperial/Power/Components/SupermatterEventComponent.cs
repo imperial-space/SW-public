@@ -44,5 +44,78 @@ namespace Content.Server.Imperial.Power.Components
         // Каналы рации для оповещений
         [DataField]
         public ProtoId<RadioChannelPrototype>[] RadioChannels = { "Engineering" };
+
+        // Время до первого ивента (секунды)
+        [DataField]
+        public float InitialEventDelaySeconds = 900f; // 15 минут
+
+        // Время жизни кэша консоли (секунды)
+        [DataField]
+        public float ConsoleCacheLifetime = 10f;
+
+        // Настройки событий
+        [DataField]
+        public float NoneEventDuration = 300f; // 5 минут для None события
+
+        [DataField]
+        public float LightningEventDuration = 120f; // 2 минуты для Lightning события
+
+        [DataField]
+        public float LightningCooldownDuration = 2f; // 2 секунды кулдаун для молний
+
+        [DataField]
+        public float LightningSpawnDuration = 1f; // 1 секунда для спавна молнии
+
+        [DataField]
+        public float LightningMinNextEvent = 180f; // 3 минуты минимальное время до следующего события
+
+        [DataField]
+        public float LightningMaxNextEvent = 420f; // 7 минут максимальное время до следующего события
+
+        [DataField]
+        public float RadiationEventDuration = 120f; // 2 минуты для Radiation события
+
+        [DataField]
+        public float RadiationIntensity = 10f; // Интенсивность радиации во время события
+
+        [DataField]
+        public float RadiationMinNextEvent = 180f; // 3 минуты минимальное время до следующего события
+
+        [DataField]
+        public float RadiationMaxNextEvent = 420f; // 7 минут максимальное время до следующего события
+
+        [DataField]
+        public float PlasmaEventDuration = 120f; // 2 минуты для Plasma события
+
+        [DataField]
+        public float PlasmaMinNextEvent = 180f; // 3 минуты минимальное время до следующего события
+
+        [DataField]
+        public float PlasmaMaxNextEvent = 420f; // 7 минут максимальное время до следующего события
+
+        [DataField]
+        public float PlasmaTickInterval = 10f; // 10 секунд интервал для генерации плазмы
+
+        [DataField]
+        public float PlasmaMolesAmount = 5f; // Количество молей плазмы и кислорода для генерации
+
+        [DataField]
+        public float PlasmaHotspotTemperature = 1500f; // Температура хотспота плазмы
+
+        [DataField]
+        public float PlasmaHotspotVolume = 50f; // Объем хотспота плазмы
+
+        [DataField]
+        public float DefaultRadiationIntensity = 5f; // Интенсивность радиации по умолчанию
+
+        // Время кэша консоли (используется системой)
+        public TimeSpan ConsoleCacheTimer = TimeSpan.Zero;
+
+        // Время последнего обновления для различных таймеров
+        public TimeSpan LastConsoleCacheUpdate = TimeSpan.Zero;
+        public TimeSpan LastEventEndTimeUpdate = TimeSpan.Zero;
+        public TimeSpan LastNextEventTimerUpdate = TimeSpan.Zero;
+        public TimeSpan LastLightningCooldownUpdate = TimeSpan.Zero;
+        public TimeSpan LastPlasmaTickUpdate = TimeSpan.Zero;
     }
 }

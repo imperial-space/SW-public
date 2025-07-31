@@ -48,17 +48,6 @@ namespace Content.Server.Imperial.Power.EntitySystems
         [Dependency] private readonly SharedTransformSystem _xforms = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
 
-        // Внутренний таймер для тиков урона
-
-        private static readonly Dictionary<float, LocId> IntegrityDescriptions = new()
-        {
-            { 0.95f, "supermatter-desc-pristine" },
-            { 0.75f, "supermatter-desc-scratched" },
-            { 0.5f,  "supermatter-desc-cracked" },
-            { 0.25f, "supermatter-desc-badly-cracked" },
-            { 0.0f,  "supermatter-desc-critical" }
-        };
-
         public override void Initialize()
         {
             base.Initialize();
@@ -237,33 +226,8 @@ namespace Content.Server.Imperial.Power.EntitySystems
         // Отправка сообщения в общую рацию от имени суперматерии
         public void SendSupermatterRadio(EntityUid source, string message)
         {
-            var channel = _proto.Index<RadioChannelPrototype>("Common");
+            var channel = _proto.Index<RadioChannelPrototype>("Engineering");
             _radio.SendRadioMessage(source, message, channel, source);
-        }
-
-        private void AnnounceFromConsole(EntityUid crystal, string message)
-        {
-            // Найти ближайшую консоль мониторинга
-            EntityUid? nearestConsole = null;
-            float minDist = float.MaxValue;
-            var pos = _xforms.GetMapCoordinates(crystal).Position;
-            var enumerator = EntityQueryEnumerator<SupermatterMonitorConsoleComponent, TransformComponent>();
-            while (enumerator.MoveNext(out var consoleUid, out var cComp, out var cXform))
-            {
-                if (cXform.MapID != _xforms.GetMapCoordinates(crystal).MapId)
-                    continue;
-                var cPos = _xforms.GetMapCoordinates(consoleUid).Position;
-                var dist = (cPos - pos).LengthSquared();
-                if (dist < minDist)
-                {
-                    minDist = dist;
-                    nearestConsole = consoleUid;
-                }
-            }
-            // Сообщение в инженерный канал
-            _radio.SendRadioMessage(nearestConsole ?? crystal, message, "Engineering", nearestConsole ?? crystal);
-            // Локальный чат рядом с кристаллом
-            _chat.TrySendInGameICMessage(nearestConsole ?? crystal, message, InGameICChatType.Speak, false);
         }
     }
 }

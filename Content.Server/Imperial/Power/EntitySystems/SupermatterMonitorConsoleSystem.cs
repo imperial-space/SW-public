@@ -31,16 +31,12 @@ namespace Content.Server.Imperial.Power.EntitySystems
             if (!args.IsInDetailsRange)
                 return;
 
-            var xform = Transform(uid);
-            var mapId = xform.MapID;
-            var pos = _xforms.GetMapCoordinates(xform).Position;
-
             // Найти ближайший кристалл суперматерии
-            var nearestUid = FindNearestSupermatter(uid, xform);
+            var nearestUid = FindNearestSupermatter(uid);
             if (nearestUid != null && EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest))
             {
                 // Цвет по уровню прочности
-                float percent = nearest.Integrity / MathF.Max(1f, nearest.MaxIntegrity);
+                var percent = nearest.Integrity / MathF.Max(1f, nearest.MaxIntegrity);
                 var color = percent > 0.75f ? "green" : percent > 0.25f ? "yellow" : "red";
                 var integrityPrefix = Loc.GetString("supermatter-monitor-integrity-prefix");
                 var integrityText = $"{integrityPrefix} {nearest.Integrity:0} / {nearest.MaxIntegrity:0}";
@@ -64,9 +60,9 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 if (EntityManager.TryGetComponent<SupermatterEventComponent>(nearestUid.Value, out var events))
                 {
                     var nextEventPrefix = Loc.GetString("supermatter-monitor-next-event-prefix");
-                    double next = events.NextEventTimer.TotalSeconds;
-                    double approx = Math.Max(0, next + _random.Next(-60, 61));
-                    int minutes = (int)Math.Round(approx / 60.0);
+                    var next = events.NextEventTimer.TotalSeconds;
+                    var approx = Math.Max(0, next + _random.Next(-60, 61));
+                    var minutes = (int)Math.Round(approx / 60.0);
                     args.PushMarkup($"{nextEventPrefix} {minutes} min.\n");
                 }
             }
@@ -76,12 +72,13 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
         }
 
-        private EntityUid? FindNearestSupermatter(EntityUid consoleUid, TransformComponent xform)
+        private EntityUid? FindNearestSupermatter(EntityUid consoleUid)
         {
+            var xform = Transform(consoleUid);
             var mapId = xform.MapID;
-            var pos = _xforms.GetMapCoordinates(consoleUid).Position;
+            var pos = _xforms.GetMapCoordinates(xform).Position;
             EntityUid? nearest = null;
-            float minDist = float.MaxValue;
+            var minDist = float.MaxValue;
             var smEnumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
             while (smEnumerator.MoveNext(out var smUid, out var sm, out var smXform))
             {
@@ -102,19 +99,19 @@ namespace Content.Server.Imperial.Power.EntitySystems
         {
             base.Update(frameTime);
             var enumerator = EntityQueryEnumerator<SupermatterMonitorConsoleComponent, TransformComponent>();
-            while (enumerator.MoveNext(out var console, out var xform))
+            while (enumerator.MoveNext(out var uid, out var console, out var xform))
             {
                 // Найти ближайший кристалл суперматерии
-                var nearestUid = FindNearestSupermatter(console.Owner, xform);
+                var nearestUid = FindNearestSupermatter(uid);
                 if (nearestUid != null && EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest))
                 {
-                    float percent = nearest.Integrity / MathF.Max(1f, nearest.MaxIntegrity);
+                    var percent = nearest.Integrity / MathF.Max(1f, nearest.MaxIntegrity);
                     if (percent <= 0.25f)
                     {
                         console.BeepCooldownTimer -= TimeSpan.FromSeconds(frameTime);
                         if (console.BeepCooldownTimer <= TimeSpan.Zero)
                         {
-                            _audio.PlayPvs(console.BeepSound, console.Owner);
+                            _audio.PlayPvs(console.BeepSound, uid);
                             console.BeepCooldownTimer = TimeSpan.FromSeconds(2);
                         }
                     }
