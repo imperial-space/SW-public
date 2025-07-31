@@ -1,6 +1,6 @@
 - type: entity
   parent: SimpleMobBase
-  name: mouse
+  name: мышь
   id: MobElectroMouse
   suffix: ElectroMouse
   description: Squeak!

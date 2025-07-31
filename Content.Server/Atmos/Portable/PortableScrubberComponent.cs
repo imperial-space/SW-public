@@ -29,7 +29,8 @@ namespace Content.Server.Atmos.Portable
             Gas.WaterVapor,
             Gas.Ammonia,
             Gas.NitrousOxide,
-            Gas.Frezon
+            Gas.Frezon, /// Imperial Added Thermonium
+            Gas.Thermonium /// Imperial Added Thermonium
         };
 
         [ViewVariables(VVAccess.ReadWrite)]
