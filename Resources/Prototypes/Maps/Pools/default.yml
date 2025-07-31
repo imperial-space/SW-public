@@ -23,10 +23,6 @@
 - type: gameMapPool
   id: DefaultMapPool
   maps:
-  - MedievalStationMax
-  - MedievalStationVeryHigh
-  - MedievalStation
-  - MedievalStationMediumOnline
   - MedievalStationLowOnline
 
 # Imperial Medieval End

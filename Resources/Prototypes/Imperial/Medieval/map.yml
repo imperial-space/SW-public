@@ -320,77 +320,15 @@
 - type: gameMap
   id: MedievalStationLowOnline
   mapName: Northern rebels (Low online 0-30)
-  mapPath: /Maps/Imperial/Medieval/Sector8V28.yml
+  mapPath: /Maps/Imperial/map.yml
   minPlayers: 0
-  maxPlayers: 25
+  maxPlayers: 100
   stations:
     Medieval:
       stationProto: StandardStationArena
       components:
         - type: StationNameSetup
-          mapNameTemplate: "Medieval"
-        - type: StationJobs
-          availableJobs:
-            # Free people (8 total)
-            MedievalTraveller: [ -1, -1 ]
-            #MedievalAvanturist: [ 1, 1 ]
-            MedievalBard: [ 1, 1 ]
-            MedievalBum: [ 3, 3 ]
-            MedievalInnkeeper: [ 1, 1 ]
-            MedievalInnkeeperN: [ 1, 1 ]
-            MedievalChaplain: [ 1, 1 ]
-            MedievalWanderMag: [ 1, 1 ]
-            # Legion (8 total)
-            MedievalLegionRecruit: [ 2, 2 ]
-            MedievalLegionLegioner: [ 2, 2 ]
-            #MedievalLegionOpcion: [ 1, 1 ]
-            MedievalLegionGateman: [ 1, 1 ]
-            MedievalLegionTribun: [ 1, 1 ]
-            MedievalLegionLegat: [ 1, 1 ]
-            MedievalLegionMag: [ 1, 1 ]
-            MedievalLegionAlchemic: [ 1, 1 ]
-            # Insurgency (8 total)
-            MedievalInsurgencyRecruit: [ 2, 2 ]
-            MedievalInsurgencyInsurgencyer: [ 2, 2 ]
-            #MedievalInsurgencyOpcion: [ 1, 1 ]
-            MedievalInsurgencyGateman: [ 1, 1 ]
-            MedievalInsurgencyTribun: [ 1, 1 ]
-            MedievalInsurgencyLegat: [ 1, 1 ]
-            MedievalInsurgencyMag: [ 1, 1 ]
-            MedievalInsurgencyAlchemic: [ 1, 1 ]
-            # Band (3 total)
-            MedievalBanditRecruit: [ 1, 1 ]
-            MedievalBanditRegular: [ 1, 1 ]
-            MedievalBanditLeader: [ 1, 1 ]
-            # Kayot (2 total)
-            MedievalKayotRecruit: [ 1, 1 ]
-            MedievalKayotLeader: [ 1, 1 ]
-            # Collegium (3 total)
-            MedievalCollegiumRecruit: [ 1, 1 ]
-            MedievalCollegiumCommon: [ 1, 1 ]
-            MedievalCollegiumLeader: [ 1, 1 ]
-            # Tribe (3 total)
-            MedievalTribeRecruit: [ 2, 2 ]
-            #MedievalTribeCommon: [ 1, 1 ]
-            MedievalTribeLeader: [ 1, 1 ]
-            # Merc (3 total)
-            MedievalMerc: [ 2, 2 ]
-            MedievalMercLeader: [ 1, 1 ]
-            # Miner (3 total)
-            MedievalMiner: [ 2, 2 ]
-            MedievalMinerLeader: [ 1, 1 ]
-            # Village (5 total)
-            MedievalVillager: [ 4, 4 ]
-            #MedievalVillagerDef: [ 1, 1 ]
-            MedievalVillagerLeader: [ 1, 1 ]
-            # Traders (4 total)
-            MedievalTrader: [ 2, 2 ]
-            MedievalTraderN: [ 2, 2 ]
-            # Crafters (4 total)
-            MedievalBlacksmith: [ 1, 1 ]
-            MedievalBlacksmithN: [ 1, 1 ]
-            MedievalBlacksmithYoung: [ 1, 1 ]
-            MedievalBlacksmithYoungN: [ 1, 1 ]
+          mapNameTemplate: "Dev"
 
 - type: gameMap
   id: MedievalStationEvent

@@ -286,6 +286,14 @@
   - ShiftFrontSupplies
 
 - type: ShiftFrontResearch
+  id: ShiftFrontMRAPM
+  tier: 1
+  researchName: Пулеметный МРАП
+  price: 55
+  requiredResearches:
+  - ShiftFrontMRAP
+
+- type: ShiftFrontResearch
   id: ShiftFrontMTLB
   tier: 1
   researchName: МТЛБ

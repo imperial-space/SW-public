@@ -552,6 +552,9 @@
   - type: Battery
     maxCharge: 2000
     startingCharge: 2000
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 100
 
 # Magazine
 - type: entity
@@ -643,13 +646,13 @@
   suffix: Shifting Front
   damage:
     types:
-      Heat: 15
+      Heat: 11 
   muzzleFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: muzzle_blue
+    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+    state: muzzle_plasma
   travelFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: beam_blue
+    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+    state: beam_plasma
   impactFlash:
-    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
-    state: impact_blue
+    sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
+    state: impact_plasma

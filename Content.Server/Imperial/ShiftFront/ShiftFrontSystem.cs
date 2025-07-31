@@ -1032,6 +1032,17 @@ namespace Content.Server.ShiftFront
                 });
             }
 
+            if (CheckResearch("ShiftFrontMRAPM", comp.Faction))
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => SelectBuildType(uid, comp, session, "МРАПМ"),
+                    Text = "МРАПМ",
+                    Priority = 4,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon")
+                });
+            }
+
             if (CheckResearch("ShiftFrontMTLB", comp.Faction))
             {
                 ev.Verbs.Add(new AlternativeVerb
@@ -1127,6 +1138,7 @@ namespace Content.Server.ShiftFront
                 "хранилище" => 20,
                 "мина" => 10,
                 "МРАП" => 20,
+                "МРАПМ" => 30,
                 "МТЛБ" => 40,
                 "БМП" => 90,
                 "БТР" => 75,
@@ -1180,8 +1192,10 @@ namespace Content.Server.ShiftFront
                 "хранилище" => (70, 0, 0),
                 "мина" => (10, 10, 0),
                 "МРАП" => (45, 15, 0),
+                "МРАПМ" => (85, 25, 5),
                 "МТЛБ" => (145, 45, 0),
-                "БМП" => (455, 100, 40),
+                "БТР" => (225, 75, 10),
+                "БМП" => (455, 100, 20),
                 "танк" => (545, 175, 80),
                 _ => (0, 0, 0)
             };
@@ -1387,6 +1401,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "МРАП":
                                 Spawn("ShiftFrontMRAP" + comp.Faction, coords);
+                                break;
+                            case "МРАПМ":
+                                Spawn("ShiftFrontMRAPM" + comp.Faction, coords);
                                 break;
                             case "МТЛБ":
                                 Spawn("ShiftFrontMTLB" + comp.Faction, coords);

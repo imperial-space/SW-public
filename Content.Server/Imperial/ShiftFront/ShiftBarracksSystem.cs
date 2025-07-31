@@ -106,7 +106,7 @@ namespace Content.Server.ShiftFront
                 {
                     if (shiftPlayer.Eng || shiftPlayer.Leader)
                     {
-                        if (!TryWasteResource(rescomp, 10, 15, 0, session))
+                        if (!TryWasteResource(rescomp, 5, 10, 0, session))
                             return;
                         if (comp.dict.TryGetValue("Fast", out int value))
                             comp.dict["Fast"]++;
@@ -178,7 +178,7 @@ namespace Content.Server.ShiftFront
                     {
                         if (shiftPlayer.Eng || shiftPlayer.Leader)
                         {
-                            if (!TryWasteResource(rescomp, 20, 65, 0, session))
+                            if (!TryWasteResource(rescomp, 20, 55, 0, session))
                                 return;
                             if (comp.dict.TryGetValue("Med", out int value))
                                 comp.dict["Med"]++;

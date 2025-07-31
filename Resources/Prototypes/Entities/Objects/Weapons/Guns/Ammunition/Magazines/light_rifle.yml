@@ -66,7 +66,7 @@
       - MagazineLightRifleBox
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifle
-    capacity: 1000
+    capacity: 2000
   - type: Item
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi

@@ -19,6 +19,7 @@
       100: Critical
       250: Dead
   - type: GhostRole
+    prob: 0
     name: Солдат
     rules: Выполняйте приказы
     raffle:
@@ -592,6 +593,7 @@
     - MagazinePistol
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
 
 - type: startingGear
   id: ShiftFrontRedFast
@@ -620,6 +622,7 @@
     - MagazinePistol
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
 
 - type: startingGear
   id: ShiftFrontBlueNew
@@ -633,6 +636,11 @@
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
     belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponPistolNDF1ShiftingFront
+  storage:
+    belt:
+    - ShiftFrontBuildLight
 
 - type: startingGear
   id: ShiftFrontRedNew
@@ -646,6 +654,11 @@
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
     belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponPistolNDF1ShiftingFront
+  storage:
+    belt:
+    - ShiftFrontBuildLight
 
 - type: startingGear
   id: ShiftFrontBlueSniper

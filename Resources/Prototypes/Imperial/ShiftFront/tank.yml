@@ -590,6 +590,100 @@
       - ShiftFrontFactYellow
 
 - type: entity
+  id: BaseMRAPMHull
+  parent: BaseMRAPHull
+  abstract: true
+  components:
+  - type: ShiftTankHull
+    insideController: TankPartController
+    insideGunner: TankPartGunner
+    insideEntry: TankPartEntry
+    insideExit: TankPartExit
+    gridLink:
+    - "/Maps/Imperial/mrapG.yml"
+
+- type: entity
+  id: ShiftFrontMRAPMBlue
+  parent: [BaseMRAPMHull, BaseBlueFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: blue
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    turretProto: MobShiftTankObserverBlue
+    faction: Blue
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
+
+- type: entity
+  id: ShiftFrontMRAPMRed
+  parent: [BaseMRAPMHull, BaseRedFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: red
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    turretProto: MobShiftTankObserverRed
+    faction: Red
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
+
+- type: entity
+  id: ShiftFrontMRAPMGreen
+  parent: [BaseMRAPMHull, BaseGreenFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: green
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    turretProto: MobShiftTankObserverGreen
+    faction: Green
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
+
+- type: entity
+  id: ShiftFrontMRAPMYellow
+  parent: [BaseMRAPMHull, BaseYellowFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: yellow
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    turretProto: MobShiftTankObserverYellow
+    faction: Yellow
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
+
+
+- type: entity
   id: BaseMRAPHull
   parent: BaseVehicleHull
   abstract: true
@@ -598,7 +692,7 @@
     fixtures:
       fix1:
         shape: !type:PhysShapeAabb
-          bounds: "-0.55,-1,0.55,1.1"
+          bounds: "-0.55,-1.2,0.55,0.9"
         density: 60000
         restitution: 0
         friction: 0.4
@@ -1123,7 +1217,7 @@
         whitelist:
           tags: [MagazineLightRifleBox]
   - type: Gun
-    fireRate: 5.5
+    fireRate: 4.5
     selectedMode: FullAuto
     availableModes: [FullAuto]
     soundGunshot:

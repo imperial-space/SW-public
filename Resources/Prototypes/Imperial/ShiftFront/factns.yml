@@ -489,6 +489,7 @@
     - MagazinePistol
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
 
 - type: startingGear
   id: ShiftFrontYellowFast
@@ -517,6 +518,7 @@
     - MagazinePistol
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
+    - ShiftFrontBuildLight
 
 - type: startingGear
   id: ShiftFrontGreenNew
@@ -530,6 +532,11 @@
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
     belt: ClothingBeltMercWebbingShiftFront
+  inhand:
+    - WeaponPistolNDF1ShiftingFront
+  storage:
+    belt:
+    - ShiftFrontBuildLight
 
 - type: startingGear
   id: ShiftFrontYellowNew
@@ -543,6 +550,12 @@
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
     belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponPistolNDF1ShiftingFront
+  storage:
+    belt:
+    - ShiftFrontBuildLight
+
 
 - type: startingGear
   id: ShiftFrontGreenSniper
