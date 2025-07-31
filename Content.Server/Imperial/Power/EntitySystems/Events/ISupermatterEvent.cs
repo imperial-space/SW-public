@@ -24,3 +24,4 @@ public interface ISupermatterEvent
     /// </summary>
     string GetAnnouncement();
 }
+

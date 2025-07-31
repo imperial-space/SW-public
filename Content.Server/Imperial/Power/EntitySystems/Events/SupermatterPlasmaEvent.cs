@@ -63,3 +63,4 @@ public sealed class SupermatterPlasmaEvent : ISupermatterEvent
         return Loc.GetString("supermatter-event-plasma");
     }
 }
+

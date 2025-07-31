@@ -32,3 +32,4 @@ public sealed class SupermatterRadiationEvent : ISupermatterEvent
         return Loc.GetString("supermatter-event-radiation");
     }
 }
+

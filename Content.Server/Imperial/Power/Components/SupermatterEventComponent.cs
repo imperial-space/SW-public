@@ -119,3 +119,4 @@ namespace Content.Server.Imperial.Power.Components
         public TimeSpan LastPlasmaTickUpdate = TimeSpan.Zero;
     }
 }
+
