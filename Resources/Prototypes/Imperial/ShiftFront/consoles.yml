@@ -1740,3 +1740,102 @@
   - type: Anchorable
   - type: TimedDespawn
     lifetime: 0.4
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontMedTowerBlueV
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftMedTower
+    inf: false
+    faction: Blue
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: techhealblue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.36
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: MedTower
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontMedVIcon
+  - type: Tag
+    tags:
+    - ShiftFrontMedVTower
+
+- type: entity
+  parent: ShiftFrontMedTowerBlueV ###
+  id: ShiftFrontMedTowerRedV
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftMedTower
+    faction: Red
+  - type: ShiftStructure
+    faction: Red
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontMedVIcon
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: techhealred
+
+- type: entity
+  parent: ShiftFrontMedTowerBlueV ###
+  id: ShiftFrontMedTowerGreenV
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftMedTower
+    faction: Green
+  - type: ShiftStructure
+    faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontMedVIcon
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: techhealgreen
+
+- type: entity
+  parent: ShiftFrontMedTowerBlueV ###
+  id: ShiftFrontMedTowerYellowV
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftMedTower
+    faction: Yellow
+  - type: ShiftStructure
+    faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontMedVIcon
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: techhealyellow

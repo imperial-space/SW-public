@@ -319,7 +319,7 @@
 
 - type: gameMap
   id: MedievalStationLowOnline
-  mapName: Northern rebels (Low online 0-30)
+  mapName: Shift front sand map
   mapPath: /Maps/Imperial/map.yml
   minPlayers: 0
   maxPlayers: 100

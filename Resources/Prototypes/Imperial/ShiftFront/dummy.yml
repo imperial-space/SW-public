@@ -35,6 +35,9 @@
     - AnomalyHost
 
 - type: Tag
+  id: ShiftFrontMedVTower
+
+- type: Tag
   id: ShiftFrontFactBlue
 
 - type: Tag

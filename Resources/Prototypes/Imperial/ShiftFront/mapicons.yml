@@ -287,6 +287,17 @@
     state: healtow
     drawdepth: Mobs
 
+
+- type: entity
+  id: ShiftFrontMedVIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.28, 0.28
+    sprite: Imperial/ShiftFront/light.rsi
+    state: techhealblue
+    drawdepth: Mobs
+
 ################
 
 - type: entity

@@ -646,7 +646,7 @@
   suffix: Shifting Front
   damage:
     types:
-      Heat: 11 
+      Piercing: 12
   muzzleFlash:
     sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
     state: muzzle_plasma

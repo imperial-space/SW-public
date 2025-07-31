@@ -7,6 +7,8 @@ namespace Content.Server.ShiftFront.Components;
 public sealed partial class ShiftMedTowerComponent : Component
 {
     [DataField]
+    public bool Inf = true;
+    [DataField]
     public string Faction = "";
 
     [ViewVariables(VVAccess.ReadWrite)]

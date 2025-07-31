@@ -925,6 +925,17 @@ namespace Content.Server.ShiftFront
                 });
             }
 
+            if (CheckResearch("ShiftFrontMedTowerV", comp.Faction))
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => SelectBuildType(uid, comp, session, "ремстанция"),
+                    Text = "Ремстанция",
+                    Priority = 10,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "ammostorage")
+                });
+            }
+
             ev.Verbs.Add(new AlternativeVerb
             {
                 Act = () => SelectBuildType(uid, comp, session, "экстрактор"),
@@ -1128,6 +1139,7 @@ namespace Content.Server.ShiftFront
                 "турель" => 25,
                 "вышка" => 35,
                 "припасы" => 25,
+                "ремстанция" => 22,
                 "экстрактор" => 10,
                 "конвертер" => 40,
                 "мортира" => 90,
@@ -1182,6 +1194,7 @@ namespace Content.Server.ShiftFront
                 "турель" => (60, 0, 0),
                 "вышка" => (75, 100, 0),
                 "припасы" => (115, 65, 0),
+                "ремстанция" => (85, 15, 0),
                 "экстрактор" => (40, 0, 0),
                 "конвертер" => (75, 75, 5),
                 "мортира" => (750, 1000, 200),
@@ -1194,7 +1207,7 @@ namespace Content.Server.ShiftFront
                 "МРАП" => (45, 15, 0),
                 "МРАПМ" => (85, 25, 5),
                 "МТЛБ" => (145, 45, 0),
-                "БТР" => (225, 75, 10),
+                "БТР" => (265, 75, 10),
                 "БМП" => (455, 100, 20),
                 "танк" => (545, 175, 80),
                 _ => (0, 0, 0)
@@ -1360,6 +1373,9 @@ namespace Content.Server.ShiftFront
                             case "припасы":
                                 Spawn("ShiftFrontSupplies" + comp.Faction, coords);
                                 break;
+                            case "ремстанция":
+                                Spawn("ShiftFrontMedTower" + comp.Faction + "V", coords);
+                                break;
                             case "экстрактор":
                                 foreach (var target in _lookup.GetEntitiesInRange(coords, 1f))
                                 {
@@ -1429,9 +1445,9 @@ namespace Content.Server.ShiftFront
                     var coords = xform.Coordinates;
                     foreach (var target in _lookup.GetEntitiesInRange(coords, 1.35f))
                     {
-                        if (TryComp<ShiftTankHullComponent>(target, out var hull) && hull.Faction == comp.Faction)
+                        if (TryComp<ShiftTankHullComponent>(target, out var hull) && hull.Faction == comp.Faction && !comp.Inf)
                             _damageableSystem.TryChangeDamage(target, -comp.RegenDamage * 3, true, false);
-                        if (TryComp<ShiftPlayerComponent>(target, out var player) && player.Faction == comp.Faction)
+                        if (TryComp<ShiftPlayerComponent>(target, out var player) && player.Faction == comp.Faction && comp.Inf)
                         {
                             _damageableSystem.TryChangeDamage(target, -comp.RegenDamage, true, false);
                             if (CheckResearch("ShiftFrontMedTower", comp.Faction))

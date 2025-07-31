@@ -34,10 +34,18 @@
   - ShiftFrontSupplies
 
 - type: ShiftFrontResearch
+  id: ShiftFrontMedTowerV
+  tier: 1
+  researchName: рем станции техники
+  price: 50
+  requiredResearches:
+  - ShiftFrontMRAP
+
+- type: ShiftFrontResearch
   id: ShiftFrontMedTower
   tier: 2
   researchName: эффективность мед. вышек
-  price: 120
+  price: 130
   requiredResearches:
   - ShiftFrontMeds
   - ShiftFrontScience
@@ -46,7 +54,7 @@
   id: ShiftFrontMeds
   tier: 1
   researchName: продвинутая медицина
-  price: 80
+  price: 65
   requiredResearches:
   - ShiftFrontSupport
 

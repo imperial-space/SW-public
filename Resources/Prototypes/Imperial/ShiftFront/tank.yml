@@ -62,6 +62,7 @@
         Blunt: 50
     ignoreWhitelist:
       tags:
+      - ShiftFrontMedVTower
       - ShiftFrontFactBlue
 
 - type: entity
@@ -83,6 +84,7 @@
         Blunt: 50
     ignoreWhitelist:
       tags:
+      - ShiftFrontMedVTower
       - ShiftFrontFactRed
 
 ### Корпуса техники ###
@@ -566,6 +568,7 @@
         Blunt: 50
     ignoreWhitelist:
       tags:
+      - ShiftFrontMedVTower
       - ShiftFrontFactGreen
 
 - type: entity
@@ -587,6 +590,7 @@
         Blunt: 50
     ignoreWhitelist:
       tags:
+      - ShiftFrontMedVTower
       - ShiftFrontFactYellow
 
 - type: entity
