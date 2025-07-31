@@ -618,10 +618,6 @@
         node: girder
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: RCDDeconstructable
-    cost: 6
-    delay: 8
-    fx: EffectRCDDeconstruct9
   - type: IconSmooth
     key: walls
     base: reinf_over
