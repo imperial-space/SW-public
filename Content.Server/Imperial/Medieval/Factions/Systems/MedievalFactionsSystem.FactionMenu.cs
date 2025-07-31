@@ -240,6 +240,19 @@ public sealed partial class MedievalFactionsSystem
         }
     }
 
+    public void UpdateGoals(Entity<FactionDataContainerComponent> cont)
+    {
+        foreach (var item in cont.Comp.Goals)
+        {
+            foreach (var goal in item.Value)
+            {
+                goal.Progress = goal.Completer.GetCompletion(EntityManager);
+            }
+        }
+
+        Dirty(cont);
+    }
+
     public bool EnsureFactionDataContainer([NotNullWhen(true)] out Entity<FactionDataContainerComponent>? ent)
     {
         ent = null;
