@@ -425,10 +425,13 @@
   parent: MobFPVDrone
   id: MobFPVDroneCargoBlue
   components:
+  - type: Item
+    size: Ginormous
   - type: NpcFactionMember
     factions:
       - ShiftFrontBlue
   - type: Sprite
+    scale: 1, 1
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: dronecargoblue
@@ -467,10 +470,13 @@
   parent: MobFPVDrone
   id: MobFPVDroneCargoRed
   components:
+  - type: Item
+    size: Ginormous
   - type: NpcFactionMember
     factions:
       - ShiftFrontRed
   - type: Sprite
+    scale: 1, 1
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: dronecargored
@@ -509,10 +515,13 @@
   parent: MobFPVDrone
   id: MobFPVDroneCargoGreen
   components:
+  - type: Item
+    size: Ginormous
   - type: NpcFactionMember
     factions:
       - ShiftFrontGreen
   - type: Sprite
+    scale: 1, 1
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: dronecargogreen
@@ -551,10 +560,13 @@
   parent: MobFPVDrone
   id: MobFPVDroneCargoYellow
   components:
+  - type: Item
+    size: Ginormous
   - type: NpcFactionMember
     factions:
       - ShiftFrontYellow
   - type: Sprite
+    scale: 1, 1
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: dronecargoyellow
