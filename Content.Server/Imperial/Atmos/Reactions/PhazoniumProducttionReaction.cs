@@ -22,8 +22,8 @@ public sealed partial class PhazoniumProductionReaction : IGasReactionEffect
         var ozonConversion = initialOzon / Atmospherics.PhazoniumProductionConversionRate;
         var total = thrmConversion + ozonConversion;
 
-        mixture.AdjustMoles(Gas.Thermonium, -ThrmConversion);
-        mixture.AdjustMoles(Gas.Ozonium, -OzonConversion);
+        mixture.AdjustMoles(Gas.Thermonium, -thrmConversion);
+        mixture.AdjustMoles(Gas.Ozonium, -ozonConversion);
         mixture.AdjustMoles(Gas.Phazonium, total * efficiency);
         mixture.AdjustMoles(Gas.Frezon, total * loss);
 
