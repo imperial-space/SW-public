@@ -11,7 +11,7 @@ public sealed partial class ShiftBarracksComponent : Component
     public string Faction = "";
 
     [DataField]
-    public int TimeTillNextGen = 60;
+    public int TimeTillNextGen = 30;
 
     [DataField]
     public int PassiveCloneTimer = 30;

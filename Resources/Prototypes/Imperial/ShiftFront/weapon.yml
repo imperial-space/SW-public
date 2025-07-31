@@ -647,6 +647,7 @@
   damage:
     types:
       Piercing: 12
+  maxLength: 8
   muzzleFlash:
     sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
     state: muzzle_plasma
