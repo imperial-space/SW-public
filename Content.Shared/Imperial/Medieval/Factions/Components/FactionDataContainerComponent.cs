@@ -28,6 +28,31 @@ public sealed partial class FactionDataContainerComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<ProtoId<MedievalFactionPrototype>, ProtoId<FactionRelationsPrototype>>> Relations = new();
 
+    /// <summary>
+    /// Цели фракций
+    /// </summary>
+    [AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<ProtoId<MedievalFactionPrototype>, List<FactionGoalData>> Goals = new();
+
+    /// <summary>
+    /// Счётчик смертей для каждой фракции
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<ProtoId<MedievalFactionPrototype>, int> Deaths = new();
+
+    /// <summary>
+    /// Счётчик казней для каждой фракции
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<ProtoId<MedievalFactionPrototype>, int>> Executions = new();
+
+    /// <summary>
+    /// Счётчик убийства мобов для каждой фракции
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<string, int>> MobKills = new();
+
     [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<FactionMemberGroup, List<EntityUid>>> Points = new();
 }
