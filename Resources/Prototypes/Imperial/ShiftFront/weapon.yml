@@ -554,7 +554,7 @@
     startingCharge: 2000
   - type: BatterySelfRecharger
     autoRecharge: true
-    autoRechargeRate: 100
+    autoRechargeRate: 80
 
 # Magazine
 - type: entity
