@@ -106,9 +106,10 @@ public sealed class FactionGoalsRuleSystem : GameRuleSystem<FactionGoalsRuleComp
             foreach (var goal in item.Value)
             {
                 var completion = goal.Completer.GetCompletion(EntityManager);
+                var goalProto = _proto.Index(goal.GoalProto);
 
                 args.AddLine(Loc.GetString("faction-goal-round-end-text",
-                    ("goal", goal.Desctiption),
+                    ("goal", Loc.GetString(goalProto.Name)),
                     ("color", completion >= 1f ? "green" : "crimson"),
                     ("completion", $"{completion * 100f:0.00}%")));
             }
