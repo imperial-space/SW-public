@@ -150,6 +150,16 @@ namespace Content.Server.ShiftFront
             _audio.PlayPvs(new SoundPathSpecifier(drone.EffectSoundOnStart), drone.Owner);
             if (HasComp<CombatModeComponent>(drone.Owner) && drone.Pacif) RemComp<CombatModeComponent>(drone.Owner);
             _mind.TransferTo(mindcomp.Owner, drone.Owner, true, false, mindcomp);
+
+            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+            while (dquery.MoveNext(out var reuid, out var recomp))
+            {
+                foreach (var player in recomp.RespawnQueue)
+                {
+                    if (player == session)
+                        recomp.RespawnQueue.Remove(player);
+                }
+            }
         }
         private void OnActivateInWorld(EntityUid uid, ShiftFPVControllerComponent comp, ref ActivateInWorldEvent args)
         {
@@ -178,6 +188,17 @@ namespace Content.Server.ShiftFront
             if (HasComp<GhostRoleComponent>(args.User)) RemComp<GhostRoleComponent>(args.User);
             EnsureComp<UnremoveableComponent>(uid);
             _mind.TransferTo(mindcomp.Owner, drone.Owner, true, false, mindcomp);
+
+            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+            while (dquery.MoveNext(out var reuid, out var recomp))
+            {
+                foreach (var player in recomp.RespawnQueue)
+                {
+                    if (player == session)
+                        recomp.RespawnQueue.Remove(player);
+                }
+            }
+
         }
 
         public void StopControl(EntityUid uid, ShiftFPVDroneComponent comp, bool resetController)
