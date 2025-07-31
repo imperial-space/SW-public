@@ -14,7 +14,7 @@
   - type: Clothing
     sprite: Imperial/DeadSector/weapons/weapons/launcher/RPG8.rsi
   - type: Gun
-    projectileSpeed: 4.5
+    projectileSpeed: 7.5
     fireRate: 1
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
