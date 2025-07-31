@@ -691,7 +691,7 @@
     Nutriment:
       amount: 1
   products:
-    Kvass: 1
+    Kvass: 2
 
 - type: reagent
   id: Kvass
