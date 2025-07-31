@@ -129,6 +129,16 @@ namespace Content.Server.ShiftFront
                         _minds.TransferTo(mindId, soljer, true, false, mindComp);
                         _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
                         QueueDel(ev.User);
+
+                        var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                        while (dquery.MoveNext(out var reuid, out var recomp))
+                        {
+                            foreach (var player in recomp.RespawnQueue)
+                            {
+                                if (player == session)
+                                    recomp.RespawnQueue.Remove(player);
+                            }
+                        }
                     }
                 },
                 Text = "Скаут",
@@ -165,6 +175,16 @@ namespace Content.Server.ShiftFront
                             _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
                             QueueDel(ev.User);
 
+                            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                            while (dquery.MoveNext(out var reuid, out var recomp))
+                            {
+                                foreach (var player in recomp.RespawnQueue)
+                                {
+                                    if (player == session)
+                                        recomp.RespawnQueue.Remove(player);
+                                }
+                            }
+
                         }
                     },
                     Text = "Штурмовик",
@@ -200,6 +220,16 @@ namespace Content.Server.ShiftFront
                             _minds.TransferTo(mindId, soljer, true, false, mindComp);
                             _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
                             QueueDel(ev.User);
+
+                            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                            while (dquery.MoveNext(out var reuid, out var recomp))
+                            {
+                                foreach (var player in recomp.RespawnQueue)
+                                {
+                                    if (player == session)
+                                        recomp.RespawnQueue.Remove(player);
+                                }
+                            }
                         }
                     },
                     Text = "Медик",
@@ -235,6 +265,16 @@ namespace Content.Server.ShiftFront
                             _minds.TransferTo(mindId, soljer, true, false, mindComp);
                             _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
                             QueueDel(ev.User);
+
+                            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                            while (dquery.MoveNext(out var reuid, out var recomp))
+                            {
+                                foreach (var player in recomp.RespawnQueue)
+                                {
+                                    if (player == session)
+                                        recomp.RespawnQueue.Remove(player);
+                                }
+                            }
 
                         }
                     },
@@ -272,6 +312,16 @@ namespace Content.Server.ShiftFront
                             _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
                             QueueDel(ev.User);
 
+                            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                            while (dquery.MoveNext(out var reuid, out var recomp))
+                            {
+                                foreach (var player in recomp.RespawnQueue)
+                                {
+                                    if (player == session)
+                                        recomp.RespawnQueue.Remove(player);
+                                }
+                            }
+
                         }
                     },
                     Text = "Пулеметчик",
@@ -307,6 +357,16 @@ namespace Content.Server.ShiftFront
                             _minds.TransferTo(mindId, soljer, true, false, mindComp);
                             _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
                             QueueDel(ev.User);
+
+                            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                            while (dquery.MoveNext(out var reuid, out var recomp))
+                            {
+                                foreach (var player in recomp.RespawnQueue)
+                                {
+                                    if (player == session)
+                                        recomp.RespawnQueue.Remove(player);
+                                }
+                            }
                         }
                     },
                     Text = "Снайпер",
