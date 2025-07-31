@@ -133,6 +133,15 @@
   - ShiftFrontDrone
 
 - type: ShiftFrontResearch
+  id: ShiftFrontFPVCargo
+  tier: 2
+  researchName: грузовые дроны
+  price: 50
+  requiredResearches:
+  - ShiftFrontSupport
+  - ShiftFrontDrone
+
+- type: ShiftFrontResearch
   id: ShiftFrontWeaponLauncherRPG8
   tier: 2
   researchName: РПГ

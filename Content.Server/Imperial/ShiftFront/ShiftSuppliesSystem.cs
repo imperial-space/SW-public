@@ -442,6 +442,17 @@ namespace Content.Server.ShiftFront
                             Text = "Камикадзе FPV",
                             Priority = 2,
                         });
+                    if (CheckResearch("ShiftFrontFPVCargo", comp.Faction))
+                        ev.Verbs.Add(new AlternativeVerb
+                        {
+                            Act = () =>
+                            {
+                                comp.ChosenGen = "грузовой FPV";
+                                _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить выбранный грузовой FPV раз в какое-то время", "Выбрано");
+                            },
+                            Text = "Грузовой FPV",
+                            Priority = 2,
+                        });
                     ev.Verbs.Add(new AlternativeVerb
                     {
                         Act = () =>
@@ -589,6 +600,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "наблюдатель FPV":
                                 Spawn("ShiftFPVBoxObserver" + comp.Faction, coords);
+                                break;
+                            case "грузовой FPV":
+                                Spawn("ShiftFPVBoxCargo" + comp.Faction, coords);
                                 break;
                             case "":
                                 break;

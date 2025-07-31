@@ -214,18 +214,6 @@
     maxOffset: 12
     pvsIncrease: 2
     offsetSpeed: 1
-  - type: Storage
-    grid:
-    - 0,0,4,4
-    maxItemSize: Ginormous
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: InteractionOutline
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
 
 
 - type: entity
@@ -257,18 +245,6 @@
     maxOffset: 12
     pvsIncrease: 2
     offsetSpeed: 1
-  - type: Storage
-    grid:
-    - 0,0,4,4
-    maxItemSize: Ginormous
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: InteractionOutline
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
 
 
 - type: entity
@@ -300,18 +276,6 @@
     maxOffset: 12
     pvsIncrease: 2
     offsetSpeed: 1
-  - type: Storage
-    grid:
-    - 0,0,4,4
-    maxItemSize: Ginormous
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: InteractionOutline
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
 
 
 - type: entity
@@ -343,18 +307,6 @@
     maxOffset: 12
     pvsIncrease: 2
     offsetSpeed: 1
-  - type: Storage
-    grid:
-    - 0,0,4,4
-    maxItemSize: Ginormous
-  - type: UserInterface
-    interfaces:
-      enum.StorageUiKey.Key:
-        type: StorageBoundUserInterface
-  - type: InteractionOutline
-  - type: ContainerContainer
-    containers:
-      storagebase: !type:Container
 
 - type: entity
   id: ShiftFPVBoxObserverBlue
@@ -465,5 +417,229 @@
     state: fpvbox
   - type: SpawnAfterInteract
     prototype: MobFPVDroneYellow
+    doAfter: 3
+    deleteOnInteract: true
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneCargoBlue
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontBlue
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronecargoblue
+  - type: ShiftFPVDrone
+    faction: Blue
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio2
+  - type: ActiveRadio
+    channels:
+    - Radio2
+  - type: LanguageSpeaker
+    languages:
+      English: Speak
+  - type: Speech
+  - type: Storage
+    grid:
+    - 0,0,7,7
+    maxItemSize: Ginormous
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneCargoRed
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontRed
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronecargored
+  - type: ShiftFPVDrone
+    faction: Red
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: LanguageSpeaker
+    languages:
+      Russian: Speak
+  - type: Speech
+  - type: Storage
+    grid:
+    - 0,0,7,7
+    maxItemSize: Ginormous
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneCargoGreen
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontGreen
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronecargogreen
+  - type: ShiftFPVDrone
+    faction: Green
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio3
+  - type: ActiveRadio
+    channels:
+    - Radio3
+  - type: LanguageSpeaker
+    languages:
+      German: Speak
+  - type: Speech
+  - type: Storage
+    grid:
+    - 0,0,7,7
+    maxItemSize: Ginormous
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneCargoYellow
+  components:
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontYellow
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronecargoyellow
+  - type: ShiftFPVDrone
+    faction: Yellow
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio4
+  - type: ActiveRadio
+    channels:
+    - Radio4
+  - type: LanguageSpeaker
+    languages:
+      Chineese: Speak
+  - type: Speech
+  - type: Storage
+    grid:
+    - 0,0,7,7
+    maxItemSize: Ginormous
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: InteractionOutline
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 4.5
+    baseSprintSpeed : 4.5
+
+- type: entity
+  id: ShiftFPVBoxCargoBlue
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxc
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneCargoBlue
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxCargoRed
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxc
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneCargoRed
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxCargoGreen
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxc
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneCargoGreen
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxCargoYellow
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxc
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneCargoYellow
     doAfter: 3
     deleteOnInteract: true
