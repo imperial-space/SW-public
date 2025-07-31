@@ -711,6 +711,8 @@
 - type: entity
   parent: DrinkGlass
   id: DrinkKvassBestDrink
+  name: kvass
+  description: Slavic pleasure, where instead of yeast there are three crusts of croutons.
   suffix: Crook
   components:
   - type: SolutionContainerManager
@@ -720,6 +722,11 @@
         reagents:
         - ReagentId: Kvass
           Quantity: 30
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/kvass.rsi
+    layers:
+      - state: icon
+      - state: icon_empty
   - type: Icon
     sprite: Imperial/Crook/Misc/kvass.rsi
     state: icon
