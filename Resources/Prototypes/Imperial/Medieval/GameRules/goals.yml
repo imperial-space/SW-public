@@ -1,6 +1,6 @@
 - type: entity
   parent: BaseGameRule
-  id: FactionGoalsRule
+  id: MedievalFactionGoalsRule
   components:
   - type: GameRule
   - type: FactionGoalsRule
