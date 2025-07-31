@@ -13,15 +13,14 @@ public sealed partial class PhazoniumProductionReaction : IGasReactionEffect
     public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
     {
         var initialTherm = mixture.GetMoles(Gas.Thermonium);
-        var initialFrezon = mixture.GetMoles(Gas.Frezon);
         var initialOzon = mixture.GetMoles(Gas.Ozonium);
 
         var efficiency = mixture.Temperature / Atmospherics.PhazoniumProductionMaxEfficiencyTemperature;
         var loss = 1 - efficiency;
 
-        var ThrmConversion = initialTherm / Atmospherics.PhazoniumProductionConversionRate;
-        var OzonConversion = initialOzon / Atmospherics.PhazoniumProductionConversionRate;
-        var total = ThrmConversion + OzonConversion;
+        var thrmConversion = initialTherm / Atmospherics.PhazoniumProductionConversionRate;
+        var ozonConversion = initialOzon / Atmospherics.PhazoniumProductionConversionRate;
+        var total = thrmConversion + ozonConversion;
 
         mixture.AdjustMoles(Gas.Thermonium, -ThrmConversion);
         mixture.AdjustMoles(Gas.Ozonium, -OzonConversion);

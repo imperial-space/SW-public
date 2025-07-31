@@ -17,8 +17,8 @@ public sealed partial class OzoniumProductionReaction : IGasReactionEffect
         var efficiency = mixture.Temperature / Atmospherics.OzoniumProductionMaxEfficiencyTemperature;
         var loss = 1 - efficiency;
 
-        var OxyConversion = initialOxygen / Atmospherics.OzoniumProductionConversionRate;
-        var total = OxyConversion;
+        var oxyConversion = initialOxygen / Atmospherics.OzoniumProductionConversionRate;
+        var total = oxyConversion;
 
         mixture.AdjustMoles(Gas.Ozonium, total * efficiency);
         mixture.AdjustMoles(Gas.Oxygen, total * loss);
