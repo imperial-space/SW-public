@@ -29,4 +29,3 @@ public sealed class SupermatterNoneEvent : ISupermatterEvent
         return Loc.GetString("supermatter-event-none");
     }
 }
-

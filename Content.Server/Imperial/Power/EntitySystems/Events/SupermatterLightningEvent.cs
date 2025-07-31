@@ -50,4 +50,3 @@ public sealed class SupermatterLightningEvent : ISupermatterEvent
         return Loc.GetString("supermatter-event-lightning");
     }
 }
-
