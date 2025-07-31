@@ -42,6 +42,7 @@ public sealed partial class FactionMenu : DefaultWindow
         JobMode.Group = modeGroup;
         GroupMode.Group = modeGroup;
         RelationsMode.Group = modeGroup;
+        GoalsMode.Group = modeGroup;
 
         JobMode.OnToggled += args =>
         {
@@ -57,6 +58,11 @@ public sealed partial class FactionMenu : DefaultWindow
         {
             Mode = MenuMode.Relations;
             PopulateRelations(Data);
+        };
+        GoalsMode.OnToggled += args =>
+        {
+            Mode = MenuMode.Goals;
+            PopulateGoals(Data.Goals ?? new());
         };
 
         Cancel.OnPressed += args =>
@@ -190,10 +196,22 @@ public sealed partial class FactionMenu : DefaultWindow
         Members.AddChild(panel);
     }
 
+    public void PopulateGoals(List<FactionGoalData> list)
+    {
+        Members.RemoveAllChildren();
+        foreach (var item in list)
+        {
+            var entry = new FactionGoalEntry();
+            Members.AddChild(entry);
+            entry.Refresh(item);
+        }
+    }
+
     public enum MenuMode
     {
         Job,
         Group,
-        Relations
+        Relations,
+        Goals
     }
 }

@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Client.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.Factions.Components;
@@ -52,10 +53,26 @@ public sealed class FactionMenuUiController : UIController
         if (_menu == null)
             return;
 
-        if (_menu.Mode == FactionMenu.MenuMode.Relations)
-            _menu.PopulateRelations(data);
-        else
-            _menu.Populate(data);
+        _menu.Data = data;
+
+        switch (_menu.Mode)
+        {
+            case FactionMenu.MenuMode.Goals:
+                if (data.Goals.Select(x => x.Progress).Equals(_menu.Data.Goals.Select(x => x.Progress)))
+                    return;
+
+                _menu.PopulateGoals(data.Goals);
+                break;
+            case FactionMenu.MenuMode.Relations:
+                if (data.Relations.Equals(_menu.Data.Relations))
+                    return;
+
+                _menu.PopulateRelations(data);
+                break;
+            default:
+                _menu.Populate(data);
+                break;
+        }
     }
 
     private void Fire(int ent, string details, bool headhunt = false)

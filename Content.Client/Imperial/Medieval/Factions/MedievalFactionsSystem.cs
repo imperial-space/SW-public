@@ -6,6 +6,7 @@ using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.Medieval.Factions;
 
@@ -49,6 +50,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
                                     comp.Relations,
                                     friends.MenuAccess,
                                     selfData?.Group ?? FactionMemberGroup.None,
+                                    container.Value.Comp.Goals.GetOrNew(friends.Faction),
                                     friends.MemberID);
 
         _uiMan.GetUIController<FactionMenuUiController>().PopulateMenu(menuData);
@@ -81,6 +83,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
                                         container.Value.Comp.Relations,
                                         friends.MenuAccess,
                                         selfData?.Group ?? FactionMemberGroup.None,
+                                        container.Value.Comp.Goals.GetOrNew(friends.Faction),
                                         friends.MemberID);
 
             _uiMan.GetUIController<FactionMenuUiController>().PopulateMenu(menuData);

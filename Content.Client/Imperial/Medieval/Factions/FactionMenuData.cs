@@ -12,17 +12,19 @@ public struct FactionMenuData
     public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<ProtoId<MedievalFactionPrototype>, ProtoId<FactionRelationsPrototype>>> Relations;
     public FactionMenuAccess Access;
     public FactionMemberGroup SelfGroup;
+    public List<FactionGoalData> Goals;
     public int Self;
 
     public FactionMenuData(ProtoId<MedievalFactionPrototype> faction, Dictionary<int, FactionMemberData> members,
         Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<ProtoId<MedievalFactionPrototype>, ProtoId<FactionRelationsPrototype>>> relations,
-        FactionMenuAccess access, FactionMemberGroup selfGroup, int self)
+        FactionMenuAccess access, FactionMemberGroup selfGroup, List<FactionGoalData> goals, int self)
     {
         Faction = faction;
         Members = members;
         Relations = relations;
         Access = access;
         SelfGroup = selfGroup;
+        Goals = goals;
         Self = self;
     }
 }
