@@ -211,8 +211,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
 
         var price = ev.Price;
         price += GetMaterialsPrice(prototype);
-        // price += GetSolutionsPrice(prototype);
-        // Imperial Lathe Nerf
+        // price += GetSolutionsPrice(prototype); // Imperial Lathe Nerf
         // Can't use static price with stackprice
         var oldPrice = price;
         price += GetStackPrice(prototype);
@@ -226,6 +225,8 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         // Imperial Lathe Nerf; Start
         price = ApplyPrototypePriceModifier(prototype, price);
         price += GetSolutionsPrice(prototype);
+
+        // return ApplyPrototypePriceModifier(prototype, price); // Imperial Lathe Nerf
         return price;
         // Imperial Lathe Nerf; end
     }
@@ -250,8 +251,8 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         var price = ev.Price;
         //TODO: Add an OpaqueToAppraisal component or similar for blocking the recursive descent into containers, or preventing material pricing.
         // DO NOT FORGET TO UPDATE ESTIMATED PRICING
-        price += GetMaterialsPrice(uid);
-        // Imperial Lathe Nerf
+        price += GetMaterialsPrice(uid);// Imperial Lathe Nerf
+        //price += GetSolutionsPrice(uid); //Imperial Lathe Nerf
         // Can't use static price with stackprice
         var oldPrice = price;
         price += GetStackPrice(uid);
@@ -265,6 +266,7 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
         // Imperial Lathe Nerf; Start
         price = ApplyPriceModifier(uid, price);
         price += GetSolutionsPrice(uid);
+        // Imperial Lathe Nerf; End
         if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
         {
             foreach (var container in containers.Containers.Values)
@@ -275,8 +277,9 @@ public sealed partial class PricingSystem : EntitySystem // Imperial Lathes Nerf
                 }
             }
         }
+        //return ApplyPriceModifier(uid, price); // Imperial Lathe Nerf
         return price; 
-        // Imperial Lathe Nerf; End
+        // Imperial Lathe Nerf
     }
 
     private double GetMaterialsPrice(EntityUid uid)
