@@ -21,6 +21,11 @@ network-configurator-start-link = Начать соединение
 network-configurator-link = Соединить
 
 # ui
+network-configurator-text-set = Установить
+network-configurator-text-add = Добавить
+network-configurator-text-clear = Очистить
+network-configurator-text-copy = Скопировать
+network-configurator-text-show = Показать
 network-configurator-title-saved-devices = Сохранённые устройства
 network-configurator-title-device-configuration = Конфигурация устройства
 network-configurator-ui-clear-button = Очистить
