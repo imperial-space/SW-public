@@ -2,8 +2,8 @@
   # Управление газами
   Атмос использует [bold]широкий спектр[/bold] инструментов и оборудования для [bold]управления газами[/bold] по всей станции.
 
-  [bold]Внимание: откручивание (разболчивание) большинства устройств, содержащих газ, приведёт к [color=red]утечке газа[/color] в атмосферу.[/bold]
-  Безопасно можно откручивать [textlink="баллоны" link="GasCanisters"], [textlink="переносные скрубберы" link="PortableScrubber"], [textlink="конденсаторы" link="GasCondensing"] и [textlink="термомашины" link="Thermomachines"].
+  [bold]Внимание: откручивание большинства устройств, содержащих газ, приведёт к [color=red]утечке газа[/color] в атмосферу.[/bold]
+  Откручивать [textlink="баллоны" link="GasCanisters"], [textlink="переносные скрубберы" link="PortableScrubber"], [textlink="конденсаторы" link="GasCondensing"] и [textlink="термомашины" link="Thermomachines"] безопасно.
 
   <Box>
     <GuideEntityEmbed Entity="GasPipeStraight" Caption=""/>
