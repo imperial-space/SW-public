@@ -1339,20 +1339,7 @@ namespace Content.Server.ShiftFront
                 }
 
 
-                var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
-                while (dquery.MoveNext(out var reuid, out var recomp))
-                {
-                    foreach (var player in recomp.Players)
-                    {
-                        if (player.Status != SessionStatus.InGame)
-                        {
-                            if (recomp.RespawnQueue.Contains(player))
-                                recomp.RespawnQueue.Remove(player);
-                            recomp.Players.Remove(player);
-                        }
-                        // TODO автоочистка при ливе игрока
-                    }
-                }
+
 
                 var buildquery = EntityQueryEnumerator<ShiftConsoleBuildComponent>();
                 while (buildquery.MoveNext(out var uid, out var comp))
@@ -1545,7 +1532,39 @@ namespace Content.Server.ShiftFront
                         }
                     }
                 }
+
+                var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                while (dquery.MoveNext(out var reuid, out var recomp))
+                {
+                    if (recomp.RespawnQueue.Count > 0)
+                        if (recomp.RespawnQueue[0].Status != SessionStatus.InGame)
+                        {
+                            if (recomp.RespawnQueue.Contains(recomp.RespawnQueue[0]))
+                                recomp.RespawnQueue.Remove(recomp.RespawnQueue[0]);
+                            recomp.Players.Remove(recomp.RespawnQueue[0]);
+                        }
+                    if (recomp.RespawnQueue.Count > 1)
+                        if (recomp.RespawnQueue[1].Status != SessionStatus.InGame)
+                        {
+                            if (recomp.RespawnQueue.Contains(recomp.RespawnQueue[1]))
+                                recomp.RespawnQueue.Remove(recomp.RespawnQueue[1]);
+                            recomp.Players.Remove(recomp.RespawnQueue[1]);
+                        }
+                    if (recomp.RespawnQueue.Count > 2)
+                        if (recomp.RespawnQueue[2].Status != SessionStatus.InGame)
+                        {
+                            if (recomp.RespawnQueue.Contains(recomp.RespawnQueue[2]))
+                                recomp.RespawnQueue.Remove(recomp.RespawnQueue[2]);
+                            recomp.Players.Remove(recomp.RespawnQueue[2]);
+                        }
+                }
+
+
             }
+
+
+
+
         }
     }
 }
