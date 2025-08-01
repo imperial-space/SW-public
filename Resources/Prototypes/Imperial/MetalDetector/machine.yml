@@ -1,0 +1,55 @@
+- type: entity
+  id: MetalDetector
+  name: Metal Detector
+  parent: BaseMachinePowered
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Icon
+    sprite: Imperial/MetalDetector/machine.rsi
+    state: icon
+  - type: Sprite
+    noRot: true
+    drawdepth: Overdoors
+    sprite: Imperial/MetalDetector/machine.rsi
+    layers:
+    - state: off
+    - map: ["scanner"]
+      shader: unshaded
+  - type: AccessReader
+    access: [["Security", "Command"]]
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MetalDetectorVisuals.State:
+        scanner:
+          Off: { state: off }
+          Powered: { state: powered }
+          Alert: { state: alert }
+          Scanning: { state: scanning }
+  - type: MetalDetector
+    alertSound:
+      path: /Audio/Machines/alarm.ogg
+    clearSound:
+      path: /Audio/Machines/beep.ogg
+    allowedAccess: ["Security", "Command"]
+    scanCooldown: 3
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      metalDetector:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        hard: false
+        density: 1500
+        mask:
+        - DoorPassable
+        layer:
+        - AirlockLayer
+  - type: Anchorable
