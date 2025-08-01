@@ -59,7 +59,7 @@ public sealed partial class ThresholdBoundControl : BoxContainer
         }
     }
 
-    public ThresholdBoundControl(string controlLabel, float value, float uiValueScale = 1) // Imperial Space Translation
+    public ThresholdBoundControl(string controlLabel, float value, float uiValueScale = 1)
     {
         RobustXamlLoader.Load(this);
 
