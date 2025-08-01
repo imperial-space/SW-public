@@ -13,5 +13,6 @@
   - 0     # n2o
   - 0     # frezon
   - 0     # thermonium
+  - 0     # phazonium
   effects:
   - !type:ThermoniumProductionReaction {}
