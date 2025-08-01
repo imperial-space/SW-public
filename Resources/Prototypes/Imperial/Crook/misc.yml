@@ -679,3 +679,54 @@
   - type: DeviceNetwork
     receiveFrequencyId: TurretControl
     transmitFrequencyId: Turret
+
+
+- type: reaction
+  id: Kvass
+  reactants:
+    Water:
+      amount: 1
+    Sugar:
+      amount: 2
+    Nutriment:
+      amount: 1
+  products:
+    Kvass: 2
+
+- type: reagent
+  id: Kvass
+  name: reagent-name-kvass-bestdrink
+  parent: BaseDrink
+  desc: reagent-desc-kvass-bestdrink
+  physicalDesc: reagent-physical-desc-dark-brown
+  flavor: bread
+  color: "#532409"
+  metamorphicSprite:
+    sprite: Imperial/Crook/Misc/kvass.rsi
+    state: icon
+  metamorphicMaxFillLevels: 5
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+
+- type: entity
+  parent: DrinkGlass
+  id: DrinkKvassBestDrink
+  name: kvass
+  description: Slavic pleasure, where instead of yeast there are three crusts of croutons.
+  suffix: Crook
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Kvass
+          Quantity: 30
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/kvass.rsi
+    layers:
+      - state: icon
+      - state: icon_empty
+  - type: Icon
+    sprite: Imperial/Crook/Misc/kvass.rsi
+    state: icon
