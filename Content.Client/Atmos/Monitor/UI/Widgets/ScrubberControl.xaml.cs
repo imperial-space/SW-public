@@ -89,7 +89,7 @@ public sealed partial class ScrubberControl : BoxContainer
                     Gas.CarbonDioxide => "gases-co2",
                     Gas.WaterVapor => "gases-water-vapor",
                     Gas.NitrousOxide => "gases-n2o",
-                    _ => Loc.GetString($"gases-{value.ToString().ToLower()}"),
+                    _ => $"gases-{value.ToString().ToLower()}",
                 }),  // Imperial Space Translation end
                 ToggleMode = true,
                 HorizontalExpand = true,
