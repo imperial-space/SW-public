@@ -383,7 +383,10 @@ namespace Content.Server.ShiftFront
                     if (tankComp.NeedMoveForRotating && !tankComp.IsMoving)
                         continue;
                     // Устанавливаем угловую скорость
-                    _transform.SetCoordinates(new Entity<TransformComponent, MetaDataComponent>(uid, xform, MetaData(uid)), coords, Transform(uid).LocalRotation - tankComp.RotationDirection * tankComp.TurnRate);
+                    if (tankComp.MoveDirection > 0)
+                        _transform.SetCoordinates(new Entity<TransformComponent, MetaDataComponent>(uid, xform, MetaData(uid)), coords, Transform(uid).LocalRotation - tankComp.RotationDirection * tankComp.TurnRate);
+                    else
+                        _transform.SetCoordinates(new Entity<TransformComponent, MetaDataComponent>(uid, xform, MetaData(uid)), coords, Transform(uid).LocalRotation + tankComp.RotationDirection * tankComp.TurnRate);
                 }
                 else
                 {

@@ -264,8 +264,9 @@ namespace Content.Server.ShiftFront
         }
         private void OnDamageMap(EntityUid uid, ShiftShowOnMapComponent comp, DamageChangedEvent args)
         {
-            if (!uid.IsValid() || !Exists(uid))
+            if (!uid.IsValid() || !Exists(uid) || HasComp<TransformComponent>(uid))
                 return;
+
 
             if (TryComp<DamageableComponent>(uid, out var damageable) && args.DamageIncreased && args.DamageDelta != null)
             {
