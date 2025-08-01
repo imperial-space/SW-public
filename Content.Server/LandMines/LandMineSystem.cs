@@ -45,6 +45,7 @@ public sealed class LandMineSystem : EntitySystem
 
     private void HandleStepOffTriggered(EntityUid uid, LandMineComponent component, ref StepTriggeredOffEvent args)
     {
+        if (component.AntiTank && !HasComp<ShiftTankHullComponent>(args.Tripper)) return;
         _trigger.Trigger(uid, args.Tripper);
     }
 
