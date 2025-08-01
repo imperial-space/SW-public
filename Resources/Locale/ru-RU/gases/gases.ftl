@@ -1,9 +1,9 @@
 gases-oxygen = Кислород
 gases-nitrogen = Азот
-gases-carbondioxide = Диоксид углерода
+gases-carbondioxide = Диоксид углерода # Imperial Space Translation
 gases-plasma = Плазма
 gases-tritium = Тритий
-gases-watervapor = Водяной пар
+gases-watervapor = Водяной пар # Imperial Space Translation
 gases-ammonia = Аммиак
-gases-nitrousoxide = Оксид азота
+gases-nitrousoxide = Оксид азота # Imperial Space Translation
 gases-frezon = Фрезон
