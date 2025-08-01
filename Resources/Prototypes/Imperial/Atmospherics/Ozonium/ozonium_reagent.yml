@@ -1,10 +1,10 @@
 - type: reagent
-  id: Thermonium
-  name: reagent-name-thermonium
-  desc: reagent-desc-thermonium
-  physicalDesc: reagent-physical-desc-thermonium
+  id: Ozonium
+  name: reagent-name-ozonium
+  desc: reagent-desc-ozonium
+  physicalDesc: reagent-physical-desc-ozonium
   flavor: bitter
-  color: "#FFA500"
+  color: "#00a352"
   tileReactions:
   - !type:FlammableTileReaction
     temperatureMultiplier: 2.0
@@ -19,17 +19,13 @@
       effects:
       - !type:HealthChange
         damage:
-          types:
-            Radiation: 8
+           groups:
+            Airloss: 4
     Gas:
       effects:
       - !type:HealthChange
-        scaleByQuantity: false
+        scaleByQuantity: true
         ignoreResistances: true
         damage:
            groups:
-            Brute: -4
-            Burn: -6
-            Toxin: -4
-           types:
-            Bloodloss: -2
+            Airloss: 8
