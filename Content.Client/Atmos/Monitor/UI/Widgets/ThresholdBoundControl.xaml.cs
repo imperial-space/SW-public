@@ -59,7 +59,7 @@ public sealed partial class ThresholdBoundControl : BoxContainer
         }
     }
 
-    public ThresholdBoundControl(string controlLabel, float value, float uiValueScale = 1)
+    public ThresholdBoundControl(string controlLabel, float value, float uiValueScale = 1) // Imperial Space Translation
     {
         RobustXamlLoader.Load(this);
 
@@ -72,6 +72,7 @@ public sealed partial class ThresholdBoundControl : BoxContainer
 
         CSpinner.OnValueChanged += SpinnerValueChanged;
         CBoundEnabled.OnToggled += CheckboxToggled;
+        CBoundEnabled.Text = Loc.GetString("air-alarm-ui-widget-enable");  // Imperial Space Translation
     }
 
     private void SpinnerValueChanged(FloatSpinBox.FloatSpinBoxEventArgs args)

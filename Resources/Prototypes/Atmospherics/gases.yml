@@ -20,7 +20,7 @@
 
 - type: gas
   id: 2
-  name: gases-co2
+  name: gases-carbondioxide # Imperial Space Translation
   specificHeat: 30
   heatCapacityRatio: 1.3
   molarMass: 44
@@ -54,7 +54,7 @@
 
 - type: gas
   id: 5
-  name: gases-water-vapor
+  name: gases-watervapor # Imperial Space Translation
   specificHeat: 40
   heatCapacityRatio: 1.33
   molarMass: 18
@@ -80,7 +80,7 @@
 
 - type: gas
   id: 7
-  name: gases-n2o
+  name: gases-nitrousoxide # Imperial Space Translation
   specificHeat: 40
   heatCapacityRatio: 1.3
   molarMass: 44
