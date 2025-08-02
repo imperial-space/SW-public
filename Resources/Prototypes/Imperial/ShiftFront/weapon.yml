@@ -35,8 +35,8 @@
     minAngle: -20
     maxAngle: -20
   - type: EyeCursorOffset
-    maxOffset: 25
-    pvsIncrease: 2
+    maxOffset: 22.5
+    pvsIncrease: 2.5
     offsetSpeed: 0.03
   - type: CursorOffsetRequiresWield
 
@@ -72,7 +72,7 @@
   - type: Appearance
   - type: EyeCursorOffset
     maxOffset: 4
-    pvsIncrease: 0.7
+    pvsIncrease: 0.4
     offsetSpeed: 0.035
   - type: CursorOffsetRequiresWield
   - type: SpeedModifiedOnWield
@@ -108,7 +108,7 @@
   - type: Appearance
   - type: EyeCursorOffset
     maxOffset: 4
-    pvsIncrease: 0.7
+    pvsIncrease: 0.4
     offsetSpeed: 0.035
   - type: CursorOffsetRequiresWield
   - type: SpeedModifiedOnWield
@@ -183,7 +183,7 @@
     maxAngle: -15
   - type: EyeCursorOffset
     maxOffset: 2.5
-    pvsIncrease: 0.7
+    pvsIncrease: 0.25
     offsetSpeed: 0.035
   - type: CursorOffsetRequiresWield
 
@@ -244,7 +244,7 @@
     maxAngle: -15
   - type: EyeCursorOffset
     maxOffset: 2.5
-    pvsIncrease: 0.7
+    pvsIncrease: 0.25
     offsetSpeed: 0.035
   - type: CursorOffsetRequiresWield
 
@@ -320,9 +320,9 @@
     - Back
     - suitStorage
   - type: Gun
-    fireRate: 8
+    fireRate: 7
     soundGunshot:
-      path: /Audio/Imperial/ShiftFront/shot_rifle.ogg
+      path: /Audio/Imperial/ShiftFront/shot_smg.ogg
       params:
         maxDistance: 35
   - type: ChamberMagazineAmmoProvider
@@ -362,7 +362,7 @@
     zeroVisible: true
   - type: Appearance
   - type: GunWieldBonus # Imperial balance
-    minAngle: -11
+    minAngle: -8
     maxAngle: -7
 
 - type: entity
@@ -385,9 +385,9 @@
     - Back
     - suitStorage
   - type: Gun
-    fireRate: 8
+    fireRate: 7
     soundGunshot:
-      path: /Audio/Imperial/ShiftFront/shot_rifle.ogg
+      path: /Audio/Imperial/ShiftFront/shot_smg.ogg
       params:
         maxDistance: 35
   - type: ChamberMagazineAmmoProvider
@@ -427,7 +427,7 @@
     zeroVisible: true
   - type: Appearance
   - type: GunWieldBonus # Imperial balance
-    minAngle: -11
+    minAngle: -8
     maxAngle: -7
 
 # Pistol
@@ -657,3 +657,112 @@
   impactFlash:
     sprite: Imperial/DeadSector/weapons/pulse_projectiles/plasma_pistol.rsi
     state: impact_plasma
+
+- type: entity
+  parent: [BaseWeaponSniper, BaseGunWieldable]
+  id: WeaponSniperMarksmanShiftingFront
+  components:
+  - type: Unremoveable
+  - type: Sprite
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkI.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Clothing
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkI-inhand.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    angleIncrease: 2
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/shot_marksman.ogg
+      params:
+        maxDistance: 45
+    projectileSpeed: 45 # Imperial Balance
+    fireRate: 1
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeAntiMaterielM
+    capacity: 6
+    proto: CartridgeAntiMaterielM
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.4 # Imperial balance
+    sprintModifier: 0.4 # Imperial balance
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -20
+    maxAngle: -10
+  - type: EyeCursorOffset
+    maxOffset: 12
+    pvsIncrease: 2.5
+    offsetSpeed: 0.07
+  - type: CursorOffsetRequiresWield
+  - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkI-inhand.rsi
+
+- type: entity # Imperial Space Revert Cabinetification
+  parent: BaseMagazineBoxAntiMateriel
+  id: MagazineBoxAntiMaterielBigM
+  name: ammunition box (marksman)
+  components:
+  - type: BallisticAmmoProvider
+    capacity: 20
+    proto: CartridgeAntiMaterielM
+  - type: Sprite
+    layers:
+    - state: base-b
+      map: ["enum.GunVisualLayers.Base"]
+    - state: magb-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: magb
+    steps: 4
+    zeroVisible: false
+  - type: Appearance
+
+
+- type: entity
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: CartridgeAntiMaterielM
+  name: cartridge (marksman)
+  components:
+  - type: Tag
+    tags:
+    - Cartridge
+    - CartridgeAntiMaterielM
+  - type: CartridgeAmmo
+    proto: BulletAntiMaterielM
+  - type: Sprite
+    scale: 0.7, 0.7
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/large_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+  - type: StaticPrice
+    price: 20
+
+- type: Tag
+  id: CartridgeAntiMaterielM
+
+- type: entity
+  categories: [ HideSpawnMenu ]
+  parent: BaseBullet
+  id: BulletAntiMaterielM
+  name: bullet (.60 anti-materiel)
+  components:
+  - type: Projectile
+    ignoreResistances: false
+    suppression: 17
+    damage:
+      types:
+        Piercing: 37
+        Structural: 20
+    penetrationThreshold: 160
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: StaminaDamageOnCollide
+    damage: 20

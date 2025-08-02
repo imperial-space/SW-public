@@ -1,13 +1,29 @@
 - type: ShiftFrontResearch
-  id: ShiftFrontAssault
+  id: ShiftFrontFlanker
+  tier: 1
+  researchName: фланкер
+  price: 35
+  requredResearches:
+  - ShiftFrontScout
+
+- type: ShiftFrontResearch
+  id: ShiftFrontScout
   tier: 0
-  researchName: штурмовик
-  price: 50
+  researchName: скаут
+  price: 10
   #requredResearches:
   #- noth
   #bannedResearches:
   # - noth
   #UnicForFaction: noth
+
+- type: ShiftFrontResearch
+  id: ShiftFrontAssault
+  tier: 1
+  researchName: штурмовик
+  price: 50
+  requredResearches:
+  - ShiftFrontFlanker
 
 - type: ShiftFrontResearch
   id: ShiftFrontSupplies

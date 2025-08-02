@@ -459,7 +459,7 @@
     insideObserver: TankPartObserver
     insideCartridge: TankPartCartridge
     observerProto: MobShiftTankObserver
-    fPVResist: 0.8
+    fPVResist: 0.5
     turnRate: 0.015
     moveSpeed: 1.7
 
@@ -715,7 +715,7 @@
     needMoveForRotating: true
     smokeStep: 130
     fireStep: 220
-    fPVResist: 2.5
+    fPVResist: 3
     moveSpeed: 6
     turnRate: 0.04
     insideController: TankPartController
@@ -830,7 +830,7 @@
   - type: ShiftTankHull
     smokeStep: 250
     fireStep: 425
-    fPVResist: 1.3
+    fPVResist: 1.5
     moveSpeed: 4.3
     turnRate: 0.04
     insideController: TankPartController

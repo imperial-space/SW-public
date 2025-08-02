@@ -294,7 +294,7 @@
     fresh: true
   #- type: RandomSteal
   - type: Customizer
-  - type: IdentityRequiresKnowledge
+  #- type: IdentityRequiresKnowledge
   #- type: LanguageSpeaker
   #  languages:
   #    Common: Speak

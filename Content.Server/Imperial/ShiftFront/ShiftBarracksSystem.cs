@@ -93,58 +93,59 @@ namespace Content.Server.ShiftFront
                 _prayerSystem.SendSubtleMessage(session, session, "Необходима консоль ресурсов", "Нет консоли ресурсов");
                 return;
             }
-            ev.Verbs.Add(new AlternativeVerb
-            {
-                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
-                //  Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
-                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
-                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Eng", coords);
-                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Heavy", coords);
-                //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Sniper", coords);
-
-                Act = () =>
+            if (CheckResearch("ShiftFrontScout", comp.Faction))
+                ev.Verbs.Add(new AlternativeVerb
                 {
-                    if (shiftPlayer.Eng || shiftPlayer.Leader)
-                    {
-                        if (!TryWasteResource(rescomp, 5, 10, 0, session))
-                            return;
-                        if (comp.dict.TryGetValue("Fast", out int value))
-                            comp.dict["Fast"]++;
-                    }
-                    else
-                    {
-                        if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
-                        var session = actComp.PlayerSession;
-                        if (comp.dict.TryGetValue("Fast", out int value))
-                            if (value > 0)
-                                comp.dict["Fast"]--;
-                            else
-                            {
-                                _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
-                                return;
-                            }
-                        var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+                    //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+                    //  Spawn("BaseMobHumanShiftFront" + comp.Faction, coords);
+                    //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Med", coords);
+                    //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Eng", coords);
+                    //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Heavy", coords);
+                    //  Spawn("BaseMobHumanShiftFront" + comp.Faction + "Sniper", coords);
 
-                        if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
-                        _minds.TransferTo(mindId, soljer, true, false, mindComp);
-                        _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
-                        QueueDel(ev.User);
-
-                        var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
-                        while (dquery.MoveNext(out var reuid, out var recomp))
+                    Act = () =>
+                    {
+                        if (shiftPlayer.Eng || shiftPlayer.Leader)
                         {
-                            foreach (var player in recomp.RespawnQueue)
+                            if (!TryWasteResource(rescomp, 5, 10, 0, session))
+                                return;
+                            if (comp.dict.TryGetValue("Fast", out int value))
+                                comp.dict["Fast"]++;
+                        }
+                        else
+                        {
+                            if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
+                            var session = actComp.PlayerSession;
+                            if (comp.dict.TryGetValue("Fast", out int value))
+                                if (value > 0)
+                                    comp.dict["Fast"]--;
+                                else
+                                {
+                                    _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
+                                    return;
+                                }
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Fast", coords);
+
+                            if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
+                            _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                            _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                            QueueDel(ev.User);
+
+                            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                            while (dquery.MoveNext(out var reuid, out var recomp))
                             {
-                                if (player == session)
-                                    recomp.RespawnQueue.Remove(player);
+                                foreach (var player in recomp.RespawnQueue)
+                                {
+                                    if (player == session)
+                                        recomp.RespawnQueue.Remove(player);
+                                }
                             }
                         }
-                    }
-                },
-                Text = "Скаут",
-                Priority = 15,
-                Icon = new SpriteSpecifier.Rsi(new ResPath("Clothing/Head/Soft/greysoft.rsi"), "icon")
-            });
+                    },
+                    Text = "Скаут",
+                    Priority = 15,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Clothing/Head/Soft/greysoft.rsi"), "icon")
+                });
             if (CheckResearch("ShiftFrontAssault", comp.Faction))
                 ev.Verbs.Add(new AlternativeVerb
                 {
@@ -372,6 +373,51 @@ namespace Content.Server.ShiftFront
                     Text = "Снайпер",
                     Priority = 10,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Guns/Snipers/heavy_sniper.rsi"), "base")
+                });
+            if (CheckResearch("ShiftFrontFlanker", comp.Faction))
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () =>
+                    {
+                        if (shiftPlayer.Eng || shiftPlayer.Leader)
+                        {
+                            if (!TryWasteResource(rescomp, 45, 65, 10, session))
+                                return;
+                            if (comp.dict.TryGetValue("Flanker", out int value))
+                                comp.dict["Flanker"]++;
+                        }
+                        else
+                        {
+                            if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
+                            var session = actComp.PlayerSession;
+                            if (comp.dict.TryGetValue("Flanker", out int value))
+                                if (value > 0)
+                                    comp.dict["Flanker"]--;
+                                else
+                                {
+                                    _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
+                                    return;
+                                }
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Flanker", coords);
+                            if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
+                            _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                            _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                            QueueDel(ev.User);
+
+                            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                            while (dquery.MoveNext(out var reuid, out var recomp))
+                            {
+                                foreach (var player in recomp.RespawnQueue)
+                                {
+                                    if (player == session)
+                                        recomp.RespawnQueue.Remove(player);
+                                }
+                            }
+                        }
+                    },
+                    Text = "Фланкер",
+                    Priority = 12,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Clothing/Shoes/Boots/combatboots.rsi"), "icon")
                 });
         }
         public EntityUid GetResourceConsole(EntityUid uid, ShiftBarracksComponent comp)

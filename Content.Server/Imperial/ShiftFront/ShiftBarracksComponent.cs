@@ -32,6 +32,7 @@ public sealed partial class ShiftBarracksComponent : Component
         { "Eng", 0 },
         { "Mg", 0 },
         { "Sniper", 0 },
+        { "Flanker", 0 },
         { "Med", 0 }
     };
 

@@ -34,6 +34,36 @@
 
 - type: entity
   parent: BodyArmorMultikamRaptor
+  id: BodyArmorMultikamRaptorShiftFrontF
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.92
+    sprintModifier: 0.92
+
+- type: entity
+  parent: BodyArmorTacticalRaptor
+  id: BodyArmorTacticalRaptorShiftFrontF
+  components:
+  - type: Unremoveable
+  - type: Armor
+    modifiers:
+      coefficients:
+        Piercing: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.92
+    sprintModifier: 0.92
+
+- type: entity
+  parent: BodyArmorMultikamRaptor
   id: BodyArmorMultikamRaptorShiftFront
   components:
   - type: Unremoveable

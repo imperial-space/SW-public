@@ -106,6 +106,36 @@
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenFlanker
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenFlanker ]
+  - type: GhostRole
+    name: Фланкер
+    description: Технократическая Германия
+  - type: ShiftPlayer
+    name: Flanker
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontFlanker
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowFlanker
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowFlanker ]
+  - type: GhostRole
+    name: Фланкер
+    description: Единая Китайская партия
+  - type: ShiftPlayer
+    name: Flanker
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontFlanker
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
   id: BaseMobHumanShiftFrontGreenNew
   components:
   - type: Loadout
@@ -467,7 +497,7 @@
   equipment:
     jumpsuit: VlOldStationMercJumpsuitShiftFront
     mask: ClothingMaskGasSecurityShiftFront
-    head: ClothingHeadHatCapcapSheriff
+    head: ClothingHeadHatCapcapSheriffShiftFront
     eyes: ClothingEyesHudCommandShiftFront
     gloves: ClothingHandsGlovesCombatShiftFront
     #outerClothing: BodyArmorMultikamRaptorShiftFront
@@ -521,10 +551,62 @@
     - ShiftFrontBuildLight
 
 - type: startingGear
+  id: ShiftFrontGreenFlanker
+  equipment:
+    jumpsuit: VlOldStationMercJumpsuitShiftFront
+    head: ClothingHeadHatCapcapSheriffShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: BodyArmorMultikamRaptorShiftFrontF
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    #back: EncryptionKeyRadio3
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+  inhand:
+    - WeaponHK416ShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+
+- type: startingGear
+  id: ShiftFrontYellowFlanker
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
+    head: ClothingHeadHatYellowsoftShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: BodyArmorTacticalRaptorShiftFrontF
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    #back: EncryptionKeyRadio4
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponAKS74yShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+
+- type: startingGear
   id: ShiftFrontGreenNew
   equipment:
     jumpsuit: VlOldStationMercJumpsuitShiftFront
-    head: ClothingHeadHatCapcapSheriff
+    head: ClothingHeadHatCapcapSheriffShiftFront
     eyes: ClothingEyesHudCommandShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: ElysiumFederationIDCardShiftFront

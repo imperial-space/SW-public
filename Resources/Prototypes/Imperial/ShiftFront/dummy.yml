@@ -227,6 +227,36 @@
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueFlanker
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueFlanker ]
+  - type: GhostRole
+    name: Фланкер
+    description: НАТО
+  - type: ShiftPlayer
+    name: Flanker
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontFlanker
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedFlanker
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedFlanker ]
+  - type: GhostRole
+    name: Фланкер
+    description: ПСБ (пост-совет. блок)
+  - type: ShiftPlayer
+    name: Flanker
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontFlanker
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
   id: BaseMobHumanShiftFrontBlueSniper
   components:
   - type: Loadout
@@ -626,6 +656,58 @@
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
+
+- type: startingGear
+  id: ShiftFrontBlueFlanker
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    head: ClothingHeadHatCapSonaShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: BodyArmorMultikamRaptorShiftFrontF
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponHK416ShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+
+- type: startingGear
+  id: ShiftFrontRedFlanker
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecShiftFront
+    head: ClothingHeadHatSecsoftShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: BodyArmorTacticalRaptorShiftFrontF
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponAKS74yShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
+    - MagazineLightRifleShiftingFront
 
 - type: startingGear
   id: ShiftFrontBlueNew

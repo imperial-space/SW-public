@@ -63,6 +63,15 @@
     state: icon
 
 - type: entity
+  id: ShiftFrontFlanker
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.45, 0.45
+    sprite: Clothing/Shoes/Boots/combatboots.rsi
+    state: icon
+
+- type: entity
   id: ShiftFrontNew
   parent: ShiftIconBase
   components:

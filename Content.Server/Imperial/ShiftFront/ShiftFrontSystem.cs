@@ -1454,7 +1454,7 @@ namespace Content.Server.ShiftFront
                 {
                     var xform = Transform(uid);
                     var coords = xform.Coordinates;
-                    foreach (var target in _lookup.GetEntitiesInRange(coords, 8.5f))
+                    foreach (var target in _lookup.GetEntitiesInRange(coords, comp.Radius))
                     {
                         if (TryComp<ShiftFPVDroneComponent>(target, out var drone) && drone.Faction != comp.Faction && !drone.TankPart)
                         {

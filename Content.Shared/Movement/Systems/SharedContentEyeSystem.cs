@@ -126,7 +126,7 @@ public abstract class SharedContentEyeSystem : EntitySystem
 
     public void ResetZoom(EntityUid uid, ContentEyeComponent? component = null)
     {
-        _eye.SetPvsScale(uid, 1);
+        _eye.SetPvsScale(uid, 2);
         SetZoom(uid, DefaultZoom, eye: component);
     }
 
@@ -162,7 +162,7 @@ public abstract class SharedContentEyeSystem : EntitySystem
         var evRelayed = new GetEyePvsScaleRelayedEvent();
         RaiseLocalEvent(uid, ref evRelayed);
 
-        _eye.SetPvsScale((uid, eye), 1 + ev.Scale + evRelayed.Scale);
+        _eye.SetPvsScale((uid, eye), 2 + ev.Scale + evRelayed.Scale);
     }
 
     /// <summary>
