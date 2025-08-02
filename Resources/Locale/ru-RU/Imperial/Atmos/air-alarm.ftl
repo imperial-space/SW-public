@@ -26,6 +26,6 @@ air-alarm-ui-thresholds-gas-name = { -air-alarm-ui-thresholds-gas-names(gas:$gas
 [Frezon] Фрезон
 [Thermonium] Термониум
 [Phazonium] Фазон
-[Ozonium ] Озон
+[Ozonium] Озон
 *[else] Неизвестный газ
 }
