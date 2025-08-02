@@ -107,6 +107,38 @@
 
 - type: entity
   parent: ImperialMetalDetector
+  id: MetalDetectorNonAccess
+  suffix: NonAccess, Crook
+  components:
+      checkWeapons: true
+      checkContraband: true
+      warningSound:
+        path: /Audio/Machines/warning_buzzer.ogg
+      alertSound:
+        path: /Audio/Machines/twobeep.ogg
+      clearSound:
+        path: /Audio/Machines/beep.ogg
+      allowedAccess: []
+      scanCooldown: 2
+
+- type: entity
+  parent: ImperialMetalDetector
+  id: MetalDetectorSyndicate
+  suffix: Syndicate, Crook
+  components:
+      checkWeapons: true
+      checkContraband: true
+      warningSound:
+        path: /Audio/Machines/warning_buzzer.ogg
+      alertSound:
+        path: /Audio/Machines/twobeep.ogg
+      clearSound:
+        path: /Audio/Machines/beep.ogg
+      allowedAccess: ["SyndicateAgent", "NuclearOperative"]
+      scanCooldown: 2
+
+- type: entity
+  parent: ImperialMetalDetector
   id: MetalDetectorSecure
   suffix: Secure, Crook
   components:
