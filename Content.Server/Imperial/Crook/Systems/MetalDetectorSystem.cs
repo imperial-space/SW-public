@@ -35,6 +35,8 @@ namespace Content.Server.Imperial.Crook.Systems
         [Dependency] private readonly SharedIdCardSystem _idCard = default!;
         [Dependency] private readonly EmagSystem _emag = default!;
 
+        private const int MaxRecursionDepth = 5;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -143,6 +145,7 @@ namespace Content.Server.Imperial.Crook.Systems
                 comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
                 return;
             }
+
             UpdateState(detector, MetalDetectorVisualState.Scanning, comp);
             _audio.PlayPvs(comp.ClearSound, detector);
             comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
@@ -159,7 +162,7 @@ namespace Content.Server.Imperial.Crook.Systems
                 {
                     if (_inventory.TryGetSlotEntity(entity, slot.Name, out var item) && item != null)
                     {
-                        CheckItemAndContainers(item.Value, ref weaponAndContraband, ref contrabandOnly);
+                        CheckItemAndContainers(item.Value, ref weaponAndContraband, ref contrabandOnly, 0);
                         if (weaponAndContraband) return (true, true);
                     }
                 }
@@ -176,8 +179,11 @@ namespace Content.Server.Imperial.Crook.Systems
             return (weaponAndContraband, contrabandOnly);
         }
 
-        private void CheckItemAndContainers(EntityUid item, ref bool weaponAndContraband, ref bool contrabandOnly)
+        private void CheckItemAndContainers(EntityUid item, ref bool weaponAndContraband, ref bool contrabandOnly, int depth)
         {
+            if (depth > MaxRecursionDepth)
+                return;
+
             CheckItem(item, ref weaponAndContraband, ref contrabandOnly);
             if (weaponAndContraband) return;
 
@@ -187,39 +193,12 @@ namespace Content.Server.Imperial.Crook.Systems
                 {
                     foreach (var containedItem in container.ContainedEntities)
                     {
-                        CheckItemAndContainers(containedItem, ref weaponAndContraband, ref contrabandOnly);
+                        CheckItemAndContainers(containedItem, ref weaponAndContraband, ref contrabandOnly, depth + 1);
                         if (weaponAndContraband) return;
                     }
                 }
             }
         }
-
-        private void CheckContainerRecursive(EntityUid container, ref bool weaponAndContraband, ref bool contrabandOnly)
-        {
-            CheckItem(container, ref weaponAndContraband, ref contrabandOnly);
-            if (weaponAndContraband) return;
-
-            if (!TryComp<ContainerManagerComponent>(container, out var containerManager))
-                return;
-
-            foreach (var cont in containerManager.Containers.Values)
-            {
-                foreach (var item in cont.ContainedEntities)
-                {
-                    if (HasComp<ContainerManagerComponent>(item))
-                    {
-                        CheckContainerRecursive(item, ref weaponAndContraband, ref contrabandOnly);
-                    }
-                    else
-                    {
-                        CheckItem(item, ref weaponAndContraband, ref contrabandOnly);
-                    }
-
-                    if (weaponAndContraband) return;
-                }
-            }
-        }
-
         private void CheckItem(EntityUid item, ref bool hasWeaponAndContraband, ref bool hasContrabandOnly)
         {
             var hasWeapon = HasComp<GunComponent>(item) || HasComp<MeleeWeaponComponent>(item);
