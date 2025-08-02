@@ -1,6 +1,6 @@
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.Security
+namespace Content.Shared.Imperial.Crook.Visuals
 {
     [Serializable, NetSerializable]
     public enum MetalDetectorVisualState

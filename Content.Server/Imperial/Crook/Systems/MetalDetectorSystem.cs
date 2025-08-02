@@ -8,7 +8,8 @@ using Robust.Shared.Physics.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
-using Content.Shared.Imperial.Security;
+using Content.Server.Imperial.Crook.Components;
+using Content.Shared.Imperial.Crook.Visuals;
 using Content.Shared.Power;
 using Content.Shared.Inventory;
 using Robust.Shared.Player;
@@ -19,7 +20,7 @@ using Content.Shared.Contraband;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 
-namespace Content.Server.Imperial.Security
+namespace Content.Server.Imperial.Crook.Systems
 {
     public sealed class MetalDetectorSystem : EntitySystem
     {
@@ -151,19 +152,72 @@ namespace Content.Server.Imperial.Security
         {
             bool weaponAndContraband = false;
             bool contrabandOnly = false;
-            foreach (var slot in comp.CheckedSlots)
+
+            if (TryComp<InventoryComponent>(entity, out var inventory))
             {
-                if (_inventory.TryGetSlotEntity(entity, slot, out var item))
+                foreach (var slot in inventory.Slots)
                 {
-                    CheckItem(item.Value, ref weaponAndContraband, ref contrabandOnly);
+                    if (_inventory.TryGetSlotEntity(entity, slot.Name, out var item) && item != null)
+                    {
+                        CheckItemAndContainers(item.Value, ref weaponAndContraband, ref contrabandOnly);
+                        if (weaponAndContraband) return (true, true);
+                    }
                 }
             }
+
             foreach (var heldItem in _hands.EnumerateHeld(entity))
             {
+                if (heldItem == null) continue;
+
                 CheckItem(heldItem, ref weaponAndContraband, ref contrabandOnly);
+                if (weaponAndContraband) break;
             }
 
             return (weaponAndContraband, contrabandOnly);
+        }
+
+        private void CheckItemAndContainers(EntityUid item, ref bool weaponAndContraband, ref bool contrabandOnly)
+        {
+            CheckItem(item, ref weaponAndContraband, ref contrabandOnly);
+            if (weaponAndContraband) return;
+
+            if (TryComp<ContainerManagerComponent>(item, out var containerManager))
+            {
+                foreach (var container in containerManager.Containers.Values)
+                {
+                    foreach (var containedItem in container.ContainedEntities)
+                    {
+                        CheckItemAndContainers(containedItem, ref weaponAndContraband, ref contrabandOnly);
+                        if (weaponAndContraband) return;
+                    }
+                }
+            }
+        }
+
+        private void CheckContainerRecursive(EntityUid container, ref bool weaponAndContraband, ref bool contrabandOnly)
+        {
+            CheckItem(container, ref weaponAndContraband, ref contrabandOnly);
+            if (weaponAndContraband) return;
+
+            if (!TryComp<ContainerManagerComponent>(container, out var containerManager))
+                return;
+
+            foreach (var cont in containerManager.Containers.Values)
+            {
+                foreach (var item in cont.ContainedEntities)
+                {
+                    if (HasComp<ContainerManagerComponent>(item))
+                    {
+                        CheckContainerRecursive(item, ref weaponAndContraband, ref contrabandOnly);
+                    }
+                    else
+                    {
+                        CheckItem(item, ref weaponAndContraband, ref contrabandOnly);
+                    }
+
+                    if (weaponAndContraband) return;
+                }
+            }
         }
 
         private void CheckItem(EntityUid item, ref bool hasWeaponAndContraband, ref bool hasContrabandOnly)

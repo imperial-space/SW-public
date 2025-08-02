@@ -1,26 +1,33 @@
 using System;
 using Robust.Shared.Audio;
+using Content.Shared.Inventory;
 using Robust.Shared.Audio.Systems;
 using System.Collections.Generic;
-using Content.Shared.Imperial.Security;
+using Content.Shared.Imperial.Crook.Visuals;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Imperial.Security
+namespace Content.Server.Imperial.Crook.Components
 {
     [RegisterComponent]
     public sealed partial class MetalDetectorComponent : Component
     {
+        [DataField("checkedSlots")]
+        public HashSet<string> CheckedSlots = new()
+        {
+            "pocket1",
+            "pocket2",
+            "belt",
+            "backpack",
+            "idCard",
+            "suitStorage",
+            "outerClothing"
+        };
+
         [DataField("scanCooldown")]
-        public TimeSpan ScanCooldown = TimeSpan.FromSeconds(1);
+        public TimeSpan ScanCooldown = TimeSpan.FromSeconds(2);
 
         [DataField("stateResetDelay")]
         public TimeSpan StateResetDelay = TimeSpan.FromSeconds(2);
-
-        [DataField("itemScanRadius")]
-        public float ItemScanRadius = 0.5f;
-
-        [DataField("checkedSlots")]
-        public List<string> CheckedSlots = new() { "outerClothing", "belt", "back", "pockets" };
 
         [DataField("allowedAccess")]
         public List<string> AllowedAccess = new() { "Security", "Command" };
@@ -49,7 +56,7 @@ namespace Content.Server.Imperial.Security
         public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
 
         [DataField("warningSound")]
-        public SoundSpecifier WarningSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
+        public SoundSpecifier WarningSound = new SoundPathSpecifier("/Audio/Machines/warning_buzzer.ogg");
 
         [ViewVariables]
         public bool Powered;

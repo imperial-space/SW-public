@@ -53,7 +53,7 @@
       checkWeapons: true
       checkContraband: true
       warningSound:
-        path: /Audio/Machines/twobeep.ogg
+        path: /Audio/Machines/warning_buzzer.ogg
       alertSound:
         path: /Audio/Machines/twobeep.ogg
       clearSound:
@@ -197,7 +197,7 @@
     Steel: 10
     Gold: 1
 
-### Tech
+### Recipe
 
 - type: construction
   id: ImperialMetalDetector
