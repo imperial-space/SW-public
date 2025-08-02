@@ -81,3 +81,19 @@ air-alarm-ui-thresholds-upper-warning-bound = Верхняя тревожная 
 air-alarm-ui-thresholds-lower-warning-bound = Нижняя тревожная граница
 air-alarm-ui-thresholds-copy = Скопировать границы на аналогичные устройства
 air-alarm-ui-thresholds-copy-tooltip = Копирует границы этого сенсора на все девайсы этой сигнализации.
+
+air-alarm-ui-thresholds-gas-name = { -air-alarm-ui-thresholds-gas-names(gas:$gas) }
+
+-air-alarm-ui-thresholds-gas-names = { $gas ->
+    [Oxygen] Кислород
+    [Nitrogen] Азот
+    [CarbonDioxide] Диоксид углерода
+    [Plasma] Плазма
+    [Tritium] Тритий
+    [WaterVapor] Водяной пар
+    [Ammonia] Аммиак
+    [NitrousOxide] Оксид азота
+    [Frezon] Фрезон
+    [Thermonium] Термониум
+   *[else] Неизвестный газ
+}

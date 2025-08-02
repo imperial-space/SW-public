@@ -83,14 +83,7 @@ public sealed partial class ScrubberControl : BoxContainer
             var gasButton = new Button
             {
                 Name = value.ToString(),
-                // Imperial Space Translation start
-                Text = Loc.GetString(value switch
-                {
-                    Gas.CarbonDioxide => "gases-co2",
-                    Gas.WaterVapor => "gases-water-vapor",
-                    Gas.NitrousOxide => "gases-n2o",
-                    _ => $"gases-{value.ToString().ToLower()}",
-                }),  // Imperial Space Translation end
+                Text = Loc.GetString("air-alarm-ui-thresholds-gas-name", ("gas", $"{value}")),  // Imperial Space Translation
                 ToggleMode = true,
                 HorizontalExpand = true,
                 Pressed = _data.FilterGases.Contains(value)
