@@ -12,9 +12,7 @@ air-alarm-ui-pressure-bound-both = Оба
 air-alarm-ui-widget-gas-filters = Фильтры газов
 
 # Границы
-air-alarm-ui-thresholds-gas-name = { -air-alarm-ui-thresholds-gas-names(gas:$gas) }
-
--air-alarm-ui-thresholds-gas-names = { $gas ->
+air-alarm-ui-thresholds-gas-name = { $gas ->
     [Oxygen] Кислород
     [Nitrogen] Азот
     [CarbonDioxide] Диоксид углерода
