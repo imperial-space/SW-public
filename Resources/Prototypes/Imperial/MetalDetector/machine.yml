@@ -110,6 +110,7 @@
   id: MetalDetectorNonAccess
   suffix: NonAccess, Crook
   components:
+    - type: MetalDetector
       checkWeapons: true
       checkContraband: true
       warningSound:
@@ -126,6 +127,7 @@
   id: MetalDetectorSyndicate
   suffix: Syndicate, Crook
   components:
+    - type: MetalDetector
       checkWeapons: true
       checkContraband: true
       warningSound:
