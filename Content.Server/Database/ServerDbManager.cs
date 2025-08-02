@@ -177,6 +177,12 @@ namespace Content.Server.Database
         Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel = default);
         Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel = default);
 
+        public Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel = default);
+        public Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel = default);
+        public Task AddPainting(Color[] texture, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel = default);
+        public Task RemovePainting(Color[] texture, CancellationToken cancel = default);
+        public Task SetPaintingAccepted(Color[] texture, CancellationToken cancel = default);
+
         #endregion
 
         #region Playtime
@@ -624,6 +630,36 @@ namespace Content.Server.Database
         #endregion
 
         #region Imperial Medieval
+
+        public Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPainting(texture, cancel));
+        }
+
+        public Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPaintings(accepted, cancel));
+        }
+
+        public Task AddPainting(Color[] texture, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddPainting(texture, name, description, author, authorUserId, creationTime, accepted, cancel));
+        }
+
+        public Task RemovePainting(Color[] texture, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemovePainting(texture, cancel));
+        }
+
+        public Task SetPaintingAccepted(Color[] texture, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetPaintingAccepted(texture, cancel));
+        }
 
         public Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
         {

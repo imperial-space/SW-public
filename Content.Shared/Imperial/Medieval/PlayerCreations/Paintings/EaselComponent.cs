@@ -45,13 +45,15 @@ public sealed class EaselSendPaintingMessage : BoundUserInterfaceMessage
 {
     public readonly Color[] Texture;
     public readonly string Name;
+    public readonly string Description;
     public readonly string Author;
-    public readonly NetUserId? SenderPlayer;
+    public readonly NetUserId SenderPlayer;
 
-    public EaselSendPaintingMessage(Color[] texture, string name, string author, NetUserId? senderPlayer)
+    public EaselSendPaintingMessage(Color[] texture, string name, string description, string author, NetUserId senderPlayer)
     {
         Texture = texture;
         Name = name;
+        Description = description;
         Author = author;
         SenderPlayer = senderPlayer;
     }

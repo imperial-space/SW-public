@@ -21,6 +21,25 @@ public sealed class CanvasSystem : SharedCanvasSystem
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
+
+    public static Rgba32[] ColorToRgba32(Color[] colors)
+    {
+        return colors
+            .Select(c => c.A == 0 ? Color.White : c)
+            .Select(c => new Rgba32(c.R, c.G, c.B))
+            .ToArray();
+    }
+
+    public static Texture GetTextureFromColorArray(IClyde clyde, Color[] colors, int width = 30, int height = 30)
+    {
+        var tex = clyde.CreateBlankTexture<Rgba32>(new(width, height));
+        var rgbaArray = ColorToRgba32(colors);
+        tex.SetSubImage((0, 0) ,(width, height), new ReadOnlySpan<Rgba32>(rgbaArray));
+
+        return tex;
+    }
+
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -36,27 +55,9 @@ public sealed class CanvasSystem : SharedCanvasSystem
         SetTexture(uid, comp.Texture);
     }
 
-    private Rgba32[] ColorToRgba32(Color[] colors)
-    {
-        return colors
-            .Select(c => c.A == 0 ? Color.White : c)
-            .Select(c => new Rgba32(c.R, c.G, c.B))
-            .ToArray();
-    }
-
-    private Texture GetTexture(EntityUid uid, Color[] colors)
-    {
-        var tex = _clyde.CreateBlankTexture<Rgba32>(new(30, 30));
-        var rgbaArray = ColorToRgba32(colors);
-        tex.SetSubImage((0, 0) ,(30, 30), new ReadOnlySpan<Rgba32>(rgbaArray));
-
-        return tex;
-
-    }
-
     private void SetTexture(EntityUid uid, Color[] colors)
     {
-        var texture = GetTexture(uid, colors);
+        var texture = GetTextureFromColorArray(_clyde, colors);
 
         if (TryComp<SpriteComponent>(uid, out var sprite))
             _sprite.LayerSetTexture((uid, sprite), 1, texture);

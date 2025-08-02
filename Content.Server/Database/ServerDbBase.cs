@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.Medieval.PlayerCreations;
 
 namespace Content.Server.Database
 {
@@ -586,6 +588,95 @@ namespace Content.Server.Database
         #endregion
 
         #region Imperial Medieval
+
+
+
+
+        public async Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var textureString = PaintingHelper.ColorsToString(texture);
+
+            var painting = await db.DbContext.Paintings
+                .Where(v => v.Texture == textureString)
+                .FirstOrDefaultAsync(cancel);
+
+            return painting;
+        }
+
+        public async Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var paintings = await db.DbContext.Paintings
+                .Where(c => c.Accepted == accepted)
+                .ToListAsync(cancel);
+
+            return paintings;
+        }
+
+        public async Task AddPainting(Color[] texture,
+            string name,
+            string description,
+            string author,
+            Guid authorUserId,
+            DateTime creationTime,
+            bool accepted,
+            CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var textureString = PaintingHelper.ColorsToString(texture);
+
+            var painting = new Painting
+            {
+                Texture = textureString,
+                Name = name,
+                Description = description,
+                Author = author,
+                AuthorUserId = authorUserId,
+                CreationTime = creationTime,
+                Accepted = accepted
+            };
+
+            await db.DbContext.Paintings.AddAsync(painting, cancel);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task RemovePainting(Color[] texture, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var textureString = PaintingHelper.ColorsToString(texture);
+
+            var painting = await db.DbContext.Paintings
+                .Where(v => v.Texture == textureString)
+                .FirstOrDefaultAsync(cancel);
+
+            if (painting == null)
+                return;
+
+            db.DbContext.Paintings.Remove(painting);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task SetPaintingAccepted(Color[] texture, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var textureString = PaintingHelper.ColorsToString(texture);
+
+            var painting = await db.DbContext.Paintings
+                .Where(v => v.Texture == textureString)
+                .FirstOrDefaultAsync(cancel);
+
+            if (painting == null)
+                return;
+
+            painting.Accepted = true;
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
 
         public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
         {

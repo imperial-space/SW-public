@@ -4,12 +4,14 @@ using Content.Client.Eui;
 using Content.Shared.Eui;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Content.Shared.Imperial.Medieval.PlayerCreations;
+using Robust.Client.Graphics;
 
 namespace Content.Client.Imperial.Medieval.PlayerCreations.Administration;
 
 public sealed class CreationsPanelEui : BaseEui
 {
     [Dependency] private readonly ILogManager _logManager = default!;
+    [Dependency] private readonly IClyde _clyde = default!;
 
     private ISawmill _sawmill;
 
@@ -45,7 +47,17 @@ public sealed class CreationsPanelEui : BaseEui
             case NewIncomingCreationPaintingMessage newIncoming:
                 TryCreateIncoming(newIncoming.Painting);
                 break;
+            case RemoveIncomingCreationPaintingMessage removeIncoming:
+                Logger.Debug("Removing xd");
+                RemoveIncoming(removeIncoming.Painting);
+                break;
         }
+    }
+
+    private void SendRemove(CreationPaintingMessage painting)
+    {
+        Logger.Debug("Send remove");
+        SendMessage(new RemoveIncomingCreationPaintingMessage(painting));
     }
 
     private bool TryCreateIncoming(CreationPaintingMessage painting)
@@ -54,12 +66,21 @@ public sealed class CreationsPanelEui : BaseEui
 
         if (_invokingPaintings.ContainsKey(painting))
             return false;
-        var entry = new PaintingEntry(painting);
+        var entry = new PaintingEntry(_clyde, painting, null, () => SendRemove(painting));
         _invokingPaintings.Add(painting, entry);
         _creationsPanel?.IncomingPaintingsTab.AddEntry(entry);
         Logger.Debug("goddamn");
 
         return true;
+    }
+
+    private void RemoveIncoming(CreationPaintingMessage painting)
+    {
+        if (!_invokingPaintings.TryGetValue(painting, out var entry))
+            return;
+        
+        _creationsPanel?.IncomingPaintingsTab.RemoveEntry(entry);
+        _invokingPaintings.Remove(painting);
     }
 
     public override void Opened()

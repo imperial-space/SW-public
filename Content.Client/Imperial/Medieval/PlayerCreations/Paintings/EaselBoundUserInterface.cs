@@ -39,7 +39,7 @@ public sealed class EaselBoundUserInterface : BoundUserInterface
         SendMessage(new EaselSaveMessage(_window.CanvasTexture));
     }
 
-    private void SendPainting(string name, string author)
+    private void SendPainting(string name, string description, string author)
     {
         Logger.Debug("send!");
 
@@ -49,8 +49,10 @@ public sealed class EaselBoundUserInterface : BoundUserInterface
         Logger.Debug("send");
 
         var localSession = _playerManager.LocalSession;
+        if (localSession == null)
+            return;
 
-        SendMessage(new EaselSendPaintingMessage(_window.CanvasTexture, name, author, localSession?.UserId));
+        SendMessage(new EaselSendPaintingMessage(_window.CanvasTexture, name, description, author, localSession.UserId));
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)

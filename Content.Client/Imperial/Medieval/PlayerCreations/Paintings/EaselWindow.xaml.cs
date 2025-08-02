@@ -21,7 +21,7 @@ public sealed partial class EaselWindow : DefaultWindow
     public Color[] CanvasTexture => CanvasControl.Pixels;
     public CanvasDrawControl Canvas => CanvasControl;
 
-    public Action<string, string>? OnSend;
+    public Action<string, string, string>? OnSend;
 
     public EaselWindow()
     {

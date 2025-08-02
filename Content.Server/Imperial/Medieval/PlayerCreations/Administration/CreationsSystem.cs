@@ -42,11 +42,6 @@ public sealed partial class CreationsSystem : EntitySystem
     // private readonly List<NrpMessage> _unsolvedMessages = new();
     private readonly List<CreationsPanelEui> _activeEuis = new();
 
-    private readonly List<CreationPaintingMessage> _invokingPaintings = new();
-
-    public List<CreationPaintingMessage> GetInvokingPaintings()
-        => _invokingPaintings;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -55,22 +50,19 @@ public sealed partial class CreationsSystem : EntitySystem
         SubscribeLocalEvent<SendCreationPaintingEvent>(OnSend);
     }
 
-    private void OnSend(SendCreationPaintingEvent args)
+    private async void OnSend(SendCreationPaintingEvent args)
     {
         Logger.Debug("Send");
 
         var paintingMessage = new CreationPaintingMessage(args.Painting,
             args.Name,
+            args.Description,
             args.Author,
-            args.SenderPlayer
+            args.SenderPlayer,
+            DateTime.UtcNow
         );
 
-        Logger.Debug(AddInvokingPainting(paintingMessage) ? "Yes" : "no");
-
-        foreach (var p in _invokingPaintings)
-        {
-            Logger.Debug($"Painting: {p.Painting} - {p.Name} - {p.Author} [{paintingMessage == p} {paintingMessage.Painting}]");
-        }
+        await AddIncomingPainting(paintingMessage);
 
     }
 
@@ -86,12 +78,42 @@ public sealed partial class CreationsSystem : EntitySystem
         _activeEuis.Remove(eui);
     }
 
-    public bool AddInvokingPainting(CreationPaintingMessage painting)
+    public async Task<List<Painting>> GetIncomingPaintings()
+        => await _db.GetPaintings(false);
+
+    public async Task<List<CreationPaintingMessage>> GetIncomingPaintingsMessages()
     {
-        if (_invokingPaintings.Contains(painting))
+        var paintings = await GetIncomingPaintings();
+
+        var messages = paintings.Select(p =>
+                new CreationPaintingMessage(PaintingHelper.StringToColors(p.Texture),
+                    p.Name,
+                    p.Description,
+                    p.Author,
+                    (NetUserId)p.AuthorUserId,
+                    p.CreationTime))
+            .ToList();
+
+        return messages;
+    }
+
+
+    public async Task<bool> AddIncomingPainting(CreationPaintingMessage painting)
+    {
+        var dbPainting = await _db.GetPainting(painting.Painting);
+
+        if (dbPainting != null)
             return false;
 
-        _invokingPaintings.Add(painting);
+        // _invokingPaintings.Add(painting);
+        await _db.AddPainting(painting.Painting,
+            painting.Name,
+            painting.Description,
+            painting.Author,
+            painting.SenderUserId,
+            painting.CreationTime,
+            false
+        );
 
         foreach (var eui in _activeEuis)
         {
@@ -102,9 +124,11 @@ public sealed partial class CreationsSystem : EntitySystem
         return true;
     }
 
-    public void RemoveInvokingPainting(CreationPaintingMessage painting)
+    public async void RemoveIncomingPainting(CreationPaintingMessage painting)
     {
-        _invokingPaintings.Remove(painting);
+        // _invokingPaintings.Remove(painting);
+        Logger.Debug("removed");
+        await _db.RemovePainting(painting.Painting);
 
         foreach (var eui in _activeEuis)
         {

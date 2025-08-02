@@ -68,10 +68,10 @@ public sealed class CreationsPanelEui : BaseEui
         switch (msg)
         {
             case RequestIncomingCreationPaintingsMessage:
-                SendMessage(new ResponseIncomingCreationPaintingsMessage(_creationsSystem.GetInvokingPaintings()));
+                SendMessage(new ResponseIncomingCreationPaintingsMessage(await _creationsSystem.GetIncomingPaintingsMessages()));
                 break;
             case RemoveIncomingCreationPaintingMessage remove:
-                _creationsSystem.RemoveInvokingPainting(remove.Painting);
+                _creationsSystem.RemoveIncomingPainting(remove.Painting);
                 break;
         }
     }

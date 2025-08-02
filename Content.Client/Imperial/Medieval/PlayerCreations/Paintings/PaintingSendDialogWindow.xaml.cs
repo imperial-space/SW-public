@@ -25,7 +25,7 @@ public sealed partial class PaintingSendDialogWindow : DefaultWindow
 
     private SharedPopupSystem _popup;
 
-    public PaintingSendDialogWindow(Action<string, string>? onConfirm)
+    public PaintingSendDialogWindow(Action<string, string, string>? onConfirm)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -33,6 +33,7 @@ public sealed partial class PaintingSendDialogWindow : DefaultWindow
         _popup = _systemManager.GetEntitySystem<SharedPopupSystem>();
 
         PaintingNameField.Placeholder = new Rope.Leaf(Loc.GetString("easel-window-confirmation-name-placeholder"));
+        PaintingDescriptionField.Placeholder = new Rope.Leaf(Loc.GetString("easel-window-confirmation-description-placeholder"));
         PaintingAuthorField.Placeholder = new Rope.Leaf(Loc.GetString("easel-window-confirmation-author-placeholder"));
 
 
@@ -43,6 +44,17 @@ public sealed partial class PaintingSendDialogWindow : DefaultWindow
                 if (_playerManager.LocalSession != null)
                 {
                     _popup.PopupCursor(Loc.GetString("easel-window-confirmation-name-length"),
+                        _playerManager.LocalSession);
+                }
+
+                return;
+            }
+
+            if (PaintingDescriptionField.TextLength >= 200)
+            {
+                if (_playerManager.LocalSession != null)
+                {
+                    _popup.PopupCursor(Loc.GetString("easel-window-confirmation-description-length"),
                         _playerManager.LocalSession);
                 }
 
@@ -61,9 +73,10 @@ public sealed partial class PaintingSendDialogWindow : DefaultWindow
             }
 
             var name = Rope.Collapse(PaintingNameField.TextRope);
+            var description = Rope.Collapse(PaintingDescriptionField.TextRope);
             var author = Rope.Collapse(PaintingAuthorField.TextRope);
 
-            onConfirm?.Invoke(name, author);
+            onConfirm?.Invoke(name, description, author);
             Logger.Debug("Invoked");
             Logger.Debug($"{onConfirm != null}");
             Close();

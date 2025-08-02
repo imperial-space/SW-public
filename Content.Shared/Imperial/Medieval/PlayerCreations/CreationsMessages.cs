@@ -1,4 +1,5 @@
-﻿using Content.Shared.Eui;
+﻿using System.Linq;
+using Content.Shared.Eui;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization;
 
@@ -7,17 +8,21 @@ namespace Content.Shared.Imperial.Medieval.PlayerCreations;
 [Serializable, NetSerializable]
 public sealed class CreationPaintingMessage : IEquatable<CreationPaintingMessage>
 {
-    public NetEntity Painting { get; }
+    public Color[] Painting { get; }
     public string Name { get; }
+    public string Description { get; }
     public string Author { get; }
-    public NetUserId? SenderUserId { get; }
+    public NetUserId SenderUserId { get; }
+    public DateTime CreationTime { get; }
 
-    public CreationPaintingMessage(NetEntity painting, string name, string author, NetUserId? senderUserId)
+    public CreationPaintingMessage(Color[] painting, string name, string description, string author, NetUserId senderUserId, DateTime creationTime)
     {
         Painting = painting;
         Name = name;
+        Description = description;
         Author = author;
         SenderUserId = senderUserId;
+        CreationTime = creationTime;
     }
 
     public override bool Equals(object? obj) => Equals(obj as CreationPaintingMessage);
@@ -27,10 +32,19 @@ public sealed class CreationPaintingMessage : IEquatable<CreationPaintingMessage
         if (other is null)
             return false;
 
-        return Painting == other.Painting;
+        return Painting.SequenceEqual(other.Painting);
     }
 
-    public override int GetHashCode() => Painting.GetHashCode();
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            int hash = 17;
+            foreach (var color in Painting)
+                hash = hash * 31 + color.GetHashCode();
+            return hash;
+        }
+    }
 
     public static bool operator ==(CreationPaintingMessage? left, CreationPaintingMessage? right)
     {
@@ -98,15 +112,17 @@ public sealed class AcceptIncomingCreationPaintingMessage : EuiMessageBase
 [Serializable]
 public sealed class SendCreationPaintingEvent : EntityEventArgs
 {
-    public NetEntity Painting;
+    public Color[] Painting;
     public string Name;
+    public string Description;
     public string Author;
-    public NetUserId? SenderPlayer;
+    public NetUserId SenderPlayer;
 
-    public SendCreationPaintingEvent(NetEntity painting, string name, string author, NetUserId? senderPlayer)
+    public SendCreationPaintingEvent(Color[] painting, string name, string description, string author, NetUserId senderPlayer)
     {
         Painting = painting;
         Name = name;
+        Description = description;
         Author = author;
         SenderPlayer = senderPlayer;
     }

@@ -3,7 +3,7 @@
          xmlns:ui="clr-namespace:Content.Client.Options.UI">
   <PanelContainer HorizontalAlignment="Stretch" StyleClasses="WindowHeadingBackground" Margin="5">
     <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical">
-      <SpriteView Name="PaintingView" Margin="0 15 0 0" SetSize="190 190" Stretch="Fill"/>
+      <TextureRect Name="PaintingView" Margin="0 15 0 0" SetSize="190 190" Stretch="KeepAspectCentered"/>
       <RichTextLabel Name="PaintingName" HorizontalAlignment="Center" Text="Картина Тестовая"/>
       <RichTextLabel Name="PaintingAuthor" HorizontalAlignment="Center" Text="Урист МакЧеловек (Ligyb)"/>
       <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Stretch">
