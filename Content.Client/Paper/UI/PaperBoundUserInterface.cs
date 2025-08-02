@@ -6,6 +6,8 @@ using Content.Shared.Paper;
 using static Content.Shared.Paper.PaperComponent;
 using Robust.Client.Player;
 using Content.Client.Imperial.Medieval.Skills;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Content.Shared.Friends.Components;
 
 namespace Content.Client.Paper.UI;
 
@@ -34,6 +36,20 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
         {
             _window.InitVisuals(Owner, visuals);
         }
+
+        // Imperial Medieval start
+        _window.SetRelations(null);
+
+        if (EntMan.TryGetComponent<MedievalFactionRelationsRequestComponent>(Owner, out var request))
+        {
+            var player = IoCManager.Resolve<IPlayerManager>().LocalEntity;
+            if (!EntMan.TryGetComponent<FriendsComponent>(player, out var member) || member.Faction != request.To || member.MenuAccess != FactionMenuAccess.Full)
+                return;
+
+            _window.SetRelations(request);
+
+        }
+        // Imperial Medieval end
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
