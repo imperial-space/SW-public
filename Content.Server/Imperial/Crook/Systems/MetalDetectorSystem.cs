@@ -1,15 +1,23 @@
 using System.Linq;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Timing;
-using Robust.Shared.Player;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Physics.Components;
-using Robust.Shared.Audio;
 using Content.Shared.Access.Components;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Imperial.Security;
+using Content.Shared.Power;
+using Content.Shared.Inventory;
+using Robust.Shared.Player;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Power.EntitySystems;
+using Content.Shared.Access.Systems;
+using Content.Shared.Contraband;
+using Content.Shared.Emag.Components;
+using Content.Shared.Emag.Systems;
 
 namespace Content.Server.Imperial.Security
 {
@@ -20,18 +28,50 @@ namespace Content.Server.Imperial.Security
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+        [Dependency] private readonly InventorySystem _inventory = default!;
+        [Dependency] private readonly SharedHandsSystem _hands = default!;
+        [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
+        [Dependency] private readonly SharedIdCardSystem _idCard = default!;
+        [Dependency] private readonly EmagSystem _emag = default!;
 
         public override void Initialize()
         {
             base.Initialize();
+            SubscribeLocalEvent<MetalDetectorComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<MetalDetectorComponent, ComponentStartup>(OnStartup);
+            SubscribeLocalEvent<MetalDetectorComponent, GotEmaggedEvent>(OnEmagged);
+        }
+
+        private void OnPowerChanged(EntityUid uid, MetalDetectorComponent comp, ref PowerChangedEvent args)
+        {
+            comp.Powered = args.Powered;
+            UpdateState(uid, comp.Powered ? MetalDetectorVisualState.Powered : MetalDetectorVisualState.Off, comp);
         }
 
         private void OnStartup(Entity<MetalDetectorComponent> detector, ref ComponentStartup args)
         {
             detector.Comp.NextStateReset = _timing.CurTime;
-            detector.Comp.State = MetalDetectorVisualState.Powered;
-            _appearance.SetData(detector, MetalDetectorVisuals.State, detector.Comp.State);
+            UpdateState(detector.Owner, detector.Comp.Powered ? MetalDetectorVisualState.Powered : MetalDetectorVisualState.Off, detector.Comp);
+        }
+
+        private void OnEmagged(EntityUid uid, MetalDetectorComponent comp, ref GotEmaggedEvent args)
+        {
+            if (comp.Emagged || !_emag.CompareFlag(args.Type, EmagType.Access))
+                return;
+
+            comp.Emagged = true;
+            args.Handled = true;
+            args.Repeatable = false;
+
+            UpdateState(uid, MetalDetectorVisualState.Scanning, comp);
+            _audio.PlayPvs(comp.AlertSound, uid);
+            EnsureComp<EmaggedComponent>(uid);
+        }
+
+        private void UpdateState(EntityUid uid, MetalDetectorVisualState state, MetalDetectorComponent comp)
+        {
+            comp.State = state;
+            _appearance.SetData(uid, MetalDetectorVisuals.State, state);
         }
 
         public override void Update(float frameTime)
@@ -41,106 +81,119 @@ namespace Content.Server.Imperial.Security
             var query = EntityQueryEnumerator<MetalDetectorComponent, PhysicsComponent>();
             while (query.MoveNext(out var uid, out var comp, out var phys))
             {
-                if (!phys.CanCollide || Terminating(uid))
+                if (!comp.Powered || !phys.CanCollide)
                     continue;
 
-                ProcessDetector(uid, comp, phys);
+                if ((comp.State == MetalDetectorVisualState.Alert ||
+                     comp.State == MetalDetectorVisualState.Warning ||
+                     comp.State == MetalDetectorVisualState.Scanning) &&
+                    _timing.CurTime > comp.NextStateReset)
+                {
+                    UpdateState(uid, MetalDetectorVisualState.Powered, comp);
+                }
+
+                ProcessDetection(uid, comp, phys);
             }
         }
 
-        private void ProcessDetector(EntityUid uid, MetalDetectorComponent comp, PhysicsComponent phys)
+        private void ProcessDetection(EntityUid uid, MetalDetectorComponent comp, PhysicsComponent phys)
         {
-            var contacting = _physics.GetContactingEntities(uid, phys);
-            if (contacting == null)
+            var intersecting = _physics.GetContactingEntities(uid, phys);
+            if (intersecting == null)
                 return;
 
-            foreach (var entity in contacting)
+            foreach (var entity in intersecting)
             {
-                if (!IsValidTarget(entity))
+                if (!HasComp<InventoryComponent>(entity) ||
+                    comp.ScannedEntities.TryGetValue(entity, out var lastScan) &&
+                    _timing.CurTime < lastScan + comp.ScanCooldown)
+                {
                     continue;
+                }
 
-                ProcessDetection(uid, entity, comp);
-            }
-
-            if (comp.State != MetalDetectorVisualState.Powered &&
-                _timing.CurTime > comp.NextStateReset)
-            {
-                comp.State = MetalDetectorVisualState.Powered;
-                _appearance.SetData(uid, MetalDetectorVisuals.State, comp.State);
+                comp.ScannedEntities[entity] = _timing.CurTime;
+                ProcessEntity(uid, entity, comp);
             }
         }
 
-        private bool IsValidTarget(EntityUid entity)
+        private void ProcessEntity(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
         {
-            return !Terminating(entity) &&
-                   HasComp<ActorComponent>(entity) &&
-                   TryComp<PhysicsComponent>(entity, out var physics) &&
-                   physics.CanCollide;
+            if (comp.Emagged || HasRequiredAccess(entity, comp))
+            {
+                UpdateState(detector, MetalDetectorVisualState.Scanning, comp);
+                _audio.PlayPvs(comp.ClearSound, detector);
+                comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
+                return;
+            }
+
+            var (hasWeaponAndContraband, hasContraband) = CheckEntity(entity, comp);
+
+            if (hasWeaponAndContraband && comp.CheckWeapons && comp.CheckContraband)
+            {
+                UpdateState(detector, MetalDetectorVisualState.Alert, comp);
+                _audio.PlayPvs(comp.AlertSound, detector);
+                comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
+                return;
+            }
+            else if (hasContraband && comp.CheckContraband)
+            {
+                UpdateState(detector, MetalDetectorVisualState.Warning, comp);
+                _audio.PlayPvs(comp.WarningSound, detector);
+                comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
+                return;
+            }
+            UpdateState(detector, MetalDetectorVisualState.Scanning, comp);
+            _audio.PlayPvs(comp.ClearSound, detector);
+            comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
         }
 
-        private void ProcessDetection(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
+        private (bool hasWeaponAndContraband, bool hasContraband) CheckEntity(EntityUid entity, MetalDetectorComponent comp)
         {
-            if (comp.ScannedPlayers.TryGetValue(entity, out var lastScan) &&
-                _timing.CurTime < lastScan + comp.ScanCooldown)
+            bool weaponAndContraband = false;
+            bool contrabandOnly = false;
+            foreach (var slot in comp.CheckedSlots)
             {
-                return;
+                if (_inventory.TryGetSlotEntity(entity, slot, out var item))
+                {
+                    CheckItem(item.Value, ref weaponAndContraband, ref contrabandOnly);
+                }
+            }
+            foreach (var heldItem in _hands.EnumerateHeld(entity))
+            {
+                CheckItem(heldItem, ref weaponAndContraband, ref contrabandOnly);
             }
 
-            comp.ScannedPlayers[entity] = _timing.CurTime;
+            return (weaponAndContraband, contrabandOnly);
+        }
 
-            if (HasRequiredAccess(entity, comp))
+        private void CheckItem(EntityUid item, ref bool hasWeaponAndContraband, ref bool hasContrabandOnly)
+        {
+            var hasWeapon = HasComp<GunComponent>(item) || HasComp<MeleeWeaponComponent>(item);
+            var hasContraband = HasComp<ContrabandComponent>(item);
+
+            if (!hasWeaponAndContraband && hasWeapon && hasContraband)
             {
-                SetDetectorState(detector, MetalDetectorVisualState.Scanning, comp.ClearSound, comp);
-                return;
+                hasWeaponAndContraband = true;
             }
-
-            var hasWeapon = HasWeapon(entity);
-            SetDetectorState(detector,
-                hasWeapon ? MetalDetectorVisualState.Alert : MetalDetectorVisualState.Scanning,
-                hasWeapon ? comp.AlertSound : comp.ClearSound,
-                comp);
+            else if (!hasContrabandOnly && hasContraband)
+            {
+                hasContrabandOnly = true;
+            }
         }
 
         private bool HasRequiredAccess(EntityUid userUid, MetalDetectorComponent detector)
         {
-            if (!TryComp<AccessComponent>(userUid, out var access) || access.Tags == null)
-                return false;
-
-            foreach (var requiredTag in detector.AllowedAccess)
+            if (TryComp<AccessComponent>(userUid, out var access) &&
+                detector.AllowedAccess.Any(required => access.Tags.Contains(required)))
             {
-                if (access.Tags.Contains(requiredTag))
-                    return true;
+                return true;
             }
 
-            return false;
-        }
-
-        private void SetDetectorState(EntityUid uid, MetalDetectorVisualState state,
-            SoundSpecifier sound, MetalDetectorComponent component)
-        {
-            component.State = state;
-            component.NextStateReset = _timing.CurTime + component.StateResetDelay;
-            _audio.PlayPvs(sound, uid);
-            _appearance.SetData(uid, MetalDetectorVisuals.State, state);
-        }
-
-        private bool HasWeapon(EntityUid entity)
-        {
-            if (Terminating(entity))
+            if (!_idCard.TryFindIdCard(userUid, out var idCard))
                 return false;
 
-            foreach (var container in _container.GetAllContainers(entity))
-            {
-                foreach (var item in container.ContainedEntities)
-                {
-                    if (Terminating(item))
-                        continue;
-
-                    if (HasComp<GunComponent>(item) || HasComp<MeleeWeaponComponent>(item))
-                        return true;
-                }
-            }
-            return false;
+            return TryComp<AccessComponent>(idCard, out var idAccess) &&
+                   detector.AllowedAccess.Any(required => idAccess.Tags.Contains(required));
         }
     }
 }

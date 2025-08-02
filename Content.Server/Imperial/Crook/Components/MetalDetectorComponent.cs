@@ -1,32 +1,63 @@
+using System;
 using Robust.Shared.Audio;
-using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
+using Robust.Shared.Audio.Systems;
+using System.Collections.Generic;
 using Content.Shared.Imperial.Security;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Imperial.Security
 {
     [RegisterComponent]
     public sealed partial class MetalDetectorComponent : Component
     {
-        [DataField]
-        public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Machines/alarm.ogg");
+        [DataField("scanCooldown")]
+        public TimeSpan ScanCooldown = TimeSpan.FromSeconds(1);
 
-        [DataField]
-        public SoundSpecifier ClearSound = new SoundPathSpecifier("/Audio/Machines/beep.ogg");
+        [DataField("stateResetDelay")]
+        public TimeSpan StateResetDelay = TimeSpan.FromSeconds(2);
 
-        [DataField]
+        [DataField("itemScanRadius")]
+        public float ItemScanRadius = 0.5f;
+
+        [DataField("checkedSlots")]
+        public List<string> CheckedSlots = new() { "outerClothing", "belt", "back", "pockets" };
+
+        [DataField("allowedAccess")]
         public List<string> AllowedAccess = new() { "Security", "Command" };
 
-        [DataField]
-        public MetalDetectorVisualState State = MetalDetectorVisualState.Off;
+        [DataField("checkWeapons")]
+        public bool CheckWeapons = true;
 
-        [DataField]
-        public TimeSpan ScanCooldown = TimeSpan.FromSeconds(3);
+        [DataField("checkContraband")]
+        public bool CheckContraband = true;
 
-        [DataField]
-        public TimeSpan StateResetDelay = TimeSpan.FromSeconds(2.5);
+        [ViewVariables]
+        public Dictionary<EntityUid, TimeSpan> ScannedEntities = new();
 
-        public readonly Dictionary<EntityUid, TimeSpan> ScannedPlayers = new();
+        [ViewVariables]
+        [DataField("nextStateReset", customTypeSerializer: typeof(TimeOffsetSerializer))]
         public TimeSpan NextStateReset;
+
+        [ViewVariables]
+        [DataField("nextStateChange", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        public TimeSpan NextStateChange = TimeSpan.Zero;
+
+        [DataField("clearSound")]
+        public SoundSpecifier ClearSound = new SoundPathSpecifier("/Audio/Machines/beep.ogg");
+
+        [DataField("alertSound")]
+        public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
+
+        [DataField("warningSound")]
+        public SoundSpecifier WarningSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
+
+        [ViewVariables]
+        public bool Powered;
+
+        [ViewVariables]
+        public bool Emagged;
+
+        [ViewVariables]
+        public MetalDetectorVisualState State = MetalDetectorVisualState.Off;
     }
 }

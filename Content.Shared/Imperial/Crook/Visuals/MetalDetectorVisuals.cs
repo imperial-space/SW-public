@@ -8,6 +8,7 @@ namespace Content.Shared.Imperial.Security
         Off,
         Powered,
         Scanning,
+        Warning,
         Alert
     }
 

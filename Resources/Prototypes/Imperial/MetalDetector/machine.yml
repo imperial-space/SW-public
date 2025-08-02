@@ -1,55 +1,295 @@
-- type: entity
+- type: wireLayout
   id: MetalDetector
-  name: Metal Detector
+  dummyWires: 4
+  wires:
+    - !type:PowerWireAction
+    - !type:PowerWireAction
+
+- type: entity
+  id: BaseMetalDetector
+  abstract: true
   parent: BaseMachinePowered
+  components:
+    - type: Transform
+      noRot: false
+    - type: Physics
+      bodyType: Static
+
+- type: entity
+  id: ImperialMetalDetector
+  name: Metal Detector
+  suffix: Crook
+  parent: BaseMetalDetector
   placement:
     mode: SnapgridCenter
   components:
-  - type: Clickable
-  - type: InteractionOutline
-  - type: Icon
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Sprite
+      noRot: false
+      drawdepth: Overdoors
+      sprite: Imperial/MetalDetector/machine.rsi
+      layers:
+        - state: off
+        - map: ["scanner"]
+          shader: unshaded
+        - state: panel
+          map: ["enum.WiresVisualLayers.MaintenancePanel"]
+    - type: AccessReader
+      access: [["Security", "Command"]]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.MetalDetectorVisuals.State:
+          scanner:
+            Off: { state: unpowered }
+            Powered: { state: powered }
+            Alert: { state: alert }
+            Scanning: { state: scanning }
+            Warning: { state: warning }
+    - type: Electrified
+      usesApcPower: true
+    - type: MetalDetector
+      checkWeapons: true
+      checkContraband: true
+      warningSound:
+        path: /Audio/Machines/twobeep.ogg
+      alertSound:
+        path: /Audio/Machines/twobeep.ogg
+      clearSound:
+        path: /Audio/Machines/beep.ogg
+      allowedAccess: ["Security", "Command"]
+      scanCooldown: 2
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+    - type: WirelessNetworkConnection
+      range: 1000
+    - type: DeviceLinkSource
+      range: 1000
+      ports:
+        - SignalMetalDetector
+    - type: Construction
+      graph: ImperialMetalDetector
+      node: detector
+    - type: WiresPanel
+    - type: WiresPanelSecurity
+    - type: WiresVisuals
+    - type: Wires
+      layoutId: MetalDetector
+      boardName: wires-board-name-metal-detector
+    - type: Fixtures
+      fixtures:
+        metalDetector:
+          shape: !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          hard: false
+          density: 1500
+          mask:
+            - DoorPassable
+          layer:
+            - AirlockLayer
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger
+            damage: 150
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: machineFrame
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
+    - type: UserInterface
+      interfaces:
+        enum.WiresUiKey.Key:
+          type: WiresBoundUserInterface
+
+- type: entity
+  parent: ImperialMetalDetector
+  id: MetalDetectorSecure
+  suffix: Secure, Crook
+  components:
+    - type: Construction
+      graph: MetalDetector
+      node: panelReinforced
+    - type: WiresPanelSecurity
+      securityLevel: panelReinforced
+      examine: wires-panel-component-on-examine-security-level2
+      wiresAccessible: false
+
+- type: entity
+  id: MetalDetectorFrame
+  name: metal detector frame
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Transform
+    - type: Sprite
+      noRot: true
+      drawdepth: Overdoors
+      sprite: Imperial/MetalDetector/machine.rsi
+      state: frame
+    - type: Physics
+      bodyType: Static
+    - type: Anchorable
+    - type: Pullable
+    - type: Rotatable
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          hard: false
+          density: 1500
+          mask:
+            - DoorPassable
+          layer:
+            - AirlockLayer
+    - type: Construction
+      graph: ImperialMetalDetector
+      node: frame
+
+- type: Tag
+  id: MetalDetector
+
+- type: entity
+  id: MetalDetectorCircuitboard
+  parent: BaseElectronics
+  name: metal detector electronics
+  description: An electronics board used in metal detector.
+  components:
+    - type: Tag
+      tags:
+        - MetalDetector
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: security
+    - type: StaticPrice
+      price: 15
+
+### Tech
+
+- type: technology
+  id: MetalDetectorTech
+  name: research-technology-metal-detector
+  icon:
     sprite: Imperial/MetalDetector/machine.rsi
     state: icon
-  - type: Sprite
-    noRot: true
-    drawdepth: Overdoors
-    sprite: Imperial/MetalDetector/machine.rsi
-    layers:
-    - state: off
-    - map: ["scanner"]
-      shader: unshaded
-  - type: AccessReader
-    access: [["Security", "Command"]]
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.MetalDetectorVisuals.State:
-        scanner:
-          Off: { state: off }
-          Powered: { state: powered }
-          Alert: { state: alert }
-          Scanning: { state: scanning }
-  - type: MetalDetector
-    alertSound:
-      path: /Audio/Machines/alarm.ogg
-    clearSound:
-      path: /Audio/Machines/beep.ogg
-    allowedAccess: ["Security", "Command"]
-    scanCooldown: 3
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      metalDetector:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        hard: false
-        density: 1500
-        mask:
-        - DoorPassable
-        layer:
-        - AirlockLayer
-  - type: Anchorable
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+    - MetalDetectorCircuitboard
+
+- type: latheRecipe
+  id: MetalDetectorCircuitboard
+  name: metal-detector-circuitboard
+  icon:
+    sprite: Objects/Misc/module.rsi
+    state: security
+  result: MetalDetectorCircuitboard
+  completetime: 8
+  materials:
+    Plasma: 10
+    Steel: 10
+    Gold: 1
+
+### Tech
+
+- type: construction
+  id: ImperialMetalDetector
+  graph: ImperialMetalDetector
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  startNode: start
+  targetNode: detector
+
+- type: constructionGraph
+  id: ImperialMetalDetector
+  start: start
+  graph:
+    - node: start
+      edges:
+      - to: frame
+        steps:
+        - material: Steel
+          amount: 5
+          doAfter: 2
+
+    - node: frame
+      entity: MetalDetectorFrame
+      edges:
+      - to: start
+        steps:
+        - tool: Welding
+          doAfter: 4
+        completed:
+        - !type:GivePrototype
+          prototype: SheetSteel1
+          amount: 5
+        - !type:DeleteEntity {}
+      - to: parts
+        steps:
+        - material: Cable
+          amount: 5
+          doAfter: 0.5
+        - tool: Screwing
+          doAfter: 2
+
+    - node: parts
+      entity: MetalDetectorFrame
+      edges:
+      - to: electronics
+        steps:
+        - tag: MetalDetector
+          store: board
+          name: микросхема металлоискателя # Imperial Recipes Locale
+          icon:
+            sprite: "Objects/Misc/module.rsi"
+            state: "security"
+          doAfter: 0.5
+        - anyTags:
+            - PowerCell
+            - PowerCellSmall
+          store: powercell
+          name: любая батарейка # Imperial Recipes Locale
+          icon:
+            sprite: "Objects/Power/power_cells.rsi"
+            state: "medium"
+          doAfter: 0.5
+      - to: frame
+        completed:
+        - !type:GivePrototype
+          prototype: CableApcStack1
+          amount: 5
+        steps:
+        - tool: Cutting
+          doAfter: 1
+
+    - node: electronics
+      edges:
+      - to: detector
+        steps:
+        - tool: Screwing
+          doAfter: 2
+
+    - node: detector
+      entity: ImperialMetalDetector
+      edges:
+      - to: parts
+        conditions:
+        - !type:WirePanel {}
+        - !type:ContainerNotEmpty
+          container: board
+        completed:
+        - !type:EmptyAllContainers
+          pickup: true
+          emptyAtUser: true
+        steps:
+        - tool: Prying
+          doAfter: 1
