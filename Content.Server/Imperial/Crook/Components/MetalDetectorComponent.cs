@@ -29,6 +29,9 @@ namespace Content.Server.Imperial.Crook.Components
         [DataField("stateResetDelay")]
         public TimeSpan StateResetDelay = TimeSpan.FromSeconds(2);
 
+        [DataField("maxRecursionDepth")]
+        public int MaxRecursionDepth = 5;
+
         [DataField("allowedAccess")]
         public List<string> AllowedAccess = new() { "Security", "Command" };
 

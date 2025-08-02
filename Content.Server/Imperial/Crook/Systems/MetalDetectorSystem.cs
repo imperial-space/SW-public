@@ -1,20 +1,18 @@
 using System.Linq;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Containers;
 using Robust.Shared.Timing;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Physics.Components;
+using Robust.Shared.Containers;
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Power;
 using Content.Shared.Access.Components;
 using Content.Shared.Weapons.Melee;
-using Content.Shared.Weapons.Ranged.Components;
 using Content.Server.Imperial.Crook.Components;
 using Content.Shared.Imperial.Crook.Visuals;
-using Content.Shared.Power;
 using Content.Shared.Inventory;
-using Robust.Shared.Player;
 using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Power.EntitySystems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Contraband;
 using Content.Shared.Emag.Components;
@@ -25,17 +23,16 @@ namespace Content.Server.Imperial.Crook.Systems
     public sealed class MetalDetectorSystem : EntitySystem
     {
         [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly SharedContainerSystem _container = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly SharedHandsSystem _hands = default!;
-        [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
         [Dependency] private readonly SharedIdCardSystem _idCard = default!;
         [Dependency] private readonly EmagSystem _emag = default!;
 
-        private const int MaxRecursionDepth = 5;
+        private float _scanCooldown = 0.25f;
+        private float _timeSinceLastScan;
 
         public override void Initialize()
         {
@@ -43,6 +40,34 @@ namespace Content.Server.Imperial.Crook.Systems
             SubscribeLocalEvent<MetalDetectorComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<MetalDetectorComponent, ComponentStartup>(OnStartup);
             SubscribeLocalEvent<MetalDetectorComponent, GotEmaggedEvent>(OnEmagged);
+        }
+
+        public override void Update(float frameTime)
+        {
+            base.Update(frameTime);
+
+            _timeSinceLastScan += frameTime;
+            if (_timeSinceLastScan < _scanCooldown)
+                return;
+
+            _timeSinceLastScan -= _scanCooldown;
+
+            var query = EntityQueryEnumerator<MetalDetectorComponent, PhysicsComponent>();
+            while (query.MoveNext(out var uid, out var comp, out var phys))
+            {
+                if (!comp.Powered || !phys.CanCollide)
+                    continue;
+
+                if ((comp.State == MetalDetectorVisualState.Alert ||
+                     comp.State == MetalDetectorVisualState.Warning ||
+                     comp.State == MetalDetectorVisualState.Scanning) &&
+                    _timing.CurTime > comp.NextStateReset)
+                {
+                    UpdateState(uid, MetalDetectorVisualState.Powered, comp);
+                }
+
+                ProcessDetection(uid, comp, phys);
+            }
         }
 
         private void OnPowerChanged(EntityUid uid, MetalDetectorComponent comp, ref PowerChangedEvent args)
@@ -77,28 +102,6 @@ namespace Content.Server.Imperial.Crook.Systems
             _appearance.SetData(uid, MetalDetectorVisuals.State, state);
         }
 
-        public override void Update(float frameTime)
-        {
-            base.Update(frameTime);
-
-            var query = EntityQueryEnumerator<MetalDetectorComponent, PhysicsComponent>();
-            while (query.MoveNext(out var uid, out var comp, out var phys))
-            {
-                if (!comp.Powered || !phys.CanCollide)
-                    continue;
-
-                if ((comp.State == MetalDetectorVisualState.Alert ||
-                     comp.State == MetalDetectorVisualState.Warning ||
-                     comp.State == MetalDetectorVisualState.Scanning) &&
-                    _timing.CurTime > comp.NextStateReset)
-                {
-                    UpdateState(uid, MetalDetectorVisualState.Powered, comp);
-                }
-
-                ProcessDetection(uid, comp, phys);
-            }
-        }
-
         private void ProcessDetection(EntityUid uid, MetalDetectorComponent comp, PhysicsComponent phys)
         {
             var intersecting = _physics.GetContactingEntities(uid, phys);
@@ -129,7 +132,7 @@ namespace Content.Server.Imperial.Crook.Systems
                 return;
             }
 
-            var (hasWeaponAndContraband, hasContraband) = CheckEntity(entity, comp);
+            var (hasWeaponAndContraband, hasContrabandOnly) = CheckEntity(entity, comp);
 
             if (hasWeaponAndContraband && comp.CheckWeapons && comp.CheckContraband)
             {
@@ -138,7 +141,7 @@ namespace Content.Server.Imperial.Crook.Systems
                 comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
                 return;
             }
-            else if (hasContraband && comp.CheckContraband)
+            else if (hasContrabandOnly && comp.CheckContraband)
             {
                 UpdateState(detector, MetalDetectorVisualState.Warning, comp);
                 _audio.PlayPvs(comp.WarningSound, detector);
@@ -151,7 +154,7 @@ namespace Content.Server.Imperial.Crook.Systems
             comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
         }
 
-        private (bool hasWeaponAndContraband, bool hasContraband) CheckEntity(EntityUid entity, MetalDetectorComponent comp)
+        private (bool hasWeaponAndContraband, bool hasContrabandOnly) CheckEntity(EntityUid entity, MetalDetectorComponent comp)
         {
             bool weaponAndContraband = false;
             bool contrabandOnly = false;
@@ -162,7 +165,7 @@ namespace Content.Server.Imperial.Crook.Systems
                 {
                     if (_inventory.TryGetSlotEntity(entity, slot.Name, out var item) && item != null)
                     {
-                        CheckItemAndContainers(item.Value, ref weaponAndContraband, ref contrabandOnly, 0);
+                        CheckItemAndContainers(item.Value, ref weaponAndContraband, ref contrabandOnly, 0, comp.MaxRecursionDepth);
                         if (weaponAndContraband) return (true, true);
                     }
                 }
@@ -179,9 +182,9 @@ namespace Content.Server.Imperial.Crook.Systems
             return (weaponAndContraband, contrabandOnly);
         }
 
-        private void CheckItemAndContainers(EntityUid item, ref bool weaponAndContraband, ref bool contrabandOnly, int depth)
+        private void CheckItemAndContainers(EntityUid item, ref bool weaponAndContraband, ref bool contrabandOnly, int depth, int maxDepth)
         {
-            if (depth > MaxRecursionDepth)
+            if (depth > maxDepth)
                 return;
 
             CheckItem(item, ref weaponAndContraband, ref contrabandOnly);
@@ -193,12 +196,13 @@ namespace Content.Server.Imperial.Crook.Systems
                 {
                     foreach (var containedItem in container.ContainedEntities)
                     {
-                        CheckItemAndContainers(containedItem, ref weaponAndContraband, ref contrabandOnly, depth + 1);
+                        CheckItemAndContainers(containedItem, ref weaponAndContraband, ref contrabandOnly, depth + 1, maxDepth);
                         if (weaponAndContraband) return;
                     }
                 }
             }
         }
+
         private void CheckItem(EntityUid item, ref bool hasWeaponAndContraband, ref bool hasContrabandOnly)
         {
             var hasWeapon = HasComp<GunComponent>(item) || HasComp<MeleeWeaponComponent>(item);
