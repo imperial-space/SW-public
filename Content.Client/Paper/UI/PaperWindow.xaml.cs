@@ -12,6 +12,8 @@ using Robust.Client.UserInterface.RichText;
 using Content.Client.UserInterface.RichText;
 using Robust.Shared.Input;
 using System.Text;
+using Content.Shared.Imperial.Medieval.Factions.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Client.Paper.UI
 {
@@ -367,6 +369,37 @@ namespace Content.Client.Paper.UI
                 FillStatus.Text = "";
                 SaveButton.Disabled = false;
             }
+        }
+
+        // Imperial Medieval start
+
+        public event Action<bool>? SendRelations;
+
+        public void SetRelations(MedievalFactionRelationsRequestComponent? comp)
+        {
+            if (comp == null)
+            {
+                RelationsContainer.Visible = false;
+                return;
+            }
+
+            RelationsContainer.Visible = true;
+
+            var proto = IoCManager.Resolve<IPrototypeManager>();
+
+            RelationsLabel.SetMessage(Loc.GetString("paper-ui-faction-relations-request",
+                ("from", proto.Index(comp.From).Name),
+                ("relation", proto.Index(comp.Relation).Name)));
+
+            AcceptRelation.Button.OnPressed += _ =>
+            {
+                SendRelations?.Invoke(true);
+            };
+
+            DeclineRelation.Button.OnPressed += _ =>
+            {
+                SendRelations?.Invoke(false);
+            };
         }
     }
 }

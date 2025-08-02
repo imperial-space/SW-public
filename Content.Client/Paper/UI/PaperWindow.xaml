@@ -1,5 +1,6 @@
 <paper:PaperWindow xmlns="https://spacestation14.io"
     xmlns:paper="clr-namespace:Content.Client.Paper.UI"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Medieval.UserInterface.Elements"
     MouseFilter="Stop" Resizable="True" MinSize="150 150"
     SetSize="510 660"> <!-- Provide some reasonable sizes by default. Can be changed by the component -->
 
@@ -25,7 +26,13 @@
                         <TextureButton Name="FooterImage" HorizontalAlignment="Center" VerticalAlignment="Top" MouseFilter="Ignore"/>
                     </BoxContainer>
                     <paper:StampCollection Name="StampDisplay" VerticalAlignment="Bottom" Margin="6"/>
-
+                <!-- Imperial Medieval Start -->
+                <BoxContainer Name="RelationsContainer" Orientation="Horizontal" Margin="4">
+                        <RichTextLabel StyleClasses="PaperWrittenText" Name="RelationsLabel" />
+                    <imp:BorderedButton Name="AcceptRelation" Text="Принять" HorizontalExpand="True" VerticalExpand="True"/>
+                    <imp:BorderedButton Name="DeclineRelation" Text="Отказать" HorizontalExpand="True" VerticalExpand="True"/>
+                </BoxContainer>
+                <!-- Imperial Medieval End -->
                 </PanelContainer>
             </ScrollContainer>
         </PanelContainer>
