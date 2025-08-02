@@ -125,7 +125,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 var other = args.OtherEntity;
                 if (_tagSystem.HasTag(other, component.HealTag))
                 {
-                    var heal = 0.5f;
+                    var heal = 0.35f;
                     component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + heal);
                     SyncDamageable(uid, component);
                 }
