@@ -8,6 +8,7 @@
   rules:
   - TDM
   - MedievalStatsCounter
+  - MedievalFactionGoalsRule
 
 - type: gamePreset
   id: MedievalDevelop
@@ -28,15 +29,17 @@
   - TDM
   - Myrmex
   - MedievalStatsCounter
+  - MedievalFactionGoalsRule
 
 - type: gamePreset
   id: MedievalSkeletron
   alias:
   - medievalskeletron
   name: medieval-skeletron-title
-  description: medieval-skeletron-description 
+  description: medieval-skeletron-description
   showInVote: true
   rules:
   - TDM
   - MedievalStatsCounter
   - MedievalSkeletonInvasionRule
+  - MedievalFactionGoalsRule
