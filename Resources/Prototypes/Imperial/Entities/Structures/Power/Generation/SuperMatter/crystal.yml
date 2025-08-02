@@ -68,7 +68,7 @@
       # Настройки событий
       noneEventDuration: 300.0         # 5 минут для None события
       lightningEventDuration: 120.0    # 2 минуты для Lightning события
-      lightningCooldownDuration: 2.0   # 2 секунды кулдаун для молний
+      lightningCooldownDuration: 8.0   # 8 секунд кулдаун для молний
       lightningSpawnDuration: 1.0      # 1 секунда для спавна молнии
       lightningMinNextEvent: 180.0     # 3 минуты минимальное время до следующего события
       lightningMaxNextEvent: 420.0     # 7 минут максимальное время до следующего события
