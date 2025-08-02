@@ -1,0 +1,71 @@
+﻿using Robust.Shared.Network;
+using Robust.Shared.Utility;
+using SixLabors.ImageSharp.PixelFormats;
+
+namespace Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
+
+using Content.Shared.Containers.ItemSlots;
+using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
+[RegisterComponent, NetworkedComponent]
+public sealed partial class EaselComponent : Component
+{
+    /// <summary>
+    /// Name of the <see cref="ItemSlot"/> that stores the actual item.
+    /// </summary>
+    [DataField]
+    public string Slot = "Easel";
+}
+
+[Serializable, NetSerializable]
+public sealed class EaselBoundUserInterfaceState : BoundUserInterfaceState
+{
+    public readonly Color[] Texture;
+
+    public EaselBoundUserInterfaceState(Color[] texture)
+    {
+        Texture = texture;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class EaselSaveMessage : BoundUserInterfaceMessage
+{
+    public readonly Color[] Texture;
+
+    public EaselSaveMessage(Color[] texture)
+    {
+        Texture = texture;
+    }
+}
+
+
+[Serializable, NetSerializable]
+public sealed class EaselSendPaintingMessage : BoundUserInterfaceMessage
+{
+    public readonly Color[] Texture;
+    public readonly string Name;
+    public readonly string Author;
+    public readonly NetUserId? SenderPlayer;
+
+    public EaselSendPaintingMessage(Color[] texture, string name, string author, NetUserId? senderPlayer)
+    {
+        Texture = texture;
+        Name = name;
+        Author = author;
+        SenderPlayer = senderPlayer;
+    }
+}
+
+[Serializable, NetSerializable]
+public enum EaselUiKey
+{
+    Key
+}
+
+[Serializable, NetSerializable]
+public enum EaselVisuals : byte
+{
+    ContainsItem,
+    Layer
+}
