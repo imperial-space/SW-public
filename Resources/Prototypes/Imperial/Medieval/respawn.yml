@@ -87,7 +87,8 @@
   - type: TriggerOnSpawn
   - type: SpawnOnTrigger
     proto: SpawnPointMedievalMobPlayerRespawnFront
-
+  - type: TimedDespawn
+    lifetime: 180
 
 
 - type: startingGear
