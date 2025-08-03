@@ -19,9 +19,14 @@
   copyright: "LuckyIdiots"
   source: "Discord @idiot_1212"
 
-- files: ["X4TheJourneyBegins.ogg", "X4PromotionCeremony.ogg", "X4Winterblossom.ogg",
-         "X4Artillery.ogg", "X4AsteroidField.ogg", "X4ShieldsRecharged.ogg",
-         "X4ToTheDeathForTheGlory.ogg"]
+- files:
+    - "X4TheJourneyBegins.ogg"
+    - "X4PromotionCeremony.ogg"
+    - "X4Winterblossom.ogg"
+    - "X4Artillery.ogg"
+    - "X4AsteroidField.ogg"
+    - "X4ShieldsRecharged.ogg"
+    - "X4ToTheDeathForTheGlory.ogg"
   license: "CC-BY-ND-3.0"
   copyright: "Alexei Zakharov Music"
   source: "https://www.youtube.com/channel/UCH9vAAnK-F3mkvmS_mZMbgg"
