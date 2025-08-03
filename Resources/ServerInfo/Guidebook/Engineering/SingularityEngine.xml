@@ -3,7 +3,7 @@
   Мощный генератор, создающий энергию за счёт накопления радиации из сверхмассивной гравитационной сингулярности.
 
   <Box>
-    <GuideEntityEmbed Entity="SingularityGenerator"/>
+    <GuideEntityEmbed Entity="SingularityGenerator" Caption="генератор сингулярности"/>
     <GuideEntityEmbed Entity="Singularity"/>
   </Box>
 

@@ -15,8 +15,8 @@
 
   <Box>
     <GuideEntityEmbed Entity="Emitter"/>
-    <GuideEntityEmbed Entity="ContainmentFieldGenerator"/>
-    <GuideEntityEmbed Entity="ContainmentField"/>
+    <GuideEntityEmbed Entity="ContainmentFieldGenerator" Caption="генератор поля"/>
+    <GuideEntityEmbed Entity="ContainmentField" Caption="поле"/>
   </Box>
 
   Сдерживающее поле создаётся между [italic]активными[/italic] генераторами сдерживающего поля, которые питаются [italic]эмиттерами[/italic].
