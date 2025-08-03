@@ -90,6 +90,15 @@
     state: base
 
 - type: entity
+  id: ShiftFrontMarksman
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.4, 0.4
+    sprite: Imperial/DeadSector/weapons/weapons/sniper/VSSMkI.rsi
+    state: base
+
+- type: entity
   id: ShiftFrontHMG
   parent: ShiftIconBase
   components:

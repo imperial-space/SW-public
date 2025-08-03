@@ -198,6 +198,36 @@
 
 - type: entity
   parent: BaseMobHumanShiftFrontGreen
+  id: BaseMobHumanShiftFrontGreenMarksman
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontGreenMarksman ]
+  - type: GhostRole
+    name: Снайпер
+    description: Технократическая Германия
+  - type: ShiftPlayer
+    name: Marksman
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontMarksman
+
+- type: entity
+  parent: BaseMobHumanShiftFrontYellow
+  id: BaseMobHumanShiftFrontYellowMarksman
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontYellowMarksman ]
+  - type: GhostRole
+    name: Снайпер
+    description: Единая Китайская партия
+  - type: ShiftPlayer
+    name: Marksman
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontMarksman
+
+- type: entity
+  parent: BaseMobHumanShiftFrontGreen
   id: BaseMobHumanShiftFrontGreenHeavy
   components:
   - type: Loadout
@@ -601,6 +631,51 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
+
+
+- type: startingGear
+  id: ShiftFrontGreenMarksman
+  equipment:
+    jumpsuit: VlOldStationMercJumpsuitShiftFront
+    head: ClothingHeadHatCapcapSheriffShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ArmoredUnloading6B43RaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: ElysiumFederationIDCardShiftFront
+    #back: EncryptionKeyRadio3
+    ears: ClothingHeadsetAlt4ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltMercWebbingShiftFront
+  inhand:
+    - WeaponSniperMarksmanShiftingFront
+  storage:
+    belt:
+    - MagazineBoxAntiMaterielBigM
+    - MagazineBoxAntiMaterielBigM
+
+- type: startingGear
+  id: ShiftFrontYellowMarksman
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
+    head: ClothingHeadHatYellowsoftShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterArmorMinutemanAdmiralShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorEngineerIDCardShiftFront
+    #back: EncryptionKeyRadio4
+    ears: ClothingHeadsetAlt3ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponSniperMarksmanShiftingFront
+  storage:
+    belt:
+    - MagazineBoxAntiMaterielBigM
+    - MagazineBoxAntiMaterielBigM
 
 - type: startingGear
   id: ShiftFrontGreenNew

@@ -287,6 +287,36 @@
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueMarksman
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueMarksman ]
+  - type: GhostRole
+    name: Снайпер
+    description: НАТО
+  - type: ShiftPlayer
+    name: Marksman
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontMarksman
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedMarksman
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedMarksman ]
+  - type: GhostRole
+    name: Снайпер
+    description: ПСБ (пост-совет. блок)
+  - type: ShiftPlayer
+    name: Marksman
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontMarksman
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
   id: BaseMobHumanShiftFrontBlueHeavy
   components:
   - type: Loadout
@@ -708,6 +738,50 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
+
+- type: startingGear
+  id: ShiftFrontBlueMarksman
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    head: ClothingHeadHatCapSonaShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: ArmoredUnloading6B43RaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponSniperMarksmanShiftingFront
+  storage:
+    belt:
+    - MagazineBoxAntiMaterielBigM
+    - MagazineBoxAntiMaterielBigM
+
+- type: startingGear
+  id: ShiftFrontRedMarksman
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecShiftFront
+    head: ClothingHeadHatSecsoftShiftFront
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: ClothingOuterCoatSyndieCapArmoredShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponSniperMarksmanShiftingFront
+  storage:
+    belt:
+    - MagazineBoxAntiMaterielBigM
+    - MagazineBoxAntiMaterielBigM
 
 - type: startingGear
   id: ShiftFrontBlueNew

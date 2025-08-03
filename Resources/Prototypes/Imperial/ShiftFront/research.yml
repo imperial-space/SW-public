@@ -238,12 +238,20 @@
   - ShiftFrontBarricade
 
 - type: ShiftFrontResearch
+  id: ShiftFrontMarksman
+  tier: 2
+  researchName: марксманы
+  price: 55
+  requiredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
   id: ShiftFrontSniper
   tier: 2
   researchName: снайпера
-  price: 105
+  price: 95
   requiredResearches:
-  - ShiftFrontAssault
+  - ShiftFrontMarksman
 
 - type: ShiftFrontResearch
   id: ShiftFrontHmg
