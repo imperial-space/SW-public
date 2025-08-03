@@ -24,11 +24,12 @@
     Gas:
       effects:
       - !type:HealthChange
-        scaleByQuantity: true
+        scaleByQuantity: false
         ignoreResistances: true
         damage:
            groups:
-            Airloss: -6
             Brute: -4
             Burn: -6
             Toxin: -4
+           types:
+            Bloodloss: -2

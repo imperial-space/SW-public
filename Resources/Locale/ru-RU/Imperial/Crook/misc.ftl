@@ -49,3 +49,8 @@ ent-WeaponEnergyTurretSyndicateMachineCircuitboard = машинная плата
     .desc = Машинная плата.
 ent-WeaponEnergyTurretSyndicate = лазерная турель синдиката
     .desc = Стреляет в бюрократические принадлежности, как только их видит.
+
+ent-DrinkKvassBestDrink = квас
+    .desc = Славянское удовольствие, где вместо дрожжей - сухарики три корочки.
+reagent-name-kvass-bestdrink = квас
+reagent-desc-kvass-bestdrink = Славянское удовольствие, где вместо дрожжей - сухарики три корочки.

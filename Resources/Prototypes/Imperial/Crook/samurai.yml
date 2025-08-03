@@ -119,6 +119,13 @@
   id: RedEnergyKatanaSamurai
   description: A katana infused with strong energy. It has a red glow.
   components:
+  - type: MeleeWeapon
+    wideAnimationRotation: -60
+    damage:
+      types:
+        Slash: 20
+        Heat: 5
+        Structural: 50
   - type: PointLight
     radius: 5
     energy: 1.6
@@ -132,13 +139,29 @@
     reflectProb: 0.8
     spread: 90
 
+- type: entity
+  name: jumpsuit
+  suffix: Неснимаемое, Crook, Samurai
+  parent: ClothingUniformJumpsuitOperative
+  id: ClothingUniformJumpsuitOperativeUnremoveable
+  components:
+    - type: Unremoveable
+
+- type: entity
+  name: gloves
+  suffix: Неснимаемое, Crook, Samurai
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesCombatUnremoveable
+  components:
+    - type: Unremoveable
+
 - type: startingGear
   id: SpaceSamuraiGear
   equipment:
-    jumpsuit: ClothingUniformJumpsuitOperative
+    jumpsuit: ClothingUniformJumpsuitOperativeUnremoveable
     shoes: ShoesSpaceSamurai
     head: ClothingHeadHelmetSpaceSamurai
-    gloves: ClothingHandsGlovesCombat
+    gloves: ClothingHandsGlovesCombatUnremoveable
     outerClothing: ClothingOuterSuitSpaceSamurai
     pocket1: PinpointerStation
     pocket2: DoubleEmergencyOxygenTankFilled
@@ -158,6 +181,10 @@
     speechSounds: SyndieBorg
     allowedEmotes:
     - Laugh
+  - type: Hunger
+    baseDecayRate: 0
+  - type: Thirst
+    baseDecayRate: 0
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
@@ -178,7 +205,6 @@
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
-    - ImperialNutrimentPumpImplanter
     - FreedomImplant
     - ScramImplant
     - EmpImplant
@@ -197,6 +223,10 @@
     speechSounds: SyndieBorg
     allowedEmotes:
     - Laugh
+  - type: Hunger
+    baseDecayRate: 0
+  - type: Thirst
+    baseDecayRate: 0
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
@@ -224,7 +254,6 @@
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
-    - ImperialNutrimentPumpImplanter
     - FreedomImplant
     - ScramImplant
     - EmpImplant
