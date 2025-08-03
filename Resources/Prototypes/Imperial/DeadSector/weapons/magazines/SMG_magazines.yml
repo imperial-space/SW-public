@@ -54,7 +54,7 @@
 
 - type: entity
   id: MagazineMP5
-  parent: [BaseMagazineMP5, BaseMinorContraband]
+  parent: BaseMagazineMP5
   name: pistol magazine (.35 MP5)
   suffix: Felix
   components:
@@ -68,7 +68,7 @@
 
 - type: entity
   id: MagazineArmorPiercingMP5
-  parent: [BaseMagazineMP5, BaseMinorContraband]
+  parent: BaseMagazineMP5
   name: pistol magazine (.35 MP5)
   suffix: Felix
   components:
@@ -83,7 +83,7 @@
 - type: entity
   id: BaseMagazineMP9
   name: pistol magazine (.35 MP5)
-  parent: [BaseMagazinePistolSubMachineGun, BaseMinorContraband]
+  parent: BaseMagazinePistolSubMachineGun
   abstract: true
   components:
   - type: BallisticAmmoProvider
@@ -103,7 +103,7 @@
 
 - type: entity
   id: MagazineMP9
-  parent: [BaseMagazineMP9, BaseMinorContraband]
+  parent: BaseMagazineMP9
   name: pistol magazine (.35 MP9)
   suffix: Felix
   components:
@@ -119,7 +119,7 @@
 
 - type: entity
   id: MagazineArmorPiercingMP9
-  parent: [BaseMagazineMP9, BaseMinorContraband]
+  parent: BaseMagazineMP9
   name: pistol magazine (.35 MP9)
   suffix: Felix
   components:

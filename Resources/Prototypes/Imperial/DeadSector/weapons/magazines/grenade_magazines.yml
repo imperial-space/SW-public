@@ -42,7 +42,7 @@
 - type: entity
   id: MagazineGrenadeRPG8Empty
   name: grenade cartridge RPG-8
-  parent: [BaseMagazineGrenadeRPG8, BaseMinorContraband]
+  parent: BaseMagazineGrenadeRPG8
   suffix: Felix
   components:
   - type: BallisticAmmoProvider
@@ -50,7 +50,7 @@
 - type: entity
   id: MagazineGrenadeRPG8
   name: grenade cartridge RPG-8
-  parent: [BaseMagazineGrenadeRPG8, BaseMinorContraband]
+  parent: BaseMagazineGrenadeRPG8
   suffix: Felix
   components:
   - type: BallisticAmmoProvider
@@ -59,7 +59,7 @@
 - type: entity
   id: MagazineGrenadeRPG8Frag
   name: frag grenade cartridge RPG-8
-  parent: [BaseMagazineGrenadeRPG8, BaseMinorContraband]
+  parent: BaseMagazineGrenadeRPG8
   suffix: Felix
   components:
   - type: BallisticAmmoProvider
@@ -68,7 +68,7 @@
 - type: entity
   id: MagazineGrenadeRPG8Smoke
   name: smoke grenade cartridge RPG-8
-  parent: [BaseMagazineGrenadeRPG8, BaseMinorContraband]
+  parent: BaseMagazineGrenadeRPG8
   suffix: Felix
   components:
   - type: BallisticAmmoProvider

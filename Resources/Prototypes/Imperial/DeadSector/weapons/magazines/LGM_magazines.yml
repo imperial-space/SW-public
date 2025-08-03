@@ -29,7 +29,7 @@
 - type: entity
   id: MagazineAssaultPKMBox
   name: Assault PKM magazine box (7x62x51)
-  parent: [BaseMagazineAssaultPKM, BaseMinorContraband]
+  parent: BaseMagazineAssaultPKM
   suffix: Felix
   components:
   - type: Tag
@@ -49,7 +49,7 @@
 - type: entity
   id: MagazineAssaultPKMBoxPiercing
   name: Assault PKM magazine box (7x62x51 AP)
-  parent: [BaseMagazineAssaultPKM, BaseMinorContraband]
+  parent: BaseMagazineAssaultPKM
   suffix: Felix
   components:
   - type: Tag
