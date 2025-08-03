@@ -8,13 +8,17 @@
     sprite: Imperial/Medieval/Objects/Envelope/basic.rsi
     layers:
     - state: icon
+    - state: icon
+      map: ["enum.PaperVisualLayers.Writing"]
+      visible: false
+    - state: icon
+      map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
   - type: Item
     left:
     - state: inhand-left
     right:
     - state: inhand-right
-  - type: GenericVisualizer
-    visuals: []
 
 - type: entity
   name: papr
