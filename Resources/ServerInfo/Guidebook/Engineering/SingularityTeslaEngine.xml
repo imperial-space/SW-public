@@ -47,13 +47,11 @@
   </Box>
 
   ## Эмиттеры
-  Устройства, питающие генераторы сдерживающего поля.
 
   <Box>
     <GuideEntityEmbed Entity="Emitter"/>
+    Устройства, питающие генераторы сдерживающего поля. Питаются от [color=yellow][bold]СВ кабелей[/bold][/color] под ними и стреляют [italic]лазеры[/italic], пока включены.
   </Box>
-
-  Питаются от [color=yellow][bold]СВ кабелей[/bold][/color] под ними и стреляют [italic]лазеры[/italic], пока включены.
 
   Всегда [color=#a4885c][bold]блокируйте[/bold][/color] эмиттеры с помощью [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color].
   Таким образом вы можете [italic]предотвратить случайное или преднамеренное отключение[/italic] сдерживающего поля.
@@ -81,11 +79,12 @@
     <GuideEntityEmbed Entity="ParticleAcceleratorEmitterPort" Caption="" Margin="0"/>
   </Box>
 
-  На некоторых станциях УЧ уже почти собран.
-  Чтобы завершить сборку, убедитесь в наличии [color=yellow][bold]СВ кабеля[/bold][/color] под силовой установкой УЧ, закрепите все части, а затем добавьте к каждой по [color=green][bold]НВ кабелю[/bold][/color].
+
 
   <Box>
-    <GuideEntityEmbed Entity="CableApcStack"/>
+    <GuideEntityEmbed Entity="CableMVStack" Caption="СВ провода"/>
+    <GuideEntityEmbed Entity="CableApcStack" Caption="НВ провода"/>
+    На некоторых станциях УЧ уже почти собран. Чтобы завершить сборку, убедитесь в наличии [color=yellow][bold]СВ кабеля[/bold][/color] под силовой установкой УЧ, закрепите все части, а затем добавьте к каждой по [color=green][bold]НВ кабелю[/bold][/color].
   </Box>
 
   Чтобы завершить сборку, нажмите [color=yellow][bold][keybind="Use"][/bold][/color] на каждую деталь, держа в руке [italic]отвёртку[/italic].
