@@ -1,5 +1,5 @@
 <Document>
-  # Канистры газа
+  # Канистры газов
   <Box>
     <GuideEntityEmbed Entity="AirCanister" Caption="воздух"/>
     <GuideEntityEmbed Entity="OxygenCanister" Caption="кислород"/>
