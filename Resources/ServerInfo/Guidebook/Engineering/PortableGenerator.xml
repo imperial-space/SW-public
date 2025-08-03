@@ -13,15 +13,19 @@
 
   <Box>
     <GuideEntityEmbed Entity="PortableGeneratorJrPacman" Caption="М.И.Н.И.П.А.К.М.А.Н." />
-    <GuideEntityEmbed Entity="WeldingFuelTank" />
+    Можно найти в [bold]технических помещениях[/bold]. Идеально подходит для сотрудников, желающих [bold]восстановить питание в своей комнатке[/bold].
+
   </Box>
 
-  Можно найти в [bold]технических помещениях[/bold]. Идеально подходит для сотрудников, желающих [bold]восстановить питание в своей комнатке[/bold].
+
   Выдаёт до [color=orange][protodata="PortableGeneratorJrPacman" comp="FuelGenerator" member="MaxTargetPower" format="N0"/] Вт[/color] энергии, что позволяет запитывать до [bold]двух комнат[/bold]. Чаще всего увидите в [bold]Химии[/bold] Медицинского отдела. Они никогда не хотят сидеть без света.
 
   [bold]Запуск максимально простой[/bold]: закрепите над [color=green]НВ кабелем[/color], залейте сварочного топлива, и запускайте!
 
-  [color=brown]Сварочное топливо[/color] вы часто можете встретить в [bold]огромных баках[/bold] в [bold]технических помещениях[/bold].
+  <Box>
+    <GuideEntityEmbed Entity="WeldingFuelTank" Caption="бак топлива"/>
+    [color=brown]Сварочное топливо[/color] вы часто можете встретить в [bold]огромных баках[/bold] в [bold]технических помещениях[/bold].
+  </Box>
 
   # Взрослые ребята
 

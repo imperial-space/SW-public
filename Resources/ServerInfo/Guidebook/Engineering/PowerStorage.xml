@@ -38,8 +38,8 @@
 
   <Box>
     <GuideEntityEmbed Entity="SMESAdvanced"/>
+    Способен хранить ещё больше энергии. Чаще всего используются в массивах СМЭСов для хранения энергии станции.
   </Box>
-  Способен хранить ещё больше энергии. Чаще всего используются в массивах СМЭСов для хранения энергии станции.
 
-  Их батарея насчитывает [color=orange][protodata="SMESAdvanced" comp="Battery" member="MaxCharge" format="N0"/] Дж[/color] энергии, а скорость разрядки достигает [color=orange][protodata="SMESAdvanced" comp="PowerNetworkBattery" member="MaxSupply" format="N0"/] Вт[/color].
+  Батарея продвинутого СМЭСа насчитывает [color=orange][protodata="SMESAdvanced" comp="Battery" member="MaxCharge" format="N0"/] Дж[/color] энергии, а скорость разрядки достигает [color=orange][protodata="SMESAdvanced" comp="PowerNetworkBattery" member="MaxSupply" format="N0"/] Вт[/color].
 </Document>
