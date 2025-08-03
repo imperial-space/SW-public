@@ -4,7 +4,7 @@
   copyright: "Per Kiilstofte"
   source: "https://youtu.be/CybIj9hPYlQ"
 
-- files: ["Dire_Situation.ogg", "the_fallen_queen.ogg"]
+- files: ["the_fallen_queen.ogg", "Destiny_of_Colonists.ogg"]
   license: "CC-BY-SA-3.0"
   copyright: "Болгарыч / Bolgarich"
   source: "https://www.youtube.com/@bolgarich1181"
@@ -13,6 +13,11 @@
   license: "CC-BY-SA-3.0"
   copyright: "Aaron Kenny"
   source: "https://youtu.be/MfzzZB_W8JA"
+
+- files: ["Dire_Situation.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Rick O'Shea, RMC Sounds"
+  source: "https://www.youtube.com/"
 
 - files: ["Dead_Pilot.ogg", "Hopefully_Dead.ogg", "Run_Run_My_Darling.ogg"]
   license: "CC-BY-ND-3.0"
@@ -31,8 +36,22 @@
   copyright: "Evil Fire by Alan Paul Ett"
   source: "https://www.youtube.com/channel/UC-VWe_wKXKQXR-uCpwTgvVA"
 
-- files: ["Dropzone.ogg", "Super_Nova_In_The_Catacombs.ogg", "Time_Is_Running_Out.ogg",
-         "Last_Stand.ogg", "Destiny_of_Colonists.ogg"]
+- files: ["Dropzone.ogg"]
   license: "CC-BY-ND-3.0"
-  copyright: "See individual track attributions"
+  copyright: "Qwesta"
+  source: "https://www.youtube.com/"
+
+- files: ["Super_Nova_In_The_Catacombs.ogg"]
+  license: "CC-BY-ND-3.0"
+  copyright: "WigWoo1"
+  source: "https://youtu.be/ly3-rhDTeOU"
+
+- files: ["Time_Is_Running_Out.ogg"]
+  license: "CC-BY-ND-3.0"
+  copyright: "Nighty"
+  source: "https://www.youtube.com/"
+
+- files: ["Last_Stand.ogg"]
+  license: "CC-BY-ND-3.0"
+  copyright: "Author"
   source: "https://www.youtube.com/"
