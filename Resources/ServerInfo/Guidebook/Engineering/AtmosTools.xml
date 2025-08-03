@@ -9,22 +9,21 @@
 
   ## Атмос-голопроектор
   Проецирует барьер, не дающий газам проходить на его другую сторону. Проход других объектов не ограничен.
-  The Holofan Projector is a tool that can project a barrier of hard-light which blocks air and gas flow, while still allowing people to pass through.
 
   <Box>
     <GuideEntityEmbed Entity="HolofanProjector"/>
     <GuideEntityEmbed Entity="HoloFan"/>
   </Box>
 
-  This is super useful for moving in between [textlink="firelock buffers" link="FireAndGasControl"] without leaking gas between rooms, as well a signifying to regular crew that a room may be unsafe for entry.
-  It can also be used for forming a temporary barrier to allow crew to quickly move between a spaced and unspaced area without risk of leaking air from other rooms.
+  Полезно при необходимости открыть [textlink="пожарный шлюз" link="FireAndGasControl"] без утечек газа, а также обозначения области как опасной.
+  Позволяет эвакуировать экипаж из опасной зоны без утечек газа.
 
-  It has an internal charge that will deplete with each use, but it can be recharged by taking out the power cell and inserting it into a cell charger or recharger.
+  У голопроектора есть батарея, разряжающаяся с каждым использованием. Вы можете зарядить батарею с помощью зарядника батарей.
 
-  Holofans that are placed adjacent to a [textlink="firelock" link="FireAndGasControl"] will deactivate the firelock lockout, allowing the firelock to be opened by hand.
+  Проекции, расположенные рядом с [textlink="пожарными шлюзами" link="FireAndGasControl"], деактивируют их режим [color=red]блокировки[/color], позволяя открывать их руками.
 
-  ## Gas Analyzer
-  The Gas Analyzer is a tool that can be used to analyze the gas composition of an exposed atmosphere, or any [textlink="atmospheric device" link="GasManipulation"] containing gas.
+  ## Газоанализатор
+  Инструмент, полезный для анализа атмосферы снаружи или в любом [textlink="атмос-устройстве" link="GasManipulation"], содержащем газ.
 
   <Box>
     <GuideEntityEmbed Entity="GasAnalyzer"/>

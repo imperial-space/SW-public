@@ -53,23 +53,16 @@
     <GuideEntityEmbed Entity="AirAlarm" Caption=""/>
   </Box>
 
-  Пожарные шлюзы автоматически закроются, если [textlink="Воздушная сигнализация link="AirAlarms"] получит статус [color=red]Опасность[/color]. Откроются они только по достижению состояния [color=green]Нормально[/color]
+  Пожарные шлюзы автоматически закроются, если [textlink="Воздушная сигнализация" link="AirAlarms"] получит статус [color=red]Опасность[/color]. Откроются они только по достижению состояния [color=green]Нормально[/color]
 
   Шлюзы в режиме [color=red]блокировки[/color] не откроются даже по достижению [color=green]Нормального[/color] состояния сигнализации.
-
-  ## Работа вместе с пожарной сигнализацией
-  <Box>
-
-    <GuideEntityEmbed Entity="FireAlarm" Caption=""/>
-  </Box>
-
 
   ## Пожарные сигнализации
   Устройства, способные контролировать пожарные шлюзы.
 
   <Box>
     <GuideEntityEmbed Entity="FireAlarm"/>
-    <GuideEntityEmbed Entity="Firelock" Caption=""/>
+    <GuideEntityEmbed Entity="Firelock"/>
   </Box>
 
   Устройства с сенсорами, [textlink="подключённые" link="Networking"] к пожарной сигнализации, активируют её при достижении [color=red]Опасного[/color] статуса Границы Температуры.
