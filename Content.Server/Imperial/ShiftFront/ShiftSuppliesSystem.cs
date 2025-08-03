@@ -406,6 +406,30 @@ namespace Content.Server.ShiftFront
                         Priority = 4,
                         //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
                     });
+                if (CheckResearch("ShiftFrontBack1", comp.Faction))
+                    ev.Verbs.Add(new AlternativeVerb
+                    {
+                        Act = () =>
+                        {
+                            comp.ChosenGen = "рюкзак";
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить рюкзак раз в какое-то время", "Выбрано");
+                        },
+                        Text = "Рюкзак",
+                        Priority = 4,
+                        //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
+                    });
+                if (CheckResearch("ShiftFrontBackREB", comp.Faction))
+                    ev.Verbs.Add(new AlternativeVerb
+                    {
+                        Act = () =>
+                        {
+                            comp.ChosenGen = "переносной РЭБ";
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить переносной РЭБ раз в какое-то время", "Выбрано");
+                        },
+                        Text = "Переносной РЭБ",
+                        Priority = 4,
+                        //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
+                    });                    
             }
             else
             {
@@ -582,6 +606,21 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "сталь":
                                 Spawn("SheetSteel10", coords);
+                                break;
+                            case "рюкзак":
+                                if (CheckResearch("ShiftFrontBack5", comp.Faction))
+                                    Spawn("BackPackTier5", coords);
+                                else if (CheckResearch("ShiftFrontBack4", comp.Faction))
+                                    Spawn("BackPackTier4", coords);
+                                else if (CheckResearch("ShiftFrontBack3", comp.Faction))
+                                    Spawn("BackPackTier3", coords);
+                                else if (CheckResearch("ShiftFrontBack2", comp.Faction))
+                                    Spawn("BackPackTier2", coords);
+                                else
+                                    Spawn("BackPackTier1", coords);
+                                break;
+                            case "переносной РЭБ":
+                                Spawn("ClothingBackpackREB" + comp.Faction, coords);
                                 break;
                             case "взрывоустойчивый ящик":
                                 Spawn("ExplodeResistiveCrate", coords);

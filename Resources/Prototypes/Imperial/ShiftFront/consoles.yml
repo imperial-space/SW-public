@@ -216,6 +216,7 @@
     minAngle: 25
     maxAngle: 25
   - type: ShiftFPVDrone
+    tankPart: true
     explosive: false
     pacif: false
   - type: ShiftStructure
@@ -1839,3 +1840,111 @@
   - type: Sprite
     sprite: Imperial/ShiftFront/light.rsi
     state: techhealyellow
+
+- type: entity
+  id: BackPackTier1
+  parent: ClothingBackpackSatchelDSO
+  components:
+  - type: Storage
+    grid:
+    - 0,0,2,2
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+- type: entity
+  id: BackPackTier2
+  parent: BlackShieldBackpack
+  components:
+  - type: Storage
+    grid:
+    - 0,0,3,3
+  - type: ExplosionResistance
+    damageCoefficient: 0.6
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+- type: entity
+  id: BackPackTier3
+  parent: ClothingBackpackERTMedical
+  components:
+  - type: Storage
+    grid:
+    - 0,0,4,4
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+- type: entity
+  id: BackPackTier4
+  parent: ClothingBackpackSacerdos_2
+  components:
+  - type: Storage
+    grid:
+    - 0,0,6,6
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+- type: entity
+  id: BackPackTier5
+  parent: ArmyHikingBackpackRaptor
+  components:
+  - type: Storage
+    grid:
+    - 0,0,8,8
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+
+- type: entity
+  parent: ClothingBackpackSatchel
+  id: ClothingBackpackREBBlue
+  components:
+  - type: Storage
+    grid:
+    - 0,0,0,1
+  - type: Sprite
+    sprite: Imperial/ShiftFront/backpacks/blue.rsi
+  - type: ShiftREB
+    radius: 5.5
+    faction: Blue
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+
+- type: entity
+  parent: ClothingBackpackREBBlue
+  id: ClothingBackpackREBRed
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/backpacks/red.rsi
+  - type: ShiftREB
+    faction: Red
+
+- type: entity
+  parent: ClothingBackpackREBBlue
+  id: ClothingBackpackREBGreen
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/backpacks/green.rsi
+  - type: ShiftREB
+    faction: Green
+
+- type: entity
+  parent: ClothingBackpackREBBlue
+  id: ClothingBackpackREBYellow
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/backpacks/yellow.rsi
+  - type: ShiftREB
+    faction: Yellow

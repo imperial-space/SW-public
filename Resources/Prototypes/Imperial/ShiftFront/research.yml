@@ -18,6 +18,55 @@
   #UnicForFaction: noth
 
 - type: ShiftFrontResearch
+  id: ShiftFrontBack1
+  tier: 1
+  researchName: рюкзаки 1
+  price: 20
+  requredResearches:
+  - ShiftFrontScout
+
+- type: ShiftFrontResearch
+  id: ShiftFrontBack2
+  tier: 1
+  researchName: рюкзаки 2
+  price: 25
+  requredResearches:
+  - ShiftFrontBack1
+
+- type: ShiftFrontResearch
+  id: ShiftFrontBack3
+  tier: 2
+  researchName: рюкзаки 3
+  price: 30
+  requredResearches:
+  - ShiftFrontBack2
+
+- type: ShiftFrontResearch
+  id: ShiftFrontBackREB
+  tier: 2
+  researchName: переносные РЭБ
+  price: 50
+  requredResearches:
+  - ShiftFrontBack3
+  - ShiftFrontREB
+
+- type: ShiftFrontResearch
+  id: ShiftFrontBack4
+  tier: 2
+  researchName: рюкзаки 4
+  price: 40
+  requredResearches:
+  - ShiftFrontBack3
+
+- type: ShiftFrontResearch
+  id: ShiftFrontBack5
+  tier: 3
+  researchName: рюкзаки 5
+  price: 65
+  requredResearches:
+  - ShiftFrontBack4
+
+- type: ShiftFrontResearch
   id: ShiftFrontAssault
   tier: 1
   researchName: штурмовик
