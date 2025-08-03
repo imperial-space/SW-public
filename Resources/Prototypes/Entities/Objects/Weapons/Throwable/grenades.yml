@@ -66,20 +66,22 @@
   parent: [ GrenadeBase, BaseSecurityContraband ]
   id: GrenadeFlashBang
   components:
+  - type: Item
+    size: Small
   - type: Sprite
     sprite: Objects/Weapons/Grenades/flashbang.rsi
   - type: FlashOnTrigger
     range: 7
   - type: SoundOnTrigger
     sound:
-      path: "/Audio/Imperial/ShiftFront/grenade_init.ogg"
+      path: "/Audio/Effects/flash_bang.ogg"
   - type: DeleteOnTrigger
   - type: SpawnOnTrigger
     proto: GrenadeFlashEffect
   - type: Appearance
   - type: TimerTriggerVisuals
     primingSound:
-      path: /Audio/Effects/countdown.ogg
+      path: /Audio/Imperial/ShiftFront/grenade_init.ogg
   - type: GuideHelp
     guides:
     - Security

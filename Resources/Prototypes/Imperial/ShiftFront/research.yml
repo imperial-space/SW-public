@@ -75,6 +75,14 @@
   - ShiftFrontFlanker
 
 - type: ShiftFrontResearch
+  id: ShiftFrontBomber
+  tier: 2
+  researchName: подрывник
+  price: 65
+  requredResearches:
+  - ShiftFrontAssault
+
+- type: ShiftFrontResearch
   id: ShiftFrontSupplies
   tier: 1
   researchName: завод припасов

@@ -300,7 +300,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 350
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -1769,7 +1769,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -1919,8 +1919,8 @@
     radius: 5.5
     faction: Blue
   - type: ClothingSpeedModifier
-    walkModifier: 0.75
-    sprintModifier: 0.75
+    walkModifier: 0.87
+    sprintModifier: 0.87
 
 - type: entity
   parent: ClothingBackpackREBBlue
@@ -1948,3 +1948,38 @@
     sprite: Imperial/ShiftFront/backpacks/yellow.rsi
   - type: ShiftREB
     faction: Yellow
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHelmetBombSuitShiftFrontB
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/helmets/bomb_black.rsi
+  - type: Clothing
+    sprite: Imperial/ShiftFront/helmets/bomb_black.rsi
+  - type: IngestionBlocker
+  - type: ExplosionResistance
+    damageCoefficient: 0.55
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.95
+        Slash: 0.95
+        Piercing: 0.95
+  - type: HideLayerClothing
+    layers:
+      Hair: HEAD
+      Snout: HEAD
+  - type: ClothingSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHelmetBombSuitShiftFrontB
+  id: ClothingHeadHelmetBombSuitShiftFrontG
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/helmets/bomb_gray.rsi
+  - type: Clothing
+    sprite: Imperial/ShiftFront/helmets/bomb_gray.rsi

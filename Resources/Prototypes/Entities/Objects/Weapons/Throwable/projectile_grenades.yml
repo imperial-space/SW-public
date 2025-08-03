@@ -105,7 +105,7 @@
         volume: 5
     initialBeepDelay: 0
     beepInterval: 8
-    delay: 5.5
+    delay: 1.7
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"

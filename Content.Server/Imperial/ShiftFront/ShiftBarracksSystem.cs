@@ -134,11 +134,8 @@ namespace Content.Server.ShiftFront
                             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
                             while (dquery.MoveNext(out var reuid, out var recomp))
                             {
-                                foreach (var player in recomp.RespawnQueue)
-                                {
-                                    if (player == session)
-                                        recomp.RespawnQueue.Remove(player);
-                                }
+                                if (recomp.RespawnQueue.Contains(session))
+                                    recomp.RespawnQueue.Remove(session);
                             }
                         }
                     },
@@ -179,11 +176,8 @@ namespace Content.Server.ShiftFront
                             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
                             while (dquery.MoveNext(out var reuid, out var recomp))
                             {
-                                foreach (var player in recomp.RespawnQueue)
-                                {
-                                    if (player == session)
-                                        recomp.RespawnQueue.Remove(player);
-                                }
+                                if (recomp.RespawnQueue.Contains(session))
+                                    recomp.RespawnQueue.Remove(session);
                             }
 
                         }
@@ -225,11 +219,8 @@ namespace Content.Server.ShiftFront
                             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
                             while (dquery.MoveNext(out var reuid, out var recomp))
                             {
-                                foreach (var player in recomp.RespawnQueue)
-                                {
-                                    if (player == session)
-                                        recomp.RespawnQueue.Remove(player);
-                                }
+                                if (recomp.RespawnQueue.Contains(session))
+                                    recomp.RespawnQueue.Remove(session);
                             }
                         }
                     },
@@ -270,11 +261,8 @@ namespace Content.Server.ShiftFront
                             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
                             while (dquery.MoveNext(out var reuid, out var recomp))
                             {
-                                foreach (var player in recomp.RespawnQueue)
-                                {
-                                    if (player == session)
-                                        recomp.RespawnQueue.Remove(player);
-                                }
+                                if (recomp.RespawnQueue.Contains(session))
+                                    recomp.RespawnQueue.Remove(session);
                             }
 
                         }
@@ -290,7 +278,7 @@ namespace Content.Server.ShiftFront
                     {
                         if (shiftPlayer.Eng || shiftPlayer.Leader)
                         {
-                            if (!TryWasteResource(rescomp, 55, 80, 15, session))
+                            if (!TryWasteResource(rescomp, 55, 85, 15, session))
                                 return;
                             if (comp.dict.TryGetValue("Mg", out int value))
                                 comp.dict["Mg"]++;
@@ -316,11 +304,8 @@ namespace Content.Server.ShiftFront
                             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
                             while (dquery.MoveNext(out var reuid, out var recomp))
                             {
-                                foreach (var player in recomp.RespawnQueue)
-                                {
-                                    if (player == session)
-                                        recomp.RespawnQueue.Remove(player);
-                                }
+                                if (recomp.RespawnQueue.Contains(session))
+                                    recomp.RespawnQueue.Remove(session);
                             }
 
                         }
@@ -362,11 +347,8 @@ namespace Content.Server.ShiftFront
                             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
                             while (dquery.MoveNext(out var reuid, out var recomp))
                             {
-                                foreach (var player in recomp.RespawnQueue)
-                                {
-                                    if (player == session)
-                                        recomp.RespawnQueue.Remove(player);
-                                }
+                                if (recomp.RespawnQueue.Contains(session))
+                                    recomp.RespawnQueue.Remove(session);
                             }
                         }
                     },
@@ -381,7 +363,7 @@ namespace Content.Server.ShiftFront
                     {
                         if (shiftPlayer.Eng || shiftPlayer.Leader)
                         {
-                            if (!TryWasteResource(rescomp, 45, 65, 10, session))
+                            if (!TryWasteResource(rescomp, 40, 55, 5, session))
                                 return;
                             if (comp.dict.TryGetValue("Marksman", out int value))
                                 comp.dict["Marksman"]++;
@@ -407,17 +389,14 @@ namespace Content.Server.ShiftFront
                             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
                             while (dquery.MoveNext(out var reuid, out var recomp))
                             {
-                                foreach (var player in recomp.RespawnQueue)
-                                {
-                                    if (player == session)
-                                        recomp.RespawnQueue.Remove(player);
-                                }
+                                if (recomp.RespawnQueue.Contains(session))
+                                    recomp.RespawnQueue.Remove(session);
                             }
                         }
                     },
-                    Text = "Снайпер",
+                    Text = "Марксман",
                     Priority = 10,
-                    Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Guns/Snipers/heavy_sniper.rsi"), "base")
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/DeadSector/weapons/weapons/sniper/VSSMkI.rsi"), "base")
                 });
             if (CheckResearch("ShiftFrontFlanker", comp.Faction))
                 ev.Verbs.Add(new AlternativeVerb
@@ -426,7 +405,7 @@ namespace Content.Server.ShiftFront
                     {
                         if (shiftPlayer.Eng || shiftPlayer.Leader)
                         {
-                            if (!TryWasteResource(rescomp, 45, 65, 10, session))
+                            if (!TryWasteResource(rescomp, 15, 30, 0, session))
                                 return;
                             if (comp.dict.TryGetValue("Flanker", out int value))
                                 comp.dict["Flanker"]++;
@@ -452,11 +431,8 @@ namespace Content.Server.ShiftFront
                             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
                             while (dquery.MoveNext(out var reuid, out var recomp))
                             {
-                                foreach (var player in recomp.RespawnQueue)
-                                {
-                                    if (player == session)
-                                        recomp.RespawnQueue.Remove(player);
-                                }
+                                if (recomp.RespawnQueue.Contains(session))
+                                    recomp.RespawnQueue.Remove(session);
                             }
                         }
                     },
@@ -464,6 +440,49 @@ namespace Content.Server.ShiftFront
                     Priority = 12,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Clothing/Shoes/Boots/combatboots.rsi"), "icon")
                 });
+            if (CheckResearch("ShiftFrontBomber", comp.Faction))
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () =>
+                    {
+                        if (shiftPlayer.Eng || shiftPlayer.Leader)
+                        {
+                            if (!TryWasteResource(rescomp, 35, 65, 0, session))
+                                return;
+                            if (comp.dict.TryGetValue("Bomber", out int value))
+                                comp.dict["Bomber"]++;
+                        }
+                        else
+                        {
+                            if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
+                            var session = actComp.PlayerSession;
+                            if (comp.dict.TryGetValue("Bomber", out int value))
+                                if (value > 0)
+                                    comp.dict["Bomber"]--;
+                                else
+                                {
+                                    _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
+                                    return;
+                                }
+                            var soljer = Spawn("BaseMobHumanShiftFront" + comp.Faction + "Bomber", coords);
+                            if (!_minds.TryGetMind(session, out var mindId, out var mindComp)) return;
+                            _minds.TransferTo(mindId, soljer, true, false, mindComp);
+                            _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnClone), uid);
+                            QueueDel(ev.User);
+
+                            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+                            while (dquery.MoveNext(out var reuid, out var recomp))
+                            {
+                                if (recomp.RespawnQueue.Contains(session))
+                                    recomp.RespawnQueue.Remove(session);
+                            }
+                        }
+                    },
+                    Text = "Подрывник",
+                    Priority = 12,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Grenades/grenade.rsi"), "icon")
+                });
+
         }
         public EntityUid GetResourceConsole(EntityUid uid, ShiftBarracksComponent comp)
         {

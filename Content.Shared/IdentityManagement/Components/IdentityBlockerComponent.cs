@@ -7,7 +7,7 @@ namespace Content.Shared.IdentityManagement.Components;
 public sealed partial class IdentityBlockerComponent : Component
 {
     [DataField]
-    public bool Enabled = true;
+    public bool Enabled = false;
 
     /// <summary>
     /// What part of your face does this cover? Eyes, mouth, or full?

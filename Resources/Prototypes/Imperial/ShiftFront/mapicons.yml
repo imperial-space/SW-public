@@ -99,6 +99,15 @@
     state: base
 
 - type: entity
+  id: ShiftFrontBomber
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.5, 0.5
+    sprite: Objects/Weapons/Grenades/grenade.rsi
+    state: icon
+
+- type: entity
   id: ShiftFrontHMG
   parent: ShiftIconBase
   components:

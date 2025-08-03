@@ -292,7 +292,7 @@
   - type: Loadout
     prototypes: [ ShiftFrontBlueMarksman ]
   - type: GhostRole
-    name: Снайпер
+    name: Марксман
     description: НАТО
   - type: ShiftPlayer
     name: Marksman
@@ -307,13 +307,43 @@
   - type: Loadout
     prototypes: [ ShiftFrontRedMarksman ]
   - type: GhostRole
-    name: Снайпер
+    name: Марксман
     description: ПСБ (пост-совет. блок)
   - type: ShiftPlayer
     name: Marksman
   - type: ShiftShowOnMap
     faction: Red
     mippleProto: ShiftFrontMarksman
+
+- type: entity
+  parent: BaseMobHumanShiftFrontBlue
+  id: BaseMobHumanShiftFrontBlueBomber
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontBlueBomber ]
+  - type: GhostRole
+    name: Подрывник
+    description: НАТО
+  - type: ShiftPlayer
+    name: Bomber
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontBomber
+
+- type: entity
+  parent: BaseMobHumanShiftFrontRed
+  id: BaseMobHumanShiftFrontRedBomber
+  components:
+  - type: Loadout
+    prototypes: [ ShiftFrontRedBomber ]
+  - type: GhostRole
+    name: Подрывник
+    description: ПСБ (пост-совет. блок)
+  - type: ShiftPlayer
+    name: Bomber
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontBomber
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -602,6 +632,7 @@
     - MagazineLightRifle
     - MagazineLightRifle
     - MagazineLightRifle
+    - GrenadeShrapnel
 
 - type: startingGear
   id: ShiftFrontRedBase
@@ -628,6 +659,7 @@
     - MagazineLightRifle
     - MagazineLightRifle
     - MagazineLightRifle
+    - GrenadeShrapnel
 
 - type: startingGear
   id: ShiftFrontBlueFast
@@ -656,7 +688,7 @@
     - MagazinePistol
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
-    - ShiftFrontBuildLight
+    - GrenadeFlashBang
 
 - type: startingGear
   id: ShiftFrontRedFast
@@ -685,7 +717,7 @@
     - MagazinePistol
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
-    - ShiftFrontBuildLight
+    - GrenadeFlashBang
 
 - type: startingGear
   id: ShiftFrontBlueFlanker
@@ -712,6 +744,7 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
+    - SmokeGrenade
 
 - type: startingGear
   id: ShiftFrontRedFlanker
@@ -738,6 +771,7 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
+    - SmokeGrenade
 
 - type: startingGear
   id: ShiftFrontBlueMarksman
@@ -760,6 +794,8 @@
     belt:
     - MagazineBoxAntiMaterielBigM
     - MagazineBoxAntiMaterielBigM
+    - SmokeGrenade
+    - SmokeGrenade
 
 - type: startingGear
   id: ShiftFrontRedMarksman
@@ -782,6 +818,70 @@
     belt:
     - MagazineBoxAntiMaterielBigM
     - MagazineBoxAntiMaterielBigM
+    - SmokeGrenade
+    - SmokeGrenade
+
+- type: startingGear
+  id: ShiftFrontBlueBomber
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
+    head: ClothingHeadHelmetBombSuitShiftFrontB
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: ClothingHandsGlovesCombatShiftFront
+    outerClothing: BodyArmorMultikamRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: BlueShieldIDCardShiftFront
+    #back: EncryptionKeyRadio2
+    back: BackPackTier2
+    ears: ClothingHeadsetAlt1ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: ClothingBeltSonaShiftFront
+  inhand:
+    - WeaponAR15ShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+    back:
+    - ExGrenade
+    - ExGrenade
+    - ExGrenade
+    - ExGrenade
+
+- type: startingGear
+  id: ShiftFrontRedBomber
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSecShiftFront
+    head: ClothingHeadHelmetBombSuitShiftFrontB
+    eyes: ClothingEyesHudCommandShiftFront
+    gloves: MedievalClothingHandsGlovesColorBlackShiftFront
+    outerClothing: BodyArmorTacticalRaptorShiftFront
+    shoes: ClothingShoesBootsCombatFilledShiftFront
+    id: SeniorOfficerIDCardShiftFront
+    #back: EncryptionKeyRadio1
+    back: BackPackTier2
+    ears: ClothingHeadsetAlt2ShiftingFront
+    pocket1: Wrench
+    pocket2: DeadSectorTourniquet
+    belt: USSPBeltAssaultShiftFront
+  inhand:
+    - WeaponRifleAkShiftingFront
+  storage:
+    belt:
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+    back:
+    - ExGrenade
+    - ExGrenade
+    - ExGrenade
+    - ExGrenade
 
 - type: startingGear
   id: ShiftFrontBlueNew
