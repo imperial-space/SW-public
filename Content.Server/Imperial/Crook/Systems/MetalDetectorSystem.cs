@@ -32,6 +32,10 @@ namespace Content.Server.Imperial.Crook.Systems
         [Dependency] private readonly SharedIdCardSystem _idCard = default!;
         [Dependency] private readonly EmagSystem _emag = default!;
 
+        private const float ThinkRate = 0.25f;
+        private float _accumulatedTime;
+        private readonly Dictionary<EntityUid, (bool hasWeaponAndContraband, bool hasContrabandOnly)> _cachedResults = new();
+
         public override void Initialize()
         {
             base.Initialize();
@@ -40,6 +44,20 @@ namespace Content.Server.Imperial.Crook.Systems
             SubscribeLocalEvent<MetalDetectorComponent, GotEmaggedEvent>(OnEmagged);
             SubscribeLocalEvent<MetalDetectorComponent, StartCollideEvent>(OnStartCollide);
             SubscribeLocalEvent<MetalDetectorComponent, EndCollideEvent>(OnEndCollide);
+            SubscribeLocalEvent<EntInsertedIntoContainerMessage>(OnInventoryChanged);
+            SubscribeLocalEvent<EntRemovedFromContainerMessage>(OnInventoryChanged);
+        }
+
+        private void OnInventoryChanged(EntInsertedIntoContainerMessage args)
+        {
+            if (HasComp<InventoryComponent>(args.Container.Owner))
+                _cachedResults.Remove(args.Container.Owner);
+        }
+
+        private void OnInventoryChanged(EntRemovedFromContainerMessage args)
+        {
+            if (HasComp<InventoryComponent>(args.Container.Owner))
+                _cachedResults.Remove(args.Container.Owner);
         }
 
         private void OnStartCollide(EntityUid uid, MetalDetectorComponent comp, ref StartCollideEvent args)
@@ -71,6 +89,12 @@ namespace Content.Server.Imperial.Crook.Systems
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
+
+            _accumulatedTime += frameTime;
+            if (_accumulatedTime < ThinkRate)
+                return;
+
+            _accumulatedTime -= ThinkRate;
 
             var query = EntityQueryEnumerator<MetalDetectorComponent>();
             while (query.MoveNext(out var uid, out var comp))
@@ -148,7 +172,13 @@ namespace Content.Server.Imperial.Crook.Systems
                 return;
             }
 
-            var (hasWeaponAndContraband, hasContrabandOnly) = CheckEntity(entity, comp);
+            if (!_cachedResults.TryGetValue(entity, out var result))
+            {
+                result = CheckEntity(entity, comp);
+                _cachedResults[entity] = result;
+            }
+
+            var (hasWeaponAndContraband, hasContrabandOnly) = result;
 
             if (hasWeaponAndContraband && comp.CheckWeapons && comp.CheckContraband)
             {

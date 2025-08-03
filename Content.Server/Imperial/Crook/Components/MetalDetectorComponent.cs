@@ -46,6 +46,7 @@ namespace Content.Server.Imperial.Crook.Components
 
         [ViewVariables]
         public Dictionary<EntityUid, TimeSpan> ScannedEntities = new();
+        private Dictionary<EntityUid, (bool, bool)> _cachedResults = new();
 
         [ViewVariables]
         [DataField("nextStateReset", customTypeSerializer: typeof(TimeOffsetSerializer))]
