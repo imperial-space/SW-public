@@ -1,0 +1,53 @@
+- type: entity
+  name: papr
+  parent: Paper
+  id: MedievalPaperEnvelopeBasic
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/basic.rsi
+    layers:
+    - state: icon
+  - type: Item
+    left:
+    - state: inhand-left
+    right:
+    - state: inhand-right
+  - type: GenericVisualizer
+    visuals: []
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeLegion
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/legion.rsi
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeBandit
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/bandit.rsi
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeRebel
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/rebel.rsi
+
+- type: entity
+  name: papr
+  parent: MedievalPaperEnvelopeBasic
+  id: MedievalPaperEnvelopeCollegium
+  description: "e."
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Envelope/collegium.rsi

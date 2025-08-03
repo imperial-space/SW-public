@@ -26,7 +26,7 @@
     Village: Trading
     Bandit: War
     Kayot: War
-
+  envelopeProto: MedievalPaperEnvelopeLegion
 
 - type: medievalFaction
   id: Insurgency
@@ -44,6 +44,7 @@
     Bandit: War
     Kayot: War
     Cult: War
+  envelopeProto: MedievalPaperEnvelopeRebel
 
 - type: medievalFaction
   id: Bandit
@@ -58,6 +59,7 @@
     Insurgency: War
   blockedRelations:
     - Kayot
+  envelopeProto: MedievalPaperEnvelopeBandit
 
 - type: medievalFaction
   id: Kayot
@@ -95,6 +97,7 @@
     Cult: War
   blockedRelations:
     - Cult
+  envelopeProto: MedievalPaperEnvelopeCollegium
 
 - type: medievalFaction
   id: Miner
