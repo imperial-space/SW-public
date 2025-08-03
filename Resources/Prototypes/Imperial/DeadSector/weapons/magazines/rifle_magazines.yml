@@ -231,13 +231,8 @@
 - type: entity
   id: BaseMagazineHK416LongRange
   name: magazine HK416
-  parent: [BaseItem, BaseMinorContraband]
+  parent: BaseMagazineHK416
   components:
-  - type: Tag
-    tags:
-      - MagazineHK416
-  - type: Item
-    size: Small
   - type: BallisticAmmoProvider
     proto: CartridgeHK416LongRange
     mayTransfer: true
@@ -245,9 +240,6 @@
       tags:
         - CartridgeFelixCarabineHK416
     capacity: 15
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/HK416_mag.rsi
     layers:
@@ -334,13 +326,8 @@
 - type: entity
   id: BaseMagazineAKS74yLongRange
   name: magazine AKS74y
-  parent: [BaseItem, BaseMinorContraband]
+  parent: BaseMagazineAKS74y
   components:
-  - type: Tag
-    tags:
-      - MagazineAKS74y
-  - type: Item
-    size: Small
   - type: BallisticAmmoProvider
     proto: CartridgeAKS74yLongRange
     mayTransfer: true
@@ -348,9 +335,6 @@
       tags:
         - CartridgeFelixCarabineAKS74y
     capacity: 15
-  - type: ContainerContainer
-    containers:
-      ballistic-ammo: !type:Container
   - type: Sprite
     sprite: Imperial/DeadSector/weapons/magazines/rifle/AKS74y_mag.rsi
     layers:
