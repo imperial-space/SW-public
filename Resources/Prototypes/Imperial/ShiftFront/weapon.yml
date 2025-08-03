@@ -756,7 +756,7 @@
   components:
   - type: Projectile
     ignoreResistances: false
-    suppression: 17
+    suppression: 11
     damage:
       types:
         Piercing: 37

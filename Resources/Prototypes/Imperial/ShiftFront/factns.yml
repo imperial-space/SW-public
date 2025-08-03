@@ -823,6 +823,7 @@
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: ElysiumFederationIDCardShiftFront
     #back: EncryptionKeyRadio3
+    back: BackPackTier1
     ears: ClothingHeadsetAlt4ShiftingFront
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
@@ -837,6 +838,7 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
+    back:
     - PartRodMetal
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
@@ -853,6 +855,7 @@
     outerClothing: ClothingOuterHardsuitERTImperialEngineerShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: SeniorEngineerIDCardShiftFront
+    back: BackPackTier1
     #back: EncryptionKeyRadio4
     ears: ClothingHeadsetAlt3ShiftingFront
     pocket1: Wrench
@@ -868,6 +871,7 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
+    back:
     - PartRodMetal
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
@@ -885,6 +889,7 @@
     outerClothing: ClothingOuterArmorBulletproofShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: ElysiumFederationIDCardShiftFront
+    back: BackPackTier2
     #back: EncryptionKeyRadio3
     ears: ClothingHeadsetAlt4ShiftingFront
     pocket1: Wrench
@@ -899,6 +904,7 @@
     - MedicatedSuture
     - MedicatedSuture
     - MedicatedSuture
+    back:
     - RollerBedSpawnFolded
     - RollerBedSpawnFolded
     - Fulton
@@ -915,6 +921,7 @@
     outerClothing: ClothingOuterArmorBulletproofShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: SeniorEngineerIDCardShiftFront
+    back: BackPackTier2
     #back: EncryptionKeyRadio4
     ears: ClothingHeadsetAlt3ShiftingFront
     pocket1: Wrench
@@ -930,6 +937,7 @@
     - MedicatedSuture
     - MedicatedSuture
     - MedicatedSuture
+    back:
     - EmergencyRollerBedSpawnFolded
     - EmergencyRollerBedSpawnFolded
     - Fulton

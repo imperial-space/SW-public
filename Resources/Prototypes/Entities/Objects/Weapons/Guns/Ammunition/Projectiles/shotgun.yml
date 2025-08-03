@@ -43,7 +43,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 7.5
+        Piercing: 7
         Structural: 2
     suppression: 0.6
 
@@ -55,7 +55,7 @@
   - type: ProjectileSpread
     proto: PelletShotgun
     count: 12
-    spread: 17
+    spread: 20
 
 - type: entity
   id: PelletShotgunIncendiary

@@ -927,10 +927,10 @@
     outerClothing: ClothingOuterHardsuitCCAgentShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: BlueShieldIDCardShiftFront
-    #back: EncryptionKeyRadio2
     ears: ClothingHeadsetAlt1ShiftingFront
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
+    back: BackPackTier1
     belt: ClothingBeltSonaShiftFront
   inhand:
     - WeaponHK416ShiftingFront
@@ -942,6 +942,7 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
+    back:
     - PartRodMetal
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
@@ -958,11 +959,11 @@
     outerClothing: ClothingOuterHardsuitSecurityRedShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: SeniorOfficerIDCardShiftFront
-    #back: EncryptionKeyRadio1
     ears: ClothingHeadsetAlt2ShiftingFront
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
     belt: USSPBeltAssaultShiftFront
+    back: BackPackTier1
     #neck: WardenMantleIDShiftFront
   inhand:
     - WeaponAKS74yShiftingFront
@@ -974,6 +975,7 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
+    back:
     - PartRodMetal
     - ShiftFrontBuildLight
     - ShiftFrontBuildLight
@@ -991,6 +993,7 @@
     outerClothing: ClothingOuterArmorBulletproofShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: BlueShieldIDCardShiftFront
+    back: BackPackTier2
     #back: EncryptionKeyRadio2
     ears: ClothingHeadsetAlt1ShiftingFront
     pocket1: Wrench
@@ -1005,6 +1008,7 @@
     - MedicatedSuture
     - MedicatedSuture
     - MedicatedSuture
+    back:
     - RollerBedSpawnFolded
     - RollerBedSpawnFolded
     - Fulton
@@ -1021,6 +1025,7 @@
     outerClothing: ClothingOuterArmorBulletproofShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: SeniorOfficerIDCardShiftFront
+    back: BackPackTier2
     #back: EncryptionKeyRadio1
     ears: ClothingHeadsetAlt2ShiftingFront
     pocket1: Wrench
@@ -1036,6 +1041,7 @@
     - MedicatedSuture
     - MedicatedSuture
     - MedicatedSuture
+    back:
     - EmergencyRollerBedSpawnFolded
     - EmergencyRollerBedSpawnFolded
     - Fulton

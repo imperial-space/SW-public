@@ -177,7 +177,7 @@
   - type: Unremoveable
   - type: Storage
     grid:
-    - 0,0,14,1
+    - 0,0,6,1
 
 - type: entity
   parent: ClothingBeltMercWebbing
@@ -186,7 +186,7 @@
   - type: Unremoveable
   - type: Storage
     grid:
-    - 0,0,14,1
+    - 0,0,6,1
 
 - type: entity
   parent: ClothingHeadsetAltSyndicate
@@ -264,7 +264,7 @@
   - type: Unremoveable
   - type: Storage
     grid:
-    - 0,0,14,1
+    - 0,0,6,1
 
 - type: entity
   parent: ClothingHeadHatSecsoft
