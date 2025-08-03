@@ -1,9 +1,38 @@
-- files: ["Dire_Situation.ogg", "the_fallen_queen.ogg", "Battle_of_Kings.ogg", "Dark_Alley_Deals.ogg"]
-  license: "CC-BY-SA-3.0"
-  copyright: "Battle of Kings by Per Kiilstofte source - https://www.youtube.com/watch?v=CybIj9hPYlQ&ab_channel=D%26DBreakfastClub ; Dark Alley Deals by Aaron Kenny source - https://www.youtube.com/watch?v=MfzzZB_W8JA&ab_channel=NoCopyrightMusic"
-  source: "https://www.youtube.com/"
 
-- files: ["Dropzone.ogg", "Super_Nova_In_The_Catacombs.ogg", "Time_Is_Running_Out.ogg", "Last_Stand.ogg", "Destiny_of_Colonists.ogg", "Dead_Pilot.ogg", "Hopefully_Dead.ogg", "Run_Run_My_Darling.ogg", "X4TheJourneyBegins.ogg", "X4PromotionCeremony.ogg", "X4Winterblossom.ogg", "X4Artillery.ogg", "X4AsteroidField.ogg", "X4ShieldsRecharged.ogg", "X4ToTheDeathForTheGlory.ogg", "DarkTension.ogg"]
+- files: ["Battle_of_Kings.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Per Kiilstofte"
+  source: "https://youtu.be/CybIj9hPYlQ"
+
+- files: ["Dire_Situation.ogg", "the_fallen_queen.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Болгарыч / Bolgarich"
+  source: "https://www.youtube.com/@bolgarich1181"
+
+- files: ["Dark_Alley_Deals.ogg"]
+  license: "CC-BY-SA-3.0"
+  copyright: "Aaron Kenny"
+  source: "https://youtu.be/MfzzZB_W8JA"
+
+- files: ["Dead_Pilot.ogg", "Hopefully_Dead.ogg", "Run_Run_My_Darling.ogg"]
   license: "CC-BY-ND-3.0"
-  copyright: "Dead Pilot, Hopefully Dead, Run Run My Darling - by LuckyIdiots (idiot_1212); Artillery, Asteroid Field, Promotion Ceremony, The Journey Begins, To the Death for the Glory, Winterblossom - by Alexei Zakharov (https://www.youtube.com/channel/UCH9vAAnK-F3mkvmS_mZMbgg); Dark Tension - Evil Fire by Alan Paul Ett (https://www.youtube.com/channel/UC-VWe_wKXKQXR-uCpwTgvVA)"
+  copyright: "LuckyIdiots (idiot_1212)"
+  source: "https://soundcloud.com/luckyidiots"
+
+- files: ["X4TheJourneyBegins.ogg", "X4PromotionCeremony.ogg", "X4Winterblossom.ogg",
+         "X4Artillery.ogg", "X4AsteroidField.ogg", "X4ShieldsRecharged.ogg",
+         "X4ToTheDeathForTheGlory.ogg"]
+  license: "CC-BY-ND-3.0"
+  copyright: "Alexei Zakharov Music"
+  source: "https://www.youtube.com/channel/UCH9vAAnK-F3mkvmS_mZMbgg"
+
+- files: ["DarkTension.ogg"]
+  license: "CC-BY-ND-3.0"
+  copyright: "Evil Fire by Alan Paul Ett"
+  source: "https://www.youtube.com/channel/UC-VWe_wKXKQXR-uCpwTgvVA"
+
+- files: ["Dropzone.ogg", "Super_Nova_In_The_Catacombs.ogg", "Time_Is_Running_Out.ogg",
+         "Last_Stand.ogg", "Destiny_of_Colonists.ogg"]
+  license: "CC-BY-ND-3.0"
+  copyright: "See individual track attributions"
   source: "https://www.youtube.com/"
