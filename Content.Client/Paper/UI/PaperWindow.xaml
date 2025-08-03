@@ -26,15 +26,17 @@
                         <TextureButton Name="FooterImage" HorizontalAlignment="Center" VerticalAlignment="Top" MouseFilter="Ignore"/>
                     </BoxContainer>
                     <paper:StampCollection Name="StampDisplay" VerticalAlignment="Bottom" Margin="6"/>
-                <!-- Imperial Medieval Start -->
-                <BoxContainer Name="RelationsContainer" Orientation="Horizontal" Margin="4">
-                        <RichTextLabel StyleClasses="PaperWrittenText" Name="RelationsLabel" />
-                    <imp:BorderedButton Name="AcceptRelation" Text="Принять" HorizontalExpand="True" VerticalExpand="True"/>
-                    <imp:BorderedButton Name="DeclineRelation" Text="Отказать" HorizontalExpand="True" VerticalExpand="True"/>
-                </BoxContainer>
-                <!-- Imperial Medieval End -->
                 </PanelContainer>
             </ScrollContainer>
+            <!-- Imperial Medieval Start -->
+            <BoxContainer Orientation="Vertical" VerticalAlignment="Bottom" >
+                <RichTextLabel StyleClasses="PaperWrittenText" Name="RelationsLabel" HorizontalAlignment="Center" />
+                <BoxContainer Name="RelationsContainer" Orientation="Horizontal" SetHeight="46" Margin="4">
+                    <imp:BorderedButton Name="AcceptRelation" Text="{Loc 'paper-ui-faction-relations-accept'}" BackgroundColor="#3cd604ff" HorizontalExpand="True" />
+                    <imp:BorderedButton Name="DeclineRelation" Text="{Loc 'paper-ui-faction-relations-decline'}" BackgroundColor="#ff002fff" HorizontalExpand="True" />
+                </BoxContainer>
+            </BoxContainer>
+            <!-- Imperial Medieval End -->
         </PanelContainer>
         <!-- Bottom buttons for editing -->
         <BoxContainer Name="EditButtons" Orientation="Horizontal" HorizontalAlignment="Right" Margin="6">

@@ -1,5 +1,4 @@
-using Content.Shared.Friends;
-using Content.Shared.Friends.Prototypes;
+using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 

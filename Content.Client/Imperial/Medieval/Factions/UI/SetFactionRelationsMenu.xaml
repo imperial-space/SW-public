@@ -5,12 +5,13 @@
     xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
     xmlns:friends="clr-namespace:Content.Client.Imperial.Medieval.Friends.UI.Elements"
     Title="Предложить отношения"
-    MinSize="512 180"
-    SetSize="512 185">
+    MinSize="512 240"
+    SetSize="512 248">
     <BoxContainer Name="Main"
                   Orientation="Vertical"
                   HorizontalExpand="True"
                   VerticalExpand="True">
+        <OptionButton Name="FactionSelectButton" Margin="4" HorizontalAlignment="Left"/>
         <OptionButton Name="RelationSelectButton" Margin="4" HorizontalAlignment="Left"/>
         <RichTextLabel Name="MainLabel" Margin="4"/>
         <BoxContainer Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalExpand="True" Margin="4">
