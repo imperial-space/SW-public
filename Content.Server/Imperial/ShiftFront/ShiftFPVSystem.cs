@@ -22,6 +22,9 @@ using System.Numerics;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Fluids.Components;
+using Robust.Shared.Random;
+using Content.Shared.Examine;
+using Content.Shared.Inventory.Events;
 
 namespace Content.Server.ShiftFront
 {
@@ -33,6 +36,7 @@ namespace Content.Server.ShiftFront
         [Dependency] private readonly ISharedPlayerManager _sharedPlayerManager = default!;
         [Dependency] private readonly PrayerSystem _prayerSystem = default!;
         [Dependency] private readonly MindSystem _mind = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly SharedAmbientSoundSystem _ambient = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SharedActionsSystem _action = default!;
@@ -49,10 +53,55 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftFPVDroneComponent, DamageChangedEvent>(OnDamageDrone);
             SubscribeLocalEvent<ShiftFPVDroneComponent, FPVStopControlEvent>(OnStopAction);
             SubscribeLocalEvent<ShiftFPVDroneComponent, ComponentStartup>(OnStart);
+            SubscribeLocalEvent<ShiftREBComponent, ComponentStartup>(OnRebStart);
             SubscribeLocalEvent<ShiftFPVPilotComponent, DamageChangedEvent>(OnDamagePilot);
+            SubscribeLocalEvent<ShiftREBComponent, ExaminedEvent>(OnExamineREB);
+            SubscribeLocalEvent<ShiftFPVDroneComponent, ExaminedEvent>(OnExamineDrone);
+            SubscribeLocalEvent<ShiftREBComponent, GotEquippedEvent>(OnEquipped);
+            SubscribeLocalEvent<ShiftREBComponent, GotUnequippedEvent>(OnUnequipped);
+        }
+        public void OnEquipped(EntityUid uid, ShiftREBComponent comp, GotEquippedEvent args)
+        {
+            if (!comp.RequiredEquip) return;
+            comp.Enabled = true;
+        }
+        public void OnUnequipped(EntityUid uid, ShiftREBComponent comp, GotUnequippedEvent args)
+        {
+            if (!comp.RequiredEquip) return;
+            comp.Enabled = false;
+        }
+
+        public bool CheckResearch(string research, string faction)
+        {
+            var requery = EntityQueryEnumerator<ShiftConsoleResearchComponent>();
+            while (requery.MoveNext(out var reuid, out var recomp))
+            {
+                if (recomp.Researched != null && recomp.Researched.Contains(research) && recomp.Faction == faction)
+                    return true;
+            }
+            return false;
+        }
+
+        public void OnExamineREB(EntityUid uid, ShiftREBComponent comp, ExaminedEvent args)
+        {
+            args.PushMarkup($"Выбранная частота: [color=cyan]{comp.CurFreq}[/color] МГц", 5);
+            args.PushMarkup($"Покрываемый диапазон от [color=yellow]{comp.CurFreq - comp.FreqRadius}[/color] до [color=orange]{comp.CurFreq + comp.FreqRadius}[/color] МГц", 4);
+        }
+        public void OnExamineDrone(EntityUid uid, ShiftFPVDroneComponent comp, ExaminedEvent args)
+        {
+            args.PushMarkup($"Выбранная частота: [color=cyan]{comp.CurFreq}[/color] МГц", 5);
+            args.PushMarkup($"Минимальная возможная частота: [color=yellow]{comp.MinFreq}[/color] МГц", 3);
+            args.PushMarkup($"Максимальная возможная частота: [color=orange]{comp.MaxFreq}[/color] МГц", 4);
+        }
+        public void OnRebStart(EntityUid uid, ShiftREBComponent comp, ComponentStartup args)
+        {
+            if (CheckResearch("ShiftFrontREBEff", comp.Faction))
+                comp.FreqRadius += 250;
+            comp.CurFreq = _random.Next(comp.MinFreq + comp.FreqRadius, comp.MaxFreq - comp.FreqRadius);
         }
         public void OnStart(EntityUid uid, ShiftFPVDroneComponent comp, ComponentStartup args)
         {
+            comp.CurFreq = _random.Next(comp.MinFreq, comp.MaxFreq);
             _action.AddAction(uid, "StopFPVControll");
         }
         private bool CheckMaskWearing(EntityUid uid)

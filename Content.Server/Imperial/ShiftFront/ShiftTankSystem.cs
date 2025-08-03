@@ -93,6 +93,16 @@ namespace Content.Server.ShiftFront
 
         }
 
+        public bool CheckResearch(string research, string faction)
+        {
+            var requery = EntityQueryEnumerator<ShiftConsoleResearchComponent>();
+            while (requery.MoveNext(out var reuid, out var recomp))
+            {
+                if (recomp.Researched != null && recomp.Researched.Contains(research) && recomp.Faction == faction)
+                    return true;
+            }
+            return false;
+        }
         private void OnSpeak(EntityUid uid, ShiftPlayerComponent comp, EntitySpokeEvent args)
         {
             if (comp.Vehicle == null) return;
@@ -164,6 +174,11 @@ namespace Content.Server.ShiftFront
         }
         public void TankStart(EntityUid uid, ShiftTankHullComponent component, ComponentStartup args)
         {
+            if (CheckResearch("ShiftFrontREBVehicle", component.Faction))
+            {
+                EnsureComp<ShiftREBComponent>(uid, out var reb);
+                reb.Radius = component.RebRadius;
+            }
             //_action.AddAction(uid, "TankStartMoveAction");
             //_action.AddAction(uid, "TankStopMoveAction");
             //_action.AddAction(uid, "TankChangeMoveDirectionAction");

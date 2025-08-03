@@ -1452,16 +1452,20 @@ namespace Content.Server.ShiftFront
                 var rebquery = EntityQueryEnumerator<ShiftREBComponent>();
                 while (rebquery.MoveNext(out var uid, out var comp))
                 {
+                    if (!comp.Enabled) continue;
                     var xform = Transform(uid);
                     var coords = xform.Coordinates;
                     foreach (var target in _lookup.GetEntitiesInRange(coords, comp.Radius))
                     {
                         if (TryComp<ShiftFPVDroneComponent>(target, out var drone) && drone.Faction != comp.Faction && !drone.TankPart)
                         {
-                            _jitter.DoJitter(target, TimeSpan.FromSeconds(1f), true, amplitude: 5f);
-                            _stun.TryParalyze(target, TimeSpan.FromSeconds(3f), true);
-                            if (_sharedPlayerManager.TryGetSessionByEntity(target, out var session))
-                                _prayerSystem.SendSubtleMessage(session, session, $"Рядом вражеский прибор РЭБ", "ПОМЕХИ");
+                            if (drone.CurFreq > comp.CurFreq - comp.FreqRadius && drone.CurFreq < comp.CurFreq + comp.FreqRadius)
+                            {
+                                _jitter.DoJitter(target, TimeSpan.FromSeconds(1f), true, amplitude: 5f);
+                                _stun.TryParalyze(target, TimeSpan.FromSeconds(3f), true);
+                                if (_sharedPlayerManager.TryGetSessionByEntity(target, out var session))
+                                    _prayerSystem.SendSubtleMessage(session, session, $"Рядом вражеский прибор РЭБ", "ПОМЕХИ");
+                            }
                         }
                     }
                 }

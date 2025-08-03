@@ -51,6 +51,23 @@
   - ShiftFrontREB
 
 - type: ShiftFrontResearch
+  id: ShiftFrontREBEff
+  tier: 3
+  researchName: эффективность РЭБ
+  price: 80
+  requredResearches:
+  - ShiftFrontREB
+
+- type: ShiftFrontResearch
+  id: ShiftFrontREBVehicle
+  tier: 2
+  researchName: РЭБ-оснащение техники
+  price: 65
+  requredResearches:
+  - ShiftFrontREB
+  - ShiftFrontMRAP
+
+- type: ShiftFrontResearch
   id: ShiftFrontBack4
   tier: 2
   researchName: рюкзаки 4

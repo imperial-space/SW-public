@@ -21,6 +21,8 @@ public sealed partial class ShiftTankHullComponent : Component
     public float SmokeStep = 250;
     [DataField]
     public float FireStep = 500;
+    [DataField]
+    public float RebRadius = 8f;
 
     [DataField]
     public EntityUid? LinkedGrid;

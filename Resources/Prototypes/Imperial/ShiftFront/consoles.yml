@@ -281,6 +281,7 @@
     mode: SnapgridCenter
   components:
   - type: ShiftREB
+    freqRadius: 1250
     faction: Blue
   - type: Sprite
     sprite: Imperial/ShiftFront/light.rsi
@@ -1916,7 +1917,9 @@
   - type: Sprite
     sprite: Imperial/ShiftFront/backpacks/blue.rsi
   - type: ShiftREB
-    radius: 5.5
+    enabled: false
+    requiredEquip: true
+    radius: 7
     faction: Blue
   - type: ClothingSpeedModifier
     walkModifier: 0.87

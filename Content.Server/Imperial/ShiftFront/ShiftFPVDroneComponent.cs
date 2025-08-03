@@ -45,5 +45,15 @@ public sealed partial class ShiftFPVDroneComponent : Component
 
     [DataField]
     public string Faction = "";
+
+    [DataField]
+    public int MinFreq = 2200;
+
+    [DataField]
+    public int CurFreq = 0;
+
+    [DataField]
+    public int MaxFreq = 5800;
+
 }
 
