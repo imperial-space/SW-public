@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazineAR57
   name: magazine AR-57 (7x62x51 NATO)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -34,7 +34,7 @@
 - type: entity
   id: BaseMagazineAR57Piercing
   name: magazine AR-57 (7x62x51 NATO-AP)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -67,7 +67,7 @@
 - type: entity
   id: BaseMagazineAR57LongRange
   name: magazine AR-57 (7x62x51 NATO-T)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -99,7 +99,7 @@
 
 - type: entity
   id: BaseMagazineAR15
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   name: pistol magazine (.35 MP9)
   abstract: true
   components:
@@ -121,7 +121,7 @@
 
 - type: entity
   id: MagazineAR15
-  parent: BaseMagazineAR15
+  parent: [BaseMagazineAR15, BaseMinorContraband]
   name: pistol magazine (.35 MP5)
   suffix: Felix
   components:
@@ -136,7 +136,7 @@
 - type: entity
   id: BaseMagazineAR15Piercing
   name: magazine AR-15
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -167,7 +167,7 @@
 - type: entity
   id: BaseMagazineAR15LongRange
   name: magazine AR-15
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -197,7 +197,7 @@
 
 - type: entity
   id: BaseMagazineHK416
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   name: pistol magazine (.35 MP9)
   abstract: true
   components:
@@ -218,7 +218,7 @@
 
 - type: entity
   id: MagazineHK416
-  parent: BaseMagazineHK416
+  parent: [BaseMagazineHK416, BaseMinorContraband]
   name: pistol magazine (.35 MP5)
   suffix: Felix
   components:
@@ -232,7 +232,7 @@
 
 - type: entity
   id: MagazineArmorPiercingHK416
-  parent: BaseMagazineHK416
+  parent: [BaseMagazineHK416, BaseMinorContraband]
   name: pistol magazine (.35 MP5)
   suffix: Felix
   components:
@@ -246,7 +246,7 @@
 
 - type: entity
   id: BaseMagazineHK416LongRange
-  name: magazine HK416
+  name: [magazine HK416, BaseMinorContraband]
   parent: BaseItem
   components:
   - type: Tag
@@ -278,7 +278,7 @@
 - type: entity
   id: BaseMagazineAK102
   name: pistol magazine (.35 MP9)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   abstract: true
   components:
   - type: BallisticAmmoProvider
@@ -300,7 +300,7 @@
 - type: entity
   id: BaseMagazineAKS74y
   name: pistol magazine (.35 MP9)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   abstract: true
   components:
   - type: BallisticAmmoProvider
@@ -321,7 +321,7 @@
 
 - type: entity
   id: MagazineAKS74y
-  parent: BaseMagazineAKS74y
+  parent: [BaseMagazineAKS74y, BaseMinorContraband]
   name: pistol magazine (.35 MP5)
   suffix: Felix
   components:
@@ -335,7 +335,7 @@
 
 - type: entity
   id: MagazineArmorPiercingAKS74y
-  parent: BaseMagazineAKS74y
+  parent: [BaseMagazineAKS74y, BaseMinorContraband]
   name: pistol magazine (.35 MP5)
   suffix: Felix
   components:
@@ -350,7 +350,7 @@
 - type: entity
   id: BaseMagazineAKS74yLongRange
   name: magazine AKS74y
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:

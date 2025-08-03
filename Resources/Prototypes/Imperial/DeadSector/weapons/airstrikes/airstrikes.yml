@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   id: BaseAirStrike
   components:
   - type: OnUseTimerTrigger
@@ -11,7 +11,7 @@
   - type: AnimationPlayer
 
 - type: entity
-  parent: BaseAirStrike
+  parent: [BaseAirStrike, BaseMinorContraband]
   id: AirStrike
   name: Air strike
   description: Hey, look, the plane is flying! The plane... The plane is flying... Damn...
@@ -41,7 +41,7 @@
       cluster-payload: !type:Container
 
 - type: entity
-  parent: BaseAirStrike
+  parent: [BaseAirStrike, BaseMinorContraband]
   id: ClusterDis8
   name: ClusterDis8
   description: null
@@ -64,7 +64,7 @@
       cluster-payload: !type:Container
 
 - type: entity
-  parent: BaseAirStrike
+  parent: [BaseAirStrike, BaseMinorContraband]
   id: ClusterDis16
   name: ClusterDis16
   description: null
@@ -89,7 +89,7 @@
       cluster-payload: !type:Container
 
 - type: entity
-  parent: BaseAirStrike
+  parent: [BaseAirStrike, BaseMinorContraband]
   id: ClusterDis24
   name: ClusterDis24
   description: null
@@ -115,7 +115,7 @@
       cluster-payload: !type:Container
 
 - type: entity
-  parent: BaseAirStrike
+  parent: [BaseAirStrike, BaseMinorContraband]
   id: ClusterDis32
   name: ClusterDis32
   description: null

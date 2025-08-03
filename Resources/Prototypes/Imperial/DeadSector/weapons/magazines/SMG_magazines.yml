@@ -1,7 +1,7 @@
 - type: entity
   id: BaseMagazineAgram
   name: magazine Agram (9x21)
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   components:
   - type: Tag
     tags:
@@ -33,7 +33,7 @@
 
 - type: entity
   id: BaseMagazineMP5
-  parent: BaseItem
+  parent: [BaseItem, BaseMinorContraband]
   name: pistol magazine (.35 MP5)
   abstract: true
   components:
@@ -54,7 +54,7 @@
 
 - type: entity
   id: MagazineMP5
-  parent: BaseMagazineMP5
+  parent: [BaseMagazineMP5, BaseMinorContraband]
   name: pistol magazine (.35 MP5)
   suffix: Felix
   components:
@@ -68,7 +68,7 @@
 
 - type: entity
   id: MagazineArmorPiercingMP5
-  parent: BaseMagazineMP5
+  parent: [BaseMagazineMP5, BaseMinorContraband]
   name: pistol magazine (.35 MP5)
   suffix: Felix
   components:
@@ -83,7 +83,7 @@
 - type: entity
   id: BaseMagazineMP9
   name: pistol magazine (.35 MP5)
-  parent: BaseMagazinePistolSubMachineGun
+  parent: [BaseMagazinePistolSubMachineGun, BaseMinorContraband]
   abstract: true
   components:
   - type: BallisticAmmoProvider
@@ -103,7 +103,7 @@
 
 - type: entity
   id: MagazineMP9
-  parent: BaseMagazineMP9
+  parent: [BaseMagazineMP9, BaseMinorContraband]
   name: pistol magazine (.35 MP9)
   suffix: Felix
   components:
@@ -119,7 +119,7 @@
 
 - type: entity
   id: MagazineArmorPiercingMP9
-  parent: BaseMagazineMP9
+  parent: [BaseMagazineMP9, BaseMinorContraband]
   name: pistol magazine (.35 MP9)
   suffix: Felix
   components:
