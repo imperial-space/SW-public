@@ -89,6 +89,7 @@ namespace Content.Server.ShiftFront
         }
         public void OnExamineDrone(EntityUid uid, ShiftFPVDroneComponent comp, ExaminedEvent args)
         {
+            if (comp.TankPart) return;
             args.PushMarkup($"Выбранная частота: [color=cyan]{comp.CurFreq}[/color] МГц", 5);
             args.PushMarkup($"Минимальная возможная частота: [color=yellow]{comp.MinFreq}[/color] МГц", 3);
             args.PushMarkup($"Максимальная возможная частота: [color=orange]{comp.MaxFreq}[/color] МГц", 4);
