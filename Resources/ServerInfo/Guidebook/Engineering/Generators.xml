@@ -7,9 +7,10 @@
   <Box>
     <GuideEntityEmbed Entity="SingularityGenerator" Caption=""/>
     <GuideEntityEmbed Entity="TeslaGenerator" Caption=""/>
+    <GuideEntityEmbed Entity="Supermatter" Caption=""/>
   </Box>
   <Box>
-    ## Двигатели Сингулярности и Теслы
+    ## Двигатели Сингулярности, Теслы и Суперматерии
   </Box>
   <Box>
     [color=#999999][italic]Способны производить бесконечную энергию, а также [/color][color=red]разрушать[/color][color=#999999][italic][/color]
