@@ -197,6 +197,17 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
+                        comp.ChosenGen = "патроны марксман";
+                        _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить патроны раз в какое-то время", "Выбрано");
+                    },
+                    Text = "Патроны марксман",
+                    Priority = 7,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi"), "base")
+                });                
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () =>
+                    {
                         comp.ChosenGen = "фултон";
                         _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить фултоны раз в какое-то время", "Выбрано");
                     },
@@ -429,7 +440,7 @@ namespace Content.Server.ShiftFront
                         Text = "Переносной РЭБ",
                         Priority = 4,
                         //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
-                    });                    
+                    });
             }
             else
             {
@@ -556,6 +567,9 @@ namespace Content.Server.ShiftFront
                             case "патроны .60":
                                 Spawn("MagazineBoxAntiMateriel", coords);
                                 break;
+                            case "патроны марксман":
+                                Spawn("MagazineBoxAntiMaterielBigM", coords);
+                                break;           
                             case "фултон":
                                 Spawn("Fulton", coords);
                                 break;

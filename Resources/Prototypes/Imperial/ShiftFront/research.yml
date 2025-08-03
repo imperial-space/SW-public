@@ -3,7 +3,7 @@
   tier: 1
   researchName: фланкер
   price: 35
-  requredResearches:
+  requiredResearches:
   - ShiftFrontScout
 
 - type: ShiftFrontResearch
@@ -11,7 +11,7 @@
   tier: 0
   researchName: скаут
   price: 10
-  #requredResearches:
+  #requiredResearches:
   #- noth
   #bannedResearches:
   # - noth
@@ -22,7 +22,7 @@
   tier: 1
   researchName: рюкзаки 1
   price: 20
-  requredResearches:
+  requiredResearches:
   - ShiftFrontScout
 
 - type: ShiftFrontResearch
@@ -30,7 +30,7 @@
   tier: 1
   researchName: рюкзаки 2
   price: 25
-  requredResearches:
+  requiredResearches:
   - ShiftFrontBack1
 
 - type: ShiftFrontResearch
@@ -38,7 +38,7 @@
   tier: 2
   researchName: рюкзаки 3
   price: 30
-  requredResearches:
+  requiredResearches:
   - ShiftFrontBack2
 
 - type: ShiftFrontResearch
@@ -46,7 +46,7 @@
   tier: 2
   researchName: переносные РЭБ
   price: 50
-  requredResearches:
+  requiredResearches:
   - ShiftFrontBack3
   - ShiftFrontREB
 
@@ -55,7 +55,7 @@
   tier: 3
   researchName: эффективность РЭБ
   price: 80
-  requredResearches:
+  requiredResearches:
   - ShiftFrontREB
 
 - type: ShiftFrontResearch
@@ -63,7 +63,7 @@
   tier: 2
   researchName: РЭБ-оснащение техники
   price: 65
-  requredResearches:
+  requiredResearches:
   - ShiftFrontREB
   - ShiftFrontMRAP
 
@@ -72,7 +72,7 @@
   tier: 2
   researchName: рюкзаки 4
   price: 40
-  requredResearches:
+  requiredResearches:
   - ShiftFrontBack3
 
 - type: ShiftFrontResearch
@@ -80,7 +80,7 @@
   tier: 3
   researchName: рюкзаки 5
   price: 65
-  requredResearches:
+  requiredResearches:
   - ShiftFrontBack4
 
 - type: ShiftFrontResearch
@@ -88,7 +88,7 @@
   tier: 1
   researchName: штурмовик
   price: 50
-  requredResearches:
+  requiredResearches:
   - ShiftFrontFlanker
 
 - type: ShiftFrontResearch
@@ -96,7 +96,7 @@
   tier: 2
   researchName: подрывник
   price: 65
-  requredResearches:
+  requiredResearches:
   - ShiftFrontAssault
 
 - type: ShiftFrontResearch
