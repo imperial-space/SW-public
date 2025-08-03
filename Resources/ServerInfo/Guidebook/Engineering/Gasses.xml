@@ -6,6 +6,15 @@
   У некоторых газов есть определённые свойства, делающие их полезными для различных задач.
   Существуют газы, синтезируемые через сложные атмосферные реакции, использующиеся для специальных задач.
 
+  ## Воздух
+  <Box>
+    <GuideEntityEmbed Entity="AirCanister" Caption=""/>
+    <GuideEntityEmbed Entity="AirTank" Caption=""/>
+  </Box>
+
+  Смесь газов, безопасная для дыхания большинством видов на станции.
+  Состоит из [color=yellow]21% кислорода[/color] и [color=yellow]79% азота[/color].
+
   ## Кислород
   <Box>
     <GuideEntityEmbed Entity="OxygenCanister" Caption=""/>
@@ -31,21 +40,11 @@
 
   Инертный газ, используемый вместе с Кислородом для создания подходящей для дыхания атмосферы.
 
-  Довольно стабилен и составляет большую часть атмосферы (78%).
+  Довольно стабилен и составляет большую часть атмосферы (79%).
 
   Слаймы и Воксы дышат Азотом, однако Воксы не могут вдыхать его вместе с кислородом. Он для них токсичен.
 
-  ## Воздух
-  <Box>
-    <GuideEntityEmbed Entity="AirCanister" Caption=""/>
-    <GuideEntityEmbed Entity="AirTank" Caption=""/>
-  </Box>
-
-  Смесь газов, безопасная для дыхания большинством видов на станции
-  Состоит из 21% кислорода и 79% азота.
-
-
-  ## Углекислый газ
+  ## Диоксид Углерода (Углекислый газ)
   <Box>
     <GuideEntityEmbed Entity="CarbonDioxideCanister" Caption=""/>
   </Box>
@@ -89,20 +88,21 @@
     <GuideEntityEmbed Entity="FrezonCanister" Caption=""/>
   </Box>
 
-  A highly sought after gas, due to the difficulty in creating it and its many properties.
+  Газ, который
+  Очень востребованный газ из-за его сложности создания и количества свойств.
 
-  It has an extremely high specific heat capacity, making it excellent for moving large amounts of heat around.
+  Имеет огромную теплоёмкость, хотя и не самую большую.=
 
-  Frezon can combine in the air with nitrogen to create nitrous oxide, alongside cooling down the air significantly to below freezing temperatures.
+  Можно смешать с азотом для получения оксида азота. Эта реакция сильно понижает реакцию газа.
 
-  Frezon is very complicated to create, requiring a mix of tritium, oxygen, and nitrogen, all tuned precisely to create the gas.
-  If you're looking to create this gas yourself, here's what you need to know:
-  - Frezon is produced by the combination of oxygen, tritium, and nitrogen.
-  - Tritium and oxygen are mixed at a ratio of around 1:8.
-  - Nitrogen is required as a catalyst for the reaction. The amount of nitrogen consumed is dependent on the efficiency of the reaction.
-  - The frezon reaction only occurs at cryogenic temperatures, below 73.15 K. The efficency of the reaction (how much frezon is produced) is dependent on the temperature. The closer to 73.15 K, the more frezon is produced, and the less nitrogen is consumed.
+  Процесс создания довольно сложен и включает в себя смешение трития, кислорода и азота в определённых пропорциях.
+  Вот что вам нужно знать, если вы всё таки решились на его синтез:
+  - Фрезон является смесью кислорода, трития и азота.
+  - Тритий и кислород мешают в соотношении около 1:8.
+  - Азот является катализатором реакции. Количество потребляемого азота зависит от эффективности реакции..
+  - Реакция создания фрезона работает только при температурах ниже [color=yellow]73.15 K[/color]. Эффективность реакции (количество производимого фрезона) зависит от температуры. Чем ближе к [color=yellow]73.15 K[/color], тем больше будет фрезона, и тем меньше будет потребляться азота.
 
-  Remember, atmospherics is all about experimentation and process optimization. Try it until you get it right!
+  Атмос это отдел постоянного прогресса и экспериментов! Удачи!
 
   ## Оксид Азота
   <Box>
@@ -120,4 +120,36 @@
 
   Можно конденсировать и использовать для создания космического очистителя.
 
+  ## Озон
+  <Box>
+    <GuideEntityEmbed Entity="OzoniumCanister" Caption=""/>
+  </Box>
+  Токсичный газ, выделяющийся своей токсичностью при дыхании, и ценой.
+
+  Производится при охлаждении кислорода до [color=yellow]33 К или -240 градусов Цельсия[/color].
+
+  <GuideReagentEmbed Reagent="Ozonium"/>
+
+  ## Термониум
+  <Box>
+    <GuideEntityEmbed Entity="ThermoniumCanister" Caption=""/>
+    <GuideEntityEmbed Entity="GasTankBaseThermonium" Caption=""/>
+  </Box>
+  Способный лечить людей газ при вдыхании. Аналогичен криоксадону по лечебным свойствам.
+
+  Получается смешиванием Азота, Диоксида Углерода и Трития в равных пропорциях при температуре выше [color=yellow]3273 К или 3000 градусов Цельсия[/color].
+
+  <GuideReagentEmbed Reagent="Thermonium"/>
+
+  ## Фазон
+  <Box>
+    <GuideEntityEmbed Entity="PhazoniumCanister" Caption=""/>
+  </Box>
+  Токсичный и радиоактивный газ, обладающей огромной ценностью и самой большой теплоёмкостью среди газов.
+
+  Получается смешиванием Фрезона, Термониума и Озона при температуре [color=yellow]ниже 13 К[/color].
+
+  Опасен и для дыхания, и в конденсированном виде.
+
+  <GuideReagentEmbed Reagent="Phazonium"/>
 </Document>

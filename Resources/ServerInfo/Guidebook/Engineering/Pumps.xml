@@ -1,16 +1,16 @@
 ﻿<Document>
-# Pumps
-  Pumps are the primary way of actively moving gasses through a [textlink="pipenet." link="PipeNetworks"]
-  They take gas from one side and push it to the other.
-  There are two different types of pumps:
+# Насосы
+  Основной инструмент для создания активного движения газов через [textlink="сеть труб" link="PipeNetworks"].
+  Берут газ с одной стороны и переносят на другую.
+  Существует два типа насосов:
 
   <Box>
-    <GuideEntityEmbed Entity="GasPressurePump" Caption="pressure pump"/>
-    <GuideEntityEmbed Entity="GasVolumePump" Caption="volumetric pump"/>
+    <GuideEntityEmbed Entity="GasPressurePump"/>
+    <GuideEntityEmbed Entity="GasVolumePump"/>
   </Box>
 
-  Some important things to note about pumps:
-  - Pumps [color=#a4885c]require power[/color] through a nearby LV cable to function.
+  Несколько фактов о насосах:
+  - [color=#a4885c]Требуют питания[/color] через [color=green]неподалёку[/color].
   - Pumps output on the side with the red stripe.
   - Gas cannot move backwards through pumps (although if you are using a pump to do solely this, you should use the [textlink="passive gate" link="PassiveGate"] instead).
   - Pumps cannot move gasses into pipes with pressures or volumes exceeding their [color=#a4885c]limit[/color]. This causes them to be [color=red]blocked[/color].
@@ -24,7 +24,7 @@
   They move gas based on [color=#a4885c]pressure[/color], making them useful for controlling the exact pressure of a pipe, or for drawing a vacuum.
 
   <Box>
-    <GuideEntityEmbed Entity="GasPressurePump" Caption="pressure pump"/>
+    <GuideEntityEmbed Entity="GasPressurePump"/>
   </Box>
 
   A pressure pump [color=red]cannot[/color] move gas to a pipe that has a pressure higher or equal to the pressure set on the pump.
@@ -38,7 +38,7 @@
   Volumetric pumps are an alternative pump, moving gas based on [color=#a4885c]volume[/color].
 
   <Box>
-    <GuideEntityEmbed Entity="GasVolumePump" Caption="volumetric pump"/>
+    <GuideEntityEmbed Entity="GasVolumePump"/>
   </Box>
 
   They are extremely useful for moving large amounts of gas quickly.
