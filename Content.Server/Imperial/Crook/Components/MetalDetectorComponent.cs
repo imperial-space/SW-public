@@ -11,6 +11,9 @@ namespace Content.Server.Imperial.Crook.Components
     [RegisterComponent]
     public sealed partial class MetalDetectorComponent : Component
     {
+        [ViewVariables]
+        public HashSet<EntityUid> CollidingEntities = new();
+
         [DataField("checkedSlots")]
         public HashSet<string> CheckedSlots = new()
         {

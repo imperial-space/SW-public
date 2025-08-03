@@ -17,6 +17,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Contraband;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
+using Robust.Shared.Physics.Events;
 
 namespace Content.Server.Imperial.Crook.Systems
 {
@@ -31,42 +32,71 @@ namespace Content.Server.Imperial.Crook.Systems
         [Dependency] private readonly SharedIdCardSystem _idCard = default!;
         [Dependency] private readonly EmagSystem _emag = default!;
 
-        private float _scanCooldown = 0.25f;
-        private float _timeSinceLastScan;
-
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<MetalDetectorComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<MetalDetectorComponent, ComponentStartup>(OnStartup);
             SubscribeLocalEvent<MetalDetectorComponent, GotEmaggedEvent>(OnEmagged);
+            SubscribeLocalEvent<MetalDetectorComponent, StartCollideEvent>(OnStartCollide);
+            SubscribeLocalEvent<MetalDetectorComponent, EndCollideEvent>(OnEndCollide);
+        }
+
+        private void OnStartCollide(EntityUid uid, MetalDetectorComponent comp, ref StartCollideEvent args)
+        {
+            if (!comp.Powered || !args.OtherBody.CanCollide)
+                return;
+
+            var otherEntity = args.OtherEntity;
+
+            if (!HasComp<InventoryComponent>(otherEntity))
+                return;
+
+            if (!comp.CollidingEntities.Add(otherEntity))
+                return;
+
+            ProcessEntity(uid, otherEntity, comp);
+        }
+
+        private void OnEndCollide(EntityUid uid, MetalDetectorComponent comp, ref EndCollideEvent args)
+        {
+            comp.CollidingEntities.Remove(args.OtherEntity);
+
+            if (comp.CollidingEntities.Count == 0 && comp.State != MetalDetectorVisualState.Powered)
+            {
+                UpdateState(uid, MetalDetectorVisualState.Powered, comp);
+            }
         }
 
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
 
-            _timeSinceLastScan += frameTime;
-            if (_timeSinceLastScan < _scanCooldown)
-                return;
-
-            _timeSinceLastScan -= _scanCooldown;
-
-            var query = EntityQueryEnumerator<MetalDetectorComponent, PhysicsComponent>();
-            while (query.MoveNext(out var uid, out var comp, out var phys))
+            var query = EntityQueryEnumerator<MetalDetectorComponent>();
+            while (query.MoveNext(out var uid, out var comp))
             {
-                if (!comp.Powered || !phys.CanCollide)
+                if (!comp.Powered)
                     continue;
 
-                if ((comp.State == MetalDetectorVisualState.Alert ||
-                     comp.State == MetalDetectorVisualState.Warning ||
-                     comp.State == MetalDetectorVisualState.Scanning) &&
-                    _timing.CurTime > comp.NextStateReset)
-                {
-                    UpdateState(uid, MetalDetectorVisualState.Powered, comp);
-                }
+                if (comp.State == MetalDetectorVisualState.Powered)
+                    continue;
 
-                ProcessDetection(uid, comp, phys);
+                if (_timing.CurTime > comp.NextStateReset)
+                {
+                    if (comp.CollidingEntities.Count > 0)
+                    {
+                        comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
+                        foreach (var entity in comp.CollidingEntities)
+                        {
+                            if (Exists(entity))
+                                ProcessEntity(uid, entity, comp);
+                        }
+                    }
+                    else
+                    {
+                        UpdateState(uid, MetalDetectorVisualState.Powered, comp);
+                    }
+                }
             }
         }
 
@@ -74,6 +104,9 @@ namespace Content.Server.Imperial.Crook.Systems
         {
             comp.Powered = args.Powered;
             UpdateState(uid, comp.Powered ? MetalDetectorVisualState.Powered : MetalDetectorVisualState.Off, comp);
+
+            if (!comp.Powered)
+                comp.CollidingEntities.Clear();
         }
 
         private void OnStartup(Entity<MetalDetectorComponent> detector, ref ComponentStartup args)
@@ -98,28 +131,11 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private void UpdateState(EntityUid uid, MetalDetectorVisualState state, MetalDetectorComponent comp)
         {
-            comp.State = state;
-            _appearance.SetData(uid, MetalDetectorVisuals.State, state);
-        }
-
-        private void ProcessDetection(EntityUid uid, MetalDetectorComponent comp, PhysicsComponent phys)
-        {
-            var intersecting = _physics.GetContactingEntities(uid, phys);
-            if (intersecting == null)
+            if (comp.State == state)
                 return;
 
-            foreach (var entity in intersecting)
-            {
-                if (!HasComp<InventoryComponent>(entity) ||
-                    comp.ScannedEntities.TryGetValue(entity, out var lastScan) &&
-                    _timing.CurTime < lastScan + comp.ScanCooldown)
-                {
-                    continue;
-                }
-
-                comp.ScannedEntities[entity] = _timing.CurTime;
-                ProcessEntity(uid, entity, comp);
-            }
+            comp.State = state;
+            _appearance.SetData(uid, MetalDetectorVisuals.State, state);
         }
 
         private void ProcessEntity(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
@@ -138,19 +154,18 @@ namespace Content.Server.Imperial.Crook.Systems
             {
                 UpdateState(detector, MetalDetectorVisualState.Alert, comp);
                 _audio.PlayPvs(comp.AlertSound, detector);
-                comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
-                return;
             }
             else if (hasContrabandOnly && comp.CheckContraband)
             {
                 UpdateState(detector, MetalDetectorVisualState.Warning, comp);
                 _audio.PlayPvs(comp.WarningSound, detector);
-                comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
-                return;
+            }
+            else
+            {
+                UpdateState(detector, MetalDetectorVisualState.Scanning, comp);
+                _audio.PlayPvs(comp.ClearSound, detector);
             }
 
-            UpdateState(detector, MetalDetectorVisualState.Scanning, comp);
-            _audio.PlayPvs(comp.ClearSound, detector);
             comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
         }
 
@@ -166,17 +181,20 @@ namespace Content.Server.Imperial.Crook.Systems
                     if (_inventory.TryGetSlotEntity(entity, slot.Name, out var item) && item != null)
                     {
                         CheckItemAndContainers(item.Value, ref weaponAndContraband, ref contrabandOnly, 0, comp.MaxRecursionDepth);
-                        if (weaponAndContraband) return (true, true);
+                        if (weaponAndContraband)
+                            return (true, true);
                     }
                 }
             }
 
             foreach (var heldItem in _hands.EnumerateHeld(entity))
             {
-                if (heldItem == null) continue;
+                if (!Exists(heldItem))
+                    continue;
 
                 CheckItem(heldItem, ref weaponAndContraband, ref contrabandOnly);
-                if (weaponAndContraband) break;
+                if (weaponAndContraband)
+                    break;
             }
 
             return (weaponAndContraband, contrabandOnly);
@@ -188,7 +206,8 @@ namespace Content.Server.Imperial.Crook.Systems
                 return;
 
             CheckItem(item, ref weaponAndContraband, ref contrabandOnly);
-            if (weaponAndContraband) return;
+            if (weaponAndContraband)
+                return;
 
             if (TryComp<ContainerManagerComponent>(item, out var containerManager))
             {
@@ -196,8 +215,12 @@ namespace Content.Server.Imperial.Crook.Systems
                 {
                     foreach (var containedItem in container.ContainedEntities)
                     {
+                        if (!Exists(containedItem))
+                            continue;
+
                         CheckItemAndContainers(containedItem, ref weaponAndContraband, ref contrabandOnly, depth + 1, maxDepth);
-                        if (weaponAndContraband) return;
+                        if (weaponAndContraband)
+                            return;
                     }
                 }
             }
