@@ -311,7 +311,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                                 var coords = _xforms.ToMapCoordinates(xformCat.Coordinates);
                                 _explosionSystem.QueueExplosion(
                                     coords,
-                                    "Supermatter", // Специальный прототип взрыва суперматерии
+                                    "Supermatter", // Прототип взрыва
                                     20000f,      // totalIntensity
                                     1f,         // slope
                                     100f,        // maxTileIntensity
