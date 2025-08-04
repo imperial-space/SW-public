@@ -5,7 +5,7 @@
 
   ## Форматирование
 
-  You can use the following sigils:
+  Вы можете воспользоваться следующими оборотами:
 
   - [color=tan]\[color=цвет\]текст\[\/color\][/color] — чтобы изменить цвет текста
   - [color=tan]\[head=n\]текст\[\/head\][/color] — где [italic]n[/italic] это уровень заголовка (1–3)

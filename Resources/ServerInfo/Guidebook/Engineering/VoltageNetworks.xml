@@ -2,7 +2,7 @@
   # Напряжение
   В Space Station 14
   In Space Station 14, энергия распределяется по станции с помощью трёх уровней напряжения.
-  Эти три уровня: [color=green]Низкий[/color], [color=Yellow]Средний[/color] и [color=orange]Высокий[/color].
+  Эти три уровня: [color=green]Низкий[/color], [color=yellow]Средний[/color] и [color=orange]Высокий[/color].
 
   Каждый уровень напряжения питает свои устройства.
 
@@ -58,7 +58,7 @@
   </Box>
 
   <Box>
-    [color=#999999][italic]Ускоритель Частиц[italic][/color]
+    [color=#999999][italic]Ускоритель Частиц[/italic][/color]
   </Box>
 
   <Box HorizontalAlignment="Stretch">

@@ -39,7 +39,7 @@
     <GuideEntityEmbed Entity="SheetUranium" />
   </Box>
 
-  [bold]П.А.К.М.А.Н.[/bold] и [bold]С.У.П.Е.Р.П.А.К.М.А.Н.[/bold] предназдначены для использования [textlink="Инженерным отделом" link="Engineering"] для ликвидации больших проблем с питанием.
+  [bold]П.А.К.М.А.Н.[/bold] и [bold]С.У.П.Е.Р.П.А.К.М.А.Н.[/bold] предназначены для использования [textlink="Инженерным отделом" link="Engineering"] для ликвидации больших проблем с питанием.
   Запуска других [textlink="генераторов" link="SingularityTeslaEngine"], питания отделов и т.п.
 
   [bold]С.У.П.Е.Р.П.А.К.М.А.Н.[/bold] отличается большей выработкой энергии (до [color=orange][protodata="PortableGeneratorSuperPacman" comp="FuelGenerator" member="MaxTargetPower" format="N0"/] Вт[/color]) и более долгой работой при максимальной эффективность, которая быстро спадает с выработкой.

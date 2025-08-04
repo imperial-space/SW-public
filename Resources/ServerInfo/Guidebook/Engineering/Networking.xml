@@ -24,12 +24,12 @@
   ## Система подключений
  Система подключений используется для явного связывания двух устройств, например, для связывания двери с другой дверью.
 
-  <Box>
+ <Box>
  <GuideEntityEmbed Entity="AirlockExternal"/>
  <GuideEntityEmbed Entity="AirlockEngineering"/>
  <GuideEntityEmbed Entity="BlastDoor"/>
  <GuideEntityEmbed Entity="SignalButton"/>
- </Box>.
+ </Box>
 
   В системе связей, устройства имеют [bold]порты[/bold], которые могут либо отправлять, либо принимать сигналы.
 
@@ -39,26 +39,27 @@
   ## Система списков
  Система списков используется для связи нескольких устройств с одним основным устройством, например, для связи нескольких атмосферных устройств с воздушной сигнализацией.
 
-  <Box>
+ <Box>
  <GuideEntityEmbed Entity="AirAlarm" Caption=""/>
  <GuideEntityEmbed Entity="GasVentPump" Caption=""/>
  <GuideEntityEmbed Entity="GasVentScrubber" Caption=""/>
  <GuideEntityEmbed Entity="AirSensor" Caption=""/>
  <GuideEntityEmbed Entity="Firelock" Caption=""/>
- </Box>.
+ </Box>
 
   Каждое устройство имеет свой уникальный адрес, который используется для его идентификации в системе списков. Когда вы связываете устройство с основным устройством, вы добавляете его адрес в список устройств, с которыми будет взаимодействовать основное устройство.
 
-  You can save a device's address to your tool by interacting with the device using [color=yellow][bold][keybind="Use"][/bold][/color].
+  Вы можете сохранить адрес устройства в ваш инструмент с помощью [color=yellow][bold][keybind="Use"][/bold][/color].
 
-  Once you have a list of devices saved to your tool, you can link them to a primary device by interacting with the primary device using [color=yellow][bold][keybind="Use"][/bold][/color], which will bring up a UI.
+  Когда вы сохранили все нужные адреса, вы можете подключить их к основному устройству с помощью [color=yellow][bold][keybind="Use"][/bold][/color], держа инструмент в руке.
 
-  The UI has multiple options:
-  - Set: Overwrites the current list of linked devices with the devices saved on the tool.
-  - Add: Adds the devices saved on the tool to the current list of linked devices.
-  - Clear: Removes all linked devices from the air alarm.
-  - Copy: Copies the list of currently linked devices to the tool.
-  - Show: Draws a line between the primary device and all linked devices. This is useful for visualizing the area the air alarm covers.
+  UI состоит из:
+  - Списка подключённых к основному устройству адресов.
+  - Кнопки установить: заменяет список за тот, который сохранён в вашем устройстве.
+  - Добавить: добавляет сохранённые в вашем устройстве адреса к готовому списку.
+  - Очистить: отключает все подключённые устройства.
+  - Копировать: копирует список подключённых адресов на ваше устройство.
+  - Показать: проводит линии между основным устройством и всем подключённым адресам.
 
-  If you need to clear your tool, you can press [color=yellow][bold][keybind="Use"][/bold][/color] on the tool or use [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color] to bring up a list of saved devices, and then press the "Clear" button.
+  Вы можете очистить список сохранённых адресов, открыв UI вашего инструмента на [color=yellow][bold][keybind="ActivateItemInHand"][/bold][/color], держа его в руке, или нажав по нему [color=yellow][bold][keybind="Use"][/bold][/color].
 </Document>

@@ -51,7 +51,7 @@
   - Нет: Выключает все подключённые к Сигнализации девайсы.
   - Фильтрация: [textlink="Вентиляции" link="AirVent"] будут работать в нормальном режиме. Будет установлено максимальное давление в размере нормального атмосферного. [textlink="Скрубберы" link="AirScrubber"] будут высасывать мусорные газы.
   - Фильтрация (широкая): Как фильтрация, но у [textlink="скрубберов" link="AirScrubber"] будет включён режим ШирокойСети.
-  - Заполнение: [textlink="Вентиляции" link="AirVent"] будут работать с максимальным давлением установленным на [color=orange][protodata="GasVentPump" comp="GasVentPump" member="MaxPressure"/] кПа[/color]. [textlink="Скрубберы" link="AirScrubber"] выключены.
+  - Заполнение: [textlink="Вентиляции" link="AirVent"] будут работать с максимальным давлением установленным на [color=orange][protodata="GasVentPump" comp="GasVentPump" member="MaxPressure"] кПа[/color]. [textlink="Скрубберы" link="AirScrubber"] выключены.
   - Паника: [textlink="Вентиляции" link="AirVent"] не будут работать, а [textlink="скрубберы" link="AirScrubber"] перейдут в режим [bold]Siphoning[/bold] - начнут высасывать все газы вокруг себя.
 
   Если область достигнет статуса [color=red]Опасность[/color] или выше, [bold]Сигнализация[/bold] включит режим [bold]Фильтрации (широкой)[/bold].

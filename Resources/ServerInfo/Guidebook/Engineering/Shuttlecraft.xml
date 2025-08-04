@@ -77,7 +77,7 @@
   </Box>
 
   Для работы, двигатели должны быть направлены в космос. Вы можете убедиться в этом, осмотрев двигатель с помощью [color=yellow][bold][keybind="ExamineEntity"][/bold][/color].
-  Вы можете вращать даже закреплённые двигателя с помощью [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] или [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color] (против часовой стрелки).
+  Вы можете вращать даже закреплённые двигатели с помощью [color=yellow][bold][keybind="RotateObjectClockwise"][/bold][/color] или [color=yellow][bold][keybind="RotateObjectCounterclockwise"][/bold][/color] (против часовой стрелки).
 
   По-умолчанию, двигатели всегда включены. Вы можете включить или выключить двигатель с помощью [color=yellow][bold][keybind="Use"][/bold][/color] пустой рукой, или [color=yellow][bold][keybind="ActivateItemInWorld"][/bold][/color] с занятой.
 
@@ -124,7 +124,7 @@
     <GuideEntityEmbed Entity="ComputerShuttle"/>
   </Box>
   Вам нужна консоль управления шаттла, иначе вы никуда не улетите!
-  Убедитесь что все двигатели и гироскопы запитаны и работают и... Поехали!
+  Убедитесь, что все двигатели и гироскопы запитаны и работают и... Поехали!
 
   А теперь испытание для читателя - сделайте шаттл красивым и удобным для человека без скафандра.
 
