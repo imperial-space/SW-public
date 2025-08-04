@@ -149,10 +149,11 @@
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetCrusaderDarkHelmetArchaont]
     MedievalClothingOuterArmorUpIron: [MedievalClothingOuterArmorUpIronDarkArmorArchaont]
     MedievalClothingFeetSteel: [MedievalClothingFeetSteelDarkBootsArchaont]
-    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorWhiteWizardCharmerLight]
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorWhiteWizardCharmerLight, MedievalClothingOuterArmorCharmerLightApocrif]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightApocrif]
     Log: [MedievalClothingHandsGlovesWhiteWizard]
-    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer]
-    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer, MedievalClothingOuterArmorCharmerApocrif]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer, MedievalClothingHeadHelmetCharmerApocrif]
 
 - type: customization
   id: scarlatto
@@ -187,4 +188,14 @@
   holder: e80d956f-e819-4cc0-96d2-97996cb4e3c9
   map:
     Log: [ MedievalClothingUniformJumpsuitShitCloth74, MedievalClothingNeckCloakSpookyVendigo ]
+
+- type: customization
+  id: binnibux
+  holder:
+  map:
+    MedievalClothingOuterArmorCharmerLight: [ MedievalClothingOuterArmorCharmerLightPurple ]
+    MedievalClothingHeadHelmetCharmerLight: [ MedievalClothingHeadHelmetCharmerLightPurple ]
+    MedievalClothingOuterArmorCharmer: [ MedievalClothingOuterArmorCharmerLightPurple ]
+    MedievalClothingHeadHelmetCharmer: [ MedievalClothingHeadHelmetCharmerLightPurple ]
+    MedievalClothingNeckCloakClanWiz: [ MedievalClothingNeckCloakPurple ]
 

@@ -608,6 +608,28 @@
     sprite: Imperial/Medieval/Clothing/Head/archimageyamuro.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadHelmetCharmerApocrif
+  name: MedievalClothingHeadHelmetCharmerApocrif
+  description: Medieval salad helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadHelmetCharmerPurple
+  name: MedievalClothingHeadHelmetCharmerPurple
+  description: MedievalClothingHeadHelmetCharmerPurple
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/purplecharmerrobe.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/purplecharmerrobe.rsi
+
+- type: entity
   parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetCharmerLight
   name: MedievalClothingHeadHelmetCharmerLight
@@ -660,6 +682,28 @@
     sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightApocrif
+  name: MedievalClothingHeadHelmetCharmerLightApocrif
+  description: MedievalClothingHeadHelmetCharmerLightApocrif
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightPurple
+  name: MedievalClothingHeadHelmetCharmerLightPurple
+  description: MedievalClothingHeadHelmetCharmerLightPurple
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/purplecharmerrobe.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/purplecharmerrobe.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight

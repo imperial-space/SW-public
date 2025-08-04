@@ -406,6 +406,16 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakPurple
+  name: purple cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/purple.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivGrey
   name: grey cloak
   description: A cloak to distinguish allies.

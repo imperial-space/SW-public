@@ -1209,6 +1209,30 @@
     sprite: Imperial/Medieval/Clothing/Armor/archimageyamuro.rsi
 
 - type: entity
+  parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterArmorCharmerApocrif
+  name: MedievalClothingOuterArmorCharmerApocrif
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterArmorCharmerPurple
+  name: MedievalClothingOuterArmorCharmerPurple
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/purplecharmerrobe.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/purplecharmerrobe.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorCharmerLight
   name: MedievalClothingOuterArmorCharmerLight
@@ -1247,6 +1271,32 @@
     damageCoefficient: 0.7
   - type: ManaRegen
     regen: 1.2
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightPurple
+  name: MedievalClothingOuterArmorCharmerLightPurple
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/purplecharmerrobe.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/purplecharmerrobe.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightApocrif
+  name: MedievalClothingOuterArmorCharmerLightApocrif
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight
