@@ -46,7 +46,6 @@
             Powered: { state: powered }
             Alert: { state: alert }
             Scanning: { state: scanning }
-            Warning: { state: warning }
     - type: Electrified
       usesApcPower: true
     - type: MetalDetector
