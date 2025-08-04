@@ -126,7 +126,6 @@ namespace Content.Server.Imperial.Crook.Systems
                 HasComp<ContrabandComponent>(entity)
             );
 
-            // Проверка инвентаря
             if (TryComp<InventoryComponent>(entity, out var inventory))
             {
                 var detectorComp = Comp<MetalDetectorComponent>(detector);
@@ -141,7 +140,6 @@ namespace Content.Server.Imperial.Crook.Systems
                 }
             }
 
-            // Проверка рук
             foreach (var heldItem in _hands.EnumerateHeld(entity))
             {
                 var subResult = CheckEntityRecursive(detector, heldItem, maxDepth, currentDepth + 1);
@@ -149,7 +147,6 @@ namespace Content.Server.Imperial.Crook.Systems
                 result.Item2 |= subResult.Item2;
             }
 
-            // Проверка контейнеров
             if (TryComp<ContainerManagerComponent>(entity, out var containerManager))
             {
                 foreach (var container in containerManager.Containers.Values)
@@ -172,7 +169,6 @@ namespace Content.Server.Imperial.Crook.Systems
         {
             if (comp.Emagged)
             {
-                // Эммагнутый детектор всегда оглушает и бьёт током
                 if (!_shockedEntities.Contains(entity) && TryComp<DamageableComponent>(entity, out _))
                 {
                     _shockedEntities.Add(entity);
