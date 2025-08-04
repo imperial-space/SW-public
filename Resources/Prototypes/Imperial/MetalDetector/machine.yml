@@ -116,7 +116,7 @@
   suffix: Secure, Crook
   components:
     - type: Construction
-      graph: MetalDetector
+      graph: ImperialMetalDetector
       node: panelReinforced
     - type: WiresPanelSecurity
       securityLevel: panelReinforced
