@@ -5,12 +5,17 @@ using Robust.Shared.Audio.Systems;
 using System.Collections.Generic;
 using Content.Shared.Imperial.Crook.Visuals;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Content.Shared.Damage;
+using Content.Shared.Stunnable;
 
 namespace Content.Server.Imperial.Crook.Components
 {
     [RegisterComponent]
     public sealed partial class MetalDetectorComponent : Component
     {
+        [DataField("detectionRange")]
+        public float DetectionRange = 1f;
+
         [ViewVariables]
         public HashSet<EntityUid> CollidingEntities = new();
 
@@ -29,6 +34,10 @@ namespace Content.Server.Imperial.Crook.Components
         [DataField("scanCooldown")]
         public TimeSpan ScanCooldown = TimeSpan.FromSeconds(2);
 
+        [ViewVariables]
+        [DataField("nextScanTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
+        public TimeSpan NextScanTime;
+
         [DataField("stateResetDelay")]
         public TimeSpan StateResetDelay = TimeSpan.FromSeconds(2);
 
@@ -44,17 +53,24 @@ namespace Content.Server.Imperial.Crook.Components
         [DataField("checkContraband")]
         public bool CheckContraband = true;
 
-        [ViewVariables]
-        public Dictionary<EntityUid, TimeSpan> ScannedEntities = new();
-        private Dictionary<EntityUid, (bool, bool)> _cachedResults = new();
+        [DataField("shockDuration")]
+        public TimeSpan ShockDuration = TimeSpan.FromSeconds(1);
+
+        [DataField("shockDamage")]
+        public DamageSpecifier ShockDamage = new()
+        {
+            DamageDict = new()
+            {
+                { "Shock", 5f }
+            }
+        };
+
+        [DataField("shockSound")]
+        public SoundSpecifier ShockSound = new SoundPathSpecifier("/Audio/Effects/lightburn.ogg");
 
         [ViewVariables]
         [DataField("nextStateReset", customTypeSerializer: typeof(TimeOffsetSerializer))]
         public TimeSpan NextStateReset;
-
-        [ViewVariables]
-        [DataField("nextStateChange", customTypeSerializer: typeof(TimeOffsetSerializer))]
-        public TimeSpan NextStateChange = TimeSpan.Zero;
 
         [DataField("clearSound")]
         public SoundSpecifier ClearSound = new SoundPathSpecifier("/Audio/Machines/beep.ogg");

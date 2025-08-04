@@ -50,16 +50,6 @@
     - type: Electrified
       usesApcPower: true
     - type: MetalDetector
-      checkWeapons: true
-      checkContraband: true
-      warningSound:
-        path: /Audio/Machines/warning_buzzer.ogg
-      alertSound:
-        path: /Audio/Machines/twobeep.ogg
-      clearSound:
-        path: /Audio/Machines/beep.ogg
-      allowedAccess: ["Security", "Command"]
-      scanCooldown: 2
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection
@@ -111,16 +101,7 @@
   suffix: NonAccess, Crook
   components:
     - type: MetalDetector
-      checkWeapons: true
-      checkContraband: true
-      warningSound:
-        path: /Audio/Machines/warning_buzzer.ogg
-      alertSound:
-        path: /Audio/Machines/twobeep.ogg
-      clearSound:
-        path: /Audio/Machines/beep.ogg
       allowedAccess: []
-      scanCooldown: 2
 
 - type: entity
   parent: ImperialMetalDetector
@@ -128,16 +109,7 @@
   suffix: Syndicate, Crook
   components:
     - type: MetalDetector
-      checkWeapons: true
-      checkContraband: true
-      warningSound:
-        path: /Audio/Machines/warning_buzzer.ogg
-      alertSound:
-        path: /Audio/Machines/twobeep.ogg
-      clearSound:
-        path: /Audio/Machines/beep.ogg
       allowedAccess: ["SyndicateAgent", "NuclearOperative"]
-      scanCooldown: 2
 
 - type: entity
   parent: ImperialMetalDetector

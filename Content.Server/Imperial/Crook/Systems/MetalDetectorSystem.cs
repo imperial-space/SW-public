@@ -1,9 +1,7 @@
 using System.Linq;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Physics.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Power;
@@ -18,6 +16,15 @@ using Content.Shared.Contraband;
 using Content.Shared.Emag.Components;
 using Content.Shared.Emag.Systems;
 using Robust.Shared.Physics.Events;
+using Content.Shared.Stunnable;
+using Content.Shared.Damage;
+using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
+using Content.Shared.Popups;
+using Robust.Shared.Map;
+using Robust.Server.GameObjects;
+using Content.Shared.Item;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.Crook.Systems
 {
@@ -30,11 +37,18 @@ namespace Content.Server.Imperial.Crook.Systems
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly SharedHandsSystem _hands = default!;
         [Dependency] private readonly SharedIdCardSystem _idCard = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
+        [Dependency] private readonly SharedStunSystem _stun = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
+        [Dependency] private readonly SharedContainerSystem _container = default!;
+        [Dependency] private readonly BatterySystem _battery = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
+        [Dependency] private readonly IMapManager _mapManager = default!;
+        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
         private const float ThinkRate = 0.25f;
         private float _accumulatedTime;
-        private readonly Dictionary<EntityUid, (bool hasWeaponAndContraband, bool hasContrabandOnly)> _cachedResults = new();
+        private readonly HashSet<EntityUid> _shockedEntities = new();
 
         public override void Initialize()
         {
@@ -44,46 +58,28 @@ namespace Content.Server.Imperial.Crook.Systems
             SubscribeLocalEvent<MetalDetectorComponent, GotEmaggedEvent>(OnEmagged);
             SubscribeLocalEvent<MetalDetectorComponent, StartCollideEvent>(OnStartCollide);
             SubscribeLocalEvent<MetalDetectorComponent, EndCollideEvent>(OnEndCollide);
-            SubscribeLocalEvent<EntInsertedIntoContainerMessage>(OnInventoryChanged);
-            SubscribeLocalEvent<EntRemovedFromContainerMessage>(OnInventoryChanged);
-        }
-
-        private void OnInventoryChanged(EntInsertedIntoContainerMessage args)
-        {
-            if (HasComp<InventoryComponent>(args.Container.Owner))
-                _cachedResults.Remove(args.Container.Owner);
-        }
-
-        private void OnInventoryChanged(EntRemovedFromContainerMessage args)
-        {
-            if (HasComp<InventoryComponent>(args.Container.Owner))
-                _cachedResults.Remove(args.Container.Owner);
         }
 
         private void OnStartCollide(EntityUid uid, MetalDetectorComponent comp, ref StartCollideEvent args)
         {
-            if (!comp.Powered || !args.OtherBody.CanCollide)
+            if (!comp.Powered)
                 return;
 
             var otherEntity = args.OtherEntity;
 
-            if (!HasComp<InventoryComponent>(otherEntity))
+            if (!HasComp<ItemComponent>(otherEntity) && !HasComp<InventoryComponent>(otherEntity))
                 return;
 
-            if (!comp.CollidingEntities.Add(otherEntity))
-                return;
-
-            ProcessEntity(uid, otherEntity, comp);
+            if (comp.CollidingEntities.Add(otherEntity))
+                ProcessEntity(uid, otherEntity, comp);
         }
 
         private void OnEndCollide(EntityUid uid, MetalDetectorComponent comp, ref EndCollideEvent args)
         {
             comp.CollidingEntities.Remove(args.OtherEntity);
 
-            if (comp.CollidingEntities.Count == 0 && comp.State != MetalDetectorVisualState.Powered)
-            {
-                UpdateState(uid, MetalDetectorVisualState.Powered, comp);
-            }
+            if (comp.CollidingEntities.Count == 0)
+                ResetToDefaultState(uid, comp);
         }
 
         public override void Update(float frameTime)
@@ -95,65 +91,126 @@ namespace Content.Server.Imperial.Crook.Systems
                 return;
 
             _accumulatedTime -= ThinkRate;
+            _shockedEntities.Clear();
 
             var query = EntityQueryEnumerator<MetalDetectorComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {
                 if (!comp.Powered)
-                    continue;
-
-                if (comp.State == MetalDetectorVisualState.Powered)
-                    continue;
-
-                if (_timing.CurTime > comp.NextStateReset)
                 {
-                    if (comp.CollidingEntities.Count > 0)
-                    {
-                        comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
-                        foreach (var entity in comp.CollidingEntities)
-                        {
-                            if (Exists(entity))
-                                ProcessEntity(uid, entity, comp);
-                        }
-                    }
-                    else
-                    {
-                        UpdateState(uid, MetalDetectorVisualState.Powered, comp);
-                    }
+                    if (comp.State != MetalDetectorVisualState.Off)
+                        SetState(uid, MetalDetectorVisualState.Off, comp);
+                    continue;
                 }
+
+                if (comp.CollidingEntities.Count > 0 && _timing.CurTime > comp.NextStateReset)
+                    ResetToDefaultState(uid, comp);
             }
         }
 
-        private void OnPowerChanged(EntityUid uid, MetalDetectorComponent comp, ref PowerChangedEvent args)
+        private void ProcessEntity(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
         {
-            comp.Powered = args.Powered;
-            UpdateState(uid, comp.Powered ? MetalDetectorVisualState.Powered : MetalDetectorVisualState.Off, comp);
+            comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
 
-            if (!comp.Powered)
-                comp.CollidingEntities.Clear();
+            var result = CheckEntityRecursive(detector, entity, comp.MaxRecursionDepth);
+            HandleDetectionResults(detector, entity, comp, result.Item1, result.Item2);
         }
 
-        private void OnStartup(Entity<MetalDetectorComponent> detector, ref ComponentStartup args)
+        private (bool, bool) CheckEntityRecursive(EntityUid detector, EntityUid entity, int maxDepth, int currentDepth = 0)
         {
-            detector.Comp.NextStateReset = _timing.CurTime;
-            UpdateState(detector.Owner, detector.Comp.Powered ? MetalDetectorVisualState.Powered : MetalDetectorVisualState.Off, detector.Comp);
+            if (currentDepth > maxDepth)
+                return (false, false);
+
+            var result = (
+                HasComp<GunComponent>(entity) || HasComp<MeleeWeaponComponent>(entity),
+                HasComp<ContrabandComponent>(entity)
+            );
+
+            // Проверка инвентаря
+            if (TryComp<InventoryComponent>(entity, out var inventory))
+            {
+                var detectorComp = Comp<MetalDetectorComponent>(detector);
+                foreach (var slot in detectorComp.CheckedSlots)
+                {
+                    if (_inventory.TryGetSlotEntity(entity, slot, out var item))
+                    {
+                        var subResult = CheckEntityRecursive(detector, item.Value, maxDepth, currentDepth + 1);
+                        result.Item1 |= subResult.Item1;
+                        result.Item2 |= subResult.Item2;
+                    }
+                }
+            }
+
+            // Проверка рук
+            foreach (var heldItem in _hands.EnumerateHeld(entity))
+            {
+                var subResult = CheckEntityRecursive(detector, heldItem, maxDepth, currentDepth + 1);
+                result.Item1 |= subResult.Item1;
+                result.Item2 |= subResult.Item2;
+            }
+
+            // Проверка контейнеров
+            if (TryComp<ContainerManagerComponent>(entity, out var containerManager))
+            {
+                foreach (var container in containerManager.Containers.Values)
+                {
+                    foreach (var item in container.ContainedEntities)
+                    {
+                        var subResult = CheckEntityRecursive(detector, item, maxDepth, currentDepth + 1);
+                        result.Item1 |= subResult.Item1;
+                        result.Item2 |= subResult.Item2;
+                    }
+                }
+            }
+
+            return result;
         }
 
-        private void OnEmagged(EntityUid uid, MetalDetectorComponent comp, ref GotEmaggedEvent args)
+        private void HandleDetectionResults(EntityUid detector, EntityUid entity,
+                                         MetalDetectorComponent comp,
+                                         bool hasWeapon, bool hasContraband)
         {
-            if (comp.Emagged || !_emag.CompareFlag(args.Type, EmagType.Access))
+            if (comp.Emagged)
+            {
+                // Эммагнутый детектор всегда оглушает и бьёт током
+                if (!_shockedEntities.Contains(entity) && TryComp<DamageableComponent>(entity, out _))
+                {
+                    _shockedEntities.Add(entity);
+                    _damageable.TryChangeDamage(entity, comp.ShockDamage);
+                    _stun.TryParalyze(entity, comp.ShockDuration, true);
+                    _audio.PlayPvs(comp.ShockSound, detector);
+                    DischargeBatteries(entity, comp);
+
+                    _popup.PopupEntity(
+                        Loc.GetString("metal-detector-electrocuted"),
+                        entity,
+                        PopupType.SmallCaution);
+                }
+                SetStateWithSound(detector, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
                 return;
+            }
 
-            comp.Emagged = true;
-            args.Handled = true;
-            args.Repeatable = false;
+            if (HasRequiredAccess(entity, comp))
+            {
+                SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
+                return;
+            }
 
-            UpdateState(uid, MetalDetectorVisualState.Scanning, comp);
-            _audio.PlayPvs(comp.AlertSound, uid);
-            EnsureComp<EmaggedComponent>(uid);
+            if (hasWeapon && comp.CheckWeapons)
+            {
+                SetStateWithSound(detector, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
+            }
+            else if (hasContraband && comp.CheckContraband)
+            {
+                SetStateWithSound(detector, MetalDetectorVisualState.Warning, comp, comp.WarningSound);
+            }
+            else
+            {
+                SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
+            }
         }
 
-        private void UpdateState(EntityUid uid, MetalDetectorVisualState state, MetalDetectorComponent comp)
+        private void SetState(EntityUid uid, MetalDetectorVisualState state, MetalDetectorComponent comp)
         {
             if (comp.State == state)
                 return;
@@ -162,82 +219,69 @@ namespace Content.Server.Imperial.Crook.Systems
             _appearance.SetData(uid, MetalDetectorVisuals.State, state);
         }
 
-        private void ProcessEntity(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
+        private void SetStateWithSound(EntityUid uid, MetalDetectorVisualState state,
+                                     MetalDetectorComponent comp, SoundSpecifier sound)
         {
-            if (comp.Emagged || HasRequiredAccess(entity, comp))
-            {
-                UpdateState(detector, MetalDetectorVisualState.Scanning, comp);
-                _audio.PlayPvs(comp.ClearSound, detector);
-                comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
-                return;
-            }
+            SetState(uid, state, comp);
+            _audio.PlayPvs(sound, uid);
+        }
 
-            if (!_cachedResults.TryGetValue(entity, out var result))
-            {
-                result = CheckEntity(entity, comp);
-                _cachedResults[entity] = result;
-            }
+        private void ResetToDefaultState(EntityUid uid, MetalDetectorComponent comp)
+        {
+            SetState(uid, MetalDetectorVisualState.Powered, comp);
+        }
 
-            var (hasWeaponAndContraband, hasContrabandOnly) = result;
+        private void OnPowerChanged(EntityUid uid, MetalDetectorComponent comp, ref PowerChangedEvent args)
+        {
+            comp.Powered = args.Powered;
 
-            if (hasWeaponAndContraband && comp.CheckWeapons && comp.CheckContraband)
+            if (comp.Powered)
             {
-                UpdateState(detector, MetalDetectorVisualState.Alert, comp);
-                _audio.PlayPvs(comp.AlertSound, detector);
-            }
-            else if (hasContrabandOnly && comp.CheckContraband)
-            {
-                UpdateState(detector, MetalDetectorVisualState.Warning, comp);
-                _audio.PlayPvs(comp.WarningSound, detector);
+                ResetToDefaultState(uid, comp);
             }
             else
             {
-                UpdateState(detector, MetalDetectorVisualState.Scanning, comp);
-                _audio.PlayPvs(comp.ClearSound, detector);
+                SetState(uid, MetalDetectorVisualState.Off, comp);
+                comp.CollidingEntities.Clear();
+                _shockedEntities.Clear();
             }
-
-            comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
         }
 
-        private (bool hasWeaponAndContraband, bool hasContrabandOnly) CheckEntity(EntityUid entity, MetalDetectorComponent comp)
+        private void OnStartup(Entity<MetalDetectorComponent> detector, ref ComponentStartup args)
         {
-            bool weaponAndContraband = false;
-            bool contrabandOnly = false;
+            ResetToDefaultState(detector.Owner, detector.Comp);
+        }
 
+        private void OnEmagged(EntityUid uid, MetalDetectorComponent comp, ref GotEmaggedEvent args)
+        {
+            if (comp.Emagged)
+                return;
+
+            comp.Emagged = true;
+            args.Handled = true;
+            EnsureComp<EmaggedComponent>(uid);
+            SetStateWithSound(uid, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
+        }
+
+        private void DischargeBatteries(EntityUid entity, MetalDetectorComponent detectorComp)
+        {
             if (TryComp<InventoryComponent>(entity, out var inventory))
             {
-                foreach (var slot in inventory.Slots)
+                foreach (var slot in detectorComp.CheckedSlots)
                 {
-                    if (_inventory.TryGetSlotEntity(entity, slot.Name, out var item) && item != null)
-                    {
-                        CheckItemAndContainers(item.Value, ref weaponAndContraband, ref contrabandOnly, 0, comp.MaxRecursionDepth);
-                        if (weaponAndContraband)
-                            return (true, true);
-                    }
+                    if (_inventory.TryGetSlotEntity(entity, slot, out var item))
+                        DischargeSingleItem(item.Value);
                 }
             }
 
             foreach (var heldItem in _hands.EnumerateHeld(entity))
-            {
-                if (!Exists(heldItem))
-                    continue;
-
-                CheckItem(heldItem, ref weaponAndContraband, ref contrabandOnly);
-                if (weaponAndContraband)
-                    break;
-            }
-
-            return (weaponAndContraband, contrabandOnly);
+                DischargeSingleItem(heldItem);
         }
 
-        private void CheckItemAndContainers(EntityUid item, ref bool weaponAndContraband, ref bool contrabandOnly, int depth, int maxDepth)
+        private void DischargeSingleItem(EntityUid item)
         {
-            if (depth > maxDepth)
-                return;
-
-            CheckItem(item, ref weaponAndContraband, ref contrabandOnly);
-            if (weaponAndContraband)
-                return;
+            if (TryComp<BatteryComponent>(item, out var battery))
+                _battery.SetCharge(item, 0, battery);
 
             if (TryComp<ContainerManagerComponent>(item, out var containerManager))
             {
@@ -245,29 +289,9 @@ namespace Content.Server.Imperial.Crook.Systems
                 {
                     foreach (var containedItem in container.ContainedEntities)
                     {
-                        if (!Exists(containedItem))
-                            continue;
-
-                        CheckItemAndContainers(containedItem, ref weaponAndContraband, ref contrabandOnly, depth + 1, maxDepth);
-                        if (weaponAndContraband)
-                            return;
+                        DischargeSingleItem(containedItem);
                     }
                 }
-            }
-        }
-
-        private void CheckItem(EntityUid item, ref bool hasWeaponAndContraband, ref bool hasContrabandOnly)
-        {
-            var hasWeapon = HasComp<GunComponent>(item) || HasComp<MeleeWeaponComponent>(item);
-            var hasContraband = HasComp<ContrabandComponent>(item);
-
-            if (!hasWeaponAndContraband && hasWeapon && hasContraband)
-            {
-                hasWeaponAndContraband = true;
-            }
-            else if (!hasContrabandOnly && hasContraband)
-            {
-                hasContrabandOnly = true;
             }
         }
 
@@ -279,10 +303,8 @@ namespace Content.Server.Imperial.Crook.Systems
                 return true;
             }
 
-            if (!_idCard.TryFindIdCard(userUid, out var idCard))
-                return false;
-
-            return TryComp<AccessComponent>(idCard, out var idAccess) &&
+            return _idCard.TryFindIdCard(userUid, out var idCard) &&
+                   TryComp<AccessComponent>(idCard, out var idAccess) &&
                    detector.AllowedAccess.Any(required => idAccess.Tags.Contains(required));
         }
     }
