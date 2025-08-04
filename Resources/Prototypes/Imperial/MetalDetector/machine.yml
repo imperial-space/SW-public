@@ -159,7 +159,7 @@
       node: frame
 
 - type: Tag
-  id: MetalDetector
+  id: MetalDetectorTag
 
 - type: entity
   id: MetalDetectorCircuitboard
@@ -169,7 +169,7 @@
   components:
     - type: Tag
       tags:
-        - MetalDetector
+        - MetalDetectorTag
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: security
@@ -252,7 +252,7 @@
       edges:
       - to: electronics
         steps:
-        - tag: MetalDetector
+        - tag: MetalDetectorTag
           store: board
           name: микросхема металлоискателя # Imperial Recipes Locale
           icon:

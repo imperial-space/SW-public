@@ -8,7 +8,6 @@ namespace Content.Shared.Imperial.Crook.Visuals
         Off,
         Powered,
         Scanning,
-        Warning,
         Alert
     }
 

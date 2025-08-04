@@ -1,12 +1,7 @@
-using System;
 using Robust.Shared.Audio;
-using Content.Shared.Inventory;
-using Robust.Shared.Audio.Systems;
-using System.Collections.Generic;
 using Content.Shared.Imperial.Crook.Visuals;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Content.Shared.Damage;
-using Content.Shared.Stunnable;
 
 namespace Content.Server.Imperial.Crook.Components
 {
@@ -31,13 +26,6 @@ namespace Content.Server.Imperial.Crook.Components
             "outerClothing"
         };
 
-        [DataField("scanCooldown")]
-        public TimeSpan ScanCooldown = TimeSpan.FromSeconds(2);
-
-        [ViewVariables]
-        [DataField("nextScanTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
-        public TimeSpan NextScanTime;
-
         [DataField("stateResetDelay")]
         public TimeSpan StateResetDelay = TimeSpan.FromSeconds(2);
 
@@ -46,9 +34,6 @@ namespace Content.Server.Imperial.Crook.Components
 
         [DataField("allowedAccess")]
         public List<string> AllowedAccess = new() { "Security", "Command" };
-
-        [DataField("checkWeapons")]
-        public bool CheckWeapons = true;
 
         [DataField("checkContraband")]
         public bool CheckContraband = true;
@@ -77,9 +62,6 @@ namespace Content.Server.Imperial.Crook.Components
 
         [DataField("alertSound")]
         public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
-
-        [DataField("warningSound")]
-        public SoundSpecifier WarningSound = new SoundPathSpecifier("/Audio/Machines/warning_buzzer.ogg");
 
         [ViewVariables]
         public bool Powered;
