@@ -55,10 +55,11 @@ namespace Content.Shared.Friction
         {
             base.UpdateBeforeSolve(prediction, frameTime);
 
-            foreach (var ent in PhysicsSystem.AwakeBodies)
+            var query = EntityQueryEnumerator<PhysicsComponent, TransformComponent>();
+            while (query.MoveNext(out var uid, out var body, out var xform))
             {
-                var uid = ent.Owner;
-                var body = ent.Comp1;
+                if (!body.Awake)
+                    continue;
 
                 // Only apply friction when it's not a mob (or the mob doesn't have control)
                 // We may want to instead only apply friction to dynamic entities and not mobs ever.
@@ -67,8 +68,6 @@ namespace Content.Shared.Friction
 
                 if (body.LinearVelocity.Equals(Vector2.Zero) && body.AngularVelocity.Equals(0f))
                     continue;
-
-                var xform = ent.Comp2;
                 float friction;
 
                 // If we're not touching the ground, don't use tileFriction.
