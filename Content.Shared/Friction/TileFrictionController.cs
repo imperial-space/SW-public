@@ -55,7 +55,7 @@ namespace Content.Shared.Friction
         {
             base.UpdateBeforeSolve(prediction, frameTime);
 
-             foreach (var ent in PhysicsSystem.AwakeBodies)
+            foreach (var ent in PhysicsSystem.AwakeBodies)
             {
                 var uid = ent.Owner;
                 var body = ent.Comp1;
@@ -67,6 +67,7 @@ namespace Content.Shared.Friction
 
                 if (body.LinearVelocity.Equals(Vector2.Zero) && body.AngularVelocity.Equals(0f))
                     continue;
+
                 var xform = ent.Comp2;
                 float friction;
 
