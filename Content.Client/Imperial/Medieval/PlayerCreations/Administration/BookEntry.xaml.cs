@@ -10,18 +10,14 @@ using Robust.Client.UserInterface.XAML;
 namespace Content.Client.Imperial.Medieval.PlayerCreations.Administration;
 
 [GenerateTypedNameReferences]
-public sealed partial class PaintingEntry : Control
+public sealed partial class BookEntry : Control
 {
-    public PaintingEntry(IClyde clyde, CreationPaintingMessage message, Action? onAccept = null, Action? onDecline = null, bool buttonsEnabled = true)
+    public BookEntry(CreationBook book, Action? onAccept = null, Action? onDecline = null, bool buttonsEnabled = true)
     {
         RobustXamlLoader.Load(this);
 
-        var texture = PaintingHelper.GetTextureFromColorArray(clyde, message.Painting);
-
-        PaintingView.Texture = texture;
-
-        PaintingName.SetMessage(message.Name);
-        PaintingAuthor.SetMessage(message.Author);
+        BookName.SetMessage(book.Name);
+        BookAuthor.SetMessage(book.Author);
 
         if (!buttonsEnabled)
         {
@@ -29,6 +25,12 @@ public sealed partial class PaintingEntry : Control
             DeclineButton.Visible = false;
             return;
         }
+
+        ReadButton.OnPressed += _ =>
+        {
+            var window = new BookPreviewWindow(book.Text);
+            window.Open();
+        };
 
         AcceptButton.OnPressed += _ => onAccept?.Invoke();
         DeclineButton.OnPressed += _ => onDecline?.Invoke();

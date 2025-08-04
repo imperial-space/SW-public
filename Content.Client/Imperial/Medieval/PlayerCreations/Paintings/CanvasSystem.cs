@@ -15,29 +15,14 @@ using SixLabors.ImageSharp.PixelFormats;
 
 
 namespace Content.Client.Imperial.Medieval.PlayerCreations.Paintings;
-public sealed class CanvasSystem : SharedCanvasSystem
+public sealed class CanvasSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
 
-    public static Rgba32[] ColorToRgba32(Color[] colors)
-    {
-        return colors
-            .Select(c => c.A == 0 ? Color.White : c)
-            .Select(c => new Rgba32(c.R, c.G, c.B))
-            .ToArray();
-    }
 
-    public static Texture GetTextureFromColorArray(IClyde clyde, Color[] colors, int width = 30, int height = 30)
-    {
-        var tex = clyde.CreateBlankTexture<Rgba32>(new(width, height));
-        var rgbaArray = ColorToRgba32(colors);
-        tex.SetSubImage((0, 0) ,(width, height), new ReadOnlySpan<Rgba32>(rgbaArray));
-
-        return tex;
-    }
 
 
     /// <inheritdoc/>
@@ -57,7 +42,7 @@ public sealed class CanvasSystem : SharedCanvasSystem
 
     private void SetTexture(EntityUid uid, Color[] colors)
     {
-        var texture = GetTextureFromColorArray(_clyde, colors);
+        var texture = PaintingHelper.GetTextureFromColorArray(_clyde, colors);
 
         if (TryComp<SpriteComponent>(uid, out var sprite))
             _sprite.LayerSetTexture((uid, sprite), 1, texture);

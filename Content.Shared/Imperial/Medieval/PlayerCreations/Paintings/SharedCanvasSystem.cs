@@ -4,10 +4,35 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.Containers;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared.Interaction.Events;
 using SixLabors.ImageSharp.PixelFormats;
 
 
 namespace Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
-public partial class SharedCanvasSystem : EntitySystem
+public sealed class SharedCanvasSystem : EntitySystem
 {
+
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+
+    /// <inheritdoc/>
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<CanvasComponent, UseInHandEvent>(OnUse);
+    }
+
+    private void OnUse(EntityUid uid, CanvasComponent comp, UseInHandEvent args)
+    {
+        Logger.Debug("use");
+        _ui.OpenUi(uid, PaintUiKey.Key, args.User);
+
+        UpdateUiState(uid, comp.Texture);
+    }
+
+
+    private void UpdateUiState(EntityUid uid, Color[] texture)
+    {
+        _ui.SetUiState(uid, PaintUiKey.Key, new PaintingBoundUserInterfaceState(texture));
+    }
 }

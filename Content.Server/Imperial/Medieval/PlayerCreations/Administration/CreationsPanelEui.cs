@@ -45,17 +45,47 @@ public sealed class CreationsPanelEui : BaseEui
         }
     }
 
-    public void SendNewPainting(CreationPaintingMessage painting)
+    public void SendNewIncomingPainting(CreationPaintingMessage painting)
     {
-        Logger.Debug("New painting");
-
         SendMessage(new NewIncomingCreationPaintingMessage(painting));
     }
 
-    public void SendRemovePainting(CreationPaintingMessage painting)
+    public void SendRemoveIncomingPainting(CreationPaintingMessage painting)
     {
         SendMessage(new RemoveIncomingCreationPaintingMessage(painting));
     }
+
+    public void SendNewAcceptedPainting(CreationPaintingMessage painting)
+    {
+        SendMessage(new NewAcceptedCreationPaintingMessage(painting));
+    }
+
+    public void SendRemoveAcceptedPainting(CreationPaintingMessage painting)
+    {
+        SendMessage(new RemoveAcceptedCreationPaintingMessage(painting));
+    }
+
+
+    public void SendNewIncomingBook(CreationBook book)
+    {
+        SendMessage(new NewIncomingCreationBook(book));
+    }
+
+    public void SendRemoveIncomingBook(CreationBook book)
+    {
+        SendMessage(new RemoveIncomingCreationBook(book));
+    }
+
+    public void SendNewAcceptedBook(CreationBook book)
+    {
+        SendMessage(new NewAcceptedCreationBook(book));
+    }
+
+    public void SendRemoveAcceptedBook(CreationBook book)
+    {
+        SendMessage(new RemoveAcceptedCreationBook(book));
+    }
+
 
     public override async void HandleMessage(EuiMessageBase msg)
     {
@@ -72,6 +102,25 @@ public sealed class CreationsPanelEui : BaseEui
                 break;
             case RemoveIncomingCreationPaintingMessage remove:
                 _creationsSystem.RemoveIncomingPainting(remove.Painting);
+                break;
+            case AcceptIncomingCreationPaintingMessage accept:
+                _creationsSystem.AcceptIncomingPainting(accept.Painting);
+                break;
+            case RequestAcceptedCreationPaintingsMessage:
+                SendMessage(new ResponseAcceptedCreationPaintingsMessage(await _creationsSystem.GetAcceptedPaintingsMessages()));
+                break;
+
+            case RequestIncomingCreationBooks:
+                SendMessage(new ResponseIncomingCreationBooks(await _creationsSystem.GetIncomingCreationBooks()));
+                break;
+            case RemoveIncomingCreationBook remove:
+                _creationsSystem.RemoveIncomingBook(remove.Book);
+                break;
+            case AcceptIncomingCreationBook accept:
+                _creationsSystem.AcceptIncomingBook(accept.Book);
+                break;
+            case RequestAcceptedCreationBooks:
+                SendMessage(new ResponseAcceptedCreationBooks(await _creationsSystem.GetAcceptedCreationBooks()));
                 break;
         }
     }

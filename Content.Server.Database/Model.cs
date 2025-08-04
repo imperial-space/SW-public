@@ -53,6 +53,7 @@ namespace Content.Server.Database
         public DbSet<NrpResolves> NrpResolves { get; set; } = null!; // Imperial medieval nrp
 
         public DbSet<Painting> Paintings { get; set; } = null!;
+        public DbSet<Book> Books { get; set; } = null!;
         // imperial medieval end
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -89,6 +90,9 @@ namespace Content.Server.Database
                 .HasIndex(p => p.UserId);
 
             modelBuilder.Entity<Painting>()
+                .HasIndex(p => p.AuthorUserId);
+
+            modelBuilder.Entity<Book>()
                 .HasIndex(p => p.AuthorUserId);
             // imperial medieval end
 
@@ -539,6 +543,20 @@ namespace Content.Server.Database
     {
         public int Id { get; set; }
         public string Texture { get; set; } = null!;
+        public string Name { get; set; } = null!;
+        public string Description { get; set; } = null!;
+        public string Author { get; set; } = null!;
+        public Guid AuthorUserId { get; set; }
+        public DateTime CreationTime {get; set; }
+
+        public bool Accepted { get; set; }
+    }
+
+    [Table("book")]
+    public class Book
+    {
+        public int Id { get; set; }
+        public string Text { get; set; } = null!;
         public string Name { get; set; } = null!;
         public string Description { get; set; } = null!;
         public string Author { get; set; } = null!;

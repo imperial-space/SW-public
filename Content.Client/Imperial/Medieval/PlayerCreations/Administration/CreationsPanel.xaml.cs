@@ -13,7 +13,14 @@ public sealed partial class CreationsPanel : DefaultWindow
         RobustXamlLoader.Load(this);
 
         Tabs.SetTabTitle(0, Loc.GetString("creations-panel-tab-paintings-incoming"));
+        Tabs.SetTabTitle(1, Loc.GetString("creations-panel-tab-books-incoming"));
+        Tabs.SetTabTitle(2, Loc.GetString("creations-panel-tab-paintings-accepted"));
+        Tabs.SetTabTitle(3, Loc.GetString("creations-panel-tab-books-accepted"));
     }
 
     public PaintingTab IncomingPaintingsTab => IncomingPaintings;
+    public PaintingTab AcceptedPaintingsTab => AcceptedPaintings;
+
+    public BookTab IncomingBooksTab => IncomingBooks;
+    public BookTab AcceptedBooksTab => AcceptedBooks;
 }

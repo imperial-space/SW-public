@@ -678,6 +678,84 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync(cancel);
         }
 
+        public async Task<Book?> GetBook(string text, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var book = await db.DbContext.Books
+                .Where(v => v.Text == text)
+                .FirstOrDefaultAsync(cancel);
+
+            return book;
+        }
+
+        public async Task<List<Book>> GetBooks(bool accepted, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var books = await db.DbContext.Books
+                .Where(c => c.Accepted == accepted)
+                .ToListAsync(cancel);
+
+            return books;
+        }
+
+        public async Task AddBook(string text,
+            string name,
+            string description,
+            string author,
+            Guid authorUserId,
+            DateTime creationTime,
+            bool accepted,
+            CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var book = new Book
+            {
+                Text = text,
+                Name = name,
+                Description = description,
+                Author = author,
+                AuthorUserId = authorUserId,
+                CreationTime = creationTime,
+                Accepted = accepted
+            };
+
+            await db.DbContext.Books.AddAsync(book, cancel);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task RemoveBook(string text, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var book = await db.DbContext.Books
+                .Where(v => v.Text == text)
+                .FirstOrDefaultAsync(cancel);
+
+            if (book == null)
+                return;
+
+            db.DbContext.Books.Remove(book);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task SetBookAccepted(string text, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var book = await db.DbContext.Books
+                .Where(v => v.Text == text)
+                .FirstOrDefaultAsync(cancel);
+
+            if (book == null)
+                return;
+
+            book.Accepted = true;
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
         public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
         {
             await using var db = await GetDb(cancel);

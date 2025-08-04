@@ -62,6 +62,10 @@
   name: canvas
   components:
   - type: Canvas
+  - type: UserInterface
+    interfaces:
+      enum.PaintUiKey.Key:
+        type: PaintingBoundUserInterface
   - type: Sprite
     sprite: Imperial/Medieval/Paintings/canvas.rsi
     layers:
@@ -103,3 +107,4 @@
   - type: Sprite
     sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
     state: paintkit
+

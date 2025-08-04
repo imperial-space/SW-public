@@ -60,6 +60,9 @@ public sealed class EaselSystem : EntitySystem
     private void UpdateAppearance(Entity<EaselComponent> ent)
     {
         _appearance.SetData(ent, EaselVisuals.ContainsItem, HasItem(ent));
+
+        if(!HasItem(ent))
+            _ui.CloseUi(ent.Owner, EaselUiKey.Key);
     }
 
     private void OnInteract(Entity<EaselComponent> ent, ref InteractUsingEvent args)

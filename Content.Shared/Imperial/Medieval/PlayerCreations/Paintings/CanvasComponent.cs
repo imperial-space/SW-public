@@ -11,7 +11,6 @@ public sealed partial class CanvasComponent : Component
 {
     [DataField, AutoNetworkedField]
     public Color[] Texture = new Color[900];
-    public Action? TextureChanged;
 }
 
 [Serializable, NetSerializable]

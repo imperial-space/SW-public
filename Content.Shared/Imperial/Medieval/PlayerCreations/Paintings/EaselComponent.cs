@@ -60,6 +60,17 @@ public sealed class EaselSendPaintingMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
+public sealed class PaintingBoundUserInterfaceState : BoundUserInterfaceState
+{
+    public readonly Color[] Texture;
+
+    public PaintingBoundUserInterfaceState(Color[] texture)
+    {
+        Texture = texture;
+    }
+}
+
+[Serializable, NetSerializable]
 public enum EaselUiKey
 {
     Key
@@ -70,4 +81,10 @@ public enum EaselVisuals : byte
 {
     ContainsItem,
     Layer
+}
+
+[Serializable, NetSerializable]
+public enum PaintUiKey
+{
+    Key
 }

@@ -183,6 +183,12 @@ namespace Content.Server.Database
         public Task RemovePainting(Color[] texture, CancellationToken cancel = default);
         public Task SetPaintingAccepted(Color[] texture, CancellationToken cancel = default);
 
+        public Task<Book?> GetBook(string text, CancellationToken cancel = default);
+        public Task<List<Book>> GetBooks(bool accepted, CancellationToken cancel = default);
+        public Task AddBook(string text, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel = default);
+        public Task RemoveBook(string text, CancellationToken cancel = default);
+        public Task SetBookAccepted(string text, CancellationToken cancel = default);
+
         #endregion
 
         #region Playtime
@@ -659,6 +665,36 @@ namespace Content.Server.Database
         {
             DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.SetPaintingAccepted(texture, cancel));
+        }
+
+        public Task<Book?> GetBook(string text, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetBook(text, cancel));
+        }
+
+        public Task<List<Book>> GetBooks(bool accepted, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetBooks(accepted, cancel));
+        }
+
+        public Task AddBook(string text, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddBook(text, name, description, author, authorUserId, creationTime, accepted, cancel));
+        }
+
+        public Task RemoveBook(string text, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveBook(text, cancel));
+        }
+
+        public Task SetBookAccepted(string text, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetBookAccepted(text, cancel));
         }
 
         public Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)

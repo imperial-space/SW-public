@@ -1,0 +1,83 @@
+﻿using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Interaction;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Nutrition.EntitySystems;
+using Robust.Shared.Containers;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using Content.Server.Database;
+using Content.Server.Imperial.Medieval.PlayerCreations.Administration;
+using Content.Shared.GameTicking;
+using Content.Shared.Imperial.Medieval.CCVar;
+using Content.Shared.Imperial.Medieval.PlayerCreations;
+using Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
+using Robust.Shared.Configuration;
+using Robust.Shared.Random;
+using SixLabors.ImageSharp.PixelFormats;
+
+
+namespace Content.Server.Imperial.Medieval.PlayerCreations;
+public sealed class RandomCreationsPaintingSystem : EntitySystem
+{
+
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IServerDbManager _db = default!;
+    [Dependency] private readonly CreationsSystem _creations = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+
+    private Dictionary<string, int> _paintngsSpawned = new();
+
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<RandomCreationsPaintingComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStart);
+    }
+
+    public void OnRoundStart(RoundStartedEvent args)
+    {
+        _paintngsSpawned = new();
+    }
+
+    public async void OnStartup(EntityUid uid, RandomCreationsPaintingComponent comp, ComponentStartup args)
+    {
+        var maxPaintings = _cfg.GetCVar(MedievalCCVars.CreationsMaxPaintings);
+        var acceptedPaintings = await _creations.GetAcceptedPaintingsMessages();
+
+        foreach (var spawned in _paintngsSpawned)
+        {
+            if (spawned.Value < maxPaintings)
+                continue;
+            var toRemove = acceptedPaintings
+                .FirstOrDefault(v => PaintingHelper.ColorsToString(v.Painting) == spawned.Key);
+
+            if (toRemove != null)
+                acceptedPaintings.Remove(toRemove);
+        }
+
+        if (acceptedPaintings.Count <= 0)
+        {
+            QueueDel(uid);
+            return;
+        }
+
+        var selected = _random.Pick(acceptedPaintings);
+        var stringColors = PaintingHelper.ColorsToString(selected.Painting);
+        _paintngsSpawned.TryAdd(stringColors, 0);
+        _paintngsSpawned[stringColors] += 1;
+
+        var painting = Spawn(comp.PaintingPrototype, Transform(uid).Coordinates);
+        if (TryComp<CanvasComponent>(painting, out var canvas))
+        {
+            canvas.Texture = selected.Painting;
+            RaiseNetworkEvent(new CanvasTextureChangedEvent(GetNetEntity(painting), canvas.Texture));
+        }
+        _metaData.SetEntityName(painting, $"{selected.Name} - {selected.Author}");
+        _metaData.SetEntityDescription(painting, selected.Description);
+        QueueDel(uid);
+
+    }
+}

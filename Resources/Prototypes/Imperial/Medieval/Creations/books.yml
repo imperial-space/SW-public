@@ -1,0 +1,14 @@
+- type: entity
+  parent: BookBase
+  id: CreationsBook
+  name: custom book
+  components:
+  - type: CreationsBook
+
+- type: entity
+  parent: BookBase
+  id: RandomCreationsBook
+  name: random custom book
+  components:
+  - type: CreationsBook
+  - type: RandomCreationsBook
