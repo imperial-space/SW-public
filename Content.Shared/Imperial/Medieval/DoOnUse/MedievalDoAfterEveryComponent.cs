@@ -9,6 +9,10 @@ public sealed partial class MedievalDoAfterEveryComponent : Component
     public string Name = "дать хит";
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public TypeMedievalDoAfter Type = TypeMedievalDoAfter.Hit;
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public string TypeHit = "Blunt";
+    [ViewVariables(VVAccess.ReadWrite), DataField]
+    public int NumHit = 5;
 }
 public enum TypeMedievalDoAfter : byte
 {

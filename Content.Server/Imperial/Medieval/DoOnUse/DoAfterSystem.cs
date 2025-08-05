@@ -22,12 +22,12 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
     }
     private void GiveHit(MedievalHitOnDoAfter ev)
     {
-        if (ev.Cancelled || !TryComp<DamageableComponent>(ev.Target, out var damagecomp)) return;
+        if (ev.Cancelled || !TryComp<DamageableComponent>(ev.Target, out var damagecomp) || !TryComp<MedievalDoAfterEveryComponent>(ev.Target, out var comp)) return;
         DamageSpecifier damage = new()
         {
             DamageDict = new()
             {
-                { "Blunt", (int)5 }
+                { comp.TypeHit, comp.NumHit }
             }
         };
 
