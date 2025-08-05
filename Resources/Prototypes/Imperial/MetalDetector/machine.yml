@@ -117,7 +117,7 @@
   components:
     - type: Construction
       graph: ImperialMetalDetector
-      node: reinforced
+      node: panelReinforced
     - type: WiresPanelSecurity
       securityLevel: panelReinforced
       examine: wires-panel-component-on-examine-security-level2
