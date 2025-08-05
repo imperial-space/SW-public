@@ -1,5 +1,5 @@
-guidebook-microwave-solid-quantity-display = × {$amount}
 guidebook-microwave-ingredients-header = Ingredients
+guidebook-microwave-cook-time-header = Cooking time
 guidebook-microwave-cook-time =
     { $time ->
     [0] Instant
