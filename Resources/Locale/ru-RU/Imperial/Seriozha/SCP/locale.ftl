@@ -3,7 +3,7 @@ ent-ImperialSCPDed = Старик
 ent-ImperialSCPDoc = Доктор
     .desc = Молись.
 ent-ImperialSCPMask = Странная маска
-    .desc = Круто выглядит!
+    .desc = Круто выглядит! Было бы неплохо ее надеть!
 ent-SCPIDCardOne = ID карта первого уровня
     .desc = Низший уровень, отбросы
 ent-SCPIDCardTwo = ID карта второго уровня
@@ -34,5 +34,4 @@ ent-EncryptionKeyNedraconnection= Ключ шифрования недр
     .desc = Алло, бизнес? Да-да деньги
 ent-EncryptionKeyNedraCMDconnection = Ключ шифрования командования недр
     .desc = Алло, бизнес? Да-да деньги
-ent-ClothingHeadsetNedra = Гарнитура комплекса
-    .desc = Алло, бизнес? Да-да деньги
+

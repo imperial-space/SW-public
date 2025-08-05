@@ -49,23 +49,4 @@
     state: icon
   - type: Item
     sprite: Imperial/Seriozha/SCP/misc/cmdencryptionkey.rsi
-# Headsets
 
-- type: entity
-  parent: ClothingHeadset
-  id: ClothingHeadsetNedra
-  name: headset
-  suffix: seriozha, Недра
-  description: A headset
-  components:
-  - type: ContainerFill
-    containers:
-      key_slots:
-      - EncryptionKeyNedraconnection
-  - type: EncryptionKeyHolder
-    keySlots: 6
-  - type: Sprite
-    sprite: Imperial/Seriozha/SCP/misc/headset.rsi
-    state: icon
-  - type: Clothing
-    sprite: Imperial/Seriozha/SCP/misc/headset.rsi
