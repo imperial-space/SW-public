@@ -1,11 +1,8 @@
-﻿using Robust.Shared.Utility;
-using SixLabors.ImageSharp.PixelFormats;
+﻿using Robust.Shared.GameStates;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
 
-using Content.Shared.Containers.ItemSlots;
-using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class CanvasComponent : Component
 {

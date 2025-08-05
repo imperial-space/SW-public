@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using System.Security.Principal;
-using Content.Client.Eui;
+﻿using Content.Client.Eui;
 using Content.Shared.Eui;
-using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Content.Shared.Imperial.Medieval.PlayerCreations;
 using Robust.Client.Graphics;
 
@@ -10,10 +7,8 @@ namespace Content.Client.Imperial.Medieval.PlayerCreations.Administration;
 
 public sealed class CreationsPanelEui : BaseEui
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
 
-    private ISawmill _sawmill;
 
     private readonly Dictionary<CreationPaintingMessage, PaintingEntry> _incomingPaintings = new();
     private readonly Dictionary<CreationPaintingMessage, PaintingEntry> _acceptedPaintings = new();
@@ -27,7 +22,6 @@ public sealed class CreationsPanelEui : BaseEui
     public CreationsPanelEui()
     {
         IoCManager.InjectDependencies(this);
-        _sawmill = _logManager.GetSawmill("creations.panel");
         _creationsPanel = new CreationsPanel();
         _creationsPanel.OnClose += OnCloseWindow;
     }
@@ -230,7 +224,6 @@ public sealed class CreationsPanelEui : BaseEui
         base.Opened();
 
         _creationsPanel?.OpenCenteredLeft();
-        _sawmill.Debug("Hi!");
         SendMessage(new RequestIncomingCreationPaintingsMessage());
         SendMessage(new RequestAcceptedCreationPaintingsMessage());
         SendMessage(new RequestIncomingCreationBooks());

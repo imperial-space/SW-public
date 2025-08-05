@@ -1,24 +1,12 @@
 ﻿using System.Linq;
-using System.Text.RegularExpressions;
 using Content.Server.Administration.Managers;
-using Content.Server.Chat.Systems;
 using Content.Server.Database;
-using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Filter = Robust.Shared.Player.Filter;
 using Robust.Shared.Prototypes;
-using Content.Server.GameTicking;
-using Content.Shared.Imperial.Medieval.Admin;
 using Robust.Server.Player;
-using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Shared.Network;
 using System.Threading.Tasks;
 using Content.Server.Administration;
-using Content.Server.MedievalPasport.Components;
-using Content.Shared.Administration;
-using Content.Shared.CCVar;
-using Robust.Shared.Player;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.PlayerCreations;
 using Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
 using Robust.Shared.Configuration;
@@ -28,15 +16,7 @@ namespace Content.Server.Imperial.Medieval.PlayerCreations.Administration;
 
 public sealed partial class CreationsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IServerDbManager _db = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IPlayerLocator _locator = default!;
-    [Dependency] private readonly EaselSystem _easel = default!;
 
 
     private readonly List<CreationsPanelEui> _activeEuis = new();
@@ -62,8 +42,6 @@ public sealed partial class CreationsSystem : EntitySystem
     #region Paintings
     private async void OnSendPainting(SendCreationPaintingEvent args)
     {
-        Logger.Debug("Send");
-
         if (args.Painting.Length >= 2000)
             return;
         if (args.Name.Length >= 40)
@@ -140,25 +118,17 @@ public sealed partial class CreationsSystem : EntitySystem
         );
 
         foreach (var eui in _activeEuis)
-        {
             eui.SendNewIncomingPainting(painting);
-            Logger.Debug($"{eui}");
-        }
 
         return true;
     }
 
     public async void RemoveIncomingPainting(CreationPaintingMessage painting)
     {
-        // _invokingPaintings.Remove(painting);
-        Logger.Debug("removed");
         await _db.RemovePainting(painting.Painting);
 
         foreach (var eui in _activeEuis)
-        {
             eui.SendRemoveIncomingPainting(painting);
-            Logger.Debug($"{eui}");
-        }
     }
 
     public async void AcceptIncomingPainting(CreationPaintingMessage painting)
@@ -176,8 +146,6 @@ public sealed partial class CreationsSystem : EntitySystem
     #region Books
     private async void OnSendBook(SendCreationBookEvent args)
     {
-        Logger.Debug("Send book");
-
         if (args.Text.Length >= 12000)
             return;
         if (args.Name.Length >= 40)
@@ -254,10 +222,7 @@ public sealed partial class CreationsSystem : EntitySystem
         );
 
         foreach (var eui in _activeEuis)
-        {
             eui.SendNewIncomingBook(book);
-            Logger.Debug($"{eui}");
-        }
 
         return true;
     }

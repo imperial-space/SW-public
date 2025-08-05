@@ -1,18 +1,10 @@
-﻿using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Interaction;
-using Content.Shared.Nutrition.Components;
-using Content.Shared.Nutrition.EntitySystems;
-using Robust.Shared.Containers;
-using System.Diagnostics.CodeAnalysis;
+﻿
 using Content.Client.Imperial.Medieval.PlayerCreations.Books;
-using Content.Client.Imperial.Medieval.PlayerCreations.Paintings;
 using Content.Shared.Imperial.Medieval.PlayerCreations;
 using Content.Shared.Imperial.Medieval.PlayerCreations.Books;
-using Content.Shared.Interaction.Events;
 using Content.Shared.Paper;
 using Content.Shared.Verbs;
 using Robust.Client.Player;
-using SixLabors.ImageSharp.PixelFormats;
 
 
 namespace Content.Server.Imperial.Medieval.PlayerCreations.Books;

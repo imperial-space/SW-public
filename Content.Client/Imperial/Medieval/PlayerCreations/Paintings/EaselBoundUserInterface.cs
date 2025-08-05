@@ -1,18 +1,12 @@
 ﻿using Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
 using Robust.Client.Player;
-using Robust.Shared.Utility;
+using Robust.Client.UserInterface;
 
 namespace Content.Client.Imperial.Medieval.PlayerCreations.Paintings;
-
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Monitor;
-using Content.Shared.Atmos.Monitor.Components;
-using Robust.Client.UserInterface;
 
 public sealed class EaselBoundUserInterface : BoundUserInterface
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private EaselWindow? _window;
 
@@ -41,12 +35,8 @@ public sealed class EaselBoundUserInterface : BoundUserInterface
 
     private void SendPainting(string name, string description, string author)
     {
-        Logger.Debug("send!");
-
         if (_window == null)
             return;
-
-        Logger.Debug("send");
 
         var localSession = _playerManager.LocalSession;
         if (localSession == null)

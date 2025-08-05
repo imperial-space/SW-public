@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Robust.Client.Graphics;
-using Robust.Shared.Utility;
 using SixLabors.ImageSharp.PixelFormats;
 
 namespace Content.Client.Imperial.Medieval.PlayerCreations;

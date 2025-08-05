@@ -1,18 +1,12 @@
 ﻿using Robust.Shared.Network;
-using Robust.Shared.Utility;
-using SixLabors.ImageSharp.PixelFormats;
-
-namespace Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
-
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+
+namespace Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class EaselComponent : Component
 {
-    /// <summary>
-    /// Name of the <see cref="ItemSlot"/> that stores the actual item.
-    /// </summary>
     [DataField]
     public string Slot = "Easel";
 }

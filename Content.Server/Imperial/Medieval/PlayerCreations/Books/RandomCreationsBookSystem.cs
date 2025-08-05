@@ -1,21 +1,12 @@
-﻿using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Interaction;
-using Content.Shared.Nutrition.Components;
-using Content.Shared.Nutrition.EntitySystems;
-using Robust.Shared.Containers;
-using System.Diagnostics.CodeAnalysis;
+﻿
 using System.Linq;
-using Content.Server.Database;
 using Content.Server.Imperial.Medieval.PlayerCreations.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.CCVar;
-using Content.Shared.Imperial.Medieval.PlayerCreations;
 using Content.Shared.Imperial.Medieval.PlayerCreations.Books;
-using Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
 using Content.Shared.Paper;
 using Robust.Shared.Configuration;
 using Robust.Shared.Random;
-using SixLabors.ImageSharp.PixelFormats;
 
 
 namespace Content.Server.Imperial.Medieval.PlayerCreations.Books;
@@ -24,7 +15,6 @@ public sealed class RandomCreationsBookSystem : EntitySystem
 
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IServerDbManager _db = default!;
     [Dependency] private readonly CreationsSystem _creations = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
 

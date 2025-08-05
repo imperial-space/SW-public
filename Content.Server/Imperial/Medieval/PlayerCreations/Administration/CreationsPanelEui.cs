@@ -3,7 +3,6 @@ using Content.Server.EUI;
 using Content.Shared.Administration;
 using Content.Shared.Eui;
 using Content.Server.Administration;
-using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Content.Shared.Imperial.Medieval.PlayerCreations;
 
 namespace Content.Server.Imperial.Medieval.PlayerCreations.Administration;
@@ -13,12 +12,10 @@ public sealed class CreationsPanelEui : BaseEui
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
     [Dependency] private readonly IAdminManager _adminManager = default!;
     private readonly CreationsSystem _creationsSystem;
-    private readonly ISawmill _sawmill;
 
     public CreationsPanelEui()
     {
         IoCManager.InjectDependencies(this);
-        _sawmill = Logger.GetSawmill("CreationsPanelEui");
         _creationsSystem = _entitySystemManager.GetEntitySystem<CreationsSystem>();
     }
     public override void Opened()

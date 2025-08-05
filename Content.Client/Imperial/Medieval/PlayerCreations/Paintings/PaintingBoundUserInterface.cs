@@ -1,19 +1,12 @@
 ﻿using Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
-using Robust.Shared.Utility;
+using Robust.Client.UserInterface;
 
 namespace Content.Client.Imperial.Medieval.PlayerCreations.Paintings;
 
-using Content.Shared.Atmos;
-using Content.Shared.Atmos.Monitor;
-using Content.Shared.Atmos.Monitor.Components;
-using Robust.Client.UserInterface;
-
 public sealed class PaintingBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IPlayerManager _playerManager = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
 
     private PaintingWindow? _window;

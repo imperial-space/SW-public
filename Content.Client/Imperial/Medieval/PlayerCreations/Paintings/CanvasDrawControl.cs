@@ -1,11 +1,9 @@
 ﻿using System.Numerics;
 using Robust.Client.Graphics;
-using Robust.Client.Input;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Input;
 using Robust.Shared.Timing;
-using SixLabors.ImageSharp.PixelFormats;
 
 namespace Content.Client.Imperial.Medieval.PlayerCreations.Paintings;
 
@@ -47,9 +45,9 @@ public sealed class CanvasDrawControl : Control
 
         var pixelSize = PixelWidth / _textureWidth;
 
-        for (int y = 0; y < _textureHeight; y++)
+        for (var y = 0; y < _textureHeight; y++)
         {
-            for (int x = 0; x < _textureWidth; x++)
+            for (var x = 0; x < _textureWidth; x++)
             {
                 var color = Pixels[y * _textureWidth + x];
                 var rect = UIBox2.FromDimensions(
@@ -147,9 +145,7 @@ public sealed class CanvasDrawControl : Control
     {
         var pixelSize = PixelWidth / _textureWidth;
 
-        Vector2i output = new();
-
-        output = new Vector2i((int)(pos.X / pixelSize), (int)(pos.Y / pixelSize));
+        var output = new Vector2i((int)(pos.X / pixelSize), (int)(pos.Y / pixelSize));
 
         return output;
     }

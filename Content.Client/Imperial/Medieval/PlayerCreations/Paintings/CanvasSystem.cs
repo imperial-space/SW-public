@@ -1,31 +1,15 @@
-﻿using Content.Shared.Containers.ItemSlots;
-using Content.Shared.Interaction;
-using Content.Shared.Nutrition.Components;
-using Content.Shared.Nutrition.EntitySystems;
-using Robust.Shared.Containers;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
+﻿
 using Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
-using OpenToolkit.GraphicsLibraryFramework;
 using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Utility;
-using SixLabors.ImageSharp.PixelFormats;
 
 
 namespace Content.Client.Imperial.Medieval.PlayerCreations.Paintings;
 public sealed class CanvasSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly IClyde _clyde = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
-
-
-
-
-    /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
@@ -57,7 +41,5 @@ public sealed class CanvasSystem : EntitySystem
 
         canvas.Texture = args.Texture;
         SetTexture(uid, args.Texture);
-
-        Logger.Debug("Changed");
     }
 }

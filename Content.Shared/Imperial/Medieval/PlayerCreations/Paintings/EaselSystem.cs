@@ -1,20 +1,13 @@
 ﻿using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Interaction;
-using Content.Shared.Nutrition.Components;
-using Content.Shared.Nutrition.EntitySystems;
 using Robust.Shared.Containers;
 using System.Diagnostics.CodeAnalysis;
-using SixLabors.ImageSharp.PixelFormats;
 
 namespace Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
 
-/// <summary>
-/// Controls ItemCabinet slot locking and visuals.
-/// </summary>
 public sealed class EaselSystem : EntitySystem
 {
     [Dependency] private readonly ItemSlotsSystem _slots = default!;
-    [Dependency] private readonly OpenableSystem _openable = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
 
