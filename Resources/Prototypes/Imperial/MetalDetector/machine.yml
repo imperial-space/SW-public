@@ -60,6 +60,14 @@
     - type: Construction
       graph: ImperialMetalDetector
       node: detector
+    - type: ContainerFill
+      containers:
+        board: [ MetalDetectorCircuitboard ]
+        powercell: [ PowerCellSmall ]
+    - type: ContainerContainer
+      containers:
+        board: !type:Container
+        powercell: !type:Container
     - type: WiresPanel
     - type: WiresPanelSecurity
     - type: WiresVisuals
@@ -86,7 +94,7 @@
               sound:
                 collection: MetalBreak
             - !type:ChangeConstructionNodeBehavior
-              node: machineFrame
+              node: frame
             - !type:DoActsBehavior
               acts: ["Destruction"]
     - type: UserInterface
@@ -169,6 +177,8 @@
     - type: Tag
       tags:
         - MetalDetectorTag
+    - type: MachineBoard
+      prototype: ImperialMetalDetector
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: security
@@ -186,9 +196,9 @@
   result: MetalDetectorCircuitboard
   completetime: 8
   materials:
-    Plasma: 10
-    Steel: 10
-    Gold: 1
+    Plasma: 100
+    Steel: 150
+    Gold: 10
 
 - type: technology
   id: MetalDetectorTech
@@ -253,7 +263,7 @@
           steps:
             - tag: MetalDetectorTag
               store: board
-              name: микросхема металлоискателя
+              name: микросхема металлоискателя # Imperial Recipes Locale
               icon:
                 sprite: "Objects/Misc/module.rsi"
                 state: "security"
@@ -262,7 +272,7 @@
                 - PowerCell
                 - PowerCellSmall
               store: powercell
-              name: любая батарейка
+              name: любая батарейка # Imperial Recipes Locale
               icon:
                 sprite: "Objects/Power/power_cells.rsi"
                 state: "medium"
@@ -286,14 +296,10 @@
     - node: detector
       entity: ImperialMetalDetector
       edges:
-        - to: reinforced
-          steps:
-            - material: Plasteel
-              amount: 5
-              doAfter: 3
         - to: parts
           conditions:
             - !type:WirePanel {}
+            - !type:AllWiresCut {}
             - !type:ContainerNotEmpty
               container: board
           completed:
