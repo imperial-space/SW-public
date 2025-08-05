@@ -11,7 +11,7 @@ public sealed partial class BookEntry : Control
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    public BookEntry(CreationBook book, Action? onAccept = null, Action? onDecline = null, bool buttonsEnabled = true)
+    public BookEntry(CreationBook book, Action? onAccept = null, Action? onDecline = null, bool acceptEnabled = true)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -27,16 +27,12 @@ public sealed partial class BookEntry : Control
 
         MoreButton.OnPressed += _ => OpenMoreWindow(book);
 
-        if (!buttonsEnabled)
-        {
+        DeclineButton.OnPressed += _ => onDecline?.Invoke();
+
+        if (!acceptEnabled)
             AcceptButton.Visible = false;
-            DeclineButton.Visible = false;
-        }
         else
-        {
             AcceptButton.OnPressed += _ => onAccept?.Invoke();
-            DeclineButton.OnPressed += _ => onDecline?.Invoke();
-        }
     }
 
     private void OpenMoreWindow(CreationBook book)

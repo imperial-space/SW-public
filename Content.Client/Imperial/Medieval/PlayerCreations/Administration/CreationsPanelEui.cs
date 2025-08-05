@@ -84,6 +84,7 @@ public sealed class CreationsPanelEui : BaseEui
 
     private void SendRemoveAcceptedPainting(CreationPaintingMessage painting)
     {
+        Logger.Debug("removed");
         SendMessage(new RemoveAcceptedCreationPaintingMessage(painting));
     }
 
@@ -111,17 +112,28 @@ public sealed class CreationsPanelEui : BaseEui
     {
         if (_acceptedPaintings.ContainsKey(painting))
             return false;
-        var entry = new PaintingEntry(_clyde, painting, null, null, false);
+        var entry = new PaintingEntry(_clyde, painting, null, () => ConfirmRemovePainting(painting), false);
         _acceptedPaintings.Add(painting, entry);
         _creationsPanel?.AcceptedPaintingsTab.AddEntry(entry);
 
         return true;
     }
 
+    private void ConfirmRemovePainting(CreationPaintingMessage painting)
+    {
+        var confirmDialog = new CreationsConfirmDialog();
+        confirmDialog.OnConfirmButtonPressed(() => SendRemoveAcceptedPainting(painting));
+        confirmDialog.OpenCentered();
+    }
+
     private void RemoveAcceptedPainting(CreationPaintingMessage painting)
     {
+        Logger.Debug("REMOEDs");
+
         if (!_acceptedPaintings.TryGetValue(painting, out var entry))
             return;
+
+        Logger.Debug("REMOED");
 
         _creationsPanel?.AcceptedPaintingsTab.RemoveEntry(entry);
         _acceptedPaintings.Remove(painting);
@@ -201,11 +213,19 @@ public sealed class CreationsPanelEui : BaseEui
     {
         if (_acceptedBooks.ContainsKey(book))
             return false;
-        var entry = new BookEntry(book, null, null, false);
+        var entry = new BookEntry(book, null, () => ConfirmRemoveBook(book), false);
         _acceptedBooks.Add(book, entry);
         _creationsPanel?.AcceptedBooksTab.AddEntry(entry);
 
         return true;
+    }
+
+
+    private void ConfirmRemoveBook(CreationBook book)
+    {
+        var confirmDialog = new CreationsConfirmDialog();
+        confirmDialog.OnConfirmButtonPressed(() => SendRemoveAcceptedBook(book));
+        confirmDialog.OpenCentered();
     }
 
     private void RemoveAcceptedBook(CreationBook book)
