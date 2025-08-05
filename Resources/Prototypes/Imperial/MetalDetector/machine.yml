@@ -117,7 +117,7 @@
   components:
     - type: Construction
       graph: ImperialMetalDetector
-      node: panelReinforced
+      node: reinforced
     - type: WiresPanelSecurity
       securityLevel: panelReinforced
       examine: wires-panel-component-on-examine-security-level2
@@ -177,18 +177,6 @@
 
 ### Tech
 
-- type: technology
-  id: MetalDetectorTech
-  name: research-technology-metal-detector
-  icon:
-    sprite: Imperial/MetalDetector/machine.rsi
-    state: icon
-  discipline: Arsenal
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-    - MetalDetectorCircuitboard
-
 - type: latheRecipe
   id: MetalDetectorCircuitboard
   name: metal-detector-circuitboard
@@ -201,6 +189,18 @@
     Plasma: 10
     Steel: 10
     Gold: 1
+
+- type: technology
+  id: MetalDetectorTech
+  name: research-technology-metal-detector
+  icon:
+    sprite: Imperial/MetalDetector/machine.rsi
+    state: icon
+  discipline: Arsenal
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+    - MetalDetectorCircuitboard
 
 ### Recipe
 
@@ -220,81 +220,105 @@
   graph:
     - node: start
       edges:
-      - to: frame
-        steps:
-        - material: Steel
-          amount: 5
-          doAfter: 2
+        - to: frame
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 2
 
     - node: frame
       entity: MetalDetectorFrame
       edges:
-      - to: start
-        steps:
-        - tool: Welding
-          doAfter: 4
-        completed:
-        - !type:GivePrototype
-          prototype: SheetSteel1
-          amount: 5
-        - !type:DeleteEntity {}
-      - to: parts
-        steps:
-        - material: Cable
-          amount: 5
-          doAfter: 0.5
-        - tool: Screwing
-          doAfter: 2
+        - to: start
+          steps:
+            - tool: Welding
+              doAfter: 4
+          completed:
+            - !type:GivePrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:DeleteEntity {}
+        - to: parts
+          steps:
+            - material: Cable
+              amount: 5
+              doAfter: 0.5
+            - tool: Screwing
+              doAfter: 2
 
     - node: parts
       entity: MetalDetectorFrame
       edges:
-      - to: electronics
-        steps:
-        - tag: MetalDetectorTag
-          store: board
-          name: микросхема металлоискателя # Imperial Recipes Locale
-          icon:
-            sprite: "Objects/Misc/module.rsi"
-            state: "security"
-          doAfter: 0.5
-        - anyTags:
-            - PowerCell
-            - PowerCellSmall
-          store: powercell
-          name: любая батарейка # Imperial Recipes Locale
-          icon:
-            sprite: "Objects/Power/power_cells.rsi"
-            state: "medium"
-          doAfter: 0.5
-      - to: frame
-        completed:
-        - !type:GivePrototype
-          prototype: CableApcStack1
-          amount: 5
-        steps:
-        - tool: Cutting
-          doAfter: 1
+        - to: electronics
+          steps:
+            - tag: MetalDetectorTag
+              store: board
+              name: микросхема металлоискателя
+              icon:
+                sprite: "Objects/Misc/module.rsi"
+                state: "security"
+              doAfter: 0.5
+            - anyTags:
+                - PowerCell
+                - PowerCellSmall
+              store: powercell
+              name: любая батарейка
+              icon:
+                sprite: "Objects/Power/power_cells.rsi"
+                state: "medium"
+              doAfter: 0.5
+        - to: frame
+          completed:
+            - !type:GivePrototype
+              prototype: CableApcStack1
+              amount: 5
+          steps:
+            - tool: Cutting
+              doAfter: 1
 
     - node: electronics
       edges:
-      - to: detector
-        steps:
-        - tool: Screwing
-          doAfter: 2
+        - to: detector
+          steps:
+            - tool: Screwing
+              doAfter: 2
 
     - node: detector
       entity: ImperialMetalDetector
       edges:
-      - to: parts
-        conditions:
-        - !type:WirePanel {}
-        - !type:ContainerNotEmpty
-          container: board
-        completed:
-        - !type:EmptyAllContainers
-          pickup: true
-          emptyAtUser: true
-        steps:
-        - tool: Prying
-          doAfter: 1
+        - to: parts
+          conditions:
+            - !type:WirePanel {}
+            - !type:ContainerNotEmpty
+              container: board
+          completed:
+            - !type:EmptyAllContainers
+              pickup: true
+              emptyAtUser: true
+          steps:
+            - tool: Prying
+              doAfter: 1
+
+    - node: reinforced
+      edges:
+        - to: panelReinforced
+          steps:
+            - material: Plasteel
+              amount: 5
+              doAfter: 3
+            - tool: Welding
+              doAfter: 4
+
+    - node: panelReinforced
+      entity: MetalDetectorSecure
+      edges:
+        - to: detector
+          steps:
+            - tool: Welding
+              doAfter: 4
+            - tool: Prying
+              doAfter: 2
+          completed:
+            - !type:GivePrototype
+              prototype: SheetPlasteel1
+              amount: 5
