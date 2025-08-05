@@ -75,8 +75,8 @@ public sealed class RandomCreationsPaintingSystem : EntitySystem
             canvas.Texture = selected.Painting;
             RaiseNetworkEvent(new CanvasTextureChangedEvent(GetNetEntity(painting), canvas.Texture));
         }
-        _metaData.SetEntityName(painting, $"{selected.Name} - {selected.Author}");
-        _metaData.SetEntityDescription(painting, selected.Description);
+        _metaData.SetEntityName(painting, $"{selected.Name}");
+        _metaData.SetEntityDescription(painting, $"{selected.Description} - {selected.Author}");
         QueueDel(uid);
 
     }

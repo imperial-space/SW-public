@@ -43,7 +43,7 @@ public sealed partial class PaintingSendDialogWindow : DefaultWindow
             {
                 if (_playerManager.LocalSession != null)
                 {
-                    _popup.PopupCursor(Loc.GetString("easel-window-confirmation-name-length"),
+                    _popup.PopupCursor(Loc.GetString("easel-window-confirmation-name-length", ("min", 3), ("max", 20)),
                         _playerManager.LocalSession);
                 }
 
@@ -54,7 +54,7 @@ public sealed partial class PaintingSendDialogWindow : DefaultWindow
             {
                 if (_playerManager.LocalSession != null)
                 {
-                    _popup.PopupCursor(Loc.GetString("easel-window-confirmation-description-length"),
+                    _popup.PopupCursor(Loc.GetString("easel-window-confirmation-description-length", ("max", 200)),
                         _playerManager.LocalSession);
                 }
 
@@ -65,7 +65,7 @@ public sealed partial class PaintingSendDialogWindow : DefaultWindow
             {
                 if (_playerManager.LocalSession != null)
                 {
-                    _popup.PopupCursor(Loc.GetString("easel-window-confirmation-author-length"),
+                    _popup.PopupCursor(Loc.GetString("easel-window-confirmation-author-length", ("min", 5), ("max", 40)),
                         _playerManager.LocalSession);
                 }
 

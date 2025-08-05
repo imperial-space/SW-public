@@ -2,6 +2,7 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Content.Client.Popups;
+using Content.Shared.Destructible.Thresholds;
 using Content.Shared.Imperial.Medieval.PlayerCreations.Paintings;
 using Content.Shared.Popups;
 using OpenToolkit.GraphicsLibraryFramework;
@@ -43,7 +44,7 @@ public sealed partial class BookSendDialogWindow : DefaultWindow
             {
                 if (_playerManager.LocalSession != null)
                 {
-                    _popup.PopupCursor(Loc.GetString("book-window-confirmation-name-length"),
+                    _popup.PopupCursor(Loc.GetString("book-window-confirmation-name-length", ("min", 3), ("max", 20)),
                         _playerManager.LocalSession);
                 }
 
@@ -54,7 +55,7 @@ public sealed partial class BookSendDialogWindow : DefaultWindow
             {
                 if (_playerManager.LocalSession != null)
                 {
-                    _popup.PopupCursor(Loc.GetString("book-window-confirmation-description-length"),
+                    _popup.PopupCursor(Loc.GetString("book-window-confirmation-description-length", ("max", 200)),
                         _playerManager.LocalSession);
                 }
 
@@ -65,7 +66,7 @@ public sealed partial class BookSendDialogWindow : DefaultWindow
             {
                 if (_playerManager.LocalSession != null)
                 {
-                    _popup.PopupCursor(Loc.GetString("book-window-confirmation-author-length"),
+                    _popup.PopupCursor(Loc.GetString("book-window-confirmation-author-length", ("min", 5), ("max", 40)),
                         _playerManager.LocalSession);
                 }
 

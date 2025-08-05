@@ -74,8 +74,8 @@ public sealed class RandomCreationsBookSystem : EntitySystem
         {
             paper.Content = selected.Text;
         }
-        _metaData.SetEntityName(uid, $"{selected.Name} - {selected.Author}");
-        _metaData.SetEntityDescription(uid, selected.Description);
+        _metaData.SetEntityName(uid, $"{selected.Name}");
+        _metaData.SetEntityDescription(uid, $"{selected.Description} - {selected.Author}");
 
     }
 }
