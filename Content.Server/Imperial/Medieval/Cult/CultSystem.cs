@@ -71,17 +71,8 @@ namespace Content.Server.Cult
             SubscribeLocalEvent<CultRitualMeleeComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<CultBloodMeleeComponent, MeleeHitEvent>(OnBloodMeleeHit);
             SubscribeLocalEvent<TakeNameComponent, PlayerAttachedEvent>(OnPlayerAttached);
-            SubscribeLocalEvent<MapInitEvent>(Test);
 
             _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
-        }
-        private void Test(MapInitEvent args)
-        {
-            var query = EntityQueryEnumerator<CultTeleportComponent>();
-            while (query.MoveNext(out var uid, out var comp))
-            {
-                Console.WriteLine($"NEW TELEPORT: {uid}");
-            }
         }
         private bool CheckCultWearing(EntityUid uid)
         {
