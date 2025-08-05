@@ -151,6 +151,13 @@ public sealed partial class CreationsSystem : EntitySystem
             (eui, p) => eui.SendRemoveIncomingPainting(p)
         );
 
+    public async void RemoveAcceptedPainting(CreationPaintingMessage painting)
+        => await ProcessIncoming(
+            painting,
+            async p => await _db.RemovePainting(p.Painting),
+            (eui, p) => eui.SendRemoveAcceptedPainting(p)
+        );
+
 
     public async void AcceptIncomingPainting(CreationPaintingMessage painting)
         => await ProcessIncoming(
@@ -217,6 +224,13 @@ public sealed partial class CreationsSystem : EntitySystem
             book,
             async b => await _db.RemoveBook(b.Text),
             (eui, b) => eui.SendRemoveIncomingBook(b)
+        );
+
+    public async void RemoveAcceptedBook(CreationBook book)
+        => await ProcessIncoming(
+            book,
+            async b => await _db.RemoveBook(b.Text),
+            (eui, b) => eui.SendRemoveAcceptedBook(b)
         );
 
 

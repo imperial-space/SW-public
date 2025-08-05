@@ -106,6 +106,9 @@ public sealed class CreationsPanelEui : BaseEui
             case RequestAcceptedCreationPaintingsMessage:
                 SendMessage(new ResponseAcceptedCreationPaintingsMessage(await _creationsSystem.GetAcceptedPaintingsMessages()));
                 break;
+            case RemoveAcceptedCreationPaintingMessage remove:
+                _creationsSystem.RemoveAcceptedPainting(remove.Painting);
+                break;
 
             case RequestIncomingCreationBooks:
                 SendMessage(new ResponseIncomingCreationBooks(await _creationsSystem.GetIncomingCreationBooks()));
@@ -118,6 +121,9 @@ public sealed class CreationsPanelEui : BaseEui
                 break;
             case RequestAcceptedCreationBooks:
                 SendMessage(new ResponseAcceptedCreationBooks(await _creationsSystem.GetAcceptedCreationBooks()));
+                break;
+            case RemoveAcceptedCreationBook remove:
+                _creationsSystem.RemoveAcceptedBook(remove.Book);
                 break;
         }
     }

@@ -1,5 +1,5 @@
 ent-CreationsBook = заготовка книги
-    .desc = заготовка для создания книги, которую можно заполнить текстом
+    .desc = Заготовка для создания книги, которую можно заполнить текстом
     .suffix = { "Средневековье" }
 
 creations-book-verb-send = Отправить
@@ -16,7 +16,7 @@ book-window-confirmation-description-length = Длина описания кни
 book-window-confirmation-author-length = Длина имени автора должна быть от {$min} до {$max} символов
 
 ent-RandomCreationsBook = случайная книга
-    .desc = случайная книга, которую можно отправить в творчество
+    .desc = Случайная книга, которую можно отправить в творчество
     .suffix = { "Средневековье" }
 
 ent-BookshelfCreationsFilled = { ent-Bookshelf }
