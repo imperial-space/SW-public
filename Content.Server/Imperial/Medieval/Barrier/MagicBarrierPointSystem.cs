@@ -19,6 +19,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.GameTicking;
 
 namespace Content.Server.MagicBarrier
 {
@@ -34,15 +35,23 @@ namespace Content.Server.MagicBarrier
         [Dependency] private readonly MagicRuneSystem _rune = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
 
+        public static bool IsBarrierActive = true;
+
         public override void Initialize()
         {
             base.Initialize();
+            SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
             SubscribeLocalEvent<MagicBarrierComponent, ExaminedEvent>(OnExamine);
             SubscribeLocalEvent<MagicScrollComponent, BeforeRangedInteractEvent>(OnUseInHand);
             SubscribeLocalEvent<MagicBarrierCurseComponent, BeforeDamageChangedEvent>(OnCurseDamage);
             SubscribeLocalEvent<MagicBarrierComponent, ComponentStartup>(OnStart);
             SubscribeLocalEvent<MagicBarrierComponent, GetVerbsEvent<AlternativeVerb>>(AddSuicideVerb);
             SubscribeLocalEvent<MagicRuneKnowledgeComponent, BarrierSuicideDoAfterEvent>(OnBarrierSuicideDoAfterEvent);
+        }
+
+        private void OnRoundStarted(RoundStartedEvent args)
+        {
+            IsBarrierActive = true;
         }
 
         private void OnBarrierSuicideDoAfterEvent(EntityUid uid, MagicRuneKnowledgeComponent component, BarrierSuicideDoAfterEvent args)
@@ -264,6 +273,7 @@ namespace Content.Server.MagicBarrier
 
                     if (comp.Cycle == 180)
                     {
+                        IsBarrierActive = false;
                         _chat.DispatchGlobalAnnouncement("Барьер изветшал и рассыпался в пыль.", playSound: true, colorOverride: Color.Red, sender: "Барьер");
                         _roundEndSystem.EndRound();
                     }
