@@ -18,3 +18,7 @@ book-window-confirmation-author-length = Длина имени автора до
 ent-RandomCreationsBook = случайная книга
     .desc = случайная книга, которую можно отправить в творчество
     .suffix = { "Средневековье" }
+
+ent-BookshelfCreationsFilled = { ent-Bookshelf }
+    .suffix = Заполненный, Случайный, Творчество
+    .desc = { ent-Bookshelf.desc }
