@@ -286,6 +286,11 @@
     - node: detector
       entity: ImperialMetalDetector
       edges:
+        - to: reinforced
+          steps:
+            - material: Plasteel
+              amount: 5
+              doAfter: 3
         - to: parts
           conditions:
             - !type:WirePanel {}
@@ -303,9 +308,6 @@
       edges:
         - to: panelReinforced
           steps:
-            - material: Plasteel
-              amount: 5
-              doAfter: 3
             - tool: Welding
               doAfter: 4
 
