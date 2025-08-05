@@ -71,8 +71,17 @@ namespace Content.Server.Cult
             SubscribeLocalEvent<CultRitualMeleeComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<CultBloodMeleeComponent, MeleeHitEvent>(OnBloodMeleeHit);
             SubscribeLocalEvent<TakeNameComponent, PlayerAttachedEvent>(OnPlayerAttached);
+            SubscribeLocalEvent<MapInitEvent>(Test);
 
             _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+        }
+        private void Test(MapInitEvent args)
+        {
+            var query = EntityQueryEnumerator<CultTeleportComponent>();
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                Console.WriteLine($"NEW TELEPORT: {uid}");
+            }
         }
         private bool CheckCultWearing(EntityUid uid)
         {
@@ -147,6 +156,8 @@ namespace Content.Server.Cult
                         {
                             if (tp.Base != teleport.Base && tp.Sector == teleport.Sector && HasComp<MedievalSpikeTargetComponent>(target))
                             {
+                                var teleported = EnsureComp<CultTeleportedComponent>(target);
+                                teleported.Portal = from;
                                 var txform = Transform(target);
                                 var tcoords = txform.Coordinates;
                                 Spawn("MedievalTeleportEffect", tcoords);
@@ -367,8 +378,11 @@ namespace Content.Server.Cult
                                             needAltars.Add(altar);
                                         }
                                     }
-                                    var ouraltar = _random.Pick(needAltars);
-                                    var oxform = Transform(ouraltar.Owner);
+                                    // var ouraltar = _random.Pick(needAltars); // Obsolete
+
+                                    var ouraltar = EnsureComp<CultTeleportedComponent>(victim).Portal;
+
+                                    var oxform = Transform(ouraltar);
                                     var ocoords = oxform.Coordinates;
                                     _transform.SetCoordinates(victim, ocoords);
                                     if (TryComp<CuffableComponent>(victim, out var cuff))
