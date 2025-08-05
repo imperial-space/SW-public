@@ -49,6 +49,6 @@ public sealed partial class PaintingEntry : Control
         moreDict.Add(Loc.GetString("creations-info-creation-time"), offset.ToString("dd.MM.yyyy HH:mm"));
 
         moreWindow.Populate(moreDict);
-        moreWindow.Open();
+        moreWindow.OpenCentered();
     }
 }

@@ -22,7 +22,7 @@ public sealed partial class BookEntry : Control
         ReadButton.OnPressed += _ =>
         {
             var window = new BookPreviewWindow(book.Text);
-            window.Open();
+            window.OpenCentered();
         };
 
         MoreButton.OnPressed += _ => OpenMoreWindow(book);
@@ -50,6 +50,6 @@ public sealed partial class BookEntry : Control
         moreDict.Add(Loc.GetString("creations-info-creation-time"), offset.ToString("dd.MM.yyyy HH:mm"));
 
         moreWindow.Populate(moreDict);
-        moreWindow.Open();
+        moreWindow.OpenCentered();
     }
 }
