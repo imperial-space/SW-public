@@ -8,10 +8,7 @@
   },
   "states": [
     {
-        "name": "easel"
-    },
-    {
-        "name": "canvas"
+        "name": "palette"
     }
   ]
 }

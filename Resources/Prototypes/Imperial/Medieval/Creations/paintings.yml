@@ -105,6 +105,6 @@
   components:
   - type: PaintKit
   - type: Sprite
-    sprite: Imperial/Other/Modsuits/constructing_modsuit.rsi
-    state: paintkit
+    sprite: Imperial/Medieval/Paintings/palette.rsi
+    state: palette
 

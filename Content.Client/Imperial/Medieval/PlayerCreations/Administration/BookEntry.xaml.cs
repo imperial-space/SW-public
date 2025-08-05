@@ -49,7 +49,8 @@ public sealed partial class BookEntry : Control
         moreDict.Add(Loc.GetString("creations-info-author"), book.Author);
         var data = _playerManager.GetPlayerData(book.SenderUserId);
         moreDict.Add(Loc.GetString("creations-info-author-nick"), data.UserName);
-        var offset = new DateTimeOffset(book.CreationTime).ToOffset(TimeSpan.FromHours(3));
+        var utc = DateTime.SpecifyKind(book.CreationTime, DateTimeKind.Utc);
+        var offset = new DateTimeOffset(utc).ToOffset(TimeSpan.FromHours(3));
         moreDict.Add(Loc.GetString("creations-info-creation-time"), offset.ToString("dd.MM.yyyy HH:mm"));
 
         moreWindow.Populate(moreDict);
