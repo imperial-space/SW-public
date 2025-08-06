@@ -7,7 +7,7 @@ using Content.Shared.Inventory.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Imperial.Medieval.HideHair.Systems;
+namespace Content.Shared.Imperial.Medieval.HideHair.Systems;
 
 public sealed partial class HideHairSystem : EntitySystem
 {
@@ -15,7 +15,6 @@ public sealed partial class HideHairSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly SharedHumanoidAppearanceSystem _humanoid = default!;
-    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
     public override void Initialize()
     {
         base.Initialize();
