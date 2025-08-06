@@ -30,9 +30,16 @@ public sealed partial class HideHairSystem : EntitySystem
     /// </summary>
     private void OnMapInit(EntityUid uid, HideHairComponent comp, GotEquippedEvent ev)
     {
+        if (!TryComp<MetaDataComponent>(ev.Equipment, out var meta) || meta.EntityPrototype == null) return;
         if (HasComp<HideLayerClothingComponent>(ev.Equipment))
             SetLayerVisibility(ev.Equipment!, ev.Equipee, hideLayers: true);
-        _actions.AddAction(ev.Equipee, ref comp.Action, comp.PrototypeID);
+        _actions.AddAction(ev.Equipee, ref comp.Action, out var action, comp.PrototypeID);
+        if (action != null && comp.Action != null)
+        {
+            action.EntityIcon = ev.Equipment;
+            action.Icon = new SpriteSpecifier.EntityPrototype(meta.EntityPrototype.ID);
+            Dirty(comp.Action.Value, action);
+        }
     }
     private void OnGotUnequipped(EntityUid uid, HideHairComponent comp, GotUnequippedEvent ev)
     {

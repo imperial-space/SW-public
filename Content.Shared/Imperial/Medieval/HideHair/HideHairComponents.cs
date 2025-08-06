@@ -7,7 +7,7 @@ namespace Content.Shared.Imperial.Medieval.HideHair.Components;
 public sealed partial class HideHairComponent : Component
 {
     [ViewVariables] // VVAccess.ReadOnly
-    public EntityUid? Action = null;
+    public EntityUid? Action;
     [ViewVariables(VVAccess.ReadWrite), DataField, ValidatePrototypeId<EntityPrototype>]
     public string PrototypeID = "HideHairAction";
 }
