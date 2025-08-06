@@ -1,7 +1,9 @@
-﻿using Robust.Shared.Configuration;
+using Robust.Shared;
+using Robust.Shared.Configuration;
 namespace Content.Shared.Imperial.Medieval.Administration.Nrp;
 
-public sealed class NrpCCVars
+[CVarDefs]
+public sealed class NrpCCVars : CVars
 {
     public static readonly CVarDef<bool> NrpPanelEnabled =
         CVarDef.Create("nrp.panel_enabled", true, CVar.REPLICATED | CVar.SERVER);

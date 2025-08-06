@@ -1,6 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Shared.Database;
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.IdentityManagement;
 using Robust.Shared.Player;
 
@@ -16,7 +16,7 @@ public sealed class MedievalIdentitySystem : SharedMedievalIdentitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedFriendsSystem) });
+        SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, ComponentInit>(OnComponentInit, before: new[] { typeof(SharedMedievalFactionsSystem) });
         SubscribeLocalEvent<IdentityRequiresKnowledgeComponent, PlayerAttachedEvent>(OnPlayerAttached);
     }
 

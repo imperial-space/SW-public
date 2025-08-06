@@ -68,3 +68,16 @@ medieval-store-spells-darkness-cursed-arrow-player-follover-middle-desc = Вып
 
 medieval-store-spells-darkness-cursed-arrow-player-follover-senior-name = Магическая стрела: Преследование
 medieval-store-spells-darkness--cursed-arrow-player-follover-senior-desc = Выпустите до шести самонаводящихся стрел. Стоимость 45 маны. Используйте среднюю кнопку мыши для выбора нескольких целей.
+
+# Spawn Skelet
+
+medieval-spell-speach-spawn-skelet = B̸̤̃ò̸̹n̴͈͂e̵̦͛r̷̻͊î̷̻s̵̝̅e̴͖̿
+
+medieval-store-spells-darkness-spawn-skelet-beginner-name = Призыв слабого скелета
+medieval-store-spells-darkness-spawn-skelet-beginner-desc = Призывает слабого скелета, агрессивного ко всем в выбранной вами точке. Стоимость 20 маны.
+
+medieval-store-spells-darkness-spawn-skelet-middle-name = Призыв мясного скелета
+medieval-store-spells-darkness-spawn-skelet-middle-desc = Призывает мясного скелета, агрессивного ко всем в выбранной вами точке. Стоимость 35 маны.
+
+medieval-store-spells-darkness-spawn-skelet-senior-name = Призыв скелета воина
+medieval-store-spells-darkness-spawn-skelet-senior-desc = Призывает скелета воина, агрессивного ко всем в выбранной вами точке. Стоимость 50 маны.
