@@ -36,3 +36,4 @@ public sealed class EmergencyButtonSystem : EntitySystem
         _sprite.LayerSetRsiState((uid, sprite), 0, "EmergencyButton");
     }
 }
+
