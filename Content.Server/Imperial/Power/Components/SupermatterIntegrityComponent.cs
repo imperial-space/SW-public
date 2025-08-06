@@ -68,12 +68,6 @@ namespace Content.Server.Imperial.Power.Components
         public TimeSpan CatastropheTimer = TimeSpan.Zero;
 
         /// <summary>
-        /// Количество хила от эмиттера
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float EmitterHealAmount = 0.35f;
-
-        /// <summary>
         /// Тег для исцеления (например, "SupermatterHeal")
         /// </summary>
         [DataField]
