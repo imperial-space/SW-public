@@ -104,7 +104,7 @@ medieval-store-spells-fire--magic-arrow-player-follover-senior-desc = Выпус
 
 # Fire Wall
 
-medieval-spell-speach-fire-wall = Gori
+medieval-spell-speach-fire-wall = B̸̯͗ũ̷̠r̴͎̈́n̷̜̑ ̸͇́t̵̯̾h̸̳͆e̵͍͑ ̷̩͘g̴̘̃r̵̤͆ō̸̜ǘ̸͕n̵̯͠d̶͇̉
 
 medieval-store-spells-fire-wall-beginner-name = Огненная преграда
 medieval-store-spells-fire-wall-beginner-desc = Создает небольшу огненную преграду, поджигающую ваших врагов. Стоимость 30 маны.
