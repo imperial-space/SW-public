@@ -46,7 +46,6 @@ namespace Content.Server.Imperial.Power.EntitySystems
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
         [Dependency] private readonly SharedTransformSystem _xforms = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
-        [Dependency] private readonly LightningSystem _lightning = default!;
 
         public override void Initialize()
         {
@@ -254,53 +253,11 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 {
                     comp.CatastropheActive = true;
                     comp.CatastropheTimer = TimeSpan.FromSeconds(120); // 2 минуты
-                    comp.CatastropheLightningTimer = TimeSpan.Zero; // Сброс таймера молний
-
-                    // Критическое предупреждение о катастрофе
-                    try
-                    {
-                        var catastropheMsg = Loc.GetString("supermatter-catastrophe-warning");
-                        SendSupermatterRadio(uid, catastropheMsg);
-                        _chat.TrySendInGameICMessage(uid, catastropheMsg, InGameICChatType.Speak, ChatTransmitRange.Normal);
-
-                        var station = _stationSystem.GetOwningStation(uid);
-                        if (station != null)
-                        {
-                            _chat.DispatchStationAnnouncement(station.Value,
-                                Loc.GetString("supermatter-station-catastrophe"),
-                                playDefaultSound: true,
-                                colorOverride: Color.Red);
-                            _alertLevelSystem.SetLevel(station.Value, "red", true, true, true);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Warning($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to send catastrophe warning for entity {uid}: {ex.Message}");
-                    }
                 }
 
                 if (comp.CatastropheActive)
                 {
                     comp.CatastropheTimer -= TimeSpan.FromSeconds(frameTime);
-
-                    // Генерация молний во время катастрофы
-                    try
-                    {
-                        comp.CatastropheLightningTimer -= TimeSpan.FromSeconds(frameTime);
-                        if (comp.CatastropheLightningTimer <= TimeSpan.Zero)
-                        {
-                            comp.CatastropheLightningTimer = comp.CatastropheLightningInterval;
-
-                            // Генерируем молнии
-                            _lightning.ShootRandomLightnings(uid, comp.CatastropheLightningRange,
-                                comp.CatastropheLightningCount, "Lightning", 0, true);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        Log.Warning($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to generate catastrophe lightning for entity {uid}: {ex.Message}");
-                    }
-
                     if (comp.CatastropheTimer <= TimeSpan.Zero)
                     {
                         // Взрыв с обработкой ошибок
@@ -311,10 +268,10 @@ namespace Content.Server.Imperial.Power.EntitySystems
                                 var coords = _xforms.ToMapCoordinates(xformCat.Coordinates);
                                 _explosionSystem.QueueExplosion(
                                     coords,
-                                    "Supermatter", // Прототип взрыва
+                                    "Default", // TODO: Отдельный прототип взрыва
                                     20000f,      // totalIntensity
                                     1f,         // slope
-                                    100f,        // maxTileIntensity
+                                    70f,        // maxTileIntensity
                                     cause: uid
                                 );
                             }

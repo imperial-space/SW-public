@@ -7,6 +7,7 @@
   components:
     - type: Transform
       anchored: true
+      noRot: true
     - type: Physics
     - type: Fixtures
       fixtures:
@@ -27,10 +28,10 @@
     - type: InteractionOutline
     - type: Sprite
       sprite: Imperial/ussp/computers.rsi
-      state: engine
+      state: comm_monitor
     - type: Icon
       sprite: Imperial/ussp/computers.rsi
-      state: engine
+      state: comm_monitor
     - type: Appearance
     - type: PowerConsumer
       drawRate: 10
