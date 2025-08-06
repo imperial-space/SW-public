@@ -25,7 +25,7 @@ public sealed partial class ShiftBarracksComponent : Component
     public string ChosenGen = "";
 
     [DataField]
-    public Dictionary<string, int> dict = new Dictionary<string, int>
+    public Dictionary<string, int> AvailableClasses = new Dictionary<string, int>
     {
         { "Fast", 0 },
         { "Assault", 0 },

@@ -73,7 +73,7 @@ namespace Content.Server.ShiftFront
 
             args.PushMarkup($"До следующего клонирования осталось [color=yellow]{comp.TimeTillNextGen}[/color] секунд", 10);
 
-            foreach (var unit in comp.dict)
+            foreach (var unit in comp.AvailableClasses)
             {
                 if (unit.Value == 0) continue;
                 args.PushMarkup($"Доступно [color=cyan]{unit.Value}[/color] {Loc.GetString(unit.Key + "-clone")}", -5);
@@ -109,16 +109,16 @@ namespace Content.Server.ShiftFront
                         {
                             if (!TryWasteResource(rescomp, 5, 10, 0, session))
                                 return;
-                            if (comp.dict.TryGetValue("Fast", out int value))
-                                comp.dict["Fast"]++;
+                            if (comp.AvailableClasses.TryGetValue("Fast", out int value))
+                                comp.AvailableClasses["Fast"]++;
                         }
                         else
                         {
                             if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
                             var session = actComp.PlayerSession;
-                            if (comp.dict.TryGetValue("Fast", out int value))
+                            if (comp.AvailableClasses.TryGetValue("Fast", out int value))
                                 if (value > 0)
-                                    comp.dict["Fast"]--;
+                                    comp.AvailableClasses["Fast"]--;
                                 else
                                 {
                                     _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
@@ -152,16 +152,16 @@ namespace Content.Server.ShiftFront
                         {
                             if (!TryWasteResource(rescomp, 25, 40, 0, session))
                                 return;
-                            if (comp.dict.TryGetValue("Assault", out int value))
-                                comp.dict["Assault"]++;
+                            if (comp.AvailableClasses.TryGetValue("Assault", out int value))
+                                comp.AvailableClasses["Assault"]++;
                         }
                         else
                         {
                             if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
                             var session = actComp.PlayerSession;
-                            if (comp.dict.TryGetValue("Assault", out int value))
+                            if (comp.AvailableClasses.TryGetValue("Assault", out int value))
                                 if (value > 0)
-                                    comp.dict["Assault"]--;
+                                    comp.AvailableClasses["Assault"]--;
                                 else
                                 {
                                     _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
@@ -195,16 +195,16 @@ namespace Content.Server.ShiftFront
                         {
                             if (!TryWasteResource(rescomp, 20, 55, 0, session))
                                 return;
-                            if (comp.dict.TryGetValue("Med", out int value))
-                                comp.dict["Med"]++;
+                            if (comp.AvailableClasses.TryGetValue("Med", out int value))
+                                comp.AvailableClasses["Med"]++;
                         }
                         else
                         {
                             if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
                             var session = actComp.PlayerSession;
-                            if (comp.dict.TryGetValue("Med", out int value))
+                            if (comp.AvailableClasses.TryGetValue("Med", out int value))
                                 if (value > 0)
-                                    comp.dict["Med"]--;
+                                    comp.AvailableClasses["Med"]--;
                                 else
                                 {
                                     _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
@@ -237,16 +237,16 @@ namespace Content.Server.ShiftFront
                         {
                             if (!TryWasteResource(rescomp, 45, 60, 0, session))
                                 return;
-                            if (comp.dict.TryGetValue("Eng", out int value))
-                                comp.dict["Eng"]++;
+                            if (comp.AvailableClasses.TryGetValue("Eng", out int value))
+                                comp.AvailableClasses["Eng"]++;
                         }
                         else
                         {
                             if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
                             var session = actComp.PlayerSession;
-                            if (comp.dict.TryGetValue("Eng", out int value))
+                            if (comp.AvailableClasses.TryGetValue("Eng", out int value))
                                 if (value > 0)
-                                    comp.dict["Eng"]--;
+                                    comp.AvailableClasses["Eng"]--;
                                 else
                                 {
                                     _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
@@ -280,16 +280,16 @@ namespace Content.Server.ShiftFront
                         {
                             if (!TryWasteResource(rescomp, 55, 85, 15, session))
                                 return;
-                            if (comp.dict.TryGetValue("Mg", out int value))
-                                comp.dict["Mg"]++;
+                            if (comp.AvailableClasses.TryGetValue("Mg", out int value))
+                                comp.AvailableClasses["Mg"]++;
                         }
                         else
                         {
                             if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
                             var session = actComp.PlayerSession;
-                            if (comp.dict.TryGetValue("Mg", out int value))
+                            if (comp.AvailableClasses.TryGetValue("Mg", out int value))
                                 if (value > 0)
-                                    comp.dict["Mg"]--;
+                                    comp.AvailableClasses["Mg"]--;
                                 else
                                 {
                                     _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
@@ -323,16 +323,16 @@ namespace Content.Server.ShiftFront
                         {
                             if (!TryWasteResource(rescomp, 45, 65, 10, session))
                                 return;
-                            if (comp.dict.TryGetValue("Sniper", out int value))
-                                comp.dict["Sniper"]++;
+                            if (comp.AvailableClasses.TryGetValue("Sniper", out int value))
+                                comp.AvailableClasses["Sniper"]++;
                         }
                         else
                         {
                             if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
                             var session = actComp.PlayerSession;
-                            if (comp.dict.TryGetValue("Sniper", out int value))
+                            if (comp.AvailableClasses.TryGetValue("Sniper", out int value))
                                 if (value > 0)
-                                    comp.dict["Sniper"]--;
+                                    comp.AvailableClasses["Sniper"]--;
                                 else
                                 {
                                     _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
@@ -365,16 +365,16 @@ namespace Content.Server.ShiftFront
                         {
                             if (!TryWasteResource(rescomp, 40, 55, 5, session))
                                 return;
-                            if (comp.dict.TryGetValue("Marksman", out int value))
-                                comp.dict["Marksman"]++;
+                            if (comp.AvailableClasses.TryGetValue("Marksman", out int value))
+                                comp.AvailableClasses["Marksman"]++;
                         }
                         else
                         {
                             if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
                             var session = actComp.PlayerSession;
-                            if (comp.dict.TryGetValue("Marksman", out int value))
+                            if (comp.AvailableClasses.TryGetValue("Marksman", out int value))
                                 if (value > 0)
-                                    comp.dict["Marksman"]--;
+                                    comp.AvailableClasses["Marksman"]--;
                                 else
                                 {
                                     _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
@@ -407,16 +407,16 @@ namespace Content.Server.ShiftFront
                         {
                             if (!TryWasteResource(rescomp, 15, 30, 0, session))
                                 return;
-                            if (comp.dict.TryGetValue("Flanker", out int value))
-                                comp.dict["Flanker"]++;
+                            if (comp.AvailableClasses.TryGetValue("Flanker", out int value))
+                                comp.AvailableClasses["Flanker"]++;
                         }
                         else
                         {
                             if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
                             var session = actComp.PlayerSession;
-                            if (comp.dict.TryGetValue("Flanker", out int value))
+                            if (comp.AvailableClasses.TryGetValue("Flanker", out int value))
                                 if (value > 0)
-                                    comp.dict["Flanker"]--;
+                                    comp.AvailableClasses["Flanker"]--;
                                 else
                                 {
                                     _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
@@ -449,16 +449,16 @@ namespace Content.Server.ShiftFront
                         {
                             if (!TryWasteResource(rescomp, 35, 65, 0, session))
                                 return;
-                            if (comp.dict.TryGetValue("Bomber", out int value))
-                                comp.dict["Bomber"]++;
+                            if (comp.AvailableClasses.TryGetValue("Bomber", out int value))
+                                comp.AvailableClasses["Bomber"]++;
                         }
                         else
                         {
                             if (!TryComp<ActorComponent>(ev.User, out var actComp)) return;
                             var session = actComp.PlayerSession;
-                            if (comp.dict.TryGetValue("Bomber", out int value))
+                            if (comp.AvailableClasses.TryGetValue("Bomber", out int value))
                                 if (value > 0)
-                                    comp.dict["Bomber"]--;
+                                    comp.AvailableClasses["Bomber"]--;
                                 else
                                 {
                                     _prayerSystem.SendSubtleMessage(session, session, "Такой тип юнитов сейчас не был произведен", "Недостаточно юнитов");
