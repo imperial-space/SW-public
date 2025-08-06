@@ -89,4 +89,22 @@
       guides:
       - SupermatterEngine
       - Power
-      
+
+- type: explosion
+  id: Supermatter
+  damagePerIntensity:
+    types:
+      Radiation: 15
+      Heat: 8
+      Blunt: 6
+      Piercing: 4
+      Structural: 60
+  tileBreakChance: [0, 0.7, 1]
+  tileBreakIntensity: [0, 15, 50]
+  tileBreakRerollReduction: 5
+  intensityPerState: 25
+  lightColor: "#ffe000"
+  fireColor: "#ffe000"
+  texturePath: /Textures/Effects/fire_greyscale.rsi
+  fireStates: 3
+
