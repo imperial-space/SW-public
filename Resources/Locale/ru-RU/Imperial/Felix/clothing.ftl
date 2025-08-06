@@ -63,15 +63,15 @@ ent-ClothingUniformJumpsuitRegularForceArmyOfficer = армейская униф
 ent-ClothingUniformJumpsuitRegularForcePilot = униформа пилота
     .desc = Комбинезон, используемый войсками специального назначения при проведении специальных операций.
 
-ent-ClothingOuterHardsuitRegularForce = тактический Скафандр "Соната Mk1"
+ent-ClothingOuterHardsuitRegularForce = тактический скафандр "Соната Mk1"
     .desc = Тактический скафандр, воплощающий в себе передовые решения для операций в самых экстремальных условиях.
 ent-ClothingOuterHardsuitRegularForceMedic = энергетическая Броня "Орбитал"
     .desc = Вершина технологий экзоскелетной медицины, предоставляет неплохой уровень защиты и мобильности медицинскому персоналу.
-ent-ClothingOuterHardsuitRegularForceGuard = тактический Скафандр "Соната Mk2"
+ent-ClothingOuterHardsuitRegularForceGuard = тактический скафандр "Соната Mk2"
     .desc = Тактический скафандр, воплощающий в себе передовые решения для операций в самых экстремальных условиях. Обеспечивает неплохую защиту от баллистических угроз.
-ent-ClothingOuterHardsuitRegularForcePilot = тактический Скафандр "Феникс"
+ent-ClothingOuterHardsuitRegularForcePilot = тактический скафандр "Феникс"
     .desc = Инновационное изделие, созданное для выполнения сложнейших задач в самых экстремальных условиях.
-ent-ClothingOuterHardsuitRegularForceAssassin = стелс-Броня "Ассасин Mk1"
+ent-ClothingOuterHardsuitRegularForceAssassin = стелс-броня "Ассасин Mk1"
     .desc = Совершенное сочетание технологии и искусства маскировки, созданное для тактики скрытого передвижения и точечных атак. Внешне она выглядит как гармоничное слияние черной и темно-серой наноткани, что позволяет носителю сливаться с тенями и окружающей местностью.
 
 ent-ClothingHeadHelmetHardsuitRegularForce = шлем "Соната Mk1"

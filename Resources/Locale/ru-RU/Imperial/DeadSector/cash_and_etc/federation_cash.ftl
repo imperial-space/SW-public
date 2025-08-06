@@ -25,4 +25,4 @@ ent-FederationCash30000 = кредиты Федерации
 ent-FederationCash1000000 = кредиты Федерации
     .desc = На государственном логотипе кредита написано: "Федерация Elysium Prime".
 
-federation-cash = кредитs Федерации
+federation-cash = Кредиты Федерации
