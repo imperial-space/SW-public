@@ -2,7 +2,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.ShiftFront.Components;
+namespace Content.Shared.ShiftFront.Components;
 
 [RegisterComponent]
 public sealed partial class ShiftBarracksComponent : Component

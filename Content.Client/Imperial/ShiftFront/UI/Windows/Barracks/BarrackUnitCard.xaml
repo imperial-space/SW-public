@@ -1,0 +1,26 @@
+<shift:BarrackUnitCard
+    xmlns:i="clr-namespace:Content.Client.Imperial.UI"
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:shift="clr-namespace:Content.Client.Imperial.ShiftFront.UI.Windows.Barracks"
+    MinSize="320 430"
+    MaxSize="320 430"
+    Margin="0 0 20 0"
+    BackgroundPanelColor="#1F1F1F"
+    BorderRadius="2">
+    <BoxContainer Orientation="Vertical" VerticalExpand="True">
+
+        <BoxContainer Orientation="Vertical" VerticalAlignment="Stretch" VerticalExpand="True">
+            <RichTextLabel Name="UnitCardName" Access="Public" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="10 10 10 10" />
+            <Label Name="UnitCardSprite" Access="Public" Text="Спрайт" HorizontalAlignment="Center" Margin="10 10 10 10" VerticalAlignment="Stretch"/>
+            <RichTextLabel Name="UnitCarDesc" Access="Public" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10 10 10 10" />
+        </BoxContainer>
+
+        <BoxContainer Orientation="Horizontal" MinHeight="80" Margin="10 10 10 10" VerticalAlignment="Bottom">
+            <i:BaseImperialButton Name="UnitCardPickButton" Access="Public" Text="Взять/произвести" StyleClasses="PassButtonMedium" HorizontalAlignment="Left" Margin="10 10 10 10"/>
+            <RichTextLabel Name="UnitCardAvailable" Access="Public" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="10 10 10 10"/>
+        </BoxContainer>
+
+    </BoxContainer>
+
+</shift:BarrackUnitCard>

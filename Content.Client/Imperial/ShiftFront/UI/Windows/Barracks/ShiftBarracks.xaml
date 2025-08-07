@@ -1,0 +1,13 @@
+<shift:ShiftBarracks
+    xmlns="https://spacestation14.io"
+    xmlns:shift="clr-namespace:Content.Client.Imperial.ShiftFront.UI.Windows.Barracks"
+    xmlns:i="clr-namespace:Content.Client.Imperial.UI"
+    MouseFilter="Stop"
+    MinWidth="783"
+    MinHeight="500"
+    MaxWidth="783"
+    MaxHeight="500">
+    <ScrollContainer Name="ScrollPlansContainer" VScrollEnabled="False" HorizontalExpand="True" VerticalExpand="True" Margin="15 30 15 15">
+        <BoxContainer Name="CardsBoxContainer" Orientation="Horizontal" VerticalExpand="true" Margin="5"></BoxContainer>
+    </ScrollContainer>
+</shift:ShiftBarracks>
