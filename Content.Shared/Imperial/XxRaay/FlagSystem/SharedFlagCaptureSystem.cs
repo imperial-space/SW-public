@@ -2,6 +2,7 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction.Events;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Localization;
 
 namespace Content.Shared.Imperial.XxRaay.FlagSystem;
 
@@ -43,16 +44,16 @@ public abstract class SharedFlagCaptureSystem : EntitySystem
             if (captureTimeSeconds > 0)
             {
                 var progressPercent = (int)((component.CaptureProgress.TotalSeconds / captureTimeSeconds) * 100);
-                args.PushMarkup($"[color=yellow]Захватывается... {progressPercent}%[/color]");
+                args.PushMarkup($"[color=yellow]{Loc.GetString("flag-capture-examine-progress", ("progress", progressPercent))}[/color]");
             }
             else
             {
-                args.PushMarkup("[color=yellow]Захватывается...[/color]");
+                args.PushMarkup($"[color=yellow]{Loc.GetString("flag-capture-examine-capturing")}[/color]");
             }
         }
         else if (component.CanBeCaptured)
         {
-            args.PushMarkup("[color=green]Можно захватить[/color]");
+            args.PushMarkup($"[color=green]{Loc.GetString("flag-capture-examine-capturable")}[/color]");
         }
     }
 }
