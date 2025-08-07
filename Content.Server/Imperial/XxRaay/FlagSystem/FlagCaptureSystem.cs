@@ -39,7 +39,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
     {
         base.Initialize();
         SubscribeLocalEvent<FlagCaptureComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<FlagCaptureComponent, DoAfterEvent>(OnDoAfter);
+        SubscribeLocalEvent<FlagCaptureComponent, FlagCaptureDoAfterEvent>(OnDoAfter);
     }
 
     private void OnInit(EntityUid uid, FlagCaptureComponent component, ComponentInit args)
@@ -237,12 +237,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         }
 
         args.Handled = true;
-
-        if (args.Args.Target == null)
-        {
-            Logger.Error(Loc.GetString("flag-capture-create-failed", ("faction", "target-null")));
-            return;
-        }
 
         Logger.Info(Loc.GetString("flag-capture-complete", ("flag", uid), ("player", args.Args.User)));
         CompleteCapture(uid, component, args.Args.User);
