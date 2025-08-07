@@ -68,34 +68,16 @@ namespace Content.Server.Imperial.Power.Components
         public TimeSpan CatastropheTimer = TimeSpan.Zero;
 
         /// <summary>
-        /// Интервал между молниями во время катастрофы
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public TimeSpan CatastropheLightningInterval = TimeSpan.FromSeconds(1.0);
-
-        /// <summary>
-        /// Таймер для молний катастрофы
-        /// </summary>
-        [DataField]
-        public TimeSpan CatastropheLightningTimer = TimeSpan.Zero;
-
-        /// <summary>
-        /// Радиус молний во время катастрофы
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float CatastropheLightningRange = 15f;
-
-        /// <summary>
-        /// Количество молний за раз во время катастрофы
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public int CatastropheLightningCount = 3;
-
-        /// <summary>
         /// Тег для исцеления (например, "SupermatterHeal")
         /// </summary>
         [DataField]
         public string HealTag = "EmitterBolt";
+
+        /// <summary>
+        /// Количество здоровья, восстанавливаемое за один выстрел эмиттера
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float EmitterHealAmount = 0.35f;
 
         // Описания состояния кристалла по проценту целостности
         [DataField]
