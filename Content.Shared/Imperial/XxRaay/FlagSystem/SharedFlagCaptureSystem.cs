@@ -39,8 +39,16 @@ public abstract class SharedFlagCaptureSystem : EntitySystem
     {
         if (component.IsBeingCaptured)
         {
-            var progressPercent = (int)((component.CaptureProgress.TotalSeconds / component.CaptureTime.TotalSeconds) * 100);
-            args.PushMarkup($"[color=yellow]Захватывается... {progressPercent}%[/color]");
+            var captureTimeSeconds = component.CaptureTime.TotalSeconds;
+            if (captureTimeSeconds > 0)
+            {
+                var progressPercent = (int)((component.CaptureProgress.TotalSeconds / captureTimeSeconds) * 100);
+                args.PushMarkup($"[color=yellow]Захватывается... {progressPercent}%[/color]");
+            }
+            else
+            {
+                args.PushMarkup("[color=yellow]Захватывается...[/color]");
+            }
         }
         else if (component.CanBeCaptured)
         {

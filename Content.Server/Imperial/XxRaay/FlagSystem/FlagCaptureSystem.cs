@@ -17,7 +17,6 @@ using Content.Shared.Roles;
 using Content.Shared.Popups;
 using Content.Shared.DoAfter;
 using Robust.Shared.GameStates;
-using Robust.Shared.GameObjects;
 using System.Linq;
 using Robust.Shared.Serialization;
 
@@ -30,17 +29,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
-
-    private readonly Dictionary<string, string> _factionToFlagState = new()
-    {
-        { "GreenFaction", "green-flag" },
-        { "YellowFaction", "yellow-flag" },
-        { "RedFaction", "red-flag" },
-        { "BlueFaction", "blue-flag" },
-        { "NanoTrasen", "NT-flag" },
-        { "Syndicate", "sindi-flag" },
-        { "USSP", "ussp-flag" }
-    };
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     // Словарь для отслеживания активных DoAfter
     private readonly Dictionary<EntityUid, DoAfterId> _activeDoAfters = new();
@@ -54,43 +43,61 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
     private void OnInit(EntityUid uid, FlagCaptureComponent component, ComponentInit args)
     {
-        // Initialization logic if needed
+        // Убеждаемся, что флаг можно захватывать
+        component.CanBeCaptured = true;
+        component.IsBeingCaptured = false;
+        component.CaptureProgress = TimeSpan.Zero;
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        foreach (var (capture, transform) in _entityManager.EntityQuery<FlagCaptureComponent, TransformComponent>())
+        var query = _entityManager.EntityQuery<FlagCaptureComponent, TransformComponent>();
+
+        foreach (var (capture, transform) in query)
         {
             if (!capture.CanBeCaptured)
                 continue;
 
-            var playersInRange = _entityManager.EntityQuery<TransformComponent>(true)
-                .Where(t => t.ParentUid == transform.ParentUid &&
-                            (t.MapUid == transform.MapUid || t.GridUid == transform.GridUid) &&
-                            (t.Coordinates.ToMap(_entityManager, _transform).Position - transform.Coordinates.ToMap(_entityManager, _transform).Position).Length() <= capture.CaptureRadius &&
-                            _entityManager.HasComponent<ActorComponent>(t.Owner))
-                .Select(t => t.Owner)
-                .ToList();
+            var flagPosition = transform.Coordinates.ToMap(_entityManager, _transform).Position;
+            var playersInRange = new List<EntityUid>();
 
-            if (playersInRange.Count == 1)
+            // Ищем всех игроков в радиусе захвата
+            var playerQuery = _entityManager.EntityQuery<ActorComponent, TransformComponent>();
+            foreach (var (actor, playerTransform) in playerQuery)
+            {
+                var playerPosition = playerTransform.Coordinates.ToMap(_entityManager, _transform).Position;
+                var distance = (playerPosition - flagPosition).Length();
+
+                if (distance <= capture.CaptureRadius)
+                {
+                    playersInRange.Add(playerTransform.Owner);
+                }
+            }
+
+            // Логика захвата
+            if (playersInRange.Count == 1 && !capture.IsBeingCaptured)
             {
                 var player = playersInRange.First();
-                if (!capture.IsBeingCaptured)
-                {
-                    StartCapture(transform.Owner, capture, player);
-                }
+                Logger.Info($"Начинаем захват флага {transform.Owner} игроком {player}");
+                StartCapture(transform.Owner, capture, player);
             }
             else if (playersInRange.Count == 0 && capture.IsBeingCaptured)
             {
+                Logger.Info($"Отменяем захват флага {transform.Owner} - игрок покинул зону");
                 CancelCapture(transform.Owner, capture);
                 _chatSystem.TrySendInGameICMessage(transform.Owner, "Захват отменен - игрок покинул зону.", InGameICChatType.Speak, false);
             }
             else if (playersInRange.Count > 1 && capture.IsBeingCaptured)
             {
+                Logger.Info($"Отменяем захват флага {transform.Owner} - слишком много игроков");
                 CancelCapture(transform.Owner, capture);
                 _chatSystem.TrySendInGameICMessage(transform.Owner, "Захват отменен - слишком много игроков.", InGameICChatType.Speak, false);
+            }
+            else if (capture.IsBeingCaptured)
+            {
+                Logger.Info($"Флаг {transform.Owner} захватывается, игроков в зоне: {playersInRange.Count}");
             }
         }
     }
@@ -123,6 +130,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         else
         {
             Logger.Error($"Не удалось запустить DoAfter для флага {flagUid}");
+            capture.IsBeingCaptured = false;
         }
     }
 
@@ -131,19 +139,20 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         capture.IsBeingCaptured = false;
         capture.CaptureProgress = TimeSpan.Zero;
 
-        // Отменяем активный DoAfter если есть и он все еще активен
+        // Отменяем активный DoAfter если есть
         if (_activeDoAfters.TryGetValue(flagUid, out var doAfterId))
         {
             var doAfterSystem = _entityManager.System<SharedDoAfterSystem>();
             if (doAfterSystem.IsRunning(doAfterId))
             {
                 doAfterSystem.Cancel(doAfterId);
+                Logger.Info($"DoAfter отменен для флага {flagUid}");
             }
             _activeDoAfters.Remove(flagUid);
         }
     }
 
-                    private void CompleteCapture(EntityUid flagUid, FlagCaptureComponent capture, EntityUid player)
+    private void CompleteCapture(EntityUid flagUid, FlagCaptureComponent capture, EntityUid player)
     {
         var playerFaction = GetPlayerFaction(player);
         var playerName = MetaData(player).EntityName;
@@ -155,55 +164,63 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
         _chatSystem.TrySendInGameICMessage(flagUid, $"{playerName} захватил флаг для фракции {playerFaction}!", InGameICChatType.Speak, false);
 
-        // Удаляем старый флаг и создаем новый флаг фракции
-        if (_factionToFlagState.TryGetValue(playerFaction, out var flagState))
+        // Получаем позицию и поворот старого флага
+        var transform = _entityManager.GetComponent<TransformComponent>(flagUid);
+        var position = transform.Coordinates;
+        var rotation = transform.LocalRotation;
+
+        Logger.Info($"Заменяем флаг {flagUid} на флаг фракции {playerFaction}");
+        Logger.Info($"Позиция: {position}, Поворот: {rotation}");
+
+        // Получаем прототип нового флага
+        var newFlagPrototype = GetFactionFlagPrototype(playerFaction);
+        Logger.Info($"Прототип нового флага: {newFlagPrototype}");
+
+        // Проверяем существование прототипа
+        if (!_prototypeManager.HasIndex<EntityPrototype>(newFlagPrototype))
         {
-            var transform = _entityManager.GetComponent<TransformComponent>(flagUid);
-            var position = transform.Coordinates;
-            var rotation = transform.LocalRotation;
+            Logger.Error($"Прототип {newFlagPrototype} не найден!");
+            return;
+        }
 
-            Logger.Info($"Заменяем флаг {flagUid} на флаг фракции {playerFaction}");
-            Logger.Info($"Позиция: {position}, Поворот: {rotation}");
-            Logger.Info($"Прототип нового флага: {GetFactionFlagPrototype(playerFaction)}");
+        // Удаляем старый флаг
+        Logger.Info($"Удаляем старый флаг {flagUid}...");
+        _entityManager.DeleteEntity(flagUid);
+        Logger.Info($"Старый флаг {flagUid} удален");
 
-            // Проверяем, существует ли прототип
-            var prototypeId = GetFactionFlagPrototype(playerFaction);
-            if (!_entityManager.System<IPrototypeManager>().HasIndex<EntityPrototype>(prototypeId))
-            {
-                Logger.Error($"Прототип {prototypeId} не найден!");
-                return;
-            }
+        // Проверяем, что флаг действительно удален
+        if (_entityManager.EntityExists(flagUid))
+        {
+            Logger.Error($"Флаг {flagUid} не был удален!");
+            return;
+        }
+        Logger.Info($"Флаг {flagUid} успешно удален");
 
-            // Удаляем старый флаг
-            _entityManager.DeleteEntity(flagUid);
-            Logger.Info($"Старый флаг {flagUid} удален");
+        // Создаем новый флаг фракции
+        Logger.Info($"Создаем новый флаг {newFlagPrototype} в позиции {position}...");
+        var newFlagUid = _entityManager.SpawnEntity(newFlagPrototype, position);
+        Logger.Info($"Новый флаг создан с ID: {newFlagUid}");
 
-            // Создаем новый флаг фракции
-            var newFlagUid = _entityManager.SpawnEntity(prototypeId, position);
-            Logger.Info($"Новый флаг создан с ID: {newFlagUid}");
+        if (newFlagUid != EntityUid.Invalid)
+        {
+            var newTransform = _entityManager.GetComponent<TransformComponent>(newFlagUid);
+            newTransform.LocalRotation = rotation;
+            Logger.Info($"Флаг {flagUid} успешно заменен на флаг фракции {playerFaction} (новый ID: {newFlagUid})");
 
-            if (newFlagUid != EntityUid.Invalid)
-            {
-                var newTransform = _entityManager.GetComponent<TransformComponent>(newFlagUid);
-                newTransform.LocalRotation = rotation;
-                Logger.Info($"Флаг {flagUid} успешно заменен на флаг фракции {playerFaction} (новый ID: {newFlagUid})");
-            }
-            else
-            {
-                Logger.Error($"Не удалось создать новый флаг для фракции {playerFaction}");
-            }
+            Logger.Info($"Новый флаг создан успешно");
         }
         else
         {
-            Logger.Error($"Не найдено соответствие для фракции {playerFaction}");
+            Logger.Error($"Не удалось создать новый флаг для фракции {playerFaction}");
         }
     }
 
     private void OnDoAfter(EntityUid uid, FlagCaptureComponent component, DoAfterEvent args)
     {
         Logger.Info($"OnDoAfter вызван для флага {uid}, Cancelled: {args.Cancelled}, Handled: {args.Handled}");
+        Logger.Info($"DoAfter Args: User={args.Args.User}, Target={args.Args.Target}");
 
-        // Удаляем DoAfter из отслеживания в любом случае
+        // Удаляем DoAfter из отслеживания
         _activeDoAfters.Remove(uid);
 
         if (args.Cancelled)
@@ -237,7 +254,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         // Проверяем, есть ли у игрока компонент NpcFactionMember
         if (_entityManager.TryGetComponent<NpcFactionMemberComponent>(player, out var factionMember))
         {
-            // Берем первую фракцию из списка фракций игрока
             if (factionMember.Factions.Count > 0)
             {
                 var faction = factionMember.Factions.First();
@@ -247,13 +263,13 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         }
 
         // Если у игрока нет фракции, возвращаем случайную для тестирования
-        var factions = new[] { "GreenFaction", "YellowFaction", "RedFaction", "BlueFaction", "NanoTrasen", "Syndicate", "USSP" };
+        var factions = new[] { "GreenFaction", "YellowFaction", "RedFaction", "BlueFaction" };
         var randomFaction = _random.Pick(factions);
         Logger.Info($"У игрока {player} нет фракции, используем случайную: {randomFaction}");
         return randomFaction;
     }
 
-        private string GetFactionFlagPrototype(string faction)
+    private string GetFactionFlagPrototype(string faction)
     {
         var prototype = faction switch
         {
@@ -261,9 +277,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             "YellowFaction" => "ImperialYellowFlag",
             "RedFaction" => "ImperialRedFlag",
             "BlueFaction" => "ImperialBlueFlag",
-            "NanoTrasen" => "ImperialNTFlag",
-            "Syndicate" => "ImperialSindiFlag",
-            "USSP" => "ImperialUSSPFlag",
             _ => "ImperialGreenFlag" // По умолчанию
         };
 
