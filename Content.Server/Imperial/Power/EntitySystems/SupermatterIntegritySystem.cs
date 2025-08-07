@@ -125,8 +125,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 var other = args.OtherEntity;
                 if (_tagSystem.HasTag(other, component.HealTag))
                 {
-                    var heal = 0.35f;
-                    component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + heal);
+                    component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + component.EmitterHealAmount);
                     SyncDamageable(uid, component);
                 }
             }
@@ -269,7 +268,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                                 var coords = _xforms.ToMapCoordinates(xformCat.Coordinates);
                                 _explosionSystem.QueueExplosion(
                                     coords,
-                                    "Supermatter", // Специальный прототип взрыва суперматерии
+                                    "Default", // TODO: Отдельный прототип взрыва
                                     20000f,      // totalIntensity
                                     1f,         // slope
                                     70f,        // maxTileIntensity
