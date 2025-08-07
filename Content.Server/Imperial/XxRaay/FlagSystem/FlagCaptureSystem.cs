@@ -61,14 +61,14 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             if (!capture.CanBeCaptured)
                 continue;
 
-            var flagPosition = transform.Coordinates.ToMap(_entityManager, _transform).Position;
+            var flagPosition = _transform.ToMapCoordinates(transform.Coordinates).Position;
             var playersInRange = new List<EntityUid>();
 
             // Ищем всех игроков в радиусе захвата
             var playerQuery = _entityManager.EntityQuery<ActorComponent, TransformComponent>();
             foreach (var (actor, playerTransform) in playerQuery)
             {
-                var playerPosition = playerTransform.Coordinates.ToMap(_entityManager, _transform).Position;
+                var playerPosition = _transform.ToMapCoordinates(playerTransform.Coordinates).Position;
                 var distance = (playerPosition - flagPosition).Length();
 
                 if (distance <= capture.CaptureRadius)
@@ -105,6 +105,17 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
     private void StartCapture(EntityUid flagUid, FlagCaptureComponent capture, EntityUid player)
     {
+        // Проверяем, не пытается ли игрок захватить свой же флаг
+        var playerFaction = GetPlayerFaction(player);
+        var currentFlagFaction = GetFlagFaction(flagUid);
+
+        if (playerFaction == currentFlagFaction)
+        {
+            Logger.Info(Loc.GetString("flag-capture-same-faction", ("flag", flagUid), ("player", player), ("faction", playerFaction)));
+            _chatSystem.TrySendInGameICMessage(flagUid, Loc.GetString("flag-capture-same-faction-message"), InGameICChatType.Speak, false);
+            return;
+        }
+
         capture.IsBeingCaptured = true;
         capture.CaptureProgress = TimeSpan.Zero;
         capture.LastCheckTime = _gameTiming.CurTime;
@@ -251,15 +262,48 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             {
                 var faction = factionMember.Factions.First();
                 Logger.Info(Loc.GetString("flag-capture-player-faction", ("player", player), ("faction", faction)));
-                return faction.ToString();
+
+                // Маппинг фракций из компонента в наши внутренние названия
+                return faction.ToString() switch
+                {
+                    "NanoTrasen" => "NTFaction",
+                    "Syndicate" => "SindiFaction",
+                    "GreenFaction" => "GreenFaction",
+                    "YellowFaction" => "YellowFaction",
+                    "RedFaction" => "RedFaction",
+                    "BlueFaction" => "BlueFaction",
+                    "USSPFaction" => "USSPFaction",
+                    "SindiFaction" => "SindiFaction",
+                    _ => faction.ToString() // Если не знаем, возвращаем как есть
+                };
             }
         }
 
         // Если у игрока нет фракции, возвращаем случайную для тестирования
-        var factions = new[] { "GreenFaction", "YellowFaction", "RedFaction", "BlueFaction" };
+        var factions = new[] { "GreenFaction", "YellowFaction", "RedFaction", "BlueFaction", "NTFaction" };
         var randomFaction = _random.Pick(factions);
         Logger.Info(Loc.GetString("flag-capture-no-faction", ("player", player), ("faction", randomFaction)));
         return randomFaction;
+    }
+
+    private string GetFlagFaction(EntityUid flagUid)
+    {
+        // Определяем фракцию флага по его прототипу
+        var metaData = _entityManager.GetComponent<MetaDataComponent>(flagUid);
+        var prototypeId = metaData.EntityPrototype?.ID ?? "";
+
+        return prototypeId switch
+        {
+            "ImperialGreenFlag" => "GreenFaction",
+            "ImperialYellowFlag" => "YellowFaction",
+            "ImperialRedFlag" => "RedFaction",
+            "ImperialBlueFlag" => "BlueFaction",
+            "ImperialNTFlag" => "NTFaction",
+            "ImperialUSSPFlag" => "USSPFaction",
+            "ImperialSindiFlag" => "SindiFaction",
+            "ImperialWhiteFlag" => "NeutralFaction",
+            _ => "NeutralFaction" // По умолчанию
+        };
     }
 
     private string GetFactionFlagPrototype(string faction)
@@ -270,7 +314,10 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             "YellowFaction" => "ImperialYellowFlag",
             "RedFaction" => "ImperialRedFlag",
             "BlueFaction" => "ImperialBlueFlag",
-            _ => "ImperialGreenFlag" // По умолчанию
+            "NTFaction" => "ImperialNTFlag",
+            "USSPFaction" => "ImperialUSSPFlag",
+            "SindiFaction" => "ImperialSindiFlag",
+            _ => "ImperialWhiteFlag" // По умолчанию
         };
 
         Logger.Info(Loc.GetString("flag-capture-faction-to-prototype", ("faction", faction), ("prototype", prototype)));

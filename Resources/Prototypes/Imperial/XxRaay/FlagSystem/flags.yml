@@ -27,6 +27,10 @@
         - Impassable
   - type: Transform
     anchored: true
+  - type: FlagCapture
+    captureRadius: 2.0
+    captureTime: 30
+  - type: NpcFactionMember
 
 - type: entity
   parent: ImperialXxRaayBaseFlag
@@ -36,6 +40,9 @@
   components:
   - type: Sprite
     state: ussp-flag
+  - type: NpcFactionMember
+    factions:
+    - USSP
 
 - type: entity
   parent: ImperialXxRaayBaseFlag
@@ -45,6 +52,9 @@
   components:
   - type: Sprite
     state: NT-flag
+  - type: NpcFactionMember
+    factions:
+    - Nanotrasen
 
 - type: entity
   parent: ImperialXxRaayBaseFlag
@@ -54,6 +64,9 @@
   components:
   - type: Sprite
     state: sindi-flag
+  - type: NpcFactionMember
+    factions:
+    - Syndicate
 
 - type: entity
   parent: ImperialXxRaayBaseFlag
@@ -63,6 +76,9 @@
   components:
   - type: Sprite
     state: green-flag
+  - type: NpcFactionMember
+    factions:
+    - GreenFaction
 
 - type: entity
   parent: ImperialXxRaayBaseFlag
@@ -72,6 +88,9 @@
   components:
   - type: Sprite
     state: yellow-flag
+  - type: NpcFactionMember
+    factions:
+    - YellowFaction
 
 - type: entity
   parent: ImperialXxRaayBaseFlag
@@ -81,6 +100,9 @@
   components:
   - type: Sprite
     state: red-flag
+  - type: NpcFactionMember
+    factions:
+    - RedFaction
 
 - type: entity
   parent: ImperialXxRaayBaseFlag
@@ -90,6 +112,9 @@
   components:
   - type: Sprite
     state: blue-flag
+  - type: NpcFactionMember
+    factions:
+    - BluenFaction
 
 - type: entity
   parent: ImperialXxRaayBaseFlag
@@ -99,6 +124,3 @@
   components:
   - type: Sprite
     state: white-flag
-  - type: FlagCapture
-    captureRadius: 2.0
-    captureTime: 30

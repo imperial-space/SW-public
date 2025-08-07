@@ -32,3 +32,7 @@ flag-capture-cancelled-general-message = Захват флага отменен.
 flag-capture-examine-progress = Прогресс захвата: { $progress }%
 flag-capture-examine-capturing = Флаг захватывается...
 flag-capture-examine-capturable = Флаг можно захватить
+
+# Проверка фракции
+flag-capture-same-faction = Игрок { $player } пытается захватить свой же флаг (фракция: { $faction })
+flag-capture-same-faction-message = Нельзя захватить свой же флаг!
