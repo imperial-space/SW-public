@@ -86,24 +86,17 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             if (playersInRange.Count == 1 && !capture.IsBeingCaptured)
             {
                 var player = playersInRange.First();
-                Logger.Info(Loc.GetString("flag-capture-start", ("flag", transform.Owner), ("player", player)));
                 StartCapture(transform.Owner, capture, player);
             }
             else if (playersInRange.Count == 0 && capture.IsBeingCaptured)
             {
-                Logger.Info(Loc.GetString("flag-capture-cancel-player-left", ("flag", transform.Owner)));
                 CancelCapture(transform.Owner, capture);
                 _chatSystem.TrySendInGameICMessage(transform.Owner, Loc.GetString("flag-capture-cancelled-message"), InGameICChatType.Speak, false);
             }
             else if (playersInRange.Count > 1 && capture.IsBeingCaptured)
             {
-                Logger.Info(Loc.GetString("flag-capture-cancel-too-many-players", ("flag", transform.Owner)));
                 CancelCapture(transform.Owner, capture);
                 _chatSystem.TrySendInGameICMessage(transform.Owner, Loc.GetString("flag-capture-too-many-players-message"), InGameICChatType.Speak, false);
-            }
-            else if (capture.IsBeingCaptured)
-            {
-                Logger.Info(Loc.GetString("flag-capture-in-progress", ("flag", transform.Owner), ("count", playersInRange.Count)));
             }
         }
     }
@@ -116,7 +109,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
         if (playerFaction == currentFlagFaction)
         {
-            Logger.Info(Loc.GetString("flag-capture-same-faction", ("flag", flagUid), ("player", player), ("faction", playerFaction)));
             _chatSystem.TrySendInGameICMessage(flagUid, Loc.GetString("flag-capture-same-faction-message"), InGameICChatType.Speak, false);
             return;
         }
@@ -126,7 +118,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         capture.LastCheckTime = _gameTiming.CurTime;
 
         var playerName = MetaData(player).EntityName;
-        Logger.Info(Loc.GetString("flag-capture-start", ("flag", flagUid), ("player", playerName)));
         _chatSystem.TrySendInGameICMessage(flagUid, $"{playerName} начал захватывать флаг!", InGameICChatType.Speak, false);
 
         // Запускаем DoAfter
@@ -137,16 +128,12 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             NeedHand = false
         };
 
-        Logger.Info(Loc.GetString("flag-capture-do-after-start", ("flag", flagUid), ("time", capture.CaptureTime.TotalSeconds)));
-
         if (_entityManager.System<SharedDoAfterSystem>().TryStartDoAfter(doAfter, out var doAfterId))
         {
             _activeDoAfters[flagUid] = doAfterId.Value;
-            Logger.Info(Loc.GetString("flag-capture-do-after-started", ("flag", flagUid), ("id", doAfterId.Value)));
         }
         else
         {
-            Logger.Error(Loc.GetString("flag-capture-create-failed", ("faction", "unknown")));
             capture.IsBeingCaptured = false;
         }
     }
@@ -161,10 +148,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         {
             var doAfterSystem = _entityManager.System<SharedDoAfterSystem>();
             if (doAfterSystem.IsRunning(doAfterId))
-            {
                 doAfterSystem.Cancel(doAfterId);
-                Logger.Info(Loc.GetString("flag-capture-do-after-cancelled", ("flag", flagUid)));
-            }
             _activeDoAfters.Remove(flagUid);
         }
     }
@@ -173,8 +157,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
     {
         var playerFaction = GetPlayerFaction(player);
         var playerName = MetaData(player).EntityName;
-
-        Logger.Info(Loc.GetString("flag-capture-complete", ("flag", flagUid), ("player", playerName)));
 
         capture.CanBeCaptured = false;
         capture.IsBeingCaptured = false;
@@ -186,75 +168,54 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         var position = transform.Coordinates;
         var rotation = transform.LocalRotation;
 
-        Logger.Info(Loc.GetString("flag-capture-replace-flag", ("flag", flagUid), ("faction", playerFaction)));
-
         // Получаем прототип нового флага
         var newFlagPrototype = GetFactionFlagPrototype(playerFaction);
-        Logger.Info(Loc.GetString("flag-capture-new-prototype", ("prototype", newFlagPrototype)));
 
         // Проверяем существование прототипа
         if (!_prototypeManager.HasIndex<EntityPrototype>(newFlagPrototype))
         {
-            Logger.Error(Loc.GetString("flag-capture-create-failed", ("faction", playerFaction)));
             return;
         }
 
         // Удаляем старый флаг
-        Logger.Info(Loc.GetString("flag-capture-delete-old", ("flag", flagUid)));
         _entityManager.DeleteEntity(flagUid);
-        Logger.Info(Loc.GetString("flag-capture-old-deleted", ("flag", flagUid)));
 
         // Проверяем, что флаг действительно удален
         if (_entityManager.EntityExists(flagUid))
         {
-            Logger.Error(Loc.GetString("flag-capture-create-failed", ("faction", "deletion")));
             return;
         }
-        Logger.Info(Loc.GetString("flag-capture-flag-deleted", ("flag", flagUid)));
 
         // Создаем новый флаг фракции
-        Logger.Info(Loc.GetString("flag-capture-create-new", ("prototype", newFlagPrototype), ("position", position)));
         var newFlagUid = _entityManager.SpawnEntity(newFlagPrototype, position);
-        Logger.Info(Loc.GetString("flag-capture-new-created", ("id", newFlagUid)));
 
         if (newFlagUid != EntityUid.Invalid)
         {
             var newTransform = _entityManager.GetComponent<TransformComponent>(newFlagUid);
             newTransform.LocalRotation = rotation;
-            Logger.Info(Loc.GetString("flag-capture-replacement-success", ("oldFlag", flagUid), ("faction", playerFaction), ("newFlag", newFlagUid)));
-
-            Logger.Info(Loc.GetString("flag-capture-new-success"));
         }
         else
         {
-            Logger.Error(Loc.GetString("flag-capture-create-failed", ("faction", playerFaction)));
         }
     }
 
     private void OnDoAfter(EntityUid uid, FlagCaptureComponent component, DoAfterEvent args)
     {
-        Logger.Info(Loc.GetString("flag-capture-do-after-completed", ("flag", uid)));
-
         // Удаляем DoAfter из отслеживания
         _activeDoAfters.Remove(uid);
 
         if (args.Cancelled)
         {
-            Logger.Info(Loc.GetString("flag-capture-do-after-cancelled", ("flag", uid)));
             CancelCapture(uid, component);
             _chatSystem.TrySendInGameICMessage(uid, Loc.GetString("flag-capture-cancelled-general-message"), InGameICChatType.Speak, false);
             return;
         }
 
         if (args.Handled)
-        {
-            Logger.Info(Loc.GetString("flag-capture-do-after-completed", ("flag", uid)));
             return;
-        }
 
         args.Handled = true;
 
-        Logger.Info(Loc.GetString("flag-capture-complete", ("flag", uid), ("player", args.Args.User)));
         CompleteCapture(uid, component, args.Args.User);
     }
 
@@ -266,7 +227,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             if (factionMember.Factions.Count > 0)
             {
                 var faction = factionMember.Factions.First();
-                Logger.Info(Loc.GetString("flag-capture-player-faction", ("player", player), ("faction", faction)));
 
                 // Маппинг фракций из компонента в наши внутренние названия
                 return faction.ToString() switch
@@ -287,7 +247,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         // Если у игрока нет фракции, возвращаем случайную для тестирования
         var factions = new[] { "GreenFaction", "YellowFaction", "RedFaction", "BlueFaction", "NTFaction" };
         var randomFaction = _random.Pick(factions);
-        Logger.Info(Loc.GetString("flag-capture-no-faction", ("player", player), ("faction", randomFaction)));
         return randomFaction;
     }
 
@@ -325,7 +284,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             _ => "ImperialWhiteFlag" // По умолчанию
         };
 
-        Logger.Info(Loc.GetString("flag-capture-faction-to-prototype", ("faction", faction), ("prototype", prototype)));
         return prototype;
     }
 }

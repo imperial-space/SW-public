@@ -29,7 +29,6 @@ public sealed class FactionShopSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<FactionShopComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
     }
 
@@ -65,15 +64,8 @@ public sealed class FactionShopSystem : EntitySystem
         // Используем стандартную систему магазинов
         if (TryComp<StoreComponent>(uid, out var store))
         {
-            Logger.Info($"Открываем магазин для {playerName}. Store компонент найден: {store != null}");
             _store.ToggleUi(args.User, uid, store);
         }
-        else
-        {
-            Logger.Error($"Store компонент не найден для {uid}");
-        }
-
-        Logger.Info(Loc.GetString("faction-shop-opened", ("player", playerName), ("faction", component.Faction)));
     }
 
     private void AwardPointsForFlags(FactionShopComponent shop)
@@ -103,12 +95,6 @@ public sealed class FactionShopSystem : EntitySystem
                 var currentBalance = store.Balance.GetValueOrDefault(currencyId, 0);
                 var newBalance = currentBalance + pointsToAward;
                 store.Balance[currencyId] = newBalance;
-
-                Logger.Info(Loc.GetString("faction-points-awarded",
-                    ("faction", shop.Faction),
-                    ("points", pointsToAward),
-                    ("total", newBalance),
-                    ("flags", flagCount)));
             }
         }
     }

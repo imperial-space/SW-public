@@ -1,25 +1,22 @@
 - type: entity
   id: NTShopConsole
-  name: NT Shop Console
-  description: Консоль магазина NanoTrasen
-  parent: BaseComputer
+  name: faction-shop-console-nt
+  description: faction-shop-console-nt-desc
+  parent: BaseFactionShopConsole
   components:
   - type: FactionShop
     faction: NTFaction
     pointsInterval: 20.0
     pointsPerFlag: 10
   - type: Store
-    name: "NT Faction Shop"
-    categories:
-    - FactionWeapons
-    - FactionAmmo
-    - FactionMedical
-    - FactionTools
+    name: faction-store-title-nt
     currencyWhitelist:
     - NTFactionPoints
     balance:
       NTFactionPoints: 0
-  - type: ActivatableUI
+    whitelist:
+      components:
+      - FactionShop
   - type: PointLight
     color: "#3366FF"
     energy: 0.5
@@ -27,26 +24,23 @@
 
 - type: entity
   id: SindiShopConsole
-  name: Syndicate Shop Console
-  description: Консоль магазина Синдиката
-  parent: BaseComputer
+  name: faction-shop-console-sindi
+  description: faction-shop-console-sindi-desc
+  parent: BaseFactionShopConsole
   components:
   - type: FactionShop
     faction: SindiFaction
     pointsInterval: 20.0
     pointsPerFlag: 10
   - type: Store
-    name: "Syndicate Faction Shop"
-    categories:
-    - FactionWeapons
-    - FactionAmmo
-    - FactionMedical
-    - FactionTools
+    name: faction-store-title-sindi
     currencyWhitelist:
     - SindiFactionPoints
-          balance:
-        SindiFactionPoints: 0
-  - type: ActivatableUI
+    balance:
+      SindiFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
   - type: PointLight
     color: "#FF3333"
     energy: 0.5
@@ -54,26 +48,23 @@
 
 - type: entity
   id: GreenShopConsole
-  name: Green Faction Shop Console
-  description: Консоль магазина Зеленой фракции
-  parent: BaseComputer
+  name: faction-shop-console-green
+  description: faction-shop-console-green-desc
+  parent: BaseFactionShopConsole
   components:
   - type: FactionShop
     faction: GreenFaction
     pointsInterval: 20.0
     pointsPerFlag: 10
   - type: Store
-    name: "Green Faction Shop"
-    categories:
-    - FactionWeapons
-    - FactionAmmo
-    - FactionMedical
-    - FactionTools
+    name: faction-store-title-green
     currencyWhitelist:
     - GreenFactionPoints
-          balance:
-        GreenFactionPoints: 0
-  - type: ActivatableUI
+    balance:
+      GreenFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
   - type: PointLight
     color: "#33FF33"
     energy: 0.5
@@ -81,26 +72,23 @@
 
 - type: entity
   id: YellowShopConsole
-  name: Yellow Faction Shop Console
-  description: Консоль магазина Желтой фракции
-  parent: BaseComputer
+  name: faction-shop-console-yellow
+  description: faction-shop-console-yellow-desc
+  parent: BaseFactionShopConsole
   components:
   - type: FactionShop
     faction: YellowFaction
     pointsInterval: 20.0
     pointsPerFlag: 10
   - type: Store
-    name: "Yellow Faction Shop"
-    categories:
-    - FactionWeapons
-    - FactionAmmo
-    - FactionMedical
-    - FactionTools
+    name: faction-store-title-yellow
     currencyWhitelist:
     - YellowFactionPoints
-          balance:
-        YellowFactionPoints: 0
-  - type: ActivatableUI
+    balance:
+      YellowFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
   - type: PointLight
     color: "#FFFF33"
     energy: 0.5
@@ -108,26 +96,23 @@
 
 - type: entity
   id: RedShopConsole
-  name: Red Faction Shop Console
-  description: Консоль магазина Красной фракции
-  parent: BaseComputer
+  name: faction-shop-console-red
+  description: faction-shop-console-red-desc
+  parent: BaseFactionShopConsole
   components:
   - type: FactionShop
     faction: RedFaction
     pointsInterval: 20.0
     pointsPerFlag: 10
   - type: Store
-    name: "Red Faction Shop"
-    categories:
-    - FactionWeapons
-    - FactionAmmo
-    - FactionMedical
-    - FactionTools
+    name: faction-store-title-red
     currencyWhitelist:
     - RedFactionPoints
-          balance:
-        RedFactionPoints: 0
-  - type: ActivatableUI
+    balance:
+      RedFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
   - type: PointLight
     color: "#FF3333"
     energy: 0.5
@@ -135,26 +120,23 @@
 
 - type: entity
   id: BlueShopConsole
-  name: Blue Faction Shop Console
-  description: Консоль магазина Синей фракции
-  parent: BaseComputer
+  name: faction-shop-console-blue
+  description: faction-shop-console-blue-desc
+  parent: BaseFactionShopConsole
   components:
   - type: FactionShop
     faction: BlueFaction
     pointsInterval: 20.0
     pointsPerFlag: 10
   - type: Store
-    name: "Blue Faction Shop"
-    categories:
-    - FactionWeapons
-    - FactionAmmo
-    - FactionMedical
-    - FactionTools
+    name: faction-store-title-blue
     currencyWhitelist:
     - BlueFactionPoints
-          balance:
-        BlueFactionPoints: 0
-  - type: ActivatableUI
+    balance:
+      BlueFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
   - type: PointLight
     color: "#3333FF"
     energy: 0.5
@@ -162,26 +144,23 @@
 
 - type: entity
   id: USSPShopConsole
-  name: USSP Shop Console
-  description: Консоль магазина USSP
-  parent: BaseComputer
+  name: faction-shop-console-ussp
+  description: faction-shop-console-ussp-desc
+  parent: BaseFactionShopConsole
   components:
   - type: FactionShop
     faction: USSPFaction
     pointsInterval: 20.0
     pointsPerFlag: 10
   - type: Store
-    name: "USSP Faction Shop"
-    categories:
-    - FactionWeapons
-    - FactionAmmo
-    - FactionMedical
-    - FactionTools
+    name: faction-store-title-ussp
     currencyWhitelist:
     - USSPFactionPoints
-          balance:
-        USSPFactionPoints: 0
-  - type: ActivatableUI
+    balance:
+      USSPFactionPoints: 0
+    whitelist:
+      components:
+      - FactionShop
   - type: PointLight
     color: "#CC6600"
     energy: 0.5

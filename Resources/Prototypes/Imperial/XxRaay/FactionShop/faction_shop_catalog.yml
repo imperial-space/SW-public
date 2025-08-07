@@ -1,181 +1,145 @@
-# Faction Shop Catalog
+# Faction Shop Catalog (cleaned: only requested weapons and ammo)
 
 # Weapons
 - type: listing
-  id: FactionLaserGun
-  name: faction-laser-gun
-  description: faction-laser-gun-desc
-  productEntity: FactionWeaponLaserGun
-  cost:
-    NTFactionPoints: 80
-    SindiFactionPoints: 80
-    GreenFactionPoints: 80
-    YellowFactionPoints: 80
-    RedFactionPoints: 80
-    BlueFactionPoints: 80
-    USSPFactionPoints: 80
-  categories:
-  - FactionWeapons
-
-- type: listing
-  id: FactionTeslaGun
-  name: faction-tesla-gun
-  description: faction-tesla-gun-desc
-  productEntity: FactionWeaponTeslaGun
+  id: FactionLecter
+  name: lecter
+  description: lecter-desc
+  productEntity: WeaponRifleLecter
   cost:
     NTFactionPoints: 120
-    SindiFactionPoints: 120
-    GreenFactionPoints: 120
-    YellowFactionPoints: 120
-    RedFactionPoints: 120
-    BlueFactionPoints: 120
-    USSPFactionPoints: 120
   categories:
   - FactionWeapons
 
 - type: listing
   id: FactionDrozd
-  name: faction-drozd
-  description: faction-drozd-desc
-  productEntity: FactionWeaponSubMachineGunDrozd
-  cost:
-    NTFactionPoints: 100
-    SindiFactionPoints: 100
-    GreenFactionPoints: 100
-    YellowFactionPoints: 100
-    RedFactionPoints: 100
-    BlueFactionPoints: 100
-    USSPFactionPoints: 100
-  categories:
-  - FactionWeapons
-
-- type: listing
-  id: FactionWt550
-  name: faction-wt550
-  description: faction-wt550-desc
-  productEntity: FactionWeaponSubMachineGunWt550
+  name: drozd
+  description: drozd-desc
+  productEntity: WeaponSubMachineGunDrozd
   cost:
     NTFactionPoints: 90
-    SindiFactionPoints: 90
-    GreenFactionPoints: 90
-    YellowFactionPoints: 90
-    RedFactionPoints: 90
-    BlueFactionPoints: 90
-    USSPFactionPoints: 90
   categories:
   - FactionWeapons
 
 - type: listing
-  id: FactionRifle
-  name: faction-rifle
-  description: faction-rifle-desc
-  productEntity: FactionWeaponRifle
+  id: FactionL6
+  name: l6-saw
+  description: l6-saw-desc
+  productEntity: WeaponLightMachineGunL6
   cost:
-    NTFactionPoints: 150
-    SindiFactionPoints: 150
-    GreenFactionPoints: 150
-    YellowFactionPoints: 150
-    RedFactionPoints: 150
-    BlueFactionPoints: 150
-    USSPFactionPoints: 150
+    NTFactionPoints: 200
   categories:
   - FactionWeapons
 
-# Ammunition
 - type: listing
-  id: FactionPistolAmmo
-  name: faction-pistol-ammo
-  description: faction-pistol-ammo-desc
-  productEntity: AmmoPistol
+  id: FactionAKMS
+  name: akms
+  description: akms-desc
+  productEntity: WeaponRifleAk
   cost:
-    NTFactionPoints: 10
-    SindiFactionPoints: 10
-    GreenFactionPoints: 10
-    YellowFactionPoints: 10
-    RedFactionPoints: 10
-    BlueFactionPoints: 10
-    USSPFactionPoints: 10
+    NTFactionPoints: 100
   categories:
-  - FactionAmmo
+  - FactionWeapons
 
+# Ammo (basic examples / adjust if нужно специфичные магазины)
 - type: listing
-  id: FactionRifleAmmo
-  name: faction-rifle-ammo
-  description: faction-rifle-ammo-desc
-  productEntity: AmmoRifle
+  id: FactionAmmoLightRifle
+  name: ammo-light-rifle
+  description: ammo-light-rifle-desc
+  productEntity: MagazineLightRifle
   cost:
     NTFactionPoints: 15
-    SindiFactionPoints: 15
-    GreenFactionPoints: 15
-    YellowFactionPoints: 15
-    RedFactionPoints: 15
-    BlueFactionPoints: 15
-    USSPFactionPoints: 15
   categories:
   - FactionAmmo
 
-# Medical Supplies
+# Armor
+- type: listing
+  id: FactionArmorBulletproof
+  name: faction-armor-bulletproof
+  description: faction-armor-bulletproof-desc
+  productEntity: ClothingOuterArmorBulletproof
+  cost:
+    NTFactionPoints: 120
+  categories:
+  - FactionTools
+
+
+- type: listing
+  id: FactionArmorRiot
+  name: faction-armor-riot
+  description: faction-armor-riot-desc
+  productEntity: ClothingOuterArmorRiot
+  cost:
+    NTFactionPoints: 140
+  categories:
+  - FactionTools
+
+- type: listing
+  id: FactionArmorWeb
+  name: faction-armor-web
+  description: faction-armor-web-desc
+  productEntity: ClothingOuterVestWeb
+  cost:
+    NTFactionPoints: 100
+  categories:
+  - FactionTools
+
 - type: listing
   id: FactionMedkit
   name: faction-medkit
   description: faction-medkit-desc
   productEntity: Medkit
   cost:
-    NTFactionPoints: 25
-    SindiFactionPoints: 25
-    GreenFactionPoints: 25
-    YellowFactionPoints: 25
-    RedFactionPoints: 25
-    BlueFactionPoints: 25
-    USSPFactionPoints: 25
+    NTFactionPoints: 40
   categories:
   - FactionMedical
 
 - type: listing
-  id: FactionBandage
-  name: faction-bandage
-  description: faction-bandage-desc
-  productEntity: Bandage
+  id: FactionGauze
+  name: faction-gauze
+  description: faction-gauze-desc
+  productEntity: Gauze
   cost:
-    NTFactionPoints: 5
-    SindiFactionPoints: 5
-    GreenFactionPoints: 5
-    YellowFactionPoints: 5
-    RedFactionPoints: 5
-    BlueFactionPoints: 5
-    USSPFactionPoints: 5
+    NTFactionPoints: 8
   categories:
   - FactionMedical
 
-# Tools
 - type: listing
-  id: FactionWrench
-  name: faction-wrench
-  description: faction-wrench-desc
-  productEntity: Wrench
+  id: FactionOintment
+  name: faction-ointment
+  description: faction-ointment-desc
+  productEntity: Ointment
   cost:
-    NTFactionPoints: 20
-    SindiFactionPoints: 20
-    GreenFactionPoints: 20
-    YellowFactionPoints: 20
-    RedFactionPoints: 20
-    BlueFactionPoints: 20
-    USSPFactionPoints: 20
+    NTFactionPoints: 8
   categories:
-  - FactionTools
+  - FactionMedical
 
 - type: listing
-  id: FactionScrewdriver
-  name: faction-screwdriver
-  description: faction-screwdriver-desc
-  productEntity: Screwdriver
+  id: FactionBruisePack
+  name: faction-bruise-pack
+  description: faction-bruise-pack-desc
+  productEntity: Brutepack
   cost:
-    NTFactionPoints: 15
-    SindiFactionPoints: 15
-    GreenFactionPoints: 15
-    YellowFactionPoints: 15
-    RedFactionPoints: 15
-    BlueFactionPoints: 15
-    USSPFactionPoints: 15
+    NTFactionPoints: 10
   categories:
-  - FactionTools
+  - FactionMedical
+
+- type: listing
+  id: FactionAmmoSMG
+  name: ammo-smg
+  description: ammo-smg-desc
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    NTFactionPoints: 12
+  categories:
+  - FactionAmmo
+
+- type: listing
+  id: FactionAmmoL6Belt
+  name: ammo-l6-belt
+  description: ammo-l6-belt-desc
+  productEntity: MagazineLightRifleBox
+  cost:
+    NTFactionPoints: 40
+  categories:
+  - FactionAmmo
