@@ -57,21 +57,3 @@ public abstract class SharedFlagCaptureSystem : EntitySystem
         }
     }
 }
-
-    /// <summary>
-    /// Состояние компонента захвата флага для синхронизации
-    /// </summary>
-    [Serializable, NetSerializable]
-    public sealed class FlagCaptureComponentState : ComponentState
-    {
-        public TimeSpan CaptureProgress;
-        public bool IsBeingCaptured;
-
-        public FlagCaptureComponentState(TimeSpan captureProgress, bool isBeingCaptured)
-        {
-            CaptureProgress = captureProgress;
-            IsBeingCaptured = isBeingCaptured;
-        }
-    }
-
-

@@ -13,35 +13,51 @@ public sealed partial class FlagCaptureComponent : Component
     /// <summary>
     /// Радиус захвата флага в тайлах
     /// </summary>
-    [DataField("captureRadius")]
+    [DataField]
     public float CaptureRadius = 2.0f;
 
     /// <summary>
     /// Время захвата в секундах
     /// </summary>
-    [DataField("captureTime")]
+    [DataField]
     public TimeSpan CaptureTime = TimeSpan.FromSeconds(30);
 
     /// <summary>
     /// Текущий прогресс захвата
     /// </summary>
-    [DataField("captureProgress")]
+    [DataField]
     public TimeSpan CaptureProgress = TimeSpan.Zero;
 
     /// <summary>
     /// Идет ли процесс захвата
     /// </summary>
-    [DataField("isBeingCaptured")]
+    [DataField]
     public bool IsBeingCaptured = false;
 
     /// <summary>
     /// Можно ли захватить этот флаг
     /// </summary>
-    [DataField("canBeCaptured")]
+    [DataField]
     public bool CanBeCaptured = true;
 
     /// <summary>
     /// Последнее время проверки игроков рядом
     /// </summary>
     public TimeSpan LastCheckTime = TimeSpan.Zero;
+}
+
+/// <summary>
+/// Состояние компонента для синхронизации между клиентом и сервером
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class FlagCaptureComponentState : ComponentState
+{
+    public TimeSpan CaptureProgress;
+    public bool IsBeingCaptured;
+
+    public FlagCaptureComponentState(TimeSpan captureProgress, bool isBeingCaptured)
+    {
+        CaptureProgress = captureProgress;
+        IsBeingCaptured = isBeingCaptured;
+    }
 }
