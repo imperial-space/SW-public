@@ -1,15 +1,15 @@
 using Content.Shared.Actions;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Humanoid;
-using Content.Shared.Imperial.Medieval.HideHair.Components;
+using Content.Shared.Imperial.Medieval.ToggleHair.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-namespace Content.Shared.Imperial.Medieval.HideHair.Systems;
+namespace Content.Shared.Imperial.Medieval.ToggleHair.Systems;
 
-public sealed partial class HideHairSystem : EntitySystem
+public sealed partial class MedievalToggleHairSystem : EntitySystem
 {
     [Dependency] private readonly SharedActionsSystem _actions = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
@@ -19,8 +19,8 @@ public sealed partial class HideHairSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<HideHairComponent, GotEquippedEvent>(OnMapInit);
-        SubscribeLocalEvent<HideHairComponent, GotUnequippedEvent>(OnGotUnequipped);
+        SubscribeLocalEvent<MedievalToggleHairComponent, GotEquippedEvent>(OnMapInit);
+        SubscribeLocalEvent<MedievalToggleHairComponent, GotUnequippedEvent>(OnGotUnequipped);
 
         SubscribeLocalEvent<HideHairToggleEvent>(ToggleEvent);
     }
@@ -28,7 +28,7 @@ public sealed partial class HideHairSystem : EntitySystem
     ///     On map init, either spawn the appropriate entity into the suit slot, or if it already exists, perform some
     ///     sanity checks. Also updates the action icon to show the toggled-entity.
     /// </summary>
-    private void OnMapInit(EntityUid uid, HideHairComponent comp, GotEquippedEvent ev)
+    private void OnMapInit(EntityUid uid, MedievalToggleHairComponent comp, GotEquippedEvent ev)
     {
         if (!TryComp<MetaDataComponent>(ev.Equipment, out var meta) || meta.EntityPrototype == null) return;
         if (HasComp<HideLayerClothingComponent>(ev.Equipment))
@@ -41,7 +41,7 @@ public sealed partial class HideHairSystem : EntitySystem
             Dirty(comp.Action.Value, action);
         }
     }
-    private void OnGotUnequipped(EntityUid uid, HideHairComponent comp, GotUnequippedEvent ev)
+    private void OnGotUnequipped(EntityUid uid, MedievalToggleHairComponent comp, GotUnequippedEvent ev)
     {
         if (HasComp<HideLayerClothingComponent>(ev.Equipment))
             SetLayerVisibility(ev.Equipment!, ev.Equipee, hideLayers: false);
