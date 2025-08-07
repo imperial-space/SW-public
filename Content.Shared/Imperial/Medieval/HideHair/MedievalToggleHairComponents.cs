@@ -1,10 +1,10 @@
 using Content.Shared.Actions;
 using Robust.Shared.Prototypes;
 
-namespace Content.Shared.Imperial.Medieval.HideHair.Components;
+namespace Content.Shared.Imperial.Medieval.ToggleHair.Components;
 
 [RegisterComponent]
-public sealed partial class HideHairComponent : Component
+public sealed partial class MedievalToggleHairComponent : Component
 {
     [ViewVariables] // VVAccess.ReadOnly
     public EntityUid? Action;

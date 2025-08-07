@@ -3,8 +3,6 @@
 - type: entity
   id: HideHairAction
   categories: [ HideSpawnMenu ]
-  name: Спрятать волосы
-  description: Вы можете спрятать свои волосы под головным убором.
   components:
   - type: InstantAction
     itemIconStyle: NoItem
