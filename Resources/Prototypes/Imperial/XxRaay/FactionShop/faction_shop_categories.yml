@@ -1,0 +1,19 @@
+- type: storeCategory
+  id: FactionWeapons
+  name: faction-store-category-weapons
+  description: Various weapons available for purchase
+
+- type: storeCategory
+  id: FactionAmmo
+  name: faction-store-category-ammo
+  description: Ammunition for various weapons
+
+- type: storeCategory
+  id: FactionMedical
+  name: faction-store-category-medical
+  description: Medical supplies and healing items
+
+- type: storeCategory
+  id: FactionTools
+  name: faction-store-category-tools
+  description: Various tools and equipment

@@ -1,0 +1,181 @@
+# Faction Shop Catalog
+
+# Weapons
+- type: listing
+  id: FactionLaserGun
+  name: faction-laser-gun
+  description: faction-laser-gun-desc
+  productEntity: FactionWeaponLaserGun
+  cost:
+    NTFactionPoints: 80
+    SindiFactionPoints: 80
+    GreenFactionPoints: 80
+    YellowFactionPoints: 80
+    RedFactionPoints: 80
+    BlueFactionPoints: 80
+    USSPFactionPoints: 80
+  categories:
+  - FactionWeapons
+
+- type: listing
+  id: FactionTeslaGun
+  name: faction-tesla-gun
+  description: faction-tesla-gun-desc
+  productEntity: FactionWeaponTeslaGun
+  cost:
+    NTFactionPoints: 120
+    SindiFactionPoints: 120
+    GreenFactionPoints: 120
+    YellowFactionPoints: 120
+    RedFactionPoints: 120
+    BlueFactionPoints: 120
+    USSPFactionPoints: 120
+  categories:
+  - FactionWeapons
+
+- type: listing
+  id: FactionDrozd
+  name: faction-drozd
+  description: faction-drozd-desc
+  productEntity: FactionWeaponSubMachineGunDrozd
+  cost:
+    NTFactionPoints: 100
+    SindiFactionPoints: 100
+    GreenFactionPoints: 100
+    YellowFactionPoints: 100
+    RedFactionPoints: 100
+    BlueFactionPoints: 100
+    USSPFactionPoints: 100
+  categories:
+  - FactionWeapons
+
+- type: listing
+  id: FactionWt550
+  name: faction-wt550
+  description: faction-wt550-desc
+  productEntity: FactionWeaponSubMachineGunWt550
+  cost:
+    NTFactionPoints: 90
+    SindiFactionPoints: 90
+    GreenFactionPoints: 90
+    YellowFactionPoints: 90
+    RedFactionPoints: 90
+    BlueFactionPoints: 90
+    USSPFactionPoints: 90
+  categories:
+  - FactionWeapons
+
+- type: listing
+  id: FactionRifle
+  name: faction-rifle
+  description: faction-rifle-desc
+  productEntity: FactionWeaponRifle
+  cost:
+    NTFactionPoints: 150
+    SindiFactionPoints: 150
+    GreenFactionPoints: 150
+    YellowFactionPoints: 150
+    RedFactionPoints: 150
+    BlueFactionPoints: 150
+    USSPFactionPoints: 150
+  categories:
+  - FactionWeapons
+
+# Ammunition
+- type: listing
+  id: FactionPistolAmmo
+  name: faction-pistol-ammo
+  description: faction-pistol-ammo-desc
+  productEntity: AmmoPistol
+  cost:
+    NTFactionPoints: 10
+    SindiFactionPoints: 10
+    GreenFactionPoints: 10
+    YellowFactionPoints: 10
+    RedFactionPoints: 10
+    BlueFactionPoints: 10
+    USSPFactionPoints: 10
+  categories:
+  - FactionAmmo
+
+- type: listing
+  id: FactionRifleAmmo
+  name: faction-rifle-ammo
+  description: faction-rifle-ammo-desc
+  productEntity: AmmoRifle
+  cost:
+    NTFactionPoints: 15
+    SindiFactionPoints: 15
+    GreenFactionPoints: 15
+    YellowFactionPoints: 15
+    RedFactionPoints: 15
+    BlueFactionPoints: 15
+    USSPFactionPoints: 15
+  categories:
+  - FactionAmmo
+
+# Medical Supplies
+- type: listing
+  id: FactionMedkit
+  name: faction-medkit
+  description: faction-medkit-desc
+  productEntity: Medkit
+  cost:
+    NTFactionPoints: 25
+    SindiFactionPoints: 25
+    GreenFactionPoints: 25
+    YellowFactionPoints: 25
+    RedFactionPoints: 25
+    BlueFactionPoints: 25
+    USSPFactionPoints: 25
+  categories:
+  - FactionMedical
+
+- type: listing
+  id: FactionBandage
+  name: faction-bandage
+  description: faction-bandage-desc
+  productEntity: Bandage
+  cost:
+    NTFactionPoints: 5
+    SindiFactionPoints: 5
+    GreenFactionPoints: 5
+    YellowFactionPoints: 5
+    RedFactionPoints: 5
+    BlueFactionPoints: 5
+    USSPFactionPoints: 5
+  categories:
+  - FactionMedical
+
+# Tools
+- type: listing
+  id: FactionWrench
+  name: faction-wrench
+  description: faction-wrench-desc
+  productEntity: Wrench
+  cost:
+    NTFactionPoints: 20
+    SindiFactionPoints: 20
+    GreenFactionPoints: 20
+    YellowFactionPoints: 20
+    RedFactionPoints: 20
+    BlueFactionPoints: 20
+    USSPFactionPoints: 20
+  categories:
+  - FactionTools
+
+- type: listing
+  id: FactionScrewdriver
+  name: faction-screwdriver
+  description: faction-screwdriver-desc
+  productEntity: Screwdriver
+  cost:
+    NTFactionPoints: 15
+    SindiFactionPoints: 15
+    GreenFactionPoints: 15
+    YellowFactionPoints: 15
+    RedFactionPoints: 15
+    BlueFactionPoints: 15
+    USSPFactionPoints: 15
+  categories:
+  - FactionTools

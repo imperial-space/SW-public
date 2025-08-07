@@ -4,6 +4,7 @@ using Content.Server.Mind;
 using Content.Shared.Imperial.XxRaay.FlagSystem;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Mobs;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC;
 using Robust.Server.GameObjects;
@@ -64,10 +65,14 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             var flagPosition = _transform.ToMapCoordinates(transform.Coordinates).Position;
             var playersInRange = new List<EntityUid>();
 
-            // Ищем всех игроков в радиусе захвата
-            var playerQuery = _entityManager.EntityQuery<ActorComponent, TransformComponent>();
-            foreach (var (actor, playerTransform) in playerQuery)
+            // Ищем всех живых игроков в радиусе захвата
+            var playerQuery = _entityManager.EntityQuery<ActorComponent, TransformComponent, MobStateComponent>();
+            foreach (var (actor, playerTransform, mobState) in playerQuery)
             {
+                // Проверяем, что игрок жив и не в критическом состоянии
+                if (mobState.CurrentState == MobState.Dead || mobState.CurrentState == MobState.Critical)
+                    continue;
+
                 var playerPosition = _transform.ToMapCoordinates(playerTransform.Coordinates).Position;
                 var distance = (playerPosition - flagPosition).Length();
 
