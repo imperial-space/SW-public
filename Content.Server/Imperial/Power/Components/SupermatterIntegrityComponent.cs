@@ -92,12 +92,6 @@ namespace Content.Server.Imperial.Power.Components
         public int CatastropheLightningCount = 3;
 
         /// <summary>
-        /// Количество хила от эмиттера
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float EmitterHealAmount = 0.35f;
-
-        /// <summary>
         /// Тег для исцеления (например, "SupermatterHeal")
         /// </summary>
         [DataField]
