@@ -220,6 +220,18 @@ namespace Content.Server.Imperial.Crook.Systems
                 }
             }
 
+            if (TryComp<ContainerManagerComponent>(user, out var containerManager))
+            {
+                foreach (var container in containerManager.Containers.Values)
+                {
+                    foreach (var containedItem in container.ContainedEntities)
+                    {
+                        if (HasContrabandRecursive(containedItem, user))
+                            return true;
+                    }
+                }
+            }
+
             return false;
         }
 
