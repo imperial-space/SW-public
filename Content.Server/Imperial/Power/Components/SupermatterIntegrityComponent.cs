@@ -66,12 +66,18 @@ namespace Content.Server.Imperial.Power.Components
         /// </summary>
         [DataField]
         public TimeSpan CatastropheTimer = TimeSpan.Zero;
-        
+
         /// <summary>
         /// Тег для исцеления (например, "SupermatterHeal")
         /// </summary>
         [DataField]
         public string HealTag = "EmitterBolt";
+
+        /// <summary>
+        /// Количество здоровья, восстанавливаемое за один выстрел эмиттера
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float EmitterHealAmount = 0.35f;
 
         // Описания состояния кристалла по проценту целостности
         [DataField]
