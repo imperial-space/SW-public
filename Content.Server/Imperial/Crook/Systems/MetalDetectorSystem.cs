@@ -103,21 +103,15 @@ namespace Content.Server.Imperial.Crook.Systems
         private void ProcessEntity(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
         {
             comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
-
-            if (HasRequiredAccess(entity, comp))
-            {
-                SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
-                return;
-            }
-
             bool hasContraband = CheckForContraband(detector, entity, comp);
-            HandleDetectionResults(detector, entity, comp, hasContraband);
+            bool hasAccess = HasRequiredAccess(entity, comp);
+            HandleDetectionResults(detector, entity, comp, hasContraband, hasAccess);
         }
 
         private bool CheckForContraband(EntityUid detector, EntityUid target, MetalDetectorComponent comp)
         {
-            if (IsContrabandItem(detector, target, comp) ||
-                CheckEntityAndContainers(detector, target, comp))
+            if (IsContrabandItem(target, comp) ||
+                CheckEntityAndContainers(target, comp))
             {
                 return true;
             }
@@ -127,8 +121,8 @@ namespace Content.Server.Imperial.Crook.Systems
                 foreach (var slot in comp.CheckedSlots)
                 {
                     if (_inventory.TryGetSlotEntity(target, slot, out var item) &&
-                        (IsContrabandItem(detector, item.Value, comp) ||
-                         CheckEntityAndContainers(detector, item.Value, comp)))
+                        (IsContrabandItem(item.Value, comp) ||
+                         CheckEntityAndContainers(item.Value, comp)))
                     {
                         return true;
                     }
@@ -137,8 +131,8 @@ namespace Content.Server.Imperial.Crook.Systems
 
             foreach (var held in _hands.EnumerateHeld(target))
             {
-                if (IsContrabandItem(detector, held, comp) ||
-                    CheckEntityAndContainers(detector, held, comp))
+                if (IsContrabandItem(held, comp) ||
+                    CheckEntityAndContainers(held, comp))
                 {
                     return true;
                 }
@@ -147,12 +141,12 @@ namespace Content.Server.Imperial.Crook.Systems
             return false;
         }
 
-        private bool CheckEntityAndContainers(EntityUid detector, EntityUid entity, MetalDetectorComponent comp, int currentDepth = 0)
+        private bool CheckEntityAndContainers(EntityUid entity, MetalDetectorComponent comp, int currentDepth = 0)
         {
             if (currentDepth > comp.MaxRecursionDepth)
                 return false;
 
-            if (IsContrabandItem(detector, entity, comp))
+            if (IsContrabandItem(entity, comp))
                 return true;
 
             if (TryComp<ContainerManagerComponent>(entity, out var containerManager))
@@ -161,7 +155,7 @@ namespace Content.Server.Imperial.Crook.Systems
                 {
                     foreach (var contained in container.ContainedEntities)
                     {
-                        if (CheckEntityAndContainers(detector, contained, comp, currentDepth + 1))
+                        if (CheckEntityAndContainers(contained, comp, currentDepth + 1))
                             return true;
                     }
                 }
@@ -170,21 +164,24 @@ namespace Content.Server.Imperial.Crook.Systems
             return false;
         }
 
-        private bool IsContrabandItem(EntityUid detector, EntityUid item, MetalDetectorComponent comp)
+        private bool IsContrabandItem(EntityUid item, MetalDetectorComponent comp)
         {
             return TryComp<ContrabandComponent>(item, out var contraband) &&
-                   !IsContrabandAllowed(detector, item, comp);
+                   !IsContrabandAllowed(item, comp);
         }
 
-        private bool IsContrabandAllowed(EntityUid detector, EntityUid contrabandItem, MetalDetectorComponent detectorComp)
+        private bool IsContrabandAllowed(EntityUid contrabandItem, MetalDetectorComponent detectorComp)
         {
             if (!TryComp<ContrabandComponent>(contrabandItem, out var contraband))
                 return false;
 
-            if (_container.TryGetContainingContainer(contrabandItem, out var container) &&
-                container.Owner is { } bearer)
+            // Recursively check all containers in the hierarchy for access
+            var current = contrabandItem;
+            while (_container.TryGetContainingContainer(current, out var container))
             {
-                return HasRequiredAccess(bearer, detectorComp);
+                current = container.Owner;
+                if (HasRequiredAccess(current, detectorComp))
+                    return true;
             }
 
             return false;
@@ -192,8 +189,9 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private void HandleDetectionResults(EntityUid detector, EntityUid entity,
                  MetalDetectorComponent comp,
-                 bool hasContraband)
+                 bool hasContraband, bool hasAccess)
         {
+            // Emagged mode shocks everyone regardless of access
             if (HasComp<EmaggedComponent>(detector))
             {
                 if (!_shockedEntities.Contains(entity) && TryComp<DamageableComponent>(entity, out _))
@@ -210,6 +208,13 @@ namespace Content.Server.Imperial.Crook.Systems
                         PopupType.SmallCaution);
                 }
                 SetStateWithSound(detector, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
+                return;
+            }
+
+            // Normal mode checks
+            if (hasAccess)
+            {
+                SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
             }
             else if (hasContraband && comp.CheckContraband)
             {
