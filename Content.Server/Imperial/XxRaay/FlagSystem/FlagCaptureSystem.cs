@@ -287,3 +287,4 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         return prototype;
     }
 }
+
