@@ -79,12 +79,14 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
             var reagents = randomProto.Reagents.Clone();
             var reactants = GetReactants(reagents, randomProto.UsedGroups, randomProto.Reactants);
             var randomEffects = GetEffects(randomProto.EffectRandom);
+            var randomMixer = GetMixer(randomProto.MixerRandom);
             var (minTemp, maxTemp) = GetTemperatures(randomProto.MinTemperature, randomProto.MaxTemperature);
 
             var resultReaction = new ReactionData()
             {
                 Reactants = reactants,
                 Effects = randomEffects,
+                MixingCategories = randomMixer,
                 MinimumTemperature = minTemp,
                 MaximumTemperature = maxTemp,
                 Sound = Random.Pick(randomProto.Sounds),
@@ -150,6 +152,23 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
         {
             result.Add(Random.PickAndTake(effects));
         }
+
+        return result;
+    }
+
+    /// <summary>
+    /// Возвращает случайно выбранный миксер для реакции
+    /// </summary>
+    /// <param name="mixerRandom">Класс, хранящий инфу о доступных миксерах</param>
+    /// <returns></returns>
+    private List<ProtoId<MixingCategoryPrototype>> GetMixer(MixingCategoryRandom mixerRandom)
+    {
+        var result = new List<ProtoId<MixingCategoryPrototype>>();
+
+        if (!Random.Prob(mixerRandom.Probability))
+            return result;
+
+        result.Add(Random.Pick(mixerRandom.Categories));
 
         return result;
     }

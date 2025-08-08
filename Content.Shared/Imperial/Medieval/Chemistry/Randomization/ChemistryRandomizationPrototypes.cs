@@ -1,3 +1,4 @@
+using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Destructible.Thresholds;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Audio;
@@ -95,6 +96,12 @@ public sealed partial class ChemistryRandomizationGroupPrototype : IPrototype
     public EntityEffectRandom EffectRandom = new();
 
     /// <summary>
+    /// Случайные требуемые миксеры
+    /// </summary>
+    [DataField]
+    public MixingCategoryRandom MixerRandom = new();
+
+    /// <summary>
     /// Другие рандом группы, которые будут использованы
     /// </summary>
     [DataField]
@@ -130,4 +137,14 @@ public sealed partial class EntityEffectRandom
 
     [DataField(required: true)]
     public List<EntityEffect> Effects = new();
+}
+
+[DataDefinition]
+public sealed partial class MixingCategoryRandom
+{
+    [DataField]
+    public float Probability = 0.2f;
+
+    [DataField(required: true)]
+    public List<ProtoId<MixingCategoryPrototype>> Categories = new();
 }
