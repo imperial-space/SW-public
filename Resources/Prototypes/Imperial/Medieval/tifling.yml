@@ -435,10 +435,10 @@
   roundStart: true
   prototype: MobTifling
   sprites: MobTiflingSprites
-  defaultSkinTone: "#34a223"
+  defaultSkinTone: "#ffffff"
   markingLimits: MobTiflingMarkingLimits
   dollPrototype: MobTiflingDummy
-  skinColoration: TintedHues
+  skinColoration: Hues
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst
