@@ -58,17 +58,24 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void SyncDamageable(EntityUid uid, SupermatterIntegrityComponent comp)
         {
-            if (EntityManager.TryGetComponent<DamageableComponent>(uid, out var dmg))
+            try
             {
-                var newTotal = comp.MaxIntegrity - comp.Integrity;
-                var diff = newTotal - (float)dmg.TotalDamage;
-                if (Math.Abs(diff) > 0.01f)
+                if (EntityManager.TryGetComponent<DamageableComponent>(uid, out var dmg))
                 {
-                    var spec = new DamageSpecifier();
-                    foreach (var type in dmg.Damage.DamageDict.Keys)
-                        spec.DamageDict[type] = diff;
-                    _damageable.TryChangeDamage(uid, spec, false, true, origin: null);
+                    var newTotal = comp.MaxIntegrity - comp.Integrity;
+                    var diff = newTotal - (float)dmg.TotalDamage;
+                    if (Math.Abs(diff) > 0.01f)
+                    {
+                        var spec = new DamageSpecifier();
+                        foreach (var type in dmg.Damage.DamageDict.Keys)
+                            spec.DamageDict[type] = diff;
+                        _damageable.TryChangeDamage(uid, spec, false, true, origin: null);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"SupermatterIntegritySystem.SyncDamageable: Failed to sync damage for entity {uid}: {ex.Message}");
             }
         }
 
@@ -79,8 +86,15 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void OnProjectileHit(EntityUid uid, SupermatterIntegrityComponent comp, ref ProjectileHitEvent args)
         {
-            comp.Integrity = MathF.Max(0, comp.Integrity - 10f); // 10 урона за выстрел
-            SyncDamageable(uid, comp);
+            try
+            {
+                comp.Integrity = MathF.Max(0, comp.Integrity - 10f); // 10 урона за выстрел
+                SyncDamageable(uid, comp);
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"SupermatterIntegritySystem.OnProjectileHit: Failed to process projectile hit for entity {uid}: {ex.Message}");
+            }
         }
 
         private void OnExamined(EntityUid uid, SupermatterIntegrityComponent component, ExaminedEvent args)
@@ -106,11 +120,18 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void OnStartCollide(EntityUid uid, SupermatterIntegrityComponent component, ref StartCollideEvent args)
         {
-            var other = args.OtherEntity;
-            if (_tagSystem.HasTag(other, component.HealTag))
+            try
             {
-                component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + component.EmitterHealAmount);
-                SyncDamageable(uid, component);
+                var other = args.OtherEntity;
+                if (_tagSystem.HasTag(other, component.HealTag))
+                {
+                    component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + component.EmitterHealAmount);
+                    SyncDamageable(uid, component);
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"SupermatterIntegritySystem.OnStartCollide: Failed to process collision for entity {uid}: {ex.Message}");
             }
         }
 
@@ -120,109 +141,177 @@ namespace Content.Server.Imperial.Power.EntitySystems
             var enumerator = EntityQueryEnumerator<SupermatterIntegrityComponent, TransformComponent>();
             while (enumerator.MoveNext(out var uid, out var comp, out var xform))
             {
-                ProcessSupermatterUpdate(uid, comp, xform, frameTime);
+                try
+                {
+                    ProcessSupermatterUpdate(uid, comp, xform, frameTime);
+                }
+                catch (Exception ex)
+                {
+                    Log.Error($"SupermatterIntegritySystem.Update: Exception during processing entity {uid}: {ex.Message}");
+                    // Продолжаем обработку других суперматерий, не останавливаем весь цикл
+                }
             }
         }
 
         private void ProcessSupermatterUpdate(EntityUid uid, SupermatterIntegrityComponent comp, TransformComponent xform, float frameTime)
         {
             // Получение атмосферы с обработкой ошибок
-            GasMixture? gas = _atmos.GetContainingMixture((uid, xform), true, false);
+            GasMixture? gas = null;
+            try
+            {
+                gas = _atmos.GetContainingMixture((uid, xform), true, false);
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to get atmosphere for entity {uid}: {ex.Message}");
+            }
 
             bool bad = false;
             if (gas != null)
             {
-                if (gas.Temperature > comp.MaxSafeTemperature || gas.Temperature < comp.MinSafeTemperature || gas.Pressure > comp.MaxSafePressure)
-                    bad = true;
+                try
+                {
+                    if (gas.Temperature > 350f || gas.Temperature < 250f || gas.Pressure > 300f)
+                        bad = true;
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to check atmosphere conditions for entity {uid}: {ex.Message}");
+                }
             }
 
             var percent = comp.Integrity / MathF.Max(1f, comp.MaxIntegrity);
 
-            // Сброс флагов предупреждений
-            foreach (var key in comp.WarningFlags.Keys.ToList())
+            // Сброс флагов предупреждений с обработкой ошибок
+            try
             {
-                if (percent > key && comp.WarningFlags[key])
-                    comp.WarningFlags[key] = false;
+                foreach (var key in comp.WarningFlags.Keys.ToList())
+                {
+                    if (percent > key && comp.WarningFlags[key])
+                        comp.WarningFlags[key] = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Warning($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to reset warning flags for entity {uid}: {ex.Message}");
             }
 
-            // Выдача предупреждений по порогам
-            foreach (var pair in comp.WarningFlags.OrderByDescending(p => p.Key))
+            // Выдача предупреждений по порогам с обработкой ошибок
+            try
             {
-                var key = pair.Key;
-                if (percent < key && !comp.WarningFlags[key])
+                foreach (var pair in comp.WarningFlags.OrderByDescending(p => p.Key))
                 {
-                    var msgKey = key switch
+                    var key = pair.Key;
+                    if (percent < key && !comp.WarningFlags[key])
                     {
-                        0.10f => "supermatter-warn-10",
-                        0.25f => "supermatter-warn-25",
-                        0.5f => "supermatter-warn-50",
-                        0.75f => "supermatter-warn-75",
-                        0.9f => "supermatter-warn-90",
-                        _ => null
-                    };
-                    if (msgKey != null)
-                    {
-                        var msg = Loc.GetString(msgKey);
-                        SendSupermatterRadio(uid, msg);
-                        _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
-
-                        if (key == 0.10f)
+                        var msgKey = key switch
                         {
-                            var station = _stationSystem.GetOwningStation(uid);
-                            if (station != null)
+                            0.10f => "supermatter-warn-10",
+                            0.25f => "supermatter-warn-25",
+                            0.5f => "supermatter-warn-50",
+                            0.75f => "supermatter-warn-75",
+                            0.9f => "supermatter-warn-90",
+                            _ => null
+                        };
+                        if (msgKey != null)
+                        {
+                            try
                             {
-                                _chat.DispatchStationAnnouncement(station.Value, Loc.GetString("supermatter-station-critical"), playDefaultSound: true, colorOverride: Color.Yellow);
-                                _alertLevelSystem.SetLevel(station.Value, "yellow", true, true, true);
+                                var msg = Loc.GetString(msgKey);
+                                SendSupermatterRadio(uid, msg);
+                                _chat.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
+
+                                if (key == 0.10f)
+                                {
+                                    var station = _stationSystem.GetOwningStation(uid);
+                                    if (station != null)
+                                    {
+                                        _chat.DispatchStationAnnouncement(station.Value, Loc.GetString("supermatter-station-critical"), playDefaultSound: true, colorOverride: Color.Yellow);
+                                        _alertLevelSystem.SetLevel(station.Value, "yellow", true, true, true);
+                                    }
+                                }
+                                comp.WarningFlags[key] = true;
+                                break;
+                            }
+                            catch (Exception ex)
+                            {
+                                Log.Warning($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to send warning message for entity {uid}, key {key}: {ex.Message}");
                             }
                         }
-                        comp.WarningFlags[key] = true;
-                        break;
                     }
                 }
             }
-
-            // Обработка катастрофы
-            if (!comp.CatastropheActive && comp.Integrity <= comp.CatastropheThreshold)
+            catch (Exception ex)
             {
-                comp.CatastropheActive = true;
-                comp.CatastropheTimer = comp.CatastropheDuration;
+                Log.Warning($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to process warning flags for entity {uid}: {ex.Message}");
             }
 
-            if (comp.CatastropheActive)
+            // Обработка катастрофы с обработкой ошибок
+            try
             {
-                comp.CatastropheTimer -= TimeSpan.FromSeconds(frameTime);
-                if (comp.CatastropheTimer <= TimeSpan.Zero)
+                if (!comp.CatastropheActive && comp.Integrity <= comp.CatastropheThreshold)
                 {
-                    if (TryComp(uid, out TransformComponent? xformCat))
+                    comp.CatastropheActive = true;
+                    comp.CatastropheTimer = TimeSpan.FromSeconds(120); // 2 минуты
+                }
+
+                if (comp.CatastropheActive)
+                {
+                    comp.CatastropheTimer -= TimeSpan.FromSeconds(frameTime);
+                    if (comp.CatastropheTimer <= TimeSpan.Zero)
                     {
-                        var coords = _xforms.ToMapCoordinates(xformCat.Coordinates);
-                        _explosionSystem.QueueExplosion(
-                            coords,
-                            comp.ExplosionPrototype,
-                            comp.ExplosionTotalIntensity,
-                            comp.ExplosionSlope,
-                            comp.ExplosionMaxTileIntensity,
-                            cause: uid
-                        );
+                        // Взрыв с обработкой ошибок
+                        try
+                        {
+                            if (TryComp(uid, out TransformComponent? xformCat))
+                            {
+                                var coords = _xforms.ToMapCoordinates(xformCat.Coordinates);
+                                _explosionSystem.QueueExplosion(
+                                    coords,
+                                    "Default", // TODO: Отдельный прототип взрыва
+                                    20000f,      // totalIntensity
+                                    1f,         // slope
+                                    70f,        // maxTileIntensity
+                                    cause: uid
+                                );
+                            }
+                            EntityManager.QueueDeleteEntity(uid);
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Error($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to trigger catastrophe explosion for entity {uid}: {ex.Message}");
+                            // Принудительно удаляем сущность даже при ошибке взрыва
+                            EntityManager.QueueDeleteEntity(uid);
+                        }
+                        return; // Выходим из обработки, так как сущность будет удалена
                     }
-                    EntityManager.QueueDeleteEntity(uid);
-                    return; // Выходим из обработки, так как сущность будет удалена
                 }
             }
+            catch (Exception ex)
+            {
+                Log.Warning($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to process catastrophe for entity {uid}: {ex.Message}");
+            }
 
-            // Обработка урона от плохих условий
+            // Обработка урона от плохих условий с обработкой ошибок
             if (bad)
             {
-                comp.TickAccumulator += TimeSpan.FromSeconds(frameTime);
-                while (comp.TickAccumulator >= comp.TickInterval)
+                try
                 {
-                    comp.TickAccumulator -= comp.TickInterval;
-                    // Прямое уменьшение Integrity
-                    var tickAmount = 0f;
-                    foreach (var v in comp.TickDamage.DamageDict.Values)
-                        tickAmount += (float)v;
-                    comp.Integrity = MathF.Max(0, comp.Integrity - tickAmount);
-                    SyncDamageable(uid, comp);
+                    comp.TickAccumulator += TimeSpan.FromSeconds(frameTime);
+                    while (comp.TickAccumulator >= comp.TickInterval)
+                    {
+                        comp.TickAccumulator -= comp.TickInterval;
+                        // Прямое уменьшение Integrity
+                        var tickAmount = 0f;
+                        foreach (var v in comp.TickDamage.DamageDict.Values)
+                            tickAmount += (float)v;
+                        comp.Integrity = MathF.Max(0, comp.Integrity - tickAmount);
+                        SyncDamageable(uid, comp);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning($"SupermatterIntegritySystem.ProcessSupermatterUpdate: Failed to process damage tick for entity {uid}: {ex.Message}");
                 }
             }
         }

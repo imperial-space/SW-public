@@ -68,12 +68,6 @@ namespace Content.Server.Imperial.Power.Components
         public TimeSpan CatastropheTimer = TimeSpan.Zero;
 
         /// <summary>
-        /// Длительность катастрофы перед взрывом
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public TimeSpan CatastropheDuration = TimeSpan.FromSeconds(120);
-
-        /// <summary>
         /// Тег для исцеления (например, "SupermatterHeal")
         /// </summary>
         [DataField]
@@ -95,32 +89,5 @@ namespace Content.Server.Imperial.Power.Components
             { 0.25f, "supermatter-desc-badly-cracked" },
             { 0.0f,  "supermatter-desc-critical" }
         };
-
-        /// <summary>
-        /// Параметры безопасных условий окружающей среды
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float MinSafeTemperature = 250f;
-
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float MaxSafeTemperature = 350f;
-
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float MaxSafePressure = 300f;
-
-        /// <summary>
-        /// Параметры взрыва при катастрофе
-        /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public string ExplosionPrototype = "Default";
-
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float ExplosionTotalIntensity = 20000f;
-
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float ExplosionSlope = 1f;
-
-        [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float ExplosionMaxTileIntensity = 70f;
     }
 }
