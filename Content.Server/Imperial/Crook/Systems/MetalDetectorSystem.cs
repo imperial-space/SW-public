@@ -103,12 +103,12 @@ namespace Content.Server.Imperial.Crook.Systems
         private void ProcessEntity(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
         {
             comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
-            bool hasContraband = CheckForContraband(detector, entity, comp);
+            bool hasContraband = CheckForContraband(entity, comp);
             bool hasAccess = HasRequiredAccess(entity, comp);
             HandleDetectionResults(detector, entity, comp, hasContraband, hasAccess);
         }
 
-        private bool CheckForContraband(EntityUid detector, EntityUid target, MetalDetectorComponent comp)
+        private bool CheckForContraband(EntityUid target, MetalDetectorComponent comp)
         {
             if (IsContrabandItem(target, comp) ||
                 CheckEntityAndContainers(target, comp))
