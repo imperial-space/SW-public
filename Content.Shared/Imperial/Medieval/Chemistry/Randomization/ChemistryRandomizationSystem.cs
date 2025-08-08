@@ -70,7 +70,7 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     private void GenerateFromGroup(ProtoId<ChemistryRandomizationGroupPrototype> randomProtoId, ref int offset)
     {
         var randomProto = _prototypeManager.Index(randomProtoId);
-        var names = randomProto.Names.Clone();
+        //var names = randomProto.Names.Clone();    // Если хотите сделать полноценные названия
 
         for (var i = 0; i < randomProto.Potions.Count; i++)
         {
@@ -103,7 +103,8 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
 
             var reagentData = new GeneratedReagentData()
             {
-                Name = Loc.GetString(Random.PickAndTake(names)),
+                //Name = Loc.GetString(Random.PickAndTake(names)),  // Если хотите сделать полноценные названия
+                Name = $"Зелье {Random.Next(1000, 9999)}",
                 Description = Random.Pick(randomProto.Descriptions),
                 Flavor = Random.Pick(randomProto.Flavors),
                 Color = Random.Pick(randomProto.Colors),

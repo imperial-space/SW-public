@@ -19,10 +19,11 @@ public sealed partial class ChemistryRandomizationGroupPrototype : IPrototype
     public List<string> Potions = new();
 
     /// <summary>
+    /// НА ДАННЫЙ МОМЕНТ НЕ ИСПОЛЬЗУЕТСЯ
     /// Возможные названия зелий
     /// Необходимо сделать более или столько же, сколько есть зелий
     /// </summary>
-    [DataField(required: true)]
+    [DataField]
     public List<string> Names = new();
 
     /// <summary>
