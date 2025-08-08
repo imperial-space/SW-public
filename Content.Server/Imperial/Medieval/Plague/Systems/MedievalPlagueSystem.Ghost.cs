@@ -1,11 +1,5 @@
 using System.Linq;
-using Content.Server.Actions;
-using Content.Server.Popups;
 using Content.Shared.Imperial.Medieval.Plague;
-using Content.Shared.Movement.Components;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Medieval.Plague;
 
@@ -47,23 +41,6 @@ public sealed partial class MedievalPlagueSystem
 
         var success = TryInfect(args.Target, uid);
         _popup.PopupEntity(Loc.GetString("medieval-plague-infected-popup", ("success", success)), args.Target, uid);
-    }
-
-    private void AddPrototypeActions(EntityUid uid, ProtoId<MedievalPlagueSymptomPrototype> protoId, MedievalPlagueGhostComponent? comp = null)
-    {
-        if (!Resolve(uid, ref comp))
-            return;
-
-        var proto = _proto.Index(protoId);
-        if (proto.Actions.Count() <= 0)
-            return;
-
-        foreach (var act in proto.Actions)
-        {
-            var actionEnt = _actions.AddAction(uid, act);
-            if (actionEnt.HasValue)
-                comp.Actions.Add(actionEnt.Value);
-        }
     }
 
     private int GetInfectionCost()

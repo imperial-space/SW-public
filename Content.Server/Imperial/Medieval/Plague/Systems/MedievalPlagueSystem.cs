@@ -25,7 +25,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         base.Initialize();
 
         InitializeGhost();
-        InitializeInfected();
+        InitializeSpread();
         InitializeUi();
     }
 
@@ -55,14 +55,6 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         }
     }
 
-    private void RaisePrototypeEvent(EntityUid uid, ProtoId<MedievalPlagueSymptomPrototype> protoId)
-    {
-        var proto = _proto.Index(protoId);
-
-        if (proto.TargetEvent != null)
-            RaiseLocalEvent(uid, proto.TargetEvent);
-    }
-
     private void DoPrototypeEffects(ProtoId<MedievalPlagueSymptomPrototype> protoId)
     {
         var infected = EntityManager.AllEntities<MedievalPlagueInfectedComponent>();
@@ -78,4 +70,30 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
             AddPrototypeActions(ghost, protoId);
         }
     }
+
+    private void RaisePrototypeEvent(EntityUid uid, ProtoId<MedievalPlagueSymptomPrototype> protoId)
+    {
+        var proto = _proto.Index(protoId);
+
+        if (proto.TargetEvent != null)
+            RaiseLocalEvent(uid, proto.TargetEvent);
+    }
+
+    private void AddPrototypeActions(EntityUid uid, ProtoId<MedievalPlagueSymptomPrototype> protoId, MedievalPlagueGhostComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp))
+            return;
+
+        var proto = _proto.Index(protoId);
+        if (proto.Actions.Count() <= 0)
+            return;
+
+        foreach (var act in proto.Actions)
+        {
+            var actionEnt = _actions.AddAction(uid, act);
+            if (actionEnt.HasValue)
+                comp.Actions.Add(actionEnt.Value);
+        }
+    }
+
 }
