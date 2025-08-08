@@ -147,7 +147,7 @@ namespace Content.Server.Imperial.Crook.Systems
             return false;
         }
 
-        private bool CheckEntityAndContainers(EntityUid detector, EntityUid entity, MetalDetectorComponent comp, int currentDepth = 5)
+        private bool CheckEntityAndContainers(EntityUid detector, EntityUid entity, MetalDetectorComponent comp, int currentDepth = 0)
         {
             if (currentDepth > comp.MaxRecursionDepth)
                 return false;
