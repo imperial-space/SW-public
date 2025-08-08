@@ -191,8 +191,8 @@ namespace Content.Server.Imperial.Crook.Systems
         }
 
         private void HandleDetectionResults(EntityUid detector, EntityUid entity,
-                     MetalDetectorComponent comp,
-                     bool hasContraband)
+                 MetalDetectorComponent comp,
+                 bool hasContraband)
         {
             if (HasComp<EmaggedComponent>(detector))
             {
@@ -210,10 +210,8 @@ namespace Content.Server.Imperial.Crook.Systems
                         PopupType.SmallCaution);
                 }
                 SetStateWithSound(detector, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
-                return;
             }
-
-            if (hasContraband && comp.CheckContraband)
+            else if (hasContraband && comp.CheckContraband)
             {
                 SetStateWithSound(detector, MetalDetectorVisualState.Alert, comp, comp.AlertSound);
             }
