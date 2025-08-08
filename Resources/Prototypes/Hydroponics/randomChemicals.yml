@@ -18,7 +18,7 @@
     - Ichor
     - Rororium
     # Imperial Botany New Reagents end
-  - quantity: 0.5
+  - quantity: 5
     weight: 0.8 # Imperial Botany Nerf 1 --> 0.8
     reagents:
     - Cognizine
