@@ -67,8 +67,8 @@
     - type: DoAfter
   - type: LanguageSpeaker
     languages:
-      Common: Understand
-      Cursed: Understand
+      Common: Speak
+      Cursed: Speak
     - type: MobState
       allowedStates:
         - Alive
