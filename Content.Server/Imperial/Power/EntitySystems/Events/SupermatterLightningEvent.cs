@@ -61,24 +61,17 @@ public sealed class SupermatterLightningEvent
             return;
         }
 
-        try
-        {
-            var currentTime = system.GameTiming.CurTime;
-            comp.CurrentEvent = SupermatterEventType.Lightning;
-            comp.EventEndTime = TimeSpan.FromSeconds(comp.LightningEventDuration);
-            comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.LightningMinNextEvent, comp.LightningMaxNextEvent));
-            comp.LightningCooldown = TimeSpan.Zero;
-            comp.LastEventEndTimeUpdate = currentTime;
-            comp.LastNextEventTimerUpdate = currentTime;
-            comp.LastLightningCooldownUpdate = currentTime;
+        var currentTime = system.GameTiming.CurTime;
+        comp.CurrentEvent = SupermatterEventType.Lightning;
+        comp.EventEndTime = TimeSpan.FromSeconds(comp.LightningEventDuration);
+        comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.LightningMinNextEvent, comp.LightningMaxNextEvent));
+        comp.LightningCooldown = TimeSpan.Zero;
+        comp.LastEventEndTimeUpdate = currentTime;
+        comp.LastNextEventTimerUpdate = currentTime;
+        comp.LastLightningCooldownUpdate = currentTime;
 
-            // Стреляем молнии в случайные цели вокруг суперматерии
-            ShootRandomLightnings(uid, system);
-        }
-        catch (Exception ex)
-        {
-            system.Log.Error($"SupermatterLightningEvent.Activate: Exception during activation for entity {uid}: {ex.Message}");
-        }
+        // Стреляем молнии в случайные цели вокруг суперматерии
+        ShootRandomLightnings(uid, system);
     }
 
     public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)
@@ -104,16 +97,9 @@ public sealed class SupermatterLightningEvent
 
     private void ShootRandomLightnings(EntityUid uid, SupermatterEventSystem system)
     {
-        try
-        {
-            // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе 8 метров
-            // 1 молния за раз, радиус 8 метров
-            system.LightningSystem?.ShootRandomLightnings(uid, 8f, 1, "Lightning", 0, true);
-        }
-        catch (Exception ex)
-        {
-            system.Log.Error($"SupermatterLightningEvent.ShootRandomLightnings: Exception: {ex.Message}");
-        }
+        // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе 8 метров
+        // 1 молния за раз, радиус 8 метров
+        system.LightningSystem?.ShootRandomLightnings(uid, 8f, 1, "Lightning", 0, true);
     }
 
     public string GetAnnouncement()
