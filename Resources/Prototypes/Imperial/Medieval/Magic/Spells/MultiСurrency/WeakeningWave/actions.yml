@@ -34,13 +34,19 @@
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence
-        probability: 0.0001
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalLight1: 2
+          MagicMedievalLight: 2
+        bonusEssences:
+          MagicMedievalLight: 1
       - !type:AddMagicEssence
-        probability: 0.0001
+        essenceAddProbability: 0.0001
+        bonusAddProbability: 1
         addedEssences:
-          MagicMedievalVodka1: 2
+          MagicMedievalVodka: 2
+        bonusEssences:
+          MagicMedievalVodka: 1
   - type: ManaDrainSpell
     manaDrain: 95
     canUseWithoutMana: true

@@ -4,6 +4,7 @@
   id: SpearBone
   description: A spear made of bones.
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: Sprite
@@ -210,6 +211,7 @@
   id: MedievalSpearNecro
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: QuestItem
@@ -272,6 +274,7 @@
   id: MedievalSpearAdmin
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: Spear
   - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_spear.rsi
@@ -1379,8 +1382,8 @@
 
 - type: entity
   name: falshion
-  parent: MedievalFalshionT3
-  id: MedievalFalshionT3ChainMace
+  parent: MedievalFalshionT3Legion
+  id: MedievalFalshionT3LegionChainMace
   description: An ancient war blade.
   components:
   - type: Sprite
@@ -1401,8 +1404,8 @@
 
 - type: entity
   name: falshion
-  parent: MedievalFalshionT3Steel
-  id: MedievalFalshionT3SteelChainMace
+  parent: MedievalFalshionT3LegionSteel
+  id: MedievalFalshionT3LegionSteelChainMace
   description: An ancient war blade.
   components:
   - type: Sprite
@@ -1574,6 +1577,7 @@
   id: MedievalSpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: QuestItem
@@ -2388,6 +2392,7 @@
   id: MedievalSpearT3Steel
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: QuestItem
@@ -4059,6 +4064,7 @@
   id: MedievalSpearPilum
   description: Just a spear
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: Sprite
@@ -4123,6 +4129,7 @@
   id: MedievalSpearSulica
   description: Just a spear
   components:
+  - type: Spear
   - type: RDWeight
     value: 4
   - type: Sprite
@@ -4208,3 +4215,58 @@
     sprite: Imperial/Medieval/Melee/royalsword.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Melee/royalsword.rsi
+
+- type: entity
+  name: medieval cavalery spear
+  parent: BaseItem
+  id: MedievalCavalerySpearT3
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: UseDelay
+    delay: 2.5
+  - type: Pike
+  - type: RDWeight
+    value: 7
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/cavalery_spear.rsi
+    state: spear
+  - type: Wieldable
+  - type: Item
+    size: Huge
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - suitStorage
+  - type: Tag
+    tags:
+    - Spear
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PolygonShape
+          vertices:
+            - -0.40,-0.30
+            - -0.30,-0.40
+            - 0.40,0.30
+            - 0.30,0.40
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: Meltable
+    resourceCount: 4
+
+- type: entity
+  name: medieval cavalery spear
+  parent: MedievalCavalerySpearT3
+  id: MedievalCavaleryNecroSpearT3
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/cavalery_necro_spear.rsi
+    state: spear
+  - type: RadiationSource
+    intensity: 1
+    slope: 1

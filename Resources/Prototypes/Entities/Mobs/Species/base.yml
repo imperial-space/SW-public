@@ -359,6 +359,14 @@
         min: 180
         max: 20000      # несет более 105 кг (не может двигаться без посторонней помощи)
   - type: RDWeightThrowerModifier
+  - type: AffectRoundStats
+  - type: Skills
+    levels:
+      Vitality: 10
+      Strength: 10
+      Agility: 10
+      Intelligence: 10
+      Endurance: 10
 # Imperial Medieval End
 
 - type: entity

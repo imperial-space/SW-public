@@ -172,6 +172,23 @@ namespace Content.Server.Database
         Task AddNrpViolation(Guid player, CancellationToken cancel = default);
         Task RemoveNrpViolation(Guid player, CancellationToken cancel = default);
 
+        Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel = default);
+        Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel = default);
+        Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel = default);
+        Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel = default);
+
+        public Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel = default);
+        public Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel = default);
+        public Task AddPainting(Color[] texture, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel = default);
+        public Task RemovePainting(Color[] texture, CancellationToken cancel = default);
+        public Task SetPaintingAccepted(Color[] texture, CancellationToken cancel = default);
+
+        public Task<Book?> GetBook(string text, CancellationToken cancel = default);
+        public Task<List<Book>> GetBooks(bool accepted, CancellationToken cancel = default);
+        public Task AddBook(string text, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel = default);
+        public Task RemoveBook(string text, CancellationToken cancel = default);
+        public Task SetBookAccepted(string text, CancellationToken cancel = default);
+
         #endregion
 
         #region Playtime
@@ -620,6 +637,66 @@ namespace Content.Server.Database
 
         #region Imperial Medieval
 
+        public Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPainting(texture, cancel));
+        }
+
+        public Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetPaintings(accepted, cancel));
+        }
+
+        public Task AddPainting(Color[] texture, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddPainting(texture, name, description, author, authorUserId, creationTime, accepted, cancel));
+        }
+
+        public Task RemovePainting(Color[] texture, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemovePainting(texture, cancel));
+        }
+
+        public Task SetPaintingAccepted(Color[] texture, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetPaintingAccepted(texture, cancel));
+        }
+
+        public Task<Book?> GetBook(string text, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetBook(text, cancel));
+        }
+
+        public Task<List<Book>> GetBooks(bool accepted, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetBooks(accepted, cancel));
+        }
+
+        public Task AddBook(string text, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddBook(text, name, description, author, authorUserId, creationTime, accepted, cancel));
+        }
+
+        public Task RemoveBook(string text, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveBook(text, cancel));
+        }
+
+        public Task SetBookAccepted(string text, CancellationToken cancel)
+        {
+            DbReadOpsMetric.Inc();
+            return RunDbCommand(() => _db.SetBookAccepted(text, cancel));
+        }
+
         public Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
         {
             DbReadOpsMetric.Inc();
@@ -635,6 +712,29 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.RemoveNrpViolation(player, cancel));
+        }
+
+        public Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetNrpResolves(player, cancel));
+        }
+
+        public Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetNrpResolves(cancel));
+        }
+
+        public Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddNrpResolve(player, isRp, cancel));
+        }
+        public Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveNrpResolve(player, isRp, cancel));
         }
         #endregion
 

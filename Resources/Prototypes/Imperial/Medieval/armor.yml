@@ -435,8 +435,8 @@
         Cold: 0.7
         Stamina: 0.5 ## Stamina resistance
   - type: ClothingSpeedModifier
-    walkModifier: 0.92
-    sprintModifier: 0.92
+    walkModifier: 0.94
+    sprintModifier: 0.94
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -493,8 +493,8 @@
         Cold: 0.7
         Stamina: 0.75 ## Stamina resistance
   - type: ClothingSpeedModifier
-    walkModifier: 0.94
-    sprintModifier: 0.94
+    walkModifier: 0.95
+    sprintModifier: 0.95
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -551,8 +551,8 @@
         Cold: 0.7
         Stamina: 0.45 ## Stamina resistance
   - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
+    walkModifier: 0.87
+    sprintModifier: 0.87
   - type: Item
     size: Huge
   - type: ExplosionResistance
@@ -599,8 +599,8 @@
         Cold: 0.6
         Stamina: 0.25 ## Stamina resistance
   - type: ClothingSpeedModifier
-    walkModifier: 0.74
-    sprintModifier: 0.74
+    walkModifier: 0.84
+    sprintModifier: 0.84
   - type: Item
     size: Huge
   - type: ExplosionResistance
@@ -1172,13 +1172,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.7
-        Slash: 0.6
-        Piercing: 0.75
-        Heat: 0.45
-        Cold: 0.55
-        Bloodloss: 0.55
-        Stamina: 0.5 ## Stamina resistance
+        Blunt: 0.85
+        Slash: 0.8
+        Piercing: 0.88
+        Heat: 0.77
+        Cold: 0.77
+        Bloodloss: 0.77
+        Stamina: 0.75 ## Stamina resistance
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1223,13 +1223,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.78
-        Slash: 0.68
-        Piercing: 0.9
-        Heat: 0.7
-        Cold: 0.7
-        Bloodloss: 0.65
-        Stamina: 0.7 ## Stamina resistance
+        Blunt: 0.89
+        Slash: 0.84
+        Piercing: 0.95
+        Heat: 0.85
+        Cold: 0.85
+        Bloodloss: 0.85
+        Stamina: 0.85 ## Stamina resistance
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1403,13 +1403,13 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.8
-        Piercing: 0.95
-        Heat: 0.75
-        Cold: 0.75
-        Bloodloss: 0.75
-        Stamina: 0.7 ## Stamina resistance
+        Blunt: 0.92
+        Slash: 0.9
+        Piercing: 0.97
+        Heat: 0.87
+        Cold: 0.87
+        Bloodloss: 0.87
+        Stamina: 0.85 ## Stamina resistance
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -1542,8 +1542,8 @@
         Cold: 0.32
         Stamina: 0.15 ## Stamina resistance
   - type: ClothingSpeedModifier
-    walkModifier: 0.72
-    sprintModifier: 0.72
+    walkModifier: 0.84
+    sprintModifier: 0.84
   - type: Item
     size: Huge
   - type: ExplosionResistance
@@ -1746,8 +1746,8 @@
         Cold: 0.8
         Stamina: 0.5 ## Stamina resistance
   - type: ClothingSpeedModifier
-    walkModifier: 0.88
-    sprintModifier: 0.88
+    walkModifier: 0.93
+    sprintModifier: 0.93
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -2024,8 +2024,8 @@
         Cold: 0.7
         Stamina: 0.4 ## Stamina resistance
   - type: ClothingSpeedModifier
-    walkModifier: 0.88
-    sprintModifier: 0.88
+    walkModifier: 0.92
+    sprintModifier: 0.92
   - type: Item
     size: Normal
   - type: ExplosionResistance

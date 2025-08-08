@@ -533,3 +533,20 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/tradereagle.rsi
   - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakSpookyVendigo
+  name: blue cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/spookyvendigo.rsi
+  - type: Insulated
+  - type: IngestionBlocker
+  - type: IdentityBlocker
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - HeadTop
+    - HeadSide

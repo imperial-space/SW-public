@@ -149,6 +149,9 @@ public sealed partial class BossSystem : EntitySystem
         if (component.LoseMessage != string.Empty)
             _chat.ChatMessageToAll(ChatChannel.Radio, Loc.GetString(component.LoseMessage), Loc.GetString(component.LoseMessage), EntityUid.Invalid, false, true, Color.FromHex("#cc3a00"));
 
+        var ev = new BossWonEvent(boss);
+        RaiseLocalEvent(ref ev);
+
         SendPlayersBack(component.Players);
         component.Active = false;
     }
@@ -240,6 +243,8 @@ public sealed partial class BossSystem : EntitySystem
 
             _explosion.QueueExplosion(_transform.ToMapCoordinates(Transform(uid).Coordinates), ExplosionSystem.DefaultExplosionPrototypeId, 85, 10, 0, null, 0, 0, false);
             comp.NextExplosion = _timing.CurTime + TimeSpan.FromSeconds(comp.Delay);
+            comp.Index++;
+
             if (comp.Index >= comp.Explosions)
             {
                 RemComp<ExplosionDefeatedBossComponent>(uid);

@@ -577,6 +577,55 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("blacklist", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.Book", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("book_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("accepted");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("author");
+
+                    b.Property<Guid>("AuthorUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("author_user_id");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("creation_time");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("text");
+
+                    b.HasKey("Id")
+                        .HasName("PK_book");
+
+                    b.HasIndex("AuthorUserId");
+
+                    b.ToTable("book", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.ConnectionLog", b =>
                 {
                     b.Property<int>("Id")
@@ -726,6 +775,35 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.ToTable("language", (string)null);
                 });
 
+            modelBuilder.Entity("Content.Server.Database.NrpResolves", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("nrp_resolves_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Nrp")
+                        .HasColumnType("integer")
+                        .HasColumnName("nrp");
+
+                    b.Property<int>("Rp")
+                        .HasColumnType("integer")
+                        .HasColumnName("rp");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("user_id");
+
+                    b.HasKey("Id")
+                        .HasName("PK_nrp_resolves");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("nrp_resolves", (string)null);
+                });
+
             modelBuilder.Entity("Content.Server.Database.NrpViolation", b =>
                 {
                     b.Property<int>("Id")
@@ -749,6 +827,55 @@ namespace Content.Server.Database.Migrations.Postgres
                     b.HasIndex("UserId");
 
                     b.ToTable("nrp_violation", (string)null);
+                });
+
+            modelBuilder.Entity("Content.Server.Database.Painting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("painting_id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<bool>("Accepted")
+                        .HasColumnType("boolean")
+                        .HasColumnName("accepted");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("author");
+
+                    b.Property<Guid>("AuthorUserId")
+                        .HasColumnType("uuid")
+                        .HasColumnName("author_user_id");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("creation_time");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("description");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("name");
+
+                    b.Property<string>("Texture")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasColumnName("texture");
+
+                    b.HasKey("Id")
+                        .HasName("PK_painting");
+
+                    b.HasIndex("AuthorUserId");
+
+                    b.ToTable("painting", (string)null);
                 });
 
             modelBuilder.Entity("Content.Server.Database.PlayTime", b =>

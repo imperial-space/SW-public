@@ -108,3 +108,9 @@
 
 - type: Tag
   id: MonsterLoot
+
+- type: Tag
+  id: Lamian
+
+- type: Tag
+  id: MedievalAntHitin

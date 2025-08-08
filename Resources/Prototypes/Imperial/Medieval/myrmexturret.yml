@@ -18,7 +18,7 @@
   - type: Gun
     fireRate: 1
     selectedMode: FullAuto
-    soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
+    soundGunshot: /Audio/Imperial/Medieval/ant_acidshot.ogg
   - type: HTN
     rootTask:
       task: TurretCompound
@@ -41,6 +41,10 @@
   - type: Construction
     graph: Mturret
     node: medievalMyrmexTurret
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
 
 - type: entity
   id: MedievalMyrmexBulletAcid

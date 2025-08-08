@@ -3,6 +3,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Net;
 using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.Medieval.PlayerCreations;
 
 namespace Content.Server.Database
 {
@@ -587,6 +589,173 @@ namespace Content.Server.Database
 
         #region Imperial Medieval
 
+
+
+
+        public async Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var textureString = PaintingHelper.ColorsToString(texture);
+
+            var painting = await db.DbContext.Paintings
+                .Where(v => v.Texture == textureString)
+                .FirstOrDefaultAsync(cancel);
+
+            return painting;
+        }
+
+        public async Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var paintings = await db.DbContext.Paintings
+                .Where(c => c.Accepted == accepted)
+                .ToListAsync(cancel);
+
+            return paintings;
+        }
+
+        public async Task AddPainting(Color[] texture,
+            string name,
+            string description,
+            string author,
+            Guid authorUserId,
+            DateTime creationTime,
+            bool accepted,
+            CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var textureString = PaintingHelper.ColorsToString(texture);
+
+            var painting = new Painting
+            {
+                Texture = textureString,
+                Name = name,
+                Description = description,
+                Author = author,
+                AuthorUserId = authorUserId,
+                CreationTime = creationTime,
+                Accepted = accepted
+            };
+
+            await db.DbContext.Paintings.AddAsync(painting, cancel);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task RemovePainting(Color[] texture, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var textureString = PaintingHelper.ColorsToString(texture);
+
+            var painting = await db.DbContext.Paintings
+                .Where(v => v.Texture == textureString)
+                .FirstOrDefaultAsync(cancel);
+
+            if (painting == null)
+                return;
+
+            db.DbContext.Paintings.Remove(painting);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task SetPaintingAccepted(Color[] texture, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var textureString = PaintingHelper.ColorsToString(texture);
+
+            var painting = await db.DbContext.Paintings
+                .Where(v => v.Texture == textureString)
+                .FirstOrDefaultAsync(cancel);
+
+            if (painting == null)
+                return;
+
+            painting.Accepted = true;
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<Book?> GetBook(string text, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var book = await db.DbContext.Books
+                .Where(v => v.Text == text)
+                .FirstOrDefaultAsync(cancel);
+
+            return book;
+        }
+
+        public async Task<List<Book>> GetBooks(bool accepted, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var books = await db.DbContext.Books
+                .Where(c => c.Accepted == accepted)
+                .ToListAsync(cancel);
+
+            return books;
+        }
+
+        public async Task AddBook(string text,
+            string name,
+            string description,
+            string author,
+            Guid authorUserId,
+            DateTime creationTime,
+            bool accepted,
+            CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var book = new Book
+            {
+                Text = text,
+                Name = name,
+                Description = description,
+                Author = author,
+                AuthorUserId = authorUserId,
+                CreationTime = creationTime,
+                Accepted = accepted
+            };
+
+            await db.DbContext.Books.AddAsync(book, cancel);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task RemoveBook(string text, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var book = await db.DbContext.Books
+                .Where(v => v.Text == text)
+                .FirstOrDefaultAsync(cancel);
+
+            if (book == null)
+                return;
+
+            db.DbContext.Books.Remove(book);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task SetBookAccepted(string text, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+
+            var book = await db.DbContext.Books
+                .Where(v => v.Text == text)
+                .FirstOrDefaultAsync(cancel);
+
+            if (book == null)
+                return;
+
+            book.Accepted = true;
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
         public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
         {
             await using var db = await GetDb(cancel);
@@ -628,6 +797,78 @@ namespace Content.Server.Database
             var violation = violations.Last();
 
             db.DbContext.NrpViolations.Remove(violation);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .Where(v => v.UserId == player)
+                .FirstOrDefaultAsync(cancel) ?? new NrpResolves
+            {
+                UserId = player,
+                Rp = 0,
+                Nrp = 0,
+            };
+            return (current.Rp, current.Nrp);
+        }
+
+        public async Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .ToListAsync(cancel);
+            return current;
+        }
+
+        public async Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .Where(v => v.UserId == player)
+                .FirstOrDefaultAsync(cancel);
+
+            if (current == null)
+            {
+                await db.DbContext.AddAsync(new NrpResolves
+                {
+                    UserId = player,
+                    Rp = isRp ? 1 : 0,
+                    Nrp = isRp ? 0 : 1,
+                },
+                    cancel);
+            }
+            else
+            {
+                if(isRp) current.Rp++;
+                else current.Nrp++;
+            }
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var current = await db.DbContext.NrpResolves
+                .Where(v => v.UserId == player)
+                .FirstOrDefaultAsync(cancel);
+
+            if (current == null)
+            {
+                await db.DbContext.AddAsync(new NrpResolves
+                    {
+                        UserId = player,
+                        Rp = 0,
+                        Nrp = 0,
+                    },
+                    cancel);
+            }
+            else
+            {
+                if(isRp) current.Rp--;
+                else current.Nrp--;
+            }
             await db.DbContext.SaveChangesAsync(cancel);
         }
         #endregion

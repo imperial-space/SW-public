@@ -1033,6 +1033,8 @@
   id: MedievalChain
   description: lol
   components:
+  - type: RDWeight
+    value: 0.8
   - type: Sprite
     sprite: Imperial/Medieval/Materials/mdv.rsi
     state: chain
@@ -1081,6 +1083,8 @@
   id: MedievalIronPlate
   description: lol
   components:
+  - type: RDWeight
+    value: 1.5
   - type: Sprite
     sprite: Imperial/Medieval/Materials/mdv.rsi
     state: plate
@@ -1105,6 +1109,8 @@
   id: MedievalIronPlateSmall
   description: lol
   components:
+  - type: RDWeight
+    value: 0.3
   - type: Sprite
     sprite: Imperial/Medieval/Materials/mdv.rsi
     state: plate_small

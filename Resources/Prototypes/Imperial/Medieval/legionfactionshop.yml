@@ -21,6 +21,7 @@
     categories:
     - MedievalLegionWeapon
     - MedievalLegionArmor
+    - MedievalLegionTransport
     currencyWhitelist:
     - MedalLegion
     balance:
@@ -38,6 +39,11 @@
   id: MedievalLegionArmor
   name: medieval-category-armor
   priority: 1
+
+- type: storeCategory
+  id: MedievalLegionTransport
+  name: medieval-category-transport
+  priority: 2
 
 - type: currency
   id: MedalLegion
@@ -103,6 +109,14 @@
   productEntity: MedievalSpearT3
   cost:
     MedalLegion: 2
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalCavalerySpearT3
+  productEntity: MedievalCavalerySpearT3
+  cost:
+    MedalLegion: 5
   categories:
   - MedievalLegionWeapon
 
@@ -244,7 +258,7 @@
   id: MdvLegionMedievalCatapultCraft
   productEntity: MedievalCatapultCraft
   cost:
-    MedalLegion: 30
+    MedalLegion: 15
   categories:
   - MedievalLegionWeapon
 
@@ -375,5 +389,13 @@
     MedalLegion: 10
   categories:
   - MedievalLegionArmor
+
+- type: listing
+  id: MdvLegionMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    MedalLegion: 18
+  categories:
+  - MedievalLegionTransport
 
 
