@@ -19,6 +19,13 @@ public sealed partial class ChemistryRandomizationGroupPrototype : IPrototype
     public List<string> Potions = new();
 
     /// <summary>
+    /// Возможные названия зелий
+    /// Необходимо сделать более или столько же, сколько есть зелий
+    /// </summary>
+    [DataField(required: true)]
+    public List<string> Names = new();
+
+    /// <summary>
     /// Используемые реагенты
     /// </summary>
     [DataField]
@@ -42,6 +49,7 @@ public sealed partial class ChemistryRandomizationGroupPrototype : IPrototype
         "MedievalMushroom2",
         "MedievalMushroom3"
     };
+
 
     /// <summary>
     /// Описания зелий

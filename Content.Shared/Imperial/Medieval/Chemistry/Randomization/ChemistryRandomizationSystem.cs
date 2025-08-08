@@ -44,6 +44,7 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
 
     public System.Random Random = new();
 
+    #region Генерация
     /// <summary>
     /// Генерирует зелья заново на основе <see cref="Seed"/>
     /// </summary>
@@ -69,6 +70,7 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     private void GenerateFromGroup(ProtoId<ChemistryRandomizationGroupPrototype> randomProtoId, ref int offset)
     {
         var randomProto = _prototypeManager.Index(randomProtoId);
+        var names = randomProto.Names.Clone();
 
         for (var i = 0; i < randomProto.Potions.Count; i++)
         {
@@ -99,12 +101,13 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
                 _reactions.GetOrNew(reactant.Key).Add(resultReaction);
             }
 
-
             var reagentData = new GeneratedReagentData()
             {
+                Name = Loc.GetString(Random.PickAndTake(names)),
                 Description = Random.Pick(randomProto.Descriptions),
                 Flavor = Random.Pick(randomProto.Flavors),
-                Color = Random.Pick(randomProto.Colors)
+                Color = Random.Pick(randomProto.Colors),
+                Reaction = resultReaction
             };
 
             _reagentsData.Add(item, reagentData);
@@ -189,18 +192,20 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
 
         return result;
     }
+    #endregion
 
+    #region Статичные функции
     /// <summary>
-    /// Получает цвет реагента с учётом рандомно сгенерированных
+    /// Получает имя реагента с учётом рандомно сгенерированных
     /// </summary>
     /// <param name="proto"></param>
     /// <returns></returns>
-    public static Color GetColor(ReagentPrototype proto)
+    public static string GetName(ReagentPrototype proto)
     {
         if (!_reagentsData.TryGetValue(proto.ID, out var value))
-            return proto.SubstanceColor;
+            return proto.LocalizedName;
 
-        return value.Color;
+        return Robust.Shared.Localization.Loc.GetString(value.Name);
     }
 
     /// <summary>
@@ -228,6 +233,34 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
 
         return value.Flavor;
     }
+
+    /// <summary>
+    /// Получает цвет реагента с учётом рандомно сгенерированных
+    /// </summary>
+    /// <param name="proto"></param>
+    /// <returns></returns>
+    public static Color GetColor(ReagentPrototype proto)
+    {
+        if (!_reagentsData.TryGetValue(proto.ID, out var value))
+            return proto.SubstanceColor;
+
+        return value.Color;
+    }
+
+    /// <summary>
+    /// Получает реакцию для получения реагента, если она была сгенерирована
+    /// В ином случае возвращает null
+    /// </summary>
+    /// <param name="proto"></param>
+    /// <returns></returns>
+    public static ReactionData? GetReactionOrNull(ReagentPrototype proto)
+    {
+        if (!_reagentsData.TryGetValue(proto.ID, out var value))
+            return null;
+
+        return value.Reaction;
+    }
+    #endregion
 
     #region Копипаста офф кода
     /// <summary>
