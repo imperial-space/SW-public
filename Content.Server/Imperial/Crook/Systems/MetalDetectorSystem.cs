@@ -116,7 +116,7 @@ namespace Content.Server.Imperial.Crook.Systems
                 return true;
             }
 
-            if (TryComp<InventoryComponent>(target, out var inventory))
+            if (TryComp<InventoryComponent>(target, out _))
             {
                 foreach (var slot in comp.CheckedSlots)
                 {
@@ -166,16 +166,15 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private bool IsContrabandItem(EntityUid item, MetalDetectorComponent comp)
         {
-            return TryComp<ContrabandComponent>(item, out var contraband) &&
+            return TryComp<ContrabandComponent>(item, out _) &&
                    !IsContrabandAllowed(item, comp);
         }
 
         private bool IsContrabandAllowed(EntityUid contrabandItem, MetalDetectorComponent detectorComp)
         {
-            if (!TryComp<ContrabandComponent>(contrabandItem, out var contraband))
+            if (!TryComp<ContrabandComponent>(contrabandItem, out _))
                 return false;
 
-            // Recursively check all containers in the hierarchy for access
             var current = contrabandItem;
             while (_container.TryGetContainingContainer(current, out var container))
             {
@@ -191,7 +190,6 @@ namespace Content.Server.Imperial.Crook.Systems
                  MetalDetectorComponent comp,
                  bool hasContraband, bool hasAccess)
         {
-            // Emagged mode shocks everyone regardless of access
             if (HasComp<EmaggedComponent>(detector))
             {
                 if (!_shockedEntities.Contains(entity) && TryComp<DamageableComponent>(entity, out _))
@@ -211,7 +209,6 @@ namespace Content.Server.Imperial.Crook.Systems
                 return;
             }
 
-            // Normal mode checks
             if (hasAccess)
             {
                 SetStateWithSound(detector, MetalDetectorVisualState.Scanning, comp, comp.ClearSound);
