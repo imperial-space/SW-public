@@ -13,7 +13,7 @@
     # Imperial Botany New Reagents start
     - Thrivenin
     - Tessine
-    - Coffee
+    - Ambrosia
     - Tazinide
     - Ichor
     - Rororium
@@ -44,7 +44,7 @@
     - StrangeReagent
     - Citaloporam
     - Fresium
-    - Ambrosia
+    - Coffee
     # Imperial Botany New Reagents end
   - quantity: 5
     weight: 2
