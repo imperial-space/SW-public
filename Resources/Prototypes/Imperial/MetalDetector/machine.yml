@@ -177,8 +177,6 @@
     - type: Tag
       tags:
         - MetalDetectorTag
-    - type: MachineBoard
-      prototype: ImperialMetalDetector
     - type: Sprite
       sprite: Objects/Misc/module.rsi
       state: security

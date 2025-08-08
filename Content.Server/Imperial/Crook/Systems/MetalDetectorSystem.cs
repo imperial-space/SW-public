@@ -52,7 +52,7 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private void OnStartCollide(EntityUid uid, MetalDetectorComponent comp, ref StartCollideEvent args)
         {
-            if (!comp.Powered)
+            if (!comp.Powered || !this.IsPowered(uid, EntityManager))
                 return;
 
             var otherEntity = args.OtherEntity;
@@ -66,6 +66,8 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private void OnEndCollide(EntityUid uid, MetalDetectorComponent comp, ref EndCollideEvent args)
         {
+            if (!comp.Powered || !this.IsPowered(uid, EntityManager))
+                return;
             comp.CollidingEntities.Remove(args.OtherEntity);
 
             if (comp.CollidingEntities.Count == 0)
