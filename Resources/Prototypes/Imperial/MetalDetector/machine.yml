@@ -57,9 +57,9 @@
       range: 1000
       ports:
         - SignalMetalDetector
-    - type: Construction
-      graph: ImperialMetalDetector
-      node: detector
+    # - type: Construction
+    #   graph: ImperialMetalDetector
+    #   node: detector
     - type: ContainerFill
       containers:
         board: [ MetalDetectorCircuitboard ]
@@ -123,9 +123,9 @@
   id: MetalDetectorSecure
   suffix: Secure, Crook
   components:
-    - type: Construction
-      graph: ImperialMetalDetector
-      node: panelReinforced
+    # - type: Construction
+    #   graph: ImperialMetalDetector
+    #   node: panelReinforced
     - type: WiresPanelSecurity
       securityLevel: panelReinforced
       examine: wires-panel-component-on-examine-security-level2
