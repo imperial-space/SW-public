@@ -32,7 +32,7 @@
 
 - type: radioChannel
   id: NedraMTFconnection
-  name: Мобильная Оперативная Группа
+  name: Оперативная Группа
   keycode: 'ж'
   frequency: 8899
   color: "#000099"

@@ -8,8 +8,8 @@
       mobState:
       - Dead
     - type: SmokeOnTrigger
-      duration: 12
-      spreadAmount: 2
+      duration: 15
+      spreadAmount: 3
     - type: SoundOnTrigger
       sound: /Audio/Effects/smoke.ogg
     - type: TimerTriggerVisuals
@@ -80,11 +80,8 @@
       speechVerb: LargeMob
       allowedEmotes: ['Scream', 'Laugh']
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2
-      baseSprintSpeed: 1.8
-    - type: FootstepModifier
-      footstepSoundCollection:
-        path: /Audio/Imperial/Seriozha/SCP/ded.ogg
+      baseWalkSpeed: 2.1
+      baseSprintSpeed: 1.9
     - type: Vocal
       sounds:
         Male: DedVoice
@@ -155,7 +152,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        4000: Dead
+        3500: Dead
     - type: MeleeWeapon
       hidden: true
       altDisarm: false
@@ -170,8 +167,8 @@
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3
-      baseSprintSpeed: 2.4
+      baseWalkSpeed: 3.2
+      baseSprintSpeed: 2.6
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Seriozha/SCP/doc.ogg
@@ -271,9 +268,9 @@
 - type: damageModifierSet
   id: SCPStandart
   coefficients:
-    Blunt: 0.2
-    Slash: 0.2
-    Piercing: 0.4
+    Blunt: 0.25
+    Slash: 0.4
+    Piercing: 0.6
     Poison: 0.9
     Cellular: 0.9
     Radiation: 0.9

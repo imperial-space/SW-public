@@ -50,3 +50,19 @@
   - type: Item
     sprite: Imperial/Seriozha/SCP/misc/cmdencryptionkey.rsi
 
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyNedraMTFconnection
+  name: common encryption key
+  suffix: seriozha, Недра
+  description: An encryption key used by anyone.
+  components:
+  - type: EncryptionKey
+    channels:
+    - NedraMTFconnection
+    defaultChannel: NedraMTFconnection
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/misc/mtfencryptionkey.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Seriozha/SCP/misc/mtfencryptionkey.rsi
