@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Administration.Logs;
 using Content.Server.Chemistry.TileReactions;
+using Content.Server.ChemistryRandomization;
 using Content.Server.DoAfter;
 using Content.Server.Fluids.Components;
 using Content.Server.Spreader;
@@ -18,6 +19,7 @@ using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Friction;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.ChemistryRandomization;
 using Content.Shared.Maps;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
@@ -373,7 +375,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
                 var interpolateValue = quantity.Float() / solution.Volume.Float();
                 color = Color.InterpolateBetween(color,
-                    _prototypeManager.Index<ReagentPrototype>(standout).SubstanceColor, interpolateValue);
+                    SharedChemistryRandomizationSystem.GetColor(_prototypeManager.Index<ReagentPrototype>(standout)), interpolateValue);  // Imperial Medieval color
             }
         }
 
