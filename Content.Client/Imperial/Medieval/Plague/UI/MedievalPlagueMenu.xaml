@@ -1,0 +1,37 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    Title="{Loc 'faction-menu-title'}"
+    MinSize="1120 512"
+    SetSize="1120 512">
+    <BoxContainer Orientation="Vertical"
+                  HorizontalExpand="True"
+                  VerticalExpand="True">
+        <BoxContainer Margin="4"
+                      Orientation="Horizontal"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      SizeFlagsStretchRatio="1">
+            <Button Name="InfoButton"
+                    Text="Info"
+                    HorizontalAlignment="Left"
+                    StyleClasses="ButtonSquare"/>
+        </BoxContainer>
+        <BoxContainer Margin="4"
+                      Orientation="Horizontal"
+                      HorizontalExpand="True"
+                      VerticalExpand="True"
+                      SizeFlagsStretchRatio="1">
+            <controls:StripeBack Name="StationNameContainer" MinSize="52 52">
+                <BoxContainer Name="ModesContainer"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Stretch"
+                            MinSize="52 52"
+                            Margin="5"/>
+            </controls:StripeBack>
+        </BoxContainer>
+    </BoxContainer>
+</DefaultWindow>
