@@ -1,3 +1,55 @@
+# Темплейт для будущих прототиперов с использованием всех возможных полей
+#
+# - type: chemRandom
+#   id: Template
+#   potions:
+#   - Potion1
+#   - Potion2
+#   reagents:
+#   - Reactant1
+#   - Reactant2
+#   - Reactant3
+#   descriptions:
+#   - reagent-physical-desc-opaque
+#   - reagent-physical-desc-cloudy
+#   flavors:
+#   - sweet
+#   - cold
+#   colors:
+#   - "#c8c4ff"
+#   - "#ff1414"
+#   - "#7e2323"
+#   sounds:
+#   - path: /Audio/Effects/Chemistry/bubbles.ogg
+#   - path: /Audio/Effects/Chemistry/chtot-echo.ogg
+#   effectRandom:
+#     probability: 0.3
+#     count: 1
+#     effects:
+#     - !type:PopupMessage
+#       messages: [ "clf3-explosion" ]
+#       type: Pvs
+#       visualType: LargeCaution
+#     - !type:AreaReactionEffect
+#       duration: 10
+#       prototypeId: AluminiumMetalFoam
+#       sound:
+#         path: /Audio/Effects/extinguish.ogg
+#   mixerRandom:
+#     probability: 1
+#     categories:
+#     - Stir
+#     - Shake
+#   usedGroups:
+#   - EasyPack
+#   reactants: 2
+#   minTemperature:
+#     min: 0
+#     max: 10
+#   maxTemperature:
+#     min: 100
+#     max: 1000
+
 - type: chemRandom
   id: EasyPack
   potions:
