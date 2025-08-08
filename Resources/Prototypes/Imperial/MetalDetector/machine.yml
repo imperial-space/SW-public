@@ -161,9 +161,9 @@
             - DoorPassable
           layer:
             - AirlockLayer
-    - type: Construction
-      graph: ImperialMetalDetector
-      node: frame
+    # - type: Construction
+    #   graph: ImperialMetalDetector
+    #   node: frame
 
 - type: Tag
   id: MetalDetectorTag
