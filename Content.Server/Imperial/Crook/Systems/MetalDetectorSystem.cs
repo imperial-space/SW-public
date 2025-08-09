@@ -190,8 +190,6 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private bool IsContrabandAllowed(EntityUid contrabandItem, MetalDetectorComponent detectorComp)
         {
-            if (!TryComp<ContrabandComponent>(contrabandItem, out _))
-                return false;
 
             var current = contrabandItem;
             while (_container.TryGetContainingContainer(current, out var container))
