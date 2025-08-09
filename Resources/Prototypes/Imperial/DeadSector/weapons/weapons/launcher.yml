@@ -22,8 +22,7 @@
     whitelist:
       tags:
         - CartridgeRPG8
-    unspawnedCount: 0
-    proto: CartridgeRPG8
+    proto: ""
     capacity: 1
     soundInsert:
       path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
