@@ -1,0 +1,3070 @@
+- type: entity
+  id: MedievalShopHole
+  name: MedievalShopHole
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - MedievalFood
+    - MedievalBuild
+    - MedievalArmor
+    - MedievalMed
+    - MedievalWeapon
+    - MedievalMisc
+    - MedievalClothing
+    - MedievalBackpack
+    - MedievalMagic
+    #- MedievalUpgrade
+    - MedievalPlants
+    - MedievalTransport
+    currencyWhitelist:
+    - Revent
+    balance:
+      Revent: 0
+  - type: TrashDefendArea
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight
+
+
+
+
+
+
+
+- type: entity
+  parent: MedievalShopHole
+  id: MedievalShopHoleLockedLegion
+  name: MedievalShopHole
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [["ImperialLibrary"]]
+  - type: Store
+    categories:
+    - MedievalFood
+    - MedievalBuild
+    - MedievalArmor
+    - MedievalMed
+    - MedievalWeapon
+    - MedievalMisc
+    - MedievalClothing
+    - MedievalBackpack
+    - MedievalMagic
+    - MedievalQuestLegion
+    - MedievalPlants
+    - MedievalTransport
+    currencyWhitelist:
+    - Revent
+    balance:
+      Revent: 0
+
+- type: entity
+  parent: MedievalShopHole
+  id: MedievalShopHoleLockedIns
+  name: MedievalShopHole
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+    access: [["ImperialLibrary"]]
+  - type: Store
+    categories:
+    - MedievalFood
+    - MedievalBuild
+    - MedievalArmor
+    - MedievalMed
+    - MedievalWeapon
+    - MedievalMisc
+    - MedievalClothing
+    - MedievalBackpack
+    - MedievalMagic
+    - MedievalQuestIns
+    - MedievalPlants
+    - MedievalTransport
+    currencyWhitelist:
+    - Revent
+    balance:
+      Revent: 0
+
+- type: storeCategory
+  id: MedievalFood
+  name: medieval-category-food
+  priority: 0
+
+- type: storeCategory
+  id: MedievalBuild
+  name: medieval-category-build
+  priority: 4
+
+- type: storeCategory
+  id: MedievalArmor
+  name: medieval-category-armor
+  priority: 3
+
+- type: storeCategory
+  id: MedievalMed
+  name: medieval-category-med
+  priority: 1
+
+- type: storeCategory
+  id: MedievalWeapon
+  name: medieval-category-weapon
+  priority: 2
+
+- type: storeCategory
+  id: MedievalPlants
+  name: medieval-category-plants
+  priority: 8
+
+- type: storeCategory
+  id: MedievalMisc
+  name: medieval-category-misc
+  priority: 9
+
+- type: storeCategory
+  id: MedievalTransport
+  name: medieval-category-transport
+  priority: 9
+
+- type: storeCategory
+  id: MedievalQuestLegion
+  name: medieval-category-quest
+  priority: 7
+
+- type: storeCategory
+  id: MedievalQuestIns
+  name: medieval-category-quest
+  priority: 7
+
+- type: storeCategory
+  id: MedievalBackpack
+  name: medieval-category-backpack
+  priority: 6
+
+- type: storeCategory
+  id: MedievalClothing
+  name: medieval-category-clothing
+  priority: 5
+
+- type: listing
+  id: MdvShopFoodBreadPlain
+  productEntity: FoodBreadPlain
+  cost:
+    Revent: 3
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodBreadCorn
+  productEntity: FoodBreadCorn
+  cost:
+    Revent: 3
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodTomato
+  productEntity: FoodTomato
+  cost:
+    Revent: 2
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodBreadSlime
+  productEntity: FoodBreadSlime
+  cost:
+    Revent: 5
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvFoodCondimentBottleEnzyme
+  productEntity: FoodCondimentBottleEnzyme
+  cost:
+    Revent: 10
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodBakedPretzel
+  productEntity: FoodBakedPretzel
+  cost:
+    Revent: 5
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodBakedBunMeat
+  productEntity: FoodBakedBunMeat
+  cost:
+    Revent: 5
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodBakedCookieSugar
+  productEntity: FoodBakedCookieSugar
+  cost:
+    Revent: 5
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodBakedPancakeBb
+  productEntity: FoodBakedPancakeBb
+  cost:
+    Revent: 5
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodBakedPancake
+  productEntity: FoodBakedPancake
+  cost:
+    Revent: 5
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodBakedBunHoney
+  productEntity: FoodBakedBunHoney
+  cost:
+    Revent: 5
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodMeatSalami
+  productEntity: FoodMeatSalami
+  cost:
+    Revent: 10
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodMeatLizardCooked
+  productEntity: FoodMeatLizardCooked
+  cost:
+    Revent: 10
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodMeatCooked
+  productEntity: FoodMeatCooked
+  cost:
+    Revent: 10
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodCheese
+  productEntity: FoodCheese
+  cost:
+    Revent: 10
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodMeatChickenFried
+  productEntity: FoodMeatChickenFried
+  cost:
+    Revent: 10
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodMealFriedegg
+  productEntity: FoodMealFriedegg
+  cost:
+    Revent: 10
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodSoupBeet
+  productEntity: FoodSoupBeet
+  cost:
+    Revent: 15
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodCakeBlueberry
+  productEntity: FoodCakeBlueberry
+  cost:
+    Revent: 15
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodSoupMeatball
+  productEntity: FoodSoupMeatball
+  cost:
+    Revent: 15
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodCakePumpkin
+  productEntity: FoodCakePumpkin
+  cost:
+    Revent: 15
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodOatmeal
+  productEntity: FoodOatmeal
+  cost:
+    Revent: 15
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodSoupStew
+  productEntity: FoodSoupStew
+  cost:
+    Revent: 15
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodSoupPotato
+  productEntity: FoodSoupPotato
+  cost:
+    Revent: 15
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodSoupVegetable
+  productEntity: FoodSoupVegetable
+  cost:
+    Revent: 15
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodCakeCarrot
+  productEntity: FoodCakeCarrot
+  cost:
+    Revent: 15
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodMealMilkape
+  productEntity: FoodMealMilkape
+  cost:
+    Revent: 35
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopFoodSoupMonkey
+  productEntity: FoodSoupMonkey
+  cost:
+    Revent: 35
+  categories:
+  - MedievalFood
+
+- type: listing
+  id: MdvShopMedievalFoundryCraft
+  productEntity: MedievalFoundryCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalBlacksmithArmorCraft
+  productEntity: MedievalBlacksmithArmorCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalLeatherWorkingPlaceCraft
+  productEntity: MedievalLeatherWorkingPlaceCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalWoodWorkerPlaceCraft
+  productEntity: MedievalWoodWorkerPlaceCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalDecorKotelForCoockingPotionsCraft
+  productEntity: MedievalKotel
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+
+
+- type: listing
+  id: MdvShopMedievalWoodenFloorCraft
+  productEntity: MedievalWoodenFloorCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 5
+  cost:
+    Revent: 10
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalDecorMogila3Craft
+  productEntity: MedievalDecorMogila3Craft
+  cost:
+    Revent: 10
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalDecorMogila1Craft
+  productEntity: MedievalDecorMogila1Craft
+  cost:
+    Revent: 10
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalDecorMogila2Craft
+  productEntity: MedievalDecorMogila2Craft
+  cost:
+    Revent: 10
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalFloorDrainCraft
+  productEntity: MedievalFloorDrainCraft
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalDecorAnonsCraft
+  productEntity: MedievalDecorAnonsCraft
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopCarpetBlack
+  productEntity: CarpetBlack
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopCarpet
+  productEntity: Carpet
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopCarpetPurple
+  productEntity: CarpetPurple
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopCarpetSBlue
+  productEntity: CarpetSBlue
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopCarpetGreen
+  productEntity: CarpetGreen
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopCarpetOrange
+  productEntity: CarpetOrange
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopCarpetBlue
+  productEntity: CarpetBlue
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopCarpetPink
+  productEntity: CarpetPink
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalStoneLoopHoleCraft
+  productEntity: MedievalStoneLoopHoleCraft
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalMedicalBedCraft
+  productEntity: MedievalMedicalBedCraft
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign1Craft
+  productEntity: MedievalSign1Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign2Craft
+  productEntity: MedievalSign2Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign3Craft
+  productEntity: MedievalSign3Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign4Craft
+  productEntity: MedievalSign4Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign5Craft
+  productEntity: MedievalSign5Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign6Craft
+  productEntity: MedievalSign6Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign7Craft
+  productEntity: MedievalSign7Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign8Craft
+  productEntity: MedievalSign8Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign9Craft
+  productEntity: MedievalSign9Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalStoneWallCraft
+  productEntity: MedievalStoneWallCraft
+  cost:
+    Revent: 12
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalPrisonGrilleCraft
+  productEntity: MedievalPrisonGrilleCraft
+  cost:
+    Revent: 12
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalMortarCraft
+  productEntity: MedievalMortarCraft
+  cost:
+    Revent: 30
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalDecorTorchColoneCraft
+  productEntity: MedievalDecorTorchColoneCraft
+  cost:
+    Revent: 15
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopSmithingGornCraft
+  productEntity: SmithingGornCraft
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopSmithWorkplaceCraft
+  productEntity: SmithWorkplaceCraft
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorFur
+  productEntity: MedievalClothingOuterArmorFur
+  cost:
+    Revent: 10
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorStudded
+  productEntity: MedievalClothingOuterArmorStudded
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 10
+  cost:
+    Revent: 20
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorGambeson
+  productEntity: MedievalClothingOuterArmorGambeson
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 10
+  cost:
+    Revent: 20
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalIronGloves
+  productEntity: MedievalIronGloves
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 20
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalIronGlovesBrig
+  productEntity: MedievalIronGlovesBrig
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 20
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalIronGlovesBear
+  productEntity: MedievalIronGlovesBear
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 20
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingFeetSteel
+  productEntity: MedievalClothingFeetSteel
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 25
+  cost:
+    Revent: 35
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorLeather
+  productEntity: MedievalClothingOuterArmorLeather
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 30
+  cost:
+    Revent: 40
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorLeatherLight
+  productEntity: MedievalClothingOuterArmorLeatherLight
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 55
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorChainMailLight
+  productEntity: MedievalClothingOuterArmorChainMailLight
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 40
+  cost:
+    Revent: 65
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorChainMail
+  productEntity: MedievalClothingOuterArmorChainMail
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 90
+  cost:
+    Revent: 155
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorLeatherHeavy
+  productEntity: MedievalClothingOuterArmorLeatherHeavy
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 255
+  cost:
+    Revent: 340
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorIronCuirass
+  productEntity: MedievalClothingOuterArmorIronCuirass
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 275
+  cost:
+    Revent: 290
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorBrigantin
+  productEntity: MedievalClothingOuterArmorBrigantin
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 315
+  cost:
+    Revent: 380
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorIronCuirassLight
+  productEntity: MedievalClothingOuterArmorIronCuirassLight
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 150
+  cost:
+    Revent: 200
+  categories:
+  - MedievalArmor
+
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorIron
+  productEntity: MedievalClothingOuterArmorIron
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 700
+  cost:
+    Revent: 750
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorUpIron
+  productEntity: MedievalClothingOuterArmorUpIron
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 920
+  cost:
+    Revent: 1000
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetShapel
+  productEntity: MedievalClothingHeadHelmetShapel
+  cost:
+    Revent: 20
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetCrusader
+  productEntity: MedievalClothingHeadHelmetCrusader
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetNormand
+  productEntity: MedievalClothingHeadHelmetNormand
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetNormandFree
+  productEntity: MedievalClothingHeadHelmetNormandFree
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetNazal
+  productEntity: MedievalClothingHeadHelmetNazal
+  cost:
+    Revent: 150
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopClothingOuterArmorPodWars
+  productEntity: ClothingOuterArmorPodWars
+  cost:
+    Revent: 475
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetSalad
+  productEntity: MedievalClothingHeadHelmetSalad
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetSaladLight
+  productEntity: MedievalClothingHeadHelmetSaladLight
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetBacinet
+  productEntity: MedievalClothingHeadHelmetBacinet
+  cost:
+    Revent: 30
+  categories:
+  - MedievalArmor
+
+- type: listing
+  id: MdvShopOintment
+  productEntity: Ointment
+  cost:
+    Revent: 5
+  categories:
+  - MedievalMed
+
+- type: listing
+  id: MdvShopGauze
+  productEntity: Gauze
+  cost:
+    Revent: 5
+  categories:
+  - MedievalMed
+
+- type: listing
+  id: MdvShopBrutepack
+  productEntity: MedievalBrutepack
+  cost:
+    Revent: 5
+  categories:
+  - MedievalMed
+
+#- type: listing
+#  id: MdvShopMedievalBloodChemistryBottle
+#  productEntity: MedievalBloodChemistryBottle
+#  cost:
+#    Revent: 20
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MedievalGeneticChemistryBottle
+#  productEntity: MedievalGeneticChemistryBottle
+#  cost:
+#    Revent: 10
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalHealthChemistryBottle
+#  productEntity: MedievalHealthChemistryBottle
+#  cost:
+#    Revent: 25
+#  categories:
+#  - MedievalMed
+
+#- type: listing
+#  id: MdvShopMedievalHealMedievalBiomassReclaimerCraft
+#  productEntity: MedievalBiomassReclaimerCraft
+#  cost:
+#    Revent: 45
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalHealMaterialBiomass
+#  productEntity: MaterialBiomass
+#  cost:
+#    Revent: 10
+#  categories:
+#  - MedievalMed
+
+#- type: listing
+#  id: MdvShopMedievalHealMedievalComputerCloningConsoleCraft
+#  productEntity: MedievalComputerCloningConsoleCraft
+#  cost:
+#    Revent: 80
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalHealMedievalMedicalScannerCraft
+#  productEntity: MedievalMedicalScannerCraft
+#  cost:
+#    Revent: 80
+#  categories:
+#  - MedievalMed
+
+- type: listing
+  id: MdvShopMedievalHealDrinkGlassWhite
+  productEntity: DrinkGlassWhite
+  cost:
+    Revent: 15
+  categories:
+  - MedievalMed
+
+#- type: listing
+#  id: MdvShopMedievalHealMedievalCloningPodCraft
+#  productEntity: MedievalCloningPodCraft
+#  cost:
+#    Revent: 80
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalRadChemistryBottle
+#  productEntity: MedievalRadChemistryBottle
+#  cost:
+#    Revent: 10
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MedievalGigaHealChemistryBottle
+#  productEntity: MedievalGigaHealChemistryBottle
+#  cost:
+#    Revent: 45
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalDrugChemistryBottle
+#  productEntity: MedievalDrugChemistryBottle
+#  cost:
+#    Revent: 10
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalSpaceChemistryBottle
+#  productEntity: MedievalSpaceChemistryBottle
+#  cost:
+#    Revent: 15
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalBaffChemistryBottle
+#  productEntity: MedievalBaffChemistryBottle
+#  cost:
+#    Revent: 35
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalMuteChemistryBottle
+#  productEntity: MedievalMuteChemistryBottle
+#  cost:
+#    Revent: 30
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalFireChemistryBottle
+#  productEntity: MedievalFireChemistryBottle
+#  cost:
+#    Revent: 25
+#  categories:
+#  - MedievalMed
+#
+#- type: listing
+#  id: MdvShopMedievalSleepChemistryBottle
+#  productEntity: MedievalSleepChemistryBottle
+#  cost:
+#    Revent: 15
+#  categories:
+#  - MedievalMed
+
+#- type: listing
+#  id: MdvShopMedievalMedkitFilled
+#  productEntity: MedievalMedkitFilled
+#  cost:
+#    Revent: 75
+#  categories:
+#  - MedievalMed
+
+- type: listing
+  id: MdvShopMedievalArrow
+  productEntity: MedievalArrowIronPhysics
+  cost:
+    Revent: 2
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalMopItem
+  productEntity: MedievalMopItem
+  cost:
+    Revent: 15
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalDaggerT3
+  productEntity: MedievalDaggerT3
+  cost:
+    Revent: 15
+  categories:
+  - MedievalWeapon
+
+#- type: listing
+#  id: MdvShopMedievalDaggerT3Steel
+#  productEntity: MedievalDaggerT3Steel
+#  cost:
+#    Revent: 75
+#  categories:
+#  - MedievalWeapon
+
+#- type: listing
+#  id: MdvShopMedievalWrench
+#  productEntity: MedievalWrench
+#  cost:
+#    Revent: 10
+#  categories:
+#  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalHatchet
+  productEntity: MedievalHatchet
+  cost:
+    Revent: 13
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalWoodenShield
+  productEntity: MedievalWoodenShield
+  cost:
+    Revent: 15
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalWoodenShieldKnight
+  productEntity: MedievalWoodenShieldKnight
+  cost:
+    Revent: 27
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalWoodenShieldBuckler
+  productEntity: MedievalWoodenShieldBuckler
+  cost:
+    Revent: 12
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalMaceT3
+  productEntity: MedievalMaceT3
+  cost:
+    Revent: 35
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalPalice
+  productEntity: MedievalPalice
+  cost:
+    Revent: 50
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalMaceT3Heavy
+  productEntity: MedievalMaceT3Heavy
+  cost:
+    Revent: 85
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalFalshionT3
+  productEntity: MedievalFalshionT3
+  cost:
+    Revent: 35
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalShortSword
+  productEntity: MedievalShortSword
+  cost:
+    Revent: 30
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalSaber
+  productEntity: MedievalSaber
+  cost:
+    Revent: 40
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalPickaxe
+  productEntity: MedievalPickaxe
+  cost:
+    Revent: 40
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalPickaxeSteel
+  productEntity: MedievalPickaxeSteel
+  cost:
+    Revent: 265
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopBowImprovised
+  productEntity: BowImprovised
+  cost:
+    Revent: 75
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalSpearT3
+  productEntity: MedievalSpearT3
+  cost:
+    Revent: 75
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalIronHammer
+  productEntity: MedievalIronHammer
+  cost:
+    Revent: 110
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalGrenade
+  productEntity: MedievalGrenade
+  cost:
+    Revent: 60
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvFactionEagleMedievalIronShieldMainBuckler
+  productEntity: MedievalIronShieldBuckler
+  cost:
+    Revent: 60
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvFactionWolfMedievalWeaponCrossbowMain
+  productEntity: MedievalWeaponCrossbow
+  cost:
+    Revent: 160
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvFactionWolfMedievalBoltMain
+  productEntity: MedievalBolt
+  cost:
+    Revent: 3
+  categories:
+  - MedievalWeapon
+
+#- type: listing
+#  id: MdvFactionWolfMedievalMaceT3SteelMain
+#  productEntity: MedievalMaceT3Steel
+#  cost:
+#    Revent: 140
+#  categories:
+#  - MedievalWeapon
+#
+#- type: listing
+#  id: MdvShopMedievalPaliceSteel
+#  productEntity: MedievalPaliceSteel
+#  cost:
+#    Revent: 175
+#  categories:
+#  - MedievalWeapon
+#
+#- type: listing
+#  id: MdvShopMedievalMaceT3HeavySteel
+#  productEntity: MedievalMaceT3SteelHeavy
+#  cost:
+#    Revent: 205
+#  categories:
+#  - MedievalWeapon
+
+#- type: listing
+#  id: MdvFactionFlameMedievalIronHammerSteelMain
+#  productEntity: MedievalIronHammerSteel
+#  cost:
+#    Revent: 240
+#  categories:
+#  - MedievalWeapon
+#
+#- type: listing
+#  id: MdvFactionFlameMedievalSpearT3SteelMain
+#  productEntity: MedievalSpearT3Steel
+#  cost:
+#    Revent: 270
+#  categories:
+#  - MedievalWeapon
+
+- type: listing
+  id: MdvFactionEagleMedievalIronSekir
+  productEntity: MedievalIronSekir
+  cost:
+    Revent: 245
+  categories:
+  - MedievalWeapon
+
+#- type: listing
+#  id: MdvFactionEagleMedievalIronSekirSteel
+#  productEntity: MedievalIronSekirSteel
+#  cost:
+#    Revent: 415
+#  categories:
+#  - MedievalWeapon
+#
+#- type: listing
+#  id: MdvFactionEagleMedievalIronHalberdT3Steel2
+#  productEntity: MedievalIronHalberdT3Steel
+#  cost:
+#    Revent: 455
+#  categories:
+#  - MedievalWeapon
+#
+#- type: listing
+#  id: MdvFactionWolfMedievalFalshionT3SteelMain
+#  productEntity: MedievalFalshionT3Steel
+#  cost:
+#    Revent: 145
+#  categories:
+#  - MedievalWeapon
+#
+#- type: listing
+#  id: MdvFactionWolfMedievalShortSwordSteel
+#  productEntity: MedievalShortSwordSteel
+#  cost:
+#    Revent: 130
+#  categories:
+#  - MedievalWeapon
+#
+#- type: listing
+#  id: MdvFactionWolfMedievalSaberSteel
+#  productEntity: MedievalSaberSteel
+#  cost:
+#    Revent: 160
+#  categories:
+#  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalIronHalberdT3
+  productEntity: MedievalIronHalberdT3
+  cost:
+    Revent: 195
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth11
+  productEntity: MedievalClothingUniformJumpsuitShitCloth11
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth33
+  productEntity: MedievalClothingUniformJumpsuitShitCloth33
+  cost:
+    Revent: 35
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth34
+  productEntity: MedievalClothingUniformJumpsuitShitCloth34
+  cost:
+    Revent: 45
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth35
+  productEntity: MedievalClothingUniformJumpsuitShitCloth35
+  cost:
+    Revent: 75
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth36
+  productEntity: MedievalClothingUniformJumpsuitShitCloth36
+  cost:
+    Revent: 75
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth37
+  productEntity: MedievalClothingUniformJumpsuitShitCloth37
+  cost:
+    Revent: 35
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth38
+  productEntity: MedievalClothingUniformJumpsuitShitCloth38
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth39
+  productEntity: MedievalClothingUniformJumpsuitShitCloth39
+  cost:
+    Revent: 35
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth40
+  productEntity: MedievalClothingUniformJumpsuitShitCloth40
+  cost:
+    Revent: 75
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth41
+  productEntity: MedievalClothingUniformJumpsuitShitCloth41
+  cost:
+    Revent: 85
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth42
+  productEntity: MedievalClothingUniformJumpsuitShitCloth42
+  cost:
+    Revent: 85
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth43
+  productEntity: MedievalClothingUniformJumpsuitShitCloth43
+  cost:
+    Revent: 40
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth66
+  productEntity: MedievalClothingUniformJumpsuitShitCloth66
+  cost:
+    Revent: 40
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth44
+  productEntity: MedievalClothingUniformJumpsuitShitCloth44
+  cost:
+    Revent: 70
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth45
+  productEntity: MedievalClothingUniformJumpsuitShitCloth45
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth46
+  productEntity: MedievalClothingUniformJumpsuitShitCloth46
+  cost:
+    Revent: 60
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth47
+  productEntity: MedievalClothingUniformJumpsuitShitCloth47
+  cost:
+    Revent: 70
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth48
+  productEntity: MedievalClothingUniformJumpsuitShitCloth48
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth49
+  productEntity: MedievalClothingUniformJumpsuitShitCloth49
+  cost:
+    Revent: 45
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth50
+  productEntity: MedievalClothingUniformJumpsuitShitCloth50
+  cost:
+    Revent: 55
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth51
+  productEntity: MedievalClothingUniformJumpsuitShitCloth51
+  cost:
+    Revent: 65
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth52
+  productEntity: MedievalClothingUniformJumpsuitShitCloth52
+  cost:
+    Revent: 65
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth53
+  productEntity: MedievalClothingUniformJumpsuitShitCloth53
+  cost:
+    Revent: 65
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth54
+  productEntity: MedievalClothingUniformJumpsuitShitCloth54
+  cost:
+    Revent: 65
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth55
+  productEntity: MedievalClothingUniformJumpsuitShitCloth55
+  cost:
+    Revent: 65
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth56
+  productEntity: MedievalClothingUniformJumpsuitShitCloth56
+  cost:
+    Revent: 65
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth57
+  productEntity: MedievalClothingUniformJumpsuitShitCloth57
+  cost:
+    Revent: 95
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth58
+  productEntity: MedievalClothingUniformJumpsuitShitCloth58
+  cost:
+    Revent: 95
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth59
+  productEntity: MedievalClothingUniformJumpsuitShitCloth59
+  cost:
+    Revent: 95
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth60
+  productEntity: MedievalClothingUniformJumpsuitShitCloth60
+  cost:
+    Revent: 35
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth61
+  productEntity: MedievalClothingUniformJumpsuitShitCloth61
+  cost:
+    Revent: 45
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth62
+  productEntity: MedievalClothingUniformJumpsuitShitCloth62
+  cost:
+    Revent: 40
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth63
+  productEntity: MedievalClothingUniformJumpsuitShitCloth63
+  cost:
+    Revent: 20
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth64
+  productEntity: MedievalClothingUniformJumpsuitShitCloth64
+  cost:
+    Revent: 85
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalMedievalAlchemicBelt
+  productEntity: MedievalAlchemicBelt
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 25
+  cost:
+    Revent: 35
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth10
+  productEntity: MedievalClothingUniformJumpsuitShitCloth10
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth8
+  productEntity: MedievalClothingUniformJumpsuitShitCloth8
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth24
+  productEntity: MedievalClothingUniformJumpsuitShitCloth24
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalBastShoes
+  productEntity: MedievalBastShoes
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth4
+  productEntity: MedievalClothingUniformJumpsuitShitCloth4
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingOuterApronChef
+  productEntity: MedievalClothingOuterApronChef
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingHandsGlovesColorBrown
+  productEntity: ClothingHandsGlovesColorBrown
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalGlovesBlacksmith
+  productEntity: MedievalGlovesBlacksmith
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingHandsGlovesColorLightBrown
+  productEntity: ClothingHandsGlovesColorLightBrown
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: ClothingHandsGlovesColorBlack
+  productEntity: ClothingHandsGlovesColorBlack
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingHandsGlovesColorBrownMedieval
+  productEntity: MedievalClothingHandsGlovesColorBrown
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingHandsGlovesColorLightBrownMedieval
+  productEntity: MedievalClothingHandsGlovesColorLightBrown
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: ClothingHandsGlovesColorBlackMedieval
+  productEntity: MedievalClothingHandsGlovesColorBlack
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingShoesLeather
+  productEntity: MedievalClothingShoesLeather
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalShoesSapogi
+  productEntity: MedievalShoesSapogi
+  cost:
+    Revent: 10
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalShoesSapogiRobin
+  productEntity: MedievalShoesSapogiRobin
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalShoesSapogiHigh
+  productEntity: MedievalShoesSapogiHigh
+  cost:
+    Revent: 20
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalShoesValenki
+  productEntity: MedievalShoesValenki
+  cost:
+    Revent: 20
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth21
+  productEntity: MedievalClothingUniformJumpsuitShitCloth21
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitFlannel
+  productEntity: MedievalClothingUniformJumpsuitFlannel
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth17
+  productEntity: MedievalClothingUniformJumpsuitShitCloth17
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth20
+  productEntity: MedievalClothingUniformJumpsuitShitCloth20
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth12
+  productEntity: MedievalClothingUniformJumpsuitShitCloth12
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingHeadFarmerHat
+  productEntity: MedievalClothingHeadFarmerHat
+  cost:
+    Revent: 15
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetHood
+  productEntity: MedievalClothingHeadHelmetHood
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth3
+  productEntity: MedievalClothingUniformJumpsuitShitCloth3
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth1
+  productEntity: MedievalClothingUniformJumpsuitShitCloth1
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth2
+  productEntity: MedievalClothingUniformJumpsuitShitCloth2
+  cost:
+    Revent: 25
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingHeadArcherHat
+  productEntity: MedievalClothingHeadArcherHat
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalWhiteHat
+  productEntity: MedievalWhiteHat
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalPurpleHat
+  productEntity: MedievalPurpleHat
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalMotleyHat
+  productEntity: MedievalMotleyHat
+  cost:
+    Revent: 60
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalWreathHat
+  productEntity: MedievalWreath
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalWanderHat
+  productEntity: MedievalWanderHat
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalGreenHat
+  productEntity: MedievalGreenHat
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalGrayHat
+  productEntity: MedievalGrayHat
+  cost:
+    Revent: 50
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalBlackHat
+  productEntity: MedievalBlackHat
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalMaskFace
+  productEntity: MedievalMaskFace
+  cost:
+    Revent: 15
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHatPlaguedoctor
+  productEntity: MedievalClothingHeadHatPlaguedoctor
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingMaskPlague
+  productEntity: MedievalClothingMaskPlague
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingOuterPlagueSuit
+  productEntity: MedievalClothingOuterPlagueSuit
+  cost:
+    Revent: 30
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth18
+  productEntity: MedievalClothingUniformJumpsuitShitCloth18
+  cost:
+    Revent: 85
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth19
+  productEntity: MedievalClothingUniformJumpsuitShitCloth19
+  cost:
+    Revent: 85
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth15
+  productEntity: MedievalClothingUniformJumpsuitShitCloth15
+  cost:
+    Revent: 85
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth7
+  productEntity: MedievalClothingUniformJumpsuitShitCloth7
+  cost:
+    Revent: 85
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpsuitShitCloth6
+  productEntity: MedievalClothingUniformJumpsuitShitCloth6
+  cost:
+    Revent: 135
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingUniformJumpskirtJanimaid
+  productEntity: MedievalClothingUniformJumpskirtJanimaid
+  cost:
+    Revent: 100
+  categories:
+  - MedievalClothing
+
+- type: listing
+  id: MdvShopMedievalClothingBackpackBox
+  productEntity: MedievalClothingBackpackBox
+  cost:
+    Revent: 45
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MdvShopOreBag
+  productEntity: OreBag
+  cost:
+    Revent: 20
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MdvShopPlantBag
+  productEntity: PlantBag
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MdvShopMonsterBag
+  productEntity: MedievalMonsterBag
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MedievalClothingBackpackSatchelLeather
+  productEntity: MedievalClothingBackpackSatchelLeather
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MedievalClothingBackpackSatchelLeather2
+  productEntity: MedievalClothingBackpackSatchelLeather2
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MedievalClothingBackpackSatchelLeather3
+  productEntity: MedievalClothingBackpackSatchelLeather3
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MdvShopMedievalQuiver
+  productEntity: MedievalQuiver
+  cost:
+    Revent: 30
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MdvShopMedievalQuiverSteel
+  productEntity: MedievalQuiverSteel
+  cost:
+    Revent: 90
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MdvShopMedievalCoinBag
+  productEntity: MedievalCoinBag
+  cost:
+    Revent: 10
+  categories:
+  - MedievalBackpack
+
+#- type: listing
+#  id: MdvShopClothingBeltStorageWaistbag
+#  productEntity: ClothingBeltStorageWaistbag
+#  cost:
+#    Revent: 25
+#  categories:
+#  - MedievalBackpack
+
+- type: listing
+  id: MdvShopMedievalClothingBackpackLeather
+  productEntity: MedievalClothingBackpackLeather
+  cost:
+    Revent: 70
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MdvShopMedievalClothingBackpackSatchelTraveller
+  productEntity: MedievalClothingBackpackSatchelTraveller
+  cost:
+    Revent: 215
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MdvShopTorch
+  productEntity: Torch
+  cost:
+    Revent: 2
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalHammerBlacksmith
+  productEntity: MedievalHammerBlacksmith
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalHolySalt
+  productEntity: MedievalHolySalt
+  cost:
+    Revent: 25
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalRepairStone
+  productEntity: MedievalRepairStone
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 12
+  cost:
+    Revent: 18
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopCarcBoxClassic
+  productEntity: CarcBoxClassic
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 13
+  cost:
+    Revent: 22
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalPaper
+  productEntity: MedievalPaper
+  cost:
+    Revent: 2
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalPen
+  productEntity: MedievalPen
+  cost:
+    Revent: 3
+  categories:
+  - MedievalMisc
+
+#- type: listing
+#  id: MdvShopSoap
+#  productEntity: Soap
+#  cost:
+#    Revent: 5
+#  categories:
+#  - MedievalMisc
+
+#- type: listing
+#  id: MdvShopMedievalMultitool
+#  productEntity: MedievalMultitool
+#  cost:
+#    Revent: 25
+#  categories:
+#  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalGeigerCounter
+  productEntity: MedievalGeigerCounter
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 15
+  cost:
+    Revent: 25
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopFoodGarlic
+  productEntity: FoodGarlic
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 5
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalBeaker
+  productEntity: MedievalBeaker
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalBanjoInstrument
+  productEntity: MedievalBanjoInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalWineskin
+  productEntity: MedievalWineskin
+  cost:
+    Revent: 35
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalHandheldGPSBasic
+  productEntity: MedievalHandheldGPSBasic
+  cost:
+    Revent: 40
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalServerMap
+  productEntity: MedievalServerMap
+  cost:
+    Revent: 5
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalChest2
+  productEntity: MedievalChest2
+  cost:
+    Revent: 35
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalShopHoleItem
+  productEntity: MedievalShopHoleItem
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalLockpick
+  productEntity: MedievalLockpick
+  cost:
+    Revent: 16
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalRope
+  productEntity: MedievalRope
+  cost:
+    Revent: 15
+  categories:
+  - MedievalMisc
+
+#- type: listing
+#  id: qualityCartrigeTool01
+#  productEntity: qualityCartrigeTool01
+#  cost:
+#    Revent: 5
+#  categories:
+#  - MedievalUpgrade
+#
+#- type: listing
+#  id: qualityCartrigeArmor01
+#  productEntity: qualityCartrigeArmor01
+#  cost:
+#    Revent: 5
+#  categories:
+#  - MedievalUpgrade
+#
+#- type: listing
+#  id: qualityCartrigeTool12
+#  productEntity: qualityCartrigeTool12
+#  cost:
+#    Revent: 10
+#  categories:
+#  - MedievalUpgrade
+#
+#- type: listing
+#  id: qualityCartrigeArmor12
+#  productEntity: qualityCartrigeArmor12
+#  cost:
+#    Revent: 10
+#  categories:
+#  - MedievalUpgrade
+#
+#- type: listing
+#  id: qualityCartrigeTool23
+#  productEntity: qualityCartrigeTool23
+#  cost:
+#    Revent: 20
+#  categories:
+#  - MedievalUpgrade
+#
+#- type: listing
+#  id: qualityCartrigeArmor23
+#  productEntity: qualityCartrigeArmor23
+#  cost:
+#    Revent: 20
+#  categories:
+#  - MedievalUpgrade
+#
+#- type: listing
+#  id: qualityCartrigeTool34
+#  productEntity: qualityCartrigeTool34
+#  cost:
+#    Revent: 185
+#  categories:
+#  - MedievalUpgrade
+#
+#- type: listing
+#  id: qualityCartrigeArmor34
+#  productEntity: qualityCartrigeArmor34
+#  cost:
+#    Revent: 185
+#  categories:
+#  - MedievalUpgrade
+#
+#- type: listing
+#  id: qualityCartrigeTool45
+#  productEntity: qualityCartrigeTool45
+#  cost:
+#    Revent: 485
+#  categories:
+#  - MedievalUpgrade
+#
+#- type: listing
+#  id: qualityCartrigeArmor45
+#  productEntity: qualityCartrigeArmor45
+#  cost:
+#    Revent: 485
+#  categories:
+#  - MedievalUpgrade
+
+- type: listing
+  id: MdvShopMedievalhydroponicsSoilCraft
+  productEntity: MedievalhydroponicsSoilCraft
+  cost:
+    Revent: 7
+  categories:
+  - MedievalPlants
+
+#- type: listing
+#  id: MdvShopMedievalMutagenChemistryBottle
+#  productEntity: MedievalMutagenChemistryBottle
+#  cost:
+#    Revent: 15
+#  categories:
+#  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryBottleRobustHarvest
+  productEntity: ChemistryBottleRobustHarvest
+  cost:
+    Revent: 15
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopMedievalClippers
+  productEntity: MedievalClippers
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopMedievalHoe
+  productEntity: MedievalHoe
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopMedievalShovel
+  productEntity: MedievalShovel
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopMedievalMopBucket
+  productEntity: MedievalMopBucket
+  cost:
+    Revent: 15
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopWheatSeeds
+  productEntity: WheatSeeds
+  cost:
+    Revent: 10
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopPotatoSeeds
+  productEntity: PotatoSeeds
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopCarrotSeeds
+  productEntity: CarrotSeeds
+  cost:
+    Revent: 15
+  categories:
+  - MedievalPlants
+
+- type: entity
+  parent: BaseItem
+  id: MedievalShopHoleItem
+  name: MedievalShopHoleItem
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    scale: 0.6, 0.6
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - MedievalFoodDemo
+    - MedievalBuildDemo
+    - MedievalArmorDemo
+    - MedievalMedDemo
+    - MedievalWeaponDemo
+    - MedievalMiscDemo
+    - MedievalClothingDemo
+    - MedievalBackpackDemo
+    - MedievalQuestDemo
+    - MedievalPlantsDemo
+    - MedievalMagicDemo
+    - MedievalTransportDemo
+    currencyWhitelist:
+    - UnknownMedieval
+    balance:
+      Revent: 0
+  - type: Physics
+    bodyType: Dynamic
+
+- type: currency
+  id: UnknownMedieval
+  displayName: store-currency-display-unknown-medieval
+  canWithdraw: false
+
+- type: storeCategory
+  id: MedievalMagic
+  name: medieval-category-magic
+  priority: 10
+
+- type: listing
+  id: MdvShopMedievalShoesSpeed
+  productEntity: MedievalShoesSpeed
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 1125
+  cost:
+    Revent: 1250
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedaljonMana
+  productEntity: MedaljonMana
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 355
+  cost:
+    Revent: 400
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedaljonDark
+  productEntity: MedaljonDark
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 215
+  cost:
+    Revent: 250
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedaljonDef
+  productEntity: MedaljonDef
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 355
+  cost:
+    Revent: 400
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedaljonFlashImmune
+  productEntity: MedaljonFlashImmune
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 180
+  cost:
+    Revent: 200
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedaljonExpl
+  productEntity: MedaljonExpl
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 355
+  cost:
+    Revent: 400
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedaljonSpeed
+  productEntity: MedaljonSpeed
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 435
+  cost:
+    Revent: 500
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedaljonNoslip
+  productEntity: MedaljonNoslip
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 165
+  cost:
+    Revent: 200
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedaljonAntiMana
+  productEntity: MedaljonAntiMana
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 260
+  cost:
+    Revent: 300
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopBible
+  productEntity: Bible
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 115
+  cost:
+    Revent: 150
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalGlowStone
+  productEntity: MedievalGlowStone
+  cost:
+    Revent: 12
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalHandheldHealthAnalyzer
+  productEntity: MedievalHandheldHealthAnalyzer
+  cost:
+    Revent: 30
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopCompactDefibrillator
+  productEntity: CompactDefibrillator
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 75
+  cost:
+    Revent: 100
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalClothingOuterArmorCharmerWeak
+  productEntity: MedievalClothingOuterArmorCharmerWeak
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 215
+  cost:
+    Revent: 250
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalClothingHeadHelmetCharmerWeak
+  productEntity: MedievalClothingHeadHelmetCharmerWeak
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 75
+  cost:
+    Revent: 100
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvMedievalCavalerySpearT3
+  productEntity: MedievalCavalerySpearT3
+  cost:
+    Revent: 220
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalScrollBarrier
+  productEntity: MedievalScrollBarrier
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 30
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: discountCategory
+  id: medievalDiscounts
+  weight: 22
+  maxItems: 7
+
+- type: listing
+  id: MedievalQuestContractLegionMobsLight
+  productEntity: MedievalQuestContractLegionMobsLight
+  cost:
+    Revent: 20
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
+  id: MedievalQuestContractLegionMobsHard
+  productEntity: MedievalQuestContractLegionMobsHard
+  cost:
+    Revent: 45
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
+  id: MedievalQuestContractLegionMelee
+  productEntity: MedievalQuestContractLegionMelee
+  cost:
+    Revent: 25
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
+  id: MedievalQuestContractLegionArmorLight
+  productEntity: MedievalQuestContractLegionArmorLight
+  cost:
+    Revent: 20
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
+  id: MedievalQuestContractLegionArmorMedium
+  productEntity: MedievalQuestContractLegionArmorMedium
+  cost:
+    Revent: 45
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
+  id: MedievalQuestContractLegionArmorHard
+  productEntity: MedievalQuestContractLegionArmorHard
+  cost:
+    Revent: 60
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
+  id: MedievalQuestContractLegionFarm
+  productEntity: MedievalQuestContractLegionFarm
+  cost:
+    Revent: 15
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
+  id: MedievalQuestContractLegionWood
+  productEntity: MedievalQuestContractLegionWood
+  cost:
+    Revent: 5
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
+  id: MdvPaperOnValuableCargoLeg
+  productEntity: MedievalPaperOnValuableCargoLeg
+  cost:
+    Revent: 220
+  categories:
+  - MedievalQuestLegion
+
+- type: listing
+  id: MedievalQuestContractInsWood
+  productEntity: MedievalQuestContractInsWood
+  cost:
+    Revent: 5
+  categories:
+  - MedievalQuestIns
+
+- type: listing
+  id: MedievalQuestContractInsMobsLight
+  productEntity: MedievalQuestContractInsMobsLight
+  cost:
+    Revent: 20
+  categories:
+  - MedievalQuestIns
+
+- type: listing
+  id: MedievalQuestContractInsMobsHard
+  productEntity: MedievalQuestContractInsMobsHard
+  cost:
+    Revent: 45
+  categories:
+  - MedievalQuestIns
+
+- type: listing
+  id: MedievalQuestContractInsMelee
+  productEntity: MedievalQuestContractInsMelee
+  cost:
+    Revent: 25
+  categories:
+  - MedievalQuestIns
+
+- type: listing
+  id: MedievalQuestContractInsArmorLight
+  productEntity: MedievalQuestContractInsArmorLight
+  cost:
+    Revent: 25
+  categories:
+  - MedievalQuestIns
+
+- type: listing
+  id: MedievalQuestContractInsArmorMedium
+  productEntity: MedievalQuestContractInsArmorMedium
+  cost:
+    Revent: 45
+  categories:
+  - MedievalQuestIns
+
+- type: listing
+  id: MedievalQuestContractInsArmorHard
+  productEntity: MedievalQuestContractInsArmorHard
+  cost:
+    Revent: 60
+  categories:
+  - MedievalQuestIns
+
+- type: listing
+  id: MedievalQuestContractInsFarm
+  productEntity: MedievalQuestContractInsFarm
+  cost:
+    Revent: 15
+  categories:
+  - MedievalQuestIns
+
+- type: listing
+  id: MdvPaperOnValuableCargoIns
+  productEntity: MedievalPaperOnValuableCargoIns
+  cost:
+    Revent: 220
+  categories:
+  - MedievalQuestIns
+
+- type: entity
+  id: MedievalShopHolePalletLeg
+  name: MedievalShopHole
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - MedievalPalletLeg
+    currencyWhitelist:
+    - MedievalPaperOnValuableCargoCurrencyLeg
+    balance:
+     MedievalPaperOnValuableCargoCurrencyLeg: 0
+  - type: TrashDefendArea
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight
+
+- type: storeCategory
+  id: MedievalPalletLeg
+  name: medieval-category-pallet
+  priority: 0
+
+- type: listing
+  id: MedievalPalletContractIns
+  productEntity: MedievalDecorStoragePalletIns
+  cost:
+    MedievalPaperOnValuableCargoCurrencyLeg: 1
+  categories:
+  - MedievalPalletLeg
+
+- type: entity
+  id: MedievalShopHolePalletIns
+  name: MedievalShopHole
+  description: Suspiciously looking old radio...
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - MedievalPalletIns
+    currencyWhitelist:
+    - MedievalPaperOnValuableCargoCurrencyIns
+    balance:
+      MedievalPaperOnValuableCargoCurrencyIns: 0
+  - type: TrashDefendArea
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight
+
+- type: storeCategory
+  id: MedievalPalletIns
+  name: medieval-category-pallet
+  priority: 0
+
+- type: listing
+  id: MedievalPalletContractLeg
+  productEntity: MedievalDecorStoragePallet
+  cost:
+   MedievalPaperOnValuableCargoCurrencyIns: 1
+  categories:
+  - MedievalPalletIns
+
+- type: listing
+  id: MdvShopMedievalFlinter
+  productEntity: MedievalFlinter
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    Revent: 680
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    Revent: 500
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelStone
+  productEntity: MedievalCatapultAmmoBarrelStone
+  cost:
+    Revent: 12
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelGunpowder
+  productEntity: MedievalCatapultAmmoBarrelGunpowder
+  cost:
+    Revent: 60
+  categories:
+  - MedievalWeapon
+
+- type: listing
+  id: MdvShopMedievalCatapultAmmoBarrelAp
+  productEntity: MedievalCatapultAmmoBarrelAp
+  cost:
+    Revent: 80
+  categories:
+  - MedievalWeapon
