@@ -647,6 +647,8 @@
   - type: Tag
     tags:
     - Wall
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
    #  - SwarmerDeconstructionBlacklist why: Unknown tag: SwarmerDeconstructionBlacklist
    # Imperial swarmer end
 

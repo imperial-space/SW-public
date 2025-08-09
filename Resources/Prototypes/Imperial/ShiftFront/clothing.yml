@@ -395,6 +395,30 @@
     damageCoefficient: 0.9
 
 - type: entity
+  parent: ClothingHeadHatSecsoft
+  id: ClothingHeadHatSecsoftShiftFrontS
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHatYellowsoft
+  id: ClothingHeadHatYellowsoftShiftFrontS
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHatCapcapSheriff
+  id: ClothingHeadHatCapcapSheriffShiftFrontS
+  components:
+  - type: Unremoveable
+
+- type: entity
+  parent: ClothingHeadHatCapSona
+  id: ClothingHeadHatCapSonaShiftFrontS
+  components:
+  - type: Unremoveable
+
+- type: entity
   parent: ClothingMaskRCU
   id: ClothingMaskRCUShiftFront
   components:

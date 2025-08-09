@@ -319,8 +319,8 @@
 
 - type: gameMap
   id: MedievalStationLowOnline
-  mapName: Shift front sand map
-  mapPath: /Maps/Imperial/map.yml
+  mapName: Shift front city map
+  mapPath: /Maps/Imperial/map2.yml
   minPlayers: 0
   maxPlayers: 100
   stations:

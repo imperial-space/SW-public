@@ -64,6 +64,8 @@
       tags:
       - ShiftFrontMedVTower
       - ShiftFrontFactBlue
+  - type: ShiftTeamRespWait
+    faction: Blue
 
 - type: entity
   id: BaseRedFaction
@@ -86,6 +88,8 @@
       tags:
       - ShiftFrontMedVTower
       - ShiftFrontFactRed
+  - type: ShiftTeamRespWait
+    faction: Red
 
 ### Корпуса техники ###
 - type: entity
@@ -570,6 +574,8 @@
       tags:
       - ShiftFrontMedVTower
       - ShiftFrontFactGreen
+  - type: ShiftTeamRespWait
+    faction: Green
 
 - type: entity
   id: BaseYellowFaction
@@ -592,6 +598,8 @@
       tags:
       - ShiftFrontMedVTower
       - ShiftFrontFactYellow
+  - type: ShiftTeamRespWait
+    faction: Yellow
 
 - type: entity
   id: BaseMRAPMHull
@@ -812,6 +820,88 @@
         Blunt: 20
 
 ### Прототипы МТЛБ ###
+
+
+- type: entity
+  id: BaseMTLBMHull
+  parent: BaseMTLBHull
+  abstract: true
+  components:
+  - type: ShiftTankHull
+    insideController: TankPartController
+    insideGunner: TankPartGunner
+    insideEntry: TankPartEntry
+    insideExit: TankPartExit
+    gridLink:
+    - "/Maps/Imperial/bmp.yml"
+
+- type: entity
+  id: ShiftFrontMTLBMBlue
+  parent: [BaseMTLBMHull, BaseBlueFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: MTLBblue
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: ShiftTankHull
+    turretProto: MobShiftTankObserverBlue
+    faction: Blue
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontMTLBMRed
+  parent: [BaseMTLBMHull, BaseRedFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: MTLBred
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: ShiftTankHull
+    turretProto: MobShiftTankObserverRed
+    faction: Red
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontMTLBMGreen
+  parent: [BaseMTLBMHull, BaseGreenFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: MTLBgreen
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: ShiftTankHull
+    turretProto: MobShiftTankObserverGreen
+    faction: Green
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontVehicle
+
+- type: entity
+  id: ShiftFrontMTLBMYellow
+  parent: [BaseMTLBMHull, BaseYellowFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: MTLByellow
+      sprite: Imperial/ShiftFront/tank.rsi
+  - type: ShiftTankHull
+    turretProto: MobShiftTankObserverYellow
+    faction: Yellow
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontVehicle
+
+
+
+
 - type: entity
   id: BaseMTLBHull
   parent: BaseVehicleHull
@@ -1068,6 +1158,9 @@
   components:
   - type: CartridgeAmmo
     proto: BulletLightRifleBTR
+  - type: Tag
+    tags:
+    - CartridgeVehicleFront
 
 - type: entity
   id: BulletLightRifleBTR
@@ -1121,6 +1214,9 @@
   components:
   - type: CartridgeAmmo
     proto: BulletLightRifleBMP
+  - type: Tag
+    tags:
+    - CartridgeVehicleFront
 
 - type: entity
   id: BulletLightRifleBMP

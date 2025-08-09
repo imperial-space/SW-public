@@ -86,10 +86,10 @@
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ScatteringGrenade
-    capacity: 5
-    unspawnedCount: 5
+    capacity: 3
+    unspawnedCount: 3
     fillPrototype: ExGrenade
-    distance: 4
+    distance: 2
   - type: OnUseTimerTrigger
     beepSound:
       path: "/Audio/Effects/beep1.ogg"

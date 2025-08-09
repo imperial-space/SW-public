@@ -226,7 +226,8 @@ public abstract partial class SharedGunSystem
         // Alternatively, just track spawned count, instead of unspawned count.
         if (component.Proto != null)
         {
-            component.UnspawnedCount = Math.Max(0, component.Capacity - component.Container.ContainedEntities.Count);
+            if (component.Capacity != 1 && component.UnspawnedCount != 0)
+                component.UnspawnedCount = Math.Max(0, component.Capacity - component.Container.ContainedEntities.Count);
             UpdateBallisticAppearance(uid, component);
             DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.UnspawnedCount));
         }

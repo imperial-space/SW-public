@@ -616,7 +616,7 @@
   id: ShiftFrontGreenFlanker
   equipment:
     jumpsuit: VlOldStationMercJumpsuitShiftFront
-    head: ClothingHeadHatCapcapSheriffShiftFront
+    head: ClothingHeadHatCapcapSheriffShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     gloves: ClothingHandsGlovesCombatShiftFront
     outerClothing: BodyArmorMultikamRaptorShiftFrontF
@@ -636,14 +636,13 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
-    - MagazineLightRifleShiftingFront
     - SmokeGrenade
 
 - type: startingGear
   id: ShiftFrontYellowFlanker
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
-    head: ClothingHeadHatYellowsoftShiftFront
+    head: ClothingHeadHatYellowsoftShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     gloves: MedievalClothingHandsGlovesColorBlackShiftFront
     outerClothing: BodyArmorTacticalRaptorShiftFrontF
@@ -663,7 +662,6 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
-    - MagazineLightRifleShiftingFront
     - SmokeGrenade
 
 
@@ -671,7 +669,7 @@
   id: ShiftFrontGreenMarksman
   equipment:
     jumpsuit: VlOldStationMercJumpsuitShiftFront
-    head: ClothingHeadHatCapcapSheriffShiftFront
+    head: ClothingHeadHatCapcapSheriffShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     gloves: ClothingHandsGlovesCombatShiftFront
     outerClothing: ArmoredUnloading6B43RaptorShiftFront
@@ -695,7 +693,7 @@
   id: ShiftFrontYellowMarksman
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
-    head: ClothingHeadHatYellowsoftShiftFront
+    head: ClothingHeadHatYellowsoftShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     gloves: MedievalClothingHandsGlovesColorBlackShiftFront
     outerClothing: ClothingOuterArmorMinutemanAdmiralShiftFront
@@ -781,36 +779,30 @@
   id: ShiftFrontGreenNew
   equipment:
     jumpsuit: VlOldStationMercJumpsuitShiftFront
-    head: ClothingHeadHatCapcapSheriffShiftFront
+    head: ClothingHeadHatCapcapSheriffShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: ElysiumFederationIDCardShiftFront
     ears: ClothingHeadsetAlt4ShiftingFront
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
-    belt: ClothingBeltMercWebbingShiftFront
   inhand:
     - WeaponPistolNDF1ShiftingFront
-  storage:
-    belt:
     - ShiftFrontBuildLight
 
 - type: startingGear
   id: ShiftFrontYellowNew
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorYellowShiftFront
-    head: ClothingHeadHatYellowsoftShiftFront
+    head: ClothingHeadHatYellowsoftShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: SeniorEngineerIDCardShiftFront
     ears: ClothingHeadsetAlt3ShiftingFront
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
-    belt: USSPBeltAssaultShiftFront
   inhand:
     - WeaponPistolNDF1ShiftingFront
-  storage:
-    belt:
     - ShiftFrontBuildLight
 
 

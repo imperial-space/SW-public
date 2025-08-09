@@ -22,6 +22,7 @@
     whitelist:
       tags:
         - CartridgeRPG8
+    unspawnedCount: 0
     proto: CartridgeRPG8
     capacity: 1
     soundInsert:

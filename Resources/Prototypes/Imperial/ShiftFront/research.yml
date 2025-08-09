@@ -235,7 +235,7 @@
   id: ShiftFrontWeaponLauncherRPG8
   tier: 2
   researchName: РПГ
-  price: 110
+  price: 155
   requiredResearches:
   - ShiftFrontGrenades
 
@@ -243,7 +243,7 @@
   id: ShiftFrontFPV2
   tier: 3
   researchName: продвинутые пульты
-  price: 60
+  price: 40
   requiredResearches:
   - ShiftFrontFPV
 
@@ -415,6 +415,14 @@
   price: 55
   requiredResearches:
   - ShiftFrontMRAP
+
+- type: ShiftFrontResearch
+  id: ShiftFrontMTLBM
+  tier: 1
+  researchName: Пулеметный МТЛБ
+  price: 50
+  requiredResearches:
+  - ShiftFrontMTLB
 
 - type: ShiftFrontResearch
   id: ShiftFrontBTR

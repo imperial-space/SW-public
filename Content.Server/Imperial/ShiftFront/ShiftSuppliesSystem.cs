@@ -203,7 +203,7 @@ namespace Content.Server.ShiftFront
                     Text = "Патроны марксман",
                     Priority = 7,
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Guns/Ammunition/Boxes/anti_materiel.rsi"), "base")
-                });                
+                });
                 ev.Verbs.Add(new AlternativeVerb
                 {
                     Act = () =>
@@ -270,6 +270,17 @@ namespace Content.Server.ShiftFront
                             _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить РПГ раз в какое-то время", "Выбрано");
                         },
                         Text = "РПГ",
+                        Priority = 3,
+                    });
+                if (CheckResearch("ShiftFrontWeaponLauncherRPG8", comp.Faction))
+                    ev.Verbs.Add(new AlternativeVerb
+                    {
+                        Act = () =>
+                        {
+                            comp.ChosenGen = "РПГ боеприпас";
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить боеприпас РПГ раз в какое-то время", "Выбрано");
+                        },
+                        Text = "РПГ боеприпас",
                         Priority = 3,
                     });
                 if (CheckResearch("ShiftFrontGrenadesSupport", comp.Faction))
@@ -569,7 +580,7 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "патроны марксман":
                                 Spawn("MagazineBoxAntiMaterielBigM", coords);
-                                break;           
+                                break;
                             case "фултон":
                                 Spawn("Fulton", coords);
                                 break;
@@ -587,6 +598,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "РПГ":
                                 Spawn("WeaponLauncherRPG8", coords);
+                                break;
+                            case "РПГ боеприпас":
+                                Spawn("CartridgeRPG8", coords);
                                 break;
                             case "граната из металлической пены":
                                 Spawn("MetalFoamGrenade", coords);

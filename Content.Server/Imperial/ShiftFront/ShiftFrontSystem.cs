@@ -76,6 +76,7 @@ namespace Content.Server.ShiftFront
         {
             base.Initialize();
             SubscribeLocalEvent<ShiftConsoleBuildComponent, ExaminedEvent>(OnExamine);
+            SubscribeLocalEvent<ShiftCommandComponent, ExaminedEvent>(OnExamineTeam);
             SubscribeLocalEvent<ShiftBuildLightComponent, ExaminedEvent>(OnExamineLight);
             SubscribeLocalEvent<ShiftConsoleResourceComponent, ExaminedEvent>(OnExamineResource);
             SubscribeLocalEvent<ShiftBuildLightComponent, ComponentStartup>(GenerateBuildingCode);
@@ -84,7 +85,7 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftBuildLightComponent, MoveEvent>(OnChangeParent);
             SubscribeLocalEvent<ShiftPlayerComponent, MobStateChangedEvent>(OnMobStateChanged);
             SubscribeLocalEvent<ShiftPlayerComponent, ComponentStartup>(OnPlayerStart);
-            SubscribeLocalEvent<ShiftShowOnMapComponent, ComponentInit>(OnShowOnMapStart);
+            SubscribeLocalEvent<ShiftShowOnMapComponent, ComponentStartup>(OnShowOnMapStart);
             SubscribeLocalEvent<ShiftShowOnMapComponent, ComponentShutdown>(OnShowOnMapEnd);
             SubscribeLocalEvent<ShiftBarracksComponent, ComponentStartup>(OnBarracksStart);
             SubscribeLocalEvent<ShiftSuppliesComponent, ComponentStartup>(OnSuppliesStart);
@@ -95,6 +96,7 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftResourceExtractComponent, BeforeRangedInteractEvent>(OnUseInHand);
             SubscribeLocalEvent<ShiftPlayerComponent, CommanderBoostUpEvent>(OnCommanderBoost);
             SubscribeLocalEvent<ShiftPlayerComponent, PlayerDetachedEvent>(OnPlayerDetached);
+            SubscribeLocalEvent<ShiftTeamRespWaitComponent, PlayerDetachedEvent>(OnPlayerDetachedW);
             SubscribeLocalEvent<ShiftWrenchComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<ShiftBuildLightComponent, GetVerbsEvent<AlternativeVerb>>(OnGetBuildVerbs);
             SubscribeLocalEvent<ShiftFrontRequestComponent, ExaminedEvent>(OnExamineRequest);
@@ -105,6 +107,19 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftTankTurretComponent, GunShotEvent>(OnShootTurret);
             SubscribeLocalEvent<ShiftTankHullComponent, DamageChangedEvent>(OnDamageTank);
             SubscribeLocalEvent<ShiftCommandComponent, GetVerbsEvent<AlternativeVerb>>(OnGetComVerbs);
+        }
+
+        private void OnExamineTeam(EntityUid uid, ShiftCommandComponent comp, ExaminedEvent args)
+        {
+            args.PushMarkup($"Всего игроков: [color=cyan]{comp.Players.Count}[/color]", 11);
+            args.PushMarkup($"Ждут возрождение: [color=gray]{comp.RespawnQueue.Count}[/color]", 10);
+            if (comp.Players.Count < 25)
+                foreach (var player in comp.Players)
+                {
+                    args.PushMarkup($"[color=cyan]{player.Name}[/color]", 9);
+                }
+            else
+                args.PushMarkup($"Игроков слишком много, чтобы их всех отобразить", 9);
         }
 
         public int? GetSessionPosition(List<ICommonSession> sessions, ICommonSession targetSession)
@@ -611,6 +626,23 @@ namespace Content.Server.ShiftFront
                 comp.SuppressionMax += 10;
             if (CheckResearch("ShiftFrontPsycho2", comp.Faction))
                 comp.SuppressionMax += 15;
+            var xform = Transform(uid);
+            var coords = xform.Coordinates;
+            if (!comp.Newbie)
+            {
+                if (CheckResearch("ShiftFrontBack1", comp.Faction))
+                    Spawn("BackPackTier1", coords);
+                else if (CheckResearch("ShiftFrontBack2", comp.Faction))
+                    Spawn("BackPackTier2", coords);
+                else if (CheckResearch("ShiftFrontBack3", comp.Faction))
+                    Spawn("BackPackTier3", coords);
+                else if (CheckResearch("ShiftFrontBack4", comp.Faction))
+                    Spawn("BackPackTier4", coords);
+                else if (CheckResearch("ShiftFrontBack5", comp.Faction))
+                    Spawn("BackPackTier5", coords);
+            }
+
+
             if (comp.Ninja && HasComp<StatusIconComponent>(uid)) RemComp<StatusIconComponent>(uid);
 
         }
@@ -618,14 +650,25 @@ namespace Content.Server.ShiftFront
         {
             foreach (var mipple in comp.LinkedMipples)
             {
+                if (!mipple.IsValid() || !Exists(mipple))
+                    continue;
                 if (comp.DeathEffectProto != "") Spawn(comp.DeathEffectProto, Transform(mipple).Coordinates);
                 EnsureComp<TimedDespawnComponent>(mipple, out var despawn);
                 despawn.Lifetime = 0.05f;
             }
         }
 
-        public void OnShowOnMapStart(EntityUid uid, ShiftShowOnMapComponent comp, ComponentInit args)
+        public void OnShowOnMapStart(EntityUid uid, ShiftShowOnMapComponent comp, ComponentStartup args)
         {
+            foreach (var mipple in comp.LinkedMipples)
+            {
+                if (!mipple.IsValid() || !Exists(mipple))
+                    continue;
+                EnsureComp<TimedDespawnComponent>(mipple, out var despawn);
+                despawn.Lifetime = 0.05f;
+            }
+            comp.LinkedMipples.Clear();
+
             if (comp.MippleProto != "")
             {
                 var dquery = EntityQueryEnumerator<ShiftMapComponent>();
@@ -749,6 +792,17 @@ namespace Content.Server.ShiftFront
         }
 
         private void OnPlayerDetached(Entity<ShiftPlayerComponent> ent, ref PlayerDetachedEvent args)
+        {
+            var session = args.Player;
+            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+            while (dquery.MoveNext(out var couid, out var command))
+            {
+                if (ent.Comp.Faction == command.Faction && !command.RespawnQueue.Contains(session))
+                    command.RespawnQueue.Add(session);
+            }
+        }
+
+        private void OnPlayerDetachedW(Entity<ShiftTeamRespWaitComponent> ent, ref PlayerDetachedEvent args)
         {
             var session = args.Player;
             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
@@ -1072,6 +1126,17 @@ namespace Content.Server.ShiftFront
                 });
             }
 
+            if (CheckResearch("ShiftFrontMTLBM", comp.Faction))
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => SelectBuildType(uid, comp, session, "МТЛБМ"),
+                    Text = "МТЛБМ",
+                    Priority = 4,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon")
+                });
+            }
+
             if (CheckResearch("ShiftFrontBMP", comp.Faction))
             {
                 ev.Verbs.Add(new AlternativeVerb
@@ -1159,6 +1224,7 @@ namespace Content.Server.ShiftFront
                 "МРАП" => 20,
                 "МРАПМ" => 30,
                 "МТЛБ" => 40,
+                "МТЛБМ" => 55,
                 "БМП" => 90,
                 "БТР" => 75,
                 "танк" => 180,
@@ -1202,21 +1268,22 @@ namespace Content.Server.ShiftFront
                 "вышка" => (75, 100, 0),
                 "припасы" => (115, 65, 0),
                 "ремстанция" => (85, 15, 0),
-                "экстрактор" => (40, 0, 0),
+                "экстрактор" => (35, 0, 0),
                 "конвертер" => (75, 75, 5),
-                "мортира" => (750, 1000, 200),
-                "миномет" => (130, 50, 10),
-                "лаборатория" => (115, 150, 5),
-                "фабрикатор дронов" => (180, 50, 10),
+                "мортира" => (750, 1000, 300),
+                "миномет" => (130, 50, 20),
+                "лаборатория" => (115, 150, 35),
+                "фабрикатор дронов" => (180, 50, 15),
                 "станция РЭБ" => (35, 15, 0),
                 "хранилище" => (70, 0, 0),
                 "мина" => (10, 10, 0),
                 "МРАП" => (45, 15, 0),
-                "МРАПМ" => (85, 25, 5),
+                "МРАПМ" => (85, 25, 10),
                 "МТЛБ" => (145, 45, 0),
-                "БТР" => (265, 75, 10),
-                "БМП" => (455, 100, 20),
-                "танк" => (545, 175, 80),
+                "МТЛБМ" => (145, 45, 15),
+                "БТР" => (265, 75, 25),
+                "БМП" => (455, 100, 40),
+                "танк" => (545, 175, 100),
                 _ => (0, 0, 0)
             };
 
@@ -1296,7 +1363,7 @@ namespace Content.Server.ShiftFront
                 var smquery = EntityQueryEnumerator<ShiftShowOnMapComponent>();
                 while (smquery.MoveNext(out var uid, out var comp))
                 {
-                    if (!comp.Dynamic) continue;
+                    //if (!comp.Dynamic) continue;
                     foreach (var LinkedMipple in comp.LinkedMipples)
                     {
                         EnsureComp<ShiftMippleComponent>(LinkedMipple, out var mipplecomp);
@@ -1417,6 +1484,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "МТЛБ":
                                 Spawn("ShiftFrontMTLB" + comp.Faction, coords);
+                                break;
+                            case "МТЛБМ":
+                                Spawn("ShiftFrontMTLBM" + comp.Faction, coords);
                                 break;
                             case "БМП":
                                 Spawn("ShiftFrontBMP" + comp.Faction, coords);

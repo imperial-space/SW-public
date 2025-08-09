@@ -49,6 +49,12 @@
 - type: Tag
   id: ShiftFrontFactYellow
 
+- type: Tag
+  id: CartridgeLightRifleShiftingFront
+
+- type: Tag
+  id: CartridgeVehicleFront
+
 - type: entity
   parent: BaseMobHumanShiftFront
   id: BaseMobHumanShiftFrontBlue
@@ -723,7 +729,7 @@
   id: ShiftFrontBlueFlanker
   equipment:
     jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
-    head: ClothingHeadHatCapSonaShiftFront
+    head: ClothingHeadHatCapSonaShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     gloves: ClothingHandsGlovesCombatShiftFront
     outerClothing: BodyArmorMultikamRaptorShiftFrontF
@@ -743,14 +749,13 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
-    - MagazineLightRifleShiftingFront
     - SmokeGrenade
 
 - type: startingGear
   id: ShiftFrontRedFlanker
   equipment:
     jumpsuit: ClothingUniformJumpsuitSecShiftFront
-    head: ClothingHeadHatSecsoftShiftFront
+    head: ClothingHeadHatSecsoftShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     gloves: MedievalClothingHandsGlovesColorBlackShiftFront
     outerClothing: BodyArmorTacticalRaptorShiftFrontF
@@ -770,14 +775,13 @@
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
     - MagazineLightRifleShiftingFront
-    - MagazineLightRifleShiftingFront
     - SmokeGrenade
 
 - type: startingGear
   id: ShiftFrontBlueMarksman
   equipment:
     jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
-    head: ClothingHeadHatCapSonaShiftFront
+    head: ClothingHeadHatCapSonaShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     gloves: ClothingHandsGlovesCombatShiftFront
     outerClothing: ArmoredUnloading6B43RaptorShiftFront
@@ -801,7 +805,7 @@
   id: ShiftFrontRedMarksman
   equipment:
     jumpsuit: ClothingUniformJumpsuitSecShiftFront
-    head: ClothingHeadHatSecsoftShiftFront
+    head: ClothingHeadHatSecsoftShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     gloves: MedievalClothingHandsGlovesColorBlackShiftFront
     outerClothing: ClothingOuterCoatSyndieCapArmoredShiftFront
@@ -887,36 +891,30 @@
   id: ShiftFrontBlueNew
   equipment:
     jumpsuit: ClothingUniformJumpsuitSonaSecShiftFront
-    head: ClothingHeadHatCapSonaShiftFront
+    head: ClothingHeadHatCapSonaShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: BlueShieldIDCardShiftFront
     ears: ClothingHeadsetAlt1ShiftingFront
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
-    belt: ClothingBeltSonaShiftFront
   inhand:
     - WeaponPistolNDF1ShiftingFront
-  storage:
-    belt:
     - ShiftFrontBuildLight
 
 - type: startingGear
   id: ShiftFrontRedNew
   equipment:
     jumpsuit: ClothingUniformJumpsuitSecShiftFront
-    head: ClothingHeadHatSecsoftShiftFront
+    head: ClothingHeadHatSecsoftShiftFrontS
     eyes: ClothingEyesHudCommandShiftFront
     shoes: ClothingShoesBootsCombatFilledShiftFront
     id: SeniorOfficerIDCardShiftFront
     ears: ClothingHeadsetAlt2ShiftingFront
     pocket1: Wrench
     pocket2: DeadSectorTourniquet
-    belt: USSPBeltAssaultShiftFront
   inhand:
     - WeaponPistolNDF1ShiftingFront
-  storage:
-    belt:
     - ShiftFrontBuildLight
 
 - type: startingGear
@@ -1329,3 +1327,84 @@
     scale: 1,1
     drawdepth: FloorObjects
   - type: ShiftMap
+
+### City ###
+
+- type: entity
+  id: ShiftFrontMapRed2
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map2.rsi
+    state: sand
+    drawdepth: FloorObjects
+  - type: ShiftMap
+    mapX: 154
+    mapY: 154
+    offsetX: 0
+    offsetY: 0
+    entX: 5
+    entY: 5
+    faction: Red
+
+- type: entity
+  id: ShiftFrontMapBlue2
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map2.rsi
+    state: sand
+    drawdepth: FloorObjects
+  - type: ShiftMap
+    mapX: 154
+    mapY: 154
+    offsetX: 0
+    offsetY: 0
+    entX: 5
+    entY: 5
+    faction: Blue
+
+- type: entity
+  id: ShiftFrontMapYellow2
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map2.rsi
+    state: sand
+    drawdepth: FloorObjects
+  - type: ShiftMap
+    mapX: 154
+    mapY: 154
+    offsetX: 0
+    offsetY: 0
+    entX: 5
+    entY: 5
+    faction: Yellow
+
+- type: entity
+  id: ShiftFrontMapGreen2
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map2.rsi
+    state: sand
+    drawdepth: FloorObjects
+  - type: ShiftMap
+    mapX: 154
+    mapY: 154
+    offsetX: 0
+    offsetY: 0
+    entX: 5
+    entY: 5
+    faction: Green
+
+- type: entity
+  id: ShiftFrontMapAdmin2
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/map2.rsi
+    state: sand
+    drawdepth: FloorObjects
+  - type: ShiftMap
+    mapX: 154
+    mapY: 154
+    offsetX: 0
+    offsetY: 0
+    entX: 5
+    entY: 5
