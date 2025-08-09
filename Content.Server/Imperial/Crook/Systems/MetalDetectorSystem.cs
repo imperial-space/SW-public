@@ -6,6 +6,7 @@ using Content.Shared.Power;
 using Content.Shared.Access.Components;
 using Content.Server.Imperial.Crook.Components;
 using Content.Shared.Imperial.Crook.Visuals;
+using Content.Shared.Imperial.Crook.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Access.Systems;
@@ -143,7 +144,7 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private bool CheckEntityAndContainers(EntityUid entity, MetalDetectorComponent comp, int currentDepth = 0)
         {
-            if (currentDepth > comp.MaxRecursionDepth)
+            if (currentDepth > comp.MaxRecursionDepth || IsIgnoredByDetector(entity))
                 return false;
 
             if (IsContrabandItem(entity, comp))
@@ -163,9 +164,26 @@ namespace Content.Server.Imperial.Crook.Systems
 
             return false;
         }
+        private bool IsIgnoredByDetector(EntityUid entity)
+        {
+            if (HasComp<IgnoreMetalDetectorComponent>(entity))
+                return true;
 
+            var current = entity;
+            while (_container.TryGetContainingContainer(current, out var container))
+            {
+                current = container.Owner;
+                if (HasComp<IgnoreMetalDetectorComponent>(current))
+                    return true;
+            }
+
+            return false;
+        }
         private bool IsContrabandItem(EntityUid item, MetalDetectorComponent comp)
         {
+            if (IsIgnoredByDetector(item))
+                return false;
+
             return TryComp<ContrabandComponent>(item, out _) &&
                    !IsContrabandAllowed(item, comp);
         }
