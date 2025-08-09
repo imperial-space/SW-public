@@ -1366,6 +1366,7 @@ namespace Content.Server.ShiftFront
                     //if (!comp.Dynamic) continue;
                     foreach (var LinkedMipple in comp.LinkedMipples)
                     {
+                        if (!LinkedMipple.IsValid()) continue;
                         EnsureComp<ShiftMippleComponent>(LinkedMipple, out var mipplecomp);
                         if (!mipplecomp.LinkedMap.HasValue) continue;
                         EnsureComp<ShiftMapComponent>(mipplecomp.LinkedMap.Value, out var recomp);
@@ -1618,27 +1619,9 @@ namespace Content.Server.ShiftFront
                                 recomp.RespawnQueue.Remove(recomp.RespawnQueue[0]);
                             recomp.Players.Remove(recomp.RespawnQueue[0]);
                         }
-                    if (recomp.RespawnQueue.Count > 1)
-                        if (recomp.RespawnQueue[1].Status != SessionStatus.InGame)
-                        {
-                            if (recomp.RespawnQueue.Contains(recomp.RespawnQueue[1]))
-                                recomp.RespawnQueue.Remove(recomp.RespawnQueue[1]);
-                            recomp.Players.Remove(recomp.RespawnQueue[1]);
-                        }
-                    if (recomp.RespawnQueue.Count > 2)
-                        if (recomp.RespawnQueue[2].Status != SessionStatus.InGame)
-                        {
-                            if (recomp.RespawnQueue.Contains(recomp.RespawnQueue[2]))
-                                recomp.RespawnQueue.Remove(recomp.RespawnQueue[2]);
-                            recomp.Players.Remove(recomp.RespawnQueue[2]);
-                        }
                 }
 
-
             }
-
-
-
 
         }
     }
