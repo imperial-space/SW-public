@@ -2241,9 +2241,9 @@
   productEntity: ClothingBackpackSatchelSmugglerUnanchored
   discountCategory: usualDiscounts
   discountDownTo:
-    Telecrystal: 2 # Imperial Space Metal Detector
+    Telecrystal: 2 # Imperial Space Metal Detector 1 > 2
   cost:
-    Telecrystal: 3 # Imperial Space Metal Detector
+    Telecrystal: 3 # Imperial Space Metal Detector 2 > 3
   categories:
   - UplinkDeception
 
