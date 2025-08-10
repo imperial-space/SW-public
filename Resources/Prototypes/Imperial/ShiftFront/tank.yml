@@ -1177,13 +1177,13 @@
     suppression: 22
     damage:
       types:
-        Piercing: 23
+        Piercing: 20
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
     maxIntensity: 1
-    intensitySlope: 2
-    totalIntensity: 3
+    intensitySlope: 5
+    totalIntensity: 0.3
   - type: PointLight
     radius: 1.5
     color: orange
