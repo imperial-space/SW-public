@@ -250,7 +250,7 @@
   completetime: 8
   materials:
     Plasma: 500
-    Steel: 2000
+    Steel: 500
     Gold: 100
 
 - type: technology
