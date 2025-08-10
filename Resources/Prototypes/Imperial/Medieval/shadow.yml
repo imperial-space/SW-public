@@ -318,6 +318,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: MedievalToggleHair
   - type: Item
     size: Tiny
   - type: Insulated
@@ -345,6 +346,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: MedievalToggleHair
   - type: Item
     size: Tiny
   - type: Insulated
@@ -372,6 +374,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: MedievalToggleHair
   - type: Item
     size: Tiny
   - type: Insulated
@@ -399,6 +402,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: MedievalToggleHair
   - type: Item
     size: Tiny
   - type: Insulated

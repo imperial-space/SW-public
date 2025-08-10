@@ -177,7 +177,7 @@
   id: LizardTailAquatic
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [Beastmen]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: tail_aquatic
@@ -400,7 +400,7 @@
   id: LizardTailAquaticAnimated
   bodyPart: Tail
   markingCategory: Tail
-  speciesRestriction: []
+  speciesRestriction: [Beastmen]
   sprites:
     - sprite: Mobs/Customization/reptilian_parts.rsi
       state: tail_aquatic_wagging

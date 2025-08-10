@@ -1,0 +1,81 @@
+- type: entity
+  id: MedievalReliefStoneWeak
+  name: слабый камень облегчения
+  parent: BaseItem
+  description: Слегка снижает вес переносимой ноши.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/reliefstone.rsi
+    state: standart
+  - type: Item
+    size: Tiny
+  - type: RDWeight
+    value: -3
+  - type: Currency
+    price:
+      Revent: 220
+
+- type: entity
+  id: MedievalReliefStoneStrong
+  name: мощный камень облегчения
+  parent: BaseItem
+  description: Существенно снижает вес переносимой ноши.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/reliefstone.rsi
+    state: good
+  - type: Item
+    size: Small
+  - type: RDWeight
+    value: -7.5
+  - type: Currency
+    price:
+      Revent: 480
+
+- type: entity
+  id: MedievalAntiGravitationStone
+  name: магический камень антигравитации
+  parent: BaseItem
+  description: Почти полностью нейтрализует вес.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicStone/reliefstone.rsi
+    state: antigravitation
+  - type: Item
+    size: Normal
+  - type: RDWeight
+    value: -25
+  - type: Currency
+    price:
+      Revent: 1150
+
+# Crafting recipes (Magic blacksmith)
+- type: CP14Recipe
+  id: MedievalReliefStoneWeakCraft
+  result: MedievalReliefStoneWeak
+  stacks:
+    MedievalForstoneIngot: 1
+    MedievalIngotGold: 1
+    MedievalAdamIngot: 1
+
+- type: CP14Recipe
+  id: MedievalReliefStoneStrongCraft
+  result: MedievalReliefStoneStrong
+  stacks:
+    MedievalForstoneIngot: 2
+    MedievalIngotGold: 3
+    MedievalAdamIngot: 2
+    MedievalTopaz: 1
+
+- type: CP14Recipe
+  id: MedievalAntiGravitationStoneCraft
+  result: MedievalAntiGravitationStone
+  stacks:
+    MedievalForstoneIngot: 3
+    MedievalEbonitIngot: 1
+    MedievalIngotGold: 5
+    MedievalAdamIngot: 3
+    MedievalTopaz: 2
+    MedievalFireSerdolick: 2
+
+

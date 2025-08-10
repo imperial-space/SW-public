@@ -265,6 +265,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: MedievalToggleHair
   - type: CultClothing
 
 - type: entity
