@@ -13,8 +13,8 @@
   - type: Explosive
     explosionType: RPG8Explosion
     maxIntensity: 4
-    intensitySlope: 3
-    totalIntensity: 45
+    intensitySlope: 5
+    totalIntensity: 35
     maxTileBreak: 1
   - type: PointLight
     radius: 2.5
