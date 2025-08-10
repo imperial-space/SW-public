@@ -102,6 +102,9 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private void ProcessEntity(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
         {
+            if (!comp.Powered)
+                return;
+
             comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
             bool hasContraband = CheckForContraband(detector, entity, comp);
             bool hasAccess = HasRequiredAccess(entity, comp);
@@ -209,9 +212,12 @@ namespace Content.Server.Imperial.Crook.Systems
         }
 
         private void HandleDetectionResults(EntityUid detector, EntityUid entity,
-                 MetalDetectorComponent comp,
-                 bool hasContraband, bool hasAccess)
+         MetalDetectorComponent comp,
+         bool hasContraband, bool hasAccess)
         {
+            if (!comp.Powered)
+                return;
+
             if (HasComp<EmaggedComponent>(detector))
             {
                 if (!_shockedEntities.Contains(entity) && TryComp<DamageableComponent>(entity, out _))
@@ -263,6 +269,12 @@ namespace Content.Server.Imperial.Crook.Systems
 
         private void ResetToDefaultState(EntityUid uid, MetalDetectorComponent comp)
         {
+            if (!comp.Powered)
+            {
+                SetState(uid, MetalDetectorVisualState.Off, comp);
+                return;
+            }
+
             SetState(uid, MetalDetectorVisualState.Powered, comp);
         }
 
