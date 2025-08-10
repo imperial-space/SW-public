@@ -18,7 +18,7 @@
 - type: entity
   id: ImperialMetalDetector
   name: Metal Detector
-  suffix: Crook
+  suffix: Стандартный, Crook
   parent: BaseMetalDetector
   placement:
     mode: SnapgridCenter
@@ -164,7 +164,7 @@
 - type: entity
   parent: ImperialMetalDetector
   id: MetalDetectorNonAccess
-  suffix: NonAccess, Crook
+  suffix: Проверяет всех, Crook
   components:
     - type: MetalDetector
       allowedAccess: []
@@ -180,7 +180,7 @@
 - type: entity
   parent: ImperialMetalDetector
   id: MetalDetectorSecure
-  suffix: Secure, Crook
+  suffix: Укреплённый, Crook
   components:
     - type: Construction
       graph: ImperialMetalDetector
@@ -189,6 +189,18 @@
       securityLevel: panelReinforced
       examine: wires-panel-component-on-examine-security-level2
       wiresAccessible: false
+    - type: Destructible
+      thresholds:
+        - trigger: !type:DamageTrigger
+            damage: 250
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:ChangeConstructionNodeBehavior
+              node: frame
+            - !type:DoActsBehavior
+              acts: ["Destruction"]
 
 - type: entity
   id: MetalDetectorFrame
