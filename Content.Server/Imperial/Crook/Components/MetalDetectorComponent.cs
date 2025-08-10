@@ -2,6 +2,7 @@ using Robust.Shared.Audio;
 using Content.Shared.Imperial.Crook.Visuals;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Content.Shared.Damage;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Crook.Components
 {
@@ -65,7 +66,7 @@ namespace Content.Server.Imperial.Crook.Components
 
         [ViewVariables]
         [DataField("ignoredPrototypes")]
-        public HashSet<string> IgnoredPrototypes = new();
+        public HashSet<EntProtoId> IgnoredPrototypes = new();
 
         [ViewVariables]
         public bool Powered;
