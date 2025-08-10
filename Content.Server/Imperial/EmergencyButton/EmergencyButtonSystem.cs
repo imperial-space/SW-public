@@ -108,10 +108,10 @@ public sealed class EmergencyButtonSystem : EntitySystem
             ("officerName", officerName),
             ("location", location));
 
-        // Отправляем сообщение в рацию СБ
-        if (_prototype.TryIndex<RadioChannelPrototype>("Security", out var securityChannel))
+        // Отправляем сообщение в рацию
+        if (_prototype.TryIndex<RadioChannelPrototype>(component.RadioChannel, out var radioChannel))
         {
-            _radio.SendRadioMessage(uid, message, securityChannel, uid);
+            _radio.SendRadioMessage(uid, message, radioChannel, uid);
         }
 
         // Показываем сообщение пользователю
@@ -138,16 +138,11 @@ public sealed class EmergencyButtonSystem : EntitySystem
 
     private string GetUserLocation(EntityUid user)
     {
-        // Используем NavMapSystem для получения ближайшего отдела/бекона
-        // Это тот же способ который используется в ядерной бомбе и других системах
-        var location = _navMap.GetNearestBeaconString((user, null), onlyName: true);
+        // Получаем ближайший видимый конфигурируемый бекон и используем его имя
+        if (_navMap.TryGetNearestBeacon((user, null), out var beacon, out _))
+            return beacon!.Value.Comp.Text!;
 
-        // Если не удалось найти бекон, возвращаем неизвестное местоположение
-        if (string.IsNullOrEmpty(location) || location == Loc.GetString("nav-beacon-pos-no-beacons"))
-        {
-            return Loc.GetString("alert-emergency-button-unknown-location");
-        }
-
-        return location;
+        // Бекон не найден
+        return Loc.GetString("alert-emergency-button-unknown-location");
     }
 }
