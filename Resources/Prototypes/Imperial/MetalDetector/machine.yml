@@ -249,9 +249,9 @@
   result: MetalDetectorCircuitboard
   completetime: 8
   materials:
-    Plasma: 100
-    Steel: 200
-    Gold: 50
+    Plasma: 500
+    Steel: 2000
+    Gold: 100
 
 - type: technology
   id: MetalDetectorTech
