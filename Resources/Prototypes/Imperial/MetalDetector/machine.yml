@@ -104,6 +104,10 @@
         - ToolboxThief
         - CyberPen
         - SyndicateBusinessCard
+        - ClothingBackpackSatchelSmuggler
+        - ClothingBackpackSatchelSmugglerUnanchored
+        - ClothingBackpackSatchelSmugglerFilled
+        - ClothingHandsGlovesCombat
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection
