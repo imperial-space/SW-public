@@ -146,4 +146,3 @@ public sealed class EmergencyButtonSystem : EntitySystem
         return Loc.GetString("alert-emergency-button-unknown-location");
     }
 }
-
