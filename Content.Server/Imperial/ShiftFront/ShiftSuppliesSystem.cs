@@ -277,10 +277,21 @@ namespace Content.Server.ShiftFront
                     {
                         Act = () =>
                         {
-                            comp.ChosenGen = "РПГ боеприпас";
+                            comp.ChosenGen = "РПГ ПТ боеприпас";
                             _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить боеприпас РПГ раз в какое-то время", "Выбрано");
                         },
-                        Text = "РПГ боеприпас",
+                        Text = "РПГ ПТ боеприпас",
+                        Priority = 3,
+                    });
+                if (CheckResearch("ShiftFrontWeaponLauncherRPG8", comp.Faction))
+                    ev.Verbs.Add(new AlternativeVerb
+                    {
+                        Act = () =>
+                        {
+                            comp.ChosenGen = "РПГ ПП боеприпас";
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить боеприпас РПГ раз в какое-то время", "Выбрано");
+                        },
+                        Text = "РПГ ПП боеприпас",
                         Priority = 3,
                     });
                 if (CheckResearch("ShiftFrontGrenadesSupport", comp.Faction))
@@ -373,10 +384,10 @@ namespace Content.Server.ShiftFront
                     {
                         Act = () =>
                         {
-                            comp.ChosenGen = "кластер разрывных";
+                            comp.ChosenGen = "кластер под разрывные";
                             _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить выбранную гранату раз в какое-то время", "Выбрано");
                         },
-                        Text = "Кластер разрывных",
+                        Text = "Кластер под разрывные",
                         Priority = 3,
                         //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
                     });
@@ -599,8 +610,11 @@ namespace Content.Server.ShiftFront
                             case "РПГ":
                                 Spawn("WeaponLauncherRPG8", coords);
                                 break;
-                            case "РПГ боеприпас":
+                            case "РПГ ПТ боеприпас":
                                 Spawn("CartridgeRPG8", coords);
+                                break;
+                            case "РПГ ПП боеприпас":
+                                Spawn("CartridgeRPG8Frag", coords);
                                 break;
                             case "граната из металлической пены":
                                 Spawn("MetalFoamGrenade", coords);
@@ -623,8 +637,8 @@ namespace Content.Server.ShiftFront
                             case "кластер светошумовых":
                                 Spawn("ClusterBangFull", coords);
                                 break;
-                            case "кластер разрывных":
-                                Spawn("ClusterGrenade", coords);
+                            case "кластер под разрывные":
+                                Spawn("ClusterBang", coords);
                                 break;
                             case "стержни":
                                 Spawn("PartRodMetal", coords);

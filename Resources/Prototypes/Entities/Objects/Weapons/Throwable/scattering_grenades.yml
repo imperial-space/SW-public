@@ -34,12 +34,13 @@
     whitelist:
       tags:
       - GrenadeFlashBang
-    distance: 6
+      - HandGrenade
+    distance: 3
     velocity: 6
   - type: ClusterGrenadeVisuals
     state: base
   - type: Sprite
-    sprite: Objects/Weapons/Grenades/clusterbang.rsi
+    sprite: Objects/Weapons/Grenades/clusterbomb.rsi
     state: base-0
 
 - type: entity
@@ -87,7 +88,7 @@
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ScatteringGrenade
     capacity: 3
-    unspawnedCount: 3
+    unspawnedCount: 0
     fillPrototype: ExGrenade
     distance: 2
   - type: OnUseTimerTrigger

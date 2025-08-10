@@ -12,9 +12,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: RPG8Explosion
-    maxIntensity: 3
-    intensitySlope: 1
-    totalIntensity: 25
+    maxIntensity: 4
+    intensitySlope: 3
+    totalIntensity: 45
     maxTileBreak: 1
   - type: PointLight
     radius: 2.5
@@ -45,15 +45,16 @@
   parent: BaseBulletTrigger
   components:
   - type: Sprite
+    scale: 1, 1
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
     layers:
       - state: grenade
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 175
-    intensitySlope: 1
-    maxIntensity: 10
+    totalIntensity: 150
+    intensitySlope: 3
+    maxIntensity: 8.5
 
 - type: entity
   id: BulletRPG8Flash

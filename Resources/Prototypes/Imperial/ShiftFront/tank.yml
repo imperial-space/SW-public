@@ -115,6 +115,8 @@
         - SmallMobMask
         layer:
         - MachineLayer
+  - type: ExplosionResistance
+    damageCoefficient: 0.56
   - type: NameIdentifier
     group: GenericNumber
   - type: MouseRotator
@@ -502,7 +504,7 @@
       path: /Audio/Imperial/ShiftFront/shot_tank.ogg
       params: {maxDistance: 45}
   - type: BallisticAmmoProvider
-    capacity: 50
+    capacity: 100
     proto: MagazineLightRifleHard
     whitelist:
       tags: [MagazineLightRifleHard]
@@ -700,6 +702,8 @@
   parent: BaseVehicleHull
   abstract: true
   components:
+  - type: ExplosionResistance
+    damageCoefficient: 0.9
   - type: Fixtures
     fixtures:
       fix1:
@@ -1142,7 +1146,7 @@
     tags: [MagazineLightRifleBoxBTR]
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleBTR
-    capacity: 500
+    capacity: 5000
   - type: Item
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
@@ -1198,7 +1202,7 @@
     tags: [MagazineLightRifleBoxBMP]
   - type: BallisticAmmoProvider
     proto: CartridgeLightRifleBMP
-    capacity: 500
+    capacity: 5000
   - type: Item
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi

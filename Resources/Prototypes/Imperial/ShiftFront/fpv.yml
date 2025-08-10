@@ -189,6 +189,7 @@
   parent: MobFPVDrone
   id: MobFPVDroneObserverBlue
   components:
+  - type: HandheldGPS
   - type: NpcFactionMember
     factions:
       - ShiftFrontBlue
@@ -220,6 +221,7 @@
   parent: MobFPVDrone
   id: MobFPVDroneObserverRed
   components:
+  - type: HandheldGPS
   - type: NpcFactionMember
     factions:
       - ShiftFrontRed
@@ -251,6 +253,7 @@
   parent: MobFPVDrone
   id: MobFPVDroneObserverGreen
   components:
+  - type: HandheldGPS
   - type: NpcFactionMember
     factions:
       - ShiftFrontGreen
@@ -282,6 +285,7 @@
   parent: MobFPVDrone
   id: MobFPVDroneObserverYellow
   components:
+  - type: HandheldGPS
   - type: NpcFactionMember
     factions:
       - ShiftFrontYellow

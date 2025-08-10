@@ -9,6 +9,9 @@ public sealed partial class BorgHandsImperialComponent : Component // Компо
 {
     [DataField("whitelistHandTag"), AutoNetworkedField]
     public string WhitelistHandTag { get; set; } = string.Empty; // Поле для ввода кастомного тега
+
+    [DataField]
+    public bool Reverse = false;
 }
 
 public sealed partial class BorgHandsImperialSystem : EntitySystem
@@ -25,12 +28,20 @@ public sealed partial class BorgHandsImperialSystem : EntitySystem
 
     public void OnPickupAttempt(EntityUid uid, BorgHandsImperialComponent component, PickupAttemptEvent args)
     {
-        if (_tagSystem.HasAnyTag(args.Item, component.WhitelistHandTag))
+        if (component.Reverse && _tagSystem.HasAnyTag(args.Item, component.WhitelistHandTag))
         {
+            args.Cancel();
             return;
         }
+        else
+        {
+            if (_tagSystem.HasAnyTag(args.Item, component.WhitelistHandTag))
+            {
+                return;
+            }
 
-        args.Cancel();
+            args.Cancel();
+        }
     }
 
 }

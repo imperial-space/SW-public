@@ -14,7 +14,7 @@
   - type: Clothing
     sprite: Imperial/DeadSector/weapons/weapons/launcher/RPG8.rsi
   - type: Gun
-    projectileSpeed: 7.5
+    projectileSpeed: 14
     fireRate: 1
     soundGunshot:
       path: /Audio/Weapons/Guns/Gunshots/rpgfire.ogg
@@ -31,3 +31,6 @@
     steps: 2
     zeroVisible: false
   - type: Appearance
+  - type: Tag
+    tags:
+    - ShiftFrontOnlyGoodOne

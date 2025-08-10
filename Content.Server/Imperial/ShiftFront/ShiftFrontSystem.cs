@@ -96,6 +96,7 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftResourceExtractComponent, BeforeRangedInteractEvent>(OnUseInHand);
             SubscribeLocalEvent<ShiftPlayerComponent, CommanderBoostUpEvent>(OnCommanderBoost);
             SubscribeLocalEvent<ShiftPlayerComponent, PlayerDetachedEvent>(OnPlayerDetached);
+            SubscribeLocalEvent<ShiftPlayerComponent, PlayerAttachedEvent>(OnPlayerAttached);
             SubscribeLocalEvent<ShiftTeamRespWaitComponent, PlayerDetachedEvent>(OnPlayerDetachedW);
             SubscribeLocalEvent<ShiftWrenchComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<ShiftBuildLightComponent, GetVerbsEvent<AlternativeVerb>>(OnGetBuildVerbs);
@@ -799,6 +800,17 @@ namespace Content.Server.ShiftFront
             {
                 if (ent.Comp.Faction == command.Faction && !command.RespawnQueue.Contains(session))
                     command.RespawnQueue.Add(session);
+            }
+        }
+
+        private void OnPlayerAttached(Entity<ShiftPlayerComponent> ent, ref PlayerAttachedEvent args)
+        {
+            var session = args.Player;
+            var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+            while (dquery.MoveNext(out var couid, out var command))
+            {
+                if (ent.Comp.Faction == command.Faction && command.RespawnQueue.Contains(session))
+                    command.RespawnQueue.Remove(session);
             }
         }
 

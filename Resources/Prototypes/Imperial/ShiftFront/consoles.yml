@@ -1120,7 +1120,7 @@
     mode: SnapgridCenter
   components:
   - type: SiegeWeapon
-    maxTarget: 60
+    maxTarget: 100
   - type: Clickable
   - type: InteractionOutline
   - type: Appearance
@@ -1858,8 +1858,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.9
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.99
+    sprintModifier: 0.99
 
 - type: entity
   id: BackPackTier2
@@ -1871,8 +1871,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.6
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.99
+    sprintModifier: 0.99
 
 - type: entity
   id: BackPackTier3
@@ -1884,8 +1884,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.3
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.99
+    sprintModifier: 0.99
 
 - type: entity
   id: BackPackTier4
@@ -1897,8 +1897,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.99
+    sprintModifier: 0.99
 
 - type: entity
   id: BackPackTier5
@@ -1910,8 +1910,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: ClothingSpeedModifier
-    walkModifier: 0.9
-    sprintModifier: 0.9
+    walkModifier: 0.99
+    sprintModifier: 0.99
 
 - type: entity
   parent: ClothingBackpackSatchel
@@ -1928,8 +1928,8 @@
     radius: 7
     faction: Blue
   - type: ClothingSpeedModifier
-    walkModifier: 0.87
-    sprintModifier: 0.87
+    walkModifier: 0.94
+    sprintModifier: 0.94
 
 - type: entity
   parent: ClothingBackpackREBBlue

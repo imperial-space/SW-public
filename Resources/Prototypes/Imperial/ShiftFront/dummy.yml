@@ -38,6 +38,9 @@
   id: ShiftFrontMedVTower
 
 - type: Tag
+  id: ShiftFrontOnlyGoodOne
+
+- type: Tag
   id: ShiftFrontFactBlue
 
 - type: Tag
@@ -199,6 +202,9 @@
   - type: ShiftShowOnMap
     faction: Red
     mippleProto: ShiftFrontNew
+  - type: BorgHandsImperial
+    whitelistHandTag: ShiftFrontOnlyGoodOne
+    reverse: true
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -215,6 +221,9 @@
   - type: ShiftShowOnMap
     faction: Blue
     mippleProto: ShiftFrontNew
+  - type: BorgHandsImperial
+    whitelistHandTag: ShiftFrontOnlyGoodOne
+    reverse: true
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
@@ -230,6 +239,9 @@
   - type: ShiftShowOnMap
     faction: Red
     mippleProto: ShiftFrontScout
+  - type: BorgHandsImperial
+    whitelistHandTag: ShiftFrontOnlyGoodOne
+    reverse: true
 
 - type: entity
   parent: BaseMobHumanShiftFrontBlue
@@ -245,6 +257,9 @@
   - type: ShiftShowOnMap
     faction: Blue
     mippleProto: ShiftFrontFlanker
+  - type: BorgHandsImperial
+    whitelistHandTag: ShiftFrontOnlyGoodOne
+    reverse: true
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
