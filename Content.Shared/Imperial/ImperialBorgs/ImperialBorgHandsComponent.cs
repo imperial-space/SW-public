@@ -33,7 +33,7 @@ public sealed partial class BorgHandsImperialSystem : EntitySystem
             args.Cancel();
             return;
         }
-        else
+        if (!component.Reverse)
         {
             if (_tagSystem.HasAnyTag(args.Item, component.WhitelistHandTag))
             {

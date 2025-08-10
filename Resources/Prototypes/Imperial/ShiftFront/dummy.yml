@@ -147,6 +147,9 @@
   - type: ShiftShowOnMap
     faction: Blue
     mippleProto: ShiftFrontScout
+  - type: BorgHandsImperial
+    whitelistHandTag: ShiftFrontOnlyGoodOne
+    reverse: true
 
 - type: entity
   parent: MobArgocyteHarvester
@@ -257,9 +260,6 @@
   - type: ShiftShowOnMap
     faction: Blue
     mippleProto: ShiftFrontFlanker
-  - type: BorgHandsImperial
-    whitelistHandTag: ShiftFrontOnlyGoodOne
-    reverse: true
 
 - type: entity
   parent: BaseMobHumanShiftFrontRed
