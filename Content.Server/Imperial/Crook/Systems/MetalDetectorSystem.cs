@@ -4,9 +4,8 @@ using Robust.Shared.Timing;
 using Robust.Shared.Containers;
 using Content.Shared.Power;
 using Content.Shared.Access.Components;
-using Content.Server.Imperial.Crook.Components;
 using Content.Shared.Imperial.Crook.Visuals;
-using Content.Shared.Imperial.Crook.Components;
+using Content.Server.Imperial.Crook.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Access.Systems;
@@ -104,15 +103,15 @@ namespace Content.Server.Imperial.Crook.Systems
         private void ProcessEntity(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
         {
             comp.NextStateReset = _timing.CurTime + comp.StateResetDelay;
-            bool hasContraband = CheckForContraband(entity, comp);
+            bool hasContraband = CheckForContraband(detector, entity, comp);
             bool hasAccess = HasRequiredAccess(entity, comp);
             HandleDetectionResults(detector, entity, comp, hasContraband, hasAccess);
         }
 
-        private bool CheckForContraband(EntityUid target, MetalDetectorComponent comp)
+        private bool CheckForContraband(EntityUid detector, EntityUid target, MetalDetectorComponent comp)
         {
-            if (IsContrabandItem(target, comp) ||
-                CheckEntityAndContainers(target, comp))
+            if (IsContrabandItem(detector, target, comp) ||
+                CheckEntityAndContainers(detector, target, comp))
             {
                 return true;
             }
@@ -122,8 +121,8 @@ namespace Content.Server.Imperial.Crook.Systems
                 foreach (var slot in comp.CheckedSlots)
                 {
                     if (_inventory.TryGetSlotEntity(target, slot, out var item) &&
-                        (IsContrabandItem(item.Value, comp) ||
-                         CheckEntityAndContainers(item.Value, comp)))
+                        (IsContrabandItem(detector, item.Value, comp) ||
+                         CheckEntityAndContainers(detector, item.Value, comp)))
                     {
                         return true;
                     }
@@ -132,8 +131,8 @@ namespace Content.Server.Imperial.Crook.Systems
 
             foreach (var held in _hands.EnumerateHeld(target))
             {
-                if (IsContrabandItem(held, comp) ||
-                    CheckEntityAndContainers(held, comp))
+                if (IsContrabandItem(detector, held, comp) ||
+                    CheckEntityAndContainers(detector, held, comp))
                 {
                     return true;
                 }
@@ -142,12 +141,12 @@ namespace Content.Server.Imperial.Crook.Systems
             return false;
         }
 
-        private bool CheckEntityAndContainers(EntityUid entity, MetalDetectorComponent comp, int currentDepth = 0)
+        private bool CheckEntityAndContainers(EntityUid detector, EntityUid entity, MetalDetectorComponent comp, int currentDepth = 0)
         {
-            if (currentDepth > comp.MaxRecursionDepth || IsIgnoredByDetector(entity))
+            if (currentDepth > comp.MaxRecursionDepth || IsIgnoredByDetector(detector, entity, comp))
                 return false;
 
-            if (IsContrabandItem(entity, comp))
+            if (IsContrabandItem(detector, entity, comp))
                 return true;
 
             if (TryComp<ContainerManagerComponent>(entity, out var containerManager))
@@ -156,7 +155,7 @@ namespace Content.Server.Imperial.Crook.Systems
                 {
                     foreach (var contained in container.ContainedEntities)
                     {
-                        if (CheckEntityAndContainers(contained, comp, currentDepth + 1))
+                        if (CheckEntityAndContainers(detector, contained, comp, currentDepth + 1))
                             return true;
                     }
                 }
@@ -164,33 +163,40 @@ namespace Content.Server.Imperial.Crook.Systems
 
             return false;
         }
-        private bool IsIgnoredByDetector(EntityUid entity)
+
+        private bool IsIgnoredByDetector(EntityUid detector, EntityUid entity, MetalDetectorComponent comp)
         {
-            if (HasComp<IgnoreMetalDetectorComponent>(entity))
+            var meta = MetaData(entity);
+            var prototypeId = meta.EntityPrototype?.ID;
+
+            if (!string.IsNullOrEmpty(prototypeId) && comp.IgnoredPrototypes.Contains(prototypeId))
                 return true;
 
             var current = entity;
             while (_container.TryGetContainingContainer(current, out var container))
             {
                 current = container.Owner;
-                if (HasComp<IgnoreMetalDetectorComponent>(current))
+                var currentMeta = MetaData(current);
+                var currentPrototypeId = currentMeta.EntityPrototype?.ID;
+
+                if (!string.IsNullOrEmpty(currentPrototypeId) && comp.IgnoredPrototypes.Contains(currentPrototypeId))
                     return true;
             }
 
             return false;
         }
-        private bool IsContrabandItem(EntityUid item, MetalDetectorComponent comp)
+
+        private bool IsContrabandItem(EntityUid detector, EntityUid item, MetalDetectorComponent comp)
         {
-            if (IsIgnoredByDetector(item))
+            if (IsIgnoredByDetector(detector, item, comp))
                 return false;
 
             return TryComp<ContrabandComponent>(item, out _) &&
-                   !IsContrabandAllowed(item, comp);
+                   !IsContrabandAllowed(detector, item, comp);
         }
 
-        private bool IsContrabandAllowed(EntityUid contrabandItem, MetalDetectorComponent detectorComp)
+        private bool IsContrabandAllowed(EntityUid detector, EntityUid contrabandItem, MetalDetectorComponent detectorComp)
         {
-
             var current = contrabandItem;
             while (_container.TryGetContainingContainer(current, out var container))
             {

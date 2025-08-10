@@ -53,7 +53,6 @@
   - type: Sprite
     sprite: Clothing/Back/Satchels/smuggler.rsi
     state: icon
-  - type: IgnoreMetalDetector # Imperial Space Metal Detector
 
 - type: entity
   parent: [ BaseSubfloorAnchorStorageAnchored, BriefcaseSyndie, BaseMinorContraband ]

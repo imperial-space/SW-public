@@ -63,6 +63,9 @@ namespace Content.Server.Imperial.Crook.Components
         [DataField("alertSound")]
         public SoundSpecifier AlertSound = new SoundPathSpecifier("/Audio/Machines/twobeep.ogg");
 
+        [DataField]
+        public HashSet<string> IgnoredPrototypes = new();
+
         [ViewVariables]
         public bool Powered;
 
