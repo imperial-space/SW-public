@@ -191,11 +191,21 @@
 
 - type: customization
   id: binnibux
-  holder:
+  holder: c53d1f4f-6831-48ce-b145-23d323e9b537
   map:
     MedievalClothingOuterArmorCharmerLight: [ MedievalClothingOuterArmorCharmerLightPurple ]
     MedievalClothingHeadHelmetCharmerLight: [ MedievalClothingHeadHelmetCharmerLightPurple ]
-    MedievalClothingOuterArmorCharmer: [ MedievalClothingOuterArmorCharmerLightPurple ]
-    MedievalClothingHeadHelmetCharmer: [ MedievalClothingHeadHelmetCharmerLightPurple ]
+    MedievalClothingOuterArmorCharmer: [ MedievalClothingOuterArmorCharmerPurple ]
+    MedievalClothingHeadHelmetCharmer: [ MedievalClothingHeadHelmetCharmerPurple ]
     MedievalClothingNeckCloakClanWiz: [ MedievalClothingNeckCloakPurple ]
+
+- type: customization
+  id: smoke
+  holder: fade5f41-5240-42e4-a425-e84c5719b3f2
+  map:
+    MedievalClothingOuterArmorChainMail: [MedievalClothingOuterArmorChainMailViking]
+    MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetViking]
+    MedievalFalshionT3Legion: [MedievalFalshionT3LegionViking]
+    MedievalFalshionT3LegionSteel: [MedievalFalshionT3SteelViking]
+    Log: [MedievalClothingNeckCloakViking]
 

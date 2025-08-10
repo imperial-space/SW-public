@@ -466,6 +466,17 @@
     sprite: Imperial/Medieval/Clothing/Armor/royalcuirass.rsi
 
 - type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalClothingOuterArmorChainMailViking
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/viking.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/viking.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorIronCuirassLight
   name: iron armor cuirass

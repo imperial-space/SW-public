@@ -1393,6 +1393,29 @@
 
 - type: entity
   name: falshion
+  parent: MedievalFalshionT3Legion
+  id: MedievalFalshionT3LegionViking
+  description: An ancient war blade.
+  components:
+  - type: ToggleableLight
+    turnOnSound:
+      path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
+      volume: -1
+    turnOffSound:
+      path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
+      volume: -1
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    energy: 3
+    color: "#b19155"
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/viking.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/viking.rsi
+
+- type: entity
+  name: falshion
   parent: MedievalFalshionT3Steel
   id: MedievalFalshionT3SteelGold
   description: An ancient war blade.
@@ -1401,6 +1424,29 @@
     sprite: Imperial/Medieval/Melee/iron_sword_gold.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Melee/iron_sword_gold.rsi
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3Steel
+  id: MedievalFalshionT3SteelViking
+  description: An ancient war blade.
+  components:
+  - type: ToggleableLight
+    turnOnSound:
+      path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
+      volume: -1
+    turnOffSound:
+      path: /Audio/Imperial/Medieval/lightsphere_discharge.ogg
+      volume: -1
+  - type: PointLight
+    enabled: false
+    radius: 3.5
+    energy: 3
+    color: "#b19155"
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/viking.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/viking.rsi
 
 - type: entity
   name: falshion

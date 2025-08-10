@@ -1396,6 +1396,17 @@
     sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetViking
+  name: MedievalClothingHeadHelmetViking
+  description: MedievalClothingHeadHelmetViking
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/viking.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/viking.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetShapel
   id: MedievalClothingHeadRoyalHoop
   name: MedievalClothingHeadRoyalHoop

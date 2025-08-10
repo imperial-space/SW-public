@@ -556,6 +556,16 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakViking
+  name: blue cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/viking.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckCloakSpookyVendigo
   name: blue cloak
   description: A cloak to distinguish allies.
