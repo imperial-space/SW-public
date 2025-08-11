@@ -107,6 +107,7 @@
         - ClothingBackpackSatchelSmugglerUnanchored
         - ClothingBackpackSatchelSmugglerFilled
         - ClothingHandsGlovesCombat
+        - ClothingShoesBootsJack
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection
