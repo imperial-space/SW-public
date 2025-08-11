@@ -152,7 +152,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        3500: Dead
+        4000: Dead
     - type: MeleeWeapon
       hidden: true
       altDisarm: false
@@ -225,13 +225,12 @@
     damage:
       types:
         Structural: 200
-        Slash: 60
-        Blunt: 8
+        Slash: 64
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
-    reflectProb: 0.45
-    spread: 90
+    reflectProb: 0.25
+    spread: 70
   - type: DisarmMalus
 
 - type: emoteSounds
@@ -298,10 +297,10 @@
 - type: damageModifierSet
   id: SCPStandart
   coefficients:
-    Blunt: 0.25
-    Slash: 0.4
-    Piercing: 0.6
-    Poison: 0.9
+    Poison: 0.1
+    Blunt: 0.35
+    Slash: 0.6
+    Piercing: 0.7
     Cellular: 0.9
     Radiation: 0.9
     Caustic: 0.0
