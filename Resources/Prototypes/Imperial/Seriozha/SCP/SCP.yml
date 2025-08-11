@@ -225,13 +225,12 @@
     damage:
       types:
         Structural: 200
-        Slash: 60
-        Blunt: 8
+        Slash: 64
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
-    reflectProb: 0.45
-    spread: 90
+    reflectProb: 0.25
+    spread: 70
   - type: DisarmMalus
 
 - type: emoteSounds
