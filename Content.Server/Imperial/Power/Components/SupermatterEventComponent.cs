@@ -60,7 +60,7 @@ public sealed partial class SupermatterEventComponent : Component
     /// Радио каналы для оповещений о событиях.
     /// </summary>
     [DataField]
-    public ProtoId<RadioChannelPrototype>[] RadioChannels = { "Engineering" };
+    public ProtoId<RadioChannelPrototype>[] RadioChannels = ["Engineering"];
 
     /// <summary>
     /// Задержка перед первым событием (в секундах).
@@ -71,7 +71,7 @@ public sealed partial class SupermatterEventComponent : Component
     /// <summary>
     /// Время жизни кэша консоли (в секундах).
     /// </summary>
-    public float ConsoleCacheLifetime = 10f;
+    public readonly float ConsoleCacheLifetime = 10f;
 
     /// <summary>
     /// Длительность события None (в секундах).
@@ -96,12 +96,12 @@ public sealed partial class SupermatterEventComponent : Component
     /// <summary>
     /// Минимальное время до следующего события после LightningEvent (в секундах).
     /// </summary>
-    public float LightningMinNextEvent = 180f; // 3 минуты
+    public readonly float LightningMinNextEvent = 180f; // 3 минуты
 
     /// <summary>
     /// Максимальное время до следующего события после LightningEvent (в секундах).
     /// </summary>
-    public float LightningMaxNextEvent = 420f; // 7 минут
+    public readonly float LightningMaxNextEvent = 420f; // 7 минут
 
     /// <summary>
     /// Количество молний, выпускаемых за один раз при LightningEvent.
@@ -132,12 +132,12 @@ public sealed partial class SupermatterEventComponent : Component
     /// <summary>
     /// Минимальное время до следующего события после RadiationEvent (в секундах).
     /// </summary>
-    public float RadiationMinNextEvent = 180f; // 3 минуты
+    public readonly float RadiationMinNextEvent = 180f; // 3 минуты
 
     /// <summary>
     /// Максимальное время до следующего события после RadiationEvent (в секундах).
     /// </summary>
-    public float RadiationMaxNextEvent = 420f; // 7 минут
+    public readonly float RadiationMaxNextEvent = 420f; // 7 минут
 
     // PlasmaEvent
 
@@ -150,17 +150,17 @@ public sealed partial class SupermatterEventComponent : Component
     /// <summary>
     /// Минимальное время до следующего события после PlasmaEvent (в секундах).
     /// </summary>
-    public float PlasmaMinNextEvent = 180f; // 3 минуты
+    public readonly float PlasmaMinNextEvent = 180f; // 3 минуты
 
     /// <summary>
     /// Максимальное время до следующего события после PlasmaEvent (в секундах).
     /// </summary>
-    public float PlasmaMaxNextEvent = 420f; // 7 минут
+    public readonly float PlasmaMaxNextEvent = 420f; // 7 минут
 
     /// <summary>
     /// Интервал генерации плазмы во время PlasmaEvent (в секундах).
     /// </summary>
-    public float PlasmaTickInterval = 10f; // 10 секунд
+    public readonly float PlasmaTickInterval = 10f; // 10 секунд
 
     /// <summary>
     /// Количество молей плазмы, генерируемых за тик.

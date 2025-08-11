@@ -42,13 +42,12 @@ namespace Content.Server.Imperial.Power.EntitySystems
             if (!args.IsInDetailsRange)
                 return;
 
-            var percent = component.Integrity / MathF.Max(1f, component.MaxIntegrity);
-            foreach (var pair in component.IntegrityDescription.OrderByDescending(p => p.Key))
+            var integrityPercent = component.Integrity / component.MaxIntegrity * 100;
+            foreach (var (key, descId) in component.IntegrityDescription.OrderByDescending(p => p.Key))
             {
-                if (percent < pair.Key)
+                if (integrityPercent < key)
                     continue;
 
-                var descId = pair.Value;
                 args.PushMarkup(Loc.GetString(descId));
                 break;
             }
