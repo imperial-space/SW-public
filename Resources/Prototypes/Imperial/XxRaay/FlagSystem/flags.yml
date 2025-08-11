@@ -37,6 +37,7 @@
   id: ImperialUSSPFlag
   name: USSP Flag
   description: Флаг Союза Советских Социалистических Планет. Развевается с гордостью.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     state: ussp-flag
@@ -49,6 +50,7 @@
   id: ImperialNTFlag
   name: NT Flag
   description: Корпоративный флаг Nanotrasen. Символ капиталистической империи.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     state: NT-flag
@@ -61,6 +63,7 @@
   id: ImperialSindiFlag
   name: Syndicate Flag
   description: Флаг Синдиката. Пахнет порохом и революцией.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     state: sindi-flag
@@ -73,6 +76,7 @@
   id: ImperialGreenFlag
   name: Green Flag
   description: Зеленый флаг. Простой, но элегантный.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     state: green-flag
@@ -85,6 +89,7 @@
   id: ImperialYellowFlag
   name: Yellow Flag
   description: Желтый флаг. Яркий и заметный.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     state: yellow-flag
@@ -97,6 +102,7 @@
   id: ImperialRedFlag
   name: Red Flag
   description: Красный флаг. Цвет революции и страсти.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     state: red-flag
@@ -109,6 +115,7 @@
   id: ImperialBlueFlag
   name: Blue Flag
   description: Синий флаг. Спокойный как космическая бездна.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     state: blue-flag
@@ -121,6 +128,7 @@
   id: ImperialWhiteFlag
   name: White Flag
   description: Белый флаг. Символ мира... или капитуляции. Можно захватить для своей фракции.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     state: white-flag

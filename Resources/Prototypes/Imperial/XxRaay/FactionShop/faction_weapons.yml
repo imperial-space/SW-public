@@ -6,6 +6,7 @@
   parent: [ BaseWeaponBatterySmall, BaseMajorContraband ]
   id: FactionWeaponLaserGun
   description: A faction-issued laser weapon using light amplified by the stimulated emission of radiation.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/laser_retro.rsi
@@ -29,6 +30,7 @@
   parent: BaseWeaponBattery
   id: FactionWeaponTeslaGun
   description: A faction-issued tesla gun harnessing the power of lightning.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/tesla_gun.rsi
@@ -59,6 +61,7 @@
   parent: [BaseWeaponSubMachineGun, BaseSecurityContraband]
   id: FactionWeaponSubMachineGunDrozd
   description: A faction-issued modern SMG manufactured by Nanotrasen's Small Arms Division. Features exceptional rate of fire in burst mode.
+  suffix: XxRaay, FlagsTDM
   components:
     - type: Sprite
       sprite: Objects/Weapons/Guns/SMGs/drozd.rsi
@@ -118,6 +121,7 @@
   parent: [ BaseWeaponSubMachineGun, BaseSecurityContraband ]
   id: FactionWeaponSubMachineGunWt550
   description: A faction-issued compact submachine gun designed for one-handed operation.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/SMGs/wt550.rsi
@@ -183,6 +187,7 @@
   parent: [ BaseWeaponRifle, BaseSecurityContraband ]
   id: FactionWeaponRifle
   description: A faction-issued semi-automatic rifle for long-range engagements.
+  suffix: XxRaay, FlagsTDM
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Rifles/rifle.rsi

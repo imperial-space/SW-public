@@ -2,6 +2,7 @@
   id: NTShopConsole
   name: faction-shop-console-nt
   description: faction-shop-console-nt-desc
+  suffix: XxRaay, FlagsTDM
   parent: BaseFactionShopConsole
   components:
   - type: FactionShop
@@ -26,6 +27,7 @@
   id: SindiShopConsole
   name: faction-shop-console-sindi
   description: faction-shop-console-sindi-desc
+  suffix: XxRaay, FlagsTDM
   parent: BaseFactionShopConsole
   components:
   - type: FactionShop
@@ -50,6 +52,7 @@
   id: GreenShopConsole
   name: faction-shop-console-green
   description: faction-shop-console-green-desc
+  suffix: XxRaay, FlagsTDM
   parent: BaseFactionShopConsole
   components:
   - type: FactionShop
@@ -74,6 +77,7 @@
   id: YellowShopConsole
   name: faction-shop-console-yellow
   description: faction-shop-console-yellow-desc
+  suffix: XxRaay, FlagsTDM
   parent: BaseFactionShopConsole
   components:
   - type: FactionShop
@@ -98,6 +102,7 @@
   id: RedShopConsole
   name: faction-shop-console-red
   description: faction-shop-console-red-desc
+  suffix: XxRaay, FlagsTDM
   parent: BaseFactionShopConsole
   components:
   - type: FactionShop
@@ -122,6 +127,7 @@
   id: BlueShopConsole
   name: faction-shop-console-blue
   description: faction-shop-console-blue-desc
+  suffix: XxRaay, FlagsTDM
   parent: BaseFactionShopConsole
   components:
   - type: FactionShop
@@ -146,6 +152,7 @@
   id: USSPShopConsole
   name: faction-shop-console-ussp
   description: faction-shop-console-ussp-desc
+  suffix: XxRaay, FlagsTDM
   parent: BaseFactionShopConsole
   components:
   - type: FactionShop
