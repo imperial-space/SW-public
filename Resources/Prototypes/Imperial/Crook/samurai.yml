@@ -203,6 +203,7 @@
     nameSegments:
     - NamesNinjaTitle
     - NamesNinja
+    nameFormat: name-format-ninja
   - type: Sprite
     netsync: false
     sprite: Markers/jobs.rsi
