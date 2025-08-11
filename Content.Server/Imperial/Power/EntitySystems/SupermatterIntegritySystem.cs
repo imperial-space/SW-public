@@ -43,13 +43,12 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 return;
 
             var percent = component.Integrity / MathF.Max(1f, component.MaxIntegrity);
-            LocId descId = default;
             foreach (var pair in component.IntegrityDescription.OrderByDescending(p => p.Key))
             {
                 if (percent < pair.Key)
                     continue;
 
-                descId = pair.Value;
+                var descId = pair.Value;
                 args.PushMarkup(Loc.GetString(descId));
                 break;
             }

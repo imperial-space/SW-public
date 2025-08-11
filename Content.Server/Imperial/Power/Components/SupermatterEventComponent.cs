@@ -1,121 +1,198 @@
-using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
-using Robust.Shared.Random;
-using Content.Server.Imperial.ImperialLightning;
 
-namespace Content.Server.Imperial.Power.Components
+namespace Content.Server.Imperial.Power.Components;
+
+[RegisterComponent]
+public sealed partial class SupermatterEventComponent : Component
 {
+    /// <summary>
+    /// Значения видов событий суперматерии.
+    /// </summary>
     public enum SupermatterEventType
     {
         None = 0,
         Lightning = 1,
         Radiation = 2,
-        Plasma = 3
+        Plasma = 3,
     }
 
-    [RegisterComponent]
-    public sealed partial class SupermatterEventComponent : Component
-    {
-        // Время до следующего случайного события (секунды)
-        [DataField]
-        public TimeSpan NextEventTimer = TimeSpan.Zero;
-        // Тип текущего события (0 - ничего, 1 - молнии, 2 - радиация, 3 - плазма)
-        [DataField]
-        public SupermatterEventType CurrentEvent = SupermatterEventType.None;
-        // Время окончания текущего события (секунды, если 0 - нет активного события)
-        [DataField]
-        public TimeSpan EventEndTime = TimeSpan.Zero;
-        // Кулдаун для всплеска молний
-        [DataField]
-        public TimeSpan LightningCooldown = TimeSpan.Zero;
-        // Таймер для генерации плазмы во время PlasmaEvent
-        [DataField]
-        public TimeSpan? PlasmaTickAccumulator = null;
-        // Допустимые типы событий для этого кристалла
-        [DataField]
-        public List<SupermatterEventType> AllowedEventTypes { get; set; } = new()
-        {
-            SupermatterEventType.None,
-            SupermatterEventType.Lightning,
-            SupermatterEventType.Radiation,
-            SupermatterEventType.Plasma
-        };
-        // Каналы рации для оповещений
-        [DataField]
-        public ProtoId<RadioChannelPrototype>[] RadioChannels = { "Engineering" };
+    /// <summary>
+    /// Время до следующего случайного события (в секундах).
+    /// </summary>
+    [DataField]
+    public TimeSpan NextEventTimer = TimeSpan.Zero;
 
-        // Время до первого ивента (секунды)
-        [DataField]
-        public float InitialEventDelaySeconds = 900f; // 15 минут
+    /// <summary>
+    /// Текущий активный тип события.
+    /// </summary>
+    [DataField]
+    public SupermatterEventType CurrentEvent = SupermatterEventType.None;
 
-        // Время жизни кэша консоли (секунды)
-        [DataField]
-        public float ConsoleCacheLifetime = 10f;
+    /// <summary>
+    /// Время окончания текущего события (0, если событие не активно).
+    /// </summary>
+    public TimeSpan EventEndTime = TimeSpan.Zero;
 
-        // Настройки событий
-        [DataField]
-        public float NoneEventDuration = 300f; // 5 минут для None события
+    /// <summary>
+    /// Кулдаун между всплесками молний.
+    /// </summary>
+    public TimeSpan LightningCooldown = TimeSpan.Zero;
 
-        [DataField]
-        public float LightningEventDuration = 120f; // 2 минуты для Lightning события
+    /// <summary>
+    /// Таймер для генерации плазмы во время события Plasma.
+    /// </summary>
+    public TimeSpan? PlasmaTickAccumulator = null;
 
-        [DataField]
-        public float LightningCooldownDuration = 8f; // 8 секунд кулдаун для молний
+    /// <summary>
+    /// Список разрешенных типов событий для этого кристалла.
+    /// </summary>
+    [DataField]
+    public List<SupermatterEventType> AllowedEventTypes { get; set; } =
+    [
+        SupermatterEventType.None,
+        SupermatterEventType.Lightning,
+        SupermatterEventType.Radiation,
+        SupermatterEventType.Plasma,
+    ];
 
-        [DataField]
-        public float LightningSpawnDuration = 1f; // 1 секунда для спавна молнии
+    /// <summary>
+    /// Радио каналы для оповещений о событиях.
+    /// </summary>
+    [DataField]
+    public ProtoId<RadioChannelPrototype>[] RadioChannels = { "Engineering" };
 
-        [DataField]
-        public float LightningMinNextEvent = 180f; // 3 минуты минимальное время до следующего события
+    /// <summary>
+    /// Задержка перед первым событием (в секундах).
+    /// </summary>
+    [DataField]
+    public float InitialEventDelaySeconds = 900f; // 15 минут
 
-        [DataField]
-        public float LightningMaxNextEvent = 420f; // 7 минут максимальное время до следующего события
+    /// <summary>
+    /// Время жизни кэша консоли (в секундах).
+    /// </summary>
+    public float ConsoleCacheLifetime = 10f;
 
-        [DataField]
-        public float RadiationEventDuration = 120f; // 2 минуты для Radiation события
+    /// <summary>
+    /// Длительность события None (в секундах).
+    /// </summary>
+    [DataField]
+    public float NoneEventDuration = 300f; // 5 минут
 
-        [DataField]
-        public float RadiationIntensity = 10f; // Интенсивность радиации во время события
+    // LightningEvent
 
-        [DataField]
-        public float RadiationMinNextEvent = 180f; // 3 минуты минимальное время до следующего события
+    /// <summary>
+    /// Длительность события LightningEvent (в секундах).
+    /// </summary>
+    [DataField]
+    public float LightningEventDuration = 120f; // 2 минуты
 
-        [DataField]
-        public float RadiationMaxNextEvent = 420f; // 7 минут максимальное время до следующего события
+    /// <summary>
+    /// Кулдаун между молниями во время события LightningEvent (в секундах).
+    /// </summary>
+    [DataField]
+    public float LightningCooldownDuration = 8f; // 8 секунд
 
-        [DataField]
-        public float PlasmaEventDuration = 120f; // 2 минуты для Plasma события
+    /// <summary>
+    /// Минимальное время до следующего события после LightningEvent (в секундах).
+    /// </summary>
+    public float LightningMinNextEvent = 180f; // 3 минуты
 
-        [DataField]
-        public float PlasmaMinNextEvent = 180f; // 3 минуты минимальное время до следующего события
+    /// <summary>
+    /// Максимальное время до следующего события после LightningEvent (в секундах).
+    /// </summary>
+    public float LightningMaxNextEvent = 420f; // 7 минут
 
-        [DataField]
-        public float PlasmaMaxNextEvent = 420f; // 7 минут максимальное время до следующего события
+    /// <summary>
+    /// Количество молний, выпускаемых за один раз при LightningEvent.
+    /// </summary>
+    [DataField]
+    public int LightningBoltCount = 1; // 7 минут
 
-        [DataField]
-        public float PlasmaTickInterval = 10f; // 10 секунд интервал для генерации плазмы
+    /// <summary>
+    /// Радиус, в котором молнии будут выпускаться при LightingEvent.
+    /// </summary>
+    [DataField]
+    public float LightningBoltRadius = 8f; // 7 минут
 
-        [DataField]
-        public float PlasmaMolesAmount = 5f; // Количество молей плазмы и кислорода для генерации
+    // RadiationEvent
 
-        [DataField]
-        public float PlasmaHotspotTemperature = 1500f; // Температура хотспота плазмы
+    /// <summary>
+    /// Длительность RadiationEvent (в секундах).
+    /// </summary>
+    [DataField]
+    public float RadiationEventDuration = 120f; // 2 минуты
 
-        [DataField]
-        public float PlasmaHotspotVolume = 50f; // Объем хотспота плазмы
+    /// <summary>
+    /// Интенсивность радиации во время события RadiationEvent.
+    /// </summary>
+    [DataField]
+    public float RadiationIntensity = 10f;
 
-        [DataField]
-        public float DefaultRadiationIntensity = 5f; // Интенсивность радиации по умолчанию
+    /// <summary>
+    /// Минимальное время до следующего события после RadiationEvent (в секундах).
+    /// </summary>
+    public float RadiationMinNextEvent = 180f; // 3 минуты
 
-        // Время кэша консоли (используется системой)
-        public TimeSpan ConsoleCacheTimer = TimeSpan.Zero;
+    /// <summary>
+    /// Максимальное время до следующего события после RadiationEvent (в секундах).
+    /// </summary>
+    public float RadiationMaxNextEvent = 420f; // 7 минут
 
-        // Время последнего обновления для различных таймеров
-        public TimeSpan LastConsoleCacheUpdate = TimeSpan.Zero;
-        public TimeSpan LastEventEndTimeUpdate = TimeSpan.Zero;
-        public TimeSpan LastNextEventTimerUpdate = TimeSpan.Zero;
-        public TimeSpan LastLightningCooldownUpdate = TimeSpan.Zero;
-        public TimeSpan LastPlasmaTickUpdate = TimeSpan.Zero;
-    }
+    // PlasmaEvent
+
+    /// <summary>
+    /// Длительность PlasmaEvent (в секундах).
+    /// </summary>
+    [DataField]
+    public float PlasmaEventDuration = 120f; // 2 минуты
+
+    /// <summary>
+    /// Минимальное время до следующего события после PlasmaEvent (в секундах).
+    /// </summary>
+    public float PlasmaMinNextEvent = 180f; // 3 минуты
+
+    /// <summary>
+    /// Максимальное время до следующего события после PlasmaEvent (в секундах).
+    /// </summary>
+    public float PlasmaMaxNextEvent = 420f; // 7 минут
+
+    /// <summary>
+    /// Интервал генерации плазмы во время PlasmaEvent (в секундах).
+    /// </summary>
+    public float PlasmaTickInterval = 10f; // 10 секунд
+
+    /// <summary>
+    /// Количество молей плазмы, генерируемых за тик.
+    /// </summary>
+    [DataField]
+    public float PlasmaMolesAmount = 5f;
+
+    /// <summary>
+    /// Температура хотспота плазмы при PlasmaEvent.
+    /// </summary>
+    [DataField]
+    public float PlasmaHotspotTemperature = 1500f;
+
+    /// <summary>
+    /// Объем хотспота плазмы при PlasmaEvent.
+    /// </summary>
+    [DataField]
+    public float PlasmaHotspotVolume = 50f;
+
+    // Default radiation
+
+    /// <summary>
+    /// Базовая интенсивность радиации вне событий.
+    /// </summary>
+    [DataField]
+    public float DefaultRadiationIntensity = 5f;
+
+
+    public TimeSpan ConsoleCacheTimer = TimeSpan.Zero;
+    public TimeSpan LastConsoleCacheUpdate = TimeSpan.Zero;
+    public TimeSpan LastEventEndTimeUpdate = TimeSpan.Zero;
+    public TimeSpan LastNextEventTimerUpdate = TimeSpan.Zero;
+    public TimeSpan LastLightningCooldownUpdate = TimeSpan.Zero;
+    public TimeSpan LastPlasmaTickUpdate = TimeSpan.Zero;
 }
