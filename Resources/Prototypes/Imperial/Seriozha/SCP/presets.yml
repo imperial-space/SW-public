@@ -102,6 +102,8 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
+    - type: RandomHumanoidAppearance
+      enabled: false
 
 - type: entity
   parent: ImperialSCPBasePreset

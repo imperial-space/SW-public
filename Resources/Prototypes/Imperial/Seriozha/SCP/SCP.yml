@@ -204,6 +204,36 @@
           layer:
           - MobLayer
 
+- type: entity
+  name: Katana
+  suffix: seriozha, Недра
+  parent: [ BaseSword, BaseMajorContraband ]
+  id: ImperialSCPKatana
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    attackRate: 1.25
+    damage:
+      types:
+        Structural: 200
+        Slash: 60
+        Blunt: 8
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.45
+    spread: 90
+  - type: DisarmMalus
+
 - type: emoteSounds
   id: DedVoice
   sounds:

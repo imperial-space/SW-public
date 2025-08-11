@@ -1,3 +1,4 @@
+# One
 - type: entity
   parent: HighSecDoor
   id: HighSecSCPLocked
@@ -16,10 +17,62 @@
       path: /Audio/Imperial/Seriozha/SCP/oneclose.ogg
     denySound:
       path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
+
+- type: entity
+  parent: HighSecSCPLocked
+  id: HighSecSCPOneLocked
+  name: One
+  suffix: seriozha, Недра, One
+  components:
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSCP ]
+      board: [ DoorElectronicsSCPOne ]
 
+- type: entity
+  parent: HighSecSCPLocked
+  id: HighSecSCPTwoLocked
+  suffix: seriozha, Недра, Two
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPTwo ]
+
+- type: entity
+  parent: HighSecSCPLocked
+  id: HighSecSCPThreeLocked
+  suffix: seriozha, Недра, Three
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPThree ]
+
+- type: entity
+  parent: HighSecSCPLocked
+  id: HighSecSCPFourLocked
+  suffix: seriozha, Недра, Four
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPFour ]
+
+- type: entity
+  parent: HighSecSCPLocked
+  id: HighSecSCPFiveLocked
+  suffix: seriozha, Недра, Five
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPFive ]
+
+- type: entity
+  parent: HighSecSCPLocked
+  id: HighSecSCPAdmLocked
+  suffix: seriozha, Недра, Adm
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPAdm ]
+# Two
 - type: entity
   parent: AirlockRCDResistant
   id: AirlockSCPLocked
@@ -40,19 +93,85 @@
     - trigger:
         !type:DamageTrigger
         damage: 800
-  - type: ContainerFill
-    containers:
-      board: [ DoorElectronicsSCP ]
 
 - type: entity
+  parent: AirlockSCPLocked
+  id: AirlockSCPOneLocked
+  suffix: seriozha, Недра, One
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPOne ]
+
+- type: entity
+  parent: AirlockSCPLocked
+  id: AirlockSCPTwoLocked
+  suffix: seriozha, Недра, Two
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsSCPTwo ]
+#Electronics
+- type: entity
   parent: DoorElectronics
-  id: DoorElectronicsSCP
+  id: DoorElectronicsSCPOne
   name: Idk
   suffix: seriozha, Недра
+  categories: [ HideSpawnMenu ]
   components:
   - type: AccessReader
     access: [["SCPAccesOne"]]
 
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSCPTwo
+  name: Idk
+  suffix: seriozha, Недра
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AccessReader
+    access: [["SCPAccesTwo"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSCPThree
+  name: Idk
+  suffix: seriozha, Недра
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AccessReader
+    access: [["SCPAccesThree"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSCPFour
+  name: Idk
+  suffix: seriozha, Недра
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AccessReader
+    access: [["SCPAccesFour"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSCPFive
+  name: Idk
+  suffix: seriozha, Недра
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AccessReader
+    access: [["SCPAccesFive"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsSCPAdm
+  name: Idk
+  suffix: seriozha, Недра
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: AccessReader
+    access: [["SCPAccesAdministration"]]
+#Electronics end, start remotes
 - type: entity
   parent: DoorRemoteDefault
   id: DoorRemoteSCPAll
