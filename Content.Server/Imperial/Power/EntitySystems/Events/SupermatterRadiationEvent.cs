@@ -7,29 +7,28 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// </summary>
 public sealed class SupermatterRadiationEvent
 {
-    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
+    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem)
     {
         // Валидация входных параметров
         if (uid == EntityUid.Invalid)
         {
-            system.Log.Error("SupermatterRadiationEvent.Activate: Invalid EntityUid provided");
+            supermatterSystem.Log.Error("SupermatterRadiationEvent.Activate: Invalid EntityUid provided");
             return;
         }
 
-        var currentTime = system.GameTiming.CurTime;
+        var currentTime = supermatterSystem.GameTiming.CurTime;
         comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Radiation;
-        comp.EventEndTime = TimeSpan.FromSeconds(comp.RadiationEventDuration);
-        comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.RadiationMinNextEvent, comp.RadiationMaxNextEvent));
+        comp.EventEndTime = comp.RadiationEventDuration;
+        comp.NextEventTimer = comp.EventAfterRadiationTime;
         comp.LastEventEndTimeUpdate = currentTime;
         comp.LastNextEventTimerUpdate = currentTime;
 
-        // Обработка потенциальных исключений при установке радиации
-        system.SetRadiation(uid, comp.RadiationIntensity);
+        supermatterSystem.SetRadiation(uid, comp.RadiationEventIntensity);
     }
 
-    public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
+    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
     {
-        supermatterSystem.SetRadiation(uid, comp.RadiationIntensity);
+        supermatterSystem.SetRadiation(uid, comp.RadiationEventIntensity);
     }
 
     public static string GetAnnouncement()

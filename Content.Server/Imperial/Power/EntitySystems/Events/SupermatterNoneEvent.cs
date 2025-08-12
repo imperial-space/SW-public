@@ -7,24 +7,24 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// </summary>
 public sealed class SupermatterNoneEvent
 {
-    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
+    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem)
     {
 
         if (uid == EntityUid.Invalid)
         {
-            system.Log.Error("SupermatterNoneEvent.Activate: Invalid EntityUid provided");
+            supermatterSystem.Log.Error("SupermatterNoneEvent.Activate: Invalid EntityUid provided");
             return;
         }
 
-        var currentTime = system.GameTiming.CurTime;
+        var currentTime = supermatterSystem.GameTiming.CurTime;
         comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.None;
         comp.EventEndTime = TimeSpan.Zero;
-        comp.NextEventTimer = TimeSpan.FromSeconds(comp.NoneEventDuration);
+        comp.NextEventTimer = comp.NoneEventDuration;
         comp.LastEventEndTimeUpdate = currentTime;
         comp.LastNextEventTimerUpdate = currentTime;
     }
 
-    public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)
+    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
     {
 
     }

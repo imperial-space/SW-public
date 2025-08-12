@@ -2,6 +2,7 @@ using Content.Server.Imperial.Power.Components;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Physics.Events;
 using Content.Server.Effects;
+using Content.Shared.Gibbing.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 
@@ -24,30 +25,18 @@ namespace Content.Server.Imperial.Power.EntitySystems
             if (!EntityManager.HasComponent<MobStateComponent>(other))
                 return;
 
-            var transformComp = EntityManager.GetComponentOrNull<TransformComponent>(other);
-            if (transformComp == null)
-                return;
+            var transformComp = Transform(other);
 
-            PlayGibSound(component, transformComp);
-            ShowColorFlash(component, other);
-            SpawnAshAndDelete(component, transformComp, other);
+            GibCollidedEntity(component, transformComp, other, uid);
             RaiseLocalEvent(uid, new SupermatterTouchedEvent());
         }
 
-        private void PlayGibSound(SupermatterTouchComponent component, TransformComponent transformComp)
+        private void GibCollidedEntity(SupermatterTouchComponent supermatterTouchComponent, TransformComponent transformComp, EntityUid entityUid, EntityUid supermatterUid)
         {
-            _audio.PlayPvs(component.GibSound, transformComp.Coordinates);
-        }
-
-        private void ShowColorFlash(SupermatterTouchComponent component, EntityUid other)
-        {
-            _colorFlash.RaiseEffect(component.FlashColor, [other], Filter.Pvs(other));
-        }
-
-        private void SpawnAshAndDelete(SupermatterTouchComponent component, TransformComponent transformComp, EntityUid other)
-        {
-            EntityManager.SpawnEntity(component.AshPrototype, transformComp.Coordinates);
-            EntityManager.QueueDeleteEntity(other);
+            _audio.PlayPvs(supermatterTouchComponent.GibSound, transformComp.Coordinates);
+            _colorFlash.RaiseEffect(supermatterTouchComponent.FlashColor, [supermatterUid], Filter.Pvs(supermatterUid));
+            EntityManager.QueueDeleteEntity(entityUid);
+            EntityManager.SpawnEntity(supermatterTouchComponent.AshPrototype, transformComp.Coordinates);
         }
     }
 

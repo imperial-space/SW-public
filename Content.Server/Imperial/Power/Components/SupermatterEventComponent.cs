@@ -1,5 +1,7 @@
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
+using Content.Server.Imperial.Power.EntitySystems.Events;
+using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Power.Components;
 
@@ -18,20 +20,50 @@ public sealed partial class SupermatterEventComponent : Component
     }
 
     /// <summary>
-    /// Время до следующего случайного события (в секундах).
+    /// Список разрешенных типов событий для этого кристалла.
     /// </summary>
-    [DataField]
-    public TimeSpan NextEventTimer = TimeSpan.Zero;
+    [ViewVariables(VVAccess.ReadOnly)]
+    public List<SupermatterEventType> AllowedEventTypes { get; set; } =
+    [
+        SupermatterEventType.None,
+        SupermatterEventType.Lightning,
+        SupermatterEventType.Radiation,
+        SupermatterEventType.Plasma,
+    ];
+
+    /// <summary>
+    /// Тип события в само событие.
+    /// </summary>
+    public readonly Dictionary<SupermatterEventType, object> SupermatterEventTypesToEvents = new()
+    {
+        { SupermatterEventType.None, new SupermatterNoneEvent() },
+        { SupermatterEventType.Lightning, new SupermatterLightningEvent() },
+        { SupermatterEventType.Radiation, new SupermatterRadiationEvent() },
+        { SupermatterEventType.Plasma, new SupermatterPlasmaEvent() },
+    };
+
+    /// <summary>
+    /// Объявлена ли война Ядерными Оперативниками. Если да - не создавать события.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public bool IsWarOps = false;
+
+    /// <summary>
+    /// Время до первого события, далее устанавливается самими событиями (в секундах).
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan NextEventTimer = TimeSpan.FromSeconds(Random.Shared.Next(600, 900));
 
     /// <summary>
     /// Текущий активный тип события.
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
     public SupermatterEventType CurrentEvent = SupermatterEventType.None;
 
     /// <summary>
     /// Время окончания текущего события (0, если событие не активно).
     /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan EventEndTime = TimeSpan.Zero;
 
     /// <summary>
@@ -45,39 +77,21 @@ public sealed partial class SupermatterEventComponent : Component
     public TimeSpan? PlasmaTickAccumulator = null;
 
     /// <summary>
-    /// Список разрешенных типов событий для этого кристалла.
-    /// </summary>
-    [DataField]
-    public List<SupermatterEventType> AllowedEventTypes { get; set; } =
-    [
-        SupermatterEventType.None,
-        SupermatterEventType.Lightning,
-        SupermatterEventType.Radiation,
-        SupermatterEventType.Plasma,
-    ];
-
-    /// <summary>
     /// Радио каналы для оповещений о событиях.
     /// </summary>
     [DataField]
     public ProtoId<RadioChannelPrototype>[] RadioChannels = ["Engineering"];
 
     /// <summary>
-    /// Задержка перед первым событием (в секундах).
-    /// </summary>
-    [DataField]
-    public float InitialEventDelaySeconds = 900f; // 15 минут
-
-    /// <summary>
     /// Время жизни кэша консоли (в секундах).
     /// </summary>
-    public readonly float ConsoleCacheLifetime = 10f;
+    public readonly TimeSpan ConsoleCacheLifetime = TimeSpan.FromSeconds(10);
 
     /// <summary>
     /// Длительность события None (в секундах).
     /// </summary>
     [DataField]
-    public float NoneEventDuration = 300f; // 5 минут
+    public TimeSpan NoneEventDuration = TimeSpan.FromSeconds(Random.Shared.Next(200, 300));
 
     // LightningEvent
 
@@ -85,35 +99,30 @@ public sealed partial class SupermatterEventComponent : Component
     /// Длительность события LightningEvent (в секундах).
     /// </summary>
     [DataField]
-    public float LightningEventDuration = 120f; // 2 минуты
+    public TimeSpan LightningEventDuration = TimeSpan.FromSeconds(Random.Shared.Next(80, 120));
 
     /// <summary>
     /// Кулдаун между молниями во время события LightningEvent (в секундах).
     /// </summary>
     [DataField]
-    public float LightningCooldownDuration = 8f; // 8 секунд
+    public TimeSpan LightningCooldownDuration = TimeSpan.FromSeconds(Random.Shared.Next(5, 8));
 
     /// <summary>
-    /// Минимальное время до следующего события после LightningEvent (в секундах).
+    /// Время до следующего события после LightningEvent (в секундах).
     /// </summary>
-    public readonly float LightningMinNextEvent = 180f; // 3 минуты
-
-    /// <summary>
-    /// Максимальное время до следующего события после LightningEvent (в секундах).
-    /// </summary>
-    public readonly float LightningMaxNextEvent = 420f; // 7 минут
+    public readonly TimeSpan EventAfterLightingTime = TimeSpan.FromSeconds(Random.Shared.Next(180, 420));
 
     /// <summary>
     /// Количество молний, выпускаемых за один раз при LightningEvent.
     /// </summary>
     [DataField]
-    public int LightningBoltCount = 1; // 7 минут
+    public int LightningBoltCount = 1;
 
     /// <summary>
     /// Радиус, в котором молнии будут выпускаться при LightingEvent.
     /// </summary>
     [DataField]
-    public float LightningBoltRadius = 8f; // 7 минут
+    public float LightningBoltRadius = 8f;
 
     // RadiationEvent
 
@@ -121,23 +130,18 @@ public sealed partial class SupermatterEventComponent : Component
     /// Длительность RadiationEvent (в секундах).
     /// </summary>
     [DataField]
-    public float RadiationEventDuration = 120f; // 2 минуты
+    public TimeSpan RadiationEventDuration = TimeSpan.FromSeconds(Random.Shared.Next(80, 120));
 
     /// <summary>
     /// Интенсивность радиации во время события RadiationEvent.
     /// </summary>
     [DataField]
-    public float RadiationIntensity = 10f;
+    public float RadiationEventIntensity = Random.Shared.NextFloat(6f, 12f);
 
     /// <summary>
-    /// Минимальное время до следующего события после RadiationEvent (в секундах).
+    /// Время до следующего события после RadiationEvent (в секундах).
     /// </summary>
-    public readonly float RadiationMinNextEvent = 180f; // 3 минуты
-
-    /// <summary>
-    /// Максимальное время до следующего события после RadiationEvent (в секундах).
-    /// </summary>
-    public readonly float RadiationMaxNextEvent = 420f; // 7 минут
+    public readonly TimeSpan EventAfterRadiationTime = TimeSpan.FromSeconds(Random.Shared.Next(180, 420));
 
     // PlasmaEvent
 
@@ -145,40 +149,35 @@ public sealed partial class SupermatterEventComponent : Component
     /// Длительность PlasmaEvent (в секундах).
     /// </summary>
     [DataField]
-    public float PlasmaEventDuration = 120f; // 2 минуты
+    public TimeSpan PlasmaEventDuration = TimeSpan.FromSeconds(Random.Shared.Next(80, 120));
 
     /// <summary>
-    /// Минимальное время до следующего события после PlasmaEvent (в секундах).
+    /// Время до следующего события после PlasmaEvent (в секундах).
     /// </summary>
-    public readonly float PlasmaMinNextEvent = 180f; // 3 минуты
-
-    /// <summary>
-    /// Максимальное время до следующего события после PlasmaEvent (в секундах).
-    /// </summary>
-    public readonly float PlasmaMaxNextEvent = 420f; // 7 минут
+    public readonly TimeSpan EventAfterPlasmaTime = TimeSpan.FromSeconds(Random.Shared.Next(140, 180));
 
     /// <summary>
     /// Интервал генерации плазмы во время PlasmaEvent (в секундах).
     /// </summary>
-    public readonly float PlasmaTickInterval = 10f; // 10 секунд
+    public readonly TimeSpan PlasmaTickInterval = TimeSpan.FromSeconds(Random.Shared.Next(6, 10));
 
     /// <summary>
     /// Количество молей плазмы, генерируемых за тик.
     /// </summary>
     [DataField]
-    public float PlasmaMolesAmount = 5f;
+    public float PlasmaMolesAmount = Random.Shared.NextFloat(3f, 7f);
 
     /// <summary>
     /// Температура хотспота плазмы при PlasmaEvent.
     /// </summary>
     [DataField]
-    public float PlasmaHotspotTemperature = 1500f;
+    public float PlasmaHotspotTemperature = Random.Shared.NextFloat(1250f, 1500f);
 
     /// <summary>
     /// Объем хотспота плазмы при PlasmaEvent.
     /// </summary>
     [DataField]
-    public float PlasmaHotspotVolume = 50f;
+    public float PlasmaHotspotVolume = Random.Shared.NextFloat(35f, 50f);
 
     // Default radiation
 
@@ -186,10 +185,8 @@ public sealed partial class SupermatterEventComponent : Component
     /// Базовая интенсивность радиации вне событий.
     /// </summary>
     [DataField]
-    public float DefaultRadiationIntensity = 5f;
+    public float DefaultRadiationIntensity = Random.Shared.NextFloat(4, 5);
 
-
-    public TimeSpan ConsoleCacheTimer = TimeSpan.Zero;
     public TimeSpan LastConsoleCacheUpdate = TimeSpan.Zero;
     public TimeSpan LastEventEndTimeUpdate = TimeSpan.Zero;
     public TimeSpan LastNextEventTimerUpdate = TimeSpan.Zero;

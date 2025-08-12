@@ -2,7 +2,6 @@ using Content.Server.Imperial.Power.Components;
 using Content.Shared.Examine;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Radio.EntitySystems;
-using Content.Shared.Projectiles;
 using Content.Shared.Tag;
 using Robust.Shared.Physics.Events;
 using Content.Server.Chat.Systems;
@@ -29,12 +28,6 @@ namespace Content.Server.Imperial.Power.EntitySystems
             base.Initialize();
             SubscribeLocalEvent<SupermatterIntegrityComponent, ExaminedEvent>(OnExamined);
             SubscribeLocalEvent<SupermatterIntegrityComponent, StartCollideEvent>(OnStartCollide);
-            SubscribeLocalEvent<SupermatterIntegrityComponent, ProjectileHitEvent>(OnProjectileHit);
-        }
-
-        private void OnProjectileHit(EntityUid uid, SupermatterIntegrityComponent comp, ref ProjectileHitEvent args)
-        {
-            comp.Integrity = MathF.Max(0, comp.Integrity - 10f); // 10 урона за выстрел
         }
 
         private void OnExamined(EntityUid uid, SupermatterIntegrityComponent component, ExaminedEvent args)
@@ -43,14 +36,9 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 return;
 
             var integrityPercent = component.Integrity / component.MaxIntegrity * 100;
-            foreach (var (key, descId) in component.IntegrityDescription.OrderByDescending(p => p.Key))
-            {
-                if (integrityPercent < key)
-                    continue;
+            var integrityLevel = component.SupermatterIntegrity.First(entry => integrityPercent > entry.Threshold);
 
-                args.PushMarkup(Loc.GetString(descId));
-                break;
-            }
+            args.PushMarkup(Loc.GetString(integrityLevel.Description));
         }
 
         private void OnStartCollide(EntityUid uid, SupermatterIntegrityComponent component, ref StartCollideEvent args)
@@ -89,32 +77,29 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
             var integrityPercent = comp.Integrity / comp.MaxIntegrity * 100;
 
-            // Сброс флагов предупреждений
-            foreach (var key in comp.IntegrityFlags.Keys.ToList().Where(key => integrityPercent > key && comp.IntegrityFlags[key]))
+            var index = comp.SupermatterIntegrity.FindIndex(entry => integrityPercent > entry.Threshold);
+            if (index >= 0)
             {
-                comp.IntegrityFlags[key] = false;
+                // Replace with same tuple but Flag = false
+                var oldEntry = comp.SupermatterIntegrity[index];
+                comp.SupermatterIntegrity[index] = (oldEntry.Threshold, oldEntry.Color, oldEntry.Description, oldEntry.Warning, false);
             }
 
-            // Выдача предупреждений по порогам
-            foreach (var threshold in comp.IntegrityWarnings.Keys.OrderByDescending(t => t))
+            foreach (var level in comp.SupermatterIntegrity.OrderByDescending(entry => entry.Threshold))
             {
-                if (integrityPercent > threshold)
+                if (integrityPercent > level.Threshold
+                    || level.Flag
+                    || string.IsNullOrEmpty(level.Warning))
+                {
                     continue;
+                }
 
-                if (!comp.IntegrityFlags.TryGetValue(threshold, out var triggered) || triggered)
-                    continue;
+                var integrityWarning = Loc.GetString(level.Warning);
 
-                if (!comp.IntegrityWarnings.TryGetValue(threshold, out var msgKey))
-                    continue;
+                SendSupermatterRadio(uid, integrityWarning, comp);
 
-                var msg = Loc.GetString(msgKey);
-
-                SendSupermatterRadio(uid, msg, comp);
-                _chatSystem.TrySendInGameICMessage(uid, msg, InGameICChatType.Speak, ChatTransmitRange.Normal);
-
-                var integrityThresholds = comp.IntegrityDescription.Keys.OrderByDescending(k => k).ToArray();
-
-                if (threshold <= integrityThresholds[4]) // 10f
+                var criticalThreshold = comp.SupermatterIntegrity.MinBy(entry => entry.Threshold);
+                if (integrityPercent <= criticalThreshold.Threshold) // 10f
                 {
                     var station = _stationSystem.GetOwningStation(uid);
                     if (station != null)
@@ -129,7 +114,11 @@ namespace Content.Server.Imperial.Power.EntitySystems
                     }
                 }
 
-                comp.IntegrityFlags[threshold] = true;
+                var levelIndex = comp.SupermatterIntegrity.FindIndex(entry => Math.Abs(level.Threshold - entry.Threshold) < 1f);
+                var updated = comp.SupermatterIntegrity[levelIndex];
+
+                comp.SupermatterIntegrity[levelIndex] = (updated.Threshold, updated.Color, updated.Description, updated.Warning, true);
+
                 break;
             }
 
@@ -186,6 +175,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
         // Отправка сообщения в общую рацию от имени суперматерии
         private void SendSupermatterRadio(EntityUid source, string message, SupermatterIntegrityComponent component)
         {
+            _chatSystem.TrySendInGameICMessage(source, message, InGameICChatType.Speak, ChatTransmitRange.Normal);
             _radioSystem.SendRadioMessage(source, message, component.RadioChannel, source);
         }
     }
