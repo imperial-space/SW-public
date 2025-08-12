@@ -1,0 +1,14 @@
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerCult
+  id: MedievalMagicDaggerCult
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: CultRitualMelee
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/dagger_cult.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/dagger_cult.rsi
