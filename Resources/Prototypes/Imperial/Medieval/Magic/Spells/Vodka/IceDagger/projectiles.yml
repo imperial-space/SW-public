@@ -102,9 +102,9 @@
     size: Small
     sprite: Imperial/Medieval/Melee/ice_dagger_senior.rsi
   - type: MeleeParry
-    parryChanse: 0.4
+    parryChanse: 0.15
   - type: MeleeWeapon
-    attackRate: 1.4
+    attackRate: 1.75
     clickDamageModifier: 1.33
     range: 1.15
     damage:
@@ -118,7 +118,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Slash: 16
+        Slash: 20
   - type: MeleeThrowOnHit
     distance: 0.3
     speed: 5

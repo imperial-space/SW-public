@@ -12,7 +12,7 @@
     sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
     state: 1
   cost:
-    MagicMedievalVodka: 20
+    MagicMedievalVodka: 25
   categories:
   - MedievalVodkaSpells
   conditions:
@@ -32,7 +32,7 @@
     sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
     state: 2
   cost:
-    MagicMedievalVodka: 45
+    MagicMedievalVodka: 40
   categories:
   - MedievalVodkaSpells
   conditions:
@@ -55,7 +55,8 @@
     sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
     state: 3
   cost:
-    MagicMedievalVodka: 45
+    MagicMedievalVodka: 75
+    ArchmagePoints: 1
   categories:
   - MedievalVodkaSpells
   conditions:
