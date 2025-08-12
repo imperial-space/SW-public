@@ -16,7 +16,7 @@
           MagicMedievalVodka: 1
   - type: MedievalInstantSpell
   - type: InstantAction
-    useDelay: 0
+    useDelay: 4
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
@@ -40,7 +40,7 @@
           hideChat: true
   - type: MedievalSpawnOnlyInFreeHands
   - type: ManaDrainSpell
-    manaDrain: 5
+    manaDrain: 12
     canUseWithoutMana: true
     manaLowMessage: medieval-spell-speach-not-enough-mana-vodka-spell
     damageOnUseWithoutMana:
@@ -70,7 +70,7 @@
           MagicMedievalVodka: 1
   - type: MedievalInstantSpell
   - type: InstantAction
-    useDelay: 0
+    useDelay: 2.5
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
@@ -94,7 +94,7 @@
           hideChat: true
   - type: MedievalSpawnOnlyInFreeHands
   - type: ManaDrainSpell
-    manaDrain: 5
+    manaDrain: 12
     canUseWithoutMana: true
     manaLowMessage: medieval-spell-speach-not-enough-mana-vodka-spell
     damageOnUseWithoutMana:
@@ -120,7 +120,7 @@
           MagicMedievalVodka: 1
   - type: MedievalInstantSpell
   - type: InstantAction
-    useDelay: 0
+    useDelay: 1.5
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
@@ -144,7 +144,7 @@
           hideChat: true
   - type: MedievalSpawnOnlyInFreeHands
   - type: ManaDrainSpell
-    manaDrain: 5
+    manaDrain: 12
     canUseWithoutMana: true
     manaLowMessage: medieval-spell-speach-not-enough-mana-vodka-spell
     damageOnUseWithoutMana:
