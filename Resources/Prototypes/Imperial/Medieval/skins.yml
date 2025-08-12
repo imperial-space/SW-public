@@ -151,7 +151,8 @@
     MedievalClothingFeetSteel: [MedievalClothingFeetSteelDarkBootsArchaont]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorWhiteWizardCharmerLight, MedievalClothingOuterArmorCharmerLightApocrif]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightApocrif]
-    Log: [MedievalClothingHandsGlovesWhiteWizard]
+    Log: [MedievalClothingHandsGlovesWhiteWizard, MedievalClothingHandsApocrif]
+    MedievalShoesChamber: [MedievalClothingApocrifBoots]
     MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer, MedievalClothingOuterArmorCharmerApocrif]
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer, MedievalClothingHeadHelmetCharmerApocrif]
 

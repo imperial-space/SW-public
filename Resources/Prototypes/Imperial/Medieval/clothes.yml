@@ -1750,6 +1750,17 @@
     sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
 
 - type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBoots
+  name: MedievalClothingApocrifBoots
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
   parent: MedievalClothingHandsGlovesCloth
   id: MedievalClothingHandsRoyalGloves
   name: Cloth Gloves
@@ -1766,6 +1777,20 @@
 - type: entity
   parent: MedievalClothingHandsGlovesCloth
   id: MedievalClothingHandsBlackGloves
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsApocrif
   name: Cloth Gloves
   description: Cloth Gloves
   components:
