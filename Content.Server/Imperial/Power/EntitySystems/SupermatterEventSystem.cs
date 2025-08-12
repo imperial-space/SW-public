@@ -111,7 +111,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 }
 
                 if (comp.EventEndTime == TimeSpan.Zero
-                    && comp.NextEventTimer == TimeSpan.Zero && comp.IsWarOps)
+                    && comp.NextEventTimer == TimeSpan.Zero && !comp.IsWarOps)
                 {
                     if (lastEvent == SupermatterEventComponent.SupermatterEventType.Radiation)
                     {
