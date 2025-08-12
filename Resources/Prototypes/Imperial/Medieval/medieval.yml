@@ -7657,6 +7657,21 @@
   texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
   fireStates: 1
 
+- type: explosion
+  id: FrontDemolitionCharge
+  damagePerIntensity:
+    types:
+      Heat: 3
+      Blunt: 3
+      Piercing: 3
+      Structural: 150
+  tileBreakChance: [ 0, 0.5, 1 ]
+  tileBreakIntensity: [ 0, 10, 30 ]
+  tileBreakRerollReduction: 20
+  lightColor: Orange
+  texturePath: /Textures/Imperial/Medieval/Misc/fire.rsi
+  fireStates: 1
+
 - type: entity
   id: MedievalMagicBell
   name: church bell

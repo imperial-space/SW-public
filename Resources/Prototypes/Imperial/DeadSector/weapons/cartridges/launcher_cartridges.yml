@@ -28,7 +28,7 @@
     tags:
       - CartridgeRPG8
   - type: Item
-    size: Small
+    size: NormalNo
   - type: CartridgeAmmo
     proto: BulletRPG8LargeRadius
     deleteOnSpawn: true

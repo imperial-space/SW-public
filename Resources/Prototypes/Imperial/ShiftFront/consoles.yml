@@ -202,7 +202,7 @@
       task: TurretCompound
     blackboard:
       RotateSpeed: !type:Single
-        4.141
+        3.1
       SoundTargetInLOS: !type:SoundPathSpecifier
         path: /Audio/Effects/double_beep.ogg
   - type: NpcFactionMember
@@ -212,7 +212,7 @@
     layers:
     - state: turretblue
   - type: Gun
-    fireRate: 6
+    fireRate: 3
     minAngle: 25
     maxAngle: 25
   - type: ShiftFPVDrone
@@ -237,6 +237,26 @@
     dynamic: false
     faction: Blue
     mippleProto: ShiftFrontTurretBlue
+  - type: BallisticAmmoProvider
+    proto: CartridgeCaselessRifleStrong
+    capacity: 500
+
+- type: entity
+  id: CartridgeCaselessRifleStrong
+  parent: BaseCartridgeCaselessRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCaselessRifleStrong
+
+- type: entity
+  id: BulletCaselessRifleStrong
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 36
 
 - type: entity
   parent: WeaponTurretShiftFrontBlue ###
@@ -1119,8 +1139,10 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Physics
+    bodyType: Dynamic
   - type: SiegeWeapon
-    maxTarget: 100
+    maxTarget: 85
   - type: Clickable
   - type: InteractionOutline
   - type: Appearance
@@ -1151,6 +1173,18 @@
       state: ammomm
     - type: SiegeAmmo
       ammoType: mm
+    - type: Item
+      size: Normal
+
+- type: entity
+  id: MedievalCatapultAmmoMmFrag
+  parent: BaseItem
+  components:
+    - type: Sprite
+      sprite: Imperial/ShiftFront/light.rsi
+      state: ammomm
+    - type: SiegeAmmo
+      ammoType: mmfrag
     - type: Item
       size: Normal
 
@@ -1588,7 +1622,7 @@
   parent: BaseStructure
   components:
   - type: Damageable
-    damageContainer: StructuralInorganic
+    damageContainer: Inorganic
     damageModifierSet: FrontBags
   - type: PlaceableSurface
   - type: Climbable
@@ -1992,3 +2026,30 @@
     sprite: Imperial/ShiftFront/helmets/bomb_gray.rsi
   - type: Clothing
     sprite: Imperial/ShiftFront/helmets/bomb_gray.rsi
+
+
+- type: entity
+  name: explosive grenade
+  description: Grenade that creates a small but devastating explosion.
+  parent: [GrenadeBase, BaseSyndicateContraband]
+  id: ExGrenadeAT
+  components:
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: RPG8Explosion
+    maxIntensity: 4
+    intensitySlope: 10
+    totalIntensity: 30
+    maxTileBreak: 1
+    canCreateVacuum: false
+  - type: OnUseTimerTrigger
+    beepSound:
+      path: "/Audio/Imperial/ShiftFront/grenade_init.ogg"
+      params:
+        volume: 5
+    initialBeepDelay: 0
+    beepInterval: 10 # 2 beeps total (at 0 and 2)
+  - type: Sprite
+    sprite: Objects/Weapons/Grenades/grenade_at.rsi
+  - type: Item
+    size: Normal

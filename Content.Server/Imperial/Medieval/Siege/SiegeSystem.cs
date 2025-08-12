@@ -239,7 +239,9 @@ namespace Content.Server.Siege
             else if (comp.LoadedShot == "mortar")
                 Spawn("MedievalHitMarkerMortar", targetCoords);
             else if (comp.LoadedShot == "mm")
-                Spawn("MedievalHitMarkerMm", targetCoords);
+                Spawn("MedievalHitMarkerMm0", targetCoords);
+            else if (comp.LoadedShot == "mmfrag")
+                Spawn("MedievalHitMarkerMmFrag0", targetCoords);
             comp.LoadedShot = "";
         }
         public void TryAimX(EntityUid user, EntityUid siegeUid, SiegeWeaponComponent comp)

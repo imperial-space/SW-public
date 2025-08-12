@@ -355,6 +355,18 @@ namespace Content.Server.ShiftFront
                         Priority = 3,
                         //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
                     });
+                if (CheckResearch("ShiftFrontGrenadesAT", comp.Faction))
+                    ev.Verbs.Add(new AlternativeVerb
+                    {
+                        Act = () =>
+                        {
+                            comp.ChosenGen = "противотанковая граната";
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить выбранную гранату раз в какое-то время", "Выбрано");
+                        },
+                        Text = "Противотанковая граната",
+                        Priority = 3,
+                        //Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammo")
+                    });
                 if (CheckResearch("ShiftFrontGrenades", comp.Faction))
                     ev.Verbs.Add(new AlternativeVerb
                     {
@@ -630,6 +642,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "разрывная граната":
                                 Spawn("ExGrenade", coords);
+                                break;
+                            case "противотанковая граната":
+                                Spawn("ExGrenadeAT", coords);
                                 break;
                             case "зажигательная граната":
                                 Spawn("GrenadeIncendiary", coords);

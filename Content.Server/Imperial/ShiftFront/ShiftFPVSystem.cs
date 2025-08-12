@@ -25,6 +25,7 @@ using Content.Shared.Fluids.Components;
 using Robust.Shared.Random;
 using Content.Shared.Examine;
 using Content.Shared.Inventory.Events;
+using Content.Shared.Projectiles;
 
 namespace Content.Server.ShiftFront
 {
@@ -130,6 +131,8 @@ namespace Content.Server.ShiftFront
         {
             if (comp.TankPart) return;
             if (TryComp<MobStateComponent>(args.OtherEntity, out var mob) && mob.CurrentState == MobState.Dead)
+                return;
+            if (HasComp<ProjectileComponent>(args.OtherEntity))
                 return;
             if (HasComp<PuddleComponent>(args.OtherEntity))
                 return;

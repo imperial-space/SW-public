@@ -97,7 +97,7 @@
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ProjectileGrenade
     fillPrototype: PelletClusterLethal
-    capacity: 40
+    capacity: 70
   - type: OnUseTimerTrigger
     beepSound:
       path: "/Audio/Imperial/ShiftFront/grenade_init.ogg"

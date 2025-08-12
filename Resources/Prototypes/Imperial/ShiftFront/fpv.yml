@@ -1,28 +1,85 @@
 
 - type: entity
-  parent: [ SimpleMobBase, FlyingMobBase ]
+  #parent: SimpleSpaceMobBase
   id: MobFPVDrone
   components:
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Critical
+      200: Dead
+  - type: Pullable
+  - type: Damageable
+    damageContainer: Biological
+  - type: Reactive
+    groups:
+      Flammable: [Touch]
+      Extinguish: [Touch]
+      Acidic: [Touch, Ingestion]
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - StaminaModifier
+    - Flashed
+    - RadiationProtection
+    - Drowsiness
+    - Adrenaline
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: MobCollision
+  - type: Clickable
+  - type: InteractionOutline
+  - type: InputMover
+  - type: Input
+    context: "human"
+  - type: LagCompensation
+  - type: MobMover
+  - type: Actions
+  - type: Alerts
+  - type: Appearance
+  - type: RotationVisuals
+    defaultRotation: 0
+    horizontalRotation: 0
+  - type: DoAfter
+  - type: Examiner
+  - type: ContentEye
+  - type: CameraRecoil
+  - type: MindContainer
+  - type: Physics
+    bodyStatus: InAir
+    bodyType: KinematicController
+  - type: NoSlip
+  - type: MovementAlwaysTouching
+  - type: CanMoveInAir
   - type: Eye
     pvsScale: 2
-  - type: HTN
-    enabled: false
+  #- type: HTN
+  #  enabled: false
   - type: Item
     size: Normal
   - type: MovementSpeedModifier
     baseWalkSpeed : 7
     baseSprintSpeed : 7
-    acceleration: 1.8
-    baseAcceleration: 1.8
-    weightlessAcceleration: 1.8
-    baseWeightlessAcceleration: 1.8
-    friction: 0.17
-    frictionNoInput: 0.17
-    baseFriction: 0.17
+    acceleration: 1.4
+    baseAcceleration: 1.4
+    weightlessAcceleration: 1.4
+    baseWeightlessAcceleration: 1.4
+    friction: 0.4
+    frictionNoInput: 0.4
+    baseFriction: 0.4
   - type: MedievalDash
     force: 0
     staminaDamage: 0
   - type: Sprite
+    #noRot: true
     scale: 0.6, 0.6
     drawdepth: Mobs
     noRot: false
@@ -39,13 +96,14 @@
   - type: Fixtures
     fixtures:
       fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.07
+        shape: !type:PhysShapeAabb
+          bounds: "-0.08,-0.08,0.08,0.08"
         density: 10
         mask:
         - FlyingMobMask
+        - MobMask
         layer:
+        - MobLayer
         - FlyingMobLayer
   - type: ShiftFPVDrone
 

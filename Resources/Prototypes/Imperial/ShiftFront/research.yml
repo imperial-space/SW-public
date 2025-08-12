@@ -152,7 +152,7 @@
   id: ShiftFrontGrenadesSupport
   tier: 1
   researchName: тактические гранаты
-  price: 55
+  price: 45
   requiredResearches:
   - ShiftFrontAssault
 
@@ -184,7 +184,15 @@
   id: ShiftFrontGrenades
   tier: 2
   researchName: боевые гранаты
-  price: 120
+  price: 60
+  requiredResearches:
+  - ShiftFrontGrenades0
+
+- type: ShiftFrontResearch
+  id: ShiftFrontGrenadesAT
+  tier: 2
+  researchName: противотанковые гранаты
+  price: 55
   requiredResearches:
   - ShiftFrontGrenades0
 
@@ -235,7 +243,7 @@
   id: ShiftFrontWeaponLauncherRPG8
   tier: 2
   researchName: РПГ
-  price: 155
+  price: 115
   requiredResearches:
   - ShiftFrontGrenades
 
