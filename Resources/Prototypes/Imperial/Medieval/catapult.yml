@@ -477,7 +477,7 @@
       map: ["enum.TriggerVisualLayers.Base"]
   - type: ProjectileGrenade
     fillPrototype: PelletClusterLethalMMFrag
-    capacity: 50
+    capacity: 64
   - type: EmitSoundOnTrigger
     sound:
       path: "/Audio/Weapons/Guns/Gunshots/batrifle.ogg"
@@ -497,6 +497,6 @@
     damage:
       types:
         Piercing: 18
-        AntiTank: 6
+        AntiTank: 4
   - type: TimedDespawn
     lifetime: 0.3

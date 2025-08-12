@@ -157,7 +157,6 @@ namespace Content.Server.ShiftFront
                 return;
             }
 
-            // Используем новый метод для каждого класса юнитов
             AddClassVerb(ev, "ShiftFrontScout", "Fast", "Скаут", 15,
                 new SpriteSpecifier.Rsi(new ResPath("Clothing/Head/Soft/greysoft.rsi"), "icon"),
                 5, 10, 0, "BaseMobHumanShiftFront" + comp.Faction + "Fast",

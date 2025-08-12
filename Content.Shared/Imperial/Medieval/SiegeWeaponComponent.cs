@@ -32,7 +32,7 @@ public sealed partial class SiegeWeaponComponent : Component
     [DataField, AutoNetworkedField]
     public string AnimationState = "";
     [DataField]
-    public float ChargeTime = 5f;
+    public float ChargeTime = 2.5f;
 
     [DataField]
     public bool SpringCharged = false;

@@ -197,6 +197,8 @@
   parent: BaseWeaponBallisticTurret
   id: WeaponTurretShiftFrontBlue
   components:
+  - type: Damageable
+    damageContainer: StructuralInorganic
   - type: HTN
     rootTask:
       task: TurretCompound
@@ -532,12 +534,12 @@
     dynamic: false
     faction: Blue
     mippleProto: ShiftFrontBarracks
-  #- type: ActivatableUI
-  #  key: enum.ShiftFrontBarracksUiKey.Key
-  #- type: UserInterface
-  #  interfaces:
-  #    enum.ShiftFrontBarracksUiKey.Key:
-  #      type: ShiftBarracksBoundUserInterface
+  - type: ActivatableUI
+    key: enum.ShiftFrontBarracksUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.ShiftFrontBarracksUiKey.Key:
+        type: ShiftBarracksBoundUserInterface
 
 - type: entity
   parent: BaseStrtuctureShiftFront
