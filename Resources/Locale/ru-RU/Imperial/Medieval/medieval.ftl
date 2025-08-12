@@ -5319,3 +5319,6 @@ ent-MedievalClothingUniformJumpsuitShitCloth74 = поношенное плать
 ent-MedievalClothingNeckCloakSpookyVendigo = мрачная накидка
     .desc = Мрачная накидка из шкуры вендиго.
     .suffix = { "Средневековье, одежда" }
+ent-MedievalMagicDaggerCult = магический кинжал культа истины
+    .desc = Этот ты точно не потеряешь
+    .suffix = { "Средневековье" }

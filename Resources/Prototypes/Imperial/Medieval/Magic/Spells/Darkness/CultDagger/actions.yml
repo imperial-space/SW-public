@@ -1,7 +1,7 @@
 - type: entity
   id: MedievalActionCultDagger
-  name: medieval-store-spells-darkness-ice-dagger-name
-  description: medieval-store-spells-darkness-ice-dagger-desc
+  name: medieval-store-spells-darkness-cult-dagger-name
+  description: medieval-store-spells-darkness-cult-dagger-desc
   components:
   - type: CastTraining
     trainingResults:

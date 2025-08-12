@@ -12,3 +12,7 @@
   - type: Item
     size: Small
     sprite: Imperial/Medieval/Melee/dagger_cult.rsi
+  - type: TimedDespawn
+    lifetime: 15
+  - type: SpawnOnDespawn
+    prototype: CultDaggerParticles
