@@ -40,7 +40,7 @@ namespace Content.Server.Imperial.Power.Components
             (75f, Color.Yellow, "supermatter-desc-scratched", "supermatter-warn-75", false),
             (50f, Color.Orange, "supermatter-desc-cracked", "supermatter-warn-50", false),
             (25f, Color.Brown, "supermatter-desc-badly-cracked", "supermatter-warn-25", false),
-            (10f, Color.DarkRed, "supermatter-desc-critical", "supermatter-10", false),
+            (10f, Color.DarkRed, "supermatter-desc-critical", "supermatter-warn-10", false),
             (0f, Color.Red, "", "", false),
         ];
 

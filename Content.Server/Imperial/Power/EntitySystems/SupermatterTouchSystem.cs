@@ -2,7 +2,6 @@ using Content.Server.Imperial.Power.Components;
 using Content.Shared.Mobs.Components;
 using Robust.Shared.Physics.Events;
 using Content.Server.Effects;
-using Content.Shared.Gibbing.Events;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 

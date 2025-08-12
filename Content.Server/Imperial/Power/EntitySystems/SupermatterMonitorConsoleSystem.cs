@@ -76,7 +76,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
                 var smPos = _transformSystem.GetMapCoordinates(smUid).Position;
                 var dist = (smPos - pos).LengthSquared();
-                if (dist >= minDist)
+                if (dist > minDist)
                     continue;
 
                 minDist = dist;

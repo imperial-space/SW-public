@@ -53,7 +53,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 return;
 
             var componentEnumerator = EntityQueryEnumerator<SupermatterEventComponent>();
-            while ( componentEnumerator.MoveNext(out var uid, out var supermatterEventComponent) )
+            while (componentEnumerator.MoveNext(out var uid, out var supermatterEventComponent))
             {
                 supermatterEventComponent.IsWarOps = true;
                 Log.Log(LogLevel.Info, $"Суперматерия ({uid}) более не может создавать события, так как статус войны теперь - {args.Status}");
