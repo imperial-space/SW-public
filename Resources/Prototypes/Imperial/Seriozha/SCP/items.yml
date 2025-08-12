@@ -66,3 +66,21 @@
     state: icon
   - type: Item
     sprite: Imperial/Seriozha/SCP/misc/mtfencryptionkey.rsi
+
+- type: entity
+  parent: ClothingHeadset
+  id: ClothingHeadsetSCPMain
+  name: scpe
+  description: scp is real
+  suffix: seriozha, Недра
+  components:
+    - type: ContainerFill
+      containers:
+        key_slots:
+        - EncryptionKeyNedraconnection
+    - type: EncryptionKeyHolder
+      keySlots: 6
+    - type: Sprite
+      sprite: Imperial/Seriozha/SCP/misc/headset.rsi
+    - type: Clothing
+      sprite: Imperial/Seriozha/SCP/misc/headset.rsi
