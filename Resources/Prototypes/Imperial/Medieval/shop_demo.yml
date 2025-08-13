@@ -2325,6 +2325,30 @@
   - MedievalMagicDemo
 
 - type: listing
+  id: DemoMdvShopMedievalReliefStoneWeak
+  productEntity: MedievalReliefStoneWeak
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalReliefStoneStrong
+  productEntity: MedievalReliefStoneStrong
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalAntiGravitationStone
+  productEntity: MedievalAntiGravitationStone
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
   id: DemoMdvShopMedievalHandheldHealthAnalyzer
   productEntity: MedievalHandheldHealthAnalyzer
   cost:
