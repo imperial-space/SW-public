@@ -92,7 +92,10 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 800
+        damage: 900
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   parent: AirlockSCPLocked

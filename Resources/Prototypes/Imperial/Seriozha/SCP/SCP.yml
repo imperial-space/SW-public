@@ -224,8 +224,8 @@
     attackRate: 1.25
     damage:
       types:
-        Structural: 200
-        Slash: 64
+        Structural: 80
+        Slash: 60
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect

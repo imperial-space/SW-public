@@ -127,7 +127,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorMTF
     id: SCPIDCardFour
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetSCPMain
     belt: ClothingBeltSecurityFilled
     suitstorage: WeaponRifleAk
     pocket1: MagazineLightRifle
@@ -152,7 +152,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorMTF
     id: SCPIDCardFive
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetSCPAlt
     suitstorage: WeaponRifleAk
     belt: ClothingBeltSecurityFilled
     pocket1: MagazineLightRifle
@@ -178,7 +178,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorSCPSecurity
     id: SCPIDCardThreeGray
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetSCPMain
     belt: ClothingBeltSecurityFilled
     suitstorage: CSWeaponP90
     pocket1: p90-Magazine
@@ -197,7 +197,7 @@
     gloves: ClothingHandsGlovesColorPurple
     outerClothing: ClothingOuterCoatRnd
     id: SCPIDCardThree
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetSCPMain
     belt: BoxFolderClipboard
   storage:
     back:
@@ -215,7 +215,7 @@
     gloves: ClothingHandsGlovesColorPurple
     outerClothing: ClothingOuterCoatRD
     id: SCPIDCardFive
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetSCPAlt
     belt: BoxFolderClipboard
   storage:
     back:
@@ -233,7 +233,7 @@
     gloves: ClothingHandsGlovesCombat
     neck: ClothingNeckDSOMedal
     id: SCPIDCardAdm
-    ears: ClothingHeadsetAltCentCom
+    ears: ClothingHeadsetSCPAlt
     belt: BlackShieldPistol
   storage:
     back:
@@ -252,7 +252,7 @@
     gloves: ClothingHandsGlovesCombat
     outerClothing: ClothingOuterArmorCI
     id: SCPIDCardCI
-    ears: ClothingHeadsetGrey
+    ears: ClothingHeadsetSCPMain
     suitstorage: WeaponSubMachineGunC20r
     pocket1: MagazinePistolSubMachineGun
     pocket2: MagazinePistolSubMachineGun
