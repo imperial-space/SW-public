@@ -73,7 +73,7 @@
     useDelay: 2.5
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
-      path: /Audio/Imperial/Medieval/touch_summon.ogg
+      path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
       state: 2
@@ -123,7 +123,7 @@
     useDelay: 1.5
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
-      path: /Audio/Imperial/Medieval/touch_summon.ogg
+      path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
       state: 3
