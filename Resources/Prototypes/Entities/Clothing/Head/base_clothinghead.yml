@@ -24,6 +24,7 @@
     tags:
     - ClothMade
     - WhitelistChameleon
+  - type: MedievalToggleHair
 
 - type: entity
   abstract: true

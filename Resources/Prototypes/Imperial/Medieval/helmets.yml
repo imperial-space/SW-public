@@ -19,7 +19,6 @@
     unequipDelay: 2
   - type: Item
     size: Normal
-  - type: MedievalToggleHair
   - type: Insulated
 
 - type: entity
@@ -393,7 +392,6 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  - type: MedievalToggleHair
   - type: Insulated
 
 - type: entity
@@ -413,7 +411,6 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  - type: MedievalToggleHair
   - type: Insulated
 
 - type: entity
@@ -433,7 +430,6 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  - type: MedievalToggleHair
   - type: Insulated
 
 - type: entity

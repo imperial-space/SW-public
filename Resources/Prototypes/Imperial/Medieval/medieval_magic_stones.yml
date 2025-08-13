@@ -1,8 +1,8 @@
 - type: entity
   id: MedievalReliefStoneWeak
-  name: слабый камень облегчения
   parent: BaseItem
-  description: Слегка снижает вес переносимой ноши.
+  name: ent-MedievalReliefStoneWeak
+  description: ent-MedievalReliefStoneWeak.desc
   components:
   - type: Sprite
     sprite: Imperial/Medieval/MagicStone/reliefstone.rsi
@@ -17,9 +17,9 @@
 
 - type: entity
   id: MedievalReliefStoneStrong
-  name: мощный камень облегчения
   parent: BaseItem
-  description: Существенно снижает вес переносимой ноши.
+  name: ent-MedievalReliefStoneStrong
+  description: ent-MedievalReliefStoneStrong.desc
   components:
   - type: Sprite
     sprite: Imperial/Medieval/MagicStone/reliefstone.rsi
@@ -34,9 +34,9 @@
 
 - type: entity
   id: MedievalAntiGravitationStone
-  name: магический камень антигравитации
   parent: BaseItem
-  description: Почти полностью нейтрализует вес.
+  name: ent-MedievalAntiGravitationStone
+  description: ent-MedievalAntiGravitationStone.desc
   components:
   - type: Sprite
     sprite: Imperial/Medieval/MagicStone/reliefstone.rsi
