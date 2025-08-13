@@ -169,7 +169,7 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     {
         var result = new List<ProtoId<MixingCategoryPrototype>>();
 
-        if (!Random.Prob(mixerRandom.Probability) || mixerRandom.Count <= 0)
+        if (!Random.Prob(mixerRandom.Probability) || mixerRandom.Categories.Count <= 0)
             return result;
 
         result.Add(Random.Pick(mixerRandom.Categories));
