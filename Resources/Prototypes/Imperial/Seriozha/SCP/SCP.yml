@@ -298,9 +298,9 @@
   id: SCPStandart
   coefficients:
     Poison: 0.1
-    Blunt: 0.35
-    Slash: 0.6
-    Piercing: 0.7
+    Blunt: 0.4
+    Slash: 0.7
+    Piercing: 0.8
     Cellular: 0.9
-    Radiation: 0.9
+    Radiation: 0.0
     Caustic: 0.0

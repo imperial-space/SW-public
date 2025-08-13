@@ -40,7 +40,7 @@
 
 - type: radioChannel
   id: NedraAlphaconnection
-  name: Оперативная Группа
+  name: Багряная Десница
   keycode: 'ш'
   frequency: 8899
   color: "#AA0000FF"

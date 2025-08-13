@@ -76,3 +76,5 @@ ent-PresetSCPCI = Повстанец хаоса
     .desc = Дверь слетает с петель, мне в лицо тычат стволами
 ent-SCPAccessConfigurator = Конфигуратор доступов недр
     .desc = Пип пуп пиип, в доступе отказано
+ent-AmmoTechFabNedra = Техфаб Недр
+    .desc = Бррр бррр брррррр
