@@ -122,8 +122,6 @@ ent-ActionToggleKnuckleDustersStun = Переключить электрокас
 ent-ActionConfigureMeleeSpeech = Установить боевой клич
     .desc = Установите боевой клич, называемый при атаке.
 
-ent-ActionSpiderWeb = Паутина
-    .desc = Создать паутину, замедляющую вашу добычу.
 ent-ActionSericulture = Сплести шёлк
     .desc = Сплести немного шёлка для использования в рецептах.
 
@@ -184,11 +182,6 @@ ent-ActionToggleGhosts = Переключить призраков
 ent-ActionToggleGhostHearing = Переключить голоса призраков
     .desc = Переключает слышимость призраков.
 
-ent-ActionDisguiseNoRot = Переключить вращение
-    .desc = Предотвратите вращение вашего прикрытия!
-ent-ActionDisguiseAnchor = Переключить закрепление
-    .desc = Притворитесь закреплённым объектом.
-
 ent-ActionPAIOpenShop = Магазин приложений
     .desc = Установите новые приложения для помощи хозяину.
 ent-ActionPAIMassScanner = Сканер массы
@@ -212,15 +205,3 @@ ent-ActionToggleJetpack = Переключить джетпак
 
 ent-ActionMimeInvisibleWall = Создать невидимую стену
     .desc = Создайте невидимую стену прямо перед вами. Никто не пройдёт!
-
-ent-ActionBeerClowned = Фаерболл
-    .desc = Создаёт фаерболл в указанном направлении.
-ent-ActionBeerGnomespawn = Вызвать мэджикарпа
-    .desc = Вызывает три мэджикарпа на помощь! Может быть, они даже будут на вашей стороне.
-ent-ActionBeerSmoke = {ent-ActionBeerGnomespawn}
-    .desc = {ent-ActionBeerGnomespawn.desc}
-ent-ActionBeersleep = {ent-ActionBeerClowned}
-    .desc = {ent-ActionBeerClowned.desc}
-
-
-
