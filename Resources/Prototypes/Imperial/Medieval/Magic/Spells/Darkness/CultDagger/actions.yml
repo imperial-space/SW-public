@@ -19,7 +19,7 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/stone_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/cult_dagger.rsi
+      sprite: Imperial/Medieval/Gun/Charmer/dagger_cult_magic.rsi
       state: 1
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: MedievalMagicDaggerCult

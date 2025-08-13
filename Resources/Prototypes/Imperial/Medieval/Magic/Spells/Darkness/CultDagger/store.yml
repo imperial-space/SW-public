@@ -5,7 +5,7 @@
   productAction: MedievalActionCultDagger
   priority: 4
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/cult_dagger.rsi
+    sprite: Imperial/Medieval/Gun/Charmer/dagger_cult_magic.rsi
     state: 1
   cost:
     MagicMedievalDarkness: 25

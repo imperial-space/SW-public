@@ -6,12 +6,12 @@
   components:
   - type: CultRitualMelee
   - type: Sprite
-    sprite: Imperial/Medieval/Melee/dagger_cult.rsi
+    sprite: Imperial/Medieval/Melee/dagger_cult_magic.rsi
     size: Small
     state: icon
   - type: Item
     size: Small
-    sprite: Imperial/Medieval/Melee/dagger_cult.rsi
+    sprite: Imperial/Medieval/Melee/dagger_cult_magic.rsi
   - type: TimedDespawn
     lifetime: 15
   - type: SpawnOnDespawn
