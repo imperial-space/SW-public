@@ -421,9 +421,9 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: FrontDemolitionCharge
-    maxIntensity: 10
+    maxIntensity: 7
     intensitySlope: 5
-    totalIntensity: 200
+    totalIntensity: 150
     canCreateVacuum: false
   - type: SpawnOnTrigger
     proto: MedievalExplosionEffect

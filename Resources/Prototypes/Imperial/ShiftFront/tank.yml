@@ -365,7 +365,7 @@
         acts: [ "Destruction" ]
   - type: ShiftTankHull
     smokeStep: 350
-    fireStep: 500
+    fireStep: 550
     insideController: TankPartController
     insideGunner: TankPartGunner
     insideEntry: TankPartEntry
