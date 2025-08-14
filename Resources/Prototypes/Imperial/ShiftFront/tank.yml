@@ -516,8 +516,8 @@
       path: /Audio/Imperial/ShiftFront/shot_tank.ogg
       params: {maxDistance: 45}
   - type: BallisticAmmoProvider
-    capacity: 100
-    proto: MagazineLightRifleHard
+    capacity: 1
+    proto: null
     whitelist:
       tags: [MagazineLightRifleHard]
 
@@ -1277,6 +1277,7 @@
   - type: Sprite
     sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
     state: blast
+  - type: ShiftTankAmmo
 
 - type: entity
   id: BulletLightRifleTank
@@ -1289,9 +1290,9 @@
     suppression: 300
     damage:
       types:
-        Piercing: 190
-        AntiTank: 130
-        AntiLightTank: 220
+        Piercing: 100
+        AntiTank: 40
+        AntiLightTank: 40
   - type: Sprite
     scale: 1.5, 1.5
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
@@ -1300,11 +1301,53 @@
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default
-    maxIntensity: 30
-    intensitySlope: 6
-    totalIntensity: 240
+    maxIntensity: 45
+    intensitySlope: 7
+    totalIntensity: 450
   - type: PointLight
     radius: 3.5
+    color: orange
+    energy: 7.5
+    castShadows: false
+
+- type: entity
+  id: MagazineLightRifleHardBops
+  parent: BaseCartridge
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTankBops
+  - type: Tag
+    tags: [MagazineLightRifleHard]
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: flash
+  - type: ShiftTankAmmo
+
+- type: entity
+  id: BulletLightRifleTankBops
+  parent: BaseBulletTrigger
+  categories: [HideSpawnMenu]
+  components:
+  - type: ShiftTankBullet
+  - type: Projectile
+    flyByCoverTime: 0.6
+    suppression: 300
+    damage:
+      types:
+        Piercing: 700
+        AntiTank: 300
+        AntiLightTank: 350
+        Structural: 500
+    penetrationThreshold: 700
+    penetrationDamageTypeRequirement:
+    - Structural
+  - type: Sprite
+    scale: 1.5, 1.5
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: PointLight
+    radius: 1.5
     color: orange
     energy: 7.5
     castShadows: false

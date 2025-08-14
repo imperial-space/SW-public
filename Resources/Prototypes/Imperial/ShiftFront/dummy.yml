@@ -1271,7 +1271,10 @@
     instantTrigger: true
     antiTank: true
   - type: Stealth
+    minVisibility: 0.2
   - type: StealthOnMove
+    passiveVisibilityRate: -0.1
+    movementVisibilityRate: 0.7
 
 - type: explosion
   id: AntiTankLandmine

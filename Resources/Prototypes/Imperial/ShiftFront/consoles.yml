@@ -1136,17 +1136,26 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: BaseStrtuctureShiftFront
+  parent: BaseStructureDynamic
   id: ShiftFrontMmBlue
   placement:
     mode: SnapgridCenter
   components:
-  - type: Physics
-    bodyType: Dynamic
   - type: SiegeWeapon
     maxTarget: 85
   - type: Clickable
   - type: InteractionOutline
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 100
+        mask:
+        - SmallMobMask
+        layer:
+        - MachineLayer
   - type: Appearance
   - type: Sprite
     noRot: true
@@ -1665,7 +1674,7 @@
   id: FrontBags
   coefficients:
     Blunt: 0.6
-    Slash: 3.5
+    Slash: 5.5
     Piercing: 0.5
     Shock: 1.2
     Structural: 0.01

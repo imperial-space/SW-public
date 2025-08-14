@@ -52,8 +52,10 @@ using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
 using Robust.Shared.Network;
-using Robust.Shared.Player;
 using Content.Shared.Movement.Pulling.Components;
+using Content.Shared.DoAfter;
+using Robust.Shared.Prototypes;
+using Content.Shared.Weapons.Ranged.Components;
 
 namespace Content.Server.ShiftFront
 {
@@ -74,6 +76,7 @@ namespace Content.Server.ShiftFront
         [Dependency] private readonly SharedEyeSystem _eye = default!;
         [Dependency] private readonly MindSystem _mind = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
+        [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
         public override void Initialize()
         {
@@ -89,8 +92,47 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftTankpartComponent, ActivateInWorldEvent>(OnActivate);
             SubscribeLocalEvent<ShiftTankHullComponent, ActivateInWorldEvent>(OnActivateTank);
             SubscribeLocalEvent<ShiftPlayerComponent, EntitySpokeEvent>(OnSpeak);
+            SubscribeLocalEvent<ShiftTankAmmoComponent, BeforeRangedInteractEvent>(OnUseInHandAmmo);
+            SubscribeLocalEvent<ShiftTankpartComponent, ShiftTankLoadDoAfter>(OnAmmoDoAfter);
 
         }
+
+        public void OnAmmoDoAfter(EntityUid uid, ShiftTankpartComponent comp, ShiftTankLoadDoAfter args)
+        {
+            if (args.Cancelled) return;
+            if (comp.Part != "Cartridge") return;
+            if (!TryComp<ShiftTankHullComponent>(comp.Tank, out var tank)) return;
+            if (!TryComp<BallisticAmmoProviderComponent>(tank.LinkedTurret, out var ammo)) return;
+            ammo.UnspawnedCount += 1;
+            ammo.Proto = comp.Ammo;
+            Dirty(uid, ammo);
+        }
+        public void OnUseInHandAmmo(EntityUid uid, ShiftTankAmmoComponent comp, BeforeRangedInteractEvent args)
+        {
+            if (!args.CanReach)
+                return;
+            if (!TryComp<ShiftTankpartComponent>(args.Target, out var part) || part.Part != "Cartridge") return;
+            if (!TryComp<ShiftTankHullComponent>(part.Tank, out var tank)) return;
+            if (!TryComp<BallisticAmmoProviderComponent>(tank.LinkedTurret, out var ammo)) return;
+            if (ammo.UnspawnedCount == ammo.Capacity) return;
+            var meta = EntityManager.GetComponent<MetaDataComponent>(uid);
+            if (meta.EntityPrototype == null) return;
+            if (meta.EntityPrototype.ID == null) return;
+            EntProtoId protoId = meta.EntityPrototype.ID;
+            part.Ammo = protoId;
+            QueueDel(uid);
+            var doAfterHit = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(4.5f), new ShiftTankLoadDoAfter(), target: args.Target, eventTarget: args.Target)
+            {
+                BreakOnMove = false,
+                BreakOnDamage = false,
+                NeedHand = false,
+                CancelDuplicate = true
+            };
+            _doAfter.TryStartDoAfter(doAfterHit);
+            _audio.PlayPvs(part.SoundAmmoLoad, part.Owner);
+            _audio.PlayPvs(part.SoundAmmoLoad, tank.Owner);
+
+        }//MagazineLightRifleHard
 
         public bool CheckResearch(string research, string faction)
         {
@@ -215,88 +257,111 @@ namespace Content.Server.ShiftFront
                     case "Controller":
                         if (component.InsideController == "") continue;
                         component.InsideControllerEntity = Spawn(component.InsideController, Transform(insuid).Coordinates);
-                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn);
-                        EnsureComp<ShiftTankpartComponent>(component.InsideControllerEntity.Value, out var controller);
-                        EnsureComp<ShiftFPVControllerComponent>(component.InsideControllerEntity.Value, out var control);
-                        control.TankPart = true;
-                        control.LinkedDrone = uid;
-                        EnsureComp<ShiftFPVDroneComponent>(uid, out var drone);
-                        drone.Controller = component.InsideControllerEntity.Value;
-                        drone.Explosive = false;
-                        drone.Pacif = false;
-                        drone.TankPart = true;
-                        controller.Tank = uid;
-                        despawn.Lifetime = 0.05f;
+                        HandleControllerSetup(insuid, component, uid);
                         break;
                     case "Gunner":
                         if (component.InsideGunner == "") continue;
                         component.InsideGunnerEntity = Spawn(component.InsideGunner, Transform(insuid).Coordinates);
-                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn2);
-                        EnsureComp<ShiftTankpartComponent>(component.InsideGunnerEntity.Value, out var gunner);
-                        EnsureComp<ShiftFPVControllerComponent>(component.InsideGunnerEntity.Value, out var control2);
-                        control2.TankPart = true;
-                        if (component.LinkedTurret == null) continue;
-                        control2.LinkedDrone = component.LinkedTurret.Value;
-                        EnsureComp<ShiftFPVDroneComponent>(component.LinkedTurret.Value, out var drone2);
-                        drone2.Controller = component.InsideGunnerEntity.Value;
-                        drone2.Explosive = false;
-                        drone2.Pacif = false;
-                        drone2.TankPart = true;
-                        gunner.Tank = uid;
-                        despawn2.Lifetime = 0.05f;
+                        HandleGunnerSetup(insuid, component, uid);
                         break;
                     case "Cartridge":
                         if (component.InsideCartridge == "") continue;
                         component.InsideCartridgeEntity = Spawn(component.InsideCartridge, Transform(insuid).Coordinates);
-                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn3);
-                        EnsureComp<ShiftTankpartComponent>(component.InsideCartridgeEntity.Value, out var cartridge);
-                        cartridge.Tank = uid;
-                        despawn3.Lifetime = 0.05f;
+                        HandleBasicPartSetup(insuid, component.InsideCartridgeEntity.Value, component, uid);
                         break;
                     case "Exit":
                         if (component.InsideExit == "") continue;
                         component.InsideExitEntity = Spawn(component.InsideExit, Transform(insuid).Coordinates);
-                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn4);
-                        EnsureComp<ShiftTankpartComponent>(component.InsideExitEntity.Value, out var exit);
-                        exit.Tank = uid;
-                        despawn4.Lifetime = 0.05f;
+                        HandleBasicPartSetup(insuid, component.InsideExitEntity.Value, component, uid);
                         break;
                     case "Entry":
                         if (component.InsideEntry == "") continue;
                         component.InsideEntryEntity = Spawn(component.InsideEntry, Transform(insuid).Coordinates);
-                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn5);
-                        EnsureComp<ShiftTankpartComponent>(component.InsideEntryEntity.Value, out var entry);
-                        entry.Tank = uid;
-                        despawn5.Lifetime = 0.05f;
+                        HandleBasicPartSetup(insuid, component.InsideEntryEntity.Value, component, uid);
+                        break;
+                    case "Rotor":
+                        if (component.InsideRotor == "") continue;
+                        component.InsideRotorEntity = Spawn(component.InsideRotor, Transform(insuid).Coordinates);
+                        HandleBasicPartSetup(insuid, component.InsideRotorEntity.Value, component, uid);
+                        break;
+                    case "Ammo":
+                        if (component.InsideAmmo == "") continue;
+                        component.InsideAmmoEntity = Spawn(component.InsideAmmo, Transform(insuid).Coordinates);
+                        HandleBasicPartSetup(insuid, component.InsideAmmoEntity.Value, component, uid);
                         break;
                     case "Motor":
                         if (component.InsideMotor == "") continue;
                         component.InsideMotorEntity = Spawn(component.InsideMotor, Transform(insuid).Coordinates);
-                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn6);
-                        EnsureComp<ShiftTankpartComponent>(component.InsideMotorEntity.Value, out var motor);
-                        motor.Tank = uid;
-                        despawn6.Lifetime = 0.05f;
+                        HandleBasicPartSetup(insuid, component.InsideMotorEntity.Value, component, uid);
                         break;
                     case "Observer":
                         if (component.InsideObserver == "") continue;
                         component.InsideObserverEntity = Spawn(component.InsideObserver, Transform(insuid).Coordinates);
-                        EnsureComp<TimedDespawnComponent>(insuid, out var despawn7);
-                        EnsureComp<ShiftTankpartComponent>(component.InsideObserverEntity.Value, out var observer);
-                        observer.Tank = uid;
-                        despawn7.Lifetime = 0.05f;
-                        EnsureComp<ShiftFPVControllerComponent>(component.InsideObserverEntity.Value, out var control3);
-                        if (component.InsideObserverEntity == null) continue;
-                        if (component.LinkedObserver == null) continue;
-                        control3.LinkedDrone = component.LinkedObserver.Value;
-                        control3.TankPart = true;
-                        EnsureComp<ShiftFPVDroneComponent>(component.LinkedObserver.Value, out var drone3);
-                        drone3.Controller = component.InsideObserverEntity.Value;
-                        drone3.Explosive = false;
-                        drone3.Pacif = false;
-                        drone3.TankPart = true;
+                        HandleObserverSetup(insuid, component, uid);
                         break;
                 }
             }
+        }
+
+        private void HandleBasicPartSetup(EntityUid insuid, EntityUid partEntity, ShiftTankHullComponent component, EntityUid uid)
+        {
+            EnsureComp<TimedDespawnComponent>(insuid, out var despawn);
+            EnsureComp<ShiftTankpartComponent>(partEntity, out var part);
+            part.Tank = uid;
+            despawn.Lifetime = 0.05f;
+        }
+
+        private void HandleControllerSetup(EntityUid insuid, ShiftTankHullComponent component, EntityUid uid)
+        {
+            EnsureComp<TimedDespawnComponent>(insuid, out var despawn);
+            if (component.InsideControllerEntity == null) return;
+            EnsureComp<ShiftTankpartComponent>(component.InsideControllerEntity.Value, out var controller);
+            EnsureComp<ShiftFPVControllerComponent>(component.InsideControllerEntity.Value, out var control);
+            control.TankPart = true;
+            control.LinkedDrone = uid;
+            EnsureComp<ShiftFPVDroneComponent>(uid, out var drone);
+            drone.Controller = component.InsideControllerEntity.Value;
+            drone.Explosive = false;
+            drone.Pacif = false;
+            drone.TankPart = true;
+            controller.Tank = uid;
+            despawn.Lifetime = 0.05f;
+        }
+
+        private void HandleGunnerSetup(EntityUid insuid, ShiftTankHullComponent component, EntityUid uid)
+        {
+            EnsureComp<TimedDespawnComponent>(insuid, out var despawn);
+            if (component.InsideGunnerEntity == null) return;
+            EnsureComp<ShiftTankpartComponent>(component.InsideGunnerEntity.Value, out var gunner);
+            EnsureComp<ShiftFPVControllerComponent>(component.InsideGunnerEntity.Value, out var control);
+            control.TankPart = true;
+            if (component.LinkedTurret == null) return;
+            control.LinkedDrone = component.LinkedTurret.Value;
+            EnsureComp<ShiftFPVDroneComponent>(component.LinkedTurret.Value, out var drone);
+            drone.Controller = component.InsideGunnerEntity.Value;
+            drone.Explosive = false;
+            drone.Pacif = false;
+            drone.TankPart = true;
+            gunner.Tank = uid;
+            despawn.Lifetime = 0.05f;
+        }
+
+        private void HandleObserverSetup(EntityUid insuid, ShiftTankHullComponent component, EntityUid uid)
+        {
+            EnsureComp<TimedDespawnComponent>(insuid, out var despawn);
+            if (component.InsideObserverEntity == null) return;
+            EnsureComp<ShiftTankpartComponent>(component.InsideObserverEntity.Value, out var observer);
+            observer.Tank = uid;
+            despawn.Lifetime = 0.05f;
+            EnsureComp<ShiftFPVControllerComponent>(component.InsideObserverEntity.Value, out var control);
+            if (component.LinkedObserver == null) return;
+            control.LinkedDrone = component.LinkedObserver.Value;
+            control.TankPart = true;
+            EnsureComp<ShiftFPVDroneComponent>(component.LinkedObserver.Value, out var drone);
+            drone.Controller = component.InsideObserverEntity.Value;
+            drone.Explosive = false;
+            drone.Pacif = false;
+            drone.TankPart = true;
         }
         private Entity<Robust.Shared.Map.Components.MapComponent>? SpawnMap(ResPath[] mappath)
         {
@@ -396,7 +461,7 @@ namespace Content.Server.ShiftFront
                 var actualForwardVector = currentRotation.RotateVec(baseForwardVector);
                 tankComp.SoftMoveDir = Math.Clamp(tankComp.SoftMoveDir, tankComp.MinSoftMoveDir, tankComp.MaxSoftMoveDir);
                 var targetVelocity = actualForwardVector * tankComp.SoftMoveDir;
-                if (tankComp.SoftMoveDir < tankComp.SlowdownSpeed * -1.4f || tankComp.SoftMoveDir > tankComp.SlowdownSpeed * 1.4f)
+                if (tankComp.SoftMoveDir < tankComp.SlowdownSpeed * -2f || tankComp.SoftMoveDir > tankComp.SlowdownSpeed * 2f)
                 {
                     if (tankComp.MoveDirection > 0)
                         _physics.SetLinearVelocity(uid, targetVelocity, body: physicsComp);

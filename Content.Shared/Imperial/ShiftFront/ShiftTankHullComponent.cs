@@ -61,6 +61,12 @@ public sealed partial class ShiftTankHullComponent : Component
     public string InsideObserver = "";
 
     [DataField]
+    public string InsideAmmo = "";
+
+    [DataField]
+    public string InsideRotor = "";
+
+    [DataField]
     public EntityUid? InsideControllerEntity;
 
     [DataField]
@@ -80,6 +86,12 @@ public sealed partial class ShiftTankHullComponent : Component
 
     [DataField]
     public EntityUid? InsideObserverEntity;
+
+    [DataField]
+    public EntityUid? InsideAmmoEntity;
+
+    [DataField]
+    public EntityUid? InsideRotorEntity;
 
     [DataField]
     public string TurretProto = "";

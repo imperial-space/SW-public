@@ -1523,7 +1523,7 @@ namespace Content.Server.ShiftFront
                     foreach (var target in _lookup.GetEntitiesInRange(coords, 1.35f))
                     {
                         if (TryComp<ShiftTankHullComponent>(target, out var hull) && hull.Faction == comp.Faction && !comp.Inf)
-                            _damageableSystem.TryChangeDamage(target, -comp.RegenDamage * 3, true, false);
+                            _damageableSystem.TryChangeDamage(target, -comp.RegenDamage * 1.5f, true, false);
                         if (TryComp<ShiftPlayerComponent>(target, out var player) && player.Faction == comp.Faction && comp.Inf)
                         {
                             _damageableSystem.TryChangeDamage(target, -comp.RegenDamage, true, false);
@@ -1545,7 +1545,7 @@ namespace Content.Server.ShiftFront
                             if (drone.CurFreq > comp.CurFreq - comp.FreqRadius && drone.CurFreq < comp.CurFreq + comp.FreqRadius)
                             {
                                 _jitter.DoJitter(target, TimeSpan.FromSeconds(1f), true, amplitude: 5f);
-                                _stun.TryParalyze(target, TimeSpan.FromSeconds(3f), true);
+                                _stun.TrySlowdown(target, TimeSpan.FromSeconds(3f), true, 0f, 0f);
                                 if (_sharedPlayerManager.TryGetSessionByEntity(target, out var session))
                                     _prayerSystem.SendSubtleMessage(session, session, $"Рядом вражеский прибор РЭБ", "ПОМЕХИ");
                             }
