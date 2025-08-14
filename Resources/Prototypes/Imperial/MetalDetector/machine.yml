@@ -108,6 +108,7 @@
         - ClothingBackpackSatchelSmugglerFilled
         - ClothingHandsGlovesCombat
         - ClothingShoesBootsJack
+        - StorageImplant
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection
