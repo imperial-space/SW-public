@@ -136,10 +136,10 @@
       damage:
         types:
           Structural: 60
-          Heat: 20
+          Heat: 24
       resistanceBypass: true
     - type: IgniteOnMeleeHit
-      fireStacks: 3
+      fireStacks: 4
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
