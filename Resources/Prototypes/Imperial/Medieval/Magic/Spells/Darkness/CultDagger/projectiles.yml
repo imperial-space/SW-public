@@ -4,7 +4,6 @@
   id: MedievalMagicDaggerCult
   description: A deadly knife intended for melee confrontations.
   components:
-  - type: CultRitualMelee
   - type: Sprite
     sprite: Imperial/Medieval/Melee/dagger_cult_magic.rsi
     size: Small

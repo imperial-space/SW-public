@@ -40,7 +40,7 @@
   - type: ManaDrainSpell
     manaDrain: 12
     canUseWithoutMana: true
-    manaLowMessage: medieval-spell-speach-not-enough-mana-darkness-spell
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
     damageOnUseWithoutMana:
       groups:
         Burn: 5
