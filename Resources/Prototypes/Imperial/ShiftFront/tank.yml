@@ -168,7 +168,11 @@
     insideExit: TankPartExit
     gridLink:
     - "/Maps/Imperial/bmp.yml"
-    moveSpeed: 4.8
+    #moveSpeed: 4.8
+    maxSoftMoveDir: 5.5
+    slowdownSpeed: 0.02
+    accelSpeed: 0.05
+    minSoftMoveDir: -3.5
     turnRate: 0.04
 
 
@@ -338,7 +342,11 @@
     insideExit: TankPartExit
     gridLink:
     - "/Maps/Imperial/bmp.yml"
-    moveSpeed: 1.9
+    #moveSpeed: 1.9
+    maxSoftMoveDir: 3
+    minSoftMoveDir: -1.7
+    accelSpeed: 0.1
+    slowdownSpeed: 0.02
     turnRate: 0.0172
 
 ### Синяя БМП ###
@@ -467,7 +475,11 @@
     observerProto: MobShiftTankObserver
     fPVResist: 0.5
     turnRate: 0.015
-    moveSpeed: 1.7
+    #moveSpeed: 1.7
+    accelSpeed: 0.07
+    maxSoftMoveDir: 2.5
+    minSoftMoveDir: -1.5
+    slowdownSpeed: 0.02
 
 ### Тяжелые башни ###
 - type: entity
@@ -728,7 +740,11 @@
     smokeStep: 130
     fireStep: 220
     fPVResist: 3
-    moveSpeed: 6
+    #moveSpeed: 6
+    maxSoftMoveDir: 7.5
+    accelSpeed: 0.06
+    minSoftMoveDir: -4
+    slowdownSpeed: 0.02
     turnRate: 0.04
     insideController: TankPartController
     insideEntry: TankPartEntry
@@ -925,7 +941,11 @@
     smokeStep: 250
     fireStep: 425
     fPVResist: 1.5
-    moveSpeed: 4.3
+    #moveSpeed: 4.3
+    maxSoftMoveDir: 4
+    minSoftMoveDir: -2
+    accelSpeed: 0.1
+    slowdownSpeed: 0.02
     turnRate: 0.04
     insideController: TankPartController
     insideEntry: TankPartEntry
@@ -1272,6 +1292,11 @@
         Piercing: 190
         AntiTank: 130
         AntiLightTank: 220
+  - type: Sprite
+    scale: 1.5, 1.5
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
   - type: ExplodeOnTrigger
   - type: Explosive
     explosionType: Default

@@ -83,7 +83,6 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftTankTurretComponent, ComponentStartup>(TurretStart);
             SubscribeLocalEvent<ShiftTankHullComponent, TankStartMoveEvent>(OnTankStartMove);
             SubscribeLocalEvent<ShiftTankHullComponent, TankStopMoveEvent>(OnTankStopMove);
-            SubscribeLocalEvent<ShiftTankHullComponent, TankChangeMoveDirectionEvent>(OnChangeMoveDirection);
             SubscribeLocalEvent<ShiftTankHullComponent, TankToggleRotateEvent>(OnToggleRotate);
             SubscribeLocalEvent<ShiftTankHullComponent, TankToggleRotationDirectionEvent>(OnToggleRotationDirection);
             SubscribeLocalEvent<ShiftTankHullComponent, ExaminedEvent>(OnExamine);
@@ -339,13 +338,6 @@ namespace Content.Server.ShiftFront
             Dirty(uid, component);
         }
 
-        private void OnChangeMoveDirection(EntityUid uid, ShiftTankHullComponent component, ref TankChangeMoveDirectionEvent args)
-        {
-            component.MoveDirection *= -1; // Инвертируем направление
-            //Log.Debug($"Tank {ToPrettyString(uid)} changed move direction to {component.MoveDirection}.");
-            Dirty(uid, component);
-            // Если танк движется, смена направления должна сразу повлиять на вектор скорости в Update
-        }
 
         private void OnToggleRotate(EntityUid uid, ShiftTankHullComponent component, ref TankToggleRotateEvent args)
         {
@@ -376,29 +368,51 @@ namespace Content.Server.ShiftFront
                     continue;
                 }
                 // --- Обработка линейного движения ---
-                if (tankComp.IsMoving)
+                if (tankComp.MoveDirection != 0)
                 {
-                    var baseForwardVector = -Vector2.UnitY;
-                    var currentRotation = xform.LocalRotation;
-                    var actualForwardVector = currentRotation.RotateVec(baseForwardVector);
-                    var targetVelocity = actualForwardVector * tankComp.MoveSpeed * tankComp.MoveDirection;
+                    if (tankComp.MoveDirection > 0)
+                        tankComp.SoftMoveDir += tankComp.AccelSpeed;
+                    else
+                        tankComp.SoftMoveDir -= tankComp.AccelSpeed * tankComp.BackMoveModifier;
+                }
+                else if (tankComp.SoftMoveDir < tankComp.SlowdownSpeed * -1.1f || tankComp.SoftMoveDir > tankComp.SlowdownSpeed * 1.1f)
+                {
+                    if (tankComp.SoftMoveDir < tankComp.MaxSoftMoveDir * 0.9f && tankComp.SoftMoveDir > 0)
+                    {
+                        tankComp.SoftMoveDir -= tankComp.SlowdownSpeed;
+                        tankComp.SoftMoveDir -= tankComp.SlowdownSpeed;
+                    }
+                    if (tankComp.SoftMoveDir < tankComp.MaxSoftMoveDir * 0.6f && tankComp.SoftMoveDir > 0)
+                    {
+                        tankComp.SoftMoveDir -= tankComp.SlowdownSpeed * 20f;
+                    }
+                    if (tankComp.SoftMoveDir > 0)
+                        tankComp.SoftMoveDir -= tankComp.SlowdownSpeed;
+                    else tankComp.SoftMoveDir += tankComp.SlowdownSpeed * 3f;
+                }
+
+                var baseForwardVector = -Vector2.UnitY;
+                var currentRotation = xform.LocalRotation;
+                var actualForwardVector = currentRotation.RotateVec(baseForwardVector);
+                tankComp.SoftMoveDir = Math.Clamp(tankComp.SoftMoveDir, tankComp.MinSoftMoveDir, tankComp.MaxSoftMoveDir);
+                var targetVelocity = actualForwardVector * tankComp.SoftMoveDir;
+                if (tankComp.SoftMoveDir < tankComp.SlowdownSpeed * -1.4f || tankComp.SoftMoveDir > tankComp.SlowdownSpeed * 1.4f)
+                {
                     if (tankComp.MoveDirection > 0)
                         _physics.SetLinearVelocity(uid, targetVelocity, body: physicsComp);
                     else
                         _physics.SetLinearVelocity(uid, targetVelocity * tankComp.BackMoveModifier, body: physicsComp);
                 }
-                else
-                {
-                }
+
                 var coords = xform.Coordinates;
 
                 // --- Обработка вращения ---
                 if (tankComp.IsRotating)
                 {
-                    if (tankComp.NeedMoveForRotating && !tankComp.IsMoving)
+                    if (tankComp.NeedMoveForRotating && tankComp.SoftMoveDir > tankComp.SlowdownSpeed * -1.1f && tankComp.SoftMoveDir < tankComp.SlowdownSpeed * 1.1f)
                         continue;
                     // Устанавливаем угловую скорость
-                    if (tankComp.MoveDirection > 0)
+                    if (tankComp.SoftMoveDir >= 0)
                         _transform.SetCoordinates(new Entity<TransformComponent, MetaDataComponent>(uid, xform, MetaData(uid)), coords, Transform(uid).LocalRotation - tankComp.RotationDirection * tankComp.TurnRate);
                     else
                         _transform.SetCoordinates(new Entity<TransformComponent, MetaDataComponent>(uid, xform, MetaData(uid)), coords, Transform(uid).LocalRotation + tankComp.RotationDirection * tankComp.TurnRate);

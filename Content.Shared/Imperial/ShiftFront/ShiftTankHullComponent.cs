@@ -94,7 +94,7 @@ public sealed partial class ShiftTankHullComponent : Component
     public float FPVResist = 1f;
 
     [DataField]
-    public float BackMoveModifier = 0.3f;
+    public float BackMoveModifier = 0.6f;
 
     /// <summary>
     /// Линейная скорость движения танка (единиц/секунду).
@@ -115,7 +115,27 @@ public sealed partial class ShiftTankHullComponent : Component
     /// </summary>
     [DataField("moveDirection")]
     [ViewVariables(VVAccess.ReadWrite)]
-    public int MoveDirection { get; set; } = 1;
+    public int MoveDirection { get; set; } = 0;
+
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float SoftMoveDir { get; set; } = 0;
+
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float AccelSpeed { get; set; } = 0.05f;
+
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float SlowdownSpeed { get; set; } = 0.25f;
+
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float MinSoftMoveDir { get; set; } = -2f;
+
+    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public float MaxSoftMoveDir { get; set; } = 6f;
 
     /// <summary>
     /// Направление поворота (1 = по часовой, -1 = против часовой).
