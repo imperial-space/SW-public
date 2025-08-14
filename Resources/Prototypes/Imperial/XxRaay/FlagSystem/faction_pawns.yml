@@ -216,3 +216,161 @@
     prototypes: [ FlagsTDMGearBlueXxRaay ]
 
 
+
+# Multi-use ghost role spawners (3 uses each) — use SpawnPointGhost* IDs below
+
+# Aliases following SpawnPointGhost* naming convention (3 uses)
+- type: entity
+  categories: [ Spawner ]
+  id: SpawnPointGhostFlagsTDMPawnNTXxRaay
+  parent: MarkerBase
+  name: ghost role spawn point
+  suffix: NT pawn, 3x, XxRaay, FlagsTDM
+  components:
+  - type: GhostRole
+    name: ghost-role-flags-nt-name
+    description: ghost-role-flags-nt-desc
+    rules: ghost-role-flags-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: FlagsTDMPawnNTXxRaay
+    availableTakeovers: 3
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+
+- type: entity
+  categories: [ Spawner ]
+  id: SpawnPointGhostFlagsTDMPawnSyndiXxRaay
+  parent: MarkerBase
+  name: ghost role spawn point
+  suffix: Syndicate pawn, 3x, XxRaay, FlagsTDM
+  components:
+  - type: GhostRole
+    name: ghost-role-flags-sindi-name
+    description: ghost-role-flags-sindi-desc
+    rules: ghost-role-flags-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: FlagsTDMPawnSyndiXxRaay
+    availableTakeovers: 3
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+
+- type: entity
+  categories: [ Spawner ]
+  id: SpawnPointGhostFlagsTDMPawnUSSPXxRaay
+  parent: MarkerBase
+  name: ghost role spawn point
+  suffix: USSP pawn, 3x, XxRaay, FlagsTDM
+  components:
+  - type: GhostRole
+    name: ghost-role-flags-ussp-name
+    description: ghost-role-flags-ussp-desc
+    rules: ghost-role-flags-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: FlagsTDMPawnUSSPXxRaay
+    availableTakeovers: 3
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+
+- type: entity
+  categories: [ Spawner ]
+  id: SpawnPointGhostFlagsTDMPawnGreenXxRaay
+  parent: MarkerBase
+  name: ghost role spawn point
+  suffix: Green pawn, 3x, XxRaay, FlagsTDM
+  components:
+  - type: GhostRole
+    name: ghost-role-flags-green-name
+    description: ghost-role-flags-green-desc
+    rules: ghost-role-flags-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: FlagsTDMPawnGreenXxRaay
+    availableTakeovers: 3
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+
+- type: entity
+  categories: [ Spawner ]
+  id: SpawnPointGhostFlagsTDMPawnYellowXxRaay
+  parent: MarkerBase
+  name: ghost role spawn point
+  suffix: Yellow pawn, 3x, XxRaay, FlagsTDM
+  components:
+  - type: GhostRole
+    name: ghost-role-flags-yellow-name
+    description: ghost-role-flags-yellow-desc
+    rules: ghost-role-flags-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: FlagsTDMPawnYellowXxRaay
+    availableTakeovers: 3
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+
+- type: entity
+  categories: [ Spawner ]
+  id: SpawnPointGhostFlagsTDMPawnRedXxRaay
+  parent: MarkerBase
+  name: ghost role spawn point
+  suffix: Red pawn, 3x, XxRaay, FlagsTDM
+  components:
+  - type: GhostRole
+    name: ghost-role-flags-red-name
+    description: ghost-role-flags-red-desc
+    rules: ghost-role-flags-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: FlagsTDMPawnRedXxRaay
+    availableTakeovers: 3
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+
+- type: entity
+  categories: [ Spawner ]
+  id: SpawnPointGhostFlagsTDMPawnBlueXxRaay
+  parent: MarkerBase
+  name: ghost role spawn point
+  suffix: Blue pawn, 3x, XxRaay, FlagsTDM
+  components:
+  - type: GhostRole
+    name: ghost-role-flags-blue-name
+    description: ghost-role-flags-blue-desc
+    rules: ghost-role-flags-tdm-rules
+    raffle:
+      settings: short
+  - type: GhostRoleMobSpawner
+    prototype: FlagsTDMPawnBlueXxRaay
+    availableTakeovers: 3
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+

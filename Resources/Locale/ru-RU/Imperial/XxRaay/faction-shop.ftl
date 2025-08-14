@@ -1,27 +1,27 @@
 ## Faction Shop System
 
 faction-shop-examine = Магазин фракции { $faction }
-faction-shop-points-info = { $points } поинтов за флаг каждые { $interval } секунд
+faction-shop-points-info = { $points } очков за флаг каждые { $interval } секунд
 faction-shop-opened = { $player } открыл магазин фракции { $faction }
-faction-points-awarded = Фракция { $faction } получила { $points } поинтов (всего: { $total }, флагов: { $flags })
+faction-points-awarded = Фракция { $faction } получила { $points } очков (всего: { $total }, флагов: { $flags })
 
 ## Currency display names
-faction-currency-nt = Поинты НТ
-faction-currency-sindi = Поинты Синдиката
-faction-currency-green = Поинты Зеленых
-faction-currency-yellow = Поинты Желтых
-faction-currency-red = Поинты Красных
-faction-currency-blue = Поинты Синих
-faction-currency-ussp = Поинты USSP
+faction-currency-nt = Очки НТ
+faction-currency-sindi = Очки Синдиката
+faction-currency-green = Очки Зеленых
+faction-currency-yellow = Очки Желтых
+faction-currency-red = Очки Красных
+faction-currency-blue = Очки Синих
+faction-currency-ussp = Очки USSP
 
 ## UI Strings
 faction-shop-title = Магазин фракции
 faction-shop-welcome = Добро пожаловать в магазин фракции!
-faction-shop-points = У вас { $points } поинтов
+faction-shop-points = У вас { $points } очков
 faction-shop-close = Закрыть
-faction-shop-cost = Стоимость: { $cost } поинтов
+faction-shop-cost = Стоимость: { $cost } очков
 faction-shop-buy = Купить
-faction-shop-purchase = Покупка { $item } за { $cost } поинтов
+faction-shop-purchase = Покупка { $item } за { $cost } очков
 
 ## Store titles
 faction-store-title-nt = Магазин НТ
@@ -32,21 +32,21 @@ faction-store-title-red = Магазин Красных
 faction-store-title-blue = Магазин Синих
 faction-store-title-ussp = Магазин USSP
 
-## Shop consoles
-faction-shop-console-nt = Консоль магазина НТ
-faction-shop-console-nt-desc = Консоль магазина NanoTrasen
-faction-shop-console-sindi = Консоль магазина Синдиката
-faction-shop-console-sindi-desc = Консоль для покупок фракции Синдиката
-faction-shop-console-green = Консоль магазина Зеленых
-faction-shop-console-green-desc = Консоль для покупок Зеленой фракции
-faction-shop-console-yellow = Консоль магазина Желтых
-faction-shop-console-yellow-desc = Консоль для покупок Желтой фракции
-faction-shop-console-red = Консоль магазина Красных
-faction-shop-console-red-desc = Консоль для покупок Красной фракции
-faction-shop-console-blue = Консоль магазина Синих
-faction-shop-console-blue-desc = Консоль для покупок Синей фракции
-faction-shop-console-ussp = Консоль магазина USSP
-faction-shop-console-ussp-desc = Консоль для покупок фракции USSP
+## Shop consoles (entity names)
+ent-NTShopConsole = Консоль магазина НТ
+    .desc = Консоль магазина NanoTrasen
+ent-SindiShopConsole = Консоль магазина Синдиката
+    .desc = Консоль для покупок фракции Синдиката
+ent-GreenShopConsole = Консоль магазина Зеленых
+    .desc = Консоль для покупок Зеленой фракции
+ent-YellowShopConsole = Консоль магазина Желтых
+    .desc = Консоль для покупок Желтой фракции
+ent-RedShopConsole = Консоль магазина Красных
+    .desc = Консоль для покупок Красной фракции
+ent-BlueShopConsole = Консоль магазина Синих
+    .desc = Консоль для покупок Синей фракции
+ent-USSPShopConsole = Консоль магазина USSP
+    .desc = Консоль для покупок фракции USSP
 
 ## Shop Categories
 faction-store-category-weapons = Оружие
@@ -95,7 +95,7 @@ faction-armor-web-desc = Бронепластины и подсумки
 ## (builder removed)
 
 ## Shop Messages
-shop-not-enough-points = Недостаточно поинтов
-shop-item-purchased = { $item } куплен за { $points } поинтов
-shop-current-points = У вас { $points } поинтов
-shop-faction-points = У фракции { $faction } { $points } поинтов
+shop-not-enough-points = Недостаточно очков
+shop-item-purchased = { $item } куплен за { $points } очков
+shop-current-points = У вас { $points } очков
+shop-faction-points = У фракции { $faction } { $points } очков
