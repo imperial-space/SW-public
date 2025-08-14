@@ -238,7 +238,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
                     "RedFaction" => "RedFaction",
                     "BlueFaction" => "BlueFaction",
                     "USSPFaction" => "USSPFaction",
-                    "SindiFaction" => "SindiFaction",
                     _ => faction.ToString() // Если не знаем, возвращаем как есть
                 };
             }

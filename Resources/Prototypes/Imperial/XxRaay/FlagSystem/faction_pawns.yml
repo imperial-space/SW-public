@@ -204,7 +204,7 @@
     randomizeName: true
   - type: NpcFactionMember
     factions:
-    - BluenFaction
+    - BlueFaction
   - type: GhostRole
     name: ghost-role-flags-blue-name
     description: ghost-role-flags-blue-desc

@@ -1,3 +1,4 @@
+using System;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -16,19 +17,19 @@ public sealed partial class FactionShopComponent : Component
     public string Faction = "NeutralFaction";
 
     /// <summary>
-    /// Интервал начисления поинтов в секундах
+    /// Интервал начисления очков в секундах
     /// </summary>
     [DataField]
     public float PointsInterval = 20.0f;
 
     /// <summary>
-    /// Количество поинтов за каждый флаг
+    /// Количество очков за каждый флаг
     /// </summary>
     [DataField]
     public int PointsPerFlag = 10;
 
     /// <summary>
-    /// Последнее время начисления поинтов
+    /// Последнее время начисления очков
     /// </summary>
     public TimeSpan LastPointsTime = TimeSpan.Zero;
 }

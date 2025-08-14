@@ -121,7 +121,7 @@
     state: blue-flag
   - type: NpcFactionMember
     factions:
-    - BluenFaction
+    - BlueFaction
 
 - type: entity
   parent: ImperialXxRaayBaseFlag
