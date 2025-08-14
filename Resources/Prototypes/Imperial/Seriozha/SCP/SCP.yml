@@ -74,22 +74,19 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 90
+          Blunt: 80
       resistanceBypass: true
     - type: Speech
       speechVerb: LargeMob
       allowedEmotes: ['Scream', 'Laugh']
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2.1
-      baseSprintSpeed: 1.9
+      baseWalkSpeed: 2
+      baseSprintSpeed: 1.8
     - type: Vocal
       sounds:
         Male: DedVoice
         Unsexed: DedVoice
         Female: DedVoice
-    - type: Tag
-      tags:
-      - FootstepSound
     - type: Fixtures
       fixtures:
         fix1:
@@ -105,9 +102,71 @@
           - MobLayer
 
 - type: entity
+  name: Fireman
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPFireMan
+  description: Pray.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Fireman.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: alive
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        3500: Dead
+    - type: Damageable
+      damageModifierSet: SCPFireMan
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Structural: 60
+          Heat: 20
+      resistanceBypass: true
+    - type: IgniteOnMeleeHit
+      fireStacks: 3
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3
+      baseSprintSpeed: 2.5
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesThree
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
   parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
   id: ImperialSCPMask
-  name: idk
+  name: Mask
   suffix: seriozha, Недра
   description: idc
   components:
@@ -128,7 +187,7 @@
         Caustic: 0.45
         Stamina: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.0
 
 - type: entity
   name: Doctor
@@ -181,8 +240,6 @@
       needsHands: false
     - type: Inventory
       templateId: docinv
-    - type: Body
-      prototype: Human
     - type: Vocal
       sounds:
         Male: DocVoice
@@ -302,5 +359,13 @@
     Slash: 0.7
     Piercing: 0.8
     Cellular: 0.9
+    Radiation: 0.0
+    Caustic: 0.0
+
+- type: damageModifierSet
+  id: SCPFireMan
+  coefficients:
+    Heat: 0.0
+    Poison: 0.0
     Radiation: 0.0
     Caustic: 0.0
