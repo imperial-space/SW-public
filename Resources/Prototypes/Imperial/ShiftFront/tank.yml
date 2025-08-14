@@ -156,8 +156,23 @@
     thresholds: {0: Alive, 500: Dead}
   - type: Destructible
     thresholds:
-    - trigger: !type:DamageTrigger {damage: 500}
-      behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
+    - trigger:
+        !type:DamageTrigger
+        damage: 500
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
+          params:
+            volume: 20
+            maxDistance: 45
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: ShiftTankHull
     needMoveForRotating: true
     smokeStep: 250
@@ -331,8 +346,23 @@
     thresholds: {0: Alive, 650: Dead}
   - type: Destructible
     thresholds:
-    - trigger: !type:DamageTrigger {damage: 650}
-      behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
+    - trigger:
+        !type:DamageTrigger
+        damage: 650
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
+          params:
+            volume: 20
+            maxDistance: 45
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: ShiftTankHull
     smokeStep: 350
     fireStep: 500
@@ -461,8 +491,23 @@
     thresholds: {0: Alive, 1000: Dead}
   - type: Destructible
     thresholds:
-    - trigger: !type:DamageTrigger {damage: 1000}
-      behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
+          params:
+            volume: 20
+            maxDistance: 45
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: ShiftTankHull
     smokeStep: 600
     fireStep: 850
@@ -755,8 +800,23 @@
     thresholds: {0: Alive, 270: Dead}
   - type: Destructible
     thresholds:
-    - trigger: !type:DamageTrigger {damage: 270}
-      behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
+    - trigger:
+        !type:DamageTrigger
+        damage: 270
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
+          params:
+            volume: 20
+            maxDistance: 45
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Damageable
     damageContainer: ShiftFrontLightTank
     damageModifierSet: ShiftFrontLightTank
@@ -956,8 +1016,23 @@
     thresholds: {0: Alive, 550: Dead}
   - type: Destructible
     thresholds:
-    - trigger: !type:DamageTrigger {damage: 550}
-      behaviors: [!type:DoActsBehavior {acts: [Destruction]}]
+    - trigger:
+        !type:DamageTrigger
+        damage: 550
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
+          params:
+            volume: 20
+            maxDistance: 45
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Damageable
     damageContainer: ShiftFrontLightTank
     damageModifierSet: ShiftFrontLightTank
