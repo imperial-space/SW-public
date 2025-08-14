@@ -26,9 +26,9 @@ public sealed partial class ShiftMedTowerComponent : Component
                 { "Slash", 1 },
                 { "Shock", 5 },
                 { "Radiation", 2 },
-                { "Structural", 0.5 },
-                { "AntiTank", 0.5 },
-                { "AntiLightTank", 0.5 },
+                { "Structural", 1.5 },
+                { "AntiTank", 1.5 },
+                { "AntiLightTank", 1.5 },
                 { "Cellular", 1 }
             }
     };
