@@ -45,6 +45,7 @@ ent-BoxFolderFederation = папка
 ent-FederationHandyFlag = флажок Федерации
     .desc = Флаг самой честной Федерации в галактике.
 id-card-access-level-federation = Федерация
+id-card-access-level-federation-admin = Администрация Федерации
 
 ent-BlackTableReinforced = укреплённый стол
     .desc = Квадратный кусок металла, стоящий на четырех металлических ножках.
