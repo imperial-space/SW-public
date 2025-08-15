@@ -5,7 +5,6 @@ medieval-cahrm-speech-sleep = T̢̯͖͎i̗̦͎̮͢m̫̰̗̥͢e̡͚̩ t̡͍̞̬̦
 medieval-cahrm-speech-boost = B̨̙̥̤O̳̩͓͜O̧̖̬S̡̘̱̲T̡̞̖̲!!!
 medieval-title = Spellward
 medieval-description = A civil war has broken out across the continent. Can you bring the conflict to a resolution?
-spell-requirements-failed = This spell requires special clothing.
 ui-options-hud-theme-medieval = Medieval
 expendable-light-spent-yellow-glowstone-name = spent yellow glowstone
 expendable-light-spent-glowstone-desc = It appears this glowstone has burned out and will never shine again. How sad it is...

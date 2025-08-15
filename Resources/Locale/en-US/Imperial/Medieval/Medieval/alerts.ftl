@@ -1,0 +1,10 @@
+alerts-imperial-medieval-mana-name = Mana
+alerts-imperial-medieval-mana-description = Level of mana - magical energy, used for casting spells.
+alerts-imperial-medieval-trade-curse-name = Curse
+alerts-imperial-medieval-trade-curse-description = Every merchant signed a contract with the Devil for access to the Trade Rift. In return, they must visit it regularly or use Holy Salt. To use Holy Salt, hold it in your active hand and left-click on yourself.
+alerts-imperial-medieval-bad-smell-name = Stench
+alerts-imperial-medieval-bad-smell-description = The higher your Stench Level, the more flies swarm around you and the more disapproval you face. To lower it, simply bathe in water - but be careful not to go too deep! You can drown. Natural river or seawater won't fully clean you; visit the tavern instead.
+alerts-imperial-medieval-vigor-name = Vigor
+alerts-imperial-medieval-vigor-description = Like everyone, you need regular sleep. Skip it, and you might collapse from exhaustion mid-battle.
+alerts-imperial-medieval-cult-curse-name = Cult Bond
+alerts-imperial-medieval-cult-curse-description = The Cult of Truth performed a ritual that bound you to them. Maintain this bond by periodically approaching their vessels and cutting yourself with a knife to gain weak magical regeneration. Neglect it, and you'll take minor damage as the connection severs.

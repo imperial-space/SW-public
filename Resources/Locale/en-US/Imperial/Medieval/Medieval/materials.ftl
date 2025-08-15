@@ -3,7 +3,6 @@ materials-stone = stone
 materials-serdolick-ore = ore with carnelian inclusions
 materials-serdolick = flaming carnelian crystal
 materials-gold-ore = golden ore
-materials-gold = gold
 materials-adam-ore = ore with adamantium inclusions
 materials-adam = adamantium
 materials-rope = rope

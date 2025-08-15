@@ -1,4 +1,4 @@
-сссс4у3ent-MedievalDaggerShadow = shadow dagger
+ent-MedievalDaggerShadow = shadow dagger
     .desc = Highly dangerous weapon, used by ruthless shadow murderers.
     .suffix = { "Medieval, shadow, melee" }
 ent-MedievalDaggerAdmin = heroic dagger of elusive speed

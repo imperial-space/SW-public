@@ -95,17 +95,17 @@ medieval-warning-ins = General:
         - If you’re bored and don’t see opportunities for RP, take initiative—create RP situations, and eventually you'll find like-minded players.
         - Minimize modern slang, spelling, and grammar mistakes in your speech to make your messages pleasant to read. Maintain the low-fantasy atmosphere.
 
-       Rebels:
+        Rebels:
     - You consider yourselves the rightful rulers and defenders of the island by honor. In your view, the Legion is cowardly and incapable of protecting the island from dark forces. This stance may change during the round’s political gameplay. A truce is possible.
     - The guard must maintain order on their territory. The Rebels have no established laws, but they can be created during the round. Guards may fine and make judgments at their own discretion.
     - Siege is a matter for combatants. During the siege of an enemy city, killing civilians who are not part of the opposing faction is forbidden unless they actively participated in the defense.
     - Don’t destroy peaceful infrastructure. Understand that a wagon driver or merchant is also a player who invested time into building a peaceful, social gameplay experience throughout the round. It’s very uncool to destroy their work.
 
-Capture:
+        Capture:
     - If you decide to capture another player, try to make the role-play experience engaging through various interactions.
     - Nobody wants to sit in a 2×2 cell for half an hour or mindlessly farm resources forever. Respect your prisoners as players.
 
-P. S. The server is under active development—finding bugs and providing financial support bring the project much closer to a full release.
+        P. S. The server is under active development—finding bugs and providing financial support bring the project much closer to a full release.
 
 medieval-warning-ins-mag = General:
     - Remember that every character is a real player just like you. Play without causing issues for others and show respect to everyone you meet in the game.
