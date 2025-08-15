@@ -330,6 +330,17 @@
     - type: PresetIdCard
       job: null
 
+#Federation ID (empty)
+- type: entity
+  id: ElysiumFederationIDCardEmpty
+  parent: ElysiumFederationIDCard
+  name: Federation ID card
+  description: Identification Card.
+  suffix: ElysiumPrime, empty
+  components:
+    - type: Access
+      tags: []
+
 #Federation PDA
 - type: entity
   id: ElysiumFederationPDA
@@ -358,6 +369,17 @@
   - type: Icon
     sprite: Imperial/Other/ElysiumPrime/Misc/pda.rsi
     state: pda
+
+#Federation PDA (empty)
+- type: entity
+  id: ElysiumFederationPDAEmpty
+  parent: ElysiumFederationPDA
+  name: Federation PDA
+  description: Smells like patriotism
+  suffix: ElysiumPrime, empty
+  components:
+  - type: Pda
+    id: ElysiumFederationIDCardEmpty
 #PDA, ID card END.
 
 #Federation folders

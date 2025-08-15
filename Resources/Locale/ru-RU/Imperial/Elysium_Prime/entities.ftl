@@ -34,7 +34,11 @@ ent-BannerElysiumFederationSecurity = знамя Охраны
 
 ent-ElysiumFederationIDCard = ID карта Федерации
     .desc = Карта идентификации.
+ent-ElysiumFederationIDCardEmpty = ID карта Федерации
+    .desc = Карта идентификации.
 ent-ElysiumFederationPDA = КПК Федерации
+    .desc = Пахнет патриотизмом!
+ent-ElysiumFederationPDAEmpty = КПК Федерации
     .desc = Пахнет патриотизмом!
 ent-BoxFolderFederation = папка
     .desc = Содержит в себе все коррупционные схемы, происходящие за кулисами.
@@ -52,8 +56,9 @@ ent-BlackSteelChair = стул
 ent-FederationGateway = врата Федерации
     .desc = От Федерации нельзя убежать.
 
-ent-AirlockFederationPoliceLocked = шлюз
-ent-AirlockFederationPolice = шлюз
+ent-AirlockFederationPoliceLocked = Федеративный шлюз
+ent-AirlockFederationPolice = Федеративный шлюз
+ent-AirlockFederationPoliceLockedAdmin = Федеративный шлюз
 
 ent-VendingMachineElysiumCitizenClothing = ГражданскоМат
 ent-VendingMachineElysiumSpecialForceClothing = СлужебноМат
