@@ -687,3 +687,16 @@
     energy: 1.6
     color: "#3db83b"
 
+- type: entity
+  parent: AccessConfigurator
+  name: Federation access manipulator
+  description: Smells like key of capitalism
+  suffix: ElysiumPrime
+  id: FederationAccessManipulator
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
+    - type: AccessOverrider
+      accessLevels: 
+      - Federationadmin
+      - Federation

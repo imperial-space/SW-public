@@ -65,3 +65,6 @@ ent-VendingMachineElysiumSpecialForceClothing = СлужебноМат
 ent-VendingMachineElysiumAdminClothing = АдминистратоМат
 ent-VendingMachineElysiumStampMate = ШтампоМат
 ent-VendingMachineElysiumMaterialMachine = ШарфоМат
+
+ent-FederationAccessManipulator = Федеративный манипулятор доступов
+    .desc = Пахнет, как ключи от капитализма.
