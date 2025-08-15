@@ -417,6 +417,15 @@
   - ShiftFrontMRAP
 
 - type: ShiftFrontResearch
+  id: ShiftFrontMRAPPTUR
+  tier: 1
+  researchName: МРАП ПТУР
+  price: 75
+  requiredResearches:
+  - ShiftFrontMRAPM
+  - ShiftFrontWeaponLauncherRPG8
+
+- type: ShiftFrontResearch
   id: ShiftFrontMTLB
   tier: 1
   researchName: МТЛБ

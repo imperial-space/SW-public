@@ -1126,6 +1126,16 @@ namespace Content.Server.ShiftFront
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon")
                 });
             }
+            if (CheckResearch("ShiftFrontMRAPPTUR", comp.Faction))
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => SelectBuildType(uid, comp, session, "МРАП ПТУР"),
+                    Text = "МРАП ПТУР",
+                    Priority = 4,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon")
+                });
+            }
 
             if (CheckResearch("ShiftFrontMTLB", comp.Faction))
             {
@@ -1235,6 +1245,7 @@ namespace Content.Server.ShiftFront
                 "мина" => 10,
                 "МРАП" => 20,
                 "МРАПМ" => 30,
+                "МРАП ПТУР" => 35,
                 "МТЛБ" => 40,
                 "МТЛБМ" => 55,
                 "БМП" => 90,
@@ -1291,6 +1302,7 @@ namespace Content.Server.ShiftFront
                 "мина" => (10, 10, 0),
                 "МРАП" => (45, 15, 0),
                 "МРАПМ" => (85, 25, 10),
+                "МРАП ПТУР" => (100, 30, 15),
                 "МТЛБ" => (145, 45, 0),
                 "МТЛБМ" => (145, 45, 15),
                 "БТР" => (265, 75, 25),
@@ -1494,6 +1506,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "МРАПМ":
                                 Spawn("ShiftFrontMRAPM" + comp.Faction, coords);
+                                break;
+                            case "МРАП ПТУР":
+                                Spawn("ShiftFrontMRAPPTUR" + comp.Faction, coords);
                                 break;
                             case "МТЛБ":
                                 Spawn("ShiftFrontMTLB" + comp.Faction, coords);
