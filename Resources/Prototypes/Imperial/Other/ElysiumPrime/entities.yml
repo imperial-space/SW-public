@@ -700,3 +700,8 @@
       accessLevels: 
       - Federationadmin
       - Federation
+      - type: Icon
+        icon: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
+      - type: Item
+        sprite: Imperial/Other/ElysiumPrime/Misc/accessconf.rsi
+
