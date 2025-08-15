@@ -143,7 +143,7 @@
         Piercing: 0.3
         Heat: 0.25
         Radiation: 0.0
-        Caustc: 0.0
+        Caustic: 0.0
         Stamina: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.1
