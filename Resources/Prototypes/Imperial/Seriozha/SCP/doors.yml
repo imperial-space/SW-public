@@ -19,7 +19,7 @@
       path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSCPOne ]
+      board: [ DoorElectronicsSCP ]
 
 - type: entity
   parent: HighSecSCPLocked
@@ -89,7 +89,7 @@
       path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSCPOne ]
+      board: [ DoorElectronicsSCP ]
   - type: Destructible
     thresholds:
     - trigger:
@@ -130,7 +130,7 @@
       path: /Audio/Imperial/Seriozha/SCP/doorotkaz.ogg
   - type: ContainerFill
     containers:
-      board: [ DoorElectronicsSCPOne ]
+      board: [ DoorElectronicsSCP ]
   - type: Destructible
     thresholds:
     - trigger:
@@ -165,7 +165,7 @@
 #Electronics
 - type: entity
   parent: DoorElectronics
-  id: DoorElectronicsSCPOne
+  id: DoorElectronicsSCP
   name: Idk
   suffix: seriozha, Недра
   categories: [ HideSpawnMenu ]
