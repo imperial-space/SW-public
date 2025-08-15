@@ -717,3 +717,195 @@
     prototype: MobFPVDroneCargoYellow
     doAfter: 3
     deleteOnInteract: true
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneStealthObserverBlue
+  components:
+  - type: HandheldGPS
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontBlue
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronewatch
+  - type: ShiftFPVDrone
+    faction: Blue
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio2
+  - type: ActiveRadio
+    channels:
+    - Radio2
+  - type: LanguageSpeaker
+    languages:
+      English: Speak
+  - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 2
+    offsetSpeed: 1
+  - type: Stealth
+  - type: StealthOnMove
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneStealthObserverRed
+  components:
+  - type: HandheldGPS
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontRed
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronewatchred
+  - type: ShiftFPVDrone
+    faction: Red
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio1
+  - type: ActiveRadio
+    channels:
+    - Radio1
+  - type: LanguageSpeaker
+    languages:
+      Russian: Speak
+  - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 2
+    offsetSpeed: 1
+  - type: Stealth
+  - type: StealthOnMove
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneStealthObserverGreen
+  components:
+  - type: HandheldGPS
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontGreen
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronewatchgreen
+  - type: ShiftFPVDrone
+    faction: Green
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio3
+  - type: ActiveRadio
+    channels:
+    - Radio3
+  - type: LanguageSpeaker
+    languages:
+      German: Speak
+  - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 2
+    offsetSpeed: 1
+  - type: Stealth
+  - type: StealthOnMove
+
+
+- type: entity
+  parent: MobFPVDrone
+  id: MobFPVDroneStealthObserverYellow
+  components:
+  - type: HandheldGPS
+  - type: NpcFactionMember
+    factions:
+      - ShiftFrontYellow
+  - type: Sprite
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: dronewatchyellow
+  - type: ShiftFPVDrone
+    faction: Yellow
+    cMD: true
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Radio4
+  - type: ActiveRadio
+    channels:
+    - Radio4
+  - type: LanguageSpeaker
+    languages:
+      Chineese: Speak
+  - type: Speech
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 2
+    offsetSpeed: 1
+  - type: Stealth
+  - type: StealthOnMove
+
+
+- type: entity
+  id: ShiftFPVBoxStealthObserverBlue
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxw
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneStealthObserverBlue
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxStealthObserverRed
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxw
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneStealthObserverRed
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxStealthObserverGreen
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxw
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneStealthObserverGreen
+    doAfter: 3
+    deleteOnInteract: true
+
+- type: entity
+  id: ShiftFPVBoxStealthObserverYellow
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: fpvboxw
+  - type: SpawnAfterInteract
+    prototype: MobFPVDroneStealthObserverYellow
+    doAfter: 3
+    deleteOnInteract: true

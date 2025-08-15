@@ -86,7 +86,7 @@
 - type: ShiftFrontResearch
   id: ShiftFrontAssault
   tier: 1
-  researchName: штурмовик
+  researchName: штурмовики
   price: 50
   requiredResearches:
   - ShiftFrontFlanker
@@ -94,8 +94,8 @@
 - type: ShiftFrontResearch
   id: ShiftFrontBomber
   tier: 2
-  researchName: подрывник
-  price: 65
+  researchName: подрывники
+  price: 35
   requiredResearches:
   - ShiftFrontAssault
 
@@ -231,10 +231,18 @@
   - ShiftFrontDrone
 
 - type: ShiftFrontResearch
+  id: ShiftFrontFPVStealth
+  tier: 2
+  researchName: стелс-дроны
+  price: 45
+  requiredResearches:
+  - ShiftFrontDrone
+
+- type: ShiftFrontResearch
   id: ShiftFrontFPVCargo
   tier: 2
   researchName: грузовые дроны
-  price: 50
+  price: 40
   requiredResearches:
   - ShiftFrontSupport
   - ShiftFrontDrone
@@ -283,7 +291,7 @@
   id: ShiftFrontBarricade
   tier: 1
   researchName: простые заграждения
-  price: 30
+  price: 25
   requiredResearches:
   - ShiftFrontSupport
 
