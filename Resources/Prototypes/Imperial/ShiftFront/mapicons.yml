@@ -325,6 +325,15 @@
     state: techhealblue
     drawdepth: Mobs
 
+- type: entity
+  id: ShiftFrontAntiAirIcon
+  parent: ShiftIconBase
+  components:
+  - type: Sprite
+    scale: 0.27, 0.27
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: aa
+    drawdepth: Mobs
 ################
 
 - type: entity

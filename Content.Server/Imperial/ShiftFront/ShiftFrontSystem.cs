@@ -45,6 +45,7 @@ using Robust.Shared.Spawners;
 using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Enums;
+using Content.Server.Spawners.Components;
 
 namespace Content.Server.ShiftFront
 {
@@ -90,6 +91,7 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftBarracksComponent, ComponentStartup>(OnBarracksStart);
             SubscribeLocalEvent<ShiftSuppliesComponent, ComponentStartup>(OnSuppliesStart);
             SubscribeLocalEvent<ShiftStorageComponent, ComponentStartup>(OnStorageStart);
+            SubscribeLocalEvent<ShiftAirDefableComponent, ComponentStartup>(OnAirDefableStart);
             SubscribeLocalEvent<ShiftExtractorComponent, DamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<ShiftStructureComponent, ExaminedEvent>(OnExamineStructure);
             SubscribeLocalEvent<ShiftConsoleAnalisComponent, ExaminedEvent>(OnExamineAnalis);
@@ -420,6 +422,7 @@ namespace Content.Server.ShiftFront
             {
                 int Turret = 0;
                 int MedTower = 0;
+                int AntiAir = 0;
                 int Supplies = 0;
                 int Barracks = 0;
                 int Extractor = 0;
@@ -439,6 +442,9 @@ namespace Content.Server.ShiftFront
                             break;
                         case "MedTower":
                             MedTower++;
+                            break;
+                        case "AntiAir":
+                            AntiAir++;
                             break;
                         case "Supplies":
                             Supplies++;
@@ -469,6 +475,7 @@ namespace Content.Server.ShiftFront
                 args.PushMarkup($"Текущие постройки:", 10);
                 if (Turret > 0) args.PushMarkup($"  Турели: [color=green]{Turret}[/color]", 8);
                 if (MedTower > 0) args.PushMarkup($"  Мед. башни: [color=green]{MedTower}[/color]", 8);
+                if (AntiAir > 0) args.PushMarkup($"  ПВО системы: [color=green]{AntiAir}[/color]", 8);
                 if (Storage > 0) args.PushMarkup($"  Хранилища: [color=green]{Storage}[/color]", 8);
                 if (Supplies > 0) args.PushMarkup($"  Заводы: [color=green]{Supplies}[/color]", 7);
                 if (Barracks > 0) args.PushMarkup($"  Клон-станции: [color=green]{Barracks}[/color]", 9);
@@ -593,6 +600,21 @@ namespace Content.Server.ShiftFront
                     }
                 }
             }
+        }
+        public void OnAirDefableStart(EntityUid uid, ShiftAirDefableComponent comp, ComponentStartup args)
+        {
+            var xform = Transform(uid);
+            var coords = xform.Coordinates;
+            foreach (var target in _lookup.GetEntitiesInRange(coords, comp.Radius))
+            {
+                if (TryComp<ShiftAntiAirComponent>(target, out var aa))
+                {
+                    var desp = EnsureComp<SpawnOnDespawnComponent>(target);
+                    desp.Prototype = "AntiAirDropEffect";
+                    return;
+                }
+            }
+
         }
         public void OnStorageStart(EntityUid uid, ShiftStorageComponent comp, ComponentStartup args)
         {
@@ -997,6 +1019,16 @@ namespace Content.Server.ShiftFront
                     Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "ammostorage")
                 });
             }
+            if (CheckResearch("ShiftFrontAntiAir", comp.Faction))
+            {
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () => SelectBuildType(uid, comp, session, "ПВО система 'Купол'"),
+                    Text = "ПВО система 'Купол'",
+                    Priority = 10,
+                    Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/icons.rsi"), "ammostorage")
+                });
+            }
 
             if (CheckResearch("ShiftFrontMedTowerV", comp.Faction))
             {
@@ -1233,6 +1265,7 @@ namespace Content.Server.ShiftFront
                 "турель" => 25,
                 "вышка" => 35,
                 "припасы" => 25,
+                "ПВО система 'Купол'" => 30,
                 "ремстанция" => 22,
                 "экстрактор" => 7,
                 "конвертер" => 40,
@@ -1290,6 +1323,7 @@ namespace Content.Server.ShiftFront
                 "турель" => (60, 0, 0),
                 "вышка" => (75, 100, 0),
                 "припасы" => (115, 65, 0),
+                "ПВО система 'Купол'" => (145, 15, 10),
                 "ремстанция" => (85, 15, 15),
                 "экстрактор" => (35, 0, 0),
                 "конвертер" => (75, 75, 5),
@@ -1458,6 +1492,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "припасы":
                                 Spawn("ShiftFrontSupplies" + comp.Faction, coords);
+                                break;
+                            case "ПВО система 'Купол'":
+                                Spawn("ShiftFrontAntiAir" + comp.Faction + "V", coords);
                                 break;
                             case "ремстанция":
                                 Spawn("ShiftFrontMedTower" + comp.Faction + "V", coords);

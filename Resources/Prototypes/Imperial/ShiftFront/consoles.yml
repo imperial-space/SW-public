@@ -2074,3 +2074,84 @@
   - type: Sprite
     sprite: Imperial/ShiftFront/light.rsi
     state: chair
+
+
+
+- type: entity
+  parent: BaseStrtuctureShiftFront
+  id: ShiftFrontAntiAirBlueV
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftAntiAir
+  - type: Sprite
+    sprite: Imperial/ShiftFront/builds.rsi
+    state: aa
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.36
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: ShiftStructure
+    faction: Blue
+    structure: AntiAir
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Blue
+    mippleProto: ShiftFrontAntiAirIcon
+
+- type: entity
+  parent: ShiftFrontAntiAirBlueV ###
+  id: ShiftFrontAntiAirRedV
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftStructure
+    faction: Red
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Red
+    mippleProto: ShiftFrontAntiAirIcon
+
+- type: entity
+  parent: ShiftFrontAntiAirBlueV ###
+  id: ShiftFrontAntiAirGreenV
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftStructure
+    faction: Green
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Green
+    mippleProto: ShiftFrontAntiAirIcon
+
+- type: entity
+  parent: ShiftFrontAntiAirBlueV ###
+  id: ShiftFrontAntiAirYellowV
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: ShiftStructure
+    faction: Yellow
+  - type: ShiftShowOnMap
+    dynamic: false
+    faction: Yellow
+    mippleProto: ShiftFrontAntiAirIcon

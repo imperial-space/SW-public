@@ -315,7 +315,7 @@
   id: ShiftFrontBarricade2
   tier: 2
   researchName: прочные заграждения
-  price: 80
+  price: 55
   requiredResearches:
   - ShiftFrontBarricade
 
@@ -326,6 +326,14 @@
   price: 40
   requiredResearches:
   - ShiftFrontBarricade
+
+- type: ShiftFrontResearch
+  id: ShiftFrontAntiAir
+  tier: 2
+  researchName: ПВО система 'Купол'
+  price: 75
+  requiredResearches:
+  - ShiftFrontBarricade2
 
 - type: ShiftFrontResearch
   id: ShiftFrontMarksman

@@ -278,6 +278,15 @@
       state: stone
 
 - type: entity
+  id: AntiAirDropEffect
+  components:
+    - type: EmitSoundOnSpawn
+      sound:
+        path: /Audio/Effects/balloon-pop.ogg
+    - type: TimedDespawn
+      lifetime: 4
+
+- type: entity
   id: MedievalExplodeStone
   components:
   - type: TriggerOnSpawn
@@ -399,6 +408,7 @@
     - type: EmitSoundOnSpawn
       sound:
         path: /Audio/Imperial/Medieval/Siege/catapult_land.ogg
+    - type: ShiftAirDefable
     - type: TimedDespawn
       lifetime: 1.2
     - type: SpawnOnDespawn
@@ -434,6 +444,7 @@
     - type: EmitSoundOnSpawn
       sound:
         path: /Audio/Imperial/Medieval/Siege/catapult_land.ogg
+    - type: ShiftAirDefable
     - type: TimedDespawn
       lifetime: 1.2
     - type: SpawnOnDespawn
