@@ -1181,7 +1181,7 @@
   components:
     - type: Sprite
       sprite: Imperial/ShiftFront/light.rsi
-      state: ammomm
+      state: mineosk
     - type: SiegeAmmo
       ammoType: mm
     - type: Item
@@ -1193,7 +1193,7 @@
   components:
     - type: Sprite
       sprite: Imperial/ShiftFront/light.rsi
-      state: ammomm
+      state: mineburst
     - type: SiegeAmmo
       ammoType: mmfrag
     - type: Item

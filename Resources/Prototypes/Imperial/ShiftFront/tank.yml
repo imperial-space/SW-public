@@ -1522,8 +1522,8 @@
   - type: Tag
     tags: [MagazineLightRifleHard]
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: blast
+    sprite: Imperial/ShiftFront/light.rsi
+    state: projectileosk
   - type: ShiftTankAmmo
 
 - type: entity
@@ -1566,8 +1566,8 @@
   - type: Tag
     tags: [MagazineLightRifleHard]
   - type: Sprite
-    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
-    state: flash
+    sprite: Imperial/ShiftFront/light.rsi
+    state: projectilebops
   - type: ShiftTankAmmo
 
 - type: entity
