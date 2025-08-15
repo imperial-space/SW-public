@@ -609,7 +609,7 @@ namespace Content.Server.ShiftFront
             {
                 if (TryComp<ShiftAntiAirComponent>(target, out var aa))
                 {
-                    var desp = EnsureComp<SpawnOnDespawnComponent>(target);
+                    var desp = EnsureComp<SpawnOnDespawnComponent>(uid);
                     desp.Prototype = "AntiAirDropEffect";
                     return;
                 }
