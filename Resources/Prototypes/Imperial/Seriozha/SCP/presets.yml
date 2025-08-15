@@ -57,6 +57,21 @@
 
 - type: entity
   parent: ImperialSCPBasePreset
+  id: PresetSCPAlpha
+  name: Preset
+  suffix: seriozha, Недра
+  components:
+    - type: Loadout
+      prototypes: [ AlphaGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialSmokeImplant
+      - DeathAcidifierImplant
+      - ScramImplant
+
+- type: entity
+  parent: ImperialSCPBasePreset
   id: PresetSCPOxrana
   name: Preset
   suffix: seriozha, Недра
@@ -260,3 +275,32 @@
     back:
     - EncryptionKeyRadio1
     - FirstAidMedkitImperialFilled
+
+- type: startingGear
+  id: AlphaGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitAlpha
+    back: AlphaBackpack
+    mask: AlphaGasMask
+    shoes: ClothingShoesAlpha
+    head: ClothingHeadHelmetSCPAlpha
+    neck: USSPMajorPin
+    eyes: AlphaVisor
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPAlpha
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPAlt
+    suitstorage: WeaponRifleAk
+    belt: WeaponAlphaPulsePistol
+    pocket1: MagazineLightRifle
+    pocket2: MagazineLightRifle
+  storage:
+    back:
+    - EncryptionKeyNedraconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraAlphaconnection
+    - MagazineLightRifle
+    - MagazineLightRifle
+    - MedkitCobmatImperialFilled
+    - MedkitCobmatImperialFilled
+    - DoorRemoteSCPAll

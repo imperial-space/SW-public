@@ -150,6 +150,8 @@
       - DoorBumpOpener
     - type: Access
       tags:
+      - SCPAccesOne
+      - SCPAccesTwo
       - SCPAccesThree
     - type: Fixtures
       fixtures:
