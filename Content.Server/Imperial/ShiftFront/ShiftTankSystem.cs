@@ -92,6 +92,7 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftTankpartComponent, ActivateInWorldEvent>(OnActivate);
             SubscribeLocalEvent<ShiftTankHullComponent, ActivateInWorldEvent>(OnActivateTank);
             SubscribeLocalEvent<ShiftPlayerComponent, EntitySpokeEvent>(OnSpeak);
+            SubscribeLocalEvent<ShiftFPVDroneComponent, EntitySpokeEvent>(OnTankSpeak);
             SubscribeLocalEvent<ShiftTankAmmoComponent, BeforeRangedInteractEvent>(OnUseInHandAmmo);
             SubscribeLocalEvent<ShiftTankpartComponent, ShiftTankLoadDoAfter>(OnAmmoDoAfter);
 
@@ -144,9 +145,18 @@ namespace Content.Server.ShiftFront
             }
             return false;
         }
+        private void OnTankSpeak(EntityUid uid, ShiftFPVDroneComponent comp, EntitySpokeEvent args)
+        {
+            if (args.Whisper) return;
+            if (!comp.TankPart) return;
+            if (comp.Pilot == null) return;
+            if (!HasComp<ShiftFPVPilotComponent>(comp.Pilot)) return;
+            _chat.TrySendInGameICMessage(comp.Pilot.Value, args.Message, InGameICChatType.Speak, false);
+        }
         private void OnSpeak(EntityUid uid, ShiftPlayerComponent comp, EntitySpokeEvent args)
         {
             if (comp.Vehicle == null) return;
+            if (HasComp<ShiftFPVPilotComponent>(uid)) return;
             _chat.TrySendInGameICMessage(comp.Vehicle.Value, args.Message, InGameICChatType.Whisper, false, nameOverride: "голос изнутри техники");
         }
         private void TankEnd(EntityUid uid, ShiftTankHullComponent comp, ref ComponentShutdown args)

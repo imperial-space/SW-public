@@ -181,6 +181,9 @@
     insideGunner: TankPartGunner
     insideEntry: TankPartEntry
     insideExit: TankPartExit
+    insideMotor: TankPartMotor
+    insideRotor: TankPartRotor
+    insideCartridge: TankPartAmmoPrimary
     gridLink:
     - "/Maps/Imperial/bmp.yml"
     #moveSpeed: 4.8
@@ -370,6 +373,9 @@
     insideGunner: TankPartGunner
     insideEntry: TankPartEntry
     insideExit: TankPartExit
+    insideMotor: TankPartMotor
+    insideRotor: TankPartRotor
+    insideCartridge: TankPartAmmoPrimary
     gridLink:
     - "/Maps/Imperial/bmp.yml"
     #moveSpeed: 1.9
@@ -515,6 +521,9 @@
     insideGunner: TankPartGunner
     insideEntry: TankPartEntry
     insideExit: TankPartExit
+    insideMotor: TankPartMotor
+    insideRotor: TankPartRotor
+    insideAmmo: TankPartAmmoSecondary
     insideObserver: TankPartObserver
     insideCartridge: TankPartCartridge
     observerProto: MobShiftTankObserver
@@ -566,6 +575,45 @@
     whitelist:
       tags: [MagazineLightRifleHard]
 
+- type: entity
+  id: BasePTUR
+  parent: BaseShiftVehicle
+  abstract: true
+  components:
+  - type: CombatMode
+    toggleMouseRotator: false
+  - type: MouseRotator
+    angleTolerance: 5
+    rotationSpeed: 25
+    simple4DirMode: false
+  - type: NoRotateOnInteract
+  - type: NoRotateOnMove
+  - type: Input
+    context: "human"
+  - type: EyeCursorOffset
+    maxOffset: 17
+    pvsIncrease: 0.7
+    offsetSpeed: 0.035
+  - type: Sprite
+    scale: 1.4,1.4
+    sprite: Imperial/ShiftFront/tank.rsi
+    drawdepth: Mobs
+    layers:
+    - state: ptur
+  - type: Gun
+    projectileSpeed: 14
+    fireRate: 0.08
+    selectedMode: SemiAuto
+    availableModes: [SemiAuto]
+    soundGunshot:
+      path: /Audio/Imperial/ShiftFront/ptur_shot.ogg
+      params: {maxDistance: 45}
+  - type: BallisticAmmoProvider
+    capacity: 8
+    proto: MagazineLightRifleHardPTUR
+    whitelist:
+      tags: [MagazineLightRifleHard]
+
 ### Красный танк ###
 - type: entity
   id: ShiftFrontTankRed
@@ -587,6 +635,23 @@
 - type: entity
   id: ShiftFrontTankTurretRed
   parent: [BaseHeavyTurret, BaseRedFaction]
+
+- type: entity
+  id: ShiftFrontTankPTURBlue
+  parent: [BasePTUR, BaseBlueFaction]
+
+- type: entity
+  id: ShiftFrontTankPTURRed
+  parent: [BasePTUR, BaseRedFaction]
+
+- type: entity
+  id: ShiftFrontTankPTURGreen
+  parent: [BasePTUR, BaseGreenFaction]
+
+- type: entity
+  id: ShiftFrontTankPTURYellow
+  parent: [BasePTUR, BaseYellowFaction]
+
 
 ### Синий танк ###
 - type: entity
@@ -661,6 +726,103 @@
     faction: Yellow
 
 - type: entity
+  id: BaseMRAPPTURHull
+  parent: BaseMRAPHull
+  abstract: true
+  components:
+  - type: ShiftTankHull
+    insideController: TankPartController
+    insideGunner: TankPartGunner
+    insideEntry: TankPartEntry
+    insideExit: TankPartExit
+    insideMotor: TankPartMotor
+    #insideRotor: TankPartRotor
+    insideCartridge: TankPartAmmoPrimary
+    gridLink:
+    - "/Maps/Imperial/mrapG.yml"
+
+
+- type: entity
+  id: ShiftFrontMRAPPTURBlue
+  parent: [BaseMRAPPTURHull, BaseBlueFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: blue
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    turretProto: ShiftFrontTankPTURBlue
+    faction: Blue
+  - type: ShiftShowOnMap
+    faction: Blue
+    mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
+
+- type: entity
+  id: ShiftFrontMRAPPTURRed
+  parent: [BaseMRAPPTURHull, BaseRedFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: red
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    turretProto: ShiftFrontTankPTURRed
+    faction: Red
+  - type: ShiftShowOnMap
+    faction: Red
+    mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
+
+- type: entity
+  id: ShiftFrontMRAPPTURGreen
+  parent: [BaseMRAPPTURHull, BaseGreenFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: green
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    turretProto: ShiftFrontTankPTURGreen
+    faction: Green
+  - type: ShiftShowOnMap
+    faction: Green
+    mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
+
+- type: entity
+  id: ShiftFrontMRAPPTURYellow
+  parent: [BaseMRAPPTURHull, BaseYellowFaction]
+  components:
+  - type: Sprite
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: yellow
+      sprite: Imperial/ShiftFront/tiger.rsi
+  - type: ShiftTankHull
+    turretProto: ShiftFrontTankPTURYellow
+    faction: Yellow
+  - type: ShiftShowOnMap
+    faction: Yellow
+    mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
+
+- type: entity
   id: BaseMRAPMHull
   parent: BaseMRAPHull
   abstract: true
@@ -670,6 +832,9 @@
     insideGunner: TankPartGunner
     insideEntry: TankPartEntry
     insideExit: TankPartExit
+    insideMotor: TankPartMotor
+    #insideRotor: TankPartRotor
+    insideCartridge: TankPartAmmoPrimary
     gridLink:
     - "/Maps/Imperial/mrapG.yml"
 
@@ -794,6 +959,8 @@
     insideController: TankPartController
     insideEntry: TankPartEntry
     insideExit: TankPartExit
+    insideMotor: TankPartMotor
+    #insideRotor: TankPartRotor
     gridLink:
     - "/Maps/Imperial/mrap.yml"
   - type: MobThresholds
@@ -912,6 +1079,9 @@
     insideGunner: TankPartGunner
     insideEntry: TankPartEntry
     insideExit: TankPartExit
+    insideMotor: TankPartMotor
+    insideRotor: TankPartRotor
+    insideCartridge: TankPartAmmoPrimary
     gridLink:
     - "/Maps/Imperial/bmp.yml"
 
@@ -1010,6 +1180,8 @@
     insideController: TankPartController
     insideEntry: TankPartEntry
     insideExit: TankPartExit
+    insideMotor: TankPartMotor
+    insideRotor: TankPartRotor
     gridLink:
     - "/Maps/Imperial/mtlb.yml"
   - type: MobThresholds
@@ -1427,6 +1599,52 @@
     energy: 7.5
     castShadows: false
 
+
+
+- type: entity
+  id: MagazineLightRifleHardPTUR
+  parent: BaseCartridge
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifleTankPTUR
+  - type: Tag
+    tags: [MagazineLightRifleHard]
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Explosives/explosives.rsi
+    state: rpg
+  - type: ShiftTankAmmo
+
+- type: entity
+  id: BulletLightRifleTankPTUR
+  parent: BaseBulletTrigger
+  categories: [HideSpawnMenu]
+  components:
+  - type: ShiftTankBullet
+  - type: Projectile
+    flyByCoverTime: 0.6
+    suppression: 300
+    damage:
+      types:
+        Piercing: 100
+        AntiTank: 250
+        AntiLightTank: 40
+  - type: Sprite
+    scale: 1.5, 1.5
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    layers:
+      - state: grenade
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Default
+    maxIntensity: 20
+    intensitySlope: 10
+    totalIntensity: 100
+  - type: PointLight
+    radius: 3.5
+    color: orange
+    energy: 7.5
+    castShadows: false
+
 ### Теги ###
 - type: Tag
   id: MagazineLightRifleBoxBTR
@@ -1560,6 +1778,27 @@
     inside: Cartridge
 
 - type: entity
+  id: TankPartMarkerAmmo
+  parent: TankPartMarkerController
+  components:
+  - type: ShiftInsideMarker
+    inside: Ammo
+
+- type: entity
+  id: TankPartMarkerRotor
+  parent: TankPartMarkerController
+  components:
+  - type: ShiftInsideMarker
+    inside: Rotor
+
+- type: entity
+  id: TankPartMarkerMotor
+  parent: TankPartMarkerController
+  components:
+  - type: ShiftInsideMarker
+    inside: Motor
+
+- type: entity
   id: TankPartController
   components:
   - type: Clickable
@@ -1579,6 +1818,47 @@
   - type: Sprite
     sprite: Imperial/ShiftFront/light.rsi
     state: periscope0
+
+- type: entity
+  id: TankPartMotor
+  parent: TankPartController
+  components:
+  - type: ShiftTankpart
+    part: Motor
+  - type: Sprite
+    scale: 0.9, 0.9
+    sprite: Imperial/ShiftFront/light.rsi
+    state: smallengine
+
+- type: entity
+  id: TankPartRotor
+  parent: TankPartController
+  components:
+  - type: ShiftTankpart
+    part: Rotor
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: rotorbox
+
+- type: entity
+  id: TankPartAmmoPrimary
+  parent: TankPartController
+  components:
+  - type: ShiftTankpart
+    part: Cartridge
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: ammobox
+
+- type: entity
+  id: TankPartAmmoSecondary
+  parent: TankPartController
+  components:
+  - type: ShiftTankpart
+    part: Ammo
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: ammobox
 
 - type: entity
   id: TankPartExit

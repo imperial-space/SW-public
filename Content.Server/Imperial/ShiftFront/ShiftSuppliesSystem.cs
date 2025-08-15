@@ -175,6 +175,16 @@ namespace Content.Server.ShiftFront
                 {
                     Act = () =>
                     {
+                        comp.ChosenGen = "огнетушитель";
+                        _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить огнетушитель раз в какое-то время", "Выбрано");
+                    },
+                    Text = "Огнетушитель",
+                    Priority = 9
+                });
+                ev.Verbs.Add(new AlternativeVerb
+                {
+                    Act = () =>
+                    {
                         comp.ChosenGen = "БОПС танка";
                         _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить снаряд танка раз в какое-то время", "Выбрано");
                     },
@@ -604,6 +614,9 @@ namespace Content.Server.ShiftFront
                                 break;
                             case "ОФ снаряд танка":
                                 Spawn("MagazineLightRifleHard", coords);
+                                break;
+                            case "огнетушитель":
+                                Spawn("FireExtinguisher", coords);
                                 break;
                             case "БОПС танка":
                                 Spawn("MagazineLightRifleHardBops", coords);

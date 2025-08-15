@@ -35,7 +35,7 @@
     minAngle: -20
     maxAngle: -20
   - type: EyeCursorOffset
-    maxOffset: 22.5
+    maxOffset: 25
     pvsIncrease: 2.5
     offsetSpeed: 0.03
   - type: CursorOffsetRequiresWield

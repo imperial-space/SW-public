@@ -4,8 +4,8 @@ meta:
   engineVersion: 260.2.0
   forkId: ""
   forkVersion: ""
-  time: 07/27/2025 16:08:32
-  entityCount: 28
+  time: 08/15/2025 07:40:22
+  entityCount: 29
 maps:
 - 1
 grids:
@@ -240,13 +240,27 @@ entities:
     - type: DecalGrid
       chunkCollection:
         version: 2
-        nodes: []
+        nodes:
+        - node:
+            color: '#FFFFFFFF'
+            id: WarnFull
+          decals:
+            1: -2,0
     - type: Biome
       forcedMarkerLayers: []
       markerLayers: []
       loadedMarkers: {}
       pendingMarkers: {}
       loadedChunks:
+      - -40,32
+      - -40,24
+      - -40,16
+      - -40,8
+      - -40,0
+      - -40,-8
+      - -40,-16
+      - -40,-24
+      - -40,-32
       - 24,32
       - 24,24
       - 24,16
@@ -319,16 +333,16 @@ entities:
       - -32,-16
       - -32,-24
       - -32,-32
-      - -40,32
-      - -40,24
-      - -40,16
-      - -40,8
-      - -40,0
-      - -40,-8
-      - -40,-16
-      - -40,-24
-      - -40,-32
       entities:
+        -40,32: {}
+        -40,24: {}
+        -40,16: {}
+        -40,8: {}
+        -40,0: {}
+        -40,-8: {}
+        -40,-16: {}
+        -40,-24: {}
+        -40,-32: {}
         24,32: {}
         24,24: {}
         24,16: {}
@@ -401,16 +415,16 @@ entities:
         -32,-16: {}
         -32,-24: {}
         -32,-32: {}
-        -40,32: {}
-        -40,24: {}
-        -40,16: {}
-        -40,8: {}
-        -40,0: {}
-        -40,-8: {}
-        -40,-16: {}
-        -40,-24: {}
-        -40,-32: {}
       decals:
+        -40,32: {}
+        -40,24: {}
+        -40,16: {}
+        -40,8: {}
+        -40,0: {}
+        -40,-8: {}
+        -40,-16: {}
+        -40,-24: {}
+        -40,-32: {}
         24,32: {}
         24,24: {}
         24,16: {}
@@ -483,15 +497,6 @@ entities:
         -32,-16: {}
         -32,-24: {}
         -32,-32: {}
-        -40,32: {}
-        -40,24: {}
-        -40,16: {}
-        -40,8: {}
-        -40,0: {}
-        -40,-8: {}
-        -40,-16: {}
-        -40,-24: {}
-        -40,-32: {}
       modifiedTiles:
         -32,8:
         - -28,8
@@ -28001,7 +28006,22 @@ entities:
     - type: BecomesStation
       id: Dev
     - type: SunShadow
-- proto: ChairPilotSeat
+- proto: ExtinguisherCabinetFilled
+  entities:
+  - uid: 29
+    components:
+    - type: Transform
+      pos: 0.5,1.5
+      parent: 1
+- proto: TankPartMarkerMotor
+  entities:
+  - uid: 12
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: -1.5,0.5
+      parent: 1
+- proto: ShiftFrontChairPilotSeat
   entities:
   - uid: 2
     components:
@@ -28015,13 +28035,13 @@ entities:
       rot: 3.141592653589793 rad
       pos: -0.5,2.5
       parent: 1
-  - uid: 5
+  - uid: 4
     components:
     - type: Transform
       rot: 3.141592653589793 rad
       pos: -1.5,1.5
       parent: 1
-  - uid: 6
+  - uid: 5
     components:
     - type: Transform
       rot: 3.141592653589793 rad
@@ -28029,7 +28049,7 @@ entities:
       parent: 1
 - proto: SmallLight
   entities:
-  - uid: 8
+  - uid: 6
     components:
     - type: Transform
       rot: 1.5707963267948966 rad
@@ -28037,41 +28057,36 @@ entities:
       parent: 1
 - proto: TankPartMarkerController
   entities:
-  - uid: 9
+  - uid: 7
     components:
     - type: Transform
       pos: -0.5,3.5
       parent: 1
 - proto: TankPartMarkerEntry
   entities:
-  - uid: 12
+  - uid: 8
     components:
     - type: Transform
       pos: -0.994334,1.7301004
       parent: 1
 - proto: TankPartMarkerExit
   entities:
-  - uid: 11
+  - uid: 9
     components:
     - type: Transform
       pos: -0.5,0.5
       parent: 1
 - proto: WallPlastitaniumIndestructible
   entities:
-  - uid: 4
+  - uid: 10
     components:
     - type: Transform
       pos: -1.5,3.5
       parent: 1
-  - uid: 7
+  - uid: 11
     components:
     - type: Transform
       pos: -0.5,-0.5
-      parent: 1
-  - uid: 10
-    components:
-    - type: Transform
-      pos: -1.5,0.5
       parent: 1
   - uid: 13
     components:

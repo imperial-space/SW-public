@@ -70,6 +70,15 @@
       ]
         },
         {
+            "name": "ammobox"
+        },
+        {
+            "name": "rotorbox"
+        },
+        {
+            "name": "smallengine"
+        },
+        {
             "name": "breech"
         },
         {
@@ -77,6 +86,10 @@
         },      
         {
             "name": "techhealblue"
+        },
+        {
+            "name": "chair",
+            "directions": 4
         },
         {
             "name": "techhealgreen"

@@ -2064,3 +2064,13 @@
     sprite: Objects/Weapons/Grenades/grenade_at.rsi
   - type: Item
     size: Normal
+
+- type: entity
+  name: pilot seat
+  id: ShiftFrontChairPilotSeat
+  parent: ChairBase
+  description: The pilot seat of a prestigious ship.
+  components:
+  - type: Sprite
+    sprite: Imperial/ShiftFront/light.rsi
+    state: chair

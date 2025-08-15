@@ -71,6 +71,12 @@
             "name": "tankmachinegun"
         },
         {
+            "name": "hmg"
+        },
+        {
+            "name": "ptur"
+        },
+        {
             "name": "tankturret",
             "directions": 8
         },
