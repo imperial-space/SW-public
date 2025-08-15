@@ -68,4 +68,4 @@ ent-VendingMachineElysiumStampMate = ШтампоМат
 ent-VendingMachineElysiumMaterialMachine = ШарфоМат
 
 ent-FederationAccessManipulator = Федеративный манипулятор доступов
-    .desc = Пахнет, как ключи от капитализма.
+    .desc = Пахнет как ключи от капитализма.
