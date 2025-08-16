@@ -228,3 +228,38 @@
   sprite:
     sprite: Imperial/Felix/decals_RU.rsi
     state: ze_RU
+
+- type: decal
+  id: citizen_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: citizen
+
+- type: decal
+  id: Immigrants1_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: Immigrants1_RU
+
+- type: decal
+  id: Immigrants2_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: Immigrants2_RU
+
+- type: decal
+  id: ohranajemaja_territorija1_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: ohranajemaja_territorija1_RU
+
+- type: decal
+  id: ohranajemaja_territorija2_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: ohranajemaja_territorija2_RU
