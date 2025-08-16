@@ -222,6 +222,11 @@ namespace Content.Server.ShiftFront
             args.Handled = true;
             if (!_sharedPlayerManager.TryGetSessionByEntity(args.User, out var session)) return;
             if (!_mind.TryGetMind(args.User, out _, out var mindcomp)) return;
+            if (HasComp<ShiftTankReloaderComponent>(args.User))
+            {
+                _prayerSystem.SendSubtleMessage(session, session, "Дождитесь окончания перезарядки", "Перезарядка");
+                return;
+            }
             if (comp.LinkedDrone == null)
             {
                 _prayerSystem.SendSubtleMessage(session, session, "В данный момент к контроллеру не привязан дрон", "Нет дрона");

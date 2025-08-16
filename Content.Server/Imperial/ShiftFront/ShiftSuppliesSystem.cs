@@ -274,10 +274,22 @@ namespace Content.Server.ShiftFront
                     {
                         Act = () =>
                         {
-                            comp.ChosenGen = "боеприпас миномета";
+                            comp.ChosenGen = "боеприпас миномета ОФ";
                             _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить боеприпас миномета раз в какое-то время", "Выбрано");
                         },
-                        Text = "Боеприпас миномета",
+                        Text = "Боеприпас миномета ОФ",
+                        Priority = 3,
+                        Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammomm")
+                    });
+                if (CheckResearch("ShiftFrontMm", comp.Faction))
+                    ev.Verbs.Add(new AlternativeVerb
+                    {
+                        Act = () =>
+                        {
+                            comp.ChosenGen = "боеприпас миномета оскол.";
+                            _prayerSystem.SendSubtleMessage(session, session, "Теперь данный завод будет производить боеприпас миномета раз в какое-то время", "Выбрано");
+                        },
+                        Text = "Боеприпас миномета оскол.",
                         Priority = 3,
                         Icon = new SpriteSpecifier.Rsi(new ResPath("Imperial/ShiftFront/light.rsi"), "ammomm")
                     });
@@ -650,8 +662,11 @@ namespace Content.Server.ShiftFront
                             case "строительный маячок":
                                 Spawn("ShiftFrontBuildLight", coords);
                                 break;
-                            case "боеприпас миномета":
+                            case "боеприпас миномета ОФ":
                                 Spawn("MedievalCatapultAmmoMm", coords);
+                                break;
+                            case "боеприпас миномета оскол.":
+                                Spawn("MedievalCatapultAmmoMmFrag", coords);
                                 break;
                             case "боеприпас мортиры":
                                 Spawn("MedievalCatapultAmmoMortar", coords);

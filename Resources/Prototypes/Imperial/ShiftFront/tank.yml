@@ -584,16 +584,16 @@
     toggleMouseRotator: false
   - type: MouseRotator
     angleTolerance: 5
-    rotationSpeed: 25
+    rotationSpeed: 50
     simple4DirMode: false
   - type: NoRotateOnInteract
   - type: NoRotateOnMove
   - type: Input
     context: "human"
   - type: EyeCursorOffset
-    maxOffset: 17
+    maxOffset: 19
     pvsIncrease: 0.7
-    offsetSpeed: 0.035
+    offsetSpeed: 0.045
   - type: Sprite
     scale: 1.4,1.4
     sprite: Imperial/ShiftFront/tank.rsi
@@ -601,7 +601,7 @@
     layers:
     - state: ptur
   - type: Gun
-    projectileSpeed: 14
+    projectileSpeed: 12
     fireRate: 0.08
     selectedMode: SemiAuto
     availableModes: [SemiAuto]

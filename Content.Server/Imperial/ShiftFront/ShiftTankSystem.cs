@@ -100,6 +100,7 @@ namespace Content.Server.ShiftFront
 
         public void OnAmmoDoAfter(EntityUid uid, ShiftTankpartComponent comp, ShiftTankLoadDoAfter args)
         {
+            RemComp<ShiftTankReloaderComponent>(args.User);
             if (args.Cancelled) return;
             if (comp.Part != "Cartridge") return;
             if (!TryComp<ShiftTankHullComponent>(comp.Tank, out var tank)) return;
@@ -115,7 +116,7 @@ namespace Content.Server.ShiftFront
             if (!TryComp<ShiftTankpartComponent>(args.Target, out var part) || part.Part != "Cartridge") return;
             if (!TryComp<ShiftTankHullComponent>(part.Tank, out var tank)) return;
             if (!TryComp<BallisticAmmoProviderComponent>(tank.LinkedTurret, out var ammo)) return;
-            if (ammo.UnspawnedCount == ammo.Capacity) return;
+            if (ammo.UnspawnedCount >= ammo.Capacity) return;
             var meta = EntityManager.GetComponent<MetaDataComponent>(uid);
             if (meta.EntityPrototype == null) return;
             if (meta.EntityPrototype.ID == null) return;
@@ -129,6 +130,7 @@ namespace Content.Server.ShiftFront
                 NeedHand = false,
                 CancelDuplicate = true
             };
+            EnsureComp<ShiftTankReloaderComponent>(args.User);
             _doAfter.TryStartDoAfter(doAfterHit);
             _audio.PlayPvs(part.SoundAmmoLoad, part.Owner);
             _audio.PlayPvs(part.SoundAmmoLoad, tank.Owner);
@@ -448,7 +450,12 @@ namespace Content.Server.ShiftFront
                     if (tankComp.MoveDirection > 0)
                         tankComp.SoftMoveDir += tankComp.AccelSpeed;
                     else
-                        tankComp.SoftMoveDir -= tankComp.AccelSpeed * tankComp.BackMoveModifier;
+                    {
+                        if (tankComp.SoftMoveDir >= 0)
+                            tankComp.SoftMoveDir -= tankComp.AccelSpeed * 3f;
+                        else
+                            tankComp.SoftMoveDir -= tankComp.AccelSpeed * tankComp.BackMoveModifier;
+                    }
                 }
                 else if (tankComp.SoftMoveDir < tankComp.SlowdownSpeed * -1.1f || tankComp.SoftMoveDir > tankComp.SlowdownSpeed * 1.1f)
                 {
@@ -484,7 +491,7 @@ namespace Content.Server.ShiftFront
                 // --- Обработка вращения ---
                 if (tankComp.IsRotating)
                 {
-                    if (tankComp.NeedMoveForRotating && tankComp.SoftMoveDir > tankComp.SlowdownSpeed * -1.1f && tankComp.SoftMoveDir < tankComp.SlowdownSpeed * 1.1f)
+                    if (tankComp.NeedMoveForRotating && tankComp.SoftMoveDir > tankComp.SlowdownSpeed * -1.5f && tankComp.SoftMoveDir < tankComp.SlowdownSpeed * 1.5f)
                         continue;
                     // Устанавливаем угловую скорость
                     if (tankComp.SoftMoveDir >= 0)
