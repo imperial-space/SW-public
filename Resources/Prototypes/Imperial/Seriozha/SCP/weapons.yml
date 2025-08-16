@@ -40,7 +40,7 @@
   id: RedHeavyLaserAlpha
   damage:
     types:
-      Heat: 30
+      Heat: 25
       Radiation: 20
       Structural: 100
   muzzleFlash:
