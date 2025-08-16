@@ -162,6 +162,8 @@
                 path: /Audio/Effects/break_stone.ogg
                 params:
                   volume: -6
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
     - type: Occluder
     - type: Airtight
     - type: Fixtures
@@ -373,8 +375,6 @@
           state: soil_n
         - map: [ "enum.EdgeLayer.West" ]
           state: soil_w
-    - type: MedievalMeleeBadTarget # imperial medieval
-      safeToHitGroup: structure # imperial medieval
 
 - type: entity
   id: MedievalWallSoilNormal
@@ -478,6 +478,8 @@
                 MedievalRockfallWait:
                   min: 1
                   max: 1
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -699,6 +701,8 @@
                 MedievalRockfallWait:
                   min: 1
                   max: 1
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false
@@ -920,6 +924,8 @@
                 MedievalRockfallWait:
                   min: 1
                   max: 1
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
     - type: Sprite
       sprite: Imperial/Medieval/Walls/soil.rsi
       netsync: false

@@ -1684,6 +1684,8 @@
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
     - type: Occluder
     - type: Airtight
     - type: Fixtures
@@ -6477,6 +6479,7 @@
           maxDuration: 10 # 300.0
           startValue: 5.0
           endValue: 1.5
+          property: Radius
     - type: Tag
       tags:
       - Trash
