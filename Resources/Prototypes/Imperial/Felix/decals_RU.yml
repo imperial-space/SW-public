@@ -1,0 +1,230 @@
+- type: decal
+  id: a_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: a_RU
+
+- type: decal
+  id: b_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: b_RU
+
+- type: decal
+  id: ce_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: ce_RU
+
+- type: decal
+  id: che_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: che_RU
+
+- type: decal
+  id: d_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: d_RU
+
+- type: decal
+  id: e_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: e_RU
+
+- type: decal
+  id: f_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: f_RU
+
+- type: decal
+  id: g_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: g_RU
+
+- type: decal
+  id: hard_e_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: hard_e_RU
+
+- type: decal
+  id: hard_i_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: hard_i_RU
+
+- type: decal
+  id: hard_sign_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: hard_sign_RU
+
+- type: decal
+  id: i_kratkaya_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: i_kratkaya_RU
+
+- type: decal
+  id: i_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: i_RU
+
+- type: decal
+  id: je_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: je_RU
+
+- type: decal
+  id: k_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: k_RU
+
+- type: decal
+  id: kh_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: kh_RU
+
+- type: decal
+  id: l_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: l_RU
+
+- type: decal
+  id: m_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: m_RU
+
+- type: decal
+  id: n_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: n_RU
+
+- type: decal
+  id: o_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: o_RU
+
+- type: decal
+  id: p_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: p_RU
+
+- type: decal
+  id: r_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: r_RU
+
+- type: decal
+  id: s_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: s_RU
+
+- type: decal
+  id: sha_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: sha_RU
+
+- type: decal
+  id: shya_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: shya_RU
+
+- type: decal
+  id: soft_sign_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: soft_sign_RU
+
+- type: decal
+  id: t_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: t_RU
+
+- type: decal
+  id: u_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: u_RU
+
+- type: decal
+  id: v_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: v_RU
+
+- type: decal
+  id: ya_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: ya_RU
+
+- type: decal
+  id: yo_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: yo_RU
+
+- type: decal
+  id: yu_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: yu_RU
+
+- type: decal
+  id: ze_RU
+  tags: "letters"
+  sprite:
+    sprite: Imperial/Felix/decals_RU.rsi
+    state: ze_RU
