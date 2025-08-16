@@ -137,3 +137,4 @@
   - type: Sprite
     sprite: Imperial/DeadSector/posters64x64.rsi
     state: poster-1
+    scale: 0.5, 0.5
