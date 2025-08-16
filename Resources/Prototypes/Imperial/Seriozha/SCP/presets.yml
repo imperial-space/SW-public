@@ -66,7 +66,6 @@
     - type: AutoImplant
       implants:
       - MindShieldImplant
-      - ImperialSmokeImplant
       - DeathAcidifierImplant
       - ScramImplant
 
