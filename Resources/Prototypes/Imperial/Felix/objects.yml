@@ -1253,8 +1253,10 @@
           !type:PhysShapeAabb
           bounds: "-0.8,-0.5,0.8,0.1"
         density: 1000
+        mask:
+        - MachineMask
         layer:
-        - WallLayer
+        - MachineLayer
   - type: Sprite
     noRot: true
     sprite: Imperial/Felix/Objects/Structures/Monuments/RMK.rsi
@@ -1382,6 +1384,17 @@
     layers:
     - state: a7
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1.4,-1,1.1,-0.3"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
   parent: FelixBrokenMachineCar1
@@ -1405,9 +1418,20 @@
     layers:
     - state: a1
     drawdepth: Overdoors
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.9,-1,1,-0.3"
+        density: 50
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
 
 - type: entity
-  parent: FelixBrokenMachineCarBase
+  parent: FelixBrokenMachineCar8
   id: FelixBrokenMachineCar9
   name: car
   suffix: ElysiumPrime
