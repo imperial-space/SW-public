@@ -187,7 +187,7 @@
     - type: SolutionContainerManager
       solutions:
         beaker:
-          maxVol: 100
+          maxVol: 150
     - type: Sprite
       sprite: Imperial/Medieval/Chem/mortar.rsi
       layers:
@@ -239,7 +239,7 @@
         components:
         - MortarTool
       grid:
-      - 0,0,2,2
+      - 0,0,1,1
     - type: Construction
       graph: MedievalMortarNew
       node: ground
