@@ -16,7 +16,7 @@
 
 - type: listing
   id: ATMCCR_500
-  productEntity: SpaceCash100
+  productEntity: SpaceCash500
   cost:
     FederationCash: 100
   categories:
@@ -98,7 +98,7 @@
   id: ATMFCR_500
   productEntity: FederationCash500
   cost:
-    SpaceCredit: 250
+    SpaceCredit: 2500
   categories:
   - FCR
 

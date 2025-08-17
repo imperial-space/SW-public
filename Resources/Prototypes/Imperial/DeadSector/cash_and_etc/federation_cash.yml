@@ -36,7 +36,7 @@
   - type: StackLayerThreshold
     thresholds: [10, 100, 100, 1000, 2500, 5000, 10000, 20000, 30000, 100000, 1000000]
   - type: Sprite
-    sprite: /Textures/Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
+    sprite: Imperial/Other/ElysiumPrime/Objects/Fcash.rsi
     state: cash
     layers:
     - state: cash
