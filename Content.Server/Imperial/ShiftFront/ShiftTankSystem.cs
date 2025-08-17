@@ -121,7 +121,8 @@ namespace Content.Server.ShiftFront
             if (meta.EntityPrototype == null) return;
             if (meta.EntityPrototype.ID == null) return;
             EntProtoId protoId = meta.EntityPrototype.ID;
-            part.Ammo = protoId;
+            if (!TryComp<CartridgeAmmoComponent>(uid, out var cartridgeAmmo)) return;
+            part.Ammo = cartridgeAmmo.Prototype;
             QueueDel(uid);
             var doAfterHit = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(4.5f), new ShiftTankLoadDoAfter(), target: args.Target, eventTarget: args.Target)
             {

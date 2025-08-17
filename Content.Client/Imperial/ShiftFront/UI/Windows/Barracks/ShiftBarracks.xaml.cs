@@ -7,12 +7,15 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Robust.Shared.Prototypes;
+using Content.Shared.ShiftFrontResearch;
 
 namespace Content.Client.Imperial.ShiftFront.UI.Windows.Barracks
 {
     [GenerateTypedNameReferences]
     public sealed partial class ShiftBarracks : BaseImperialWindow
     {
+        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
         public ShiftBarracks()
         {
             IoCManager.InjectDependencies(this);
@@ -28,14 +31,15 @@ namespace Content.Client.Imperial.ShiftFront.UI.Windows.Barracks
         protected override void Opened()
         {
             base.Opened();
-            for (int i = 0; i < 10; i++)
+            var cards = _prototypeManager.EnumeratePrototypes<ShiftFrontUnitCardPrototype>();
+            foreach (var card in cards)
             {
                 var newCard = new BarrackUnitCard();
-                newCard.UnitCardName.SetMessage(FormattedMessage.FromMarkupOrThrow("[color=red]Г[/color][color=orange]о[/color][color=yellow]в[/color][color=green]н[/color][color=blue]о[/color] " + i.ToString()));
-                newCard.UnitCarDesc.SetMessage(FormattedMessage.FromMarkupOrThrow("Описание"));
+                newCard.UnitCardName.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString(card.UnitName)));
+                newCard.UnitCarDesc.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString(card.UnitDesc)));
                 newCard.UnitCardAvailable.SetMessage(FormattedMessage.FromMarkupOrThrow("Доступно: 999"));
                 CardsBoxContainer.AddChild(newCard);
-
+// "[color=red]Г[/color][color=orange]о[/color][color=yellow]в[/color][color=green]н[/color][color=blue]о[/color] "
             }
         }
 

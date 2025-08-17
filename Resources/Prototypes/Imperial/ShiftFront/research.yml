@@ -489,3 +489,12 @@
 # Converter
 # DroneFactory
 # Science
+
+- type: shiftFrontUnitCard
+  id: ShiftFrontFast
+  unitName: fast
+  unitDesc: really fast
+  linkedProto: BaseMobHumanShiftFrontBlueFast
+  polymer: 5
+  bioShlak: 5
+  nanoCarbon: 0

@@ -5,11 +5,11 @@ namespace Content.Client.Imperial.ShiftFront.Ui
 {
     public sealed class ShiftBarracksBoundUserInterface : BoundUserInterface
     {
-        private ShiftBarracks? _window; // Делаем nullable
+        private ShiftBarracks? _window;
 
         public ShiftBarracksBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
-            // Не создаем окно здесь!
+
         }
 
         protected override void Open()
@@ -34,7 +34,7 @@ namespace Content.Client.Imperial.ShiftFront.Ui
                 if (_window != null)
                 {
                     _window.OnClose -= Close;
-                    _window.Dispose();
+                    _window.Close();
                     _window = null;
                 }
             }

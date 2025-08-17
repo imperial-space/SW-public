@@ -100,11 +100,9 @@
           bounds: "-0.08,-0.08,0.08,0.08"
         density: 10
         mask:
-        - FlyingMobMask
         - MobMask
         layer:
         - MobLayer
-        - FlyingMobLayer
   - type: ShiftFPVDrone
 
 - type: entity
