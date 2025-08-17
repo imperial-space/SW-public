@@ -26,5 +26,7 @@ ent-FederationCash100000 = кредиты Федерации
     .desc = На государственном логотипе кредита написано: "Федерация Elysium Prime".
 ent-FederationCash1000000 = кредиты Федерации
     .desc = На государственном логотипе кредита написано: "Федерация Elysium Prime".
+ent-ElysiumPrimeATM = Банкомат Федерации
+    .desc = Банкомат для размена валют. Курс: 1 FCR к 5 CCR
 
 federation-cash = Кредиты Федерации

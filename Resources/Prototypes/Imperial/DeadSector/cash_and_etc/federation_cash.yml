@@ -192,3 +192,38 @@
   cash:
     1: FederationCash1
   canWithdraw: true
+
+# credit exchange
+
+- type: entity
+  parent: BaseMachine
+  id: ElysiumPrimeATM
+  suffix: ElysiumPrime
+  name: ATM
+  description: ATM, where can you exchange currency. 1 FCR = 5 CCR
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/ATM.rsi
+    noRot: true
+    layers:
+    - state: ATM
+    - state: ATM_light
+      shader: unshaded
+      visible: true
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.StoreUiKey.Key
+  - type: Store
+    categories:
+    - FCR
+    - CCR
+    currencyWhitelist:
+    - FederationCash
+    - SpaceCredit
+    balance:
+      FederationCash: 0
+      SpaceCredit: 0

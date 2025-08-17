@@ -52,6 +52,9 @@
         mask:
         - ItemMask
   - type: Appearance
+  - type: Currency
+    price:
+      SpaceCredit: 1
 
 - type: material
   id: Credit
@@ -176,3 +179,10 @@
     state: cash_1000000
   - type: Stack
     count: 1000000
+
+- type: currency
+  id: SpaceCredit
+  displayName: cash
+  cash:
+    1: SpaceCash
+  canWithdraw: true
