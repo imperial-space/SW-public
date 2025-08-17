@@ -1632,8 +1632,8 @@
     damage:
       types:
         Piercing: 100
-        AntiTank: 250
-        AntiLightTank: 40
+        AntiTank: 280
+        AntiLightTank: 70
   - type: Sprite
     scale: 1.5, 1.5
     sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
