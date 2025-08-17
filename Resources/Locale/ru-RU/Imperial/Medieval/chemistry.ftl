@@ -50,3 +50,7 @@ ent-MedievalFlowerVetr = Ветрянник лепестковый
 ent-MedievalFlowerCryo = криоцвет холодный
     .desc = Магический цветок, растущий в местах повышенного скопления маны.
     .suffix = { "Средневековье, цветок" }
+ent-MedievalRecipeBook = книга рецептов
+    .desc = Книга в старом переплете, что позволяет хранить в себе древнейшие рецепты... перемешанные этим проклятым островом
+imperial-medieval-recipe-already = Рецепт уже есть в книге
+imperial-medieval-recipe-inserted = Рецепт успешно вставлен в книгу

@@ -175,8 +175,8 @@
     size: Small
   - type: MedievalRandomChemistryRecipe
     weights:
-      easy: 70
-      medium: 30
+      EasyPack: 70
+      MediumPack: 30
 
 - type: entity
   name: mortar
@@ -261,3 +261,24 @@
     - type: Construction
       graph: MedievalMortarTool
       node: ground
+
+- type: entity
+  name: recipe book
+  parent: BaseItem
+  id: MedievalRecipeBook
+  description: gooool
+  components:
+    - type: UserInterface
+      interfaces:
+        enum.RecipeBookUi.Key:
+          type: PotionBookBoundUserInterface
+    - type: ActivatableUI
+      key: enum.RecipeBookUi.Key
+    - type: MedievalRecipeBook
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/recipebook.rsi
+      layers:
+        - state: icon
+    - type: Item
+      size: Normal
+      sprite: Imperial/Medieval/Chem/recipebook.rsi

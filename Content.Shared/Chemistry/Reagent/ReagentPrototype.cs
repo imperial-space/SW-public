@@ -30,10 +30,11 @@ namespace Content.Shared.Chemistry.Reagent
         public string ID { get; private set; } = default!;
 
         [DataField(required: true)]
-        private LocId Name { get; set; }
+        [Access(typeof(Imperial.Medieval.ChemistryRandomization.SharedChemistryRandomizationSystem))] // Imperial Medieval Chemistry Change
+        public LocId Name { get; set; } // Imperial Medieval Chemistry Change
 
         [ViewVariables(VVAccess.ReadOnly)]
-        public string LocalizedName => Loc.GetString(Name);
+        public string LocalizedName => Imperial.Medieval.ChemistryRandomization.SharedChemistryRandomizationSystem.GetName(this); // Imperial Medieval Chemistry Change
 
         [DataField]
         public string Group { get; private set; } = "Unknown";
@@ -52,10 +53,11 @@ namespace Content.Shared.Chemistry.Reagent
         public string LocalizedDescription => Loc.GetString(Description);
 
         [DataField("physicalDesc", required: true)]
-        private LocId PhysicalDescription { get; set; } = default!;
+        public LocId PhysicalDescription { get; set; } = default!;
 
         [ViewVariables(VVAccess.ReadOnly)]
-        public string LocalizedPhysicalDescription => Loc.GetString(PhysicalDescription);
+        [Access(typeof(Imperial.Medieval.ChemistryRandomization.SharedChemistryRandomizationSystem))] // Imperial Medieval Chemistry Change
+        public string LocalizedPhysicalDescription => Imperial.Medieval.ChemistryRandomization.SharedChemistryRandomizationSystem.GetDescription(this); // Imperial Medieval Chemistry Change
 
         /// <summary>
         ///     Is this reagent recognizable to the average spaceman (water, welding fuel, ketchup, etc)?

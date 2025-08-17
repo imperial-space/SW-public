@@ -3,6 +3,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: bitter
@@ -13,6 +14,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -32,6 +34,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -50,6 +53,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -97,6 +101,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -129,6 +134,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -153,6 +159,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -168,6 +175,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -184,6 +192,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -200,6 +209,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -218,6 +228,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -228,6 +239,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -238,6 +250,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -255,6 +268,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -272,6 +286,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -289,6 +304,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -308,6 +324,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -348,6 +365,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -365,6 +383,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -388,6 +407,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -413,6 +433,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -432,6 +453,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   flavor: ""
   color: "#FFC8C8"
 
@@ -440,6 +462,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -460,6 +483,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -479,6 +503,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   flavor: ""
   color: "#63806e"
   metabolisms:
@@ -496,6 +521,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   flavor: ""
   color: "#63806e"
   metabolisms:
@@ -511,6 +537,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -530,6 +557,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -579,6 +607,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -595,6 +624,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -611,6 +641,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -629,6 +660,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -652,6 +684,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -671,6 +704,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -722,6 +756,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -747,6 +782,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -761,6 +797,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -801,6 +838,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -834,6 +872,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
@@ -857,6 +896,7 @@
   name: ""
   desc: ""
   physicalDesc: ""
+  showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: ""
