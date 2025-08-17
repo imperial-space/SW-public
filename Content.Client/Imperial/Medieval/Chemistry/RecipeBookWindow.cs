@@ -33,7 +33,7 @@ public sealed class PotionBookWindow
     public PotionBookWindow()
     {
         IoCManager.InjectDependencies(this);
-        Title = Loc.GetString("guidebook-window-title");
+        Title = Loc.GetString("imperial-medieval-recipebook");
         MinSize = new Vector2(100, 200);
         Resizable = true;
         SetSize = new Vector2(900, 700);

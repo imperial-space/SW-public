@@ -54,3 +54,4 @@ ent-MedievalRecipeBook = книга рецептов
     .desc = Книга в старом переплете, что позволяет хранить в себе древнейшие рецепты... перемешанные этим проклятым островом
 imperial-medieval-recipe-already = Рецепт уже есть в книге
 imperial-medieval-recipe-inserted = Рецепт успешно вставлен в книгу
+imperial-medieval-recipebook = Книга рецептов
