@@ -74,3 +74,10 @@ ent-FloorLamp = Напольная лампа
     .desc = Напольное освещение
 ent-FloorLampEmpty = Напольная лампа
     .desc = Напольное освещение
+
+ent-TechAirlockElysiumFederationLocked = Технический Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
+ent-TechAirlockElysiumFederationadminLocked = Технический Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
+ent-TechAirlockElysiumFederation = Технический Федеративный шлюз
+    .desc = Выглядит очень капиталистически.

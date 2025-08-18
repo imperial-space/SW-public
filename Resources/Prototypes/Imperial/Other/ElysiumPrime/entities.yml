@@ -739,3 +739,39 @@
       on: glow
       broken: base
       burned: Base
+
+- type: entity
+  id: TechAirlockElysiumFederationadminLocked
+  parent: Airlock
+  suffix: ЗАКРЫТ, ElysiumPrime, ElysiumPrime-Admin
+  name: technical airlock of the Federation
+  description: It looks very capitalist.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/technical.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederationadmin ]
+
+- type: entity
+  id: TechAirlockElysiumFederationLocked
+  parent: Airlock
+  suffix: ЗАКРЫТ, ElysiumPrime
+  name: technical airlock of the Federation
+  description: It looks very capitalist.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/technical.rsi
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsFederation ]
+
+- type: entity
+  id: TechAirlockElysiumFederation
+  parent: Airlock
+  suffix: ElysiumPrime
+  name: technical airlock of the Federation
+  description: It looks very capitalist.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Airlocks/technical.rsi
