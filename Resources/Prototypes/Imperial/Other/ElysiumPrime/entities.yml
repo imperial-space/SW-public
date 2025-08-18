@@ -706,3 +706,36 @@
       - Federationadmin
       - Federation
 
+- type: entity
+  parent: Poweredlight
+  name: floor lamp
+  description: lighting for floor
+  id: FloorLamp
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/floorlamps.rsi
+    state: base
+  - type: PoweredLightVisuals
+    spriteStateMap:
+      empty: empty
+      off: base
+      on: glow
+      broken: base
+      burned: base
+
+- type: entity
+  parent: PoweredlightEmpty
+  name: floor lamp
+  description: lighting for floor
+  id: FloorLampEmpty
+  components:
+  - type: Sprite
+    sprite: Imperial/Felix/Objects/floorlamps.rsi
+    state: empty
+  - type: PoweredLightVisuals
+    spriteStateMap:
+      empty: empty
+      off: base
+      on: glow
+      broken: base
+      burned: Base

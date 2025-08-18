@@ -69,3 +69,8 @@ ent-VendingMachineElysiumMaterialMachine = ШарфоМат
 
 ent-FederationAccessManipulator = Федеративный манипулятор доступов
     .desc = Пахнет как ключи от капитализма.
+
+ent-FloorLamp = Напольная лампа
+    .desc = Напольное освещение
+ent-FloorLampEmpty = Напольная лампа
+    .desc = Напольное освещение
