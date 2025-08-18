@@ -720,8 +720,8 @@
       empty: empty
       off: base
       on: glow
-      broken: base
-      burned: base
+      broken: broken
+      burned: burned
 
 - type: entity
   parent: PoweredlightEmpty
@@ -737,8 +737,8 @@
       empty: empty
       off: base
       on: glow
-      broken: base
-      burned: Base
+      broken: broken
+      burned: burned
 
 - type: entity
   id: TechAirlockElysiumFederationadminLocked
@@ -775,3 +775,39 @@
   components:
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Airlocks/technical.rsi
+
+- type: entity
+  parent: ElysiumPrimeTable
+  id: ElysiumPrimeTacticTable
+  name: Tactic Table
+  description: Tactic table for planning.
+  suffix: ElysiumPrime
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Objects/Tables/Tactic_Table.rsi
+    state: map_table
+  - type: Icon
+    sprite: Imperial/Other/ElysiumPrime/Objects/Tables/Tactic_Table.rsi
+    state: map_table
+
+- type: entity
+  parent: BaseItem
+  id: TabletElysiumPrime 
+  name: Tablet
+  description: Contains all the corruption schemes going on behind the scenes, but he is passworded
+  suffix: ElysiumPrime
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/planshet.rsi
+      state: icon
+    - type: Icon
+      sprite: Imperial/Other/ElysiumPrime/Misc/planshet.rsi
+      state: icon
+    - type: Item
+      sprite: Imperial/Other/ElysiumPrime/Misc/planshet.rsi
+      size: Small
+    - type: Clothing
+      sprite: Imperial/Other/ElysiumPrime/Misc/planshet.rsi
+      quickEquip: false
+      slots:
+        - Belt
