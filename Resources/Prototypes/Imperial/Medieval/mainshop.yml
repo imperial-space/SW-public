@@ -2142,6 +2142,22 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopMedievalReliefStoneStrong
+  productEntity: MedievalReliefStoneStrong
+  cost:
+    Revent: 45
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalChemistryRecipe
+  productEntity: MedievalChemistryRecipe
+  cost:
+    Revent: 25
+  categories:
+  - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalRepairStone
   productEntity: MedievalRepairStone
   discountCategory: medievalDiscounts
