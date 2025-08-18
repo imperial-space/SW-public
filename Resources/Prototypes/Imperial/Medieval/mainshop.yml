@@ -2142,6 +2142,38 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopCreationsBook
+  productEntity: CreationsBook
+  cost:
+    Revent: 15
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopPaintKit
+  productEntity: PaintKit
+  cost:
+    Revent: 8
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopEasel
+  productEntity: Easel
+  cost:
+    Revent: 22
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopCanvas
+  productEntity: Canvas
+  cost:
+    Revent: 22
+  categories:
+  - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalReliefStoneStrong
   productEntity: MedievalReliefStoneStrong
   cost:
