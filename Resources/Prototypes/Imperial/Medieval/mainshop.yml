@@ -2242,6 +2242,30 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopMedievalReliefStoneWeak
+  productEntity: MedievalReliefStoneWeak
+  cost:
+    Revent: 220
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalReliefStoneStrong
+  productEntity: MedievalReliefStoneStrong
+  cost:
+    Revent: 480
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalAntiGravitationStone
+  productEntity: MedievalAntiGravitationStone
+  cost:
+    Revent: 1150
+  categories:
+  - MedievalMagic
+
+- type: listing
   id: MdvShopMedievalHandheldGPSBasic
   productEntity: MedievalHandheldGPSBasic
   cost:

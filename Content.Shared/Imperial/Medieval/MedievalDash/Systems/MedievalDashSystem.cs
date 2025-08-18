@@ -1,5 +1,6 @@
 using System.Numerics;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Imperial.MedievalNotAllowDash.Components;
 using Content.Shared.Imperial.PhaseSpace;
 using Content.Shared.Input;
 using Content.Shared.Movement.Systems;
@@ -18,6 +19,7 @@ namespace Content.Shared.Imperial.Dash;
 
 public sealed partial class MedievalDashSystem : EntitySystem
 {
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly INetManager _net = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
@@ -77,6 +79,17 @@ public sealed partial class MedievalDashSystem : EntitySystem
         if (!_actionBlockerSystem.CanMove(uid))
             return false;
 
+        var xform = Transform(uid);
+        var coords = xform.Coordinates;
+
+        foreach (var entity in _lookup.GetEntitiesInRange(coords, 0.35f))
+        {
+            if (TryComp<MedievalNotAllowDashComponent>(entity, out var Dash))
+            {
+                return false;
+            }
+        }
+        
         var ev = new CanDashEvent();
         RaiseLocalEvent(uid, ref ev);
         return !ev.Cancelled;

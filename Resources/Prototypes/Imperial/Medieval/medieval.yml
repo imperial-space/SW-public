@@ -3447,6 +3447,7 @@
     snap:
     - Wall
   components:
+  - type: MedievalNotAllowDash
   - type: IconSmooth
     key: waterdeep
     base: water

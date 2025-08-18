@@ -298,6 +298,8 @@
         prob: 0.04
       - id: MedievalGlowStone
         prob: 0.04
+      - id: MedievalReliefStoneWeak
+        prob: 0.04
       - id: MedievalClothingUniformJumpsuitFlannel
         prob: 0.02
       - id: MedievalClothingUniformJumpsuitShitCloth16
@@ -512,6 +514,8 @@
         prob: 0.1
       - id: MedievalDaggerT3
         prob: 0.24
+      - id: MedievalReliefStoneStrong
+        prob: 0.01
       - id: MedievalFalshionT3
         prob: 0.04
       - id: MedievalShortSword
@@ -788,6 +792,8 @@
         prob: 0.04
       - id: MedievalGlowStone
         prob: 0.04
+      - id: MedievalReliefStoneWeak
+        prob: 0.06
       - id: MedievalClothingUniformJumpsuitFlannel
         prob: 0.02
       - id: MedievalClothingUniformJumpsuitShitCloth16
@@ -912,6 +918,8 @@
         prob: 0.1
       - id: MedievalDaggerT3
         prob: 0.24
+      - id: MedievalReliefStoneStrong
+        prob: 0.015
       - id: MedievalFalshionT3
         prob: 0.04
       - id: MedievalShortSword
