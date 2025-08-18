@@ -68,9 +68,31 @@
     maxTotalIntensity: 400
   - !type:AreaReactionEffect
     duration: 10
-    prototypeId: Smoke
+    prototypeId: MedievalEmptySmoke
     sound:
       path: /Audio/Effects/smoke.ogg
   products:
     medievaladvancedsmokeandexplosion: 3
 
+- type: reaction
+  id: medievalbestexplosion
+  priority: 20
+  reactants:
+    Chlorine:
+      amount: 1
+    Fluorine:
+      amount: 3
+  effects:
+  - !type:ExplosionReactionEffect
+    explosionType: Default # 15 damage per intensity.
+    maxIntensity: 1000
+    intensityPerUnit: 100
+    intensitySlope: 5
+    maxTotalIntensity: 1000
+  - !type:AreaReactionEffect
+    duration: 10
+    prototypeId: Smoke
+    sound:
+      path: /Audio/Effects/smoke.ogg
+  products:
+    medievaladvancedacidradiation: 20

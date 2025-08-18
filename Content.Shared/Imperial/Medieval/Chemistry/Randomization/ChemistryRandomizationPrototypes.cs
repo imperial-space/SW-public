@@ -139,6 +139,11 @@ public sealed partial class ChemistryRandomizationGroupPrototype : IPrototype
     /// </summary>
     [DataField]
     public int RecipeCount = 1;
+    /// <summary>
+    /// Сколько сгенерировать рандомных зелий
+    /// </summary>
+    [DataField]
+    public int PotionCount = 1;
 }
 
 [DataDefinition]

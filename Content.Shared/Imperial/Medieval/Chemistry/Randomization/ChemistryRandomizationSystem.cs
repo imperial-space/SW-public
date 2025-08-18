@@ -71,13 +71,13 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     {
         var randomProto = _prototypeManager.Index(randomProtoId);
         //var names = randomProto.Names.Clone();    // Если хотите сделать полноценные названия
-
-        for (var i = 0; i < randomProto.Potions.Count; i++)
+        var copyJustInCase = new List<string>();
+        copyJustInCase.AddRange(randomProto.Potions);
+        for (var i = 0; i < randomProto.PotionCount; i++)
         {
-            var item = randomProto.Potions[i];
             Random = new System.Random(Seed + offset);
             offset++;
-
+            var item = Random.PickAndTake(copyJustInCase);
             var reagents = randomProto.Reagents.Clone();
             var reactantList = GetReactants(reagents, randomProto.UsedGroups, randomProto.Reactants, randomProto.RecipeCount);
             var reactions = new List<ReactionData>();
@@ -116,6 +116,16 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
                 Reactions = reactions,
                 Group = randomProtoId.Id
             };
+            Log.Info($"{item} is");
+            foreach (var reaction in reactions)
+            {
+                var str = "";
+                foreach (var reactant in reaction.Reactants)
+                {
+                    str = $"{str}{reactant.Key}|";
+                }
+                Log.Info(str);
+            }
             _reagentsData.Add(item, reagentData);
         }
     }

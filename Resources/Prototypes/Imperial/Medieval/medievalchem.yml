@@ -137,30 +137,6 @@
           True: { visible: true }
           False: { visible: false }
 
-- type: reaction
-  id: medievalbestexplosion
-  abstract: true
-  priority: 20
-  reactants:
-    Chlorine:
-      amount: 1
-    Fluorine:
-      amount: 3
-  effects:
-  - !type:ExplosionReactionEffect
-    explosionType: Default # 15 damage per intensity.
-    maxIntensity: 1000
-    intensityPerUnit: 100
-    intensitySlope: 5
-    maxTotalIntensity: 1000
-  - !type:AreaReactionEffect
-    duration: 10
-    prototypeId: Smoke
-    sound:
-      path: /Audio/Effects/smoke.ogg
-  products:
-    medievaladvancedacidradiation: 20
-
 
 - type: entity
   name: MedievalLoot

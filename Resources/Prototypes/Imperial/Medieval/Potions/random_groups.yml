@@ -102,6 +102,7 @@
   - "#ffffff"
   - "#3d3d3d"
   recipeCount: 2
+  potionCount: 26
 
 - type: chemRandom
   id: MediumPack
@@ -145,6 +146,7 @@
   - "#5a7e45"
   - "#ffffff"
   - "#3d3d3d"
+  potionCount: 8
 
 - type: chemRandom
   id: HardPack
@@ -153,6 +155,8 @@
   - medievalbestheal
   - medievalbestpoison
   - medievalbeststimulant
+  reactants: 1
+  potionCount: 1
   usedGroups:
   - EasyPack
   - MediumPack
