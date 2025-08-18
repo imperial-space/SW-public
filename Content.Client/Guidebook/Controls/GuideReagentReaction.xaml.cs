@@ -32,7 +32,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         _protoMan = protoMan;
     }
 
-    public GuideReagentReaction(ReactionPrototype prototype, IPrototypeManager protoMan, IEntitySystemManager sysMan) : this(protoMan)
+    public GuideReagentReaction(Shared.Imperial.Medieval.ChemistryRandomization.ReactionData prototype, IPrototypeManager protoMan, IEntitySystemManager sysMan) : this(protoMan) // Imperial Medieval Chemistry Change
     {
         Container container = ReactantsContainer;
         SetReagents(prototype.Reactants, ref container, protoMan);
@@ -171,7 +171,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         container.Visible = true;
     }
 
-    private void SetMixingCategory(IReadOnlyList<ProtoId<MixingCategoryPrototype>> mixingCategories, ReactionPrototype? prototype, IEntitySystemManager sysMan)
+    private void SetMixingCategory(IReadOnlyList<ProtoId<MixingCategoryPrototype>> mixingCategories, Shared.Imperial.Medieval.ChemistryRandomization.ReactionData? prototype, IEntitySystemManager sysMan) // Imperial Medieval Chemistry Change
     {
         var foo = new List<MixingCategoryPrototype>();
         foreach (var cat in mixingCategories)
@@ -181,7 +181,7 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         SetMixingCategory(foo, prototype, sysMan);
     }
 
-    private void SetMixingCategory(IReadOnlyList<MixingCategoryPrototype> mixingCategories, ReactionPrototype? prototype, IEntitySystemManager sysMan)
+    private void SetMixingCategory(IReadOnlyList<MixingCategoryPrototype> mixingCategories, Shared.Imperial.Medieval.ChemistryRandomization.ReactionData? prototype, IEntitySystemManager sysMan) // Imperial Medieval Chemistry Change
     {
         if (mixingCategories.Count == 0)
             return;

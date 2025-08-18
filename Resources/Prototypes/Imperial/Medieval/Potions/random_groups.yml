@@ -101,6 +101,7 @@
   - "#5a7e45"
   - "#ffffff"
   - "#3d3d3d"
+  recipeCount: 2
 
 - type: chemRandom
   id: MediumPack
