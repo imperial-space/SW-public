@@ -1,16 +1,16 @@
-- type: imperialListing
-  id: MedievalSpellLightningRune
-  name: medieval-store-spells-light-lightning-rune-name
-  description: medieval-store-spells-light-lightning-rune-desc
-  productAction: MedievalActionLightningRune
-  priority: 5
-  icon:
-    sprite: Imperial/Medieval/Magic/lightning_rune.rsi
-    state: icon
-  cost:
-    MagicMedievalLight: 25
-  categories:
-  - MedievalLightSpells
-  conditions:
-  - !type:ImperialListingLimitedStockCondition
-    stock: 1
+# - type: imperialListing
+#   id: MedievalSpellLightningRune
+#   name: medieval-store-spells-light-lightning-rune-name
+#   description: medieval-store-spells-light-lightning-rune-desc
+#   productAction: MedievalActionLightningRune
+#   priority: 5
+#   icon:
+#     sprite: Imperial/Medieval/Magic/lightning_rune.rsi
+#     state: icon
+#   cost:
+#     MagicMedievalLight: 25
+#   categories:
+#   - MedievalLightSpells
+#   conditions:
+#   - !type:ImperialListingLimitedStockCondition
+#     stock: 1
