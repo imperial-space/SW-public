@@ -64,6 +64,13 @@ medieval-store-spells-light-prism-desc = Переливающаяся призм
 
 medieval-spell-speach-prism = G̵͉̀R̴̺͐Ȃ̴͎N̶̪̕T̸̳̾ ̵̼̀M̷͎̈́E̶͙͝ ̸̗̈́Ṛ̸̈́Ã̷̧Ǵ̴̥N̵̬̑Ȧ̸̹Ȓ̷͇Ó̶͈K̴̘̒
 
+# Lightning Rune
+
+medieval-store-spells-light-lightning-rune-name = грозовая руна
+medieval-store-spells-light-lightning-rune-desc = Поставьте ловушку, которая нанесёт значительный урон тому, кто на неё наступит. Главное не попадитесь в неё сами.
+
+medieval-spell-speech-lightning-rune = Ȧ̴͎̳Ș̵̈͜ͅC̴̥̼͌E̴̝̟͑̎͑Ñ̴D̴̦͖͈̏͘ ̴̳̅͝Ṱ̵̩̳͗Ṛ̶͓͑Ả̵̻͔̊Ṕ̵̩̔
+
 # Divine Touch
 
 medieval-spell-speach-holy-touch = ẖ̯̲̄̅o̧̰̰̯̥̩̅̂̂L̸̳̔y ̰̭T̰̰̭̰̂̅̃o̧̰̰̯̥̩̅̂̂ụ̲̲̃̄̅̆͜͡͝͡c͜͟͝͡͞ẖ̯̲̄̅
