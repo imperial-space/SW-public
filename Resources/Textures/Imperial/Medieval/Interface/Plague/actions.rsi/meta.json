@@ -13,6 +13,9 @@
         "name": "asthma"
       },
       {
+        "name": "bugs"
+      },
+      {
         "name": "cataract"
       },
       {
@@ -56,6 +59,9 @@
       },
       {
         "name": "skeleton"
+      },
+      {
+        "name": "sleepy"
       },
       {
         "name": "slime"

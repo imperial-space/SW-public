@@ -10,10 +10,16 @@
     "states":
     [
       {
+        "name": "allergy"
+      },
+      {
         "name": "animaltier1"
       },
       {
         "name": "animaltier2"
+      },
+      {
+        "name": "asthma"
       },
       {
         "name": "bugs"
@@ -52,7 +58,13 @@
         "name": "frame"
       },
       {
+        "name": "gastrite"
+      },
+      {
         "name": "headache"
+      },
+      {
+        "name": "hunger"
       },
       {
         "name": "immunetier1"
@@ -70,6 +82,9 @@
         "name": "infectiontier3"
       },
       {
+        "name": "intolerance"
+      },
+      {
         "name": "legs"
       },
       {
@@ -83,6 +98,9 @@
       },
       {
         "name": "lungs"
+      },
+      {
+        "name": "nausea"
       },
       {
         "name": "ratstier1"
@@ -100,19 +118,16 @@
         "name": "retchupgrade"
       },
       {
-        "name": "runnytier1"
-      },
-      {
-        "name": "runnytier2"
-      },
-      {
-        "name": "runnyupgrade"
+        "name": "runny"
       },
       {
         "name": "skeleton"
       },
       {
         "name": "skin"
+      },
+      {
+        "name": "skincancer"
       },
       {
         "name": "sleepy"
@@ -125,6 +140,15 @@
       },
       {
         "name": "temperature"
+      },
+      {
+        "name": "tpsick"
+      },
+      {
+        "name": "tphealthy"
+      },
+      {
+        "name": "weakskin"
       }
     ]
   }
