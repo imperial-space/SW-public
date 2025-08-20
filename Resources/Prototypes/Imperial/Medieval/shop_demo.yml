@@ -1941,14 +1941,6 @@
   - MedievalMiscDemo
 
 - type: listing
-  id: DemoMdvShopMedievalReliefStoneStrong
-  productEntity: MedievalReliefStoneStrong
-  cost:
-    UnknownMedieval: 1
-  categories:
-  - MedievalMiscDemo
-
-- type: listing
   id: DemoMdvShopCreationsBook
   productEntity: CreationsBook
   cost:
