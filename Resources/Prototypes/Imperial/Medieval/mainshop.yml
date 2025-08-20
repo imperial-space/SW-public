@@ -2169,7 +2169,7 @@
   id: MdvShopCanvas
   productEntity: Canvas
   cost:
-    Revent: 22
+    Revent: 10
   categories:
   - MedievalMisc
 
