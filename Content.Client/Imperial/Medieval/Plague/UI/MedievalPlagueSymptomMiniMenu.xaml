@@ -1,0 +1,64 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
+    xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    xmlns:plague="clr-namespace:Content.Client.Imperial.Medieval.Plague.UI"
+    Title="{Loc 'plague-symptom-display-title'}"
+    MinSize="376 376"
+    SetSize="376 376">
+    <BoxContainer
+        HorizontalExpand="True"
+        Orientation="Horizontal"
+        VerticalExpand="True">
+        <ScrollContainer
+            HorizontalExpand="True"
+            VerticalExpand="True"
+            HScrollEnabled="False"
+            Margin="2">
+            <BoxContainer
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                SizeFlagsStretchRatio="2"
+                VerticalExpand="True">
+                <RichTextLabel
+                    Name="SymptomName"
+                    Margin="2"
+                    HorizontalAlignment="Center" />
+                <TextureRect
+                    Name="SymptomDisplay"
+                    Margin="2"
+                    HorizontalAlignment="Center"
+                    TextureScale="6 6" />
+                <RichTextLabel
+                    Name="SymptomDesc"
+                    Margin="2"
+                    HorizontalAlignment="Center" />
+                <Button
+                    Name="OpenSliderButton"
+                    HorizontalExpand="True"
+                    Text="Добавить очки" />
+                <BoxContainer
+                    Name="SliderContainer"
+                    Orientation="Horizontal"
+                    SetHeight="48"
+                    Visible="False">
+                    <Slider
+                        Name="PointsSlider"
+                        VerticalAlignment="Center"
+                        HorizontalExpand="True" />
+                    <Label
+                        Name="SliderValue"
+                        Margin="2"
+                        SetSize="48 48" />
+                    <Button
+                        Name="AddPointsButton"
+                        VerticalAlignment="Center"
+                        HorizontalExpand="True"
+                        Text="Подтв" />
+                </BoxContainer>
+            </BoxContainer>
+        </ScrollContainer>
+    </BoxContainer>
+</DefaultWindow>
