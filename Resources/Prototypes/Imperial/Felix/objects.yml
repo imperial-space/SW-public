@@ -1395,6 +1395,102 @@
     - state: a8
 
 - type: entity
+  parent: FelixBrokenMachineCar1
+  id: carpileup
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle2.rsi
+    layers:
+    - state: car_pileup
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: cranecargo
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: crane_cargo
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: crawler
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: crawler
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: crawlercratealt2
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: crawler_crate_alt2
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: crawlerfuel
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: crawler_fuel
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: tractordamaged
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: tractor_damaged
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: truckdamaged
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: truck_damaged
+    drawdepth: Overdoors
+
+- type: entity
+  parent: FelixBrokenMachineCarBase
+  id: truckmining
+  name: Car Decoration
+  suffix: ElysiumPrime, Decoration
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Vehicle.rsi
+    layers:
+    - state: truck_mining
+    drawdepth: Overdoors
+
+- type: entity
   parent: FelixBrokenMachineCarBase
   id: FelixBrokenMachineCar8
   name: car
