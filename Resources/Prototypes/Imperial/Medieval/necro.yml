@@ -27,6 +27,8 @@
     color: red
     energy: 1.8
     radius: 2.5
+    netsync: true
+    enabled: true
   - type: HealCurse
   - type: LanguageSpeaker
     languages:

@@ -9,5 +9,6 @@ public sealed class GeneratedReagentData
     public string Description = "";
     public string Flavor = "";
     public Color Color = Color.White;
-    public ReactionData Reaction = default!;
+    public List<ReactionData> Reactions = default!;
+    public string Group = "";
 }

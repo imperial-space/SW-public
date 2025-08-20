@@ -79,26 +79,31 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
             offset++;
 
             var reagents = randomProto.Reagents.Clone();
-            var reactants = GetReactants(reagents, randomProto.UsedGroups, randomProto.Reactants);
-            var randomEffects = GetEffects(randomProto.EffectRandom);
-            var randomMixer = GetMixer(randomProto.MixerRandom);
-            var (minTemp, maxTemp) = GetTemperatures(randomProto.MinTemperature, randomProto.MaxTemperature);
-
-            var resultReaction = new ReactionData()
+            var reactantList = GetReactants(reagents, randomProto.UsedGroups, randomProto.Reactants, randomProto.RecipeCount);
+            var reactions = new List<ReactionData>();
+            foreach (var reactants in reactantList)
             {
-                Reactants = reactants,
-                Effects = randomEffects,
-                MixingCategories = randomMixer,
-                MinimumTemperature = minTemp,
-                MaximumTemperature = maxTemp,
-                Sound = Random.Pick(randomProto.Sounds),
-                Products = new() { { item, reactants.Count } }
-            };
+                var randomEffects = GetEffects(randomProto.EffectRandom);
+                var randomMixer = GetMixer(randomProto.MixerRandom);
+                var (minTemp, maxTemp) = GetTemperatures(randomProto.MinTemperature, randomProto.MaxTemperature);
 
-            _reactionsSingle.GetOrNew(reactants.First().Key).Add(resultReaction);
-            foreach (var reactant in reactants)
-            {
-                _reactions.GetOrNew(reactant.Key).Add(resultReaction);
+                var resultReaction = new ReactionData()
+                {
+                    Reactants = reactants,
+                    Effects = randomEffects,
+                    MixingCategories = randomMixer,
+                    MinimumTemperature = minTemp,
+                    MaximumTemperature = maxTemp,
+                    Sound = Random.Pick(randomProto.Sounds),
+                    Products = new() { { item, reactants.Count } }
+                };
+
+                _reactionsSingle.GetOrNew(reactants.First().Key).Add(resultReaction);
+                foreach (var reactant in reactants)
+                {
+                    _reactions.GetOrNew(reactant.Key).Add(resultReaction);
+                }
+                reactions.Add(resultReaction);
             }
 
             var reagentData = new GeneratedReagentData()
@@ -108,9 +113,9 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
                 Description = Random.Pick(randomProto.Descriptions),
                 Flavor = Random.Pick(randomProto.Flavors),
                 Color = Random.Pick(randomProto.Colors),
-                Reaction = resultReaction
+                Reactions = reactions,
+                Group = randomProtoId.Id
             };
-
             _reagentsData.Add(item, reagentData);
         }
     }
@@ -122,20 +127,24 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     /// <param name="groups">Группы, из которых возьмётся случайное зелье</param>
     /// <param name="reactantsCount">Число реактантов, которое будет использовано</param>
     /// <returns></returns>
-    private Dictionary<string, ReactantPrototype> GetReactants(IList<string> reactants, IList<string> groups, int reactantsCount)
+    private List<Dictionary<string, ReactantPrototype>> GetReactants(IList<string> reactants, IList<string> groups, int reactantsCount, int recipesCount)
     {
-        var result = new Dictionary<string, ReactantPrototype>();
-        for (var i = 0; i < reactantsCount; i++)
+        var result = new List<Dictionary<string, ReactantPrototype>>();
+        for (var i = 0; i < recipesCount; i++)
         {
-            result.Add(Random.PickAndTake(reactants), new());
-        }
+            var reactantdict = new Dictionary<string, ReactantPrototype>();
+            for (var ii = 0; ii < reactantsCount; ii++)
+            {
+                reactantdict.Add(Random.PickAndTake(reactants), new());
+            }
 
-        foreach (var item in groups)
-        {
-            var proto = _prototypeManager.Index<ChemistryRandomizationGroupPrototype>(item);
-            result.Add(Random.Pick(proto.Potions), new());
+            foreach (var item in groups)
+            {
+                var proto = _prototypeManager.Index<ChemistryRandomizationGroupPrototype>(item);
+                reactantdict.Add(Random.Pick(proto.Potions), new());
+            }
+            result.Add(reactantdict);
         }
-
         return result;
     }
 
@@ -204,7 +213,7 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     public static string GetName(ReagentPrototype proto)
     {
         if (!_reagentsData.TryGetValue(proto.ID, out var value))
-            return proto.LocalizedName;
+            return Robust.Shared.Localization.Loc.GetString(proto.Name);
 
         return Robust.Shared.Localization.Loc.GetString(value.Name);
     }
@@ -217,7 +226,7 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     public static string GetDescription(ReagentPrototype proto)
     {
         if (!_reagentsData.TryGetValue(proto.ID, out var value))
-            return proto.LocalizedPhysicalDescription;
+            return Robust.Shared.Localization.Loc.GetString(proto.PhysicalDescription);
 
         return Robust.Shared.Localization.Loc.GetString(value.Description);
     }
@@ -254,12 +263,29 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     /// </summary>
     /// <param name="proto"></param>
     /// <returns></returns>
-    public static ReactionData? GetReactionOrNull(ReagentPrototype proto)
+    public static List<ReactionData>? GetReactionsOrNull(ReagentPrototype proto)
     {
         if (!_reagentsData.TryGetValue(proto.ID, out var value))
             return null;
 
-        return value.Reaction;
+        return value.Reactions;
+    }
+    #endregion
+
+    #region Обычные функции
+    /// <summary>
+    /// Возвращает лист реагентов определенной групы
+    /// </summary>
+    public List<ReagentPrototype> GetReagentsFromGroup(string group)
+    {
+        var result = new List<ReagentPrototype>();
+        foreach (var (reagent, _) in _reagentsData.Where(x => x.Value.Group == group).ToList())
+        {
+            if (!_prototypeManager.TryIndex<ReagentPrototype>(reagent, out var proto))
+                continue;
+            result.Add(proto);
+        }
+        return result;
     }
     #endregion
 
@@ -287,12 +313,12 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
             return false;
         }
 
-        if ((mixerComponent == null && reaction.MixingCategories != null) ||
-            mixerComponent != null && reaction.MixingCategories != null && reaction.MixingCategories.Except(mixerComponent.ReactionTypes).Any())
-        {
-            lowestUnitReactions = FixedPoint2.Zero;
-            return false;
-        }
+        //if ((mixerComponent == null && reaction.MixingCategories != null) ||
+        //    mixerComponent != null && reaction.MixingCategories != null && reaction.MixingCategories.Except(mixerComponent.ReactionTypes).Any())
+        //{
+        //    lowestUnitReactions = FixedPoint2.Zero;
+        //    return false;
+        //}
 
         var attempt = new ReactionAttemptEvent(reaction, soln);
         RaiseLocalEvent(soln, ref attempt);

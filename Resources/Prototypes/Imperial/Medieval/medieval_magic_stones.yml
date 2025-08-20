@@ -13,7 +13,7 @@
     value: -3
   - type: Currency
     price:
-      Revent: 220
+      Revent: 90
 
 - type: entity
   id: MedievalReliefStoneStrong
@@ -30,7 +30,7 @@
     value: -7.5
   - type: Currency
     price:
-      Revent: 480
+      Revent: 180
 
 - type: entity
   id: MedievalAntiGravitationStone
@@ -47,7 +47,7 @@
     value: -25
   - type: Currency
     price:
-      Revent: 1150
+      Revent: 350
 
 # Crafting recipes (Magic blacksmith)
 - type: CP14Recipe

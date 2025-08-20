@@ -1941,6 +1941,54 @@
   - MedievalMiscDemo
 
 - type: listing
+  id: DemoMdvShopCreationsBook
+  productEntity: CreationsBook
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopPaintKit
+  productEntity: PaintKit
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopEasel
+  productEntity: Easel
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopCanvas
+  productEntity: Canvas
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalRecipeBook
+  productEntity: MedievalRecipeBook
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalChemistryRecipe
+  productEntity: MedievalChemistryRecipe
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
   id: DemoMdvShopMedievalHammerBlacksmith
   productEntity: MedievalHammerBlacksmith
   cost:
