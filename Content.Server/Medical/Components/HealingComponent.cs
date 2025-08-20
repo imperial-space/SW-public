@@ -62,5 +62,13 @@ namespace Content.Server.Medical.Components
         /// </summary>
         [DataField("healingEndSound")]
         public SoundSpecifier? HealingEndSound = null;
+
+        // Imperial Medieval plague start
+        [DataField]
+        public int PlagueProgressionDecayPerUse = 0;
+
+        [DataField]
+        public int PlagueHealingTier = 0;
+        // Imperial Medieval plague end
     }
 }
