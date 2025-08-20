@@ -4,12 +4,12 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Imperial.Medieval.Plague;
 
 [Serializable, NetSerializable]
-public sealed partial class PopulatePlagueMenuMessage : EntityEventArgs
+public sealed partial class OpenPlagueMenuMessage : EntityEventArgs
 {
     public readonly Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> Data;
     public readonly int AllowedPoints;
 
-    public PopulatePlagueMenuMessage(Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, int points)
+    public OpenPlagueMenuMessage(Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, int points)
     {
         Data = data;
         AllowedPoints = points;
