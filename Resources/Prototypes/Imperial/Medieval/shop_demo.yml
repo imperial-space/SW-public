@@ -1981,6 +1981,14 @@
   - MedievalMiscDemo
 
 - type: listing
+  id: DemoMdvShopMedievalRecipeBook
+  productEntity: MedievalRecipeBook
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
   id: DemoMdvShopMedievalChemistryRecipe
   productEntity: MedievalChemistryRecipe
   cost:

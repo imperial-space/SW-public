@@ -2174,8 +2174,8 @@
   - MedievalMisc
 
 - type: listing
-  id: MdvShopMedievalReliefStoneStrong
-  productEntity: MedievalReliefStoneStrong
+  id: MdvShopMedievalRecipeBook
+  productEntity: MedievalRecipeBook
   cost:
     Revent: 45
   categories:
