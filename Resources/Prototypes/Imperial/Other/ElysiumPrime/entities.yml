@@ -811,3 +811,57 @@
       quickEquip: false
       slots:
         - Belt
+
+- type: entity
+  id: RedTicket
+  name: Red ticket
+  parent: Paper
+  description: Just a red ticket.
+  suffix: ElysiumPrime
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/tickets.rsi
+      layers:
+      - state: Red_Ticket
+      - state: Red_Ticket
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+      - state: paper_stamp-generic
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+
+- type: entity
+  id: BlueTicket
+  name: Blue ticket
+  parent: Paper
+  description: Just a blue ticket.
+  suffix: ElysiumPrime
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/tickets.rsi
+      layers:
+      - state: Blue_Ticket
+      - state: Blue_Ticket
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+      - state: paper_stamp-generic
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+
+- type: entity
+  id: BlackTicket
+  name: Black ticket
+  parent: Paper
+  description: Just a black ticket.
+  suffix: ElysiumPrime
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ElysiumPrime/Misc/tickets.rsi
+      layers:
+      - state: Black_Ticket
+      - state: Black_Ticket
+        map: ["enum.PaperVisualLayers.Writing"]
+        visible: false
+      - state: paper_stamp-generic
+        map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false

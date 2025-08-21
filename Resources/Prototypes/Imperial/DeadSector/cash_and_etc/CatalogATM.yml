@@ -8,7 +8,7 @@
 
 - type: listing
   id: ATMCCR_100
-  productEntity: SpaceCash10
+  productEntity: SpaceCash100
   cost:
     FederationCash: 20
   categories:
