@@ -12,7 +12,7 @@ namespace Content.Shared.Imperial.Medieval.Surrender
         public TimeSpan SurrenderTime = TimeSpan.FromSeconds(30);
         public TimeSpan Unsurrender = TimeSpan.Zero;
         [DataField]
-        public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Imperial/Medival/surrender.ogg")
+        public SoundSpecifier Sound = new SoundPathSpecifier("/Audio/Imperial/Medieval/surrender.ogg")
         {
             Params = new AudioParams
             {
