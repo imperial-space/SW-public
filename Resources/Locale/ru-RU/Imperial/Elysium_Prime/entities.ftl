@@ -120,6 +120,7 @@ ent-ReinforcedWindowShadowElysiumPrime = армированное окно
 ent-ReinforcedWindowWhiteElysiumPrime = армированное окно
     .desc = Смотри не заляпай.
 
+
 ent-FederationAccessManipulator = Федеративный манипулятор доступов
     .desc = Пахнет как ключи от капитализма.
 
@@ -157,4 +158,15 @@ ent-ChestBeaconRed = Красный нагрудный маячок
 ent-ChestBeaconWhite = Белый нагрудный маячок
     .desc = Маячок, что подает сигналы о том, кто вы.
 ent-ChestBeaconYellow = Желтый нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+
+ent-ShoulderBeaconBlue = Синий наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconBlueRed = Сине-красный наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconRed = Красный наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconWhite = Белый наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconYellow = Желтый наплечный маячок
     .desc = Маячок, что подает сигналы о том, кто вы.

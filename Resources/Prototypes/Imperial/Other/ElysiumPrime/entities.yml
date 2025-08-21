@@ -837,6 +837,66 @@
     sprite: Imperial/Other/ElysiumPrime/Clothing/chest/YBeacon.rsi
 
 - type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconBlue
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Blue
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/BBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconBlueRed
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, BlueRed
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/BRBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconRed
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Red
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/RBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconWhite
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, White
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/WBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ShoulderBeaconYellow
+  name: Shoulder Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Yellow
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/YBeacon.rsi 
+
+- type: entity
   parent: ElysiumPrimeTable
   id: ElysiumPrimeTacticTable
   name: Tactic Table
