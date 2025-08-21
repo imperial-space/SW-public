@@ -1,7 +1,4 @@
-using Robust.Shared.Localization;
-using System;
 using Content.Server.Imperial.Power.Components;
-using Content.Server.Lightning;
 using Content.Shared.Damage;
 
 namespace Content.Server.Imperial.Power.EntitySystems.Events;
@@ -11,15 +8,14 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// </summary>
 public sealed class SupermatterLightningEvent
 {
-    public void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
+    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem)
     {
         // Валидация входных параметров
         if (uid == EntityUid.Invalid)
         {
-            system.Log.Error("SupermatterLightningEvent.Activate: Invalid EntityUid provided");
+            supermatterSystem.Log.Error("SupermatterLightningEvent.Activate: Invalid EntityUid provided");
             return;
         }
-
         if (comp == null)
         {
             return;
@@ -65,44 +61,49 @@ public sealed class SupermatterLightningEvent
         comp.CurrentEvent = SupermatterEventType.Lightning;
         comp.EventEndTime = TimeSpan.FromSeconds(comp.LightningEventDuration);
         comp.NextEventTimer = TimeSpan.FromSeconds(system.Random.NextFloat(comp.LightningMinNextEvent, comp.LightningMaxNextEvent));
+=======
+        var currentTime = supermatterSystem.GameTiming.CurTime;
+        comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Lightning;
+        comp.EventEndTime = comp.LightningEventDuration;
+        comp.NextEventTimer = comp.EventAfterLightingTime;
+>>>>>>> develop
         comp.LightningCooldown = TimeSpan.Zero;
         comp.LastEventEndTimeUpdate = currentTime;
         comp.LastNextEventTimerUpdate = currentTime;
         comp.LastLightningCooldownUpdate = currentTime;
 
         // Стреляем молнии в случайные цели вокруг суперматерии
-        ShootRandomLightnings(uid, system);
+        ShootRandomLightnings(uid, supermatterSystem, comp);
     }
 
-    public void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)
+    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
     {
         var elapsedSinceLastUpdate = currentTime - comp.LastLightningCooldownUpdate;
         comp.LightningCooldown -= elapsedSinceLastUpdate;
         comp.LastLightningCooldownUpdate = currentTime;
 
-        if (comp.LightningCooldown <= TimeSpan.Zero)
+        if (comp.LightningCooldown > TimeSpan.Zero)
+            return;
+
+        // Стреляем молнии в случайные цели вокруг суперматерии
+        ShootRandomLightnings(uid, supermatterSystem, comp);
+
+        if (supermatterSystem.TryGetComponent<SupermatterIntegrityComponent>(uid, out var integrity) && integrity != null &&
+            supermatterSystem.TryGetComponent<DamageableComponent>(uid, out var _))
         {
-            // Стреляем молнии в случайные цели вокруг суперматерии
-            ShootRandomLightnings(uid, system);
-
-            if (system.TryGetComponent<SupermatterIntegrityComponent>(uid, out var integrity) && integrity != null &&
-                system.TryGetComponent<DamageableComponent>(uid, out var _))
-            {
-                system.Damageable.TryChangeDamage(uid, integrity.TickDamage, false, true, origin: null);
-            }
-
-            comp.LightningCooldown = TimeSpan.FromSeconds(comp.LightningCooldownDuration);
+            supermatterSystem.Damageable.TryChangeDamage(uid, integrity.TickDamage, origin: null);
         }
+
+        comp.LightningCooldown = comp.LightningCooldownDuration;
     }
 
-    private void ShootRandomLightnings(EntityUid uid, SupermatterEventSystem system)
+    private static void ShootRandomLightnings(EntityUid uid, SupermatterEventSystem supermatterSystem, SupermatterEventComponent component)
     {
-        // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе 8 метров
-        // 1 молния за раз, радиус 8 метров
-        system.LightningSystem?.ShootRandomLightnings(uid, 8f, 1, "Lightning", 0, true);
+        // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе
+        supermatterSystem.LightningSystem.ShootRandomLightnings(uid, component.LightningBoltRadius, component.LightningBoltCount);
     }
 
-    public string GetAnnouncement()
+    public static string GetAnnouncement()
     {
         return Loc.GetString("supermatter-event-lightning");
     }
