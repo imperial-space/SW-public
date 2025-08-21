@@ -95,10 +95,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         var comp = EnsureComp<MedievalPlagueInfectedComponent>(uid);
         comp.PlagueSource = plagueSource;
 
-        foreach (var item in _symptoms.Where(x => x.Value.Unlocked))
-        {
-            RaisePrototypeEvent(uid, item.Key);
-        }
+        RaisePrototypeIncubationEvents(uid);
     }
 
     private void DoPrototypeEffects(ProtoId<MedievalPlagueSymptomPrototype> protoId)
@@ -108,13 +105,21 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
 
         foreach (var target in infected)
         {
-            RaisePrototypeEvent(target, protoId);
+            if (target.Comp.Incubation)
+                RaisePrototypeIncubationEvent(target, protoId);
+            else
+                RaisePrototypeEvent(target, protoId);
         }
 
         foreach (var ghost in ghosts)
         {
             AddPrototypeActions(ghost, protoId);
         }
+
+        var ev = _proto.Index(protoId).BroadcastEvent;
+
+        if (ev != null)
+            RaiseLocalEvent(ev);
     }
 
     private void RaisePrototypeEvent(EntityUid uid, ProtoId<MedievalPlagueSymptomPrototype> protoId)
@@ -123,6 +128,36 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
 
         if (proto.TargetEvent != null)
             RaiseLocalEvent(uid, proto.TargetEvent);
+    }
+
+    private void RaisePrototypeIncubationEvent(EntityUid uid, ProtoId<MedievalPlagueSymptomPrototype> protoId)
+    {
+        var proto = _proto.Index(protoId);
+
+        if (proto.IncubationTargetEvent != null)
+            RaiseLocalEvent(uid, proto.IncubationTargetEvent);
+    }
+
+    private void RaisePrototypeEvents(EntityUid uid)
+    {
+        foreach (var item in _symptoms.Where(x => x.Value.Unlocked))
+        {
+            var proto = _proto.Index(item.Key);
+
+            if (proto.TargetEvent != null)
+                RaiseLocalEvent(uid, proto.TargetEvent);
+        }
+    }
+
+    private void RaisePrototypeIncubationEvents(EntityUid uid)
+    {
+        foreach (var item in _symptoms.Where(x => x.Value.Unlocked))
+        {
+            var proto = _proto.Index(item.Key);
+
+            if (proto.TargetEvent != null)
+                RaiseLocalEvent(uid, proto.TargetEvent);
+        }
     }
 
     private void AddPrototypeActions(EntityUid uid, ProtoId<MedievalPlagueSymptomPrototype> protoId, MedievalPlagueGhostComponent? comp = null)
