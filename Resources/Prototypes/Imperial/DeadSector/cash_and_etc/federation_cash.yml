@@ -193,6 +193,15 @@
     1: FederationCash1
   canWithdraw: true
 
+#Space credit currency
+
+- type: currency
+  id: SpaceCredit
+  displayName: Space cash
+  cash:
+    1: SpaceCash
+  canWithdraw: true
+
 # credit exchange
 
 - type: entity

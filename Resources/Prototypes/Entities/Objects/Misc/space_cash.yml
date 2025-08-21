@@ -52,7 +52,7 @@
         mask:
         - ItemMask
   - type: Appearance
-  - type: Currency
+  - type: Currency   # Imperial Space Валюта кредитов для Elysium Prime
     price:
       SpaceCredit: 1
 
@@ -179,10 +179,3 @@
     state: cash_1000000
   - type: Stack
     count: 1000000
-
-- type: currency
-  id: SpaceCredit
-  displayName: cash
-  cash:
-    1: SpaceCash
-  canWithdraw: true
