@@ -225,6 +225,17 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         }
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+        UpdateInfected();
+        UpdateSickness();
+        UpdateClumsiness();
+        UpdateDamagingClothing();
+        UpdateLungCancer();
+        UpdateDizzy();
+    }
+
     private void UpdateInfected()
     {
         var query = EntityQueryEnumerator<MedievalPlagueInfectedComponent>();
