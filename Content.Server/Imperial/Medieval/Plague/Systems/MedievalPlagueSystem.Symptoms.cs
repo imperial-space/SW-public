@@ -209,9 +209,16 @@ public sealed partial class MedievalPlagueSystem
         var query = EntityQueryEnumerator<VomitSicknessComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (_timing.CurTime < comp.EndTime)
+            if (_timing.CurTime >= comp.EndTime)
+            {
+                RemComp<VomitSicknessComponent>(uid);
+                continue;
+            }
+
+            if (_timing.CurTime < comp.EndTime - TimeSpan.FromSeconds(comp.Duration / 2) || comp.Performed)
                 continue;
 
+            comp.Performed = true;
             if (comp.Level >= PlagueVomitLevel.Vomit)
                 _vomit.Vomit(uid);
             if (comp.Level >= PlagueVomitLevel.Blood && TryComp<BloodstreamComponent>(uid, out var bloodstream))
