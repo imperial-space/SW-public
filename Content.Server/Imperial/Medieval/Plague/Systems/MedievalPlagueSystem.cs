@@ -98,6 +98,54 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         RaisePrototypeIncubationEvents(uid);
     }
 
+    public bool CanInfectionProgress(EntityUid uid, MedievalPlagueInfectedComponent? comp)
+    {
+        if (!Resolve(uid, ref comp))
+            return false;
+
+        if (TryComp<BadSmellComponent>(uid, out var smell) && smell.SmellLevel < _minSmellLevel && comp.Incubation)
+            return false;
+
+        return true;
+    }
+
+    private void TryProgressInfection(EntityUid uid, int progress, MedievalPlagueInfectedComponent? comp = null)
+    {
+        if (!Resolve(uid, ref comp))
+            return;
+
+        if (progress > 0 && !CanInfectionProgress(uid, comp))
+            return;
+
+        comp.Progression += progress;
+        if (comp.Progression < 0)
+        {
+            RemComp(uid, comp);
+            var immune = EnsureComp<MedievalPlagueImmuneComponent>(uid);
+            immune.StartTime = _timing.CurTime;
+        }
+
+        else if (comp.Incubation != comp.Progression < 50)
+        {
+            comp.Incubation = comp.Progression < 50;
+            Dirty(uid, comp);
+
+            if (comp.Incubation)
+            {
+                comp.PlagueComponents.ForEach(x => RemComp(uid, x));
+                comp.Effects.Clear();
+                RaisePrototypeIncubationEvents(uid);
+            }
+            else
+            {
+                comp.IncubationComponents.ForEach(x => RemComp(uid, x));
+                comp.IncubationEffects.Clear();
+                RaisePrototypeEvents(uid);
+            }
+        }
+
+    }
+
     private void DoPrototypeEffects(ProtoId<MedievalPlagueSymptomPrototype> protoId)
     {
         var infected = EntityManager.AllEntities<MedievalPlagueInfectedComponent>();
@@ -177,4 +225,31 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         }
     }
 
+    private void UpdateInfected()
+    {
+        var query = EntityQueryEnumerator<MedievalPlagueInfectedComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (comp.NextUpdate > _timing.CurTime)
+                continue;
+
+            comp.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
+
+            DoEffects(uid, comp);
+
+            if (TryComp<BuckleComponent>(uid, out var buckle) &&
+                TryComp<MedievalPlagueHealStrappedComponent>(buckle.BuckledTo, out var heal) &&
+                heal.Level > _strapHealResistance)
+            {
+                TryProgressInfection(uid, -1, comp);
+                continue;
+            }
+
+            if (comp.NextProgression > _timing.CurTime)
+                continue;
+
+            TryProgressInfection(uid, 1, comp);
+            comp.NextProgression = _timing.CurTime + TimeSpan.FromSeconds(comp.UpdatePeriod);
+        }
+    }
 }
