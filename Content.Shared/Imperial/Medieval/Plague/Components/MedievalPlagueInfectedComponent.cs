@@ -16,8 +16,23 @@ public sealed partial class MedievalPlagueInfectedComponent : Component
     public bool Incubation = true;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public float UpdatePeriod = 15f;
+    public float UpdatePeriod = 10f;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextProgression = TimeSpan.Zero;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan NextUpdate = TimeSpan.Zero;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public Dictionary<string, BasePlagueEffect> Effects = new();
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public List<IComponent> PlagueComponents = new();
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public Dictionary<string, BasePlagueEffect> IncubationEffects = new();
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public List<IComponent> IncubationComponents = new();
 }
