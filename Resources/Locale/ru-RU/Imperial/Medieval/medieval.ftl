@@ -5319,3 +5319,5 @@ ent-MedievalClothingUniformJumpsuitShitCloth74 = поношенное плать
 ent-MedievalClothingNeckCloakSpookyVendigo = мрачная накидка
     .desc = Мрачная накидка из шкуры вендиго.
     .suffix = { "Средневековье, одежда" }
+ent-HideHairAction = Спрятать волосы
+    .desc = Вы можете спрятать свои волосы под головным убором.

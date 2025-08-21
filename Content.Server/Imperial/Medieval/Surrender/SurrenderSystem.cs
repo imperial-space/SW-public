@@ -3,6 +3,8 @@ using Content.Server.Actions;
 using Content.Shared.CombatMode.Pacification;
 using Robust.Shared.Timing;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Systems;
+using Content.Shared.Coordinates;
 
 namespace Content.Server.Imperial.Medieval.Surrender;
 
@@ -11,6 +13,7 @@ public sealed class SurrenderSystem : EntitySystem
     [Dependency] private readonly ActionsSystem _actions = default!;
     [Dependency] private readonly IGameTiming _tick = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         SubscribeLocalEvent<CanSurrenderComponent, ComponentInit>(CompInit);
@@ -33,6 +36,7 @@ public sealed class SurrenderSystem : EntitySystem
         component.SurrenderActive = true;
         component.Unsurrender = _tick.CurTime + component.SurrenderTime;
         _appearance.SetData(uid, SurrenderVisuals.Key, true);
+        _audio.PlayPvs(component.Sound, uid.ToCoordinates());
         // Dirty(uid, component);
     }
     public override void Update(float delta)
