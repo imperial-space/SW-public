@@ -13,6 +13,11 @@ public sealed partial class MedievalPlagueSystem
 
     private void OnGhostInit(EntityUid uid, MedievalPlagueGhostComponent comp, ComponentInit args)
     {
+        _actions.AddAction(uid, "OpenPlagueMenuAction");
+        _actions.AddAction(uid, ref comp.InfectAction, "PlagueInfectAction");
+        UpdateInfectAction();
+        _alerts.ShowAlert(uid, comp.AlertId);
+
         foreach (var item in _symptoms.Where(x => x.Value.Unlocked))
         {
             AddPrototypeActions(uid, item.Key);
@@ -59,5 +64,17 @@ public sealed partial class MedievalPlagueSystem
         }
 
         return max * 2;
+    }
+
+    private void UpdateInfectAction()
+    {
+        var query = EntityQueryEnumerator<MedievalPlagueGhostComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (!comp.InfectAction.HasValue)
+                continue;
+
+            _meta.SetEntityDescription(comp.InfectAction.Value, Loc.GetString("plague-infect-action-desc", ("cost", GetInfectionCost())));
+        }
     }
 }
