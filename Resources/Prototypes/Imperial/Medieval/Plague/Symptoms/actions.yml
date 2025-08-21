@@ -1,0 +1,94 @@
+- type: plagueSymptom
+  id: VomitAction
+  name: plague-forced-vomit-name
+  desc: plague-forced-vomit-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: retchupgrade
+  position: -120,45
+  tier: 1
+  cost: 5
+  category: Action
+  actions: PlagueForcedVomitAction
+  required: Vomit
+
+- type: plagueSymptom
+  id: AsthmaticAction
+  name: plague-asthmatic-name
+  desc: plague-asthmatic-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: coughupgrade
+  position: -120,-45
+  tier: 1
+  cost: 5
+  category: Action
+  actions: PlagueAsthmaticAction
+  required: Cough
+
+- type: plagueSymptom
+  id: DizzinessAction
+  name: plague-dizziness-name
+  desc: plague-dizziness-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: dizzinessupgrade
+  position: 120,-45
+  tier: 1
+  cost: 5
+  category: Action
+  actions: PlagueDizzinessAction
+
+- type: plagueSymptom
+  id: SlimesAction
+  name: plague-slimes-name
+  desc: plague-slimes-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: slimeupgrade
+  position: 0,60
+  tier: 1
+  cost: 5
+  category: Action
+  actions: PlagueSpawnSlimesAction
+
+- type: plagueSymptom
+  id: BugsAction
+  name: plague-bugs-name
+  desc: plague-bugs-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: bugs
+  position: 0,30
+  tier: 1
+  cost: 5
+  category: Action
+  actions: PlagueSpawnBugsAction
+  required: SlimesAction
+
+- type: plagueSymptom
+  id: TpSickAction
+  name: plague-tp-sick-name
+  desc: plague-tp-sick-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: tpsick
+  position: 0,-60
+  tier: 1
+  cost: 5
+  category: Action
+  actions: PlagueTpInfectedAction
+
+- type: plagueSymptom
+  id: TpNotSickAction
+  name: plague-tp-not-sick-name
+  desc: plague-tp-not-sick-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: tphealthy
+  position: 0,-30
+  tier: 1
+  cost: 5
+  category: Action
+  actions: PlagueTpNotInfectedAction
+  required: TpSickAction
