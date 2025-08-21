@@ -46,7 +46,7 @@
     - Thermonium #Imperial Added Thermonium
     - Phazonium #Imperial Added Phazonium and Ozonium
     - Ozonium #Imperial Added Phazonium and Ozonium
-    - hydrogen #Imperial Added Hydrogen
+    - Hydrogen #Imperial Added Hydrogen
 
 # use this to prevent overriding filters with hardcoded defaults
 - type: entity

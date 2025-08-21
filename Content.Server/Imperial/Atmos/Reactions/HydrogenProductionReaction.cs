@@ -16,7 +16,6 @@ public sealed partial class HydrogenProductionReaction : IGasReactionEffect
         var initialVapor = mixture.GetMoles(Gas.WaterVapor);
 
         var efficiency = mixture.Temperature / Atmospherics.HydrogenProductionMaxEfficiencyTemperature;
-        var loss = 1 - efficiency;
 
         var oxyConversion = initialOxy / Atmospherics.HydrogenProductionConversionRate;
         var vaporConversion = initialVapor / Atmospherics.HydrogenProductionConversionRate;
