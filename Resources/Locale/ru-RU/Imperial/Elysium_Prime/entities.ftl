@@ -66,31 +66,3 @@ ent-VendingMachineElysiumSpecialForceClothing = СлужебноМат
 ent-VendingMachineElysiumAdminClothing = АдминистратоМат
 ent-VendingMachineElysiumStampMate = ШтампоМат
 ent-VendingMachineElysiumMaterialMachine = ШарфоМат
-
-ent-FederationAccessManipulator = Федеративный манипулятор доступов
-    .desc = Пахнет как ключи от капитализма.
-
-ent-FloorLamp = Напольная лампа
-    .desc = Напольное освещение
-ent-FloorLampEmpty = Напольная лампа
-    .desc = Напольное освещение
-
-ent-TechAirlockElysiumFederationLocked = Технический Федеративный шлюз
-    .desc = Выглядит очень капиталистически.
-ent-TechAirlockElysiumFederationadminLocked = Технический Федеративный шлюз
-    .desc = Выглядит очень капиталистически.
-ent-TechAirlockElysiumFederation = Технический Федеративный шлюз
-    .desc = Выглядит очень капиталистически.
-
-ent-ElysiumPrimeTacticTable = Тактический стол
-    .desc = Тактический стол для планирования.
-
-ent-TabletElysiumPrime = Планшет
-    .desc = Содержит в себе все коррупционные схемы, происходящие за кулисами, но он запаролен.
-
-ent-RedTicket = Красный талончик
-    .desc = Просто красный талончик.
-ent-BlueTicket = Синий талончик
-    .desc = Просто синий талончик.
-ent-BlackTicket = Черный талончик
-    .desc = Просто черный талончик.
