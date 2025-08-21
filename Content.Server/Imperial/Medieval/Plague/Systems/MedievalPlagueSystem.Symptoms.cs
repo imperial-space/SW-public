@@ -96,7 +96,7 @@ public sealed partial class MedievalPlagueSystem
         if (!TryComp<MedievalSprintComponent>(uid, out var sprint))
             return;
 
-        if (!sprint.Running)
+        if (!sprint.Sprinting)
             return;
 
         args.Cancelled = true;
@@ -187,7 +187,6 @@ public sealed partial class MedievalPlagueSystem
         EntityManager.AddComponents(uid, args.Components);
         foreach (var item in args.Components)
         {
-            EntityManager.AddComponent(uid, item.Value);
             var type = item.Value.Component.GetType();
             (args.Incubation ? comp.IncubationComponents : comp.PlagueComponents).Add(EntityManager.GetComponent(uid, type));
         }
