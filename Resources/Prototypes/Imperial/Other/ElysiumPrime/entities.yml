@@ -777,6 +777,66 @@
     sprite: Imperial/Other/ElysiumPrime/Airlocks/technical.rsi
 
 - type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconBlue
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Blue
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/BBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconBlueRed
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, BlueRed
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/BRBeacon.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconRed
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Red
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/RBeacon.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconWhite
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, White
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/WBeacon.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ChestBeaconYellow
+  name: Chest Beacon
+  description: A beacon for giving signals who are you
+  suffix: ElysiumPrime, Yellow
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Clothing/chest/YBeacon.rsi
+
+- type: entity
   parent: ElysiumPrimeTable
   id: ElysiumPrimeTacticTable
   name: Tactic Table
@@ -865,3 +925,4 @@
       - state: paper_stamp-generic
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
+
