@@ -58,10 +58,7 @@ public sealed class VomitSicknessOverlay : Overlay
 
         var middle = comp.EndTime - TimeSpan.FromSeconds(comp.Duration) / 2;
 
-        if (_timing.CurTime < middle)
-            CurrentBoozePower += 10 * args.DeltaSeconds;
-        else
-            CurrentBoozePower -= 10 * args.DeltaSeconds;
+        CurrentBoozePower = Math.Max(CurrentBoozePower + (_timing.CurTime < middle ? 17 : -17) * args.DeltaSeconds, 0.0f);
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -83,13 +80,13 @@ public sealed class VomitSicknessOverlay : Overlay
 
         var handle = args.WorldHandle;
         _drunkShader.SetParameter("SCREEN_TEXTURE", ScreenTexture);
-        _drunkShader.SetParameter("boozePower", _visualScale * 3);
+        _drunkShader.SetParameter("boozePower", _visualScale + 35f);
         handle.UseShader(_drunkShader);
         handle.DrawRect(args.WorldBounds, Color.White);
         handle.UseShader(null);
 
         _blurShaderX.SetParameter("SCREEN_TEXTURE", ScreenTexture);
-        _blurShaderX.SetParameter("BLUR_AMOUNT", _visualScale);
+        _blurShaderX.SetParameter("BLUR_AMOUNT", _visualScale * 1.5f);
         handle.UseShader(_blurShaderX);
         handle.DrawRect(args.WorldBounds, Color.White);
         handle.UseShader(null);
