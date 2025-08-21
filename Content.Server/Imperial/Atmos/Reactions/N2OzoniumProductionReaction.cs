@@ -16,7 +16,6 @@ public sealed partial class N2OzoniumProductionReaction : IGasReactionEffect
         var initialOzon = mixture.GetMoles(Gas.Ozonium);
 
         var efficiency = mixture.Temperature / Atmospherics.N2OzonProductionMaxEfficiencyTemperature;
-        var loss = 1 - efficiency;
 
         var nitConversion = initialNit / Atmospherics.N2OzonProductionConversionRate;
         var ozonConversion = initialOzon / Atmospherics.N2OzonProductionConversionRate;
