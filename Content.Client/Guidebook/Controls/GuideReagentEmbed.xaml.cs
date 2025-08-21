@@ -15,6 +15,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.Medieval.ChemistryRandomization; // Imperial Medieval Chemistry
 
 namespace Content.Client.Guidebook.Controls;
 
@@ -39,14 +40,18 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
         MouseFilter = MouseFilterMode.Stop;
     }
 
-    public GuideReagentEmbed(string reagent) : this()
+    public GuideReagentEmbed(string reagent
+    , bool ignoreHide = false) : this() // Imperial Medieval Chemistry
     {
-        GenerateControl(_prototype.Index<ReagentPrototype>(reagent));
+        GenerateControl(_prototype.Index<ReagentPrototype>(reagent)
+        , ignoreHide); // Imperial Medieval Chemistry
     }
 
-    public GuideReagentEmbed(ReagentPrototype reagent) : this()
+    public GuideReagentEmbed(ReagentPrototype reagent
+    , bool ignoreHide = false) : this() // Imperial Medieval Chemistry
     {
-        GenerateControl(reagent);
+        GenerateControl(reagent
+        , ignoreHide); // Imperial Medieval Chemistry
     }
 
     public bool CheckMatchesSearch(string query)
@@ -80,10 +85,11 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
         return true;
     }
 
-    private void GenerateControl(ReagentPrototype reagent)
+    private void GenerateControl(ReagentPrototype reagent
+    , bool ignoreHide = false) // Imperial Medieval Chemistry
     {
         // Imperial Medieval Chemistry Begin
-        if (!reagent.ShowInBook)
+        if (!reagent.ShowInBook && !ignoreHide)
             return;
         // Imperial Medieval Chemistry End
         RepresentedPrototype = reagent;
@@ -96,6 +102,19 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
         var r = reagent.SubstanceColor.R;
         var g = reagent.SubstanceColor.G;
         var b = reagent.SubstanceColor.B;
+        // Imperial Medieval Chemistry Begin
+        if (!reagent.ShowInBook)
+        {
+            var color = SharedChemistryRandomizationSystem.GetColor(reagent);
+            r = color.R;
+            r = color.G;
+            r = color.B;
+            NameBackground.PanelOverride = new StyleBoxFlat
+            {
+                BackgroundColor = color
+            };
+        }
+        // Imperial Medieval Chemistry End
 
         var textColor = 0.2126f * r + 0.7152f * g + 0.0722f * b > 0.5
             ? Color.Black
@@ -105,12 +124,21 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
             ("color", textColor), ("name", reagent.LocalizedName)));
 
         #region Recipe
-        var reactions = _prototype.EnumeratePrototypes<ReactionPrototype>()
+        List<ReactionData> reactions = new(); // Imperial Medieval Chemistry Change
+        reactions.AddRange(_prototype.EnumeratePrototypes<ReactionPrototype>() // Imperial Medieval Chemistry Change
             .Where(p => !p.Source && p.Products.ContainsKey(reagent.ID))
             .OrderBy(p => p.Priority)
             .ThenBy(p => p.Products.Count)
-            .ToList();
+            .ToList());
 
+        // Imperial Medieval Chemistry Begin
+        if (!reagent.ShowInBook)
+        {
+            var randomReactions = SharedChemistryRandomizationSystem.GetReactionsOrNull(reagent);
+            if (randomReactions != null)
+                reactions = randomReactions;
+        }
+        // Imperial Medieval Chemistry End
         if (reactions.Any())
         {
             foreach (var reactionPrototype in reactions)

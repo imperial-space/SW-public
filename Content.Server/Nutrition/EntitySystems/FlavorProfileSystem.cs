@@ -1,6 +1,7 @@
 using Content.Server.Nutrition.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.Imperial.Medieval.ChemistryRandomization;
 using Content.Shared.Nutrition;
 using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
@@ -99,8 +100,11 @@ public sealed class FlavorProfileSystem : EntitySystem
                 continue;
             }
 
-            if (reagent.Flavor != null)
-                flavors.Add(reagent.Flavor);
+            // Imperial Medieval flavor start
+            var flavor = SharedChemistryRandomizationSystem.GetFlavor(reagent);
+            if (flavor != null)
+                flavors.Add(flavor);
+            // Imperial Medieval end
         }
 
         return flavors;

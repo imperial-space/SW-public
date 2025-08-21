@@ -2715,7 +2715,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalLootGoblin
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -2803,7 +2803,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalLootHog
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -2843,7 +2843,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalLootHunter
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -2883,7 +2883,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalLootCrab
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -2923,7 +2923,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalLootCrabDevil
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3104,7 +3104,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalLootDevilMouse
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3148,7 +3148,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalLootAnt
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3299,7 +3299,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalLootEgg
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
       - MonsterLoot
@@ -3447,6 +3447,7 @@
     snap:
     - Wall
   components:
+  - type: MedievalNotAllowDash
   - type: IconSmooth
     key: waterdeep
     base: water

@@ -36,6 +36,13 @@
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalFireWallBeginner
       spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 2.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
       speechPoints:
         0:
           speech: medieval-spell-speach-fire-wall
@@ -88,6 +95,13 @@
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalFireWallMiddle
       spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 3
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
       speechPoints:
         0:
           speech: medieval-spell-speach-fire-wall
@@ -134,6 +148,13 @@
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalFireWallSenior
       spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 3.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
       speechPoints:
         0:
           speech: medieval-spell-speach-fire-wall

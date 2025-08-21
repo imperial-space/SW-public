@@ -7,6 +7,7 @@ using Robust.Shared.Utility;
 using System.Collections;
 using System.Linq;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Imperial.Medieval.ChemistryRandomization;
 
 namespace Content.Shared.Chemistry.Components
 {
@@ -835,12 +836,12 @@ namespace Content.Shared.Chemistry.Components
                 if (first)
                 {
                     first = false;
-                    mixColor = proto.SubstanceColor;
+                    mixColor = SharedChemistryRandomizationSystem.GetColor(proto);  // Imperial Medieval tweak
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, proto.SubstanceColor, interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, SharedChemistryRandomizationSystem.GetColor(proto), interpolateValue);  // Imperial Medieval color randomization
             }
             return mixColor;
         }
@@ -878,12 +879,12 @@ namespace Content.Shared.Chemistry.Components
                 if (first)
                 {
                     first = false;
-                    mixColor = proto.SubstanceColor;
+                    mixColor = SharedChemistryRandomizationSystem.GetColor(proto);    // Imperial Medieval tweak
                     continue;
                 }
 
                 var interpolateValue = quantity.Float() / runningTotalQuantity.Float();
-                mixColor = Color.InterpolateBetween(mixColor, proto.SubstanceColor, interpolateValue);
+                mixColor = Color.InterpolateBetween(mixColor, SharedChemistryRandomizationSystem.GetColor(proto), interpolateValue);  // Imperial Medieval color randomization
             }
             return mixColor;
         }
