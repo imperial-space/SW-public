@@ -72,15 +72,18 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         InitializeSymptoms();
     }
 
-    public bool TryInfect(EntityUid uid, EntityUid? plagueSource)
+    public bool TryInfect(EntityUid uid, EntityUid? plagueSource, float additionalMod = 1f)
     {
         if (!HasComp<MedievalCanBeInfectedComponent>(uid) || HasComp<MedievalPlagueInfectedComponent>(uid))
+            return false;
+
+        if (HasComp<MedievalPlagueImmuneComponent>(uid))
             return false;
 
         var ev = new MedievalPlagueInfectionAttemptEvent();
         RaiseLocalEvent(uid, ref ev);
 
-        if (!_random.Prob(ev.Probability))
+        if (!_random.Prob(ev.Probability * additionalMod))
             return false;
 
         Infect(uid, plagueSource);
