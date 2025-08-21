@@ -1744,12 +1744,13 @@
     sprite: Imperial/ShiftFront/light.rsi
     state: bag
   - type: Item
+    size: Normal
   - type: Stack
     stackType: FrontSandbags
-    count: 3
+    count: 4
   - type: SpawnAfterInteract #Nuke after convert to FloorTile
     prototype: ShiftFrontSandbags
-    doAfter: 8
+    doAfter: 2.25
     removeOnInteract: true
 
 - type: stack
