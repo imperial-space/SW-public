@@ -9,17 +9,15 @@ public sealed partial class MedievalPlagueSystem
 {
     private void InitializeUi()
     {
-        SubscribeNetworkEvent<RequestPlagueMenuDataMessage>(OnRequestMenuData);
+        SubscribeLocalEvent<MedievalPlagueGhostComponent, OpenPlagueEvolutionMenuActionEvent>(OnOpenMenu);
+
         SubscribeNetworkEvent<AddPlaguePointsMessage>(OnAddPoints);
     }
 
-    private void OnRequestMenuData(RequestPlagueMenuDataMessage args)
+    private void OnOpenMenu(EntityUid uid, MedievalPlagueGhostComponent comp, OpenPlagueEvolutionMenuActionEvent args)
     {
-        if (!_player.TryGetSessionByEntity(GetEntity(args.Ent), out var session))
-            return;
-
-        var message = new PopulatePlagueMenuMessage(_symptoms);
-        RaiseNetworkEvent(message, session);
+        var ev = new OpenPlagueMenuMessage(_symptoms, comp.Points);
+        RaiseNetworkEvent(ev, uid);
     }
 
     private void OnAddPoints(AddPlaguePointsMessage args)
@@ -33,6 +31,8 @@ public sealed partial class MedievalPlagueSystem
 
         data.Points += args.Points;
         comp.Points -= args.Points;
+        Dirty(uid, comp);
+        _alerts.ShowAlert(uid, comp.AlertId);
 
         var proto = _proto.Index(args.Proto);
 
@@ -40,18 +40,32 @@ public sealed partial class MedievalPlagueSystem
         {
             data.Unlocked = true;
             DoPrototypeEffects(args.Proto);
+            UpdateInfectAction();
         }
+
+        UpdateUi();
+    }
+
+    private void UpdateUi(EntityUid uid)
+    {
+        if (!TryComp<MedievalPlagueGhostComponent>(uid, out var comp))
+            return;
+        if (!_player.TryGetSessionByEntity(uid, out var session))
+            return;
+
+        var message = new PopulatePlagueMenuMessage(_symptoms, comp.Points);
+        RaiseNetworkEvent(message, session);
     }
 
     private void UpdateUi()
     {
-        var message = new PopulatePlagueMenuMessage(_symptoms);
         var ghosts = EntityManager.AllEntities<MedievalPlagueGhostComponent>();
         foreach (var item in ghosts)
         {
             if (!_player.TryGetSessionByEntity(item, out var session))
                 continue;
 
+            var message = new PopulatePlagueMenuMessage(_symptoms, item.Comp.Points);
             RaiseNetworkEvent(message, session);
         }
     }
