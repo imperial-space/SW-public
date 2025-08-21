@@ -469,6 +469,78 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopMedievalSign1Craft
+  productEntity: MdvShopMedievalSign1Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign2Craft
+  productEntity: MdvShopMedievalSign2Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign3Craft
+  productEntity: MdvShopMedievalSign3Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign4Craft
+  productEntity: MdvShopMedievalSign4Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign5Craft
+  productEntity: MdvShopMedievalSign5Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign6Craft
+  productEntity: MdvShopMedievalSign6Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign7Craft
+  productEntity: MdvShopMedievalSign7Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign8Craft
+  productEntity: MdvShopMedievalSign8Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign9Craft
+  productEntity: MdvShopMedievalSign9Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalPrisonGrilleCraft
   productEntity: MedievalPrisonGrilleCraft
   cost:

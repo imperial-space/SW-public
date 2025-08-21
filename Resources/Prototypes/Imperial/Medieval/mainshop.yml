@@ -594,6 +594,78 @@
   - MedievalBuild
 
 - type: listing
+  id: MdvShopMedievalSign1Craft
+  productEntity: MedievalSign1Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign2Craft
+  productEntity: MedievalSign2Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign3Craft
+  productEntity: MedievalSign3Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign4Craft
+  productEntity: MedievalSign4Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign5Craft
+  productEntity: MedievalSign5Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign6Craft
+  productEntity: MedievalSign6Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign7Craft
+  productEntity: MedievalSign7Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign8Craft
+  productEntity: MedievalSign8Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign9Craft
+  productEntity: MedievalSign9Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
   id: MdvShopMedievalStoneWallCraft
   productEntity: MedievalStoneWallCraft
   cost:
