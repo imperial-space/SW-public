@@ -59,10 +59,7 @@ public sealed partial class MedievalPlagueSystem
         }
         else
         {
-            comp.Points -= cost;
-            Dirty(uid, comp);
-            _alerts.ShowAlert(uid, comp.AlertId);
-            UpdateUi(uid);
+            TryChangePoints(uid, -cost, comp);
         }
 
         if (TryInfect(args.Target, uid))
@@ -154,16 +151,8 @@ public sealed partial class MedievalPlagueSystem
         if (args.Handled)
             return;
 
-        if (comp.Points < args.Cost)
-        {
-            _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-cost"), uid, uid);
+        if (!TryUseAbility(uid, null, args.Cost, true))
             return;
-        }
-
-        comp.Points -= args.Cost;
-        Dirty(uid, comp);
-        _alerts.ShowAlert(uid, comp.AlertId);
-        UpdateUi(uid);
 
         args.Handled = true;
 
@@ -215,16 +204,8 @@ public sealed partial class MedievalPlagueSystem
         if (args.Handled)
             return;
 
-        if (comp.Points < args.Cost)
-        {
-            _popup.PopupCoordinates(Loc.GetString("popup-plague-action-fail-cost"), args.Target, uid);
+        if (!TryUseAbility(uid, null, args.Cost, true))
             return;
-        }
-
-        comp.Points -= args.Cost;
-        Dirty(uid, comp);
-        _alerts.ShowAlert(uid, comp.AlertId);
-        UpdateUi(uid);
 
         args.Handled = true;
         Spawn(args.Prototype, args.Target);
@@ -270,32 +251,36 @@ public sealed partial class MedievalPlagueSystem
         _mobState.ChangeMobState(args.Target, Shared.Mobs.MobState.Dead);
     }
 
-    private bool TryUseAbility(EntityUid uid, EntityUid target, int cost = 0, bool allowIncubation = false)
+    private bool TryUseAbility(EntityUid uid, EntityUid? target, int cost = 0, bool allowIncubation = false)
     {
-        if (!TryComp<MedievalPlagueGhostComponent>(uid, out var comp) || !TryComp<MedievalPlagueInfectedComponent>(target, out var infected))
+        if (!TryComp<MedievalPlagueGhostComponent>(uid, out var comp))
         {
-            _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-not-infected"), target, uid);
+            _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-not-infected"), target ?? uid, uid);
             return false;
         }
 
-        if (infected.Incubation && !allowIncubation)
+        if (target.HasValue)
         {
-            _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-incubation"), target, uid);
-            return false;
+            if (!TryComp<MedievalPlagueInfectedComponent>(target, out var infected))
+            {
+                _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-not-infected"), target ?? uid, uid);
+                return false;
+            }
+
+            if (infected.Incubation && !allowIncubation)
+            {
+                _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-incubation"), target ?? uid, uid);
+                return false;
+            }
         }
 
         if (comp.Points < cost)
         {
-            _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-cost"), target, uid);
+            _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-cost"), target ?? uid, uid);
             return false;
         }
 
-        comp.Points -= cost;
-        Dirty(uid, comp);
-        _alerts.ShowAlert(uid, comp.AlertId);
-        UpdateUi(uid);
-
-        return true;
+        return TryChangePoints(uid, -cost, comp);
     }
 
     private int GetInfectionCost()

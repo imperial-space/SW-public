@@ -246,6 +246,39 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         }
     }
 
+    private bool TryChangePoints(EntityUid uid, int points, MedievalPlagueGhostComponent? comp = null)
+    {
+        if (points == 0)
+            return true;
+
+        if (!Resolve(uid, ref comp))
+            return false;
+
+        if (comp.Points + points < 0)
+            return false;
+
+        comp.Points += points;
+        Dirty(uid, comp);
+        UpdateUi(uid);
+        _alerts.ShowAlert(uid, comp.AlertId);
+
+        return true;
+    }
+
+    private void AddPoint(EntityUid? uid, MedievalPlagueGhostComponent? comp = null)
+    {
+        if (!uid.HasValue)
+            return;
+
+        if (!Resolve(uid.Value, ref comp))
+            return;
+
+        comp.Points++;
+        Dirty(uid.Value, comp);
+        UpdateUi(uid.Value);
+        _alerts.ShowAlert(uid.Value, comp.AlertId);
+    }
+
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
