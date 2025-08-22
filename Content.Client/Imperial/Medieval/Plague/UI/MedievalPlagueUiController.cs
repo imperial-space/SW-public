@@ -12,7 +12,6 @@ public sealed class MedievalPlagueUiController : UIController
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
 
     private MedievalPlagueMenu? _menu;
     private MedievalPlagueSymptomMiniMenu? _miniMenu;
@@ -30,6 +29,9 @@ public sealed class MedievalPlagueUiController : UIController
 
         _menu = new();
         _menu.OnSymptomSelect = args => SelectSymptom(args, data, allowedPoints);
+
+        var audio = EntityManager.System<AudioSystem>();
+
         _menu.OnClose += () =>
         {
             _miniMenu?.Close();
@@ -37,14 +39,14 @@ public sealed class MedievalPlagueUiController : UIController
             _menu = null;
 
             if (_player.LocalSession != null)
-                _audio.PlayGlobal(_closeSound, _player.LocalSession);
+                audio.PlayGlobal(_closeSound, _player.LocalSession);
         };
 
         _menu.Populate(_proto, data);
         _menu.OpenCentered();
 
         if (_player.LocalSession != null)
-            _audio.PlayGlobal(_openSound, _player.LocalSession);
+            audio.PlayGlobal(_openSound, _player.LocalSession);
     }
 
     public void Populate(Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, int allowedPoints)

@@ -63,7 +63,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _moveSpeed = default!;
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ChatManager _chat = default!;
+    [Dependency] private readonly IChatManager _chat = default!;
 
     private Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> _symptoms = new();
     private int _strapHealResistance = 0;
