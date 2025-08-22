@@ -4,6 +4,7 @@ using Content.Server.BadSmell.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Buckle.Systems;
 using Content.Server.Fluids.EntitySystems;
+using Content.Server.GameTicking.Events;
 using Content.Server.Imperial.Medieval.Skills;
 using Content.Server.Jittering;
 using Content.Server.Medical;
@@ -66,10 +67,24 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<RoundStartingEvent>(OnRoundStarting);
+
         InitializeGhost();
         InitializeSpread();
         InitializeUi();
         InitializeSymptoms();
+    }
+
+    private void OnRoundStarting(RoundStartingEvent args)
+    {
+        _symptoms.Clear();
+        _strapHealResistance = 0;
+        _healItemResistance = 0;
+        _spreaders.Clear();
+        _contactSpreadMod = 0f;
+        _blockersEfficiency = 1f;
+        _minSmellLevel = 50f;
+        _allergyRandom = new();
     }
 
     public bool TryInfect(EntityUid uid, EntityUid? plagueSource, float additionalMod = 1f)
