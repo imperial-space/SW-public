@@ -121,6 +121,7 @@ ent-ReinforcedWindowWhiteElysiumPrime = армированное окно
     .desc = Смотри не заляпай.
 
 
+
 ent-FederationAccessManipulator = Федеративный манипулятор доступов
     .desc = Пахнет как ключи от капитализма.
 
