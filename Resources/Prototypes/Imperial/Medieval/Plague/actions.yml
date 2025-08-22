@@ -233,3 +233,33 @@
         state: tphealthy
       event: !type:PlagueTeleportNotInfectedActionEvent
       useDelay: 30
+
+- type: entity
+  id: PlaguePolymorphMouseAction
+  name: Plague menu
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: polymorphrat
+      event: !type:PlaguePolymorphMouseActionEvent
+        cost: 1
+      useDelay: 120
+
+- type: entity
+  id: PlagueRevertPolymorphMouseAction
+  name: Plague menu
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+    - type: InstantAction
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: polymorphghost
+      event: !type:RevertPolymorphActionEvent
+        cost: 1
+      useDelay: 90

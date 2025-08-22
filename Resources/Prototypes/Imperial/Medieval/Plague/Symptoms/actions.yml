@@ -40,6 +40,46 @@
   actions: PlagueDizzinessAction
 
 - type: plagueSymptom
+  id: SleepyAction
+  name: plague-sleepy-name
+  desc: plague-sleepy-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: sleepy
+  position: 90,-45
+  tier: 1
+  cost: 5
+  category: Action
+  actions: PlagueSleepyAction
+  required: DizzinessAction
+
+- type: plagueSymptom
+  id: MorphRatAction
+  name: plague-rat-name
+  desc: plague-rat-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: ratstier1
+  position: 120,45
+  tier: 1
+  cost: 5
+  category: Action
+  actions: PlaguePolymorphMouseAction
+
+- type: plagueSymptom
+  id: MorphRatsAction
+  name: plague-rats-name
+  desc: plague-rats-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: ratstier2
+  position: 90,45
+  tier: 1
+  cost: 5
+  category: Action
+  required: MorphRatAction
+
+- type: plagueSymptom
   id: SlimesAction
   name: plague-slimes-name
   desc: plague-slimes-desc
