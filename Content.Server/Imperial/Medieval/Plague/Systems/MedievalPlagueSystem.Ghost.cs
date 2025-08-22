@@ -151,6 +151,14 @@ public sealed partial class MedievalPlagueSystem
         if (args.Handled)
             return;
 
+        var xform = Transform(uid);
+
+        if (_lookup.GetEntitiesInRange<HumanoidAppearanceComponent>(xform.Coordinates, 8f).Any())
+        {
+            _popup.PopupEntity(Loc.GetString("medieval-plague-mouse-polymorph-nearby-popup"), uid, uid);
+            return;
+        }
+
         if (!TryUseAbility(uid, null, args.Cost, true))
             return;
 
@@ -158,8 +166,6 @@ public sealed partial class MedievalPlagueSystem
 
         if (_symptoms.Where(x => x.Value.Unlocked).ToDictionary().ContainsKey("MorphRatsAction"))
         {
-            var xform = Transform(uid);
-
             for (var i = 0; i < args.SpawnedCount; i++)
                 Spawn("MedievalMobPlagueMouse", xform.Coordinates);
         }
