@@ -2,7 +2,7 @@
   parent: BaseSign
   id: AdministrationElysiumSign
   name: Администрация
-  suffix: ElysiumPrime, Felix
+  suffix: ElysiumPrime, Decoration
   description: Упрощенный логотип Элизиум Прайм скрывает за собой не самых простых людей.
   components:
   - type: Sprite
@@ -13,7 +13,7 @@
   parent: BaseSign
   id: BankElysiumSign
   name: Финансовый центр
-  suffix: ElysiumPrime, Felix
+  suffix: ElysiumPrime, Decoration
   description: Если миром правят деньги, то они — правят деньгами.
   components:
   - type: Sprite
@@ -24,7 +24,7 @@
   parent: BaseSign
   id: CourtElysiumSign
   name: Суд
-  suffix: ElysiumPrime, Felix
+  suffix: ElysiumPrime, Decoration
   description: Прийдя сюда, вы можете наблюдать судебные процессы. Прийдя туда, вы сможете увидеть как происходят тудебные процессы.
   components:
   - type: Sprite
@@ -35,7 +35,7 @@
   parent: BaseSign
   id: DockElysiumSign
   name: Торговые доки
-  suffix: ElysiumPrime, Felix
+  suffix: ElysiumPrime, Decoration
   description: Здесь, как правило, собираются люди, которые смогут продать вам ручку.
   components:
   - type: Sprite
@@ -46,7 +46,7 @@
   parent: BaseSign
   id: PoliceElysiumSign
   name: Полиция
-  suffix: ElysiumPrime, Felix
+  suffix: ElysiumPrime, Decoration
   description: "Если вам когда-нибудь покажется, что полиция не работает, ведь уровень преступности высок, задумайтесь: а если бы полиции не было вовсе?"
   components:
   - type: Sprite
@@ -57,8 +57,8 @@
   parent: BaseSign
   id: MedElysiumSign
   name: Медицинский отсек
-  suffix: ElysiumPrime, Felix
-  description: Споря с врачами не забывайте о том, что они знают про ваше тело больше, чем вы сами.
+  suffix: ElysiumPrime, Decoration
+  description: Споря с врачами, не забывайте о том, что они знают про ваше тело больше, чем вы сами.
   components:
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
@@ -68,9 +68,20 @@
   parent: BaseSign
   id: BarElysiumSign
   name: Бар
-  suffix: ElysiumPrime, Felix
+  suffix: ElysiumPrime, Decoration
   description: "Помни: алкоголь — акцизный товар. Покупая алкоголь, ты поддерживаешь власть..."
   components:
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: bar
+
+- type: entity
+  parent: BaseSign
+  id: JournalisticsElysiumSign
+  name: Журналистика
+  suffix: ElysiumPrime, Decoration
+  description: СРОЧНЫЕ НОВОСТИ! ДЕНЬГИ ПАДАЮТ С НЕБА! А теперь когда мы привлекли ваше внимание...
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: journalistics
