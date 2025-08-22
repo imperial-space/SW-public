@@ -221,7 +221,7 @@
     allowedEmotes: ['Squeak']
   - type: Sprite
     drawdepth: SmallMobs
-    sprite: Imperial/Medieval/Mobs/plague_slime_explode.rsi
+    sprite: Imperial/Medieval/Mobs/plague_rat.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
       state: mouse

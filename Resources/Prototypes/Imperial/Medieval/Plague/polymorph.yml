@@ -8,6 +8,6 @@
     allowRepeatedMorphs: false
     transferName: false
     polymorphSound:
-      path: /Audio/Imperial/Medieval.Plague/morph_mouse.ogg
+      path: /Audio/Imperial/Medieval/Plague/morph_mouse.ogg
     exitPolymorphSound:
-      path: /Audio/Imperial/Medieval.Plague/morph_ghost.ogg
+      path: /Audio/Imperial/Medieval/Plague/morph_ghost.ogg
