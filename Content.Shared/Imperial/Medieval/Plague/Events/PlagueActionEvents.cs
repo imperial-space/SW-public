@@ -44,7 +44,11 @@ public sealed partial class PlagueCataractActionEvent : BasePlagueActionEvent;
 
 public sealed partial class PlagueHeartAttackActionEvent : BasePlagueActionEvent;
 
-public sealed partial class PlagueBreakImmunityActionEvent : BasePlagueActionEvent;
+public sealed partial class PlagueBreakImmunityActionEvent : EntityTargetActionEvent
+{
+    [DataField]
+    public int Cost = 0;
+}
 
 public sealed partial class PlagueSpawnEntityActionEvent : WorldTargetActionEvent
 {

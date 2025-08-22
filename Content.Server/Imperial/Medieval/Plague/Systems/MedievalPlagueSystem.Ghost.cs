@@ -3,6 +3,7 @@ using Content.Server.Body.Components;
 using Content.Shared.Bed.Sleep;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
+using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Medieval.Plague;
 using Robust.Shared.Random;
 
@@ -18,8 +19,9 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueAsthmaticActionEvent>(OnAsthmaAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueDizzinessActionEvent>(OnDizzinessAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueSleepyActionEvent>(OnSleepAction);
-        SubscribeLocalEvent<MedievalPlagueGhostComponent, PlaguePolymorphMouseActionEvent>(OnMousuePolymorphAction);
+        SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueBreakImmunityActionEvent>(OnImmunityAction);
 
+        SubscribeLocalEvent<MedievalPlagueGhostComponent, PlaguePolymorphMouseActionEvent>(OnMousuePolymorphAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueTeleportInfectedActionEvent>(OnTeleportInfectedAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueTeleportNotInfectedActionEvent>(OnTeleportNotInfectedAction);
 
@@ -144,6 +146,31 @@ public sealed partial class MedievalPlagueSystem
         _status.TryAddStatusEffect<ForcedSleepingComponent>(args.Target, "ForcedSleep", TimeSpan.FromSeconds(15), true);
         _popup.PopupEntity(Loc.GetString("medieval-plague-forced-sleep-ghost-popup"), args.Target, uid);
         _popup.PopupEntity(Loc.GetString("medieval-plague-forced-sleep-target-popup"), args.Target, args.Target, Shared.Popups.PopupType.MediumCaution);
+    }
+
+    private void OnImmunityAction(EntityUid uid, MedievalPlagueGhostComponent comp, PlagueBreakImmunityActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!TryChangePoints(uid, -args.Cost))
+        {
+            _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-not-infected"), args.Target, uid);
+            return;
+        }
+
+        args.Handled = true;
+
+        if (!_symptoms.Where(x => x.Value.Unlocked).ToDictionary().ContainsKey("ImmunityBreak2") &&
+            TryComp<MedievalPlagueImmuneComponent>(args.Target, out var immune) &&
+            immune.StartTime + TimeSpan.FromMinutes(15) < _timing.CurTime)
+        {
+            _popup.PopupEntity(Loc.GetString("medieval-plague-break-immunity-failure-popup"), args.Target, uid);
+            return;
+        }
+
+        _popup.PopupEntity(Loc.GetString("medieval-plague-break-immunity-success-popup"), args.Target, uid);
+        RemComp<MedievalPlagueImmuneComponent>(args.Target);
     }
 
     private void OnMousuePolymorphAction(EntityUid uid, MedievalPlagueGhostComponent comp, PlaguePolymorphMouseActionEvent args)
