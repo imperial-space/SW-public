@@ -2,7 +2,7 @@
   id: OpenPlagueMenuAction
   name: Plague menu
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: InstantAction
       itemIconStyle: BigAction
@@ -16,7 +16,7 @@
   id: PlagueInfectAction
   name: Infect
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
       whitelist:
@@ -35,7 +35,7 @@
   id: PlagueForcedVomitAction
   name: Infect
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
       whitelist:
@@ -54,7 +54,7 @@
   id: PlagueAsthmaticAction
   name: Infect
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
       whitelist:
@@ -74,7 +74,7 @@
   id: PlagueDizzinessAction
   name: Infect
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
       whitelist:
@@ -94,7 +94,7 @@
   id: PlagueSleepyAction
   name: Infect
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
       whitelist:
@@ -114,7 +114,7 @@
   id: PlagueInjuryAction
   name: Infect
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
       whitelist:
@@ -134,7 +134,7 @@
   id: PlagueCataractAction
   name: Infect
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: EntityTargetAction
       whitelist:
@@ -152,7 +152,7 @@
 
 - type: entity
   id: PlagueHeartAttackAction
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   name: Infect
   description: queueueueueueueue
   components:
@@ -174,7 +174,7 @@
   id: PlagueSpawnSlimesAction
   name: Infect
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: WorldTargetAction
       checkCanAccess: false
@@ -192,7 +192,7 @@
   id: PlagueSpawnBugsAction
   name: Infect
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: WorldTargetAction
       checkCanAccess: false
@@ -210,7 +210,7 @@
   id: PlagueTpInfectedAction
   name: Plague menu
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: InstantAction
       itemIconStyle: BigAction
@@ -224,7 +224,7 @@
   id: PlagueTpNotInfectedAction
   name: Plague menu
   description: queueueueueueueue
-  category: HideSpawnMenu
+  categories: [ HideSpawnMenu ]
   components:
     - type: InstantAction
       itemIconStyle: BigAction
