@@ -69,6 +69,9 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
     private int _strapHealResistance = 0;
     private int _healItemResistance = 0;
 
+    private const float PointsUpdateInterval = 600f;
+    private TimeSpan _nextPointsUpdate = TimeSpan.Zero;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -290,6 +293,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         UpdateDamagingClothing();
         UpdateLungCancer();
         UpdateDizzy();
+        UpdatePoints();
     }
 
     private void UpdateInfected()
@@ -318,5 +322,29 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
             TryProgressInfection(uid, 1, comp);
             comp.NextProgression = _timing.CurTime + TimeSpan.FromSeconds(comp.UpdatePeriod);
         }
+    }
+
+    private void UpdatePoints()
+    {
+        if (_timing.CurTime < _nextPointsUpdate)
+            return;
+        _nextPointsUpdate = _timing.CurTime + TimeSpan.FromSeconds(PointsUpdateInterval);
+
+        var infected = EntityManager.AllEntities<MedievalPlagueInfectedComponent>();
+        var points = 0;
+
+        for (var i = 0; i < infected.Count(); i++)
+        {
+            var item = infected[i];
+            if (item.Comp.Incubation)
+                points++;
+            else
+                points += 2;
+        }
+
+        points /= 8;
+        var ghosts = EntityManager.AllEntities<MedievalPlagueGhostComponent>();
+        foreach (var item in ghosts)
+            TryChangePoints(item, points, item.Comp);
     }
 }
