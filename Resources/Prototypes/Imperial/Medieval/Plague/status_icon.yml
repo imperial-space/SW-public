@@ -6,6 +6,8 @@
     components:
     - Ghost
     - MedievalPlagueGhost
+    tags:
+    - MedievalShowPlagueIcons
   icon:
     sprite: /Textures/Imperial/Medieval/Interface/Plague/status_icons.rsi
     state: incub
@@ -18,6 +20,8 @@
     components:
     - Ghost
     - MedievalPlagueGhost
+    tags:
+    - MedievalShowPlagueIcons
   icon:
     sprite: /Textures/Imperial/Medieval/Interface/Plague/status_icons.rsi
     state: active
@@ -30,6 +34,8 @@
     components:
     - Ghost
     - MedievalPlagueGhost
+    tags:
+    - MedievalShowPlagueIcons
   icon:
     sprite: /Textures/Imperial/Medieval/Interface/Plague/status_icons.rsi
     state: immune
