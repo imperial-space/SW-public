@@ -18,6 +18,7 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueAsthmaticActionEvent>(OnAsthmaAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueDizzinessActionEvent>(OnDizzinessAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueSleepyActionEvent>(OnSleepAction);
+        SubscribeLocalEvent<MedievalPlagueGhostComponent, PlaguePolymorphMouseActionEvent>(OnMousuePolymorphAction);
 
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueTeleportInfectedActionEvent>(OnTeleportInfectedAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueTeleportNotInfectedActionEvent>(OnTeleportNotInfectedAction);
@@ -146,6 +147,35 @@ public sealed partial class MedievalPlagueSystem
         _status.TryAddStatusEffect<ForcedSleepingComponent>(args.Target, "ForcedSleep", TimeSpan.FromSeconds(15), true);
         _popup.PopupEntity(Loc.GetString("medieval-plague-forced-sleep-ghost-popup"), args.Target, uid);
         _popup.PopupEntity(Loc.GetString("medieval-plague-forced-sleep-target-popup"), args.Target, args.Target, Shared.Popups.PopupType.MediumCaution);
+    }
+
+    private void OnMousuePolymorphAction(EntityUid uid, MedievalPlagueGhostComponent comp, PlaguePolymorphMouseActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (comp.Points < args.Cost)
+        {
+            _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-cost"), uid, uid);
+            return;
+        }
+
+        comp.Points -= args.Cost;
+        Dirty(uid, comp);
+        _alerts.ShowAlert(uid, comp.AlertId);
+        UpdateUi(uid);
+
+        args.Handled = true;
+
+        if (_symptoms.Where(x => x.Value.Unlocked).ToDictionary().ContainsKey("MorphRatsAction"))
+        {
+            var xform = Transform(uid);
+
+            for (var i = 0; i < args.SpawnedCount; i++)
+                Spawn("MedievalMobPlagueMouse", xform.Coordinates);
+        }
+
+        _polymorph.PolymorphEntity(uid, "MedievalPlagueMousePolymorph");
     }
 
     private void OnTeleportInfectedAction(EntityUid uid, MedievalPlagueGhostComponent comp, PlagueTeleportInfectedActionEvent args)

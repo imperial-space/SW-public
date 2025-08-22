@@ -1,5 +1,8 @@
 using System.Linq;
+using Content.Shared.Chat;
 using Content.Shared.Imperial.Medieval.Plague;
+using Robust.Shared.Audio;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 
@@ -41,6 +44,13 @@ public sealed partial class MedievalPlagueSystem
             data.Unlocked = true;
             DoPrototypeEffects(args.Proto);
             UpdateInfectAction();
+
+            var filter = Filter.Empty().AddWhereAttachedEntity(x => HasComp<MedievalPlagueGhostComponent>(x));
+            var msg = Loc.GetString("medieval-plague-symptom-unlocked", ("symptom", proto.Name));
+
+            _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/slime_node.ogg"), filter, true);
+            _chat.ChatMessageToManyFiltered(filter, ChatChannel.Local,
+                msg, msg, EntityUid.Invalid, false, true, Color.Crimson);
         }
 
         UpdateUi();

@@ -11,6 +11,15 @@ public sealed partial class PlagueTeleportInfectedActionEvent : InstantActionEve
 
 public sealed partial class PlagueTeleportNotInfectedActionEvent : InstantActionEvent;
 
+public sealed partial class PlaguePolymorphMouseActionEvent : InstantActionEvent
+{
+    [DataField]
+    public int Cost = 0;
+
+    [DataField]
+    public int SpawnedCount = 0;
+}
+
 [ImplicitDataDefinitionForInheritors]
 public abstract partial class BasePlagueActionEvent : EntityTargetActionEvent
 {
