@@ -960,6 +960,10 @@
     #insideRotor: TankPartRotor
     gridLink:
     - "/Maps/Imperial/mrap.yml"
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 50
   - type: MobThresholds
     thresholds: {0: Alive, 270: Dead}
   - type: Destructible
@@ -1097,6 +1101,10 @@
   - type: ShiftShowOnMap
     faction: Blue
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 - type: entity
   id: ShiftFrontMTLBMRed
@@ -1113,6 +1121,10 @@
   - type: ShiftShowOnMap
     faction: Red
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 - type: entity
   id: ShiftFrontMTLBMGreen
@@ -1129,6 +1141,10 @@
   - type: ShiftShowOnMap
     faction: Green
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 - type: entity
   id: ShiftFrontMTLBMYellow
@@ -1145,6 +1161,10 @@
   - type: ShiftShowOnMap
     faction: Yellow
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 
 
@@ -1307,6 +1327,10 @@
   - type: ShiftShowOnMap
     faction: Blue
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 - type: entity
   id: ShiftFrontMTLBRed
@@ -1322,6 +1346,10 @@
   - type: ShiftShowOnMap
     faction: Red
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 - type: entity
   id: ShiftFrontMTLBGreen
@@ -1337,6 +1365,10 @@
   - type: ShiftShowOnMap
     faction: Green
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 - type: entity
   id: ShiftFrontMTLBYellow
@@ -1352,6 +1384,10 @@
   - type: ShiftShowOnMap
     faction: Yellow
     mippleProto: ShiftFrontVehicle
+  - type: DamageContacts
+    damage:
+      types:
+        Blunt: 20
 
 
 ### Типы урона ###
