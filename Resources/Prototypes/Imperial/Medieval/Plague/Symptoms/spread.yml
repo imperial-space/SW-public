@@ -114,6 +114,7 @@
   tier: 1
   cost: 5
   required: LowerSleepProtection1
+  actions: PlagueImmunityBreakAction
   category: Spread
 
 - type: plagueSymptom

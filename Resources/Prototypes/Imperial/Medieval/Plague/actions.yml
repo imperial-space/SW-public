@@ -171,6 +171,26 @@
       useDelay: 90
 
 - type: entity
+  id: PlagueImmunityBreakAction
+  categories: [ HideSpawnMenu ]
+  name: Infect
+  description: queueueueueueueue
+  components:
+    - type: EntityTargetAction
+      whitelist:
+        components:
+        - Body
+      canTargetSelf: false
+      interactOnMiss: false
+      itemIconStyle: BigAction
+      icon:
+        sprite: /Textures/Imperial/Medieval/Interface/Plague/actions.rsi
+        state: immunefull
+      event: !type:PlagueBreakImmunityActionEvent
+        cost: 2
+      useDelay: 90
+
+- type: entity
   id: PlagueSpawnSlimesAction
   name: Infect
   description: queueueueueueueue
