@@ -63,3 +63,14 @@
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: med
+
+- type: entity
+  parent: BaseSign
+  id: BarElysiumSign
+  name: Бар
+  suffix: ElysiumPrime, Felix
+  description: "Помни: алкоголь — акцизный товар. Покупая алкоголь, ты поддерживаешь власть..."
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: bar

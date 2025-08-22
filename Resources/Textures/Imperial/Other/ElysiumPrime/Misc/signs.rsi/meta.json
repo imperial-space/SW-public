@@ -52,7 +52,16 @@
       ]
       ]
     },
-        {
+    {
+      "name": "bar",
+      "delays": [
+      [
+        1,
+        0.05
+      ]
+      ]
+    },
+    {
       "name": "police",
       "delays": [
       [
