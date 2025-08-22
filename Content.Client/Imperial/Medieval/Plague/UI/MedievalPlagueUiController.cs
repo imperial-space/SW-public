@@ -1,6 +1,8 @@
 using System.Linq;
 using Content.Shared.Imperial.Medieval.Plague;
+using Robust.Client.Audio;
 using Robust.Client.UserInterface.Controllers;
+using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
@@ -10,9 +12,13 @@ public sealed class MedievalPlagueUiController : UIController
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ISharedPlayerManager _player = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
 
     private MedievalPlagueMenu? _menu;
     private MedievalPlagueSymptomMiniMenu? _miniMenu;
+
+    private SoundSpecifier _openSound = new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/menu_open.ogg");
+    private SoundSpecifier _closeSound = new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/menu_close.ogg");
 
     public void ToggleMenu(Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, int allowedPoints)
     {
@@ -29,10 +35,16 @@ public sealed class MedievalPlagueUiController : UIController
             _miniMenu?.Close();
             _miniMenu = null;
             _menu = null;
+
+            if (_player.LocalSession != null)
+                _audio.PlayGlobal(_closeSound, _player.LocalSession);
         };
 
         _menu.Populate(_proto, data);
         _menu.OpenCentered();
+
+        if (_player.LocalSession != null)
+            _audio.PlayGlobal(_openSound, _player.LocalSession);
     }
 
     public void Populate(Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, int allowedPoints)
