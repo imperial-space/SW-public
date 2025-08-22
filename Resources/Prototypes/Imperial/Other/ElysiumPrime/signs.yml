@@ -1,0 +1,65 @@
+- type: entity
+  parent: BaseSign
+  id: AdministrationElysiumSign
+  name: Администрация
+  suffix: ElysiumPrime, Felix
+  description: Упрощенный логотип Элизиум Прайм скрывает за собой не очень простых людей.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: admin
+
+- type: entity
+  parent: BaseSign
+  id: BankElysiumSign
+  name: Финансовый центр
+  suffix: ElysiumPrime, Felix
+  description: Если миром правят деньги, то они — правят деньгами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: bank
+
+- type: entity
+  parent: BaseSign
+  id: CourtElysiumSign
+  name: Суд
+  suffix: ElysiumPrime, Felix
+  description: Здесь происходят судебные процессы. Там происходят тудебные процессы.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: court
+
+- type: entity
+  parent: BaseSign
+  id: DockElysiumSign
+  name: Торговые доки
+  suffix: ElysiumPrime, Felix
+  description: Здесь, как правило, собираются люди, которые смогут продать вам ручку.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: dock
+
+- type: entity
+  parent: BaseSign
+  id: PoliceElysiumSign
+  name: Полиция
+  suffix: ElysiumPrime, Felix
+  description: "Если вам когда-нибудь покажется, что полиция не работает, а уровень преступности высок, задумайтесь: а если бы полиции не было вовсе?"
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: police
+
+- type: entity
+  parent: BaseSign
+  id: MedElysiumSign
+  name: Медицинский отсек
+  suffix: ElysiumPrime, Felix
+  description: Споря с врачами не забывайте о том, что они знают про ваше тело больше, чем вы сами.
+  components:
+  - type: Sprite
+    sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
+    state: med
