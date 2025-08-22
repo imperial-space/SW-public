@@ -3,7 +3,7 @@
   id: AdministrationElysiumSign
   name: Администрация
   suffix: ElysiumPrime, Felix
-  description: Упрощенный логотип Элизиум Прайм скрывает за собой не очень простых людей.
+  description: Упрощенный логотип Элизиум Прайм скрывает за собой не самых простых людей.
   components:
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
@@ -25,7 +25,7 @@
   id: CourtElysiumSign
   name: Суд
   suffix: ElysiumPrime, Felix
-  description: Здесь происходят судебные процессы. Там происходят тудебные процессы.
+  description: Прийдя сюда, вы можете наблюдать судебные процессы. Прийдя туда, вы сможете увидеть как происходят тудебные процессы.
   components:
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
@@ -47,7 +47,7 @@
   id: PoliceElysiumSign
   name: Полиция
   suffix: ElysiumPrime, Felix
-  description: "Если вам когда-нибудь покажется, что полиция не работает, а уровень преступности высок, задумайтесь: а если бы полиции не было вовсе?"
+  description: "Если вам когда-нибудь покажется, что полиция не работает, ведь уровень преступности высок, задумайтесь: а если бы полиции не было вовсе?"
   components:
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
