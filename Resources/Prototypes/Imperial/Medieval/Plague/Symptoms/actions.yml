@@ -46,7 +46,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: slimeupgrade
-  position: 0,60
+  position: -120,0
   tier: 1
   cost: 5
   category: Action
@@ -59,7 +59,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: bugs
-  position: 0,30
+  position: -90,0
   tier: 1
   cost: 5
   category: Action
@@ -73,7 +73,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: tpsick
-  position: 0,-60
+  position: 120,0
   tier: 1
   cost: 5
   category: Action
@@ -86,7 +86,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: tphealthy
-  position: 0,-30
+  position: 90,0
   tier: 1
   cost: 5
   category: Action
