@@ -116,6 +116,8 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         var comp = EnsureComp<MedievalPlagueInfectedComponent>(uid);
         comp.PlagueSource = plagueSource;
 
+        AddPoint(plagueSource);
+
         RaisePrototypeIncubationEvents(uid);
     }
 
