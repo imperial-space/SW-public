@@ -32,6 +32,8 @@
           speech: medieval-spell-speach-fireball
           color: "#FF5900"
           hideChat: true
+  - type: SpellCastEffect
+    effectProto: FireballSpellcastEffectBeginner
   - type: ManaDrainSpell
     manaDrain: 70
     canUseWithoutMana: true

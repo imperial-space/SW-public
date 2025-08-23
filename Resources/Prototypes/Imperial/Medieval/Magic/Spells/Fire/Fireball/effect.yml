@@ -16,3 +16,13 @@
       path: /Audio/Imperial/Medieval/fireball_blast.ogg
       params:
         variation: 0.2
+
+- type: entity
+  id: FireballSpellcastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/spellcast_effects.rsi
+    state: fireball
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 3.0
