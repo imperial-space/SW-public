@@ -14,8 +14,9 @@ using Robust.Shared.Timing;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
 using Content.Shared.Roles;
-using Content.Server.Popups;
+
 using Content.Shared.DoAfter;
+
 using Robust.Shared.GameStates;
 using System.Linq;
 using Robust.Shared.Serialization;
@@ -27,9 +28,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
@@ -71,6 +70,8 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             if (!capture.CanBeCaptured)
                 continue;
 
+
+
             var flagPosition = _transform.ToMapCoordinates(transform.Coordinates).Position;
             var playersInRange = new List<EntityUid>();
 
@@ -107,7 +108,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
                 if (capture.IsBeingCaptured)
                 {
                     CancelCapture(transform.Owner, capture);
-                    _popup.PopupEntity(Loc.GetString("flag-capture-cancelled-message"), transform.Owner, transform.Owner);
                 }
             }
             else if (factionGroups.Count == 1)
@@ -123,7 +123,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
                     if (capture.IsBeingCaptured)
                     {
                         CancelCapture(transform.Owner, capture);
-                        _popup.PopupEntity(Loc.GetString("flag-capture-same-faction-message"), transform.Owner, transform.Owner);
                     }
                 }
                 else
@@ -141,17 +140,13 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
                         var speedMultiplier = Math.Min(factionPlayers.Count, 4.0f); // 1 игрок = 1x, 2 игрока = 2x, 3 игрока = 3x, 4+ игроков = 4x
                         var progressIncrement = (float)timeSinceLastCheck.TotalSeconds * speedMultiplier;
 
-                        capture.CaptureProgress += progressIncrement;
+                        capture.CaptureProgress = TimeSpan.FromSeconds((float)capture.CaptureProgress.TotalSeconds + progressIncrement);
                         capture.LastCheckTime = now;
 
                         // Отмечаем компонент как измененный для синхронизации с клиентом
                         Dirty(transform.Owner, capture);
 
-                        // Поп-ап о групповом захвате
-                        if (factionPlayers.Count > 1 && _random.Prob(0.1f)) // 10% шанс поп-апа каждые 0.5с
-                        {
-                            _popup.PopupEntity(Loc.GetString("flag-capture-group-boost", ("count", factionPlayers.Count)), transform.Owner, transform.Owner);
-                        }
+
                     }
                 }
             }
@@ -161,7 +156,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
                 if (capture.IsBeingCaptured)
                 {
                     CancelCapture(transform.Owner, capture);
-                    _popup.PopupEntity(Loc.GetString("flag-capture-contested-message"), transform.Owner, transform.Owner);
                 }
             }
         }
@@ -175,7 +169,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
         if (playerFaction == currentFlagFaction)
         {
-            _popup.PopupEntity(Loc.GetString("flag-capture-same-faction-message"), flagUid, flagUid);
             return;
         }
 
@@ -184,7 +177,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         capture.LastCheckTime = _gameTiming.CurTime;
 
         var playerName = MetaData(player).EntityName;
-        _popup.PopupEntity(Loc.GetString("flag-capture-started-message", ("player", playerName)), flagUid, flagUid);
 
         // Запускаем DoAfter
         var doAfter = new DoAfterArgs(_entityManager, player, capture.CaptureTime, new FlagCaptureDoAfterEvent(), flagUid)
@@ -233,10 +225,10 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         capture.CaptureProgress = capture.CaptureTime; // Устанавливаем полный прогресс
         capture.LastCheckTime = TimeSpan.Zero;
 
-        _popup.PopupEntity(Loc.GetString("flag-capture-completed-message", ("player", playerName), ("faction", playerFaction)), flagUid, flagUid);
-
         // Получаем позицию и поворот старого флага
         var transform = _entityManager.GetComponent<TransformComponent>(flagUid);
+
+
         var position = transform.Coordinates;
         var rotation = transform.LocalRotation;
 
@@ -279,7 +271,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         if (args.Cancelled)
         {
             CancelCapture(uid, component);
-            _popup.PopupEntity(Loc.GetString("flag-capture-cancelled-general-message"), uid, uid);
             return;
         }
 
