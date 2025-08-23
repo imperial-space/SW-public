@@ -1,0 +1,10 @@
+- type: entity
+  id: FireballSpellcastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/critmass.rsi
+    state: platform
+    color: "#FF7300"
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 3.0

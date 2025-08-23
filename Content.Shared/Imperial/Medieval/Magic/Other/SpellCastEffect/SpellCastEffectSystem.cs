@@ -27,10 +27,7 @@ public sealed partial class EffectSystem : EntitySystem
 
     private void OnAfterCast(EntityUid uid, SpellCastEffectComponent component, ref MedievalAfterCastSpellEvent args)
     {
-        if (_net.IsServer)
-        {
-            CanSpawn = true;
-        }
+        CanSpawn = true;
         return;
     }
 

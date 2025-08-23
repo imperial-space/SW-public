@@ -21,8 +21,31 @@
   id: FireballSpellcastEffectBeginner
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/spellcast_effects.rsi
-    state: fireball
+    sprite: Imperial/Medieval/SpellCastEffects/fireball.rsi
+    state: beginner
+    color: "#FF7300"
     noRot: true
   - type: TimedDespawn
     lifetime: 3.0
+
+- type: entity
+  id: FireballSpellcastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fireball.rsi
+    state: middle
+    color: "#FF7300"
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: FireballSpellcastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fireball.rsi
+    state: senior
+    color: "#FF7300"
+    noRot: true
+  - type: TimedDespawn
+    lifetime: 3.5
