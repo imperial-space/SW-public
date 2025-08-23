@@ -1,9 +1,63 @@
 ## Faction Shop System
 
 faction-shop-examine = Магазин фракции { $faction }
-faction-shop-points-info = { $points } очков за флаг каждые { $interval } секунд
+faction-shop-points-info = { $points ->
+    [1] { $points } очко за флаг каждую { $interval ->
+        [1] { $interval } секунду
+        [2] { $interval } секунды
+        [3] { $interval } секунды
+        [4] { $interval } секунды
+       *[other] { $interval } секунд
+    }
+    [2] { $points } очка за флаг каждые { $interval ->
+        [1] { $interval } секунду
+        [2] { $interval } секунды
+        [3] { $interval } секунды
+        [4] { $interval } секунды
+       *[other] { $interval } секунд
+    }
+    [3] { $points } очка за флаг каждые { $interval ->
+        [1] { $interval } секунду
+        [2] { $interval } секунды
+        [3] { $interval } секунды
+        [4] { $interval } секунды
+       *[other] { $interval } секунд
+    }
+    [4] { $points } очка за флаг каждые { $interval ->
+        [1] { $interval } секунду
+        [2] { $interval } секунды
+        [3] { $interval } секунды
+        [4] { $interval } секунды
+       *[other] { $interval } секунд
+    }
+   *[other] { $points } очков за флаг каждые { $interval ->
+        [1] { $interval } секунду
+        [2] { $interval } секунды
+        [3] { $interval } секунды
+        [4] { $interval } секунды
+       *[other] { $interval } секунд
+    }
+}
 faction-shop-opened = { $player } открыл магазин фракции { $faction }
-faction-points-awarded = Фракция { $faction } получила { $points } очков (всего: { $total }, флагов: { $flags })
+faction-points-awarded = Фракция { $faction } получила { $points ->
+    [1] { $points } очко
+    [2] { $points } очка
+    [3] { $points } очка
+    [4] { $points } очка
+   *[other] { $points } очков
+} (всего: { $total ->
+    [1] { $total } очко
+    [2] { $total } очка
+    [3] { $total } очка
+    [4] { $total } очка
+   *[other] { $total } очков
+}, флагов: { $flags ->
+    [1] { $flags } флаг
+    [2] { $flags } флага
+    [3] { $flags } флага
+    [4] { $flags } флага
+   *[other] { $flags } флагов
+})
 
 ## Currency display names
 faction-currency-nt = Очки НТ
@@ -17,11 +71,29 @@ faction-currency-ussp = Очки USSP
 ## UI Strings
 faction-shop-title = Магазин фракции
 faction-shop-welcome = Добро пожаловать в магазин фракции!
-faction-shop-points = У вас { $points } очков
+faction-shop-points = У вас { $points ->
+    [1] { $points } очко
+    [2] { $points } очка
+    [3] { $points } очка
+    [4] { $points } очка
+   *[other] { $points } очков
+}
 faction-shop-close = Закрыть
-faction-shop-cost = Стоимость: { $cost } очков
+faction-shop-cost = Стоимость: { $cost ->
+    [1] { $cost } очко
+    [2] { $cost } очка
+    [3] { $cost } очка
+    [4] { $cost } очка
+   *[other] { $cost } очков
+}
 faction-shop-buy = Купить
-faction-shop-purchase = Покупка { $item } за { $cost } очков
+faction-shop-purchase = Покупка { $item } за { $cost ->
+    [1] { $cost } очко
+    [2] { $cost } очка
+    [3] { $cost } очка
+    [4] { $cost } очка
+   *[other] { $cost } очков
+}
 
 ## Store titles
 faction-store-title-nt = Магазин НТ
@@ -96,6 +168,18 @@ faction-armor-web-desc = Бронепластины и подсумки
 
 ## Shop Messages
 shop-not-enough-points = Недостаточно очков
-shop-item-purchased = { $item } куплен за { $points } очков
-shop-current-points = У вас { $points } очков
+shop-item-purchased = { $item } куплен за { $points ->
+    [1] { $points } очко
+    [2] { $points } очка
+    [3] { $points } очка
+    [4] { $points } очка
+   *[other] { $points } очков
+}
+shop-current-points = У вас { $points ->
+    [1] { $points } очко
+    [2] { $points } очка
+    [3] { $points } очка
+    [4] { $points } очка
+   *[other] { $points } очков
+}
 shop-faction-points = У фракции { $faction } { $points } очков

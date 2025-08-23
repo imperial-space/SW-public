@@ -58,7 +58,7 @@ public sealed class FactionShopSystem : EntitySystem
         // Открываем UI магазина используя стандартную систему
         var playerName = MetaData(args.User).EntityName;
         _chatSystem.TrySendInGameICMessage(uid,
-            $"{playerName} открыл магазин фракции {component.Faction}!",
+            Loc.GetString("faction-shop-opened", ("player", playerName), ("faction", component.Faction)),
             InGameICChatType.Speak, false);
 
         // Используем стандартную систему магазинов
@@ -106,34 +106,12 @@ public sealed class FactionShopSystem : EntitySystem
         // Определяем фракцию флага по его прототипу
         var metaData = _entityManager.GetComponent<MetaDataComponent>(flagUid);
         var prototypeId = metaData.EntityPrototype?.ID ?? "";
-
-        return prototypeId switch
-        {
-            "ImperialGreenFlag" => "GreenFaction",
-            "ImperialYellowFlag" => "YellowFaction",
-            "ImperialRedFlag" => "RedFaction",
-            "ImperialBlueFlag" => "BlueFaction",
-            "ImperialNTFlag" => "NTFaction",
-            "ImperialUSSPFlag" => "USSPFaction",
-            "ImperialSindiFlag" => "SindiFaction",
-            "ImperialWhiteFlag" => "NeutralFaction",
-            _ => "NeutralFaction" // По умолчанию
-        };
+        return FactionHelper.GetFlagFaction(prototypeId);
     }
 
     private string? GetCurrencyIdForFaction(string faction)
     {
-        return faction switch
-        {
-            "NTFaction" => "NTFactionPoints",
-            "SindiFaction" => "SindiFactionPoints",
-            "GreenFaction" => "GreenFactionPoints",
-            "YellowFaction" => "YellowFactionPoints",
-            "RedFaction" => "RedFactionPoints",
-            "BlueFaction" => "BlueFactionPoints",
-            "USSPFaction" => "USSPFactionPoints",
-            _ => null
-        };
+        return FactionHelper.GetCurrencyIdForFaction(faction);
     }
 }
 

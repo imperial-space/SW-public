@@ -8,7 +8,6 @@ using Content.Shared.Mobs;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC;
 using Robust.Server.GameObjects;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -32,9 +31,14 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly ChatSystem _chatSystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
     // Словарь для отслеживания активных DoAfter
     private readonly Dictionary<EntityUid, DoAfterId> _activeDoAfters = new();
+
+    // Дросселирование частоты глобальных проверок
+    private TimeSpan _lastGlobalCheck = TimeSpan.Zero;
+    private const float GlobalCheckIntervalSeconds = 0.5f;
 
     public override void Initialize()
     {
@@ -55,6 +59,11 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
     {
         base.Update(frameTime);
 
+        var now = _gameTiming.CurTime;
+        if ((now - _lastGlobalCheck).TotalSeconds < GlobalCheckIntervalSeconds)
+            return;
+        _lastGlobalCheck = now;
+
         var query = _entityManager.EntityQuery<FlagCaptureComponent, TransformComponent>();
 
         foreach (var (capture, transform) in query)
@@ -65,38 +74,92 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             var flagPosition = _transform.ToMapCoordinates(transform.Coordinates).Position;
             var playersInRange = new List<EntityUid>();
 
-            // Ищем всех живых игроков в радиусе захвата
-            var playerQuery = _entityManager.EntityQuery<ActorComponent, TransformComponent, MobStateComponent>();
-            foreach (var (actor, playerTransform, mobState) in playerQuery)
+            // Используем EntityLookupSystem для эффективного поиска игроков в радиусе
+            var entitiesInRange = _lookup.GetEntitiesInRange(transform.Coordinates, capture.CaptureRadius);
+            foreach (var entity in entitiesInRange)
             {
+                // Проверяем, что это игрок с нужными компонентами
+                if (!_entityManager.TryGetComponent<ActorComponent>(entity, out var actor) ||
+                    !_entityManager.TryGetComponent<MobStateComponent>(entity, out var mobState))
+                    continue;
+
                 // Проверяем, что игрок жив и не в критическом состоянии
                 if (mobState.CurrentState == MobState.Dead || mobState.CurrentState == MobState.Critical)
                     continue;
 
-                var playerPosition = _transform.ToMapCoordinates(playerTransform.Coordinates).Position;
-                var distance = (playerPosition - flagPosition).Length();
-
-                if (distance <= capture.CaptureRadius)
-                {
-                    playersInRange.Add(playerTransform.Owner);
-                }
+                playersInRange.Add(entity);
             }
+
+                        // Анализируем фракции игроков в радиусе
+            var factionGroups = playersInRange
+                .GroupBy(player => GetPlayerFaction(player))
+                .ToList();
 
             // Логика захвата
-            if (playersInRange.Count == 1 && !capture.IsBeingCaptured)
+            if (playersInRange.Count == 0)
             {
-                var player = playersInRange.First();
-                StartCapture(transform.Owner, capture, player);
+                // Никого нет - отменяем захват если был активен
+                if (capture.IsBeingCaptured)
+                {
+                    CancelCapture(transform.Owner, capture);
+                    _chatSystem.TrySendInGameICMessage(transform.Owner, Loc.GetString("flag-capture-cancelled-message"), InGameICChatType.Speak, false);
+                }
             }
-            else if (playersInRange.Count == 0 && capture.IsBeingCaptured)
+            else if (factionGroups.Count == 1)
             {
-                CancelCapture(transform.Owner, capture);
-                _chatSystem.TrySendInGameICMessage(transform.Owner, Loc.GetString("flag-capture-cancelled-message"), InGameICChatType.Speak, false);
+                // Только одна фракция - можем захватывать
+                var faction = factionGroups.First().Key;
+                var factionPlayers = factionGroups.First().ToList();
+                var currentFlagFaction = GetFlagFaction(transform.Owner);
+
+                if (faction == currentFlagFaction)
+                {
+                    // Пытаются захватить свой флаг - отменяем
+                    if (capture.IsBeingCaptured)
+                    {
+                        CancelCapture(transform.Owner, capture);
+                        _chatSystem.TrySendInGameICMessage(transform.Owner, Loc.GetString("flag-capture-same-faction-message"), InGameICChatType.Speak, false);
+                    }
+                }
+                else
+                {
+                    // Захватывают вражеский флаг
+                    if (!capture.IsBeingCaptured)
+                    {
+                        // Начинаем захват
+                        StartCapture(transform.Owner, capture, factionPlayers.First());
+                    }
+                    else
+                    {
+                        // Продолжаем захват с ускорением от союзников
+                        var timeSinceLastCheck = now - capture.LastCheckTime;
+                        var speedMultiplier = Math.Min(factionPlayers.Count * 0.5f, 2.0f); // Максимум x2 скорость
+                        var progressIncrement = timeSinceLastCheck * speedMultiplier;
+
+                        capture.CaptureProgress += progressIncrement;
+                        capture.LastCheckTime = now;
+
+                        // Отмечаем компонент как измененный для синхронизации с клиентом
+                        Dirty(transform.Owner, capture);
+
+                        // Сообщение о групповом захвате
+                        if (factionPlayers.Count > 1 && _random.Prob(0.1f)) // 10% шанс сообщения каждые 0.5с
+                        {
+                            _chatSystem.TrySendInGameICMessage(transform.Owner,
+                                Loc.GetString("flag-capture-group-boost", ("count", factionPlayers.Count)),
+                                InGameICChatType.Speak, false);
+                        }
+                    }
+                }
             }
-            else if (playersInRange.Count > 1 && capture.IsBeingCaptured)
+            else
             {
-                CancelCapture(transform.Owner, capture);
-                _chatSystem.TrySendInGameICMessage(transform.Owner, Loc.GetString("flag-capture-too-many-players-message"), InGameICChatType.Speak, false);
+                // Несколько фракций - контест, отменяем захват
+                if (capture.IsBeingCaptured)
+                {
+                    CancelCapture(transform.Owner, capture);
+                    _chatSystem.TrySendInGameICMessage(transform.Owner, Loc.GetString("flag-capture-contested-message"), InGameICChatType.Speak, false);
+                }
             }
         }
     }
@@ -118,7 +181,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         capture.LastCheckTime = _gameTiming.CurTime;
 
         var playerName = MetaData(player).EntityName;
-        _chatSystem.TrySendInGameICMessage(flagUid, $"{playerName} начал захватывать флаг!", InGameICChatType.Speak, false);
+        _chatSystem.TrySendInGameICMessage(flagUid, Loc.GetString("flag-capture-started-message", ("player", playerName)), InGameICChatType.Speak, false);
 
         // Запускаем DoAfter
         var doAfter = new DoAfterArgs(_entityManager, player, capture.CaptureTime, new FlagCaptureDoAfterEvent(), flagUid)
@@ -142,6 +205,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
     {
         capture.IsBeingCaptured = false;
         capture.CaptureProgress = TimeSpan.Zero;
+        capture.LastCheckTime = TimeSpan.Zero;
 
         // Отменяем активный DoAfter если есть
         if (_activeDoAfters.TryGetValue(flagUid, out var doAfterId))
@@ -151,6 +215,9 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
                 doAfterSystem.Cancel(doAfterId);
             _activeDoAfters.Remove(flagUid);
         }
+
+        // Отмечаем компонент как измененный для синхронизации с клиентом
+        Dirty(flagUid, capture);
     }
 
     private void CompleteCapture(EntityUid flagUid, FlagCaptureComponent capture, EntityUid player)
@@ -160,8 +227,10 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
         capture.CanBeCaptured = false;
         capture.IsBeingCaptured = false;
+        capture.CaptureProgress = capture.CaptureTime; // Устанавливаем полный прогресс
+        capture.LastCheckTime = TimeSpan.Zero;
 
-        _chatSystem.TrySendInGameICMessage(flagUid, $"{playerName} захватил флаг для фракции {playerFaction}!", InGameICChatType.Speak, false);
+        _chatSystem.TrySendInGameICMessage(flagUid, Loc.GetString("flag-capture-completed-message", ("player", playerName), ("faction", playerFaction)), InGameICChatType.Speak, false);
 
         // Получаем позицию и поворот старого флага
         var transform = _entityManager.GetComponent<TransformComponent>(flagUid);
@@ -227,19 +296,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             if (factionMember.Factions.Count > 0)
             {
                 var faction = factionMember.Factions.First();
-
-                // Маппинг фракций из компонента в наши внутренние названия
-                return faction.ToString() switch
-                {
-                    "NanoTrasen" => "NTFaction",
-                    "Syndicate" => "SindiFaction",
-                    "GreenFaction" => "GreenFaction",
-                    "YellowFaction" => "YellowFaction",
-                    "RedFaction" => "RedFaction",
-                    "BlueFaction" => "BlueFaction",
-                    "USSPFaction" => "USSPFaction",
-                    _ => faction.ToString() // Если не знаем, возвращаем как есть
-                };
+                return FactionHelper.MapFactionFromComponent(faction.ToString());
             }
         }
 
@@ -254,36 +311,12 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         // Определяем фракцию флага по его прототипу
         var metaData = _entityManager.GetComponent<MetaDataComponent>(flagUid);
         var prototypeId = metaData.EntityPrototype?.ID ?? "";
-
-        return prototypeId switch
-        {
-            "ImperialGreenFlag" => "GreenFaction",
-            "ImperialYellowFlag" => "YellowFaction",
-            "ImperialRedFlag" => "RedFaction",
-            "ImperialBlueFlag" => "BlueFaction",
-            "ImperialNTFlag" => "NTFaction",
-            "ImperialUSSPFlag" => "USSPFaction",
-            "ImperialSindiFlag" => "SindiFaction",
-            "ImperialWhiteFlag" => "NeutralFaction",
-            _ => "NeutralFaction" // По умолчанию
-        };
+        return FactionHelper.GetFlagFaction(prototypeId);
     }
 
     private string GetFactionFlagPrototype(string faction)
     {
-        var prototype = faction switch
-        {
-            "GreenFaction" => "ImperialGreenFlag",
-            "YellowFaction" => "ImperialYellowFlag",
-            "RedFaction" => "ImperialRedFlag",
-            "BlueFaction" => "ImperialBlueFlag",
-            "NTFaction" => "ImperialNTFlag",
-            "USSPFaction" => "ImperialUSSPFlag",
-            "SindiFaction" => "ImperialSindiFlag",
-            _ => "ImperialWhiteFlag" // По умолчанию
-        };
-
-        return prototype;
+        return FactionHelper.GetFactionFlagPrototype(faction);
     }
 }
 

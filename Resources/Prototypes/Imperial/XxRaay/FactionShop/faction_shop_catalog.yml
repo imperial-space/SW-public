@@ -41,7 +41,7 @@
   categories:
   - FactionWeapons
 
-# Ammo (basic examples / adjust if нужно специфичные магазины)
+# Ammo (basic examples / adjust if needed specific shops)
 - type: listing
   id: FactionAmmoLightRifle
   name: ammo-light-rifle
