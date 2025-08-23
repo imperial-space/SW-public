@@ -542,7 +542,7 @@
         shader: unshaded
         map: [ "light" ]
   - type: PointLight
-    range: 1.2
+    radius: 1.2
     energy: 1
     color: "#75a743"
 - type: entity
@@ -561,7 +561,7 @@
         shader: unshaded
         map: [ "light" ]
   - type: PointLight
-    range: 1.2
+    radius: 1.2
     energy: 1
     color: "#a53030"
 - type: entity
@@ -580,7 +580,7 @@
         shader: unshaded
         map: [ "light" ]
   - type: PointLight
-    range: 1.2
+    radius: 1.2
     energy: 1
     color: "#75a743"
 
