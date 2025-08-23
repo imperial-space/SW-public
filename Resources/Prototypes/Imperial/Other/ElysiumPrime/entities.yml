@@ -1145,7 +1145,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/BBeacon.rsi 
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/BBeacon.rsi 
 
 - type: entity
   parent: ClothingNeckBase
@@ -1157,7 +1157,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/BRBeacon.rsi 
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/BRBeacon.rsi 
 
 - type: entity
   parent: ClothingNeckBase
@@ -1169,7 +1169,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/RBeacon.rsi 
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/RBeacon.rsi 
 
 - type: entity
   parent: ClothingNeckBase
@@ -1181,7 +1181,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/WBeacon.rsi 
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/WBeacon.rsi 
 
 - type: entity
   parent: ClothingNeckBase
@@ -1193,7 +1193,7 @@
   - type: Item
     size: Normal
   - type: Sprite
-    sprite: Imperial/Other/ElysiumPrime/Clothing/Shoulder/YBeacon.rsi 
+    sprite: Imperial/Other/ElysiumPrime/Clothing/shoulder/YBeacon.rsi 
 
 - type: entity
   parent: ElysiumPrimeTable
