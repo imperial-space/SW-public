@@ -19,7 +19,7 @@ public sealed class MedievalPlagueUiController : UIController
     private SoundSpecifier _openSound = new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/menu_open.ogg");
     private SoundSpecifier _closeSound = new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/menu_close.ogg");
 
-    public void ToggleMenu(Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, int allowedPoints)
+    public void ToggleMenu(Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, SummaryPlagueData info, int allowedPoints)
     {
         if (_menu != null)
         {
@@ -29,6 +29,7 @@ public sealed class MedievalPlagueUiController : UIController
 
         _menu = new();
         _menu.OnSymptomSelect = args => SelectSymptom(args, data, allowedPoints);
+        _menu.InfoPressed = () => OpenInfo(info);
 
         var audio = EntityManager.System<AudioSystem>();
 
@@ -49,16 +50,23 @@ public sealed class MedievalPlagueUiController : UIController
             audio.PlayGlobal(_openSound, _player.LocalSession);
     }
 
-    public void Populate(Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, int allowedPoints)
+    public void Populate(Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, SummaryPlagueData info, int allowedPoints)
     {
         if (_menu != null)
         {
             _menu.Populate(_proto, data);
             _menu.OnSymptomSelect = args => SelectSymptom(args, data, allowedPoints);
+            _menu.InfoPressed = () => OpenInfo(info);
         }
 
         if (_miniMenu != null)
         {
+            if (_miniMenu.Info)
+            {
+                _miniMenu.PopulateAsInfo(info);
+                return;
+            }
+
             var proto = _proto.Index(_miniMenu.Proto);
             var points = proto.Cost;
 
@@ -99,6 +107,18 @@ public sealed class MedievalPlagueUiController : UIController
             return;
 
         _miniMenu.OnAddPoints = (_, args) => EntityManager.RaisePredictiveEvent(new AddPlaguePointsMessage(proto, args, ent.Value));
+    }
+
+    private void OpenInfo(SummaryPlagueData info)
+    {
+        if (_miniMenu == null)
+        {
+            _miniMenu = new();
+            _miniMenu.OnClose += () => _miniMenu = null;
+            _miniMenu.OpenCenteredRight();
+        }
+
+        _miniMenu.PopulateAsInfo(info);
     }
 
     private bool ReqsMet(MedievalPlagueSymptomPrototype proto, Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> dict)

@@ -17,10 +17,13 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
 
     public SymptomCategory Category = SymptomCategory.Symptom;
     public Action<ProtoId<MedievalPlagueSymptomPrototype>>? OnSymptomSelect;
+    public Action? InfoPressed;
 
     public MedievalPlagueMenu()
     {
         RobustXamlLoader.Load(this);
+
+        InfoButton.OnPressed += args => InfoPressed?.Invoke();
 
         var group = new ButtonGroup(false);
         SpreadMode.Group = group;

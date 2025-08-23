@@ -49,12 +49,12 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
 
     private void OnOpenMenu(OpenPlagueMenuMessage args)
     {
-        _ui.GetUIController<MedievalPlagueUiController>().ToggleMenu(args.Data, args.AllowedPoints);
+        _ui.GetUIController<MedievalPlagueUiController>().ToggleMenu(args.Data, args.Info, args.AllowedPoints);
     }
 
     private void OnPopulateMenu(PopulatePlagueMenuMessage args)
     {
-        _ui.GetUIController<MedievalPlagueUiController>().Populate(args.Data, args.AllowedPoints);
+        _ui.GetUIController<MedievalPlagueUiController>().Populate(args.Data, args.Info, args.AllowedPoints);
     }
 
     private void OnPlayerAttached(EntityUid uid, VomitSicknessComponent component, LocalPlayerAttachedEvent args)

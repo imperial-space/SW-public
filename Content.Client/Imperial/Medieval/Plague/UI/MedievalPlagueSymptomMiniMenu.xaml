@@ -6,8 +6,8 @@
     xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
     xmlns:plague="clr-namespace:Content.Client.Imperial.Medieval.Plague.UI"
     Title="{Loc 'plague-symptom-display-title'}"
-    MinSize="376 376"
-    SetSize="376 376">
+    MinSize="376 340"
+    SetSize="376 340">
     <BoxContainer
         HorizontalExpand="True"
         Orientation="Horizontal"
@@ -18,6 +18,7 @@
             HScrollEnabled="False"
             Margin="2">
             <BoxContainer
+                Name="SymptomContainer"
                 HorizontalExpand="True"
                 Orientation="Vertical"
                 SizeFlagsStretchRatio="2"
@@ -58,6 +59,43 @@
                         HorizontalExpand="True"
                         Text="Подтв" />
                 </BoxContainer>
+            </BoxContainer>
+
+            <BoxContainer
+                Name="InfoContainer"
+                HorizontalExpand="True"
+                Orientation="Vertical"
+                SizeFlagsStretchRatio="2"
+                VerticalExpand="True">
+                <RichTextLabel
+                    Text="Прогресс болезни"
+                    Margin="4"
+                    HorizontalAlignment="Center" />
+                <ProgressBar
+                    Name="Progress"
+                    Margin="4"
+                    HorizontalExpand="True"
+                    SetHeight="24" />
+                <RichTextLabel
+                    Name="InfectedCount"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
+                <RichTextLabel
+                    Name="ImmuneCount"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
+                <RichTextLabel
+                    Name="PlagueTier"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
+                <RichTextLabel
+                    Name="SymptomsCount"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
+                <RichTextLabel
+                    Name="PlaguePoints"
+                    Margin="4"
+                    HorizontalAlignment="Left" />
             </BoxContainer>
         </ScrollContainer>
     </BoxContainer>

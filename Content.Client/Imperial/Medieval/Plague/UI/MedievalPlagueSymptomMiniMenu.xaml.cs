@@ -7,18 +7,24 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Client.Utility;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Toolshed.Commands.Values;
+using Robust.Shared.Utility;
 
 namespace Content.Client.Imperial.Medieval.Plague.UI;
 
 [GenerateTypedNameReferences]
 public sealed partial class MedievalPlagueSymptomMiniMenu : DefaultWindow
 {
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+
     public Action<ProtoId<MedievalPlagueSymptomPrototype>, int>? OnAddPoints;
     public ProtoId<MedievalPlagueSymptomPrototype> Proto = "";
+
+    public bool Info = false;
 
     public MedievalPlagueSymptomMiniMenu()
     {
         RobustXamlLoader.Load(this);
+        IoCManager.InjectDependencies(this);
 
         OpenSliderButton.OnPressed += args =>
         {
@@ -38,6 +44,10 @@ public sealed partial class MedievalPlagueSymptomMiniMenu : DefaultWindow
 
     public void Populate(MedievalPlagueSymptomPrototype proto, int maxPoints)
     {
+        SymptomContainer.Visible = true;
+        InfoContainer.Visible = false;
+        Info = false;
+
         Proto = proto.ID;
         SymptomName.SetMessage(Loc.GetString(proto.Name));
         SymptomDesc.SetMessage(Loc.GetString(proto.Desc));
@@ -51,5 +61,21 @@ public sealed partial class MedievalPlagueSymptomMiniMenu : DefaultWindow
         PointsSlider.MaxValue = maxPoints;
         PointsSlider.Value = 1;
         SliderValue.Text = $"{Math.Floor(PointsSlider.Value)}";
+    }
+
+    public void PopulateAsInfo(SummaryPlagueData data)
+    {
+        InfoContainer.Visible = true;
+        SymptomContainer.Visible = false;
+        Info = true;
+
+        Progress.MaxValue = _proto.EnumeratePrototypes<MedievalPlagueSymptomPrototype>().Count();
+        Progress.Value = data.Symptoms;
+
+        InfectedCount.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-infected-count", ("count", data.Infected))));
+        ImmuneCount.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-immune-count", ("count", data.Immune))));
+        PlagueTier.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-plague-tier", ("tier", data.Tier))));
+        SymptomsCount.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-symptoms-count", ("count", data.Symptoms))));
+        PlaguePoints.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-points-count", ("count", data.Points))));
     }
 }

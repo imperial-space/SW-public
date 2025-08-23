@@ -19,7 +19,7 @@ public sealed partial class MedievalPlagueSystem
 
     private void OnOpenMenu(EntityUid uid, MedievalPlagueGhostComponent comp, OpenPlagueEvolutionMenuActionEvent args)
     {
-        var ev = new OpenPlagueMenuMessage(_symptoms, comp.Points);
+        var ev = new OpenPlagueMenuMessage(_symptoms, GetData(), comp.Points);
         RaiseNetworkEvent(ev, uid);
     }
 
@@ -63,7 +63,7 @@ public sealed partial class MedievalPlagueSystem
         if (!_player.TryGetSessionByEntity(uid, out var session))
             return;
 
-        var message = new PopulatePlagueMenuMessage(_symptoms, comp.Points);
+        var message = new PopulatePlagueMenuMessage(_symptoms, GetData(), comp.Points);
         RaiseNetworkEvent(message, session);
     }
 
@@ -75,8 +75,20 @@ public sealed partial class MedievalPlagueSystem
             if (!_player.TryGetSessionByEntity(item, out var session))
                 continue;
 
-            var message = new PopulatePlagueMenuMessage(_symptoms, item.Comp.Points);
+            var message = new PopulatePlagueMenuMessage(_symptoms, GetData(), item.Comp.Points);
             RaiseNetworkEvent(message, session);
         }
+    }
+
+    public SummaryPlagueData GetData()
+    {
+        var infected = EntityManager.AllEntities<MedievalPlagueInfectedComponent>().Count();
+        var immune = EntityManager.AllEntities<MedievalPlagueImmuneComponent>().Count();
+        var points = EntityManager.AllEntities<MedievalPlagueGhostComponent>().Sum(x => x.Comp.Points);
+        var unlocked = _symptoms.Where(x => x.Value.Unlocked);
+        var tier = unlocked.Select(x => _proto.Index(x.Key).Tier).DefaultIfEmpty(1).Max();
+
+        var info = new SummaryPlagueData(infected, immune, tier, points, unlocked.Count());
+        return info;
     }
 }
