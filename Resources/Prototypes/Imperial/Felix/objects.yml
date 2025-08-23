@@ -541,6 +541,10 @@
         visible: true
         shader: unshaded
         map: [ "light" ]
+  - type: PointLight
+    range: 1.2
+    energy: 1
+    color: "#75a743"
 - type: entity
   id: BannerElysiumSecurity
   parent: BannerBase
@@ -556,6 +560,10 @@
         visible: true
         shader: unshaded
         map: [ "light" ]
+  - type: PointLight
+    range: 1.2
+    energy: 1
+    color: "#a53030"
 - type: entity
   parent: PosterBase
   id: ElysiumPosterHolo
@@ -571,6 +579,10 @@
         visible: true
         shader: unshaded
         map: [ "light" ]
+  - type: PointLight
+    range: 1.2
+    energy: 1
+    color: "#75a743"
 
 # Торговая точка
 - type: entity
