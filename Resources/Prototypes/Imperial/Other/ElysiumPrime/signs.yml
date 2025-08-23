@@ -8,6 +8,7 @@
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: admin
+    shader: unshaded
 
 - type: entity
   parent: BaseSign
@@ -19,6 +20,7 @@
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: bank
+    shader: unshaded
 
 - type: entity
   parent: BaseSign
@@ -30,6 +32,7 @@
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: court
+    shader: unshaded
 
 - type: entity
   parent: BaseSign
@@ -41,6 +44,7 @@
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: dock
+    shader: unshaded
 
 - type: entity
   parent: BaseSign
@@ -52,6 +56,7 @@
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: police
+    shader: unshaded
 
 - type: entity
   parent: BaseSign
@@ -63,6 +68,7 @@
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: med
+    shader: unshaded
 
 - type: entity
   parent: BaseSign
@@ -74,6 +80,7 @@
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: bar
+    shader: unshaded
 
 - type: entity
   parent: BaseSign
@@ -85,3 +92,4 @@
   - type: Sprite
     sprite: Imperial/Other/ElysiumPrime/Misc/signs.rsi
     state: journalistics
+    shader: unshaded
