@@ -22,11 +22,13 @@ flag-capture-player-faction = Игрок { $player } имеет фракцию: 
 flag-capture-no-faction = У игрока { $player } нет фракции, используем случайную: { $faction }
 flag-capture-faction-to-prototype = Фракция { $faction } -> прототип { $prototype }
 
-# Сообщения в чате
-flag-capture-cancelled-message = Захват отменен - игрок покинул зону.
-flag-capture-too-many-players-message = Захват отменен - слишком много игроков.
-flag-capture-completed-message = Захват флага завершен.
-flag-capture-cancelled-general-message = Захват флага отменен.
+# Поп-апы захвата флагов
+flag-capture-cancelled-message = Захват отменен - игрок покинул зону
+flag-capture-too-many-players-message = Захват отменен - слишком много игроков
+flag-capture-completed-message = Захват флага завершен!
+flag-capture-cancelled-general-message = Захват флага отменен
+flag-capture-started-message = { $player } тянется к флагу и спускает с него флаг вражеской команды...
+flag-capture-same-faction-message = Это ваш флаг! Нельзя захватывать свои флаги
 
 # Сообщения при осмотре
 flag-capture-examine-progress = Прогресс захвата: { $progress }%

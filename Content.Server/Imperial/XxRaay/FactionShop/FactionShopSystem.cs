@@ -95,6 +95,7 @@ public sealed class FactionShopSystem : EntitySystem
                 var currentBalance = store.Balance.GetValueOrDefault(currencyId, 0);
                 var newBalance = currentBalance + pointsToAward;
                 store.Balance[currencyId] = newBalance;
+                Dirty(shop.Owner, store);
             }
         }
     }
