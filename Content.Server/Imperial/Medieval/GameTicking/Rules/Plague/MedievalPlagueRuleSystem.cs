@@ -42,6 +42,5 @@ public sealed class MedievalPlagueRuleSystem : GameRuleSystem<MedievalPlagueRule
         args.AddLine(Loc.GetString("medieval-plague-round-end-immune-count", ("count", stats.Immune)));
         args.AddLine(Loc.GetString("medieval-plague-round-end-plague-tier", ("tier", stats.Tier)));
         args.AddLine(Loc.GetString("medieval-plague-round-end-symptoms-count", ("count", stats.Symptoms)));
-        args.AddLine(Loc.GetString("medieval-plague-round-end-points-count", ("count", stats.Points)));
     }
 }
