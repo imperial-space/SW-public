@@ -21,6 +21,7 @@
     - state: inhand-right
   - type: PaperVisuals
     backgroundModulate: "#fff4d7"
+  - type: BlockStamping
 
 - type: entity
   name: papr
