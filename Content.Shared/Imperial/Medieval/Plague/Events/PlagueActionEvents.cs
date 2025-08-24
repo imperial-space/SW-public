@@ -15,9 +15,6 @@ public sealed partial class PlaguePolymorphMouseActionEvent : InstantActionEvent
 {
     [DataField]
     public int Cost = 0;
-
-    [DataField]
-    public int SpawnedCount = 0;
 }
 
 [ImplicitDataDefinitionForInheritors]

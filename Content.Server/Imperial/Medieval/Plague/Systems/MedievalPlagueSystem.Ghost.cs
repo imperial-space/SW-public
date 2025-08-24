@@ -66,7 +66,7 @@ public sealed partial class MedievalPlagueSystem
             TryChangePoints(uid, -cost, comp);
         }
 
-        if (TryInfect(args.Target, uid))
+        if (TryInfect(args.Target, uid, addPoint: false))
         {
             _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/infect.ogg"), Filter.Empty().FromEntities(uid), false);
             _popup.PopupEntity(Loc.GetString("medieval-plague-infected-success-popup"), args.Target, uid);
@@ -164,6 +164,12 @@ public sealed partial class MedievalPlagueSystem
         if (args.Handled)
             return;
 
+        if (!HasComp<MedievalPlagueImmuneComponent>(args.Target))
+        {
+            _popup.PopupEntity(Loc.GetString("medieval-plague-not-immune", ("target", Name(args.Target))), args.Target, uid);
+            return;
+        }
+
         if (!TryChangePoints(uid, -args.Cost))
         {
             _popup.PopupEntity(Loc.GetString("popup-plague-action-fail-not-infected"), args.Target, uid);
@@ -205,7 +211,7 @@ public sealed partial class MedievalPlagueSystem
 
         if (_symptoms.Where(x => x.Value.Unlocked).ToDictionary().ContainsKey("MorphRatsAction"))
         {
-            for (var i = 0; i < args.SpawnedCount; i++)
+            for (var i = 0; i < 2; i++)
                 Spawn("MedievalMobPlagueMouse", xform.Coordinates);
         }
 

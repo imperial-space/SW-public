@@ -94,9 +94,10 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         _blockersEfficiency = 1f;
         _minSmellLevel = 50f;
         _allergyRandom = new();
+        CurrentCure = "MedievalPlagueCure4";
     }
 
-    public bool TryInfect(EntityUid uid, EntityUid? plagueSource, float additionalMod = 1f)
+    public bool TryInfect(EntityUid uid, EntityUid? plagueSource, float additionalMod = 1f, bool addPoint = true)
     {
         if (!HasComp<MedievalCanBeInfectedComponent>(uid) || HasComp<MedievalPlagueInfectedComponent>(uid))
             return false;
@@ -110,16 +111,17 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         if (!_random.Prob(ev.Probability * additionalMod))
             return false;
 
-        Infect(uid, plagueSource);
+        Infect(uid, plagueSource, addPoint);
         return true;
     }
 
-    public void Infect(EntityUid uid, EntityUid? plagueSource)
+    public void Infect(EntityUid uid, EntityUid? plagueSource, bool addPoint = true)
     {
         var comp = EnsureComp<MedievalPlagueInfectedComponent>(uid);
         comp.PlagueSource = plagueSource;
 
-        AddPoint(plagueSource);
+        if (addPoint)
+            AddPoint(plagueSource);
 
         RaisePrototypeIncubationEvents(uid);
     }

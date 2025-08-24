@@ -14,7 +14,7 @@ public sealed partial class MedievalPlagueSystem
     private float _blockersEfficiency = 1f;
     private float _minSmellLevel = 50f;
 
-    public ProtoId<ReagentPrototype> CurrentCure = "MedievalPlagueCure1";
+    public ProtoId<ReagentPrototype> CurrentCure = "MedievalPlagueCure4";
 
 
     private void InitializeSpread()
