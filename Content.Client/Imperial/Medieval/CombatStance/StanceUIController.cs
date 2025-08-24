@@ -2,7 +2,7 @@ using Content.Client.Gameplay;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
-using Content.Shared.Friends;
+using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.CombatStance;
 using Content.Shared.Input;
 using Content.Shared.Speech;

@@ -10,6 +10,7 @@ using Content.Server.Discord;
 using Content.Server.Discord.WebhookMessages;
 using Content.Server.EUI;
 using Content.Server.GhostKick;
+using Content.Server.Imperial.Medieval.Afk;
 using Content.Server.Imperial.Medieval.JoinQueue;
 using Content.Server.Info;
 using Content.Server.Mapping;
@@ -82,6 +83,7 @@ namespace Content.Server.IoC
             IoCManager.Register<MultiServerKickManager>();
             IoCManager.Register<CVarControlManager>();
             IoCManager.Register<Content.Server.Imperial.PVS.AlwaysPvsSystem>(); // Imperial AlwaysPvs
+            IoCManager.Register<IMedievalAfkManager, MedievalAfkManager>(); // Imperial medieval anti afk
         }
     }
 }

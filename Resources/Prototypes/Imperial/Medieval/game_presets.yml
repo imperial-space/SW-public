@@ -8,6 +8,7 @@
   rules:
   - TDM
   - MedievalStatsCounter
+  - MedievalFactionGoalsRule
 
 - type: gamePreset
   id: MedievalDevelop
@@ -28,6 +29,7 @@
   - TDM
   - Myrmex
   - MedievalStatsCounter
+  - MedievalFactionGoalsRule
 
 - type: gamePreset
   id: MedievalSkeletron
@@ -40,6 +42,7 @@
   - TDM
   - MedievalStatsCounter
   - MedievalSkeletonInvasionRule
+  - MedievalFactionGoalsRule
 
 - type: gamePreset
   id: MedievalPlague
@@ -52,3 +55,4 @@
   - TDM
   - MedievalPlague
   - MedievalStatsCounter
+  - MedievalFactionGoalsRule

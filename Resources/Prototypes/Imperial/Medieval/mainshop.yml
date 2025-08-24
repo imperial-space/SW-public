@@ -594,6 +594,78 @@
   - MedievalBuild
 
 - type: listing
+  id: MdvShopMedievalSign1Craft
+  productEntity: MedievalSign1Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign2Craft
+  productEntity: MedievalSign2Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign3Craft
+  productEntity: MedievalSign3Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign4Craft
+  productEntity: MedievalSign4Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign5Craft
+  productEntity: MedievalSign5Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign6Craft
+  productEntity: MedievalSign6Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign7Craft
+  productEntity: MedievalSign7Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign8Craft
+  productEntity: MedievalSign8Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSign9Craft
+  productEntity: MedievalSign9Craft
+  cost:
+    Revent: 80
+  categories:
+  - MedievalBuild
+
+- type: listing
   id: MdvShopMedievalStoneWallCraft
   productEntity: MedievalStoneWallCraft
   cost:
@@ -2142,6 +2214,54 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopCreationsBook
+  productEntity: CreationsBook
+  cost:
+    Revent: 15
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopPaintKit
+  productEntity: PaintKit
+  cost:
+    Revent: 8
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopEasel
+  productEntity: Easel
+  cost:
+    Revent: 22
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopCanvas
+  productEntity: Canvas
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalRecipeBook
+  productEntity: MedievalRecipeBook
+  cost:
+    Revent: 45
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalChemistryRecipe
+  productEntity: MedievalChemistryRecipe
+  cost:
+    Revent: 25
+  categories:
+  - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalRepairStone
   productEntity: MedievalRepairStone
   discountCategory: medievalDiscounts
@@ -2240,6 +2360,30 @@
     Revent: 35
   categories:
   - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalReliefStoneWeak
+  productEntity: MedievalReliefStoneWeak
+  cost:
+    Revent: 220
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalReliefStoneStrong
+  productEntity: MedievalReliefStoneStrong
+  cost:
+    Revent: 480
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalAntiGravitationStone
+  productEntity: MedievalAntiGravitationStone
+  cost:
+    Revent: 1150
+  categories:
+  - MedievalMagic
 
 - type: listing
   id: MdvShopMedievalHandheldGPSBasic

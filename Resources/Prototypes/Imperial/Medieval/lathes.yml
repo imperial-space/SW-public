@@ -1042,6 +1042,9 @@
     - MedaljonAntiMana
     - MedievalClothingEyesEyepatchHudBeer
     - MedievalClothingEyesEyepatchHudMedical
+    - MedievalReliefStoneWeakCraft
+    - MedievalReliefStoneStrongCraft
+    - MedievalAntiGravitationStoneCraft
 
 - type: entity
   parent: CP14BaseWorkbench
