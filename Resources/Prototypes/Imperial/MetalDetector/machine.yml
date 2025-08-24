@@ -133,6 +133,11 @@
         - ClothingUniformJumpsuitCapFormal
         - ClothingNeckCloakCapFormal
         - ClothingUniformJumpskirtCaptain
+        - ClothingUniformJumpskirtCaptainAlt
+        - ClothingUniformJumpskirtPirateWhiteCaptain
+        - ClothingUniformJumpsuitCaptainAlt
+        - ClothingUniformJumpsuitPirateWhiteCaptain
+        - ClothingUniformJumpsuitSheriffCaptain
         # Head of Security HOS
         - ClothingUniformJumpsuitHoS
         - ClothingUniformJumpskirtHoSAlt
@@ -162,11 +167,16 @@
         - ClothingUniformJumpsuitQM
         - ClothingUniformJumpsuitQMFormal
         - ClothingNeckCloakQm
+        - ClothingUniformJumpskirtQMTurtleneck
+        - ClothingUniformJumpsuitQMTurtleneck
         # Chief Engineer CE
         - ClothingNeckMantleCE
         - ClothingNeckCloakCe
         - ClothingUniformJumpsuitChiefEngineer
         - ClothingUniformJumpskirtChiefEngineer
+        - ClothingUniformJumpskirtChiefEngineerTurtle
+        - ClothingUniformJumpsuitChiefEngineerNT
+        - ClothingUniformJumpsuitChiefEngineerTurtle
         # Security
         - ClothingUniformJumpsuitSeniorOfficer
         - ClothingUniformJumpskirtSeniorOfficer
@@ -180,6 +190,8 @@
         - FlashlightSeclite
         - ClothingUniformSecurityTrooper
         - ClothingHandsGlovesForensic
+        - ClothingUniformJumpskirtWarden
+        - ClothingUniformJumpsuitWarden
         # Central Command CC
         - ClothingUniformJumpsuitCentcomAgent
         - ClothingNeckScarfStripedCentcom
