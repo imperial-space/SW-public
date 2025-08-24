@@ -13,8 +13,8 @@ public sealed partial class MedievalPlagueSymptomButton : FancyButton
     public Action<ProtoId<MedievalPlagueSymptomPrototype>>? OnSelected;
     public MedievalPlagueSymptomPrototype Proto;
 
-    public (Color, Color, Color) UnavialableColors = (Color.Crimson, Color.FromHex("#240000"), Color.FromHex("#79000cff"));
-    public (Color, Color, Color) ProgressColors = (Color.FromHex("#e83600"), Color.FromHex("#240a00ff"), Color.FromHex("#5a1d00ff"));
+    public (Color, Color, Color) UnavialableColors = (Color.FromHex("#460011ff"), Color.FromHex("#000000ff"), Color.FromHex("#36000eff"));
+    public (Color, Color, Color) ProgressColors = (Color.Crimson, Color.FromHex("#240000"), Color.FromHex("#79000cff"));
     public (Color, Color, Color) UnlockedColors = (Color.LimeGreen, Color.FromHex("#002006ff"), Color.FromHex("#007215ff"));
 
     public MedievalPlagueSymptomButton(MedievalPlagueSymptomPrototype proto, MedievalPlagueSymptomData? data, bool requirmentsMet)
