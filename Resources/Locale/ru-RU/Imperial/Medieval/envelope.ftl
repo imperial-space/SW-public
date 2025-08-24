@@ -12,3 +12,21 @@ ent-MedievalPaperEnvelopeRebel = { ent-MedievalPaperEnvelopeBasic }
 
 ent-MedievalPaperEnvelopeCollegium = { ent-MedievalPaperEnvelopeBasic }
     .desc = { ent-MedievalPaperEnvelopeBasic.desc }
+
+ent-MedievalPaperEnvelopeCoyote = { ent-MedievalPaperEnvelopeBasic }
+    .desc = { ent-MedievalPaperEnvelopeBasic.desc }
+
+ent-MedievalPaperEnvelopeCult = { ent-MedievalPaperEnvelopeBasic }
+    .desc = { ent-MedievalPaperEnvelopeBasic.desc }
+
+ent-MedievalPaperEnvelopeTribe = { ent-MedievalPaperEnvelopeBasic }
+    .desc = { ent-MedievalPaperEnvelopeBasic.desc }
+
+ent-MedievalPaperEnvelopeMiner = { ent-MedievalPaperEnvelopeBasic }
+    .desc = { ent-MedievalPaperEnvelopeBasic.desc }
+
+ent-MedievalPaperEnvelopeMerc = { ent-MedievalPaperEnvelopeBasic }
+    .desc = { ent-MedievalPaperEnvelopeBasic.desc }
+
+ent-MedievalPaperEnvelopeVillage = { ent-MedievalPaperEnvelopeBasic }
+    .desc = { ent-MedievalPaperEnvelopeBasic.desc }

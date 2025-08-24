@@ -9,6 +9,7 @@
   defaultRelations:
     Legion: Trading
     Miner: Trading
+  envelopeProto: MedievalPaperEnvelopeVillage
 
 - type: medievalFaction
   id: Legion
@@ -74,6 +75,7 @@
     Insurgency: War
   blockedRelations:
     - Bandit
+  envelopeProto: MedievalPaperEnvelopeCoyote
 
 - type: medievalFaction
   id: Merc
@@ -85,6 +87,7 @@
   defaultRelations:
     Insurgency: Trading
     Legion: Trading
+  envelopeProto: MedievalPaperEnvelopeMerc
 
 - type: medievalFaction
   id: Collegium
@@ -110,12 +113,14 @@
     Legion: Trading
     Insurgency: Trading
     Village: Trading
+  envelopeProto: MedievalPaperEnvelopeMiner
 
 - type: medievalFaction
   id: Tribe
   name: племя
   allowHeadhunt: false
   wantedText: "[color=red]Изгнанник.[/color]"
+  envelopeProto: MedievalPaperEnvelopeTribe
 
 - type: medievalFaction
   id: Cult
@@ -127,6 +132,7 @@
     Insurgency: War
   blockedRelations:
     - Collegium
+  envelopeProto: MedievalPaperEnvelopeCult
 
 - type: factionRelations
   id: Neutral
