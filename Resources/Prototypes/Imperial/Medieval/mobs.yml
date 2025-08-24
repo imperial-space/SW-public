@@ -186,7 +186,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Animal
-    chance: 0.12
+    chance: 0.05
 
 - type: entity
   name: fox
@@ -446,7 +446,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Animal
-    chance: 0.12
+    chance: 0.05
 
 - type: entity
   name: wolf
@@ -902,7 +902,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Animal
-    chance: 0.12
+    chance: 0.05
 
 - type: entity
   name: bear
@@ -1022,7 +1022,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Animal
-    chance: 0.12
+    chance: 0.05
 
 
 - type: entity
@@ -1837,7 +1837,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Animal
-    chance: 0.12
+    chance: 0.05
 
 - type: entity
   name: rabbit
@@ -1933,7 +1933,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Animal
-    chance: 0.12
+    chance: 0.05
 
 - type: entity
   name: MedievalMobSpiderCave
@@ -2044,7 +2044,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Animal
-    chance: 0.12
+    chance: 0.05
 
 
 - type: entity
@@ -2172,7 +2172,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Animal
-    chance: 0.12
+    chance: 0.05
 
 
 - type: entity
@@ -2288,7 +2288,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Skeleton
-    chance: 0.2
+    chance: 0.05
 
 - type: entity
   name: weak skeleton
