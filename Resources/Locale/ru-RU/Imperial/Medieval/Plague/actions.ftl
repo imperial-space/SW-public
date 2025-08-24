@@ -36,7 +36,7 @@ ent-PlagueSpawnSlimesAction = Слизне-ком
 ent-PlagueSpawnBugsAction = Рой жуков
     .desc = Создайте рой заразных жуков на указанной позиции. Тратит [color=crimson]1 очко эволюции[/color].
 
-ent-PlagueSpawnBugsAction = Телепорт на заражённого
+ent-PlagueTpInfectedAction = Телепорт на заражённого
     .desc = Телепортируйтесь на случайного заражённого.
 
 ent-PlagueTpNotInfectedAction = Телепорт на здорового
