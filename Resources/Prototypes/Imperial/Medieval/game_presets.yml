@@ -34,9 +34,21 @@
   alias:
   - medievalskeletron
   name: medieval-skeletron-title
-  description: medieval-skeletron-description 
+  description: medieval-skeletron-description
   showInVote: true
   rules:
   - TDM
   - MedievalStatsCounter
   - MedievalSkeletonInvasionRule
+
+- type: gamePreset
+  id: MedievalPlague
+  alias:
+  - medievalmyrmex
+  name: medieval-plague-title
+  showInVote: true
+  description: medieval-plague-description
+  rules:
+  - TDM
+  - MedievalPlague
+  - MedievalStatsCounter

@@ -33,3 +33,15 @@
   - type: MovementSpeedModifier
     baseSprintSpeed: 5
     baseWalkSpeed: 3.25
+
+- type: entity
+  id: SpawnPointPlagueGhost
+  parent: MarkerBase
+  name: plague ghost spawner
+  components:
+  - type: SpawnPoint
+  - type: Sprite
+    layers:
+    - state: green
+    - sprite: Imperial/Medieval/Mobs/plague_ghost.rsi
+      state: ghost
