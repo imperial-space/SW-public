@@ -10,7 +10,7 @@
     Medicine:
       effects:
       - !type:ProgressPlague
-        ProgressAmount: -4
+        progressAmount: -4
       - !type:GrantPlagueImmunity
         probability: 0.4
       - !type:Drunk
@@ -29,7 +29,7 @@
     Medicine:
       effects:
       - !type:ProgressPlague
-        ProgressAmount: -4
+        progressAmount: -4
       - !type:GrantPlagueImmunity
         probability: 0.4
       - !type:Drunk
@@ -48,7 +48,7 @@
     Medicine:
       effects:
       - !type:ProgressPlague
-        ProgressAmount: -4
+        progressAmount: -4
       - !type:GrantPlagueImmunity
         probability: 0.4
       - !type:Drunk
@@ -67,7 +67,7 @@
     Medicine:
       effects:
       - !type:ProgressPlague
-        ProgressAmount: -4
+        progressAmount: -4
       - !type:GrantPlagueImmunity
         probability: 0.4
       - !type:Drunk
