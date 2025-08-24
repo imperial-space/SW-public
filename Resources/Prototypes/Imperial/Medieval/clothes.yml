@@ -1011,12 +1011,18 @@
   id: MedievalClothingHeadHatPlaguedoctor
   name: MedievalClothingHeadHatPlaguedoctor
   description: MedievalClothingHeadHatPlaguedoctor
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.65
 
 - type: entity
   parent: ClothingMaskPlague
   id: MedievalClothingMaskPlague
   name: MedievalClothingMaskPlague
   description: MedievalClothingMaskPlague
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.4
 
 - type: entity
   parent: ClothingMaskMuzzle

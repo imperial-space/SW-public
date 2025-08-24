@@ -738,7 +738,9 @@
   id: MedievalClothingOuterPlagueSuit
   name: MedievalClothingOuterPlagueSuit
   description: MedievalClothingOuterPlagueSuit
- #components:
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.3
  #- type: Tag
  #  tags:
  #  - Sterile
@@ -771,6 +773,8 @@
   - type: Construction
     node: MedievalMaskFace
     graph: MedievalMaskFace
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.5
 
 - type: construction
   name: тканевая маска
