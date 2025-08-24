@@ -1245,7 +1245,7 @@
       - state: Red_Ticket
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
-      - state: paper_stamp-generic
+      - state: Red_Ticket
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
 
@@ -1263,7 +1263,7 @@
       - state: Blue_Ticket
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
-      - state: paper_stamp-generic
+      - state: Blue_Ticket
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
 
@@ -1281,7 +1281,7 @@
       - state: Black_Ticket
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
-      - state: paper_stamp-generic
+      - state: Black_Ticket
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
 
