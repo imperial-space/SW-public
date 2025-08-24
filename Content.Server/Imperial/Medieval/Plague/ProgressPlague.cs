@@ -11,13 +11,17 @@ public sealed partial class ProgressPlague : EntityEffect
 
     public override void Effect(EntityEffectBaseArgs args)
     {
-        var entMan = args.EntityManager;
+        var plague = args.EntityManager.System<MedievalPlagueSystem>();
 
         var amount = ProgressAmount;
         if (args is EntityEffectReagentArgs reagentArgs)
+        {
             amount *= (float)reagentArgs.Quantity;
+            if (reagentArgs.Reagent != null && reagentArgs.Reagent.ID != plague.CurrentCure)
+                return;
+        }
 
-        entMan.System<MedievalPlagueSystem>().TryProgressInfection(args.TargetEntity, amount);
+        plague.TryProgressInfection(args.TargetEntity, amount);
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)

@@ -1,7 +1,9 @@
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Imperial.Medieval.Plague;
 using Content.Shared.Movement.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Medieval.Plague;
 
@@ -11,6 +13,9 @@ public sealed partial class MedievalPlagueSystem
     private float _contactSpreadMod = 0f;
     private float _blockersEfficiency = 1f;
     private float _minSmellLevel = 50f;
+
+    public ProtoId<ReagentPrototype> CurrentCure = "MedievalPlagueCure1";
+
 
     private void InitializeSpread()
     {
@@ -25,6 +30,7 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<SetSpreaderChanceEvent>(OnSetSpreaderChance);
         SubscribeLocalEvent<SetPlagueBlockerModifierEvent>(OnSetBlockerMod);
         SubscribeLocalEvent<SetStrapHealResistanceEvent>(OnSetStrapResistance);
+        SubscribeLocalEvent<SetPlagueCureEvent>(OnSetCure);
     }
 
     private void OnInfectedCollide(EntityUid uid, MedievalPlagueInfectedComponent comp, ref StartCollideEvent args)
@@ -95,4 +101,8 @@ public sealed partial class MedievalPlagueSystem
         _healItemResistance = args.HealResistance;
     }
 
+    private void OnSetCure(SetPlagueCureEvent args)
+    {
+        CurrentCure = args.Reagent;
+    }
 }
