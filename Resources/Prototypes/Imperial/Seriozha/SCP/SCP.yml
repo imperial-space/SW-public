@@ -223,8 +223,7 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 150
-      resistanceBypass: true
+          Caustic: 150
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
@@ -283,13 +282,13 @@
     attackRate: 1.25
     damage:
       types:
-        Structural: 80
+        Structural: 90
         Slash: 60
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
-    reflectProb: 0.25
-    spread: 70
+    reflectProb: 0.28
+    spread: 60
   - type: DisarmMalus
 
 - type: emoteSounds
