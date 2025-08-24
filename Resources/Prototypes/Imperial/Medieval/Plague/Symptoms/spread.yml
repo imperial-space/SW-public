@@ -40,7 +40,7 @@
   required: LowerProtection2
   category: Spread
   broadcastEvent: !type:SetPlagueBlockerModifierEvent
-    modifier: 0.6
+    modifier: 0.4
 
 - type: plagueSymptom
   id: CleanResistance1

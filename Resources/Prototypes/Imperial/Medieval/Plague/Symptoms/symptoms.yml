@@ -201,7 +201,7 @@
       - !type:ChangeDamage
           damage:
             types:
-              Bloodloss: 5
+              Bloodloss: 12
               Cellular: 3
   required: Cough
 
@@ -340,8 +340,8 @@
 
 - type: plagueSymptom
   id: Clumsiness
-  name: plague-weak-skin-name
-  desc: plague-weak-skin-desc
+  name: plague-clumsy-name
+  desc: plague-clumsy-desc
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: legs

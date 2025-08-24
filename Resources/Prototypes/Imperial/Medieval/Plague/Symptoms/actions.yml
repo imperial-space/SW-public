@@ -163,8 +163,8 @@
 
 - type: plagueSymptom
   id: HeartAttackAction
-  name: plague-injury-name
-  desc: plague-injury-desc
+  name: plague-heart-name
+  desc: plague-heart-desc
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: heart
