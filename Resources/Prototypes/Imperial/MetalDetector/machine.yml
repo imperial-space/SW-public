@@ -117,8 +117,6 @@
         - ClothingBackpackSatchelSmuggler
         - ClothingBackpackSatchelSmugglerUnanchored
         - ClothingBackpackSatchelSmugglerFilled
-        - ClothingHandsGlovesCombat
-        - ClothingShoesBootsJack
         - StorageImplant
         - ClothingUniformJumpsuitChiefEngineerSyndie
         # Captain CAP
@@ -169,6 +167,8 @@
         - ClothingNeckCloakCe
         # Security
         - ClothingUniformJumpsuitSeniorOfficer
+        - ClothingHandsGlovesCombat
+        - ClothingShoesBootsJack
         # Central Command CC
         - ClothingUniformJumpsuitCentcomAgent
         - ClothingNeckScarfStripedCentcom
