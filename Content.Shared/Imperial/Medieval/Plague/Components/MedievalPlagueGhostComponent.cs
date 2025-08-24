@@ -7,9 +7,20 @@ namespace Content.Shared.Imperial.Medieval.Plague;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class MedievalPlagueGhostComponent : Component
 {
+    public int Points
+    {
+        get => _points;
+        set
+        {
+            if (value < 0)
+                value = 0;
+            _points = value;
+        }
+    }
+
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
-    public int Points = 5;
+    private int _points = 5;
 
     [AutoNetworkedField]
     public EntityUid? InfectAction;

@@ -5,11 +5,19 @@ namespace Content.Shared.Imperial.Medieval.Plague;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class MedievalPlagueInfectedComponent : Component
 {
+    public const int MaxProgression = 100;
+
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? PlagueSource;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public int Progression = 1;
+    public int Progression
+    {
+        get => _progression;
+        set => _progression = Math.Clamp(value, 0, MaxProgression);
+    }
+
+    private int _progression = 1;
 
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
