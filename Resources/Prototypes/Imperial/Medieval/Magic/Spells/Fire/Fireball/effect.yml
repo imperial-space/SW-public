@@ -17,35 +17,56 @@
       params:
         variation: 0.2
 
+#Beginner
+
 - type: entity
   id: FireballSpellcastEffectBeginner
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/fireball.rsi
+    sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
     state: beginner
     color: "#FF7300"
     noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#ff9c24"
   - type: TimedDespawn
     lifetime: 3.0
+
+#Middle
 
 - type: entity
   id: FireballSpellcastEffectMiddle
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/fireball.rsi
+    sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
     state: middle
-    color: "#FF7300"
+    color: "#ff4800"
     noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#FF7300"
   - type: TimedDespawn
     lifetime: 2.5
+
+#Senior
 
 - type: entity
   id: FireballSpellcastEffectSenior
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/fireball.rsi
+    sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
     state: senior
-    color: "#FF7300"
+    color: "#FF0000"
     noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#FF0000"
   - type: TimedDespawn
     lifetime: 3.5

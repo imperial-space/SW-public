@@ -90,6 +90,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 27
+  - type: SpellCastEffect
+    effectProto: FireballSpellcastEffectMiddle
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 155
@@ -133,6 +135,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 32
+  - type: SpellCastEffect
+    effectProto: FireballSpellcastEffectSenior
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 135
