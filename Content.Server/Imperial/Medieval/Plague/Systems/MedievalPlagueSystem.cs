@@ -146,7 +146,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
             return;
 
         comp.Progression += progress;
-        if (comp.Progression < 0)
+        if (comp.Progression <= 0)
         {
             RemComp(uid, comp);
             var immune = EnsureComp<MedievalPlagueImmuneComponent>(uid);
