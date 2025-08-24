@@ -167,8 +167,17 @@
         - ClothingNeckCloakCe
         # Security
         - ClothingUniformJumpsuitSeniorOfficer
+        - ClothingUniformJumpskirtSeniorOfficer
         - ClothingHandsGlovesCombat
         - ClothingShoesBootsJack
+        - ClothingMaskClownSecurity
+        - ClothingUniformJumpsuitSec
+        - ClothingUniformJumpskirtSec
+        - ClothingMaskGasSecurity
+        - ClothingShoesBootsWinterSec
+        - FlashlightSeclite
+        - ClothingUniformSecurityTrooper
+        - ClothingHandsGlovesForensic
         # Central Command CC
         - ClothingUniformJumpsuitCentcomAgent
         - ClothingNeckScarfStripedCentcom
