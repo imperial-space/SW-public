@@ -135,7 +135,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         return true;
     }
 
-    private void TryProgressInfection(EntityUid uid, int progress, MedievalPlagueInfectedComponent? comp = null)
+    public void TryProgressInfection(EntityUid uid, float progress, MedievalPlagueInfectedComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
             return;

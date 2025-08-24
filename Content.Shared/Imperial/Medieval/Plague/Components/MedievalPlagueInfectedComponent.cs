@@ -11,13 +11,13 @@ public sealed partial class MedievalPlagueInfectedComponent : Component
     public EntityUid? PlagueSource;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public int Progression
+    public float Progression
     {
         get => _progression;
         set => _progression = Math.Clamp(value, 0, MaxProgression);
     }
 
-    private int _progression = 1;
+    private float _progression = 1;
 
     [AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
