@@ -1,53 +1,53 @@
-plague-nausea-name = Тошнота
-plague-nausea-desc = Заражённый в активном периоде болезни испытывает приступы тошноты, замедляющий его и немного ухудшающий зрение.
+plague-nausea-name = Морская тошнота
+plague-nausea-desc =  Больного рвет, движения замедляются, в глазах мутнеет.
 
-plague-vomit-name = Рвота
-plague-vomit-desc = После приступа тошноты заражённый извергает содержимое желудка, с небольшим шансом заражая окружающих.
+plague-vomit-name = Чёрная рвота
+plague-vomit-desc = Больного выворачивает, его рвотные массы могут заразить окружающих.
 
 plague-blood-vomit-name = Кровавая рвота
-plague-blood-vomit-desc = Заражённого начинает рвать с примесью крови, что наносит ему урон и с некоторым шансом заражает окружающих.
+plague-blood-vomit-desc = Больного рвёт с кровью, что причиняет ему вред и может заразить других.
 
-plague-reagent-allergy-name = Непереносимость реагентов
+plague-reagent-allergy-name = Гнилая кровь
 plague-reagent-allergy-desc = Заражённые получают сильную аллергию на случайные реагенты. У всех заражённых непереносимость одинаковых реагентов.
 
-plague-gastrite-name = Гастрит
-plague-gastrite-desc = Заражённый начинает получать урон токсинами от некоторой части еды и напитков.
+plague-gastrite-name = Гниение внутренностей
+plague-gastrite-desc = Некоторая еда и питьё отравляют больного, причиняя ему вред.
 
-plague-stom-cancer-name = Рак желудка
-plague-stom-cancer-desc = Заражённый начинает получать урон от большинства видов еды.
+plague-stom-cancer-name = Червь во чреве
+plague-stom-cancer-desc = Почти любая еда теперь вредит больному, будто внутри него что-то пожирает его самого.
 
-plague-runny-nose-name = Насморк
-plague-runny-nose-desc = Заражённый начинает часто чихать, с некоторым шансом заражая окружающих.
+plague-runny-nose-name = Вонючий насморк
+plague-runny-nose-desc = Больной постоянно чихает, разнося заразу.
 
-plague-cough-name = Кашель
-plague-cough-desc = Заражённый начинает часто кашлять, с некоторым шансом заражая окружающих.
+plague-cough-name = Судорожный кашель
+plague-cough-desc = Больного мучает сильный кашель, который может заразить окружающих.
 
-plague-blood-cough-name = Кровавый кашель
-plague-blood-cough-desc = Заражённый начинает часто кашлять с примесью крови, что наносит ему урон.
+plague-blood-cough-name = Кровавые хрипы
+plague-blood-cough-desc = Больной кашляет с кровью, что причиняет ему урон.
 
-plague-entity-allergy-name = Аллергия
-plague-entity-allergy-desc = Заражённые получают аллергию на случайных существ или объекты. Рядом с ними они теряют возможность дышать.
+plague-entity-allergy-name = Дыханье скверны
+plague-entity-allergy-desc = Рядом с некоторыми существами или объектами больной начинает задыхаться.
 
-plague-asthma-name = Астма
-plague-asthma-desc = Заражённый теряет возможность нормально дышать во время бега.
+plague-asthma-name = Чумная одышка
+plague-asthma-desc = Лёгкие сжимаются, не давая сделать полный вдох, стоит только побежать.
 
-plague-lungs-cancer-name = Рак лёгких
-plague-lungs-cancer-desc = Заражённый начинает испытывать серьёзные трудности с дыханием.
+plague-lungs-cancer-name = Окаменение легких
+plague-lungs-cancer-desc = Дышать становится мучительно тяжело, каждый вдох даётся с хрипом.
 
 plague-itch-name = Чесотка I
-plague-itch-desc = Заражённый начинает испытывать лёгкий зуд.
+plague-itch-desc = Больной чувствует лёгкий, но постоянный зуд по всему телу.
 
 plague-itch-hard-name = Чесотка II
-plague-itch-hard-desc = Заражённый неконтролируемо расчёсывает зудящие места до крови.
+plague-itch-hard-desc = Зуд становится невыносимым, больной расчёсывает себя до крови.
 
 plague-weak-skin-name = Слабая кожа
-plague-weak-skin-desc = Заражённый начинает получать больше урона от порезов и уколов.
+plague-weak-skin-desc = Кожа становится хрупкой, любая рана наносит больше урона.
 
-plague-clumsy-name = Неуклюжесть
+plague-clumsy-name = Чумная пляска
 plague-clumsy-desc = Заражённый начинает часто спотыкаться и падать, теряя равновесие.
 
-plague-temperature-name = Лихорадка
-plague-temperature-desc = Заражённый начинает испытывать трудности с тем, что обычно не вызывает проблем. Все уровни навыков понижены на 2.
+plague-temperature-name = Огненная лихорадка
+plague-temperature-desc = Больного мучает жар, сознание путается, все навыки притупляются.
 
-plague-skin-cancer-name = Рак кожи
-plague-skin-cancer-desc = Чесотка и слабая кожа усугубляются.
+plague-skin-cancer-name = Гангренозная чума
+plague-skin-cancer-desc = Чёрная гангрена завершает своё дело: зуд и гниение плоти сливаются воедино, знаменуя скорый конец.

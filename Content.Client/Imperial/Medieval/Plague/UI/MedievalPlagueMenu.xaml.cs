@@ -81,7 +81,7 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
         {
             VerticalExpand = true,
             HorizontalExpand = true,
-            ModulateSelfOverride = Color.FromHex("#ffffffb9"),
+            ModulateSelfOverride = Color.FromHex("#ffffffff"),
             BackgroundPanelColor = Color.FromHex("#240000"),
             BorderRadius = 15
         };
