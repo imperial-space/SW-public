@@ -141,7 +141,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: cataract
   position: 30,-60
-  tier: 1
+  tier: 3
   cost: 10
   category: Action
   actions: PlagueCataractAction
@@ -155,7 +155,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: wound
   position: 30,-60
-  tier: 1
+  tier: 3
   cost: 10
   category: Action
   actions: PlagueCataractAction
@@ -169,7 +169,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: heart
   position: 30,-60
-  tier: 1
+  tier: 3
   cost: 15
   category: Action
   actions: PlagueCataractAction

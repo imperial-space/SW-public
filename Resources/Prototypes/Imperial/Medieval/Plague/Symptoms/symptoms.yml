@@ -59,7 +59,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: retchtier2
   position: -95,-15
-  tier: 1
+  tier: 2
   cost: 8
   category: Symptom
   targetEvent: !type:AddSymptomEffectsEvent
@@ -102,7 +102,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: stomach
   position: -120,0
-  tier: 1
+  tier: 2
   cost: 10
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
@@ -120,7 +120,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: gastrite
   position: -120,30
-  tier: 1
+  tier: 3
   cost: 13
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
@@ -184,7 +184,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: coughtier2
   position: 120,0
-  tier: 1
+  tier: 2
   cost: 8
   category: Symptom
   targetEvent: !type:AddSymptomEffectsEvent
@@ -229,7 +229,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: asthma
   position: 95,-10
-  tier: 1
+  tier: 2
   cost: 8
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
@@ -245,7 +245,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: lungs
   position: 120,30
-  tier: 1
+  tier: 3
   cost: 13
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
@@ -327,7 +327,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: weakskin
   position: 0,0
-  tier: 1
+  tier: 2
   cost: 8
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
@@ -365,7 +365,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: temperature
   position: -30,15
-  tier: 1
+  tier: 2
   cost: 12
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
@@ -381,7 +381,7 @@
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: skincancer
   position: 0,-30
-  tier: 1
+  tier: 3
   cost: 13
   category: Symptom
   targetEvent: !type:AddSymptomEffectsEvent
