@@ -1,0 +1,269 @@
+- type: plagueSymptom
+  id: LowerProtection1
+  name: plague-low-protect-1-name
+  desc: plague-low-protect-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: lowprotecttier1
+  position: -120,60
+  tier: 1
+  cost: 3
+  category: Spread
+  broadcastEvent: !type:SetPlagueBlockerModifierEvent
+    modifier: 0.9
+
+- type: plagueSymptom
+  id: LowerProtection2
+  name: plague-low-protect-2-name
+  desc: plague-low-protect-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: lowprotecttier2
+  position: -145,30
+  tier: 1
+  cost: 6
+  required: LowerProtection1
+  category: Spread
+  broadcastEvent: !type:SetPlagueBlockerModifierEvent
+    modifier: 0.75
+
+- type: plagueSymptom
+  id: LowerProtection3
+  name: plague-low-protect-3-name
+  desc: plague-low-protect-3-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: lowprotecttier3
+  position: -145,0
+  tier: 1
+  cost: 8
+  required: LowerProtection2
+  category: Spread
+  broadcastEvent: !type:SetPlagueBlockerModifierEvent
+    modifier: 0.4
+
+- type: plagueSymptom
+  id: CleanResistance1
+  name: plague-clean-1-name
+  desc: plague-clean-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: cleantier1
+  position: -95,30
+  tier: 1
+  cost: 2
+  required: LowerProtection1
+  category: Spread
+  broadcastEvent: !type:SetPlagueMinSmellLevelEvent
+    smell: 30
+
+- type: plagueSymptom
+  id: CleanResistance2
+  name: plague-clean-2-name
+  desc: plague-clean-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: cleantier2
+  position: -95,0
+  tier: 1
+  cost: 5
+  required: CleanResistance1
+  category: Spread
+  broadcastEvent: !type:SetPlagueMinSmellLevelEvent
+    smell: 15
+
+- type: plagueSymptom
+  id: LowerSleepProtection1
+  name: plague-low-sleep-protect-1-name
+  desc: plague-low-sleep-protect-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: headache
+  position: -40,-60
+  tier: 1
+  cost: 5
+  category: Spread
+  broadcastEvent: !type:SetStrapHealResistanceEvent
+    strapResistance: 1
+    healResistance: 1
+
+- type: plagueSymptom
+  id: LowerSleepProtection2
+  name: plague-low-sleep-protect-2-name
+  desc: plague-low-sleep-protect-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: headache
+  position: -65,-30
+  tier: 1
+  cost: 8
+  required: LowerSleepProtection1
+  category: Spread
+  broadcastEvent: !type:SetStrapHealResistanceEvent
+    strapResistance: 2
+    healResistance: 2
+
+- type: plagueSymptom
+  id: ImmunityBreak1
+  name: plague-immune-break-1-name
+  desc: plague-immune-break-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: immunetier1
+  position: -15,-30
+  tier: 1
+  cost: 12
+  required: LowerSleepProtection1
+  actions: PlagueImmunityBreakAction
+  category: Spread
+
+- type: plagueSymptom
+  id: ImmunityBreak2
+  name: plague-immune-break-2-name
+  desc: plague-immune-break-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: immunetier2
+  position: -40,0
+  tier: 1
+  cost: 20
+  required:
+  - ImmunityBreak1
+  - LowerSleepProtection2
+  category: Spread
+
+- type: plagueSymptom
+  id: ContactSpread1
+  name: plague-contact-spread-1-name
+  desc: plague-contact-spread-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: infectiontier1
+  position: 40,60
+  tier: 1
+  cost: 3
+  category: Spread
+  broadcastEvent: !type:SetContactSpreadModifierEvent
+    modifier: 1.2
+
+- type: plagueSymptom
+  id: ContactSpread2
+  name: plague-contact-spread-2-name
+  desc: plague-contact-spread-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: infectiontier2
+  position: 40,30
+  tier: 1
+  cost: 7
+  required: ContactSpread1
+  category: Spread
+  broadcastEvent: !type:SetContactSpreadModifierEvent
+    modifier: 1.4
+
+- type: plagueSymptom
+  id: ContactSpread3
+  name: plague-contact-spread-2-name
+  desc: plague-contact-spread-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: infectiontier2
+  position: 40,0
+  tier: 1
+  cost: 10
+  required: ContactSpread2
+  category: Spread
+  broadcastEvent: !type:SetContactSpreadModifierEvent
+    modifier: 1.6
+
+- type: plagueSymptom
+  id: SkeletonSpread
+  name: plague-skeleton-spread-name
+  desc: plague-skeleton-spread-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: skeleton
+  position: 10,30
+  tier: 1
+  cost: 5
+  required: ContactSpread1
+  category: Spread
+  broadcastEvent: !type:SetSpreaderChanceEvent
+    id: Skeleton
+    modifier: 1
+
+- type: plagueSymptom
+  id: AnimalSpread1
+  name: plague-animal-spread-1-name
+  desc: plague-animal-spread-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: animaltier1
+  position: 70,30
+  tier: 1
+  cost: 7
+  required: ContactSpread1
+  category: Spread
+  broadcastEvent: !type:SetSpreaderChanceEvent
+    id: Animal
+    modifier: 1
+
+- type: plagueSymptom
+  id: AnimalSpread2
+  name: plague-animal-spread-2-name
+  desc: plague-animal-spread-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: animaltier2
+  position: 70,0
+  tier: 1
+  cost: 13
+  required: AnimalSpread1
+  category: Spread
+  broadcastEvent: !type:SetSpreaderChanceEvent
+    id: Animal
+    modifier: 1.5
+
+- type: plagueSymptom
+  id: RerollCure1
+  name: plague-reroll-cure-name
+  desc: plague-reroll-cure-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: cure
+  position: 120,-60
+  tier: 1
+  cost: 25
+  category: Spread
+  broadcastEvent: !type:SetPlagueCureEvent
+    reagent: MedievalPlagueCure1
+
+- type: plagueSymptom
+  id: RerollCure2
+  name: plague-reroll-cure-name
+  desc: plague-reroll-cure-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: cure
+  position: 120,-30
+  tier: 1
+  cost: 40
+  category: Spread
+  required: RerollCure1
+  broadcastEvent: !type:SetPlagueCureEvent
+    reagent: MedievalPlagueCure2
+
+- type: plagueSymptom
+  id: RerollCure3
+  name: plague-reroll-cure-name
+  desc: plague-reroll-cure-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: cure
+  position: 120,0
+  tier: 1
+  cost: 50
+  category: Spread
+  required: RerollCure2
+  broadcastEvent: !type:SetPlagueCureEvent
+    reagent: MedievalPlagueCure3

@@ -14,6 +14,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server.Imperial.Medieval.Plague;
 
 namespace Content.Server.Body.Systems
 {
@@ -171,6 +172,11 @@ namespace Content.Server.Body.Systems
                 // loop over all our groups and see which ones apply
                 if (ent.Comp1.MetabolismGroups is null)
                     continue;
+
+                // Imperial Medieval start
+                var ev = new ReagentMetabolizingEvent(reagent.Prototype);
+                RaiseLocalEvent(ent.Owner, ref ev);
+                // Imperial Medievel end
 
                 foreach (var group in ent.Comp1.MetabolismGroups)
                 {

@@ -183,7 +183,10 @@
       Growling: Understand
       Hissing: Speak
       #Elf: Speak
-
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
 
 - type: entity
   name: fox
@@ -440,6 +443,10 @@
       Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
 
 - type: entity
   name: wolf
@@ -892,6 +899,10 @@
       Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
 
 - type: entity
   name: bear
@@ -1008,6 +1019,10 @@
       Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
 
 
 - type: entity
@@ -1819,6 +1834,10 @@
       amount: 1
       prob: 0.08
   - type: IgnoreSpiderWeb
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
 
 - type: entity
   name: rabbit
@@ -1911,6 +1930,10 @@
       amount: 1
       prob: 0.08
   - type: IgnoreSpiderWeb
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
 
 - type: entity
   name: MedievalMobSpiderCave
@@ -2018,6 +2041,10 @@
       #Growling: Speak
       Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
 
 
 - type: entity
@@ -2142,6 +2169,10 @@
       #Growling: Speak
       Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
 
 
 - type: entity
@@ -2254,6 +2285,10 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Skeleton
+    chance: 0.2
 
 - type: entity
   name: weak skeleton
