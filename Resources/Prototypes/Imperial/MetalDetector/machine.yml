@@ -49,6 +49,7 @@
       usesApcPower: true
     - type: MetalDetector
       ignoredPrototypes:
+        # Syndicate
         - ClothingBackpackDuffelSyndicateDecoyKitFilled
         - ClothingBackpackDuffelSyndicateAKMS
         - ClothingBackpackDuffelSyndicateMedicalBundleFilled
@@ -75,6 +76,16 @@
         - ClothingBackpackDuffelSyndicateFilledMedical
         - ClothingBackpackSyndicate
         - ClothingOuterEVASuitSyndicate
+        - SyndicatePersonalAIImperial
+        - SyndieHandyFlag
+        - ClothingUniformJumpsuitRecruitSyndie
+        - ClothingUniformJumpsuitParamedicSyndie
+        - ClothingUniformJumpsuitRepairmanSyndie
+        - ClothingShoesBootsWinterSyndicate
+        - ClothingHeadHatSyndie
+        - TowelColorSyndicate
+        - ClothingUniformJumpskirtSyndieFormalDress
+        - ClothingUniformJumpsuitSyndieFormal
         - JetpackBlackFilled
         - ToolboxSyndicateFilled
         - ClothingNeckScarfStripedSyndieRed
@@ -109,6 +120,8 @@
         - ClothingHandsGlovesCombat
         - ClothingShoesBootsJack
         - StorageImplant
+        - ClothingUniformJumpsuitChiefEngineerSyndie
+        # Captain CAP
         - ClothingUniformJumpsuitWhiteCaptain
         - ClothingUniformJumpskirtWhiteCaptain
         - ClothingHandsGlovesCaptainWhite
@@ -122,6 +135,7 @@
         - ClothingUniformJumpsuitCapFormal
         - ClothingNeckCloakCapFormal
         - ClothingUniformJumpskirtCaptain
+        # Head of Security HOS
         - ClothingUniformJumpsuitHoS
         - ClothingUniformJumpskirtHoSAlt
         - ClothingUniformJumpsuitHoSAlt
@@ -134,39 +148,34 @@
         - ClothingUniformJumpsuitHosFormal
         - ClothingUniformJumpskirtHoS
         - ClothingHeadHatHoshat
+        # Head of Personnel HOP
         - ClothingHeadHatHopcap
         - ClothingUniformJumpskirtHoP
         - ClothingNeckCloakHop
         - ClothingUniformJumpsuitHoP
         - ClothingNeckMantleHOP
+        # Research Director RD
         - ClothingUniformJumpsuitResearchDirector
         - ClothingNeckMantleRD
         - ClothingNeckCloakRd
         - ClothingUniformJumpskirtResearchDirector
+        # Quartermaster QM
         - ClothingUniformJumpskirtQM
         - ClothingUniformJumpsuitQM
         - ClothingUniformJumpsuitQMFormal
         - ClothingNeckCloakQm
-        - ClothingNeckScarfStripedCentcom
-        - ClothingUniformJumpsuitChiefEngineerSyndie
-        - ClothingUniformJumpsuitSeniorOfficer
-        - ClothingMaskGasCentcom
+        # Chief Engineer CE
         - ClothingNeckMantleCE
-        - ClothingUniformJumpsuitCentcomAgent
         - ClothingNeckCloakCe
+        # Security
+        - ClothingUniformJumpsuitSeniorOfficer
+        # Central Command CC
+        - ClothingUniformJumpsuitCentcomAgent
+        - ClothingNeckScarfStripedCentcom
+        - ClothingMaskGasCentcom
         - ClothingHandsGlovesCentCom
         - ClothingUniformJumpsuitCentcomOfficer
         - ClothingUniformJumpskirtSpecialOfficer
-        - SyndicatePersonalAIImperial
-        - SyndieHandyFlag
-        - ClothingUniformJumpsuitRecruitSyndie
-        - ClothingUniformJumpsuitParamedicSyndie
-        - ClothingUniformJumpsuitRepairmanSyndie
-        - ClothingShoesBootsWinterSyndicate
-        - ClothingHeadHatSyndie
-        - TowelColorSyndicate
-        - ClothingUniformJumpskirtSyndieFormalDress
-        - ClothingUniformJumpsuitSyndieFormal
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection
