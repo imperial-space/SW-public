@@ -166,6 +166,57 @@
           - MobLayer
 
 - type: entity
+  name: Avel
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPAvel
+  description: Pray.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Avel.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        3000: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.5
+      baseSprintSpeed: 3
+    - type: Hands
+    - type: Puller
+    - type: Pullable
+    - type: Loadout
+      prototypes: [ ImperialAvelGear ]
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
   parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
   id: ImperialSCPMask
   name: Mask
@@ -370,3 +421,8 @@
     Poison: 0.0
     Radiation: 0.0
     Caustic: 0.0
+
+- type: startingGear
+  id: ImperialAvelGear
+  inhand:
+  - ImperialSCPKatana
