@@ -8,7 +8,7 @@
     state: nausea
   position: -120,-60
   tier: 1
-  cost: 5
+  cost: 3
   category: Symptom
   targetEvent: !type:AddSymptomEffectsEvent
     id: Vomit
@@ -60,7 +60,7 @@
     state: retchtier2
   position: -95,-15
   tier: 1
-  cost: 5
+  cost: 8
   category: Symptom
   targetEvent: !type:AddSymptomEffectsEvent
     id: Vomit
@@ -87,7 +87,7 @@
     state: intolerance
   position: -145,-30
   tier: 1
-  cost: 5
+  cost: 8
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
     components:
@@ -103,7 +103,7 @@
     state: stomach
   position: -120,0
   tier: 1
-  cost: 5
+  cost: 10
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
     components:
@@ -121,7 +121,7 @@
     state: gastrite
   position: -120,30
   tier: 1
-  cost: 5
+  cost: 13
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
     components:
@@ -138,7 +138,7 @@
     state: runny
   position: 120,-60
   tier: 1
-  cost: 5
+  cost: 2
   category: Symptom
   targetEvent: !type:AddSymptomEffectsEvent
     id: Runny
@@ -185,7 +185,7 @@
     state: coughtier2
   position: 120,0
   tier: 1
-  cost: 5
+  cost: 8
   category: Symptom
   targetEvent: !type:AddSymptomEffectsEvent
     id: Cough
@@ -214,7 +214,7 @@
     state: allergy
   position: 145,-10
   tier: 1
-  cost: 5
+  cost: 7
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
     components:
@@ -230,7 +230,7 @@
     state: asthma
   position: 95,-10
   tier: 1
-  cost: 5
+  cost: 8
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
     components:
@@ -246,7 +246,7 @@
     state: lungs
   position: 120,30
   tier: 1
-  cost: 5
+  cost: 13
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
     components:
@@ -272,7 +272,7 @@
     state: skin
   position: 0,60
   tier: 1
-  cost: 5
+  cost: 2
   category: Symptom
   targetEvent: !type:AddSymptomEffectsEvent
     id: Itch
@@ -328,7 +328,7 @@
     state: weakskin
   position: 0,0
   tier: 1
-  cost: 5
+  cost: 8
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
     components:
@@ -366,7 +366,7 @@
     state: temperature
   position: -30,15
   tier: 1
-  cost: 5
+  cost: 12
   category: Symptom
   targetEvent: !type:PlagueAddComponentsEvent
     components:
@@ -382,7 +382,7 @@
     state: skincancer
   position: 0,-30
   tier: 1
-  cost: 5
+  cost: 13
   category: Symptom
   targetEvent: !type:AddSymptomEffectsEvent
     id: Itch

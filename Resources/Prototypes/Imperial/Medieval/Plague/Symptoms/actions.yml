@@ -132,3 +132,45 @@
   category: Action
   actions: PlagueTpNotInfectedAction
   required: TpSickAction
+
+- type: plagueSymptom
+  id: CataractAction
+  name: plague-cataract-name
+  desc: plague-cataract-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: cataract
+  position: 30,-60
+  tier: 1
+  cost: 10
+  category: Action
+  actions: PlagueCataractAction
+  required: StomachCancer
+
+- type: plagueSymptom
+  id: WoundAction
+  name: plague-injury-name
+  desc: plague-injury-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: wound
+  position: 30,-60
+  tier: 1
+  cost: 10
+  category: Action
+  actions: PlagueCataractAction
+  required: SkinCancer
+
+- type: plagueSymptom
+  id: HeartAttackAction
+  name: plague-injury-name
+  desc: plague-injury-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: heart
+  position: 30,-60
+  tier: 1
+  cost: 15
+  category: Action
+  actions: PlagueCataractAction
+  required: SkinCancer

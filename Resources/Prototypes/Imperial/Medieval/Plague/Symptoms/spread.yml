@@ -7,7 +7,7 @@
     state: lowprotecttier1
   position: -120,60
   tier: 1
-  cost: 5
+  cost: 3
   category: Spread
   broadcastEvent: !type:SetPlagueBlockerModifierEvent
     modifier: 0.9
@@ -21,7 +21,7 @@
     state: lowprotecttier2
   position: -145,30
   tier: 1
-  cost: 5
+  cost: 6
   required: LowerProtection1
   category: Spread
   broadcastEvent: !type:SetPlagueBlockerModifierEvent
@@ -36,7 +36,7 @@
     state: lowprotecttier3
   position: -145,0
   tier: 1
-  cost: 5
+  cost: 8
   required: LowerProtection2
   category: Spread
   broadcastEvent: !type:SetPlagueBlockerModifierEvent
@@ -51,7 +51,7 @@
     state: cleantier1
   position: -95,30
   tier: 1
-  cost: 5
+  cost: 2
   required: LowerProtection1
   category: Spread
   broadcastEvent: !type:SetPlagueMinSmellLevelEvent
@@ -96,7 +96,7 @@
     state: headache
   position: -65,-30
   tier: 1
-  cost: 5
+  cost: 8
   required: LowerSleepProtection1
   category: Spread
   broadcastEvent: !type:SetStrapHealResistanceEvent
@@ -112,7 +112,7 @@
     state: immunetier1
   position: -15,-30
   tier: 1
-  cost: 5
+  cost: 12
   required: LowerSleepProtection1
   actions: PlagueImmunityBreakAction
   category: Spread
@@ -126,7 +126,7 @@
     state: immunetier2
   position: -40,0
   tier: 1
-  cost: 5
+  cost: 20
   required:
   - ImmunityBreak1
   - LowerSleepProtection2
@@ -141,7 +141,7 @@
     state: infectiontier1
   position: 40,60
   tier: 1
-  cost: 5
+  cost: 3
   category: Spread
   broadcastEvent: !type:SetContactSpreadModifierEvent
     modifier: 1.2
@@ -155,7 +155,7 @@
     state: infectiontier2
   position: 40,30
   tier: 1
-  cost: 5
+  cost: 7
   required: ContactSpread1
   category: Spread
   broadcastEvent: !type:SetContactSpreadModifierEvent
@@ -170,7 +170,7 @@
     state: infectiontier2
   position: 40,0
   tier: 1
-  cost: 5
+  cost: 10
   required: ContactSpread2
   category: Spread
   broadcastEvent: !type:SetContactSpreadModifierEvent
@@ -201,7 +201,7 @@
     state: animaltier1
   position: 70,30
   tier: 1
-  cost: 5
+  cost: 7
   required: ContactSpread1
   category: Spread
   broadcastEvent: !type:SetSpreaderChanceEvent
@@ -217,7 +217,7 @@
     state: animaltier2
   position: 70,0
   tier: 1
-  cost: 5
+  cost: 13
   required: AnimalSpread1
   category: Spread
   broadcastEvent: !type:SetSpreaderChanceEvent
@@ -233,8 +233,10 @@
     state: cure
   position: 120,-60
   tier: 1
-  cost: 5
+  cost: 25
   category: Spread
+  broadcastEvent: !type:SetPlagueCureEvent
+    reagent: MedievalPlagueCure1
 
 - type: plagueSymptom
   id: RerollCure2
@@ -245,8 +247,11 @@
     state: cure
   position: 120,-30
   tier: 1
-  cost: 5
+  cost: 40
   category: Spread
+  required: RerollCure1
+  broadcastEvent: !type:SetPlagueCureEvent
+    reagent: MedievalPlagueCure2
 
 - type: plagueSymptom
   id: RerollCure3
@@ -257,5 +262,8 @@
     state: cure
   position: 120,0
   tier: 1
-  cost: 5
+  cost: 50
   category: Spread
+  required: RerollCure2
+  broadcastEvent: !type:SetPlagueCureEvent
+    reagent: MedievalPlagueCure3
