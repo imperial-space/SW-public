@@ -89,13 +89,13 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
         tooltipContainer.AddChild(panel);
 
         var progressLabel = new RichTextLabel();
-        progressLabel.SetMessage(FormattedMessage.FromUnformatted($"[bold]Прогресс: {data?.Points ?? 0} / {proto.Cost}[/bold]"), defaultColor: Color.FromHex("#ff002bff"));
+        progressLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]Прогресс: {data?.Points ?? 0} / {proto.Cost}[/bold]"), defaultColor: Color.FromHex("#ff002bff"));
         tooltipContainer.AddChild(progressLabel);
 
         if (proto.Required.Count() > 0)
         {
             var label = new RichTextLabel();
-            label.SetMessage(FormattedMessage.FromUnformatted("[bold]Требует:[/bold]"), defaultColor: Color.FromHex("#ff002bff"));
+            label.SetMessage(FormattedMessage.FromMarkupOrThrow("[bold]Требует:[/bold]"), defaultColor: Color.FromHex("#ff002bff"));
             tooltipContainer.AddChild(label);
             foreach (var item in proto.Required)
             {
