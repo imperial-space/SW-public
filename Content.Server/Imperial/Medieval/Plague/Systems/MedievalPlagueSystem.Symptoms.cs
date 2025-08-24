@@ -299,6 +299,7 @@ public sealed partial class MedievalPlagueSystem
             if (_timing.CurTime >= comp.EndTime)
             {
                 RemComp<PlagueDizzinessComponent>(uid);
+                _moveSpeed.RefreshMovementSpeedModifiers(uid);
                 continue;
             }
         }
