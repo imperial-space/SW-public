@@ -5,6 +5,8 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Medieval.Plague;
+using Robust.Shared.Audio;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
 
 namespace Content.Server.Imperial.Medieval.Plague;
@@ -65,7 +67,10 @@ public sealed partial class MedievalPlagueSystem
         }
 
         if (TryInfect(args.Target, uid))
+        {
+            _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/infect.ogg"), Filter.Empty().FromEntities(uid), false);
             _popup.PopupEntity(Loc.GetString("medieval-plague-infected-success-popup"), args.Target, uid);
+        }
         else
             _popup.PopupEntity(Loc.GetString("medieval-plague-infected-failure-popup"), args.Target, uid);
     }
@@ -129,6 +134,10 @@ public sealed partial class MedievalPlagueSystem
         var block = EnsureComp<PlagueDizzinessComponent>(uid);
         block.EndTime = _timing.CurTime + TimeSpan.FromSeconds(15);
         _moveSpeed.RefreshMovementSpeedModifiers(args.Target);
+
+        _audio.PlayGlobal(new SoundCollectionSpecifier("PlagueDizziness"), Filter.Empty().FromEntities(args.Target), false);
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/dizzy.ogg"), Filter.Empty().FromEntities(uid), false);
+
         _popup.PopupEntity(Loc.GetString("medieval-plague-dizziness-ghost-popup"), args.Target, uid);
         _popup.PopupEntity(Loc.GetString("medieval-plague-dizziness-target-popup"), args.Target, args.Target, Shared.Popups.PopupType.MediumCaution);
     }
@@ -144,6 +153,8 @@ public sealed partial class MedievalPlagueSystem
         args.Handled = true;
 
         _status.TryAddStatusEffect<ForcedSleepingComponent>(args.Target, "ForcedSleep", TimeSpan.FromSeconds(15), true);
+
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/sleepy.ogg"), Filter.Empty().FromEntities(uid, args.Target), false);
         _popup.PopupEntity(Loc.GetString("medieval-plague-forced-sleep-ghost-popup"), args.Target, uid);
         _popup.PopupEntity(Loc.GetString("medieval-plague-forced-sleep-target-popup"), args.Target, args.Target, Shared.Popups.PopupType.MediumCaution);
     }
@@ -169,6 +180,7 @@ public sealed partial class MedievalPlagueSystem
             return;
         }
 
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/immune_break.ogg"), Filter.Empty().FromEntities(uid), false);
         _popup.PopupEntity(Loc.GetString("medieval-plague-break-immunity-success-popup"), args.Target, uid);
         RemComp<MedievalPlagueImmuneComponent>(args.Target);
     }
@@ -205,7 +217,7 @@ public sealed partial class MedievalPlagueSystem
         if (args.Handled)
             return;
 
-        var targets = EntityManager.AllEntities<MedievalPlagueInfectedComponent>();
+        var targets = EntityManager.AllEntities<MedievalPlagueInfectedComponent>().Where(x => _mobState.IsAlive(x.Owner));
         if (!targets.Any())
         {
             _popup.PopupEntity(Loc.GetString("medieval-plague-teleport-infected-none-popup"), uid, uid);
@@ -213,6 +225,8 @@ public sealed partial class MedievalPlagueSystem
         }
 
         args.Handled = true;
+
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/teleport.ogg"), Filter.Empty().FromEntities(uid), false);
         _transform.SetCoordinates(uid, Transform(_random.Pick(targets.ToList())).Coordinates);
     }
 
@@ -221,7 +235,7 @@ public sealed partial class MedievalPlagueSystem
         if (args.Handled)
             return;
 
-        var targets = EntityManager.AllEntities<MedievalCanBeInfectedComponent>().Where(x => !HasComp<MedievalPlagueInfectedComponent>(x.Owner));
+        var targets = EntityManager.AllEntities<MedievalCanBeInfectedComponent>().Where(x => !HasComp<MedievalPlagueInfectedComponent>(x.Owner) && _mobState.IsAlive(x.Owner));
         if (!targets.Any())
         {
             _popup.PopupEntity(Loc.GetString("medieval-plague-teleport-not-infected-none-popup"), uid, uid);
@@ -229,6 +243,8 @@ public sealed partial class MedievalPlagueSystem
         }
 
         args.Handled = true;
+
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/teleport.ogg"), Filter.Empty().FromEntities(uid), false);
         _transform.SetCoordinates(uid, Transform(_random.Pick(targets.ToList())).Coordinates);
     }
 
@@ -267,6 +283,7 @@ public sealed partial class MedievalPlagueSystem
 
         args.Handled = true;
 
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/injury.ogg"), Filter.Empty().FromEntities(uid), false);
         _blind.SetMinDamage(args.Target, 3);
     }
 
@@ -279,6 +296,9 @@ public sealed partial class MedievalPlagueSystem
             return;
 
         args.Handled = true;
+
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/heart_stop.ogg"), Filter.Empty().FromEntities(uid), false);
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/my_heart_stopped.ogg"), Filter.Empty().FromEntities(args.Target), false);
 
         _jitter.DoJitter(args.Target, TimeSpan.FromSeconds(4), true, frequency: 6);
         _mobState.ChangeMobState(args.Target, Shared.Mobs.MobState.Dead);
