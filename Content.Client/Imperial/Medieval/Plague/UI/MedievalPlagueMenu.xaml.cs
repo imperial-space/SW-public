@@ -104,7 +104,7 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
             {
                 var reqProto = _proto.Index<MedievalPlagueSymptomPrototype>(item);
                 var requiredLabel = new RichTextLabel();
-                requiredLabel.SetMessage(reqProto.Name, defaultColor: Color.FromHex("#ff002bff"));
+                requiredLabel.SetMessage(Loc.GetString(reqProto.Name), defaultColor: Color.FromHex("#ff002bff"));
                 tooltipContainer.AddChild(requiredLabel);
             }
         }
