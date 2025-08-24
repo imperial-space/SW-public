@@ -174,7 +174,7 @@ public sealed partial class MedievalPlagueSystem
 
         if (!_symptoms.Where(x => x.Value.Unlocked).ToDictionary().ContainsKey("ImmunityBreak2") &&
             TryComp<MedievalPlagueImmuneComponent>(args.Target, out var immune) &&
-            immune.StartTime + TimeSpan.FromMinutes(15) < _timing.CurTime)
+            (immune.StartTime + TimeSpan.FromMinutes(15) < _timing.CurTime || immune.HardImmunity))
         {
             _popup.PopupEntity(Loc.GetString("medieval-plague-break-immunity-failure-popup"), args.Target, uid);
             return;

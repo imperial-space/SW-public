@@ -11,6 +11,8 @@
       effects:
       - !type:ProgressPlague
         ProgressAmount: -4
+      - !type:GrantPlagueImmunity
+        probability: 0.4
       - !type:Drunk
         slurSpeech: false
         boozePower: 20
@@ -28,6 +30,8 @@
       effects:
       - !type:ProgressPlague
         ProgressAmount: -4
+      - !type:GrantPlagueImmunity
+        probability: 0.4
       - !type:Drunk
         slurSpeech: false
         boozePower: 20
@@ -45,6 +49,8 @@
       effects:
       - !type:ProgressPlague
         ProgressAmount: -4
+      - !type:GrantPlagueImmunity
+        probability: 0.4
       - !type:Drunk
         slurSpeech: false
         boozePower: 20

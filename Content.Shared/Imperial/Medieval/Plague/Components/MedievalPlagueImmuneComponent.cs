@@ -6,4 +6,6 @@ namespace Content.Shared.Imperial.Medieval.Plague;
 public sealed partial class MedievalPlagueImmuneComponent : Component
 {
     public TimeSpan StartTime;
+
+    public bool HardImmunity = false;
 }
