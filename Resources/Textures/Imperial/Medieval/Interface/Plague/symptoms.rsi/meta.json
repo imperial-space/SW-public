@@ -25,6 +25,9 @@
         "name": "bugs"
       },
       {
+        "name": "cataract"
+      },
+      {
         "name": "cleantier1"
       },
       {
@@ -62,6 +65,9 @@
       },
       {
         "name": "headache"
+      },
+      {
+        "name": "heart"
       },
       {
         "name": "hunger"
@@ -149,6 +155,9 @@
       },
       {
         "name": "weakskin"
+      },
+      {
+        "name": "wound"
       }
     ]
   }
