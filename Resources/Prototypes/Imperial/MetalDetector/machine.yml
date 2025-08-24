@@ -165,6 +165,8 @@
         # Chief Engineer CE
         - ClothingNeckMantleCE
         - ClothingNeckCloakCe
+        - ClothingUniformJumpsuitChiefEngineer
+        - ClothingUniformJumpskirtChiefEngineer
         # Security
         - ClothingUniformJumpsuitSeniorOfficer
         - ClothingUniformJumpskirtSeniorOfficer
