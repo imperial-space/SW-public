@@ -17,6 +17,7 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
 {
     private IPrototypeManager _proto = default!;
     private Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> _data = new();
+    private SummaryPlagueData _info = new();
 
     public SymptomCategory Category = SymptomCategory.Symptom;
     public Action<ProtoId<MedievalPlagueSymptomPrototype>>? OnSymptomSelect;
@@ -40,11 +41,12 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
         SymptomsMode.Pressed = true;
     }
 
-    public void Populate(IPrototypeManager protoMan, Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> dict)
+    public void Populate(IPrototypeManager protoMan, Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> dict, SummaryPlagueData info)
     {
         Layout.RemoveAllChildren();
         _proto = protoMan;
         _data = dict;
+        _info = info;
 
         var symptoms = protoMan.EnumeratePrototypes<MedievalPlagueSymptomPrototype>().Where(x => x.Category == Category);
         foreach (var item in symptoms)
@@ -92,7 +94,7 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
         panel.AddChild(tooltipContainer);
 
         var progressLabel = new RichTextLabel();
-        progressLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]Прогресс: {data?.Points ?? 0} / {proto.Cost}[/bold]"), defaultColor: Color.FromHex("#ff002bff"));
+        progressLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]Прогресс: {data?.Points ?? 0} / {proto.GetCost(_info)}[/bold]"), defaultColor: Color.FromHex("#ff002bff"));
         tooltipContainer.AddChild(progressLabel);
 
         if (proto.Required.Count() > 0)
@@ -116,6 +118,6 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
     private void SelectMode(SymptomCategory category)
     {
         Category = category;
-        Populate(_proto, _data);
+        Populate(_proto, _data, _info);
     }
 }

@@ -119,6 +119,8 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
     {
         EnsureComp<MedievalPlagueInfectedComponent>(uid);
 
+        _data.Infected++;
+
         if (addPoint)
             AddPoints();
 
@@ -148,6 +150,10 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         if (comp.Progression <= 0)
         {
             RemComp(uid, comp);
+
+            _data.Infected--;
+            _data.Immune++;
+
             var immune = EnsureComp<MedievalPlagueImmuneComponent>(uid);
             immune.StartTime = _timing.CurTime;
         }
@@ -264,6 +270,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
             return false;
 
         comp.Points += points;
+        _data.Points += points;
         Dirty(uid, comp);
         UpdateUi(uid);
         _alerts.ShowAlert(uid, comp.AlertId);
@@ -277,6 +284,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         foreach (var item in ghosts)
         {
             item.Comp.Points++;
+            _data.Points++;
             Dirty(item);
             _alerts.ShowAlert(item, item.Comp.AlertId);
         }

@@ -16,6 +16,9 @@ public sealed partial class MedievalPlagueSystem
     private void InitializeGhost()
     {
         SubscribeLocalEvent<MedievalPlagueGhostComponent, ComponentInit>(OnGhostInit);
+        SubscribeLocalEvent<MedievalPlagueGhostComponent, ComponentShutdown>(OnGhostShutdown);
+
+
         SubscribeLocalEvent<MedievalPlagueGhostComponent, InfectTargetActionEvent>(OnInfectAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueForcedVomitActionEvent>(OnVomitAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueAsthmaticActionEvent>(OnAsthmaAction);
@@ -41,10 +44,17 @@ public sealed partial class MedievalPlagueSystem
         UpdateInfectAction();
         _alerts.ShowAlert(uid, comp.AlertId);
 
+        _data.PlagueGhosts++;
+
         foreach (var item in _symptoms.Where(x => x.Value.Unlocked))
         {
             AddPrototypeActions(uid, item.Key);
         }
+    }
+
+    private void OnGhostShutdown(EntityUid uid, MedievalPlagueGhostComponent comp, ComponentShutdown args)
+    {
+        _data.PlagueGhosts--;
     }
 
     private void OnInfectAction(EntityUid uid, MedievalPlagueGhostComponent comp, InfectTargetActionEvent args)
