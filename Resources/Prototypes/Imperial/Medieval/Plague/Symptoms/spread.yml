@@ -233,7 +233,8 @@
     state: cure
   position: 120,-60
   tier: 1
-  cost: 25
+  cost: 30
+  staticCost: true
   category: Spread
   broadcastEvent: !type:SetPlagueCureEvent
     reagent: MedievalPlagueCure1
@@ -248,6 +249,7 @@
   position: 120,-30
   tier: 1
   cost: 40
+  staticCost: true
   category: Spread
   required: RerollCure1
   broadcastEvent: !type:SetPlagueCureEvent
@@ -263,6 +265,7 @@
   position: 120,0
   tier: 1
   cost: 50
+  staticCost: true
   category: Spread
   required: RerollCure2
   broadcastEvent: !type:SetPlagueCureEvent
