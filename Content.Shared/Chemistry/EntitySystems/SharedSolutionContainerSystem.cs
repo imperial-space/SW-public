@@ -19,6 +19,7 @@ using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Dependency = Robust.Shared.IoC.DependencyAttribute;
+using Content.Shared.Imperial.Medieval.ChemistryRandomization;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
@@ -805,7 +806,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
                 ("wordedAmount", Loc.GetString(solution.Contents.Count == 1
                     ? "shared-solution-container-component-on-examine-worded-amount-one-reagent"
                     : "shared-solution-container-component-on-examine-worded-amount-multiple-reagents")),
-                ("desc", primary.LocalizedPhysicalDescription)));
+                ("desc", SharedChemistryRandomizationSystem.GetDescription(primary))));   // Imperial Medieval desc
 
             var reagentPrototypes = solution.GetReagentPrototypes(PrototypeManager);
 
@@ -850,7 +851,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
                     part = "examinable-solution-recognized-next";
                 }
 
-                msg.Append(Loc.GetString(part, ("color", reagent.SubstanceColor.ToHexNoAlpha()),
+                msg.Append(Loc.GetString(part, ("color", SharedChemistryRandomizationSystem.GetColor(reagent).ToHexNoAlpha()),  // Imperial Medieval color
                     ("chemical", reagent.LocalizedName)));
             }
 
@@ -921,7 +922,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
             msg.PushNewline();
             msg.AddMarkupOrThrow(Loc.GetString("scannable-solution-chemical"
                 , ("type", proto.LocalizedName)
-                , ("color", proto.SubstanceColor.ToHexNoAlpha())
+                , ("color", SharedChemistryRandomizationSystem.GetColor(proto).ToHexNoAlpha())    // Imperial Medieval color
                 , ("amount", quantity)));
         }
 

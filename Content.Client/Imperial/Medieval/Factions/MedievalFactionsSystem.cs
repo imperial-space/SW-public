@@ -32,6 +32,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
         SubscribeLocalEvent<FactionDataContainerComponent, AfterAutoHandleStateEvent>(AfterAutoHandleState);
         SubscribeNetworkEvent<OpenOfferFactionRelationsEvent>(OnOpenOfferWindow);
         SubscribeNetworkEvent<OpenAcceptFactionRelationsEvent>(OnOpenAcceptWindow);
+        SubscribeNetworkEvent<OpenFactionRelationsRequestEvent>(OnOpenRequestWindow);
     }
 
     private void AfterAutoHandleState(EntityUid uid, FactionDataContainerComponent comp, ref AfterAutoHandleStateEvent args)
@@ -64,6 +65,11 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
     private void OnOpenAcceptWindow(OpenAcceptFactionRelationsEvent ev)
     {
         _uiMan.GetUIController<FactionRelationsUiController>().OpenAcceptMenu(ev.UserFaction, ev.TargetFaction, ev.Relation);
+    }
+
+    private void OnOpenRequestWindow(OpenFactionRelationsRequestEvent ev)
+    {
+        _uiMan.GetUIController<FactionRelationsUiController>().OpenRequestRelationMenu(ev.Target, ev.From);
     }
 
     public override void OpenMenu(ProtoId<MedievalFactionPrototype> proto, Dictionary<int, FactionMemberData> data, FactionMenuAccess access)
