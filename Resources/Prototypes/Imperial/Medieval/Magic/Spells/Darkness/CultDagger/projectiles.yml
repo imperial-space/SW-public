@@ -1,0 +1,17 @@
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerCult
+  id: MedievalMagicDaggerCult
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/dagger_cult_magic.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/dagger_cult_magic.rsi
+  - type: TimedDespawn
+    lifetime: 15
+  - type: SpawnOnDespawn
+    prototype: CultDaggerParticles

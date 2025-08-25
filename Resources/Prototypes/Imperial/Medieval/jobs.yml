@@ -2449,6 +2449,9 @@
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalRecipeBook
 
 - type: playTimeTracker
   id: JobMedievalLegionAlchemic
@@ -3019,6 +3022,9 @@
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalRecipeBook
 
 - type: playTimeTracker
   id: JobMedievalInsurgencyAlchemic

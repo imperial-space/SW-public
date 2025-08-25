@@ -1,0 +1,13 @@
+- type: entity
+  id: CultDaggerParticles
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    state: 3
+  - type: MedievalParticles
+    color: "#420d0d"
+  - type: TimedDespawn
+    lifetime: 5
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Medieval/stone_release.ogg

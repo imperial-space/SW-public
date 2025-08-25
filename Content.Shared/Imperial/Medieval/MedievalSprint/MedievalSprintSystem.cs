@@ -36,13 +36,24 @@ public sealed partial class MedievalSprintSystem : EntitySystem
                 continue;
 
             if ((inputMoverComponent.HeldMoveButtons & MoveButtons.Walk) == 0 && inputMoverComponent.HeldMoveButtons != MoveButtons.Walk)
+            {
+                component.Sprinting = false;
                 continue;
+            }
 
             if (physicsComponent.LinearVelocity == Vector2.Zero || staminaComponent.Critical)
+            {
+                component.Sprinting = false;
                 continue;
+            }
 
             if (!EnoughStamina(component, staminaComponent))
+            {
+                component.Sprinting = false;
                 continue;
+            }
+
+            component.Sprinting = true;
 
             if (component.Tried)
                 _speedModifierSystem.RefreshMovementSpeedModifiers(uid);
