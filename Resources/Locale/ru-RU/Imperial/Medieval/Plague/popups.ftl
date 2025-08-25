@@ -41,3 +41,8 @@ medieval-plague-cataract-ghost-popup = Вы повредили зрение { $t
 medieval-plague-cataract-target-popup = Ваше зрение ухудшилось...
 
 medieval-plague-heart-attack-ghost-popup = Вы устроили сердечный приступ { $target }.
+
+
+plague-bloodletting-result-infected = Кровь { $target } выглядит заражённой.
+plague-bloodletting-result-healthy = Кровь { $target } выглядит здоровой.
+plague-bloodletting-result-immune = Кровь { $target } имеет признаки иммунитета к чуме.
