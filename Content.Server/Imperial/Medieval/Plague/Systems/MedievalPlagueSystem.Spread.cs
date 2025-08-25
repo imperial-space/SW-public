@@ -1,5 +1,9 @@
+using System.Linq;
 using Content.Shared.Chemistry.Reagent;
+using Content.Shared.DoAfter;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.Plague;
+using Content.Shared.Interaction;
 using Content.Shared.Movement.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Physics.Events;
@@ -16,6 +20,40 @@ public sealed partial class MedievalPlagueSystem
 
     public ProtoId<ReagentPrototype> CurrentCure = "MedievalPlagueCure4";
 
+    private Dictionary<BloodlettingResult, Dictionary<BloodlettingResult, float>> _bloodlettingProbabilities = new()
+    {
+        {
+            BloodlettingResult.Healthy, new()
+            {
+                { BloodlettingResult.Healthy, 0.95f },
+                { BloodlettingResult.Infected, 0.03f },
+                { BloodlettingResult.Immune, 0.02f }
+            }
+        },
+        {
+            BloodlettingResult.Immune, new()
+            {
+                { BloodlettingResult.Immune, 0.95f },
+                { BloodlettingResult.Healthy, 0.04f },
+                { BloodlettingResult.Healthy, 0.01f }
+            }
+        },
+        {
+            BloodlettingResult.InfectedIncub, new()
+            {
+                { BloodlettingResult.Infected, 0.93f },
+                { BloodlettingResult.Healthy, 0.05f },
+                { BloodlettingResult.Immune, 0.03f }
+            }
+        },
+        {
+            BloodlettingResult.Infected, new()
+            {
+                { BloodlettingResult.Infected, 0.97f },
+                { BloodlettingResult.Healthy, 0.03f }
+            }
+        },
+    };
 
     private void InitializeSpread()
     {
@@ -25,11 +63,14 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<MedievalPlagueSpreadBlockingComponent, MedievalPlagueInfectionAttemptEvent>(OnBlockerInfectionAttempt);
 
         SubscribeLocalEvent<MedievalPlagueInfectedComponent, PlagueHealingItemUsedEvent>(OnHealingItemUsed);
+        SubscribeLocalEvent<BloodlettingToolComponent, AfterInteractEvent>(OnBloodlettingUse);
+        SubscribeLocalEvent<BloodlettingToolComponent, BloodlettingDoAfterEvent>(OnBloodlettingDoAfter);
 
         SubscribeLocalEvent<SetContactSpreadModifierEvent>(OnSetContactSpreadMod);
         SubscribeLocalEvent<SetSpreaderChanceEvent>(OnSetSpreaderChance);
         SubscribeLocalEvent<SetPlagueBlockerModifierEvent>(OnSetBlockerMod);
         SubscribeLocalEvent<SetStrapHealResistanceEvent>(OnSetStrapResistance);
+        SubscribeLocalEvent<SetBloodlettingProbabilitiesEvent>(OnSetBloodlettingProb);
         SubscribeLocalEvent<SetPlagueCureEvent>(OnSetCure);
     }
 
@@ -38,6 +79,10 @@ public sealed partial class MedievalPlagueSystem
         if (!TryComp<MobCollisionComponent>(uid, out var collision) || args.OurFixtureId != collision.FixtureId)
             return;
 
+        if (comp.NextCollideSpread > _timing.CurTime)
+            return;
+
+        comp.NextCollideSpread = _timing.CurTime + TimeSpan.FromSeconds(1);
         TryInfect(args.OtherEntity, _contactSpreadMod);
     }
 
@@ -73,6 +118,75 @@ public sealed partial class MedievalPlagueSystem
         TryProgressInfection(uid, -args.PlagueDecay, comp);
     }
 
+    private void OnBloodlettingUse(EntityUid uid, BloodlettingToolComponent comp, AfterInteractEvent args)
+    {
+        if (!HasComp<MedievalPlagueInfectedComponent>(args.Target) &&
+            !HasComp<MedievalCanBeInfectedComponent>(args.Target) &&
+            !HasComp<MedievalPlagueImmuneComponent>(args.Target))
+            return;
+
+        if (comp.Result != BloodlettingResult.None || comp.DoAfter.HasValue)
+            return;
+
+        var ev = new DoAfterArgs(EntityManager, args.User, comp.Duration, new BloodlettingDoAfterEvent(), uid, args.Target, uid)
+        {
+            BreakOnDamage = true,
+            BreakOnMove = true,
+            BreakOnDropItem = true,
+            BreakOnHandChange = true
+        };
+
+        _doAfter.TryStartDoAfter(ev, out comp.DoAfter);
+    }
+
+    private void OnBloodlettingDoAfter(EntityUid uid, BloodlettingToolComponent comp, BloodlettingDoAfterEvent args)
+    {
+        if (args.Cancelled || args.Target == null)
+        {
+            comp.DoAfter = null;
+            return;
+        }
+
+        if (!HasComp<MedievalPlagueInfectedComponent>(args.Target) &&
+                !HasComp<MedievalCanBeInfectedComponent>(args.Target) &&
+                !HasComp<MedievalPlagueImmuneComponent>(args.Target))
+            return;
+
+        if (comp.Result != BloodlettingResult.None || comp.DoAfter.HasValue)
+            return;
+
+        var realResult = BloodlettingResult.None;
+        if (HasComp<MedievalPlagueImmuneComponent>(args.Target))
+            realResult = BloodlettingResult.Immune;
+        else if (TryComp<MedievalPlagueInfectedComponent>(args.Target, out var infected))
+            realResult = infected.Incubation ? BloodlettingResult.InfectedIncub : BloodlettingResult.Infected;
+        else
+            realResult = BloodlettingResult.Healthy;
+
+        var prob = _random.NextFloat(1f);
+        var cach = 0f;
+        var result = BloodlettingResult.None;
+
+        for (var i = 0; i < _bloodlettingProbabilities[realResult].Count; i++)
+        {
+            var item = _bloodlettingProbabilities[realResult].ElementAt(i);
+            if (prob > item.Value + cach)
+            {
+                cach += item.Value;
+                continue;
+            }
+
+            result = item.Key;
+        }
+
+        _popup.PopupEntity(
+                        Loc.GetString($"plague-bloodletting-result-{result.ToString().ToLower()}",
+                                    ("target", Identity.Name(args.Target.Value, EntityManager, args.User))),
+                        args.User, args.User, Shared.Popups.PopupType.Medium);
+        comp.Result = result;
+        _appearance.SetData(uid, BloodlettingVisuals.Data, result);
+    }
+
     private void OnSetContactSpreadMod(SetContactSpreadModifierEvent args)
         => _contactSpreadMod = args.Modifier;
 
@@ -104,5 +218,13 @@ public sealed partial class MedievalPlagueSystem
     private void OnSetCure(SetPlagueCureEvent args)
     {
         CurrentCure = args.Reagent;
+    }
+
+    private void OnSetBloodlettingProb(SetBloodlettingProbabilitiesEvent args)
+    {
+        foreach (var item in args.Data)
+        {
+            _bloodlettingProbabilities[item.Key] = item.Value;
+        }
     }
 }

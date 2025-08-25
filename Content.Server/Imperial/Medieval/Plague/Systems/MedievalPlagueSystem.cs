@@ -4,6 +4,7 @@ using Content.Server.BadSmell.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Buckle.Systems;
 using Content.Server.Chat.Managers;
+using Content.Server.DoAfter;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking.Events;
 using Content.Server.Imperial.Medieval.Skills;
@@ -64,6 +65,8 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
     [Dependency] private readonly PolymorphSystem _polymorph = default!;
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly IChatManager _chat = default!;
+    [Dependency] private readonly DoAfterSystem _doAfter = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
 
     private Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> _symptoms = new();
     private int _strapHealResistance = 0;
@@ -95,6 +98,41 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         _minSmellLevel = 50f;
         _allergyRandom = new();
         CurrentCure = "MedievalPlagueCure4";
+
+        _bloodlettingProbabilities = new()
+        {
+            {
+                BloodlettingResult.Healthy, new()
+                {
+                    { BloodlettingResult.Healthy, 0.95f },
+                    { BloodlettingResult.Infected, 0.03f },
+                    { BloodlettingResult.Immune, 0.02f }
+                }
+            },
+            {
+                BloodlettingResult.Immune, new()
+                {
+                    { BloodlettingResult.Immune, 0.95f },
+                    { BloodlettingResult.Healthy, 0.04f },
+                    { BloodlettingResult.Healthy, 0.01f }
+                }
+            },
+            {
+                BloodlettingResult.InfectedIncub, new()
+                {
+                    { BloodlettingResult.Infected, 0.93f },
+                    { BloodlettingResult.Healthy, 0.05f },
+                    { BloodlettingResult.Immune, 0.03f }
+                }
+            },
+            {
+                BloodlettingResult.Infected, new()
+                {
+                    { BloodlettingResult.Infected, 0.97f },
+                    { BloodlettingResult.Healthy, 0.03f }
+                }
+            },
+        };
     }
 
     public bool TryInfect(EntityUid uid, float additionalMod = 1f, bool addPoint = true)

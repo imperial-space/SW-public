@@ -30,6 +30,9 @@ public sealed partial class MedievalPlagueInfectedComponent : Component
     public TimeSpan NextUpdate = TimeSpan.Zero;
 
     [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan NextCollideSpread = TimeSpan.Zero;
+
+    [ViewVariables(VVAccess.ReadWrite)]
     public Dictionary<string, BasePlagueEffect> Effects = new();
 
     [ViewVariables(VVAccess.ReadWrite)]
