@@ -129,3 +129,69 @@
     maxItemSize: Huge
     grid:
     - 0,0,19,9
+
+- type: entity
+  parent: [Clothing, ClothingSlotBase]
+  id: ClothingBackpackFlametrowherTank
+  name: backpack water tank
+  suffix: seriozha, Недра
+  description: Holds a large amount of fluids. Supplies to spray nozzles in your hands, and has a slot on the side for said spray nozzles.
+  components:
+  - type: Tag
+    tags:
+    - FlametrowherTank
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/flametrower_tank.rsi
+    state: icon
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    slots: BACK
+    sprite: Imperial/Seriozha/SCP/clothing/flametrower_tank.rsi
+  - type: ItemSlots
+    slots:
+      item:
+        priority: 2
+        whitelist:
+          tags:
+          - Flametrowher
+  - type: Appearance
+  - type: SolutionAmmoProvider
+    solutionId: tank
+    proto: BulletWaterShot
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        maxVol: 2000
+  - type: SolutionTransfer
+    transferAmount: 50
+    maxTransferAmount: 100
+    minTransferAmount: 25
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
+  - type: DrawableSolution
+    solution: tank
+  - type: RefillableSolution
+    solution: tank
+  - type: DrainableSolution
+    solution: tank
+  - type: ExaminableSolution
+    solution: tank
+
+- type: entity
+  parent: ClothingBackpackFlametrowherTank
+  id: ClothingBackpackFlametrowherTankFilled
+  suffix: seriozha, Недра, Filled
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      tank:
+        reagents:
+        - ReagentId: Napalm
+          Quantity: 1900
+        - ReagentId: Phlogiston
+          Quantity: 100
+        maxVol: 2000

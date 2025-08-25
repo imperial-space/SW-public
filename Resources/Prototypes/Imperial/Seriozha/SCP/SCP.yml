@@ -4,6 +4,9 @@
   id: ImperialSCPBase
   suffix: AI
   components:
+    - type: Tag
+      tags:
+      - SCP
     - type: TriggerOnMobstateChange
       mobState:
       - Dead
@@ -64,7 +67,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        5000: Dead
+        4000: Dead
     - type: MeleeWeapon
       hidden: true
       altDisarm: false
@@ -187,12 +190,12 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        3000: Dead
+        2000: Dead
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3.5
-      baseSprintSpeed: 3
+      baseWalkSpeed: 3.2
+      baseSprintSpeed: 2.8
     - type: Hands
     - type: Puller
     - type: Pullable
@@ -264,7 +267,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        4000: Dead
+        3000: Dead
     - type: MeleeWeapon
       hidden: true
       altDisarm: false
@@ -338,8 +341,8 @@
     soundHit:
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
-    reflectProb: 0.28
-    spread: 60
+    reflectProb: 0.15
+    spread: 90
   - type: DisarmMalus
 
 - type: emoteSounds
