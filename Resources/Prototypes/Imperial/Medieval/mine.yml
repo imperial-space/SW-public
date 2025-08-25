@@ -375,6 +375,8 @@
           state: soil_n
         - map: [ "enum.EdgeLayer.West" ]
           state: soil_w
+    - type: MedievalMeleeBadTarget # imperial medieval-
+      safeToHitGroup: structure # imperial medieval
 
 - type: entity
   id: MedievalWallSoilNormal
