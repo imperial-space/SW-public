@@ -38,7 +38,7 @@ public sealed partial class MedievalPlagueSystem
         if (!TryComp<MobCollisionComponent>(uid, out var collision) || args.OurFixtureId != collision.FixtureId)
             return;
 
-        TryInfect(args.OtherEntity, comp.PlagueSource, _contactSpreadMod);
+        TryInfect(args.OtherEntity, _contactSpreadMod);
     }
 
     private void OnSpreaderInit(EntityUid uid, MedievalPlagueInfectOnHitComponent comp, ComponentInit args)
@@ -55,7 +55,7 @@ public sealed partial class MedievalPlagueSystem
         var chance = comp.Chance * _spreaders.GetValueOrDefault(comp.Id, 1f);
 
         foreach (var item in args.HitEntities)
-            TryInfect(item, null, chance);
+            TryInfect(item, chance);
     }
 
     private void OnBlockerInfectionAttempt(EntityUid uid, MedievalPlagueSpreadBlockingComponent comp, ref MedievalPlagueInfectionAttemptEvent args)

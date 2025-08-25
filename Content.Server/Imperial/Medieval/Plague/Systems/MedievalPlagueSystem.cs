@@ -97,7 +97,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         CurrentCure = "MedievalPlagueCure4";
     }
 
-    public bool TryInfect(EntityUid uid, EntityUid? plagueSource, float additionalMod = 1f, bool addPoint = true)
+    public bool TryInfect(EntityUid uid, float additionalMod = 1f, bool addPoint = true)
     {
         if (!HasComp<MedievalCanBeInfectedComponent>(uid) || HasComp<MedievalPlagueInfectedComponent>(uid))
             return false;
@@ -111,17 +111,16 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         if (!_random.Prob(ev.Probability * additionalMod))
             return false;
 
-        Infect(uid, plagueSource, addPoint);
+        Infect(uid, addPoint);
         return true;
     }
 
-    public void Infect(EntityUid uid, EntityUid? plagueSource, bool addPoint = true)
+    public void Infect(EntityUid uid, bool addPoint = true)
     {
-        var comp = EnsureComp<MedievalPlagueInfectedComponent>(uid);
-        comp.PlagueSource = plagueSource;
+        EnsureComp<MedievalPlagueInfectedComponent>(uid);
 
         if (addPoint)
-            AddPoint(plagueSource);
+            AddPoints();
 
         RaisePrototypeIncubationEvents(uid);
     }
@@ -272,18 +271,17 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         return true;
     }
 
-    private void AddPoint(EntityUid? uid, MedievalPlagueGhostComponent? comp = null)
+    private void AddPoints()
     {
-        if (!uid.HasValue)
-            return;
+        var ghosts = EntityManager.AllEntities<MedievalPlagueGhostComponent>();
+        foreach (var item in ghosts)
+        {
+            item.Comp.Points++;
+            Dirty(item);
+            _alerts.ShowAlert(item, item.Comp.AlertId);
+        }
 
-        if (!Resolve(uid.Value, ref comp))
-            return;
-
-        comp.Points++;
-        Dirty(uid.Value, comp);
-        UpdateUi(uid.Value);
-        _alerts.ShowAlert(uid.Value, comp.AlertId);
+        UpdateUi();
     }
 
     public override void Update(float frameTime)

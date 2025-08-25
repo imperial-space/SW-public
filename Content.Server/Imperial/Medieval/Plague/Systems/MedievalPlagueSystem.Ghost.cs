@@ -66,7 +66,7 @@ public sealed partial class MedievalPlagueSystem
             TryChangePoints(uid, -cost, comp);
         }
 
-        if (TryInfect(args.Target, uid, addPoint: false))
+        if (TryInfect(args.Target, addPoint: false))
         {
             _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/infect.ogg"), Filter.Empty().FromEntities(uid), false);
             _popup.PopupEntity(Loc.GetString("medieval-plague-infected-success-popup", ("target", Name(args.Target))), args.Target, uid);
