@@ -134,7 +134,6 @@ public sealed class GPSTrackerRemoverSystem : EntitySystem
                 _doAfter.TryStartDoAfter(doAfterArgs);
                 _popupSystem.PopupEntity(Loc.GetString("gps-found-result"), user, user);
             },
-            Icon = new SpriteSpecifier.Texture(new("/Textures/Imperial/PiratesNewHorizon/Interface/VerbIcons/piggy.svg.192dpi.png")),
             Text = Loc.GetString("gps-system-verb-remove"),
             Priority = -1
         };

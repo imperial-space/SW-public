@@ -1,4 +1,4 @@
-pirate-ammunition-cart-name = Проклятый антиматериальный патрон .60
+pirate-ammunition-cart-name = Проклятый магнум патрон .45
 pirate-ammunition-cart-description = Лучшая пуля для пирата, а также подружка твоей кремневой пушки.
 pirate-ammunition-rev-ammo-name = Куча магнум патронов
 pirate-ammunition-rev-ammo-description = Матрос, этих патронов вам на весь трюм хватит в два счета.
