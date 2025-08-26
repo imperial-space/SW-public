@@ -16,6 +16,23 @@
     protectionTime: 5
 
 - type: entity
+  parent: [ClothingEyesBase, ShowMedicalIcons]
+  id: SteampunkGoogles
+  name: Steampunk googles
+  suffix: seriozha, Недра
+  description: idc
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rs
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rs
+  - type: FlashImmunity
+  - type: EyeProtection
+    protectionTime: 5
+
+- type: entity
   id: AlphaGasMask
   parent: ClothingMaskGas
   name: gas mask

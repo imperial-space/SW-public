@@ -3,7 +3,7 @@
   parent: MobHuman
   id: ImperialSCPBasePreset
   components:
-    - type: NoSlip
+    - type: AntagImmune
     - type: RandomHumanoidAppearance
       randomizeName: false
     - type: CrewSkills
@@ -85,6 +85,7 @@
   name: Preset
   suffix: seriozha, Недра
   components:
+    - type: NoSlip
     - type: Loadout
       prototypes: [ AlphaGear ]
     - type: AutoImplant
