@@ -1239,13 +1239,13 @@
   suffix: ElysiumPrime
   components:
     - type: Sprite
-      sprite: Imperial/Other/ElysiumPrime/Misc/tickets.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       layers:
       - state: Red_Ticket
       - state: Red_Ticket
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
-      - state: Red_Ticket
+      - state: paper_stamp-generic
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
 
@@ -1257,13 +1257,13 @@
   suffix: ElysiumPrime
   components:
     - type: Sprite
-      sprite: Imperial/Other/ElysiumPrime/Misc/tickets.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       layers:
       - state: Blue_Ticket
       - state: Blue_Ticket
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
-      - state: Blue_Ticket
+      - state: paper_stamp-generic
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
 
@@ -1275,13 +1275,13 @@
   suffix: ElysiumPrime
   components:
     - type: Sprite
-      sprite: Imperial/Other/ElysiumPrime/Misc/tickets.rsi
+      sprite: Imperial/Felix/Objects/paper.rsi
       layers:
       - state: Black_Ticket
       - state: Black_Ticket
         map: ["enum.PaperVisualLayers.Writing"]
         visible: false
-      - state: Black_Ticket
+      - state: paper_stamp-generic
         map: ["enum.PaperVisualLayers.Stamp"]
         visible: false
 
