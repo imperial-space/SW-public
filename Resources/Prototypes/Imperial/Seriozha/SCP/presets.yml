@@ -238,7 +238,7 @@
     gloves: ClothingHandsGlovesNitrile
     outerClothing: ClothingOuterHardsuitSingularitySienceOrangeArmored
     id: SCPIDCardFour
-    ears: ClothingHeadsetSCPMain
+    ears: ClothingHeadsetSCPAlt
     belt: ClothingBeltParamedicFilled
     pocket1: EncryptionKeyNedraMTFconnection
     pocket2: EncryptionKeyNedraCMDconnection

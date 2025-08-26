@@ -25,9 +25,9 @@
   - type: Item
     size: Tiny
   - type: Sprite
-    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rs
+    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rsi
   - type: Clothing
-    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rs
+    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rsi
   - type: FlashImmunity
   - type: EyeProtection
     protectionTime: 5
