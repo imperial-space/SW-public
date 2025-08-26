@@ -1,3 +1,6 @@
+// this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla
+// Copyright: @crookielv
+
 using System.Linq;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
