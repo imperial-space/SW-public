@@ -1559,7 +1559,7 @@
 
 - type: entity
   parent: FelixBrokenMachineCarBase
-  id: crawlercratealt2
+  id: crawlercratealt
   name: Car Decoration
   suffix: ElysiumPrime, Decoration
   components:
