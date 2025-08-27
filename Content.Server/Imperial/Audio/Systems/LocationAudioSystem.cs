@@ -67,7 +67,6 @@ public sealed class LocationAudioSystem : EntitySystem
             return;
 
         var playerComp = Comp<PlayerLocationComponent>(args.OtherEntity);
-
         if (playerComp.CurrentLocationId == component.LocationId)
             return;
 
@@ -106,7 +105,6 @@ public sealed class LocationAudioSystem : EntitySystem
             return;
 
         var playerComp = Comp<PlayerLocationComponent>(args.OtherEntity);
-
         if (playerComp.CurrentLocationId == component.LocationId)
         {
             playerComp.CurrentLocationId = string.Empty;
