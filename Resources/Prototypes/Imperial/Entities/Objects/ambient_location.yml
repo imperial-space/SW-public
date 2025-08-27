@@ -5,6 +5,9 @@
   components:
   - type: Transform
     anchored: true
+  - type: Physics
+    bodyType: Static
+    canCollide: true
   - type: Sprite
     sprite: Markers/jobs.rsi
     layers:
@@ -23,7 +26,19 @@
     locationId: location_forest
     sound:
       path: "/Audio/Ambience/ambidanger.ogg"
-    activationDistance: 10
+    fixtureId: trigger-collision
+  - type: Fixtures
+    fixtures:
+      trigger-collision:
+        shape:
+          !type:PhysShapeCircle
+          radius: 10.0
+        hard: false
+        density: 0
+        mask:
+        - MobMask
+        layer:
+        - Impassable
 
 - type: entity
   parent: AmbientLocationBase
@@ -36,6 +51,16 @@
     locationId: ambigen7_trigger
     sound:
       path: "/Audio/Ambience/ambigen7.ogg"
-    activationDistance: 10
-
-  
+    fixtureId: trigger-collision
+  - type: Fixtures
+    fixtures:
+      trigger-collision:
+        shape:
+          !type:PhysShapeCircle
+          radius: 10.0
+        hard: false
+        density: 0
+        mask:
+        - MobMask
+        layer:
+        - Impassable

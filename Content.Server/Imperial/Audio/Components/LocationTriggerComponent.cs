@@ -1,4 +1,6 @@
 using Robust.Shared.Audio;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Dynamics;
 
 namespace Content.Server.Imperial.Audio;
 
@@ -22,17 +24,15 @@ public sealed partial class LocationTriggerComponent : Component
     public SoundSpecifier? Sound;
 
     /// <summary>
-    /// Расстояние (в тайлах), на котором игрок активирует триггер.
+    /// ID фикстуры для проверки коллизий.
     /// </summary>
-    [DataField("activationDistance")]
-    public float ActivationDistance = 8f;
+    [DataField("fixtureId")]
+    public string FixtureId = "trigger";
 
     // TODO: Система день/ночь для эмбиента
     // [DataField("daySound")]
     // public SoundSpecifier? DaySound;
-    // [DataField("nightSound")]
-    // public SoundSpecifier? NightSound;
-    // [DataField("dayStartHour")]
+    // [DataField("nightStartHour")]
     // public int DayStartHour = 6;
     // [DataField("nightStartHour")]
     // public int NightStartHour = 18;
