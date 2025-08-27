@@ -40,5 +40,5 @@ public sealed partial class PlayerLocationComponent : Component
     /// Скорость изменения громкости при затухании/нарастании в дБ/сек (по модулю).
     /// </summary>
     [DataField("fadeRateDbPerSec")]
-    public float FadeRateDbPerSec = 0.5f; // 40f
+    public float FadeRateDbPerSec = 0.9f; // Вроде норм подобрал дефоул
 }
