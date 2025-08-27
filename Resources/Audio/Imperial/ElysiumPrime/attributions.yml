@@ -58,7 +58,7 @@
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/3783-korotkie-melodii-pered-objavleniem-anonsom.html"
   source: "https://genny.lovo.ai/"
 
-- files: ["/Emergency/Avariynoe.ogg", "Emergency/Evacuation.ogg", "Emergency/HighSecLevel.ogg", "Emergency/Isolation-Global.ogg", "Emergency/Isolation-Local.ogg", "Emergency/Military-Level.ogg"]
+- files: ["Emergency/Avariynoe.ogg", "Emergency/Evacuation.ogg", "Emergency/HighSecLevel.ogg", "Emergency/Isolation-Global.ogg", "Emergency/Isolation-Local.ogg", "Emergency/Military-Level.ogg"]
   license: "CC0-1.0"
   copyright: "Made with https://genny.lovo.ai/ by @space__explorer using https://zvukipro.com/situacii/1353-zvuki-signala-trevogi-ob-utechki-virusa.html"
   source: "https://zvukipro.com/situacii/1353-zvuki-signala-trevogi-ob-utechki-virusa.html"
