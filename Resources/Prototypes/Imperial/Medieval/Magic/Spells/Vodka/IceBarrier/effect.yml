@@ -11,3 +11,22 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/icewall_down.ogg
+
+#Beginner
+
+- type: entity
+  id: IceBarrierSpellcastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/vodka/barrier.rsi
+    state: beginner
+    color: "#78C6ED"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#78C6ED"
+  - type: TimedDespawn
+    lifetime: 0.5
+
