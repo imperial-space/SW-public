@@ -126,7 +126,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        3500: Dead
+        2500: Dead
     - type: Damageable
       damageModifierSet: SCPFireMan
     - type: MeleeWeapon
@@ -146,8 +146,8 @@
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3
-      baseSprintSpeed: 2.5
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 3
     - type: Tag
       tags:
       - DoorBumpOpener
