@@ -1,0 +1,41 @@
+- type: entity
+  parent: MarkerBase
+  id: ImperialAmbientTriggerForest
+  name: Imperial Ambient Trigger - Forest
+  description: Desc
+  suffix: AUDIO TEST
+  components:
+  - type: Transform
+    anchored: true
+  - type: LocationTrigger
+    locationId: location_forest
+    sound:
+      path: "/Audio/Ambience/ambidanger.ogg"
+    activationDistance: 10
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Mobs/Animals/mouse.rsi
+        state: icon-0
+
+- type: entity
+  parent: MarkerBase
+  id: ImperialAmbient7orest
+  name: Imperial Ambient Trigger 7
+  description: Desc
+  suffix: AUDIO TEST
+  components:
+  - type: Transform
+    anchored: true
+  - type: LocationTrigger
+    locationId: ambigen7_trigger
+    sound:
+      path: "/Audio/Ambience/ambigen7.ogg"
+    activationDistance: 10
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Mobs/Animals/mouse.rsi
+        state: icon-0
