@@ -37,3 +37,45 @@
     sound:
       path: "/Audio/Ambience/ambigen7.ogg"
     activationDistance: 10
+    # TODO: Система день/ночь для эмбиента
+    # TODO: Этот триггер использует только основной звук (без переключения день/ночь)
+    enableTimeBasedAudio: false
+
+# TODO: Примеры для других локаций с системой день/ночь
+# TODO: Добавить различные звуки для разных времен суток
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerCity
+  name: Imperial Ambient Trigger - City
+  description: City ambient with day/night cycle
+  suffix: DAY/NIGHT AUDIO TEST
+  components:
+  - type: LocationTrigger
+    locationId: location_city
+    sound:
+      path: "/Audio/Ambience/city_default.ogg"
+    activationDistance: 12
+    enableTimeBasedAudio: true
+    dayStartHour: 6
+    nightStartHour: 20
+    daySound:
+      path: "/Audio/Ambience/city_day.ogg"      # TODO: Создать дневной городской звук
+    nightSound:
+      path: "/Audio/Ambience/city_night.ogg"    # TODO: Создать ночной городской звук
+
+- type: entity
+  parent: AmbientLocationBase
+  id: ImperialAmbientTriggerCave
+  name: Imperial Ambient Trigger - Cave
+  description: Cave ambient (same for day/night)
+  suffix: CAVE AUDIO TEST
+  components:
+  - type: LocationTrigger
+    locationId: location_cave
+    sound:
+      path: "/Audio/Ambience/cave_ambient.ogg"
+    activationDistance: 8
+    # TODO: Пещеры могут использовать одинаковый звук для дня и ночи
+    # TODO: Или добавить различные звуки (например, капание воды ночью)
+    enableTimeBasedAudio: false

@@ -42,7 +42,8 @@ public sealed class LocationAudioSystem : EntitySystem
             if (bestTrigger != null && TryComp(bestTrigger.Value, out LocationTriggerComponent? chosen))
             {
                 desiredLocationId = chosen.LocationId;
-                desiredSound = chosen.Sound;
+                // TODO: Добавить логику выбора звука в зависимости от времени суток
+                // desiredSound = GetTimeBasedSound(chosen);
             }
 
             // Если игрок сменил зону — переключаем звуки
@@ -84,7 +85,7 @@ public sealed class LocationAudioSystem : EntitySystem
 
             if (playerComp.PreviousStream != null)
             {
-                // Плавное затухание, остановка на -80 дБ
+                // Плавное затухание
                 var newVol = GetVolume(playerComp.PreviousStream) - fadeRate * frameTime;
                 _audio.SetVolume(playerComp.PreviousStream, newVol);
                 if (newVol <= -80f)
@@ -95,6 +96,30 @@ public sealed class LocationAudioSystem : EntitySystem
             }
         }
     }
+
+    // TODO: Система день/ночь для эмбиента
+    /// <summary>
+    /// Выбирает подходящий звук в зависимости от времени суток
+    /// TODO: Интегрировать с приватной системой времени суток
+    /// </summary>
+    // private SoundSpecifier? GetTimeBasedSound(LocationTriggerComponent trigger)
+    // {
+    //     if (!trigger.EnableTimeBasedAudio)
+    //     {
+    //         return trigger.Sound; // Возвращаем основной звук, если система день/ночь отключена
+    //     }
+
+    //     var currentHour = 12; // TODO: Получить из приватной системы времени
+
+    //     if (currentHour >= trigger.DayStartHour && currentHour < trigger.NightStartHour)
+    //     {
+    //         return trigger.DaySound ?? trigger.Sound;
+    //     }
+    //     else
+    //     {
+    //         return trigger.NightSound ?? trigger.Sound;
+    //     }
+    // }
 
     private float GetWorldDistance(EntityUid a, EntityUid b)
     {
