@@ -208,5 +208,5 @@
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetViking]
     MedievalFalshionT3Legion: [MedievalFalshionT3LegionViking]
     MedievalFalshionT3LegionSteel: [MedievalFalshionT3SteelViking]
-    Log: [MedievalClothingNeckCloakViking]
+    Log: [MedievalClothingNeckCloakViking, MedievalMagicLightningRune, MedievalMagicCrowItem]
 

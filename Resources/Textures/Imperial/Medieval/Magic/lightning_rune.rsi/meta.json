@@ -12,6 +12,9 @@
         },
         {
             "name": "rune"
+        },
+        {
+            "name": "empty"
         }
     ]
 }

@@ -18,3 +18,10 @@ medieval-store-spells-multi-currency-sleep-middle-desc = Позволяет ус
 
 medieval-store-spells-multi-currency-senior-senior-name = Хлороформирование
 medieval-store-spells-multi-currency-senior-senior-desc = Вторая итерация успыления. Не позволяет усыпить вас. Стоимость 80 маны.
+
+# Crow
+
+medieval-spell-speach-crow = B̸̖͋L̵̅Ȯ̸̱O̶̯̓D̴͖̂ ̶̰̾R̷͍͊Ȃ̵̦V̷̟̄Ȅ̵͔N̵͜͠
+
+medieval-store-spells-magic-crow-name = Магическая ворона
+medieval-store-spells-magic-crow-desc = Призывает вашего верного спутника - ворону.

@@ -12,6 +12,18 @@
   fireStates: 1
 
 - type: entity
+  id: MedievalMagicLightningRune
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/lightning_rune.rsi
+    state: empty
+  - type: TimedDespawn
+    lifetime: 20
+  - type: AddActionOnUse
+    actionId: MedievalActionLightningRune
+
+- type: entity
   name: charged lightning
   id: MedievalLightningEffect
   parent: BaseLightning
