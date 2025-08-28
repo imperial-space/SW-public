@@ -1,4 +1,4 @@
-using Content.Client.UserInterface.Systems.Atmos.GasTank;
+using Content.Client.Imperial.Chemistry;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Imperial.Medieval.Chemistry;

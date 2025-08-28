@@ -56,7 +56,7 @@ public sealed partial class MeleeWeaponSystem
 
             spriteRotation = meleeWeaponComponent.WideAnimationRotation;
 
-            if (meleeWeaponComponent.SwingLeft)
+            if (meleeWeaponComponent.CPSwingLeft) //CP14 improve
                 angle *= -1;
 
             length = meleeWeaponComponent.CPAnimationLength; //CrystallEdge Melee upgrade
@@ -107,7 +107,7 @@ public sealed partial class MeleeWeaponSystem
                 if (arcComponent.Fadeout)
                     _animation.Play(animationUid, GetFadeAnimation(sprite, length * 0.5f, length + 0.15f), FadeAnimationKey);
                 break;
-            //CrystallEdge MeleeUpgrade end
+                //CrystallEdge MeleeUpgrade end
         }
     }
 
