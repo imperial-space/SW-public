@@ -8013,3 +8013,21 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
+
+- type: entity
+  id: CP14WeaponArcSlash
+  parent: WeaponArcStatic
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+    - type: WeaponArcVisuals
+      animation: CPSlash
+
+- type: entity
+  id: CP14WeaponArcThrust
+  parent: WeaponArcStatic
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+    - type: WeaponArcVisuals
+      animation: CPThrust

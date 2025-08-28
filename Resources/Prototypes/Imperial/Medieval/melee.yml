@@ -1462,6 +1462,8 @@
     clickDamageModifier: 1.15
     wideAnimationRotation: -140
     attackRate: 0.9
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
     damage:
       types:
         Slash: 16.5

@@ -422,7 +422,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // Do this AFTER attack so it doesn't spam every tick
         var ev = new AttemptMeleeEvent();
         RaiseLocalEvent(weaponUid, ref ev);
-
+        //CrystallEdge melee improvment
+        if (weapon.CPSwingBeverage)
+            weapon.CPSwingLeft = !weapon.CPSwingLeft;
+        //CrystallEdge melee improvment end
         if (ev.Cancelled)
         {
             if (ev.Message != null)
