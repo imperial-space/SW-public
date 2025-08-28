@@ -13,7 +13,7 @@ using Robust.Server.Player;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
 using Robust.Shared.Network;
 using System.Threading.Tasks;
-using Content.Server.MedievalPasport.Components;
+using Content.Shared.Mind;
 using Content.Server.Mind;
 using Content.Shared.Administration;
 using Content.Shared.Database;
@@ -269,8 +269,13 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
         var senderNetEntity = GetNetEntity(session.AttachedEntity);
         string? playerJob = null;
-        if (TryComp<MedievalPasportPersonComponent>(session.AttachedEntity.Value, out var passport))
-            playerJob = passport.PersonJob;
+        if (_minds.TryGetMind(session.AttachedEntity.Value, out var mindId, out var mindComp))
+        {
+            if (TryComp<MindComponent>(mindId, out var mind))
+            {
+                playerJob = mind.RoleType.ToString();
+            }
+        }
 
         var name = Identity.Name(session.AttachedEntity.Value, EntityManager);
 
