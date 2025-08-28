@@ -101,6 +101,7 @@
   - "#5a7e45"
   - "#ffffff"
   - "#3d3d3d"
+  recipeCount: 2
 
 - type: chemRandom
   id: MediumPack
@@ -177,3 +178,30 @@
   - "#5a7e45"
   - "#ffffff"
   - "#3d3d3d"
+
+- type: chemRandom
+  id: PlagueCure
+  potions:
+  - MedievalPlagueCure1
+  - MedievalPlagueCure2
+  - MedievalPlagueCure3
+  - MedievalPlagueCure4
+  usedGroups:
+  - EasyPack
+  - HardPack
+  colors:
+  - "#48004e"
+  - "#006b20"
+  - "#4bff14"
+  - "#818181"
+  - "#8a9900"
+  - "#ff6b6b"
+  - "#83ffda"
+  - "#c8c4ff"
+  - "#7e2323"
+  - "#009aa5"
+  - "#ffb274"
+  - "#5a7e45"
+  - "#ffffff"
+  - "#3d3d3d"
+  recipeCount: 2

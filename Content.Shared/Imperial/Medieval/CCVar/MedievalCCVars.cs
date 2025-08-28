@@ -13,4 +13,12 @@ public sealed partial class MedievalCCVars : CVars
 
     public static readonly CVarDef<int> CreationsMaxBooks =
         CVarDef.Create("creations.max_books", 4, CVar.SERVER);
+
+    // AfkTime и AfkKickTime измеряется в секундах
+    public static readonly CVarDef<float> AfkTime =
+        CVarDef.Create("medieval.afk_time", 15 * 60f, CVar.SERVER | CVar.REPLICATED);
+
+    // суммируется с AfkTime
+    public static readonly CVarDef<float> AfkKickTime =
+        CVarDef.Create("medieval.afk_kick_time", 60f, CVar.SERVER | CVar.REPLICATED);
 }

@@ -24,6 +24,13 @@ public sealed class FactionRelationsUiController : UIController
         menu.OpenCentered();
     }
 
+    public void OpenRequestRelationMenu(NetEntity target, ProtoId<MedievalFactionPrototype> userFaction)
+    {
+        var menu = new SetFactionRelationsMenu(userFaction, null);
+        menu.SendPressed += (_, _, args) => CreateRequest(target, userFaction, menu.TargetFaction, args);
+        menu.OpenCentered();
+    }
+
     private void SetFactionRelation(ProtoId<MedievalFactionPrototype> userFaction, ProtoId<MedievalFactionPrototype> targetFaction, ProtoId<FactionRelationsPrototype> relation)
     {
         var ev = new AcceptFactionRelationsEvent(userFaction, targetFaction, relation);
@@ -33,6 +40,12 @@ public sealed class FactionRelationsUiController : UIController
     private void Offer(NetEntity target, ProtoId<MedievalFactionPrototype> userFaction, ProtoId<MedievalFactionPrototype> targetFaction, ProtoId<FactionRelationsPrototype> relation)
     {
         var ev = new OfferFactionRelationsEvent(target, userFaction, targetFaction, relation);
+        EntityManager.RaisePredictiveEvent(ev);
+    }
+
+    private void CreateRequest(NetEntity target, ProtoId<MedievalFactionPrototype> userFaction, ProtoId<MedievalFactionPrototype> targetFaction, ProtoId<FactionRelationsPrototype> relation)
+    {
+        var ev = new CreateFactionRelationsRequestEvent(target, userFaction, targetFaction, relation);
         EntityManager.RaisePredictiveEvent(ev);
     }
 }

@@ -133,6 +133,12 @@ public sealed partial class ChemistryRandomizationGroupPrototype : IPrototype
     /// </summary>
     [DataField]
     public MinMax? MaxTemperature;
+
+    /// <summary>
+    /// Сколько рецептов сгенерировать на зелье
+    /// </summary>
+    [DataField]
+    public int RecipeCount = 1;
 }
 
 [DataDefinition]

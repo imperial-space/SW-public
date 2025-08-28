@@ -20,6 +20,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Content.Shared.Chat;
 using Content.Server.Imperial.Medieval.Body;
+using Content.Server.Imperial.Medieval.Plague;
 
 namespace Content.Server.Body.Systems;
 
@@ -78,7 +79,7 @@ public sealed class RespiratorSystem : EntitySystem
 
             UpdateSaturation(uid, -(float) respirator.UpdateInterval.TotalSeconds, respirator);
 
-            if (!_mobState.IsIncapacitated(uid)) // cannot breathe in crit.
+            if (!_mobState.IsIncapacitated(uid) && CanBreathe(uid)) // cannot breathe in crit.  // Imperial Medieval - CanBreathe bool
             {
                 switch (respirator.Status)
                 {
@@ -366,6 +367,16 @@ public sealed class RespiratorSystem : EntitySystem
         ent.Comp.MaxSaturation /= args.Multiplier;
         ent.Comp.MinSaturation /= args.Multiplier;
     }
+
+    // Imperial Medieval start
+    private bool CanBreathe(EntityUid uid)
+    {
+        var ev = new CanBreatheEvent();
+        RaiseLocalEvent(uid, ref ev);
+
+        return !ev.Cancelled;
+    }
+    // Imperial Medieval ent
 }
 
 [ByRefEvent]
