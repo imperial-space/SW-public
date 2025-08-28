@@ -119,3 +119,55 @@ ent-ReinforcedWindowShadowElysiumPrime = армированное окно
     .desc = Смотри не заляпай.
 ent-ReinforcedWindowWhiteElysiumPrime = армированное окно
     .desc = Смотри не заляпай.
+
+
+
+ent-FederationAccessManipulator = Федеративный манипулятор доступов
+    .desc = Пахнет как ключи от капитализма.
+
+ent-FloorLamp = Напольная лампа
+    .desc = Напольное освещение
+ent-FloorLampEmpty = Напольная лампа
+    .desc = Напольное освещение
+
+ent-TechAirlockElysiumFederationLocked = Технический Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
+ent-TechAirlockElysiumFederationadminLocked = Технический Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
+ent-TechAirlockElysiumFederation = Технический Федеративный шлюз
+    .desc = Выглядит очень капиталистически.
+
+ent-ElysiumPrimeTacticTable = Тактический стол
+    .desc = Тактический стол для планирования.
+
+ent-TabletElysiumPrime = Планшет
+    .desc = Содержит в себе все коррупционные схемы, происходящие за кулисами, но он запаролен.
+
+ent-RedTicket = Красный талончик
+    .desc = Просто красный талончик.
+ent-BlueTicket = Синий талончик
+    .desc = Просто синий талончик.
+ent-BlackTicket = Черный талончик
+    .desc = Просто черный талончик.
+
+ent-ChestBeaconBlue = Синий нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ChestBeaconBlueRed = Сине-красный нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ChestBeaconRed = Красный нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ChestBeaconWhite = Белый нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ChestBeaconYellow = Желтый нагрудный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+
+ent-ShoulderBeaconBlue = Синий наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconBlueRed = Сине-красный наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconRed = Красный наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconWhite = Белый наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
+ent-ShoulderBeaconYellow = Желтый наплечный маячок
+    .desc = Маячок, что подает сигналы о том, кто вы.
