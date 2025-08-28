@@ -34,7 +34,7 @@ public sealed partial class PlayerLocationComponent : Component
     /// Целевой уровень громкости в децибелах, когда звук полностью слышен.
     /// </summary>
     [DataField("targetVolumeDb")]
-    public float TargetVolumeDb = 0f;
+    public float TargetVolumeDb = -10f;
 
     /// <summary>
     /// Скорость изменения громкости при затухании/нарастании в дБ/сек (по модулю).
