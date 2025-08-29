@@ -41,4 +41,16 @@ public sealed partial class PlayerLocationComponent : Component
     /// </summary>
     [DataField("fadeRateDbPerSec")]
     public float FadeRateDbPerSec = 0.9f; // Вроде норм подобрал дефоул
+
+    /// <summary>
+    /// Версия плавного изменения текущего звука (для отмены предыдущих таймеров).
+    /// </summary>
+    [ViewVariables]
+    public int CurrentFadeVersion = 0;
+
+    /// <summary>
+    /// Версия плавного затухания предыдущего звука (для отмены предыдущих таймеров).
+    /// </summary>
+    [ViewVariables]
+    public int PreviousFadeVersion = 0;
 }

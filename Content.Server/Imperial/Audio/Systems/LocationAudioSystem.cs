@@ -23,36 +23,90 @@ public sealed class LocationAudioSystem : EntitySystem
         SubscribeLocalEvent<LocationTriggerComponent, EndCollideEvent>(OnTriggerExit);
     }
 
-    public override void Update(float frameTime)
+    /// <summary>
+    /// Запускает плавное нарастание громкости для текущего потока.
+    /// Использует версионность, чтобы отменять старые таймеры.
+    /// </summary>
+    private void StartFadeIn(EntityUid player, PlayerLocationComponent comp)
     {
-        base.Update(frameTime);
+        if (comp.CurrentStream == null)
+            return;
 
-        // Логику затухания/нарастания звуков
-        var queryPlayers = EntityQueryEnumerator<PlayerLocationComponent>();
-        while (queryPlayers.MoveNext(out var playerUid, out var playerComp))
+        comp.CurrentFadeVersion++;
+        var version = comp.CurrentFadeVersion;
+
+        void Step()
         {
-            // Логика затухания/нарастания
-            var fadeRate = playerComp.FadeRateDbPerSec;
-            if (playerComp.CurrentStream != null && _audio.IsPlaying(playerComp.CurrentStream))
-            {
-                // Плавное нарастание громкости
-                _audio.SetVolume(playerComp.CurrentStream,
-                    MathF.Min(playerComp.TargetVolumeDb,
-                        GetVolume(playerComp.CurrentStream) + fadeRate * frameTime));
-            }
+            if (!EntityManager.EntityExists(player))
+                return;
 
-            if (playerComp.PreviousStream != null)
+            if (!TryComp(player, out PlayerLocationComponent? c) || c != comp)
+                return;
+
+            if (version != comp.CurrentFadeVersion)
+                return;
+
+            var stream = comp.CurrentStream;
+            if (stream == null || !_audio.IsPlaying(stream))
+                return;
+
+            var fadeRate = comp.FadeRateDbPerSec;
+            var vol = GetVolume(stream);
+            var newVol = MathF.Min(comp.TargetVolumeDb, vol + fadeRate * 0.1f);
+            _audio.SetVolume(stream, newVol);
+
+            if (newVol < comp.TargetVolumeDb)
             {
-                // Плавное затухание
-                var newVol = GetVolume(playerComp.PreviousStream) - fadeRate * frameTime;
-                _audio.SetVolume(playerComp.PreviousStream, newVol);
-                if (newVol <= -80f)
-                {
-                    _audio.Stop(playerComp.PreviousStream);
-                    playerComp.PreviousStream = null;
-                }
+                Timer.Spawn(TimeSpan.FromSeconds(0.1), Step);
             }
         }
+
+        Timer.Spawn(TimeSpan.FromSeconds(0.1), Step);
+    }
+
+    /// <summary>
+    /// Запускает плавное затухание громкости для предыдущего потока.
+    /// Использует версионность, чтобы отменять старые таймеры.
+    /// </summary>
+    private void StartFadeOutPrevious(EntityUid player, PlayerLocationComponent comp)
+    {
+        if (comp.PreviousStream == null)
+            return;
+
+        comp.PreviousFadeVersion++;
+        var version = comp.PreviousFadeVersion;
+
+        void Step()
+        {
+            if (!EntityManager.EntityExists(player))
+                return;
+
+            if (!TryComp(player, out PlayerLocationComponent? c) || c != comp)
+                return;
+
+            if (version != comp.PreviousFadeVersion)
+                return;
+
+            var stream = comp.PreviousStream;
+            if (stream == null)
+                return;
+
+            var fadeRate = comp.FadeRateDbPerSec;
+            var vol = GetVolume(stream);
+            var newVol = vol - fadeRate * 0.1f;
+            _audio.SetVolume(stream, newVol);
+
+            if (newVol <= -80f)
+            {
+                _audio.Stop(stream);
+                comp.PreviousStream = null;
+                return;
+            }
+
+            Timer.Spawn(TimeSpan.FromSeconds(0.1), Step);
+        }
+
+        Timer.Spawn(TimeSpan.FromSeconds(0.1), Step);
     }
 
     /// <summary>
@@ -73,12 +127,12 @@ public sealed class LocationAudioSystem : EntitySystem
         playerComp.PreviousLocationId = playerComp.CurrentLocationId;
         playerComp.CurrentLocationId = component.LocationId;
 
+        // перенесём текущий в предыдущий и запустим затухание
         if (playerComp.PreviousStream != null)
         {
             _audio.Stop(playerComp.PreviousStream);
             playerComp.PreviousStream = null;
         }
-
         playerComp.PreviousStream = playerComp.CurrentStream;
         playerComp.CurrentStream = null;
 
@@ -89,6 +143,9 @@ public sealed class LocationAudioSystem : EntitySystem
             if (stream != null)
             {
                 playerComp.CurrentStream = stream.Value.Entity;
+                // запустим плавное нарастание нового звука и затухание предыдущего
+                StartFadeIn(args.OtherEntity, playerComp);
+                StartFadeOutPrevious(args.OtherEntity, playerComp);
             }
         }
     }
@@ -108,12 +165,15 @@ public sealed class LocationAudioSystem : EntitySystem
         if (playerComp.CurrentLocationId == component.LocationId)
         {
             playerComp.CurrentLocationId = string.Empty;
-
-            if (playerComp.CurrentStream != null)
+            // перенесём текущий поток в предыдущий и запустим затухание
+            if (playerComp.PreviousStream != null)
             {
-                _audio.Stop(playerComp.CurrentStream);
-                playerComp.CurrentStream = null;
+                _audio.Stop(playerComp.PreviousStream);
+                playerComp.PreviousStream = null;
             }
+            playerComp.PreviousStream = playerComp.CurrentStream;
+            playerComp.CurrentStream = null;
+            StartFadeOutPrevious(args.OtherEntity, playerComp);
         }
     }
 
