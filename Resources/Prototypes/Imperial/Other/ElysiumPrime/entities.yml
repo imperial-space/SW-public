@@ -806,6 +806,16 @@
     SpecialForcePoliceBeret: 3
     SpecialForcePoliceCap: 3
     ClothingOuterArmorElysium: 5
+    ChestBeaconBlue: 3
+    ChestBeaconBlueRed: 3
+    ChestBeaconRed: 3
+    ChestBeaconWhite: 3
+    ChestBeaconYellow: 3
+    ShoulderBeaconBlue: 3
+    ShoulderBeaconBlueRed: 3
+    ShoulderBeaconRed: 3
+    ShoulderBeaconWhite: 3
+    ShoulderBeaconYellow: 3
 
 - type: vendingMachineInventory
   id: ElysiumAdminClothingInventory
@@ -836,6 +846,15 @@
     PoliceInspectorStamp: 2
     PoliceProsecutorStamp: 2
     SecurityStamp: 2
+    ElysiumPrimeFelixPaper: 100
+    ElysiumFederationIDCardEmpty: 100
+    ElysiumFederationPDAEmpty: 100
+    EncryptionKeyAirGroup: 100 
+    FederationAccessManipulator: 1
+    RubberStampApproved: 3
+    RubberStampDenied: 3
+    ClothingHeadsetFADAK9M: 100
+
 
 - type: vendingMachineInventory
   id: ElysiumMaterialMachineInventory
@@ -988,7 +1007,7 @@
 
 - type: entity
   parent: AccessConfigurator
-  name: Federation access manipulator
+  name: Access manipulator
   description: Smells like key of capitalism
   suffix: ElysiumPrime
   id: FederationAccessManipulator

@@ -122,7 +122,7 @@ ent-ReinforcedWindowWhiteElysiumPrime = армированное окно
 
 
 
-ent-FederationAccessManipulator = Федеративный манипулятор доступов
+ent-FederationAccessManipulator = Манипулятор доступов
     .desc = Пахнет как ключи от капитализма.
 
 ent-FloorLamp = Напольная лампа
