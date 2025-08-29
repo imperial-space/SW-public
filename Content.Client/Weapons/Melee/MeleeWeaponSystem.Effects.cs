@@ -43,7 +43,7 @@ public sealed partial class MeleeWeaponSystem
             return;
         }
 
-        var length = 1f; //CrystallEdgeMelee upgrade
+        var length = 1f; //CrystallEdge Melee upgrade
         var offset = -1f; //CrystallEdge Melee upgrade
 
         var spriteRotation = Angle.Zero;
