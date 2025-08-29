@@ -31,6 +31,12 @@ public sealed partial class PlayerLocationComponent : Component
     public EntityUid? PreviousStream;
 
     /// <summary>
+    /// Версия таймера случайных звуков (для отмены предыдущих таймеров).
+    /// </summary>
+    [ViewVariables]
+    public int RandomSoundVersion = 0;
+
+    /// <summary>
     /// Целевой уровень громкости в децибелах, когда звук полностью слышен.
     /// </summary>
     [DataField("targetVolumeDb")]

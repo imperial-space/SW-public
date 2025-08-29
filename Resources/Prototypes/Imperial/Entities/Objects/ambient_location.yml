@@ -26,13 +26,18 @@
     locationId: location_forest
     sound:
       path: "/Audio/Ambience/ambidanger.ogg"
+    randomSounds:
+      - path: "/Audio/Ambience/ambitech3.ogg"
+      - path: "/Audio/Ambience/anomaly_drone.ogg"
+    minRandomInterval: 15
+    maxRandomInterval: 30
     fixtureId: trigger-collision
   - type: Fixtures
     fixtures:
       trigger-collision:
         shape:
           !type:PhysShapeCircle
-          radius: 5.0
+          radius: 5.0 # Радиус круга
         hard: false
         density: 0
         mask:

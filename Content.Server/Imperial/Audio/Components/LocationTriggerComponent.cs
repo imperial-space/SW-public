@@ -24,6 +24,24 @@ public sealed partial class LocationTriggerComponent : Component
     public SoundSpecifier? Sound;
 
     /// <summary>
+    /// Список звуков для случайного воспроизведения во время нахождения в зоне.
+    /// </summary>
+    [DataField("randomSounds")]
+    public List<SoundSpecifier> RandomSounds = new();
+
+    /// <summary>
+    /// Минимальное время в секундах между случайными звуками.
+    /// </summary>
+    [DataField("minRandomInterval")]
+    public int MinRandomIntervalSeconds = 10;
+
+    /// <summary>
+    /// Максимальное время в секундах между случайными звуками.
+    /// </summary>
+    [DataField("maxRandomInterval")]
+    public int MaxRandomIntervalSeconds = 20;
+
+    /// <summary>
     /// ID фикстуры для проверки коллизий.
     /// </summary>
     [DataField("fixtureId")]
