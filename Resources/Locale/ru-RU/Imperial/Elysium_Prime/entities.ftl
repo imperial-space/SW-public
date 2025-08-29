@@ -107,7 +107,11 @@ ent-FederationGateway = врата Федерации
     .desc = От Федерации нельзя убежать.
 
 ent-AirlockFederationPoliceLocked = шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
 ent-AirlockFederationPolice = шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
+ent-AirlockFederationPoliceLockedAdmin = шлюз
+    .desc = Он открывается, он закрывается, он может вас раздавить.
 
 ent-VendingMachineElysiumCitizenClothing = ГражданскоМат
 ent-VendingMachineElysiumSpecialForceClothing = СлужебноМат
