@@ -22,7 +22,7 @@ public sealed partial class MedievalSprintComponent : Component
     /// Stamina damge for <see cref="StaminaGainPeriod" />
     /// </summary>
     [DataField]
-    public float StaminaDamage = 0.4f;
+    public float StaminaDamage = 0.3f;
 
     /// <summary>
     /// Speed sprint if StaminaDamage less when <see cref="MinStaminaToSprintPrecent" />

@@ -174,22 +174,22 @@ namespace Content.Server.ShiftFront
 
             AddClassVerb(ev, "ShiftFrontSupport", "Eng", "Инженер", 12,
                 new SpriteSpecifier.Rsi(new ResPath("Imperial/TGMC/item/wrenchopfor.rsi"), "icon"),
-                45, 60, 0, "BaseMobHumanShiftFront" + comp.Faction + "Eng",
+                45, 60, 5, "BaseMobHumanShiftFront" + comp.Faction + "Eng",
                 comp, uid, coords, session, shiftPlayer, rescomp);
 
             AddClassVerb(ev, "ShiftFrontHmg", "Mg", "Пулеметчик", 11,
                 new SpriteSpecifier.Rsi(new ResPath("Imperial/DeadSector/weapons/weapons/LMG/AssaultPKM.rsi"), "base"),
-                55, 85, 15, "BaseMobHumanShiftFront" + comp.Faction + "Heavy",
+                55, 85, 20, "BaseMobHumanShiftFront" + comp.Faction + "Heavy",
                 comp, uid, coords, session, shiftPlayer, rescomp);
 
             AddClassVerb(ev, "ShiftFrontSniper", "Sniper", "Снайпер", 10,
                 new SpriteSpecifier.Rsi(new ResPath("Objects/Weapons/Guns/Snipers/heavy_sniper.rsi"), "base"),
-                45, 65, 10, "BaseMobHumanShiftFront" + comp.Faction + "Sniper",
+                45, 65, 20, "BaseMobHumanShiftFront" + comp.Faction + "Sniper",
                 comp, uid, coords, session, shiftPlayer, rescomp);
 
             AddClassVerb(ev, "ShiftFrontMarksman", "Marksman", "Марксман", 10,
                 new SpriteSpecifier.Rsi(new ResPath("Imperial/DeadSector/weapons/weapons/sniper/VSSMkI.rsi"), "base"),
-                40, 55, 5, "BaseMobHumanShiftFront" + comp.Faction + "Marksman",
+                40, 60, 5, "BaseMobHumanShiftFront" + comp.Faction + "Marksman",
                 comp, uid, coords, session, shiftPlayer, rescomp);
 
             AddClassVerb(ev, "ShiftFrontFlanker", "Flanker", "Фланкер", 12,

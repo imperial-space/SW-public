@@ -12,7 +12,7 @@ public sealed partial class ShiftFPVDroneComponent : Component
     {
         DamageDict = new()
         {
-            { "AntiTank", 120 }
+            { "AntiTank", 45 }
         }
     };
 
@@ -36,6 +36,9 @@ public sealed partial class ShiftFPVDroneComponent : Component
 
     [DataField]
     public bool Pacif = true;
+
+    [DataField]
+    public bool TankTriggered = false;
 
     [DataField]
     public bool CMD = false;

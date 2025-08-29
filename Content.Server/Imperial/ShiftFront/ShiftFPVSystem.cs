@@ -138,8 +138,9 @@ namespace Content.Server.ShiftFront
                 return;
             if (comp.CMD)
                 return;
-            if (comp.Explosive)
+            if (comp.Explosive && !comp.TankTriggered)
             {
+                comp.TankTriggered = true;
                 if (TryComp<ShiftTankHullComponent>(args.OtherEntity, out var tank))
                     _damageableSystem.TryChangeDamage(args.OtherEntity, comp.Damage * tank.FPVResist);
             }

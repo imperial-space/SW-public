@@ -162,11 +162,16 @@
         sound:
           path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
           params:
-            volume: 20
+            volume: 40
             maxDistance: 45
       - !type:SpawnEntitiesBehavior
         spawn:
           AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          VehicleDestroyEffect:
             min: 1
             max: 1
       - !type:DoActsBehavior
@@ -355,11 +360,16 @@
         sound:
           path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
           params:
-            volume: 20
+            volume: 40
             maxDistance: 45
       - !type:SpawnEntitiesBehavior
         spawn:
           AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          VehicleDestroyEffect:
             min: 1
             max: 1
       - !type:DoActsBehavior
@@ -503,11 +513,16 @@
         sound:
           path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
           params:
-            volume: 20
+            volume: 40
             maxDistance: 45
       - !type:SpawnEntitiesBehavior
         spawn:
           AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          VehicleDestroyEffect:
             min: 1
             max: 1
       - !type:DoActsBehavior
@@ -976,11 +991,16 @@
         sound:
           path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
           params:
-            volume: 20
+            volume: 40
             maxDistance: 45
       - !type:SpawnEntitiesBehavior
         spawn:
           AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          VehicleDestroyEffect:
             min: 1
             max: 1
       - !type:DoActsBehavior
@@ -1213,11 +1233,16 @@
         sound:
           path: /Audio/Imperial/ShiftFront/tank_destroy.ogg
           params:
-            volume: 20
+            volume: 40
             maxDistance: 45
       - !type:SpawnEntitiesBehavior
         spawn:
           AdminInstantEffectSmoke10:
+            min: 1
+            max: 1
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          VehicleDestroyEffect:
             min: 1
             max: 1
       - !type:DoActsBehavior
