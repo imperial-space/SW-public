@@ -4,6 +4,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
@@ -34,6 +35,7 @@ public sealed class ChargedAttackSystem : EntitySystem
         SubscribeAllEvent<ChargedAttackEnd>(OnEnd);
 
         SubscribeLocalEvent<HumanoidAppearanceComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
+        SubscribeLocalEvent<ChargedAttackComponent, DroppedEvent>(OnDropped);
 
         SubscribeLocalEvent<ChargedAttackComponent, MeleeHitEvent>(OnHit);
         SubscribeLocalEvent<ChargedAttackComponent, StaminaMeleeHitEvent>(OnStaminaHit);
@@ -65,6 +67,11 @@ public sealed class ChargedAttackSystem : EntitySystem
         args.Multiplier *= charged.Modifier;
         charged.Modifier = 0f;
         Dirty(weapon, charged);
+    }
+
+    private void OnDropped(EntityUid weapon, ChargedAttackComponent charged, DroppedEvent args)
+    {
+        EndEffect(weapon, charged, args.User);
     }
 
     private void OnRefreshMovespeed(EntityUid uid, HumanoidAppearanceComponent component, RefreshMovementSpeedModifiersEvent args)
@@ -120,23 +127,23 @@ public sealed class ChargedAttackSystem : EntitySystem
 
         _weaponSystem.AttemptHeavyAttack(entity, weapon.Owner, weapon.Comp, coordinates);
 
-        var direction = _transformSystem.ToMapCoordinates(coordinates).Position
-              - _transformSystem.GetWorldPosition(entity);
+        // var direction = _transformSystem.ToMapCoordinates(coordinates).Position
+        //       - _transformSystem.GetWorldPosition(entity);
 
-        if (direction == Vector2.Zero)
-            return;
+        // if (direction == Vector2.Zero)
+        //     return;
 
-        Dash(entity, charged, direction);
+        // Dash(entity, charged, direction);
     }
 
-    private void Dash(EntityUid entity, ChargedAttackComponent charged, Vector2 direction)
-    {
-        if (!TryComp<PhysicsComponent>(entity, out var physics))
-            return;
+    // private void Dash(EntityUid entity, ChargedAttackComponent charged, Vector2 direction)
+    // {
+    //     if (!TryComp<PhysicsComponent>(entity, out var physics))
+    //         return;
 
-        var impulseVector = direction.Normalized() * charged.VectorLenght * physics.Mass;
-        _physicsSystem.SetLinearVelocity(entity, impulseVector, body: physics);
-    }
+    //     var impulseVector = direction.Normalized() * charged.VectorLenght * physics.Mass;
+    //     _physicsSystem.SetLinearVelocity(entity, impulseVector, body: physics);
+    // }
 
     public void StopAttacking(EntityUid entity, ChargedAttackComponent charged, EntityUid user)
     {
