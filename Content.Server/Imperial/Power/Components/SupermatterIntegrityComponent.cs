@@ -127,7 +127,7 @@ namespace Content.Server.Imperial.Power.Components
         /// Количество здоровья, восстанавливаемое за один выстрел эмиттера
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
-        public float EmitterHealAmount = 0.1;
+        public float EmitterHealAmount = 0.1f;
 
         /// <summary>
         /// Идентификатор прототипа взрыва, который будет использован при катастрофе.
@@ -152,9 +152,5 @@ namespace Content.Server.Imperial.Power.Components
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
         public float CatastropheMaxTileIntensity = 70f;
-
-        // Описания состояния кристалла по проценту целостности
-        [DataField]
-        public float EmitterHealAmount = 0.35f;
     }
 }

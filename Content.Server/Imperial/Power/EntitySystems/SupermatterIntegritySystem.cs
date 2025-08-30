@@ -76,7 +76,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
 
             var integrityPercent = comp.Integrity / comp.MaxIntegrity * 100;
-            
+
             var index = comp.SupermatterIntegrity.FindIndex(entry => integrityPercent > entry.Threshold);
             if (index >= 0)
             {
@@ -138,7 +138,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 {
                     if (TryComp(uid, out TransformComponent? xformCat))
                     {
-                        var coords = _xforms.ToMapCoordinates(xformCat.Coordinates);
+                        var coords = _transformSystem.ToMapCoordinates(xformCat.Coordinates);
                         _explosionSystem.QueueExplosion(
                             coords,
                             comp.ExplosionPrototypeId,
