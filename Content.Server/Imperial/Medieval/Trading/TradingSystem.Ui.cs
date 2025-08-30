@@ -33,6 +33,7 @@ public sealed partial class TradingSystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
 
     private void InitializeUi()
     {
@@ -110,7 +111,7 @@ public sealed partial class TradingSystem
         if (guild == null)
             return;
 
-        if (!item.CanBuy(netBuyer, guild))
+        if (!item.CanBuy(netBuyer, guild, _entityManager))
             return;
 
         var cost = TradingHelpers.PriceWithReputation(guild, item, netBuyer);

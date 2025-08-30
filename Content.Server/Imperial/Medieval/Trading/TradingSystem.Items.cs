@@ -43,7 +43,7 @@ public sealed partial class TradingSystem
 
             var modifiedGuild = guild.Clone();
             var modifiedItems = guild.Items
-                .Where(i => i.CanBuy(netBuyer, guild))
+                .Where(i => i.CanBuy(netBuyer, guild, _entityManager))
                 .Select(x =>
                 {
                     var clone = x with { };

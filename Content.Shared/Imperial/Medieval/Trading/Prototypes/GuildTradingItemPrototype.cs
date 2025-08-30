@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Content.Shared.Imperial.SpawnOnAction.Components;
 using Content.Shared.Store;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -33,6 +34,8 @@ public sealed partial record GuildTradingItem
     [DataField]
     public int MinReputationPlace = 0;
 
+    [DataField] public string? SpawnOnActionWhitelist;
+
     [DataField]
     public int ReputationForBuying = 2;
     public Guid GuildId;
@@ -40,7 +43,7 @@ public sealed partial record GuildTradingItem
     [DataField] public string? Name;
     [DataField] public string? Description;
 
-    public bool CanBuy(NetEntity ent, Guild guild)
+    public bool CanBuy(NetEntity ent, Guild guild, IEntityManager? entityManager = null)
     {
         var reputation = guild.GetReputation(ent);
 
@@ -56,6 +59,16 @@ public sealed partial record GuildTradingItem
                 .ToList();
 
             if (!sorted.Contains(ent))
+                return false;
+        }
+
+        if (SpawnOnActionWhitelist != null && entityManager != null)
+        {
+            var entUid = entityManager.GetEntity(ent);
+            if (!entityManager.TryGetComponent<SpawnOnActionComponent>(entUid, out var spawnOnAction))
+                return false;
+
+            if (spawnOnAction.ActionId != SpawnOnActionWhitelist)
                 return false;
         }
 

@@ -4,9 +4,11 @@
   id: TestName
   # количество частей в имени
   partCount: 3
+
   # как разделяются эти части
   # к примеру, "-" превратит части 1, 2, 3 в 1-2-3
   split: ""
+
   # сами части имени
   parts:
   - text: "Те" # текст части
@@ -36,6 +38,7 @@
 # иконка гильдии
 - type: guildIcon
   id: Deprecated
+
   # пусть до png
   texturePath: "/Textures/deprecated.rsi/deprecated.png"
 
@@ -46,19 +49,25 @@
 # сам тип гильдии
 - type: guildType
   id: TestType2
+
   # прототип имени гильдии (см. выше)
   name: TestName
+
   # максимальное число гильдий, которые сгенерируются по этому прототипу
   maximumGuilds: 3
+
   # валюта гильдии
   # Revent по умолчанию, можно не указывать
   currency: Revent
+
   # продающиеся предметы в гильдии
   items:
   - productEntity: FoodPizzaPineapple
+
     # минимальное кол-во репутации для покупки
     # по умолчанию 0
     minReputation: 10
+
     # цена предмета
     cost: 10
   - productEntity: FoodBurgerBacon
@@ -73,6 +82,12 @@
     # в квесте нужно указать reputationReward: ...
   - productEntity: MedievalQuestContractLegionMelee
     cost: 0
+
+    # позволяет "отделить" северных торговцев от южных
+    # можно указать какой ActionId должен быть
+    # в компоненте MedievalJobSpawnComponent
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+
     # если не указывать, то будут использоваться имя и описание предмета
     name: тест квеста
     description: тесты
