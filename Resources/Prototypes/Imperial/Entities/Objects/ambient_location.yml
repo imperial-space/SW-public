@@ -45,7 +45,6 @@
       - path: "/Audio/Ambience/anomaly_drone.ogg"
     minRandomInterval: 15
     maxRandomInterval: 30
-    fixtureId: trigger-collision
 
 - type: entity
   parent: AmbientLocationBase
@@ -58,5 +57,3 @@
     locationId: ambigen7_trigger
     sound:
       path: "/Audio/Ambience/ambigen7.ogg"
-    fixtureId: trigger-collision
-
