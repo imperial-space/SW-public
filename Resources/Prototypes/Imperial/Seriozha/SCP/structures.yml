@@ -112,3 +112,26 @@
   - type: Sprite
     sprite: Imperial/Seriozha/SCP/structures/signs.rsi
     state: ofc
+
+# Posters
+- type: entity
+  parent: PosterBase
+  id: PosterSCPNDA
+  name: NDA
+  suffix: seriozha, Недра
+  description: Poster about NDA and NDA and NDA
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/posters.rsi
+    state: poster
+
+- type: entity
+  parent: PosterBase
+  id: PosterSCPCaution
+  name: SCP Caution
+  suffix: seriozha, Недра
+  description: Poster about NDA and NDA and NDA
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/structures/posters.rsi
+    state: posterscp
