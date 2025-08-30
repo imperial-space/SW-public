@@ -210,3 +210,9 @@
     MedievalFalshionT3LegionSteel: [MedievalFalshionT3SteelViking]
     Log: [MedievalClothingNeckCloakViking, MedievalMagicLightningRune, MedievalMagicCrowItem]
 
+- type: customization
+  id: romusoptimus
+  holder: 1dbd0194-22c0-4c8b-aa55-673eb22d9836
+  map:
+    MedievalClothingOuterArmorCharmerWeak: [ MedievalClothingOuterArmorCharmerWeakGreen ]
+    MedievalClothingHeadHelmetCharmerWeak: [ MedievalClothingHeadHelmetCharmerWeakGreen ]

@@ -824,6 +824,17 @@
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakGreen
+  name: MedievalClothingHeadHelmetCharmerWeakGreen
+  description: MedievalClothingHeadHelmetCharmerWeakGreen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmer_green.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmer_green.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
   id: MedievalClothingHeadHelmetCharmerWeakPurpleScar
   name: MedievalClothingHeadHelmetCharmerWeakPurpleScar
   description: MedievalClothingHeadHelmetCharmerWeakPurpleScar
