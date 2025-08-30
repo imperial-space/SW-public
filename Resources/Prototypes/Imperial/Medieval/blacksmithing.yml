@@ -7,7 +7,7 @@
 
 - type: entity
   name: blacksmith hammer
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalHammerBlacksmith
   description: An ancient war blade.
   components:

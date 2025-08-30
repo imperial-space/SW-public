@@ -788,7 +788,7 @@
 
 - type: entity
   name: medieval spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearCult
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -864,7 +864,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronSekirCult
   description: A medieval poleaxe.
   components:
