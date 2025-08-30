@@ -205,6 +205,7 @@
     - type: Access
       tags:
       - Federationadmin
+      - Federation
     - type: Sprite
       sprite: Imperial/Other/ElysiumPrime/Misc/card.rsi
       layers:
