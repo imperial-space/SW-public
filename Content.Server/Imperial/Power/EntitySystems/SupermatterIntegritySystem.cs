@@ -8,6 +8,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.AlertLevel;
 using Content.Server.Station.Systems;
 using Content.Server.Explosion.EntitySystems;
+using Content.Server.Lightning;
 using System.Linq;
 
 namespace Content.Server.Imperial.Power.EntitySystems
@@ -22,6 +23,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private readonly LightningSystem _lightning = default!;
 
         public override void Initialize()
         {
@@ -125,15 +127,41 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
 
             // Обработка катастрофы
-            if (!comp.CatastropheActive && comp.Integrity <= comp.CatastropheThreshold)
+            if (!comp.CatastropheActive && integrityPercent <= 10f) // Активируем при 10% вместо 0%
             {
                 comp.CatastropheActive = true;
-                comp.CatastropheTimer = TimeSpan.FromSeconds(120); // 2 минуты
+                comp.CatastropheTimer = TimeSpan.Zero; // Начинаем с 0
+                comp.CatastropheLightningTimer = TimeSpan.Zero; // Сбрасываем таймер молний
+
+                // Отправляем предупреждение о катастрофе
+                var station = _stationSystem.GetOwningStation(uid);
+                if (station != null)
+                {
+                    _alertLevelSystem.SetLevel(station.Value, "red", true, true, true);
+                    _chatSystem.DispatchStationAnnouncement(
+                        station.Value,
+                        Loc.GetString("supermatter-station-catastrophe"),
+                        playDefaultSound: true,
+                        colorOverride: Color.Red
+                    );
+                }
+
+                // Отправляем сообщение в радио о начале катастрофы
+                SendSupermatterRadio(uid, Loc.GetString("supermatter-catastrophe-warning"), comp);
             }
 
             if (comp.CatastropheActive)
             {
                 comp.CatastropheTimer += TimeSpan.FromSeconds(frameTime);
+
+                // Молнии во время катастрофы
+                comp.CatastropheLightningTimer += TimeSpan.FromSeconds(frameTime);
+                if (comp.CatastropheLightningTimer >= comp.CatastropheLightningInterval)
+                {
+                    comp.CatastropheLightningTimer = TimeSpan.Zero;
+                    _lightning.ShootRandomLightnings(uid, comp.CatastropheLightningRange, comp.CatastropheLightningCount, "Lightning", 0, true);
+                }
+
                 if (comp.CatastropheTimer >= comp.CatastropheDuration)
                 {
                     if (TryComp(uid, out TransformComponent? xformCat))

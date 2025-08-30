@@ -2,6 +2,7 @@ using Content.Shared.Damage;
 using Content.Shared.Radio;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
+using Content.Shared.Explosion;
 
 namespace Content.Server.Imperial.Power.Components
 {
@@ -133,7 +134,7 @@ namespace Content.Server.Imperial.Power.Components
         /// Идентификатор прототипа взрыва, который будет использован при катастрофе.
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
-        public string ExplosionPrototypeId = "Default";
+        public ProtoId<ExplosionPrototype> ExplosionPrototypeId = "Supermatter";
 
         /// <summary>
         /// Общая интенсивность взрыва при катастрофе.
@@ -152,5 +153,29 @@ namespace Content.Server.Imperial.Power.Components
         /// </summary>
         [ViewVariables(VVAccess.ReadWrite), DataField]
         public float CatastropheMaxTileIntensity = 70f;
+
+        /// <summary>
+        /// Интервал между молниями во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public TimeSpan CatastropheLightningInterval = TimeSpan.FromSeconds(1.0);
+
+        /// <summary>
+        /// Таймер для молний во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public TimeSpan CatastropheLightningTimer = TimeSpan.Zero;
+
+        /// <summary>
+        /// Дальность молний во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public float CatastropheLightningRange = 15f;
+
+        /// <summary>
+        /// Количество молний за раз во время катастрофы
+        /// </summary>
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public int CatastropheLightningCount = 3;
     }
 }
