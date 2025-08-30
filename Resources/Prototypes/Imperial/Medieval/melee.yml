@@ -1,6 +1,6 @@
 - type: entity
   name: bone spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: SpearBone
   description: A spear made of bones.
   components:
@@ -75,7 +75,7 @@
 
 - type: entity
   name: MedievalDaggerNecro
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerNecro
   description: A deadly knife intended for melee confrontations.
   components:
@@ -133,7 +133,7 @@
 
 - type: entity
   name: MedievalDaggerShadow
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerShadow
   description: A deadly knife intended for melee confrontations.
   components:
@@ -182,7 +182,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerAdmin
   description: A deadly knife intended for melee confrontations.
   components:
@@ -289,7 +289,7 @@
 
 - type: entity
   name: medieval spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearAdmin
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -344,7 +344,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalWoodenSword
   description: An ancient war blade.
   components:
@@ -408,7 +408,7 @@
 
 - type: entity
   name: MedievalBanjoInstrument
-  parent: BanjoInstrument
+  parent: [ BanjoInstrument, BaseCrushingCharged ]
   id: MedievalBanjoInstrument
   description: music!
   components:
@@ -581,7 +581,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHalberdAdmin
   description: A medieval poleaxe.
   components:
@@ -638,7 +638,7 @@
 
 - type: entity
   name: iron hammer
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHammer
   description: A medieval hammer.
   components:
@@ -713,7 +713,7 @@
 
 - type: entity
   name: hoe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalHoe
   description: It's used for removing weeds or scratching your back.
   components:
@@ -754,7 +754,7 @@
 
 - type: entity
   name: hatchet
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalHatchet
   description: A very sharp axe blade upon a short fibremetal handle. It has a long history of chopping things, but now it is used for chopping wood.
   components:
@@ -822,7 +822,7 @@
 
 - type: entity
   name: scythe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalScythe
   description: A sharp and curved blade on a long fibremetal handle, this tool makes it easy to reap what you sow.
   components:
@@ -928,7 +928,7 @@
     resourceCount: 2
 
 - type: entity
-  parent: Pickaxe
+  parent: [ Pickaxe, BaseTwoHandedCharged ]
   id: MedievalPickaxe
   name: MedievalPickaxe
   description: MedievalPickaxe
@@ -1023,7 +1023,7 @@
 
 - type: entity
   name: MedievalIngotGold
-  parent: Gohei
+  parent: [ Gohei, BaseOneHandedCharged ]
   id: MedievalKnut
   description: MedievalKnut
   components:
@@ -1418,7 +1418,7 @@
     Piercing: 5
 
 - type: entity
-  parent: Shovel
+  parent: [ Shovel, BaseCrushingCharged ]
   id: MedievalShovel
   name: MedievalShovel
   description: MedievalShovel
@@ -1517,7 +1517,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionT3
   description: An ancient war blade.
   components:
@@ -1595,7 +1595,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerT3
   description: A deadly knife intended for melee confrontations.
   components:
@@ -1661,7 +1661,7 @@
 
 - type: entity
   name: medieval spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -1754,7 +1754,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3
   description: An ancient war blade.
   components:
@@ -1821,7 +1821,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3Heavy
   description: An ancient war blade.
   components:
@@ -1888,7 +1888,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHalberdT3
   description: A medieval poleaxe.
   components:
@@ -1975,7 +1975,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronSekir
   description: A medieval poleaxe.
   components:
@@ -2062,7 +2062,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronSekirSteel
   description: A medieval poleaxe.
   components:
@@ -2142,7 +2142,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ] 
   id: MedievalFalshionT3Legion
   description: An ancient war blade.
   components:
@@ -2382,7 +2382,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionT3Steel
   description: An ancient war blade.
   components:
@@ -2518,7 +2518,7 @@
 
 - type: entity
   name: medieval spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearT3Steel
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -2611,7 +2611,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3Steel
   description: An ancient war blade.
   components:
@@ -2678,7 +2678,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3SteelHeavy
   description: An ancient war blade.
   components:
@@ -2745,7 +2745,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHalberdT3Steel
   description: A medieval poleaxe.
   components:
@@ -2832,7 +2832,7 @@
 
 - type: entity
   name: iron hammer
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHammerSteel
   description: A medieval hammer.
   components:
@@ -2907,7 +2907,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionForest
   description: An ancient war blade.
   components:
@@ -2975,7 +2975,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionVamp
   description: An ancient war blade.
   components:
@@ -3047,7 +3047,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronHalberdBloodBerserk
   description: A medieval poleaxe.
   components:
@@ -3114,7 +3114,7 @@
 
 - type: entity
   name: LongAxe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalLongAxe
   description: An ancient war blade.
   components:
@@ -3168,7 +3168,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseDaggerCharged ]
   id: MedievalDaggerT3Bone
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3234,7 +3234,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalGoblinFalshion
   description: An ancient war blade.
   components:
@@ -3312,7 +3312,7 @@
 
 - type: entity
   name: falshion
-  parent: BaseItem
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionNecro
   description: An ancient war blade.
   components:
@@ -3388,7 +3388,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseOneHandedCharged ]
   id: MedievalShortSword
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3605,7 +3605,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseOneHandedCharged ]
   id: MedievalSaber
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3791,7 +3791,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseCrushingCharged ]
   id: MedievalPalice
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3866,7 +3866,7 @@
 
 - type: entity
   name: dagger
-  parent: BaseKnife
+  parent: [ BaseKnife, BaseCrushingCharged ]
   id: MedievalPaliceSteel
   description: A deadly knife intended for melee confrontations.
   components:
@@ -3941,7 +3941,7 @@
 
 - type: entity
   name: mace
-  parent: BaseItem
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalMaceT3HeavyBone
   description: An ancient war blade.
   components:
@@ -4149,7 +4149,7 @@
 
 - type: entity
   name: pickaxe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalPickaxeEbonit
   description: Ebonit pickaxe.
   components:
@@ -4212,7 +4212,7 @@
 
 - type: entity
   name: pickaxe
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalPickaxeForStone
   description: ForStone pickaxe.
   components:
