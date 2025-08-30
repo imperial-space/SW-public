@@ -59,6 +59,7 @@
       tickDamage:
         types:
           Blunt: 0.65
+      catastropheThreshold: 0.0
     - type: SupermatterEvent
     - type: GuideHelp
       guides:

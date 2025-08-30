@@ -127,7 +127,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
 
             // Обработка катастрофы
-            if (!comp.CatastropheActive && integrityPercent <= 10f) // Активируем при 10% вместо 0%
+            if (!comp.CatastropheActive && integrityPercent <= comp.CatastropheThreshold)
             {
                 comp.CatastropheActive = true;
                 comp.CatastropheTimer = TimeSpan.Zero; // Начинаем с 0
