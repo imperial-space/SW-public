@@ -114,6 +114,10 @@ public sealed class ChargedAttackSystem : EntitySystem
         var ratio = Math.Min(attackTime.Seconds / charged.MaxAttackTime, 1f);
         charged.Modifier = charged.StaticModifier * ratio + 1f;
         Dirty(weapon.Owner, charged);
+
+        if (!_staminaSystem.TryTakeStamina(entity, charged.StaminaDamage))
+            return;
+
         _weaponSystem.AttemptHeavyAttack(entity, weapon.Owner, weapon.Comp, coordinates);
 
         var direction = _transformSystem.ToMapCoordinates(coordinates).Position
@@ -123,7 +127,6 @@ public sealed class ChargedAttackSystem : EntitySystem
             return;
 
         Dash(entity, charged, direction);
-        _staminaSystem.TakeStaminaDamage(entity, charged.StaminaDamage);
     }
 
     private void Dash(EntityUid entity, ChargedAttackComponent charged, Vector2 direction)
