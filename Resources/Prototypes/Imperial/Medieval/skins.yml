@@ -10,7 +10,7 @@
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerInsBlood]
     MedievalFalshionT3Legion: [MedievalFalshionT3LegionChainMace]
     MedievalFalshionT3LegionSteel: [MedievalFalshionT3LegionSteelChainMace]
-    Log: [AhrimanStaffMedieval]
+    Log: [AhrimanStaffMedieval, MedievalMagicLightningRune]
 
 - type: customization
   id: eifall
@@ -208,7 +208,7 @@
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetViking]
     MedievalFalshionT3Legion: [MedievalFalshionT3LegionViking]
     MedievalFalshionT3LegionSteel: [MedievalFalshionT3SteelViking]
-    Log: [MedievalClothingNeckCloakViking, MedievalMagicLightningRune, MedievalMagicCrowItem]
+    Log: [MedievalClothingNeckCloakViking, MedievalMagicCrowItem]
 
 - type: customization
   id: romusoptimus
