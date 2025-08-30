@@ -14,6 +14,20 @@
       - state: green
       - sprite: Objects/Fun/Instruments/guitar.rsi
         state: icon
+  - type: LocationTrigger
+    fixtureId: trigger-collision
+  - type: Fixtures
+    fixtures:
+      trigger-collision:
+        shape:
+          !type:PhysShapeCircle
+          radius: 5.0
+        hard: false
+        density: 0
+        mask:
+        - MobMask
+        layer:
+        - Impassable
 
 - type: entity
   parent: AmbientLocationBase
@@ -32,18 +46,6 @@
     minRandomInterval: 15
     maxRandomInterval: 30
     fixtureId: trigger-collision
-  - type: Fixtures
-    fixtures:
-      trigger-collision:
-        shape:
-          !type:PhysShapeCircle
-          radius: 5.0 # Радиус круга
-        hard: false
-        density: 0
-        mask:
-        - MobMask
-        layer:
-        - Impassable
 
 - type: entity
   parent: AmbientLocationBase
@@ -57,15 +59,4 @@
     sound:
       path: "/Audio/Ambience/ambigen7.ogg"
     fixtureId: trigger-collision
-  - type: Fixtures
-    fixtures:
-      trigger-collision:
-        shape:
-          !type:PhysShapeCircle
-          radius: 5.0
-        hard: false
-        density: 0
-        mask:
-        - MobMask
-        layer:
-        - Impassable
+
