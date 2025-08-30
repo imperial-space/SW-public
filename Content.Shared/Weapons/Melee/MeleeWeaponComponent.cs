@@ -167,7 +167,7 @@ public sealed partial class MeleeWeaponComponent : Component
     /// CrystallEdge Melee upgrade. Modifier of wide attack animation speed
     /// </summary>
     [DataField]
-    public float CPAnimationLength = 0.35f;
+    public float CPAnimationLength = 0.45f;
 
     /// <summary>
     /// CrystallEdge Melee upgrade. how far away from the player the animation should be played.
