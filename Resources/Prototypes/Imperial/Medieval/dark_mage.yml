@@ -114,6 +114,8 @@
   name: flame
   components:
   - type: Sprite
+    drawdepth: Effects
+    noRot: true
     sprite: Imperial/Medieval/Mobs/dark_mage.rsi
     layers:
     - state: flame

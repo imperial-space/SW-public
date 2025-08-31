@@ -24,7 +24,7 @@
     NegativeEquipDelayModifier: 0.07
     PositiveSpreadModifier: -0.08
     NegativeSpreadModifier: 0.05
-    PositiveStealChanceModifier: 1.5
+    PositiveStealChanceModifier: 0.75
     NegativeStealChanceModifier: -1.5
     PositiveLockpickLossModifier: -0.05
 
@@ -63,8 +63,8 @@
     15: good
     20: best
   modifiers:
-    AliveHealthPerLevel: 0.7
-    WoundedHealthPerLevel: 0.7
+    AliveHealthPerLevel: 1.2
+    WoundedHealthPerLevel: 2
     MaxHealthBonus: 25
     PositiveSlowdownModifier: 0.01
     PositiveSleepEffeciencyModifier: -0.03
@@ -86,8 +86,8 @@
     15: good
     20: best
   modifiers:
-    PositiveSprintStaminaDamageModifier: -0.012
-    NegativeSprintStaminaDamageModifier: 0.02
+    PositiveSprintStaminaDamageModifier: -0.015
+    NegativeSprintStaminaDamageModifier: 0.027
     PositiveSlowdownModifier: 0.01
     PositiveStaminaRegenModifier: 0.015
     NegativeStaminaRegenModifier: -0.015
