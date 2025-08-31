@@ -10,12 +10,12 @@ namespace Content.Server.Imperial.Power.EntitySystems.Events;
 /// </summary>
 public sealed class SupermatterLightningEvent
 {
-    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system)
+    public static void Activate(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem)
     {
         // Валидация входных параметров
         if (uid == EntityUid.Invalid)
         {
-            system.Log.Error("SupermatterLightningEvent.Activate: Invalid EntityUid provided");
+            supermatterSystem.Log.Error("SupermatterLightningEvent.Activate: Invalid EntityUid provided");
             return;
         }
         if (comp == null)
@@ -23,7 +23,7 @@ public sealed class SupermatterLightningEvent
             return;
         }
 
-        if (system == null)
+        if (supermatterSystem == null)
         {
             return;
         }
@@ -31,17 +31,17 @@ public sealed class SupermatterLightningEvent
         // Валидация конфигурации компонента
         if (comp.LightningEventDuration <= TimeSpan.Zero)
         {
-            system.Log.Warning($"SupermatterLightningEvent.Activate: Invalid LightningEventDuration: {comp.LightningEventDuration}");
+            supermatterSystem.Log.Warning($"SupermatterLightningEvent.Activate: Invalid LightningEventDuration: {comp.LightningEventDuration}");
             return;
         }
 
         if (comp.LightningCooldownDuration <= TimeSpan.Zero)
         {
-            system.Log.Warning($"SupermatterLightningEvent.Activate: Invalid LightningCooldownDuration: {comp.LightningCooldownDuration}");
+            supermatterSystem.Log.Warning($"SupermatterLightningEvent.Activate: Invalid LightningCooldownDuration: {comp.LightningCooldownDuration}");
             return;
         }
 
-        var currentTime = system.GameTiming.CurTime;
+        var currentTime = supermatterSystem.GameTiming.CurTime;
         comp.CurrentEvent = SupermatterEventComponent.SupermatterEventType.Lightning;
         comp.EventEndTime = comp.LightningEventDuration;
         comp.NextEventTimer = comp.EventAfterLightingTime;
@@ -51,10 +51,10 @@ public sealed class SupermatterLightningEvent
         comp.LastLightningCooldownUpdate = currentTime;
 
         // Стреляем молнии в случайные цели вокруг суперматерии
-        ShootRandomLightnings(uid, system, comp);
+        ShootRandomLightnings(uid, supermatterSystem, comp);
     }
 
-    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem system, TimeSpan currentTime)
+    public static void Process(EntityUid uid, SupermatterEventComponent comp, SupermatterEventSystem supermatterSystem, TimeSpan currentTime)
     {
         var elapsedSinceLastUpdate = currentTime - comp.LastLightningCooldownUpdate;
         comp.LightningCooldown -= elapsedSinceLastUpdate;
@@ -64,21 +64,21 @@ public sealed class SupermatterLightningEvent
             return;
 
         // Стреляем молнии в случайные цели вокруг суперматерии
-        ShootRandomLightnings(uid, system, comp);
+        ShootRandomLightnings(uid, supermatterSystem, comp);
 
-        if (system.TryGetComponent<SupermatterIntegrityComponent>(uid, out var integrity) && integrity != null &&
-            system.TryGetComponent<DamageableComponent>(uid, out var _))
+        if (supermatterSystem.TryGetComponent<SupermatterIntegrityComponent>(uid, out var integrity) && integrity != null &&
+            supermatterSystem.TryGetComponent<DamageableComponent>(uid, out var _))
         {
-            system.Damageable.TryChangeDamage(uid, integrity.TickDamage, origin: null);
+            supermatterSystem.Damageable.TryChangeDamage(uid, integrity.TickDamage, origin: null);
         }
 
         comp.LightningCooldown = comp.LightningCooldownDuration;
     }
 
-    private static void ShootRandomLightnings(EntityUid uid, SupermatterEventSystem system, SupermatterEventComponent component)
+    private static void ShootRandomLightnings(EntityUid uid, SupermatterEventSystem supermatterSystem, SupermatterEventComponent component)
     {
         // Используем ShootRandomLightnings для стрельбы в случайные цели в радиусе
-        system.LightningSystem?.ShootRandomLightnings(uid, component.LightningBoltRadius, component.LightningBoltCount, "Lightning", 0, true);
+        supermatterSystem.LightningSystem?.ShootRandomLightnings(uid, component.LightningBoltRadius, component.LightningBoltCount, "Lightning", 0, true);
     }
 
     public static string GetAnnouncement()
