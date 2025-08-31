@@ -6,7 +6,7 @@ ent-WeaponRifleAkPinkDebug = УВУМС
     .suffix = Дебаг, Адмемы
 
 reagent-name-uwu = Сок, который делает вас UwU!
-reagent-desc-uwu = Заставляет цель увукать. При достижении 50 унций временно превращает в котика.
+reagent-desc-uwu = Заставляет цель увукать. При достижении 50 ед. временно превращает в котика.
 flavor-uwu = как уву
 chat-emote-name-uwu = Увукать
 chat-emote-msg-uwu = увукает
