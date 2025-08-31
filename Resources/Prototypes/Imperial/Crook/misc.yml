@@ -552,7 +552,7 @@
     layers:
     - state: icon
   - type: PointLight
-    radius: 2
+    radius: 1.5
     energy: 1
     netsync: false
 
