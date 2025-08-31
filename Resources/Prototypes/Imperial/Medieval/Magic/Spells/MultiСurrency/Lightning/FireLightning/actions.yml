@@ -67,7 +67,7 @@
       groups:
         Burn: 22
   - type: SpellCastEffect
-    effectProto: FireLightningSpellcastEffectMiddle
+    effectProto: FireLightningSpellCastEffectMiddle
 
 # Senior
 
@@ -126,4 +126,4 @@
       groups:
         Burn: 22
   - type: SpellCastEffect
-    effectProto: FireLightningSpellcastEffectSenior
+    effectProto: FireLightningSpellCastEffectSenior

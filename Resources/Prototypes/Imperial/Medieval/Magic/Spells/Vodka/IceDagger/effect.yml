@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: IceDaggerSpellcastEffectBeginner
+  id: IceDaggerSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/vodka/dagger.rsi

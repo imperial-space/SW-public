@@ -49,7 +49,7 @@
     lifetime: 5
 
 - type: entity
-  id: WaterSphereSpellcastEffectBeginner
+  id: WaterSphereSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/vodka/sphere.rsi

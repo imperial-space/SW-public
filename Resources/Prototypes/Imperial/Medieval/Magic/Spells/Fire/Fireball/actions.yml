@@ -33,7 +33,7 @@
           color: "#FF5900"
           hideChat: true
   - type: SpellCastEffect
-    effectProto: FireballSpellcastEffectBeginner
+    effectProto: FireballSpellCastEffectBeginner
   - type: ManaDrainSpell
     manaDrain: 70
     canUseWithoutMana: true
@@ -91,7 +91,7 @@
       groups:
         Burn: 27
   - type: SpellCastEffect
-    effectProto: FireballSpellcastEffectMiddle
+    effectProto: FireballSpellCastEffectMiddle
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 155
@@ -136,7 +136,7 @@
       groups:
         Burn: 32
   - type: SpellCastEffect
-    effectProto: FireballSpellcastEffectSenior
+    effectProto: FireballSpellCastEffectSenior
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 135

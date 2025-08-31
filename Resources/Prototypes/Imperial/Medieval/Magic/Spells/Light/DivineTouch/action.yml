@@ -22,7 +22,7 @@
       groups:
         Burn: 10
   - type: SpellCastEffect
-    effectProto: DivineTouchSpellcastEffectBeginner
+    effectProto: DivineTouchSpellCastEffectBeginner
   - type: MedievalInstantSpell
   - type: InstantAction
     useDelay: 15

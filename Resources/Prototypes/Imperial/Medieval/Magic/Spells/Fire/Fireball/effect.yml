@@ -20,7 +20,7 @@
 #Beginner
 
 - type: entity
-  id: FireballSpellcastEffectBeginner
+  id: FireballSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
@@ -38,7 +38,7 @@
 #Middle
 
 - type: entity
-  id: FireballSpellcastEffectMiddle
+  id: FireballSpellCastEffectMiddle
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
@@ -56,7 +56,7 @@
 #Senior
 
 - type: entity
-  id: FireballSpellcastEffectSenior
+  id: FireballSpellCastEffectSenior
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi

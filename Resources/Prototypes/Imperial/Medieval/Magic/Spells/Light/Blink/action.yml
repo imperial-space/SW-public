@@ -109,7 +109,7 @@
       groups:
         Burn: 15
   - type: SpellCastEffect
-    effectProto: BlinkSpellcastEffectBeginner
+    effectProto: BlinkSpellCastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 25

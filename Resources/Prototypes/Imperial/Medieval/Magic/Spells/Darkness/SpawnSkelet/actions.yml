@@ -44,7 +44,7 @@
       groups:
         Burn: 19
   - type: SpellCastEffect
-    effectProto: SpawnSkeletSpellcastEffectBeginner
+    effectProto: SpawnSkeletSpellCastEffectBeginner
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionSpawnSkeletMiddle

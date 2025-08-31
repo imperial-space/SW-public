@@ -1,7 +1,7 @@
 #Middle
 
 - type: entity
-  id: CriticalMassSpellcastEffectMiddle
+  id: CriticalMassSpellCastEffectMiddle
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
@@ -19,7 +19,7 @@
 #Senior
 
 - type: entity
-  id: CriticalMassSpellcastEffectSenior
+  id: CriticalMassSpellCastEffectSenior
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
