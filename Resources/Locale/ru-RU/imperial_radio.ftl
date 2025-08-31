@@ -89,9 +89,6 @@ ManufacturingSector = Сектор Финансов
 ent-EncryptionKeyRadioAdministration = Ключ шифрования
     .desc = На усмотрение, можно и без.
 
-ent-EncryptionKeyRadioAdministration = Ключ шифрования
-    .desc = На усмотрение, можно и без.
-
 ent-EncryptionKeyRadioFelixradioChannelBank = Ключ шифрования
     .desc = На усмотрение, можно и без.
 
