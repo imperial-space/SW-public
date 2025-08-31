@@ -108,6 +108,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 15
+  - type: SpellCastEffect
+    effectProto: BlinkSpellcastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 25

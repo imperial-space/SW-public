@@ -146,6 +146,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 15
+  - type: SpellCastEffect
+    effectProto: MagicArrowCursorFollowerSpellcastEffectSenior
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence

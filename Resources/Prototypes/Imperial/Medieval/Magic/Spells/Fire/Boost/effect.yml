@@ -1,0 +1,17 @@
+#Beginner
+
+- type: entity
+  id: BoostSpellcastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/boost.rsi
+    state: beginner
+    color: "#820509"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#820509"
+  - type: TimedDespawn
+    lifetime: 0.5

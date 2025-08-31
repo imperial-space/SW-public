@@ -21,6 +21,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 10
+  - type: SpellCastEffect
+    effectProto: DivineTouchSpellcastEffectBeginner
   - type: MedievalInstantSpell
   - type: InstantAction
     useDelay: 15
