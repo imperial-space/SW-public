@@ -6,7 +6,7 @@
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/arrow.rsi
     state: beginner
-    color: "#5B6EE1"
+    color: "#FF5900"
     noRot: true
     shader: unshaded
   - type: PointLight
