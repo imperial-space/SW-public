@@ -608,6 +608,28 @@
     sprite: Imperial/Medieval/Clothing/Head/archimageyamuro.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadHelmetCharmerApocrif
+  name: MedievalClothingHeadHelmetCharmerApocrif
+  description: Medieval salad helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadHelmetCharmerPurple
+  name: MedievalClothingHeadHelmetCharmerPurple
+  description: MedievalClothingHeadHelmetCharmerPurple
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/purplecharmerrobe.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/purplecharmerrobe.rsi
+
+- type: entity
   parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetCharmerLight
   name: MedievalClothingHeadHelmetCharmerLight
@@ -660,6 +682,28 @@
     sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightApocrif
+  name: MedievalClothingHeadHelmetCharmerLightApocrif
+  description: MedievalClothingHeadHelmetCharmerLightApocrif
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightPurple
+  name: MedievalClothingHeadHelmetCharmerLightPurple
+  description: MedievalClothingHeadHelmetCharmerLightPurple
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/purplecharmerrobe.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/purplecharmerrobe.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
@@ -777,6 +821,17 @@
   - type: HideLayerClothing
     slots:
     - Hair
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakGreen
+  name: MedievalClothingHeadHelmetCharmerWeakGreen
+  description: MedievalClothingHeadHelmetCharmerWeakGreen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmer_green.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmer_green.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
@@ -948,6 +1003,28 @@
     sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalClothingHeadHelmetLegionLegat # imperial medieval
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetRoyalLegioner
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg.rsi
   - type: IngestionBlocker
     enabled: false
   - type: IdentityBlocker
@@ -1329,6 +1406,28 @@
     sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetDraconic
+  name: MedievalClothingHeadHelmetDraconic
+  description: MedievalClothingHeadHelmetDraconic
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetViking
+  name: MedievalClothingHeadHelmetViking
+  description: MedievalClothingHeadHelmetViking
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/viking.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/viking.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetShapel

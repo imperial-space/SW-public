@@ -878,6 +878,30 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth75
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth76
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Insulated
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiver
   name: MedievalQuiver
@@ -1017,6 +1041,25 @@
   id: MedievalClothingMaskPlague
   name: MedievalClothingMaskPlague
   description: MedievalClothingMaskPlague
+
+- type: entity
+  parent: ClothingHeadHatPlaguedoctor
+  id: MedievalClothingHeadHatRoyalChaplain
+  name: MedievalClothingHeadHatRoyalChaplain
+  description: MedievalClothingHeadHatRoyalChaplain
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
 
 - type: entity
   parent: ClothingMaskMuzzle
@@ -1728,9 +1771,31 @@
 
 - type: entity
   parent: ClothingShoesBase
+  id: MedievalClothingRoyalChaplainBoots
+  name: MedievalClothingRoyalChaplainBoots
+  description: MedievalClothingRoyalChaplainBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/royalchaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/royalchaplain.rsi
+
+- type: entity
+  parent: ClothingShoesBase
   id: MedievalClothingBlackBoots
   name: MedievalClothingBlackBoots
   description: MedievalClothingBlackBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBoots
+  name: MedievalClothingApocrifBoots
+  description: MedievalClothingApocrifBoots
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
@@ -1766,6 +1831,20 @@
     sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
 
 - type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsApocrif
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+
+- type: entity
   parent: ClothingOuterStorageBase
   id: MedievalClothingOuterRoyalCoat
   name: MedievalClothingOuterRoyalCoat
@@ -1775,6 +1854,17 @@
     sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: MedievalClothingOuterRoyalChaplain
+  name: MedievalClothingOuterRoyalChaplain
+  description: MedievalClothingOuterRoyalChaplain
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
 
 - type: entity
   parent: ClothingEyesBase
