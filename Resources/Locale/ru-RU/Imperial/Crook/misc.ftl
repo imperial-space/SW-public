@@ -56,6 +56,6 @@ reagent-name-kvass-bestdrink = квас
 reagent-desc-kvass-bestdrink = Славянское удовольствие, где вместо дрожжей - сухарики три корочки.
 
 ent-PortalGatewayBackrooms = неизвестная аномалия
-    .desc = Оно будто бы взывает вас. Зайдите в неё, что может пойти не так?
+    .desc = Она будто бы зовёт вас. Зайдите в неё, что может пойти не так?
 ent-HandTeleporterBackrooms = телепорт
     .desc = Используйте, чтобы создать порталы.
