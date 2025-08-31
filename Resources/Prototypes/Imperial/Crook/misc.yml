@@ -362,7 +362,7 @@
         Structural: 50
   - type: MeleeChemicalInjector
     solution: bloodstream
-    transferAmount: 2
+    transferAmount: 1
   - type: DamageStateVisuals
     rotate: true
     states:
@@ -553,8 +553,13 @@
     - state: icon
   - type: PointLight
     radius: 1.5
-    energy: 1
+    energy: 0.5
     netsync: false
+  - type: AmbientSound
+    range: 4
+    volume: -3
+    sound:
+      path: /Audio/Ambience/anomaly_scary.ogg
 
 - type: entity
   id: HandTeleporterBackrooms
