@@ -21,7 +21,7 @@
       trigger-collision:
         shape:
           !type:PhysShapeCircle
-          radius: 5.0
+          radius: 3.5
         hard: false
         density: 0
         mask:
