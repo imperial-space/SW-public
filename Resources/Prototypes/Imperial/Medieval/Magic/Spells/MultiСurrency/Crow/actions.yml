@@ -8,7 +8,7 @@
     useDelay: 40
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
-      path: /Audio/Imperial/Medieval/crow.ogg
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
     icon:
       sprite: Imperial/Medieval/Mobs/crow.rsi
       state: crow
