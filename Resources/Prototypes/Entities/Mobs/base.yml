@@ -46,6 +46,7 @@
   - type: MedievalDash # Imperial Medieval Dash
   - type: RequireProjectileTarget
     active: False
+  - type: PlayerLocation # Imperial Medieval Audio Location
 
 - type: entity
   save: false
