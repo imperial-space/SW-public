@@ -4,12 +4,15 @@
   id: ImperialSCPBase
   suffix: AI
   components:
+    - type: Tag
+      tags:
+      - SCP
     - type: TriggerOnMobstateChange
       mobState:
       - Dead
     - type: SmokeOnTrigger
-      duration: 12
-      spreadAmount: 2
+      duration: 15
+      spreadAmount: 3
     - type: SoundOnTrigger
       sound: /Audio/Effects/smoke.ogg
     - type: TimerTriggerVisuals
@@ -64,7 +67,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        5000: Dead
+        4000: Dead
     - type: MeleeWeapon
       hidden: true
       altDisarm: false
@@ -74,7 +77,7 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 90
+          Blunt: 80
       resistanceBypass: true
     - type: Speech
       speechVerb: LargeMob
@@ -82,17 +85,11 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 2
       baseSprintSpeed: 1.8
-    - type: FootstepModifier
-      footstepSoundCollection:
-        path: /Audio/Imperial/Seriozha/SCP/ded.ogg
     - type: Vocal
       sounds:
         Male: DedVoice
         Unsexed: DedVoice
         Female: DedVoice
-    - type: Tag
-      tags:
-      - FootstepSound
     - type: Fixtures
       fixtures:
         fix1:
@@ -108,9 +105,124 @@
           - MobLayer
 
 - type: entity
+  name: Fireman
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPFireMan
+  description: Pray.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Fireman.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: alive
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        2500: Dead
+    - type: Damageable
+      damageModifierSet: SCPFireMan
+    - type: MeleeWeapon
+      hidden: true
+      altDisarm: false
+      soundHit:
+        path: /Audio/Weapons/punch3.ogg
+      angle: 0
+      animation: WeaponArcPunch
+      damage:
+        types:
+          Structural: 60
+          Heat: 24
+      resistanceBypass: true
+    - type: IgniteOnMeleeHit
+      fireStacks: 4
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.5
+      baseSprintSpeed: 3
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
+  name: Avel
+  suffix: seriozha, Недра
+  parent: ImperialSCPBase
+  id: ImperialSCPAvel
+  description: Pray.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Avel.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        2000: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.2
+      baseSprintSpeed: 2.8
+    - type: Hands
+    - type: Puller
+    - type: Pullable
+    - type: Loadout
+      prototypes: [ ImperialAvelGear ]
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+
+- type: entity
   parent: [ ClothingHeadHelmetArmoredBase, BaseMajorContraband]
   id: ImperialSCPMask
-  name: idk
+  name: Mask
   suffix: seriozha, Недра
   description: idc
   components:
@@ -131,7 +243,7 @@
         Caustic: 0.45
         Stamina: 0.4
   - type: ExplosionResistance
-    damageCoefficient: 0.5
+    damageCoefficient: 0.0
 
 - type: entity
   name: Doctor
@@ -155,7 +267,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        4000: Dead
+        3000: Dead
     - type: MeleeWeapon
       hidden: true
       altDisarm: false
@@ -165,13 +277,12 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Blunt: 150
-      resistanceBypass: true
+          Caustic: 150
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3
-      baseSprintSpeed: 2.4
+      baseWalkSpeed: 3.2
+      baseSprintSpeed: 2.6
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Seriozha/SCP/doc.ogg
@@ -184,8 +295,6 @@
       needsHands: false
     - type: Inventory
       templateId: docinv
-    - type: Body
-      prototype: Human
     - type: Vocal
       sounds:
         Male: DocVoice
@@ -206,6 +315,35 @@
           - MobMask
           layer:
           - MobLayer
+
+- type: entity
+  name: Katana
+  suffix: seriozha, Недра
+  parent: [ BaseSword, BaseMajorContraband ]
+  id: ImperialSCPKatana
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Item
+    size: Ginormous
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/SCP/objects/Katana.rsi
+    slots:
+    - Belt
+  - type: MeleeWeapon
+    attackRate: 1.25
+    damage:
+      types:
+        Structural: 90
+        Slash: 60
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Reflect
+    reflectProb: 0.15
+    spread: 90
+  - type: DisarmMalus
 
 - type: emoteSounds
   id: DedVoice
@@ -271,10 +409,23 @@
 - type: damageModifierSet
   id: SCPStandart
   coefficients:
-    Blunt: 0.2
-    Slash: 0.2
-    Piercing: 0.4
-    Poison: 0.9
+    Poison: 0.1
+    Blunt: 0.4
+    Slash: 0.7
+    Piercing: 0.8
     Cellular: 0.9
-    Radiation: 0.9
+    Radiation: 0.0
     Caustic: 0.0
+
+- type: damageModifierSet
+  id: SCPFireMan
+  coefficients:
+    Heat: 0.0
+    Poison: 0.0
+    Radiation: 0.0
+    Caustic: 0.0
+
+- type: startingGear
+  id: ImperialAvelGear
+  inhand:
+  - ImperialSCPKatana
