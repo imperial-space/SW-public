@@ -21,6 +21,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 12
+  - type: SpellCastEffect
+    effectProto: CriticalMassSpellcastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 22

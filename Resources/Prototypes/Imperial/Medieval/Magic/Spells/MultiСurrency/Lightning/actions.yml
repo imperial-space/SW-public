@@ -62,6 +62,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 22
+  - type: SpellCastEffect
+    effectProto: LightningSpellcastEffectMiddle
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionLightningSenior

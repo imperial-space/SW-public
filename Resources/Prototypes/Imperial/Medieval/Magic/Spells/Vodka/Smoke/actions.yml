@@ -21,6 +21,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 15
+  - type: SpellCastEffect
+    effectProto: SmokeSpellcastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 42

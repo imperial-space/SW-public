@@ -46,6 +46,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 19
+  - type: SpellCastEffect
+    effectProto: BoostSpellcastEffectBeginner
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionBoostMiddle

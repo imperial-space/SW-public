@@ -29,6 +29,22 @@
   - type: TimedDespawn
     lifetime: 1.25
 
+- type: entity
+  id: DiffusionSpellcastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    state: beginner
+    color: "#FF0062"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#FF0062"
+  - type: TimedDespawn
+    lifetime: 0.5
+
 # Senior
 
 - type: entity
@@ -59,3 +75,19 @@
     spawnRelativePosition: 1,1
   - type: TimedDespawn
     lifetime: 1.65
+
+- type: entity
+  id: DiffusionSpellcastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    state: beginner
+    color: "#FF6862"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#FF6862"
+  - type: TimedDespawn
+    lifetime: 0.5

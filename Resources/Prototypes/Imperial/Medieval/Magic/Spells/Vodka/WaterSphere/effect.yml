@@ -48,6 +48,23 @@
   - type: TimedDespawn
     lifetime: 5
 
+- type: entity
+  id: WaterSphereSpellcastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/vodka/sphere.rsi
+    state: beginner
+    color: "#0CBFE9"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#0CBFE9"
+  - type: TimedDespawn
+    lifetime: 0.5
+
+
 # Middle
 
 - type: entity

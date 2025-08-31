@@ -1,0 +1,35 @@
+#Middle
+
+- type: entity
+  id: CriticalMassSpellcastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    state: beginner
+    color: "#ff9c24"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#ff9c24"
+  - type: TimedDespawn
+    lifetime: 0.5
+
+#Senior
+
+- type: entity
+  id: CriticalMassSpellcastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    state: beginner
+    color: "#29B8DB"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#29B8DB"
+  - type: TimedDespawn
+    lifetime: 0.5
