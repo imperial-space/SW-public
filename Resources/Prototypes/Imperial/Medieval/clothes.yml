@@ -1858,8 +1858,6 @@
   - type: Sprite
     sprite: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
     state: handcuff
-  - type: Item
-    size: Small
   - type: TimedDespawn
     lifetime: 180
   - type: MeleeWeapon
