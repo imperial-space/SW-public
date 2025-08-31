@@ -271,9 +271,9 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         string? playerJob = null;
         if (_minds.TryGetMind(session.AttachedEntity.Value, out var mindId, out var mindComp))
         {
-            if (TryComp<MindComponent>(mindId, out var mind))
+            if (_jobs.MindTryGetJob(mindId, out var jobProto))
             {
-                playerJob = mind.RoleType.ToString();
+                playerJob = jobProto.LocalizedName;
             }
         }
 
