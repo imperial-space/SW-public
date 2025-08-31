@@ -125,6 +125,10 @@
   id: abiby228
   holder: a4005af8-718f-424e-9f1c-64df39f8ee58
   map:
+    MedievalIronGloves: [ MedievalIronGlovesDraconic ]
+    MedievalClothingFeetSteel: [ MedievalClothingFeetSteelDraconic ]
+    MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetDraconic ]
+    MedievalClothingOuterArmorUpIron: [ MedievalClothingOuterArmorUpIronDraconic ]
     MedievalFalshionT3: [ MedievalFalshionT3DarkSword ]
     MedievalFalshionT3Steel: [ MedievalFalshionT3DarkSwordSteel ]
     MedievalClothingNeckCloakClanFox: [MedievalClothingNeckCloakDarkBlueGold]

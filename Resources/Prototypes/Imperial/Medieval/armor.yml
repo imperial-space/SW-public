@@ -686,6 +686,18 @@
   - type: MedievalIronHitSound
 
 - type: entity
+  parent: MedievalClothingOuterArmorUpIron
+  id: MedievalClothingOuterArmorUpIronDraconic
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/draconic.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/draconic.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
   parent: ClothingHandsBase
   id: MedievalIronGloves
   name: IronGloves
@@ -2154,6 +2166,15 @@
 
 - type: entity
   parent: MedievalClothingFeetSteel
+  id: MedievalClothingFeetSteelDraconic
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/draconic.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/draconic.rsi
+
+- type: entity
+  parent: MedievalClothingFeetSteel
   id: MedievalClothingFeetSteelDarkBootsArchaont
   components:
   - type: Sprite
@@ -2171,6 +2192,17 @@
     sprite: Imperial/Medieval/Clothing/Gloves/up_royalgloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/up_royalgloves.rsi
+
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesDraconic
+  name: MedievalIronGlovesDraconic
+  description: MedievalIronGlovesDraconic
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/draconic.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/draconic.rsi
 
 - type: entity
   parent: ClothingOuterBase
