@@ -1861,6 +1861,7 @@
   - type: TimedDespawn
     lifetime: 180
   - type: MeleeWeapon
+    wideAnimationRotation: 90
     resetOnHandSelected: false
     animation: WeaponArcDisarm
     damage:
@@ -1880,13 +1881,6 @@
   - type: Tag
     tags:
     - Handcuffs
-  - type: MeleeWeapon
-    wideAnimationRotation: 90
-    resetOnHandSelected: false
-    animation: WeaponArcDisarm
-    damage:
-      types:
-        Blunt: 0
 
 - type: entity
   id: MedievalCursedFetter
