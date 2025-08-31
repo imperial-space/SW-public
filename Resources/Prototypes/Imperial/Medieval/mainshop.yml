@@ -3110,6 +3110,54 @@
   - MedievalTransport
 
 - type: listing
+  id: MdvShopMedievalBlackHorseWhistle
+  productEntity: MedievalBlackHorseWhistle
+  cost:
+    Revent: 800
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalBlackSpotHorseWhistle
+  productEntity: MedievalBlackSpotHorseWhistle
+  cost:
+    Revent: 360
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalBlackWhiteHorseWhistle
+  productEntity: MedievalBlackWhiteHorseWhistle
+  cost:
+    Revent: 480
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalGreyHorseWhistle
+  productEntity: MedievalGreyHorseWhistle
+  cost:
+    Revent: 600
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalWhiteHorseWhistle
+  productEntity: MedievalWhiteHorseWhistle
+  cost:
+    Revent: 730
+  categories:
+  - MedievalTransport
+
+- type: listing
+  id: MdvShopMedievalWhiteRoyalHorseWhistle
+  productEntity: MedievalWhiteRoyalHorseWhistle
+  cost:
+    Revent: 1200
+  categories:
+  - MedievalTransport
+
+- type: listing
   id: MdvShopMedievalCatapultCraft
   productEntity: MedievalCatapultCraft
   cost:

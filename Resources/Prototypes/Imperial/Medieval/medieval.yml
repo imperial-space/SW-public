@@ -7995,6 +7995,78 @@
   - type: DeleteOnTrigger
 
 - type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalBlackHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalBlackHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalBlackSpotHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalBlackSpotHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalBlackWhiteHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalBlackWhiteHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalGreyHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalGreyHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalWhiteHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalWhiteHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalWhiteRoyalHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalWhiteRoyalHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
   parent: BaseItem
   id: MedievalHorseNecroWhistle
   name: necro whistle

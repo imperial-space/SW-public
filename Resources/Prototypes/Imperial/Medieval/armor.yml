@@ -259,6 +259,17 @@
     damageCoefficient: 0.8
 
 - type: entity
+  parent: MedievalClothingOuterArmorLeatherLight
+  id: MedievalClothingOuterRoyalArmorLeatherLight
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/royal_leather_light.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/royal_leather_light.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorChainMail
   name: leather armor
@@ -453,6 +464,17 @@
     sprite: Imperial/Medieval/Clothing/Armor/royalcuirass.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/royalcuirass.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalClothingOuterArmorChainMailViking
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/viking.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/viking.rsi
 
 - type: entity
   parent: ClothingOuterBase
@@ -661,6 +683,18 @@
     sprite: Imperial/Medieval/Clothing/Armor/dark_up_armor.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/dark_up_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron
+  id: MedievalClothingOuterArmorUpIronDraconic
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/draconic.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/draconic.rsi
   - type: MedievalIronHitSound
 
 - type: entity
@@ -1198,6 +1232,30 @@
     sprite: Imperial/Medieval/Clothing/Armor/archimageyamuro.rsi
 
 - type: entity
+  parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterArmorCharmerApocrif
+  name: MedievalClothingOuterArmorCharmerApocrif
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterArmorCharmerPurple
+  name: MedievalClothingOuterArmorCharmerPurple
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/purplecharmerrobe.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/purplecharmerrobe.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorCharmerLight
   name: MedievalClothingOuterArmorCharmerLight
@@ -1236,6 +1294,32 @@
     damageCoefficient: 0.7
   - type: ManaRegen
     regen: 1.2
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightPurple
+  name: MedievalClothingOuterArmorCharmerLightPurple
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/purplecharmerrobe.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/purplecharmerrobe.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightApocrif
+  name: MedievalClothingOuterArmorCharmerLightApocrif
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight
@@ -1416,6 +1500,19 @@
     damageCoefficient: 0.75
   - type: ManaRegen
     regen: 0.7
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakGreen
+  name: MedievalClothingOuterArmorCharmerWeakGreen
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_green.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_green.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerWeak
@@ -2069,6 +2166,15 @@
 
 - type: entity
   parent: MedievalClothingFeetSteel
+  id: MedievalClothingFeetSteelDraconic
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/draconic.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/draconic.rsi
+
+- type: entity
+  parent: MedievalClothingFeetSteel
   id: MedievalClothingFeetSteelDarkBootsArchaont
   components:
   - type: Sprite
@@ -2086,6 +2192,17 @@
     sprite: Imperial/Medieval/Clothing/Gloves/up_royalgloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/up_royalgloves.rsi
+
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesDraconic
+  name: MedievalIronGlovesDraconic
+  description: MedievalIronGlovesDraconic
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/draconic.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/draconic.rsi
 
 - type: entity
   parent: ClothingOuterBase
