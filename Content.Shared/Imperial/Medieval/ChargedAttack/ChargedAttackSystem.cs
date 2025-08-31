@@ -35,7 +35,6 @@ public sealed class ChargedAttackSystem : EntitySystem
         SubscribeAllEvent<ChargedAttackEnd>(OnEnd);
 
         SubscribeLocalEvent<HumanoidAppearanceComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovespeed);
-        SubscribeLocalEvent<ChargedAttackComponent, DroppedEvent>(OnDropped);
 
         SubscribeLocalEvent<ChargedAttackComponent, MeleeHitEvent>(OnHit);
         SubscribeLocalEvent<ChargedAttackComponent, StaminaMeleeHitEvent>(OnStaminaHit);
@@ -69,9 +68,28 @@ public sealed class ChargedAttackSystem : EntitySystem
         Dirty(weapon, charged);
     }
 
-    private void OnDropped(EntityUid weapon, ChargedAttackComponent charged, DroppedEvent args)
+    public override void Update(float frameTime)
     {
-        EndEffect(weapon, charged, args.User);
+        var query = EntityQueryEnumerator<ChargedAttackComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if (!comp.EffectSpawnedEntity.IsValid())
+                continue;
+
+            if (comp.AttackStart + TimeSpan.FromSeconds(comp.MaxAttackTime) <= _timing.CurTime || !comp.CurrentAttacking)
+            {
+                EndEffect(uid, comp);
+                continue;
+            }
+
+            var effect = comp.EffectSpawnedEntity;
+            var parent = Transform(effect).ParentUid;
+            if (!_handsSystem.TryGetActiveItem(parent, out var item) || item != effect)
+            {
+                EndEffect(uid, comp);
+                continue;
+            }
+        }
     }
 
     private void OnRefreshMovespeed(EntityUid uid, HumanoidAppearanceComponent component, RefreshMovementSpeedModifiersEvent args)
@@ -150,7 +168,7 @@ public sealed class ChargedAttackSystem : EntitySystem
         charged.CurrentAttacking = false;
         charged.AttackStart = TimeSpan.FromSeconds(0f);
         _modifierSystem.RefreshMovementSpeedModifiers(user);
-        EndEffect(entity, charged, user);
+        EndEffect(entity, charged);
         Dirty(entity, charged);
     }
 
@@ -165,10 +183,12 @@ public sealed class ChargedAttackSystem : EntitySystem
         Dirty(entity, charged);
     }
 
-
-    private void EndEffect(EntityUid entity, ChargedAttackComponent charged, EntityUid user)
+    private void EndEffect(EntityUid entity, ChargedAttackComponent charged)
     {
         var effect = charged.EffectSpawnedEntity;
+        if (!effect.Valid)
+            return;
+
         PredictedQueueDel(effect);
         charged.EffectSpawnedEntity = EntityUid.Invalid;
         Dirty(entity, charged);
