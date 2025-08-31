@@ -542,6 +542,37 @@
     soundGunshot: /Audio/Weapons/Xeno/alien_spitacid.ogg
   - type: NonSpreaderZombie
 
+- type: entity
+  id: PortalGatewayBackrooms
+  parent: BasePortal
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Crook/Misc/backrooms/portal.rsi
+    layers:
+    - state: icon
+  - type: PointLight
+    radius: 2
+    energy: 1
+    netsync: false
+
+- type: entity
+  id: HandTeleporterBackrooms
+  suffix: Backrooms, Crook
+  parent: BaseItem
+  name: interdimensional teleporter
+  description: Allows you to open stable portal gates that are not limited by distance.
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/backrooms/portal.rsi
+    layers:
+    - state: icon
+  - type: HandTeleporter
+    allowPortalsOnDifferentGrids: true
+    allowPortalsOnDifferentMaps: true
+    firstPortalPrototype: PortalGatewayBackrooms
+    secondPortalPrototype: PortalGatewayBackrooms
+
 # Majima
 
 - type: entity
