@@ -42,6 +42,7 @@ public sealed class EaselSystem : EntitySystem
             return;
 
         canvas.Texture = args.Texture;
+        canvas.Dirty();
         RaiseNetworkEvent(new CanvasTextureChangedEvent(GetNetEntity(canvas.Owner), canvas.Texture));
     }
 
