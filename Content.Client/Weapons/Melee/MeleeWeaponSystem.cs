@@ -165,7 +165,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
                     return;
                 }
             }
-            return;
         }
         else if (altDown == BoundKeyState.Down) // Heavy Attack
         {
