@@ -306,6 +306,10 @@
   - type: MeleeParry
     parryChanse: 0.2
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
     clickDamageModifier: 0.8
     attackRate: 1.45
     range: 1
@@ -788,7 +792,7 @@
 
 - type: entity
   name: medieval spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearCult
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
@@ -802,6 +806,10 @@
   - type: MeleeParry
     parryChanse: 0.6
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 2
     clickDamageModifier: 1.32
     wideAnimationRotation: -140
     attackRate: 0.65
@@ -811,7 +819,6 @@
         Piercing: 11
         ParryAble: 1
     angle: 0
-    animation: WeaponArcThrust
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     soundSwing:
@@ -864,7 +871,7 @@
 
 - type: entity
   name: iron halberd
-  parent: BaseItem
+  parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronSekirCult
   description: A medieval poleaxe.
   components:
@@ -886,6 +893,11 @@
   - type: MeleeParry
     parryChanse: 0.55
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    angle: 120
+    cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
     attackRate: 0.6
@@ -936,6 +948,11 @@
   - type: MeleeParry
     parryChanse: 0.78
   - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: false
+    angle: 75
+    cPAnimationOffset: 1
     range: 1.45
     clickDamageModifier: 0.6
     wideAnimationRotation: -140

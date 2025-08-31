@@ -20,7 +20,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using static Robust.Client.UserInterface.Controls.BoxContainer;
 
-namespace Content.Client.UserInterface.Systems.Atmos.GasTank;
+namespace Content.Client.Imperial.Chemistry;
 
 public sealed class PotionBookWindow
     : FancyWindow
