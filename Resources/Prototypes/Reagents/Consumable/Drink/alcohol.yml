@@ -916,6 +916,7 @@
   id: DemonsBlood
   name: reagent-name-demons-blood
   parent: BaseAlcohol
+  slipData: # imperial medieval
   desc: reagent-desc-demons-blood
   evaporationSpeed: 0.3 # imperial medieval
   absorbent: true # imperial medieval
