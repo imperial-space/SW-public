@@ -141,15 +141,19 @@ public sealed partial class TradingMenu : DefaultWindow
     {
         ClearItems();
 
-        var items = guild?.Items;
-        if (items == null)
-            return;
-
         var guildType = guild != null ? _prototypeManager.Index(guild.TypePrototype) : null;
+        var currency = guildType?.Currency;
 
-        foreach (var item in items)
+        foreach (var item in guild?.Items
+                             ?? Enumerable.Empty<GuildTradingItem>())
         {
-            AddItemGui(item, guildType?.Currency);
+            AddItemGui(item, currency);
+        }
+
+        foreach (var (item, reason) in guild?.UnavailableItems
+                                       ?? Enumerable.Empty<KeyValuePair<GuildTradingItem, string>>())
+        {
+            AddItemGui(item, currency, false, reason);
         }
     }
 
@@ -171,11 +175,9 @@ public sealed partial class TradingMenu : DefaultWindow
         _withdrawWindow.OnWithdrawAttempt += OnWithdrawAttempt;
     }
 
-    private void AddItemGui(GuildTradingItem item, string? currency = null)
+    private void AddItemGui(GuildTradingItem item, string? currency = null, bool available = true, string unavailableReason = "")
     {
         var hasBalance = item.ChangedCost <= Balance;
-
-        var spriteSys = _entityManager.EntitySysManager.GetEntitySystem<SpriteSystem>();
 
         var texture = item.ProductEntity != null
             ? _entityManager.EntitySysManager.GetEntitySystem<SpriteSystem>()
@@ -185,7 +187,7 @@ public sealed partial class TradingMenu : DefaultWindow
 
         var stockPrice = GetItemPriceString(item, currency);
 
-        var newListing = new TradingItemControl(item, stockPrice,"", hasBalance, texture);
+        var newListing = new TradingItemControl(item, stockPrice,"", hasBalance, texture, available, unavailableReason);
         newListing.StoreItemBuyButton.OnButtonDown += args
             => OnItemButtonPressed?.Invoke(args, item);
 

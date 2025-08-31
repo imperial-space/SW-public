@@ -43,12 +43,12 @@ public sealed partial record GuildTradingItem
     [DataField] public string? Name;
     [DataField] public string? Description;
 
-    public bool CanBuy(NetEntity ent, Guild guild, IEntityManager? entityManager = null)
+    public (bool, string?) CanBuy(NetEntity ent, Guild guild, IEntityManager? entityManager = null)
     {
         var reputation = guild.GetReputation(ent);
 
         if (reputation < MinReputation)
-            return false;
+            return (false, Loc.GetString("trading-ui-reputation-lack", ("rep", reputation), ("requiredRep", MinReputation)));
 
         if (MinReputationPlace > 0)
         {
@@ -59,20 +59,20 @@ public sealed partial record GuildTradingItem
                 .ToList();
 
             if (!sorted.Contains(ent))
-                return false;
+                return (false, Loc.GetString("trading-ui-reputation-place-lack", ("requiredPlace", MinReputationPlace)));
         }
 
         if (SpawnOnActionWhitelist != null && entityManager != null)
         {
             var entUid = entityManager.GetEntity(ent);
             if (!entityManager.TryGetComponent<SpawnOnActionComponent>(entUid, out var spawnOnAction))
-                return false;
+                return (false, null);
 
             if (spawnOnAction.ActionId != SpawnOnActionWhitelist)
-                return false;
+                return (false, null);
         }
 
-        return true;
+        return (true, null);
     }
 
 

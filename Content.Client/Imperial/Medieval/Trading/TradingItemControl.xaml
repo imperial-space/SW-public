@@ -4,6 +4,7 @@
             <Label Name="StoreItemName" HorizontalExpand="True" />
             <Label Name="DiscountSubText"
                    HorizontalAlignment="Right"/>
+            <Label StyleClasses="LabelSmall" Name="UnavailableItemReason" Modulate="#AAAAAA" HorizontalAlignment="Right" Text="" Visible="False"/>
             <Button
                 Name="StoreItemBuyButton"
                 MinWidth="64"

@@ -24,7 +24,7 @@ public sealed partial class TradingItemControl : Control
     private readonly bool _hasBalance;
     private readonly string _price;
     private readonly string _discount;
-    public TradingItemControl(GuildTradingItem data, string price, string discount, bool hasBalance, Texture? texture = null)
+    public TradingItemControl(GuildTradingItem data, string price, string discount, bool hasBalance, Texture? texture = null, bool available = true, string unavailableReason = "")
     {
         IoCManager.InjectDependencies(this);
         RobustXamlLoader.Load(this);
@@ -41,6 +41,13 @@ public sealed partial class TradingItemControl : Control
         StoreItemBuyButton.Disabled = !CanBuy();
 
         StoreItemTexture.Texture = texture;
+
+        if (!available)
+        {
+            StoreItemBuyButton.Visible = false;
+            UnavailableItemReason.Visible = true;
+            UnavailableItemReason.Text = unavailableReason;
+        }
     }
 
     private bool CanBuy()

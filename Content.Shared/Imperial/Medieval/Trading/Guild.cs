@@ -18,6 +18,7 @@ public sealed class Guild : IEquatable<Guild>
     public ProtoId<GuildTypePrototype> TypePrototype { get; private set; }
 
     public List<GuildTradingItem> Items;
+    public Dictionary<GuildTradingItem, string> UnavailableItems = new();
 
     public Dictionary<NetEntity, float> Reputation = new();
 

@@ -111,7 +111,7 @@ public sealed partial class TradingSystem
         if (guild == null)
             return;
 
-        if (!item.CanBuy(netBuyer, guild, _entityManager))
+        if (!item.CanBuy(netBuyer, guild, _entityManager).Item1)
             return;
 
         var cost = TradingHelpers.PriceWithReputation(guild, item, netBuyer);

@@ -2,6 +2,9 @@
 trading-ui-reputation-text = Репутация: {$rep}
 store-ui-back-button-text = Назад
 
+trading-ui-reputation-lack = Необходимо: {$requiredRep} репутации
+trading-ui-reputation-place-lack = Необходимо: {$requiredPlace} место в рейтинге
+
 trading-ui-guild-type = Тип: {$type}
 
 trading-guild-type-TestType = тест

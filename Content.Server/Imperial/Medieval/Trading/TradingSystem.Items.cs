@@ -43,7 +43,7 @@ public sealed partial class TradingSystem
 
             var modifiedGuild = guild.Clone();
             var modifiedItems = guild.Items
-                .Where(i => i.CanBuy(netBuyer, guild, _entityManager))
+                .Where(i => i.CanBuy(netBuyer, guild, _entityManager).Item1)
                 .Select(x =>
                 {
                     var clone = x with { };
@@ -53,6 +53,21 @@ public sealed partial class TradingSystem
                 .ToList();
 
             modifiedGuild.Items = modifiedItems;
+
+            Dictionary<GuildTradingItem, string> unavailableItems = new();
+            foreach (var item in guild.Items)
+            {
+                var (canBuy, reason) = item.CanBuy(netBuyer, guild, _entityManager);
+                if(canBuy)
+                    continue;
+                if(reason == null)
+                    continue;
+
+                unavailableItems.Add(item, reason);
+            }
+
+            modifiedGuild.UnavailableItems = unavailableItems;
+
             yield return modifiedGuild;
         }
     }

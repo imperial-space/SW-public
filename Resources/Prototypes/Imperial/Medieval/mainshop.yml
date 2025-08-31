@@ -72,7 +72,7 @@
     cost: 10
   - productEntity: FoodBurgerBacon
     cost: 5
-    
+
     # на какой позиции в рейтинге гильдии
     # должен находиться игрок, чтобы купить
     # по умолчанию 0 - на любом месте
@@ -94,6 +94,8 @@
     # если не указывать, то будут использоваться имя и описание предмета
     name: тест квеста
     description: тесты
+  - productEntity: MedievalKeyWizard
+    cost: 1
 
 - type: entity
   id: MedievalShopHole
