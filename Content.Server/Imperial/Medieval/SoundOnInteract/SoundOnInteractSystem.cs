@@ -8,22 +8,22 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.Imperial.Medieval.SoundOnInteract;
 
-public sealed partial class SoundOnInteractSystem : EntitySystem
+public sealed partial class MedievalSoundOnInteractSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<SoundOnInteractComponent, GettingPickedUpAttemptEvent>(OnPick);
-        SubscribeLocalEvent<SoundOnInteractComponent, DroppedEvent>(OnPut);
+        SubscribeLocalEvent<MedievalSoundOnInteractComponent, GettingPickedUpAttemptEvent>(OnPick);
+        SubscribeLocalEvent<MedievalSoundOnInteractComponent, DroppedEvent>(OnPut);
     }
-    private void OnPick(EntityUid uid, SoundOnInteractComponent comp, GettingPickedUpAttemptEvent ev) // idk why doesn't exists PickedEvent like 26 line
+    private void OnPick(EntityUid uid, MedievalSoundOnInteractComponent comp, GettingPickedUpAttemptEvent ev) // idk why doesn't exists PickedEvent like 26 line
     {
         if (comp.OnPick == null || ev.Cancelled) return;
         _audio.PlayPvs(comp.OnPick, uid.ToCoordinates());
     }
-    private void OnPut(EntityUid uid, SoundOnInteractComponent comp, DroppedEvent ev)
+    private void OnPut(EntityUid uid, MedievalSoundOnInteractComponent comp, DroppedEvent ev)
     {
         if (comp.OnPut == null) return;
         _audio.PlayPvs(comp.OnPut, uid.ToCoordinates());
