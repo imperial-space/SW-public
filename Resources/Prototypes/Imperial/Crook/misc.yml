@@ -258,7 +258,7 @@
   sound:
     path: /Audio/Imperial/Crook/smiler/smilerscream.ogg
     params:
-      variation: 2
+      volume: -8
 
 - type: entity
   name: basic smiler
@@ -296,7 +296,7 @@
       120: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3
-    baseSprintSpeed: 5
+    baseSprintSpeed: 4
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
@@ -311,8 +311,10 @@
     angle: 0
     animation: WeaponArcPunch
   - type: GhostTakeoverAvailable
+  - type: ReplacementAccent
+    accent: genericAggressive
   - type: TypingIndicator
-    proto: slime
+    proto: alien
 
 - type: entity
   name: Smiler
@@ -330,8 +332,10 @@
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
         state: alive
+        scale: 1.5, 1.5
       - state: unshaded
         shader: unshaded
+        scale: 1.5, 1.5
   - type: PointLight
     radius: 1.2
     energy: 2.1
@@ -344,9 +348,6 @@
     thresholds:
       0: Alive
       150: Dead
-  - type: SlowOnDamage
-    speedModifierThresholds:
-      50: 0.4
   - type: Bloodstream
     bloodReagent: MuteToxin
     chemicalMaxVolume: 60
@@ -361,7 +362,7 @@
         Structural: 50
   - type: MeleeChemicalInjector
     solution: bloodstream
-    transferAmount: 5
+    transferAmount: 2
   - type: DamageStateVisuals
     rotate: true
     states:
