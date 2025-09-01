@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: SpawnSkeletSpellcastEffectBeginner
+  id: SpawnSkeletSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/darkness/skelet.rsi

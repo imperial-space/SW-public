@@ -23,7 +23,7 @@
       groups:
         Burn: 19
   - type: SpellCastEffect
-    effectProto: DiffusionSpellcastEffectMiddle
+    effectProto: DiffusionSpellCastEffectMiddle
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 18
@@ -70,7 +70,7 @@
       groups:
         Burn: 19
   - type: SpellCastEffect
-    effectProto: DiffusionSpellcastEffectSenior
+    effectProto: DiffusionSpellCastEffectSenior
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 22

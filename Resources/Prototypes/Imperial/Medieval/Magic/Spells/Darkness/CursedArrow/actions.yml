@@ -42,7 +42,7 @@
       groups:
         Burn: 5
   - type: SpellCastEffect
-    effectProto: CursedArrowSpellcastEffectBeginner
+    effectProto: CursedArrowSpellCastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 5

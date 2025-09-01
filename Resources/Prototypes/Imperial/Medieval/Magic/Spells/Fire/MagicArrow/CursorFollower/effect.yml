@@ -1,7 +1,7 @@
 #Senior
 
 - type: entity
-  id: MagicArrowCursorFollowerSpellcastEffectSenior
+  id: MagicArrowCursorFollowerSpellCastEffectSenior
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/arrow.rsi

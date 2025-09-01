@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: MagicLightSpellcastEffectBeginner
+  id: MagicLightSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/magic_light.rsi

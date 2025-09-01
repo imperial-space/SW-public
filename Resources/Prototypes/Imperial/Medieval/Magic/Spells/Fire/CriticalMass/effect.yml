@@ -1,5 +1,5 @@
 - type: entity
-  id: CriticalMassSpellcastEffectBeginner
+  id: CriticalMassSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
