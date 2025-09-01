@@ -1473,8 +1473,8 @@
 
 - type: entity
   name: falshion
-  parent: MedievalFalshionT3Legion
-  id: MedievalFalshionT3LegionViking
+  parent: MedievalFalshionT3
+  id: MedievalFalshionT3Viking
   description: An ancient war blade.
   components:
   - type: ToggleableLight
@@ -2188,7 +2188,7 @@
 
 - type: entity
   name: falshion
-  parent: [ BaseItem, BaseOneHandedCharged ] 
+  parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionT3Legion
   description: An ancient war blade.
   components:
