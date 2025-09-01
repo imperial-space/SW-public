@@ -1,7 +1,7 @@
 #Middle
 
 - type: entity
-  id: FireLightningSpellcastEffectMiddle
+  id: FireLightningSpellCastEffectMiddle
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/lightning.rsi
@@ -19,7 +19,7 @@
 #Senior
 
 - type: entity
-  id: FireLightningSpellcastEffectSenior
+  id: FireLightningSpellCastEffectSenior
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/lightning.rsi

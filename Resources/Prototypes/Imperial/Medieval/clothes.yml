@@ -1043,25 +1043,6 @@
   description: MedievalClothingMaskPlague
 
 - type: entity
-  parent: ClothingHeadHatPlaguedoctor
-  id: MedievalClothingHeadHatRoyalChaplain
-  name: MedievalClothingHeadHatRoyalChaplain
-  description: MedievalClothingHeadHatRoyalChaplain
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
-  - type: Clothing
-    sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
-  - type: Item
-    size: Normal
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
-
-- type: entity
   parent: ClothingMaskMuzzle
   id: MedievalGag
   name: MedievalGag
@@ -1865,6 +1846,10 @@
     sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.95
 
 - type: entity
   parent: ClothingEyesBase

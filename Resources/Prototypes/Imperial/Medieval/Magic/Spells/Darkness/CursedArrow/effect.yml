@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: CursedArrowSpellcastEffectBeginner
+  id: CursedArrowSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/darkness/arrow.rsi

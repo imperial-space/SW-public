@@ -26,7 +26,7 @@
 #Beginner
 
 - type: entity
-  id: FlashSpellcastEffectBeginner
+  id: FlashSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/flash.rsi
