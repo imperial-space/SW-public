@@ -43,6 +43,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 15
+  - type: SpellCastEffect
+    effectProto: WaterSphereSpellcastEffectBeginner
   - type: MedievalTargetOverlayOnAiming
     maxTargetCount: 1
     whiteListComponents:

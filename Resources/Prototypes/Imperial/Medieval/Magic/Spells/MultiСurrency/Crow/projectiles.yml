@@ -37,7 +37,7 @@
         behaviors:
         - !type:PlaySoundBehavior
           sound:
-            path: /Audio/Imperial/Medieval/crow.ogg
+            path: /Audio/Imperial/Medieval/buff_cast.ogg
         - !type:DoActsBehavior
           acts: ["Destruction"]
         - !type:SpawnEntitiesBehavior
@@ -69,7 +69,7 @@
       interactFailureString: petting-failure-generic
       interactSuccessSpawn: EffectHearts
       interactSuccessSound:
-        path: /Audio/Imperial/Medieval/crow.ogg
+        path: /Audio/Imperial/Medieval/buff_cast.ogg
     - type: CanMoveInAir
     - type: Tag
       tags:
@@ -101,7 +101,7 @@
     state: eliminate
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Imperial/Medieval/crow.ogg
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
       params:
         variation: 0.2
 
@@ -115,6 +115,6 @@
     state: eliminate
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Imperial/Medieval/crow.ogg
+      path: /Audio/Imperial/Medieval/buff_cast.ogg
       params:
         variation: 0.2

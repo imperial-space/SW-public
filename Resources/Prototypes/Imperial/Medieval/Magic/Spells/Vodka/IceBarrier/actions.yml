@@ -21,6 +21,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 18
+  - type: SpellCastEffect
+    effectProto: IceBarrierSpellcastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 22

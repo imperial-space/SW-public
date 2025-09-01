@@ -22,6 +22,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 19
+  - type: SpellCastEffect
+    effectProto: DiffusionSpellcastEffectMiddle
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 18
@@ -67,6 +69,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 19
+  - type: SpellCastEffect
+    effectProto: DiffusionSpellcastEffectSenior
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 22

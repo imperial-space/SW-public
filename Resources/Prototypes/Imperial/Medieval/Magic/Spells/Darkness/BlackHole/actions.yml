@@ -52,6 +52,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 19
+  - type: SpellCastEffect
+    effectProto: BlackHoleSpellcastEffectBeginner
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionBlackHoleMiddle

@@ -41,6 +41,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 5
+  - type: SpellCastEffect
+    effectProto: CursedArrowSpellcastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 5

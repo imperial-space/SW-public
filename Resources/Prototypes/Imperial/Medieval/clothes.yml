@@ -1933,11 +1933,10 @@
   - type: Sprite
     sprite: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
     state: handcuff
-  - type: Item
-    size: Small
   - type: TimedDespawn
     lifetime: 180
   - type: MeleeWeapon
+    wideAnimationRotation: 90
     resetOnHandSelected: false
     animation: WeaponArcDisarm
     damage:
@@ -1957,13 +1956,6 @@
   - type: Tag
     tags:
     - Handcuffs
-  - type: MeleeWeapon
-    wideAnimationRotation: 90
-    resetOnHandSelected: false
-    animation: WeaponArcDisarm
-    damage:
-      types:
-        Blunt: 0
 
 - type: entity
   id: MedievalCursedFetter

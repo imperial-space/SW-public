@@ -22,7 +22,7 @@ public sealed class LocationAudioSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<LocationTriggerComponent, StartCollideEvent>(OnTriggerEnter);
-        SubscribeLocalEvent<LocationTriggerComponent, EndCollideEvent>(OnTriggerExit);
+        //SubscribeLocalEvent<LocationTriggerComponent, EndCollideEvent>(OnTriggerExit);
     }
 
     /// <summary>
@@ -55,7 +55,7 @@ public sealed class LocationAudioSystem : EntitySystem
             var randomSound = _random.Pick(trigger.RandomSounds);
 
             // Воспроизводим звук
-            var audioParams = AudioParams.Default.WithVolume(-12f);
+            var audioParams = AudioParams.Default.WithVolume(-6f);
             _audio.PlayGlobal(randomSound, player, audioParams);
 
             // Устанавливаем следующий таймер
@@ -168,10 +168,9 @@ public sealed class LocationAudioSystem : EntitySystem
         if (args.OurFixtureId != component.FixtureId)
             return;
 
-        if (!HasComp<PlayerLocationComponent>(args.OtherEntity))
+        if (!TryComp<PlayerLocationComponent>(args.OtherEntity, out var playerComp))
             return;
 
-        var playerComp = Comp<PlayerLocationComponent>(args.OtherEntity);
         if (playerComp.CurrentLocationId == component.LocationId)
             return;
 
@@ -184,7 +183,8 @@ public sealed class LocationAudioSystem : EntitySystem
         // перенесём текущий в предыдущий и запустим затухание
         if (playerComp.PreviousStream != null)
         {
-            _audio.Stop(playerComp.PreviousStream);
+            StartFadeOutPrevious(args.OtherEntity, playerComp);
+            //_audio.Stop(playerComp.PreviousStream);
             playerComp.PreviousStream = null;
         }
         playerComp.PreviousStream = playerComp.CurrentStream;
