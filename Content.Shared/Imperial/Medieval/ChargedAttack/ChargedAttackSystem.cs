@@ -5,6 +5,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
@@ -26,6 +27,7 @@ public sealed class ChargedAttackSystem : EntitySystem
     [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _modifierSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
 
     public override void Initialize()
     {
@@ -84,7 +86,7 @@ public sealed class ChargedAttackSystem : EntitySystem
 
             var effect = comp.EffectSpawnedEntity;
             var parent = Transform(effect).ParentUid;
-            if (!_handsSystem.TryGetActiveItem(parent, out var item) || item != effect)
+            if (!_handsSystem.TryGetActiveItem(parent, out var item) || item != uid || !_mobState.IsAlive(parent))
             {
                 EndEffect(uid, comp);
                 continue;

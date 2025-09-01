@@ -137,21 +137,27 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         // imperial medieval charged attack start
         if (TryComp<ChargedAttackComponent>(weaponUid, out var charged))
         {
-            if (!charged.CurrentAttacking && altDown == BoundKeyState.Down)
+            if (!charged.CurrentAttacking)
             {
-                RaisePredictiveEvent(new ChargedAttackStart(GetNetEntity(weaponUid)));
-                return;
+                if (altDown == BoundKeyState.Down)
+                {
+                    RaisePredictiveEvent(new ChargedAttackStart(GetNetEntity(weaponUid)));
+                    return;
+                }
+                else if (useDown == BoundKeyState.Down)
+                {
+                    ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
+                    return;
+                }
             }
             else if (charged.AttackStart != TimeSpan.FromSeconds(0f))
             {
                 var attackTime = Timing.CurTime - charged.AttackStart;
                 if (altDown == BoundKeyState.Up && attackTime >= TimeSpan.FromSeconds(charged.MinAttackTime) || attackTime >= TimeSpan.FromSeconds(charged.MaxAttackTime))
                 {
-                    if (attackTime >= TimeSpan.FromSeconds(charged.MinAttackTime))
-                    {
-                        RaisePredictiveEvent(new ChargedAttackEnd(GetNetCoordinates(coordinates), GetNetEntity(weaponUid), attackTime));
-                        return;
-                    }
+                    RaisePredictiveEvent(new ChargedAttackEnd(GetNetCoordinates(coordinates), GetNetEntity(weaponUid), attackTime));
+                    Log.Info("1");
+                    return;
                 }
                 else if (altDown == BoundKeyState.Up && attackTime <= TimeSpan.FromSeconds(charged.MinAttackTime))
                 {
@@ -178,11 +184,9 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
             return;
         }
-        // imperial medieval charged attack end
-
-        // Light attack
-        if (useDown == BoundKeyState.Down)
+        else if (useDown == BoundKeyState.Down) // Light attack
             ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
+        // imperial medieval charged attack end
     }
 
     protected override bool InRange(EntityUid user, EntityUid target, float range, ICommonSession? session)
