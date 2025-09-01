@@ -86,7 +86,7 @@ public sealed class ChargedAttackSystem : EntitySystem
 
             var effect = comp.EffectSpawnedEntity;
             var parent = Transform(effect).ParentUid;
-            if (!_handsSystem.TryGetActiveItem(parent, out var item) || item != uid || !_mobState.IsAlive(parent))
+            if (!_handsSystem.TryGetActiveItem(parent, out var item) || item != uid || _mobState.IsCritical(parent) || _mobState.IsDead(parent))
             {
                 EndEffect(uid, comp);
                 continue;
