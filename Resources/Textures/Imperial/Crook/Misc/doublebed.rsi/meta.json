@@ -5,7 +5,7 @@
         "y": 32
     },
     "license": "CC-BY-SA-3.0",
-    "copyright": "https://github.com/tgstation/tgstation/blob/af195e137e2a105e067605627644e819133dbd73/icons/obj/bed.dmi https://github.com/tgstation/tgstation/blob/HEAD/icons/obj/bedsheets.dmi",
+    "copyright": "https://github.com/tgstation/tgstation/blob/af195e137e2a105e067605627644e819133dbd73/icons/obj/bed.dmi https://github.com/tgstation/tgstation/blob/af195e137e2a105e067605627644e819133dbd73/icons/obj/bedsheets.dmi",
     "states": [
         {
             "name": "bed",
