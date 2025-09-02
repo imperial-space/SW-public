@@ -81,8 +81,9 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
             HorizontalExpand = true,
             PanelOverride = new StyleBoxFlat()
             {
-                BackgroundColor = Color.FromHex("#79000c86"),
-                BorderColor = Color.FromHex("#dc143c86")
+                BackgroundColor = Color.FromHex("#79000cff"),
+                BorderColor = Color.FromHex("#aa0c2cff"),
+                BorderThickness = new(3f)
             }
         };
         BoxContainer tooltipContainer = new()
@@ -93,25 +94,44 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
 
         panel.AddChild(tooltipContainer);
 
-        var progressLabel = new RichTextLabel();
-        progressLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]Прогресс: {data?.Points ?? 0} / {proto.GetCost(_info)}[/bold]"), defaultColor: Color.FromHex("#ff002bff"));
+        var nameLabel = new RichTextLabel()
+        {
+            Margin = new(2, 0),
+            HorizontalAlignment = HAlignment.Center
+        };
+        nameLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]{Loc.GetString(proto.Name)}[/bold]"), defaultColor: Color.FromHex("#00b100ff"));
+        tooltipContainer.AddChild(nameLabel);
+
+        var progressLabel = new RichTextLabel()
+        {
+            Margin = new(2, 0)
+        };
+        progressLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]Прогресс: {data?.Points ?? 0} / {proto.GetCost(_info)}[/bold]"), defaultColor: Color.FromHex("#00b100ff"));
         tooltipContainer.AddChild(progressLabel);
 
         if (proto.Required.Count() > 0)
         {
-            var label = new RichTextLabel();
-            label.SetMessage(FormattedMessage.FromMarkupOrThrow("[bold]Требует:[/bold]"), defaultColor: Color.FromHex("#ff002bff"));
+            var label = new RichTextLabel()
+            {
+                Margin = new(2, 0)
+            };
+
+            label.SetMessage(FormattedMessage.FromMarkupOrThrow("[bold]Требует:[/bold]"), defaultColor: Color.FromHex("#00b100ff"));
             tooltipContainer.AddChild(label);
             foreach (var item in proto.Required)
             {
                 var reqProto = _proto.Index<MedievalPlagueSymptomPrototype>(item);
-                var requiredLabel = new RichTextLabel();
-                requiredLabel.SetMessage(Loc.GetString(reqProto.Name), defaultColor: Color.FromHex("#ff002bff"));
+                var requiredLabel = new RichTextLabel()
+                {
+                    Margin = new(2, 0)
+                };
+
+                requiredLabel.SetMessage($"- {Loc.GetString(reqProto.Name)}", defaultColor: Color.FromHex("#00b100ff"));
                 tooltipContainer.AddChild(requiredLabel);
             }
         }
 
-        button.Button.TooltipSupplier = _ => tooltipContainer;
+        button.Button.TooltipSupplier = _ => panel;
         button.Button.TooltipDelay = 0.5f;
     }
 
