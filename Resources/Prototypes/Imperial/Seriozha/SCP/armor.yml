@@ -10,11 +10,13 @@
   - type: Armor
     modifiers:
       coefficients:
+        Caustic: 0.4
+        Piercing: 0.45
         Blunt: 0.5
         Slash: 0.5
-        Piercing: 0.5
         Heat: 0.5
         Stamina: 0.6
+        Radiation: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: GroupExamine
@@ -32,6 +34,7 @@
   - type: Armor
     modifiers:
       coefficients:
+        Caustic: 0.85
         Blunt: 0.85
         Slash: 0.85
         Piercing: 0.85
@@ -58,6 +61,7 @@
         Caustic: 0.4
         Heat: 0.4
         Stamina: 0.5
+        Radiation: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.4
   - type: GroupExamine
