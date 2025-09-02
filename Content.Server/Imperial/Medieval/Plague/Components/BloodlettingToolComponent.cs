@@ -1,5 +1,6 @@
 using Content.Shared.Damage;
 using Content.Shared.DoAfter;
+using Content.Shared.Imperial.Medieval.Plague;
 using Robust.Shared.Serialization;
 
 namespace Content.Server.Imperial.Medieval.Plague;
@@ -18,19 +19,3 @@ public sealed partial class BloodlettingToolComponent : Component
     public DoAfterId? DoAfter;
 }
 
-[Serializable, NetSerializable]
-public enum BloodlettingResult
-{
-    None,
-    InfectedIncub,
-    Infected,
-    Healthy,
-    Immune
-}
-
-[Serializable, NetSerializable]
-public enum BloodlettingVisuals
-{
-    Data,
-    Layer
-}
