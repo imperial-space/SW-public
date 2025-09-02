@@ -154,7 +154,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: wound
-  position: 30,-60
+  position: -30,-60
   tier: 3
   cost: 10
   category: Action
@@ -168,9 +168,12 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: heart
-  position: 30,-60
+  position: 0,-25
   tier: 3
   cost: 15
   category: Action
   actions: PlagueCataractAction
-  required: SkinCancer
+  required:
+  - LungsCancer
+  - CataractAction
+  - WoundAction
