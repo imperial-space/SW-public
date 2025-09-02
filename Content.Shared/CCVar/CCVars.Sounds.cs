@@ -34,4 +34,10 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<string> AHelpSound =
         CVarDef.Create("audio.ahelp_sound", "/Audio/Imperial/adminhelp_imperial.ogg", CVar.ARCHIVE | CVar.CLIENTONLY);
+
+    /// <summary>
+    ///     Location-based ambient sound volume.
+    /// </summary>
+    public static readonly CVarDef<float> LocationAmbientVolume =
+        CVarDef.Create("audio.location_ambient_volume", 1.0f, CVar.ARCHIVE | CVar.CLIENTONLY);
 }

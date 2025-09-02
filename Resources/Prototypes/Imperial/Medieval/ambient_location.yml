@@ -43,6 +43,22 @@
 
 - type: entity
   parent: AmbientLocationBase
+  id: ImperialAmbient8orest
+  name: Imperial Ambient Trigger 8
+  description: Desc
+  suffix: AUDIO TEST
+  components:
+  - type: LocationTrigger
+    locationId: ambigen7_trigger
+    sound:
+      path: "/Audio/Ambience/ambigen7.ogg"
+    randomSounds:
+      - path: "/Audio/Ambience/single/forest_day/crow3.ogg"
+    minRandomInterval: 1
+    maxRandomInterval: 2
+
+- type: entity
+  parent: AmbientLocationBase
   id: ImperialAmbientTriggerForest_day
   name: Imperial Ambient Trigger - Forest_day
   description: Desc
