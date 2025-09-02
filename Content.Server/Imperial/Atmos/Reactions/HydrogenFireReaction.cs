@@ -16,7 +16,10 @@ namespace Content.Server.Atmos.Reactions
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
-            var location = holder as TileAtmosphere;
+
+            if (holder is not TileAtmosphere location)
+                return ReactionResult.NoReaction;
+
             mixture.ReactionResults[(byte)GasReaction.Fire] = 0f;
             var burnedFuel = 0f;
             var initialHydrogen = mixture.GetMoles(Gas.Hydrogen);

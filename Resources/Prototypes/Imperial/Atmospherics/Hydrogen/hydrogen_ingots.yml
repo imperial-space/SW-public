@@ -23,9 +23,6 @@
   description: A sheet of material, used often on the station in various applications.
   suffix: Full
   components:
-  - type: Tag
-    tags:
-    - Sheet
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -63,8 +60,8 @@
   id: Hydrogen
   stackEntity: SheetHydrogen1
   name: materials-hydrogen
-  icon: { sprite: /Imperial/Gases/Hydrogen/HydrogenIngots.rsi, state: hydrogen }
-  color: "#ffffff"
+  icon: { sprite: /Textures/Imperial/Gases/Hydrogen/HydrogenIngots.rsi, state: hydrogen }
+  color: "#0e0e4d"
   price: 0.50 # $50 for 1 unit
 
 - type: entity
