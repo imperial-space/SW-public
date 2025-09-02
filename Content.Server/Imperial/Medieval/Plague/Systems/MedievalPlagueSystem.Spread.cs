@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.Plague;
 using Content.Shared.Interaction;
@@ -63,6 +64,7 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<MedievalPlagueSpreadBlockingComponent, MedievalPlagueInfectionAttemptEvent>(OnBlockerInfectionAttempt);
 
         SubscribeLocalEvent<MedievalPlagueInfectedComponent, PlagueHealingItemUsedEvent>(OnHealingItemUsed);
+        SubscribeLocalEvent<BloodlettingToolComponent, ExaminedEvent>(OnBloodlettingExamine);
         SubscribeLocalEvent<BloodlettingToolComponent, AfterInteractEvent>(OnBloodlettingUse);
         SubscribeLocalEvent<BloodlettingToolComponent, BloodlettingDoAfterEvent>(OnBloodlettingDoAfter);
 
@@ -118,6 +120,14 @@ public sealed partial class MedievalPlagueSystem
         TryProgressInfection(uid, -args.PlagueDecay, comp);
     }
 
+    private void OnBloodlettingExamine(EntityUid uid, BloodlettingToolComponent comp, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange || comp.Result == BloodlettingResult.None)
+            return;
+
+        args.PushMarkup(Loc.GetString($"plague-bloodletting-tool-examine-{comp.Result.ToString().ToLower()}"), -1);
+    }
+
     private void OnBloodlettingUse(EntityUid uid, BloodlettingToolComponent comp, AfterInteractEvent args)
     {
         if (!HasComp<MedievalPlagueInfectedComponent>(args.Target) &&
@@ -141,18 +151,17 @@ public sealed partial class MedievalPlagueSystem
 
     private void OnBloodlettingDoAfter(EntityUid uid, BloodlettingToolComponent comp, BloodlettingDoAfterEvent args)
     {
+        comp.DoAfter = null;
+
         if (args.Cancelled || args.Target == null)
-        {
-            comp.DoAfter = null;
             return;
-        }
 
         if (!HasComp<MedievalPlagueInfectedComponent>(args.Target) &&
                 !HasComp<MedievalCanBeInfectedComponent>(args.Target) &&
                 !HasComp<MedievalPlagueImmuneComponent>(args.Target))
             return;
 
-        if (comp.Result != BloodlettingResult.None || comp.DoAfter.HasValue)
+        if (comp.Result != BloodlettingResult.None)
             return;
 
         var realResult = BloodlettingResult.None;
@@ -183,8 +192,10 @@ public sealed partial class MedievalPlagueSystem
                         Loc.GetString($"plague-bloodletting-result-{result.ToString().ToLower()}",
                                     ("target", Identity.Name(args.Target.Value, EntityManager, args.User))),
                         args.User, args.User, Shared.Popups.PopupType.Medium);
+        _damageable.TryChangeDamage(args.Target, comp.Damage, true);
+
         comp.Result = result;
-        _appearance.SetData(uid, BloodlettingVisuals.Data, result);
+        _appearance.SetData(uid, BloodlettingVisuals.Data, (int)result);
     }
 
     private void OnSetContactSpreadMod(SetContactSpreadModifierEvent args)
