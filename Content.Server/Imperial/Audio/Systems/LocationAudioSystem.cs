@@ -1,9 +1,12 @@
+using Content.Shared.Imperial.ICCVar;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Events;
-using Robust.Shared.Timing;
+using Robust.Shared.Player;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Audio;
 
@@ -13,65 +16,72 @@ namespace Content.Server.Imperial.Audio;
 public sealed class LocationAudioSystem : EntitySystem
 {
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<LocationTriggerComponent, StartCollideEvent>(OnTriggerEnter);
-        //SubscribeLocalEvent<LocationTriggerComponent, EndCollideEvent>(OnTriggerExit);
+        SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
+        SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
     }
 
     /// <summary>
-    /// Запускает таймер для случайного звука
+    /// Обрабатывает отключение игрока от сущности
     /// </summary>
-    private void StartRandomSoundTimer(EntityUid player, PlayerLocationComponent comp, LocationTriggerComponent trigger)
+    private void OnPlayerDetached(PlayerDetachedEvent ev)
     {
-        if (trigger.RandomSounds.Count == 0)
+        if (!TryComp<PlayerLocationComponent>(ev.Entity, out var playerComp))
             return;
 
-        comp.RandomSoundVersion++;
-        var version = comp.RandomSoundVersion;
+        StopAllAudio(ev.Entity, playerComp);
+    }
 
-        void PlayRandomSound()
+    /// <summary>
+    /// Обрабатывает подключение игрока к новой сущности
+    /// </summary>
+    private void OnPlayerAttached(PlayerAttachedEvent ev)
+    {
+        if (!TryComp<PlayerLocationComponent>(ev.Entity, out var playerComp))
+            return;
+
+        // Сбрасываем состояние при подключении к новой сущности
+        playerComp.CurrentLocationId = string.Empty;
+        playerComp.PreviousLocationId = string.Empty;
+        playerComp.RandomSoundVersion++;
+        playerComp.CurrentFadeVersion++;
+        playerComp.PreviousFadeVersion++;
+
+        StopAllAudio(ev.Entity, playerComp);
+    }
+
+    /// <summary>
+    /// Останавливает все звуки для игрока
+    /// </summary>
+    private void StopAllAudio(EntityUid player, PlayerLocationComponent comp)
+    {
+        // Останавливаем текущий поток
+        if (comp.CurrentStream != null)
         {
-            if (!EntityManager.EntityExists(player))
-                return;
-
-            if (!TryComp(player, out PlayerLocationComponent? c) || c != comp)
-                return;
-
-            if (version != comp.RandomSoundVersion)
-                return;
-
-            // Проверяем, что игрок все еще в той же локации
-            if (comp.CurrentLocationId != trigger.LocationId)
-                return;
-
-            // Выбираем случайный звук
-            var randomSound = _random.Pick(trigger.RandomSounds);
-
-            // Воспроизводим звук
-            var audioParams = AudioParams.Default.WithVolume(-6f);
-            _audio.PlayGlobal(randomSound, player, audioParams);
-
-            // Устанавливаем следующий таймер
-            var minInterval = TimeSpan.FromSeconds(trigger.MinRandomIntervalSeconds);
-            var maxInterval = TimeSpan.FromSeconds(trigger.MaxRandomIntervalSeconds);
-            var randomInterval = _random.Next(minInterval, maxInterval);
-
-            Timer.Spawn(randomInterval, PlayRandomSound);
+            _audio.Stop(comp.CurrentStream.Value);
+            comp.CurrentStream = null;
         }
 
-        // Устанавливаем первый таймер
-        var firstMinInterval = TimeSpan.FromSeconds(trigger.MinRandomIntervalSeconds);
-        var firstMaxInterval = TimeSpan.FromSeconds(trigger.MaxRandomIntervalSeconds);
-        var firstRandomInterval = _random.Next(firstMinInterval, firstMaxInterval);
+        // Останавливаем предыдущий поток
+        if (comp.PreviousStream != null)
+        {
+            _audio.Stop(comp.PreviousStream.Value);
+            comp.PreviousStream = null;
+        }
 
-        Timer.Spawn(firstRandomInterval, PlayRandomSound);
+        // Сбрасываем состояние
+        comp.CurrentLocationId = string.Empty;
+        comp.PreviousLocationId = string.Empty;
+        comp.RandomSoundVersion++;
+        comp.CurrentFadeVersion++;
+        comp.PreviousFadeVersion++;
     }
 
     /// <summary>
@@ -177,14 +187,12 @@ public sealed class LocationAudioSystem : EntitySystem
         playerComp.PreviousLocationId = playerComp.CurrentLocationId;
         playerComp.CurrentLocationId = component.LocationId;
 
-        // Сбрасываем таймер случайных звуков
         playerComp.RandomSoundVersion++;
 
         // перенесём текущий в предыдущий и запустим затухание
         if (playerComp.PreviousStream != null)
         {
             StartFadeOutPrevious(args.OtherEntity, playerComp);
-            //_audio.Stop(playerComp.PreviousStream);
             playerComp.PreviousStream = null;
         }
         playerComp.PreviousStream = playerComp.CurrentStream;
@@ -207,35 +215,7 @@ public sealed class LocationAudioSystem : EntitySystem
         StartRandomSoundTimer(args.OtherEntity, playerComp, component);
     }
 
-    /// <summary>
-    /// Обрабатывает выход игрока из зоны триггера
-    /// </summary>
-    private void OnTriggerExit(EntityUid uid, LocationTriggerComponent component, ref EndCollideEvent args)
-    {
-        if (args.OurFixtureId != component.FixtureId)
-            return;
 
-        if (!HasComp<PlayerLocationComponent>(args.OtherEntity))
-            return;
-
-        var playerComp = Comp<PlayerLocationComponent>(args.OtherEntity);
-        if (playerComp.CurrentLocationId == component.LocationId)
-        {
-            playerComp.CurrentLocationId = string.Empty;
-            // Сбрасываем таймер случайных звуков
-            playerComp.RandomSoundVersion++;
-
-            // перенесём текущий поток в предыдущий и запустим затухание
-            if (playerComp.PreviousStream != null)
-            {
-                _audio.Stop(playerComp.PreviousStream);
-                playerComp.PreviousStream = null;
-            }
-            playerComp.PreviousStream = playerComp.CurrentStream;
-            playerComp.CurrentStream = null;
-            StartFadeOutPrevious(args.OtherEntity, playerComp);
-        }
-    }
 
     // TODO: Система день/ночь для эмбиента
     /// <summary>
@@ -268,5 +248,51 @@ public sealed class LocationAudioSystem : EntitySystem
             return float.NegativeInfinity;
 
         return comp.Volume;
+    }
+
+    /// <summary>
+    /// Запускает таймер для случайного звука
+    /// </summary>
+    private void StartRandomSoundTimer(EntityUid player, PlayerLocationComponent comp, LocationTriggerComponent trigger)
+    {
+        if (trigger.RandomSounds.Count == 0)
+            return;
+
+        comp.RandomSoundVersion++;
+        var version = comp.RandomSoundVersion;
+
+        void PlayRandomSound()
+        {
+            if (!EntityManager.EntityExists(player))
+                return;
+
+            if (!TryComp(player, out PlayerLocationComponent? c) || c != comp)
+                return;
+
+            if (version != comp.RandomSoundVersion)
+                return;
+
+            if (comp.CurrentLocationId != trigger.LocationId)
+                return;
+
+            var randomSound = _random.Pick(trigger.RandomSounds);
+
+            var audioParams = AudioParams.Default.WithVolume(_cfg.GetCVar(ICCVars.LocationAmbientVolume));
+            _audio.PlayGlobal(randomSound, player, audioParams);
+
+            // Устанавливаем следующий таймер
+            var minInterval = TimeSpan.FromSeconds(trigger.MinRandomIntervalSeconds);
+            var maxInterval = TimeSpan.FromSeconds(trigger.MaxRandomIntervalSeconds);
+            var randomInterval = _random.Next(minInterval, maxInterval);
+
+            Timer.Spawn(randomInterval, PlayRandomSound);
+        }
+
+        // Устанавливаем первый таймер
+        var firstMinInterval = TimeSpan.FromSeconds(trigger.MinRandomIntervalSeconds);
+        var firstMaxInterval = TimeSpan.FromSeconds(trigger.MaxRandomIntervalSeconds);
+        var firstRandomInterval = _random.Next(firstMinInterval, firstMaxInterval);
+
+        Timer.Spawn(firstRandomInterval, PlayRandomSound);
     }
 }
