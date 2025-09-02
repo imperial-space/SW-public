@@ -170,9 +170,9 @@
   sprite: /Textures/Tiles/lino.png
   isSubfloor: true
   footstepSounds:
-    collection: FootstepTile
+    collection: FootstepCarpet
   heatCapacity: 99910000
-  weather: true
+  weather: false
   indestructible: true
 
 - type: entity
