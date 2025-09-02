@@ -397,14 +397,11 @@
 
 - type: entity
   name: deathmoth
-  parent: MobCockroach
+  parent: SimpleSpaceMobBase
   id: MobDeathmoth
   suffix: Backrooms, Crook
   description: This moth will bite off your head if you stroke it. But you don't care.
   components:
-  - type: Item
-    size: Huge
-  - type: CanEscapeInventory
   - type: SolutionContainerManager
     solutions:
       food:
@@ -418,7 +415,6 @@
   - type: MobState
     allowedStates:
     - Alive
-    - Critical
     - Dead
   - type: MeleeWeapon
     soundHit:
@@ -426,9 +422,9 @@
     animation: WeaponArcBite
     damage:
       types:
-        Piercing: 10
-        Caustic: 2
-        Structural: 25
+        Piercing: 15
+        Caustic: 10
+        Structural: 75
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -444,47 +440,38 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.2
+          radius: 0.7
         density: 120
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: GhostTakeoverAvailable
   - type: Speech
     speechVerb: Moth
     speechSounds: Squeak
+    allowedEmotes: ['Click', 'Chitter']
   - type: MothAccent
   - type: Sprite
-    drawdepth: SmallMobs
+    drawdepth: Mobs
     sprite: Imperial/Crook/Misc/deathmoth.rsi
     layers:
-    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
-      state: deathmoth
-  - type: SpriteMovement
-    movementLayers:
-      movement:
-        state: deathmoth-moving
-    noMovementLayers:
-      movement:
-        state: deathmoth
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: alive
   - type: Appearance
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: deathmoth
-      Critical:
-        Base: deathmoth_dead
+        Base: alive
       Dead:
-        Base: deathmoth_dead
+        Base: dead
   - type: MobThresholds
     thresholds:
       0: Alive
-      80: Critical
-      140: Dead
+      450: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed : 3.5
-    baseSprintSpeed : 5.5
+    baseSprintSpeed : 2
     weightlessAcceleration: 1.5
     weightlessFriction: 1
     weightlessModifier: 1
@@ -493,9 +480,12 @@
     damageModifierSet: Moth
   - type: Bloodstream
     bloodReagent: FluorosulfuricAcid
-    bloodMaxVolume: 100
+    bloodMaxVolume: 200
   - type: CombatMode
   - type: Butcherable
+    spawned:
+      - id: FoodMeatXeno
+        amount: 6
   - type: Extractable
     grindableSolutionName: food
   - type: ReplacementAccent
@@ -506,22 +496,31 @@
       Female: UnisexMoth
       Unsexed: UnisexMoth
     wilhelmProbability: 0.001
+  - type: NoSlip
+  - type: IgnoreSpiderWeb
   - type: MobPrice
-    price: 150
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Stamina: 0.2
+    price: 15000
   - type: Tag
     tags:
-    - CannotSuicide
-    - VimPilot
+      - FootstepSound
+      - CannotSuicide
   - type: Body
     prototype: Mothroach
   - type: TypingIndicator
-    proto: moth
+    proto: alien
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTypeTrigger
         damageType: Blunt
-        damage: 200
+        damage: 600
       behaviors:
       - !type:GibBehavior { }
   - type: HTN
