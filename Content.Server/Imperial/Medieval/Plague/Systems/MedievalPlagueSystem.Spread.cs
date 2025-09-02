@@ -35,7 +35,7 @@ public sealed partial class MedievalPlagueSystem
             {
                 { BloodlettingResult.Immune, 0.95f },
                 { BloodlettingResult.Healthy, 0.04f },
-                { BloodlettingResult.Healthy, 0.01f }
+                { BloodlettingResult.Infected, 0.01f }
             }
         },
         {
