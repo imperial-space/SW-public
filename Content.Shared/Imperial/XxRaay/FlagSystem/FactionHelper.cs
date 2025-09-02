@@ -7,6 +7,34 @@ namespace Content.Shared.Imperial.XxRaay.FlagSystem;
 /// </summary>
 public static class FactionHelper
 {
+    public enum FactionType
+    {
+        Neutral,
+        Green,
+        Yellow,
+        Red,
+        Blue,
+        NTFaction,
+        USSP,
+        Sindi
+    }
+
+    public static FactionType GetFlagFactionEnum(string prototypeId)
+    {
+        return prototypeId switch
+        {
+            "ImperialGreenFlag" => FactionType.Green,
+            "ImperialYellowFlag" => FactionType.Yellow,
+            "ImperialRedFlag" => FactionType.Red,
+            "ImperialBlueFlag" => FactionType.Blue,
+            "ImperialNTFlag" => FactionType.NTFaction,
+            "ImperialUSSPFlag" => FactionType.USSP,
+            "ImperialSindiFlag" => FactionType.Sindi,
+            "ImperialWhiteFlag" => FactionType.Neutral,
+            _ => FactionType.Neutral
+        };
+    }
+
     /// <summary>
     /// Определяет фракцию флага по его прототипу
     /// </summary>
@@ -14,17 +42,16 @@ public static class FactionHelper
     /// <returns>Название фракции</returns>
     public static string GetFlagFaction(string prototypeId)
     {
-        return prototypeId switch
+        return GetFlagFactionEnum(prototypeId) switch
         {
-            "ImperialGreenFlag" => "GreenFaction",
-            "ImperialYellowFlag" => "YellowFaction",
-            "ImperialRedFlag" => "RedFaction",
-            "ImperialBlueFlag" => "BlueFaction",
-            "ImperialNTFlag" => "NTFaction",
-            "ImperialUSSPFlag" => "USSPFaction",
-            "ImperialSindiFlag" => "SindiFaction",
-            "ImperialWhiteFlag" => "NeutralFaction",
-            _ => "NeutralFaction" // По умолчанию
+            FactionType.Green => "GreenFaction",
+            FactionType.Yellow => "YellowFaction",
+            FactionType.Red => "RedFaction",
+            FactionType.Blue => "BlueFaction",
+            FactionType.NTFaction => "NTFaction",
+            FactionType.USSP => "USSPFaction",
+            FactionType.Sindi => "SindiFaction",
+            _ => "NeutralFaction"
         };
     }
 
@@ -44,7 +71,22 @@ public static class FactionHelper
             "NTFaction" => "ImperialNTFlag",
             "USSPFaction" => "ImperialUSSPFlag",
             "SindiFaction" => "ImperialSindiFlag",
-            _ => "ImperialWhiteFlag" // По умолчанию
+            _ => "ImperialWhiteFlag"
+        };
+    }
+
+    public static string GetFactionFlagPrototype(FactionType faction)
+    {
+        return faction switch
+        {
+            FactionType.Green => "ImperialGreenFlag",
+            FactionType.Yellow => "ImperialYellowFlag",
+            FactionType.Red => "ImperialRedFlag",
+            FactionType.Blue => "ImperialBlueFlag",
+            FactionType.NTFaction => "ImperialNTFlag",
+            FactionType.USSP => "ImperialUSSPFlag",
+            FactionType.Sindi => "ImperialSindiFlag",
+            _ => "ImperialWhiteFlag"
         };
     }
 
@@ -68,6 +110,21 @@ public static class FactionHelper
         };
     }
 
+    public static string? GetCurrencyIdForFaction(FactionType faction)
+    {
+        return faction switch
+        {
+            FactionType.NTFaction => "NTFactionPoints",
+            FactionType.Sindi => "SindiFactionPoints",
+            FactionType.Green => "GreenFactionPoints",
+            FactionType.Yellow => "YellowFactionPoints",
+            FactionType.Red => "RedFactionPoints",
+            FactionType.Blue => "BlueFactionPoints",
+            FactionType.USSP => "USSPFactionPoints",
+            _ => null
+        };
+    }
+
     /// <summary>
     /// Маппинг фракций из компонента NpcFactionMember в внутренние названия
     /// </summary>
@@ -85,6 +142,21 @@ public static class FactionHelper
             "BlueFaction" => "BlueFaction",
             "USSPFaction" => "USSPFaction",
             _ => factionComponentValue // Если не знаем, возвращаем как есть
+        };
+    }
+
+    public static FactionType MapFactionFromComponentEnum(string factionComponentValue)
+    {
+        return factionComponentValue switch
+        {
+            "NanoTrasen" => FactionType.NTFaction,
+            "Syndicate" => FactionType.Sindi,
+            "GreenFaction" => FactionType.Green,
+            "YellowFaction" => FactionType.Yellow,
+            "RedFaction" => FactionType.Red,
+            "BlueFaction" => FactionType.Blue,
+            "USSPFaction" => FactionType.USSP,
+            _ => FactionType.Neutral
         };
     }
 }

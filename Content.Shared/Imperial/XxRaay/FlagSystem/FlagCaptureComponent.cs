@@ -44,6 +44,17 @@ public sealed partial class FlagCaptureComponent : Component
     /// Последнее время проверки игроков рядом
     /// </summary>
     public TimeSpan LastCheckTime = TimeSpan.Zero;
+
+    /// <summary>
+    /// Интервал опроса игроков вокруг флага (секунды)
+    /// </summary>
+    [DataField]
+    public float ScanIntervalSeconds = 0.5f;
+
+    /// <summary>
+    /// Последнее время сканирования окружения
+    /// </summary>
+    public TimeSpan LastScanTime = TimeSpan.Zero;
 }
 
 /// <summary>

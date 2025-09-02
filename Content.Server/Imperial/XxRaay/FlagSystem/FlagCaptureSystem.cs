@@ -32,13 +32,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
 
-    // Словарь для отслеживания активных DoAfter
-    private readonly Dictionary<EntityUid, DoAfterId> _activeDoAfters = new();
-
-    // Дросселирование частоты глобальных проверок
-    private TimeSpan _lastGlobalCheck = TimeSpan.Zero;
-    private const float GlobalCheckIntervalSeconds = 0.5f;
-
     public override void Initialize()
     {
         base.Initialize();
@@ -59,19 +52,19 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         base.Update(frameTime);
 
         var now = _gameTiming.CurTime;
-        if ((now - _lastGlobalCheck).TotalSeconds < GlobalCheckIntervalSeconds)
-            return;
-        _lastGlobalCheck = now;
 
-        var query = _entityManager.EntityQuery<FlagCaptureComponent, TransformComponent>();
+        var enumerator = _entityManager.EntityQueryEnumerator<FlagCaptureComponent, TransformComponent>();
 
-        foreach (var (capture, transform) in query)
+        while (enumerator.MoveNext(out var uid, out var capture, out var transform))
         {
             if (!capture.CanBeCaptured)
                 continue;
 
-
-
+            // Дросселирование проверки для каждого флага
+            if ((now - capture.LastScanTime).TotalSeconds < capture.ScanIntervalSeconds)
+                continue;
+            capture.LastScanTime = now;
+            Dirty(uid, capture);
             var flagPosition = _transform.ToMapCoordinates(transform.Coordinates).Position;
             var playersInRange = new List<EntityUid>();
 
@@ -101,63 +94,50 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
                 .GroupBy(player => GetPlayerFaction(player))
                 .ToList();
 
-            // Логика захвата
+            // Никого нет — отменяем захват, выходим
             if (playersInRange.Count == 0)
             {
-                // Никого нет - отменяем захват если был активен
                 if (capture.IsBeingCaptured)
-                {
-                    CancelCapture(transform.Owner, capture);
-                }
+                    CancelCapture(uid, capture);
+                continue;
             }
-            else if (factionGroups.Count == 1)
+
+            // Несколько фракций — контест, отменяем и выходим
+            if (factionGroups.Count != 1)
             {
-                // Только одна фракция - можем захватывать
-                var faction = factionGroups.First().Key;
-                var factionPlayers = factionGroups.First().ToList();
-                var currentFlagFaction = GetFlagFaction(transform.Owner);
-
-                if (faction == currentFlagFaction)
-                {
-                    // Пытаются захватить свой флаг - отменяем
-                    if (capture.IsBeingCaptured)
-                    {
-                        CancelCapture(transform.Owner, capture);
-                    }
-                }
-                else
-                {
-                    // Захватывают вражеский флаг
-                    if (!capture.IsBeingCaptured)
-                    {
-                        // Начинаем захват
-                        StartCapture(transform.Owner, capture, factionPlayers.First());
-                    }
-                    else
-                    {
-                        // Продолжаем захват с ускорением от союзников
-                        var timeSinceLastCheck = now - capture.LastCheckTime;
-                        var speedMultiplier = Math.Min(factionPlayers.Count, 4.0f); // 1 игрок = 1x, 2 игрока = 2x, 3 игрока = 3x, 4+ игроков = 4x
-                        var progressIncrement = (float)timeSinceLastCheck.TotalSeconds * speedMultiplier;
-
-                        capture.CaptureProgress = TimeSpan.FromSeconds((float)capture.CaptureProgress.TotalSeconds + progressIncrement);
-                        capture.LastCheckTime = now;
-
-                        // Отмечаем компонент как измененный для синхронизации с клиентом
-                        Dirty(transform.Owner, capture);
-
-
-                    }
-                }
-            }
-            else
-            {
-                // Несколько фракций - контест, отменяем захват
                 if (capture.IsBeingCaptured)
-                {
-                    CancelCapture(transform.Owner, capture);
-                }
+                    CancelCapture(uid, capture);
+                continue;
             }
+
+            // Одна фракция в зоне
+            var faction = factionGroups[0].Key;
+            var factionPlayers = factionGroups[0].ToList();
+            var currentFlagFaction = GetFlagFaction(uid);
+
+            // Свой флаг — отменяем и выходим
+            if (faction == currentFlagFaction)
+            {
+                if (capture.IsBeingCaptured)
+                    CancelCapture(uid, capture);
+                continue;
+            }
+
+            // Вражеский флаг — стартуем захват или продолжаем
+            if (!capture.IsBeingCaptured)
+            {
+                StartCapture(uid, capture, factionPlayers[0]);
+                continue;
+            }
+
+            // Продолжаем захват с ускорением от союзников
+            var timeSinceLastCheck = now - capture.LastCheckTime;
+            var speedMultiplier = Math.Min(factionPlayers.Count, 4.0f);
+            var progressIncrement = (float)timeSinceLastCheck.TotalSeconds * speedMultiplier;
+
+            capture.CaptureProgress = TimeSpan.FromSeconds((float)capture.CaptureProgress.TotalSeconds + progressIncrement);
+            capture.LastCheckTime = now;
+            Dirty(uid, capture);
         }
     }
 
@@ -186,11 +166,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
             NeedHand = false
         };
 
-        if (_entityManager.System<SharedDoAfterSystem>().TryStartDoAfter(doAfter, out var doAfterId))
-        {
-            _activeDoAfters[flagUid] = doAfterId.Value;
-        }
-        else
+        if (!_entityManager.System<SharedDoAfterSystem>().TryStartDoAfter(doAfter, out var doAfterId))
         {
             capture.IsBeingCaptured = false;
         }
@@ -202,14 +178,7 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
         capture.CaptureProgress = TimeSpan.Zero;
         capture.LastCheckTime = TimeSpan.Zero;
 
-        // Отменяем активный DoAfter если есть
-        if (_activeDoAfters.TryGetValue(flagUid, out var doAfterId))
-        {
-            var doAfterSystem = _entityManager.System<SharedDoAfterSystem>();
-            if (doAfterSystem.IsRunning(doAfterId))
-                doAfterSystem.Cancel(doAfterId);
-            _activeDoAfters.Remove(flagUid);
-        }
+
 
         // Отмечаем компонент как измененный для синхронизации с клиентом
         Dirty(flagUid, capture);
@@ -265,9 +234,6 @@ public sealed class FlagCaptureSystem : SharedFlagCaptureSystem
 
     private void OnDoAfter(EntityUid uid, FlagCaptureComponent component, DoAfterEvent args)
     {
-        // Удаляем DoAfter из отслеживания
-        _activeDoAfters.Remove(uid);
-
         if (args.Cancelled)
         {
             CancelCapture(uid, component);

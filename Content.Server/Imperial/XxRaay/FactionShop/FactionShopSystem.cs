@@ -71,13 +71,13 @@ public sealed class FactionShopSystem : EntitySystem
     private void AwardPointsForFlags(FactionShopComponent shop)
     {
         // Подсчитываем количество флагов данной фракции
-        var flagQuery = _entityManager.EntityQuery<FlagCaptureComponent, TransformComponent>();
+        var flagEnumerator = _entityManager.EntityQueryEnumerator<FlagCaptureComponent, TransformComponent>();
         var flagCount = 0;
 
-        foreach (var (flag, transform) in flagQuery)
+        while (flagEnumerator.MoveNext(out var uid, out var flag, out var transform))
         {
             // Определяем фракцию флага
-            var flagFaction = GetFlagFaction(transform.Owner);
+            var flagFaction = GetFlagFaction(uid);
             if (flagFaction == shop.Faction)
             {
                 flagCount++;
