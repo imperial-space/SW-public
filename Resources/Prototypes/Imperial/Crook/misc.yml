@@ -500,6 +500,7 @@
   - type: NoSlip
   - type: IgnoreSpiderWeb
   - type: MobPrice
+    price: 15000
   - type: Armor
     modifiers:
       coefficients:
@@ -507,7 +508,6 @@
         Slash: 0.9
         Piercing: 0.9
         Stamina: 0.2
-    price: 15000
   - type: Tag
     tags:
       - FootstepSound
