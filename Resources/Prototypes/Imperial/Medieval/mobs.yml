@@ -187,6 +187,8 @@
     active: false
     id: Animal
     chance: 0.12
+  - type: AllergySpreader
+    id: Fur
 
 - type: entity
   name: fox
@@ -447,6 +449,8 @@
     active: false
     id: Animal
     chance: 0.12
+  - type: AllergySpreader
+    id: Fur
 
 - type: entity
   name: wolf
@@ -551,7 +555,8 @@
       #Growling: Speak
       Hissing: Speak
       #Elf: Speak
-
+  - type: AllergySpreader
+    id: Fur
 
 - type: entity
   name: rabbit
@@ -903,6 +908,8 @@
     active: false
     id: Animal
     chance: 0.12
+  - type: AllergySpreader
+    id: Fur
 
 - type: entity
   name: bear
@@ -1295,6 +1302,8 @@
   - type: WhitelistClothing
     whitelist: GoblinArmor
     whitelistState: humanoid
+  - type: AllergySpreader
+    id: Goblin
 
 - type: entity
   name: giga monkey
@@ -1450,6 +1459,8 @@
       amount: 1
   - type: NocturnBadFood
     timesCanBeBiten: 2
+  - type: AllergySpreader
+    id: Pet
 
 - type: entity
   parent: MobCow
@@ -1465,6 +1476,8 @@
       amount: 4
   - type: NocturnBadFood
     timesCanBeBiten: 2
+  - type: AllergySpreader
+    id: Pet
 
 - type: entity
   name: kobold
@@ -1838,6 +1851,8 @@
     active: false
     id: Animal
     chance: 0.12
+  - type: AllergySpreader
+    id: Spider
 
 - type: entity
   name: rabbit
@@ -1934,6 +1949,8 @@
     active: false
     id: Animal
     chance: 0.12
+  - type: AllergySpreader
+    id: Spider
 
 - type: entity
   name: MedievalMobSpiderCave
@@ -2045,6 +2062,8 @@
     active: false
     id: Animal
     chance: 0.12
+  - type: AllergySpreader
+    id: Spider
 
 
 - type: entity
@@ -2173,6 +2192,8 @@
     active: false
     id: Animal
     chance: 0.12
+  - type: AllergySpreader
+    id: Spider
 
 
 - type: entity
@@ -2289,6 +2310,8 @@
     active: false
     id: Skeleton
     chance: 0.2
+  - type: AllergySpreader
+    id: Skeleton
 
 - type: entity
   name: weak skeleton

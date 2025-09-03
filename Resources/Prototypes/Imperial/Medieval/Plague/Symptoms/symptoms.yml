@@ -92,6 +92,17 @@
   targetEvent: !type:PlagueAddComponentsEvent
     components:
     - type: ReagentAllergy
+      randomReagents:
+      - medievalhealburn
+      - medievalhealbloodandoxygen
+      - medievaldrughealmech
+      - medievalslow
+      - medievalfast
+      - medievalstamina
+      - medievalsmoke
+      - medievalhealslash
+      - medievalhealpiercing
+      - medievalhealblunt
   required: Nausea
 
 - type: plagueSymptom
@@ -219,6 +230,13 @@
   targetEvent: !type:PlagueAddComponentsEvent
     components:
     - type: EntityAllergy
+      ids:
+      - Fur
+      - Goblin
+      - Pet
+      - Spider
+      - Skeleton
+      randomCount: 2
   required: Cough
 
 - type: plagueSymptom
