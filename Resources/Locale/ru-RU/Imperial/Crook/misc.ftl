@@ -23,6 +23,8 @@ ent-Smiler = улыбающийся
     .desc = Улыбается значит добрый.
 ent-MobDeathmoth = смертомоль
     .desc = Эта моль откусит вам голову, если вы её погладите. Но вам всё равно.
+ent-BackroomsBacteria = бактерия
+    .desc = Что это за хрень...
 ent-ThermosBlue = синий термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
 ent-ThermosGreen = зелёный термос
@@ -31,6 +33,11 @@ ent-ThermosRed = красный термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
 ent-ThermosGray = серый термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
+
+ent-PortalGatewayBackrooms = неизвестная аномалия
+    .desc = Она будто бы зовёт вас. Зайдите в неё, что может пойти не так?
+ent-HandTeleporterBackrooms = телепорт
+    .desc = Используйте, чтобы создать порталы.
 
 ent-ClothingUniformJumpsuitMadzima = брейкданс костюм
     .desc = Увидимся, мисси!
@@ -54,11 +61,6 @@ ent-DrinkKvassBestDrink = квас
     .desc = Славянское удовольствие, где вместо дрожжей - сухарики три корочки.
 reagent-name-kvass-bestdrink = квас
 reagent-desc-kvass-bestdrink = Славянское удовольствие, где вместо дрожжей - сухарики три корочки.
-
-ent-PortalGatewayBackrooms = неизвестная аномалия
-    .desc = Она будто бы зовёт вас. Зайдите в неё, что может пойти не так?
-ent-HandTeleporterBackrooms = телепорт
-    .desc = Используйте, чтобы создать порталы.
 
 ent-DoubleBed = двойная кровать
     .desc = Двойная кровать для одного лишь вас.
