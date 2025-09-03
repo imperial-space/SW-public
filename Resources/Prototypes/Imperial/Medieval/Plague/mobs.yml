@@ -46,6 +46,10 @@
     state: slimeexplode
   - type: TimedDespawn
     lifetime: 1.35
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: gib
+    positional: true
   - type: Tag
     tags:
     - HideContextMenu
@@ -115,7 +119,7 @@
   - type: AmbientSound
     range: 3.5
     sound:
-      path: "/Audio/Imperial/Medieval/bad_smell_effect.ogg"
+      path: "/Audio/Imperial/Medieval/Plague/bug_swarm.ogg"
   - type: Fixtures
     fixtures:
       fix1:
@@ -188,6 +192,11 @@
   components:
   - type: Sprite
     state: smallbugs
+  - type: AmbientSound
+    sound:
+      path: "/Audio/Imperial/Medieval/Plague/bug_swarm.ogg"
+      params:
+        volume: -3
   - type: MobThresholds
     thresholds:
       0: Alive
