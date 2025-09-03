@@ -9,6 +9,7 @@ using Content.Shared.Imperial.Medieval.Sprint;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
 using Content.Shared.Speech;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
@@ -179,6 +180,7 @@ public sealed partial class MedievalPlagueSystem
 
         args.Cancel();
         _damageable.TryChangeDamage(uid, component.Damage);
+        _popup.PopupEntity(Loc.GetString("plague-pantomime-speech-blocked-popup"), uid, uid, PopupType.MediumCaution);
     }
 
     private void OnAddEffects(EntityUid uid, MedievalPlagueInfectedComponent comp, AddSymptomEffectsEvent args)
