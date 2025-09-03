@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Body.Components;
+using Content.Server.Imperial.Medieval.Skills;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Plague;
@@ -8,6 +9,7 @@ using Content.Shared.Imperial.Medieval.Sprint;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Speech;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -30,6 +32,7 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<AsthmaComponent, CanBreatheEvent>(OnAsthmaCanBreathe);
         SubscribeLocalEvent<LungsCancerComponent, CanBreatheEvent>(OnCancerCanBreathe);
         SubscribeLocalEvent<PlagueBlockBreathingComponent, CanBreatheEvent>(OnBlockerCanBreathe);
+        SubscribeLocalEvent<PlagueBlockSpeechComponent, SpeakAttemptEvent>(OnBlockerSpeackAttempt);
 
         SubscribeLocalEvent<WeakSkinComponent, DamageModifyEvent>(OnDamageModify);
 
@@ -163,6 +166,19 @@ public sealed partial class MedievalPlagueSystem
         }
 
         args.Cancelled = true;
+    }
+
+    private void OnBlockerSpeackAttempt(EntityUid uid, PlagueBlockSpeechComponent component, SpeakAttemptEvent args)
+    {
+        var chance = component.Chance;
+        if (TryComp<SkillsComponent>(uid, out var skills))
+            chance -= (skills.Levels[SkillsSystem.VitalityId] - 10) * 0.02f;
+
+        if (!_random.Prob(chance))
+            return;
+
+        args.Cancel();
+        _damageable.TryChangeDamage(uid, component.Damage);
     }
 
     private void OnAddEffects(EntityUid uid, MedievalPlagueInfectedComponent comp, AddSymptomEffectsEvent args)

@@ -48,7 +48,7 @@ public sealed class DamageForceSaySystem : EntitySystem
         }
     }
 
-    private void TryForceSay(EntityUid uid, DamageForceSayComponent component, bool useSuffix=true)
+    public void TryForceSay(EntityUid uid, DamageForceSayComponent component, bool useSuffix=true)
     {
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
@@ -71,7 +71,7 @@ public sealed class DamageForceSaySystem : EntitySystem
         RaiseNetworkEvent(new DamageForceSayEvent { Suffix = useSuffix ? suffix : null }, actor.PlayerSession);
     }
 
-    private void AllowNextSpeech(EntityUid uid)
+    public void AllowNextSpeech(EntityUid uid)
     {
         if (!TryComp<ActorComponent>(uid, out var actor))
             return;
