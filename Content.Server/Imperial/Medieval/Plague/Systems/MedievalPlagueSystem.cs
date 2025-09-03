@@ -352,6 +352,9 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
 
             comp.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
 
+            if (_mobState.IsDead(uid))
+                continue;
+
             DoEffects(uid, comp);
 
             if (TryComp<BuckleComponent>(uid, out var buckle) &&
