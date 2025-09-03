@@ -35,7 +35,7 @@
     state: dizzinessupgrade
   position: -80,30
   tier: 1
-  cost: 5
+  cost: 2
   category: Action
   actions: PlagueDizzinessAction
 
