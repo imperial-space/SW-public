@@ -51,7 +51,7 @@ public sealed partial class MedievalPlagueSystem
             _data.Tier = Math.Max(_data.Tier, proto.Tier);
 
             var filter = Filter.Empty().AddWhereAttachedEntity(x => HasComp<MedievalPlagueGhostComponent>(x));
-            var msg = Loc.GetString("medieval-plague-symptom-unlocked", ("symptom", proto.Name));
+            var msg = Loc.GetString("medieval-plague-symptom-unlocked", ("symptom", Loc.GetString(proto.Name)));
 
             _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/slime_node.ogg"), filter, true);
             _chat.ChatMessageToManyFiltered(filter, ChatChannel.Local,
