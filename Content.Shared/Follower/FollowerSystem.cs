@@ -5,6 +5,7 @@ using Content.Shared.Database;
 using Content.Shared.Follower.Components;
 using Content.Shared.Ghost;
 using Content.Shared.Hands;
+using Content.Shared.Imperial.Medieval.Follower;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Polymorph;
@@ -98,7 +99,7 @@ public sealed class FollowerSystem : EntitySystem
         if (ev.User == ev.Target || IsClientSide(ev.Target))
             return;
 
-        if (HasComp<GhostComponent>(ev.User))
+        if (HasComp<GhostComponent>(ev.User) || HasComp<CanFollowComponent>(ev.User))   // Imperial Medieval - CanFollow component
         {
             var verb = new AlternativeVerb()
             {
