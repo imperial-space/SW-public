@@ -499,7 +499,7 @@
   targetEvent: !type:AddSymptomEffectsEvent
     id: Hiccup
     effect: !type:Emote
-      emotes: Hiccup
+      emotes: [Hiccup]
       delay:
         min: 20
         max: 60
