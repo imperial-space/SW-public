@@ -20,10 +20,8 @@ public sealed partial class ContentAudioSystem
 
     private void InitializeLocationAudio()
     {
-        // Подписываемся на изменения CVar LocationAmbientVolume
         Subs.CVar(_configManager, CCVars.LocationAmbientVolume, OnLocationAmbientVolumeChanged, true);
 
-        // Получаем текущее значение
         _locationAmbientVolumeSlider = _configManager.GetCVar(CCVars.LocationAmbientVolume);
 
         Logger.Info($"LocationAudio initialized with volume: {_locationAmbientVolumeSlider}");
