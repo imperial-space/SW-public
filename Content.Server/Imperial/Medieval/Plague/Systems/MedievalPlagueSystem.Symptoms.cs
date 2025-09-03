@@ -59,7 +59,7 @@ public sealed partial class MedievalPlagueSystem
 
         var list = new List<string>(component.RandomReagents);
         _allergyRandom.Shuffle(list);
-        for (var i = 0; i < list.Count && list.Count < component.RandomCount; i++)
+        for (var i = 0; i < list.Count && component.Reagents.Count < component.RandomCount; i++)
         {
             component.Reagents.Add(list[i]);
         }
@@ -81,7 +81,7 @@ public sealed partial class MedievalPlagueSystem
 
         var list = new List<string>(component.RandomIds);
         _allergyRandom.Shuffle(list);
-        for (var i = 0; i < list.Count && list.Count < component.RandomCount; i++)
+        for (var i = 0; i < list.Count && component.Ids.Count < component.RandomCount; i++)
         {
             component.Ids.Add(list[i]);
         }
@@ -262,7 +262,7 @@ public sealed partial class MedievalPlagueSystem
 
             comp.NextFall = _timing.CurTime + TimeSpan.FromSeconds(1);
 
-            if (_random.Prob(0.3f))
+            if (_random.Prob(0.04f))
                 _stun.TryParalyze(uid, TimeSpan.FromSeconds(1), false);
         }
     }
