@@ -143,9 +143,9 @@ public sealed partial class MedievalPlagueSystem
 
         args.Handled = true;
 
-        var block = EnsureComp<PlagueDizzinessComponent>(uid);
-        block.EndTime = _timing.CurTime + TimeSpan.FromSeconds(15);
-        _moveSpeed.RefreshMovementSpeedModifiers(args.Target);
+        _jitter.DoJitter(args.Target, TimeSpan.FromSeconds(6), true, 10, 3);
+        _drunk.TryApplyDrunkenness(args.Target, 600);
+        _stun.TrySlowdown(args.Target, TimeSpan.FromSeconds(6), true);
 
         _audio.PlayGlobal(new SoundCollectionSpecifier("PlagueDizziness"), Filter.Empty().FromEntities(args.Target), false);
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/dizzy.ogg"), Filter.Empty().FromEntities(uid), false);

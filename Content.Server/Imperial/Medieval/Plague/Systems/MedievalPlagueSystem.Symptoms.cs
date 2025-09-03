@@ -37,8 +37,6 @@ public sealed partial class MedievalPlagueSystem
 
         SubscribeLocalEvent<WeakSkinComponent, DamageModifyEvent>(OnDamageModify);
 
-        SubscribeLocalEvent<PlagueDizzinessComponent, RefreshMovementSpeedModifiersEvent>(OnMoveSpeedModify);
-
         SubscribeLocalEvent<LoweredSkillsComponent, MapInitEvent>(OnLoweredSkillsMapInit);
         SubscribeLocalEvent<LoweredSkillsComponent, ComponentShutdown>(OnLoweredSkillsShutdown);
 
@@ -114,14 +112,6 @@ public sealed partial class MedievalPlagueSystem
             if (args.Damage.DamageDict.ContainsKey(item.Key))
                 args.Damage.DamageDict[item.Key] *= item.Value;
         }
-    }
-
-    private void OnMoveSpeedModify(EntityUid uid, PlagueDizzinessComponent component, RefreshMovementSpeedModifiersEvent args)
-    {
-        if (component.EndTime <= _timing.CurTime)
-            return;
-
-        args.ModifySpeed(-1f);
     }
 
     private void OnLoweredSkillsMapInit(EntityUid uid, LoweredSkillsComponent component, MapInitEvent args)
@@ -306,20 +296,6 @@ public sealed partial class MedievalPlagueSystem
             comp.NextEffect = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(comp.Delay.Min, comp.Delay.Max));
             comp.EndTime = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(comp.Duration.Min, comp.Duration.Max));
             comp.Active = true;
-        }
-    }
-
-    private void UpdateDizzy()
-    {
-        var query = EntityQueryEnumerator<PlagueDizzinessComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (_timing.CurTime >= comp.EndTime)
-            {
-                RemComp<PlagueDizzinessComponent>(uid);
-                _moveSpeed.RefreshMovementSpeedModifiers(uid);
-                continue;
-            }
         }
     }
 }

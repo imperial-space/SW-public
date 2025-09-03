@@ -5,6 +5,7 @@ using Content.Server.Body.Systems;
 using Content.Server.Buckle.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.DoAfter;
+using Content.Server.Drunk;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.GameTicking.Events;
 using Content.Server.Imperial.Medieval.Skills;
@@ -67,6 +68,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
     [Dependency] private readonly IChatManager _chat = default!;
     [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly DrunkSystem _drunk = default!;
 
     private Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> _symptoms = new();
     private int _strapHealResistance = 0;
@@ -338,7 +340,6 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         UpdateClumsiness();
         UpdateDamagingClothing();
         UpdateLungCancer();
-        UpdateDizzy();
         UpdatePoints();
     }
 
