@@ -136,7 +136,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: runny
-  position: 120,-60
+  position: 120,60
   tier: 1
   cost: 2
   category: Symptom
@@ -159,7 +159,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: coughtier1
-  position: 120,-30
+  position: 120,30
   tier: 1
   cost: 5
   category: Symptom
@@ -212,7 +212,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: allergy
-  position: 145,-10
+  position: 145,10
   tier: 1
   cost: 7
   category: Symptom
@@ -228,7 +228,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: asthma
-  position: 95,-10
+  position: 95,10
   tier: 2
   cost: 8
   category: Symptom
@@ -244,7 +244,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: lungs
-  position: 120,30
+  position: 120,-30
   tier: 3
   cost: 13
   category: Symptom
@@ -270,7 +270,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: skin
-  position: 0,60
+  position: -40,60
   tier: 1
   cost: 2
   category: Symptom
@@ -293,7 +293,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: skin
-  position: 0,30
+  position: -40,30
   tier: 1
   cost: 5
   category: Symptom
@@ -326,7 +326,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: weakskin
-  position: 0,0
+  position: -40,0
   tier: 2
   cost: 8
   category: Symptom
@@ -345,7 +345,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: legs
-  position: 30,15
+  position: -10,15
   tier: 1
   cost: 5
   category: Symptom
@@ -364,7 +364,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: temperature
-  position: -30,15
+  position: -70,15
   tier: 2
   cost: 12
   category: Symptom
@@ -380,7 +380,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: skincancer
-  position: 0,-30
+  position: -40,-30
   tier: 3
   cost: 13
   category: Symptom
@@ -408,3 +408,137 @@
   - WeakSkin
   - Clumsiness
   - Temperature
+
+# Hiccup
+- type: plagueSymptom
+  id: Hiccup1
+  name: plague-hiccup-1-name
+  desc: plague-hiccup-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: hiccup1
+  position: 40,-60
+  tier: 1
+  cost: 2
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Hiccup
+    effect: !type:Emote
+      emotes: Hiccup
+      delay:
+        min: 25
+        max: 95
+      other:
+      - !type:PlaySound
+          sound: /Audio/Imperial/Medieval/Plague/hiccup.ogg
+          global: false
+
+- type: plagueSymptom
+  id: Hiccup2
+  name: plague-hiccup-2-name
+  desc: plague-hiccup-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: hiccup2
+  position: 40,-30
+  tier: 1
+  cost: 4
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Hiccup
+    effect: !type:Emote
+      emotes: Hiccup
+      delay:
+        min: 20
+        max: 75
+      other:
+      - !type:PlaySound
+          sound: /Audio/Imperial/Medieval/Plague/hiccup.ogg
+          global: false
+      - !type:ChangeDamage
+          damage:
+            types:
+              Asphyxiation: 3
+      - !type:AddComponents
+          components:
+          - type: VomitSickness
+            duration: 1
+      - !type:ForceSay
+          performChance: 0.2
+  required: Hiccup1
+
+- type: plagueSymptom
+  id: Hiccup3
+  name: plague-hiccup-3-name
+  desc: plague-hiccup-3-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: hiccup3
+  position: 25,0
+  tier: 2
+  cost: 5
+  category: Symptom
+  targetEvent: !type:AddSymptomEffectsEvent
+    id: Hiccup
+    effect: !type:Emote
+      emotes: Hiccup
+      delay:
+        min: 20
+        max: 60
+      other:
+      - !type:PlaySound
+          sound: /Audio/Imperial/Medieval/Plague/hiccup.ogg
+          global: false
+      - !type:ChangeDamage
+          damage:
+            types:
+              Asphyxiation: 6
+      - !type:AddComponents
+          components:
+          - type: VomitSickness
+            duration: 1
+      - !type:ForceSay
+          performChance: 0.3
+  required: Hiccup2
+
+- type: plagueSymptom
+  id: LethalPantomime1
+  name: plague-pantomime-1-name
+  desc: plague-pantomime-1-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: mime1
+  position: 55,0
+  tier: 2
+  cost: 7
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: PlagueBlockSpeech
+      chance: 0.5
+      damage:
+        types:
+          Asphyxiation: 7
+  required: Hiccup2
+
+- type: plagueSymptom
+  id: LethalPantomime2
+  name: plague-pantomime-2-name
+  desc: plague-pantomime-2-desc
+  icon:
+    sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
+    state: mime2
+  position: 40,30
+  tier: 3
+  cost: 9
+  category: Symptom
+  targetEvent: !type:PlagueAddComponentsEvent
+    components:
+    - type: PlagueBlockSpeech
+      chance: 0.8
+      damage:
+        types:
+          Asphyxiation: 10
+  required:
+  - LethalPantomime1
+  - Hiccup3
