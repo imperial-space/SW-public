@@ -1925,6 +1925,10 @@
     - type: Sprite
       state: brutepack
     - type: Healing
+      # Imperial Medieval Plague start
+      plagueHealingTier: 1
+      plagueProgressionDecayPerUse: 1
+      # Imperial Medieval Plague end
       damageContainer: Biological
       damage:
         groups:
