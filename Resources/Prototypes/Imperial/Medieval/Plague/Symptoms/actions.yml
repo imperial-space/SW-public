@@ -5,7 +5,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: retchupgrade
-  position: -120,45
+  position: 100,-30
   tier: 1
   cost: 5
   category: Action
@@ -19,7 +19,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: coughupgrade
-  position: -120,-45
+  position: -100,-30
   tier: 1
   cost: 5
   category: Action
@@ -33,7 +33,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: dizzinessupgrade
-  position: 120,-45
+  position: -80,30
   tier: 1
   cost: 5
   category: Action
@@ -46,7 +46,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: sleepy
-  position: 90,-45
+  position: -50,30
   tier: 1
   cost: 5
   category: Action
@@ -60,7 +60,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: ratstier1
-  position: 120,45
+  position: 80,30
   tier: 1
   cost: 5
   category: Action
@@ -73,7 +73,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: ratstier2
-  position: 90,45
+  position: 50,30
   tier: 1
   cost: 5
   category: Action
@@ -86,7 +86,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: slimeupgrade
-  position: -120,0
+  position: -95,0
   tier: 1
   cost: 5
   category: Action
@@ -99,7 +99,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: bugs
-  position: -90,0
+  position: -65,0
   tier: 1
   cost: 5
   category: Action
@@ -113,7 +113,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: tpsick
-  position: 120,0
+  position: 95,0
   tier: 1
   cost: 5
   category: Action
@@ -126,7 +126,7 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: tphealthy
-  position: 90,0
+  position: 65,0
   tier: 1
   cost: 5
   category: Action
