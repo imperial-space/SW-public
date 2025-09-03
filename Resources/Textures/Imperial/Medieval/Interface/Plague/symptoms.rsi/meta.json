@@ -70,6 +70,15 @@
         "name": "heart"
       },
       {
+        "name": "hiccup1"
+      },
+      {
+        "name": "hiccup2"
+      },
+      {
+        "name": "hiccup3"
+      },
+      {
         "name": "hunger"
       },
       {
@@ -110,6 +119,12 @@
       },
       {
         "name": "lungs"
+      },
+      {
+        "name": "mime1"
+      },
+      {
+        "name": "mime2"
       },
       {
         "name": "nausea"
