@@ -51,3 +51,18 @@ plague-temperature-desc = Заражённый начинает испытыва
 
 plague-skin-cancer-name = Рак кожи
 plague-skin-cancer-desc = Чесотка и слабая кожа усугубляются.
+
+plague-hiccup-1-name = Икота I
+plague-hiccup-1-desc = Заражённый начинает периодически икать и иногда запинаться в речи.
+
+plague-hiccup-2-name = Икота II
+plague-hiccup-2-desc = Заражённый с большим шансом запинается, а так же начинает получать урон при икании.
+
+plague-hiccup-3-name = Икота III
+plague-hiccup-3-desc = Урон от икания удваивается.
+
+plague-pantomime-1-name = Посмертная пантомима I
+plague-pantomime-1-desc = Заражённый начинает проглатывать некоторые фразы, получая при этом урон.
+
+plague-pantomime-2-name = Посмертная пантомима II
+plague-pantomime-2-desc = Заражённый практически полностью теряет возможность говорить, и получает больше урона при неудачной попытке.

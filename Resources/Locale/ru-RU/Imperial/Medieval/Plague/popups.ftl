@@ -42,6 +42,11 @@ medieval-plague-cataract-target-popup = Ваше зрение ухудшилос
 
 medieval-plague-heart-attack-ghost-popup = Вы устроили сердечный приступ { $target }.
 
+plague-pantomime-speech-blocked-popup = Вам не удалось ничего сказать!
+
+plague-itch-popup = У вас чешется всё тело...
+
+plague-itch-hard-popup = Вы неконтролируемо чешетесь!
 
 plague-bloodletting-result-infected = Кровь { $target } выглядит заражённой.
 plague-bloodletting-result-healthy = Кровь { $target } выглядит здоровой.
