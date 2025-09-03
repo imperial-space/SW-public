@@ -7404,6 +7404,10 @@
   id: SpellwardVezitsaFont
   path: /Fonts/Imperial/Vezitsa/VezitsaCyrillic.ttf
 
+- type: font
+  id: SpellwardSpecialeliteFont
+  path: /Fonts/Imperial/Specialelite/Specialelite.ttf
+
 - type: entity
   name: gol
   parent: BaseItem

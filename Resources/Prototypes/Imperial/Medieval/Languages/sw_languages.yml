@@ -271,3 +271,5 @@
   speech: !type:CollectiveMind
     showRank: false
     color: crimson
+    font: SpellwardSpecialeliteFont
+    fontSize: 14
