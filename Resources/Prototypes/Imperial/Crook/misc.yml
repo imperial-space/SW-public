@@ -321,11 +321,11 @@
   kind: source
   path: "/Textures/Imperial/Shaders/glitch.swsl"
   params:
-    shake_power: 0.0002
+    shake_power: 0.0009
     shake_rate: 0.5
     shake_speed: 2
-    shake_block_size: 25
-    shake_color_rate: 0.01
+    shake_block_size: 35
+    shake_color_rate: 0.05
 
 - type: entity
   name: Smiler
@@ -604,7 +604,7 @@
     shake_power: 0.0002
     shake_rate: 0.1
     shake_speed: 1
-    shake_block_size: 15
+    shake_block_size: 25
     shake_color_rate: 0.001
 
 - type: entity
