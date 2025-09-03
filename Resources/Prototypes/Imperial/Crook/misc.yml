@@ -332,10 +332,8 @@
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
         state: alive
-        scale: 1.5, 1.5
       - state: unshaded
         shader: unshaded
-        scale: 1.5, 1.5
   - type: PointLight
     radius: 1.2
     energy: 2.1
