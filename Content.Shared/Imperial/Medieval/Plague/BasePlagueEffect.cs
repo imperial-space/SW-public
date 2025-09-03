@@ -16,19 +16,24 @@ public abstract partial class BasePlagueEffect
     [DataField]
     public int Priority = 1;
 
+    [DataField]
+    public float PerformChance = 1f;
+
     public TimeSpan NextEffect = TimeSpan.Zero;
 
     public abstract BasePlagueEffect CreateInstance();
 
     public void DoEffects(EntityUid uid, IEntityManager entManager)
     {
-        foreach (var item in Other)
-            item.DoEffects(uid, entManager);
-
         var random = IoCManager.Resolve<IRobustRandom>();
         var timing = IoCManager.Resolve<IGameTiming>();
-
         NextEffect = timing.CurTime + TimeSpan.FromSeconds(random.Next(Delay.Min, Delay.Max));
+
+        if (!random.Prob(PerformChance))
+            return;
+
+        foreach (var item in Other)
+            item.DoEffects(uid, entManager);
 
         Effect(uid, entManager);
     }

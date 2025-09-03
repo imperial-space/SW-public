@@ -17,7 +17,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#215263"
   metabolisms:
     Medicine:
@@ -37,7 +37,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#0041a8"
   metabolisms:
     Medicine:
@@ -56,7 +56,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#a1000b"
   boilingPoint: 78.2 # This isn't a real chemical...
   meltingPoint: -19.4
@@ -104,7 +104,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#00ff5f"
   boilingPoint: 340282300000000000000000000000000000000 # Ethidium bromide, which doesn't boil.
   meltingPoint: 261.0
@@ -137,7 +137,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -162,7 +162,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -178,7 +178,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -195,7 +195,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -212,7 +212,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -231,7 +231,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#FFC8C8"
 
 - type: reagent
@@ -242,7 +242,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#FFC8C8"
 
 - type: reagent
@@ -253,7 +253,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -271,7 +271,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -289,7 +289,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -307,7 +307,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -327,7 +327,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -368,7 +368,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -386,7 +386,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Poison:
@@ -410,7 +410,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   reactiveEffects:
     Flammable:
@@ -436,7 +436,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Medicine:
@@ -454,7 +454,7 @@
   desc: ""
   physicalDesc: ""
   showinbook: false
-  flavor: ""
+  flavor: null
   color: "#FFC8C8"
 
 - type: reagent
@@ -465,7 +465,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#215263"
   metabolisms:
     Medicine:
@@ -486,7 +486,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -504,7 +504,7 @@
   desc: ""
   physicalDesc: ""
   showinbook: false
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -522,7 +522,7 @@
   desc: ""
   physicalDesc: ""
   showinbook: false
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -540,7 +540,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#215263"
   metabolisms:
     Medicine:
@@ -560,7 +560,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#a1000b"
   boilingPoint: 78.2 # This isn't a real chemical...
   meltingPoint: -19.4
@@ -610,7 +610,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -627,7 +627,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -644,7 +644,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Poison:
@@ -663,7 +663,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   reactiveEffects:
     Acidic:
@@ -687,7 +687,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Medicine:
@@ -707,7 +707,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#9A040E"
   boilingPoint: 212.0
   meltingPoint: 170.0
@@ -759,7 +759,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Poison:
@@ -785,7 +785,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Medicine:
@@ -800,7 +800,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#FFC8C8"
   reactiveEffects:
     Acidic:
@@ -841,7 +841,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Medicine:
@@ -875,7 +875,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:
@@ -899,7 +899,7 @@
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
-  flavor: ""
+  flavor: null
   color: "#63806e"
   metabolisms:
     Narcotic:

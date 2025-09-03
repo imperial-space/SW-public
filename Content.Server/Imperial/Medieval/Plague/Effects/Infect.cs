@@ -31,7 +31,7 @@ public sealed partial class Infect : BasePlagueEffect
         var xform = entMan.GetComponent<TransformComponent>(uid);
         foreach (var item in lookup.GetEntitiesInRange<MedievalPlagueInfectedComponent>(xform.Coordinates, Radius))
         {
-            plague.TryInfect(item.Owner, entMan.GetComponentOrNull<MedievalPlagueInfectedComponent>(uid)?.PlagueSource, Chance);
+            plague.TryInfect(item.Owner, Chance);
         }
     }
 }

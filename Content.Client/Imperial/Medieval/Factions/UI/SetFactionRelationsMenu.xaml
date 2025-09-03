@@ -14,6 +14,7 @@
         <OptionButton Name="FactionSelectButton" Margin="4" HorizontalAlignment="Left"/>
         <OptionButton Name="RelationSelectButton" Margin="4" HorizontalAlignment="Left"/>
         <RichTextLabel Name="MainLabel" Margin="4"/>
+        <RichTextLabel Name="PaperWarning" Text="Вы не сможете изменить содержимое послания после подтверждения!" Visible="False" Margin="4"/>
         <BoxContainer Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalExpand="True" Margin="4">
             <Button Name="SendButton" Text="Предложить" Margin="8 4" HorizontalAlignment="Center"/>
             <Button Name="DiscardButton" Text="Отмена" Margin="8 4" HorizontalAlignment="Center"/>

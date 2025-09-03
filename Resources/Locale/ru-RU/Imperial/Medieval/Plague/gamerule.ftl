@@ -6,7 +6,7 @@ roles-antag-plague-objective = Вместе с другими призракам
 
 plague-intro-text = Вы - один из призраков чумы, насланной на эти земли. Кооперируйтесь и заразите смертельной болезнью всех, кого сможете.
 
-medieval-plague-symptom-unlocked = Был разблокирован симптом { $symptom }.
+medieval-plague-symptom-unlocked = [font="SpellwardSpecialeliteFont" size=14]Был разблокирован симптом [color=#00b100ff]{ $symptom }[/color].[/font]
 
 medieval-plague-round-end-infected-count = Всего заражённых: [color=crimson]{ $count }[/color]
 medieval-plague-round-end-immune-count = Иммунных к чуме: [color=crimson]{ $count }[/color]
