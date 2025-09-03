@@ -48,7 +48,7 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
         _data = dict;
         _info = info;
 
-        var symptoms = protoMan.EnumeratePrototypes<MedievalPlagueSymptomPrototype>().Where(x => x.Category == Category);
+        var symptoms = protoMan.EnumeratePrototypes<MedievalPlagueSymptomPrototype>().Where(x => x.Category == Category && ReqsMet(x, dict));
         foreach (var item in symptoms)
         {
             dict.TryGetValue(item.ID, out var data);
