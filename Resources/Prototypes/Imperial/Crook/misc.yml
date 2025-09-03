@@ -295,8 +295,8 @@
       0: Alive
       120: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 4
+    baseWalkSpeed: 4
+    baseSprintSpeed: 3
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
@@ -332,12 +332,10 @@
     layers:
       - map: [ "enum.DamageStateVisualLayers.Base" ]
         state: alive
-        scale: 1.5, 1.5
       - state: unshaded
         shader: unshaded
-        scale: 1.5, 1.5
   - type: PointLight
-    radius: 1.2
+    radius: 1.4
     energy: 2.1
     color: "#ffffff"
   - type: MobState
@@ -347,7 +345,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      250: Dead
   - type: Bloodstream
     bloodReagent: MuteToxin
     chemicalMaxVolume: 60
@@ -358,8 +356,8 @@
     animation: WeaponArcBite
     damage:
       types:
-        Slash: 10
-        Structural: 50
+        Slash: 12
+        Structural: 75
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 1
@@ -390,7 +388,7 @@
     thresholds:
       - trigger:
           !type:DamageTrigger
-          damage: 150
+          damage: 250
         behaviors:
           - !type:DoActsBehavior
              acts: [ "Destruction" ]
@@ -577,6 +575,64 @@
     allowPortalsOnDifferentMaps: true
     firstPortalPrototype: PortalGatewayBackrooms
     secondPortalPrototype: PortalGatewayBackrooms
+
+- type: emoteSounds
+  id: BacteriaVoice
+  sound:
+    path: /Audio/Imperial/Crook/backrooms/bacteria/bacteriascream.ogg
+    params:
+      volume: -6
+
+- type: entity
+  name: bacteria
+  suffix: Backrooms, Crook
+  parent: SimpleSpaceMobBase
+  id: BackroomsBacteria
+  description: wth is that...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Crook/Misc/backrooms/bacteria.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        1500: Dead
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+      - FootstepSound
+    - type: MeleeWeapon
+      hidden: true
+      angle: 0
+      animation: WeaponArcClaw
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      damage:
+        types:
+          Piercing: 30
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
+        params:
+          volume: -4
+    - type: Speech
+      speechVerb: LargeMob
+    - type: Vocal
+      sounds:
+        Unsexed: BacteriaVoice
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 8
+      baseSprintSpeed: 3
+    - type: NoSlip
 
 # Majima
 
@@ -803,9 +859,6 @@
   - type: Strap
     position: Down
     rotation: -90
-  - type: Construction
-    graph: bed
-    node: bed
   - type: PlaceableSurface
     placeCentered: true
   - type: Damageable
