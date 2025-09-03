@@ -49,7 +49,7 @@
   suffix: AUDIO TEST
   components:
   - type: LocationTrigger
-    locationId: ambigen7_trigger
+    locationId: ambigen8_trigger
     sound:
       path: "/Audio/Ambience/ambigen7.ogg"
     randomSounds:
