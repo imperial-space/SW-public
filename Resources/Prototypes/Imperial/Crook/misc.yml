@@ -803,9 +803,6 @@
   - type: Strap
     position: Down
     rotation: -90
-  - type: Construction
-    graph: bed
-    node: bed
   - type: PlaceableSurface
     placeCentered: true
   - type: Damageable
