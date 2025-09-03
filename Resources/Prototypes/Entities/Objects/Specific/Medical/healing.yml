@@ -33,7 +33,7 @@
     heldPrefix: ointment
   - type: Healing
     # Imperial Medieval Plague start
-    plagueProgressionDecayPerUse: 1
+    plagueProgressionDecayPerUse: 2.5
     # Imperial Medieval Plague end
     damageContainers:
       - Biological
@@ -150,7 +150,7 @@
     heldPrefix: brutepack
   - type: Healing
     # Imperial Medieval Plague start
-    plagueProgressionDecayPerUse: 1
+    plagueProgressionDecayPerUse: 2
     # Imperial Medieval Plague end
     damageContainers:
       - Biological
@@ -355,7 +355,7 @@
     node: gauze
   - type: Healing
     # Imperial Medieval Plague start
-    plagueProgressionDecayPerUse: 1
+    plagueProgressionDecayPerUse: 2.5
     # Imperial Medieval Plague end
     damageContainers:
       - Biological
