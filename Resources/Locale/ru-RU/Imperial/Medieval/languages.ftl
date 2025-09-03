@@ -18,3 +18,5 @@ language-Elf-name = Эльфиский
 language-Elf-description = Высокий язык
 language-Myrmex-name = Мирмексы
 language-Myrmex-description = Псионическая связь
+language-Plague-name = Чума
+language-Plague-description = Коллективный разум чумных призраков
