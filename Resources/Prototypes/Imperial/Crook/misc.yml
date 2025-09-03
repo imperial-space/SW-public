@@ -335,7 +335,7 @@
       - state: unshaded
         shader: unshaded
   - type: PointLight
-    radius: 1.2
+    radius: 1.4
     energy: 2.1
     color: "#ffffff"
   - type: MobState
