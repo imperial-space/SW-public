@@ -86,3 +86,4 @@ public sealed class SupermatterLightningEvent
         return Loc.GetString("supermatter-event-lightning");
     }
 }
+
