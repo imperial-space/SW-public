@@ -29,10 +29,10 @@ plague-tp-not-sick-name = Телепортация к здоровому
 plague-tp-not-sick-desc = Позволяет вам телепортироваться к случайному незаражённому гуманоиду.
 
 plague-cataract-name = Катаракта
-plague-cataract-desc = Позволяет перманентно повредить зрение жертвы.
+plague-cataract-desc = Позволяет перманентно повредить зрение жертвы, но не лишает его полностью.
 
 plague-injury-name = Открытые раны
 plague-injury-desc = Позволяет вызвать у жертвы крайне сильное кровотечение.
 
-plague-heart-name = Сердечный приступ
+plague-heart-name = Черная метка
 plague-heart-desc = Позволяет вызвать у жертвы летальный сердечный приступ.

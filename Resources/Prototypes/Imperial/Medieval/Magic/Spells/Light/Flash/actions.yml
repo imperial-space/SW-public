@@ -21,6 +21,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 10
+  - type: SpellCastEffect
+    effectProto: FlashSpellCastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 17

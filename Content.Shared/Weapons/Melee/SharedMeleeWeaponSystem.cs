@@ -39,6 +39,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
+using Content.Shared.Imperial.Medieval.ChargedAttack;
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -62,8 +63,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] protected readonly SharedPopupSystem PopupSystem = default!;
     [Dependency] protected readonly SharedTransformSystem TransformSystem = default!;
     [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!; // imperial charged attack
+    [Dependency] private readonly ChargedAttackSystem _chargedAttack = default!; // imperial charged attack
 
-    private const int AttackMask = (int) (CollisionGroup.MobMask | CollisionGroup.Opaque);
+
+    private const int AttackMask = (int)(CollisionGroup.MobMask | CollisionGroup.Opaque);
 
     /// <summary>
     /// Maximum amount of targets allowed for a wide-attack.
@@ -210,6 +214,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         {
             return;
         }
+        // imperial charge attack start
+        if (TryComp<ChargedAttackComponent>(weaponUid, out var comp))
+        {
+            _chargedAttack.StopAttacking(weaponUid, comp, user);
+        }
+        // imperial charge attack end
 
         AttemptAttack(user, weaponUid, weapon, msg, args.SenderSession);
     }
@@ -355,6 +365,28 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         return AttemptAttack(user, weaponUid, weapon, new DisarmAttackEvent(GetNetEntity(target), GetNetCoordinates(targetXform.Coordinates)), null);
     }
 
+    // imperial charge attack start
+    public bool AttemptHeavyAttack(EntityUid user, EntityUid weaponUid, MeleeWeaponComponent weapon, EntityCoordinates coordinates)
+    {
+        var userXform = Transform(user);
+        var targetMap = TransformSystem.ToMapCoordinates(coordinates);
+
+        if (targetMap.MapId != userXform.MapID)
+            return false;
+
+        var userPos = TransformSystem.GetWorldPosition(userXform);
+        var direction = targetMap.Position - userPos;
+        var distance = MathF.Min(weapon.Range, direction.Length());
+
+        var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), weapon.Angle, distance, userXform.MapID, user).ToList());
+
+        if (!_playerManager.TryGetSessionByEntity(user, out var session))
+            return AttemptAttack(user, weaponUid, weapon, new HeavyAttackEvent(GetNetEntity(weaponUid), entities, GetNetCoordinates(coordinates)), null);
+
+        return AttemptAttack(user, weaponUid, weapon, new HeavyAttackEvent(GetNetEntity(weaponUid), entities, GetNetCoordinates(coordinates)), session);
+    }
+    // imperial charge attack end
+
     /// <summary>
     /// Called when a windup is finished and an attack is tried.
     /// </summary>
@@ -422,7 +454,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // Do this AFTER attack so it doesn't spam every tick
         var ev = new AttemptMeleeEvent();
         RaiseLocalEvent(weaponUid, ref ev);
-
+        //CrystallEdge melee improvment
+        if (weapon.CPSwingBeverage)
+            weapon.SwingLeft = !weapon.SwingLeft;
+        //CrystallEdge melee improvment end
         if (ev.Cancelled)
         {
             if (ev.Message != null)

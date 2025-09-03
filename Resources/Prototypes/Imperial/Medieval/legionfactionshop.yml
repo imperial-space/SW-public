@@ -398,4 +398,52 @@
   categories:
   - MedievalLegionTransport
 
+- type: listing
+  id: MdvLegionMedievalBlackHorseWhistle
+  productEntity: MedievalBlackHorseWhistle
+  cost:
+    MedalLegion: 22
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalBlackSpotHorseWhistle
+  productEntity: MedievalBlackSpotHorseWhistle
+  cost:
+    MedalLegion: 8
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalBlackWhiteHorseWhistle
+  productEntity: MedievalBlackWhiteHorseWhistle
+  cost:
+    MedalLegion: 13
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalGreyHorseWhistle
+  productEntity: MedievalGreyHorseWhistle
+  cost:
+    MedalLegion: 15
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalWhiteHorseWhistle
+  productEntity: MedievalWhiteHorseWhistle
+  cost:
+    MedalLegion: 18
+  categories:
+  - MedievalLegionTransport
+
+- type: listing
+  id: MdvLegionMedievalWhiteRoyalHorseWhistle
+  productEntity: MedievalWhiteRoyalHorseWhistle
+  cost:
+    MedalLegion: 32
+  categories:
+  - MedievalLegionTransport
+
 

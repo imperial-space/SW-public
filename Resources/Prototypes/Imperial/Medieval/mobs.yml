@@ -1029,7 +1029,7 @@
   - type: MedievalPlagueInfectOnHit
     active: false
     id: Animal
-    chance: 0.12
+    chance: 0.05
 
 
 - type: entity

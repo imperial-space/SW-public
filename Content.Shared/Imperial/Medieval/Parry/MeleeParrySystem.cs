@@ -54,7 +54,7 @@ namespace Content.Shared.MeleeParry
         { // Захардкожено для деревянного меча
             int oneHanded = 0;
 
-            foreach (var itemH in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE))
+            foreach (var itemH in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE)) // TODO: убрать NONE, вызывающий дебаг ассерт
             {
                 if (TryComp<MeleeWeaponComponent>(itemH, out var melee))
                 {
@@ -64,7 +64,7 @@ namespace Content.Shared.MeleeParry
                         return false;
                 }
             }
-            foreach (var item in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE))
+            foreach (var item in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE)) // TODO: убрать NONE, вызывающий дебаг ассерт
             {
                 if (TryComp<MeleeParryComponent>(item, out var parry) &&
                     TryComp<UseDelayComponent>(item, out var delay) &&
@@ -121,7 +121,7 @@ namespace Content.Shared.MeleeParry
         {
             int oneHanded = 0;
 
-            foreach (var itemH in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE))
+            foreach (var itemH in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE)) // TODO: убрать NONE, вызывающий дебаг ассерт
             {
                 if (TryComp<MeleeWeaponComponent>(itemH, out var melee))
                 {
@@ -131,7 +131,7 @@ namespace Content.Shared.MeleeParry
                         return false;
                 }
             }
-            foreach (var item in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE))
+            foreach (var item in _inventory.GetHandOrInventoryEntities(uid, SlotFlags.NONE)) // TODO: убрать NONE, вызывающий дебаг ассерт
             {
                 if (TryComp<MeleeParryComponent>(item, out var parry) && TryComp<UseDelayComponent>(item, out var delay) && !_useDelay.IsDelayed((uid, delay)) && parry.ParriedAgo <= 0f && parry.RealParry)
                 {

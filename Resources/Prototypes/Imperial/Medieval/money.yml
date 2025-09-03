@@ -41,6 +41,9 @@
   - type: Currency
     price:
       Revent: 1
+  - type: MedievalCurrency
+    price:
+      Revent: 1
   - type: Appearance
   - type: StealTarget
     stealGroup: MedievalMoney

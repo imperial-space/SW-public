@@ -46,6 +46,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 5
+  - type: SpellCastEffect
+    effectProto: IceDaggerSpellCastEffectBeginner
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionIceDaggerMiddle

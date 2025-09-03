@@ -54,3 +54,5 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 30
+  - type: SpellCastEffect
+    effectProto: WeakeningWaveSpellCastEffectBeginner

@@ -85,7 +85,7 @@
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: MedievalPlagueInfectOnHit
-    chance: 0.2
+    chance: 0.15
   - type: Explosive
     explosionType: Cryo
     maxIntensity: 0.05
@@ -183,7 +183,7 @@
       types:
         Piercing: 1.5
   - type: MedievalPlagueInfectOnHit
-    chance: 0.15
+    chance: 0.1
   - type: NpcFactionMember
     factions:
     - SimpleHostile
@@ -343,4 +343,4 @@
       - !type:GibBehavior
         recursive: false
   - type: MedievalPlagueInfectOnHit
-    chance: 0.2
+    chance: 0.12
