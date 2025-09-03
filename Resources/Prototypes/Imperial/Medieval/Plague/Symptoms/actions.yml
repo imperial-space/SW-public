@@ -9,8 +9,8 @@
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueForcedVomitAction
-  required: Vomit
+  actions: [PlagueForcedVomitAction]
+  required: [Vomit]
 
 - type: plagueSymptom
   id: AsthmaticAction
@@ -23,8 +23,8 @@
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueAsthmaticAction
-  required: Cough
+  actions: [PlagueAsthmaticAction]
+  required: [Cough]
 
 - type: plagueSymptom
   id: DizzinessAction
@@ -37,7 +37,7 @@
   tier: 1
   cost: 2
   category: Action
-  actions: PlagueDizzinessAction
+  actions: [PlagueDizzinessAction]
 
 - type: plagueSymptom
   id: SleepyAction
@@ -50,8 +50,8 @@
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueSleepyAction
-  required: DizzinessAction
+  actions: [PlagueSleepyAction]
+  required: [DizzinessAction]
 
 - type: plagueSymptom
   id: MorphRatAction
@@ -64,7 +64,7 @@
   tier: 1
   cost: 5
   category: Action
-  actions: PlaguePolymorphMouseAction
+  actions: [PlaguePolymorphMouseAction]
 
 - type: plagueSymptom
   id: MorphRatsAction
@@ -77,7 +77,7 @@
   tier: 1
   cost: 5
   category: Action
-  required: MorphRatAction
+  required: [MorphRatAction]
 
 - type: plagueSymptom
   id: SlimesAction
@@ -90,7 +90,7 @@
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueSpawnSlimesAction
+  actions: [PlagueSpawnSlimesAction]
 
 - type: plagueSymptom
   id: BugsAction
@@ -103,8 +103,8 @@
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueSpawnBugsAction
-  required: SlimesAction
+  actions: [PlagueSpawnBugsAction]
+  required: [SlimesAction]
 
 - type: plagueSymptom
   id: TpSickAction
@@ -116,8 +116,8 @@
   position: 95,0
   tier: 1
   cost: 5
-  category: Action
-  actions: PlagueTpInfectedAction
+  category: [Action]
+  actions: [PlagueTpInfectedAction]
 
 - type: plagueSymptom
   id: TpNotSickAction
@@ -130,8 +130,8 @@
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueTpNotInfectedAction
-  required: TpSickAction
+  actions: [PlagueTpNotInfectedAction]
+  required: [TpSickAction]
 
 - type: plagueSymptom
   id: CataractAction
@@ -144,8 +144,8 @@
   tier: 3
   cost: 10
   category: Action
-  actions: PlagueCataractAction
-  required: StomachCancer
+  actions: [PlagueCataractAction]
+  required: [StomachCancer]
 
 - type: plagueSymptom
   id: WoundAction
@@ -158,8 +158,8 @@
   tier: 3
   cost: 10
   category: Action
-  actions: PlagueInjuryAction
-  required: SkinCancer
+  actions: [PlagueInjuryAction]
+  required: [SkinCancer]
 
 - type: plagueSymptom
   id: HeartAttackAction
@@ -172,7 +172,7 @@
   tier: 3
   cost: 15
   category: Action
-  actions: PlagueHeartAttackAction
+  actions: [PlagueHeartAttackAction]
   required:
   - LungsCancer
   - CataractAction

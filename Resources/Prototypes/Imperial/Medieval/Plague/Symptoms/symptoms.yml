@@ -49,7 +49,7 @@
       components:
       - type: VomitSickness
         level: Vomit
-  required: Nausea
+  required: [Nausea]
 
 - type: plagueSymptom
   id: BloodVomit
@@ -76,7 +76,7 @@
       components:
       - type: VomitSickness
         level: Blood
-  required: Vomit
+  required: [Vomit]
 
 - type: plagueSymptom
   id: ReagentAllergy
@@ -103,7 +103,7 @@
       - medievalhealslash
       - medievalhealpiercing
       - medievalhealblunt
-  required: Nausea
+  required: [Nausea]
 
 - type: plagueSymptom
   id: Gastrite
@@ -137,7 +137,7 @@
   targetEvent: !type:PlagueAddComponentsEvent
     components:
     - type: StomachCancer
-  required: Gastrite
+  required: [Gastrite]
 
 # Lungs
 - type: plagueSymptom
@@ -185,7 +185,7 @@
       - !type:Infect
           radius: 4.5
           chance: 0.2
-  required: RunnyNose
+  required: [RunnyNose]
 
 - type: plagueSymptom
   id: BloodCough
@@ -214,7 +214,7 @@
             types:
               Bloodloss: 12
               Cellular: 3
-  required: Cough
+  required: [Cough]
 
 - type: plagueSymptom
   id: EntityAllergy
@@ -237,7 +237,7 @@
       - Spider
       - Skeleton
       randomCount: 3
-  required: Cough
+  required: [Cough]
 
 - type: plagueSymptom
   id: Asthma
@@ -253,7 +253,7 @@
   targetEvent: !type:PlagueAddComponentsEvent
     components:
     - type: Asthma
-  required: Cough
+  required: [Cough]
 
 - type: plagueSymptom
   id: LungsCancer
@@ -335,7 +335,7 @@
           bleed: 1.25
       - !type:Jitter
           duration: 2
-  required: Itch
+  required: [Itch]
 
 - type: plagueSymptom
   id: WeakSkin
@@ -354,7 +354,7 @@
       typeModifiers:
         Slash: 1.5
         Piercing: 1.5
-  required: ItchHard
+  required: [ItchHard]
 
 - type: plagueSymptom
   id: Clumsiness
@@ -373,7 +373,7 @@
       delay:
         min: 30
         max: 90
-  required: ItchHard
+  required: [ItchHard]
 
 - type: plagueSymptom
   id: Temperature
@@ -389,7 +389,7 @@
   targetEvent: !type:PlagueAddComponentsEvent
     components:
     - type: LoweredSkills
-  required: ItchHard
+  required: [ItchHard]
 
 - type: plagueSymptom
   id: SkinCancer
@@ -483,7 +483,7 @@
           duration: 1.5
       - !type:ForceSay
           performChance: 0.4
-  required: Hiccup1
+  required: [Hiccup1]
 
 - type: plagueSymptom
   id: Hiccup3
@@ -515,7 +515,7 @@
           duration: 1.5
       - !type:ForceSay
           performChance: 0.6
-  required: Hiccup2
+  required: [Hiccup2]
 
 - type: plagueSymptom
   id: LethalPantomime1
@@ -535,7 +535,7 @@
       damage:
         types:
           Asphyxiation: 6
-  required: Hiccup2
+  required: [Hiccup2]
 
 - type: plagueSymptom
   id: LethalPantomime2
