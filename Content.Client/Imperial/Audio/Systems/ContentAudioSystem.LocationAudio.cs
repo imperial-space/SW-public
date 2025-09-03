@@ -43,28 +43,25 @@ public sealed partial class ContentAudioSystem
     }
 
     /// <summary>
-    /// Воспроизводит основной звук локации
+    /// Воспроизводит основной звук локации с плавным переходом
     /// </summary>
-    public void PlayLocationSound(string soundPath, bool loop = true)
+    public void PlayLocationSound(string soundPath, bool loop = true, float fadeDuration = 2.0f)
     {
-        // Если громкость 0 или меньше, не воспроизводим звук
         if (_locationAmbientVolumeSlider <= 0f)
-        {
             return;
-        }
 
-        // Останавливаем предыдущий поток
+        // Если есть предыдущий поток, плавно затухаем его
         if (_previousLocationStream != null)
         {
-            _audio.Stop(_previousLocationStream);
+            FadeOut(_previousLocationStream, duration: fadeDuration);
             _previousLocationStream = null;
         }
 
-        // Переносим текущий поток в предыдущий
+        // Переносим текущий поток в предыдущий для затухания
         _previousLocationStream = _currentLocationStream;
         _currentLocationStream = null;
 
-        // Воспроизводим новый звук
+        // Воспроизводим новый звук с плавным нарастанием
         var volumeDb = SharedAudioSystem.GainToVolume(_locationAmbientVolumeSlider);
         var audioParams = AudioParams.Default.WithLoop(loop).WithVolume(volumeDb);
 
@@ -72,6 +69,8 @@ public sealed partial class ContentAudioSystem
         if (stream != null)
         {
             _currentLocationStream = stream.Value.Entity;
+            // Плавно наращиваем громкость нового звука
+            FadeIn(_currentLocationStream, duration: fadeDuration);
         }
     }
 
@@ -92,19 +91,19 @@ public sealed partial class ContentAudioSystem
     }
 
     /// <summary>
-    /// Останавливает все локационные звуки
+    /// Останавливает все локационные звуки с плавным затуханием
     /// </summary>
-    public void StopAllLocationAudio()
+    public void StopAllLocationAudio(float fadeDuration = 1.0f)
     {
         if (_currentLocationStream != null)
         {
-            _audio.Stop(_currentLocationStream);
+            FadeOut(_currentLocationStream, duration: fadeDuration);
             _currentLocationStream = null;
         }
 
         if (_previousLocationStream != null)
         {
-            _audio.Stop(_previousLocationStream);
+            FadeOut(_previousLocationStream, duration: fadeDuration);
             _previousLocationStream = null;
         }
     }
