@@ -596,6 +596,17 @@
     params:
       volume: -6
 
+- type: shader
+  id: BacteriaGlitch
+  kind: source
+  path: "/Textures/Imperial/Shaders/glitch.swsl"
+  params:
+    shake_power: 0.0002
+    shake_rate: 0.1
+    shake_speed: 1
+    shake_block_size: 15
+    shake_color_rate: 0.001
+
 - type: entity
   name: bacteria
   suffix: Backrooms, Crook
@@ -608,6 +619,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
+        shader: BacteriaGlitch
         sprite: Imperial/Crook/Misc/backrooms/bacteria.rsi
     - type: DamageStateVisuals
       states:
