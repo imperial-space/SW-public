@@ -295,8 +295,8 @@
       0: Alive
       120: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 4
+    baseWalkSpeed: 4
+    baseSprintSpeed: 3
   - type: Damageable
     damageContainer: Biological
     damageModifierSet: Slime
@@ -345,7 +345,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      150: Dead
+      250: Dead
   - type: Bloodstream
     bloodReagent: MuteToxin
     chemicalMaxVolume: 60
@@ -356,8 +356,8 @@
     animation: WeaponArcBite
     damage:
       types:
-        Slash: 10
-        Structural: 50
+        Slash: 12
+        Structural: 75
   - type: MeleeChemicalInjector
     solution: bloodstream
     transferAmount: 1
