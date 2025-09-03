@@ -3,7 +3,7 @@
   name: chat-emote-name-hiccup
   icon: Interface/Emotes/Sneeze.png # imperial medieval "emotions"
   category: Vocal
-  chatMessages: ["chat-emote-msg-hiccup"]
+  chatMessages: ["икает"]
   chatTriggers:
     - ик
     - икает

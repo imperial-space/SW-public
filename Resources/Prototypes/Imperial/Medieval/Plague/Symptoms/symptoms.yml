@@ -230,7 +230,7 @@
   targetEvent: !type:PlagueAddComponentsEvent
     components:
     - type: EntityAllergy
-      ids:
+      randomIds:
       - Fur
       - Goblin
       - Pet
