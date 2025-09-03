@@ -157,7 +157,7 @@
       delay:
         min: 20
         max: 120
-      emotes: Sneeze
+      emotes: [Sneeze]
       other:
       - !type:Infect
           radius: 3.5
@@ -180,7 +180,7 @@
       delay:
         min: 10
         max: 45
-      emotes: Cough
+      emotes: [Cough]
       other:
       - !type:Infect
           radius: 4.5
@@ -204,7 +204,7 @@
       delay:
         min: 10
         max: 65
-      emotes: Cough
+      emotes: [Cough]
       other:
       - !type:Infect
           radius: 4.5
@@ -442,7 +442,7 @@
   targetEvent: !type:AddSymptomEffectsEvent
     id: Hiccup
     effect: !type:Emote
-      emotes: Hiccup
+      emotes: [Hiccup]
       delay:
         min: 25
         max: 95
@@ -467,7 +467,7 @@
   targetEvent: !type:AddSymptomEffectsEvent
     id: Hiccup
     effect: !type:Emote
-      emotes: Hiccup
+      emotes: [Hiccup]
       delay:
         min: 20
         max: 75
