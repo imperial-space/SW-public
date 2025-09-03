@@ -321,7 +321,7 @@
   kind: source
   path: "/Textures/Imperial/Shaders/glitch.swsl"
   params:
-    shake_power: 0.002
+    shake_power: 0.0002
     shake_rate: 0.5
     shake_speed: 2
     shake_block_size: 25
