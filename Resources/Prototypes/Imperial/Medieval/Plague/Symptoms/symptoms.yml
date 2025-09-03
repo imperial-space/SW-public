@@ -236,7 +236,7 @@
       - Pet
       - Spider
       - Skeleton
-      randomCount: 2
+      randomCount: 3
   required: Cough
 
 - type: plagueSymptom
