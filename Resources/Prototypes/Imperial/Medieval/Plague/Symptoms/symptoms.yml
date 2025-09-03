@@ -432,6 +432,8 @@
       - !type:PlaySound
           sound: /Audio/Imperial/Medieval/Plague/hiccup.ogg
           global: false
+      - !type:ForceSay
+          performChance: 0.2
 
 - type: plagueSymptom
   id: Hiccup2
@@ -459,12 +461,10 @@
           damage:
             types:
               Asphyxiation: 3
-      - !type:AddComponents
-          components:
-          - type: VomitSickness
-            duration: 1
+      - !type:Slowdown
+          duration: 1.5
       - !type:ForceSay
-          performChance: 0.2
+          performChance: 0.4
   required: Hiccup1
 
 - type: plagueSymptom
@@ -493,12 +493,10 @@
           damage:
             types:
               Asphyxiation: 6
-      - !type:AddComponents
-          components:
-          - type: VomitSickness
-            duration: 1
+      - !type:Slowdown
+          duration: 1.5
       - !type:ForceSay
-          performChance: 0.3
+          performChance: 0.6
   required: Hiccup2
 
 - type: plagueSymptom
@@ -518,7 +516,7 @@
       chance: 0.5
       damage:
         types:
-          Asphyxiation: 7
+          Asphyxiation: 6
   required: Hiccup2
 
 - type: plagueSymptom
