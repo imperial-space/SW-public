@@ -1,12 +1,12 @@
 using System;
 using Content.Client.Audio;
-using Content.Shared.Imperial.Audio.Events;
+using Content.Shared.Imperial.Medieval.Audio.Events;
 using Robust.Client.GameObjects;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Network;
 
-namespace Content.Client.Imperial.Audio;
+namespace Content.Client.Imperial.Medieval.Audio;
 
 /// <summary>
 /// Клиентская система для управления локационными звуками

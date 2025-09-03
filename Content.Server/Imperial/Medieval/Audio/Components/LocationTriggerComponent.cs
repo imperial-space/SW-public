@@ -2,7 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
 
-namespace Content.Server.Imperial.Audio;
+namespace Content.Server.Imperial.Medieval.Audio;
 
 /// <summary>
 /// Компонент-триггер, который активируется при приближении

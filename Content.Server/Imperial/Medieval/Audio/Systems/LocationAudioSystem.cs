@@ -1,12 +1,12 @@
 using System;
-using Content.Shared.Imperial.Audio.Events;
+using Content.Shared.Imperial.Medieval.Audio.Events;
 using Robust.Shared.Audio;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Imperial.Audio;
+namespace Content.Server.Imperial.Medieval.Audio;
 
 /// <summary>
 /// Серверная система для отправки событий клиенту о локационных звуках

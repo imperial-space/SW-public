@@ -1,7 +1,7 @@
 using System;
 using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.Audio.Events;
+namespace Content.Shared.Imperial.Medieval.Audio.Events;
 
 /// <summary>
 /// Событие для воспроизведения основного звука локации
