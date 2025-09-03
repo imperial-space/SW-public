@@ -29,8 +29,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float AmbientMusicMultiplier = 3f;
     public const float LobbyMultiplier = 3f;
     public const float InterfaceMultiplier = 2f;
-    public const float LocationAmbientMultiplier = 1f; // Imperial Tweak
-
+    public const float LocationAmbientMultiplier = 1f; // Imperial Medieval
     public override void Initialize()
     {
         base.Initialize();
@@ -38,7 +37,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
         UpdatesOutsidePrediction = true;
         InitializeAmbientMusic();
         InitializeLobbyMusic();
-        InitializeLocationAudio();
+        InitializeLocationAudio(); // Imperial Medieval
         SubscribeNetworkEvent<RoundRestartCleanupEvent>(OnRoundCleanup);
     }
 

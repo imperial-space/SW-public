@@ -22,8 +22,6 @@ public sealed class LocationAudioSystem : EntitySystem
         SubscribeLocalEvent<LocationTriggerComponent, StartCollideEvent>(OnTriggerEnter);
         SubscribeLocalEvent<PlayerDetachedEvent>(OnPlayerDetached);
         SubscribeLocalEvent<PlayerAttachedEvent>(OnPlayerAttached);
-
-        Logger.Info("LocationAudioSystem initialized - server-side events only");
     }
 
     /// <summary>
@@ -34,10 +32,8 @@ public sealed class LocationAudioSystem : EntitySystem
         if (!TryComp<PlayerLocationComponent>(ev.Entity, out var playerComp))
             return;
 
-        // Отправляем событие клиенту для остановки звука
         var stopEv = new StopAllLocationAudioEvent();
         RaiseNetworkEvent(stopEv, ev.Entity);
-        Logger.Info($"Sent StopAllLocationAudioEvent to client {ev.Entity}");
     }
 
     /// <summary>
@@ -55,10 +51,8 @@ public sealed class LocationAudioSystem : EntitySystem
         playerComp.CurrentFadeVersion++;
         playerComp.PreviousFadeVersion++;
 
-        // Отправляем событие клиенту для остановки звука
         var stopEv = new StopAllLocationAudioEvent();
         RaiseNetworkEvent(stopEv, ev.Entity);
-        Logger.Info($"Sent StopAllLocationAudioEvent to client {ev.Entity}");
     }
 
     /// <summary>
@@ -89,7 +83,6 @@ public sealed class LocationAudioSystem : EntitySystem
             // Отправляем событие клиенту для остановки всех звуков от предыдущей локации
             var stopEv = new StopAllLocationAudioEvent();
             RaiseNetworkEvent(stopEv, args.OtherEntity);
-            Logger.Info($"Sent StopAllLocationAudioEvent to client {args.OtherEntity} when transitioning from {previousLocationId} to {component.LocationId}");
         }
 
         // Отправляем событие клиенту для воспроизведения основного звука локации
@@ -105,7 +98,6 @@ public sealed class LocationAudioSystem : EntitySystem
             {
                 var ev = new PlayLocationSoundEvent(soundPath, true);
                 RaiseNetworkEvent(ev, args.OtherEntity);
-                Logger.Info($"Sent PlayLocationSoundEvent to client {args.OtherEntity} for sound: {soundPath}");
             }
         }
 
@@ -151,7 +143,6 @@ public sealed class LocationAudioSystem : EntitySystem
             {
                 var ev = new PlayRandomLocationSoundEvent(soundPath);
                 RaiseNetworkEvent(ev, player);
-                Logger.Info($"Sent PlayRandomLocationSoundEvent to client {player} for sound: {soundPath}");
             }
 
             // Устанавливаем следующий таймер

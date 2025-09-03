@@ -34,6 +34,4 @@ public sealed partial class CCVars
 
     public static readonly CVarDef<string> AHelpSound =
         CVarDef.Create("audio.ahelp_sound", "/Audio/Imperial/adminhelp_imperial.ogg", CVar.ARCHIVE | CVar.CLIENTONLY);
-
-
 }

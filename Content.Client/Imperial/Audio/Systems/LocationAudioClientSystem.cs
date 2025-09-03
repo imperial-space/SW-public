@@ -19,29 +19,23 @@ public sealed class LocationAudioClientSystem : EntitySystem
     {
         base.Initialize();
 
-        // Подписываемся на сетевые события от сервера
         SubscribeNetworkEvent<PlayLocationSoundEvent>(OnPlayLocationSound);
         SubscribeNetworkEvent<PlayRandomLocationSoundEvent>(OnPlayRandomLocationSound);
         SubscribeNetworkEvent<StopAllLocationAudioEvent>(OnStopAllLocationAudio);
-
-        Logger.Info("LocationAudioClientSystem initialized");
     }
 
     private void OnPlayLocationSound(PlayLocationSoundEvent ev)
     {
-        Logger.Info($"Received PlayLocationSoundEvent: {ev.SoundPath}, loop: {ev.Loop}");
         _audio.PlayLocationSound(ev.SoundPath, ev.Loop);
     }
 
     private void OnPlayRandomLocationSound(PlayRandomLocationSoundEvent ev)
     {
-        Logger.Info($"Received PlayRandomLocationSoundEvent: {ev.SoundPath}");
         _audio.PlayRandomLocationSound(ev.SoundPath);
     }
 
     private void OnStopAllLocationAudio(StopAllLocationAudioEvent ev)
     {
-        Logger.Info("Received StopAllLocationAudioEvent");
         _audio.StopAllLocationAudio();
     }
 }
