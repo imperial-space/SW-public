@@ -114,10 +114,7 @@ public sealed partial class MedievalPlagueSystem
 
     private void OnHealingItemUsed(EntityUid uid, MedievalPlagueInfectedComponent comp, ref PlagueHealingItemUsedEvent args)
     {
-        if (args.PlagueHealingTier <= _healItemResistance)
-            return;
-
-        TryProgressInfection(uid, -args.PlagueDecay, comp);
+        TryProgressInfection(uid, -args.PlagueDecay * _healItemMod, comp);
     }
 
     private void OnBloodlettingExamine(EntityUid uid, BloodlettingToolComponent comp, ExaminedEvent args)
@@ -223,7 +220,7 @@ public sealed partial class MedievalPlagueSystem
     private void OnSetStrapResistance(SetStrapHealResistanceEvent args)
     {
         _strapHealResistance = args.StrapResistance;
-        _healItemResistance = args.HealResistance;
+        _healItemMod = args.HealMod;
     }
 
     private void OnSetCure(SetPlagueCureEvent args)

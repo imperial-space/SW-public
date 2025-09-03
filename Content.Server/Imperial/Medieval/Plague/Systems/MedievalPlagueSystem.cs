@@ -72,7 +72,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
 
     private Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> _symptoms = new();
     private int _strapHealResistance = 0;
-    private int _healItemResistance = 0;
+    private float _healItemMod = 1f;
 
     private const float PointsUpdateInterval = 600f;
     private TimeSpan _nextPointsUpdate = TimeSpan.Zero;
@@ -93,7 +93,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
     {
         _symptoms.Clear();
         _strapHealResistance = 0;
-        _healItemResistance = 0;
+        _healItemMod = 1f;
         _spreaders.Clear();
         _contactSpreadMod = 0f;
         _blockersEfficiency = 1f;

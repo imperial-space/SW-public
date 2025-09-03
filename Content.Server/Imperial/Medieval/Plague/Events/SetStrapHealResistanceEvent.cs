@@ -9,5 +9,5 @@ public sealed partial class SetStrapHealResistanceEvent : EntityEventArgs
     public int StrapResistance;
 
     [DataField(required: true)]
-    public int HealResistance;
+    public float HealMod;
 }
