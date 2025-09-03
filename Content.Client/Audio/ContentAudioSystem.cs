@@ -30,6 +30,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float LobbyMultiplier = 3f;
     public const float InterfaceMultiplier = 2f;
     public const float LocationAmbientMultiplier = 1f; // Imperial Medieval
+
     public override void Initialize()
     {
         base.Initialize();
