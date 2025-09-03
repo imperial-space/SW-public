@@ -41,10 +41,12 @@ public sealed partial class MedievalPlagueSystem
     {
         _actions.AddAction(uid, "OpenPlagueMenuAction");
         _actions.AddAction(uid, ref comp.InfectAction, "PlagueInfectAction");
+
         UpdateInfectAction();
         _alerts.ShowAlert(uid, comp.AlertId);
 
         _data.PlagueGhosts++;
+        _data.Points += comp.Points;
 
         foreach (var item in _symptoms.Where(x => x.Value.Unlocked))
         {
