@@ -28,6 +28,7 @@ using Content.Shared.Damage.Events;
 // stamina resistance end
 using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Zombies;
+using Content.Shared.Imperial.Medieval.Plague;
 
 namespace Content.Shared.Inventory;
 
@@ -66,6 +67,7 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, ProjectileReflectAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, HitScanReflectAttemptEvent>(RefRelayInventoryEvent);
         SubscribeLocalEvent<InventoryComponent, GetContrabandDetailsEvent>(RefRelayInventoryEvent);
+        SubscribeLocalEvent<InventoryComponent, MedievalPlagueInfectionAttemptEvent>(RefRelayInventoryEvent); // Imperial Medieval
 
         // Eye/vision events
         SubscribeLocalEvent<InventoryComponent, CanSeeAttemptEvent>(RelayInventoryEvent);

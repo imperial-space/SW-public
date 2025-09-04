@@ -491,7 +491,7 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
         SortedSet<ReactionData> reactions = new();
         foreach (var reactant in soln.Comp.Solution.Contents)
         {
-            if (_reactionsSingle.TryGetValue(reactant.Reagent.Prototype, out var reactantReactions))
+            if (_reactions.TryGetValue(reactant.Reagent.Prototype, out var reactantReactions))
                 reactions.UnionWith(reactantReactions);
         }
 

@@ -878,6 +878,30 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth75
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth76
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Insulated
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiver
   name: MedievalQuiver
@@ -1011,12 +1035,18 @@
   id: MedievalClothingHeadHatPlaguedoctor
   name: MedievalClothingHeadHatPlaguedoctor
   description: MedievalClothingHeadHatPlaguedoctor
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.65
 
 - type: entity
   parent: ClothingMaskPlague
   id: MedievalClothingMaskPlague
   name: MedievalClothingMaskPlague
   description: MedievalClothingMaskPlague
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.4
 
 - type: entity
   parent: ClothingMaskMuzzle
@@ -1728,9 +1758,31 @@
 
 - type: entity
   parent: ClothingShoesBase
+  id: MedievalClothingRoyalChaplainBoots
+  name: MedievalClothingRoyalChaplainBoots
+  description: MedievalClothingRoyalChaplainBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/royalchaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/royalchaplain.rsi
+
+- type: entity
+  parent: ClothingShoesBase
   id: MedievalClothingBlackBoots
   name: MedievalClothingBlackBoots
   description: MedievalClothingBlackBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBoots
+  name: MedievalClothingApocrifBoots
+  description: MedievalClothingApocrifBoots
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
@@ -1766,6 +1818,20 @@
     sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
 
 - type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsApocrif
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+
+- type: entity
   parent: ClothingOuterStorageBase
   id: MedievalClothingOuterRoyalCoat
   name: MedievalClothingOuterRoyalCoat
@@ -1775,6 +1841,21 @@
     sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: MedievalClothingOuterRoyalChaplain
+  name: MedievalClothingOuterRoyalChaplain
+  description: MedievalClothingOuterRoyalChaplain
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.95
 
 - type: entity
   parent: ClothingEyesBase
@@ -1847,3 +1928,70 @@
       tags:
         - MonsterLoot
   - type: Dumpable
+
+- type: entity
+  id: MedievalFireFetter
+  name: ent-MedievalFireFetter
+  description: ent-MedievalFireFetter
+  components:
+  - type: RDWeight
+    value: 7
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
+    state: handcuff
+  - type: TimedDespawn
+    lifetime: 180
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    resetOnHandSelected: false
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Blunt: 3
+  - type: IgniteOnMeleeHit
+    fireStacks: 0.2
+  - type: Handcuff
+    cuffedRSI: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
+    bodyIconState: body-overlay
+    breakoutTime: 10
+    cuffTime: 3.5
+    uncuffTime: 3.5
+  - type: Item
+    size: Small
+    storedRotation: 90
+  - type: Tag
+    tags:
+    - Handcuffs
+
+- type: entity
+  id: MedievalCursedFetter
+  name: ent-MedievalCursedFetter
+  description: ent-MedievalCursedFetter
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/fetter-spell/cursed-fetter.rsi
+    state: handcuff
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Handcuff
+    cuffedRSI: Imperial/Medieval/Magic/fetter-spell/cursed-fetter.rsi
+    bodyIconState: body-overlay
+    breakoutTime: 10
+    cuffTime: 3.5
+    uncuffTime: 3.5
+  - type: RDWeight
+    value: 7
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Item
+    size: Small
+    storedRotation: 90
+  - type: Tag
+    tags:
+    - Handcuffs

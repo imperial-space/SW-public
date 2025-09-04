@@ -1684,6 +1684,8 @@
           behaviors:
             - !type:DoActsBehavior
               acts: ["Destruction"]
+    - type: ExplosionResistance
+      damageCoefficient: 0.3
     - type: Occluder
     - type: Airtight
     - type: Fixtures
@@ -1923,6 +1925,10 @@
     - type: Sprite
       state: brutepack
     - type: Healing
+      # Imperial Medieval Plague start
+      plagueHealingTier: 1
+      plagueProgressionDecayPerUse: 1
+      # Imperial Medieval Plague end
       damageContainer: Biological
       damage:
         groups:
@@ -6477,6 +6483,7 @@
           maxDuration: 10 # 300.0
           startValue: 5.0
           endValue: 1.5
+          property: Radius
     - type: Tag
       tags:
       - Trash
@@ -7404,6 +7411,10 @@
   id: SpellwardVezitsaFont
   path: /Fonts/Imperial/Vezitsa/VezitsaCyrillic.ttf
 
+- type: font
+  id: SpellwardSpecialeliteFont
+  path: /Fonts/Imperial/Specialelite/Specialelite.ttf
+
 - type: entity
   name: gol
   parent: BaseItem
@@ -7992,6 +8003,78 @@
   - type: DeleteOnTrigger
 
 - type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalBlackHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalBlackHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalBlackSpotHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalBlackSpotHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalBlackWhiteHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalBlackWhiteHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalGreyHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalGreyHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalWhiteHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalWhiteHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
+  parent: MedievalHorseWhistle
+  id: MedievalWhiteRoyalHorseWhistle
+  name: whistle
+  description: summon horse
+  components:
+  - type: SpawnItemsOnUse
+    items:
+    - id: MedievalWhiteRoyalHorseTransport
+    sound:
+      path: /Audio/Items/Whistle/trench_whistle_1.ogg
+
+- type: entity
   parent: BaseItem
   id: MedievalHorseNecroWhistle
   name: necro whistle
@@ -8013,3 +8096,21 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
+
+- type: entity
+  id: CP14WeaponArcSlash
+  parent: WeaponArcStatic
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+    - type: WeaponArcVisuals
+      animation: CPSlash
+
+- type: entity
+  id: CP14WeaponArcThrust
+  parent: WeaponArcStatic
+  categories: [ HideSpawnMenu ]
+  save: false
+  components:
+    - type: WeaponArcVisuals
+      animation: CPThrust

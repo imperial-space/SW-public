@@ -399,5 +399,52 @@
   categories:
   - MedievalInsTransport
 
+- type: listing
+  id: MdvInsMedievalBlackHorseWhistle
+  productEntity: MedievalBlackHorseWhistle
+  cost:
+    MedalIns: 22
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalBlackSpotHorseWhistle
+  productEntity: MedievalBlackSpotHorseWhistle
+  cost:
+    MedalIns: 8
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalBlackWhiteHorseWhistle
+  productEntity: MedievalBlackWhiteHorseWhistle
+  cost:
+    MedalIns: 13
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalGreyHorseWhistle
+  productEntity: MedievalGreyHorseWhistle
+  cost:
+    MedalIns: 15
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalWhiteHorseWhistle
+  productEntity: MedievalWhiteHorseWhistle
+  cost:
+    MedalIns: 18
+  categories:
+  - MedievalInsTransport
+
+- type: listing
+  id: MdvInsMedievalWhiteRoyalHorseWhistle
+  productEntity: MedievalWhiteRoyalHorseWhistle
+  cost:
+    MedalIns: 32
+  categories:
+  - MedievalInsTransport
 
 

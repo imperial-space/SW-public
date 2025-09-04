@@ -43,6 +43,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 19
+  - type: SpellCastEffect
+    effectProto: SpawnSkeletSpellCastEffectBeginner
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionSpawnSkeletMiddle

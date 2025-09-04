@@ -50,6 +50,7 @@
   - type: Item
     size: Tiny
   - type: PhysicalComposition
+  - type: MedievalRelationRequestPaper  # Imperial Medieval tweak
 
 - type: entity
   name: paper

@@ -148,7 +148,7 @@
     sprite: Imperial/Medieval/Chem/recipe.rsi
     state: icon
   - type: Item
-    size: Small
+    size: Tiny
   - type: MedievalRandomChemistryRecipe
     weights:
       EasyPack: 70

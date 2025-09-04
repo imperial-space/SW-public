@@ -32,4 +32,7 @@ public sealed class MedievalFactionPrototype : IPrototype
 
     [DataField]
     public string? WantedText;
+
+    [DataField]
+    public EntProtoId EnvelopeProto = "MedievalPaperEnvelopeBasic";
 }

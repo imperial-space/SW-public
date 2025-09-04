@@ -44,3 +44,5 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 5
+  - type: SpellCastEffect
+    effectProto: CultDaggerSpellCastEffectBeginner

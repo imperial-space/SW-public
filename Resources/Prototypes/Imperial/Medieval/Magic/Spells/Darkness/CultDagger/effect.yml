@@ -11,3 +11,19 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/stone_release.ogg
+
+- type: entity
+  id: CultDaggerSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/darkness/dagger.rsi
+    state: beginner
+    color: "#420d0d"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#420d0d"
+  - type: TimedDespawn
+    lifetime: 0.5

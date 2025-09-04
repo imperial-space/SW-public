@@ -66,6 +66,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 22
+  - type: SpellCastEffect
+    effectProto: FireLightningSpellCastEffectMiddle
 
 # Senior
 
@@ -114,7 +116,7 @@
       speechPoints:
         0:
           speech: medieval-spell-speach-fire-lightning
-          color: "#A5C2F3"
+          color: "#F37500"
           hideChat: true
   - type: ManaDrainSpell
     manaDrain: 77
@@ -123,3 +125,5 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 22
+  - type: SpellCastEffect
+    effectProto: FireLightningSpellCastEffectSenior
