@@ -256,9 +256,9 @@
 - type: emoteSounds
   id: SmilerVoice
   sound:
-    path: /Audio/Imperial/Crook/smiler/smilerscream.ogg
+    path: /Audio/Imperial/Crook/backrooms/smiler/smilerscream.ogg
     params:
-      volume: -5
+      volume: -4
 
 - type: entity
   name: basic smiler
@@ -392,6 +392,10 @@
     solution: bloodstream
   - type: DrainableSolution
     solution: bloodstream
+  - type: Hunger
+    baseDecayRate: 0
+  - type: Thirst
+    baseDecayRate: 0
   - type: Emoting
   - type: Vocal
     sounds:
@@ -404,6 +408,11 @@
         behaviors:
           - !type:DoActsBehavior
              acts: [ "Destruction" ]
+  - type: AmbientSound
+    range: 5
+    volume: -7
+    sound:
+      path: /Audio/Imperial/Crook/backrooms/glitchambient.ogg
 
 - type: entity
   name: deathmoth
@@ -570,7 +579,7 @@
     range: 4
     volume: -3
     sound:
-      path: /Audio/Ambience/anomaly_scary.ogg
+      path: /Audio/Imperial/Crook/backrooms/glitchambient.ogg
 
 - type: entity
   id: HandTeleporterBackrooms
@@ -594,7 +603,7 @@
   sound:
     path: /Audio/Imperial/Crook/backrooms/bacteria/bacteriascream.ogg
     params:
-      volume: -6
+      volume: -4
 
 - type: shader
   id: BacteriaGlitch
@@ -631,19 +640,38 @@
       thresholds:
         0: Alive
         1500: Dead
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        750: 0.7
     - type: Tag
       tags:
       - DoorBumpOpener
       - FootstepSound
+    - type: Bloodstream
+      bloodMaxVolume: 0
+      bloodlossDamage:
+        types:
+          Bloodloss: 0
+    - type: Hunger
+      baseDecayRate: 0
+    - type: Thirst
+      baseDecayRate: 0
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.9
+          Piercing: 0.7
+          Stamina: 0.2
     - type: MeleeWeapon
       hidden: true
       angle: 0
-      animation: WeaponArcClaw
+      animation: WeaponArcPunch
       soundHit:
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
       damage:
         types:
-          Piercing: 30
+          Blunt: 30
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
