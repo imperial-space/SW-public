@@ -650,9 +650,6 @@
       - FootstepSound
     - type: Bloodstream
       bloodMaxVolume: 0
-      bloodlossDamage:
-        types:
-          Bloodloss: 0
     - type: Armor
       modifiers:
         coefficients:
