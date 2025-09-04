@@ -571,6 +571,11 @@
     layers:
     - state: icon
       shader: SmilerGlitch
+  - type: DamageOnInteract
+    damage:
+      types:
+        Cellular: 15
+    popupText: hand-glitch-hurt
   - type: PointLight
     radius: 1.5
     energy: 0.5
