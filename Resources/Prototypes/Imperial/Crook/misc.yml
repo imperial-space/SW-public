@@ -410,7 +410,7 @@
              acts: [ "Destruction" ]
   - type: AmbientSound
     range: 5
-    volume: -7
+    volume: -11
     sound:
       path: /Audio/Imperial/Crook/backrooms/glitchambient.ogg
 
