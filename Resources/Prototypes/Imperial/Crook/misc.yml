@@ -392,10 +392,6 @@
     solution: bloodstream
   - type: DrainableSolution
     solution: bloodstream
-  - type: Hunger
-    baseDecayRate: 0
-  - type: Thirst
-    baseDecayRate: 0
   - type: Emoting
   - type: Vocal
     sounds:
@@ -657,10 +653,6 @@
       bloodlossDamage:
         types:
           Bloodloss: 0
-    - type: Hunger
-      baseDecayRate: 0
-    - type: Thirst
-      baseDecayRate: 0
     - type: Armor
       modifiers:
         coefficients:
