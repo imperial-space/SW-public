@@ -1241,7 +1241,6 @@
     UnstableBluespaceLiquid:
       Min: 1
       Max: 1
-      PotencyDivisor: 30
     Vitamin:
       Min: 1
       Max: 4
