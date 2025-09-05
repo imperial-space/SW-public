@@ -121,9 +121,9 @@ ent-DoubleBedsheetWinter = большое одеяло
 ent-DoubleBedsheetYellow = большое одеяло
     .desc = Одеяло для двойной кровати.
 
-ent-FoodBlueSpaceTomato = блюспейс томат
+ent-FoodBlueSpaceTomato = блюспейс-томат
     .desc = Осторожнее с этим!
-ent-BlueSpaceTomatoSeeds = пакет семян блюспейс томатов
+ent-BlueSpaceTomatoSeeds = пакет семян блюспейс-томатов
     .desc = { ent-SeedBase.desc }
-seeds-bluespacetomato-name = блюспейс томат
-seeds-bluespacetomato-display-name = томатный блюспейс куст
+seeds-bluespacetomato-name = блюспейс-томат
+seeds-bluespacetomato-display-name = томатный блюспейс-куст

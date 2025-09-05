@@ -1219,7 +1219,7 @@
   noun: seeds-noun-seeds
   displayName: seeds-bluespacetomato-display-name
   plantRsi: Objects/Specific/Hydroponics/blue_tomato.rsi
-  packetPrototype: BlueTomatoSeeds
+  packetPrototype: BlueSpaceTomatoSeeds
   productPrototypes:
     - FoodBlueSpaceTomato
   harvestRepeat: Repeat
