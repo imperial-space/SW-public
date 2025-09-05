@@ -1,0 +1,30 @@
+- type: entity
+  id: SyndieBattleRule
+  parent: BaseGameRule
+  components:
+  - type: GameRule
+    minPlayers: 1
+    delay:
+      min: 1
+      max: 2
+  - type: SyndieBattleRule
+    giveUplink: true
+    giveCodewords: true
+    giveBriefing: true
+
+- type: gamePreset
+  id: SyndieBattle
+  alias:
+    - syndiebattle
+    - sb
+  name: preset-syndiebattle-title
+  description: preset-syndiebattle-description
+  showInVote: false
+  rules:
+    - SyndieBattleRule
+    - BasicStationEventScheduler
+    - MeteorSwarmScheduler
+    - SpaceTrafficControlEventScheduler
+    - BasicRoundstartVariation
+
+
