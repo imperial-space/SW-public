@@ -1,6 +1,6 @@
 - type: entity
   id: SyndieBattleRule
-  parent: BaseGameRule
+  parent: BaseTraitorRule
   components:
   - type: GameRule
     minPlayers: 1
@@ -11,6 +11,17 @@
     giveUplink: true
     giveCodewords: true
     giveBriefing: true
+  - type: AntagSelection
+    selectionTime: IntraPlayerSpawn
+    definitions:
+    - max: 50
+      playerRatio: 100
+      blacklist:
+        components:
+        - AntagImmune
+      lateJoinAdditional: true
+      mindRoles:
+      - MindRoleTraitor
 
 - type: gamePreset
   id: SyndieBattle

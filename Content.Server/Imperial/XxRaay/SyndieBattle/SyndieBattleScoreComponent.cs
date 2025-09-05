@@ -1,0 +1,14 @@
+using Robust.Shared.Player;
+using Robust.Shared.Network;
+
+namespace Content.Server.Imperial.XxRaay.SyndieBattle;
+
+[RegisterComponent]
+public sealed partial class SyndieBattleScoreComponent : Component
+{
+    [DataField]
+    public int Score = 0;
+
+    [DataField]
+    public NetUserId? PlayerId;
+}
