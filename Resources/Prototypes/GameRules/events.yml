@@ -450,7 +450,7 @@
       prob: 0.02
     - id: MobAdultSlimesYellow
       prob: 0.02
-  ## Imperial Space slimesspawn update edn
+  ## Imperial Space slimesspawn update end
 
 - type: entity
   id: SnakeSpawn
