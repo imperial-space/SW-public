@@ -32,11 +32,6 @@ public sealed partial class SyndieBattleRuleComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public bool Active;
-    
-    /// <summary>
-    /// Список предательских разумов
-    /// </summary>
-    public readonly List<EntityUid> TraitorMinds = new();
 }
 
 

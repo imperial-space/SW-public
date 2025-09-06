@@ -7,7 +7,7 @@ namespace Content.Server.Imperial.XxRaay.SyndieBattle;
 public sealed partial class SyndieBattleScoreComponent : Component
 {
     [DataField]
-    public int Score = 0;
+    public int Score;
 
     [DataField]
     public NetUserId? PlayerId;

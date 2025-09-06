@@ -1,34 +1,30 @@
 using Content.Server.GameTicking.Rules;
-using Content.Server.GameTicking.Rules.Components;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Content.Shared.Mind;
 using Content.Server.Objectives;
 using Content.Shared.Objectives.Components;
-using Content.Shared.Damage;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Server.Chat.Managers;
+using Content.Server.GameTicking.Rules.Components;
+using Content.Server.Roles;
 using Content.Shared.Chat;
 using Content.Shared.Mobs;
-using Content.Server.Traitor.Uplink;
-using Content.Server.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.Roles;
-using Content.Server.Roles;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.XxRaay.SyndieBattle;
 
 public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComponent>
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly ObjectivesSystem _objectives = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly UplinkSystem _uplink = default!;
-    [Dependency] private readonly SharedRoleSystem _role = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly ObjectivesSystem _objectivesSystem = default!;
+    [Dependency] private readonly MobStateSystem _mobStateSystem = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly TraitorRuleSystem _traitorRuleSystem = default!;
+    [Dependency] private readonly RoleSystem _roleSystem = default!;
 
     public override void Initialize()
     {
@@ -40,7 +36,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     protected override void Started(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         component.Active = true;
-        
+
         // Конвертируем всех текущих игроков при запуске правила
         ConvertAllCurrentPlayers(component);
     }
@@ -64,55 +60,46 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
 
     private void MakeTraitor(EntityUid player, SyndieBattleRuleComponent? component = null)
     {
-        if (!_mind.TryGetMind(player, out var mindId, out var mind))
+
+        if (!_mindSystem.TryGetMind(player, out var mindId, out var mind))
             return;
-            
+
         if (component == null)
         {
             var activeRule = GetActiveRuleEntity();
-            if (activeRule == null || !TryComp<SyndieBattleRuleComponent>(activeRule, out component))
+            if (activeRule == null || !TryComp(activeRule, out component))
                 return;
         }
-            
-        // Добавляем разум в список предателей
-        component.TraitorMinds.Add(mindId);
 
-        // Добавляем роль обычного предателя
-        if (!_role.MindHasRole<TraitorRoleComponent>(mindId))
-            _role.MindAddRole(mindId, "MindRoleTraitor", silent: false);
-        
-        // Выдаем аплинк, если это настроено в компоненте
-        if (component.GiveUplink)
-        {
-            var pda = _uplink.FindUplinkTarget(player);
-            _uplink.AddUplink(player, 20, pda, component.GiveCodewords);
-        }
-        
+        _roleSystem.MindAddRole(mindId, "MindRoleTraitor", mind);
+
+        _traitorRuleSystem.MakeTraitor(player, new TraitorRuleComponent());
+
         AssignTraitorObjectives(player);
 
-        if (TryComp<ActorComponent>(player, out var actor))
-        {
-            var scoreComp = EnsureComp<SyndieBattleScoreComponent>(player);
-            scoreComp.PlayerId = actor.PlayerSession.UserId;
-        }
+        if (!TryComp<ActorComponent>(player, out var actor))
+            return;
+
+        var scoreComp = EnsureComp<SyndieBattleScoreComponent>(player);
+        scoreComp.PlayerId = actor.PlayerSession.UserId;
     }
 
     private void AssignTraitorObjectives(EntityUid player)
     {
-        if (!_mind.TryGetMind(player, out var mindId, out var mind))
+        if (!_mindSystem.TryGetMind(player, out var mindId, out var mind))
             return;
 
-        _mind.TryAddObjective(mindId, mind, "SyndieBattleSurviveObjective");
+        _mindSystem.TryAddObjective(mindId, mind, "SyndieBattleSurviveObjective");
 
         var maxDifficulty = 7f;
         var picked = 0;
         while (picked < 5 && maxDifficulty > 0f)
         {
-            var objective = _objectives.GetRandomObjective(mindId, mind, "TraitorObjectiveGroups", maxDifficulty);
+            var objective = _objectivesSystem.GetRandomObjective(mindId, mind, "TraitorObjectiveGroups", maxDifficulty);
             if (objective is null)
                 break;
 
-            _mind.AddObjective(mindId, mind, objective.Value);
+            mind.Objectives.Add(objective.Value);
             var diff = Comp<ObjectiveComponent>(objective.Value).Difficulty;
             maxDifficulty -= diff;
             picked++;
@@ -131,20 +118,20 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             return;
 
         var message = Loc.GetString("syndiebattle-kill-score", ("score", victimScore.Score));
-        _chat.ChatMessageToAll(ChatChannel.Server, message, message, ev.Target, false, false);
+        _chatManager.ChatMessageToAll(ChatChannel.Server, message, message, ev.Target, false, false);
     }
 
     private bool AnyRuleActive()
     {
         var query = QueryAllRules();
-        while (query.MoveNext(out var uid, out var comp, out _))
+        while (query.MoveNext(out _, out var comp, out _))
         {
             if (comp.Active)
                 return true;
         }
         return false;
     }
-    
+
     /// <summary>
     /// Получает сущность активного правила SyndieBattle
     /// </summary>
@@ -158,20 +145,20 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         }
         return null;
     }
-    
+
     /// <summary>
     /// Конвертирует всех текущих игроков в предателей
     /// </summary>
     private void ConvertAllCurrentPlayers(SyndieBattleRuleComponent component)
     {
         var query = EntityQueryEnumerator<ActorComponent, MindContainerComponent, MobStateComponent>();
-        
-        while (query.MoveNext(out var uid, out var actor, out var mind, out var mobState))
+
+        while (query.MoveNext(out var uid, out _, out _, out var mobState))
         {
             // Пропускаем мертвых игроков
-            if (_mobState.IsDead(uid, mobState))
+            if (_mobStateSystem.IsDead(uid, mobState))
                 continue;
-                
+
             // Делаем игрока предателем
             MakeTraitor(uid, component);
         }

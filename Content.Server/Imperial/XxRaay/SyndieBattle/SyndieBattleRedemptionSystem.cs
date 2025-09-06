@@ -22,10 +22,10 @@ public sealed class SyndieBattleRedemptionSystem : EntitySystem
 
     private void OnInteractUsing(Entity<SyndieBattleRedemptionComponent> ent, ref InteractUsingEvent args)
     {
-        if (!TryComp<ActorComponent>(args.User, out var actor))
+        if (!TryComp<ActorComponent>(args.User, out _))
             return;
 
-        if (!TryComp<PdaComponent>(args.Used, out var pda))
+        if (!TryComp<PdaComponent>(args.Used, out _))
         {
             _popup.PopupEntity(Loc.GetString("syndiebattle-redemption-no-pda"), ent, args.User);
             return;
@@ -38,26 +38,23 @@ public sealed class SyndieBattleRedemptionSystem : EntitySystem
         }
 
         var reward = ent.Comp.BaseReward;
-        var spawnPos = Transform(args.User).Coordinates;
+        var spawnPos = Transform(args.Target).Coordinates;
         var spawnedCount = 0;
 
-        for (int i = 0; i < reward; i++)
+        for (var i = 0; i < reward; i++)
         {
-            if (_prototype.TryIndex<EntityPrototype>("Telecrystal", out var itemProto))
-            {
-                Spawn(itemProto.ID, spawnPos);
-                spawnedCount++;
-            }
+            if (!_prototype.TryIndex<EntityPrototype>("Telecrystal1", out var itemProto))
+                continue;
+
+            Spawn(itemProto.ID, spawnPos);
+            spawnedCount++;
         }
 
-        if (spawnedCount > 0)
-        {
-            _popup.PopupEntity(Loc.GetString("syndiebattle-redemption-success", ("amount", spawnedCount.ToString())), ent, args.User);
-        }
-        else
-        {
-            _popup.PopupEntity(Loc.GetString("syndiebattle-redemption-error"), ent, args.User);
-        }
+        _popup.PopupEntity(spawnedCount > 0
+                ? Loc.GetString("syndiebattle-redemption-success", ("amount", spawnedCount.ToString()))
+                : Loc.GetString("syndiebattle-redemption-error"),
+            ent,
+            args.User);
 
         args.Handled = true;
         EntityManager.DeleteEntity(args.Used);
