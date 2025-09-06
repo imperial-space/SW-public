@@ -8,7 +8,7 @@
     difficulty: 1.0
     issuer: objective-issuer-syndicate
     icon:
-      sprite: /Objects/Vehicles/syndicatesegway.rsi
+      sprite: Mobs/Ghosts/ghost_human.rsi
       state: icon
   - type: RoleRequirement
     roles:
