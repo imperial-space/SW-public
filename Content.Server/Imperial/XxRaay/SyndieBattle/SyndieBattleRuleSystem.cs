@@ -88,11 +88,8 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         if (!TryComp<ActorComponent>(player, out var actor))
             return;
 
-        var scoreComp = EnsureComp<SyndieBattleScoreComponent>(player);
-        scoreComp.PlayerId = actor.PlayerSession.UserId;
-
-        // Добавляем компонент для отслеживания убийств
-        EnsureComp<KillTrackerComponent>(player);
+    var scoreComp = EnsureComp<SyndieBattleScoreComponent>(player);
+    scoreComp.PlayerId = actor.PlayerSession.UserId;
     }
 
     private void AssignTraitorObjectives(EntityUid player)
@@ -121,6 +118,16 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     {
         if (!AnyRuleActive())
             return;
+
+        if (ev.Primary is KillPlayerSource playerSource)
+        {
+            if (_playerManager.TryGetSessionById(playerSource.PlayerId, out var killerSession) &&
+                killerSession.AttachedEntity != null &&
+                TryComp<SyndieBattleScoreComponent>(killerSession.AttachedEntity.Value, out var killerScore))
+            {
+                killerScore.Score++;
+            }
+        }
 
         if (!TryComp<SyndieBattleScoreComponent>(ev.Entity, out var victimScore))
             return;
@@ -185,9 +192,11 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     /// </summary>
     private void SpawnRedemptionMachines()
     {
-        const int machineCount = 10;
+        var activeRule = GetActiveRuleEntity();
+        if (activeRule == null || !TryComp<SyndieBattleRuleComponent>(activeRule.Value, out var ruleComp))
+            return;
 
-        for (var i = 0; i < machineCount; i++)
+        for (var i = 0; i < ruleComp.RedemptionMachineCount; i++)
         {
             if (!TryFindRandomTile(out _, out _, out _, out var coords))
                 continue;
@@ -208,9 +217,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
                     return "Неизвестный игрок";
                 if (session.AttachedEntity == null)
                     return "Неизвестный игрок";
-
-                var playerName = MetaData(session.AttachedEntity.Value).EntityName;
-                return $"{playerName}({session.Name})";
+                return MetaData(session.AttachedEntity.Value).EntityName;
 
             case KillNpcSource npc:
                 if (Deleted(npc.NpcEnt))
@@ -229,13 +236,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     /// </summary>
     private string GetEntityName(EntityUid entity)
     {
-        if (TryComp<ActorComponent>(entity, out var actorComp))
-        {
-            var entityName = MetaData(entity).EntityName;
-            return $"{entityName}({actorComp.PlayerSession.Name})";
-        }
-
-        return MetaData(entity).EntityName;
+    return MetaData(entity).EntityName;
     }
 
     /// <summary>

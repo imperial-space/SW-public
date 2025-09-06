@@ -32,6 +32,12 @@ public sealed partial class SyndieBattleRuleComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public bool Active;
+
+    /// <summary>
+    /// Количество машин искупления
+    /// </summary>
+    [DataField]
+    public int RedemptionMachineCount = 10;
 }
 
 
