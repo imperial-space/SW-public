@@ -183,4 +183,4 @@ ent-ShoulderBeaconYellow = Желтый наплечный маячок
 comms-console-announcement-title-Federation = Федерации Elysium Prime
 
 ent-ElysiumPrimeComputerComms = Консоль федеративной связи
-    .desc = С помощью нее можно давать обещания, которым несуждено сбыться.
+    .desc = С помощью нее можно давать обещания, которым не суждено сбыться.
