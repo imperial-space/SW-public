@@ -9,8 +9,7 @@ public sealed partial class SyndieBattleScoreComponent : Component
     [DataField]
     public int Score;
 
-    [DataField]
-    public NetUserId? PlayerId;
+    // public NetUserId? PlayerId;
 
     [DataField]
     public int KillCount;
