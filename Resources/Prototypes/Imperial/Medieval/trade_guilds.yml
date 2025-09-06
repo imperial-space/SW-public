@@ -273,9 +273,17 @@
     reputationForBuying: 40
   - productEntity: MedievalShoesSpeed
     cost: 1250
-    minReputationPlace: 43
+    minReputationPlace: 1
     minReputation: 20
-    reputationForBuying: 4
+    reputationForBuying: 43
+  - productEntity: MedievalPaperOnValuableCargoLeg
+    cost: 220
+    reputationForBuying: 7
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+  - productEntity: MedievalPaperOnValuableCargoIns
+    cost: 220
+    reputationForBuying: 7
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
   id: WeaponGuild
@@ -368,24 +376,6 @@
   maximumGuilds: 3
   currency: Revent
   items:
-  - productEntity: MedievalQuestContractLegionMelee
-    cost: 25
-    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
-  - productEntity: MedievalQuestContractInsMelee
-    cost: 25
-    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
-  - productEntity: MedievalQuestContractLegionMobsLight
-    cost: 25
-    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
-  - productEntity: MedievalQuestContractInsMobsLight
-    cost: 25
-    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
-  - productEntity: MedievalQuestContractLegionMobsHard
-    cost: 25
-    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
-  - productEntity: MedievalQuestContractInsMobsHard
-    cost: 25
-    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalRepairStone
     cost: 18
     reputationForBuying: 0
@@ -483,6 +473,11 @@
   - productEntity: MedievalCatapultAmmoBarrelAp
     cost: 80
     reputationForBuying: 3
+  - productEntity: MedievalDaggerT3Steel
+    cost: 75
+    reputationForBuying: 2
+    minReputationPlace: 1
+    minReputation: 20
   - productEntity: MedievalMaceT3Steel
     cost: 140
     reputationForBuying: 5
@@ -533,6 +528,38 @@
     reputationForBuying: 5
     minReputationPlace: 1
     minReputation: 20
+  - productEntity: MedievalQuestContractLegionMelee
+    cost: 25
+    reputationForBuying: 1
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+  - productEntity: MedievalQuestContractInsMelee
+    cost: 25
+    reputationForBuying: 1
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalQuestContractLegionMobsLight
+    cost: 20
+    reputationForBuying: 0
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+  - productEntity: MedievalQuestContractInsMobsLight
+    cost: 20
+    reputationForBuying: 0
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalQuestContractLegionMobsHard
+    cost: 45
+    reputationForBuying: 1
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+  - productEntity: MedievalQuestContractInsMobsHard
+    cost: 45
+    reputationForBuying: 1
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalPaperOnValuableCargoLeg
+    cost: 220
+    reputationForBuying: 7
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+  - productEntity: MedievalPaperOnValuableCargoIns
+    cost: 220
+    reputationForBuying: 7
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
   id: ArmorGuild
@@ -674,16 +701,28 @@
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalQuestContractLegionArmorMedium
-    cost: 25
+    cost: 45
+    reputationForBuying: 1
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsArmorMedium
-    cost: 25
+    cost: 45
+    reputationForBuying: 1
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalQuestContractLegionArmorHard
-    cost: 25
+    cost: 60
+    reputationForBuying: 2
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsArmorHard
-    cost: 25
+    cost: 60
+    reputationForBuying: 2
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalPaperOnValuableCargoLeg
+    cost: 220
+    reputationForBuying: 7
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+  - productEntity: MedievalPaperOnValuableCargoIns
+    cost: 220
+    reputationForBuying: 7
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
@@ -907,10 +946,20 @@
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalQuestContractLegionFarm
-    cost: 25
+    cost: 15
+    reputationForBuying: 0
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsFarm
-    cost: 25
+    cost: 15
+    reputationForBuying: 0
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalPaperOnValuableCargoLeg
+    cost: 220
+    reputationForBuying: 7
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+  - productEntity: MedievalPaperOnValuableCargoIns
+    cost: 220
+    reputationForBuying: 7
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
@@ -1308,10 +1357,20 @@
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalQuestContractLegionArmorLight
-    cost: 25
+    cost: 20
+    reputationForBuying: 0
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsArmorLight
-    cost: 25
+    cost: 20
+    reputationForBuying: 0
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalPaperOnValuableCargoLeg
+    cost: 220
+    reputationForBuying: 7
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+  - productEntity: MedievalPaperOnValuableCargoIns
+    cost: 220
+    reputationForBuying: 7
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
@@ -1524,8 +1583,18 @@
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalQuestContractLegionWood
-    cost: 25
+    cost: 5
+    reputationForBuying: 0
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsWood
-    cost: 25
+    cost: 5
+    reputationForBuying: 0
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalPaperOnValuableCargoLeg
+    cost: 220
+    reputationForBuying: 7
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+  - productEntity: MedievalPaperOnValuableCargoIns
+    cost: 220
+    reputationForBuying: 7
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
