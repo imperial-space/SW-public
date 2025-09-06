@@ -3,7 +3,7 @@ preset-syndiebattle-description = Все игроки на станции - аг
 
 # SyndieBattle Redemption Machine
 ent-SyndieBattleRedemptionMachine = машина искупления
-.desc = Машина, которая позволяет обменивать КПК врагов на телекристаллы. Вставьте КПК, чтобы получить телекристаллы.
+.desc = Машина с подозрительно похожим на КПК отверстием.
 
 syndiebattle-kill-detail = { $killer } убил { $victim }. Место: { $location }.
 syndiebattle-redemption-no-pda = Оно не помещается в машину!
