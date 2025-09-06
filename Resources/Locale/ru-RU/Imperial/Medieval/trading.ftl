@@ -9,6 +9,12 @@ trading-ui-guild-type = Тип: {$type}
 
 trading-guild-type-TestType = тест
 trading-guild-type-TestType2 = тест 2
+trading-guild-type-MagicGuild = магические предметы
+trading-guild-type-WeaponGuild = оружие
+trading-guild-type-ArmorGuild = броня
+trading-guild-type-FoodGuild = фермерство
+trading-guild-type-ClothGuild = одежда
+trading-guild-type-BuilderGuild = строительство
 
 trading-ui-stats-title = Рейтинг
 trading-ui-stats-entry = {$name}: {$reputation}
