@@ -38,6 +38,18 @@ public sealed partial class SyndieBattleRuleComponent : Component
     /// </summary>
     [DataField]
     public int RedemptionMachineCount = 10;
+
+    /// <summary>
+    /// Длительность пацифизма в секундах (в начале раунда)
+    /// </summary>
+    [DataField]
+    public int PacifyDurationSeconds = 120;
+
+    /// <summary>
+    /// Время старта правила в секундах (Timing.CurTime.TotalSeconds)
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public double StartTime = 0.0;
 }
 
 

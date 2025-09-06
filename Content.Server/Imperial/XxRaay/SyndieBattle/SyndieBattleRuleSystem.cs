@@ -21,6 +21,7 @@ using Content.Shared.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
+using Content.Shared.CombatMode.Pacification;
 using Content.Server.KillTracking;
 using Content.Server.Pinpointer;
 using Content.Server.GameTicking;
@@ -53,17 +54,20 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     protected override void Started(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         component.Active = true;
+    component.StartTime = Timing.CurTime.TotalSeconds;
 
         // Спавним 10 машин искупления в случайных местах на станции
         SpawnRedemptionMachines();
 
         // Конвертируем всех текущих игроков при запуске правила
         ConvertAllCurrentPlayers(component);
+    ApplyPacifismToAllPlayers(component);
     }
 
     protected override void Ended(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         component.Active = false;
+    RemovePacifismFromAllPlayers();
     }
 
     protected override void AppendRoundEndText(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
@@ -126,22 +130,24 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         var topKills = players.OrderByDescending(p => p.KillCount).ThenByDescending(p => p.Score).Take(3).ToList();
         var topSurvive = players.OrderByDescending(p => p.DurationSec).ThenByDescending(p => p.Score).Take(3).ToList();
 
-        args.AddLine("[color=yellow][b]Итоги боя предателей[/b][/color]");
+        args.AddLine(Loc.GetString("syndiebattle-round-end-title"));
         args.AddLine("");
-        args.AddLine("[color=orange]Топ-3 по ТК (P.S.: Учитывается в аплинке):[/color]");
+        args.AddLine(Loc.GetString("syndiebattle-top-tc-header"));
         for (int i = 0; i < topTC.Count; i++)
-            args.AddLine($"[b]{i+1}.[/b] {topTC[i].Name} — {topTC[i].TC} ТК");
+            args.AddLine(Loc.GetString("syndiebattle-top-tc-entry", ("rank", i + 1), ("name", topTC[i].Name), ("tc", topTC[i].TC)));
         args.AddLine("");
-        args.AddLine("[color=red]Топ-3 по убийствам:[/color]");
+        args.AddLine(Loc.GetString("syndiebattle-top-kills-header"));
         for (int i = 0; i < topKills.Count; i++)
-            args.AddLine($"[b]{i+1}.[/b] {topKills[i].Name} — {topKills[i].KillCount} убийств");
+            args.AddLine(Loc.GetString("syndiebattle-top-kills-entry", ("rank", i + 1), ("name", topKills[i].Name), ("kills", topKills[i].KillCount)));
         args.AddLine("");
-        args.AddLine("[color=green]Топ-3 по выживанию:[/color]");
+        args.AddLine(Loc.GetString("syndiebattle-top-survive-header"));
         for (int i = 0; i < topSurvive.Count; i++)
         {
             var dur = TimeSpan.FromSeconds(topSurvive[i].DurationSec);
             var timeStr = dur.ToString(@"hh\:mm\:ss");
-            var line = $"[b]{i+1}.[/b] {topSurvive[i].Name} — {timeStr} — {(topSurvive[i].Alive ? "Выжил" : "Погиб")}";
+            var statusKey = topSurvive[i].Alive ? "syndiebattle-survive-status-alive" : "syndiebattle-survive-status-dead";
+            var status = Loc.GetString(statusKey);
+            var line = Loc.GetString("syndiebattle-top-survive-entry", ("rank", i + 1), ("name", topSurvive[i].Name), ("time", timeStr), ("status", status));
             args.AddLine(line);
         }
     }
@@ -156,6 +162,11 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             return;
 
         MakeTraitor(ev.Mob, component);
+        var now = Timing.CurTime.TotalSeconds;
+        if (component.StartTime > 0 && now - component.StartTime <= component.PacifyDurationSeconds)
+        {
+            ApplyPacifism(ev.Mob, component);
+        }
     }
 
     private void MakeTraitor(EntityUid player, SyndieBattleRuleComponent? component = null)
@@ -205,6 +216,43 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             var diff = Comp<ObjectiveComponent>(objective.Value).Difficulty;
             maxDifficulty -= diff;
             picked++;
+        }
+    }
+
+    private void ApplyPacifism(EntityUid ent, SyndieBattleRuleComponent component)
+    {
+        if (!TryComp<MobStateComponent>(ent, out var mob) || _mobStateSystem.IsDead(ent, mob))
+            return;
+
+        EnsureComp<PacifiedComponent>(ent);
+        EnsureComp<SyndieBattlePacifiedMarkerComponent>(ent);
+    }
+
+    private void ApplyPacifismToAllPlayers(SyndieBattleRuleComponent component)
+    {
+        var query = EntityQueryEnumerator<ActorComponent, MindContainerComponent, MobStateComponent>();
+        while (query.MoveNext(out var uid, out var actor, out var mind, out var mobState))
+        {
+            if (_mobStateSystem.IsDead(uid, mobState))
+                continue;
+
+            ApplyPacifism(uid, component);
+        }
+
+        Timer.Spawn(TimeSpan.FromSeconds(component.PacifyDurationSeconds), () =>
+        {
+            RemovePacifismFromAllPlayers();
+            _chatManager.ChatMessageToAll(ChatChannel.Server, Loc.GetString("syndiebattle-pacify-ended"), Loc.GetString("syndiebattle-pacify-ended"), default, false, false);
+        });
+    }
+
+    private void RemovePacifismFromAllPlayers()
+    {
+        var query = EntityQueryEnumerator<SyndieBattlePacifiedMarkerComponent>();
+        while (query.MoveNext(out var uid, out var marker))
+        {
+            RemComp<PacifiedComponent>(uid);
+            RemComp<SyndieBattlePacifiedMarkerComponent>(uid);
         }
     }
 
