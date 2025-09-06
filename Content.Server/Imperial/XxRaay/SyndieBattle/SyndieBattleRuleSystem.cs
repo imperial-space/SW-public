@@ -89,7 +89,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             return;
 
     var scoreComp = EnsureComp<SyndieBattleScoreComponent>(player);
-    scoreComp.PlayerId = actor.PlayerSession.UserId;
     }
 
     private void AssignTraitorObjectives(EntityUid player)
@@ -132,9 +131,10 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         if (!TryComp<SyndieBattleScoreComponent>(ev.Entity, out var victimScore))
             return;
 
-        var killerName = GetKillerName(ev.Primary);
-        var victimName = GetEntityName(ev.Entity);
-        var location = GetDeathLocation(ev.Entity);
+
+    var killerName = GetKillerName(ev.Primary);
+    var victimName = MetaData(ev.Entity).EntityName;
+    var location = GetDeathLocation(ev.Entity);
 
         var message = Loc.GetString("syndiebattle-kill-detail",
             ("killer", killerName),
@@ -195,13 +195,31 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         var activeRule = GetActiveRuleEntity();
         if (activeRule == null || !TryComp<SyndieBattleRuleComponent>(activeRule.Value, out var ruleComp))
             return;
+        if (!TryComp<StationDataComponent>(activeRule.Value, out var stationData))
+            return;
 
-        for (var i = 0; i < ruleComp.RedemptionMachineCount; i++)
+        var spawned = 0;
+        var maxAttempts = ruleComp.RedemptionMachineCount * 5;
+        var attempts = 0;
+        while (spawned < ruleComp.RedemptionMachineCount && attempts < maxAttempts)
         {
-            if (!TryFindRandomTile(out _, out _, out _, out var coords))
+            attempts++;
+            if (!TryFindRandomTileOnStation((activeRule.Value, stationData), out var tile, out var grid, out var coords))
+                continue;
+            var occupied = false;
+            foreach (var ent in GetEntitiesInRange(coords, 0.2f))
+            {
+                if (ent != grid)
+                {
+                    occupied = true;
+                    break;
+                }
+            }
+            if (occupied)
                 continue;
 
             Spawn("SyndieBattleRedemptionMachine", coords);
+            spawned++;
         }
     }
 
@@ -219,40 +237,22 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
                     return "Неизвестный игрок";
                 return MetaData(session.AttachedEntity.Value).EntityName;
 
-            case KillNpcSource npc:
-                if (Deleted(npc.NpcEnt))
-                    return "Неизвестный NPC";
-                return MetaData(npc.NpcEnt).EntityName;
-
             case KillEnvironmentSource:
                 return "Окружение";
         }
 
-        return "Неизвестно";
+        return "Что-то";
     }
 
-    /// <summary>
-    /// Получает имя сущности
-    /// </summary>
-    private string GetEntityName(EntityUid entity)
-    {
-    return MetaData(entity).EntityName;
-    }
+
 
     /// <summary>
     /// Получает место смерти
     /// </summary>
     private string GetDeathLocation(EntityUid entity)
     {
-        try
-        {
-            var location = _navMap.GetNearestBeaconString(entity);
-            return string.IsNullOrEmpty(location) ? "неизвестном месте" : location;
-        }
-        catch
-        {
-            return "неизвестном месте";
-        }
+    var location = _navMap.GetNearestBeaconString(entity);
+    return string.IsNullOrEmpty(location) ? "неизвестном месте" : location;
     }
 }
 
