@@ -1,3 +1,10 @@
+using System.Linq;
+using Content.Shared.Inventory;
+using Content.Shared.Hands.Components;
+using Content.Shared.Store.Components;
+using Robust.Shared.Map;
+using Robust.Shared.Timing;
+using Content.Server.Station.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
@@ -16,6 +23,8 @@ using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
 using Content.Server.KillTracking;
 using Content.Server.Pinpointer;
+using Content.Server.GameTicking;
+using Robust.Shared.GameObjects;
 using Robust.Server.Player;
 
 namespace Content.Server.Imperial.XxRaay.SyndieBattle;
@@ -30,6 +39,9 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+
 
     public override void Initialize()
     {
@@ -52,6 +64,86 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     protected override void Ended(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
     {
         component.Active = false;
+    }
+
+    protected override void AppendRoundEndText(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
+    {
+        var players = new List<(string Name, int KillCount, int Score, int TC, float DurationSec, bool Alive)>();
+        var now = Timing.CurTime;
+        var query = EntityQueryEnumerator<SyndieBattleScoreComponent, ActorComponent, MobStateComponent>();
+        while (query.MoveNext(out var ent, out var score, out var actor, out var mobState))
+        {
+            var name = MetaData(ent).EntityName;
+            var killCount = score.KillCount;
+            var points = score.Score;
+            var tc = 0;
+            if (TryComp<InventoryComponent>(ent, out var inv))
+            {
+                var enumSlots = _inventory.GetSlotEnumerator((ent, inv));
+                while (enumSlots.NextItem(out var item, out var slotDef))
+                {
+                    if (item == default)
+                        continue;
+
+                    if (TryComp<StoreComponent>(item, out var store))
+                    {
+                        if (store.Balance.TryGetValue("Telecrystal", out var bal))
+                            tc += (int)bal;
+                    }
+                }
+            }
+            if (TryComp<HandsComponent>(ent, out var hands))
+            {
+                foreach (var hand in hands.Hands.Values)
+                {
+                    if (hand.HeldEntity != null && TryComp<StoreComponent>(hand.HeldEntity.Value, out var store))
+                    {
+                        if (store.Balance.TryGetValue("Telecrystal", out var bal))
+                            tc += (int)bal;
+                    }
+                }
+            }
+
+            float duration = 0f;
+            if (score.SpawnTime > 0)
+            {
+                if (score.SurvivalTime > 0)
+                {
+                    duration = score.SurvivalTime;
+                }
+                else
+                {
+                    duration = (float)(now.TotalSeconds - score.SpawnTime);
+                }
+            }
+
+            var alive = score.Alive && !_mobStateSystem.IsDead(ent, mobState);
+
+            players.Add((name, killCount, points, tc, duration, alive));
+        }
+
+        var topTC = players.OrderByDescending(p => p.TC).ThenByDescending(p => p.Score).Take(3).ToList();
+        var topKills = players.OrderByDescending(p => p.KillCount).ThenByDescending(p => p.Score).Take(3).ToList();
+        var topSurvive = players.OrderByDescending(p => p.DurationSec).ThenByDescending(p => p.Score).Take(3).ToList();
+
+        args.AddLine("[color=yellow][b]Итоги боя предателей[/b][/color]");
+        args.AddLine("");
+        args.AddLine("[color=orange]Топ-3 по ТК (P.S.: Учитывается в аплинке):[/color]");
+        for (int i = 0; i < topTC.Count; i++)
+            args.AddLine($"[b]{i+1}.[/b] {topTC[i].Name} — {topTC[i].TC} ТК");
+        args.AddLine("");
+        args.AddLine("[color=red]Топ-3 по убийствам:[/color]");
+        for (int i = 0; i < topKills.Count; i++)
+            args.AddLine($"[b]{i+1}.[/b] {topKills[i].Name} — {topKills[i].KillCount} убийств");
+        args.AddLine("");
+        args.AddLine("[color=green]Топ-3 по выживанию:[/color]");
+        for (int i = 0; i < topSurvive.Count; i++)
+        {
+            var dur = TimeSpan.FromSeconds(topSurvive[i].DurationSec);
+            var timeStr = dur.ToString(@"hh\:mm\:ss");
+            var line = $"[b]{i+1}.[/b] {topSurvive[i].Name} — {timeStr} — {(topSurvive[i].Alive ? "Выжил" : "Погиб")}";
+            args.AddLine(line);
+        }
     }
 
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent ev)
@@ -85,10 +177,13 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
 
         AssignTraitorObjectives(player);
 
-        if (!TryComp<ActorComponent>(player, out var actor))
-            return;
-
     var scoreComp = EnsureComp<SyndieBattleScoreComponent>(player);
+    if (scoreComp != null)
+    {
+        scoreComp.SpawnTime = Timing.CurTime.TotalSeconds;
+        scoreComp.Alive = true;
+        scoreComp.SurvivalTime = 0f;
+    }
     }
 
     private void AssignTraitorObjectives(EntityUid player)
@@ -125,16 +220,23 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
                 TryComp<SyndieBattleScoreComponent>(killerSession.AttachedEntity.Value, out var killerScore))
             {
                 killerScore.Score++;
+                killerScore.KillCount++;
             }
         }
 
         if (!TryComp<SyndieBattleScoreComponent>(ev.Entity, out var victimScore))
             return;
 
+        if (victimScore != null && victimScore.SpawnTime > 0 && victimScore.Alive)
+        {
+            var deathAt = Timing.CurTime.TotalSeconds;
+            victimScore.SurvivalTime = (float)(deathAt - victimScore.SpawnTime);
+            victimScore.Alive = false;
+        }
 
-    var killerName = GetKillerName(ev.Primary);
-    var victimName = MetaData(ev.Entity).EntityName;
-    var location = GetDeathLocation(ev.Entity);
+        var killerName = GetKillerName(ev.Primary);
+        var victimName = MetaData(ev.Entity).EntityName;
+        var location = GetDeathLocation(ev.Entity);
 
         var message = Loc.GetString("syndiebattle-kill-detail",
             ("killer", killerName),
@@ -207,9 +309,10 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             if (!TryFindRandomTileOnStation((activeRule.Value, stationData), out var tile, out var grid, out var coords))
                 continue;
             var occupied = false;
-            foreach (var ent in GetEntitiesInRange(coords, 0.2f))
+            var ents = _lookup.GetEntitiesInRange(coords, 0.2f);
+            foreach (var near in ents)
             {
-                if (ent != grid)
+                if (near != grid)
                 {
                     occupied = true;
                     break;
