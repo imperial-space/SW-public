@@ -8,8 +8,8 @@
     difficulty: 1.0
     issuer: objective-issuer-syndicate
     icon:
-      sprite: /Textures/Interface/Misc/job_icons.rsi
-      state: Syndicate
+      sprite: /Objects/Vehicles/syndicatesegway.rsi
+      state: icon
   - type: RoleRequirement
     roles:
     - TraitorRole
