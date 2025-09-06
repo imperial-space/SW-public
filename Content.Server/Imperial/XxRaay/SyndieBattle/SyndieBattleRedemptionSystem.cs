@@ -31,8 +31,7 @@ public sealed class SyndieBattleRedemptionSystem : EntitySystem
             return;
         }
 
-        var uplinkTarget = _uplink.FindUplinkTarget(args.Used);
-        if (uplinkTarget == null)
+        if (!HasComp<UplinkComponent>(args.Used))
         {
             _popup.PopupEntity(Loc.GetString("syndiebattle-redemption-no-uplink"), ent, args.User);
             return;

@@ -7,21 +7,14 @@
     delay:
       min: 1
       max: 2
+  - type: TraitorRule
+    giveUplink: true
+    giveCodewords: true
+    giveBriefing: true
   - type: SyndieBattleRule
     giveUplink: true
     giveCodewords: true
     giveBriefing: true
-  - type: AntagSelection
-    selectionTime: IntraPlayerSpawn
-    definitions:
-    - max: 50
-      playerRatio: 100
-      blacklist:
-        components:
-        - AntagImmune
-      lateJoinAdditional: true
-      mindRoles:
-      - MindRoleTraitor
 
 - type: gamePreset
   id: SyndieBattle

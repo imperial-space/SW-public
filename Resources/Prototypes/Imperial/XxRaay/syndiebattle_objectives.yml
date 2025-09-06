@@ -9,5 +9,5 @@
     issuer: objective-issuer-syndicate
   - type: RoleRequirement
     roles:
-    - SyndieBattleRole
+    - TraitorRole
   - type: SurviveCondition
