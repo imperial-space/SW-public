@@ -359,6 +359,13 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 3.6
       baseSprintSpeed: 3.2
+    - type: IntrinsicRadioReceiver
+    - type: ActiveRadio
+      channels:
+      - SCPconnection
+    - type: IntrinsicRadioTransmitter
+      channels:
+      - SCPconnection
     - type: FootstepModifier
       footstepSoundCollection:
         collection: FootstepSlime
