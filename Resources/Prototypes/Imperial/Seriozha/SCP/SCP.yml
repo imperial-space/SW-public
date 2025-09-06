@@ -486,13 +486,14 @@
 - type: damageModifierSet
   id: SCPStandart
   coefficients:
-    Poison: 0.1
-    Blunt: 0.4
-    Slash: 0.7
-    Piercing: 0.8
+    Poison: 0.2
+    Blunt: 0.5
+    Slash: 0.8
+    Piercing: 0.9
     Cellular: 0.9
     Radiation: 0.0
     Caustic: 0.0
+    Stun: 0.0
 
 - type: damageModifierSet
   id: SCPFireMan
@@ -501,6 +502,7 @@
     Poison: 0.0
     Radiation: 0.0
     Caustic: 0.0
+    Stun: 0.0
 
 - type: startingGear
   id: ImperialAvelGear
