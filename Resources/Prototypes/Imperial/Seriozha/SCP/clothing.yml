@@ -16,29 +16,6 @@
     protectionTime: 5
 
 - type: entity
-  parent: ClothingEyesBase
-  id: SteampunkGoogles
-  name: Steampunk googles
-  suffix: seriozha, Кастомизация
-  description: idc
-  components:
-  - type: Item
-    size: Tiny
-  - type: Sprite
-    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rsi
-  - type: Clothing
-    sprite: Imperial/Seriozha/SCP/clothing/steampunk_googles.rsi
-  - type: FlashImmunity
-  - type: EyeProtection
-    protectionTime: 5
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.95
-        Slash: 0.95
-        Piercing: 0.95
-
-- type: entity
   id: AlphaGasMask
   parent: ClothingMaskGas
   name: gas mask
@@ -100,8 +77,8 @@
       collection: FootstepSpecialOfficer
   - type: NoSlip
   - type: ClothingSpeedModifier
-    walkModifier: 1.3
-    sprintModifier: 1.3
+    walkModifier: 1.2
+    sprintModifier: 1.24
   - type: Armor
     modifiers:
       coefficients:
