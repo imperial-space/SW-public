@@ -4,6 +4,7 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Store.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using Robust.Shared.Random;
 using Content.Server.Station.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Shared.GameTicking;
@@ -39,6 +40,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     [Dependency] private readonly TraitorRuleSystem _traitorRuleSystem = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
@@ -59,9 +61,18 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         // Спавним 10 машин искупления в случайных местах на станции
         SpawnRedemptionMachines();
 
+        // Сообщаем всем игрокам цель режима
+        _chatManager.ChatMessageToAll(
+            ChatChannel.Server,
+            Loc.GetString("syndiebattle-mode-goal"),
+            Loc.GetString("syndiebattle-mode-goal"),
+            default,
+            false,
+            false);
+
         // Конвертируем всех текущих игроков при запуске правила
         ConvertAllCurrentPlayers(component);
-    ApplyPacifismToAllPlayers(component);
+        ApplyPacifismToAllPlayers(component);
     }
 
     protected override void Ended(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
@@ -166,6 +177,17 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         if (component.StartTime > 0 && now - component.StartTime <= component.PacifyDurationSeconds)
         {
             ApplyPacifism(ev.Mob, component);
+        }
+
+        if (ev.Player != null)
+        {
+            var client = ev.Player.Channel;
+            if (client != null)
+            {
+                var msg = Loc.GetString("syndiebattle-mode-goal");
+                var delay = TimeSpan.FromSeconds(5.0 + _random.NextDouble());
+                Timer.Spawn(delay, () => _chatManager.ChatMessageToOne(ChatChannel.Server, msg, msg, EntityUid.Invalid, false, client));
+            }
         }
     }
 

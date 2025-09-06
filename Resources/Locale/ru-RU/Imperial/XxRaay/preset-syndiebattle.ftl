@@ -20,3 +20,4 @@ syndiebattle-top-survive-header = [color=green]Топ-3 по выживанию:
 syndiebattle-top-survive-entry = [b]{ $rank }.[/b] { $name } — { $time } — { $status }
 syndiebattle-survive-status-alive = Выжил
 syndiebattle-survive-status-dead = Погиб
+syndiebattle-mode-goal = [color=red][b]Цель режима: убивайте других агентов Синдиката! В конце раунда будет топ 3 людей по ТК(ВАЖНО: ТК считается ТОЛЬКО которые в аплинке КПК), убийствам и по времени выживания.[/b][/color]
