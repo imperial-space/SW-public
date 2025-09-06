@@ -14,6 +14,9 @@ using Content.Shared.Chat;
 using Content.Shared.Mobs;
 using Content.Shared.Mind.Components;
 using Robust.Shared.Prototypes;
+using Content.Server.KillTracking;
+using Content.Server.Pinpointer;
+using Robust.Server.Player;
 
 namespace Content.Server.Imperial.XxRaay.SyndieBattle;
 
@@ -25,17 +28,22 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private readonly TraitorRuleSystem _traitorRuleSystem = default!;
     [Dependency] private readonly RoleSystem _roleSystem = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly NavMapSystem _navMap = default!;
 
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
-        SubscribeLocalEvent<MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<KillReportedEvent>(OnKillReported);
     }
 
     protected override void Started(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         component.Active = true;
+
+        // Спавним 10 машин искупления в случайных местах на станции
+        SpawnRedemptionMachines();
 
         // Конвертируем всех текущих игроков при запуске правила
         ConvertAllCurrentPlayers(component);
@@ -82,6 +90,9 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
 
         var scoreComp = EnsureComp<SyndieBattleScoreComponent>(player);
         scoreComp.PlayerId = actor.PlayerSession.UserId;
+
+        // Добавляем компонент для отслеживания убийств
+        EnsureComp<KillTrackerComponent>(player);
     }
 
     private void AssignTraitorObjectives(EntityUid player)
@@ -106,19 +117,24 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         }
     }
 
-    private void OnMobStateChanged(MobStateChangedEvent ev)
+    private void OnKillReported(ref KillReportedEvent ev)
     {
         if (!AnyRuleActive())
             return;
 
-        if (ev.NewMobState != MobState.Dead)
+        if (!TryComp<SyndieBattleScoreComponent>(ev.Entity, out var victimScore))
             return;
 
-        if (!TryComp<SyndieBattleScoreComponent>(ev.Target, out var victimScore))
-            return;
+        var killerName = GetKillerName(ev.Primary);
+        var victimName = GetEntityName(ev.Entity);
+        var location = GetDeathLocation(ev.Entity);
 
-        var message = Loc.GetString("syndiebattle-kill-score", ("score", victimScore.Score));
-        _chatManager.ChatMessageToAll(ChatChannel.Server, message, message, ev.Target, false, false);
+        var message = Loc.GetString("syndiebattle-kill-detail",
+            ("killer", killerName),
+            ("victim", victimName),
+            ("location", location));
+
+        _chatManager.ChatMessageToAll(ChatChannel.Server, message, message, ev.Entity, false, false);
     }
 
     private bool AnyRuleActive()
@@ -161,6 +177,80 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
 
             // Делаем игрока предателем
             MakeTraitor(uid, component);
+        }
+    }
+
+    /// <summary>
+    /// Спавнит 10 машин искупления в случайных местах на станции
+    /// </summary>
+    private void SpawnRedemptionMachines()
+    {
+        const int machineCount = 10;
+
+        for (var i = 0; i < machineCount; i++)
+        {
+            if (!TryFindRandomTile(out _, out _, out _, out var coords))
+                continue;
+
+            Spawn("SyndieBattleRedemptionMachine", coords);
+        }
+    }
+
+    /// <summary>
+    /// Получает имя убийцы из KillSource
+    /// </summary>
+    private string GetKillerName(KillSource source)
+    {
+        switch (source)
+        {
+            case KillPlayerSource player:
+                if (!_playerManager.TryGetSessionById(player.PlayerId, out var session))
+                    return "Неизвестный игрок";
+                if (session.AttachedEntity == null)
+                    return "Неизвестный игрок";
+
+                var playerName = MetaData(session.AttachedEntity.Value).EntityName;
+                return $"{playerName}({session.Name})";
+
+            case KillNpcSource npc:
+                if (Deleted(npc.NpcEnt))
+                    return "Неизвестный NPC";
+                return MetaData(npc.NpcEnt).EntityName;
+
+            case KillEnvironmentSource:
+                return "Окружение";
+        }
+
+        return "Неизвестно";
+    }
+
+    /// <summary>
+    /// Получает имя сущности
+    /// </summary>
+    private string GetEntityName(EntityUid entity)
+    {
+        if (TryComp<ActorComponent>(entity, out var actorComp))
+        {
+            var entityName = MetaData(entity).EntityName;
+            return $"{entityName}({actorComp.PlayerSession.Name})";
+        }
+
+        return MetaData(entity).EntityName;
+    }
+
+    /// <summary>
+    /// Получает место смерти
+    /// </summary>
+    private string GetDeathLocation(EntityUid entity)
+    {
+        try
+        {
+            var location = _navMap.GetNearestBeaconString(entity);
+            return string.IsNullOrEmpty(location) ? "неизвестном месте" : location;
+        }
+        catch
+        {
+            return "неизвестном месте";
         }
     }
 }

@@ -1,7 +1,7 @@
 - type: entity
-  id: SyndieBattleRedemptionMachine
-  name: SyndieBattle Redemption Machine
+  name: Machine of Redemption
   description: A machine that allows you to redeem enemy PDAs for TC.
+  id: SyndieBattleRedemptionMachine
   components:
   - type: Transform
     anchored: true
