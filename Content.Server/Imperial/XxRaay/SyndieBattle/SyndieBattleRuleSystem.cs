@@ -297,32 +297,31 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         var activeRule = GetActiveRuleEntity();
         if (activeRule == null || !TryComp<SyndieBattleRuleComponent>(activeRule.Value, out var ruleComp))
             return;
-        if (!TryComp<StationDataComponent>(activeRule.Value, out var stationData))
-            return;
-
-        var spawned = 0;
-        var maxAttempts = ruleComp.RedemptionMachineCount * 5;
-        var attempts = 0;
-        while (spawned < ruleComp.RedemptionMachineCount && attempts < maxAttempts)
+        var stations = EntityQueryEnumerator<StationDataComponent>();
+        while (stations.MoveNext(out var station, out var stationData))
         {
-            attempts++;
-            if (!TryFindRandomTileOnStation((activeRule.Value, stationData), out var tile, out var grid, out var coords))
-                continue;
-            var occupied = false;
-            var ents = _lookup.GetEntitiesInRange(coords, 0.2f);
-            foreach (var near in ents)
+            var spawned = 0;
+            var maxAttempts = ruleComp.RedemptionMachineCount * 5;
+            var attempts = 0;
+            while (spawned < ruleComp.RedemptionMachineCount && attempts < maxAttempts)
             {
-                if (near != grid)
+                attempts++;
+                if (!TryFindRandomTileOnStation((station, stationData), out var tile, out var grid, out var coords))
+                    continue;
+                var occupied = false;
+                foreach (var near in _lookup.GetEntitiesInRange(coords, 0.2f))
                 {
-                    occupied = true;
-                    break;
+                    if (near != grid)
+                    {
+                        occupied = true;
+                        break;
+                    }
                 }
+                if (occupied)
+                    continue;
+                Spawn("SyndieBattleRedemptionMachine", coords);
+                spawned++;
             }
-            if (occupied)
-                continue;
-
-            Spawn("SyndieBattleRedemptionMachine", coords);
-            spawned++;
         }
     }
 
