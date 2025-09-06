@@ -184,6 +184,3 @@ comms-console-announcement-title-Federation = Федерации Elysium Prime
 
 ent-ElysiumPrimeComputerComms = Консоль федеративной связи
     .desc = С помощью нее можно давать обещания, которым несуждено сбыться.
-
-ent-ComputerIdElysiumPrime = Консоль федеративных ID карт
-    .desc = Любая вставленная в нее ID карта становится собственностью Elysium Prime.
