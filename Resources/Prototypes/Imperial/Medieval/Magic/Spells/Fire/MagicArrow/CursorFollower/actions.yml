@@ -147,7 +147,7 @@
       groups:
         Burn: 15
   - type: SpellCastEffect
-    effectProto: MagicArrowCursorFollowerSpellcastEffectSenior
+    effectProto: MagicArrowCursorFollowerSpellCastEffectSenior
   - type: CastTraining
     trainingResults:
       - !type:AddMagicEssence

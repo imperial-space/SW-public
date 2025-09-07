@@ -6,8 +6,8 @@
     xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
     xmlns:plague="clr-namespace:Content.Client.Imperial.Medieval.Plague.UI"
     Title="{Loc 'plague-symptom-display-title'}"
-    MinSize="376 340"
-    SetSize="376 340">
+    MinSize="376 365"
+    SetSize="376 365">
     <BoxContainer
         HorizontalExpand="True"
         Orientation="Horizontal"

@@ -47,7 +47,7 @@
       groups:
         Burn: 5
   - type: SpellCastEffect
-    effectProto: IceDaggerSpellcastEffectBeginner
+    effectProto: IceDaggerSpellCastEffectBeginner
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionIceDaggerMiddle

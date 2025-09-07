@@ -26,7 +26,7 @@
         maxDistance: 1
 
 - type: entity
-  id: WeakeningWaveSpellcastEffectBeginner
+  id: WeakeningWaveSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/wave.rsi

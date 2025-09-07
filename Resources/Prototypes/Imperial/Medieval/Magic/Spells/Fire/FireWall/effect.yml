@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: FireWallSpellcastEffectBeginner
+  id: FireWallSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/wall.rsi
@@ -19,7 +19,7 @@
 #Middle
 
 - type: entity
-  id: FireWallSpellcastEffectMiddle
+  id: FireWallSpellCastEffectMiddle
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/wall.rsi
@@ -37,7 +37,7 @@
 #Senior
 
 - type: entity
-  id: FireWallSpellcastEffectSenior
+  id: FireWallSpellCastEffectSenior
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/wall.rsi

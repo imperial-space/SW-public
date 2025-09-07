@@ -10,6 +10,8 @@ namespace Content.Server.Imperial.Medieval.Plague;
 
 public sealed partial class MedievalPlagueSystem
 {
+    private SummaryPlagueData _data = new();
+
     private void InitializeUi()
     {
         SubscribeLocalEvent<MedievalPlagueGhostComponent, OpenPlagueEvolutionMenuActionEvent>(OnOpenMenu);
@@ -39,14 +41,17 @@ public sealed partial class MedievalPlagueSystem
 
         var proto = _proto.Index(args.Proto);
 
-        if (data.Points >= proto.Cost)
+        if (data.Points >= proto.GetCost(_data))
         {
             data.Unlocked = true;
             DoPrototypeEffects(args.Proto);
             UpdateInfectAction();
 
+            _data.Symptoms++;
+            _data.Tier = Math.Max(_data.Tier, proto.Tier);
+
             var filter = Filter.Empty().AddWhereAttachedEntity(x => HasComp<MedievalPlagueGhostComponent>(x));
-            var msg = Loc.GetString("medieval-plague-symptom-unlocked", ("symptom", proto.Name));
+            var msg = Loc.GetString("medieval-plague-symptom-unlocked", ("symptom", Loc.GetString(proto.Name)));
 
             _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/slime_node.ogg"), filter, true);
             _chat.ChatMessageToManyFiltered(filter, ChatChannel.Local,
@@ -82,13 +87,6 @@ public sealed partial class MedievalPlagueSystem
 
     public SummaryPlagueData GetData()
     {
-        var infected = EntityManager.AllEntities<MedievalPlagueInfectedComponent>().Count();
-        var immune = EntityManager.AllEntities<MedievalPlagueImmuneComponent>().Count();
-        var points = EntityManager.AllEntities<MedievalPlagueGhostComponent>().Sum(x => x.Comp.Points);
-        var unlocked = _symptoms.Where(x => x.Value.Unlocked);
-        var tier = unlocked.Select(x => _proto.Index(x.Key).Tier).DefaultIfEmpty(1).Max();
-
-        var info = new SummaryPlagueData(infected, immune, tier, points, unlocked.Count());
-        return info;
+        return _data;
     }
 }

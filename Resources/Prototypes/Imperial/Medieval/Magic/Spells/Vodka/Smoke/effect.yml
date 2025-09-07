@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: SmokeSpellcastEffectBeginner
+  id: SmokeSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/vodka/smoke.rsi

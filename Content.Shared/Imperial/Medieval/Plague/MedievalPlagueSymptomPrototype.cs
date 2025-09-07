@@ -29,6 +29,9 @@ public sealed partial class MedievalPlagueSymptomPrototype : IPrototype
     public Vector2 Position;
 
     [DataField]
+    public bool StaticCost = false;
+
+    [DataField]
     public string[] Required = Array.Empty<string>();
 
     [DataField(serverOnly: true)]
@@ -45,6 +48,14 @@ public sealed partial class MedievalPlagueSymptomPrototype : IPrototype
 
     [DataField]
     public SymptomCategory Category = SymptomCategory.Symptom;
+
+    public int GetCost(SummaryPlagueData data)
+    {
+        if (StaticCost)
+            return Cost;
+
+        return Cost * data.PlagueGhosts;
+    }
 }
 
 public enum SymptomCategory

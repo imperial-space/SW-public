@@ -22,7 +22,7 @@
       groups:
         Burn: 18
   - type: SpellCastEffect
-    effectProto: FireWallSpellcastEffectBeginner
+    effectProto: FireWallSpellCastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 22
@@ -83,7 +83,7 @@
       groups:
         Burn: 18
   - type: SpellCastEffect
-    effectProto: FireWallSpellcastEffectMiddle
+    effectProto: FireWallSpellCastEffectMiddle
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 22
@@ -139,7 +139,7 @@
       groups:
         Burn: 18
   - type: SpellCastEffect
-    effectProto: FireWallSpellcastEffectSenior
+    effectProto: FireWallSpellCastEffectSenior
   - type: WorldTargetAction
     useDelay: 29
     itemIconStyle: BigAction

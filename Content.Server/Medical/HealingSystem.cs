@@ -90,9 +90,9 @@ public sealed class HealingSystem : EntitySystem
             return;
 
         // Imperial Medieval plague start
-        if (healing.PlagueHealingTier > 0 && healing.PlagueProgressionDecayPerUse > 0)
+        if (healing.PlagueProgressionDecayPerUse > 0)
         {
-            var ev = new PlagueHealingItemUsedEvent(healing.PlagueProgressionDecayPerUse, healing.PlagueHealingTier);
+            var ev = new PlagueHealingItemUsedEvent(healing.PlagueProgressionDecayPerUse);
             RaiseLocalEvent(entity.Owner, ref ev);
         }
         // Imperial Medieval plague end

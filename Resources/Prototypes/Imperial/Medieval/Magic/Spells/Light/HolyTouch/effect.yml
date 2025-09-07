@@ -1,10 +1,10 @@
 #Beginner
 
 - type: entity
-  id: HolyTouchSpellcastEffectBeginner
+  id: HolyTouchSpellCastEffectBeginner
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/light/flash.rsi
+    sprite: Imperial/Medieval/SpellCastEffects/light/holy.rsi
     state: beginner
     color: "#00981C"
     noRot: true

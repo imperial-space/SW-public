@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: MagicArrowSpellcastEffectBeginner
+  id: MagicArrowSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/arrow.rsi

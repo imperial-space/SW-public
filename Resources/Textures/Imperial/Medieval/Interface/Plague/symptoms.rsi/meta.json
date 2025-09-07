@@ -49,12 +49,6 @@
         "name": "cure"
       },
       {
-        "name": "dizzinesstier1"
-      },
-      {
-        "name": "dizzinesstier2"
-      },
-      {
         "name": "dizzinessupgrade"
       },
       {
@@ -67,7 +61,25 @@
         "name": "headache"
       },
       {
+        "name": "healresistance1"
+      },
+      {
+        "name": "healresistance2"
+      },
+      {
+        "name": "healresistance3"
+      },
+      {
         "name": "heart"
+      },
+      {
+        "name": "hiccup1"
+      },
+      {
+        "name": "hiccup2"
+      },
+      {
+        "name": "hiccup3"
       },
       {
         "name": "hunger"
@@ -91,6 +103,12 @@
         "name": "intolerance"
       },
       {
+        "name": "invis1"
+      },
+      {
+        "name": "invis2"
+      },
+      {
         "name": "legs"
       },
       {
@@ -104,6 +122,12 @@
       },
       {
         "name": "lungs"
+      },
+      {
+        "name": "mime1"
+      },
+      {
+        "name": "mime2"
       },
       {
         "name": "nausea"

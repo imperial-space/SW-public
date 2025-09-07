@@ -10,13 +10,20 @@ public sealed class SummaryPlagueData
     public int Tier = 0;
     public int Points = 0;
     public int Symptoms = 0;
+    public int PlagueGhosts = 0;
 
-    public SummaryPlagueData(int infected, int immune, int tier, int points, int symptoms)
+    public SummaryPlagueData()
+    {
+
+    }
+
+    public SummaryPlagueData(int infected, int immune, int tier, int points, int symptoms, int ghosts)
     {
         Infected = infected;
         Immune = immune;
         Tier = tier;
         Points = points;
         Symptoms = symptoms;
+        PlagueGhosts = ghosts;
     }
 }

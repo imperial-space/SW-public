@@ -10,7 +10,7 @@
     lifetime: 5
 
 - type: entity
-  id: SleepSpellcastEffectBeginner
+  id: SleepSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/sleep.rsi

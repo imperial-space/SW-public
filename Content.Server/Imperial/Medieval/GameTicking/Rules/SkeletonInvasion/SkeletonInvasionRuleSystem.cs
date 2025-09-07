@@ -55,14 +55,20 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         SubscribeLocalEvent<BossWonEvent>(OnBossWin);
     }
 
-    protected override void Started(EntityUid uid, SkeletonInvasionRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    protected override void Added(EntityUid uid, SkeletonInvasionRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
-        base.Started(uid, component, gameRule, args);
+        base.Added(uid, component, gameRule, args);
 
         if (!_mapLoader.TryLoadMap(component.Arena, out var map, out var grids, new DeserializationOptions() { InitializeMaps = true }))
             return;
 
         _bossUid = EntityManager.AllEntities<BossComponent>().Where(x => Transform(x).MapUid == map.Value.Owner).First();
+    }
+
+    protected override void Started(EntityUid uid, SkeletonInvasionRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
+    {
+        base.Started(uid, component, gameRule, args);
+
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>().Select(x => x.Owner).ToList();
         _chat.DispatchGlobalAnnouncement("Посланники темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
         component.NextSpawn = _timing.CurTime;
@@ -156,6 +162,9 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
 
             return;
         }
+
+        if (!_bossUid.IsValid())
+            return;
 
         var xform = Transform(args.Stand);
         var players = EntityManager.AllEntities<HumanoidAppearanceComponent>().Where(x => !HasComp<IgnoreBossStartComponent>(x.Owner) && Transform(x).MapUid == Transform(args.Stand).MapUid);

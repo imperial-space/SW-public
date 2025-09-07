@@ -65,6 +65,9 @@ public sealed partial class MedievalFactionsSystem
         if (!TryComp<MedievalFactionMemberComponent>(args.User, out var friends) || friends.MenuAccess != FactionMenuAccess.Full)
             return;
 
+        if (HasComp<MedievalFactionRelationsRequestComponent>(uid))
+            return;
+
         AlternativeVerb verb = new()
         {
             Text = "Сделать запрос на смену отношений",
@@ -122,6 +125,8 @@ public sealed partial class MedievalFactionsSystem
         Dirty(env, comp);
 
         _paper.SetContent(env, Comp<PaperComponent>(target).Content);
+
+        Comp<PaperComponent>(target).EditingDisabled = true;
         QueueDel(target);
 
         if (container != null)

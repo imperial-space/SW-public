@@ -46,6 +46,10 @@
     state: slimeexplode
   - type: TimedDespawn
     lifetime: 1.35
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: gib
+    positional: true
   - type: Tag
     tags:
     - HideContextMenu
@@ -113,9 +117,10 @@
     sprite: Imperial/Medieval/Mobs/plague_swarm.rsi
     state: bugs
   - type: AmbientSound
-    range: 3.5
+    range: 6
     sound:
-      path: "/Audio/Imperial/Medieval/bad_smell_effect.ogg"
+      path: "/Audio/Imperial/Medieval/Plague/bug_swarm.ogg"
+    volume: -4
   - type: Fixtures
     fixtures:
       fix1:
@@ -168,7 +173,7 @@
       Flammable: [ Touch ]
       Extinguish: [ Touch ]
   - type: MeleeWeapon
-    attackRate: 2.2
+    attackRate: 1
     altDisarm: false
     soundHit:
       collection: AlienClaw
@@ -176,9 +181,16 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Piercing: 3
+        Piercing: 1.5
   - type: MedievalPlagueInfectOnHit
     chance: 0.1
+  - type: NpcFactionMember
+    factions:
+    - SimpleHostile
+  - type: HTN
+    constantlyReplan: false
+    rootTask:
+      task: SimpleHostileCompound
 
 - type: entity
   name: bugs swarm
@@ -188,6 +200,10 @@
   components:
   - type: Sprite
     state: smallbugs
+  - type: AmbientSound
+    sound:
+      path: "/Audio/Imperial/Medieval/Plague/bug_swarm.ogg"
+    volume: -7
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -204,10 +220,10 @@
     baseWalkSpeed: 3
     baseSprintSpeed: 4.2
   - type: MeleeWeapon
-    attackRate: 1.4
+    attackRate: 0.8
     damage:
       types:
-        Piercing: 2
+        Piercing: 1
 
 - type: entity
   name: mouse

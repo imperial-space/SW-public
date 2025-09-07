@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: BlinkSpellcastEffectBeginner
+  id: BlinkSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/blink.rsi

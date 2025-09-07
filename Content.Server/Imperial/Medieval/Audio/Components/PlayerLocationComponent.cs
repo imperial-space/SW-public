@@ -1,4 +1,4 @@
-namespace Content.Server.Imperial.Audio;
+namespace Content.Server.Imperial.Medieval.Audio;
 
 /// <summary>
 /// Компонент, хранящий информацию о звуковой зоне игрока.

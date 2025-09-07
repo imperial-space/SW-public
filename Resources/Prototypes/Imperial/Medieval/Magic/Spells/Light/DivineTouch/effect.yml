@@ -12,7 +12,7 @@
 #Beginner
 
 - type: entity
-  id: DivineTouchSpellcastEffectBeginner
+  id: DivineTouchSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/divine.rsi

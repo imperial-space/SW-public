@@ -47,7 +47,7 @@
       groups:
         Burn: 19
   - type: SpellCastEffect
-    effectProto: BoostSpellcastEffectBeginner
+    effectProto: BoostSpellCastEffectBeginner
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionBoostMiddle

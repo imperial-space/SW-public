@@ -20,7 +20,7 @@
       groups:
         Burn: 10
   - type: SpellCastEffect
-    effectProto: HolyTouchSpellcastEffectBeginner
+    effectProto: HolyTouchSpellCastEffectBeginner
   - type: MedievalInstantSpell
   - type: InstantAction
     useDelay: 30
