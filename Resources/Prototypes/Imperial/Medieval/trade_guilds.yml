@@ -857,7 +857,7 @@
     reputationForBuying: 0
   - productEntity: FoodCakePumpkin
     cost: 15
-    reputationForBuying: 0   
+    reputationForBuying: 0
   - productEntity: FoodOatmeal
     cost: 15
     reputationForBuying: 0
@@ -1469,7 +1469,7 @@
     reputationForBuying: 1
   - productEntity: MedievalChest2
     cost: 35
-    reputationForBuying: 1    
+    reputationForBuying: 1
   - productEntity: MedievalBlacksmithArmorCraft
     cost: 50
     reputationForBuying: 2
@@ -1538,7 +1538,7 @@
     reputationForBuying: 3
   - productEntity: MedievalSign3Craft
     cost: 80
-    reputationForBuying: 3 
+    reputationForBuying: 3
   - productEntity: MedievalSign4Craft
     cost: 80
     reputationForBuying: 3

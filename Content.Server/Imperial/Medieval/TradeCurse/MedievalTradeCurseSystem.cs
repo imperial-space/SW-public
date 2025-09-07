@@ -9,6 +9,7 @@ using Content.Server.SSDFree.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Item;
+using Content.Shared.Imperial.Medieval.Trading;
 
 namespace Content.Server.MedievalTradeCurse
 {
@@ -99,7 +100,7 @@ namespace Content.Server.MedievalTradeCurse
 
             foreach (var entity in _lookup.GetEntitiesInRange(coords, 3.5f))
             {
-                if (HasComp<StoreComponent>(entity) && !HasComp<ItemComponent>(entity))
+                if (HasComp<TradingComponent>(entity) && !HasComp<ItemComponent>(entity))
                 {
                     return true;
                 }
