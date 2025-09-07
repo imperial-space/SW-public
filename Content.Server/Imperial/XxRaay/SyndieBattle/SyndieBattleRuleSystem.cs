@@ -8,11 +8,6 @@ using Content.Server.Station.Components;
 using Content.Server.GameTicking.Rules;
 using Content.Shared.GameTicking;
 using Content.Shared.GameTicking.Components;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.GameObjects.Components;
-using Robust.Shared.Map.Components;
-using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Content.Shared.Mind;
 using Content.Server.Objectives;
@@ -30,6 +25,7 @@ using Content.Server.Pinpointer;
 using Content.Server.GameTicking;
 using Robust.Server.Player;
 using Content.Shared.Damage.Systems;
+using Robust.Shared.Map.Components;
 
 namespace Content.Server.Imperial.XxRaay.SyndieBattle;
 
@@ -44,8 +40,8 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
 
     public override void Initialize()
     {
@@ -70,24 +66,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             false);
 
         ConvertAllCurrentPlayers(component);
-
-        var pacifyDuration = component.PacifyDurationSeconds;
-
-        if (pacifyDuration > 0f)
-        {
-            Timer.Spawn(TimeSpan.FromSeconds(pacifyDuration),
-                () =>
-                {
-                    _chatManager.ChatMessageToAll(
-                        ChatChannel.Server,
-                        Loc.GetString("syndiebattle-pacify-ended"),
-                        Loc.GetString("syndiebattle-pacify-ended"),
-                        default,
-                        false,
-                        false);
-                }
-            );
-        }
     }
 
     protected override void Ended(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
@@ -151,20 +129,24 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         var topKills = players.OrderByDescending(p => p.KillCount).ThenByDescending(p => p.Score).Take(3).ToList();
         var topSurvive = players.OrderByDescending(p => p.DurationSec).ThenByDescending(p => p.Score).Take(3).ToList();
 
-        args.AddLine(Loc.GetString("syndiebattle-round-end-title") + "/n");
+        args.AddLine(Loc.GetString("syndiebattle-round-end-title"));
+        args.AddLine("");
+
         args.AddLine(Loc.GetString("syndiebattle-top-tc-header"));
         for (var i = 0; i < topTc.Count; i++)
         {
             args.AddLine(Loc.GetString("syndiebattle-top-tc-entry", ("rank", i + 1), ("name", topTc[i].Name), ("tc", topTc[i].TC)));
         }
+        args.AddLine("");
 
-        args.AddLine(Loc.GetString("syndiebattle-top-kills-header") + "/n");
+        args.AddLine(Loc.GetString("syndiebattle-top-kills-header"));
         for (var i = 0; i < topKills.Count; i++)
         {
             args.AddLine(Loc.GetString("syndiebattle-top-kills-entry", ("rank", i + 1), ("name", topKills[i].Name), ("kills", topKills[i].KillCount)));
         }
+        args.AddLine("");
 
-        args.AddLine(Loc.GetString("syndiebattle-top-survive-header") + "/n");
+        args.AddLine(Loc.GetString("syndiebattle-top-survive-header"));
         for (var i = 0; i < topSurvive.Count; i++)
         {
             var dur = TimeSpan.FromSeconds(topSurvive[i].DurationSec);
@@ -188,7 +170,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
 
         MakeTraitor(ev.Mob, component);
 
-        ApplyPacifism(ev.Mob);
+        ApplyPacifism(ev.Mob, component);
 
         var client = ev.Player.Channel;
         var msg = Loc.GetString("syndiebattle-mode-goal");
@@ -197,32 +179,24 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         Timer.Spawn(delay, () => _chatManager.ChatMessageToOne(ChatChannel.Server, msg, msg, EntityUid.Invalid, false, client));
     }
 
-    private void ApplyPacifism(
-        EntityUid uid,
-        float duration = 0f,
-        float godmodeDuration = 0f)
+    private void ApplyPacifism(EntityUid uid, SyndieBattleRuleComponent component)
     {
         var godSystem = EntityManager.System<SharedGodmodeSystem>();
+        var duration = component.PacifyDurationSeconds;
 
         if (!TryComp<MobStateComponent>(uid, out var mob) || _mobStateSystem.IsDead(uid, mob))
             return;
-
-        EnsureComp<PacifiedComponent>(uid);
-
-        if (godmodeDuration > 0f)
-            godSystem.EnableGodmode(uid);
-
         if (duration <= 0f)
             return;
+
+        godSystem.EnableGodmode(uid);
+        EnsureComp<PacifiedComponent>(uid);
 
         Timer.Spawn(TimeSpan.FromSeconds(duration),
             () =>
             {
-                if (EntityManager.EntityExists(uid))
-                    RemCompDeferred<PacifiedComponent>(uid);
-
-                if (godmodeDuration > 0f)
-                    godSystem.DisableGodmode(uid);
+                RemComp<PacifiedComponent>(uid);
+                godSystem.DisableGodmode(uid);
 
                 if (_playerManager.TryGetSessionByEntity(uid, out var session))
                 {
@@ -240,6 +214,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
 
     private void MakeTraitor(EntityUid player, SyndieBattleRuleComponent? component = null)
     {
+
         if (!_mindSystem.TryGetMind(player, out var mindId, out var mind))
             return;
 
@@ -345,6 +320,9 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         return null;
     }
 
+    /// <summary>
+    /// Конвертирует всех текущих игроков в предателей
+    /// </summary>
     private void ConvertAllCurrentPlayers(SyndieBattleRuleComponent component)
     {
         var query = EntityQueryEnumerator<ActorComponent, MindContainerComponent, MobStateComponent>();
@@ -358,55 +336,55 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         }
     }
 
+    /// <summary>
+    /// Спавнит машины искупления в случайных местах на станции
+    /// </summary>
     private void SpawnRedemptionMachines()
     {
         var activeRule = GetActiveRuleEntity();
         if (activeRule == null || !TryComp<SyndieBattleRuleComponent>(activeRule.Value, out var ruleComp))
             return;
-        var stations = EntityQueryEnumerator<StationDataComponent>();
-        while (stations.MoveNext(out var station, out var stationData))
+
+        var spawned = 0;
+        var maxAttempts = ruleComp.RedemptionMachineCount * 50;
+        var attempts = 0;
+
+        while (spawned < ruleComp.RedemptionMachineCount && attempts < maxAttempts)
         {
-            var spawned = 0;
-            var maxAttempts = ruleComp.RedemptionMachineCount * 5;
-            var attempts = 0;
-            while (spawned < ruleComp.RedemptionMachineCount && attempts < maxAttempts)
+            attempts++;
+
+            // Берём случайную станцию
+            if (!TryGetRandomStation(out var station) || !TryComp<StationDataComponent>(station, out var stationData))
+                continue;
+
+            if (!TryFindRandomTileOnStation((station.Value, stationData), out _, out var grid, out var coords))
+                continue;
+
+            if (TryComp<MapGridComponent>(grid, out var gridComp))
             {
-                attempts++;
-                if (!TryFindRandomTileOnStation((station, stationData), out var tile, out var grid, out var coords))
-                    continue;
-                var occupied = false;
-                var blockedReason = string.Empty;
+                var indices = _mapSystem.TileIndicesFor(grid, gridComp, coords);
+                var anchored = new List<EntityUid>();
+                _mapSystem.GetAnchoredEntities((grid, gridComp), indices, anchored);
 
-                if (TryComp<MapGridComponent>(grid, out var gridComp))
+                if (anchored.Count != 0)
                 {
-                    var indices = _map.TileIndicesFor(grid, gridComp, coords);
-                    var anchored = new List<EntityUid>();
-                    _map.GetAnchoredEntities((grid, gridComp), indices, anchored);
-
-                    foreach (var near in anchored)
-                    {
-                        if (near == grid)
-                            continue;
-                    }
-                }
-
-                if (!occupied)
-                {
-                    foreach (var near in _lookup.GetEntitiesInRange(coords, 0.2f, LookupFlags.StaticSundries))
-                    {
-                        if (near == grid)
-                            continue;
-                    }
-                }
-                if (occupied)
-                {
+                    Log.Warning($"Could not spawn a machine, there are {anchored.Count} anchored entities on the tile at {coords}.");
                     continue;
                 }
-                Spawn("SyndieBattleRedemptionMachine", coords);
-                spawned++;
             }
+
+            Spawn("SyndieBattleRedemptionMachine", coords);
+            Log.Info($"Spawned a machine at {coords}.");
+            spawned++;
         }
+
+        Log.Info($"Spawned {spawned} machines with {attempts} attempts.");
     }
+
+
+    /// <summary>
+    /// Получает имя убийцы из KillSource
+    /// </summary>
     private string GetKillerName(KillSource source)
     {
         switch (source)
@@ -423,6 +401,11 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         return "Что-то";
     }
 
+
+
+    /// <summary>
+    /// Получает место смерти
+    /// </summary>
     private string GetDeathLocation(EntityUid entity)
     {
         var location = _navMap.GetNearestBeaconString(entity);
