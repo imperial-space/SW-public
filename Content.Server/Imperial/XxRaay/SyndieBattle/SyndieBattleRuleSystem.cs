@@ -28,6 +28,7 @@ using Content.Server.Pinpointer;
 using Content.Server.GameTicking;
 using Robust.Shared.GameObjects;
 using Robust.Server.Player;
+using Content.Shared.Damage.Systems;
 
 namespace Content.Server.Imperial.XxRaay.SyndieBattle;
 
@@ -177,6 +178,19 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         if (component.StartTime > 0 && now - component.StartTime <= component.PacifyDurationSeconds)
         {
             ApplyPacifism(ev.Mob, component);
+        }
+        else if (component.StartTime > 0 && now - component.StartTime > component.PacifyDurationSeconds)
+        {
+            ApplyPacifism(ev.Mob, component);
+
+            var god = EntityManager.System<SharedGodmodeSystem>();
+            god.EnableGodmode(ev.Mob);
+            Timer.Spawn(TimeSpan.FromSeconds(90), () =>
+            {
+                RemCompDeferred<SyndieBattlePacifiedMarkerComponent>(ev.Mob);
+                RemCompDeferred<PacifiedComponent>(ev.Mob);
+                god.DisableGodmode(ev.Mob);
+            });
         }
 
         if (ev.Player != null)

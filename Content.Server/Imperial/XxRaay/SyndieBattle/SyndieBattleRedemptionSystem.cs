@@ -4,6 +4,7 @@ using Content.Shared.Popups;
 using Robust.Shared.Player;
 using Content.Server.Traitor.Uplink;
 using Content.Shared.PDA;
+using Content.Shared.Store.Components;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.XxRaay.SyndieBattle;
@@ -37,11 +38,23 @@ public sealed class SyndieBattleRedemptionSystem : EntitySystem
             return;
         }
 
-        var reward = ent.Comp.BaseReward;
         var spawnPos = Transform(args.Target).Coordinates;
         var spawnedCount = 0;
 
-        for (var i = 0; i < reward; i++)
+        var payout = 0;
+        if (TryComp<StoreComponent>(args.Used, out var store))
+        {
+            if (store.Balance.TryGetValue(UplinkSystem.TelecrystalCurrencyPrototype, out var bal))
+            {
+                var value = (double)bal; 
+                payout = (int)Math.Floor(value * 0.45);
+            }
+        }
+
+        if (payout <= 0)
+            payout = ent.Comp.BaseReward;
+
+        for (var i = 0; i < payout; i++)
         {
             if (!_prototype.TryIndex<EntityPrototype>("Telecrystal1", out var itemProto))
                 continue;
