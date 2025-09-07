@@ -485,11 +485,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
                 }
                 if (occupied)
                 {
-                        if (_random.NextDouble() < 0.02)
-                        {
-                            var msg = $"[SyndieBattle] Skipped spawn at {coords.ToMap(EntityManager, _transform).ToString()} reason={blockedReason} attempts={attempts}";
-                            _chatManager.ChatMessageToAll(ChatChannel.Server, msg, msg, default, false, false);
-                        }
                     continue;
                 }
                 Spawn("SyndieBattleRedemptionMachine", coords);
