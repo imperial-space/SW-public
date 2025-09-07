@@ -64,44 +64,46 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void ProcessSupermatterUpdate(EntityUid uid, SupermatterIntegrityComponent comp, TransformComponent transComp, float frameTime)
         {
+            var gas = _atmosphereSystem.GetContainingMixture((uid, transComp), true);
 
-            var gas = _atmosphereSystem.GetContainingMixture((uid, transComp), true, true);
-            bool badConditions = false;
+            var badConditions = false;
             if (gas != null)
             {
-                badConditions = gas.Temperature > comp.UpperTempThreshold ||
-                                gas.Temperature < comp.LowerTempThreshold ||
-                                gas.Pressure > comp.UpperPressureThreshold;
-            }
-            else
-            {
-                badConditions = true;
+                if (gas.Temperature > comp.UpperTempThreshold ||
+                    gas.Temperature < comp.LowerTempThreshold ||
+                    gas.Pressure > comp.UpperPressureThreshold)
+                {
+                    badConditions = true;
+                }
             }
 
-            var integrityPercent = comp.Integrity / comp.MaxIntegrity * 100f;
+            var integrityPercent = comp.Integrity / comp.MaxIntegrity * 100;
 
-            // Сброс флага предупреждения для текущего уровня
             var index = comp.SupermatterIntegrity.FindIndex(entry => integrityPercent > entry.Threshold);
             if (index >= 0)
             {
+                // Replace with same tuple but Flag = false
                 var oldEntry = comp.SupermatterIntegrity[index];
-                if (oldEntry.Flag)
-                    comp.SupermatterIntegrity[index] = (oldEntry.Threshold, oldEntry.Color, oldEntry.Description, oldEntry.Warning, false);
+                comp.SupermatterIntegrity[index] = (oldEntry.Threshold, oldEntry.Color, oldEntry.Description, oldEntry.Warning, false);
             }
 
             foreach (var level in comp.SupermatterIntegrity.OrderByDescending(entry => entry.Threshold))
             {
-                if (integrityPercent > level.Threshold || level.Flag || string.IsNullOrEmpty(level.Warning))
+                if (integrityPercent > level.Threshold
+                    || level.Flag
+                    || string.IsNullOrEmpty(level.Warning))
+                {
                     continue;
+                }
 
                 var integrityWarning = Loc.GetString(level.Warning);
+
                 SendSupermatterRadio(uid, integrityWarning, comp);
 
-                // Если мы достигли уровня с порогом <= 10% — выставляем код тревоги для станции и объявление.
-                // Раньше использовался MinBy по всем порогам (что возвращало 0) и из-за этого код не ставился.
-                if (level.Threshold <= 10f)
+                var criticalThreshold = comp.SupermatterIntegrity.MinBy(entry => entry.Threshold);
+                if (integrityPercent <= criticalThreshold.Threshold) // 10f
                 {
-                    var station = _stationSystem.GetOwningStation(uid, transComp);
+                    var station = _stationSystem.GetOwningStation(uid);
                     if (station != null)
                     {
                         _alertLevelSystem.SetLevel(station.Value, "yellow", true, true, true);
@@ -112,15 +114,15 @@ namespace Content.Server.Imperial.Power.EntitySystems
                             colorOverride: Color.Yellow
                         );
                     }
+                    EntityManager.QueueDeleteEntity(uid);
+                    return;
                 }
 
-                // Устанавливаем флаг предупреждения
                 var levelIndex = comp.SupermatterIntegrity.FindIndex(entry => Math.Abs(level.Threshold - entry.Threshold) < 1f);
-                if (levelIndex >= 0)
-                {
-                    var updated = comp.SupermatterIntegrity[levelIndex];
-                    comp.SupermatterIntegrity[levelIndex] = (updated.Threshold, updated.Color, updated.Description, updated.Warning, true);
-                }
+                var updated = comp.SupermatterIntegrity[levelIndex];
+
+                comp.SupermatterIntegrity[levelIndex] = (updated.Threshold, updated.Color, updated.Description, updated.Warning, true);
+
                 break;
             }
 
@@ -132,7 +134,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 comp.CatastropheLightningTimer = TimeSpan.Zero; // Сбрасываем таймер молний
 
                 // Отправляем предупреждение о катастрофе
-                var station = _stationSystem.GetOwningStation(uid, transComp);
+                var station = _stationSystem.GetOwningStation(uid);
                 if (station != null)
                 {
                     _alertLevelSystem.SetLevel(station.Value, "red", true, true, true);
@@ -180,15 +182,21 @@ namespace Content.Server.Imperial.Power.EntitySystems
             }
 
             // Обработка урона от плохих условий
-            if (badConditions)
+            if (!badConditions)
+                return;
+
+            comp.TickAccumulator += TimeSpan.FromSeconds(frameTime);
+            while (comp.TickAccumulator >= comp.DamageTickInterval)
             {
-                comp.TickAccumulator += TimeSpan.FromSeconds(frameTime);
-                while (comp.TickAccumulator >= comp.DamageTickInterval)
+                comp.TickAccumulator -= comp.DamageTickInterval;
+
+                var tickAmount = 0f;
+                foreach (var v in comp.TickDamage.DamageDict.Values)
                 {
-                    comp.TickAccumulator -= comp.DamageTickInterval;
-                    var tickAmount = comp.TickDamage.DamageDict.Values.Sum(v => (float)v);
-                    comp.Integrity = MathF.Max(0, comp.Integrity - tickAmount);
+                    tickAmount += (float)v;
                 }
+
+                comp.Integrity = MathF.Max(0, comp.Integrity - tickAmount);
             }
         }
 
