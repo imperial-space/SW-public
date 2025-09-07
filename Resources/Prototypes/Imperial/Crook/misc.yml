@@ -1189,12 +1189,6 @@
     heldPrefix: produce
   - type: Produce
     seedId: blueSpaceTomato
-  - type: Extractable
-    grindableSolutionName: food
-    juiceSolution:
-      reagents:
-      - ReagentId: UnstableBluespaceLiquid
-        Quantity: 1
   - type: Destructible
     thresholds:
     - trigger:
