@@ -10,12 +10,12 @@
   - type: Armor
     modifiers:
       coefficients:
-        Caustic: 0.4
-        Piercing: 0.45
+        Piercing: 0.5
+        Caustic: 0.5
         Blunt: 0.5
         Slash: 0.5
         Heat: 0.5
-        Stamina: 0.6
+        Stamina: 0.5
         Radiation: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.5
@@ -34,7 +34,6 @@
   - type: Armor
     modifiers:
       coefficients:
-        Caustic: 0.85
         Blunt: 0.85
         Slash: 0.85
         Piercing: 0.85
@@ -55,12 +54,12 @@
   - type: Armor
     modifiers:
       coefficients:
+        Piercing: 0.4
         Blunt: 0.4
         Slash: 0.4
-        Piercing: 0.4
-        Caustic: 0.4
         Heat: 0.4
-        Stamina: 0.5
+        Stamina: 0.4
+        Caustic: 0.5
         Radiation: 0.9
   - type: ExplosionResistance
     damageCoefficient: 0.4
@@ -147,15 +146,15 @@
         Blunt: 0.35
         Slash: 0.35
         Piercing: 0.35
-        Caustic: 0.35
-        Heat: 0.35
-        Radiation: 0.35
+        Caustic: 0.4
+        Heat: 0.4
+        Radiation: 0.4
         Stamina: 0.5
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: ClothingSpeedModifier
-    walkModifier: 0.85
-    sprintModifier: 0.85
+    walkModifier: 0.8
+    sprintModifier: 0.8
   - type: GroupExamine
 
 - type: entity
@@ -172,11 +171,11 @@
   - type: Armor
     modifiers:
       coefficients:
-        Blunt: 0.85
-        Slash: 0.85
-        Piercing: 0.85
-        Heat: 0.85
-        Stamina: 0.6
+        Stamina: 0.7
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.8
   - type: HideLayerClothing
     layers:
       Hair: HEAD
