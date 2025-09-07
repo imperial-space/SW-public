@@ -1171,8 +1171,6 @@
   id: FoodBlueSpaceTomato
   description: This one is blue.
   components:
-  - type: StaticPrice
-    price: 500
   - type: SolutionContainerManager
     solutions:
       food:
@@ -1230,10 +1228,10 @@
   production: 4
   yield: 1
   potency: 5
-  waterConsumption: 1.4
-  nutrientConsumption: 1.4
-  idealLight: 8
-  idealHeat: 273.15
+  waterConsumption: 1.5
+  nutrientConsumption: 1.5
+  idealLight: 9
+  idealHeat: 298
   splatPrototype: PuddleSplatter
   chemicals:
     Nutriment:

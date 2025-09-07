@@ -124,6 +124,6 @@ ent-DoubleBedsheetYellow = большое одеяло
 ent-FoodBlueSpaceTomato = блюспейс-томат
     .desc = Осторожнее с этим!
 ent-BlueSpaceTomatoSeeds = пакет семян блюспейс-томатов
-    .desc = Пакет с семянами определенной культуры. На ней есть пометка, что идеальная температура - 273.15 Кельвин, или же 0 градусов по Цельсию.
+    .desc = { ent-SeedBase.desc }
 seeds-bluespacetomato-name = блюспейс-томат
 seeds-bluespacetomato-display-name = томатный блюспейс-куст
