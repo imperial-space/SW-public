@@ -1166,7 +1166,7 @@
 # hydroponics
 
 - type: entity
-  name: blueSpace tomato
+  name: bluespace tomato
   parent: FoodBlueTomato
   id: FoodBlueSpaceTomato
   description: This one is blue.
@@ -1222,14 +1222,14 @@
   packetPrototype: BlueSpaceTomatoSeeds
   productPrototypes:
     - FoodBlueSpaceTomato
-  harvestRepeat: Repeat
-  lifespan: 25
+  harvestRepeat: NoRepeat
+  lifespan: 15
   maturation: 8
-  production: 6
-  yield: 2
-  potency: 10
-  waterConsumption: 0.60
-  nutrientConsumption: 0.70
+  production: 4
+  yield: 1
+  potency: 5
+  waterConsumption: 1.4
+  nutrientConsumption: 1.4
   idealLight: 8
   idealHeat: 298
   splatPrototype: PuddleSplatter
