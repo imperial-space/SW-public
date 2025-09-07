@@ -34,7 +34,6 @@
   - type: Armor
     modifiers:
       coefficients:
-        Caustic: 0.85
         Blunt: 0.85
         Slash: 0.85
         Piercing: 0.85
