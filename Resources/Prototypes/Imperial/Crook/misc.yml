@@ -576,6 +576,12 @@
     radius: 1.5
     energy: 0.5
     netsync: false
+  - type: EmitSoundOnSpawn
+    sound:
+      path: /Audio/Imperial/Crook/backrooms/glitchspawn.ogg
+      params:
+        range: 6
+        volume: -6
   - type: AmbientSound
     range: 4
     volume: -3
