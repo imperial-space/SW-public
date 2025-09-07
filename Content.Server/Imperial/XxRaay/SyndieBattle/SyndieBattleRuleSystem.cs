@@ -446,19 +446,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
                     {
                         if (near == grid)
                             continue;
-
-                        if (HasComp<Content.Server.Power.Components.CableComponent>(near)
-                            || HasComp<Content.Server.Atmos.Components.PipeRestrictOverlapComponent>(near)
-                            || HasComp<Content.Server.Power.Components.ExtensionCableProviderComponent>(near)
-                            || HasComp<Content.Server.Power.Components.ExtensionCableReceiverComponent>(near)
-                            || HasComp<Content.Server.Power.Components.ApcPowerReceiverComponent>(near)
-                            || HasComp<Content.Server.Power.Components.ApcPowerProviderComponent>(near)
-                            || HasComp<Content.Shared.NodeContainer.NodeContainerComponent>(near))
-                        {
-                            occupied = true;
-                            blockedReason = "cable_or_pipe_anchored";
-                            break;
-                        }
                     }
                 }
 
@@ -468,19 +455,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
                     {
                         if (near == grid)
                             continue;
-
-                        if (HasComp<Content.Server.Power.Components.CableComponent>(near)
-                            || HasComp<Content.Server.Atmos.Components.PipeRestrictOverlapComponent>(near)
-                            || HasComp<Content.Server.Power.Components.ExtensionCableProviderComponent>(near)
-                            || HasComp<Content.Server.Power.Components.ExtensionCableReceiverComponent>(near)
-                            || HasComp<Content.Server.Power.Components.ApcPowerReceiverComponent>(near)
-                            || HasComp<Content.Server.Power.Components.ApcPowerProviderComponent>(near)
-                            || HasComp<Content.Shared.NodeContainer.NodeContainerComponent>(near))
-                        {
-                            occupied = true;
-                            blockedReason = "cable_or_pipe_lookup";
-                            break;
-                        }
                     }
                 }
                 if (occupied)
