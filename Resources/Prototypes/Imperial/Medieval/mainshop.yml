@@ -1,3 +1,102 @@
+
+# генерируемое имя для гильдии
+- type: guildName
+  id: TestName
+  # количество частей в имени
+  partCount: 3
+
+  # как разделяются эти части
+  # к примеру, "-" превратит части 1, 2, 3 в 1-2-3
+  split: ""
+
+  # сами части имени
+  parts:
+  - text: "Те" # текст части
+    max: 1     # максимальная позиция этой части
+               # здесь указано 1 - часть будет только в начале
+               # то есть после позиции 1 (начинается с 1, не с 0) она не будет генерироваться
+               # аналогично для минимальной позиции
+  - text: "То"
+    max: 1
+  - text: "тес"
+    min: 2
+    max: 2
+  - text: "тос"
+    min: 2
+    max: 2
+  - text: "-"
+    min: 2
+    max: 2
+  - text: "ты"
+    min: 3
+  - text: "мы"
+    min: 3
+  - text: "сты"
+    min: 3
+
+
+# иконка гильдии
+- type: guildIcon
+  id: Deprecated
+
+  # пусть до png
+  texturePath: "/Textures/deprecated.rsi/deprecated.png"
+
+- type: guildIcon
+  id: Test2
+  texturePath: "/Textures/Interface/pray.svg.png"
+
+# сам тип гильдии
+- type: guildType
+  id: TestType2
+
+  # прототип имени гильдии (см. выше)
+  name: TestName
+
+  # максимальное число гильдий, которые сгенерируются по этому прототипу
+  maximumGuilds: 3
+
+  # валюта гильдии
+  # Revent по умолчанию, можно не указывать
+  currency: Revent
+
+  # продающиеся предметы в гильдии
+  items:
+  - productEntity: FoodPizzaPineapple
+
+    # минимальное кол-во репутации для покупки
+    # по умолчанию 0
+    minReputation: 10
+
+    # цена предмета
+    cost: 10
+  - productEntity: FoodBurgerBacon
+    cost: 5
+
+    # на какой позиции в рейтинге гильдии
+    # должен находиться игрок, чтобы купить
+    # по умолчанию 0 - на любом месте
+    minReputationPlace: 1
+
+    # сколько дают репутации за покупку этого предмета
+    # по умолчанию 2
+    reputationForBuying: 4
+
+    # в квесте нужно указать reputationReward: ...
+  - productEntity: MedievalQuestContractLegionMelee
+    cost: 0
+
+    # позволяет "отделить" северных торговцев от южных
+    # можно указать какой ActionId должен быть
+    # в компоненте MedievalJobSpawnComponent
+    spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
+
+    # если не указывать, то будут использоваться имя и описание предмета
+    name: тест квеста
+    description: тесты
+  - productEntity: MedievalKeyWizard
+    cost: 1
+
 - type: entity
   id: MedievalShopHole
   name: MedievalShopHole
@@ -11,29 +110,22 @@
     netsync: false
   - type: UserInterface
     interfaces:
-      enum.StoreUiKey.Key:
-        type: StoreBoundUserInterface
+      enum.TradingUiKey.Key:
+        type: TradingBoundUserInterface
   - type: ActivatableUI
     singleUser: true
-    key: enum.StoreUiKey.Key
-  - type: Store
-    categories:
-    - MedievalFood
-    - MedievalBuild
-    - MedievalArmor
-    - MedievalMed
-    - MedievalWeapon
-    - MedievalMisc
-    - MedievalClothing
-    - MedievalBackpack
-    - MedievalMagic
-    #- MedievalUpgrade
-    - MedievalPlants
-    - MedievalTransport
-    currencyWhitelist:
-    - Revent
-    balance:
-      Revent: 0
+    key: enum.TradingUiKey.Key
+    # трейдинг указывать здесь
+  - type: Trading
+    # прототипы гильдий, которые находятся
+    # в данном магазине
+    guildTypes:
+    - TestType2
+    # прототип валюты, которая используется в магазине
+    # по умолчанию Revent
+    # должно совпадать с currency во всех guildTypes
+    currency: Revent
+    balance: 0
   - type: TrashDefendArea
   - type: Transform
     anchored: true
@@ -57,69 +149,64 @@
       - Structure
   - type: PointLight
 
+#- type: entity
+#  parent: MedievalShopHole
+#  id: MedievalShopHoleLockedLegion
+#  name: MedievalShopHole
+#  description: Suspiciously looking old radio...
+#  suffix: Empty
+#  components:
+#  - type: ActivatableUIRequiresAccess
+#  - type: AccessReader
+#    access: [["ImperialLibrary"]]
+#  - type: Store
+#    categories:
+#    - MedievalFood
+#    - MedievalBuild
+#    - MedievalArmor
+#    - MedievalMed
+#    - MedievalWeapon
+#    - MedievalMisc
+#    - MedievalClothing
+#    - MedievalBackpack
+#    - MedievalMagic
+#    - MedievalQuestLegion
+#    - MedievalPlants
+#    - MedievalTransport
+#    currencyWhitelist:
+#    - Revent
+#    balance:
+#      Revent: 0
 
 
-
-
-
-
-- type: entity
-  parent: MedievalShopHole
-  id: MedievalShopHoleLockedLegion
-  name: MedievalShopHole
-  description: Suspiciously looking old radio...
-  suffix: Empty
-  components:
-  - type: ActivatableUIRequiresAccess
-  - type: AccessReader
-    access: [["ImperialLibrary"]]
-  - type: Store
-    categories:
-    - MedievalFood
-    - MedievalBuild
-    - MedievalArmor
-    - MedievalMed
-    - MedievalWeapon
-    - MedievalMisc
-    - MedievalClothing
-    - MedievalBackpack
-    - MedievalMagic
-    - MedievalQuestLegion
-    - MedievalPlants
-    - MedievalTransport
-    currencyWhitelist:
-    - Revent
-    balance:
-      Revent: 0
-
-- type: entity
-  parent: MedievalShopHole
-  id: MedievalShopHoleLockedIns
-  name: MedievalShopHole
-  description: Suspiciously looking old radio...
-  suffix: Empty
-  components:
-  - type: ActivatableUIRequiresAccess
-  - type: AccessReader
-    access: [["ImperialLibrary"]]
-  - type: Store
-    categories:
-    - MedievalFood
-    - MedievalBuild
-    - MedievalArmor
-    - MedievalMed
-    - MedievalWeapon
-    - MedievalMisc
-    - MedievalClothing
-    - MedievalBackpack
-    - MedievalMagic
-    - MedievalQuestIns
-    - MedievalPlants
-    - MedievalTransport
-    currencyWhitelist:
-    - Revent
-    balance:
-      Revent: 0
+#- type: entity
+#  parent: MedievalShopHole
+#  id: MedievalShopHoleLockedIns
+#  name: MedievalShopHole
+#  description: Suspiciously looking old radio...
+#  suffix: Empty
+#  components:
+#  - type: ActivatableUIRequiresAccess
+#  - type: AccessReader
+#    access: [["ImperialLibrary"]]
+#  - type: Store
+#    categories:
+#    - MedievalFood
+#    - MedievalBuild
+#    - MedievalArmor
+#    - MedievalMed
+#    - MedievalWeapon
+#    - MedievalMisc
+#    - MedievalClothing
+#    - MedievalBackpack
+#    - MedievalMagic
+#    - MedievalQuestIns
+#    - MedievalPlants
+#    - MedievalTransport
+#    currencyWhitelist:
+#    - Revent
+#    balance:
+#      Revent: 0
 
 - type: storeCategory
   id: MedievalFood

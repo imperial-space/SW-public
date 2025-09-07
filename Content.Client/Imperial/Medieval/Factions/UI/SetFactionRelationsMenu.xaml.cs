@@ -20,12 +20,16 @@ public sealed partial class SetFactionRelationsMenu : DefaultWindow
     public ProtoId<MedievalFactionPrototype> UserFaction;
     public ProtoId<FactionRelationsPrototype> Relation = "Neutral";
 
-    public SetFactionRelationsMenu(ProtoId<MedievalFactionPrototype> userFaction, ProtoId<MedievalFactionPrototype>? targetFaction)
+    private bool _paper;
+
+    public SetFactionRelationsMenu(ProtoId<MedievalFactionPrototype> userFaction, ProtoId<MedievalFactionPrototype>? targetFaction, bool paper = false)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
         UserFaction = userFaction;
+        _paper = paper;
+
         PopulateFactions(userFaction, targetFaction);
         PopulateRelations();
         UpdateMessage();
@@ -42,6 +46,8 @@ public sealed partial class SetFactionRelationsMenu : DefaultWindow
     {
         var relation = _proto.Index(Relation);
         MainLabel.SetMessage($"Вы уверены, что хотите изменить отношения с фракцией {_proto.Index(TargetFaction).Name} на {relation.Name}?", defaultColor: relation.Color);
+
+        PaperWarning.Visible = _paper;
     }
 
     private void PopulateFactions(ProtoId<MedievalFactionPrototype> userFaction, ProtoId<MedievalFactionPrototype>? targetFaction)
@@ -54,12 +60,12 @@ public sealed partial class SetFactionRelationsMenu : DefaultWindow
             return;
         }
 
-        var factions = _proto.EnumeratePrototypes<MedievalFactionPrototype>().Where(x => x.ID != userFaction)
+        var factions = _proto.EnumeratePrototypes<MedievalFactionPrototype>().Where(x => x.ID != userFaction && !x.BlockedRelations.Contains(userFaction))
             .ToList();
         factions.OrderBy(x => x.Name);
         for (var i = 0; i < factions.Count(); i++)
         {
-            FactionSelectButton.AddItem(factions.ElementAt(i).Name, i);
+            FactionSelectButton.AddItem(factions[i].Name, i);
         }
 
         TargetFaction = factions.ElementAt(0).ID;

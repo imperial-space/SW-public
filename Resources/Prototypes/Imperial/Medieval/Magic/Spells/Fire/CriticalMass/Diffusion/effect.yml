@@ -30,7 +30,7 @@
     lifetime: 1.25
 
 - type: entity
-  id: DiffusionSpellcastEffectMiddle
+  id: DiffusionSpellCastEffectMiddle
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
@@ -77,7 +77,7 @@
     lifetime: 1.65
 
 - type: entity
-  id: DiffusionSpellcastEffectSenior
+  id: DiffusionSpellCastEffectSenior
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi

@@ -1035,31 +1035,18 @@
   id: MedievalClothingHeadHatPlaguedoctor
   name: MedievalClothingHeadHatPlaguedoctor
   description: MedievalClothingHeadHatPlaguedoctor
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.65
 
 - type: entity
   parent: ClothingMaskPlague
   id: MedievalClothingMaskPlague
   name: MedievalClothingMaskPlague
   description: MedievalClothingMaskPlague
-
-- type: entity
-  parent: ClothingHeadHatPlaguedoctor
-  id: MedievalClothingHeadHatRoyalChaplain
-  name: MedievalClothingHeadHatRoyalChaplain
-  description: MedievalClothingHeadHatRoyalChaplain
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
-  - type: Clothing
-    sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
-  - type: Item
-    size: Normal
-  - type: Tag
-    tags:
-    - HidesHair
-  - type: HideLayerClothing
-    slots:
-    - Hair
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.4
 
 - type: entity
   parent: ClothingMaskMuzzle
@@ -1865,6 +1852,10 @@
     sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.95
 
 - type: entity
   parent: ClothingEyesBase

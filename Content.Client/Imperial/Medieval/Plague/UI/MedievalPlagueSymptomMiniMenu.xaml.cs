@@ -72,10 +72,10 @@ public sealed partial class MedievalPlagueSymptomMiniMenu : DefaultWindow
         Progress.MaxValue = _proto.EnumeratePrototypes<MedievalPlagueSymptomPrototype>().Count();
         Progress.Value = data.Symptoms;
 
-        InfectedCount.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-infected-count", ("count", data.Infected))));
-        ImmuneCount.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-immune-count", ("count", data.Immune))));
-        PlagueTier.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-plague-tier", ("tier", data.Tier))));
-        SymptomsCount.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-symptoms-count", ("count", data.Symptoms))));
-        PlaguePoints.SetMessage(FormattedMessage.FromUnformatted(Loc.GetString("medieval-plague-ui-points-count", ("count", data.Points))));
+        InfectedCount.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("medieval-plague-ui-infected-count", ("count", data.Infected))));
+        ImmuneCount.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("medieval-plague-ui-immune-count", ("count", data.Immune))));
+        PlagueTier.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("medieval-plague-ui-plague-tier", ("tier", data.Tier))));
+        SymptomsCount.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("medieval-plague-ui-symptoms-count", ("count", data.Symptoms))));
+        PlaguePoints.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("medieval-plague-ui-points-count", ("count", data.Points))));
     }
 }

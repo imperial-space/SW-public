@@ -65,10 +65,7 @@ namespace Content.Server.Medical.Components
 
         // Imperial Medieval plague start
         [DataField]
-        public int PlagueProgressionDecayPerUse = 0;
-
-        [DataField]
-        public int PlagueHealingTier = 0;
+        public float PlagueProgressionDecayPerUse = 0;
         // Imperial Medieval plague end
     }
 }

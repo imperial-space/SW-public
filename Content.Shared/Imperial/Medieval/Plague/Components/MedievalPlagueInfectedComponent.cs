@@ -8,9 +8,6 @@ public sealed partial class MedievalPlagueInfectedComponent : Component
     public const int MaxProgression = 100;
 
     [ViewVariables(VVAccess.ReadWrite)]
-    public EntityUid? PlagueSource;
-
-    [ViewVariables(VVAccess.ReadWrite)]
     public float Progression
     {
         get => _progression;
@@ -31,6 +28,9 @@ public sealed partial class MedievalPlagueInfectedComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan NextUpdate = TimeSpan.Zero;
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan NextCollideSpread = TimeSpan.Zero;
 
     [ViewVariables(VVAccess.ReadWrite)]
     public Dictionary<string, BasePlagueEffect> Effects = new();

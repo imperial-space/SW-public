@@ -13,7 +13,7 @@
       path: /Audio/Imperial/Medieval/stone_release.ogg
 
 - type: entity
-  id: CultDaggerSpellcastEffectBeginner
+  id: CultDaggerSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/darkness/dagger.rsi

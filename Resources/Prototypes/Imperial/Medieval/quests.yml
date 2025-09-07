@@ -74,6 +74,7 @@
     maxReward: 165
     minAmount: 3
     maxAmount: 6
+    reputationReward: 20
 
 - type: entity
   name: MedievalQuestContract

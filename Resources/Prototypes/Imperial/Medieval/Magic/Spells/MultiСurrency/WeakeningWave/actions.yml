@@ -55,4 +55,4 @@
       groups:
         Burn: 30
   - type: SpellCastEffect
-    effectProto: WeakeningWaveSpellcastEffectBeginner
+    effectProto: WeakeningWaveSpellCastEffectBeginner

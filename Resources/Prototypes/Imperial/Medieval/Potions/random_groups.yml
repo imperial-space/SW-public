@@ -188,7 +188,6 @@
   - MedievalPlagueCure4
   usedGroups:
   - EasyPack
-  - HardPack
   colors:
   - "#48004e"
   - "#006b20"
@@ -204,4 +203,3 @@
   - "#5a7e45"
   - "#ffffff"
   - "#3d3d3d"
-  recipeCount: 2

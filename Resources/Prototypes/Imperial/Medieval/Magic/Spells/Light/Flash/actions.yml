@@ -22,7 +22,7 @@
       groups:
         Burn: 10
   - type: SpellCastEffect
-    effectProto: FlashSpellcastEffectBeginner
+    effectProto: FlashSpellCastEffectBeginner
   - type: MedievalTargetSpell
   - type: WorldTargetAction
     useDelay: 17

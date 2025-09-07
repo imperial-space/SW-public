@@ -16,6 +16,9 @@ public sealed partial class MedievalPlagueSystem
     private void InitializeGhost()
     {
         SubscribeLocalEvent<MedievalPlagueGhostComponent, ComponentInit>(OnGhostInit);
+        SubscribeLocalEvent<MedievalPlagueGhostComponent, ComponentShutdown>(OnGhostShutdown);
+
+
         SubscribeLocalEvent<MedievalPlagueGhostComponent, InfectTargetActionEvent>(OnInfectAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueForcedVomitActionEvent>(OnVomitAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueAsthmaticActionEvent>(OnAsthmaAction);
@@ -38,13 +41,22 @@ public sealed partial class MedievalPlagueSystem
     {
         _actions.AddAction(uid, "OpenPlagueMenuAction");
         _actions.AddAction(uid, ref comp.InfectAction, "PlagueInfectAction");
+
         UpdateInfectAction();
         _alerts.ShowAlert(uid, comp.AlertId);
+
+        _data.PlagueGhosts++;
+        _data.Points += comp.Points;
 
         foreach (var item in _symptoms.Where(x => x.Value.Unlocked))
         {
             AddPrototypeActions(uid, item.Key);
         }
+    }
+
+    private void OnGhostShutdown(EntityUid uid, MedievalPlagueGhostComponent comp, ComponentShutdown args)
+    {
+        _data.PlagueGhosts--;
     }
 
     private void OnInfectAction(EntityUid uid, MedievalPlagueGhostComponent comp, InfectTargetActionEvent args)
@@ -66,7 +78,7 @@ public sealed partial class MedievalPlagueSystem
             TryChangePoints(uid, -cost, comp);
         }
 
-        if (TryInfect(args.Target, uid, addPoint: false))
+        if (TryInfect(args.Target, addPoint: false))
         {
             _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/infect.ogg"), Filter.Empty().FromEntities(uid), false);
             _popup.PopupEntity(Loc.GetString("medieval-plague-infected-success-popup", ("target", Name(args.Target))), args.Target, uid);
@@ -131,9 +143,9 @@ public sealed partial class MedievalPlagueSystem
 
         args.Handled = true;
 
-        var block = EnsureComp<PlagueDizzinessComponent>(uid);
-        block.EndTime = _timing.CurTime + TimeSpan.FromSeconds(15);
-        _moveSpeed.RefreshMovementSpeedModifiers(args.Target);
+        _jitter.DoJitter(args.Target, TimeSpan.FromSeconds(6), true, 10, 3);
+        _drunk.TryApplyDrunkenness(args.Target, 600);
+        _stun.TrySlowdown(args.Target, TimeSpan.FromSeconds(6), true);
 
         _audio.PlayGlobal(new SoundCollectionSpecifier("PlagueDizziness"), Filter.Empty().FromEntities(args.Target), false);
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/dizzy.ogg"), Filter.Empty().FromEntities(uid), false);

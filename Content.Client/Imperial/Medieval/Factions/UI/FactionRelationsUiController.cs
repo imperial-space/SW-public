@@ -26,7 +26,7 @@ public sealed class FactionRelationsUiController : UIController
 
     public void OpenRequestRelationMenu(NetEntity target, ProtoId<MedievalFactionPrototype> userFaction)
     {
-        var menu = new SetFactionRelationsMenu(userFaction, null);
+        var menu = new SetFactionRelationsMenu(userFaction, null, true);
         menu.SendPressed += (_, _, args) => CreateRequest(target, userFaction, menu.TargetFaction, args);
         menu.OpenCentered();
     }

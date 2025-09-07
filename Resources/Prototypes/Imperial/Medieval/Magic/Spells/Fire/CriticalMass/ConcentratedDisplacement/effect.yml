@@ -27,7 +27,7 @@
     lifetime: 1.25
 
 - type: entity
-  id: ConcentratedDisplacementSpellcastEffectMiddle
+  id: ConcentratedDisplacementSpellCastEffectMiddle
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
@@ -71,7 +71,7 @@
     lifetime: 1.65
 
 - type: entity
-  id: ConcentratedDisplacementSpellcastEffectSenior
+  id: ConcentratedDisplacementSpellCastEffectSenior
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi

@@ -5,12 +5,12 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: retchupgrade
-  position: -120,45
+  position: 100,-30
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueForcedVomitAction
-  required: Vomit
+  actions: [PlagueForcedVomitAction]
+  required: [Vomit]
 
 - type: plagueSymptom
   id: AsthmaticAction
@@ -19,12 +19,12 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: coughupgrade
-  position: -120,-45
+  position: -100,-30
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueAsthmaticAction
-  required: Cough
+  actions: [PlagueAsthmaticAction]
+  required: [Cough]
 
 - type: plagueSymptom
   id: DizzinessAction
@@ -33,11 +33,11 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: dizzinessupgrade
-  position: 120,-45
+  position: -80,30
   tier: 1
-  cost: 5
+  cost: 2
   category: Action
-  actions: PlagueDizzinessAction
+  actions: [PlagueDizzinessAction]
 
 - type: plagueSymptom
   id: SleepyAction
@@ -46,12 +46,12 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: sleepy
-  position: 90,-45
+  position: -50,30
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueSleepyAction
-  required: DizzinessAction
+  actions: [PlagueSleepyAction]
+  required: [DizzinessAction]
 
 - type: plagueSymptom
   id: MorphRatAction
@@ -60,11 +60,11 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: ratstier1
-  position: 120,45
+  position: 80,30
   tier: 1
   cost: 5
   category: Action
-  actions: PlaguePolymorphMouseAction
+  actions: [PlaguePolymorphMouseAction]
 
 - type: plagueSymptom
   id: MorphRatsAction
@@ -73,11 +73,11 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: ratstier2
-  position: 90,45
+  position: 50,30
   tier: 1
   cost: 5
   category: Action
-  required: MorphRatAction
+  required: [MorphRatAction]
 
 - type: plagueSymptom
   id: SlimesAction
@@ -86,11 +86,11 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: slimeupgrade
-  position: -120,0
+  position: -95,0
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueSpawnSlimesAction
+  actions: [PlagueSpawnSlimesAction]
 
 - type: plagueSymptom
   id: BugsAction
@@ -99,12 +99,12 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: bugs
-  position: -90,0
+  position: -65,0
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueSpawnBugsAction
-  required: SlimesAction
+  actions: [PlagueSpawnBugsAction]
+  required: [SlimesAction]
 
 - type: plagueSymptom
   id: TpSickAction
@@ -113,11 +113,11 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: tpsick
-  position: 120,0
+  position: 95,0
   tier: 1
   cost: 5
-  category: Action
-  actions: PlagueTpInfectedAction
+  category: [Action]
+  actions: [PlagueTpInfectedAction]
 
 - type: plagueSymptom
   id: TpNotSickAction
@@ -126,12 +126,12 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: tphealthy
-  position: 90,0
+  position: 65,0
   tier: 1
   cost: 5
   category: Action
-  actions: PlagueTpNotInfectedAction
-  required: TpSickAction
+  actions: [PlagueTpNotInfectedAction]
+  required: [TpSickAction]
 
 - type: plagueSymptom
   id: CataractAction
@@ -144,8 +144,8 @@
   tier: 3
   cost: 10
   category: Action
-  actions: PlagueCataractAction
-  required: StomachCancer
+  actions: [PlagueCataractAction]
+  required: [StomachCancer]
 
 - type: plagueSymptom
   id: WoundAction
@@ -154,12 +154,12 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: wound
-  position: 30,-60
+  position: -30,-60
   tier: 3
   cost: 10
   category: Action
-  actions: PlagueCataractAction
-  required: SkinCancer
+  actions: [PlagueInjuryAction]
+  required: [SkinCancer]
 
 - type: plagueSymptom
   id: HeartAttackAction
@@ -168,9 +168,12 @@
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: heart
-  position: 30,-60
+  position: 0,-25
   tier: 3
   cost: 15
   category: Action
-  actions: PlagueCataractAction
-  required: SkinCancer
+  actions: [PlagueHeartAttackAction]
+  required:
+  - LungsCancer
+  - CataractAction
+  - WoundAction

@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: DisablerSpellcastEffectBeginner
+  id: DisablerSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/vodka/disabler.rsi

@@ -28,7 +28,7 @@ public sealed class MedievalPlagueUiController : UIController
         }
 
         _menu = new();
-        _menu.OnSymptomSelect = args => SelectSymptom(args, data, allowedPoints);
+        _menu.OnSymptomSelect = args => SelectSymptom(args, data, info, allowedPoints);
         _menu.InfoPressed = () => OpenInfo(info);
 
         var audio = EntityManager.System<AudioSystem>();
@@ -43,7 +43,7 @@ public sealed class MedievalPlagueUiController : UIController
                 audio.PlayGlobal(_closeSound, _player.LocalSession);
         };
 
-        _menu.Populate(_proto, data);
+        _menu.Populate(_proto, data, info);
         _menu.OpenCentered();
 
         if (_player.LocalSession != null)
@@ -54,8 +54,8 @@ public sealed class MedievalPlagueUiController : UIController
     {
         if (_menu != null)
         {
-            _menu.Populate(_proto, data);
-            _menu.OnSymptomSelect = args => SelectSymptom(args, data, allowedPoints);
+            _menu.Populate(_proto, data, info);
+            _menu.OnSymptomSelect = args => SelectSymptom(args, data, info, allowedPoints);
             _menu.InfoPressed = () => OpenInfo(info);
         }
 
@@ -68,7 +68,7 @@ public sealed class MedievalPlagueUiController : UIController
             }
 
             var proto = _proto.Index(_miniMenu.Proto);
-            var points = proto.Cost;
+            var points = proto.GetCost(info);
 
             if (data.TryGetValue(proto.ID, out var dat))
                 points -= dat.Points;
@@ -82,7 +82,7 @@ public sealed class MedievalPlagueUiController : UIController
         }
     }
 
-    private void SelectSymptom(ProtoId<MedievalPlagueSymptomPrototype> protoId, Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, int allowedPoints)
+    private void SelectSymptom(ProtoId<MedievalPlagueSymptomPrototype> protoId, Dictionary<ProtoId<MedievalPlagueSymptomPrototype>, MedievalPlagueSymptomData> data, SummaryPlagueData info, int allowedPoints)
     {
         if (_miniMenu == null)
         {
@@ -92,7 +92,7 @@ public sealed class MedievalPlagueUiController : UIController
         }
 
         var proto = _proto.Index(protoId);
-        var points = proto.Cost;
+        var points = proto.GetCost(info);
         if (data.TryGetValue(proto.ID, out var dat))
             points -= dat.Points;
 

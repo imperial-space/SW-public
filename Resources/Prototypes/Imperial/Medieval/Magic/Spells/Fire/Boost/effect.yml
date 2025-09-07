@@ -1,7 +1,7 @@
 #Beginner
 
 - type: entity
-  id: BoostSpellcastEffectBeginner
+  id: BoostSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/boost.rsi

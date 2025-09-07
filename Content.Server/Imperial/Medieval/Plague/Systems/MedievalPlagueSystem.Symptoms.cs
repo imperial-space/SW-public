@@ -1,5 +1,6 @@
 using System.Linq;
 using Content.Server.Body.Components;
+using Content.Server.Imperial.Medieval.Skills;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Plague;
@@ -8,6 +9,8 @@ using Content.Shared.Imperial.Medieval.Sprint;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Popups;
+using Content.Shared.Speech;
 using Content.Shared.Tag;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -30,10 +33,9 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<AsthmaComponent, CanBreatheEvent>(OnAsthmaCanBreathe);
         SubscribeLocalEvent<LungsCancerComponent, CanBreatheEvent>(OnCancerCanBreathe);
         SubscribeLocalEvent<PlagueBlockBreathingComponent, CanBreatheEvent>(OnBlockerCanBreathe);
+        SubscribeLocalEvent<PlagueBlockSpeechComponent, SpeakAttemptEvent>(OnBlockerSpeackAttempt);
 
         SubscribeLocalEvent<WeakSkinComponent, DamageModifyEvent>(OnDamageModify);
-
-        SubscribeLocalEvent<PlagueDizzinessComponent, RefreshMovementSpeedModifiersEvent>(OnMoveSpeedModify);
 
         SubscribeLocalEvent<LoweredSkillsComponent, MapInitEvent>(OnLoweredSkillsMapInit);
         SubscribeLocalEvent<LoweredSkillsComponent, ComponentShutdown>(OnLoweredSkillsShutdown);
@@ -55,7 +57,7 @@ public sealed partial class MedievalPlagueSystem
 
         var list = new List<string>(component.RandomReagents);
         _allergyRandom.Shuffle(list);
-        for (var i = 0; i < list.Count && list.Count < component.RandomCount; i++)
+        for (var i = 0; i < list.Count && component.Reagents.Count < component.RandomCount; i++)
         {
             component.Reagents.Add(list[i]);
         }
@@ -77,7 +79,7 @@ public sealed partial class MedievalPlagueSystem
 
         var list = new List<string>(component.RandomIds);
         _allergyRandom.Shuffle(list);
-        for (var i = 0; i < list.Count && list.Count < component.RandomCount; i++)
+        for (var i = 0; i < list.Count && component.Ids.Count < component.RandomCount; i++)
         {
             component.Ids.Add(list[i]);
         }
@@ -110,14 +112,6 @@ public sealed partial class MedievalPlagueSystem
             if (args.Damage.DamageDict.ContainsKey(item.Key))
                 args.Damage.DamageDict[item.Key] *= item.Value;
         }
-    }
-
-    private void OnMoveSpeedModify(EntityUid uid, PlagueDizzinessComponent component, RefreshMovementSpeedModifiersEvent args)
-    {
-        if (component.EndTime <= _timing.CurTime)
-            return;
-
-        args.ModifySpeed(-1f);
     }
 
     private void OnLoweredSkillsMapInit(EntityUid uid, LoweredSkillsComponent component, MapInitEvent args)
@@ -163,6 +157,20 @@ public sealed partial class MedievalPlagueSystem
         }
 
         args.Cancelled = true;
+    }
+
+    private void OnBlockerSpeackAttempt(EntityUid uid, PlagueBlockSpeechComponent component, SpeakAttemptEvent args)
+    {
+        var chance = component.Chance;
+        if (TryComp<SkillsComponent>(uid, out var skills))
+            chance -= (skills.Levels[SkillsSystem.VitalityId] - 10) * 0.02f;
+
+        if (!_random.Prob(chance))
+            return;
+
+        args.Cancel();
+        _damageable.TryChangeDamage(uid, component.Damage);
+        _popup.PopupEntity(Loc.GetString("plague-pantomime-speech-blocked-popup"), uid, uid, PopupType.MediumCaution);
     }
 
     private void OnAddEffects(EntityUid uid, MedievalPlagueInfectedComponent comp, AddSymptomEffectsEvent args)
@@ -244,7 +252,7 @@ public sealed partial class MedievalPlagueSystem
 
             comp.NextFall = _timing.CurTime + TimeSpan.FromSeconds(1);
 
-            if (_random.Prob(0.3f))
+            if (_random.Prob(0.04f))
                 _stun.TryParalyze(uid, TimeSpan.FromSeconds(1), false);
         }
     }
@@ -288,20 +296,6 @@ public sealed partial class MedievalPlagueSystem
             comp.NextEffect = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(comp.Delay.Min, comp.Delay.Max));
             comp.EndTime = _timing.CurTime + TimeSpan.FromSeconds(_random.Next(comp.Duration.Min, comp.Duration.Max));
             comp.Active = true;
-        }
-    }
-
-    private void UpdateDizzy()
-    {
-        var query = EntityQueryEnumerator<PlagueDizzinessComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (_timing.CurTime >= comp.EndTime)
-            {
-                RemComp<PlagueDizzinessComponent>(uid);
-                _moveSpeed.RefreshMovementSpeedModifiers(uid);
-                continue;
-            }
         }
     }
 }
