@@ -129,22 +129,19 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         var topKills = players.OrderByDescending(p => p.KillCount).ThenByDescending(p => p.Score).Take(3).ToList();
         var topSurvive = players.OrderByDescending(p => p.DurationSec).ThenByDescending(p => p.Score).Take(3).ToList();
 
-        args.AddLine(Loc.GetString("syndiebattle-round-end-title"));
-        args.AddLine("");
+        args.AddLine(Loc.GetString("syndiebattle-round-end-title") + "\n");
 
         args.AddLine(Loc.GetString("syndiebattle-top-tc-header"));
         for (var i = 0; i < topTc.Count; i++)
         {
-            args.AddLine(Loc.GetString("syndiebattle-top-tc-entry", ("rank", i + 1), ("name", topTc[i].Name), ("tc", topTc[i].TC)));
+            args.AddLine(Loc.GetString("syndiebattle-top-tc-entry", ("rank", i + 1), ("name", topTc[i].Name), ("tc", topTc[i].TC)) + "\n");
         }
-        args.AddLine("");
 
         args.AddLine(Loc.GetString("syndiebattle-top-kills-header"));
         for (var i = 0; i < topKills.Count; i++)
         {
-            args.AddLine(Loc.GetString("syndiebattle-top-kills-entry", ("rank", i + 1), ("name", topKills[i].Name), ("kills", topKills[i].KillCount)));
+            args.AddLine(Loc.GetString("syndiebattle-top-kills-entry", ("rank", i + 1), ("name", topKills[i].Name), ("kills", topKills[i].KillCount)) + "\n");
         }
-        args.AddLine("");
 
         args.AddLine(Loc.GetString("syndiebattle-top-survive-header"));
         for (var i = 0; i < topSurvive.Count; i++)
