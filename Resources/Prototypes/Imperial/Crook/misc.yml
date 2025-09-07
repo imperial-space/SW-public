@@ -1171,6 +1171,8 @@
   id: FoodBlueSpaceTomato
   description: This one is blue.
   components:
+  - type: StaticPrice
+    price: 500
   - type: SolutionContainerManager
     solutions:
       food:
@@ -1223,7 +1225,7 @@
   productPrototypes:
     - FoodBlueSpaceTomato
   harvestRepeat: NoRepeat
-  lifespan: 15
+  lifespan: 25
   maturation: 8
   production: 4
   yield: 1
@@ -1231,7 +1233,7 @@
   waterConsumption: 1.4
   nutrientConsumption: 1.4
   idealLight: 8
-  idealHeat: 298
+  idealHeat: 273.15
   splatPrototype: PuddleSplatter
   chemicals:
     Nutriment:
