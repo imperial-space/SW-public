@@ -287,7 +287,7 @@
 
 - type: guildName
   id: WeaponGuild
-  partCount: 3
+  partCount: 2
   split: " "
   parts:
   - text: "Гильдия"
@@ -308,6 +308,9 @@
     max: 1
   - text: "Сообщество"
     max: 1
+  - text: "стали"
+    min: 2
+    max: 2
   - text: "оружейников"
     min: 2
     max: 2
@@ -329,39 +332,6 @@
   - text: "ремесленников"
     min: 2
     max: 2
-  - text: "севера"
-    min: 3
-    max: 3
-  - text: "запада"
-    min: 3
-    max: 3
-  - text: "юга"
-    min: 3
-    max: 3
-  - text: "востока"
-    min: 3
-    max: 3
-  - text: "Гондора"
-    min: 3
-    max: 3
-  - text: "Фаеруна"
-    min: 3
-    max: 3
-  - text: "Мурандина"
-    min: 3
-    max: 3
-  - text: "Чондала"
-    min: 3
-    max: 3
-  - text: "Эвереска"
-    min: 3
-    max: 3
-  - text: "Тара"
-    min: 3
-    max: 3
-  - text: "Агларонда"
-    min: 3
-    max: 3
 
 - type: guildType
   id: WeaponGuild
@@ -470,9 +440,13 @@
   - productEntity: MedievalCatapultAmmoBarrelGunpowder
     cost: 60
     reputationForBuying: 2
+    minReputationPlace: 1
+    minReputation: 20
   - productEntity: MedievalCatapultAmmoBarrelAp
     cost: 80
     reputationForBuying: 3
+    minReputationPlace: 1
+    minReputation: 20
   - productEntity: MedievalDaggerT3Steel
     cost: 75
     reputationForBuying: 2
@@ -624,12 +598,6 @@
   maximumGuilds: 3
   currency: Revent
   items:
-  - productEntity: MedievalClothingOuterArmorFur
-    cost: 10
-    reputationForBuying: 0
-  - productEntity: MedievalClothingOuterArmorStudded
-    cost: 20
-    reputationForBuying: 1
   - productEntity: MedievalIronGloves
     cost: 30
     reputationForBuying: 1
@@ -675,6 +643,8 @@
   - productEntity: MedievalClothingHeadHelmetNazal
     cost: 150
     reputationForBuying: 5
+    minReputationPlace: 1
+    minReputation: 20
   - productEntity: MedievalClothingOuterArmorIronCuirass
     cost: 290
     reputationForBuying: 10
@@ -1080,6 +1050,12 @@
     reputationForBuying: 7
     minReputationPlace: 1
     minReputation: 20
+  - productEntity: MedievalClothingOuterArmorFur
+    cost: 10
+    reputationForBuying: 0
+  - productEntity: MedievalClothingOuterArmorStudded
+    cost: 20
+    reputationForBuying: 1
   - productEntity: MedievalClothingOuterArmorGambeson
     cost: 20
     reputationForBuying: 0
@@ -1396,8 +1372,6 @@
     max: 1
   - text: "Кирпичники"
     max: 1
-  - text: "Фортификаторы"
-    max: 1
   - text: "Вестфалла"
     min: 2
     max: 2
@@ -1456,9 +1430,6 @@
     cost: 10
     reputationForBuying: 0
   - productEntity: Easel
-    cost: 22
-    reputationForBuying: 1
-  - productEntity: CarcBoxClassic
     cost: 22
     reputationForBuying: 1
   - productEntity: CarcBoxClassic
@@ -1598,3 +1569,4 @@
     cost: 220
     reputationForBuying: 7
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+
