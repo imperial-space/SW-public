@@ -37,7 +37,7 @@ public sealed partial class SyndieBattleRuleComponent : Component
     /// Количество машин искупления
     /// </summary>
     [DataField]
-    public int RedemptionMachineCount = 10;
+    public int RedemptionMachineCount = 30;
 
     /// <summary>
     /// Длительность пацифизма в секундах (в начале раунда)

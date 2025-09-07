@@ -27,6 +27,11 @@ using Content.Server.KillTracking;
 using Content.Server.Pinpointer;
 using Content.Server.GameTicking;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.GameObjects.Components;
+using Robust.Shared.Map.Components;
+using Robust.Server.GameObjects;
 using Robust.Server.Player;
 using Content.Shared.Damage.Systems;
 
@@ -44,6 +49,8 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly NavMapSystem _navMap = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
 
 
@@ -74,6 +81,15 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         // Конвертируем всех текущих игроков при запуске правила
         ConvertAllCurrentPlayers(component);
         ApplyPacifismToAllPlayers(component);
+
+        Timer.Spawn(TimeSpan.FromMinutes(30), () =>
+        {
+            var active = GetActiveRuleEntity();
+            if (active == null)
+                return;
+
+            ForceEndSelf(active.Value);
+        });
     }
 
     protected override void Ended(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
@@ -86,8 +102,8 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     {
         var players = new List<(string Name, int KillCount, int Score, int TC, float DurationSec, bool Alive)>();
         var now = Timing.CurTime;
-        var query = EntityQueryEnumerator<SyndieBattleScoreComponent, ActorComponent, MobStateComponent>();
-        while (query.MoveNext(out var ent, out var score, out var actor, out var mobState))
+        var query = EntityQueryEnumerator<SyndieBattleScoreComponent, MobStateComponent>();
+        while (query.MoveNext(out var ent, out var score, out var mobState))
         {
             var name = MetaData(ent).EntityName;
             var killCount = score.KillCount;
@@ -328,6 +344,31 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             ("location", location));
 
         _chatManager.ChatMessageToAll(ChatChannel.Server, message, message, ev.Entity, false, false);
+
+        TryEndIfOneLeft();
+    }
+
+    private void TryEndIfOneLeft()
+    {
+        if (!AnyRuleActive())
+            return;
+
+        var active = GetActiveRuleEntity();
+        if (active == null || !TryComp<SyndieBattleRuleComponent>(active.Value, out var comp))
+            return;
+
+        var aliveCount = 0;
+        var query = EntityQueryEnumerator<SyndieBattleScoreComponent, MobStateComponent>();
+        while (query.MoveNext(out var ent, out var score, out var mobState))
+        {
+            if (score.Alive && !_mobStateSystem.IsDead(ent, mobState))
+                aliveCount++;
+        }
+
+        if (aliveCount <= 1)
+        {
+            ForceEndSelf(active.Value);
+        }
     }
 
     private bool AnyRuleActive()
@@ -393,16 +434,64 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
                 if (!TryFindRandomTileOnStation((station, stationData), out var tile, out var grid, out var coords))
                     continue;
                 var occupied = false;
-                foreach (var near in _lookup.GetEntitiesInRange(coords, 0.2f))
+                var blockedReason = string.Empty;
+
+                if (TryComp<MapGridComponent>(grid, out var gridComp))
                 {
-                    if (near != grid)
+                    var indices = _map.TileIndicesFor(grid, gridComp, coords);
+                    var anchored = new List<EntityUid>();
+                    _map.GetAnchoredEntities((grid, gridComp), indices, anchored);
+
+                    foreach (var near in anchored)
                     {
-                        occupied = true;
-                        break;
+                        if (near == grid)
+                            continue;
+
+                        if (HasComp<Content.Server.Power.Components.CableComponent>(near)
+                            || HasComp<Content.Server.Atmos.Components.PipeRestrictOverlapComponent>(near)
+                            || HasComp<Content.Server.Power.Components.ExtensionCableProviderComponent>(near)
+                            || HasComp<Content.Server.Power.Components.ExtensionCableReceiverComponent>(near)
+                            || HasComp<Content.Server.Power.Components.ApcPowerReceiverComponent>(near)
+                            || HasComp<Content.Server.Power.Components.ApcPowerProviderComponent>(near)
+                            || HasComp<Content.Shared.NodeContainer.NodeContainerComponent>(near))
+                        {
+                            occupied = true;
+                            blockedReason = "cable_or_pipe_anchored";
+                            break;
+                        }
+                    }
+                }
+
+                if (!occupied)
+                {
+                    foreach (var near in _lookup.GetEntitiesInRange(coords, 0.2f, LookupFlags.StaticSundries))
+                    {
+                        if (near == grid)
+                            continue;
+
+                        if (HasComp<Content.Server.Power.Components.CableComponent>(near)
+                            || HasComp<Content.Server.Atmos.Components.PipeRestrictOverlapComponent>(near)
+                            || HasComp<Content.Server.Power.Components.ExtensionCableProviderComponent>(near)
+                            || HasComp<Content.Server.Power.Components.ExtensionCableReceiverComponent>(near)
+                            || HasComp<Content.Server.Power.Components.ApcPowerReceiverComponent>(near)
+                            || HasComp<Content.Server.Power.Components.ApcPowerProviderComponent>(near)
+                            || HasComp<Content.Shared.NodeContainer.NodeContainerComponent>(near))
+                        {
+                            occupied = true;
+                            blockedReason = "cable_or_pipe_lookup";
+                            break;
+                        }
                     }
                 }
                 if (occupied)
+                {
+                        if (_random.NextDouble() < 0.02)
+                        {
+                            var msg = $"[SyndieBattle] Skipped spawn at {coords.ToMap(EntityManager, _transform).ToString()} reason={blockedReason} attempts={attempts}";
+                            _chatManager.ChatMessageToAll(ChatChannel.Server, msg, msg, default, false, false);
+                        }
                     continue;
+                }
                 Spawn("SyndieBattleRedemptionMachine", coords);
                 spawned++;
             }
