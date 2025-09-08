@@ -692,11 +692,11 @@
   kind: source
   path: "/Textures/Imperial/Shaders/glitch.swsl"
   params:
-    shake_power: 0.0001
-    shake_rate: 0.01
-    shake_speed: 0.8
-    shake_block_size: 45
-    shake_color_rate: 0.1
+    shake_power: 0.0005
+    shake_rate: 0.5
+    shake_speed: 0.5
+    shake_block_size: 5
+    shake_color_rate: 0.01
 
 - type: entity
   id: ExitSignBackrooms
