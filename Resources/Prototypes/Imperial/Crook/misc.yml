@@ -718,6 +718,7 @@
     radius: 1.3
     energy: 5
     color: "#75a743"
+    netsync: false
 
 # Majima
 
