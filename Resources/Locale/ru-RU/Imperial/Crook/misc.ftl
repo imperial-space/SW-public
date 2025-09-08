@@ -127,3 +127,7 @@ ent-BlueSpaceTomatoSeeds = пакет семян блюспейс-томатов
     .desc = { ent-SeedBase.desc }
 seeds-bluespacetomato-name = блюспейс-томат
 seeds-bluespacetomato-display-name = томатный блюспейс-куст
+reagent-name-paradoxal-juice = парадоксальный сок
+reagent-desc-paradoxal-juice = Смесь, состоящая из приятной мякоти с приправой из непредсказуемой блюспейс пыли.
+reagent-physical-desc-chaotic = хаотичное
+
