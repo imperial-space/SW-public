@@ -422,15 +422,8 @@
   - type: NpcFactionMember
     factions:
     - SimpleNeutral
-  - type: Emoting
-  - type: Vocal
-    sounds:
-      Unsexed: SmilerVoice
-  - type: AmbientSound
-    range: 5
-    volume: -11
-    sound:
-      path: /Audio/Imperial/Crook/backrooms/glitchambient.ogg
+  - type: Eye
+    visMask: 5
 
 - type: entity
   name: deathmoth
