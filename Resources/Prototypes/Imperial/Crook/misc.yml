@@ -411,6 +411,19 @@
       path: /Audio/Imperial/Crook/backrooms/glitchambient.ogg
 
 - type: entity
+  name: Smiler
+  id: SmilerVisibility
+  suffix: Backrooms, Visibility7
+  parent: Smiler
+  description: Smiling means kind.
+  components:
+  - type: Visibility
+    layer: 7
+  - type: NpcFactionMember
+    factions:
+    - SimpleNeutral
+
+- type: entity
   name: deathmoth
   parent: SimpleSpaceMobBase
   id: MobDeathmoth
