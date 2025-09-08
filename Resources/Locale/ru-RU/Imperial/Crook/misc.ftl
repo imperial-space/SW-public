@@ -33,7 +33,8 @@ ent-ThermosRed = красный термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
 ent-ThermosGray = серый термос
     .desc = Жадность губительна. Помни об этом, начиная пить.
-
+ent-ExitSignBackrooms = знак
+    .desc = Наконец-то! Выход.
 ent-PortalGatewayBackrooms = неизвестная аномалия
     .desc = Разрыв в пространстве неизвестной природы.
 ent-HandTeleporterBackrooms = телепорт
