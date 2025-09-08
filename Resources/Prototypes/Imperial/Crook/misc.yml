@@ -413,12 +413,12 @@
 - type: entity
   name: Smiler
   id: SmilerVisibility
-  suffix: Backrooms, Visibility7
+  suffix: Backrooms, Visibility5
   parent: Smiler
   description: Smiling means kind.
   components:
   - type: Visibility
-    layer: 7
+    layer: 5
   - type: NpcFactionMember
     factions:
     - SimpleNeutral
