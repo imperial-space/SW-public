@@ -1307,7 +1307,7 @@
 - type: entity
   parent: ComputerComms
   id: ElysiumPrimeComputerComms
-  name: Sector communications computerIdCardConsoleFederation
+  name: Federation communications computer
   description: It allows you to make promises that will never come true.
   suffix: ElysiumPrime
   components:
