@@ -175,42 +175,42 @@
   items:
   - productEntity: MedievalReliefStoneWeak
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedaljonMana
     cost: 400
-    reputationForBuying: 13
+    reputationForBuying: 13.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedaljonDark
     cost: 250
-    reputationForBuying: 8
+    reputationForBuying: 8.3
     minReputation: 20
     minReputationPlace: 1
   - productEntity: MedaljonDef
     cost: 400
-    reputationForBuying: 13
+    reputationForBuying: 13.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedaljonFlashImmune
     cost: 200
-    reputationForBuying: 7
+    reputationForBuying: 6.7
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedaljonExpl
     cost: 400
-    reputationForBuying: 13
+    reputationForBuying: 13.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedaljonSpeed
     cost: 500
-    reputationForBuying: 17
+    reputationForBuying: 16.7
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedaljonNoslip
     cost: 200
-    reputationForBuying: 7
+    reputationForBuying: 6.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedaljonAntiMana
@@ -218,19 +218,19 @@
     reputationForBuying: 10
   - productEntity: MedievalGlowStone
     cost: 12
-    reputationForBuying: 0
+    reputationForBuying: 0.4
   - productEntity: MedievalServerMap
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: MedievalPen
     cost: 3
-    reputationForBuying: 0
+    reputationForBuying: 0.1
   - productEntity: MedievalPaper
     cost: 2
-    reputationForBuying: 0
+    reputationForBuying: 0.1
   - productEntity: CreationsBook
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalHolySalt
     cost: 25
     reputationForBuying: 1
@@ -245,22 +245,22 @@
     reputationForBuying: 1
   - productEntity: MedievalRecipeBook
     cost: 45
-    reputationForBuying: 2
+    reputationForBuying: 1.5
   - productEntity: CompactDefibrillator
     cost: 100
-    reputationForBuying: 4
+    reputationForBuying: 3.3
   - productEntity: MedievalClothingOuterArmorCharmerWeak
     cost: 250
-    reputationForBuying: 8
+    reputationForBuying: 8.3
   - productEntity: MedievalClothingHeadHelmetCharmerWeak
     cost: 100
-    reputationForBuying: 4
+    reputationForBuying: 3.3
   - productEntity: MedievalScrollBarrier
     cost: 50
     reputationForBuying: 2
   - productEntity: Bible
     cost: 150
-    reputationForBuying: 6
+    reputationForBuying: 5
   - productEntity: MedievalReliefStoneStrong
     cost: 480
     minReputationPlace: 1
@@ -270,19 +270,19 @@
     cost: 1150
     minReputationPlace: 1
     minReputation: 20
-    reputationForBuying: 40
+    reputationForBuying: 38.3
   - productEntity: MedievalShoesSpeed
     cost: 1250
     minReputationPlace: 1
     minReputation: 20
-    reputationForBuying: 43
+    reputationForBuying: 41.7
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalPaperOnValuableCargoIns
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
@@ -348,55 +348,55 @@
   items:
   - productEntity: MedievalRepairStone
     cost: 18
-    reputationForBuying: 0
+    reputationForBuying: 0.6
   - productEntity: MedievalLockpick
     cost: 16
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalHammerBlacksmith
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
   - productEntity: MedievalArrowIronPhysics
     cost: 2
-    reputationForBuying: 0
+    reputationForBuying: 0.1
   - productEntity: MedievalMopItem
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalDaggerT3
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalHatchet
     cost: 13
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalWoodenShield
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalWoodenShieldKnight
     cost: 27
     reputationForBuying: 1
   - productEntity: MedievalWoodenShieldBuckler
     cost: 12
-    reputationForBuying: 0
+    reputationForBuying: 0.4
   - productEntity: MedievalMaceT3
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalPalice
     cost: 50
-    reputationForBuying: 2
+    reputationForBuying: 1.7
   - productEntity: MedievalMaceT3Heavy
     cost: 85
     reputationForBuying: 3
   - productEntity: MedievalFalshionT3
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalShortSword
     cost: 30
     reputationForBuying: 1
   - productEntity: MedievalSaber
     cost: 40
-    reputationForBuying: 2
+    reputationForBuying: 1.3
   - productEntity: MedievalPickaxe
     cost: 40
-    reputationForBuying: 2
+    reputationForBuying: 1.3
   - productEntity: MedievalPickaxeSteel
     cost: 265
     reputationForBuying: 9
@@ -404,13 +404,13 @@
     minReputation: 20
   - productEntity: BowImprovised
     cost: 75
-    reputationForBuying: 3
+    reputationForBuying: 2.15
   - productEntity: MedievalSpearT3
     cost: 75
-    reputationForBuying: 3
+    reputationForBuying: 2.15
   - productEntity: MedievalIronHammer
     cost: 110
-    reputationForBuying: 4
+    reputationForBuying: 3.7
   - productEntity: MedievalGrenade
     cost: 60
     reputationForBuying: 2
@@ -419,24 +419,24 @@
     reputationForBuying: 2
   - productEntity: MedievalWeaponCrossbow
     cost: 160
-    reputationForBuying: 5
+    reputationForBuying: 5.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalBolt
     cost: 3
-    reputationForBuying: 0
+    reputationForBuying: 0.1
   - productEntity: MedievalIronSekir
     cost: 245
-    reputationForBuying: 8
+    reputationForBuying: 8.15
   - productEntity: MedievalIronHalberdT3
     cost: 195
-    reputationForBuying: 6
+    reputationForBuying: 6.5
   - productEntity: MedievalCavalerySpearT3
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
   - productEntity: MedievalCatapultAmmoBarrelStone
     cost: 12
-    reputationForBuying: 0
+    reputationForBuying: 0.4
   - productEntity: MedievalCatapultAmmoBarrelGunpowder
     cost: 60
     reputationForBuying: 2
@@ -444,17 +444,17 @@
     minReputation: 20
   - productEntity: MedievalCatapultAmmoBarrelAp
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalDaggerT3Steel
     cost: 75
-    reputationForBuying: 2
+    reputationForBuying: 2.5
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalMaceT3Steel
     cost: 140
-    reputationForBuying: 5
+    reputationForBuying: 4.7
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalPaliceSteel
@@ -484,7 +484,7 @@
     minReputation: 20
   - productEntity: MedievalIronHalberdT3Steel
     cost: 455
-    reputationForBuying: 15
+    reputationForBuying: 15.15
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalFalshionT3Steel
@@ -494,12 +494,12 @@
     minReputation: 20
   - productEntity: MedievalShortSwordSteel
     cost: 130
-    reputationForBuying: 4
+    reputationForBuying: 4.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalSaberSteel
     cost: 160
-    reputationForBuying: 5
+    reputationForBuying: 5.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalQuestContractLegionMelee
@@ -512,27 +512,27 @@
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalQuestContractLegionMobsLight
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsMobsLight
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalQuestContractLegionMobsHard
     cost: 45
-    reputationForBuying: 1
+    reputationForBuying: 1.5
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsMobsHard
     cost: 45
-    reputationForBuying: 1
+    reputationForBuying: 1.5
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalPaperOnValuableCargoIns
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
@@ -609,19 +609,19 @@
     reputationForBuying: 1
   - productEntity: MedievalClothingFeetSteel
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalClothingOuterArmorChainMailLight
     cost: 65
-    reputationForBuying: 2
+    reputationForBuying: 2.15
   - productEntity: MedievalClothingOuterArmorChainMail
     cost: 155
-    reputationForBuying: 5
+    reputationForBuying: 5.15
   - productEntity: MedievalClothingOuterArmorIronCuirassLight
     cost: 200
-    reputationForBuying: 7
+    reputationForBuying: 6.7
   - productEntity: MedievalClothingHeadHelmetShapel
     cost: 20
-    reputationForBuying: 1
+    reputationForBuying: 0.7
   - productEntity: MedievalClothingHeadHelmetCrusader
     cost: 30
     reputationForBuying: 1
@@ -647,12 +647,12 @@
     minReputation: 20
   - productEntity: MedievalClothingOuterArmorIronCuirass
     cost: 290
-    reputationForBuying: 10
+    reputationForBuying: 9.7
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalClothingOuterArmorBrigantin
     cost: 380
-    reputationForBuying: 13
+    reputationForBuying: 12.7
     minReputationPlace: 1
     minReputation: 20
   - productEntity: ClothingOuterArmorPodWars
@@ -667,16 +667,16 @@
     minReputation: 20
   - productEntity: MedievalClothingOuterArmorUpIron
     cost: 1000
-    reputationForBuying: 33
+    reputationForBuying: 33.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalQuestContractLegionArmorMedium
     cost: 45
-    reputationForBuying: 1
+    reputationForBuying: 1.5
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsArmorMedium
     cost: 45
-    reputationForBuying: 1
+    reputationForBuying: 1.5
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalQuestContractLegionArmorHard
     cost: 60
@@ -688,11 +688,11 @@
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalPaperOnValuableCargoIns
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
@@ -764,130 +764,130 @@
   items:
   - productEntity: MedievalBeaker
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: FoodBreadPlain
     cost: 3
-    reputationForBuying: 0
+    reputationForBuying: 0.1
   - productEntity: FoodBreadCorn
     cost: 3
-    reputationForBuying: 0
+    reputationForBuying: 0.1
   - productEntity: FoodTomato
     cost: 2
-    reputationForBuying: 0
+    reputationForBuying: 0.1
   - productEntity: FoodGarlic
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: FoodBreadSlime
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: FoodCondimentBottleEnzyme
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: FoodBakedPretzel
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: FoodBakedCookieSugar
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: FoodBakedPancakeBb
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: FoodBakedPancake
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: FoodBakedBunHoney
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: FoodMeatSalami
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: FoodMeatLizardCooked
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: FoodMeatCooked
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: FoodCheese
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: FoodMeatChickenFried
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: FoodMealFriedegg
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: FoodSoupBeet
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: FoodCakeBlueberry
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: FoodSoupMeatball
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: FoodCakePumpkin
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: FoodOatmeal
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: FoodSoupStew
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: FoodSoupPotato
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: FoodSoupVegetable
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: FoodCakeCarrot
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: FoodMealMilkape
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: FoodSoupMonkey
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: Gauze
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: Ointment
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: MedievalBrutepack
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: DrinkGlassWhite
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalhydroponicsSoilCraft
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: ChemistryBottleRobustHarvest
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalClippers
     cost: 20
-    reputationForBuying: 1
+    reputationForBuying: 0.7
   - productEntity: MedievalHoe
     cost: 20
-    reputationForBuying: 1
+    reputationForBuying: 0.7
   - productEntity: MedievalShovel
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
   - productEntity: MedievalMopBucket
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: WheatSeeds
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: PotatoSeeds
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
   - productEntity: CarrotSeeds
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalBlackSpotHorseWhistle
     cost: 360
     reputationForBuying: 12
@@ -899,15 +899,15 @@
     reputationForBuying: 20
   - productEntity: MedievalHorseWhistle
     cost: 680
-    reputationForBuying: 23
+    reputationForBuying: 22.7
   - productEntity: MedievalWhiteHorseWhistle
     cost: 730
-    reputationForBuying: 25
+    reputationForBuying: 24.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalBlackHorseWhistle
     cost: 800
-    reputationForBuying: 27
+    reputationForBuying: 26.7
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalWhiteRoyalHorseWhistle
@@ -917,19 +917,19 @@
     minReputation: 20
   - productEntity: MedievalQuestContractLegionFarm
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsFarm
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalPaperOnValuableCargoIns
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
@@ -1000,22 +1000,22 @@
   items:
   - productEntity: MedievalRope
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalGlovesBlacksmith
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalAlchemicBelt
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalWineskin
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalClothingBackpackBox
     cost: 45
-    reputationForBuying: 1
+    reputationForBuying: 1.5
   - productEntity: OreBag
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
   - productEntity: PlantBag
     cost: 25
     reputationForBuying: 1
@@ -1041,62 +1041,62 @@
     minReputation: 20
   - productEntity: MedievalCoinBag
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalClothingBackpackLeather
     cost: 70
-    reputationForBuying: 2
+    reputationForBuying: 2.3
   - productEntity: MedievalClothingBackpackSatchelTraveller
     cost: 215
-    reputationForBuying: 7
+    reputationForBuying: 7.15
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalClothingOuterArmorFur
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalClothingOuterArmorStudded
     cost: 20
-    reputationForBuying: 1
+    reputationForBuying: 0.7
   - productEntity: MedievalClothingOuterArmorGambeson
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
   - productEntity: MedievalClothingOuterArmorLeather
     cost: 40
-    reputationForBuying: 1
+    reputationForBuying: 1.3
   - productEntity: MedievalClothingOuterArmorLeatherLight
     cost: 55
     reputationForBuying: 2
   - productEntity: MedievalClothingOuterArmorLeatherHeavy
     cost: 340
-    reputationForBuying: 11
+    reputationForBuying: 11.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalClothingUniformJumpsuitShitCloth11
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalClothingUniformJumpsuitShitCloth33
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth34
     cost: 45
-    reputationForBuying: 1
+    reputationForBuying: 1.5
   - productEntity: MedievalClothingUniformJumpsuitShitCloth35
     cost: 75
-    reputationForBuying: 2
+    reputationForBuying: 2.5
   - productEntity: MedievalClothingUniformJumpsuitShitCloth36
     cost: 75
-    reputationForBuying: 2
+    reputationForBuying: 2.5
   - productEntity: MedievalClothingUniformJumpsuitShitCloth37
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth38
     cost: 30
     reputationForBuying: 1
   - productEntity: MedievalClothingUniformJumpsuitShitCloth39
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth40
     cost: 75
-    reputationForBuying: 2
+    reputationForBuying: 2.5
   - productEntity: MedievalClothingUniformJumpsuitShitCloth41
     cost: 85
     reputationForBuying: 3
@@ -1109,13 +1109,13 @@
     minReputation: 20
   - productEntity: MedievalClothingUniformJumpsuitShitCloth43
     cost: 40
-    reputationForBuying: 1
+    reputationForBuying: 1.3
   - productEntity: MedievalClothingUniformJumpsuitShitCloth66
     cost: 40
-    reputationForBuying: 1
+    reputationForBuying: 1.3
   - productEntity: MedievalClothingUniformJumpsuitShitCloth44
     cost: 70
-    reputationForBuying: 2
+    reputationForBuying: 2.3
   - productEntity: MedievalClothingUniformJumpsuitShitCloth45
     cost: 30
     reputationForBuying: 1
@@ -1124,61 +1124,61 @@
     reputationForBuying: 2
   - productEntity: MedievalClothingUniformJumpsuitShitCloth47
     cost: 70
-    reputationForBuying: 2
+    reputationForBuying: 2.3
   - productEntity: MedievalClothingUniformJumpsuitShitCloth48
     cost: 25
     reputationForBuying: 1
   - productEntity: MedievalClothingUniformJumpsuitShitCloth49
     cost: 45
-    reputationForBuying: 1
+    reputationForBuying: 1.5
   - productEntity: MedievalClothingUniformJumpsuitShitCloth50
     cost: 55
     reputationForBuying: 2
   - productEntity: MedievalClothingUniformJumpsuitShitCloth51
     cost: 65
-    reputationForBuying: 2
+    reputationForBuying: 2.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth52
     cost: 65
-    reputationForBuying: 2
+    reputationForBuying: 2.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth53
     cost: 65
-    reputationForBuying: 2
+    reputationForBuying: 2.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth54
     cost: 65
-    reputationForBuying: 2
+    reputationForBuying: 2.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth55
     cost: 65
-    reputationForBuying: 2
+    reputationForBuying: 2.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth56
     cost: 65
-    reputationForBuying: 2
+    reputationForBuying: 2.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth57
     cost: 95
-    reputationForBuying: 3
+    reputationForBuying: 3.15
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalClothingUniformJumpsuitShitCloth58
     cost: 95
-    reputationForBuying: 3
+    reputationForBuying: 3.15
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalClothingUniformJumpsuitShitCloth59
     cost: 95
-    reputationForBuying: 3
+    reputationForBuying: 3.15
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalClothingUniformJumpsuitShitCloth60
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalClothingUniformJumpsuitShitCloth61
     cost: 45
-    reputationForBuying: 1
+    reputationForBuying: 1.5
   - productEntity: MedievalClothingUniformJumpsuitShitCloth62
     cost: 40
-    reputationForBuying: 1
+    reputationForBuying: 1.3
   - productEntity: MedievalClothingUniformJumpsuitShitCloth63
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
   - productEntity: MedievalClothingUniformJumpsuitShitCloth64
     cost: 85
     reputationForBuying: 3
@@ -1186,16 +1186,16 @@
     minReputation: 20
   - productEntity: MedievalClothingUniformJumpsuitShitCloth10
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalClothingUniformJumpsuitShitCloth8
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalClothingUniformJumpsuitShitCloth24
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalBastShoes
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalClothingUniformJumpsuitShitCloth4
     cost: 25
     reputationForBuying: 1
@@ -1204,37 +1204,37 @@
     reputationForBuying: 1
   - productEntity: ClothingHandsGlovesColorBrown
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: ClothingHandsGlovesColorLightBrown
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: ClothingHandsGlovesColorBlack
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalClothingHandsGlovesColorBrown
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalClothingHandsGlovesColorLightBrown
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalClothingHandsGlovesColorBlack
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalClothingShoesLeather
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalShoesSapogi
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalShoesSapogiRobin
     cost: 30
     reputationForBuying: 1
   - productEntity: MedievalShoesSapogiHigh
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
   - productEntity: MedievalShoesValenki
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
   - productEntity: MedievalClothingUniformJumpsuitShitCloth21
     cost: 25
     reputationForBuying: 1
@@ -1264,10 +1264,10 @@
     reputationForBuying: 1
   - productEntity: MedievalClothingHeadArcherHat
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalWhiteHat
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalPurpleHat
     cost: 30
     reputationForBuying: 1
@@ -1278,21 +1278,21 @@
     minReputation: 20
   - productEntity: MedievalWreath
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalWanderHat
     cost: 30
     reputationForBuying: 1
   - productEntity: MedievalGreenHat
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalGrayHat
     cost: 50
-    reputationForBuying: 2
+    reputationForBuying: 1.7
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalMaskFace
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalClothingHeadHatPlaguedoctor
     cost: 30
     reputationForBuying: 1
@@ -1324,29 +1324,29 @@
     minReputation: 20
   - productEntity: MedievalClothingUniformJumpsuitShitCloth6
     cost: 135
-    reputationForBuying: 5
+    reputationForBuying: 4.5
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalClothingUniformJumpskirtJanimaid
     cost: 100
-    reputationForBuying: 3
+    reputationForBuying: 3.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalQuestContractLegionArmorLight
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsArmorLight
     cost: 20
-    reputationForBuying: 0
+    reputationForBuying: 0.7
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalPaperOnValuableCargoIns
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
 - type: guildName
@@ -1419,154 +1419,154 @@
   items:
   - productEntity: Torch
     cost: 2
-    reputationForBuying: 0
+    reputationForBuying: 0.1
   - productEntity: MedievalFlinter
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: PaintKit
     cost: 8
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: Canvas
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: Easel
     cost: 22
-    reputationForBuying: 1
+    reputationForBuying: 0.7
   - productEntity: CarcBoxClassic
     cost: 22
-    reputationForBuying: 1
+    reputationForBuying: 0.7
   - productEntity: MedievalBanjoInstrument
     cost: 20
-    reputationForBuying: 1
+    reputationForBuying: 0.7
   - productEntity: MedievalChest2
     cost: 35
-    reputationForBuying: 1
+    reputationForBuying: 1.15
   - productEntity: MedievalBlacksmithArmorCraft
     cost: 50
-    reputationForBuying: 2
+    reputationForBuying: 1.7
   - productEntity: MedievalLeatherWorkingPlaceCraft
     cost: 50
-    reputationForBuying: 2
+    reputationForBuying: 1.7
   - productEntity: MedievalWoodWorkerPlaceCraft
     cost: 50
-    reputationForBuying: 2
+    reputationForBuying: 1.7
   - productEntity: MedievalKotel
     cost: 50
-    reputationForBuying: 2
+    reputationForBuying: 1.7
   - productEntity: MedievalWoodenFloorCraft
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalDecorMogila1Craft
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalDecorMogila3Craft
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalDecorMogila2Craft
     cost: 10
-    reputationForBuying: 0
+    reputationForBuying: 0.3
   - productEntity: MedievalFloorDrainCraft
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalDecorAnonsCraft
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: CarpetBlack
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: Carpet
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: CarpetPurple
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: CarpetSBlue
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: CarpetGreen
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: CarpetOrange
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: CarpetBlue
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: CarpetPink
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalStoneLoopHoleCraft
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalMedicalBedCraft
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: MedievalSign1Craft
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
   - productEntity: MedievalSign2Craft
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
   - productEntity: MedievalSign3Craft
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
   - productEntity: MedievalSign4Craft
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
   - productEntity: MedievalSign5Craft
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
   - productEntity: MedievalSign6Craft
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
   - productEntity: MedievalSign7Craft
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
   - productEntity: MedievalSign8Craft
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
   - productEntity: MedievalSign9Craft
     cost: 80
-    reputationForBuying: 3
+    reputationForBuying: 2.7
   - productEntity: MedievalPrisonGrilleCraft
     cost: 12
-    reputationForBuying: 0
+    reputationForBuying: 0.4
   - productEntity: MedievalMortarCraft
     cost: 30
     reputationForBuying: 1
   - productEntity: MedievalDecorTorchColoneCraft
     cost: 15
-    reputationForBuying: 0
+    reputationForBuying: 0.5
   - productEntity: SmithingGornCraft
     cost: 50
-    reputationForBuying: 2
+    reputationForBuying: 1.7
   - productEntity: SmithWorkplaceCraft
     cost: 50
-    reputationForBuying: 2
+    reputationForBuying: 1.7
   - productEntity: MedievalCatapultCraft
     cost: 500
-    reputationForBuying: 17
+    reputationForBuying: 16.7
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalStoneWallCraft
     cost: 12
-    reputationForBuying: 0
+    reputationForBuying: 0.4
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalQuestContractLegionWood
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalQuestContractInsWood
     cost: 5
-    reputationForBuying: 0
+    reputationForBuying: 0.15
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeLegion
   - productEntity: MedievalPaperOnValuableCargoIns
     cost: 220
-    reputationForBuying: 7
+    reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
 
