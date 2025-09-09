@@ -88,6 +88,6 @@ ent-ClothingBackpackSatchelSmugglerFilled = { ent-ClothingBackpackSatchelSmuggle
 ent-RandomSatchelSpawner = спавнер сумки контрабандиста
     .desc = { ent-MarkerBase.desc }
     .suffix = Случайная, НЕ МАППИТЬ
-ent-BorgOreBag = внутренняя сумка для руды
+ent-BorgOreBag = встроенная сумка для руды
     .desc = Большая сумка для руды, встроенная в корпус киборга.
     .suffix = Борги
