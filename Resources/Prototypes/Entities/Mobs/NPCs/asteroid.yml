@@ -333,6 +333,9 @@
   - type: Currency
     price:
       Revent: 22
+  - type: MedievalCurrency
+    price:
+      Revent: 22
   # Imperial Medieval End
   - type: Tag
     tags:
