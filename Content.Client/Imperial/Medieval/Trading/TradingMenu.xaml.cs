@@ -50,7 +50,7 @@ public sealed partial class TradingMenu : DefaultWindow
         ReputationLeaderboardButton.OnButtonDown += OnLeaderboardButtonDown;
         BackButton.OnButtonDown += _ => SelectGuildTab();
 
-        OnResized += () => ControlContainer.Columns = (int)(Width / 210);
+        OnResized += () => ControlContainer.Columns = (int)(Width / 215);
     }
 
     private void OnLeaderboardButtonDown(BaseButton.ButtonEventArgs args)
@@ -134,7 +134,16 @@ public sealed partial class TradingMenu : DefaultWindow
             return;
 
         var reputation = guild?.GetReputation(User.Value) ?? 0;
-        ReputationLabel.Text = Loc.GetString("trading-ui-reputation-text", ("rep", reputation));
+        var reputationRounded = MathF.Round(reputation, 1);
+        ReputationLabel.Text = Loc.GetString("trading-ui-reputation-text", ("rep", reputationRounded.ToString("0.0")));
+
+        if (guild == null)
+            return;
+
+        var discount = TradingHelpers.DiscountWithReputation(guild, User.Value) * 100f;
+        ReputationDiscoundLabel.Text = discount >= 1
+            ? $"-{MathF.Round(discount)}% скидка"
+            : "";
     }
 
     public void UpdateItems(Guild? guild = null)
@@ -145,12 +154,14 @@ public sealed partial class TradingMenu : DefaultWindow
         var currency = guildType?.Currency;
 
         foreach (var item in guild?.Items
+                     .OrderBy(itm => TradingLocalisationHelpers.GetLocalisedNameOrEntityName(itm, _prototypeManager))
                              ?? Enumerable.Empty<GuildTradingItem>())
         {
             AddItemGui(item, currency);
         }
 
         foreach (var (item, reason) in guild?.UnavailableItems
+                                           .OrderBy(itm => TradingLocalisationHelpers.GetLocalisedNameOrEntityName(itm.Key, _prototypeManager))
                                        ?? Enumerable.Empty<KeyValuePair<GuildTradingItem, string>>())
         {
             AddItemGui(item, currency, false, reason);
