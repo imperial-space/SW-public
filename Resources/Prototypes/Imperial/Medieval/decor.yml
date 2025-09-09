@@ -1887,6 +1887,9 @@
   - type: Currency
     price:
       Revent: 18
+  - type: MedievalCurrency
+    price:
+      Revent: 18
 
 - type: entity
   parent: BasePlushie
@@ -1898,6 +1901,9 @@
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: plushie_traveller
   - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
     price:
       Revent: 12
 
@@ -1913,6 +1919,9 @@
   - type: Currency
     price:
       Revent: 14
+  - type: MedievalCurrency
+    price:
+      Revent: 14
 
 - type: entity
   parent: BasePlushie
@@ -1924,6 +1933,9 @@
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: plushie_wizard
   - type: Currency
+    price:
+      Revent: 15
+  - type: MedievalCurrency
     price:
       Revent: 15
 
