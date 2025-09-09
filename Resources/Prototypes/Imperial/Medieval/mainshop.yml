@@ -120,7 +120,12 @@
     # прототипы гильдий, которые находятся
     # в данном магазине
     guildTypes:
-    - TestType2
+    - MagicGuild
+    - WeaponGuild
+    - ArmorGuild
+    - FoodGuild
+    - ClothGuild
+    - BuilderGuild
     # прототип валюты, которая используется в магазине
     # по умолчанию Revent
     # должно совпадать с currency во всех guildTypes
