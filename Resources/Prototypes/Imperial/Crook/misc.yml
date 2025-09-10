@@ -422,6 +422,8 @@
   - type: NpcFactionMember
     factions:
     - SimpleNeutral
+  - type: Eye
+    visMask: 5
 
 - type: entity
   name: deathmoth
