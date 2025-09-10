@@ -281,6 +281,9 @@
   - type: Currency
     price:
       Revent: 5
+  - type: MedievalCurrency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -321,6 +324,9 @@
   - type: MagicPotionsIngredient
     ingredientType: Lipad
   - type: Currency
+    price:
+      Revent: 5
+  - type: MedievalCurrency
     price:
       Revent: 5
   - type: Tag
@@ -365,6 +371,9 @@
   - type: Currency
     price:
       Revent: 5
+  - type: MedievalCurrency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -407,6 +416,9 @@
   - type: Currency
     price:
       Revent: 5
+  - type: MedievalCurrency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -443,6 +455,9 @@
   - type: Produce
     seedId: Mushroom1
   - type: Currency
+    price:
+      Revent: 8
+  - type: MedievalCurrency
     price:
       Revent: 8
   - type: Item
@@ -485,6 +500,9 @@
   - type: Currency
     price:
       Revent: 8
+  - type: MedievalCurrency
+    price:
+      Revent: 8
   - type: Item
     size: Tiny
   - type: Extractable
@@ -525,6 +543,9 @@
   - type: Currency
     price:
       Revent: 8
+  - type: MedievalCurrency
+    price:
+      Revent: 8
   - type: Item
     size: Tiny
   - type: Extractable
@@ -537,3 +558,4 @@
     - AlchemicIngredient
     - MyrmexCanTake
     - Mushroom3
+

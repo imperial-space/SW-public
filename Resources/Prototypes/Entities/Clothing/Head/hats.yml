@@ -970,6 +970,9 @@
   - type: Currency
     price:
       Revent: 85
+  - type: MedievalCurrency
+    price:
+      Revent: 85
   # imperial medieval
 
 - type: entity
