@@ -12,7 +12,7 @@ namespace Content.Shared.Imperial.NinjaHeadset.Components
 
         [DataField]
         [AutoNetworkedField]
-        public HashSet<string> CopiedFrequencies = new();
+        public List<string> CopiedFrequencies = new();
 
         [ViewVariables]
         public EntityUid? HackingTarget;

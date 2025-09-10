@@ -8,6 +8,9 @@ using Content.Shared.Radio.Components;
 using Content.Shared.Ninja.Components;
 using Content.Shared.Examine;
 using System.Text;
+using Robust.Shared.Prototypes;
+using Content.Shared.Radio;
+using Robust.Shared.Localization;
 
 namespace Content.Server.Imperial.NinjaHeadset.Systems;
 
@@ -16,6 +19,8 @@ public sealed class NinjaHeadsetSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ILocalizationManager _loc = default!;
 
     public override void Initialize()
     {
@@ -26,42 +31,30 @@ public sealed class NinjaHeadsetSystem : EntitySystem
         SubscribeLocalEvent<NinjaHeadsetComponent, ExaminedEvent>(OnExamine);
     }
 
-    private readonly Dictionary<string, string> _frequencyTranslations = new()
+    private string GetLocalizedChannelName(string frequencyId)
     {
-        {"Common", "Общий"},
-        {"Security", "Служба Безопасности"},
-        {"Command", "Командный"},
-        {"Medical", "Медицинский"},
-        {"Engineering", "Инженерный"},
-        {"Science", "Научный"},
-        {"Supply", "Снабжение"},
-        {"Service", "Сервис"},
-        {"CentCom", "ЦентКом"},
-        {"Syndicate", "Синдикат"},
-        {"Binary", "Двоичный"},
-    };
-    private string TranslateFrequency(string frequencyId)
-    {
-        return _frequencyTranslations.TryGetValue(frequencyId, out var translation)
-            ? translation
-            : frequencyId;
-    }
+        if (_prototypeManager.TryIndex<RadioChannelPrototype>(frequencyId, out var prototype))
+        {
+            return prototype.LocalizedName;
+        }
 
+        return frequencyId;
+    }
     private void OnExamine(EntityUid uid, NinjaHeadsetComponent component, ExaminedEvent args)
     {
         if (component.CopiedFrequencies.Count == 0)
         {
-            args.PushMarkup("[color=yellow]Скопированных частот нет.[/color]");
+            args.PushMarkup(Loc.GetString("ninja-headset-examine-empty"));
             return;
         }
 
         var message = new StringBuilder();
-        message.AppendLine("[color=green]Скопированные частоты:[/color]");
+        message.AppendLine(Loc.GetString("ninja-headset-examine-copied"));
 
         foreach (var frequency in component.CopiedFrequencies)
         {
-            var translatedFrequency = TranslateFrequency(frequency);
-            message.AppendLine($"[color=cyan]- {translatedFrequency}[/color]");
+            var localizedName = GetLocalizedChannelName(frequency);
+            message.AppendLine($"[color=yellow]- {localizedName}[/color]");
         }
 
         args.PushMarkup(message.ToString());
@@ -111,7 +104,7 @@ public sealed class NinjaHeadsetSystem : EntitySystem
             return;
         }
 
-        if (component.TargetHeadset == null || !Exists(component.TargetHeadset.Value))
+        if (component.TargetHeadset == null || !EntityAlive(component.TargetHeadset.Value))
         {
             component.HackingTarget = null;
             component.TargetHeadset = null;
@@ -122,7 +115,7 @@ public sealed class NinjaHeadsetSystem : EntitySystem
         var translatedNewFrequencies = new List<string>();
 
         if (TryComp<EncryptionKeyHolderComponent>(component.TargetHeadset.Value, out var targetEncryption) &&
-            TryComp<EncryptionKeyHolderComponent>(uid, out var ninjaEncryption))
+        TryComp<EncryptionKeyHolderComponent>(uid, out var ninjaEncryption))
         {
             foreach (var channel in targetEncryption.Channels)
             {
@@ -130,7 +123,9 @@ public sealed class NinjaHeadsetSystem : EntitySystem
                 {
                     component.CopiedFrequencies.Add(channel);
                     newFrequencies.Add(channel);
-                    translatedNewFrequencies.Add(TranslateFrequency(channel));
+
+                    var localizedName = GetLocalizedChannelName(channel);
+                    translatedNewFrequencies.Add(localizedName);
 
                     if (!ninjaEncryption.Channels.Contains(channel))
                     {
@@ -145,11 +140,11 @@ public sealed class NinjaHeadsetSystem : EntitySystem
         if (newFrequencies.Count > 0)
         {
             var freqList = string.Join(", ", translatedNewFrequencies);
-            _popup.PopupEntity("Частоты успешно скопированы.", uid, args.User);
+            _popup.PopupEntity(Loc.GetString($"ninja-headset-copy-success"), uid, args.User);
         }
         else
         {
-            _popup.PopupEntity("Новых частот не обнаружено.", uid, args.User);
+            _popup.PopupEntity(Loc.GetString("ninja-headset-copy-none"), uid, args.User);
         }
 
         component.HackingTarget = null;
@@ -170,7 +165,7 @@ public sealed class NinjaHeadsetSystem : EntitySystem
         return false;
     }
 
-    private new bool Exists(EntityUid uid)
+    private bool EntityAlive(EntityUid uid)
     {
         return !Deleted(uid) && !Terminating(uid);
     }
