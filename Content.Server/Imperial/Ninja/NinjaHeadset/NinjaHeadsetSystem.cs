@@ -10,7 +10,6 @@ using Content.Shared.Examine;
 using System.Text;
 using Robust.Shared.Prototypes;
 using Content.Shared.Radio;
-using Robust.Shared.Localization;
 
 namespace Content.Server.Imperial.NinjaHeadset.Systems;
 
@@ -20,7 +19,6 @@ public sealed class NinjaHeadsetSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ILocalizationManager _loc = default!;
 
     public override void Initialize()
     {
@@ -139,8 +137,7 @@ public sealed class NinjaHeadsetSystem : EntitySystem
 
         if (newFrequencies.Count > 0)
         {
-            var freqList = string.Join(", ", translatedNewFrequencies);
-            _popup.PopupEntity(Loc.GetString($"ninja-headset-copy-success"), uid, args.User);
+            _popup.PopupEntity(Loc.GetString("ninja-headset-copy-success"), uid, args.User);
         }
         else
         {
