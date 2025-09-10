@@ -110,10 +110,11 @@ public sealed class NinjaHeadsetSystem : EntitySystem
         }
 
         var newFrequencies = new HashSet<string>();
-        var translatedNewFrequencies = new List<string>();
+        var channelsChanged = false;
+        EncryptionKeyHolderComponent? ninjaEncryption = null;
 
         if (TryComp<EncryptionKeyHolderComponent>(component.TargetHeadset.Value, out var targetEncryption) &&
-        TryComp<EncryptionKeyHolderComponent>(uid, out var ninjaEncryption))
+            TryComp<EncryptionKeyHolderComponent>(uid, out ninjaEncryption))
         {
             foreach (var channel in targetEncryption.Channels)
             {
@@ -122,16 +123,17 @@ public sealed class NinjaHeadsetSystem : EntitySystem
                     component.CopiedFrequencies.Add(channel);
                     newFrequencies.Add(channel);
 
-                    var localizedName = GetLocalizedChannelName(channel);
-                    translatedNewFrequencies.Add(localizedName);
-
                     if (!ninjaEncryption.Channels.Contains(channel))
                     {
                         ninjaEncryption.Channels.Add(channel);
+                        channelsChanged = true;
                     }
                 }
             }
         }
+
+        if (channelsChanged && ninjaEncryption != null)
+            RaiseLocalEvent(uid, new EncryptionChannelsChangedEvent(ninjaEncryption));
 
         Dirty(uid, component);
 
