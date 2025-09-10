@@ -92,7 +92,7 @@ public sealed class NinjaHeadsetSystem : EntitySystem
             BreakOnDamage = true,
             BreakOnMove = true,
             NeedHand = true,
-            Broadcast = true
+            Broadcast = false
         };
 
         if (!_doAfter.TryStartDoAfter(doAfterArgs))
