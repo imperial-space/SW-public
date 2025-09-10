@@ -19,6 +19,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 15
+  - type: SpellCastEffect
+    effectProto: FireFetterSpellCastEffectBeginner
   - type: MedievalInstantSpell
   - type: InstantAction
     useDelay: 30
