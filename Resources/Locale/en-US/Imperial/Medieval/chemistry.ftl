@@ -1,15 +1,19 @@
-imperial-medieval-chemistry-bloodadd = Добавляет {$amount} единиц крови ноктюрну
-imperial-medieval-chemistry-basic-name = Зелье
-imperial-medieval-chemistry-examine = [color=yellow]Свойства зелий внутри сосуда:[/color]
-ent-MedievalMushroom1 = фиолетовый гриб
-    .desc = Гриб, растущий на земле
-ent-MedievalMushroom2 = синий гриб
-    .desc = Гриб, растущий на земле
-ent-MedievalMushroom3 = оранжевый гриб
-    .desc = Гриб, растущий на земле
-ent-MedievalKotel = котел
-    .desc = Котел, который можно удобно использовать для приготовления различных зелий
-ent-MedievalFirePlate = магический огненный камень
-    .desc = Средневековый гриль..? Как удобно!
-ent-MedievalChemistryRecipe = алхимический рецепт
-imperial-medieval-recipewritten = На листочке неаккуратным почерком написан рецепт какого-то неизвестного зелья
+imperial-medieval-chemistry-bloodadd = Adds {$amount} blood points to a nocturne 
+imperial-medieval-chemistry-basic-name = a potion
+imperial-medieval-chemistry-examine = [color=yellow]Properties of the potions inside the vessel:[/color]
+ent-MedievalMushroom1 = purple mushroom
+    .desc = A mushroom growing on the ground
+ent-MedievalMushroom2 = blue mushroom
+    .desc = A mushroom growing on the ground
+ent-MedievalMushroom3 = orange mushroom
+    .desc = A mushroom growing on the ground
+ent-MedievalKotel = a cauldron
+    .desc = A cauldron that is convenient to use to brew various potions
+ent-MedievalFirePlate = magic fiery stone
+    .desc = A medieval grill..? How convenient!
+ent-MedievalChemistryRecipe = alchemical recipe
+imperial-medieval-recipewritten = A recipe of some unknown potion is written on the sheet in sloppy handwriting
+ent-MedievalMortarNew = alchemical mortar
+    .desc = A mortar that can be used for grinding ingredients with a pestle
+ent-MedievalMortarTool = a pestle
+    .desc = Required to grind ingredients in a mortar

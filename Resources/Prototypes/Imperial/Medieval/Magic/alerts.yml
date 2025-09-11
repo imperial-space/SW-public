@@ -13,7 +13,7 @@
     state: 4
   - sprite: /Textures/Imperial/Medieval/Misc/mana.rsi
     state: 5
-  name: Мана
-  description: Уровень маны - магической энергии, используемой для выполнения заклинаний.
+  name: alerts-imperial-medieval-mana-name
+  description: alerts-imperial-medieval-mana-description
   minSeverity: 0
   maxSeverity: 5

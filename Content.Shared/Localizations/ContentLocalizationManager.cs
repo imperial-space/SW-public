@@ -11,7 +11,7 @@ namespace Content.Shared.Localizations
 
         // If you want to change your codebase's language, do it here.
         private const string Culture = "en-US";
-        private const string FallbackCulture = "en-US"; //Imperial localization
+        //private const string FallbackCulture = "ru-RU"; //Imperial localization
 
         /// <summary>
         /// Custom format strings used for parsing and displaying minutes:seconds timespans.
@@ -27,7 +27,7 @@ namespace Content.Shared.Localizations
         public void Initialize()
         {
             var culture = new CultureInfo(Culture);
-            var fallbackCulture = new CultureInfo(FallbackCulture);
+            //var fallbackCulture = new CultureInfo(FallbackCulture);
 
             _loc.LoadCulture(culture);
             _loc.AddFunction(culture, "PRESSURE", FormatPressure);
@@ -40,16 +40,16 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(culture, "NATURALPERCENT", FormatNaturalPercent);
             _loc.AddFunction(culture, "PLAYTIME", FormatPlaytime);
 
-            _loc.LoadCulture(fallbackCulture); //Imperial localization
-            _loc.SetFallbackCluture(fallbackCulture); //Imperial localization
-            _loc.AddFunction(fallbackCulture, "PRESSURE", FormatPressure);
-            _loc.AddFunction(fallbackCulture, "POWERWATTS", FormatPowerWatts);
-            _loc.AddFunction(fallbackCulture, "POWERJOULES", FormatPowerJoules);
-            _loc.AddFunction(fallbackCulture, "UNITS", FormatUnits);
-            _loc.AddFunction(fallbackCulture, "TOSTRING", args => FormatToString(culture, args));
-            _loc.AddFunction(fallbackCulture, "LOC", FormatLoc);
-            _loc.AddFunction(fallbackCulture, "NATURALFIXED", FormatNaturalFixed);
-            _loc.AddFunction(fallbackCulture, "NATURALPERCENT", FormatNaturalPercent);
+            //_loc.LoadCulture(fallbackCulture); //Imperial localization
+            //_loc.SetFallbackCluture(fallbackCulture); //Imperial localization
+            //_loc.AddFunction(fallbackCulture, "PRESSURE", FormatPressure);
+            //_loc.AddFunction(fallbackCulture, "POWERWATTS", FormatPowerWatts);
+            //_loc.AddFunction(fallbackCulture, "POWERJOULES", FormatPowerJoules);
+            //_loc.AddFunction(fallbackCulture, "UNITS", FormatUnits);
+            //_loc.AddFunction(fallbackCulture, "TOSTRING", args => FormatToString(culture, args));
+            //_loc.AddFunction(fallbackCulture, "LOC", FormatLoc);
+            //_loc.AddFunction(fallbackCulture, "NATURALFIXED", FormatNaturalFixed);
+            //_loc.AddFunction(fallbackCulture, "NATURALPERCENT", FormatNaturalPercent);
 
 
             /*

@@ -1,6 +1,6 @@
-group-None = Назначить группу
-group-Alpha = Альфа
-group-Bravo = Браво
-group-Delta = Дельта
-group-Gamma = Гамма
-group-Omega = Омега
+group-None = Assign group
+group-Alpha = Alpha
+group-Bravo = Bravo
+group-Delta = Delta
+group-Gamma = Gamma
+group-Omega = Omega

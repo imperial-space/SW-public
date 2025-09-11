@@ -1,4 +1,4 @@
-wanted-desk-title = Доска розыска
+wanted-desk-title = Wanted board
 
-ent-WantedDesk = доска розыска
-    .desc = Доска, на которой развешиваются объявления о преступниках и простых смертных с наградой за голову.
+ent-WantedDesk = wanted board
+    .desc = Board, covered with posters offering bounties for heads of various outlaws and ordinary folks.

@@ -1,1 +1,1 @@
-verb-categories-customization = Кастомизировать
+verb-categories-customization = Customize

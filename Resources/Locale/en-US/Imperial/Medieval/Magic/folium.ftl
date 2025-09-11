@@ -1,8 +1,8 @@
-ent-FoliumBase = Фолиант
-    .desc = Ваш верный друг в изучении новых заклинаний
+ent-FoliumBase = Grimoire
+    .desc = Your trusty companion in mastering new spells
 
-medieval-store-name = Фолиант
+medieval-store-name = Grimoire
 
-medieval-store-withdraw-button-text = Материализовать
-medieval-store-currency-title-text = Эссенции:
-medieval-store-cannot-access-text = Гримуар отвергает вас
+medieval-store-withdraw-button-text = Materialize
+medieval-store-currency-title-text = Essences:
+medieval-store-cannot-access-text = The grimoire rejects you
