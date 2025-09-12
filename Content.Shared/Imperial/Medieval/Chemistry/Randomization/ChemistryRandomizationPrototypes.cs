@@ -11,6 +11,11 @@ public sealed partial class ChemistryRandomizationGroupPrototype : IPrototype
 {
     [IdDataField]
     public string ID { get; private set; } = default!;
+    /// <summary>
+    /// Приоритет по которому группы генерируются
+    /// </summary>
+    [DataField]
+    public int Priority = 0;
 
     /// <summary>
     /// Целевые зелья
@@ -115,6 +120,12 @@ public sealed partial class ChemistryRandomizationGroupPrototype : IPrototype
     /// </summary>
     [DataField]
     public List<string> UsedGroups = new();
+
+    /// <summary>
+    /// Другие рандом группы, оставшиеся рецепты которых будут использованы
+    /// </summary>
+    [DataField]
+    public List<string> UsedGroupsRecipes = new();
 
     /// <summary>
     /// Число реагентов для генерации зелья

@@ -1495,8 +1495,8 @@
         ignoreResistances: false
         damage:
           types:
-            Caustic: 2
-            Radiation: 2
+            Caustic: 20
+            Radiation: 20
       - !type:Emote
         emote: Scream
         probability: 0.3
@@ -1506,13 +1506,13 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: 4
-            Radiation: 4
+            Caustic: 40
+            Radiation: 40
       - !type:PopupMessage
         type: Local
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
-        probability: 0.33
+        probability: 1
       - !type:Emote
         emote: Scream
         probability: 0.3

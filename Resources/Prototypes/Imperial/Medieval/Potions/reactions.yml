@@ -28,6 +28,7 @@
     - !type:AreaReactionEffect
       duration: 10
       prototypeId: MedievalEmptySmoke
+      volume: 0
       sound:
         path: /Audio/Effects/smoke.ogg
   products:
@@ -69,6 +70,7 @@
   - !type:AreaReactionEffect
     duration: 10
     prototypeId: MedievalEmptySmoke
+    volume: 0
     sound:
       path: /Audio/Effects/smoke.ogg
   products:
