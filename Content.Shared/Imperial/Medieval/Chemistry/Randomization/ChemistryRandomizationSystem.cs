@@ -9,6 +9,7 @@ using Content.Shared.EntityEffects;
 using Content.Shared.FixedPoint;
 using Content.Shared.Nutrition;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
@@ -21,6 +22,7 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     /// <summary>
     /// Хранит все реагенты в паре с одним из реактантов
@@ -243,15 +245,18 @@ public sealed class SharedChemistryRandomizationSystem : EntitySystem
                 Reactions = reactions,
                 Group = randomProtoId.Id
             };
-            Log.Info($"{item} is");
-            foreach (var reaction in reactions)
+            if (_net.IsServer)
             {
-                var str = "";
-                foreach (var reactant in reaction.Reactants)
+                Log.Info($"{item} is");
+                foreach (var reaction in reactions)
                 {
-                    str = $"{str}{reactant.Key}|";
+                    var str = "";
+                    foreach (var reactant in reaction.Reactants)
+                    {
+                        str = $"{str}{reactant.Key}|";
+                    }
+                    Log.Info(str);
                 }
-                Log.Info(str);
             }
             generated.GeneratedPotions.Add(item, reagentData);
             _reagentsData.Add(item, reagentData);
