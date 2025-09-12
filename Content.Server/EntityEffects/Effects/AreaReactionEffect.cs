@@ -23,6 +23,12 @@ namespace Content.Server.EntityEffects.Effects;
 [DataDefinition]
 public sealed partial class AreaReactionEffect : EntityEffect
 {
+    // Imperial Medieval Chemistry Begin
+    /// <summary>
+    /// Сколько единиц будет взято у мензурки
+    /// </summary>
+    [DataField] public float? Volume;
+    // Imperial Medieval Chemistry End
     /// <summary>
     /// How many seconds will the effect stay, counting after fully spreading.
     /// </summary>
@@ -61,7 +67,12 @@ public sealed partial class AreaReactionEffect : EntityEffect
                 return;
 
             var spreadAmount = (int) Math.Max(0, Math.Ceiling((reagentArgs.Quantity / OverflowThreshold).Float()));
-            var splitSolution = reagentArgs.Source.SplitSolution(reagentArgs.Source.Volume);
+            // Imperial Medieval Chemistry Begin
+            var volume = reagentArgs.Source.Volume;
+            if (Volume.HasValue)
+                volume = Volume.Value;
+            // Imperial Medieval Chemistry End
+            var splitSolution = reagentArgs.Source.SplitSolution(volume); // Imperial Medieval Chemistry Change
             var transform = reagentArgs.EntityManager.GetComponent<TransformComponent>(reagentArgs.TargetEntity);
             var mapManager = IoCManager.Resolve<IMapManager>();
             var mapSys = reagentArgs.EntityManager.System<MapSystem>();
