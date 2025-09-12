@@ -14,16 +14,16 @@ ent-WeaponEnergyTurretCommand = охранная турель командова
 
 ent-WeaponEnergyTurretStationMachineCircuitboardBase = охранная турель (машинная плата)
     .desc = Машинная плата для охранной турели.
-ent-WeaponEnergyTurretAIMachineCircuitboard = { ent-WeaponEnergyTurretStationMachineCircuitboardBase }
+ent-WeaponEnergyTurretAIMachineCircuitboard = охранная турель ИИ (машинная плата)
     .desc = { ent-WeaponEnergyTurretStationMachineCircuitboardBase.desc }
 ent-WeaponEnergyTurretSecurityMachineCircuitboard = { ent-WeaponEnergyTurretStationMachineCircuitboardBase }
     .desc = { ent-WeaponEnergyTurretStationMachineCircuitboardBase.desc }
 
 ent-WeaponEnergyTurretStationControlPanelBase = панель управления турелями
     .desc = Настенный интерфейс для удаленной настройки рабочих параметров связанных охранных турелей.
-ent-WeaponEnergyTurretAIControlPanel = { ent-WeaponEnergyTurretStationControlPanelBase }
+ent-WeaponEnergyTurretAIControlPanel = панель управления турелями ИИ
     .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
 ent-WeaponEnergyTurretSecurityControlPanel = { ent-WeaponEnergyTurretStationControlPanelBase }
     .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
-ent-WeaponEnergyTurretCommandControlPanel = { ent-WeaponEnergyTurretStationControlPanelBase }
+ent-WeaponEnergyTurretCommandControlPanel = панель управления турелями командования
     .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
