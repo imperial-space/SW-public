@@ -5,11 +5,11 @@ ent-MaterialSiloMachineCircuitboard = силос для материалов (м
 
 ent-WeaponEnergyTurretStationBase = охранная турель
     .desc = Высокотехнологичная автономная система оружия, предназначенная для предотвращения доступа посторонних лиц в охраняемые зоны.
-ent-WeaponEnergyTurretAI = { ent-WeaponEnergyTurretStationBase }
+ent-WeaponEnergyTurretAI = охранная турель ИИ
     .desc = { ent-WeaponEnergyTurretStationBase.desc }
 ent-WeaponEnergyTurretSecurity = { ent-WeaponEnergyTurretStationBase }
     .desc = { ent-WeaponEnergyTurretStationBase.desc }
-ent-WeaponEnergyTurretCommand = { ent-WeaponEnergyTurretStationBase }
+ent-WeaponEnergyTurretCommand = охранная турель командования
     .desc = { ent-WeaponEnergyTurretStationBase.desc }
 
 ent-WeaponEnergyTurretStationMachineCircuitboardBase = охранная турель (машинная плата)
