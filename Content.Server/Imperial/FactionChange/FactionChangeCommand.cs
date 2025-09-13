@@ -6,7 +6,6 @@ using Content.Shared.NPC.Components;
 using Robust.Shared.GameObjects;
 using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Prototypes;
-using Content.Server.Imperial.FactionChange;
 
 namespace Content.Server.Imperial.FactionChange
 {
