@@ -1,0 +1,100 @@
+- type: entity
+  id: MedievalManaBurnField
+  name: Mana Burn Field
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/mana_burn.rsi
+    state: beginner
+    noRot: true
+    shader: unshaded
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+        hard: false
+  - type: ManaBurnField
+    burnPopup: medieval-mana-burn-field-popup
+
+# Beginner
+
+- type: entity
+  id: MedievalManaBurnFieldBeginner
+  parent: MedievalManaBurnField
+  name: Mana Burn Field
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/mana_burn.rsi
+    state: beginner
+  - type: TimedDespawn
+    lifetime: 15
+  - type: PointLight
+    radius: 4
+    energy: 8
+    color: "#B000FF"
+  - type: ManaBurnField
+    radius: 2.5
+    burnQuantity: 15
+    burnDelay: 1
+
+# Middle
+
+- type: entity
+  id: MedievalManaBurnFieldMiddle
+  parent: MedievalManaBurnField
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/mana_burn.rsi
+    state: beginner
+  - type: TimedDespawn
+    lifetime: 20
+  - type: PointLight
+    radius: 5
+    energy: 8
+    color: "#B000FF"
+  - type: ManaBurnField
+    radius: 3
+    burnQuantity: 20
+    burnDelay: 1
+
+# Senior
+
+- type: entity
+  id: MedievalManaBurnFieldSenior
+  parent: MedievalManaBurnField
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/mana_burn.rsi
+    state: beginner
+  - type: TimedDespawn
+    lifetime: 25
+  - type: PointLight
+    radius: 5
+    energy: 10
+    color: "#670097"
+  - type: ManaBurnField
+    radius: 3.5
+    burnQuantity: 22
+    burnDelay: 1
+  - type: SingularityDistortion
+    intensity: 130
+    falloffPower: 2
+  - type: GravityWell
+    maxRange: 3.5
+    minRange: 0.2
+    baseRadialAcceleration: 25
+    baseTangentialAcceleration: 6
+    gravPulsePeriod: 0.14

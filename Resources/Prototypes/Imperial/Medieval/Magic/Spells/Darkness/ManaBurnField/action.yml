@@ -1,0 +1,189 @@
+- type: entity
+  id: MedievalActionManaBurnFieldBaze
+  name: medieval-store-spells-darkness-mana-burn-field-beginner-name
+  description: medieval-store-spells-darkness-mana-burn-field-beginner-desc
+  abstract: true
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
+  - type: ManaDrainSpell
+    manaDrain: 30
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 18
+  - type: SpellCastEffect
+    effectProto: ManaBurnFieldSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 40
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 8
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalManaBurnBeginner
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 2.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-mana-burn-field
+          color: "#B000FF"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/mana_burn.rsi
+          state: beginner
+        alwaysRender: true
+        spriteColor: "#47f8ff"
+        inRangeColor: "#CC00AF"
+        outOfRangeColor: "#CC0000"
+        range: 5
+  - type: CheckInitialBarrier
+
+# Beginner
+
+- type: entity
+  id: MedievalActionManaBurnFieldBeginner
+  name: medieval-store-spells-darkness-mana-burn-field-beginner-name
+  description: medieval-store-spells-darkness-mana-burn-field-beginner-desc
+  parent: MedievalActionManaBurnFieldBaze
+  components:
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionManaBurnFieldMiddle
+      3: MedievalActionManaBurnFieldSenior
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalDarkness: 1
+        bonusEssences:
+          MagicMedievalDarkness: 1
+  - type: ManaDrainSpell
+    manaDrain: 30
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 18
+  - type: SpellCastEffect
+    effectProto: ManaBurnFieldSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: WorldTargetAction
+    useDelay: 40
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 8
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalManaBurnFieldBeginner
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 2.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-mana-burn-field
+          color: "#B000FF"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/mana_burn.rsi
+          state: beginner
+        alwaysRender: true
+        spriteColor: "#47f8ff"
+        inRangeColor: "#CC00AF"
+        outOfRangeColor: "#CC0000"
+        range: 5
+  - type: CheckInitialBarrier
+
+# Middle
+
+- type: entity
+  id: MedievalActionManaBurnFieldMiddle
+  name: medieval-store-spells-darkness-mana-burn-field-middle-name
+  description: medieval-store-spells-darkness-mana-burn-field-middle-desc
+  parent: MedievalActionManaBurnFieldBeginner
+  components:
+  - type: WorldTargetAction
+    useDelay: 40
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 8
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalManaBurnFieldMiddle
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 2.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-mana-burn-field
+          color: "#B000FF"
+          hideChat: true
+
+# Senior
+
+- type: entity
+  id: MedievalActionManaBurnFieldSenior
+  name: medieval-store-spells-darkness-mana-burn-field-senior-name
+  description: medieval-store-spells-darkness-mana-burn-field-senior-desc
+  parent: MedievalActionManaBurnFieldBeginner
+  components:
+  - type: WorldTargetAction
+    useDelay: 40
+    itemIconStyle: BigAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 8
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalManaBurnFieldSenior
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 2.5
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-mana-burn-field
+          color: "#B000FF"
+          hideChat: true

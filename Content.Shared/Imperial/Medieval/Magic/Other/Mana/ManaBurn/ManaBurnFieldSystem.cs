@@ -28,7 +28,7 @@ public sealed partial class ManaBurnFieldSystem : EntitySystem
             {
                 if (uid.BurnTime <= _timing.CurTime)
                 {
-                    uid.BurnTime = _timing.CurTime + uid.BurnDelay;
+                    uid.BurnTime = _timing.CurTime + TimeSpan.FromSeconds(uid.BurnDelay);
                     if (TryComp<ManaComponent>(entity, out var player))
                     {
                         if (_timing.IsFirstTimePredicted && _net.IsServer)

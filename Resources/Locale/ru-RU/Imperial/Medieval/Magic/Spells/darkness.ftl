@@ -95,5 +95,11 @@ medieval-mana-burn-field-popup = Силы покидают меня
 
 medieval-spell-speach-mana-burn-field = Wɛakɛn̴͈͂  my ɛn̴͈͂ɛmiɛs
 
-medieval-store-spells-darkness-mana-burn-beginner-name = Поле истощения маны
-medieval-store-spells-darkness-mana-burn-beginner-desc = Размещает поле, которое постепенно выжигает ману у стоящих на нём сущностей
+medieval-store-spells-darkness-mana-burn-field-beginner-name = Поле истощения маны
+medieval-store-spells-darkness-mana-burn-field-beginner-desc = Размещает поле радиусом 2.5 тайла, которое постепенно выжигает ману у стоящих на нём сущностей
+
+medieval-store-spells-darkness-mana-burn-field-middle-name = Поле истощения маны
+medieval-store-spells-darkness-mana-burn-field-middle-desc = Размещает поле радиусом 3 тайла, которое постепенно выжигает ману у стоящих на нём сущностей
+
+medieval-store-spells-darkness-mana-burn-field-senior-name = Дыра истощения маны
+medieval-store-spells-darkness-mana-burn-field-senior-desc = Размещает поле радиусом 3.5 тайла, которое постепенно выжигает ману у стоящих на нём сущностей и притягивает их к центру поля
