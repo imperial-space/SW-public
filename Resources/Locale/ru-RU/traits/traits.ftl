@@ -59,3 +59,9 @@ trait-german-desc = Вы, кажется, родом из космической
 
 trait-french-name = Французский акцент
 trait-french-desc = В вашем акценте, кажется, есть что-то особенное «je ne sais quoi».
+
+trait-monochromancy-name = Монохромность
+trait-monochromancy-desc = Вы полностью дальтоник, всё, что вы воспринимаете, находится в диапазоне от чёрного до белого.
+
+trait-painnumbness-name = Онемение
+trait-painnumbness-desc = Вы не чувствуете боли и не осознаёте, насколько вам может быть больно.
