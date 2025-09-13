@@ -1,0 +1,15 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellManaBurnBeginner
+  name: medieval-store-spells-darkness-mana-burn-beginner-name
+  description: medieval-store-spells-darkness-mana-burn-beginner-desc
+  productAction: MedievalActionManaBurnBeginner
+  priority: 3
+  cost:
+    MagicMedievalDarkness: 20
+  categories:
+  - MedievalDarknessSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1

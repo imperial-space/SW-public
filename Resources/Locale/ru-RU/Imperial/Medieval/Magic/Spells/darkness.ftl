@@ -88,3 +88,12 @@ medieval-spell-speach-cult-dagger = blò̸̹ò̸̹d kn̴͈͂ifɛ
 
 medieval-store-spells-darkness-cult-dagger-name = Создание кинжала культа
 medieval-store-spells-darkness-cult-dagger-desc = Создаёт в руке кинжал культа. Пригодится, если вы потеряете настоящий.
+
+# Mana Burn Field
+
+medieval-mana-burn-field-popup = Силы покидают меня
+
+medieval-spell-speach-mana-burn-field = Wɛakɛn̴͈͂  my ɛn̴͈͂ɛmiɛs
+
+medieval-store-spells-darkness-mana-burn-beginner-name = Поле истощения маны
+medieval-store-spells-darkness-mana-burn-beginner-desc = Размещает поле, которое постепенно выжигает ману у стоящих на нём сущностей
