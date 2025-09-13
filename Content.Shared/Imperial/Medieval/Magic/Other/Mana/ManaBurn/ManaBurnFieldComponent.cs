@@ -5,13 +5,13 @@ namespace Content.Shared.Imperial.Medieval.Magic.ManaBurn;
 public sealed partial class ManaBurnFieldComponent : Component
 {
     [ViewVariables]
-    public TimeSpan burnDelay = TimeSpan.FromSeconds(5);
+    public TimeSpan BurnDelay = TimeSpan.FromSeconds(5);
     [DataField]
-    public float burnQuantity = 5;
+    public float BurnQuantity = 5;
     [DataField]
-    public float radius = 3f;
+    public float Radius = 3f;
     [ViewVariables]
-    public TimeSpan burnTime = TimeSpan.FromSeconds(0);
+    public TimeSpan BurnTime = TimeSpan.FromSeconds(0);
     [DataField]
-    public LocId burnPopup;
+    public LocId BurnPopup;
 }

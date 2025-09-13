@@ -24,24 +24,24 @@ public sealed partial class ManaBurnFieldSystem : EntitySystem
         {
             var xform = Transform(uid.Owner);
             var coords = xform.Coordinates;
-            foreach (var entity in _lookup.GetEntitiesInRange(coords, uid.radius))
+            foreach (var entity in _lookup.GetEntitiesInRange(coords, uid.Radius))
             {
-                if (uid.burnTime <= _timing.CurTime)
+                if (uid.BurnTime <= _timing.CurTime)
                 {
-                    uid.burnTime = _timing.CurTime + uid.burnDelay;
+                    uid.BurnTime = _timing.CurTime + uid.BurnDelay;
                     if (TryComp<ManaComponent>(entity, out var player))
                     {
                         if (_timing.IsFirstTimePredicted && _net.IsServer)
                         {
-                            _popupSystem.PopupEntity(Loc.GetString(uid.burnPopup), player.Owner);
+                            _popupSystem.PopupEntity(Loc.GetString(uid.BurnPopup), player.Owner);
                         }
-                        if ((player.Mana - uid.burnQuantity) < 0)
+                        if (player.Mana - uid.BurnQuantity < 0)
                         {
                             player.Mana = 0;
                         }
                         else
                         {
-                            player.Mana -= uid.burnQuantity;
+                            player.Mana -= uid.BurnQuantity;
                         }
                     }
                 }
