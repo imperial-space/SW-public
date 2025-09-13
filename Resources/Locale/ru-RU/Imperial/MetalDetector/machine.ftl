@@ -1,5 +1,5 @@
 ent-ImperialMetalDetector = рамка металлоискателя
-    .desc = Способна распознать наличие оружия и контрабанды у человека, где бы оно ни было спрятано.
+    .desc = Сигнализирует о наличии оружия и контрабанды у сущности.
 wires-board-name-metal-detector = техническая панель металлоискателя
 ent-MetalDetectorSecure = рамка металлоискателя
     .desc = { ent-ImperialMetalDetector.desc }
