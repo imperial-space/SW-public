@@ -1,8 +1,29 @@
-ent-WeaponEnergyTurretAI = турель цИИ
-    .desc = Высокотехнологичная автономная система вооружения под непосредственным управлением местного искусственного интеллекта.
-ent-WeaponEnergyTurretStation = турель
-    .desc = Высокотехнологичная автономная система оружия, предназначенная для предотвращения проникновения посторонних лиц в закрытые зоны.
 ent-MachineMaterialSilo = силос для материалов
     .desc = Продвинутая машина, способная использовать блюспейс технологию для передачи материалов подключенным машинам.
 ent-MaterialSiloMachineCircuitboard = силос для материалов (машинная плата)
     .desc = Машинная плата требуемая для постройки силоса для материалов.
+
+ent-WeaponEnergyTurretStationBase = охранная турель
+    .desc = Высокотехнологичная автономная система оружия, предназначенная для предотвращения доступа посторонних лиц в охраняемые зоны.
+ent-WeaponEnergyTurretAI = охранная турель ИИ
+    .desc = { ent-WeaponEnergyTurretStationBase.desc }
+ent-WeaponEnergyTurretSecurity = охранная турель СБ
+    .desc = { ent-WeaponEnergyTurretStationBase.desc }
+ent-WeaponEnergyTurretCommand = охранная турель командования
+    .desc = { ent-WeaponEnergyTurretStationBase.desc }
+
+ent-WeaponEnergyTurretStationMachineCircuitboardBase = охранная турель (машинная плата)
+    .desc = Машинная плата для охранной турели.
+ent-WeaponEnergyTurretAIMachineCircuitboard = охранная турель ИИ (машинная плата)
+    .desc = { ent-WeaponEnergyTurretStationMachineCircuitboardBase.desc }
+ent-WeaponEnergyTurretSecurityMachineCircuitboard = охранная турель СБ (машинная плата)
+    .desc = { ent-WeaponEnergyTurretStationMachineCircuitboardBase.desc }
+
+ent-WeaponEnergyTurretStationControlPanelBase = панель управления турелями
+    .desc = Настенный интерфейс для удаленной настройки рабочих параметров связанных охранных турелей.
+ent-WeaponEnergyTurretAIControlPanel = панель управления турелями ИИ
+    .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
+ent-WeaponEnergyTurretSecurityControlPanel = панель управления турелями СБ
+    .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
+ent-WeaponEnergyTurretCommandControlPanel = панель управления турелями командования
+    .desc = { ent-WeaponEnergyTurretStationControlPanelBase.desc }
