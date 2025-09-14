@@ -61,13 +61,20 @@ namespace Content.Server.Imperial.FactionChange
               // TODO: Прошу людей с доступом в приват добавить сюда фракции из закрытой сборки
             };
 
+            var numberCheck = (int)changedFaction;
+            if ((numberCheck > 16) || (numberCheck < 0))
+            {
+                shell.WriteError(Loc.GetString("cf-shell-entity-faction-incorrect-range"));
+                return;
+            }
+
             if (_entManager.HasComponent<NpcFactionMemberComponent>(entityId))
             {
                 var target = entityId;
                 var factionNumber = (int)changedFaction;
                 _npcFactionSystem.ClearFactions(target, true);
                 _npcFactionSystem.AddFaction(target, factions[factionNumber], false);
-                shell.WriteLine(Loc.GetString("cf-command-enter-succesful"));
+                shell.WriteLine(Loc.GetString("cf-command-enter-successful"));
             }
             else
             {
