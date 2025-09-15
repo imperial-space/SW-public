@@ -46,11 +46,11 @@ turret-controls-window-turret-status = » {$device} - Статус: {$status}
 turret-controls-window-turret-disabled = ***ОФФЛАЙН***
 turret-controls-window-turret-retracted = НЕАКТИВНЫЙ
 turret-controls-window-turret-retracting = ДЕАКТИВАЦИЯ
-turret-controls-window-turret-deployed = ПОИСК...
+turret-controls-window-turret-deployed = АКТИВНА
 turret-controls-window-turret-deploying = АКТИВАЦИЯ
 turret-controls-window-turret-firing = ЦЕЛЬ ОБНАРУЖЕНА
-turret-controls-window-turret-error = ОШИБКА [404]
-turret-controls-window-turret-broken = ***НЕОБРАБАТЫВАЕМО***
+turret-controls-window-turret-error = ОШИБКА
+turret-controls-window-turret-broken = ***НЕИСПРАВНА***
 
 # Кнопки
 turret-controls-window-safe = Отключение
