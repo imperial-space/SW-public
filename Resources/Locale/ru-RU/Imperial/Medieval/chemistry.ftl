@@ -57,3 +57,9 @@ ent-MedievalRecipeBook = книга рецептов
 imperial-medieval-recipe-already = Рецепт уже есть в книге
 imperial-medieval-recipe-inserted = Рецепт успешно вставлен в книгу
 imperial-medieval-recipebook = Книга рецептов
+imperial-medieval-medievalexplosion-desc = Выделяет большое количество теплоты при реакции, вызывая серьезные разрушения
+imperial-medieval-medievalsmoke-desc = Переходит в парообразное состояние при реакции, что ведет за собой генерацию дыма в больших объемах
+imperial-medieval-medievalcryoexplosion-desc = Поглощает большое количество теплоты при реакции, взрываясь 'холодным взрывом'
+imperial-medieval-medievaladvancedsmokeandexplosion-desc = Выделяет большое количество теплоты при реакции и переходит в парообразное состояние, вызывая серьезные разрушения и заволакивая область дымом
+imperial-medieval-bestexplosion-desc = Выделяет большое количество теплоты при реакции и переходит в парообразное состояние, вызывая коллосальные разрушения и заволакивая область ядовитым дымом
+
