@@ -8,8 +8,8 @@
   - type: Sprite
     layers:
     - map: ["computerLayerBody"]
-      state: on 
-    sprite: Imperial/Asimov/oldradio.rsi 
+      state: on
+    sprite: Imperial/Asimov/oldradio.rsi
   - type: ApcPowerReceiver
     powerLoad: 100
     needsPower: true
