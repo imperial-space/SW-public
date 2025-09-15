@@ -13,8 +13,6 @@
     - type: SmokeOnTrigger
       duration: 15
       spreadAmount: 3
-    - type: SoundOnTrigger
-      sound: /Audio/Effects/smoke.ogg
     - type: TimerTriggerVisuals
       primingSound:
         path: /Audio/Effects/Smoke-grenade.ogg
