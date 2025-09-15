@@ -160,6 +160,7 @@
         - BorgModuleTopicals
         - BorgModuleRescue
         - BorgModuleAdvancedTreatmentSyndicate
+        - BorgModuleSurgeryTools
   - type: ItemSlots
     slots:
       cell_slot:
