@@ -346,10 +346,6 @@
         shader: SmilerGlitch
       - state: unshaded
         shader: unshaded
-  - type: PointLight
-    radius: 1.4
-    energy: 2.1
-    color: "#ffffff"
   - type: MobState
     allowedStates:
     - Alive
@@ -587,10 +583,6 @@
       types:
         Cellular: 15
     popupText: hand-glitch-hurt
-  - type: PointLight
-    radius: 1.5
-    energy: 0.5
-    netsync: false
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Crook/backrooms/glitchspawn.ogg
