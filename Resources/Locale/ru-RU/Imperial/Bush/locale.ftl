@@ -1,4 +1,4 @@
 ent-Quaran = коран
     .desc = "Иншааллах"
-ent-ClothingHeadHatImam = повязка на голову имама
+ent-ClothingHeadHatImam = повязка имама
     .desc = Хвала Аллаху
