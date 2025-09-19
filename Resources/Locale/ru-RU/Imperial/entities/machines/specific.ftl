@@ -62,7 +62,7 @@ turret-controls-window-access-group-label = {$prefix} {$label}
 turret-controls-window-all-checkbox = Все
 
 # Текст
-turret-controls-window-footer = Неавторизованный персонал должен убедиться, что средства защиты отключены, прежде чем продолжить.
+turret-controls-window-footer = Неавторизованный персонал должен убедиться, что средства защиты отключены.
 
 # Предупреждения
 turret-controls-access-denied = В доступе отказано.
