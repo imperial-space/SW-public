@@ -180,6 +180,8 @@
     - Biological
   - type: BorgHandsImperial # Imperial Space Добавлена рука медицинскому боргу
     whitelistHandTag: MedicalBorgItem
+  - type: Body # Imperial Space Добавлена рука медицинскому боргу
+    prototype: ImperialBorg 
 
   # Visual
   inventoryTemplateId: borgDutch
