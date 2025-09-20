@@ -132,7 +132,7 @@
     - state: icon-diagnosis
   - type: ItemBorgModule
     items:
-    - SawAdvanced
+    - Saw
     - Retractor
     - ScalpelLaser
     - Cautery
