@@ -178,6 +178,8 @@
   - type: ShowHealthIcons
     damageContainers:
     - Biological
+  - type: BorgHandsImperial # Imperial Space Добавлена рука медицинскому боргу
+    whitelistHandTag: MedicalBorgItem
 
   # Visual
   inventoryTemplateId: borgDutch

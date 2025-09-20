@@ -145,6 +145,9 @@
   id: BorgModuleSurgeryTools
   result: BorgModuleSurgeryTools
 
+- type: Tag
+  id: MedicalBorgItem
+
 ## Медицинский киборг синдиката
 - type: entity
   id: PlayerBorgSyndicateMedicalBattery
