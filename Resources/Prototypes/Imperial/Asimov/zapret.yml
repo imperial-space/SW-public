@@ -1,8 +1,8 @@
 - type: entity
   parent: PaintingBase
   id: Zona 
-  name: Запретная зона 
-  description: A simple atmospheric plaque. 
+  name: Restricted area
+  description: Restricted area 
   placement:
     mode: SnapgridCenter
   components:
