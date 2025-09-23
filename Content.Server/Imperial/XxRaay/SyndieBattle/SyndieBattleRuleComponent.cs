@@ -50,6 +50,21 @@ public sealed partial class SyndieBattleRuleComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public double StartTime = 0.0;
+
+    /// <summary>
+    /// Что выдается в аплинк
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string Currency = "Telecrystal";
+
+    /// <summary>
+    /// Количество телекристаллов в аплинке раундстартом
+    /// </summary>
+    [ViewVariables(VVAccess.ReadOnly)]
+    public int StartingTelecrystalCount = 35;
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string StartingGear = "PassengerGear";
 }
 
 
