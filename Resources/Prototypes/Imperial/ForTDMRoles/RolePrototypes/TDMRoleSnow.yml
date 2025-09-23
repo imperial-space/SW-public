@@ -120,7 +120,7 @@
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - redteamfirstname
+      - redteammedicfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
@@ -339,7 +339,7 @@
     - type: AntagImmune
     - type: RandomMetadata
       nameSegments:
-      - blueteamfirstname
+      - blueteammedicfirstname
       - NamesMilitaryLast
       nameFormat: name-format-ert
     - type: Sprite
