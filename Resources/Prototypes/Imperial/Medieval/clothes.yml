@@ -1999,8 +1999,8 @@
 - type: entity
   parent: MedievalClothingHeadHelmetShapel
   id: MedievalSteampunkHat
-  name: ent-MedievalSteampunkHat
-  description: ent-MedievalSteampunkHat
+  name: Steampunk Hat
+  description: A pretty old inventor's hat with a flashlight on it. Quite a valuable artifact for a person interested in it.
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Clothing/Head/steampunk-hat.rsi
@@ -2053,10 +2053,10 @@
           Piercing: 0.95
 
 - type: entity
-  id: MedivalSteampunkGlasses
-  parent: Clothing
-  name: Стимпанк очки
-  description: Самодельные очки со встроенной лупой для приближения маленьких деталей. Её оправа сделана из чистого золота, а окуляры - из довольно сильно закалённого стекла.
+  parent: ClothingEyesBase
+  id: MedievalSteampunkGlasses
+  name: Steampunk Glasses
+  description: Homemade glasses with a built-in magnifying glass for zooming in on small details. Its frame is made of pure gold, and the eyepieces are made of rather heavily tempered glass.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Eyes/steampunk.rsi
