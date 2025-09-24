@@ -199,6 +199,9 @@
         - ClothingHandsGlovesCentCom
         - ClothingUniformJumpsuitCentcomOfficer
         - ClothingUniformJumpskirtSpecialOfficer
+        # Other
+        - ClothingGaloshesExplosive
+        - ClothingShoesGaloshes
     - type: DeviceNetwork
       deviceNetId: Wireless
     - type: WirelessNetworkConnection
