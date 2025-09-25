@@ -1,0 +1,79 @@
+- type: entity
+  id: MedievalProjectileSunstrikeSpot
+  parent: BaseBullet
+  name: SunstrikeSpot
+  description: You better GITTAH WEIGH.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/sunstrike.rsi
+    noRot: true
+    layers:
+    - state: spot
+      shader: unshaded
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 20
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 3.2
+  - type: Projectile
+    deleteOnCollide: false
+  - type: TimedDespawn
+    lifetime: 7
+  - type: ProjectileCursorFollower
+    maxLinearVelocityIntensy: 1.7
+  - type: DelayedSpawn
+    proto: MedievalSunstrikeSenior
+    delay: 1
+    attached: true
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Imperial/Medieval/sunstrike_static.ogg
+
+#Beginner
+
+- type: entity
+  id: MedievalSunstrikeSenior
+  name: Sunstrike
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/sunstrike.rsi
+    state: beginner
+    drawdepth: Mobs
+    noRot: true
+  - type: Clickable
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 60
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+        hard: false
+  - type: Physics
+    bodyType: Static
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#ff9c24"
+  - type: DamageContacts
+    damage:
+      types:
+        Heat: 10
+  - type: IgniteOnCollide
+    fixtureId: fix1
+    fireStacks: 2
