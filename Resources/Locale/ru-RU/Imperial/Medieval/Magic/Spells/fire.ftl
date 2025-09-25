@@ -114,3 +114,11 @@ medieval-store-spells-fire-wall-middle-desc = Создает огненную с
 
 medieval-store-spells-fire-wall-senior-name = Небесный огонь
 medieval-store-spells-fire-wall-senior-desc = Кто вам сказал что в средневековье не было напалма? Стоимость 55 маны.
+
+# Sunstrike
+
+medieval-spell-speach-fire-sunstrike1 = The skies set you aflame
+medieval-spell-speach-fire-sunstrike2 = S̤̤̯̲̲̰̰un̷̜̑str̴͎̈́ike̵͍͑
+
+medieval-store-spells-fire-sunstrike-senior-name = Огненный луч
+medieval-store-spells-fire-sunstrike-senior-desc = Создаёт управляемую метку, на которую через 5 секунд обрушится луч энергии солнца. Стоимость 55 маны
