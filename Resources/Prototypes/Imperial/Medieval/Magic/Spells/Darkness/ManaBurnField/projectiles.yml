@@ -40,7 +40,7 @@
     sprite: Imperial/Medieval/Magic/mana_burn.rsi
     state: beginner
   - type: TimedDespawn
-    lifetime: 15
+    lifetime: 12
   - type: PointLight
     radius: 4
     energy: 8
@@ -60,7 +60,7 @@
     sprite: Imperial/Medieval/Magic/mana_burn.rsi
     state: middle
   - type: TimedDespawn
-    lifetime: 20
+    lifetime: 15
   - type: PointLight
     radius: 5
     energy: 8
@@ -80,7 +80,7 @@
     sprite: Imperial/Medieval/Magic/mana_burn.rsi
     state: senior
   - type: TimedDespawn
-    lifetime: 25
+    lifetime: 20
   - type: PointLight
     radius: 5
     energy: 10
