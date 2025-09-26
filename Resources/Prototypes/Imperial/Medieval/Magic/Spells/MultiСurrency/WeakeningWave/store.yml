@@ -10,12 +10,10 @@
     sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
     state: 3
   cost:
-    MagicMedievalLight: 60
-    MagicMedievalVodka: 60
+    MagicMedievalLight: 120
     ArchmagePoints: 1
   categories:
   - MedievalLightSpells
-  - MedievalVodkaSpells
   conditions:
   - !type:ImperialListingLimitedStockCondition
     stock: 1
