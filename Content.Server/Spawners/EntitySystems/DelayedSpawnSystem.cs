@@ -15,7 +15,7 @@ public sealed class DelayedSpawnSystem : EntitySystem
         base.Update(frameTime);
         if (!_timing.IsFirstTimePredicted)
             return;
-        var query = AllEntityQuery<DelayedSpawnComponent>();
+        var query = EntityQuery<DelayedSpawnComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             if (comp.ParentSpawnTime == TimeSpan.FromSeconds(0))
