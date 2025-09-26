@@ -22,7 +22,7 @@ public sealed partial class PolymorphPrototype : IPrototype, IInheritingPrototyp
     [AbstractDataField]
     public bool Abstract { get; private set; }
 
-    [DataField(required: true, serverOnly: true)]
+    [DataField(required: true)] // Imperial Medieval - serverOnly removed
     public PolymorphConfiguration Configuration = new();
 
 }
@@ -37,7 +37,7 @@ public sealed partial record PolymorphConfiguration
     /// What entity the polymorph will turn the target into
     /// must be in here because it makes no sense if it isn't
     /// </summary>
-    [DataField(required: true, serverOnly: true)]
+    [DataField(required: true)] // Imperial Medieval - serverOnly removed
     public EntProtoId Entity;
 
     /// <summary>
