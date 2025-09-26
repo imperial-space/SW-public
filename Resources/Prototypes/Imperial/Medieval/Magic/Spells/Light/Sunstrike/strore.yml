@@ -1,17 +1,17 @@
 - type: imperialListing
   id: MedievalSpellSunstrikeSenior
-  name: medieval-store-spells-fire-sunstrike-senior-name
-  description: medieval-store-spells-fire-sunstrike-senior-desc
+  name: medieval-store-spells-light-sunstrike-senior-name
+  description: medieval-store-spells-light-sunstrike-senior-desc
   productAction: MedievalActionSunstrikeSenior
   priority: 6
   icon:
     sprite: Imperial/Medieval/Gun/Charmer/sunstrike.rsi
     state: senior
   cost:
-    MagicMedievalFire: 80
+    MagicMedievalLight: 80
     ArchmagePoints: 1
   categories:
-  - MedievalFireSpells
+  - MedievalLightSpells
   conditions:
   - !type:ImperialListingLimitedStockCondition
     stock: 1

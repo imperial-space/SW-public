@@ -45,9 +45,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/sunstrike.rsi
-    state: beginner
     drawdepth: Mobs
     noRot: true
+    layers:
+    - state: beginner
+      shader: unshaded
   - type: Clickable
   - type: Fixtures
     fixtures:

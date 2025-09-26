@@ -1,7 +1,7 @@
 - type: entity
   id: MedievalActionSunstrikeSenior
-  name: medieval-store-spells-fire-sunstrike-senior-name
-  description: medieval-store-spells-fire-sunstrike-senior-desc
+  name: medieval-store-spells-light-sunstrike-senior-name
+  description: medieval-store-spells-light-sunstrike-senior-desc
   components:
   - type: CastTraining
     trainingResults:
@@ -34,12 +34,12 @@
         speedModifier: 0.3
       speechPoints:
         0:
-          speech: medieval-spell-speach-fire-sunstrike1
-          color: "#ff912b"
+          speech: medieval-spell-speach-light-sunstrike1
+          color: "#fee218"
           hideChat: true
         0.5:
-          speech: medieval-spell-speach-fire-sunstrike2
-          color: "#ff912b"
+          speech: medieval-spell-speach-light-sunstrike2
+          color: "#fee218"
           hideChat: true
   - type: ManaDrainSpell
     manaDrain: 55

@@ -2,9 +2,9 @@
   id: SunstrikeSpellCastEffectSenior
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/SpellCastEffects/fire/sunstrike.rsi
+    sprite: Imperial/Medieval/SpellCastEffects/light/sunstrike.rsi
     state: senior
-    color: "#ff9900"
+    color: "#fee218"
     noRot: true
     shader: unshaded
   - type: PointLight
