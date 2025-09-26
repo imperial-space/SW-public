@@ -87,5 +87,5 @@ ent-HolyTouch = освящающее касание
 medieval-spell-speach-light-sunstrike1 = The skies set you aflame
 medieval-spell-speach-light-sunstrike2 = S̤̤̯̲̲̰̰un̷̜̑str̴͎̈́ike̵͍͑
 
-medieval-store-spells-light-sunstrike-senior-name = Солнечный луч
-medieval-store-spells-light-sunstrike-senior-desc = Создаёт управляемую метку, на которую через 5 секунд обрушится луч энергии солнца. Стоимость 55 маны
+medieval-store-spells-light-sunstrike-middle-name = Солнечный луч
+medieval-store-spells-light-sunstrike-middle-desc = Создаёт управляемую метку, на которую через 1 секунду обрушится луч энергии солнца. Стоимость 55 маны

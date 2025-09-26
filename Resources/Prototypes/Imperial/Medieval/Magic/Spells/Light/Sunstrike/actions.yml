@@ -1,7 +1,7 @@
 - type: entity
-  id: MedievalActionSunstrikeSenior
-  name: medieval-store-spells-light-sunstrike-senior-name
-  description: medieval-store-spells-light-sunstrike-senior-desc
+  id: MedievalActionSunstrikeMiddle
+  name: medieval-store-spells-light-sunstrike-middle-name
+  description: medieval-store-spells-light-sunstrike-middle-desc
   components:
   - type: CastTraining
     trainingResults:
@@ -14,13 +14,15 @@
           MagicMedievalFire: 1
   - type: MedievalTargetSpell
   - type: WorldTargetAction
-    useDelay: 60
+    useDelay: 80
     itemIconStyle: BigAction
     checkCanAccess: false
     range: 60
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/sunstrike.rsi
-      state: senior
+      state: middle
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:
         0: MedievalProjectileSunstrikeSpot
@@ -49,4 +51,7 @@
       groups:
         Burn: 19
   - type: SpellCastEffect
-    effectProto: SunstrikeSpellCastEffectSenior
+    effectProto: SunstrikeSpellCastEffectMiddle
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionBlackHoleSenior

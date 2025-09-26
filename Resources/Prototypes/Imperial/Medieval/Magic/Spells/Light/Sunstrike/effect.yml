@@ -1,9 +1,9 @@
 - type: entity
-  id: SunstrikeSpellCastEffectSenior
+  id: SunstrikeSpellCastEffectMiddle
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/sunstrike.rsi
-    state: senior
+    state: middle
     color: "#fee218"
     noRot: true
     shader: unshaded

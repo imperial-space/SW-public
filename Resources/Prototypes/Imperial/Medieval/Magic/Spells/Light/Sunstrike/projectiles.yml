@@ -28,19 +28,14 @@
   - type: ProjectileCursorFollower
     maxLinearVelocityIntensy: 1.7
   - type: DelayedSpawn
-    proto: MedievalSunstrikeSenior
+    proto: MedievalSunstrikeMiddle
     delay: 1
     attached: true
-  - type: AmbientSound
-    volume: -3
-    range: 6
-    sound:
-      path: /Audio/Imperial/Medieval/sunstrike_static.ogg
 
-#Beginner
+#Middle
 
 - type: entity
-  id: MedievalSunstrikeSenior
+  id: MedievalSunstrikeMiddle
   name: Sunstrike
   components:
   - type: Sprite
@@ -48,7 +43,7 @@
     drawdepth: Mobs
     noRot: true
     layers:
-    - state: beginner
+    - state: middle
       shader: unshaded
   - type: Clickable
   - type: Fixtures
@@ -79,3 +74,8 @@
   - type: IgniteOnCollide
     fixtureId: fix1
     fireStacks: 2
+  - type: AmbientSound
+    volume: -3
+    range: 6
+    sound:
+      path: /Audio/Imperial/Medieval/sunstrike_static.ogg
