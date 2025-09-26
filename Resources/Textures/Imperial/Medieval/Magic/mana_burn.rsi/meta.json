@@ -9,7 +9,31 @@
   "states":
   [
     {
-      "name": "beginner"
+      "name": "beginner",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "middle",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
+    },
+    {
+      "name": "senior",
+      "delays": [
+        [
+          0.5,
+          0.5
+        ]
+      ]
     }
   ]
 }

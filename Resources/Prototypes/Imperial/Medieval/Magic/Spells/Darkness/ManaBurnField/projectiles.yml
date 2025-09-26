@@ -58,7 +58,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/mana_burn.rsi
-    state: beginner
+    state: middle
   - type: TimedDespawn
     lifetime: 20
   - type: PointLight
@@ -78,7 +78,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/mana_burn.rsi
-    state: beginner
+    state: senior
   - type: TimedDespawn
     lifetime: 25
   - type: PointLight
