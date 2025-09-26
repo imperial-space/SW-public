@@ -1,5 +1,7 @@
+#Middle
+
 - type: entity
-  id: MedievalProjectileSunstrikeSpot
+  id: MedievalProjectileSunstrikeSpotMiddle
   parent: BaseBullet
   name: SunstrikeSpot
   description: You better GITTAH WEIGH.
@@ -8,7 +10,7 @@
     sprite: Imperial/Medieval/Magic/sunstrike.rsi
     noRot: true
     layers:
-    - state: spot
+    - state: spot-middle
       shader: unshaded
   - type: Fixtures
     fixtures:
@@ -31,8 +33,6 @@
     proto: MedievalSunstrikeMiddle
     delay: 1
     attached: true
-
-#Middle
 
 - type: entity
   id: MedievalSunstrikeMiddle
@@ -79,3 +79,31 @@
     range: 6
     sound:
       path: /Audio/Imperial/Medieval/sunstrike_static.ogg
+
+# Senior
+
+- type: entity
+  id: MedievalProjectileSunstrikeSpotSenior
+  parent: MedievalProjectileSunstrikeSpotMiddle
+  name: SunstrikeSpot
+  description: You better GITTAH WEIGH.
+  components:
+  - type: ProjectileCursorFollower
+    maxLinearVelocityIntensy: 2.3
+  - type: DelayedSpawn
+    proto: MedievalSunstrikeSenior
+    delay: 1
+    attached: true
+
+- type: entity
+  id: MedievalSunstrikeSenior
+  parent: MedievalSunstrikeMiddle
+  name: Sunstrike
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/sunstrike.rsi
+    drawdepth: Mobs
+    noRot: true
+    layers:
+    - state: senior
+      shader: unshaded

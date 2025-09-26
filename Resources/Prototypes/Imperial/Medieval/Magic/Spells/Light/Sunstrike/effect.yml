@@ -1,3 +1,5 @@
+#Middle
+
 - type: entity
   id: SunstrikeSpellCastEffectMiddle
   components:
@@ -12,4 +14,22 @@
     energy: 2
     color: "#fee218"
   - type: TimedDespawn
-    lifetime: 1
+    lifetime: 2.52
+
+#Senior
+
+- type: entity
+  id: SunstrikeSpellCastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/light/sunstrike.rsi
+    state: senior
+    color: "#fee218"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#fee218"
+  - type: TimedDespawn
+    lifetime: 2.52
