@@ -35,7 +35,7 @@
     animation: WeaponArcBite
     damage:
       groups:
-        Brute: 26
+        Brute: 18
   - type: Puller
   - type: Tag
     tags:
@@ -48,8 +48,8 @@
       410: Critical
       750: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.4
-    baseSprintSpeed : 5.6
+    baseWalkSpeed : 5.6
+    baseSprintSpeed : 3.4
   - type: SlowOnDamage
     speedModifierThresholds:
       10: 1
@@ -70,8 +70,37 @@
       Unsexed: MedievalWerwolfEmote
   - type: StaminaDamageOnHit
     damage: 20
-  #- type: TDMOverlay
-  #  team: black
+  - type: Werewolf
+  - type: ContainerContainer
+    containers:
+      tearing_weapon: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      tearing_weapon:
+        locked: true
+        disableEject: true
+        insertOnInteract: true
+        startingItem: MedievalWerwolfTearingWeapon
+  - type: InnerWeapon
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+    - Stutter
+    - Electrocution
+    - ForcedSleep
+    - TemporaryBlindness
+    - Pacified
+    - StaminaModifier
+    - Flashed
+    - RadiationProtection
+    - Drowsiness
+    - Adrenaline
+    - MedievalWerewolfRegen
+    - MedievalWerewolfHotBlood
+    - MedievalWerewolfHunt
+    - MedievalWerewolfMoonRage
 
 - type: entity
   name: wolf
@@ -126,3 +155,25 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/Werwolf/werwolf_red.rsi
+
+- type: entity
+  name: tearing chtuka
+  parent: BaseItem
+  id: MedievalWerwolfTearingWeapon
+  description: s
+  categories: [HideSpawnMenu]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Werewolf/black.rsi
+    state: icon
+  - type: MeleeWeapon
+    hidden: true
+    angle: 0
+    soundHit:
+     collection: AlienClaw
+    animation: WeaponArcBite
+    damage:
+      groups:
+        Brute: 35
+  - type: MedievalMeleeResource
+    resourceWaste: 0
