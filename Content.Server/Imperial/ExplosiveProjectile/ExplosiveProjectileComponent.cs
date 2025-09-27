@@ -4,11 +4,11 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 using Content.Server.Imperial.ExplosiveProjectile;
 
 /// <summary>
-/// Накладывается на проджектайлы. Подрывает/разрывает сущность в случае выполнения требований.
+/// Подрывает/разрывает сущность в случае, если на ней в момент попадания не было элемента одежды из "outerClothing", обладающего компонентом "PressureProtection".
 /// </summary>
 namespace Content.Server.Imperial.ExplosiveProjectile.Components
 {
-    [RegisterComponent, AutoGenerateComponentPause]
+    [RegisterComponent]
     [Access(typeof(ExplosiveProjectileSystem))]
     public sealed partial class ExplosiveProjectileComponent : Component
     {
@@ -25,19 +25,6 @@ namespace Content.Server.Imperial.ExplosiveProjectile.Components
         public SoundSpecifier? SoundDeactivate = new SoundPathSpecifier("/Audio/Imperial/SpecialUnits/RCU/canceldetonation.ogg", AudioParams.Default.WithVolume(5).WithLoop(false).WithMaxDistance(15f));
 
         /// <summary>
-        /// Время до детонации.
-        /// </summary>
-        [DataField("detonationTime", customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
-        [AutoPausedField]
-        public TimeSpan DetonationTime = TimeSpan.FromSeconds(10);
-
-        /// <summary>
-        /// Тех. датафилд
-        /// </summary>
-        [DataField]
-        public TimeSpan DetonationTimeFin;
-
-        /// <summary>
         /// Сколько времени будет лежать цель в оглушении, если условия для взрыва будут провалены.
         /// </summary>
         [DataField("knockdownTime")]
@@ -47,10 +34,10 @@ namespace Content.Server.Imperial.ExplosiveProjectile.Components
         /// Время стана.
         /// </summary>
         [DataField("stunParam")]
-        public int StunAmount;
+        public int StunParam;
 
         /// <summary>
-        /// Замедление
+        /// Замедление.
         /// </summary>
         [DataField("slowdownParam")]
         public int SlowdownParam;
