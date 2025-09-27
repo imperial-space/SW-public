@@ -3,6 +3,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Dash;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.Medieval.Lycantropy;
 
@@ -10,6 +11,7 @@ public abstract partial class SharedLycantropySystem : EntitySystem
 {
     [Dependency] private readonly MovementSpeedModifierSystem _moveSpeed = default!;
     [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -48,7 +50,7 @@ public abstract partial class SharedLycantropySystem : EntitySystem
 
     private void OnSDashCollide(EntityUid uid, WerewolfShadowDashComponent comp, ref StartCollideEvent args)
     {
-        if (!HasComp<StaminaComponent>(args.OtherEntity))
+        if (!HasComp<StaminaComponent>(args.OtherEntity) || !_timing.IsFirstTimePredicted)
             return;
 
         _stamina.TakeStaminaDamage(args.OtherEntity, 200, source: uid, ignoreResist: true);
