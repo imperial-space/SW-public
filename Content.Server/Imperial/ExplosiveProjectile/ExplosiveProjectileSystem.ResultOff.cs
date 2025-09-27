@@ -23,7 +23,7 @@ namespace Content.Server.Imperial.ExplosiveProjectile
         }
         private void DoNotGibEntity(EntityUid uid, ExplosiveProjectileResultOffComponent component)
         {
-            Audio.PlayPvs(component.SoundDeactivateA, uid);
+            Audio.PlayPvs(component.SoundDeactivate, uid);
             EntityManager.RemoveComponent<ExplosiveProjectileResultOffComponent>(uid);
         }
         public override void Update(float frameTime)

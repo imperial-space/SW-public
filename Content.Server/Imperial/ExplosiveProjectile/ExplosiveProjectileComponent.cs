@@ -19,12 +19,6 @@ namespace Content.Server.Imperial.ExplosiveProjectile.Components
         public SoundSpecifier? SoundActivate = new SoundPathSpecifier("/Audio/Imperial/SpecialUnits/RCU/detonation.ogg", AudioParams.Default.WithVolume(5).WithLoop(false).WithMaxDistance(15f));
 
         /// <summary>
-        /// Звук в случае деактивации.
-        /// </summary>
-        [DataField]
-        public SoundSpecifier? SoundDeactivate = new SoundPathSpecifier("/Audio/Imperial/SpecialUnits/RCU/canceldetonation.ogg", AudioParams.Default.WithVolume(5).WithLoop(false).WithMaxDistance(15f));
-
-        /// <summary>
         /// Сколько времени будет лежать цель в оглушении, если условия для взрыва будут провалены.
         /// </summary>
         [DataField("knockdownTime")]

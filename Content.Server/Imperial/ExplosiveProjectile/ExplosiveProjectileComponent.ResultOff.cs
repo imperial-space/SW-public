@@ -19,7 +19,7 @@ namespace Content.Server.Imperial.ExplosiveProjectile.Components
 
         // Саунд деактивации.
         [DataField]
-        public SoundSpecifier? SoundDeactivateA = new SoundPathSpecifier("/Audio/Imperial/SpecialUnits/RCU/canceldetonation.ogg", AudioParams.Default.WithVolume(5).WithLoop(false).WithMaxDistance(15f));
+        public SoundSpecifier? SoundDeactivate = new SoundPathSpecifier("/Audio/Imperial/SpecialUnits/RCU/canceldetonation.ogg", AudioParams.Default.WithVolume(5).WithLoop(false).WithMaxDistance(15f));
     }
 }
 
