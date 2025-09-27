@@ -1,0 +1,408 @@
+using System.Linq;
+using Content.Server.Actions;
+using Content.Server.Administration;
+using Content.Server.Body.Components;
+using Content.Server.Body.Systems;
+using Content.Server.Jittering;
+using Content.Server.Polymorph.Systems;
+using Content.Server.Popups;
+using Content.Shared.Administration;
+using Content.Shared.Damage;
+using Content.Shared.Humanoid;
+using Content.Shared.Imperial.Dash;
+using Content.Shared.Imperial.Medieval.CCVar;
+using Content.Shared.Imperial.Medieval.Lycantropy;
+using Content.Shared.Imperial.Medieval.Plague;
+using Content.Shared.Imperial.Medieval.Weapons;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.StatusEffect;
+using Content.Shared.Weapons.Melee;
+using Content.Shared.Weapons.Melee.Events;
+using Microsoft.EntityFrameworkCore.Storage;
+using Robust.Server.Audio;
+using Robust.Server.GameObjects;
+using Robust.Shared.Configuration;
+using Robust.Shared.Console;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
+
+namespace Content.Server.Imperial.Medieval.Lycantropy;
+
+public sealed partial class LycantropySystem : SharedLycantropySystem
+{
+    [Dependency] private readonly ActionsSystem _actions = default!;
+    [Dependency] private readonly AudioSystem _audio = default!;
+    [Dependency] private readonly PolymorphSystem _polymorph = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly BloodstreamSystem _blood = default!;
+    [Dependency] private readonly JitteringSystem _jitter = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly StatusEffectsSystem _status = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!;
+    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
+    [Dependency] private readonly PopupSystem _popup = default!;
+    [Dependency] private readonly InnerWeaponSystem _inner = default!;
+    [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IConfigurationManager _config = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly IConsoleHost _console = default!;
+
+    private int _curNight = 0;
+    private bool _isBloodMoon = false;
+    private DamageSpecifier _regenAmount = new()
+    {
+        DamageDict = new()
+        {
+            { "Brute", -1.5f },
+            { "Slash", -1.5f },
+            { "Piercing", -1.5f },
+            { "Burn", -1.5f },
+        }
+    };
+
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<LycantropyComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<LycantropyComponent, PolymorphWerewolfActionEvent>(OnWerewolfPolymorph);
+
+        SubscribeLocalEvent<WerewolfComponent, MapInitEvent>(OnWerewolfMapInit);
+        SubscribeLocalEvent<WerewolfComponent, ToggleLycantropyInfectActionEvent>(OnWerewolfInfect);
+        SubscribeLocalEvent<WerewolfComponent, MeleeHitEvent>(OnWerewolfHit);
+        SubscribeLocalEvent<WerewolfComponent, WerewolfHealAlliesActionEvent>(OnHealAllies);
+        SubscribeLocalEvent<WerewolfComponent, WerewolfRegenActionEvent>(OnRegen);
+        SubscribeLocalEvent<WerewolfComponent, WerewolfStatusEffectActionEvent>(OnStatusEffect);
+        SubscribeLocalEvent<WerewolfComponent, WerewolfTearingActionEvent>(OnTearing);
+        SubscribeLocalEvent<WerewolfComponent, WerewolfShadowDashActionEvent>(OnShadowDash);
+        SubscribeLocalEvent<WerewolfComponent, WerewolfBloodFeelActionEvent>(OnBloodFeel);
+
+        SubscribeLocalEvent<WerewolfComponent, SetWerewolfDamageEvent>(OnSetDamage);
+        SubscribeLocalEvent<WerewolfComponent, SetWerewolfDashStrengthEvent>(OnSetDashStrength);
+        SubscribeLocalEvent<WerewolfComponent, SetWerewolfMobThresholdsEvent>(OnSetThresholds);
+
+        SubscribeNetworkEvent<SelectWerewolfFormEvent>(OnSelectForm);
+        SubscribeNetworkEvent<BuyLycantropyAbilityEvent>(OnBuyAbility);
+
+        _console.RegisterCommand("setlycantropynight",
+            Loc.GetString("cmd-weather-desc"),
+            Loc.GetString("cmd-weather-help"),
+            SetNightCommand,
+            CommandCompletion);
+    }
+
+    [AdminCommand(AdminFlags.Fun)]
+    private void SetNightCommand(IConsoleShell shell, string argStr, string[] args)
+    {
+        if (args.Length < 1)
+        {
+            shell.WriteError(Loc.GetString("cmd-weather-error-no-arguments"));
+            return;
+        }
+
+        if (!bool.TryParse(args[0], out var night))
+            return;
+
+        if (night)
+            OnNightStarted();
+        else
+            OnNightEnded();
+    }
+
+    private CompletionResult CommandCompletion(IConsoleShell shell, string[] args)
+    {
+
+        return CompletionResult.FromHintOptions(new List<string>() { "true", "false" }, Loc.GetString("night state"));
+    }
+
+    private void OnMapInit(EntityUid uid, LycantropyComponent comp, MapInitEvent args)
+    {
+        EntityUid? formEntity = null;
+        if (_actions.AddAction(uid, ref formEntity, "SelectWerewolfFormAction"))
+            comp.Actions.Add("Form", formEntity.Value);
+
+        EntityUid? shopEntity = null;
+        if (_actions.AddAction(uid, ref shopEntity, "LycantropyProgressMenuAction"))
+            comp.Actions.Add("Menu", shopEntity.Value);
+    }
+
+    private void OnWerewolfPolymorph(EntityUid uid, LycantropyComponent comp, PolymorphWerewolfActionEvent args)
+    {
+        if (comp.Points < 2)
+        {
+            _popup.PopupEntity(Loc.GetString("popup-werewolf-polymorph-fail-cost"), uid, uid);
+            return;
+        }
+
+        Morph(uid, comp);
+    }
+
+    private void OnWerewolfMapInit(EntityUid uid, WerewolfComponent comp, MapInitEvent args)
+    {
+        _actions.AddAction(uid, ref comp.InfectAction, "WerewolfInfectAction");
+    }
+
+    private void OnWerewolfInfect(EntityUid uid, WerewolfComponent comp, ToggleLycantropyInfectActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        comp.InfectOn = !comp.InfectOn;
+        _actions.SetToggled(comp.InfectAction, comp.InfectOn);
+    }
+
+    private void OnWerewolfHit(EntityUid uid, WerewolfComponent comp, MeleeHitEvent args)
+    {
+        if (!comp.InfectOn || !args.IsHit)
+            return;
+
+        comp.InfectOn = false;
+        _actions.SetToggled(comp.InfectAction, comp.InfectOn);
+
+        if (_inner.TryGetInnerWeapon(uid, out var _, out var id) && id == "tearing_weapon")
+        {
+            _inner.SetWeapon(uid, "");
+            _actions.SetToggled(comp.Actions["WerewolfTearingAction"], false);
+        }
+
+        foreach (var item in args.HitEntities)
+        {
+            if (!HasComp<HumanoidAppearanceComponent>(item))
+                continue;
+
+            if (!_mobState.IsCritical(item))
+                continue;
+
+            _blood.TryModifyBleedAmount(item, -10);
+            _jitter.DoJitter(item, TimeSpan.FromSeconds(3), true);
+            EnsureComp<LycantropyComponent>(item);
+        }
+    }
+
+    private void OnHealAllies(EntityUid uid, WerewolfComponent comp, WerewolfHealAlliesActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        foreach (var item in _lookup.GetEntitiesInRange<WerewolfComponent>(Transform(uid).Coordinates, 5.5f))
+        {
+            if (item.Owner == uid)
+                continue;
+
+            _status.TryAddStatusEffect<WerewolfRegenComponent>(item.Owner, "MedievalWerewolfRegen", TimeSpan.FromSeconds(20), true);
+        }
+    }
+
+    private void OnRegen(EntityUid uid, WerewolfComponent comp, WerewolfRegenActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        var damage = new DamageSpecifier()
+        {
+            DamageDict = new()
+            {
+            { "Brute", -20f },
+            { "Slash", -20f },
+            { "Piercing", -20f },
+            { "Burn", -15f },
+            }
+        };
+
+        _damage.TryChangeDamage(uid, damage, true);
+    }
+
+    private void OnStatusEffect(EntityUid uid, WerewolfComponent comp, WerewolfStatusEffectActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        _status.TryAddStatusEffect(uid, args.Key, TimeSpan.FromSeconds(args.Time), args.Refresh, args.Component);
+        _audio.PlayGlobal(args.Sound, uid);
+    }
+
+    private void OnTearing(EntityUid uid, WerewolfComponent comp, WerewolfTearingActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (_inner.TryGetInnerWeapon(uid, out var _, out var id) && id == "tearing_weapon")
+        {
+            _inner.SetWeapon(uid, "");
+            _actions.SetToggled(args.Action, false);
+        }
+        else if (_inner.TryGetInnerWeapon(uid, out _, out _))
+            return;
+        else
+        {
+            _inner.SetWeapon(uid, "tearing_weapon");
+            _actions.SetToggled(args.Action, true);
+        }
+    }
+
+    private void OnShadowDash(EntityUid uid, WerewolfComponent comp, WerewolfShadowDashActionEvent args)
+    {
+        if (args.Handled || !TryComp<MedievalDashComponent>(uid, out var dash))
+            return;
+
+        var vector = (args.Target - Transform(uid).Coordinates).Position;
+
+        EnsureComp<WerewolfShadowDashComponent>(uid);
+        _physics.ApplyLinearImpulse(uid, vector.Normalized() * dash.Force);
+    }
+
+    private void OnBloodFeel(EntityUid uid, WerewolfComponent comp, WerewolfBloodFeelActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (HasComp<WerewolfBloodFeelComponent>(uid))
+            RemComp<WerewolfBloodFeelComponent>(uid);
+        else
+            EnsureComp<WerewolfBloodFeelComponent>(uid);
+    }
+
+    private void OnSetDamage(EntityUid uid, WerewolfComponent comp, SetWerewolfDamageEvent args)
+    {
+        if (!TryComp<MeleeWeaponComponent>(uid, out var weapon))
+            return;
+
+        foreach (var item in args.Replacements)
+        {
+            if (weapon.Damage.DamageDict.ContainsKey(item.Key))
+                weapon.Damage.DamageDict[item.Key] = item.Value;
+            else
+                weapon.Damage.DamageDict.Add(item.Key, item.Value);
+        }
+
+        Dirty(uid, weapon);
+    }
+
+    private void OnSetDashStrength(EntityUid uid, WerewolfComponent comp, SetWerewolfDashStrengthEvent args)
+    {
+        if (!TryComp<MedievalDashComponent>(uid, out var dash))
+            return;
+
+        dash.Force *= args.Modifier;
+        Dirty(uid, dash);
+    }
+
+    private void OnSetThresholds(EntityUid uid, WerewolfComponent comp, SetWerewolfMobThresholdsEvent args)
+    {
+        _mobThreshold.SetMobStateThreshold(uid, args.Death, Shared.Mobs.MobState.Dead);
+        _mobThreshold.SetMobStateThreshold(uid, args.Crit, Shared.Mobs.MobState.Critical);
+    }
+
+    private void OnSelectForm(SelectWerewolfFormEvent args)
+    {
+        var uid = GetEntity(args.Ent);
+        if (!TryComp<LycantropyComponent>(uid, out var comp))
+            return;
+
+        comp.SelectedForm = args.Proto;
+
+        if (comp.Actions.TryGetValue("Form", out var ent))
+            _actions.RemoveAction(uid, ent);
+    }
+
+    private void OnBuyAbility(BuyLycantropyAbilityEvent args)
+    {
+        var uid = GetEntity(args.Ent);
+        if (!TryComp<LycantropyComponent>(uid, out var comp))
+            return;
+
+        var proto = _proto.Index(args.Proto);
+
+        if (comp.Points < proto.Cost)
+            return;
+
+        comp.Points -= proto.Cost;
+        comp.Abilities.Add(args.Proto);
+        Dirty(uid, comp);
+
+        foreach (var item in proto.HumanActions)
+            _actions.AddAction(uid, item);
+    }
+
+    private void OnNightStarted()
+    {
+        _curNight++;
+        if (_curNight > _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
+            _curNight = 1;
+
+        var ents = EntityManager.AllEntities<LycantropyComponent>();
+        _random.Shuffle(ents);
+
+        var count = GetWerewolfTransformCount(ents.Count());
+        for (var i = 0; i < count; i++)
+        {
+            var entity = ents[i];
+            Morph(entity.Owner, entity.Comp);
+        }
+    }
+
+    private void OnNightEnded()
+    {
+        _isBloodMoon = false;
+
+        var ents = EntityManager.AllEntities<WerewolfComponent>();
+        foreach (var item in ents)
+            _polymorph.Revert(item.Owner);
+    }
+
+    private void Morph(EntityUid uid, LycantropyComponent comp)
+    {
+        var abilities = comp.Abilities;
+
+        var mob = _polymorph.PolymorphEntity(uid, comp.SelectedForm ?? comp.AllowedPolymorphs.First().Value);
+
+        if (!mob.HasValue)
+            return;
+
+        foreach (var item in abilities)
+        {
+            var proto = _proto.Index(item);
+
+            if (proto.Event != null)
+                RaiseLocalEvent(mob.Value, proto.Event);
+
+            foreach (var action in proto.WerewolfActions)
+            {
+                EntityUid? ent = null;
+                _actions.AddAction(mob.Value, ref ent, action);
+                if (!ent.HasValue || !TryComp<WerewolfComponent>(mob, out var werewolf))
+                    continue;
+
+                werewolf.Actions.Add(action, ent.Value);
+            }
+        }
+    }
+
+    private float GetWerewolfTransformCount(int count)
+    {
+        if (_curNight >= _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
+        {
+            _isBloodMoon = true;
+            return count;
+        }
+        else
+        {
+            if (count <= 3 && count > 0)
+                return Math.Clamp(count - 1, 1, 2);
+
+            return count / 3;
+        }
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var query = EntityQueryEnumerator<WerewolfRegenComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            _damage.TryChangeDamage(uid, _regenAmount, true);
+        }
+    }
+}
