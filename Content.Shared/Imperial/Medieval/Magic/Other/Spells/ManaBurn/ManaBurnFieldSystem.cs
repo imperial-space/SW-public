@@ -1,10 +1,10 @@
-using Content.Shared.Imperial.Medieval.Magic.ManaBurn;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Timing;
 using Content.Shared.Popups;
 using Robust.Shared.Network;
-namespace Content.Shared.Imperial.Magic.ManaBurnField;
+
+namespace Content.Shared.Imperial.Medieval.Magic.ManaBurn;
 
 public sealed partial class ManaBurnFieldSystem : EntitySystem
 {
@@ -25,24 +25,19 @@ public sealed partial class ManaBurnFieldSystem : EntitySystem
             var xform = Transform(uid.Owner);
             var coords = xform.Coordinates;
             foreach (var entity in _lookup.GetEntitiesInRange(coords, uid.Radius))
-            {
-                if (uid.BurnTime <= _timing.CurTime && _timing.IsFirstTimePredicted && _net.IsServer)
+                if (uid.BurnTime <= _timing.CurTime)
                 {
-                    uid.BurnTime = _timing.CurTime + TimeSpan.FromSeconds(uid.BurnDelay);
+                    if (!_net.IsServer) continue;
+                    uid.BurnTime = _timing.CurTime + uid.BurnDelay;
                     if (TryComp<ManaComponent>(entity, out var player))
                     {
                         _popupSystem.PopupEntity(Loc.GetString(uid.BurnPopup), player.Owner);
                         if (player.Mana - uid.BurnQuantity < 0)
-                        {
                             player.Mana = 0;
-                        }
                         else
-                        {
                             player.Mana -= uid.BurnQuantity;
-                        }
                     }
                 }
-            }
         }
     }
 }
