@@ -134,7 +134,5 @@ public partial class TradingSystem : EntitySystem
             .SelectMany(gt => Enumerable.Range(0, gt.MaximumGuilds)
                 .Select(_ => new Guild(gt, _robustRandom, _prototypeManager)))
             .ToList();
-
-        _robustRandom.Shuffle(Guilds);
     }
 }

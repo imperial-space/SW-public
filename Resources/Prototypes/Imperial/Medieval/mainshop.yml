@@ -54,7 +54,7 @@
   name: TestName
 
   # максимальное число гильдий, которые сгенерируются по этому прототипу
-  maximumGuilds: 3
+  maximumGuilds: 15
 
   # валюта гильдии
   # Revent по умолчанию, можно не указывать
@@ -80,7 +80,7 @@
 
     # сколько дают репутации за покупку этого предмета
     # по умолчанию 2
-    reputationForBuying: 4
+    reputationForBuying: 0.2
 
     # в квесте нужно указать reputationReward: ...
   - productEntity: MedievalQuestContractLegionMelee
@@ -94,8 +94,12 @@
     # если не указывать, то будут использоваться имя и описание предмета
     name: тест квеста
     description: тесты
-  - productEntity: MedievalKeyWizard
-    cost: 1
+  - productEntity: FoodBurgerBacon
+    cost: 10
+  - productEntity: DrinkColaCan
+    cost: 2
+  - productEntity: IngotGold
+    cost: 3
 
 - type: entity
   id: MedievalShopHole
@@ -120,7 +124,12 @@
     # прототипы гильдий, которые находятся
     # в данном магазине
     guildTypes:
-    - TestType2
+    - MagicGuild
+    - WeaponGuild
+    - ArmorGuild
+    - FoodGuild
+    - ClothGuild
+    - BuilderGuild
     # прототип валюты, которая используется в магазине
     # по умолчанию Revent
     # должно совпадать с currency во всех guildTypes

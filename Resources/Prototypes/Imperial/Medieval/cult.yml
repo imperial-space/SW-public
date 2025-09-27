@@ -782,6 +782,9 @@
     - type: Currency
       price:
         Revent: 60
+    - type: MedievalCurrency
+      price:
+        Revent: 60
     - type: PointLight
       color: red
       radius: 1.5

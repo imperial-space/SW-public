@@ -32,6 +32,7 @@ ui-options-ambient-music-volume = Громкость фоновой музыки
 ui-options-ambience-volume = Громкость окружения:
 ui-options-lobby-volume = Громкость лобби и конца раунда:
 ui-options-interface-volume = Громкость интерфейса:
+ui-options-location-ambient-volume = Громкость окружения локаций:
 ui-options-ambience-max-sounds = Кол-во одновременных звуков окружения:
 ui-options-lobby-music = Музыка в лобби и окончания раунда
 ui-options-restart-sounds = Звуки перезапуска раунда

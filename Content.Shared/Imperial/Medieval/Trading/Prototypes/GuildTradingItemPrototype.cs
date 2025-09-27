@@ -37,7 +37,7 @@ public sealed partial record GuildTradingItem
     [DataField] public string? SpawnOnActionWhitelist;
 
     [DataField]
-    public int ReputationForBuying = 2;
+    public float ReputationForBuying = 2;
     public Guid GuildId;
 
     [DataField] public string? Name;

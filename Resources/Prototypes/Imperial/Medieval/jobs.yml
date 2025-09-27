@@ -4250,7 +4250,7 @@
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: SpawnOnAction
       actionId: ActionSpellwardSpawnTradeLegion
-      prototype: MedievalShopHoleLockedLegion
+      prototype: MedievalShopHole
 
 - type: entity
   id: ActionSpellwardSpawnTradeLegion
@@ -4368,7 +4368,7 @@
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: SpawnOnAction
       actionId: ActionSpellwardSpawnTradeIns
-      prototype: MedievalShopHoleLockedIns
+      prototype: MedievalShopHole
 
 - type: entity
   id: ActionSpellwardSpawnTradeIns
