@@ -13,15 +13,13 @@ public sealed class DelayedSpawnSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        if (!_timing.IsFirstTimePredicted)
-            return;
-        var query = AllEntityQuery<DelayedSpawnComponent>();
+        var query = EntityQueryEnumerator<DelayedSpawnComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.ParentSpawnTime == TimeSpan.FromSeconds(0))
-                comp.ParentSpawnTime = _timing.CurTime;
-            if (!(comp.ParentSpawnTime + TimeSpan.FromSeconds(comp.Delay) < _timing.CurTime && !comp.IsSpawned))
-                continue;
+            if (comp.IsSpawned) continue;
+            if (comp.SpawnTime == TimeSpan.Zero)
+                comp.SpawnTime = _timing.CurTime + comp.Delay;
+            if (comp.SpawnTime > _timing.CurTime) continue;
             var entity = Spawn(comp.Proto, Transform(uid).Coordinates);
             if (comp.Attached)
                 _transform.SetParent(entity, uid);

@@ -18,7 +18,7 @@ public sealed partial class DelayedSpawnComponent : Component
     /// Spawn delay
     /// </summary>
     [DataField]
-    public int Delay = 5;
+    public TimeSpan Delay;
 
     /// <summary>
     /// Is needed to attach the spawned entity to the parent
@@ -26,8 +26,9 @@ public sealed partial class DelayedSpawnComponent : Component
     [DataField]
     public bool Attached = false;
 
-    [DataField]
-    public TimeSpan ParentSpawnTime = TimeSpan.FromSeconds(0);
-    [DataField]
+    [ViewVariables]
+    public TimeSpan SpawnTime = TimeSpan.Zero;
+
+    [ViewVariables]
     public bool IsSpawned = false;
 }
