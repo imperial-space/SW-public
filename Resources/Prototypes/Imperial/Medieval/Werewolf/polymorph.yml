@@ -5,6 +5,7 @@
     inventory: Drop
     revertOnCrit: true
     revertOnDeath: true
+    forced: true
     delay: 5
 
 - type: polymorph
@@ -14,6 +15,7 @@
     inventory: Drop
     revertOnCrit: true
     revertOnDeath: true
+    forced: true
     delay: 5
 
 - type: polymorph
@@ -23,6 +25,7 @@
     inventory: Drop
     revertOnCrit: true
     revertOnDeath: true
+    forced: true
     delay: 5
 
 - type: polymorph
@@ -32,6 +35,7 @@
     inventory: Drop
     revertOnCrit: true
     revertOnDeath: true
+    forced: true
     delay: 5
 
 - type: polymorph
@@ -41,6 +45,7 @@
     inventory: Drop
     revertOnCrit: true
     revertOnDeath: true
+    forced: true
     delay: 5
 
 - type: polymorph
@@ -50,6 +55,7 @@
     inventory: Drop
     revertOnCrit: true
     revertOnDeath: true
+    forced: true
     delay: 5
 
 - type: polymorph
@@ -59,4 +65,5 @@
     inventory: Drop
     revertOnCrit: true
     revertOnDeath: true
+    forced: true
     delay: 5
