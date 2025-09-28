@@ -258,7 +258,7 @@
         path: /Audio/Weapons/bladeslice.ogg
   - type: Reflect
     reflectProb: 0.15
-    spread: 90
+    spread: 60
   - type: DisarmMalus
 
 - type: entity

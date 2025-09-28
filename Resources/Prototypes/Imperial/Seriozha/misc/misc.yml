@@ -36,3 +36,12 @@
   - type: StorageFill
     contents:
       - id: FoodRiceBoiled
+
+- type: entity
+  parent: ClothingNeckBase
+  id: CloakViolet
+  name: vampire cloak
+  description: Worn by high ranking vampires of the transylvanian society of vampires.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/misc/Customization/violet_cloak.rsi
