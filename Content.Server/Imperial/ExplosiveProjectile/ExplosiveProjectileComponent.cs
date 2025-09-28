@@ -1,17 +1,25 @@
 using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
+using Content.Shared.Inventory;
 using Content.Server.Imperial.ExplosiveProjectile;
 
 /// <summary>
-/// Подрывает/разрывает сущность в случае, если на ней в момент попадания не было элемента одежды из "outerClothing", обладающего компонентом "PressureProtection".
+/// Подрывает/разрывает сущность в случае, если на ней в момент попадания не было элемента одежды из "targetInvSlot", обладающего компонентом "PressureProtection".
 /// </summary>
 namespace Content.Server.Imperial.ExplosiveProjectile.Components
 {
+//    [AutoGenerateComponentPause]
     [RegisterComponent]
     [Access(typeof(ExplosiveProjectileSystem))]
     public sealed partial class ExplosiveProjectileComponent : Component
     {
+        /// <summary>
+        /// Слот, от наличия компонента давления в котором будет определяться действия по отношению к target.
+        /// </summary>
+        [DataField("targetInvSlot")]
+        public string TargetInvSlot = "outerClothing";
+
         /// <summary>
         /// Звук активации.
         /// </summary>
@@ -22,13 +30,13 @@ namespace Content.Server.Imperial.ExplosiveProjectile.Components
         /// Сколько времени будет лежать цель в оглушении, если условия для взрыва будут провалены.
         /// </summary>
         [DataField("knockdownTime")]
-        public float KnockdownTime = 15f;
+        public TimeSpan KnockdownTime = TimeSpan.FromSeconds(15);
 
         /// <summary>
         /// Время стана.
         /// </summary>
         [DataField("stunParam")]
-        public int StunParam;
+        public TimeSpan StunParam = TimeSpan.FromSeconds(15);
 
         /// <summary>
         /// Замедление.

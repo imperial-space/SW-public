@@ -12,19 +12,18 @@ using Content.Server.Imperial.ExplosiveProjectile.Components;
 namespace Content.Server.Imperial.ExplosiveProjectile
 {
     [UsedImplicitly]
-    internal sealed class ExplosiveProjectileResultOffSystem : EntitySystem
+    public sealed class ExplosiveProjectileResultOffSystem : EntitySystem
     {
-        [Dependency] protected readonly SharedAudioSystem Audio = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
 
         public override void Initialize()
         {
             base.Initialize();
-            UpdatesOutsidePrediction = true;
         }
         private void DoNotGibEntity(EntityUid uid, ExplosiveProjectileResultOffComponent component)
         {
-            Audio.PlayPvs(component.SoundDeactivate, uid);
-            EntityManager.RemoveComponent<ExplosiveProjectileResultOffComponent>(uid);
+            _audio.PlayPvs(component.SoundDeactivate, uid);
+            RemComp<ExplosiveProjectileResultOffComponent>(uid);
         }
         public override void Update(float frameTime)
         {
@@ -33,8 +32,9 @@ namespace Content.Server.Imperial.ExplosiveProjectile
             var query = EntityQueryEnumerator<ExplosiveProjectileResultOffComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {
-                comp.CTime -= frameTime;
-                var cTime = TimeSpan.FromSeconds(comp.CTime);
+                var frameTimeTS = TimeSpan.FromSeconds(frameTime);
+                comp.CTime -= frameTimeTS;
+                var cTime = comp.CTime;
                 var endTime = TimeSpan.FromSeconds(0);
                 if (endTime >= cTime)
                     DoNotGibEntity(uid, comp);

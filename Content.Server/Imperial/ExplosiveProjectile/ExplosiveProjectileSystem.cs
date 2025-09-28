@@ -18,10 +18,10 @@ using Content.Server.Imperial.ExplosiveProjectile.Components;
 namespace Content.Server.Imperial.ExplosiveProjectile
 {
     [UsedImplicitly]
-    internal sealed class ExplosiveProjectileSystem : EntitySystem
+    public sealed class ExplosiveProjectileSystem : EntitySystem
     {
         [Dependency] private readonly StunSystem _stunSystem = default!;
-        [Dependency] protected readonly SharedAudioSystem Audio = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
 
         public override void Initialize()
@@ -31,28 +31,29 @@ namespace Content.Server.Imperial.ExplosiveProjectile
         }
         private void TryExplodeEntity(EntityUid uid, ExplosiveProjectileComponent component, EntityUid target)
         {
-            if (EntityManager.HasComponent<ExplosiveProjectileResultOnComponent>(target) || EntityManager.HasComponent<ExplosiveProjectileResultOffComponent>(target))
+            if (HasComp<ExplosiveProjectileResultOnComponent>(target) ||
+                HasComp<ExplosiveProjectileResultOffComponent>(target))
                 return;
 
-            if (_inventorySystem.TryGetSlotEntity(target, "outerClothing", out var outerClothingTarget) &&
-            HasComp<PressureProtectionComponent>(outerClothingTarget))
+            if (_inventorySystem.TryGetSlotEntity(target, component.TargetInvSlot, out var clothingTarget) &&
+            HasComp<PressureProtectionComponent>(clothingTarget))
             {
-                outerClothingTarget = target;
-                EntityManager.AddComponent<ExplosiveProjectileResultOffComponent>(target);
+                clothingTarget = target;
+                EnsureComp<ExplosiveProjectileResultOffComponent>(target);
             }
             else
             {
-                if (EntityManager.HasComponent<BodyComponent>(target))
-                    EntityManager.AddComponent<ExplosiveProjectileResultOnComponent>(target);
+                if (HasComp<BodyComponent>(target))
+                    EnsureComp<ExplosiveProjectileResultOnComponent>(target);
             }
         }
         private void OnExplodeStart(EntityUid uid, ExplosiveProjectileComponent component, EntityUid target)
         {
-            Audio.PlayPvs(component.SoundActivate, target);
-            if (EntityManager.TryGetComponent<StatusEffectsComponent>(target, out var status))
+            _audio.PlayPvs(component.SoundActivate, target);
+            if (TryComp<StatusEffectsComponent>(target, out var status))
             {
-                _stunSystem.TryStun(target, TimeSpan.FromSeconds(component.StunParam), true, status);
-                _stunSystem.TryKnockdown(target, TimeSpan.FromSeconds(component.KnockdownTime), true, status);
+                _stunSystem.TryStun(target, component.StunParam, true, status);
+                _stunSystem.TryKnockdown(target, component.KnockdownTime, true, status);
                 _stunSystem.TrySlowdown(target, TimeSpan.FromSeconds(component.SlowdownParam), true, component.WalkSpeedParam, component.RunSpeedParam, status);
             }
             TryExplodeEntity(uid, component, target);

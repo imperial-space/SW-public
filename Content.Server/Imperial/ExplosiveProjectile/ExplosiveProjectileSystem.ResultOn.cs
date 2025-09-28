@@ -14,7 +14,7 @@ using Content.Server.Imperial.ExplosiveProjectile.Components;
 namespace Content.Server.Imperial.ExplosiveProjectile
 {
     [UsedImplicitly]
-    internal sealed class ExplosiveProjectileResultOnSystem : EntitySystem
+    public sealed class ExplosiveProjectileResultOnSystem : EntitySystem
     {
         [Dependency] private readonly SharedBodySystem _body = default!;
         [Dependency] private readonly ExplosionSystem _explosion = default!;
@@ -22,7 +22,6 @@ namespace Content.Server.Imperial.ExplosiveProjectile
         public override void Initialize()
         {
             base.Initialize();
-            UpdatesOutsidePrediction = true;
         }
         private void GibEntity(EntityUid uid)
         {
@@ -36,8 +35,9 @@ namespace Content.Server.Imperial.ExplosiveProjectile
             var query = EntityQueryEnumerator<ExplosiveProjectileResultOnComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {
-                comp.DTime -= frameTime;
-                var dTime = TimeSpan.FromSeconds(comp.DTime);
+                var frameTimeTS = TimeSpan.FromSeconds(frameTime);
+                comp.DTime -= frameTimeTS;
+                var dTime = comp.DTime;
                 var endTime = TimeSpan.FromSeconds(0);
                 if (endTime > dTime)
                     GibEntity(uid);
