@@ -39,7 +39,7 @@
     - Traitor
     - Revolutionary
     - Zombie
-    - SyndieBorgroundstart  # Syndie Borg
+    - SyndieBorgroundstart  # Imperial Syndie Borg
     - Pirates # Imperial Space Pirates: New Horizon
     - Wizard
     - KesslerSyndromeScheduler
@@ -156,7 +156,7 @@
   rules:
   - DummyNonAntagChance
   - Traitor
-  - SyndieBorgroundstart # Syndie Borg
+  - SyndieBorgroundstart # Imperial Syndie Borg
   - SubGamemodesRule
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
