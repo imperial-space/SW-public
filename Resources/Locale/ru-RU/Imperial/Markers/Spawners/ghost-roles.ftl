@@ -384,6 +384,7 @@ ent-CBURNMedicEVAPreset = оперативник РХБЗЗ
     .desc = Готов всех вылечить.
 ent-DeadSquadSecurityEVAPreset = оперативник Эскадрона Смерти
    .suffix = Гост роль
+   .desc = ...
 ent-MobSpiderGost = паук призрак
     .desc = Паук призрак - скрытен благодаря своей маскировке.
     .suffix = Паук улья, Гост роль
