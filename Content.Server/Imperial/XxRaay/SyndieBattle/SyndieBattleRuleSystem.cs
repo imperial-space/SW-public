@@ -81,7 +81,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
 
         ConvertAllCurrentPlayers(component);
 
-        SpawnRespawnMap();
+        SpawnRespawnMap(component);
     }
 
     protected override void Ended(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleEndedEvent args)
@@ -311,23 +311,8 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             store.Balance[component.Currency] = component.StartingTelecrystalCount;
 
             store.Categories.Clear();
-            var categories = new[]
-            {
-                "SyndiebattleUplinkWeaponry",
-                "SyndiebattleUplinkAmmo",
-                "SyndiebattleUplinkExplosives",
-                "SyndiebattleUplinkWearables",
-                "SyndiebattleUplinkChemicals",
-                "SyndiebattleUplinkDeception",
-                "SyndiebattleUplinkDisruption",
-                "SyndiebattleUplinkImplants",
-                "SyndiebattleUplinkAllies",
-                "SyndiebattleUplinkJob",
-                "SyndiebattleUplinkPointless",
-                "SyndiebattleUplinkCustom",
-            };
 
-            foreach (var cat in categories)
+            foreach (var cat in component.Categories)
             {
                 store.Categories.Add(cat);
             }
@@ -455,7 +440,6 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         Log.Info($"Spawned {spawned} machines with {attempts} attempts.");
     }
 
-
     /// <summary>
     /// Получает имя убийцы из KillSource
     /// </summary>
@@ -475,7 +459,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
         return "Что-то";
     }
 
-    private void SpawnRespawnMap()
+    private void SpawnRespawnMap(SyndieBattleRuleComponent component)
     {
         var mapRoot = _mapSystem.CreateMap();
         var mapId = Comp<MapComponent>(mapRoot).MapId;
@@ -485,7 +469,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
             InitializeMaps = true
         };
 
-        _map.TryLoadGrid(mapId, new ResPath("Maps/Imperial/SyndieBattle/RespawnMap.yml"), out _, options);
+        _map.TryLoadGrid(mapId, new ResPath(component.RespawnMap), out _, options);
     }
 
     /// <summary>

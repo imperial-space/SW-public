@@ -1,5 +1,9 @@
 using Content.Server.GameTicking.Rules.Components;
 using System.Collections.Generic;
+using Content.Shared.Roles;
+using Content.Shared.Store;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Imperial.XxRaay.SyndieBattle;
 
@@ -55,16 +59,42 @@ public sealed partial class SyndieBattleRuleComponent : Component
     /// Что выдается в аплинк
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public string Currency = "Telecrystal";
+    public ProtoId<CurrencyPrototype> Currency = "Telecrystal";
 
     /// <summary>
-    /// Количество телекристаллов в аплинке раундстартом
+    /// Количество валюты в аплинке раундстартом
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
     public int StartingTelecrystalCount = 35;
 
-    [ViewVariables(VVAccess.ReadOnly)]
+    /// <summary>
+    /// Стартовая экипировка
+    /// </summary>
+    [DataField("gear", customTypeSerializer: typeof(PrototypeIdSerializer<StartingGearPrototype>)), ViewVariables(VVAccess.ReadWrite)]
     public string StartingGear = "PassengerGear";
+
+    /// <summary>
+    /// Категории аплинка
+    /// </summary>
+    [DataField]
+    public List<string> Categories = new()
+    {
+        "SyndiebattleUplinkWeaponry",
+        "SyndiebattleUplinkAmmo",
+        "SyndiebattleUplinkExplosives",
+        "SyndiebattleUplinkWearables",
+        "SyndiebattleUplinkChemicals",
+        "SyndiebattleUplinkDeception",
+        "SyndiebattleUplinkDisruption",
+        "SyndiebattleUplinkImplants",
+        "SyndiebattleUplinkAllies",
+        "SyndiebattleUplinkJob",
+        "SyndiebattleUplinkPointless",
+        "SyndiebattleUplinkCustom",
+    };
+
+    [DataField]
+    public string RespawnMap = "Maps/Imperial/SyndieBattle/RespawnMap.yml";
 }
 
 
