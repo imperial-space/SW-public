@@ -696,6 +696,7 @@
     collection: FootstepHull
   itemDrop: FloorTileItemMetalDiamond
   heatCapacity: 10000
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorRockVault
