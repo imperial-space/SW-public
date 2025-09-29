@@ -251,7 +251,7 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWood
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorWhite
@@ -915,7 +915,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcrete
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorConcreteMono
@@ -934,7 +934,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcreteMono
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorConcreteSmooth
@@ -953,7 +953,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcreteSmooth
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorGrayConcrete
@@ -972,7 +972,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGrayConcrete
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorGrayConcreteMono
@@ -991,7 +991,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGrayConcreteMono
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorGrayConcreteSmooth
@@ -1010,7 +1010,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemGrayConcreteSmooth
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorOldConcrete
@@ -1029,7 +1029,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemOldConcrete
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorOldConcreteMono
@@ -1048,7 +1048,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemOldConcreteMono
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorOldConcreteSmooth
@@ -1067,7 +1067,7 @@
     collection: FootstepTile
   itemDrop: FloorTileItemOldConcreteSmooth
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 # Carpets (non smoothing)
 - type: tile
@@ -1833,7 +1833,7 @@
     collection: BarestepWood
   itemDrop: FloorTileItemWoodPattern
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorBrokenWood
@@ -1857,7 +1857,7 @@
     collection: BarestepWood
   itemDrop: MaterialWoodPlank1
   heatCapacity: 10000
-  weather: true
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
 - type: tile
   id: FloorWebTile
