@@ -156,13 +156,17 @@ public partial class ChatSystem
         // Imperial Medieval AgePitch Begin
         if (TryComp<Shared.Humanoid.HumanoidAppearanceComponent>(uid, out var comp))
         {
-            if (comp.Age > 30f)
+            float ageDifference = comp.Age - 30f;
+
+            if (ageDifference > 0)
             {
-                param.Pitch += Math.Max((30f - comp.Age) * 0.01f, -0.9f);
+                // Для возраста старше 30: более мягкое понижение
+                param.Pitch += Math.Max(-Math.Log(ageDifference + 1) * 0.2f, -0.4f);
             }
             else
             {
-                param.Pitch += Math.Min((30f - comp.Age) * 0.05f, 5f);
+                // Для возраста младше 30: более мягкое повышение
+                param.Pitch += Math.Min(Math.Log(Math.Abs(ageDifference) + 1) * 0.15f, 2f);
             }
         }
         // Imperial Medieval AgePitch End
