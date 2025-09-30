@@ -27,6 +27,7 @@ public abstract partial class SharedLycantropySystem : EntitySystem
         SubscribeLocalEvent<WerewolfBloodHuntComponent, CheckDashStaminaCostModifiersEvent>(OnBloodHuntDash);
         SubscribeLocalEvent<WerewolfBloodHuntComponent, CheckDashCooldownModifiersEvent>(OnBloodHuntDashDelay);
         SubscribeLocalEvent<WerewolfShadowDashComponent, StartCollideEvent>(OnSDashCollide);
+        SubscribeLocalEvent<WerewolfShadowDashComponent, DashEndedEvent>(OnSDashEnded);
     }
 
     private void RefreshMoveSpeed(EntityUid uid, Component comp, EntityEventArgs args)
@@ -53,7 +54,15 @@ public abstract partial class SharedLycantropySystem : EntitySystem
         if (!HasComp<StaminaComponent>(args.OtherEntity) || !_timing.IsFirstTimePredicted)
             return;
 
+        if (!TryComp<MedievalDashComponent>(uid, out var dash) || !dash.IsDashing)
+            return;
+
         _stamina.TakeStaminaDamage(args.OtherEntity, 200, source: uid, ignoreResist: true);
         RemComp<WerewolfShadowDashComponent>(uid);
+    }
+
+    private void OnSDashEnded(EntityUid uid, WerewolfShadowDashComponent comp, ref DashEndedEvent args)
+    {
+        RemComp(uid, comp);
     }
 }
