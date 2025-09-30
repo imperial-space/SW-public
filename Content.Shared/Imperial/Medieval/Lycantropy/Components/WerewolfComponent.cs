@@ -12,6 +12,8 @@ public sealed partial class WerewolfComponent : Component
 
     public bool TearingOn = false;
 
+    public Dictionary<EntityUid, TimeSpan> Critted = new();
+
     [AutoNetworkedField]
     public Dictionary<string, EntityUid> Actions = new();
 }

@@ -4,6 +4,7 @@ using Content.Server.Administration;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Jittering;
+using Content.Server.Polymorph.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
 using Content.Shared.Administration;
@@ -14,6 +15,7 @@ using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.Lycantropy;
 using Content.Shared.Imperial.Medieval.Plague;
 using Content.Shared.Imperial.Medieval.Weapons;
+using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
@@ -25,6 +27,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Console;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Lycantropy;
 
@@ -47,6 +50,11 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+
+    private const int PointsPerNight = 3;
+    private const int PointsPerInfect = 4;
+    private const int PointsPerCrit = 1;
 
     private int _curNight = 0;
     private bool _isBloodMoon = false;
@@ -68,9 +76,12 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         SubscribeLocalEvent<LycantropyComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<LycantropyComponent, PolymorphWerewolfActionEvent>(OnWerewolfPolymorph);
 
+        SubscribeLocalEvent<LycantropyInfectedComponent, MobStateChangedEvent>(OnInfectedMobStateChanged);
+
         SubscribeLocalEvent<WerewolfComponent, MapInitEvent>(OnWerewolfMapInit);
         SubscribeLocalEvent<WerewolfComponent, ToggleLycantropyInfectActionEvent>(OnWerewolfInfect);
         SubscribeLocalEvent<WerewolfComponent, MeleeHitEvent>(OnWerewolfHit);
+        SubscribeLocalEvent<WerewolfComponent, MeleeDamageDealtEvent>(OnWerewolfDamageDealt);
         SubscribeLocalEvent<WerewolfComponent, WerewolfHealAlliesActionEvent>(OnHealAllies);
         SubscribeLocalEvent<WerewolfComponent, WerewolfRegenActionEvent>(OnRegen);
         SubscribeLocalEvent<WerewolfComponent, WerewolfStatusEffectActionEvent>(OnStatusEffect);
@@ -138,6 +149,25 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         Morph(uid, comp);
     }
 
+    private void OnInfectedMobStateChanged(EntityUid uid, LycantropyInfectedComponent comp, MobStateChangedEvent args)
+    {
+        if (args.NewMobState == MobState.Alive)
+        {
+            if (TryComp<PolymorphedEntityComponent>(comp.Werewolf, out var polymorphed) && TryComp<LycantropyComponent>(polymorphed.Parent, out var lycantropy))
+            {
+                lycantropy.Points += PointsPerInfect;
+                Dirty(polymorphed.Parent, lycantropy);
+            }
+
+            RemComp(uid, comp);
+        }
+        else if (args.NewMobState == MobState.Dead)
+        {
+            RemComp(uid, comp);
+            RemComp<LycantropyComponent>(uid);
+        }
+    }
+
     private void OnWerewolfMapInit(EntityUid uid, WerewolfComponent comp, MapInitEvent args)
     {
         _actions.AddAction(uid, ref comp.InfectAction, "WerewolfInfectAction");
@@ -177,6 +207,24 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             _blood.TryModifyBleedAmount(item, -10);
             _jitter.DoJitter(item, TimeSpan.FromSeconds(3), true);
             EnsureComp<LycantropyComponent>(item);
+            var infect = EnsureComp<LycantropyInfectedComponent>(item);
+            infect.Werewolf = uid;
+        }
+    }
+
+    private void OnWerewolfDamageDealt(EntityUid uid, WerewolfComponent comp, MeleeDamageDealtEvent args)
+    {
+        if (!_mobState.IsCritical(args.Target))
+            return;
+
+        if (comp.Critted.ContainsKey(args.Target))
+            return;
+
+        comp.Critted.Add(args.Target, _timing.CurTime + TimeSpan.FromSeconds(60));
+        if (TryComp<PolymorphedEntityComponent>(uid, out var polymorphed) && TryComp<LycantropyComponent>(polymorphed.Parent, out var lycantropy))
+        {
+            lycantropy.Points += PointsPerCrit;
+            Dirty(polymorphed.Parent, lycantropy);
         }
     }
 
@@ -246,10 +294,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (args.Handled || !TryComp<MedievalDashComponent>(uid, out var dash))
             return;
 
-        var vector = (args.Target - Transform(uid).Coordinates).Position;
-
         EnsureComp<WerewolfShadowDashComponent>(uid);
-        _physics.ApplyLinearImpulse(uid, vector.Normalized() * dash.Force);
     }
 
     private void OnBloodFeel(EntityUid uid, WerewolfComponent comp, WerewolfBloodFeelActionEvent args)
@@ -348,7 +393,14 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
         var ents = EntityManager.AllEntities<WerewolfComponent>();
         foreach (var item in ents)
-            _polymorph.Revert(item.Owner);
+        {
+            var ent = _polymorph.Revert(item.Owner);
+            if (TryComp<LycantropyComponent>(ent, out var comp) && _mobState.IsAlive(ent.Value))
+            {
+                comp.Points += PointsPerNight;
+                Dirty(ent.Value, comp);
+            }
+        }
     }
 
     private void Morph(EntityUid uid, LycantropyComponent comp)
@@ -402,7 +454,28 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         var query = EntityQueryEnumerator<WerewolfRegenComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
+            if (comp.NextUpdate > _timing.CurTime)
+                continue;
+
+            comp.NextUpdate = _timing.CurTime + TimeSpan.FromSeconds(1);
             _damage.TryChangeDamage(uid, _regenAmount, true);
+        }
+
+        var wolfQuery = EntityQueryEnumerator<WerewolfComponent>();
+        while (wolfQuery.MoveNext(out var uid, out var comp))
+        {
+            foreach (var item in new Dictionary<EntityUid, TimeSpan>(comp.Critted))
+            {
+                if (item.Value <= _timing.CurTime)
+                    comp.Critted.Remove(item.Key);
+            }
+        }
+
+        var infectedQuery = EntityQueryEnumerator<LycantropyInfectedComponent>();
+        while (infectedQuery.MoveNext(out var uid, out var comp))
+        {
+            _damage.TryChangeDamage(uid, _regenAmount);
+            _blood.TryModifyBleedAmount(uid, -1);
         }
     }
 }
