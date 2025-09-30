@@ -289,7 +289,7 @@ public abstract class SharedWieldableSystem : EntitySystem
                 return false;
         }
 
-        var attemptEv = new WieldAttemptEvent(user, used);  // Imperial Medieval - used added
+        var attemptEv = new WieldAttemptEvent(user, used);
         RaiseLocalEvent(user, ref attemptEv);
 
         if (attemptEv.Cancelled)

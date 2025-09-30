@@ -11,6 +11,12 @@ namespace Content.Shared.EntityEffects.Effects;
 /// </summary>
 public sealed partial class AreaReactionEffect : EventEntityEffect<AreaReactionEffect>
 {
+    // Imperial Medieval Chemistry Begin
+    /// <summary>
+    /// Сколько единиц будет взято у мензурки
+    /// </summary>
+    [DataField] public float? Volume;
+    // Imperial Medieval Chemistry End
     /// <summary>
     /// How many seconds will the effect stay, counting after fully spreading.
     /// </summary>
