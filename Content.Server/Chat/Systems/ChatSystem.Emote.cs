@@ -161,12 +161,16 @@ public partial class ChatSystem
             if (ageDifference > 0)
             {
                 // Для возраста старше 30: более мягкое понижение
-                param.Pitch += Math.Max(-Math.Log(ageDifference + 1) * 0.2f, -0.4f);
+                // Замена Math.Log на более простую формулу
+                float logApprox = (float)Math.Sqrt(ageDifference + 1) - 1f;
+                param.Pitch += Math.Max(-logApprox * 0.2f, -0.4f);
             }
             else
             {
                 // Для возраста младше 30: более мягкое повышение
-                param.Pitch += Math.Min(Math.Log(Math.Abs(ageDifference) + 1) * 0.15f, 2f);
+                float absDifference = Math.Abs(ageDifference);
+                float logApprox = (float)Math.Sqrt(absDifference + 1) - 1f;
+                param.Pitch += Math.Min(logApprox * 0.15f, 2f);
             }
         }
         // Imperial Medieval AgePitch End
