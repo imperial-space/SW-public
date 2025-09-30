@@ -4,6 +4,7 @@ using Content.Shared.Damage;
 using Content.Shared.Hands;
 using Content.Shared.Imperial.Medieval.Farmer;
 using Content.Shared.Nutrition;
+using Content.Shared.Nutrition.Components;
 using Content.Shared.StatusEffect;
 
 namespace Content.Server.Imperial.Medieval.Farmer;

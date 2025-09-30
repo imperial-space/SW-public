@@ -11,6 +11,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Server.NukeOps;
 using Content.Shared.NukeOps;
+using Content.Shared.Chat;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {

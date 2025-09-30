@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
 using Robust.Server.GameObjects;

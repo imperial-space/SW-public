@@ -10,6 +10,7 @@ using Content.Server.Station.Systems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Lightning;
 using System.Linq;
+using Content.Shared.Chat;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
