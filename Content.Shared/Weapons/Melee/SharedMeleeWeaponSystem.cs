@@ -608,6 +608,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 _stamina.TakeStaminaDamage(target.Value, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
             }
 
+            // Imperial Medieval start
+            var dealtEv = new MeleeDamageDealtEvent(target.Value, user, weapon, damageResult);
+            RaiseLocalEvent(user, ref dealtEv);
+            // Imperial Medieval end
+
             if (meleeUid == user)
             {
                 AdminLogger.Add(LogType.MeleeHit,
@@ -778,6 +783,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 }
 
                 appliedDamage += damageResult;
+
+                // Imperial Medieval start
+                var dealtEv = new MeleeDamageDealtEvent(entity, user, weapon, damageResult);
+                RaiseLocalEvent(user, ref dealtEv);
+                // Imperial Medieval end
+
 
                 if (meleeUid == user)
                 {
