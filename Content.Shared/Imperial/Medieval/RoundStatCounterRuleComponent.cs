@@ -2,7 +2,7 @@ using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
-namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
+namespace Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 [RegisterComponent]
 public sealed partial class RoundStatCounterRuleComponent : Component

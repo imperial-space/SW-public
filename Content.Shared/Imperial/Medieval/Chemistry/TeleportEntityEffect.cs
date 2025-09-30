@@ -2,11 +2,11 @@ using System.Numerics;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
-using Robust.Server.GameObjects;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.Chemistry.ReactionEffects;
+namespace Content.Shared.Chemistry.ReactionEffects;
 
 /// <summary>
 ///     Teleports a entity within a certain radius from the epicenter to X coordinates.
@@ -53,7 +53,7 @@ public sealed partial class TeleportEntityEffect : EntityEffect
     {
         if (args is not EntityEffectReagentArgs reagentArgs) return;
 
-        var xformSystem = args.EntityManager.System<TransformSystem>();
+        var xformSystem = args.EntityManager.System<SharedTransformSystem>();
 
         var energy = MathF.Max(
             MathF.Min((float) (reagentArgs.Quantity * EnergyPerUnit), MaxEnergy),
@@ -94,7 +94,7 @@ public sealed partial class TeleportEntityEffect : EntityEffect
 
     private static Vector2 GetPositionFromRotation(EntityEffectBaseArgs args, Box2 reactionBounds, float energy, EntityUid uid)
     {
-        var xformSystem = args.EntityManager.System<TransformSystem>();
+        var xformSystem = args.EntityManager.System<SharedTransformSystem>();
 
         var resultVector = Angle.FromDegrees(45).RotateVec(
             xformSystem.GetWorldRotation(uid).RotateVec(new Vector2(energy, energy))

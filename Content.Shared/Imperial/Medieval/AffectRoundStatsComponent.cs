@@ -1,4 +1,4 @@
-namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
+namespace Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 
 [RegisterComponent]

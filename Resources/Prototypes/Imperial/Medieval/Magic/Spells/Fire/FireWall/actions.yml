@@ -24,17 +24,19 @@
   - type: SpellCastEffect
     effectProto: FireWallSpellCastEffectBeginner
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
       sprite: Imperial/Medieval/Magic/firewall.rsi
       state: firewall1
+  - type: TargetAction
+    targetingIndicator: false
+    range: 5
+    checkCanAccess: false
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalFireWallBeginner
       spawnType: SpawnOnMousePosition
@@ -85,17 +87,19 @@
   - type: SpellCastEffect
     effectProto: FireWallSpellCastEffectMiddle
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 22
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
       sprite: Imperial/Medieval/Magic/firewall.rsi
       state: firewall2
+  - type: TargetAction
+    checkCanAccess: false
+    targetingIndicator: false
+    range: 5
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalFireWallMiddle
       spawnType: SpawnOnMousePosition
@@ -140,17 +144,19 @@
         Burn: 18
   - type: SpellCastEffect
     effectProto: FireWallSpellCastEffectSenior
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 29
     itemIconStyle: BigAction
-    checkCanAccess: false
-    targetingIndicator: false
-    range: 5
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
       sprite: Imperial/Medieval/Magic/firewall.rsi
       state: firewall3
+  - type: TargetAction
+    range: 5
+    checkCanAccess: false
+    targetingIndicator: false
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalFireWallSenior
       spawnType: SpawnOnMousePosition

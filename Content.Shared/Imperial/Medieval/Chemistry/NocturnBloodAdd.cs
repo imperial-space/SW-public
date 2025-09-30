@@ -1,10 +1,10 @@
-using Content.Server.Medical;
+using Content.Shared.Medical;
 using Content.Shared.EntityEffects;
 using Content.Shared.Nocturn.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.ChemistryRandomization
+namespace Content.Shared.ChemistryRandomization
 {
     [UsedImplicitly]
     public sealed partial class NocturnBloodAdd : EntityEffect
