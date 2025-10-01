@@ -311,7 +311,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (_inner.TryGetInnerWeapon(uid, out var _, out var id) && id == "tearing_weapon")
         {
             _inner.SetWeapon(uid, "");
-            _actions.SetToggled(args.Action, false);
+            _actions.SetToggled(args.Action.Owner, false);
         }
         else if (_inner.TryGetInnerWeapon(uid, out _, out _))
             return;
@@ -319,7 +319,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         {
             _audio.PlayGlobal(args.Sound, uid);
             _inner.SetWeapon(uid, "tearing_weapon");
-            _actions.SetToggled(args.Action, true);
+            _actions.SetToggled(args.Action.Owner, true);
         }
     }
 

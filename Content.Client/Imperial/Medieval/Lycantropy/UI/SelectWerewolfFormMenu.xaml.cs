@@ -9,7 +9,7 @@ using System.Numerics;
 namespace Content.Client.Imperial.Medieval.Lycantropy.UI;
 
 [GenerateTypedNameReferences]
-public sealed partial class SelectWerewolfFormMenu : RadialMenu
+public sealed partial class SelectWerewolfFormMenu : Content.Client.UserInterface.Controls.RadialMenu
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
