@@ -3,11 +3,15 @@ using Content.Server.Actions;
 using Content.Server.Administration;
 using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
+using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.Jittering;
 using Content.Server.Polymorph.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
+using Content.Server.Stunnable;
 using Content.Shared.Administration;
+using Content.Shared.Chat;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Dash;
@@ -23,8 +27,11 @@ using Content.Shared.Weapons.Melee.Events;
 using Microsoft.EntityFrameworkCore.Storage;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
+using Robust.Shared.Network;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
@@ -45,13 +52,14 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly InnerWeaponSystem _inner = default!;
-    [Dependency] private readonly PhysicsSystem _physics = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly StunSystem _stun = default!;
 
     private const int PointsPerNight = 3;
     private const int PointsPerInfect = 4;
@@ -80,6 +88,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         SubscribeLocalEvent<LycantropyInfectedComponent, MobStateChangedEvent>(OnInfectedMobStateChanged);
 
         SubscribeLocalEvent<WerewolfComponent, MapInitEvent>(OnWerewolfMapInit);
+        SubscribeLocalEvent<WerewolfComponent, WerewolfHowlActionEvent>(OnWerewolfHowl);
         SubscribeLocalEvent<WerewolfComponent, ToggleLycantropyInfectActionEvent>(OnWerewolfInfect);
         SubscribeLocalEvent<WerewolfComponent, MeleeHitEvent>(OnWerewolfHit);
         SubscribeLocalEvent<WerewolfComponent, MeleeDamageDealtEvent>(OnWerewolfDamageDealt);
@@ -174,11 +183,22 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         _actions.AddAction(uid, ref comp.InfectAction, "WerewolfInfectAction");
     }
 
+    private void OnWerewolfHowl(EntityUid uid, WerewolfComponent comp, WerewolfHowlActionEvent args)
+    {
+        _status.TryAddStatusEffect<WerewolfRegenComponent>(uid, "MedievalWerewolfRegen", TimeSpan.FromSeconds(20), true);
+
+        _chat.TryEmoteWithChat(uid, "Howl", ChatTransmitRange.Normal, true);
+        var xform = Transform(uid);
+        var filter = Filter.BroadcastMap(xform.MapID).RemoveInRange(xform.MapPosition, 16f, EntityManager);
+        _audio.PlayGlobal(_audio.ResolveSound(new SoundPathSpecifier("/Audio/Imperial/Medieval/Werewolf/howl-far.ogg")), filter, false);
+    }
+
     private void OnWerewolfInfect(EntityUid uid, WerewolfComponent comp, ToggleLycantropyInfectActionEvent args)
     {
         if (args.Handled)
             return;
 
+        _audio.PlayGlobal(args.Sound, uid);
         comp.InfectOn = !comp.InfectOn;
         _actions.SetToggled(comp.InfectAction, comp.InfectOn);
     }
@@ -234,6 +254,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (args.Handled)
             return;
 
+        _audio.PlayPvs(args.Sound, uid);
+
         foreach (var item in _lookup.GetEntitiesInRange<WerewolfComponent>(Transform(uid).Coordinates, 5.5f))
         {
             if (item.Owner == uid)
@@ -259,7 +281,9 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             }
         };
 
+        _audio.PlayPvs(args.Sound, uid);
         _damage.TryChangeDamage(uid, damage, true);
+        _jitter.DoJitter(uid, TimeSpan.FromSeconds(3), true);
     }
 
     private void OnStatusEffect(EntityUid uid, WerewolfComponent comp, WerewolfStatusEffectActionEvent args)
@@ -268,7 +292,11 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             return;
 
         _status.TryAddStatusEffect(uid, args.Key, TimeSpan.FromSeconds(args.Time), args.Refresh, args.Component);
-        _audio.PlayGlobal(args.Sound, uid);
+
+        if (args.Global)
+            _audio.PlayGlobal(args.Sound, uid);
+        else
+            _audio.PlayPvs(args.Sound, uid);
     }
 
     private void OnTearing(EntityUid uid, WerewolfComponent comp, WerewolfTearingActionEvent args)
@@ -285,6 +313,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             return;
         else
         {
+            _audio.PlayGlobal(args.Sound, uid);
             _inner.SetWeapon(uid, "tearing_weapon");
             _actions.SetToggled(args.Action, true);
         }
@@ -365,6 +394,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (comp.Points < proto.Cost)
             return;
 
+        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Werewolf/skill.ogg"), uid);
+
         comp.Points -= proto.Cost;
         comp.Abilities.Add(args.Proto);
         Dirty(uid, comp);
@@ -409,29 +440,35 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     private void Morph(EntityUid uid, LycantropyComponent comp)
     {
         var abilities = comp.Abilities;
+        _audio.PlayGlobal(new SoundCollectionSpecifier("WerewolfTransform"), uid);
+        _stun.TryParalyze(uid, TimeSpan.FromSeconds(3), true);
+        _jitter.DoJitter(uid, TimeSpan.FromSeconds(3), true);
 
-        var mob = _polymorph.PolymorphEntity(uid, comp.SelectedForm ?? comp.AllowedPolymorphs.First().Value);
-
-        if (!mob.HasValue)
-            return;
-
-        foreach (var item in abilities)
+        Timer.Spawn(TimeSpan.FromSeconds(3), () =>
         {
-            var proto = _proto.Index(item);
+            var mob = _polymorph.PolymorphEntity(uid, comp.SelectedForm ?? comp.AllowedPolymorphs.First().Value);
 
-            if (proto.Event != null)
-                RaiseLocalEvent(mob.Value, proto.Event);
+            if (!mob.HasValue)
+                return;
 
-            foreach (var action in proto.WerewolfActions)
+            foreach (var item in abilities)
             {
-                EntityUid? ent = null;
-                _actions.AddAction(mob.Value, ref ent, action);
-                if (!ent.HasValue || !TryComp<WerewolfComponent>(mob, out var werewolf))
-                    continue;
+                var proto = _proto.Index(item);
 
-                werewolf.Actions.Add(action, ent.Value);
+                if (proto.Event != null)
+                    RaiseLocalEvent(mob.Value, proto.Event);
+
+                foreach (var action in proto.WerewolfActions)
+                {
+                    EntityUid? ent = null;
+                    _actions.AddAction(mob.Value, ref ent, action);
+                    if (!ent.HasValue || !TryComp<WerewolfComponent>(mob, out var werewolf))
+                        continue;
+
+                    werewolf.Actions.Add(action, ent.Value);
+                }
             }
-        }
+        });
     }
 
     private float GetWerewolfTransformCount(int count)

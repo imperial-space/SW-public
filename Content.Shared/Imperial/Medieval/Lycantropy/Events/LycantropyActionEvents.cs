@@ -45,6 +45,9 @@ public sealed partial class WerewolfStatusEffectActionEvent : InstantActionEvent
 
     [DataField]
     public SoundSpecifier? Sound;
+
+    [DataField]
+    public bool Global = false;
 }
 
 public sealed partial class WerewolfTearingActionEvent : InstantActionEvent

@@ -51,7 +51,7 @@
     PassiveScream:
       collection: MaleScreamsZveres
     Howl:
-      path: /Audio/Imperial/Medieval/voi-dalekii-sobachii.ogg
+      collection: WerewolfHowl
 
 - type: emote
   id: Howl
