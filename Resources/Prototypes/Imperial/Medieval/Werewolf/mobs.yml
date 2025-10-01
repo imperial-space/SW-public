@@ -36,7 +36,9 @@
     hidden: true
     angle: 0
     soundHit:
-     collection: AlienClaw
+     path: /Audio/Imperial/Medieval/Werewolf/hit.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/Werewolf/miss.ogg
     animation: WeaponArcBite
     damage:
       groups:
