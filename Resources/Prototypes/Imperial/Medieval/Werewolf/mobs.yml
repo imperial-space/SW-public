@@ -224,5 +224,9 @@
     damage:
       groups:
         Brute: 35
+  - type: StaminaDamageOnHit
+    damage: 300
+  - type: MeleeThrowOnHit
+    distance: 4
   - type: MedievalMeleeResource
     resourceWaste: 0

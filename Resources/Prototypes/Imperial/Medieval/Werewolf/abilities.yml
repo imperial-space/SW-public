@@ -88,6 +88,7 @@
   cost: 4
   position: 120,-40
   required: [HotBlood, Regenerate]
+  werewolfActions: [WerewolfBloodFeelAction]
 
 - type: lycantropyAbility
   id: HotBlood
@@ -115,8 +116,8 @@
 
 - type: lycantropyAbility
   id: BloodHunt
-  name: lycantropy-shadow-dash-name
-  desc: lycantropy-shadow-dash-desc
+  name: lycantropy-blood-hunt-name
+  desc: lycantropy-blood-hunt-desc
   icon:
     sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
     state: hunt

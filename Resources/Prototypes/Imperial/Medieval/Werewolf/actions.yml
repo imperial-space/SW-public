@@ -4,11 +4,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: skin
+  - type: InstantAction
     event: !type:SelectWerewolfFormActionEvent
 
 - type: entity
@@ -17,11 +18,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: shop
+  - type: InstantAction
     event: !type:OpenLycantropyMenuActionEvent
 
 - type: entity
@@ -30,11 +32,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: howl
+  - type: InstantAction
     event: !type:WerewolfHowlActionEvent
 
 - type: entity
@@ -43,11 +46,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: turn
+  - type: InstantAction
     event: !type:PolymorphWerewolfActionEvent
 
 - type: entity
@@ -56,11 +60,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: turn
+  - type: InstantAction
     event: !type:RevertPolymorphActionEvent
 
 - type: entity
@@ -69,7 +74,7 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
@@ -77,6 +82,7 @@
     iconOn:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: turnon
+  - type: InstantAction
     event: !type:ToggleLycantropyInfectActionEvent
       sound:
         path: /Audio/Imperial/Medieval/Werewolf/infection-switch.ogg
@@ -87,11 +93,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: groupheal
+  - type: InstantAction
     event: !type:WerewolfHealAlliesActionEvent
       sound:
         path: /Audio/Imperial/Medieval/Werewolf/team-regeneration.ogg
@@ -102,11 +109,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: heal
+  - type: InstantAction
     event: !type:WerewolfRegenActionEvent
       sound:
         path: /Audio/Imperial/Medieval/Werewolf/solo-regeneration.ogg
@@ -117,11 +125,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: hotblood
+  - type: InstantAction
     event: !type:WerewolfStatusEffectActionEvent
       key: MedievalWerewolfHotBlood
       component: WerewolfHotBlood
@@ -136,11 +145,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: hunt
+  - type: InstantAction
     event: !type:WerewolfStatusEffectActionEvent
       key: MedievalWerewolfHunt
       component: WerewolfBloodHunt
@@ -154,11 +164,12 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: moon
+  - type: InstantAction
     event: !type:WerewolfStatusEffectActionEvent
       key: MedievalWerewolfMoonRage
       component: WerewolfMoonRage
@@ -173,7 +184,7 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
@@ -181,6 +192,7 @@
     iconOn:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: tearingon
+  - type: InstantAction
     event: !type:WerewolfTearingActionEvent
       sound:
         path: /Audio/Imperial/Medieval/Werewolf/bite-open.ogg
@@ -191,11 +203,29 @@
   description: queueueueueueueue
   categories: [ HideSpawnMenu ]
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: dash
+  - type: InstantAction
     event: !type:WerewolfShadowDashActionEvent
       sound:
         path: /Audio/Imperial/Medieval/Werewolf/dash.ogg
+
+- type: entity
+  id: WerewolfBloodFeelAction
+  name: e
+  description: queueueueueueueue
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: termaloff
+    iconOn:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: termalon
+  - type: InstantAction
+    event: !type:WerewolfBloodFeelActionEvent
