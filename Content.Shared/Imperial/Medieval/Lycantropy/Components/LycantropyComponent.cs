@@ -8,7 +8,7 @@ namespace Content.Shared.Imperial.Medieval.Lycantropy;
 public sealed partial class LycantropyComponent : Component
 {
     [AutoNetworkedField]
-    public int Points = 500;
+    public int Points = 0;
 
     [AutoNetworkedField]
     public List<ProtoId<LycantropyAbilityPrototype>> Abilities = new();

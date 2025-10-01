@@ -181,6 +181,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     private void OnWerewolfMapInit(EntityUid uid, WerewolfComponent comp, MapInitEvent args)
     {
         _actions.AddAction(uid, ref comp.InfectAction, "WerewolfInfectAction");
+        _actions.AddAction(uid, "LycantropyHowlAction");
     }
 
     private void OnWerewolfHowl(EntityUid uid, WerewolfComponent comp, WerewolfHowlActionEvent args)
