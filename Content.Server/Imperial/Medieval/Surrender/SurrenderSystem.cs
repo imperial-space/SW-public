@@ -31,7 +31,7 @@ public sealed class SurrenderSystem : EntitySystem
             return;
         if (HasComp<PacifiedComponent>(uid))
             return;
-        _actions.SetCooldown(args.Action, component.SurrenderTime);
+        _actions.SetCooldown((args.Action.Owner, args.Action.Comp), component.SurrenderTime);
         EnsureComp<PacifiedComponent>(uid);
         component.SurrenderActive = true;
         component.Unsurrender = _tick.CurTime + component.SurrenderTime;

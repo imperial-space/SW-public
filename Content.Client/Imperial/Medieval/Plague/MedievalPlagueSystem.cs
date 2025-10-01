@@ -15,7 +15,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.Medieval.Plague;
 
-public sealed partial class MedievalPlagueSystem : EntitySystem
+public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -105,4 +105,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
             _overlayMan.RemoveOverlay(_overlay);
         }
     }
+
+    public override void GrantPlagueImmunity(EntityUid uid, string? cure) { }
+    public override void TryProgressInfection(EntityUid uid, float amount, string? reagent) { }
 }
