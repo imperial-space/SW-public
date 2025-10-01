@@ -4,6 +4,7 @@
   description: .
   components:
   - type: Action
+    cooldown: 30
     itemIconStyle: NoItem
     icon:
       sprite: Imperial/Medieval/Surrender/action.rsi

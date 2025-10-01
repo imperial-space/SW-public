@@ -31,13 +31,14 @@ public sealed class SurrenderSystem : EntitySystem
             return;
         if (HasComp<PacifiedComponent>(uid))
             return;
-        _actions.SetCooldown((args.Action.Owner, args.Action.Comp), component.SurrenderTime);
+        //_actions.SetCooldown((args.Action.Owner, args.Action.Comp), component.SurrenderTime); poshel nahui
         EnsureComp<PacifiedComponent>(uid);
         component.SurrenderActive = true;
         component.Unsurrender = _tick.CurTime + component.SurrenderTime;
         _appearance.SetData(uid, SurrenderVisuals.Key, true);
         _audio.PlayPvs(component.Sound, uid.ToCoordinates());
         Dirty(uid, component);
+        args.Handled = true;
     }
     public override void Update(float delta)
     {
