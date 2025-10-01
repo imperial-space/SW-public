@@ -1413,6 +1413,12 @@
     - id: ClothingOuterFurKiss
     - id: ClothingHeadHatRedRacoon
     - id: ClothingOuterRedRacoon
+    - id: ClothingOuterSuitMonkey
+    - id: ClothingHeadHatAnimalMonkey
+    - id: ClothingOuterSuitCarp
+    - id: ClothingOuterSuitIan
+    - id: ClothingOuterSuitChicken
+    - id: ClothingHeadHatChickenhead
 
 - type: cargoProduct
   id: FunCrateFursuits
