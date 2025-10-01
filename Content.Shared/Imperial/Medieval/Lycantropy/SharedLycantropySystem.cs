@@ -1,4 +1,5 @@
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Dash;
 using Content.Shared.Movement.Systems;
@@ -24,6 +25,7 @@ public abstract partial class SharedLycantropySystem : EntitySystem
         SubscribeLocalEvent<WerewolfHotBloodComponent, ComponentShutdown>(RefreshMoveSpeed);
 
         SubscribeLocalEvent<WerewolfMoonRageComponent, RefreshMovementSpeedModifiersEvent>(OnMoonSpeedModify);
+        SubscribeLocalEvent<WerewolfMoonRageComponent, BeforeStaminaDamageEvent>(OnMoonStaminaModify);
         SubscribeLocalEvent<WerewolfHotBloodComponent, RefreshMovementSpeedModifiersEvent>(OnHotBloodSpeedModify);
         SubscribeLocalEvent<WerewolfBloodHuntComponent, CheckDashStaminaCostModifiersEvent>(OnBloodHuntDash);
         SubscribeLocalEvent<WerewolfBloodHuntComponent, CheckDashCooldownModifiersEvent>(OnBloodHuntDashDelay);
@@ -36,6 +38,9 @@ public abstract partial class SharedLycantropySystem : EntitySystem
 
     private void OnMoonSpeedModify(EntityUid uid, WerewolfMoonRageComponent comp, RefreshMovementSpeedModifiersEvent args)
         => args.ModifySpeed(comp.Modifier);
+
+    private void OnMoonStaminaModify(EntityUid uid, WerewolfMoonRageComponent comp, BeforeStaminaDamageEvent args)
+        => args.Value *= 0;
 
     private void OnHotBloodSpeedModify(EntityUid uid, WerewolfHotBloodComponent comp, RefreshMovementSpeedModifiersEvent args)
         => args.ModifySpeed(comp.Modifier);
