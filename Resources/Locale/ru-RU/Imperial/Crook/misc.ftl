@@ -49,6 +49,16 @@ ent-ClothingShoesMadzima = брейкданс ботинки
     .desc = Пора надрать задницу!
 ent-ClothingOuterMadzima = брейкданс куртка
     .desc = Пора сходить с ума!
+ent-ClothingHeadHatFurPuro = фурсьют маска
+    .desc = Пушистая и мягкая маска.
+ent-ClothingOuterFurPuro = фурсьют
+    .desc = Костюм чёрного цвета для застенчивых. В нём хотя бы не стыдно выйти в общество.
+ent-ClothingHeadHatFurKiss = фурсьют маска
+    .desc = Пушистая и мягкая маска.
+ent-ClothingOuterFurKiss = фурсьют
+    .desc = Костюм, в котором так и хочется зацеловать каждого встречного!
+ent-CrateCargoFursuits = набор фурсьютов
+    .desc = Наконец-то, фурри пятница.
 
 ent-WallInvisibleCrook = невидимая стена
     .desc = Даже тут невидимые стены...
