@@ -64,7 +64,7 @@
   result: MedievalReliefStoneWeak
   stacks:
     MedievalForstoneIngot: 1
-    MedievalIngotGold: 1
+    MedievalGold: 1
     MedievalAdamIngot: 1
 
 - type: CP14Recipe
@@ -72,7 +72,7 @@
   result: MedievalReliefStoneStrong
   stacks:
     MedievalForstoneIngot: 2
-    MedievalIngotGold: 3
+    MedievalGold: 3
     MedievalAdamIngot: 2
     MedievalTopaz: 1
 
@@ -82,7 +82,7 @@
   stacks:
     MedievalForstoneIngot: 3
     MedievalEbonitIngot: 1
-    MedievalIngotGold: 5
+    MedievalGold: 5
     MedievalAdamIngot: 3
     MedievalTopaz: 2
     MedievalFireSerdolick: 2
