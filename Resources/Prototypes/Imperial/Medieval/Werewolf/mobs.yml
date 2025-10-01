@@ -6,10 +6,14 @@
   components:
   - type: Sprite
     drawdepth: Mobs
-    sprite: Imperial/Medieval/Mobs/Werwolf/werwolf_black.rsi
+    sprite: Imperial/Medieval/Mobs/werwolf.rsi
     layers:
     - map: ["enum.DamageStateVisualLayers.Base"]
-      state: werwolf
+      state: black
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -28,6 +32,7 @@
   - type: ReplacementAccent
     accent: dog
   - type: MeleeWeapon
+    range: 2
     hidden: true
     angle: 0
     soundHit:
@@ -102,6 +107,12 @@
     - MedievalWerewolfHotBlood
     - MedievalWerewolfHunt
     - MedievalWerewolfMoonRage
+  - type: GenericVisualizer
+    visuals:
+      enum.WerewolfBloodFeelVisuals.Active:
+        red-eyes:
+          True: { visible: true }
+          False: { visible: false }
 
 - type: entity
   name: wolf
@@ -110,7 +121,13 @@
   description: They're a wolf.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Mobs/Werwolf/werwolf_blue_dark.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: dark_blue
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
 
 - type: entity
   name: wolf
@@ -119,7 +136,13 @@
   description: They're a wolf.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Mobs/Werwolf/werwolf_blue_light.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: light_blue
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
 
 - type: entity
   name: wolf
@@ -128,7 +151,13 @@
   description: They're a wolf.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Mobs/Werwolf/werwolf_brown.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: brown
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
 
 - type: entity
   name: wolf
@@ -137,7 +166,13 @@
   description: They're a wolf.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Mobs/Werwolf/werwolf_light.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: grey
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
 
 - type: entity
   name: wolf
@@ -146,7 +181,13 @@
   description: They're a wolf.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Mobs/Werwolf/werwolf_purple.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: purple
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
 
 - type: entity
   name: wolf
@@ -155,7 +196,13 @@
   description: They're a wolf.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Mobs/Werwolf/werwolf_red.rsi
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base"]
+      state: red
+    - map: ["red-eyes"]
+      state: red_eyes
+      shader: unshaded
+      visible: false
 
 - type: entity
   name: tearing chtuka
@@ -168,6 +215,7 @@
     sprite: Imperial/Medieval/Clothing/Werewolf/black.rsi
     state: icon
   - type: MeleeWeapon
+    range: 2
     hidden: true
     angle: 0
     soundHit:

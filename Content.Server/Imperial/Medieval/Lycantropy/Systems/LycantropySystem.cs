@@ -51,6 +51,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
 
     private const int PointsPerNight = 3;
     private const int PointsPerInfect = 4;
@@ -301,6 +302,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     {
         if (args.Handled)
             return;
+
+        _appearance.SetData(uid, WerewolfBloodFeelVisuals.Active, !HasComp<WerewolfBloodFeelComponent>(uid));
 
         if (HasComp<WerewolfBloodFeelComponent>(uid))
             RemComp<WerewolfBloodFeelComponent>(uid);

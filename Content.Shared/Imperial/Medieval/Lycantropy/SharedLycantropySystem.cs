@@ -3,6 +3,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Dash;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.Medieval.Lycantropy;
@@ -65,4 +66,10 @@ public abstract partial class SharedLycantropySystem : EntitySystem
     {
         RemComp(uid, comp);
     }
+}
+
+[Serializable, NetSerializable]
+public enum WerewolfBloodFeelVisuals
+{
+    Active
 }
