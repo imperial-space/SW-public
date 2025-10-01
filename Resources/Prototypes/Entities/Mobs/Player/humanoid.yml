@@ -12,7 +12,9 @@
   id: EventHumanoidMindShielded
   parent: EventHumanoid
   components:
-    - type: MindShield
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
     - type: AntagImmune
 
 - type: randomHumanoidSettings
@@ -22,6 +24,7 @@
   components:
   - type: AutoImplant
     implants:
+    - MindShieldImplant
     - DeathRattleImplantCentcomm
 
 ## Death Squad
@@ -30,6 +33,7 @@
   id: RandomHumanoidSpawnerDeathSquad
   name: Death Squad Agent
   suffix: ERTRole, Death Squad
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Clothing/OuterClothing/Hardsuits/deathsquad.rsi
@@ -70,6 +74,7 @@
   id: RandomHumanoidSpawnerERTLeader
   name: ERT leader
   suffix: ERTRole, Basic
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -105,6 +110,7 @@
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVA
   parent: RandomHumanoidSpawnerERTLeader
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   name: ERT leader
   suffix: ERTRole, Armored EVA
   components:
@@ -132,6 +138,7 @@
 - type: entity
   id: RandomHumanoidSpawnerERTLeaderEVALecter
   parent: RandomHumanoidSpawnerERTLeaderEVA
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   suffix: ERTRole, Lecter, EVA
   components:
     - type: RandomHumanoidSpawner
@@ -227,6 +234,7 @@
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT janitor
   suffix: ERTRole, Basic
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -264,6 +272,7 @@
   parent: RandomHumanoidSpawnerERTJanitor
   name: ERT janitor
   suffix: ERTRole, Enviro EVA
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -293,6 +302,7 @@
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT engineer
   suffix: ERTRole, Basic
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -330,6 +340,7 @@
   parent: RandomHumanoidSpawnerERTEngineer
   name: ERT engineer
   suffix: ERTRole, Enviro EVA
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -359,6 +370,7 @@
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT security
   suffix: ERTRole, Basic
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -396,6 +408,7 @@
   parent: RandomHumanoidSpawnerERTSecurity
   name: ERT security
   suffix: ERTRole, Armored EVA
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -422,6 +435,7 @@
   id: RandomHumanoidSpawnerERTSecurityEVALecter
   parent: RandomHumanoidSpawnerERTSecurityEVA
   suffix: ERTRole, Lecter, EVA
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: RandomHumanoidSpawner
       settings: ERTSecurityEVALecter
@@ -448,6 +462,7 @@
   parent: RandomHumanoidSpawnerERTLeader
   name: ERT medic
   suffix: ERTRole, Basic
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -485,6 +500,7 @@
   parent: RandomHumanoidSpawnerERTMedical
   name: ERT medic
   suffix: ERTRole, Armored EVA
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi
@@ -513,6 +529,7 @@
   id: RandomHumanoidSpawnerCBURNUnit
   name: CBURN Agent
   suffix: ERTRole
+  categories: [ HideSpawnMenu ] # Imperial Space Скрытие ненужных пресетов ОБР и Эскадрона
   components:
     - type: Sprite
       sprite: Markers/jobs.rsi

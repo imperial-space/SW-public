@@ -3,9 +3,10 @@
   name: Surrender
   description: .
   components:
-  - type: InstantAction
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: Imperial/Medieval/Surrender/action.rsi
       state: action
+  - type: InstantAction
     event: !type:MedievalSurrenderEvent

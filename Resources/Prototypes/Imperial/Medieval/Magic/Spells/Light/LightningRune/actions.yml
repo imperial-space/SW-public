@@ -20,16 +20,18 @@
       groups:
         Burn: 12
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 120
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 3
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/Effects/electro_cast.ogg
     icon:
       sprite: Imperial/Medieval/Magic/lightning_rune.rsi
       state: icon
+  - type: TargetAction
+    range: 3
+    checkCanAccess: false
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalLightningRune
       spawnType: SpawnOnMousePosition
