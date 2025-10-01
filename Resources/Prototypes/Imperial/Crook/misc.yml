@@ -1400,6 +1400,31 @@
     coolingCoefficient: 0.1
 
 - type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurBeige
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurBeige
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/beigesuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/beigesuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+
+- type: entity
   id: CrateCargoFursuits
   parent: CratePrivateSecure
   name: fursuit crate
@@ -1411,6 +1436,8 @@
     - id: ClothingOuterFurPuro
     - id: ClothingHeadHatFurKiss
     - id: ClothingOuterFurKiss
+    - id: ClothingHeadHatFurBeige
+    - id: ClothingOuterFurBeige
     - id: ClothingHeadHatRedRacoon
     - id: ClothingOuterRedRacoon
     - id: ClothingOuterSuitMonkey
