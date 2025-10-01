@@ -38,7 +38,7 @@ using Robust.Shared.Toolshed.Commands.Values;
 
 namespace Content.Server.Imperial.Medieval.Plague;
 
-public sealed partial class MedievalPlagueSystem : EntitySystem
+public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -396,5 +396,25 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         var ghosts = EntityManager.AllEntities<MedievalPlagueGhostComponent>();
         foreach (var item in ghosts)
             TryChangePoints(item, points, item.Comp);
+    }
+
+    public override void GrantPlagueImmunity(EntityUid uid, string? cure)
+    {
+        if (HasComp<MedievalPlagueInfectedComponent>(uid) ||
+           HasComp<MedievalPlagueImmuneComponent>(uid) ||
+           !HasComp<MedievalCanBeInfectedComponent>(uid))
+            return;
+
+        var immune = EnsureComp<MedievalPlagueImmuneComponent>(uid);
+        immune.StartTime = _timing.CurTime;
+        immune.HardImmunity = true;
+    }
+
+    public override void TryProgressInfection(EntityUid uid, float amount, string? reagent)
+    {
+        if (reagent != null && reagent != CurrentCure)
+            return;
+
+        TryProgressInfection(uid, amount);
     }
 }

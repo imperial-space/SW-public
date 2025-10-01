@@ -5,24 +5,20 @@ namespace Content.Shared.Imperial.Medieval.Plague;
 
 public sealed partial class ProgressPlague : EntityEffect
 {
-
     [DataField(required: true)]
     public float ProgressAmount;
 
     public override void Effect(EntityEffectBaseArgs args)
     {
         // upstream need to fix
-        //var plague = args.EntityManager.System<MedievalPlagueSystem>();
-        //
-        //var amount = ProgressAmount;
-        //if (args is EntityEffectReagentArgs reagentArgs)
-        //{
-        //    amount *= (float)reagentArgs.Quantity;
-        //    if (reagentArgs.Reagent != null && reagentArgs.Reagent.ID != plague.CurrentCure)
-        //        return;
-        //}
-        //
-        //plague.TryProgressInfection(args.TargetEntity, amount);
+        var plague = args.EntityManager.System<SharedMedievalPlagueSystem>();
+
+        var amount = ProgressAmount;
+        if (args is EntityEffectReagentArgs reagentArgs)
+        {
+            if (reagentArgs.Reagent != null)
+                plague.TryProgressInfection(args.TargetEntity, amount *= (float)reagentArgs.Quantity, reagentArgs.Reagent.ID);
+        }
     }
 
     protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
