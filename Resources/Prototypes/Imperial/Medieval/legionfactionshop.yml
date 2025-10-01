@@ -66,7 +66,7 @@
   - type: Tag
     tags:
     - RawMaterial
-    - MedievalMedalLegion
+    - MedalLegion
   - type: Material
   - type: PhysicalComposition
     materialComposition:
