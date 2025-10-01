@@ -37,7 +37,7 @@ public sealed class SurrenderSystem : EntitySystem
         component.Unsurrender = _tick.CurTime + component.SurrenderTime;
         _appearance.SetData(uid, SurrenderVisuals.Key, true);
         _audio.PlayPvs(component.Sound, uid.ToCoordinates());
-        // Dirty(uid, component);
+        Dirty(uid, component);
     }
     public override void Update(float delta)
     {
@@ -50,7 +50,7 @@ public sealed class SurrenderSystem : EntitySystem
             RemComp<PacifiedComponent>(component.Owner);
             component.SurrenderActive = false;
             _appearance.SetData(component.Owner, SurrenderVisuals.Key, false);
-            // Dirty(component.Owner, component);
+            Dirty(component.Owner, component);
         }
     }
 }
