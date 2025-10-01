@@ -72,7 +72,7 @@
       task: SimpleHostileCompound
   - type: Vocal
     sounds:
-      Unsexed: MedievalWerwolfEmote
+      Unsexed: Werewolf
   - type: StaminaDamageOnHit
     damage: 20
   - type: Werewolf

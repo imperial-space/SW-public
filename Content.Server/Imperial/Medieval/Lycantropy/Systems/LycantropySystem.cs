@@ -205,17 +205,20 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
     private void OnWerewolfHit(EntityUid uid, WerewolfComponent comp, MeleeHitEvent args)
     {
-        if (!comp.InfectOn || !args.IsHit)
+        if (!comp.InfectOn)
             return;
-
-        comp.InfectOn = false;
-        _actions.SetToggled(comp.InfectAction, comp.InfectOn);
 
         if (_inner.TryGetInnerWeapon(uid, out var _, out var id) && id == "tearing_weapon")
         {
             _inner.SetWeapon(uid, "");
             _actions.SetToggled(comp.Actions["WerewolfTearingAction"], false);
         }
+
+        if (!comp.InfectOn)
+            return;
+
+        comp.InfectOn = false;
+        _actions.SetToggled(comp.InfectAction, comp.InfectOn);
 
         foreach (var item in args.HitEntities)
         {
