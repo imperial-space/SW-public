@@ -1373,6 +1373,9 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+      - Tail
 
 - type: entity
   parent: ClothingHeadHatRedRacoon
@@ -1398,6 +1401,9 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+      - Tail
 
 - type: entity
   parent: ClothingHeadHatRedRacoon
@@ -1423,6 +1429,9 @@
   - type: TemperatureProtection
     heatingCoefficient: 1.1
     coolingCoefficient: 0.1
+  - type: HideLayerClothing
+    slots:
+      - Tail
 
 - type: entity
   id: CrateCargoFursuits
