@@ -6893,7 +6893,7 @@
   name: Smite
   description: Instantly gibs a target.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 60
     itemIconStyle: BigAction
     canTargetSelf: false
@@ -6901,10 +6901,11 @@
     checkConsciousness: false
     interactOnMiss: false
     icon: Interface/Actions/scream.png
-    event: !type:MedievalGhostBooEvent
     whitelist:
       components:
       - MobThresholds
+  - type: InstantAction
+    event: !type:MedievalGhostBooEvent
 
 - type: entity
   name: lol
@@ -7383,9 +7384,11 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: deprecated.rsi, state: deprecated}
     useDelay: 1
+  - type: TargetAction
+  - type: WorldTargetAction
     event: !type:SpawnOnActionEvent
 
 - type: entity

@@ -6,6 +6,7 @@ using Content.Shared.Actions;
 using Content.Server.MagicBarrier.Components;
 using Content.Server.SpikeTrap.Components;
 using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server.MedievalGhost;
 public partial class MedievalGhostBooSystem : EntitySystem

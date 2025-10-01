@@ -2,6 +2,7 @@ using System.Collections.Frozen;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Speech;
+using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
@@ -127,16 +128,16 @@ public partial class ChatSystem
     ///     Tries to find and play relevant emote sound in emote sounds collection.
     /// </summary>
     /// <returns>True if emote sound was played.</returns>
-    public bool TryPlayEmoteSound(EntityUid uid, EmoteSoundsPrototype? proto, EmotePrototype emote)
+    public bool TryPlayEmoteSound(EntityUid uid, EmoteSoundsPrototype? proto, EmotePrototype emote, AudioParams? audioParams = null)
     {
-        return TryPlayEmoteSound(uid, proto, emote.ID);
+        return TryPlayEmoteSound(uid, proto, emote.ID, audioParams);
     }
 
     /// <summary>
     ///     Tries to find and play relevant emote sound in emote sounds collection.
     /// </summary>
     /// <returns>True if emote sound was played.</returns>
-    public bool TryPlayEmoteSound(EntityUid uid, EmoteSoundsPrototype? proto, string emoteId)
+    public bool TryPlayEmoteSound(EntityUid uid, EmoteSoundsPrototype? proto, string emoteId, AudioParams? audioParams = null)
     {
         if (proto == null)
             return false;
@@ -150,18 +151,26 @@ public partial class ChatSystem
                 return false;
         }
 
-        // if general params for all sounds set - use them
-        var param = proto.GeneralParams ?? sound.Params;
+        // optional override params > general params for all sounds in set > individual sound params
+        var param = audioParams ?? proto.GeneralParams ?? sound.Params;
         // Imperial Medieval AgePitch Begin
         if (TryComp<Shared.Humanoid.HumanoidAppearanceComponent>(uid, out var comp))
         {
-            if (comp.Age > 30f)
+            float ageDifference = comp.Age - 30f;
+
+            if (ageDifference > 0)
             {
-                param.Pitch += Math.Max((30f - comp.Age) * 0.01f, -0.9f);
+                // Для возраста старше 30: более мягкое понижение
+                // Замена Math.Log на более простую формулу
+                float logApprox = (float)Math.Sqrt(ageDifference + 1) - 1f;
+                param.Pitch += Math.Max(-logApprox * 0.2f, -0.4f);
             }
             else
             {
-                param.Pitch += Math.Min((30f - comp.Age) * 0.05f, 5f);
+                // Для возраста младше 30: более мягкое повышение
+                float absDifference = Math.Abs(ageDifference);
+                float logApprox = (float)Math.Sqrt(absDifference + 1) - 1f;
+                param.Pitch += Math.Min(logApprox * 0.15f, 2f);
             }
         }
         // Imperial Medieval AgePitch End

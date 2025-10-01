@@ -1,5 +1,5 @@
-using Content.Server.EntityEffects.Effects.StatusEffects;
 using Content.Shared.EntityEffects;
+using Content.Shared.EntityEffects.Effects.StatusEffects;
 using Content.Shared.StatusEffect;
 using Robust.Server.Audio;
 using Robust.Shared.Audio;
