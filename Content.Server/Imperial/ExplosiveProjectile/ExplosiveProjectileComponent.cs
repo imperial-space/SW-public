@@ -42,7 +42,7 @@ namespace Content.Server.Imperial.ExplosiveProjectile.Components
         /// Замедление.
         /// </summary>
         [DataField("slowdownParam")]
-        public int SlowdownParam;
+        public TimeSpan SlowdownParam = TimeSpan.FromSeconds(15);
 
         /// <summary>
         /// Скорость ходьбы при оглушении.

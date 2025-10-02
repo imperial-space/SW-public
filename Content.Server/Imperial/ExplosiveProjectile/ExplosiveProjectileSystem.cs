@@ -38,7 +38,6 @@ namespace Content.Server.Imperial.ExplosiveProjectile
             if (_inventorySystem.TryGetSlotEntity(target, component.TargetInvSlot, out var clothingTarget) &&
             HasComp<PressureProtectionComponent>(clothingTarget))
             {
-                clothingTarget = target;
                 EnsureComp<ExplosiveProjectileResultOffComponent>(target);
             }
             else
@@ -54,7 +53,7 @@ namespace Content.Server.Imperial.ExplosiveProjectile
             {
                 _stunSystem.TryStun(target, component.StunParam, true, status);
                 _stunSystem.TryKnockdown(target, component.KnockdownTime, true, status);
-                _stunSystem.TrySlowdown(target, TimeSpan.FromSeconds(component.SlowdownParam), true, component.WalkSpeedParam, component.RunSpeedParam, status);
+                _stunSystem.TrySlowdown(target, component.SlowdownParam, true, component.WalkSpeedParam, component.RunSpeedParam, status);
             }
             TryExplodeEntity(uid, component, target);
         }
