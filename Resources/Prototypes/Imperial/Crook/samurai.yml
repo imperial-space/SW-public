@@ -26,8 +26,8 @@
         Slash: 0.7
         Piercing: 0.3
         Heat: 0.4
-        Radiation: 0.05
-        Caustic: 0.05
+        Radiation: 0
+        Caustic: 0
         Stamina: 0.45
   - type: ExplosionResistance
     damageCoefficient: 0.2
