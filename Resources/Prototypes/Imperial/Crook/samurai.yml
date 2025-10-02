@@ -247,7 +247,6 @@
         Heat: -0.07
       groups:
         Brute: -0.07
-  - type: Fingerprint
   - type: FireVisuals
     alternateState: Standing
   - type: Inventory
