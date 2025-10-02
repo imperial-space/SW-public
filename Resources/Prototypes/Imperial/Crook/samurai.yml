@@ -10,7 +10,6 @@
     sprite: Imperial/Crook/Samurai/suit.rsi
   - type: Clothing
     sprite: Imperial/Crook/Samurai/suit.rsi
-  # hardsuit stuff
   - type: PressureProtection
     highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
