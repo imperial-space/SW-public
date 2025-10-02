@@ -67,7 +67,7 @@ public sealed class SyndieBattleRuleSystem : GameRuleSystem<SyndieBattleRuleComp
     protected override void Started(EntityUid uid, SyndieBattleRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {
         component.Active = true;
-        component.StartTime = Timing.CurTime.TotalSeconds;
+        component.StartTime = TimeSpan.Zero;
 
         SpawnRedemptionMachines();
 
