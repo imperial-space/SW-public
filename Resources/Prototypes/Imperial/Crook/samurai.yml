@@ -170,31 +170,15 @@
 - type: entity
   name: Space Samurai
   suffix: Crook, Samurai
-  parent: MobHuman
+  parent: BaseMobMechanic
   id: SpaceSamurai
   components:
-  - type: Respirator
-    damage:
-      types:
-        Asphyxiation: 0
-    damageRecovery:
-      types:
-        Asphyxiation: 0
-  - type: Barotrauma
-    damage:
-      types:
-        Blunt: 0
-        Heat: 0
   - type: TypingIndicator
     proto: syndibot
   - type: Speech
     speechSounds: SyndieBorg
     allowedEmotes:
     - Laugh
-  - type: Hunger
-    baseDecayRate: 0
-  - type: Thirst
-    baseDecayRate: 0
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
@@ -212,12 +196,16 @@
   - type: NpcFactionMember
     factions:
     - Syndicate
-  - type: SpaceNinja
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
     - FreedomImplant
     - ScramImplant
+    - ImperialBlinkImplant
+    - ImperialSmokeImplant
+    - EmpImplant
+    - EmpImplant
+    - RadioImplant
   - type: RandomHumanoidAppearance
     randomizeName: false
 
@@ -234,3 +222,39 @@
     raffle:
       settings: default
   - type: GhostTakeoverAvailable
+
+### Bases
+
+- type: entity
+  save: false
+  parent: BaseMobSpecies
+  id: BaseMobMechanic
+  abstract: true
+  components:
+  - type: HumanoidAppearance
+    species: Human
+    hideLayersOnEquip:
+    - Hair
+    - Snout
+  - type: Icon
+    sprite: Mobs/Species/Human/parts.rsi
+    state: full
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    damageCap: 20
+    damage:
+      types:
+        Heat: -0.07
+      groups:
+        Brute: -0.07
+  - type: Fingerprint
+  - type: FireVisuals
+    alternateState: Standing
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
