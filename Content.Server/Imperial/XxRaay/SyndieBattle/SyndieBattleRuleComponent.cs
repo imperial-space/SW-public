@@ -50,10 +50,10 @@ public sealed partial class SyndieBattleRuleComponent : Component
     public int PacifyDurationSeconds = 120;
 
     /// <summary>
-    /// Время старта правила в секундах (Timing.CurTime.TotalSeconds)
+    /// Время старта правила в секундах
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public double StartTime = 0.0;
+    public TimeSpan StartTime = TimeSpan.Zero;
 
     /// <summary>
     /// Что выдается в аплинк
