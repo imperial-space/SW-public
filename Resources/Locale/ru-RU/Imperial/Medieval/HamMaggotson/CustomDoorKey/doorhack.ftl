@@ -17,6 +17,6 @@ medieval-hm-doorhack-tooweak = Число {$amount}. Вы надавили на 
 medieval-hm-doorhack-abitweaker = Число {$amount}. Нужно надавить немного слабее, сброс прогресса взлома
 medieval-hm-doorhack-weaker = Число {$amount}. Нужно надавить слабее, сброс прогресса взлома
 medieval-hm-doorhack-abitstronger = Число {$amount}. Нужно надавить немного сильнее, сброс прогресса взлома
-medieval-hm-doorhack-stronger = Число " + number + ". Нужно надавить сильнее, сброс прогресса взлома
+medieval-hm-doorhack-stronger = Число {$amount}. Нужно надавить сильнее, сброс прогресса взлома
 medieval-hm-doorhack-broke = Отмычка сломалась
 medieval-hm-doorhack-incorrect = Неверное значение
