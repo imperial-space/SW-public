@@ -27,40 +27,43 @@ namespace Content.Server.MeleeBetterExaminable
                 }
                 if (totaldamage <= 0)
                     return;
-                args.PushMarkup("Скорость атаки [color=green]" + weapon.AttackRate + "[/color]");
-                args.PushMarkup("Множитель урона при широкой атаке [color=yellow]" + "1" + "[/color]");
-                args.PushMarkup("Множитель урона при точечной атаке [color=orange]" + weapon.ClickDamageModifier + "[/color]");
-                args.PushMarkup("Дальность атаки [color=cyan]" + weapon.Range + "[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-mbe-attackrate", ("amount", $"{weapon.AttackRate}")));
+                args.PushMarkup(Loc.GetString("medieval-hm-mbe-wdm", ("amount", $"1")));
+                args.PushMarkup(Loc.GetString("medieval-hm-mbe-fdm", ("amount", $"{weapon.ClickDamageModifier}")));
+                args.PushMarkup(Loc.GetString("medieval-hm-mbe-range", ("amount", $"{weapon.Range}")));
                 if (weapon.ResetOnHandSelected)
-                    args.PushMarkup("Это оружие [color=red]не может[/color] быть использовано как парное");
+                    args.PushMarkup(Loc.GetString("medieval-hm-mbe-pair"));
                 else
-                    args.PushMarkup("Это оружие [color=green]может[/color] быть использовано как парное");
+                    args.PushMarkup(Loc.GetString("medieval-hm-mbe-npair"));
             }
             if (TryComp<MeleeParryComponent>(uid, out var parry) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
-                args.PushMarkup("Шанс паррирования [color=white]" + Math.Round(parry.ParryChanse * 100, 2) + "%[/color]");
+            {
+                var prry = Math.Round(parry.ParryChanse * 100, 2);
+                args.PushMarkup(Loc.GetString("medieval-hm-mbe-parrychance", ("amount", $"{prry}")));
+            }
             if (!HasComp<MeleeParryComponent>(uid) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
-                args.PushMarkup("Шанс паррирования [color=red]0%[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-mbe-noparry"));
             if (TryComp<MedievalMeleeResourceComponent>(uid, out var resource) && !HasComp<ExaminerComponent>(uid) && !HasComp<MedievalPotionCheckAbleComponent>(uid))
             {
                 switch (resource.DamageState)
                 {
                     case "Up":
-                        args.PushMarkup("Это оружие [color=cyan]дополнительно заточенно[/color]");
+                        args.PushMarkup(Loc.GetString("medieval-hm-mbe-up"));
                         break;
                     case "Full":
-                        args.PushMarkup("Это оружие в [color=green]идеальном[/color] состоянии");
+                        args.PushMarkup(Loc.GetString("medieval-hm-mbe-full"));
                         break;
                     case "AlmostFull":
-                        args.PushMarkup("Это оружие выглядит [color=#90ee90]слегка поцарапанным[/color]");
+                        args.PushMarkup(Loc.GetString("medieval-hm-mbe-almostfull"));
                         break;
                     case "Damaged":
-                        args.PushMarkup("На этом оружии видны [color=yellow]повреждения[/color]");
+                        args.PushMarkup(Loc.GetString("На этом оружии видны [color=yellow]повреждения[/color]"));
                         break;
                     case "BadlyDamaged":
-                        args.PushMarkup("Это оружие в [color=orange]отвратном[/color] состоянии");
+                        args.PushMarkup(Loc.GetString("Это оружие в [color=orange]отвратном[/color] состоянии"));
                         break;
                     case "Broken":
-                        args.PushMarkup("Это оружие вот-вот [color=red]развалится[/color]");
+                        args.PushMarkup(Loc.GetString("medieval-hm-mbe-broken"));
                         break;
                     default:
                         //код, выполняемый если выражение не имеет ни одно из выше указанных значений

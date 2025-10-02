@@ -29,7 +29,7 @@ public sealed partial class FriendsSystem : SharedFriendsSystem
     public void OnCloackMessageAction(EntityUid uid, CloackMessageComponent comp, CloackMessageActionEvent args)
     {
         if (!_sharedPlayerManager.TryGetSessionByEntity(uid, out var session)) return;
-        _quickDialog.OpenDialog(session, "Весть", "Сообщение", (string message) =>
+        _quickDialog.OpenDialog(session, Loc.GetString("medieval-hm-friends-vest"), Loc.GetString("medieval-hm-friends-soobshenie"), (string message) =>
         {
             var query = EntityQueryEnumerator<CloackRecieverComponent>();
             while (query.MoveNext(out var cloackOwner, out var cloack))

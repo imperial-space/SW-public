@@ -14,15 +14,15 @@ public partial class DamageCheckSystem : EntitySystem
         // Bad shitcode for gates. Fix later
         if (!TryComp<DamageableComponent>(uid, out var damageable)) return;
         if (damageable.TotalDamage > 3600)
-            args.PushMarkup("[color=red]Объект весь покрыт крупными трещинами и вот-вот развалится[/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-damagecheck-almostbroke"));
         else if (damageable.TotalDamage > 2700)
-            args.PushMarkup("[color=orange]Объект весь покрыт крупными трещинами[/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-damagecheck-deep"));
         else if (damageable.TotalDamage > 1800)
-            args.PushMarkup("[color=orange]По объекту расходятся трещины[/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-damagecheck-broken"));
         else if (damageable.TotalDamage > 900)
-            args.PushMarkup("[color=yellow]Заметны серьезные царапины[/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-damagecheck-ohno"));
         else if (damageable.TotalDamage > 220)
-            args.PushMarkup("[color=green]Заметны легкие царапины[/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-damagecheck-notdamaged"));
 
     }
 

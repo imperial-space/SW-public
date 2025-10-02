@@ -40,7 +40,9 @@ namespace Content.Server.MagicSpellcraft
 
         private void OnExamine(EntityUid uid, MagicSpellcraftComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("[color=red]Текущий заряд " + Math.Round(component.Charge, 2) + " из " + Math.Round(component.MaxCharge, 2) + "[/color]");
+            var charge = Math.Round(component.Charge, 2);
+            var maxcharge = Math.Round(component.MaxCharge, 2);
+            args.PushMarkup(Loc.GetString("medieval-hm-barrier-spellcraft-currentcharge", ("charge", $"{charge}"), ("max", $"{maxcharge}")));
         }
         public override void Update(float frameTime)
         {

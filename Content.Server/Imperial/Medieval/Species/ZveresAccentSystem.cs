@@ -18,13 +18,13 @@ public sealed class ZveresAccentSystem : EntitySystem
         var message = args.Message;
         message = Regex.Replace(
             message,
-            "Р+",
-            _random.Pick(new List<string>() { "Рр", "Ррр" })
+            Loc.GetString("medieval-hm-zveresaccent-r"),
+            _random.Pick(new List<string>() { Loc.GetString("medieval-hm-zveresaccent-rr"), Loc.GetString("medieval-hm-zveresaccent-rrr") })
         );
         message = Regex.Replace(
             message,
-            "р+",
-            _random.Pick(new List<string>() { "рр", "ррр" })
+            Loc.GetString("medieval-hm-zveresaccent-r1"),
+            _random.Pick(new List<string>() { Loc.GetString("medieval-hm-zveresaccent-rr1"), Loc.GetString("medieval-hm-zveresaccent-rrr1") })
         );
         args.Message = message;
     }

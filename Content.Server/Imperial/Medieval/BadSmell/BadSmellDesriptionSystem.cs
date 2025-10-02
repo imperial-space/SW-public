@@ -82,15 +82,15 @@ namespace Content.Server.BadSmell
         {
             if (TryComp<BadSmellFeelComponent>(args.Examiner, out var feel) && !feel.DescEnabled)
             {
-                args.PushMarkup("[color=gray]Вы не чувствуете запахи[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-badsmell-cantsmell"));
                 return;
             }
             if (component.SmellLevel > 60f && component.SmellLevel <= 80f)
-                args.PushMarkup("[color=sandybrown]Воняет помоями[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-badsmell-trash"));
             if (component.SmellLevel > 80f)
-                args.PushMarkup("[color=orange]Невероятно воняет помоями[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-badsmell-sunrise"));
             if (component.SmellLevel < 25f)
-                args.PushMarkup("[color=green]Пахнет свежестью[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-badsmell-touchgrass"));
         }
         TimeSpan StartTime = TimeSpan.FromSeconds(0f);
         TimeSpan EndTime = TimeSpan.FromSeconds(0f);

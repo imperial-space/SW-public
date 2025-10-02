@@ -21,7 +21,7 @@ namespace Content.Server.MedievalMoneyChecker
                 foreach (var m in money)
                 {
                     if (m.Key == "Revent" && m.Value != 1)
-                        args.PushMarkup("[color=yellow]Можно продать за сумму около " + m.Value + " ревентов[/color]");
+                        args.PushMarkup(Loc.GetString("medieval-hm-traits-moneychecker", ("amount", $"{m.Value}")));
                 }
             }
         }

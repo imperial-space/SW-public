@@ -66,22 +66,22 @@ namespace Content.Server.Siege
                 }
                 else
                 {
-                    _prayerSystem.SendSubtleMessage(session, session, "В орудие уже был заряжен боеприпас.", "Уже заряжено");
+                    _prayerSystem.SendSubtleMessage(session, session, Loc.GetString("medieval-hm-siege-alrloaded"), Loc.GetString("medieval-hm-siege-alrloaded2"));
                 }
             }
         }
 
         private void OnExamine(EntityUid uid, SiegeWeaponComponent comp, ExaminedEvent args)
         {
-            args.PushMarkup("Текущая наводка: [color=red] X = " + comp.TargetX + "[/color], [color=green] Y = " + comp.TargetY + "[/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-siege-currentaim", ("x", $"{comp.TargetX}"), ("y", $"{comp.TargetY}")));
             if (comp.SpringCharged)
-                args.PushMarkup("Пружина [color=green]натянута[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-siege-rs1"));
             else
-                args.PushMarkup("Пружина [color=red]не натянута[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-siege-rs2"));
             if (comp.LoadedShot != "")
-                args.PushMarkup("Боеприпас [color=green]заряжен[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-siege-rs3"));
             else
-                args.PushMarkup("Боеприпас [color=red]не заряжен[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-siege-r4"));
         }
 
         private void OnGetAlternativeVerbs(EntityUid uid, SiegeWeaponComponent comp, GetVerbsEvent<AlternativeVerb> ev)
@@ -135,12 +135,12 @@ namespace Content.Server.Siege
 
             if (comp.LoadedShot == "")
             {
-                _prayerSystem.SendSubtleMessage(session, session, "В орудие необходимо зарядить боеприпас.", "Нужно зарядить");
+                _prayerSystem.SendSubtleMessage(session, session, Loc.GetString("medieval-hm-siege-req"), Loc.GetString("medieval-hm-siege-req1"));
                 return;
             }
             if (comp.SpringCharged)
             {
-                _prayerSystem.SendSubtleMessage(session, session, "Пружина орудия уже натянута.", "Уже натянута");
+                _prayerSystem.SendSubtleMessage(session, session, Loc.GetString("medieval-hm-siege-rsalr"), Loc.GetString("medieval-hm-siege-rsalr2"));
                 return;
             }
             var doAfter = new DoAfterArgs(EntityManager, user, comp.ChargeTime, new SiegeChargeDoAfterArgs(), target: user, eventTarget: siegeUid)
@@ -177,12 +177,12 @@ namespace Content.Server.Siege
             if (!_sharedPlayerManager.TryGetSessionByEntity(user, out var session)) return;
             if (Math.Abs(comp.TargetX) + Math.Abs(comp.TargetY) < comp.MinTarget)
             {
-                _prayerSystem.SendSubtleMessage(session, session, "Нельзя стрелять слишком близко к орудию.", "Нужно навестись");
+                _prayerSystem.SendSubtleMessage(session, session, Loc.GetString("medieval-hm-siege-tooclose"), Loc.GetString("medieval-hm-siege-aimreq"));
                 return;
             }
             if (!comp.SpringCharged)
             {
-                _prayerSystem.SendSubtleMessage(session, session, "Орудие должно быть заряжено, чтобы стрелять.", "Нужно зарядить");
+                _prayerSystem.SendSubtleMessage(session, session, Loc.GetString("medieval-hm-siege-loadreq"), Loc.GetString("medieval-hm-siege-loadreq2"));
                 return;
             }
             var xform = Transform(siegeUid);
@@ -241,7 +241,7 @@ namespace Content.Server.Siege
         public void TryAimX(EntityUid user, EntityUid siegeUid, SiegeWeaponComponent comp)
         {
             if (!_sharedPlayerManager.TryGetSessionByEntity(user, out var session)) return;
-            _quickDialog.OpenDialog(session, "Наводка X", "Число", (string message) =>
+            _quickDialog.OpenDialog(session, Loc.GetString("medieval-hm-siege-aimx"), Loc.GetString("medieval-hm-siege-number"), (string message) =>
             {
                 AimX(user, session, siegeUid, comp, message);
             });
@@ -254,12 +254,12 @@ namespace Content.Server.Siege
                 var fnumber = (float)number;
                 if (fnumber > Math.Abs(comp.MaxTarget))
                 {
-                    _prayerSystem.SendSubtleMessage(sender, sender, "Слишком далеко", "Нужно ввести меньшее значение");
+                    _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-siege-toofar"), Loc.GetString("medieval-hm-siege-smaller"));
                     return;
                 }
                 if (fnumber == 0)
                 {
-                    _prayerSystem.SendSubtleMessage(sender, sender, "Ноль вводить нельзя", "Нужен не ноль");
+                    _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-siege-nonull"), Loc.GetString("medieval-hm-siege-nozero"));
                     return;
                 }
                 comp.TargetX = fnumber;
@@ -273,14 +273,14 @@ namespace Content.Server.Siege
             }
             else
             {
-                _prayerSystem.SendSubtleMessage(sender, sender, "Неверное значение", "Число неверно");
+                _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-siege-incorrect"), Loc.GetString("medieval-hm-siege-nincorrect"));
             }
         }
 
         public void TryAimY(EntityUid user, EntityUid siegeUid, SiegeWeaponComponent comp)
         {
             if (!_sharedPlayerManager.TryGetSessionByEntity(user, out var session)) return;
-            _quickDialog.OpenDialog(session, "Наводка Y", "Число", (string message) =>
+            _quickDialog.OpenDialog(session, Loc.GetString("medieval-hm-siege-aimy"), Loc.GetString("medieval-hm-siege-number"), (string message) =>
             {
                 AimY(user, session, siegeUid, comp, message);
             });
@@ -293,12 +293,12 @@ namespace Content.Server.Siege
                 var fnumber = (float)number;
                 if (Math.Abs(fnumber) > comp.MaxTarget)
                 {
-                    _prayerSystem.SendSubtleMessage(sender, sender, "Слишком далеко", "Нужно ввести меньшее значение");
+                    _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-siege-toofar"), Loc.GetString("medieval-hm-siege-smaller"));
                     return;
                 }
                 if (fnumber == 0)
                 {
-                    _prayerSystem.SendSubtleMessage(sender, sender, "Ноль вводить нельзя", "Нужен не ноль");
+                    _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-siege-nonull"), Loc.GetString("medieval-hm-siege-nozero"));
                     return;
                 }
                 comp.TargetY = fnumber;
@@ -312,7 +312,7 @@ namespace Content.Server.Siege
             }
             else
             {
-                _prayerSystem.SendSubtleMessage(sender, sender, "Неверное значение", "Число неверно");
+                _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-siege-incorrect"), Loc.GetString("medieval-hm-siege-nincorrect"));
             }
         }
     }

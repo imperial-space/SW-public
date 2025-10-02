@@ -142,7 +142,7 @@ namespace Content.Server.Nocturn
                     {
                         if (_random.Prob(0.1f))
                         {
-                            _popupSystem.PopupEntity("Низкий уровень крови", uid, uid, PopupType.MediumCaution);
+                            _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-notenoughblood"), uid, uid, PopupType.MediumCaution);
                         }
                         _damageableSystem.TryChangeDamage(uid, comp.BloodLostDamage, true, false);
                     }
@@ -151,7 +151,7 @@ namespace Content.Server.Nocturn
                     {
                         if (_random.Prob(0.25f))
                         {
-                            _popupSystem.PopupEntity("КРОВЬ!!", uid, uid, PopupType.LargeCaution);
+                            _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-ultrakill"), uid, uid, PopupType.LargeCaution);
                         }
 
                         _damageableSystem.TryChangeDamage(uid, comp.BloodLostDamage * 3f, true, false);
@@ -205,7 +205,7 @@ namespace Content.Server.Nocturn
                 TryComp(maskUid, out blocker) &&
                 blocker.Enabled)
             {
-                _popupSystem.PopupEntity("Ваш рот чем-то закрыт", uid, uid, PopupType.Large);
+                _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-ihavenomouthbutimustscream"), uid, uid, PopupType.Large);
                 return;
             }
 
@@ -213,7 +213,7 @@ namespace Content.Server.Nocturn
                 TryComp(headUid, out blocker) &&
                 blocker.Enabled)
             {
-                _popupSystem.PopupEntity("Ваш рот чем-то закрыт", uid, uid, PopupType.Large);
+                _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-ihavenomouthbutimustscream"), uid, uid, PopupType.Large);
                 return;
             }
 
@@ -222,7 +222,7 @@ namespace Content.Server.Nocturn
             var target = args.Target;
             if (!CanBite(uid))
             {
-                _popupSystem.PopupEntity("Рядом чеснок, библия или крест", uid, uid, PopupType.Large);
+                _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-heavenpierceher"), uid, uid, PopupType.Large);
                 return;
             }
 
@@ -233,7 +233,7 @@ namespace Content.Server.Nocturn
                 NeedHand = false
             };
             if (TryComp<NocturnBadFoodComponent>(target, out var food) && !food.Fresh)
-                _popupSystem.PopupEntity("Какая грязная кровь... мерзко.", uid, uid, PopupType.Large);
+                _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-ew"), uid, uid, PopupType.Large);
             _doAfterSystem.TryStartDoAfter(doAfterEventArgs);
         }
 
@@ -249,7 +249,7 @@ namespace Content.Server.Nocturn
                     if (TryComp<SSDIndicatorComponent>(args.Args.Target, out var ssd) && ssd.IsSSD)
                     {
                         {
-                            _popupSystem.PopupEntity("Его кровь безжизненная", uid, uid, PopupType.Large);
+                            _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-lifeless"), uid, uid, PopupType.Large);
                             return;
                         }
                     }
@@ -263,7 +263,7 @@ namespace Content.Server.Nocturn
                             component.BloodLevel += 30f * food.BloodMultiplier;
                             var xform = Transform(component.Owner);
                             var coords = xform.Coordinates;
-                            _popupSystem.PopupCoordinates(Loc.GetString("Пьет кровь"), coords, PopupType.MediumCaution);
+                            _popupSystem.PopupCoordinates(Loc.GetString(Loc.GetString("medieval-hm-nocturn-dio")), coords, PopupType.MediumCaution);
                             var txform = Transform(args.Args.Target.Value);
                             var tcoords = txform.Coordinates;
                             Spawn("BloodParticles", tcoords);
@@ -278,7 +278,7 @@ namespace Content.Server.Nocturn
                         }
                         else
                         {
-                            _popupSystem.PopupEntity("Цель иссушена", uid, uid, PopupType.Large);
+                            _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-wither"), uid, uid, PopupType.Large);
                             return;
                         }
                     }
@@ -295,7 +295,7 @@ namespace Content.Server.Nocturn
                                 }
                                 else
                                 {
-                                    _popupSystem.PopupEntity("Цель иссушена", uid, uid, PopupType.Large);
+                                    _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-wither"), uid, uid, PopupType.Large);
                                     return;
                                 }
                             }
@@ -304,7 +304,7 @@ namespace Content.Server.Nocturn
                             component.BloodLevel += 30f;
                             var xform = Transform(component.Owner);
                             var coords = xform.Coordinates;
-                            _popupSystem.PopupCoordinates(Loc.GetString("Пьет кровь"), coords, PopupType.MediumCaution);
+                            _popupSystem.PopupCoordinates(Loc.GetString(Loc.GetString("medieval-hm-nocturn-dio")), coords, PopupType.MediumCaution);
                             var txform = Transform(args.Args.Target.Value);
                             var tcoords = txform.Coordinates;
                             Spawn("BloodParticles", tcoords);
@@ -318,12 +318,12 @@ namespace Content.Server.Nocturn
                         }
                         else
                         {
-                            _popupSystem.PopupEntity("Нельзя пить кровь ноктюрна", uid, uid, PopupType.Large);
+                            _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-cannibal"), uid, uid, PopupType.Large);
                         }
                     }
                     else
                     {
-                        _popupSystem.PopupEntity("У него нельзя сейчас выпить кровь", uid, uid, PopupType.Large);
+                        _popupSystem.PopupEntity(Loc.GetString("medieval-hm-nocturn-nope"), uid, uid, PopupType.Large);
                     }
                 }
             }
@@ -343,15 +343,15 @@ namespace Content.Server.Nocturn
         {
             if (component.BloodLevel < 50)
             {
-                args.PushMarkup("[color=red]Во рту видны клыки[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-nocturn-isheavampire"));
             }
             if (component.BloodLevel < 5)
             {
-                args.PushMarkup("[color=red]Тяжело дышит[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-nocturn-gf"));
             }
             if (component.FreshDrinkTimer > 0)
             {
-                args.PushMarkup("[color=red]На губах видна свежая кровь[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-nocturn-dieofdeath"));
             }
 
         }

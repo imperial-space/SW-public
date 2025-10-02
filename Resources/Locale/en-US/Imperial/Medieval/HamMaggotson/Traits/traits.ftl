@@ -1,0 +1,1 @@
+medieval-hm-traits-moneychecker = [color=yellow]Can be sold for approximately {$amount} revents[/color]
