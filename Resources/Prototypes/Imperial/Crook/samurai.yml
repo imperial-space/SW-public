@@ -186,6 +186,13 @@
     - RadioImplant
   - type: RandomHumanoidAppearance
     randomizeName: false
+  - type: SiliconLawProvider
+    laws: EmptyLawset
+
+- type: siliconLawset
+  id: EmptyLawset
+  laws: []
+  obeysTo: laws-empty
 
 - type: entity
   name: Space Samurai
