@@ -319,7 +319,7 @@
     state: full
   - type: Repairable
     fuelCost: 50
-    doAfterDelay: 12
+    doAfterDelay: 20
   - type: FireVisuals
     alternateState: Standing
   - type: NoSlip
