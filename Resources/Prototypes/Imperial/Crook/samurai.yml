@@ -169,7 +169,7 @@
 - type: entity
   name: Space Samurai
   suffix: Crook, Samurai
-  parent: BaseMobMechanic
+  parent: MobMechanic
   id: SpaceSamurai
   components:
   - type: TypingIndicator
