@@ -138,8 +138,6 @@
     outerClothing: ClothingOuterSuitSpaceSamurai
     pocket1: PinpointerStation
     belt: RedEnergyKatanaSamurai
-  inhand:
-    - JetpackBlackFilled
 
 - type: entity
   name: Space Samurai
@@ -170,6 +168,12 @@
   - type: NpcFactionMember
     factions:
     - Syndicate
+  - type: Access
+    tags:
+    - NuclearOperative
+    - SyndicateAgent
+  - type: AccessReader
+    access: [["SyndicateAgent"], ["NuclearOperative"]]
   - type: AutoImplant
     implants:
     - DeathAcidifierImplant
@@ -205,9 +209,75 @@
   id: BaseMobMechanic
   abstract: true
   components:
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+    - Flashed
+  - type: Reactive
+    groups:
+      Acidic: [Touch]
+  - type: DamageOnHighSpeedImpact
+    damage:
+      types:
+        Blunt: 5
+    soundHit:
+      collection: MetalThud
+  - type: MobState
+    allowedStates:
+    - Alive
+    - Dead
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+    stateAlertDict:
+      Alive: BorgHealth
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: ZombieImmune
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSecurityCyborg
+  - type: IntrinsicRadioReceiver
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Binary
+    - Common
+  - type: ActiveRadio
+    channels:
+    - Binary
+    - Common
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: UserInterface
+    interfaces:
+      enum.SiliconLawsUiKey.Key:
+        type: SiliconLawBoundUserInterface
+        requireInputValidation: false
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: SiliconLawBound
+  - type: ActionGrant
+    actions:
+    - ActionViewLaws
+  - type: SiliconLawProvider
+    laws: NTDefault
+  - type: EmagSiliconLaw
+    stunTime: 5
+  - type: StartIonStormed
+    ionStormAmount: 3
+  - type: IonStormTarget
+    chance: 1
+  - type: ShowJobIcons
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -217,11 +287,27 @@
     sounds:
       Unsexed: UnisexSilicon
     wilhelmProbability: 0
+  - type: UnblockableSpeech
   - type: HumanoidAppearance
     species: Human
     hideLayersOnEquip:
     - Hair
     - Snout
+  - type: WiresPanel
+    openingTool: Prying
+  - type: ActivatableUIRequiresPanel
+  - type: Lock
+    locked: true
+    unlockOnClick: false
+  - type: ActivatableUIRequiresLock
+  - type: LockedWiresPanel
+  - type: Tag
+    tags:
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+    - SiliconEmotes
+    - Unimplantable
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
@@ -230,6 +316,7 @@
     doAfterDelay: 12
   - type: FireVisuals
     alternateState: Standing
+  - type: NoSlip
   - type: Inventory
     femaleDisplacements:
       jumpsuit:
@@ -237,6 +324,20 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+  - type: StaticPrice
+    price: 25000
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: AccessReader
+    access: [["Command"], ["Research"]]
+  - type: Access
+    groups:
+    - AllAccess
 
 - type: entity
   save: false
