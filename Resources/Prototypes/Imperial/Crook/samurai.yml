@@ -232,7 +232,7 @@
   components:
   - type: FootstepModifier
     footstepSoundCollection:
-      collection: FootstepBorg
+      collection: FootstepSecurityCyborg
   - type: TypingIndicator
     proto: robot
   - type: Speech
