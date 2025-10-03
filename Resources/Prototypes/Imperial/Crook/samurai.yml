@@ -225,15 +225,9 @@
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
-  - type: PassiveDamage
-    allowedStates:
-    - Alive
-    damageCap: 20
-    damage:
-      types:
-        Heat: -0.07
-      groups:
-        Brute: -0.07
+  - type: Repairable
+    fuelCost: 50
+    doAfterDelay: 12
   - type: FireVisuals
     alternateState: Standing
   - type: Inventory
