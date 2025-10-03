@@ -33,30 +33,6 @@
     damageCoefficient: 0.2
   - type: FireProtection
     reduction: 0.8
-  - type: PowerCellDraw
-    drawRate: 0
-  - type: ToggleCellDraw
-  - type: ItemCreator
-    action: ActionCreateThrowingStar
-    charge: 0
-    spawnedPrototype: ThrowingStarNinja
-    noPowerPopup: ninja-no-power
-  - type: NinjaSuit
-  - type: PowerCellSlot
-    cellSlotId: cell_slot
-    fitsInCharger: false
-  - type: ContainerContainer
-    containers:
-      cell_slot: !type:ContainerSlot
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellSmall
-        disableEject: true
-        whitelist:
-          tags:
-            - PowerCell
 
 - type: entity
   parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
