@@ -17,7 +17,7 @@ public sealed partial class DelayedSpawnComponent : Component
     /// <summary>
     /// Spawn delay
     /// </summary>
-    [DataField]
+    [DataField(required: true)]
     public TimeSpan Delay;
 
     /// <summary>

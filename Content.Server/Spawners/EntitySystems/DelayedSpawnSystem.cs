@@ -9,6 +9,7 @@ public sealed class DelayedSpawnSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<DelayedSpawnComponent, MapInitEvent>(OnMapInit);
     }
     public override void Update(float frameTime)
     {
@@ -17,13 +18,17 @@ public sealed class DelayedSpawnSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             if (comp.IsSpawned) continue;
-            if (comp.SpawnTime == TimeSpan.Zero)
-                comp.SpawnTime = _timing.CurTime + comp.Delay;
             if (comp.SpawnTime > _timing.CurTime) continue;
             var entity = Spawn(comp.Proto, Transform(uid).Coordinates);
             if (comp.Attached)
                 _transform.SetParent(entity, uid);
             comp.IsSpawned = true;
         }
+    }
+
+    private void OnMapInit(EntityUid uid, DelayedSpawnComponent comp, MapInitEvent args)
+    {
+        if (comp.SpawnTime == TimeSpan.Zero)
+            comp.SpawnTime = _timing.CurTime + comp.Delay;
     }
 }
