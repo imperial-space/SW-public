@@ -169,6 +169,7 @@
     factions:
     - Syndicate
   - type: Access
+    groups: []
     tags:
     - NuclearOperative
     - SyndicateAgent
