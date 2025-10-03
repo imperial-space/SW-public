@@ -161,7 +161,6 @@
     gloves: ClothingHandsGlovesCombatUnremoveable
     outerClothing: ClothingOuterSuitSpaceSamurai
     pocket1: PinpointerStation
-    pocket2: DoubleEmergencyOxygenTankFilled
     belt: RedEnergyKatanaSamurai
   inhand:
     - JetpackBlackFilled
