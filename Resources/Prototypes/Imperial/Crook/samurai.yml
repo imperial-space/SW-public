@@ -230,6 +230,18 @@
   id: BaseMobMechanic
   abstract: true
   components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepBorg
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Borg
+  - type: Vocal
+    sounds:
+      Unsexed: UnisexSilicon
+    wilhelmProbability: 0
   - type: HumanoidAppearance
     species: Human
     hideLayersOnEquip:
@@ -256,3 +268,9 @@
           32:
             sprite: Mobs/Species/Human/displacement.rsi
             state: jumpsuit-female
+
+- type: entity
+  save: false
+  parent: BaseMobMechanic
+  id: MobMechanic
+  name: Cyborg
