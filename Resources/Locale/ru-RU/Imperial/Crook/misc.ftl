@@ -149,3 +149,6 @@ reagent-name-paradoxal-juice = парадоксальный сок
 reagent-desc-paradoxal-juice = Смесь, состоящая из приятной мякоти с приправой из непредсказуемой блюспейс пыли.
 reagent-physical-desc-chaotic = хаотичное
 
+reagent-name-android-blood = синяя кровь
+reagent-desc-android-blood = Пахнущая, словно воздух после грозы жидкость, что выступает электролитом в телах современных Андроидов.
+metabolizer-type-android = Андроид

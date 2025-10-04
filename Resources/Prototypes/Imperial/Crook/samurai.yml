@@ -211,12 +211,117 @@
 
 ### Bases
 
+- type: reagent
+  id: AndroidBlood
+  name: reagent-name-android-blood
+  group: Toxins
+  desc: reagent-desc-android-blood
+  physicalDesc: reagent-physical-desc-metallic
+  flavor: shocking
+  color: "#4d7ee7"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 5
+        - !type:OrganType
+          type: Android
+          shouldHave: false
+      - !type:Electrocute
+        probability: 0.5
+        conditions:
+        - !type:OrganType
+          type: Android
+          shouldHave: false
+      - !type:HealthChange
+        damage:
+          groups:
+            Airloss: 2
+        conditions:
+        - !type:OrganType
+          type: Android
+          shouldHave: false
+
+- type: metabolizerType
+  id: Android
+  name: metabolizer-type-android
+
+- type: entity
+  id: OrganAndroidStomach
+  parent: OrganHumanStomach
+  name: stomach
+  description: "Gross. This is hard to stomach."
+  components:
+  - type: Metabolizer
+    maxReagents: 3
+    metabolizerTypes: [Android]
+    groups:
+    - id: Food
+    - id: Drink
+
+- type: body
+  id: Android
+  name: "android"
+  root: torso
+  slots:
+    head:
+      part: HeadHuman
+      connections:
+      - torso
+      organs:
+        brain: OrganHumanBrain
+        eyes: OrganHumanEyes
+    torso:
+      part: TorsoHuman
+      connections:
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+      organs:
+        heart: OrganHumanHeart
+        lungs: OrganHumanLungs
+        stomach: OrganAndroidStomach
+        liver: OrganHumanLiver
+        kidneys: OrganHumanKidneys
+    right_arm:
+      part: RightArmHuman
+      connections:
+      - right_hand
+    left_arm:
+      part: LeftArmHuman
+      connections:
+      - left_hand
+    right_hand:
+      part: RightHandHuman
+    left_hand:
+      part: LeftHandHuman
+    right_leg:
+      part: RightLegHuman
+      connections:
+      - right_foot
+    left_leg:
+      part: LeftLegHuman
+      connections:
+      - left_foot
+    right_foot:
+      part: RightFootHuman
+    left_foot:
+      part: LeftFootHuman
+
 - type: entity
   save: false
-  parent: BaseMobSpecies
+  parent: [BaseMobSpecies, MobBloodstream]
   id: BaseMobMechanic
   abstract: true
   components:
+  - type: Body
+    prototype: Android
+  - type: Bloodstream
+    bloodReagent: AndroidBlood
+    chemicalMaxVolume: 150
   - type: StatusEffects
     allowed:
     - Stun
