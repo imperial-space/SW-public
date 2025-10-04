@@ -152,3 +152,4 @@ reagent-physical-desc-chaotic = хаотичное
 reagent-name-android-blood = синяя кровь
 reagent-desc-android-blood = Пахнущая, словно воздух после грозы жидкость, что выступает электролитом в телах современных Андроидов.
 metabolizer-type-android = Андроид
+laws-empty = Пустой
