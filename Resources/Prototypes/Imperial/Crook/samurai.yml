@@ -230,7 +230,7 @@
           type: Android
           shouldHave: false
       - !type:Electrocute
-        probability: 0.2
+        probability: 0.1
         conditions:
         - !type:OrganType
           type: Android
