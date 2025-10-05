@@ -3,7 +3,7 @@
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="{Loc 'store-ui-default-title'}"
     MinSize="512 512"
-    SetSize="842 712">
+    SetSize="863 712">
     <BoxContainer Name="GuildTab" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
         <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
             <GridContainer HorizontalAlignment="Center" Columns="3" HorizontalExpand="True" VerticalExpand="True" Name="ControlContainer"/>
@@ -58,7 +58,8 @@
         <BoxContainer Orientation="Vertical" Name="Footer">
             <PanelContainer StyleClasses="LowDivider"/>
             <BoxContainer Orientation="Horizontal" Margin="10 2 5 0" VerticalAlignment="Bottom" HorizontalExpand="True">
-                <Label HorizontalExpand="True" HorizontalAlignment="Left" Name="ReputationLabel"/>
+                <Label HorizontalExpand="False" HorizontalAlignment="Left" Name="ReputationLabel"/>
+                <Label HorizontalExpand="True" HorizontalAlignment="Left" Name="ReputationDiscoundLabel" Margin="5 0 0 0 " Text="" FontColorOverride="#00FF00"/>
                 <Button HorizontalAlignment="Right" Name="ReputationLeaderboardButton" Text="{Loc 'trading-ui-reputation-leaderboard'}"/>
             </BoxContainer>
         </BoxContainer>

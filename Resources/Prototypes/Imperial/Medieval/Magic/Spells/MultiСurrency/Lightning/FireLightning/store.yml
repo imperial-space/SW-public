@@ -14,7 +14,7 @@
   cost:
     MagicMedievalLight: 40
   categories:
-  - MedievalFireSpells
+  - MedievalLightSpells
   conditions:
   - !type:ImperialListingLimitedStockCondition
     stock: 1
@@ -38,8 +38,9 @@
     state: fire-adv
   cost:
     MagicMedievalLight: 40
+    ArchmagePoints: 1
   categories:
-  - MedievalFireSpells
+  - MedievalLightSpells
   conditions:
   - !type:ImperialListingLimitedStockCondition
     stock: 1

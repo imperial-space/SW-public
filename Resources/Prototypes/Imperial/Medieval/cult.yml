@@ -782,6 +782,9 @@
     - type: Currency
       price:
         Revent: 60
+    - type: MedievalCurrency
+      price:
+        Revent: 60
     - type: PointLight
       color: red
       radius: 1.5
@@ -833,7 +836,7 @@
     - back
     - suitStorage
   - type: Wieldable
-    wieldTime: 0.5
+    #wieldTime: 0.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -913,7 +916,7 @@
     resourceWaste: 0.6
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3
+    #wieldTime: 3
   - type: IncreaseDamageOnWield
     damage:
       types:

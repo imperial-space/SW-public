@@ -52,6 +52,7 @@
 
 - type: chemRandom
   id: EasyPack
+  priority: 1
   potions:
   - medievalexplosion
   - medievalhealburn
@@ -102,9 +103,11 @@
   - "#ffffff"
   - "#3d3d3d"
   recipeCount: 2
+  potionCount: 26
 
 - type: chemRandom
   id: MediumPack
+  priority: 2
   potions:
   - medievaladvancedhealeverything
   - medievaladvancedhealslash
@@ -121,7 +124,10 @@
   - medievaladvancedignite
   - medievaladvancednocturnblood
   - medievaladvancedsmokeandexplosion
+  reactants: 0
   usedGroups:
+  - EasyPack
+  usedGroupsRecipes:
   - EasyPack
   colors:
   - "#ff1414"
@@ -145,6 +151,7 @@
   - "#5a7e45"
   - "#ffffff"
   - "#3d3d3d"
+  potionCount: 8
 
 - type: chemRandom
   id: HardPack
@@ -153,6 +160,9 @@
   - medievalbestheal
   - medievalbestpoison
   - medievalbeststimulant
+  reactants: 1
+  potionCount: 1
+  priority: 3
   usedGroups:
   - EasyPack
   - MediumPack
@@ -186,7 +196,11 @@
   - MedievalPlagueCure2
   - MedievalPlagueCure3
   - MedievalPlagueCure4
+  reactants: 0
+  priority: 2
   usedGroups:
+  - EasyPack
+  usedGroupsRecipes:
   - EasyPack
   colors:
   - "#48004e"

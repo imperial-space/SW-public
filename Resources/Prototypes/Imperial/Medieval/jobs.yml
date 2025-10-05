@@ -4258,11 +4258,13 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: Imperial/Medieval/Misc/mdv_shop.rsi, state: shop }
     useDelay: 3000
-    event: !type:SpawnOnActionEvent ""
     itemIconStyle: BigAction
+  - type: TargetAction
+  - type: WorldTargetAction
+    event: !type:SpawnOnActionEvent ""
 
 - type: roleLoadout
   id: JobMedievalTrader
@@ -4376,11 +4378,13 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: Imperial/Medieval/Misc/mdv_shop.rsi, state: shop }
     useDelay: 3000
-    event: !type:SpawnOnActionEvent ""
     itemIconStyle: BigAction
+  - type: TargetAction
+  - type: WorldTargetAction
+    event: !type:SpawnOnActionEvent ""
 
 - type: roleLoadout
   id: JobMedievalTraderN

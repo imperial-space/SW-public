@@ -38,7 +38,7 @@
     slots:
     - back
   - type: Wieldable
-    wieldTime: 0.5
+    #wieldTime: 0.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -678,7 +678,7 @@
     resourceWaste: 0.7
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3.5
+    #wieldTime: 3.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -1320,7 +1320,8 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
-              sound: /Audio/Effects/metalbreak.ogg
+              sound:
+                path: /Audio/Effects/metalbreak.ogg
     - type: Damageable
       damageContainer: Inorganic
     #- type: ShieldRegen
@@ -1384,7 +1385,8 @@
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
-              sound: /Audio/Effects/metalbreak.ogg
+              sound:
+                path: /Audio/Effects/metalbreak.ogg
     - type: Damageable
       damageContainer: Inorganic
     #- type: ShieldRegen
@@ -1596,7 +1598,6 @@
   - type: MeleeParry
     parryChanse: 0.7
   - type: MeleeWeapon
-    ParryAble: 1
     clickDamageModifier: 1.15
     wideAnimationRotation: -140
     attackRate: 0.9
@@ -1607,6 +1608,7 @@
     damage:
       types:
         Slash: 16.5
+        ParryAble: 1
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
     soundSwing:
@@ -1763,7 +1765,7 @@
     - back
     - suitStorage
   - type: Wieldable
-    wieldTime: 0.5
+    #wieldTime: 0.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -1995,7 +1997,7 @@
     resourceWaste: 0.8
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3
+    #wieldTime: 3
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2077,7 +2079,7 @@
     resourceWaste: 0.7
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3
+    #wieldTime: 3
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2164,7 +2166,7 @@
     resourceWaste: 0.6
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3
+    #wieldTime: 3
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2620,7 +2622,7 @@
     - back
     - suitStorage
   - type: Wieldable
-    wieldTime: 0.5
+    #wieldTime: 0.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2847,7 +2849,7 @@
     resourceWaste: 0.7
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3
+    #wieldTime: 3
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -2930,7 +2932,7 @@
     resourceWaste: 0.7
     safeToHitGroup: structure
   - type: Wieldable
-    wieldTime: 3.5
+    #wieldTime: 3.5
   - type: IncreaseDamageOnWield
     damage:
       types:
@@ -3141,7 +3143,7 @@
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: Wieldable
-    wieldTime: 3.5
+    #wieldTime: 3.5
   - type: IncreaseDamageOnWield
     damage:
       types:

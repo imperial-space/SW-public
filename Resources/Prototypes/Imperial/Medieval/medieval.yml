@@ -2546,6 +2546,9 @@
     - type: Currency
       price:
         Revent: 160
+    - type: MedievalCurrency
+      price:
+        Revent: 160
     - type: PointLight
       color: purple
       radius: 2
@@ -2573,6 +2576,9 @@
     - type: Currency
       price:
         Revent: 120
+    - type: MedievalCurrency
+      price:
+        Revent: 120
     - type: PointLight
       color: purple
       radius: 2
@@ -2598,6 +2604,9 @@
       intensity: 3
       slope: 0.2
     - type: Currency
+      price:
+        Revent: 120
+    - type: MedievalCurrency
       price:
         Revent: 120
     - type: PointLight
@@ -2708,6 +2717,9 @@
   - type: Currency
     price:
       Revent: 10
+  - type: MedievalCurrency
+    price:
+      Revent: 10
   - type: Item
     size: Tiny
   - type: Stack
@@ -2801,6 +2813,9 @@
   - type: Currency
     price:
       Revent: 14
+  - type: MedievalCurrency
+    price:
+      Revent: 14
   - type: Item
     size: Small
   - type: QuestItem
@@ -2839,6 +2854,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hunter
   - type: Currency
+    price:
+      Revent: 25
+  - type: MedievalCurrency
     price:
       Revent: 25
   - type: Item
@@ -2881,6 +2899,9 @@
   - type: Currency
     price:
       Revent: 7
+  - type: MedievalCurrency
+    price:
+      Revent: 7
   - type: Item
     size: Small
   - type: QuestItem
@@ -2921,6 +2942,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Small
   - type: QuestItem
@@ -2948,6 +2972,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -2968,6 +2995,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Tiny
   - type: Tag
@@ -2984,6 +3014,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hogskin
   - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
     price:
       Revent: 12
   - type: Item
@@ -3004,6 +3037,9 @@
   - type: Currency
     price:
       Revent: 7
+  - type: MedievalCurrency
+    price:
+      Revent: 7
   - type: Item
     size: Tiny
   - type: Tag
@@ -3020,6 +3056,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: wolf2
   - type: Currency
+    price:
+      Revent: 5
+  - type: MedievalCurrency
     price:
       Revent: 5
   - type: Item
@@ -3040,6 +3079,9 @@
   - type: Currency
     price:
       Revent: 27
+  - type: MedievalCurrency
+    price:
+      Revent: 27
   - type: Item
     size: Tiny
 
@@ -3053,6 +3095,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: rabbit
   - type: Currency
+    price:
+      Revent: 30
+  - type: MedievalCurrency
     price:
       Revent: 30
   - type: Item
@@ -3071,6 +3116,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: rabbit
   - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
     price:
       Revent: 12
   - type: Item
@@ -3102,6 +3150,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: dmouse
   - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
     price:
       Revent: 3
   - type: Item
@@ -3146,6 +3197,9 @@
   - type: Currency
     price:
       Revent: 4
+  - type: MedievalCurrency
+    price:
+      Revent: 4
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3174,6 +3228,9 @@
   - type: Currency
     price:
       Revent: 25
+  - type: MedievalCurrency
+    price:
+      Revent: 25
   - type: Item
     size: Tiny
   - type: StealTarget # imperial medieval
@@ -3198,6 +3255,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3218,6 +3278,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: meat
   - type: Currency
+    price:
+      Revent: 25
+  - type: MedievalCurrency
     price:
       Revent: 25
   - type: Item
@@ -3242,6 +3305,9 @@
   - type: Currency
     price:
       Revent: 40
+  - type: MedievalCurrency
+    price:
+      Revent: 40
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3262,6 +3328,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: legion
   - type: Currency
+    price:
+      Revent: 60
+  - type: MedievalCurrency
     price:
       Revent: 60
   - type: Item
@@ -3295,6 +3364,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: egg
   - type: Currency
+    price:
+      Revent: 9
+  - type: MedievalCurrency
     price:
       Revent: 9
   - type: Item
@@ -3333,6 +3405,9 @@
   - type: Currency
     price:
       Revent: 20
+  - type: MedievalCurrency
+    price:
+      Revent: 20
   - type: Item
     size: Normal
   - type: Tag
@@ -3351,6 +3426,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: slugbones
   - type: Currency
+    price:
+      Revent: 30
+  - type: MedievalCurrency
     price:
       Revent: 30
   - type: Item
@@ -6815,7 +6893,7 @@
   name: Smite
   description: Instantly gibs a target.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 60
     itemIconStyle: BigAction
     canTargetSelf: false
@@ -6823,10 +6901,11 @@
     checkConsciousness: false
     interactOnMiss: false
     icon: Interface/Actions/scream.png
-    event: !type:MedievalGhostBooEvent
     whitelist:
       components:
       - MobThresholds
+  - type: InstantAction
+    event: !type:MedievalGhostBooEvent
 
 - type: entity
   name: lol
@@ -7305,9 +7384,11 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: deprecated.rsi, state: deprecated}
     useDelay: 1
+  - type: TargetAction
+  - type: WorldTargetAction
     event: !type:SpawnOnActionEvent
 
 - type: entity
@@ -7568,6 +7649,9 @@
 #     sprite: Imperial/Medieval/Chem/gribi.rsi
 #     state: grib3
 #   - type: Currency
+#     price:
+#       Revent: 8
+#   - type: MedievalCurrency
 #     price:
 #       Revent: 8
 #   - type: Item
@@ -7924,6 +8008,9 @@
     sprite: Imperial/Medieval/Chem/Garden/root.rsi
     state: icon
   - type: Currency
+    price:
+      Revent: 5
+  - type: MedievalCurrency
     price:
       Revent: 5
   - type: Tag

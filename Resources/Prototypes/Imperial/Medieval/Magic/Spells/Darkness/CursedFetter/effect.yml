@@ -1,0 +1,15 @@
+- type: entity
+  id: CursedFetterSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/darkness/fetter.rsi
+    state: beginner
+    color: "#8B008B"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 1
+    color: "#8B008B"
+  - type: TimedDespawn
+    lifetime: 2.0
