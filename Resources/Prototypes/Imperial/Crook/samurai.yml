@@ -249,22 +249,43 @@
   name: metabolizer-type-android
 
 - type: entity
-  id: OrganAndroidStomach
-  parent: OrganHumanStomach
-  name: stomach
-  description: "Gross. This is hard to stomach."
+  id: AndroidCore
+  parent: [BaseItem, OrganHumanBrain]
+  name: android core
+  description: "The source of incredible, unending gooeyness."
   components:
-  - type: Metabolizer
-    maxReagents: 3
-    metabolizerTypes: [Android]
-    groups:
-      - id: Food
-      - id: Drink
-      - id: Medicine
-      - id: Poison
-      - id: Narcotic
-      - id: Alcohol
-        rateModifier: 0.2
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      layers:
+        - state: cpu_super
+    - type: StaticPrice
+      price: 1750
+    - type: Stomach
+    - type: Metabolizer
+      maxReagents: 6
+      metabolizerTypes: [ Android ]
+      removeEmpty: true
+      groups:
+        - id: Food
+        - id: Drink
+        - id: Medicine
+        - id: Poison
+        - id: Narcotic
+        - id: Alcohol
+          rateModifier: 0.25
+    - type: SolutionContainerManager
+      solutions:
+        stomach:
+          maxVol: 50.0
+        food:
+          maxVol: 5
+          reagents:
+          - ReagentId: GreyMatter
+            Quantity: 5
+        organ:
+          reagents:
+          - ReagentId: AndroidBlood
+            Quantity: 10
 
 - type: body
   id: Android
@@ -275,9 +296,6 @@
       part: HeadHuman
       connections:
       - torso
-      organs:
-        brain: OrganHumanBrain
-        eyes: OrganHumanEyes
     torso:
       part: TorsoHuman
       connections:
@@ -286,11 +304,7 @@
       - right_leg
       - left_leg
       organs:
-        heart: OrganHumanHeart
-        lungs: OrganHumanLungs
-        stomach: OrganAndroidStomach
-        liver: OrganHumanLiver
-        kidneys: OrganHumanKidneys
+        core: AndroidCore
     right_arm:
       part: RightArmHuman
       connections:
@@ -383,6 +397,9 @@
         requireInputValidation: false
       enum.StrippingUiKey.Key:
         type: StrippableBoundUserInterface
+  - type: ContainerContainer
+    containers:
+      borg_brain: !type:ContainerSlot { }
   - type: SiliconLawBound
   - type: ActionGrant
     actions:
@@ -394,6 +411,15 @@
   - type: IonStormTarget
     chance: 1
   - type: ShowJobIcons
+  - type: ContainerFill
+    containers:
+      borg_brain:
+      - AndroidCore
+  - type: Damageable
+    damageContainer: Silicon
+  - type: InteractionPopup
+    interactSuccessSound:
+      path: /Audio/Ambience/Objects/periodic_beep.ogg
   - type: TypingIndicator
     proto: robot
   - type: Speech
@@ -424,14 +450,35 @@
     - CanPilot
     - SiliconEmotes
     - Unimplantable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Machines/warning_buzzer.ogg
+          params:
+            volume: 4
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:EmptyContainersBehaviour
+        containers:
+        - borg_brain
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Icon
     sprite: Mobs/Species/Human/parts.rsi
     state: full
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 30
-  - type: FireVisuals
-    alternateState: Standing
   - type: NoSlip
   - type: Inventory
     femaleDisplacements:

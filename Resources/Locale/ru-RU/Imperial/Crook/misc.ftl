@@ -153,5 +153,5 @@ reagent-name-android-blood = синяя кровь
 reagent-desc-android-blood = Жидкость, пахнущая словно воздух после грозы, которая выступает электролитом в телах современных Андроидов.
 metabolizer-type-android = Андроид
 laws-empty = Пустой
-ent-OrganAndroidStomach = { ent-OrganHumanStomach }
-    .desc = { ent-OrganHumanStomach.desc }
+ent-AndroidCore = ядро андроида
+    .desc = Искуственный разум.
