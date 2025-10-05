@@ -1263,6 +1263,18 @@
       mirrorClothingModifier: false
 
 - type: entity
+  name: wooden shield
+  parent: MedievalWoodenShieldBuckler
+  id: MedievalWoodenShieldBucklerRoyal
+  description: Wooden shield.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Shields/royalbuckler.rsi
+      state: shield
+    - type: Item
+      sprite: Imperial/Medieval/Shields/royalbuckler.rsi
+
+- type: entity
   name: iron shield
   parent: BaseShield
   id: MedievalIronShield

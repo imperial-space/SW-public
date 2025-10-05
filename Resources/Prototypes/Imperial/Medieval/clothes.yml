@@ -1406,6 +1406,16 @@
 
 - type: entity
   parent: MedievalClothingBackpackSatchelLeather
+  id: MedievalClothingBackpackSatchelLeatherRoyal
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/royal.rsi
+    state: icon
+
+- type: entity
+  parent: MedievalClothingBackpackSatchelLeather
   id: MedievalClothingBackpackSatchelLeather3
   name: satchel
   description: A trendy looking satchel.
