@@ -2126,7 +2126,7 @@
     name: Переродится
     description: Дойдите до выхода и вернитесь в битву
   - type: GhostRoleMobSpawner
-    prototype: MobCatSyndy
+    prototype: MobSyndieBattleCatSyndy
     availableTakeovers: 99
     deleteOnSpawn: true
   - type: Sprite
@@ -2152,17 +2152,6 @@
         Base: syndicat_dead
       Dead:
         Base: syndicat_dead
-  - type: GhostRole
-    prob: 1
-    name: ghost-role-information-SyndiCat-name
-    allowMovement: true
-    description: ghost-role-information-SyndiCat-description
-    rules: ghost-role-information-SyndiCat-rules
-    mindRoles:
-    - MindRoleGhostRoleTeamAntagonist
-    raffle:
-      settings: default
-  - type: GhostTakeoverAvailable
   - type: ExplosionResistance
     damageCoefficient: 0.2
   - type: NpcFactionMember
