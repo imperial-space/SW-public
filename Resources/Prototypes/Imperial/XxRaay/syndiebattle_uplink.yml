@@ -1806,9 +1806,9 @@
   productEntity: HolyHandGrenade
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 14
+    Telecrystal: 35
   cost:
-    Telecrystal: 20
+    Telecrystal: 50
   categories:
   - SyndiebattleUplinkJob
 
@@ -2039,9 +2039,9 @@
   productEntity: Mjollnir
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 42
+    Telecrystal: 55
   cost:
-    Telecrystal: 54
+    Telecrystal: 85
   categories:
   - SyndiebattleUplinkCustom
 
@@ -2095,9 +2095,9 @@
   productEntity: EnergySwordDouble
   discountCategory: rareDiscounts
   discountDownTo:
-    Telecrystal: 55
+    Telecrystal: 42
   cost:
-    Telecrystal: 85
+    Telecrystal: 55
   categories:
   - SyndiebattleUplinkCustom
 
