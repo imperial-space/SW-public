@@ -36,5 +36,5 @@ ent-CyborgEnergyShield = энергетический щит киборга
 
 ### Advanced Tools Module
 
-ent-BorgModuleAdvancedSyndicateTools = превалирующий инструментальный модуль киборга
+ent-BorgModuleAdvancedSyndicateTools = продвинутый инструментальный модуль киборга
     .desc = Модуль, содержащий наилучшие инструменты. Полезен, если ваш кибернетический напарник не имеет доступа к стандартному инструментальному модулю.
