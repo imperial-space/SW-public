@@ -294,14 +294,14 @@
   parent: BaseMobMechanic
   id: MobMechanic
   name: Android
-  suffix: NanoTrasen
+  suffix: Crook, NanoTrasen
 
 - type: entity
   save: false
   parent: BaseMobMechanic
   id: MobMechanicSyndicate
   name: Android
-  suffix: Syndicate
+  suffix: Crook, Syndicate
   components:
   - type: TypingIndicator
     proto: syndibot
