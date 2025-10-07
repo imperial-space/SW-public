@@ -322,6 +322,8 @@
     - SyndicateAgent
   - type: AccessReader
     access: [["SyndicateAgent"], ["NuclearOperative"]]
+  - type: SiliconLawProvider
+    laws: SyndicateStatic
 
 - type: siliconLawset
   id: EmptyLawset
