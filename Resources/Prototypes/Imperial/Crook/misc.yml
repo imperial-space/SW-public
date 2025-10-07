@@ -1460,10 +1460,10 @@
     - id: ClothingOuterFurKiss
     - id: ClothingHeadHatFurBeige
     - id: ClothingOuterFurBeige
+    - id: ClothingHeadHatFurNixuelle
+    - id: ClothingOuterFurNixuelle
     - id: ClothingHeadHatRedRacoon
     - id: ClothingOuterRedRacoon
-    - id: ClothingOuterSuitMonkey
-    - id: ClothingHeadHatAnimalMonkey
     - id: ClothingOuterSuitCarp
     - id: ClothingOuterSuitIan
     - id: ClothingOuterSuitChicken
