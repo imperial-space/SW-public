@@ -24,7 +24,7 @@ public sealed class HandledCufferSystem : EntitySystem
         if (args.Target is not { Valid: true } target)
             return;
 
-        if(!HasComp<SleepingComponent>(target) || !HasComp<StunnedComponent>(target))
+        if(!HasComp<SleepingComponent>(target) && !HasComp<StunnedComponent>(target))
             return;
 
         if (!args.CanReach)
