@@ -62,7 +62,7 @@ public sealed partial class WerewolfShadowDashActionEvent : InstantActionEvent
     public SoundSpecifier? Sound;
 }
 
-public sealed partial class WerewolfBloodFeelActionEvent : WorldTargetActionEvent
+public sealed partial class WerewolfBloodFeelActionEvent : InstantActionEvent
 {
     [DataField]
     public SoundSpecifier? Sound;
