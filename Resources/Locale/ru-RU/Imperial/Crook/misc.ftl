@@ -61,6 +61,10 @@ ent-ClothingHeadHatFurBeige = бежевая фурсьют маска
     .desc = Пушистая и мягкая маска.
 ent-ClothingOuterFurBeige = бежевый фурсьют
     .desc = Костюм словно сияет от своей шёрстки!
+ent-ClothingHeadHatFurNixuelle = розовая фурсьют маска
+    .desc = Пушистая и мягкая маска.
+ent-ClothingOuterFurNixuelle = розовый фурсьют
+    .desc = Пушистая форма для тех людей, что не боятся выражать своё "Я".
 ent-CrateCargoFursuits = набор фурсьютов
     .desc = Наконец-то, фурри пятница.
 
