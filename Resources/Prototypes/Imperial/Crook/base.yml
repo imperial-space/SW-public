@@ -330,8 +330,32 @@
   - type: ActiveRadio
     channels:
     - Syndicate
+  - type: ShowSyndicateIcons
 
 - type: siliconLawset
   id: EmptyLawset
   laws: []
   obeysTo: laws-empty
+
+- type: siliconLaw
+  id: Samurai1
+  order: 1
+  lawString: law-samurai-1
+
+- type: siliconLaw
+  id: Samurai2
+  order: 2
+  lawString: law-samurai-2
+
+- type: siliconLaw
+  id: Samurai3
+  order: 3
+  lawString: law-samurai-3
+
+- type: siliconLawset
+  id: Samurai
+  laws:
+  - Samurai1
+  - Samurai2
+  - Samurai3
+  obeysTo: laws-owner-samurai
