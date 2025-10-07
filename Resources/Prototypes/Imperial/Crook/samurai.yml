@@ -181,6 +181,10 @@
     randomizeName: false
   - type: SiliconLawProvider
     laws: EmptyLawset
+  - type: IntrinsicRadioTransmitter
+    channels: []
+  - type: ActiveRadio
+    channels: []
 
 - type: entity
   name: Space Samurai
