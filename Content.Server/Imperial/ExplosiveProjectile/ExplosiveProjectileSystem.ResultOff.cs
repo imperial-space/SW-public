@@ -1,13 +1,8 @@
 using JetBrains.Annotations;
-using Robust.Shared.Prototypes;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using Content.Shared.Audio;
-using Robust.Shared.Physics.Dynamics;
-using Robust.Shared.Physics.Events;
-using Content.Shared.Standing;
 using Content.Server.Imperial.ExplosiveProjectile.Components;
 
 namespace Content.Server.Imperial.ExplosiveProjectile
@@ -17,8 +12,6 @@ namespace Content.Server.Imperial.ExplosiveProjectile
     {
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
-
-        private TimeSpan _delayTime;
 
         public override void Initialize()
         {
@@ -32,7 +25,7 @@ namespace Content.Server.Imperial.ExplosiveProjectile
         }
         private void GetDelayTime(EntityUid uid, ExplosiveProjectileResultOffComponent component, ComponentStartup args)
         {
-            _delayTime = _timing.CurTime + component.CancelTime;
+            component.CancelTime = _timing.CurTime + component.CancelTime;
         }
         public override void Update(float frameTime)
         {
@@ -41,9 +34,7 @@ namespace Content.Server.Imperial.ExplosiveProjectile
             var query = EntityQueryEnumerator<ExplosiveProjectileResultOffComponent>();
             while (query.MoveNext(out var uid, out var comp))
             {
-                if (comp.CurrentTime < _delayTime)
-                    comp.CurrentTime = _timing.CurTime;
-                else
+                if (_timing.CurTime >= comp.CancelTime)
                     DoNotGibEntity(uid, comp);
             }
         }

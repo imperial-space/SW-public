@@ -17,10 +17,6 @@ namespace Content.Server.Imperial.ExplosiveProjectile.Components
         // Время до взрыва в случае провала проверки.
         [DataField]
         public TimeSpan DetonationTime = TimeSpan.FromSeconds(1);
-
-        // Датафилд для текущего времени.
-        [DataField]
-        public TimeSpan CurrentTime = TimeSpan.Zero;
     }
 }
 

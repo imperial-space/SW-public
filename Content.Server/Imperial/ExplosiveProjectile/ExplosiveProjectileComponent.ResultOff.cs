@@ -16,10 +16,6 @@ namespace Content.Server.Imperial.ExplosiveProjectile.Components
         [DataField]
         public TimeSpan CancelTime = TimeSpan.FromSeconds(1);
 
-        // Датафилд для текущего времени.
-        [DataField]
-        public TimeSpan CurrentTime = TimeSpan.Zero;
-
         // Саунд деактивации.
         [DataField]
         public SoundSpecifier? SoundDeactivate = new SoundPathSpecifier("/Audio/Imperial/SpecialUnits/RCU/canceldetonation.ogg", AudioParams.Default.WithVolume(5).WithLoop(false).WithMaxDistance(15f));
