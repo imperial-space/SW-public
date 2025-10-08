@@ -9,14 +9,18 @@ using Content.Server.Imperial.ExplosiveProjectile.Components;
 /// </summary>
 namespace Content.Server.Imperial.ExplosiveProjectile.Components
 {
-//    [AutoGenerateComponentPause]
+    //    [AutoGenerateComponentPause]
     [RegisterComponent]
     [Access(typeof(ExplosiveProjectileResultOnSystem))]
     public sealed partial class ExplosiveProjectileResultOnComponent : Component
     {
         // Время до взрыва в случае провала проверки.
         [DataField]
-        public TimeSpan DTime = TimeSpan.FromSeconds(1);
+        public TimeSpan DetonationTime = TimeSpan.FromSeconds(1);
+
+        // Датафилд для текущего времени.
+        [DataField]
+        public TimeSpan CurrentTime = TimeSpan.Zero;
     }
 }
 

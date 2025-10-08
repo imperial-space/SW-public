@@ -7,14 +7,18 @@ using Content.Server.Imperial.ExplosiveProjectile;
 /// </summary>
 namespace Content.Server.Imperial.ExplosiveProjectile.Components
 {
-//    [AutoGenerateComponentPause]
+    //    [AutoGenerateComponentPause]
     [RegisterComponent]
     [Access(typeof(ExplosiveProjectileResultOffSystem))]
     public sealed partial class ExplosiveProjectileResultOffComponent : Component
     {
         // Время до взрыва в случае провала проверки.
         [DataField]
-        public TimeSpan CTime = TimeSpan.FromSeconds(1);
+        public TimeSpan CancelTime = TimeSpan.FromSeconds(1);
+
+        // Датафилд для текущего времени.
+        [DataField]
+        public TimeSpan CurrentTime = TimeSpan.Zero;
 
         // Саунд деактивации.
         [DataField]
