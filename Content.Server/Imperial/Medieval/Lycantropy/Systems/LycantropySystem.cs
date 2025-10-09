@@ -6,9 +6,11 @@ using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Jittering;
+using Content.Server.Mind;
 using Content.Server.Polymorph.Components;
 using Content.Server.Polymorph.Systems;
 using Content.Server.Popups;
+using Content.Server.Roles;
 using Content.Server.Stunnable;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
@@ -60,6 +62,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly RoleSystem _role = default!;
 
     private const int PointsPerNight = 3;
     private const int PointsPerInfect = 4;
@@ -168,6 +172,9 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
                 lycantropy.Points += PointsPerInfect;
                 Dirty(polymorphed.Parent, lycantropy);
             }
+
+            if (_mind.TryGetMind(uid, out var mindId, out var mind))
+                _role.MindAddRole(mindId, "MindRoleWerewolf");
 
             RemComp(uid, comp);
         }
