@@ -194,21 +194,6 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Внутренняя стена шаттла # Imperial Recipes Locale
-  id: InteriorShuttleWall
-  graph: Girder
-  startNode: start
-  targetNode: shuttleInteriorWall
-  category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
-
-- type: construction
   id: DiagonalShuttleWall
   name: Диагональная стена шаттла # Imperial Recipes Locale
   graph: Girder
