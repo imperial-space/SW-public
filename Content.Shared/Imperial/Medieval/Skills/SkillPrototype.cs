@@ -1,7 +1,4 @@
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
-using Robust.Shared.Utility;
-using Serilog.Events;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
 
@@ -13,6 +10,9 @@ public sealed partial class SkillPrototype : IPrototype
 
     [DataField(required: true)]
     public string Name { get; } = default!;
+
+    [DataField]
+    public string Description { get; } = "";
 
     [DataField]
     public Color Color = Color.White;

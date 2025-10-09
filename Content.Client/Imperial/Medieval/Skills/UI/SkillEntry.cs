@@ -36,7 +36,7 @@ public sealed partial class SkillEntry : Control
     public Action<int>? LevelSet;
     public Action? Decreased;
 
-    public SkillEntry(string name, int level, SpriteSpecifier icon, Color color)
+    public SkillEntry(string name, string desc, int level, SpriteSpecifier icon, Color color)
     {
         RobustXamlLoader.Load(this);
 
@@ -45,6 +45,9 @@ public sealed partial class SkillEntry : Control
         _color = color;
         Level = level;
         Icon.Texture = icon.Frame0();
+        Info.ToolTip = desc;
+
+
         IncreaseButton.OnPressed += _ => LevelSet?.Invoke(Level + 1);
         DecreaseButton.OnPressed += _ => LevelSet?.Invoke(Level - 1);
     }
