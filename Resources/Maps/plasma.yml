@@ -68990,13 +68990,6 @@ entities:
     - type: Transform
       pos: -43.5,-36.5
       parent: 2
-- proto: DefaultStationBeaconPermaBrig
-  entities:
-  - uid: 21601
-    components:
-    - type: Transform
-      pos: -87.5,-45.5
-      parent: 2
 - proto: DefaultStationBeaconPowerBank
   entities:
   - uid: 18948
@@ -127030,11 +127023,6 @@ entities:
     - type: Transform
       pos: -83.5,-66.5
       parent: 2
-  - uid: 16427
-    components:
-    - type: Transform
-      pos: -83.5,-66.5
-      parent: 2
   - uid: 17783
     components:
     - type: Transform
@@ -139846,11 +139834,6 @@ entities:
     - type: Transform
       pos: -85.5,-48.5
       parent: 2
-  - uid: 16426
-    components:
-    - type: Transform
-      pos: -82.5,-62.5
-      parent: 2
 - proto: ShardGlassPlasma
   entities:
   - uid: 11090
@@ -150035,11 +150018,6 @@ entities:
     - type: Transform
       pos: -94.5,-72.5
       parent: 2
-  - uid: 1089
-    components:
-    - type: Transform
-      pos: -94.5,-72.5
-      parent: 2
   - uid: 1121
     components:
     - type: Transform
@@ -150935,11 +150913,6 @@ entities:
     components:
     - type: Transform
       pos: -19.5,-48.5
-      parent: 2
-  - uid: 16444
-    components:
-    - type: Transform
-      pos: -94.5,-71.5
       parent: 2
   - uid: 16444
     components:
