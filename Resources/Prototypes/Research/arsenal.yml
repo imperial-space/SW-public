@@ -40,7 +40,7 @@
   id: WeaponizedLaserManipulation
   name: research-technology-weaponized-laser-manipulation
   icon:
-    sprite: Objects/Weapons/Guns/Battery/laser_gun.rsi
+    sprite: Imperial/Entities/Weapons/LaserCarbine/laser-carbine-icons.rsi # Imperial Space Изменение спрайта оружия
     state: icon
   discipline: Arsenal
   tier: 1
