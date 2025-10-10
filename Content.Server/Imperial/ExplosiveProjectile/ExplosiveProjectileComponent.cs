@@ -9,7 +9,6 @@ using Content.Server.Imperial.ExplosiveProjectile;
 /// </summary>
 namespace Content.Server.Imperial.ExplosiveProjectile.Components
 {
-//    [AutoGenerateComponentPause]
     [RegisterComponent]
     [Access(typeof(ExplosiveProjectileSystem))]
     public sealed partial class ExplosiveProjectileComponent : Component
@@ -25,6 +24,26 @@ namespace Content.Server.Imperial.ExplosiveProjectile.Components
         /// </summary>
         [DataField]
         public SoundSpecifier? SoundActivate = new SoundPathSpecifier("/Audio/Imperial/SpecialUnits/RCU/detonation.ogg", AudioParams.Default.WithVolume(5).WithLoop(false).WithMaxDistance(15f));
+
+        // Следущие три филда были спи... взяты у StunOnCollide
+
+        /// <summary>
+        /// Рефреш стана при попадании.
+        /// </summary>
+        [DataField]
+        public bool Refresh = true;
+
+        /// <summary>
+        /// Следует ли сущности пытаться встать автоматически?
+        /// </summary>
+        [DataField]
+        public bool AutoStand = false;
+
+        /// <summary>
+        /// Будет ли сущность терять предмет из рук во время падения?
+        /// </summary>
+        [DataField]
+        public bool Drop = true;
 
         /// <summary>
         /// Сколько времени будет лежать цель в оглушении, если условия для взрыва будут провалены.

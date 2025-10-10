@@ -6,6 +6,7 @@ using Robust.Shared.Audio;
 using Content.Shared.Audio;
 using Robust.Shared.Physics.Dynamics;
 using Robust.Shared.Physics.Events;
+using Content.Shared.Movement.Systems;
 using Content.Server.Atmos.Components;
 using Content.Shared.Inventory;
 using Content.Server.Stunnable;
@@ -23,6 +24,7 @@ namespace Content.Server.Imperial.ExplosiveProjectile
         [Dependency] private readonly StunSystem _stunSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
+        [Dependency] private readonly MovementModStatusSystem _movementMod = default!;
 
         public override void Initialize()
         {
@@ -49,11 +51,30 @@ namespace Content.Server.Imperial.ExplosiveProjectile
         private void OnExplodeStart(EntityUid uid, ExplosiveProjectileComponent component, EntityUid target)
         {
             _audio.PlayPvs(component.SoundActivate, target);
-            if (TryComp<StatusEffectsComponent>(target, out var status))
+
+            _stunSystem.TryKnockdown(target, component.KnockdownTime, component.Refresh, component.AutoStand, component.Drop, true);
+
+            if (component.Refresh)
             {
-                _stunSystem.TryStun(target, component.StunParam, true, status);
-                _stunSystem.TryKnockdown(target, component.KnockdownTime, true, status);
-                _stunSystem.TrySlowdown(target, component.SlowdownParam, true, component.WalkSpeedParam, component.RunSpeedParam, status);
+                _stunSystem.TryUpdateStunDuration(target, component.StunParam);
+                _movementMod.TryUpdateMovementSpeedModDuration(
+                    target,
+                    MovementModStatusSystem.TaserSlowdown,
+                    component.SlowdownParam,
+                    component.WalkSpeedParam,
+                    component.RunSpeedParam
+                );
+            }
+            else
+            {
+                _stunSystem.TryAddStunDuration(target, component.StunParam);
+                _movementMod.TryAddMovementSpeedModDuration(
+                    target,
+                    MovementModStatusSystem.TaserSlowdown,
+                    component.SlowdownParam,
+                    component.WalkSpeedParam,
+                    component.RunSpeedParam
+                );
             }
             TryExplodeEntity(uid, component, target);
         }
