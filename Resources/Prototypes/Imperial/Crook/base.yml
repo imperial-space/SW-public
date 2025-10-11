@@ -357,7 +357,7 @@
   lawString: law-samurai-4
 
 - type: siliconLawset
-  id: Samurai
+  id: SamuraiLawset
   laws:
   - Samurai1
   - Samurai2

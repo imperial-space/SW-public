@@ -180,7 +180,7 @@
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: SiliconLawProvider
-    laws: Samurai
+    laws: SamuraiLawset
   - type: IntrinsicRadioTransmitter
     channels: []
   - type: ActiveRadio
