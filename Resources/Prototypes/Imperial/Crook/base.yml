@@ -351,6 +351,11 @@
   order: 3
   lawString: law-samurai-3
 
+- type: siliconLaw
+  id: Samurai4
+  order: 4
+  lawString: law-samurai-4
+
 - type: siliconLawset
   id: Samurai
   laws:
