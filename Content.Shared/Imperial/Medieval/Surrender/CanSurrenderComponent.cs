@@ -2,10 +2,11 @@ using Content.Shared.Actions;
 using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Robust.Shared.Serialization;
+using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Medieval.Surrender
 {
-    [RegisterComponent]
+    [RegisterComponent, NetworkedComponent]
     public sealed partial class CanSurrenderComponent : Component
     {
         public bool SurrenderActive = false;

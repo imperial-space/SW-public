@@ -13,7 +13,7 @@
         bonusEssences:
           MagicMedievalDarkness: 1
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 4
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -21,6 +21,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/Charmer/dagger_cult_magic.rsi
       state: 1
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: MedievalMagicDaggerCult
       spellCastDoAfter:
