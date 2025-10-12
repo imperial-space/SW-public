@@ -185,6 +185,9 @@
     channels: []
   - type: ActiveRadio
     channels: []
+  - type: Repairable
+    fuelCost: 50
+    doAfterDelay: 15
 
 - type: entity
   name: Space Samurai
