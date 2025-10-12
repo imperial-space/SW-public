@@ -228,6 +228,8 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSilicon
+      Male: UnisexSilicon
+      Female: UnisexSilicon
     wilhelmProbability: 0
   - type: UnblockableSpeech
   - type: HumanoidAppearance
@@ -324,6 +326,8 @@
   - type: Vocal
     sounds:
       Unsexed: UnisexSiliconSyndicate
+      Male: UnisexSiliconSyndicate
+      Female: UnisexSiliconSyndicate
   - type: NpcFactionMember
     factions:
     - Syndicate
