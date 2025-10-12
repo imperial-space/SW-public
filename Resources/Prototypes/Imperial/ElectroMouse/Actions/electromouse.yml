@@ -50,7 +50,7 @@
   description: Вылечить себя.
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 45
     itemIconStyle: BigAction
     icon: { sprite: Imperial/electromouse.rsi, state: sm_heal}
   - type: InstantAction
