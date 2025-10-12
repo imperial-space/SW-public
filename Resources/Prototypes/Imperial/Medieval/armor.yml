@@ -34,6 +34,17 @@
     damageCoefficient: 0.95
 
 - type: entity
+  parent: MedievalClothingOuterArmorFur
+  id: MedievalClothingOuterArmorFurRoyal
+  name: fur armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/royalshoulderleather.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/royalshoulderleather.rsi
+
+- type: entity
   parent: ClothingOuterBase
   id: MedievalClothingOuterArmorStudded
   name: studded armor
@@ -268,6 +279,17 @@
     sprite: Imperial/Medieval/Clothing/Armor/royal_leather_light.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/royal_leather_light.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorLeather
+  id: MedievalClothingOuterArmorLeatherRoyal
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/royal_leather.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/royal_leather.rsi
 
 - type: entity
   parent: ClothingOuterBase
