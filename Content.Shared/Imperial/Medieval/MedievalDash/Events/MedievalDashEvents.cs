@@ -15,3 +15,9 @@ public record struct CheckDashStaminaCostModifiersEvent(float Modifier = 1f);
 
 [ByRefEvent]
 public record struct CheckDashDistanceModifiersEvent(float Modifier = 1f);
+
+[ByRefEvent]
+public record struct DashStartedEvent();
+
+[ByRefEvent]
+public record struct DashEndedEvent();

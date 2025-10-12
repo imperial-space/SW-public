@@ -56,3 +56,16 @@
   - MedievalPlague
   - MedievalStatsCounter
   - MedievalFactionGoalsRule
+
+- type: gamePreset
+  id: MedievalWerewolves
+  alias:
+  - medievalwerewolf
+  name: medieval-werewolf-title
+  showInVote: true
+  description: medieval-werewolf-description
+  rules:
+  - TDM
+  - MedievalWerewolves
+  - MedievalStatsCounter
+  - MedievalFactionGoalsRule
