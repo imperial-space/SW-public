@@ -146,7 +146,7 @@
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
-        color: "#FF0000"
+        color: "#4d7ee7"
   - type: Reactive
     groups:
       Acidic: [Touch]
