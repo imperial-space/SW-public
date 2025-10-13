@@ -189,8 +189,17 @@
       - Piercing
       - Heat
       - Shock
-      - Bloodloss
     locPrefix: silicon
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      collection: MetalThud
+    damage:
+      groups:
+        Brute: 8
+  - type: Prying
+    speedModifier: 1.5
+    useSound: /Audio/Effects/metal_scrape2.ogg
   - type: UserInterface
     interfaces:
       enum.SiliconLawsUiKey.Key:
