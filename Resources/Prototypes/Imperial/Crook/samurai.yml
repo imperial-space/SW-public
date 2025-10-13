@@ -147,15 +147,6 @@
   parent: MobMechanicSyndicate
   id: SpaceSamurai
   components:
-  - type: TypingIndicator
-    proto: syndibot
-  - type: Speech
-    speechSounds: SyndieBorg
-    allowedEmotes:
-    - Laugh
-  - type: Vocal
-    sounds:
-      Unsexed: UnisexSiliconSyndicate
   - type: RandomMetadata
     nameSegments:
     - NamesNinjaTitle
