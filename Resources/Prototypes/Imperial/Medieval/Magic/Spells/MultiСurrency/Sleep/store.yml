@@ -5,7 +5,7 @@
   name: medieval-store-spells-multi-currency-sleep-middle-name
   description: medieval-store-spells-multi-currency-sleep-middle-desc
   productAction: MedievalActionSleepMiddle
-  priority: 2
+  priority: 4
   productUpgradeId:
     - MedievalSpellDisablerSenior
   icon:
@@ -25,7 +25,7 @@
   id: MedievalSpellDisablerSenior
   name: medieval-store-spells-multi-currency-senior-senior-name
   description: medieval-store-spells-multi-currency-senior-senior-desc
-  priority: 2
+  priority: 4
   productUpgradeId:
     - MedievalSpellDisablerSenior
   icon:

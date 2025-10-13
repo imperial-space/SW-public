@@ -5,7 +5,7 @@
   name: medieval-store-spells-fire-wall-beginner-name
   description: medieval-store-spells-fire-wall-beginner-desc
   productAction: MedievalActionFireWallBeginner
-  priority: 3
+  priority: 8
   productUpgradeId:
     - MedievalSpellFireWallMiddle
   icon:
@@ -25,7 +25,7 @@
   id: MedievalSpellFireWallMiddle
   name: medieval-store-spells-fire-wall-middle-name
   description: medieval-store-spells-fire-wall-middle-desc
-  priority: 3
+  priority: 8
   productUpgradeId:
     - MedievalSpellFireWallSenior
   icon:
@@ -48,7 +48,7 @@
   id: MedievalSpellFireWallSenior
   name: medieval-store-spells-fire-wall-senior-name
   description: medieval-store-spells-fire-wall-senior-desc
-  priority: 3
+  priority: 8
   productUpgradeId:
     - MedievalSpellFireWallSenior
   icon:

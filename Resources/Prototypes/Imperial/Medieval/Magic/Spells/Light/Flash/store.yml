@@ -5,7 +5,7 @@
   name: medieval-store-spells-light-flash-beginner-name
   description: medieval-store-spells-light-flash-beginner-desc
   productAction: MedievalActionFlashBeginner
-  priority: 1
+  priority: 3
   productUpgradeId:
     - MedievalSpellFlashMiddle
   icon:
@@ -25,7 +25,7 @@
   id: MedievalSpellFlashMiddle
   name: medieval-store-spells-light-flash-middle-name
   description: medieval-store-spells-light-flash-middle-desc
-  priority: 1
+  priority: 3
   productUpgradeId:
     - MedievalSpellFlashMiddle
   icon:

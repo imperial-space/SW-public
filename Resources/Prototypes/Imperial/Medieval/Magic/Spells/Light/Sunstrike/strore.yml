@@ -40,5 +40,6 @@
   - !type:ImperialListingLimitedStockCondition
     stock: 1
   - !type:ImperialBuyBeforeCondition
-    whitelist:
+    requiredPurchases:
       - MedievalSpellSunstrikeMiddle
+      - MedievalSpellFireWallMiddle
