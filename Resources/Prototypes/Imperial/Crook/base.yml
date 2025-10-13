@@ -189,6 +189,7 @@
       - Piercing
       - Heat
       - Shock
+      - Bloodloss
     locPrefix: silicon
   - type: UserInterface
     interfaces:

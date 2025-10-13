@@ -176,7 +176,6 @@
     - ImperialSmokeImplant
     - EmpImplant
     - EmpImplant
-    - RadioImplant
   - type: RandomHumanoidAppearance
     randomizeName: false
   - type: SiliconLawProvider
@@ -188,6 +187,10 @@
   - type: Repairable
     fuelCost: 50
     doAfterDelay: 15
+  - type: Prying
+    speedModifier: 1.5
+    pryPowered: true
+    useSound: /Audio/Effects/metal_scrape2.ogg
 
 - type: entity
   name: Space Samurai
