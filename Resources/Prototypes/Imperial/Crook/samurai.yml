@@ -30,9 +30,9 @@
         Caustic: 0
         Stamina: 0.45
   - type: ExplosionResistance
-    damageCoefficient: 0
+    damageCoefficient: 0.15
   - type: FireProtection
-    reduction: 0.85
+    reduction: 1
 
 - type: entity
   parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
