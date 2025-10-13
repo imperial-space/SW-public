@@ -94,8 +94,6 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
 
     private void OnStrapAttempt(EntityUid uid, ImperialVehicleComponent component, ref StrapAttemptEvent args)
     {
-        Log.Info($"OnStrapAttempt: vehicle={uid}, rider={args.Buckle.Owner}, hasRider={component.Rider != null}");
-
         if (component.Rider != null)
         {
             args.Cancelled = true;
@@ -158,7 +156,7 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
         _modifier.RefreshMovementSpeedModifiers(uid);
     }
 
-    private void OnHorn(EntityUid uid, ImperialVehicleComponent component, InstantActionEvent args)
+    private void OnHorn(EntityUid uid, ImperialVehicleComponent component, HornActionEvent args)
     {
         if (args.Handled == true)
             return;

@@ -4,6 +4,8 @@
         "x": 32,
         "y": 32
     },
+    "license": "CC-BY-3.0",
+    "copyright": "Created by ryslan32",
     "states": [
         {
             "name": "vehicle",
