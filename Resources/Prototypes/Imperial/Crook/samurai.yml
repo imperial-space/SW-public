@@ -32,7 +32,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0
   - type: FireProtection
-    reduction: 1
+    reduction: 0.85
 
 - type: entity
   parent: [ClothingHeadEVAHelmetBase, BaseMajorContraband]
