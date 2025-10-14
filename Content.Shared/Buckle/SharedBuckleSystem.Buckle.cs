@@ -22,7 +22,7 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared.Imperial.ImperialVehicle; // Imperial "ImperialVehicle"
+using Content.Shared.Imperial.ImperialVehicle.Components; // Imperial "ImperialVehicle"
 
 namespace Content.Shared.Buckle;
 
