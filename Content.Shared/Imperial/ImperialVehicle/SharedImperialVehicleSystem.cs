@@ -1,21 +1,23 @@
-using System.Numerics;
+using Content.Shared.Imperial.ImperialVehicle.Events;
+using Content.Shared.Imperial.ImperialVehicle.Enums;
+using Content.Shared.Imperial.ImperialVehicle.Components;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
-using Robust.Shared.Prototypes;
 using Content.Shared.Item;
 using Content.Shared.Tag;
-using Robust.Shared.Serialization;
+using Content.Shared.Standing;
+using Content.Shared.Traits.Assorted;
 using Content.Shared.Buckle;
 using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Hands;
-using Robust.Shared.Map;
-using Robust.Shared.Physics.Events;
 using Content.Shared.Projectiles;
-using Robust.Shared.Audio.Systems;
 using Content.Shared.Actions;
-using Content.Shared.Standing;
-using Content.Shared.Movement.Events;
+using Robust.Shared.Physics.Events;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
+using Robust.Shared.Map;
+using System.Numerics;
 
 namespace Content.Shared.Imperial.ImperialVehicle;
 
@@ -30,7 +32,6 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
     [Dependency] private readonly SharedVirtualItemSystem _virtualItemSystem = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly StandingStateSystem _standingSystem = default!;
     private static readonly ProtoId<TagPrototype> DoorBumpOpenerTag = "DoorBumpOpener";
     public static readonly EntProtoId HornActionId = "ImperialActionHorn";
 
@@ -48,6 +49,8 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
         SubscribeLocalEvent<ImperialVehicleComponent, HornActionEvent>(OnHorn);
 
         SubscribeLocalEvent<ImperialVehiclePilotComponent, GettingPickedUpAttemptEvent>(OnGettingPickedUpAttempt);
+
+        SubscribeLocalEvent<LegsParalyzedComponent, DownedEvent>(OnLegsParalyzedDowned);
     }
 
     public override void Update(float frameTime)
@@ -323,14 +326,17 @@ public abstract partial class SharedImperialVehicleSystem : EntitySystem
             _ => (int)DrawDepth.DrawDepth.WallMountedItems
         };
     }
+
+    /// <summary>
+    /// Sets crawl movement speed for paralyzed entities when they are downed.
+    /// </summary>
+    private void OnLegsParalyzedDowned(EntityUid uid, LegsParalyzedComponent component, DownedEvent args)
+    {
+        _modifier.ChangeBaseSpeed(
+            uid,
+            component.CrawlMoveSpeed,
+            component.CrawlMoveSpeed,
+            component.CrawlMoveAcceleration);
+    }
 }
 
-[Serializable, NetSerializable]
-public enum VehicleVisuals : byte
-{
-    DrawDepth,
-    AutoAnimate,
-    HideRider
-}
-
-public sealed partial class HornActionEvent : InstantActionEvent;

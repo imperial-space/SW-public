@@ -1,7 +1,6 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 
-namespace Content.Shared.Imperial.ImperialVehicle;
+namespace Content.Shared.Imperial.ImperialVehicle.Components;
 
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ImperialVehiclePilotComponent : Component
@@ -12,10 +11,4 @@ public sealed partial class ImperialVehiclePilotComponent : Component
     [ViewVariables] public EntityUid? Vehicle;
 
     public override bool SendOnlyToOwner => true;
-}
-
-[Serializable, NetSerializable]
-public sealed class ImperialVehiclePilotComponentState : ComponentState
-{
-    public NetEntity? Entity;
 }

@@ -1,10 +1,8 @@
 using System.Numerics;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Shared.Imperial.ImperialVehicle;
+namespace Content.Shared.Imperial.ImperialVehicle.Components;
 
 [AutoGenerateComponentState]
 [RegisterComponent, NetworkedComponent]
@@ -22,10 +20,6 @@ public sealed partial class ImperialVehicleComponent : Component
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public float Acceleration = 2.0f;
-
-    [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float Friction = 2.0f;
 
     [ViewVariables]
     public EntityUid? HornAction;
@@ -71,17 +65,6 @@ public sealed partial class ImperialVehicleComponent : Component
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public bool EastOver;
-
-    /// <summary>
-    /// What the y buckle offset should be in north / south
-    /// </summary>
-    [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float NorthOverride;
-
-    [DataField]
-    [ViewVariables(VVAccess.ReadWrite)]
-    public float SouthOverride;
 
     [DataField]
     [ViewVariables(VVAccess.ReadWrite)]

@@ -4,7 +4,6 @@ using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Standing;
 using Content.Shared.Throwing;
-using Content.Shared.Imperial.ImperialVehicle; // Imperial "ImperialVehicle"
 
 namespace Content.Shared.Traits.Assorted;
 
@@ -22,7 +21,6 @@ public sealed class LegsParalyzedSystem : EntitySystem
         SubscribeLocalEvent<LegsParalyzedComponent, UnbuckledEvent>(OnUnbuckled);
         SubscribeLocalEvent<LegsParalyzedComponent, ThrowPushbackAttemptEvent>(OnThrowPushbackAttempt);
         SubscribeLocalEvent<LegsParalyzedComponent, StandAttemptEvent>(OnStandTry); // Imperial "ImperialVehicle"
-        SubscribeLocalEvent<LegsParalyzedComponent, DownedEvent>(OnDowned); // Imperial "ImperialVehicle"
     }
 
     private void OnStartup(EntityUid uid, LegsParalyzedComponent component, ComponentStartup args)
@@ -52,14 +50,6 @@ public sealed class LegsParalyzedSystem : EntitySystem
         _standingSystem.Down(uid);
     }
 
-    private void OnDowned(EntityUid uid, LegsParalyzedComponent component, DownedEvent args) // Imperial "ImperialVehicle" Start
-    {
-        _movementSpeedModifierSystem.ChangeBaseSpeed(
-            uid,
-            component.CrawlMoveSpeed,
-            component.CrawlMoveSpeed,
-            component.CrawlMoveAcceleration);
-    } // Imperial "ImperialVehicle" End
     private void OnStandTry(EntityUid uid, LegsParalyzedComponent component, StandAttemptEvent args) // Imperial "ImperialVehicle"
     {
         args.Cancel();
