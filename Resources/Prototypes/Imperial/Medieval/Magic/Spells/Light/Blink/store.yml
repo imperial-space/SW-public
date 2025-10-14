@@ -5,7 +5,7 @@
   name: medieval-store-spells-light-blink-beginner-name
   description: medieval-store-spells-light-blink-beginner-desc
   productAction: MedievalActionBlinkBeginner
-  priority: 3
+  priority: 4
   productUpgradeId:
     - MedievalSpellBlinkMiddle
   icon:
@@ -26,7 +26,7 @@
   id: MedievalSpellBlinkMiddle
   name: medieval-store-spells-light-blink-middle-name
   description: medieval-store-spells-light-blink-middle-desc
-  priority: 3
+  priority: 4
   productUpgradeId:
     - MedievalSpellBlinkMiddle
   icon:

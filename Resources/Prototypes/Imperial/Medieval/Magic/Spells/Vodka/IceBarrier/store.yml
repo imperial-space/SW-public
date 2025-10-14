@@ -5,7 +5,7 @@
   name: medieval-store-spells-vodka-ice-barrier-beginner-name
   description: medieval-store-spells-vodka-ice-barrier-beginner-desc
   productAction: MedievalActionIceBarrierBeginner
-  priority: 3
+  priority: 2
   productUpgradeId:
     - MedievalSpellIceBarrierMiddle
   icon:
@@ -25,7 +25,7 @@
   id: MedievalSpellIceBarrierMiddle
   name: medieval-store-spells-vodka-ice-barrier-middle-name
   description: medieval-store-spells-vodka-ice-barrier-middle-desc
-  priority: 3
+  priority: 2
   productUpgradeId:
     - MedievalSpellIceBarrierSenior
   icon:
@@ -48,7 +48,7 @@
   id: MedievalSpellIceBarrierSenior
   name: medieval-store-spells-vodka-ice-barrier-senior-name
   description: medieval-store-spells-vodka-ice-barrier-senior-desc
-  priority: 3
+  priority: 2
   productUpgradeId:
     - MedievalSpellIceBarrierSenior
   icon:

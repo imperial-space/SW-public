@@ -5,7 +5,7 @@
   name: medieval-store-spells-fire-concentrated-displacement-middle-name
   description: medieval-store-spells-fire-concentrated-displacement-middle-desc
   actionLevelUp: 3
-  priority: 3
+  priority: 4
   productUpgradeId:
     - MedievalSpellConcentratedDisplacementSenior
   icon:
@@ -33,7 +33,7 @@
   id: MedievalSpellConcentratedDisplacementSenior
   name: medieval-store-spells-fire-concentrated-displacement-senior-name
   description: medieval-store-spells-fire-concentrated-displacement-senior-desc
-  priority: 3
+  priority: 4
   productUpgradeId:
     - MedievalSpellConcentratedDisplacementSenior
   icon:

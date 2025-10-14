@@ -5,7 +5,7 @@
   name: medieval-store-spells-light-lightning-middle-fire-name
   description: medieval-store-spells-light-lightning-middle-fire-desc
   actionLevelUp: 2
-  priority: 9
+  priority: 8
   productUpgradeId:
     - MedievalSpellFireLightningSenior
   icon:
@@ -30,7 +30,7 @@
   id: MedievalSpellFireLightningSenior
   name: medieval-store-spells-light-lightning-senior-fire-name
   description: medieval-store-spells-light-lightning-senior-fire-desc
-  priority: 9
+  priority: 8
   productUpgradeId:
     - MedievalSpellFireLightningSenior
   icon:

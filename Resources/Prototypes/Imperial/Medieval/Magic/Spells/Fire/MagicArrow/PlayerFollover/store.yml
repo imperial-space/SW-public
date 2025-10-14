@@ -5,7 +5,7 @@
   name: medieval-store-spells-fire-magic-arrow-player-follover-beginner-name
   description: medieval-store-spells-fire-magic-arrow-player-follover-beginner-desc
   actionLevelUp: 4
-  priority: 8
+  priority: 7
   productUpgradeId:
     - MedievalSpellMagicArrowPlayerFolloverMiddle
   icon:
@@ -48,7 +48,7 @@
   id: MedievalSpellMagicArrowPlayerFolloverMiddle
   name: medieval-store-spells-fire-magic-arrow-player-follover-middle-name
   description: medieval-store-spells-fire-magic-arrow-player-follover-middle-desc
-  priority: 8
+  priority: 7
   productUpgradeId:
     - MedievalSpellMagicArrowPlayerFolloverSenior
   icon:
@@ -91,7 +91,7 @@
   id: MedievalSpellMagicArrowPlayerFolloverSenior
   name: medieval-store-spells-fire-magic-arrow-player-follover-senior-name
   description: medieval-store-spells-fire--magic-arrow-player-follover-senior-desc
-  priority: 8
+  priority: 7
   productUpgradeId:
     - MedievalSpellMagicArrowPlayerFolloverSenior
   icon:

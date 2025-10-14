@@ -3,7 +3,7 @@
   name: medieval-store-spells-darkness-spawn-skelet-beginner-name
   description: medieval-store-spells-darkness-spawn-skelet-beginner-desc
   productAction: MedievalActionSpawnSkeletBeginner
-  priority: 1
+  priority: 5
   productUpgradeId:
     - MedievalSpellSpawnSkeletMiddle
   icon:
@@ -21,7 +21,7 @@
   id: MedievalSpellSpawnSkeletMiddle
   name: medieval-store-spells-darkness-spawn-skelet-middle-name
   description: medieval-store-spells-darkness-spawn-skelet-middle-desc
-  priority: 1
+  priority: 5
   productUpgradeId:
     - MedievalActionSpawnSkeletSenior
   icon:
@@ -42,7 +42,7 @@
   id: MedievalActionSpawnSkeletSenior
   name: medieval-store-spells-darkness-spawn-skelet-senior-name
   description: medieval-store-spells-darkness-spawn-skelet-senior-desc
-  priority: 1
+  priority: 5
   productUpgradeId:
     - MedievalActionSpawnSkeletSenior
   icon:

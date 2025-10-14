@@ -5,7 +5,7 @@
   name: medieval-store-spells-light-divine-touch-beginner-name
   description: medieval-store-spells-light-divine-touch-beginner-desc
   productAction: MedievalActionDivineTouchBeginner
-  priority: 4
+  priority: 1
   productUpgradeId:
     - MedievalSpellDivineTouchMiddle
   icon:
@@ -25,7 +25,7 @@
   id: MedievalSpellDivineTouchMiddle
   name: medieval-store-spells-light-divine-touch-middle-name
   description: medieval-store-spells-light-divine-touch-middle-desc
-  priority: 4
+  priority: 1
   productUpgradeId:
     - MedievalSpellDivineTouchSenior
   icon:
@@ -48,7 +48,7 @@
   id: MedievalSpellDivineTouchSenior
   name: medieval-store-spells-light-divine-touch-senior-name
   description: medieval-store-spells-light-divine-touch-senior-desc
-  priority: 4
+  priority: 1
   productUpgradeId:
     - MedievalSpellDivineTouchSenior
   icon:

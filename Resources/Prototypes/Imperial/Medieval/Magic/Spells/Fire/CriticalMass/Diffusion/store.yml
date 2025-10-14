@@ -5,7 +5,7 @@
   name: medieval-store-spells-fire-diffusion-middle-name
   description: medieval-store-spells-fire-diffusion-middle-desc
   actionLevelUp: 5
-  priority: 4
+  priority: 3
   productUpgradeId:
     - MedievalSpellDiffusionSenior
   icon:
@@ -33,7 +33,7 @@
   id: MedievalSpellDiffusionSenior
   name: medieval-store-spells-fire-diffusion-senior-name
   description: medieval-store-spells-fire-diffusion-senior-desc
-  priority: 4
+  priority: 3
   productUpgradeId:
     - MedievalSpellDiffusionSenior
   icon:
