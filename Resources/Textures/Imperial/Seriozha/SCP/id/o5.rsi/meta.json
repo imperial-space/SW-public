@@ -7,9 +7,9 @@
     "license": "ICLA",
     "copyright": "Created by: @the_walking_rad Discord",
     "states": [
-        {
-            "name": "icon"
-        },
+    {
+      "name": "icon"
+    },
 		{
 		  "name": "inhand-left",
 		  "directions": 4

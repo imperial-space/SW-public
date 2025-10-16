@@ -220,7 +220,9 @@
     range: 5
     sound:
       path: /Audio/Imperial/Seriozha/SCP/Alarm.ogg
-      loop: True
+      params:
+        loop: true
+        stream: true
 
 - type: entity
   parent: ClothingOuterHardsuitSyndie
@@ -240,7 +242,9 @@
       range: 5
       sound:
         path: /Audio/Imperial/Seriozha/SCP/deva.ogg
-        loop: True
+        params:
+          loop: true
+          stream: true
 
 - type: entity
   parent: ClothingHeadHelmetHardsuitSyndie
@@ -286,7 +290,9 @@
       range: 5
       sound:
         path: /Audio/Imperial/Seriozha/SCP/camera.ogg
-        loop: True
+        params:
+          loop: true
+          stream: true
 
 - type: entity
   parent: AtmosDeviceFanTiny
@@ -296,11 +302,13 @@
   description: hums
   components:
     - type: AmbientSound
-      volume: -4
+      volume: -2
       range: 5
       sound:
         path: /Audio/Imperial/Seriozha/SCP/fan.ogg
-        loop: True
+        params:
+          loop: true
+          stream: true
 
 - type: entity
   id: WindowReinforcedDirectionalSCPWaterSound
@@ -309,12 +317,14 @@
   suffix: Fredik21, Недра, sound
   description: you hear water flowing through it
   components:
-  - type: AmbientSound
-    volume: -2
-    range: 5
-    sound:
-      path: /Audio/Imperial/Seriozha/SCP/drip.ogg
-      loop: True
+    - type: AmbientSound
+      volume: -2
+      range: 5
+      sound:
+        path: /Audio/Imperial/Seriozha/SCP/drip.ogg
+        params:
+          loop: true
+          stream: true
 
 - type: entity
   id: WindowReinforcedDirectionalSCPWater
@@ -551,7 +561,9 @@
       range: 5
       sound:
         path: /Audio/Imperial/Seriozha/SCP/deva.ogg
-        loop: True
+        params:
+          loop: true
+          stream: true
     - type: Armor
       modifiers:
         coefficients:
@@ -598,7 +610,9 @@
       range: 5
       sound:
         path: /Audio/Imperial/Seriozha/SCP/deva.ogg
-        loop: True
+        params:
+          loop: true
+          stream: true
     - type: Armor
       modifiers:
         coefficients:
@@ -771,6 +785,9 @@
     solutions:
       hypospray:
         maxVol: 30
+        reagents:
+        - ReagentId: Desoxyephedrine
+          Quantity: 30
   - type: RefillableSolution
     solution: hypospray
   - type: ExaminableSolution
@@ -779,17 +796,12 @@
     onlyAffectsMobs: false
   - type: UseDelay
     delay: 20
-  - type: BorgHypo
-    solutions:
-      - reagents:
-        - reagentId: Desoxyephedrine
-          quantity: 1
   - type: SolutionRegeneration
     solution: hypospray
     generated:
       reagents:
-        - ReagentId: Desoxyephedrine
-          Quantity: 1
+      - ReagentId: Desoxyephedrine
+        Quantity: 1
 
 - type: entity
   parent: [ RingBase, GoldRingBase ]
@@ -823,7 +835,7 @@
     sprite: Clothing/Head/Soft/cargosoft.rsi
   - type: PressureProtection
     highPressureMultiplier: 0.02
-    lowPressureMultiplier: 1000
+    lowPressureMultiplier: 0.02
   - type: ToggleClothing
     action: ActionTogglePhaseCloak
     disableOnUnequip: true
