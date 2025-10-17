@@ -30,6 +30,7 @@
   - type: Tag
     tags:
       - PowerCell
+      - EngineerBorgItem # Тег, позволяющий инженерному боргу брать батарейки
   - type: Appearance
   - type: PowerCellVisuals
   - type: Riggable

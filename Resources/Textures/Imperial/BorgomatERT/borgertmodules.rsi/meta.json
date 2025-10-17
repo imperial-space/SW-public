@@ -1,0 +1,18 @@
+{
+    "version": 1,
+  "license": "This content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Created by Waldfogel (github) for Imperial Space.",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "icon-nanotrasen"
+        },
+        {
+            "name": "nanotrasen"
+        }
+
+    ]
+}

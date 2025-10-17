@@ -12,6 +12,7 @@
   - type: Tag
     tags:
     - GasTank
+    - EngineerBorgItem # Тег, позволяющий инженерному боргу брать канистры
   - type: Clothing
     quickEquip: false
     sprite: Objects/Tanks/generic.rsi
