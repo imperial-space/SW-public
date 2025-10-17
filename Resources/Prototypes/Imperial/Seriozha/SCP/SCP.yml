@@ -502,7 +502,7 @@
 - type: startingGear
   id: ImperialDocGear
   equipment:
-    pocket1: PillAmbuzolPlus
+    pocket1: SmokeGrenade
   inhand:
   - CaneSheathFilled
 
