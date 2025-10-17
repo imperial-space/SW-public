@@ -434,7 +434,6 @@
         reagents:
         - ReagentId: Slime
           Quantity: 5
-  - type: Food
   - type: Hunger
     baseDecayRate: 0.25
   - type: Physics
@@ -497,7 +496,7 @@
       0: Alive
       450: Dead
   - type: MovementSpeedModifier
-    baseWalkSpeed : 3.5
+    baseWalkSpeed : 8
     baseSprintSpeed : 2
     weightlessAcceleration: 1.5
     weightlessFriction: 1
@@ -513,8 +512,6 @@
     spawned:
       - id: FoodMeatXeno
         amount: 6
-  - type: Extractable
-    grindableSolutionName: food
   - type: ReplacementAccent
     accent: mothroach
   - type: Vocal
@@ -1348,3 +1345,186 @@
       seedId: blueSpaceTomato
     - type: Sprite
       sprite: Objects/Specific/Hydroponics/blue_tomato.rsi
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurPuro
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/purohead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurPuro
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/purosuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/purosuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurKiss
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/kisshead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurKiss
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/kisssuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/kisssuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurBeige
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/beigehead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurBeige
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/beigesuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/beigesuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurNixuelle
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nixuhead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurNixuelle
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nixusuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nixusuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurNacho
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nachohead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurNacho
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/nachosuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/nachosuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+
+- type: entity
+  parent: ClothingHeadHatRedRacoon
+  id: ClothingHeadHatFurMoki
+  name: fur hat
+  description: Fluffy hat!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/mokihead.rsi
+
+- type: entity
+  parent: ClothingOuterRedRacoon
+  id: ClothingOuterFurMoki
+  name: fur suit
+  description: Fluffy suit!
+  components:
+  - type: Sprite
+    sprite: Imperial/Crook/Misc/Fursuits/mokisuit.rsi
+  - type: Clothing
+    sprite: Imperial/Crook/Misc/Fursuits/mokisuit.rsi
+  - type: TemperatureProtection
+    heatingCoefficient: 1.1
+    coolingCoefficient: 0.1
+
+- type: entity
+  id: CrateCargoFursuits
+  parent: CratePrivateSecure
+  name: fursuit crate
+  description: Finally, furry friday.
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingHeadHatFurPuro
+    - id: ClothingOuterFurPuro
+    - id: ClothingHeadHatFurKiss
+    - id: ClothingOuterFurKiss
+    - id: ClothingHeadHatFurBeige
+    - id: ClothingOuterFurBeige
+    - id: ClothingHeadHatFurNixuelle
+    - id: ClothingOuterFurNixuelle
+    - id: ClothingHeadHatFurNacho
+    - id: ClothingOuterFurNacho
+    - id: ClothingHeadHatFurMoki
+    - id: ClothingOuterFurMoki
+    - id: ClothingHeadHatRedRacoon
+    - id: ClothingOuterRedRacoon
+
+- type: cargoProduct
+  id: FunCrateFursuits
+  icon:
+    sprite: Clothing/Head/Misc/red_racoon.rsi
+    state: icon
+  product: CrateCargoFursuits
+  cost: 25000
+  category: cargoproduct-category-name-fun
+  group: market
