@@ -248,9 +248,11 @@
               acts: [ "Destruction" ]
     - type: MobThresholds
       thresholds:
-       0: Alive
-       250: Critical
-       350: Dead
+     - type: MobThresholds
+       thresholds:
+        0: Alive
+        250: Critical
+        350: Dead
     - type: ShowHealthBars
       damageContainers:
       - Inorganic
