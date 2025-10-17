@@ -35,7 +35,7 @@
   id: ErtBorgDrobeUplinkEngineer
   name: borgdrobe-uplink-ert-borg-engineer-name
   description: borgdrobe-uplink-ert-borg-engineer-desc
-  productEntity: PlayerBorgErtEngineertGhostRole
+  productEntity: PlayerBorgErtEngineerGhostRole
   priority: 3
   cost:
     BlueSpaceCube: 15

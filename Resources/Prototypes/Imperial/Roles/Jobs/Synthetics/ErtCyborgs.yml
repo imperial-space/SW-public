@@ -291,7 +291,7 @@
         startingItem: PowerCellHyper
 
 - type: entity
-  id: PlayerBorgErtEngineertGhostRole
+  id: PlayerBorgErtEngineerGhostRole
   parent: PlayerBorgErtEngineerBattery
   suffix: Гост роль
   components:
