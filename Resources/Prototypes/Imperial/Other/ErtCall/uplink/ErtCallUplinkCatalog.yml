@@ -101,7 +101,7 @@
   - ERTUplinkAmmoCombat
   conditions:
     - !type:StoreWhitelistCondition
-     whitelist:
+      whitelist:
        tags:
          - ErtUplinkCBURN
 
@@ -116,7 +116,7 @@
   - ERTUplinkAmmoCombat
   conditions:
     - !type:StoreWhitelistCondition
-     whitelist:
+      whitelist:
        tags:
          - ErtUplinkCBURN
 
@@ -131,7 +131,7 @@
   - ERTUplinkAmmoCombat
   conditions:
     - !type:StoreWhitelistCondition
-     whitelist:
+      whitelist:
        tags:
          - ErtUplinkCBURN
 

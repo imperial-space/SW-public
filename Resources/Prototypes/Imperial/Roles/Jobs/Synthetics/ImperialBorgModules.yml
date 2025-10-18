@@ -408,7 +408,7 @@
 
 - type: entity
   id: BorgModulePulseCannon # Летальный модуль ОБР борга
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: Pulse Cannon Module
   components:
   - type: Sprite
@@ -417,6 +417,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - WeaponPulseCanonBorg
     - PinpointerNuclear
@@ -427,7 +428,7 @@
 
 
 - type: entity
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   id: BorgModuleEswordErt
   name: ert energy sword cyborg module
   description: A weapons module that comes with an energy sword.
@@ -438,6 +439,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - EnergySword
     - PinpointerNuclear
@@ -448,7 +450,7 @@
 
 - type: entity
   id: ErtBorgModuleJaws
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: tool ert cyborg module
   components:
   - type: Sprite
@@ -457,6 +459,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - JawsOfLife
     - JetpackErtBorg
@@ -468,7 +471,7 @@
 
 - type: entity
   id: BorgModuleNonLethalSecurityErt # Нелетальный модуль ОБР борга
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: NonLethal Ert Module
   components:
   - type: Sprite
@@ -477,6 +480,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - AdvancedStunbatonBorg
     - ErtBorgWeaponTaser
@@ -488,7 +492,7 @@
 
 - type: entity
   id: BorgModuleSelfDefenseErt # Нелетальный модуль инжеборга и медборга ОБР
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: self-defense module
   components:
   - type: Sprite
@@ -497,6 +501,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - ErtBorgWeaponDisablerSMG
     - FlashBorg
@@ -508,7 +513,7 @@
 
 - type: entity
   id: BorgModuleFlameThrower # Летальный модуль РХБЗЗ борга
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: Flame Thrower Module
   components:
   - type: Sprite
@@ -517,6 +522,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - FlameThrowerBorg
     - PinpointerNuclear
@@ -701,9 +707,27 @@
     layers:
     - state: nanotrasen
     - state: icon-nanotrasen
-    - type: ItemBorgModule
-      hands:
-      - item: SelfDestructSeq
+  - type: ItemBorgModule
+    hands:
+    - item: SelfDestructSeq
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#68AFCC"
+      - state: base-module-inhand-left
+        color: "#055A79"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#064D67"
+      right:
+      - state: base-icon-inhand-right
+        color: "#68AFCC"
+      - state: base-module-inhand-right
+        color: "#055A79"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#064D67"
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-C4 }
   - type: StaticPrice
@@ -711,7 +735,7 @@
 
 - type: entity
   id: BorgModuleToolErt
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: ert cyborg tools module
   components:
   - type: Sprite
@@ -720,6 +744,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - JawsOfLife
     - PowerDrill
@@ -735,7 +760,7 @@
 
 - type: entity
   id: BorgModuleErtRCD
-  parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: ert engineering cyborg module
   components:
   - type: Sprite
@@ -744,6 +769,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - RCDRechargingErtBorg
     - JetpackErtBorg
@@ -758,7 +784,7 @@
 
 - type: entity
   id: BorgModuleConstructionErt
-  parent: [ BaseBorgModuleEngineering, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: construction ert cyborg module
   components:
   - type: Sprite
@@ -767,6 +793,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - SheetSteelLingering0
     - SheetGlassLingering0
@@ -784,7 +811,7 @@
 
 - type: entity
   id: BorgModuleCableErt
-  parent: [ BaseBorgModule, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: cable cyborg module
   description: A universal cyborg module which allows the unit to install and manipulate electrical systems.
   components:
@@ -794,6 +821,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - CableApcStackLingering10
     - CableMVStackLingering10
@@ -846,8 +874,6 @@
     layers:
     - state: nanotrasen
     - state: icon-nanotrasen
-    items:
-    - HandheldCrewMonitorErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
   - type: StaticPrice
@@ -933,7 +959,7 @@
 
 - type: entity
   id: BorgModuleRescueErt
-  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: rescue ert cyborg module
   components:
   - type: Sprite
@@ -942,6 +968,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - HandheldHealthAnalyzerUnpowered
     - DefibrillatorOneHandedUnpowered
@@ -956,7 +983,7 @@
 - type: entity
   name: ert borg handheld crew monitor
   categories: [ DoNotMap ]
-  parent: [ BaseHandheldComputer, BaseGrandTheftContraband ]
+  parent: [ BaseHandheldComputer ]
   id: HandheldCrewMonitorErtBorg
   description: A hand-held crew monitor displaying the status of suit sensors.
   components:
@@ -986,7 +1013,7 @@
 
 - type: entity
   id: BorgModuleAdvancedChemicalErt
-  parent: [ BaseBorgModuleMedical, BaseProviderBorgModule ]
+  parent: BaseErtBorgModule
   name: advanced chemical cyborg module
   description: Advanced medical module containing the cyborg adaptation of the highly coveted hypospray. Now your cyborgs can inject crew-harmers with chloral hydrate even faster!
   components:
@@ -996,6 +1023,7 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
+    hands: []
     items:
     - HandheldHealthAnalyzerUnpowered
     - HyposprayBorgErt

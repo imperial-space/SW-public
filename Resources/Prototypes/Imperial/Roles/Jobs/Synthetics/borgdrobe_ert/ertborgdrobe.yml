@@ -2,14 +2,13 @@
   parent: VendingMachine
   id: VendingMachineBorgERTdrobe
   name: ERTdrobe
-  description: Wardrobe machine encoded by the syndicate, contains elite outfits for various operations.
   components:
   - type: VendingMachine
     pack: VendomatInventory
     offState: off
     brokenState: broken
     normalState: normal-unshaded
-  - type: Advertise
+  - type: DatasetVocalizer
     pack: ErtBorgDrobeAds
   - type: SpeakOnUIClosed
     pack: ErtBorgDrobeGoodbyes

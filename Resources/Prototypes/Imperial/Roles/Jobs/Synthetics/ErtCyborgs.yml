@@ -95,7 +95,7 @@
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
     - type: Body
-      prototype: ImperialBorg 
+      prototype: ImperialBorg
     - type: BorgHandsImperial
       whitelistHandTag: SecurityBorgItem
     - type: Destructible
@@ -218,7 +218,7 @@
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
     - type: Body
-      prototype: ImperialBorg 
+      prototype: ImperialBorg
     - type: BorgHandsImperial
       whitelistHandTag: EngineerBorgItem
     - type: Destructible
@@ -248,9 +248,9 @@
               acts: [ "Destruction" ]
     - type: MobThresholds
       thresholds:
-       0: Alive
-       250: Critical
-       350: Dead
+        0: Alive
+        250: Critical
+        350: Dead
     - type: ShowHealthBars
       damageContainers:
       - Inorganic
@@ -262,12 +262,12 @@
       prototypes: [ ErtEngineerBorgLodout ]
     - type: Inventory
       speciesId: human
-      templateId: ertengineerlborg
+      templateId: ertengineerborg
     - type: NameIdentifier
       group: ErtBorgID
     - type: RandomMetadata
       nameSegments:
-      - NamesErEngineerBorg
+      - NamesErtEngineerBorg
 
 - type: entity
   id: PlayerBorgErtEngineerBattery
@@ -338,6 +338,10 @@
       interactFailureString: petting-failure-ert-medical-cyborg
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
+    - type: BorgHandsImperial
+      whitelistHandTag: MedicalBorgItem
+    - type: Body
+      prototype: ImperialBorg
     - type: Destructible
       thresholds:
         - trigger:
@@ -365,9 +369,9 @@
               acts: [ "Destruction" ]
     - type: MobThresholds
       thresholds:
-       0: Alive
-       150: Critical
-       250: Dead # Наименее живучий киборг ОБР
+        0: Alive
+        150: Critical
+        250: Dead # Наименее живучий киборг ОБР
     - type: ShowHealthBars
       damageContainers:
       - Biological
@@ -382,10 +386,6 @@
     - type: Inventory
       speciesId: human
       templateId: ertmedicalborg
-    - type: BorgHandsImperial
-      whitelistHandTag: MedicalBorgItem
-    - type: Body
-      prototype: ImperialBorg 
     - type: PointLight
       radius: 7
       energy: 3
@@ -421,7 +421,7 @@
         startingItem: PowerCellHyper
 
 - type: entity
-  id: PlayerBorgErtMedictGhostRole
+  id: PlayerBorgErtMedicGhostRole
   parent: PlayerBorgErtMedicBattery
   suffix: Гост роль
   components:
@@ -557,12 +557,14 @@
 
 - type: nameIdentifierGroup
   id: ErtBorgID
+  format: name-identifier-format-ert-borg
   prefix: ERT
   minValue: 1000
   maxValue: 9999
 
 - type: nameIdentifierGroup
   id: CburnBorgID
+  format: name-identifier-format-cburn-borg
   prefix: CBURN
   minValue: 1000
   maxValue: 9999

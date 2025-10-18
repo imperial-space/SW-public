@@ -45,7 +45,7 @@
     displayName: Shoes
 
 - type: inventoryTemplate
-  id: ertengineerlborg
+  id: ertengineerborg
   slots: 
   - name: head
     slotTexture: head

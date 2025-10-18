@@ -1,4 +1,4 @@
-names-ert-assault-borg-dataset-1 = Таран
+names-ert-assault-borg-dataset-1 = Хищник
 names-ert-assault-borg-dataset-2 = Каратель
 names-ert-assault-borg-dataset-3 = Немезида
 names-ert-assault-borg-dataset-4 = Инквизитор

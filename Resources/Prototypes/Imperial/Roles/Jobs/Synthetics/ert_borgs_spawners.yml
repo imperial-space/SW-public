@@ -36,7 +36,7 @@
       raffle:
         settings: short
     - type: GhostRoleMobSpawner
-      prototype: PlayerBorgErtEngineetGhostRole
+      prototype: PlayerBorgErtEngineerGhostRole
     - type: Sprite
       sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
       layers:
@@ -59,7 +59,7 @@
       raffle:
         settings: short
     - type: GhostRoleMobSpawner
-      prototype: PlayerBorgErtMedictGhostRole
+      prototype: PlayerBorgErtMedicGhostRole
     - type: Sprite
       sprite: Imperial/BorgomatERT/borg_ert_spawner.rsi
       layers:

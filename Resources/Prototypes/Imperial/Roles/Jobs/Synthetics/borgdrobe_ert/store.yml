@@ -21,7 +21,7 @@
   id: ErtBorgDrobeUplinkMedical
   name: borgdrobe-uplink-ert-borg-medical-name
   description: borgdrobe-uplink-ert-borg-medical-desc
-  productEntity: PlayerBorgErtMedictGhostRole
+  productEntity: PlayerBorgErtMedicGhostRole
   priority: 2
   cost:
     BlueSpaceCube: 15
@@ -215,7 +215,7 @@
   cost:
     BlueSpaceCube: 3
   categories:
-  - BorgDrobeMech
+  - ErtBorgDrobeMech
 
 - type: listing
   id: MechEquipmentPilotProtection
@@ -224,7 +224,7 @@
   cost:
     BlueSpaceCube: 2
   categories:
-  - BorgDrobeMech
+  - ErtBorgDrobeMech
 
 - type: listing
   id: MechEquipmentTeleporter
@@ -233,7 +233,7 @@
   cost:
     BlueSpaceCube: 4
   categories:
-  - BorgDrobeMech
+  - ErtBorgDrobeMech
 
 - type: listing
   id: MechEquipmentPhaseShift

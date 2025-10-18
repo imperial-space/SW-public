@@ -10,9 +10,7 @@
     ignited: true
   - type: IgniteOnCollide
     fireStacks: 0.35
-#  - type: Reflective
   - type: FlyBySound
-#  - type: Clickable
   - type: Physics
     bodyType: Dynamic
     linearDamping: 0
@@ -21,25 +19,6 @@
     color: "#ff5e00"
     radius: 2.0
     energy: 7.0
-#  - type: Fixtures
-#    fixtures:
-#      projectile:
-#        shape:
-#          !type:PhysShapeAabb
-#          bounds: "-0.5,-0.2,0.5,0.2"
-#        hard: false
-#        mask:
-#        - Impassable
-#        - BulletImpassable
-#      fly-by: &flybyfixture
-#        shape: !type:PhysShapeCircle
-#          radius: 1.5
-#        layer:
-#        - Impassable
-#        - MidImpassable
-#        - HighImpassable
-#        - LowImpassable
-#        hard: False
   - type: Projectile
     soundHit: null
     impactEffect: null

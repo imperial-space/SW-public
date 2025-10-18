@@ -5,7 +5,7 @@
     count: 16
 
 - type: localizedDataset
-  id: NamesErEngineerBorg
+  id: NamesErtEngineerBorg
   values:
     prefix: names-ert-engineer-borg-dataset-
     count: 16

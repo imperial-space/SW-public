@@ -85,7 +85,6 @@
     - type: ItemToggleHot
     - type: ItemToggleSize
       activatedSize: Huge
-    proto: FlamethrowerBullet
   - type: MagazineAmmoProvider
     whitelist:
     prototypes:
@@ -100,39 +99,7 @@
         insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
         ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
         priority: 2
-#  - type: ItemTogglePointLight
-#    toggleableVisualsColorModulatesLights: true
-#  - type: Gun
-#    projectileSpeed: 8
-#    fireRate: 15
-#    minAngle: 1
-#    maxAngle: 2
-#    angleIncrease: 0
-#    angleDecay: 0
-#    selectedMode: FullAuto
-#    availableModes:
-#      - FullAuto
-#  - type: BallisticAmmoProvider
-#    proto: FlamethrowerBullet
-#    capacity: 1000
-#  - type: ItemSlots
-#    slots:
-#      gun_magazine:
-#        name: Magazine
-#        startingItem: ItemDelivererMagazine
-#        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-#        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
-#        priority: 2
-#        whitelist:
-#          tags:
-#            - ItemDelivererMagazine
-#        blacklist:
-#          tags:
-#            - MagazineLightRifleBox
   - type: Appearance
-
-#- type: Tag
-#  id: FlameThrowerMagazine
 
 - type: entity
   id: BaseFueltankFlamethrower
