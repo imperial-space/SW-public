@@ -1043,7 +1043,7 @@
     sprite: Clothing/Shoes/Boots/magboots-advanced.rsi
     state: icon
   - type: Clothing
-    sprite: Imperial/Other/ertborgs/magbootsertborg,rsi
+    sprite: Imperial/Other/ertborgs/magbootsertborg.rsi
     state: none
   - type: ClothingSpeedModifier
     walkModifier: 1
@@ -1177,6 +1177,7 @@
       state: icon-siren
     useDelay: 1
     itemIconStyle: BigAction
+
 
 - type: entity
   name: borg's laser

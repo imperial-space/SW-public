@@ -1,7 +1,6 @@
 #Боевой
 
 - type: entity
-  #noSpawn: true
   id: SpawnERTAssaultBorg
   name: ghost role spawn point
   parent: MarkerBase
@@ -24,7 +23,6 @@
 #ИИнженерный
 
 - type: entity
-  #noSpawn: true
   id: SpawnERTEngineerBorg
   name: ghost role spawn point
   parent: MarkerBase
@@ -47,7 +45,6 @@
 #Медицинский
 
 - type: entity
-  #noSpawn: true
   id: SpawnERTMedicalBorg
   name: ghost role spawn point
   parent: MarkerBase
@@ -70,7 +67,6 @@
 #РХБЗЗ
 
 - type: entity
-  #noSpawn: true
   id: SpawnCBURNBorg
   name: ghost role spawn point
   parent: MarkerBase

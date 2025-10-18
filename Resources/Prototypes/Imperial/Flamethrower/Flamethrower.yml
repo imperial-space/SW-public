@@ -60,9 +60,6 @@
       path: /Audio/Imperial/Flamethrower/flamethrower_on.ogg
     soundDeactivate:
       path: /Audio/Items/Lighters/lighter3.ogg
-#  - type: ItemToggleActiveSound
-#    activeSound:
-#      path: /Audio/Weapons/ebladehum.ogg
   - type: MultiHandedItem
   - type: ComponentToggler
     components:
