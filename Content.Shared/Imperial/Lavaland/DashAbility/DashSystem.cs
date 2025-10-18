@@ -26,12 +26,10 @@ namespace Content.Shared.Imperial.Abilities.Urs.Systems
             base.Initialize();
             SubscribeLocalEvent<UrsDashComponent, StartCollideEvent>(OnStartCollide);
             SubscribeLocalEvent<UrsDashComponent, UrsDashAction>(OnSummonAction);
-            SubscribeLocalEvent<UrsDashComponent, EndCollideEvent>(OnEndCollide);
         }
 
         public void OnSummonAction(EntityUid uid, UrsDashComponent comp, UrsDashAction args)
         {
-            comp.IsDashing = false;
             var xform = Transform(args.Performer);
             var fromCoords = xform.Coordinates;
             var targetPos = args.Target;
@@ -39,7 +37,7 @@ namespace Content.Shared.Imperial.Abilities.Urs.Systems
             var direction = _transform.ToMapCoordinates(targetPos).Position - fromMap.Position;
 
 
-            _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(6));
+            _stun.TryAddStunDuration(uid, args.StunTime);
             _popup.PopupPredicted(Loc.GetString("Revers-dash-action-message", ("entity", args.Performer)), args.Performer, args.Performer, type: PopupType.SmallCaution);
             _physics.SetLinearVelocity(uid, direction * comp.PushStrength * -0.6f, body: _pushComp);
             comp.IsDashing = true;
@@ -89,11 +87,5 @@ namespace Content.Shared.Imperial.Abilities.Urs.Systems
             }
         }
 
-        public void OnEndCollide(EntityUid uid, UrsDashComponent comp, ref EndCollideEvent args)
-        {
-            comp.CollidingEntities.Remove(args.OtherEntity);
-            if (comp.CollidingEntities.Count == 0)
-                return;
-        }
     }
 }
