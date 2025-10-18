@@ -11,9 +11,6 @@
       size: Tiny
     - type: Stack
       count: 1
-    - type: Tag
-      tags:
-        - EngineerBorgItem # Тег, позволяющий инженерному боргу брать машинные части
 
 - type: entity
   id: MicroManipulatorStockPart

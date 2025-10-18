@@ -374,6 +374,8 @@
     tags:
     - BorgModuleSecurityImperial
 
+# Imperial Space Модули киборгов ОБР и РХБЗЗ start
+
 - type: entity
   id: BaseErtBorgModule
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
@@ -418,8 +420,16 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
+    - item: Handcuffs
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Handcuffs
+        whitelist:
+          components:
+          - Handcuff
     - item: WeaponPulseCanonBorg
     - item: PinpointerNuclear
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-gun }
   - type: StaticPrice
@@ -441,6 +451,7 @@
     hands:
     - item: EnergySword
     - item: PinpointerNuclear
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-Energomech }
   - type: StaticPrice
@@ -459,8 +470,8 @@
   - type: ItemBorgModule
     hands:
     - item: JawsOfLife
-    - item: JetpackErtBorg
     - item: PinpointerNuclear
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-jaws }
   - type: StaticPrice
@@ -481,6 +492,7 @@
     - item: AdvancedStunbatonBorg
     - item: ErtBorgWeaponTaser
     - item: FlashBorg
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-nonlethal }
   - type: StaticPrice
@@ -501,6 +513,7 @@
     - item: ErtBorgWeaponDisablerSMG
     - item: FlashBorg
     - item: PinpointerNuclear
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-module-Stanner }
   - type: StaticPrice
@@ -520,6 +533,7 @@
     hands:
     - item: FlameThrowerBorg
     - item: PinpointerNuclear
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-flamethrower }
   - type: StaticPrice
@@ -743,6 +757,7 @@
     - item: HolofanProjectorBorg
     - item: GasAnalyzer
     - item: trayScanner
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-tools }
   - type: StaticPrice
@@ -840,6 +855,7 @@
         whitelist:
           components:
           - FloorTile
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-materials }
   - type: StaticPrice
@@ -881,6 +897,7 @@
           - CableCoil
     - item: JawsOfLife
     - item: trayScanner
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-module-Cable }
   - type: StaticPrice
@@ -950,7 +967,8 @@
         emptyRepresentative: EmergencyRollerBedSpawnFolded
         whitelist:
           components:
-          - Healing
+          - Foldable
+    - item: HandheldCrewMonitorErtBorg
     - item: HandheldHealthAnalyzerErtBorg
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -986,6 +1004,8 @@
         whitelist:
           components:
           - Healing
+    - item: JawsOfLife
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: treatment-module }
   - type: StaticPrice
@@ -993,7 +1013,7 @@
 
 # Гипоспрей ОБР борга
 - type: entity
-  name: ert borg hypospray ## Гипоспрей борга синдиката
+  name: ert borg hypospray
   parent: HyposprayBorg
   description: Using reverse engineered designs from NT, Cybersun produced these in limited quantities for Gorlex Marauder operatives.
   id: HyposprayBorgErt
@@ -1020,31 +1040,31 @@
       - reagents:
         - reagentId: Retropine
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/firstaid.png
+          sprite: Imperial/BorgomatERT/firstaidkits/firstaid.png
       - reagents:
         - reagentId: Dermaline
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/burnkit.png
+          sprite: Imperial/BorgomatERT/firstaidkits/burnkit.png
       - reagents:
         - reagentId: DexalinPlus
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/o2kit.png
+          sprite: Imperial/BorgomatERT/firstaidkits/o2kit.png
       - reagents:
         - reagentId: SalineGlucose
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/advkit.png
+          sprite: Imperial/BorgomatERT/firstaidkits/advkit.png
       - reagents:
         - reagentId: Puncturase
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/blackkit.png
+          sprite: Imperial/BorgomatERT/firstaidkits/blackkit.png
       - reagents:
         - reagentId: Arithrazine
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/radkit.png
+          sprite: Imperial/BorgomatERT/firstaidkits/radkit.png
       - reagents:
         - reagentId: Diphenhydramine
           quantity: 2
-          sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi/toxinkit.png
+          sprite: Imperial/BorgomatERT/firstaidkits/toxinkit.png
   - type: SolutionRegeneration
     solution: hypospray
     generated:
@@ -1066,6 +1086,7 @@
     hands:
     - item: HandheldHealthAnalyzerUnpowered
     - item: DefibrillatorOneHandedUnpowered
+    - item: JawsOfLife
     - item: JetpackErtBorg
     - item: BorgHandheldGPSBasic
     - item: HandheldCrewMonitorErtBorg
@@ -1121,6 +1142,7 @@
     - item: HandheldHealthAnalyzerUnpowered
     - item: HyposprayBorgErt
     - item: HandheldCrewMonitorErtBorg
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
   - type: StaticPrice
@@ -1133,10 +1155,10 @@
   description: State-of-the-art magnetic boots that do not slow down their wearer.
   components:
   - type: Sprite
-    sprite: Clothing/Shoes/Boots/magboots-advanced.rsi
+    sprite: Clothing/Shoes/Boots/magboots-advanced
     state: icon
   - type: Clothing
-    sprite: Imperial/Other/ertborgs/magbootsertborg.rsi
+    sprite: Imperial/Other/ertborgs/magbootsertborg
     state: none
   - type: ClothingSpeedModifier
     walkModifier: 1
@@ -1277,6 +1299,8 @@
       state: icon-siren
     useDelay: 1
     itemIconStyle: BigAction
+
+# Imperial Space Модули киборгов ОБР и РХБЗЗ end
 
 
 - type: entity

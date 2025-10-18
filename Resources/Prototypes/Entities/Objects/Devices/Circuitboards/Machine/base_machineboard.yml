@@ -18,7 +18,4 @@
         Glass: 230
       chemicalComposition:
         Silicon: 20
-    - type: Tag
-      tags:
-        - EngineerBorgItem # Тег, позволяющий инженерному боргу брать машинные платы
 

@@ -88,9 +88,6 @@
     folded: true
   - type: Strap
     enabled: False
-  - type: Tag
-    tags:
-      - MedicalBorgItem # Тег, позволяющий медицинскому боргу брать каталки
 
 - type: entity
   id: CheapRollerBed
@@ -121,9 +118,6 @@
     folded: true
   - type: Strap
     enabled: False
-  - type: Tag
-    tags:
-      - MedicalBorgItem # Тег, позволяющий медицинскому боргу брать каталки
 
 - type: entity
   id: EmergencyRollerBed
@@ -154,6 +148,3 @@
     folded: true
   - type: Strap
     enabled: False
-  - type: Tag
-    tags:
-      - MedicalBorgItem # Тег, позволяющий медицинскому боргу брать каталки

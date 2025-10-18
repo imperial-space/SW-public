@@ -90,6 +90,8 @@
 #   categories:
 #   - ERTUplinkAmmoCombat
 
+#Imperial Space Огнемёт "Санитар" start
+
 - type: listing
   id: ErtCallUplinkFuelTankSmall
   name: ert-uplink-ammononcombat-fueltanksmall-name
@@ -134,6 +136,8 @@
       whitelist:
        tags:
          - ErtUplinkCBURN
+
+#Imperial Space Огнемёт "Санитар" end
 
 - type: listing
   id: ErtCallUplinkMagazinePistol
@@ -837,6 +841,8 @@
         tags:
           - ErtUplinkCombat
 
+#Imperial Space Огнемёт "Санитар" start
+
 - type: listing
   id: ErtCallUplinkWeaponFlamethrower
   name: ert-uplink-weaponcombat-weaponflamethrower-name
@@ -851,6 +857,8 @@
      whitelist:
        tags:
          - ErtUplinkCBURN
+
+#Imperial Space Огнемёт "Санитар" end
 
 - type: listing
   id: ErtCallUplinkWeaponPulseCarbine

@@ -94,10 +94,6 @@
       interactFailureString: petting-failure-ert-assault-cyborg
       interactSuccessSound:
         path: /Audio/Ambience/Objects/periodic_beep.ogg
-    - type: Body
-      prototype: ImperialBorg
-    - type: BorgHandsImperial
-      whitelistHandTag: SecurityBorgItem
     - type: Destructible
       thresholds:
         - trigger:
