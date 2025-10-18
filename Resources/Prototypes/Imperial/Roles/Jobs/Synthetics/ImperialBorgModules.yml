@@ -417,10 +417,9 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - WeaponPulseCanonBorg
-    - PinpointerNuclear
+    hands:
+    - item: WeaponPulseCanonBorg
+    - item: PinpointerNuclear
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-gun }
   - type: StaticPrice
@@ -439,10 +438,9 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - EnergySword
-    - PinpointerNuclear
+    hands:
+    - item: EnergySword
+    - item: PinpointerNuclear
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-Energomech }
   - type: StaticPrice
@@ -459,11 +457,10 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - JawsOfLife
-    - JetpackErtBorg
-    - PinpointerNuclear
+    hands:
+    - item: JawsOfLife
+    - item: JetpackErtBorg
+    - item: PinpointerNuclear
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-jaws }
   - type: StaticPrice
@@ -480,11 +477,10 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - AdvancedStunbatonBorg
-    - ErtBorgWeaponTaser
-    - FlashBorg
+    hands:
+    - item: AdvancedStunbatonBorg
+    - item: ErtBorgWeaponTaser
+    - item: FlashBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-nonlethal }
   - type: StaticPrice
@@ -501,11 +497,10 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - ErtBorgWeaponDisablerSMG
-    - FlashBorg
-    - PinpointerNuclear
+    hands:
+    - item: ErtBorgWeaponDisablerSMG
+    - item: FlashBorg
+    - item: PinpointerNuclear
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-module-Stanner }
   - type: StaticPrice
@@ -522,10 +517,9 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - FlameThrowerBorg
-    - PinpointerNuclear
+    hands:
+    - item: FlameThrowerBorg
+    - item: PinpointerNuclear
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-flamethrower }
   - type: StaticPrice
@@ -661,9 +655,6 @@
       path: /Audio/Imperial/Flamethrower/flamethrower_on.ogg
     soundDeactivate:
       path: /Audio/Items/Lighters/lighter3.ogg
-#  - type: ItemToggleActiveSound
-#    activeSound:
-#      path: /Audio/Weapons/ebladehum.ogg
   - type: ComponentToggler
     components:
     - type: DisarmMalus
@@ -744,15 +735,14 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - JawsOfLife
-    - PowerDrill
-    - WelderExperimental
-    - Multitool
-    - HolofanProjectorBorg
-    - GasAnalyzer
-    - trayScanner
+    hands:
+    - item: JawsOfLife
+    - item: PowerDrill
+    - item: WelderExperimental
+    - item: Multitool
+    - item: HolofanProjectorBorg
+    - item: GasAnalyzer
+    - item: trayScanner
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-tools }
   - type: StaticPrice
@@ -769,14 +759,13 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - RCDRechargingErtBorg
-    - JetpackErtBorg
-    - BorgHandheldGPSBasic
-    - GasAnalyzer
-    - HolofanProjectorBorg
-    - GeigerCounter
+    hands:
+    - item: RCDRechargingErtBorg
+    - item: JetpackErtBorg
+    - item: BorgHandheldGPSBasic
+    - item: GasAnalyzer
+    - item: HolofanProjectorBorg
+    - item: GeigerCounter
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-RCS }
   - type: StaticPrice
@@ -793,17 +782,64 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - SheetSteelLingering0
-    - SheetGlassLingering0
-    - SheetRGlassLingering0
-    - SheetRPGlassLingering0
-    - SheetPlasteelLingering0
-    - PartRodMetalLingering0
-    - FloorTileItemSteelLingering0
-    - FloorTileItemWhiteLingering0
-    - FloorTileItemDarkLingering0
+    hands:
+    - hand:
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: DoorElectronics
+        emptyLabel: borg-slot-circuitboards-empty
+        whitelist:
+          components:
+          - Circuitboard
+        blacklist:
+          components:
+          - SiliconLawProvider
+    - hand:
+        emptyRepresentative: MicroManipulatorStockPart
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - hand:
+        emptyRepresentative: SpaceHeaterFlatpack
+        emptyLabel: borg-slot-flatpacks-empty
+        whitelist:
+          components:
+          - Flatpack
+    - hand:
+        emptyRepresentative: FloorTileItemSteel
+        emptyLabel: borg-slot-tiles-empty
+        whitelist:
+          components:
+          - FloorTile
+    - hand:
+        emptyRepresentative: FloorTileItemWhite
+        emptyLabel: borg-slot-tiles-empty
+        whitelist:
+          components:
+          - FloorTile
+    - hand:
+        emptyRepresentative: FloorTileItemDark
+        emptyLabel: borg-slot-tiles-empty
+        whitelist:
+          components:
+          - FloorTile
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-materials }
   - type: StaticPrice
@@ -821,13 +857,30 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - CableApcStackLingering10
-    - CableMVStackLingering10
-    - CableHVStackLingering10
-    - JawsOfLife
-    - trayScanner
+    hands:
+    - item: CableApcStack10
+      hand:
+        emptyRepresentative: CableApcStack10
+        emptyLabel: borg-slot-cables-empty
+        whitelist:
+          tags:
+          - CableCoil
+    - item: CableMVStack10
+      hand:
+        emptyRepresentative: CableMVStack10
+        emptyLabel: borg-slot-cables-empty
+        whitelist:
+          tags:
+          - CableCoil
+    - item: CableHVStack10
+      hand:
+        emptyRepresentative: CableHVStack10
+        emptyLabel: borg-slot-cables-empty
+        whitelist:
+          tags:
+          - CableCoil
+    - item: JawsOfLife
+    - item: trayScanner
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-module-Cable }
   - type: StaticPrice
@@ -889,8 +942,50 @@
     layers:
     - state: nanotrasen
     - state: icon-nanotrasen
-    items:
-    - HandheldCrewMonitorErtBorg
+  - type: ItemBorgModule
+    hands:
+    - item: EmergencyRollerBedSpawnFolded
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: EmergencyRollerBedSpawnFolded
+        whitelist:
+          components:
+          - Healing
+    - item: HandheldHealthAnalyzerErtBorg
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: HandheldHealthAnalyzerErtBorg
+        whitelist:
+          components:
+          - DiscreteHealthAnalyzer
+    - item: MedicatedSuture
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: MedicatedSuture
+        whitelist:
+          components:
+          - Healing
+    - item: HardTraumapack
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: HardTraumapack
+        whitelist:
+          components:
+          - Healing
+    - item: HardBurnKit
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: HardBurnKit
+        whitelist:
+          components:
+          - Healing
+    - item: Bloodpack
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Bloodpack
+        whitelist:
+          components:
+          - Healing
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: treatment-module }
   - type: StaticPrice
@@ -968,13 +1063,12 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - HandheldHealthAnalyzerUnpowered
-    - DefibrillatorOneHandedUnpowered
-    - JetpackErtBorg
-    - BorgHandheldGPSBasic
-    - HandheldCrewMonitorErtBorg
+    hands:
+    - item: HandheldHealthAnalyzerUnpowered
+    - item: DefibrillatorOneHandedUnpowered
+    - item: JetpackErtBorg
+    - item: BorgHandheldGPSBasic
+    - item: HandheldCrewMonitorErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
   - type: StaticPrice
@@ -1023,11 +1117,10 @@
     - state: nanotrasen
     - state: icon-nanotrasen
   - type: ItemBorgModule
-    hands: []
-    items:
-    - HandheldHealthAnalyzerUnpowered
-    - HyposprayBorgErt
-    - HandheldCrewMonitorErtBorg
+    hands:
+    - item: HandheldHealthAnalyzerUnpowered
+    - item: HyposprayBorgErt
+    - item: HandheldCrewMonitorErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
   - type: StaticPrice
@@ -1050,6 +1143,15 @@
     sprintModifier: 1
   - type: Unremoveable
 
+- type: entity
+  id: HandheldHealthAnalyzerErtBorg
+  parent: HandheldHealthAnalyzerUnpowered
+  name: ert borg health analyzer
+  suffix: Always Powered
+  description: A hand-held body scanner capable of distinguishing vital signs of the subject.
+  components:
+  - type: Unremoveable
+
 - type: startingGear #gear
   id: ErtAssaultBorgLodout
   equipment:
@@ -1067,8 +1169,6 @@
   equipment:
     head: ClothingErtMedicalBorgSiren
     shoes: ClothingShoesBootsMagAdvErtBorg
-  inhand:
-  - EmergencyRollerBedSpawnFolded
 
 - type: startingGear #gear
   id: ErtEngineerBorgLodout
