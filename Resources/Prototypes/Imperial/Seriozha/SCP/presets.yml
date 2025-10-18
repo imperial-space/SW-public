@@ -383,6 +383,7 @@
     head: ClothingHeadHelmetSCPAlpha
     eyes: AlphaVisor
     gloves: ClothingHandsGlovesCombat
+    neck: ClothingSCPCloakRed
     outerClothing: ClothingOuterArmorSCPAlpha
     id: SCPIDCardFive
     ears: ClothingHeadsetSCPAlt
