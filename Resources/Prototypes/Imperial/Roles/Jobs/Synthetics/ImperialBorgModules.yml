@@ -148,9 +148,6 @@
 - type: Tag
   id: MedicalBorgItem
 
-- type: Tag
-  id: EngineerBorgItem
-
 ## Медицинский киборг синдиката
 - type: entity
   id: PlayerBorgSyndicateMedicalBattery
