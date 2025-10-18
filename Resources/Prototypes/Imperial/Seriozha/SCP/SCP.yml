@@ -298,6 +298,7 @@
       actions:
         Alive:
         - MiniSyringeProjectileAbility
+        - SCPZombieMorphAction
     - type: Sprite
       drawdepth: Mobs
       layers:
@@ -323,7 +324,9 @@
       animation: WeaponArcPunch
       damage:
         types:
-          Caustic: 150
+          Poison: 100
+          Caustic: 50
+          Structural: 50
     - type: Speech
       speechVerb: LargeMob
     - type: MovementSpeedModifier
@@ -446,6 +449,86 @@
           layer:
           - MobLayer
 
+- type: entity
+  name: Zombie
+  suffix: seriozha, Недра
+  parent: [ ImperialSCPBase, StripableInventoryBase ]
+  id: ImperialSCPZombie
+  description: Ugh...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Seriozha/SCP/objects/Zombie.rsi
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        160: Dead
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2.7
+      baseSprintSpeed: 3.1
+    - type: PassiveDamage
+      allowedStates:
+      - Alive
+      damageCap: 160
+      damage:
+        types:
+          Heat: -2
+          Blunt: -2
+        groups:
+          Brute: -1
+          Toxin: -3
+          Airloss: -2
+          Burn: -1
+    - type: Puller
+    - type: Pullable
+    - type: Tag
+      tags:
+      - DoorBumpOpener
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.4
+          density: 300
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: ReplacementAccent
+      accent: zombie
+    - type: MeleeWeapon
+      soundHit:
+          path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcBite
+      damage:
+        types:
+          Poison: 2
+          Piercing: 7
+          Blunt: 18
+    - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
+    - type: ZombieImmune
+    - type: NonSpreaderZombie
+
+
 - type: emoteSounds
   id: DedVoice
   sounds:
@@ -489,15 +572,6 @@
     strippingWindowPos: 0,4
     displayName: Pocket 1
     stripHidden: true
-  - name: id
-    slotTexture: id
-    fullTextureName: template_small
-    slotFlags: IDCARD
-    slotGroup: SecondHotbar
-    stripTime: 6
-    uiWindowPos: 2,1
-    strippingWindowPos: 2,4
-    displayName: ID
 
 - type: startingGear
   id: ImperialDocGear

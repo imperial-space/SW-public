@@ -48,3 +48,50 @@
   - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: MiniSyringeProjectile
+
+- type: polymorph
+  id: SCPZombieMorph
+  configuration:
+    entity: ImperialSCPZombie
+    forced: true
+    inventory: None
+    transferName: false
+    transferDamage: false
+    revertOnCrit: false
+    revertOnDeath: false
+
+- type: entity
+  parent: ProjectilePolyboltBase
+  id: ProjectilePolyboltZombie
+  name: zombie polybolt
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: PolymorphOnTrigger
+    polymorph: SCPZombieMorph
+  - type: TriggerWhitelist
+    whitelist:
+      components:
+      - Body
+    blacklist:
+      tags:
+      - SCP
+  - type: TimedDespawn
+    lifetime: 0.1
+
+- type: entity
+  id: SCPZombieMorphAction
+  parent: BaseAction
+  name: SCPZombieMorphAction
+  components:
+  - type: Action
+    useDelay: 12
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Seriozha/SCP/ability/scpzombieaction.rsi
+      state: icon
+  - type: TargetAction
+    checkCanAccess: false
+    range: 30
+  - type: WorldTargetAction
+    event: !type:ProjectileSpellEvent
+      prototype: ProjectilePolyboltZombie
