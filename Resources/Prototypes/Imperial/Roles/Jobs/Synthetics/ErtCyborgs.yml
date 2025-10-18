@@ -139,11 +139,37 @@
       radius: 7
       energy: 3
       color: "#e8c170"
+    - type: UserInterface
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+        enum.BorgUiKey.Key:
+          type: BorgBoundUserInterface
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+        enum.GeneralStationRecordConsoleKey.Key:
+          type: GeneralStationRecordConsoleBoundUserInterface
+    - type: ActivatableUI
+      key: enum.BorgUiKey.Key
+    - type: SiliconLawBound
+    - type: IntrinsicUI
+      uis:
+        enum.GeneralStationRecordConsoleKey.Key:
+          toggleAction: ActionAGhostShowStationRecords
+    - type: GeneralStationRecordConsole
+      canDeleteEntries: false
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: CrewMonitor
+    - type: WirelessNetworkConnection
+      range: 500
+    - type: StationLimitedNetwork
     - type: NameIdentifier
       group: ErtBorgID
     - type: RandomMetadata
       nameSegments:
-      - NamesErtAssaultBorg
+        - NamesErtAssaultBorg
 
 - type: entity
   id: PlayerBorgErtAssaultBattery
@@ -378,6 +404,37 @@
       radius: 7
       energy: 3
       color: "#dd200b"
+    - type: UserInterface
+      interfaces:
+        enum.SiliconLawsUiKey.Key:
+          type: SiliconLawBoundUserInterface
+          requireInputValidation: false
+        enum.BorgUiKey.Key:
+          type: BorgBoundUserInterface
+        enum.StrippingUiKey.Key:
+          type: StrippableBoundUserInterface
+        enum.CrewMonitoringUIKey.Key:
+          type: CrewMonitoringBoundUserInterface
+        enum.GeneralStationRecordConsoleKey.Key:
+          type: GeneralStationRecordConsoleBoundUserInterface
+    - type: ActivatableUI
+      key: enum.BorgUiKey.Key
+    - type: SiliconLawBound
+    - type: IntrinsicUI
+      uis:
+        enum.CrewMonitoringUIKey.Key:
+          toggleAction: ActionAGhostShowCrewMonitoring
+        enum.GeneralStationRecordConsoleKey.Key:
+          toggleAction: ActionAGhostShowStationRecords
+    - type: CrewMonitoringConsole
+    - type: GeneralStationRecordConsole
+      canDeleteEntries: false
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: CrewMonitor
+    - type: WirelessNetworkConnection
+      range: 500
+    - type: StationLimitedNetwork
     - type: MovementSpeedModifier
       baseWalkSpeed : 3
       baseSprintSpeed : 6 # Быстрее обычных киборгов

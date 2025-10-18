@@ -965,7 +965,6 @@
         whitelist:
           components:
           - Foldable
-    - item: HandheldCrewMonitorErtBorg
     - item: HandheldHealthAnalyzerErtBorg
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -973,6 +972,7 @@
         whitelist:
           components:
           - DiscreteHealthAnalyzer
+    - item: JawsOfLife
     - item: MedicatedSuture
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -1001,7 +1001,6 @@
         whitelist:
           components:
           - Healing
-    - item: JawsOfLife
     - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: treatment-module }
@@ -1086,42 +1085,10 @@
     - item: JawsOfLife
     - item: JetpackErtBorg
     - item: BorgHandheldGPSBasic
-    - item: HandheldCrewMonitorErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: defib-module }
   - type: StaticPrice
     price: 8000
-
-- type: entity
-  name: ert borg handheld crew monitor
-  categories: [ DoNotMap ]
-  parent: [ BaseHandheldComputer ]
-  id: HandheldCrewMonitorErtBorg
-  description: A hand-held crew monitor displaying the status of suit sensors.
-  components:
-  - type: Item
-    heldPrefix: scanner
-  - type: Sprite
-    sprite: Objects/Specific/Medical/handheldcrewmonitor.rsi
-    state: scanner
-  - type: ActivatableUI
-    key: enum.CrewMonitoringUIKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.CrewMonitoringUIKey.Key:
-        type: CrewMonitoringBoundUserInterface
-  - type: CrewMonitoringConsole
-  - type: DeviceNetwork
-    deviceNetId: Wireless
-    receiveFrequencyId: CrewMonitor
-  - type: WirelessNetworkConnection
-    range: 500
-  - type: StationLimitedNetwork
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
 
 - type: entity
   id: BorgModuleAdvancedChemicalErt
@@ -1138,7 +1105,6 @@
     hands:
     - item: HandheldHealthAnalyzerUnpowered
     - item: HyposprayBorgErt
-    - item: HandheldCrewMonitorErtBorg
     - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: adv-chem-module }
@@ -1175,8 +1141,6 @@
   id: ErtAssaultBorgLodout
   equipment:
     shoes: ClothingShoesBootsMagAdvErtBorg
-  inhand:
-  - Handcuffs
 
 - type: startingGear #gear
   id: ErtBorgLodout
@@ -1298,7 +1262,6 @@
     itemIconStyle: BigAction
 
 # Imperial Space Модули киборгов ОБР и РХБЗЗ end
-
 
 - type: entity
   name: borg's laser
