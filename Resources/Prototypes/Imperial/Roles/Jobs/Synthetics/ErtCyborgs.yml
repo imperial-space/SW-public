@@ -45,7 +45,6 @@
     - Security
     - Service
     - Supply
-  - type: MovementAlwaysTouching
   - type: Speech
     speechSounds: SyndieBorg
     allowedEmotes:
