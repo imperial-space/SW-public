@@ -24,7 +24,7 @@
   productEntity: PlayerBorgErtMedicGhostRole
   priority: 2
   cost:
-    BlueSpaceCube: 15
+    BlueSpaceCube: 20
   categories:
   - BorgDrobeErtBorg
   conditions:
@@ -43,7 +43,7 @@
   - BorgDrobeErtBorg
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1
+    stock: 3
 
 - type: listing
   id: ErtBorgDrobeUplinkCburn
@@ -57,7 +57,7 @@
   - BorgDrobeErtBorg
   conditions:
   - !type:ListingLimitedStockCondition
-    stock: 1
+    stock: 2
 
 # Mech
 

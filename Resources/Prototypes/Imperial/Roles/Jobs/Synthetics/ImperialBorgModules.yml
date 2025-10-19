@@ -417,47 +417,12 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - item: Handcuffs
-      hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Handcuffs
-        whitelist:
-          components:
-          - Handcuff
     - item: WeaponPulseCanonBorg
-    - item: PinpointerNuclear
-    - item: JetpackErtBorg
-  - type: BorgModuleIcon
-    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-gun }
-  - type: StaticPrice
-    price: 12000
-
-
-- type: entity
-  parent: BaseErtBorgModule
-  id: BorgModuleEswordErt
-  name: ert energy sword cyborg module
-  description: A weapons module that comes with an energy sword.
-  components:
-  - type: Sprite
-    sprite: Imperial/Roles/Synthetics/ERT_modules/module_pulse_cannon.rsi
-    layers:
-    - state: nanotrasen
-    - state: icon-nanotrasen
-  - type: ItemBorgModule
-    hands:
-    - item: Handcuffs
-      hand:
-        emptyLabel: borg-slot-topicals-empty
-        emptyRepresentative: Handcuffs
-        whitelist:
-          components:
-          - Handcuff
     - item: EnergySword
     - item: PinpointerNuclear
     - item: JetpackErtBorg
   - type: BorgModuleIcon
-    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-Energomech }
+    icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-gun }
   - type: StaticPrice
     price: 12000
 
@@ -493,6 +458,8 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
+    - item: AdvancedStunbatonBorg
+    - item: ErtBorgWeaponTaser
     - item: Handcuffs
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -500,8 +467,6 @@
         whitelist:
           components:
           - Handcuff
-    - item: AdvancedStunbatonBorg
-    - item: ErtBorgWeaponTaser
     - item: FlashBorg
     - item: JetpackErtBorg
   - type: BorgModuleIcon
@@ -543,6 +508,7 @@
   - type: ItemBorgModule
     hands:
     - item: FlameThrowerBorg
+    - item: EnergySword
     - item: PinpointerNuclear
     - item: JetpackErtBorg
   - type: BorgModuleIcon
@@ -1035,31 +1001,31 @@
     solutions:
       - reagents:
         - reagentId: Retropine
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/firstaid.png
       - reagents:
         - reagentId: Dermaline
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/burnkit.png
       - reagents:
         - reagentId: DexalinPlus
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/o2kit.png
       - reagents:
         - reagentId: SalineGlucose
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/advkit.png
       - reagents:
         - reagentId: Puncturase
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/blackkit.png
       - reagents:
         - reagentId: Arithrazine
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/radkit.png
       - reagents:
         - reagentId: Diphenhydramine
-          quantity: 2
+          quantity: 1
           sprite: Imperial/BorgomatERT/firstaidkits/toxinkit.png
   - type: SolutionRegeneration
     solution: hypospray

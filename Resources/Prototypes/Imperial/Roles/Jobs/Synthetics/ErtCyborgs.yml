@@ -79,11 +79,10 @@
           map: ["light"]
           visible: false
     - type: BorgChassis
-      maxModules: 4
+      maxModules: 3
       moduleWhitelist:
         tags:
           - BorgModulePulseCannon
-          - BorgModuleEswordErt
           - BorgModuleNonLethalSecurityErt
           - ErtBorgModuleJaws
       hasMindState: def_e
@@ -181,7 +180,6 @@
         - PositronicBrain
       borg_module:
         - BorgModulePulseCannon
-        - BorgModuleEswordErt
         - BorgModuleNonLethalSecurityErt
         - ErtBorgModuleJaws
   - type: ItemSlots
@@ -497,11 +495,10 @@
         map: ["light"]
         visible: false
     - type: BorgChassis
-      maxModules: 5
+      maxModules: 4
       moduleWhitelist:
         tags:
         - BorgModuleFlameThrower
-        - BorgModuleEswordErt
         - ErtBorgModuleJaws
         - ErtBorgModuleBomb
         - BorgModuleNonLethalSecurityErt
@@ -558,8 +555,8 @@
       footstepSoundCollection:
         collection: FootstepHoverBorg
     - type: MovementSpeedModifier
-      baseWalkSpeed : 1.5
-      baseSprintSpeed : 3.5 # Медленнее обычных киборгов
+      baseWalkSpeed : 1.0
+      baseSprintSpeed : 2.5 # Медленнее обычных киборгов
     - type: NameIdentifier
       group: CburnBorgID
     - type: RandomMetadata
@@ -577,7 +574,6 @@
         - PositronicBrain
       borg_module:
         - BorgModuleFlameThrower
-        - BorgModuleEswordErt
         - ErtBorgModuleJaws
         - ErtBorgModuleBomb
   - type: ItemSlots
