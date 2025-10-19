@@ -57,7 +57,7 @@
 - type: startingGear
   id: ArcaneBomjGear
   equipment:
-    jumpsuit: ClothingUniformJumpStinky
+    jumpsuit: ClothingUniformJumpsuitChiefEngineerNT
     back: ClothingBackpackCargo
     shoes: ClothingShoesBootsWinter
     head: ClothingHeadHatUshanka
