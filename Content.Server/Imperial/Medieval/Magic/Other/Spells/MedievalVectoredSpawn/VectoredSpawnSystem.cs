@@ -26,10 +26,10 @@ public sealed partial class VectoredSpawnSystem : EntitySystem
     private void OnSpawn(EntityUid uid, VectoredSpawnComponent component, MedievalAfterSpawnEntityBySpellEvent args)
     {
         var coords = _transform.GetMapCoordinates(uid);
-        var length = component.SpawnPositionsOffset.Count;
+        var length = component.SpawnPositions.Count;
         for (var i = 0; i < length; i++)
         {
-            var resultCoords = new MapCoordinates(coords.Position + component.SpawnPositionsOffset[i], coords.MapId);
+            var resultCoords = new MapCoordinates(coords.Position + component.SpawnPositions[i], coords.MapId);
             var entityClone = Spawn(component.SpawnedEntityID, resultCoords);
         }
     }

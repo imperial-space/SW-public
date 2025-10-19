@@ -18,9 +18,9 @@ public sealed partial class VectoredSpawnComponent : Component
     [DataField(required: true)]
     public EntProtoId SpawnedEntityID = string.Empty;
     /// <summary>
-    /// List of offset vectors
+    /// List of vectors that indicate the places where entities spawn, relative to the parent
     /// </summary>
     [DataField(required: true)]
-    public List<Vector2> SpawnPositionsOffset;
+    public List<Vector2> SpawnPositions;
 
 }
