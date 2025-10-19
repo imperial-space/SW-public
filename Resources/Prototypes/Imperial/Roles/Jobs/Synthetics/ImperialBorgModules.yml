@@ -446,6 +446,13 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
+    - item: Handcuffs
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Handcuffs
+        whitelist:
+          components:
+          - Handcuff
     - item: EnergySword
     - item: PinpointerNuclear
     - item: JetpackErtBorg
@@ -486,6 +493,13 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
+    - item: Handcuffs
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: Handcuffs
+        whitelist:
+          components:
+          - Handcuff
     - item: AdvancedStunbatonBorg
     - item: ErtBorgWeaponTaser
     - item: FlashBorg
@@ -598,20 +612,6 @@
     magState: mag
     steps: 4
     zeroVisible: false
-  - type: ToggleableVisuals
-    spriteLayer: flame
-    inhandVisuals:
-      left:
-      - state: inhand-left-flame
-        shader: unshaded
-      right:
-      - state: inhand-right-flame
-        shader: unshaded
-  - type: ItemToggle
-    soundActivate:
-      path: /Audio/Imperial/Flamethrower/flamethrower_on.ogg
-    soundDeactivate:
-      path: /Audio/Items/Lighters/lighter3.ogg
   - type: Appearance
   - type: Clothing
     sprite: Imperial/Roles/Synthetics/ERT/pulse_cannon.rsi
