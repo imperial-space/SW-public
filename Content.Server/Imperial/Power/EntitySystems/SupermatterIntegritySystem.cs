@@ -12,6 +12,7 @@ using Content.Shared.Radiation.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Physics.Events;
 using System.Linq;
+using Robust.Server.GameObjects;
 
 namespace Content.Server.Imperial.Power.EntitySystems;
 
@@ -99,7 +100,7 @@ public sealed class SupermatterIntegritySystem : EntitySystem
             }
         }
 
-        if (TryComp(uid, out SharedPointLightComponent? light))
+        if (TryComp(uid, out PointLightComponent? light))
         {
             if (comp.Activated)
             {
