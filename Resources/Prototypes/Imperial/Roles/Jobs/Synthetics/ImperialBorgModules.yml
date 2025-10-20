@@ -768,7 +768,15 @@
         whitelist:
           components:
           - AmeFuelContainer
+          - GasTank
     - item: SheetSteel
+      hand:
+        emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - item: SheetGlass
       hand:
         emptyLabel: borg-slot-construction-empty
         emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
@@ -777,7 +785,7 @@
           - ConstructionMaterial
     - item: SheetRGlass
       hand:
-        emptyLabel: borg-slot-construction-empty
+        emptyLabel: borg-slot-constructioyn-empty
         emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         whitelist:
           tags:
@@ -789,21 +797,16 @@
         whitelist:
           tags:
           - ConstructionMaterial
+
     - hand:
         emptyLabel: borg-slot-circuitboards-empty
-        emptyRepresentative: DoorElectronics
+        emptyRepresentative: ParticleAcceleratorComputerCircuitboard
         whitelist:
           components:
           - Circuitboard
         blacklist:
           components:
           - SiliconLawProvider
-    - hand:
-        emptyLabel: borg-slot-construction-empty
-        emptyRepresentative: MicroManipulatorStockPart
-        whitelist:
-          tags:
-          - ConstructionMaterial
     - hand:
         emptyLabel: borg-slot-flatpacks-empty
         emptyRepresentative: SpaceHeaterFlatpack
