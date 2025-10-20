@@ -92,3 +92,5 @@ medieval-store-spells-light-sunstrike-middle-desc = Создаёт управл�
 
 medieval-store-spells-light-sunstrike-senior-name = Солнечный луч
 medieval-store-spells-light-sunstrike-senior-desc = Ускоренная версия солнечного луча. Стоимость 60 маны
+
+MagicSpark = Магическая искра

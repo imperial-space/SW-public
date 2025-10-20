@@ -1,0 +1,19 @@
+# Beginner
+
+- type: entity
+  id: SparkBeginner
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/magic_spark.rsi
+    state: item
+  - type: PointLight
+    radius: 1.2
+    color: orange
+  - type: Igniter
+    igniteTime: 1
+    igniteChance: 1
+    flammableStacks: 0.5
+  - type: Unremoveable
+  - type: TimedDespawn
+    lifetime: 3
