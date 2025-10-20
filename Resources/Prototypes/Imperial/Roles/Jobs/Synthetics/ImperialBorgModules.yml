@@ -761,37 +761,37 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
-    - hand:
-      - item: CableApcStack10
+    - item: AmeJar
+      hand:
+        emptyLabel: borg-slot-construction-empty
         emptyRepresentative: AmeJar
-        emptyLabel: borg-slot-construction-empty
         whitelist:
-          tags:
+          components:
           - AmeFuelContainer
-    - hand:
-      - item: SheetSteel
-        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+    - item: SheetSteel
+      hand:
         emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - item: SheetRGlass
+      hand:
+        emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
+        whitelist:
+          tags:
+          - ConstructionMaterial
+    - item: PartRodMetal
+      hand:
+        emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         whitelist:
           tags:
           - ConstructionMaterial
     - hand:
-      - item: SheetRGlass
-        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
-        emptyLabel: borg-slot-construction-empty
-        whitelist:
-          tags:
-          - ConstructionMaterial
-    - hand:
-      - item: PartRodMetal
-        emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
-        emptyLabel: borg-slot-construction-empty
-        whitelist:
-          tags:
-          - ConstructionMaterial
-    - hand:
-        emptyRepresentative: DoorElectronics
         emptyLabel: borg-slot-circuitboards-empty
+        emptyRepresentative: DoorElectronics
         whitelist:
           components:
           - Circuitboard
@@ -799,32 +799,32 @@
           components:
           - SiliconLawProvider
     - hand:
-        emptyRepresentative: MicroManipulatorStockPart
         emptyLabel: borg-slot-construction-empty
+        emptyRepresentative: MicroManipulatorStockPart
         whitelist:
           tags:
           - ConstructionMaterial
     - hand:
-        emptyRepresentative: SpaceHeaterFlatpack
         emptyLabel: borg-slot-flatpacks-empty
+        emptyRepresentative: SpaceHeaterFlatpack
         whitelist:
           components:
           - Flatpack
     - hand:
+        emptyLabel: borg-slot-tiles-empty
         emptyRepresentative: FloorTileItemSteel
-        emptyLabel: borg-slot-tiles-empty
         whitelist:
           components:
           - FloorTile
     - hand:
+        emptyLabel: borg-slot-tiles-empty
         emptyRepresentative: FloorTileItemWhite
-        emptyLabel: borg-slot-tiles-empty
         whitelist:
           components:
           - FloorTile
     - hand:
-        emptyRepresentative: FloorTileItemDark
         emptyLabel: borg-slot-tiles-empty
+        emptyRepresentative: FloorTileItemDark
         whitelist:
           components:
           - FloorTile
