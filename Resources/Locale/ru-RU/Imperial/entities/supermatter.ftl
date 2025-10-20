@@ -15,6 +15,7 @@ supermatter-desc-cracked = На нём видны трещины.
 supermatter-desc-badly-cracked = Он покрыт множеством трещин.
 supermatter-desc-critical = Он светится и вибрирует!
 
+supermatter-activated = Внимание: Суперматерия была активирована!
 supermatter-status-active = Кристалл слегка переливается жёлтыми оттенками.
 supermatter-status-inactive = Цвет кристалла не меняется. Видимо, он неактивен.
 
