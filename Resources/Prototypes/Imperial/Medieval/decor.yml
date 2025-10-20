@@ -1190,7 +1190,21 @@
       path: /Audio/Ambience/Objects/fireplace.ogg
 
 - type: entity
+  abstract: true
   parent: Bed
+  id: MedievalBaseBed
+  name: MedievalBaseBed
+  components:
+  - type: Strap
+    position: Down
+    rotation: -90
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed1.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed2.ogg
+
+- type: entity
+  parent: MedievalBaseBed
   id: MedievalMedicalBed
   name: MedievalMedicalBed
   description: MedievalMedicalBed
@@ -1217,7 +1231,7 @@
   - type: MedievalPlagueHealStrapped
 
 - type: entity
-  parent: Bed
+  parent: MedievalBaseBed
   id: MedievalMedicalBed2
   name: MedievalMedicalBed2
   description: MedievalMedicalBed2
