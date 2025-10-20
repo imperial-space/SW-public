@@ -785,7 +785,7 @@
           - ConstructionMaterial
     - item: SheetRGlass
       hand:
-        emptyLabel: borg-slot-constructioyn-empty
+        emptyLabel: borg-slot-construction-empty
         emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         whitelist:
           tags:
