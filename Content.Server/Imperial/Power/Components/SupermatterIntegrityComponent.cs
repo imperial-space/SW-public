@@ -46,6 +46,13 @@ namespace Content.Server.Imperial.Power.Components
         ];
 
         /// <summary>
+        /// Активирована ли суперматерия.
+        /// До активации она не выполняет никаких процессов.
+        /// </summary>
+        [DataField]
+        public bool Activated;
+
+        /// <summary>
         /// Текущая целостность кристалла
         /// </summary>
         [DataField]
@@ -78,7 +85,7 @@ namespace Content.Server.Imperial.Power.Components
         /// Минимальная целостность, при которой начинается катастрофа
         /// </summary>
         [DataField]
-        public float CatastropheThreshold = 0f;
+        public float CatastropheThreshold;
 
         /// <summary>
         /// Канал радио, в который будут отправляться оповещения
@@ -102,9 +109,14 @@ namespace Content.Server.Imperial.Power.Components
         public readonly float LowerTempThreshold = 250f;
 
         /// <summary>
-        /// Верхняя граница температуры, после которой наступают плохие для суперматерии условия
+        /// Верхняя граница давления, после которой наступают плохие для суперматерии условия
         /// </summary>
         public readonly float UpperPressureThreshold = 300f;
+
+        /// <summary>
+        /// Нижняя граница давления, после которой наступают плохие для суперматерии условия
+        /// </summary>
+        public readonly float LowerPressureThreshold = 10f;
 
         /// <summary>
         /// Таймер катастрофы
@@ -115,7 +127,7 @@ namespace Content.Server.Imperial.Power.Components
         /// <summary>
         /// Продолжительность катастрофы до финального события (взрыва).
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public TimeSpan CatastropheDuration = TimeSpan.FromSeconds(120);
 
         /// <summary>
@@ -127,55 +139,55 @@ namespace Content.Server.Imperial.Power.Components
         /// <summary>
         /// Количество здоровья, восстанавливаемое за один выстрел эмиттера
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public float EmitterHealAmount = 0.1f;
 
         /// <summary>
         /// Идентификатор прототипа взрыва, который будет использован при катастрофе.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public ProtoId<ExplosionPrototype> ExplosionPrototypeId = "Supermatter";
 
         /// <summary>
         /// Общая интенсивность взрыва при катастрофе.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public float CatastropheTotalIntensity = 20000f;
 
         /// <summary>
         /// Крутизна спадания интенсивности взрыва.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public float CatastropheSlope = 1f;
 
         /// <summary>
         /// Максимальная интенсивность на тайле для взрыва.
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public float CatastropheMaxTileIntensity = 70f;
 
         /// <summary>
         /// Интервал между молниями во время катастрофы
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public TimeSpan CatastropheLightningInterval = TimeSpan.FromSeconds(1.0);
 
         /// <summary>
         /// Таймер для молний во время катастрофы
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public TimeSpan CatastropheLightningTimer = TimeSpan.Zero;
 
         /// <summary>
         /// Дальность молний во время катастрофы
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public float CatastropheLightningRange = 15f;
 
         /// <summary>
         /// Количество молний за раз во время катастрофы
         /// </summary>
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [DataField]
         public int CatastropheLightningCount = 3;
     }
 }

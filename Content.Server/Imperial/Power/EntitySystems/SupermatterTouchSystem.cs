@@ -1,8 +1,8 @@
+using Content.Server.Effects;
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Mobs.Components;
-using Robust.Shared.Physics.Events;
-using Content.Server.Effects;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Power.EntitySystems

@@ -1,18 +1,16 @@
+using Content.Server.Atmos.EntitySystems;
 using Content.Server.Imperial.Power.Components;
 using Content.Shared.Examine;
-using System.Linq;
-using Content.Server.Atmos.EntitySystems;
-using Robust.Shared.Random;
 using Robust.Shared.Audio.Systems;
+using System.Linq;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
     public sealed class SupermatterMonitorConsoleSystem : EntitySystem
     {
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly AtmosphereSystem _atmosSystem = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
 
         public override void Initialize()
         {
@@ -32,31 +30,28 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 return;
             }
 
+            if (!nearest.Activated)
+            {
+                args.PushMarkup(Loc.GetString("supermatter-monitor-inactive"));
+                return;
+            }
+
             var (integrityPercent, level) = CalculateIntegrity(nearest);
             var integrity = (int)Math.Round(integrityPercent);
-
             args.PushMarkup(Loc.GetString("supermatter-monitor-integrity",
                 ("integrity", integrity),
                 ("color", level.Color)));
 
             var transComp = Transform(nearestUid.Value);
             var gas = _atmosSystem.GetContainingMixture((nearestUid.Value, transComp));
-            if (gas != null)
-            {
-                var pressure = (int)Math.Round(gas.Pressure);
-                var temperature = (int)Math.Round(gas.Temperature);
-                args.PushMarkup(Loc.GetString("supermatter-monitor-atmospherics",
-                    ("pressure", pressure),
-                    ("temperature", temperature)));
-            }
-
-            if (!EntityManager.TryGetComponent<SupermatterEventComponent>(nearestUid.Value, out var events))
+            if (gas == null)
                 return;
 
-            var next = events.NextEventTimer.TotalSeconds;
-            var approx = Math.Max(0, next + _random.Next(-60, 61));
-            var minutes = (int)Math.Round(approx / 60.0);
-            args.PushMarkup(Loc.GetString("supermatter-monitor-next-event", ("minutes", minutes)));
+            var pressure = (int)Math.Round(gas.Pressure);
+            var temperature = (int)Math.Round(gas.Temperature);
+            args.PushMarkup(Loc.GetString("supermatter-monitor-atmospherics",
+                ("pressure", pressure),
+                ("temperature", temperature)));
         }
 
         private EntityUid? FindNearestSupermatter(EntityUid consoleUid)
@@ -93,14 +88,15 @@ namespace Content.Server.Imperial.Power.EntitySystems
             while (enumerator.MoveNext(out var uid, out var console, out _))
             {
                 var nearestUid = FindNearestSupermatter(uid);
-                if (nearestUid == null ||
-                    !EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest))
+                if (nearestUid == null
+                    || !EntityManager.TryGetComponent<SupermatterIntegrityComponent>(nearestUid.Value, out var nearest)
+                    || !nearest.Activated)
                 {
                     console.BeepCooldownTimer = TimeSpan.Zero;
                     continue;
                 }
 
-                var (integrityPercent, level) = CalculateIntegrity(nearest);
+                var (integrityPercent, _) = CalculateIntegrity(nearest);
                 var integrity = (int)Math.Round(integrityPercent);
 
                 var highestThreshold = nearest.SupermatterIntegrity.MaxBy(e => e.Threshold).Threshold;
@@ -128,15 +124,8 @@ namespace Content.Server.Imperial.Power.EntitySystems
             // Выбираем самый высокий уровень, порог которого меньше или равен текущей целостности.
             var ordered = component.SupermatterIntegrity.OrderByDescending(e => e.Threshold).ToList();
             var idx = ordered.FindIndex(entry => integrity >= entry.Threshold);
-            (float Threshold, Color Color, LocId Description, LocId Warning, bool Flag) level;
-            if (idx >= 0)
-            {
-                level = ordered[idx];
-            }
-            else
-            {
-                level = component.SupermatterIntegrity.MinBy(e => e.Threshold);
-            }
+
+            var level = idx >= 0 ? ordered[idx] : component.SupermatterIntegrity.MinBy(e => e.Threshold);
 
             return (integrity, level);
         }

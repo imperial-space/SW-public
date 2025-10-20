@@ -1,29 +1,33 @@
-using Content.Server.Imperial.Power.Components;
-using Content.Shared.Examine;
+using Content.Server.AlertLevel;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Chat.Systems;
+using Content.Server.Explosion.EntitySystems;
+using Content.Server.Imperial.Power.Components;
+using Content.Server.Lightning;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Station.Systems;
+using Content.Shared.Audio;
+using Content.Shared.Examine;
+using Content.Shared.Radiation.Components;
 using Content.Shared.Tag;
 using Robust.Shared.Physics.Events;
-using Content.Server.Chat.Systems;
-using Content.Server.AlertLevel;
-using Content.Server.Station.Systems;
-using Content.Server.Explosion.EntitySystems;
-using Content.Server.Lightning;
 using System.Linq;
 
 namespace Content.Server.Imperial.Power.EntitySystems
 {
     public sealed class SupermatterIntegritySystem : EntitySystem
     {
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly RadioSystem _radioSystem = default!;
-        [Dependency] private readonly TagSystem _tagSystem = default!;
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
-        [Dependency] private readonly StationSystem _stationSystem = default!;
         [Dependency] private readonly AlertLevelSystem _alertLevelSystem = default!;
+        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private readonly ChatSystem _chatSystem = default!;
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly LightningSystem _lightning = default!;
+        [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
+        [Dependency] private readonly SharedPointLightSystem _lightSystem = default!;
+        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+        [Dependency] private readonly RadioSystem _radioSystem = default!;
+        [Dependency] private readonly StationSystem _stationSystem = default!;
+        [Dependency] private readonly TagSystem _tagSystem = default!;
 
         public override void Initialize()
         {
@@ -37,6 +41,10 @@ namespace Content.Server.Imperial.Power.EntitySystems
             if (!args.IsInDetailsRange)
                 return;
 
+            args.PushMarkup(component.Activated
+                ? $"[color=yellow]{Loc.GetString("supermatter-status-active")}[/color]"
+                : $"[color=gray]{Loc.GetString("supermatter-status-inactive")}[/color]");
+
             var integrityPercent = component.Integrity / component.MaxIntegrity * 100;
             var integrityLevel = component.SupermatterIntegrity.First(entry => integrityPercent > entry.Threshold);
 
@@ -46,11 +54,18 @@ namespace Content.Server.Imperial.Power.EntitySystems
         private void OnStartCollide(EntityUid uid, SupermatterIntegrityComponent component, ref StartCollideEvent args)
         {
             var other = args.OtherEntity;
-            if (_tagSystem.HasTag(other, component.HealTag))
+            if (!_tagSystem.HasTag(other, component.HealTag))
+                return;
+
+            if (!component.Activated)
             {
-                component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + component.EmitterHealAmount);
+                component.Activated = true;
+                SendSupermatterRadio(args.OurEntity,Loc.GetString("supermatter-activated"), component);
             }
+
+            component.Integrity = MathF.Min(component.MaxIntegrity, component.Integrity + component.EmitterHealAmount);
         }
+
 
         public override void Update(float frameTime)
         {
@@ -64,19 +79,54 @@ namespace Content.Server.Imperial.Power.EntitySystems
 
         private void ProcessSupermatterUpdate(EntityUid uid, SupermatterIntegrityComponent comp, TransformComponent transComp, float frameTime)
         {
+            if (TryComp(uid, out RadiationSourceComponent? radiation))
+                radiation.Enabled = comp.Activated;
+
+            if (!comp.Activated)
+                return;
+
+            if (TryComp(uid, out AmbientSoundComponent? ambient))
+            {
+                if (comp.Activated)
+                {
+                    _ambientSound.SetVolume(uid, 0f, ambient);
+                    _ambientSound.SetRange(uid, 5f, ambient);
+                }
+                else
+                {
+                    _ambientSound.SetVolume(uid, -20f, ambient);
+                    _ambientSound.SetRange(uid, 3f, ambient);
+                }
+            }
+
+            if (TryComp(uid, out SharedPointLightComponent? light))
+            {
+                if (comp.Activated)
+                {
+                    _lightSystem.SetEnabled(uid, true, light);
+                    _lightSystem.SetRadius(uid, 10f, light);
+                    _lightSystem.SetEnergy(uid, 5f, light);
+                }
+                else
+                {
+                    _lightSystem.SetEnabled(uid, true, light);
+                    _lightSystem.SetRadius(uid, 5f, light);
+                    _lightSystem.SetEnergy(uid, 0.5f, light);
+                }
+            }
 
             var gas = _atmosphereSystem.GetContainingMixture((uid, transComp), true, true);
-            bool badConditions = false;
+
+            bool badConditions;
             if (gas != null)
             {
-                badConditions = gas.Temperature > comp.UpperTempThreshold ||
-                                gas.Temperature < comp.LowerTempThreshold ||
-                                gas.Pressure > comp.UpperPressureThreshold;
+                badConditions = gas.Temperature > comp.UpperTempThreshold
+                                || gas.Temperature < comp.LowerTempThreshold
+                                || gas.Pressure > comp.UpperPressureThreshold
+                                || gas.Pressure < comp.LowerPressureThreshold;
             }
             else
-            {
                 badConditions = true;
-            }
 
             var integrityPercent = comp.Integrity / comp.MaxIntegrity * 100f;
 
@@ -157,7 +207,7 @@ namespace Content.Server.Imperial.Power.EntitySystems
                 if (comp.CatastropheLightningTimer >= comp.CatastropheLightningInterval)
                 {
                     comp.CatastropheLightningTimer = TimeSpan.Zero;
-                    _lightning.ShootRandomLightnings(uid, comp.CatastropheLightningRange, comp.CatastropheLightningCount, "Lightning", 0, true);
+                    _lightning.ShootRandomLightnings(uid, comp.CatastropheLightningRange, comp.CatastropheLightningCount);
                 }
 
                 if (comp.CatastropheTimer >= comp.CatastropheDuration)
