@@ -739,11 +739,11 @@
   - type: ItemBorgModule
     hands:
     - item: RCDRechargingErtBorg
-    - item: JetpackErtBorg
     - item: BorgHandheldGPSBasic
     - item: GasAnalyzer
     - item: HolofanProjectorBorg
     - item: GeigerCounter
+    - item: JetpackErtBorg
   - type: BorgModuleIcon
     icon: { sprite: Imperial/Interface/Actions/borg_ert_imperial.rsi, state: borg-interface-RCS }
   - type: StaticPrice
