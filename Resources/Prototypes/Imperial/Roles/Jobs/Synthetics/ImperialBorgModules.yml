@@ -762,18 +762,28 @@
   - type: ItemBorgModule
     hands:
     - hand:
+      - item: CableApcStack10
+        emptyRepresentative: AmeJar
+        emptyLabel: borg-slot-construction-empty
+        whitelist:
+          tags:
+          - AmeFuelContainer
+    - hand:
+      - item: SheetSteel
         emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         emptyLabel: borg-slot-construction-empty
         whitelist:
           tags:
           - ConstructionMaterial
     - hand:
+      - item: SheetRGlass
         emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         emptyLabel: borg-slot-construction-empty
         whitelist:
           tags:
           - ConstructionMaterial
     - hand:
+      - item: PartRodMetal
         emptyRepresentative: BorgModuleConstructionMaterialPlaceholder
         emptyLabel: borg-slot-construction-empty
         whitelist:
@@ -911,11 +921,14 @@
     hands:
     - item: SurgeryBoxOrgansFilled
       hand:
+        emptyLabel: borg-slot-topicals-empty
         emptyRepresentative: SurgeryBoxOrgansFilled
-        emptyLabel: borg-slot-cables-empty
         whitelist:
           tags:
+          - OriginalBodyPart
           - Organ
+          - BodyPart
+          - Storage
     - item: Saw
     - item: Retractor
     - item: ScalpelLaser
