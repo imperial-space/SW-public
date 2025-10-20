@@ -116,7 +116,7 @@ medieval-store-spells-fire-wall-senior-name = Небесный огонь
 medieval-store-spells-fire-wall-senior-desc = Кто вам сказал что в средневековье не было напалма? Стоимость 55 маны.
 
 # Magic Spark
-medieval-spell-speach-spark = Ī̗̭̰̂g̴̘̃ni
+medieval-spell-speach-spark = щёлкает пальцами
 
 medieval-store-spells-fire-spark-beginner-name = Магическая искра
 medieval-store-spells-fire-spark-beginner-desc = Создаёт магическую искру в вашей руке, способную поджечь что-либо. Пригодится, если вдруг забыли огниво

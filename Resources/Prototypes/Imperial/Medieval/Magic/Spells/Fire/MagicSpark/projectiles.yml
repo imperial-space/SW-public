@@ -16,4 +16,4 @@
     flammableStacks: 0.5
   - type: Unremoveable
   - type: TimedDespawn
-    lifetime: 3
+    lifetime: 6
