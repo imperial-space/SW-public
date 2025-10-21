@@ -35,7 +35,7 @@
   description: ert-uplink-melee-energysword-desc
   productEntity: EnergySword
   cost:
-    BlueSpaceCube: 15
+    BlueSpaceCube: 10
   categories:
   - ERTUplinkMelee
 
