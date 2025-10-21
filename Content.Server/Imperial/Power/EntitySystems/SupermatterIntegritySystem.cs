@@ -83,38 +83,27 @@ public sealed class SupermatterIntegritySystem : EntitySystem
         if (TryComp(uid, out RadiationSourceComponent? radiation))
             radiation.Enabled = comp.Activated;
 
-        if (!comp.Activated)
-            return;
+        if (TryComp(uid, out PointLightComponent? light))
+        {
+            _lightSystem.SetEnabled(uid, comp.Activated, light);
+        }
 
         if (TryComp(uid, out AmbientSoundComponent? ambient))
         {
             if (comp.Activated)
             {
-                _ambientSound.SetVolume(uid, 0f, ambient);
-                _ambientSound.SetRange(uid, 5f, ambient);
+                _ambientSound.SetVolume(uid, comp.AmbientSound[0].Volume, ambient);
+                _ambientSound.SetRange(uid, comp.AmbientSound[0].Range, ambient);
             }
             else
             {
-                _ambientSound.SetVolume(uid, -20f, ambient);
-                _ambientSound.SetRange(uid, 3f, ambient);
+                _ambientSound.SetVolume(uid, comp.AmbientSound[1].Volume, ambient);
+                _ambientSound.SetRange(uid, comp.AmbientSound[1].Range, ambient);
             }
         }
 
-        if (TryComp(uid, out PointLightComponent? light))
-        {
-            if (comp.Activated)
-            {
-                _lightSystem.SetEnabled(uid, true, light);
-                _lightSystem.SetRadius(uid, 10f, light);
-                _lightSystem.SetEnergy(uid, 5f, light);
-            }
-            else
-            {
-                _lightSystem.SetEnabled(uid, true, light);
-                _lightSystem.SetRadius(uid, 5f, light);
-                _lightSystem.SetEnergy(uid, 0.5f, light);
-            }
-        }
+        if (!comp.Activated)
+            return;
 
         var gas = _atmosphereSystem.GetContainingMixture((uid, transComp), true, true);
 
