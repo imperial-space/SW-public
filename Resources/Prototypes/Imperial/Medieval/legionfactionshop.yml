@@ -215,6 +215,22 @@
   - MedievalLegionWeapon
 
 - type: listing
+  id: MdvLegionMedievalIronZweihander
+  productEntity: MedievalIronZweihander
+  cost:
+    MedalLegion: 3
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalIronClaymore
+  productEntity: MedievalIronClaymore
+  cost:
+    MedalLegion: 3
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
   id: MdvLegionMedievalHandcuffs
   productEntity: MedievalHandcuffs
   cost:
@@ -235,6 +251,22 @@
   productEntity: MedievalFalshionT3LegionSteel
   cost:
     MedalLegion: 7
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalIronZweihanderSteel
+  productEntity: MedievalIronZweihanderSteel
+  cost:
+    MedalLegion: 9
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalIronClaymoreSteel
+  productEntity: MedievalIronClaymoreSteel
+  cost:
+    MedalLegion: 9
   categories:
   - MedievalLegionWeapon
 
