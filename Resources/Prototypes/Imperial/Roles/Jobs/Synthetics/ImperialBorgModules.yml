@@ -922,6 +922,18 @@
     - state: icon-nanotrasen
   - type: ItemBorgModule
     hands:
+    - item: ClothingBackpackDuffelSurgeryFilled
+      hand:
+        emptyLabel: borg-slot-topicals-empty
+        emptyRepresentative: ClothingBackpackDuffelSurgeryFilled
+        whitelist:
+          tags:
+          - SurgeryTool
+          - Backpack
+          - SurgeryStaples
+          - MedicalBorgItem
+          - OxygenMask
+          - GasTank
     - item: SurgeryBoxOrgansFilled
       hand:
         emptyLabel: borg-slot-topicals-empty
@@ -932,11 +944,6 @@
           - Organ
           - BodyPart
           - Storage
-    - item: Saw
-    - item: Retractor
-    - item: ScalpelLaser
-    - item: Cautery
-    # Добавить степлер, руку с вайтлистом для скоб и ампутатор из привата
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: diagnosis-module }
   - type: StaticPrice
