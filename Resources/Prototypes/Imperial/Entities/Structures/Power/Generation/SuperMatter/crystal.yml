@@ -60,7 +60,7 @@
     - type: SupermatterIntegrity
       tickDamage:
         types:
-          Blunt: 0.65
+          Structural: 0.65
     - type: SupermatterEvent
     - type: GuideHelp
       guides:
