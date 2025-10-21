@@ -581,7 +581,7 @@
       autoRechargeRate: 10
 
 - type: entity
-  name: borg pulse cannon 
+  name: borg pulse cannon
   parent: BaseWeaponBattery
   id: WeaponPulseCanonBorg
   description: The intimidating weapons of the NanoTrasen corporation's military cyborgs.
@@ -1118,10 +1118,10 @@
   description: State-of-the-art magnetic boots that do not slow down their wearer.
   components:
   - type: Sprite
-    sprite: Clothing/Shoes/Boots/magboots-advanced
+    sprite: Clothing/Shoes/Boots/magboots-advanced.rsi
     state: icon
   - type: Clothing
-    sprite: Imperial/Other/ertborgs/magbootsertborg
+    sprite: Imperial/Other/ertborgs/magbootsertborg.rsi
     state: none
   - type: ClothingSpeedModifier
     walkModifier: 1
