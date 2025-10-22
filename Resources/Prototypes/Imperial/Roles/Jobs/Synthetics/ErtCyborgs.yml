@@ -146,6 +146,8 @@
           type: BorgBoundUserInterface
         enum.StrippingUiKey.Key:
           type: StrippableBoundUserInterface
+        enum.CrewMonitoringUIKey.Key:
+          type: CrewMonitoringBoundUserInterface
         enum.GeneralStationRecordConsoleKey.Key:
           type: GeneralStationRecordConsoleBoundUserInterface
     - type: ActivatableUI
@@ -153,8 +155,11 @@
     - type: SiliconLawBound
     - type: IntrinsicUI
       uis:
+        enum.CrewMonitoringUIKey.Key:
+          toggleAction: ActionAGhostShowCrewMonitoring
         enum.GeneralStationRecordConsoleKey.Key:
           toggleAction: ActionAGhostShowStationRecords
+    - type: CrewMonitoringConsole
     - type: GeneralStationRecordConsole
       canDeleteEntries: false
     - type: DeviceNetwork
