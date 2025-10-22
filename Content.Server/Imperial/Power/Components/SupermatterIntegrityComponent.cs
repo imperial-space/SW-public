@@ -191,7 +191,7 @@ public sealed partial class SupermatterIntegrityComponent : Component
     public int CatastropheLightningCount = 3;
 
     /// <summary>
-    /// Настройки звука для выключённой [0] и выключенной [1] суперматерии
+    /// Настройки звука для включённой [0] и выключенной [1] суперматерии
     /// </summary>
     [DataField]
     public List<(float Volume, float Range)> AmbientSound =
