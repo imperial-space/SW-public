@@ -33,6 +33,7 @@
       projectilePrototype:
         0: MedievalProjectileSunstrikeSpotMiddle
       projectileSpeed: 1.7
+      spawnType: SpawnOnMousePosition
       spellCastDoAfter:
         delay: 1
         breakOnDropItem: false
