@@ -188,6 +188,9 @@ namespace Content.Server.Database
         public Task AddBook(string text, string name, string description, string author, Guid authorUserId, DateTime creationTime, bool accepted, CancellationToken cancel = default);
         public Task RemoveBook(string text, CancellationToken cancel = default);
         public Task SetBookAccepted(string text, CancellationToken cancel = default);
+        public Task<FlavorImage?> GetFlavorImage(Guid uid, CancellationToken cancel, int? slot = null);
+        public Task AddOrUpdateFlavorImage(Guid uid, byte[] image, CancellationToken cancel, int? slot = null);
+        public Task RemoveFlavorImage(Guid uid, int slot, CancellationToken cancel);
 
         #endregion
 
@@ -735,6 +738,21 @@ namespace Content.Server.Database
         {
             DbWriteOpsMetric.Inc();
             return RunDbCommand(() => _db.RemoveNrpResolve(player, isRp, cancel));
+        }
+        public Task<FlavorImage?> GetFlavorImage(Guid uid, CancellationToken cancel, int? slot = null)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.GetFlavorImage(uid, cancel, slot));
+        }
+        public Task AddOrUpdateFlavorImage(Guid uid, byte[] image, CancellationToken cancel, int? slot = null)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.AddOrUpdateFlavorImage(uid, image, cancel, slot));
+        }
+        public Task RemoveFlavorImage(Guid uid, int slot, CancellationToken cancel)
+        {
+            DbWriteOpsMetric.Inc();
+            return RunDbCommand(() => _db.RemoveFlavorImage(uid, slot, cancel));
         }
         #endregion
 

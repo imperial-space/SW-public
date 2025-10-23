@@ -50,6 +50,7 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
+        private readonly Imperial.Medieval.Flavors.ClientFlavorManager _flavors; // Imperial Medieval Flavor Images
 
         private readonly SpriteSystem _sprite;
 
@@ -120,7 +121,8 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings)
+            MarkingManager markings,
+            Imperial.Medieval.Flavors.ClientFlavorManager flavors) // Imperial Medieval Flavor Images
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -135,6 +137,7 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
+            _flavors = flavors; // Imperial Medieval Flavor Images
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -454,6 +457,7 @@ namespace Content.Client.Lobby.UI
             SpeciesInfoButton.OnPressed += OnSpeciesInfoButtonPressed;
 
             UpdateSpeciesGuidebookIcon();
+            UpdateFlavorHandle(); // Imperial Medieval Flavors Image
             IsDirty = false;
         }
 

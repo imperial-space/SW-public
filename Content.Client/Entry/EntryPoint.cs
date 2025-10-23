@@ -80,6 +80,7 @@ namespace Content.Client.Entry
         [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsors
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
         [Dependency] private readonly CharacterBlockManager _characterBlock = default!; // Imperial medieval edit1
+        [Dependency] private readonly Imperial.Medieval.Flavors.ClientFlavorManager _clientFlavor = default!; // Imperial Flavor Images
         [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
         [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
 
@@ -179,6 +180,7 @@ namespace Content.Client.Entry
             _overlayManager.AddOverlay(new ShockWaveDistortionOverlay()); // Imperial Shock Wave
             _chatManager.Initialize();
             _clientPreferencesManager.Initialize();
+            _clientFlavor.Initialize(); // Imperial Medieval Flavor Images
             _euiManager.Initialize();
             _voteManager.Initialize();
             _userInterfaceManager.SetDefaultTheme("MedievalTheme");
