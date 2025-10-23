@@ -24,4 +24,4 @@
     volume: -1
     enabled: true
     sound:
-      collection: oldradiosound
+      collection: OldRadioAmbient
