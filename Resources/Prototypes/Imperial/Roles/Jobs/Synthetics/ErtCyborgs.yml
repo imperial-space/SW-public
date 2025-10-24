@@ -292,7 +292,7 @@
 - type: entity
   id: PlayerBorgErtEngineerBattery
   parent: BorgChassisErtEngineer
-  suffix: Батерея, модули, ОБР
+  suffix: Батарея, модули, ОБР
   components:
   - type: ContainerFill
     containers:
