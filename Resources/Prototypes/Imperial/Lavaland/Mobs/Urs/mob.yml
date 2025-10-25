@@ -70,7 +70,7 @@
         Brute: 20
     updateInterval: 0.55
     updateIntervalToDash: 0.3
-    PushStrength: 20
+    pushStrength: 20
 
 
 - type: Tag
