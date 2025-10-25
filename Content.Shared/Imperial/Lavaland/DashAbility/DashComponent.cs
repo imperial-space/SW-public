@@ -22,11 +22,7 @@ namespace Content.Shared.Imperial.Abilities.Urs.Components
         public float ReversePushStrength = 120f; // 60 = 1 tile
         [DataField]
         public EntityUid Target;
-        [DataField]
-        public Vector2 TargetPos;
-        [DataField]
-        public Vector2 Direction;
-        [DataField, AutoNetworkedField]
+        [DataField(required: true), AutoNetworkedField]
         public DamageSpecifier Damage = default!;
     }
 }
