@@ -1,7 +1,7 @@
-ent-MedievalPassHat1 = аристократская шляпа
+ent-MedievalPassHat1 = аристократическая шляпа
     .desc = Модная шляпа.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
-ent-MedievalPassHat2 = аристократская шляпа
+ent-MedievalPassHat2 = аристократическая шляпа
     .desc = Модная шляпа.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
 
