@@ -43,9 +43,9 @@
       task: UrsCompound
     blackboard:
       VisionRadius: !type:Single
-        6
-      AggroVisionRadius: !type:Single
         8
+      AggroVisionRadius: !type:Single
+        10
       NavSmash: !type:Bool
         true
   - type: NPCUseActionOnTarget
@@ -68,6 +68,9 @@
     damage:
       groups:
         Brute: 20
+    updateInterval: 0.55
+    updateIntervalToDash: 0.3
+    PushStrength: 20
 
 
 - type: Tag

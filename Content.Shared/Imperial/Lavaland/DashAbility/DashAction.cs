@@ -1,13 +1,15 @@
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Abilities.Urs;
 
-public sealed partial class UrsDashAction : WorldTargetActionEvent
-
+public sealed partial class UrsDashAction : EntityTargetActionEvent
 {
-    [DataField] public float PushStrength = 30f;
-    [DataField] public float ReversePushStrength = 50f;
-    [DataField, AutoNetworkedField] public TimeSpan StunTime = TimeSpan.FromSeconds(6);
+    public float PushStrength = 30f;
+    [DataField]
+    public float ReversePushStrength = 50f;
+    [DataField]
+    public TimeSpan StunTime = TimeSpan.FromSeconds(2f);
 
 }
-

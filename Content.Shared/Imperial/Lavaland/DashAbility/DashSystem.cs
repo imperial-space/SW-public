@@ -8,11 +8,8 @@ using Robust.Shared.Physics.Events;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Damage;
 
-
-
 namespace Content.Shared.Imperial.Abilities.Urs.Systems
 {
-
     public sealed class UrsDashSystem : EntitySystem
     {
         [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -30,22 +27,14 @@ namespace Content.Shared.Imperial.Abilities.Urs.Systems
 
         public void OnSummonAction(EntityUid uid, UrsDashComponent comp, UrsDashAction args)
         {
-            var xform = Transform(args.Performer);
-            var fromCoords = xform.Coordinates;
-            var targetPos = args.Target;
-            var fromMap = _transform.ToMapCoordinates(fromCoords);
-            var direction = _transform.ToMapCoordinates(targetPos).Position - fromMap.Position;
-
-
+            var direction = _transform.GetWorldRotation(uid).ToWorldVec();
             _stun.TryAddStunDuration(uid, args.StunTime);
             _popup.PopupPredicted(Loc.GetString("Revers-dash-action-message", ("entity", args.Performer)), args.Performer, args.Performer, type: PopupType.SmallCaution);
-            _physics.SetLinearVelocity(uid, direction * comp.PushStrength * -0.6f, body: _pushComp);
+            _physics.SetLinearVelocity(uid, direction * comp.ReversePushStrength * -1f, body: _pushComp);
             comp.IsDashing = true;
             comp.Accumulator -= comp.Accumulator;
-            comp.Direction = _transform.ToMapCoordinates(targetPos).Position - fromMap.Position;
-
+            comp.Target = args.Target;
             args.Handled = true;
-
         }
 
         public override void Update(float frameTime)
@@ -56,10 +45,14 @@ namespace Content.Shared.Imperial.Abilities.Urs.Systems
                 if (!compOne.IsDashing == true)
                     continue;
                 compOne.Accumulator += frameTime;
-
                 if (compOne.Accumulator >= compOne.UpdateIntervalToDash && compOne.IsDashing == true)
                 {
-                    _physics.SetLinearVelocity(body, compOne.Direction * compOne.PushStrength * 1.4f, body: _pushComp);
+                    var targetPos = _transform.GetMapCoordinates(compOne.Target).Position;
+                    var xform = Transform(body);
+                    var fromCoords = xform.Coordinates;
+                    var fromMap = _transform.ToMapCoordinates(fromCoords);
+                    var direction = targetPos - fromMap.Position;
+                    _physics.SetLinearVelocity(body, direction * compOne.PushStrength * 1.8f, body: _pushComp);
                 }
                 if (compOne.Accumulator >= compOne.UpdateInterval && compOne.IsDashing == true)
                 {
@@ -76,8 +69,6 @@ namespace Content.Shared.Imperial.Abilities.Urs.Systems
             if (!HasComp<MobStateComponent>(otherEntity) && !HasComp<PuddleComponent>(otherEntity) && comp.IsDashing == true)
             {
                 _stun.TryAddStunDuration(uid, TimeSpan.FromSeconds(5));
-                comp.Accumulator -= comp.UpdateInterval;
-                comp.IsDashing = false;
             }
             if (HasComp<MobStateComponent>(otherEntity) && comp.IsDashing == true)
             {

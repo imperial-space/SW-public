@@ -3,10 +3,32 @@
   branches:
     - tasks:
         - !type:HTNCompoundTask
+          task: UrsMelee
+    - tasks:
+        - !type:HTNCompoundTask
           task: UrsMeleeCombatPrecondition
     - tasks:
         - !type:HTNCompoundTask
           task: IdleCompound
+
+- type: htnCompound
+  id: UrsMelee
+  branches:
+    - preconditions:
+        - !type:KeyExistsPrecondition
+          key: Target
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:MoveToOperator
+            shutdownState: PlanFinished
+            pathfindInPlanning: true
+            removeKeyOnFinish: false
+            targetKey: TargetCoordinates
+            pathfindKey: TargetPathfind
+            rangeKey: MeleeRange
+        - !type:HTNPrimitiveTask
+          operator: !type:JukeOperator
+            jukeType: Away
 
 - type: htnCompound
   id: UrsMeleeCombatPrecondition
@@ -58,7 +80,7 @@
             rangeKey: MeleeRange
         - !type:HTNPrimitiveTask
           operator: !type:JukeOperator
-            jukeType: AdjacentTile
+            jukeType: Away
         - !type:HTNPrimitiveTask
           operator: !type:MeleeOperator
             targetKey: Target
