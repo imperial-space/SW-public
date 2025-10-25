@@ -1,0 +1,25 @@
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass1
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves1.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves1.rsi
+  - type: Fiber
+    fiberColor: fibers-white
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass2
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves2.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves2.rsi
+  - type: Fiber
+    fiberColor: fibers-black

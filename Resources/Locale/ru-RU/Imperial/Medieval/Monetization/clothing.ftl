@@ -23,15 +23,8 @@ ent-MedievalClothingUniformJumpsuitPass5 = дворянское платье
 ent-MedievalClothingUniformJumpsuitPass6 = одежда горничной
     .desc = Красивое одеяние прислуги.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
-
-ent-MedievalClothingNeckCloakPass1 = красный плащ
-    .desc = Бархатный плащ, приятный на ощупь.
-    .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
-ent-MedievalClothingNeckCloakPass2 = меховая накидка
-    .desc = Тёплый плащ с мехом.
-    .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
-ent-MedievalClothingNeckCloakPass3 = тёмный плащ
-    .desc = Тёмный кожаный плащ.
+ent-MedievalClothingUniformJumpsuitPass7 = дворянская одежда
+    .desc = Знатное одеяние, вышитое из дорогих тканей.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
 
 ent-MedievalPassShoes1 = сапоги со шпорами
@@ -48,4 +41,24 @@ ent-MedievalPassShoes4 = туфли
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
 ent-MedievalPassShoes5 = туфли
     .desc = Удобные туфли.
+    .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
+ent-MedievalPassShoes6 = сапоги
+    .desc = Удобные сапоги.
+    .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
+
+ent-MedievalClothingHandsGlovesPass1 = бархатные перчатки
+    .desc = Приятные на ощупь перчатки.
+    .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
+ent-MedievalClothingHandsGlovesPass2 = бархатные перчатки
+    .desc = Приятные на ощупь перчатки.
+    .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
+
+ent-MedievalClothingNeckCloakPass1 = красный плащ
+    .desc = Бархатный плащ, приятный на ощупь.
+    .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
+ent-MedievalClothingNeckCloakPass2 = меховая накидка
+    .desc = Тёплый плащ с мехом.
+    .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
+ent-MedievalClothingNeckCloakPass3 = тёмный плащ
+    .desc = Тёмный кожаный плащ.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
