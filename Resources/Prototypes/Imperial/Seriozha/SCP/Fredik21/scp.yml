@@ -35,7 +35,7 @@
 - type: entity
   parent: PosterBase
   id: Posterscarletking
-  name: broken scarlet king
+  name: scarlet king Poster
   suffix: Fredik21, Недра
   description: The blood calls! The flesh screams! Let there be a scarlet harvest!
   components:
@@ -70,7 +70,7 @@
   id: Posternu7
   name: nu7 Poster
   suffix: Fredik21, Недра
-  description: PROTECT THE ANOMALOUS. SAVE THE ORDINARY. Don't risk the future of humanity. An NDA is your only protection.
+  description: Where fear comes, we hold the line!
   components:
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/poster.rsi
