@@ -1580,7 +1580,7 @@
   id: ClothingOuterArmorNu7
   name: Bulletproof vest NYU-7 Forpost
   suffix: Fredik21, Недра
-  description: The standard body armor for MTF NU-7 operators provides basic protection against small arms fire and shrapnel. Designed for mobile operations and rapid response to threats. Compatible with load-bearing systems and additional equipmen
+  description: The standard body armor for MTF NU-7 operators provides basic protection against small arms fire and shrapnel. Designed for mobile operations and rapid response to threats. Compatible with load-bearing systems and additional equipment.
   components:
   - type: Sprite
     sprite: Imperial/Seriozha/Fredik21/cloth/armornu7.rsi
