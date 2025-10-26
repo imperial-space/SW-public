@@ -11,6 +11,9 @@
       "name": "scp"
     },
     {
+      "name": "CBT"
+    },
+    {
       "name": "chaos"
     },
     {
@@ -51,6 +54,27 @@
     },
     {
       "name": "PHYSICS"
+    },
+    {
+      "name": "Alpha1"
+    },
+    {
+      "name": "nu7"
+    },
+    {
+      "name": "Alpha9"
+    },
+    {
+      "name": "brokengod"
+    },
+    {
+      "name": "epsilon11"
+    },
+    {
+      "name": "scarletking"
+    },
+    {
+      "name": "beta7"
     },
     {
       "name": "goc"

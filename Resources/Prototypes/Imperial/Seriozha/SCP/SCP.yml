@@ -102,6 +102,22 @@
           layer:
           - GhostImpassable
           - MobLayer
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase4.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
+      sprite: /Textures/Interface/Misc/job_icons.rsi
+      state: Musician
 
 - type: entity
   name: Fireman
@@ -166,6 +182,20 @@
           - MobMask
           layer:
           - MobLayer
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase3.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
 
 - type: entity
   name: Avel
@@ -231,6 +261,20 @@
           - MobMask
           layer:
           - MobLayer
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase1.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
 
 - type: entity
   name: Katana
@@ -371,6 +415,20 @@
       - SCPAccesThree
       - NuclearOperative
       - SyndicateAgent
+    - type: ItemToggle
+      predictable: false
+      onUse: false
+    - type: ItemToggleActiveSound
+      activeSound:
+        path: /Audio/Imperial/Seriozha/SCP/chase/chase2.ogg
+        params:
+          volume: -2
+          range: 10
+    - type: UseDelay
+      delay: 1.0
+    - type: ToggleClothing
+      action: ActionToggleSCPMusic
+      mustEquip: false
 
 - type: entity
   name: Jelly monster
