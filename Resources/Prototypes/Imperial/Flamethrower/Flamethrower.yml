@@ -17,7 +17,7 @@
     - suitStorage
   - type: AmmoCounter
   - type: StaticPrice
-    price: 500
+    price: 20000
   - type: UseDelay
     delay: 1
 

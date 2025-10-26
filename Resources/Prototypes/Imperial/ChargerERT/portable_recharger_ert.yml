@@ -1,0 +1,45 @@
+- type: entity
+  parent: Clothing
+  id: PortableRechargerErt
+  name: advanced portable recharger
+  description: High-tech recharger for Emergency Response Team
+  components:
+  - type: Item
+    size: Huge
+  - type: Sprite
+    sprite: Imperial/ChargerERT/portable_recharger_ert.rsi
+    state: charging
+  - type: Clothing
+    equippedPrefix: charging
+    quickEquip: false
+    slots:
+    - back
+  - type: Charger
+    chargeRate: 100
+    slotId: charger_slot
+    portable: true
+  - type: PowerChargerVisuals
+  - type: ApcPowerReceiver
+    needsPower: false
+    powerLoad: 0
+  - type: StaticPrice
+    price: 5000
+  - type: Tag
+    tags: [] # ignore "WhitelistChameleon" tag
+  - type: ContainerContainer
+    containers:
+      charger_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      charger_slot:
+        ejectOnInteract: true
+        whitelist:
+          components:
+          - HitscanBatteryAmmoProvider
+          - ProjectileBatteryAmmoProvider
+        # Imperial "plasma Cutter + Advanced Version" Start
+        # In order not to devalue charging with materials
+        blacklist:
+          tags:
+          - OnlyMaterialEnergy
+        # Imperial "plasma Cutter + Advanced Version" End
