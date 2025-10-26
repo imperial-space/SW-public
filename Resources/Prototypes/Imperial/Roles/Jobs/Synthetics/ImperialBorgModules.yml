@@ -1138,29 +1138,10 @@
   components:
   - type: Unremoveable
 
-- type: entity
-  parent: ClothingEyesBlueMediumNightVisor
-  id: ErtAssaultBorgGreenAdvancedNightVisor
-  name: ert borg night visor
-  description: An advanced night visor of assault ert borg.
-  suffix: ОБР
-  components:
-  - type: NightVisionVisor
-    overLayerDataPath: "/Textures/Effects/emp.rsi"
-    overLayerDataState: "emp_pulse"
-    color: "Green"
-    useNoise: "False"
-  - type: ItemSlots
-    slots:
-      cell_slot:
-        name: power-cell-slot-component-slot-name-default
-        startingItem: PowerCellMicroreactor
-  - type: Unremoveable
 
 - type: startingGear #gear
   id: ErtAssaultBorgLodout
   equipment:
-    eyes: ErtAssaultBorgGreenAdvancedNightVisor
     shoes: ClothingShoesBootsMagAdvErtBorg
 
 - type: startingGear #gear
