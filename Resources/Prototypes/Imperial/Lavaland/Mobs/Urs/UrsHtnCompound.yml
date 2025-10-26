@@ -58,7 +58,7 @@
             rangeKey: MeleeRange
         - !type:HTNPrimitiveTask
           operator: !type:JukeOperator
-            jukeType: AdjacentTile
+            jukeType: Away
         - !type:HTNPrimitiveTask
           operator: !type:MeleeOperator
             targetKey: Target

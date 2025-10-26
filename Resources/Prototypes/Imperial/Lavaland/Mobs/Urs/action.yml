@@ -6,10 +6,10 @@
   components:
   - type: TargetAction
     range: 4
-  - type: WorldTargetAction
+  - type: EntityTargetAction
     event: !type:UrsDashAction
   - type: Action
-    useDelay: 14
+    useDelay: 9
     raiseOnUser: true
     icon:
       sprite: Imperial/Lavaland/Mobs/Urs.rsi
