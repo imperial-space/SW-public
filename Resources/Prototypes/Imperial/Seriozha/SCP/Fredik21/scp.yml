@@ -1046,8 +1046,8 @@
 
 - type: entity
   parent: BaseWall
-  id: WallWhileSCP
-  name: while wall
+  id: WallWhiteSCP
+  name: white wall
   suffix: Fredik21, Недра
   components:
     - type: Tag
