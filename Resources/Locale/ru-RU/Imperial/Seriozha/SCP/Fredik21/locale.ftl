@@ -236,7 +236,7 @@ ghost-role-information-PresetSCPPHYSICS-name = Оперативник PHYSICS
 ghost-role-information-PresetSCPPHYSICS-desc = Сверх солдат ГОК. Элита науки.
 
 nedra-title = Опорный комплекс департамента Недра
-nedra-description = Новый день и новая смена в прекрасном подземном комплексе 19!  Но, похоже, что то пошло не так.. ъ
+nedra-description = Новый день и новая смена в прекрасном подземном комплексе 19!  Но, похоже, что то пошло не так...
 
 ent-ClothingJumpsuitNu7 = Комбинезон оперативника Ню-7
     .desc = Удар молота, выжить, чтобы защитить.
