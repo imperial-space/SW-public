@@ -39,7 +39,6 @@ namespace Content.Server.Hands.Systems
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
         [Dependency] private readonly GrabThrowSystem _grabThrowSystem = default!;
 
-
         private EntityQuery<PhysicsComponent> _physicsQuery;
 
         /// <summary>
