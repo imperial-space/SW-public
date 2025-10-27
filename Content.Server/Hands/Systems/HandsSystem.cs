@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server.Imperial.Medieval.Grab;
 using Content.Server.Inventory;
 using Content.Server.Stack;
 using Content.Server.Stunnable;
@@ -25,11 +26,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-using Content.Shared.Imperial.Medieval.Grab.Components;
-using Content.Server.Popups;
-using Content.Shared.Imperial.Medieval.Grab.Systems;
-using Content.Server.Imperial.Medieval.Grab;
-
 namespace Content.Server.Hands.Systems
 {
     public sealed class HandsSystem : SharedHandsSystem
@@ -41,8 +37,6 @@ namespace Content.Server.Hands.Systems
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly PullingSystem _pullingSystem = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
-        [Dependency] private readonly PopupSystem _popupSystem = default!;
-        [Dependency] private readonly GrabSystem _grab = default!;
         [Dependency] private readonly GrabThrowSystem _grabThrowSystem = default!;
 
 
