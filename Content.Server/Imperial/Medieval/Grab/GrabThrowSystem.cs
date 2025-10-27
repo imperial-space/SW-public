@@ -41,9 +41,9 @@ public sealed class GrabThrowSystem : EntitySystem
 
         float throwDistance = 3.0f;
         if (levelStrength > 10)
-            throwDistance += (levelStrength - 10) * 0.33f;
+            throwDistance += (levelStrength - 10) * 0.33f; // За каждый уровень силы больше 10 прибавляем 0.33 к дальности броска
         else if (levelStrength < 10)
-            throwDistance -= (10 - levelStrength) * 0.25f;
+            throwDistance -= (10 - levelStrength) * 0.25f; // За каждый уровень силы меньше 10 отбавляем 0.25 к дальности броска
 
         throwDistance = MathF.Max(throwDistance, 0.5f);
 
