@@ -347,6 +347,13 @@
     - item: StunbatonBorg
     - item: WeaponDisablerBorg
     - item: FlashBorg
+    - item: Handcuffs
+      hand: 
+        emptyLabel: borg-slot-security-cuffs-empty
+        emptyRepresentative: Handcuffs
+        whitelist:
+          components:
+          - Handcuff
   - type: BorgModuleIcon
     icon: { sprite: Interface/Actions/actions_borg.rsi, state: security-borg-unlethal } # Надо заменить, пока заглушка
   - type: Tag
