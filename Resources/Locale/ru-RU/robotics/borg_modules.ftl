@@ -14,3 +14,7 @@ borg-slot-inflatable-door-empty = Надувная дверь
 borg-slot-inflatable-wall-empty = Надувная стена
 
 borg-slot-security-cuffs-empty = Наручники
+
+borg-slot-staples-empty = Скобы
+borg-slot-bottles-empty = Бутылки
+borg-slot-organs-empty = Органы
