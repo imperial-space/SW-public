@@ -46,5 +46,5 @@ names-medicSCP-45 = Дк. Арсений Шевченко
 names-medicSCP-46 = Дк. Кристина Голубева
 names-medicSCP-47 = Дк. Ярослав Тихонов
 names-medicSCP-48 = Дк. Анастасия Денисова
-names-medicSCP-49 = Дк. Лев Сергеева
+names-medicSCP-49 = Дк. Лев Сергеев
 names-medicSCP-50 = Дк. Василиса Фролова
