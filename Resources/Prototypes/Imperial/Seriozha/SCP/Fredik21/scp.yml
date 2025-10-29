@@ -56,6 +56,28 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterTFC
+  name: Poster of the Task Force Control
+  suffix: Fredik21, Недра
+  description: CONTROL TASK FORCE. No chaos!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: delta1
+
+- type: entity
+  parent: PosterBase
+  id: PosterIPG
+  name: Poster Incident Prevention Group
+  suffix: Fredik21, Недра
+  description: INCIDENT PREVENTION GROUP. WE SEE WHAT SHOULD NEVER HAPPEN!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: beta1
+
+- type: entity
+  parent: PosterBase
   id: PosterNDAFredik21
   name: NDA Poster
   suffix: Fredik21, Недра
@@ -2464,3 +2486,480 @@
   id: rebelsscp
   hostile:
   - Foundation
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPEng
+  name: Engineer Foundation
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ EngGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesEngineerSCP
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPEng-name
+      description: ghost-role-information-PresetSCPEng-desc
+      rules: Rule
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: EngGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSeniorEngineer
+    back: ClothingBackpackDuffelEngineering
+    shoes: ClothingShoesBootsWork
+    eyes: ClothingEyesGlassesMeson
+    gloves: ClothingHandsGlovesColorYellow
+    outerClothing: ClothingOuterVestHazard
+    id: SCPIDCardThree
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltUtilityEngineering
+    head: ClothingHeadHatHardhatYellow
+    pocket1: EncryptionKeyEngineering
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPMedic
+  name: Medic Foundation
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ MedicGearSCP ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - NamesMedicSCP
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPMedic-name
+      description: ghost-role-information-PresetSCPMedic-desc
+      rules: Rule
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: MedicGearSCP
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitRegularForceMedicOfficer
+    back: ClothingBackpackSatchelMedical
+    shoes: ClothingShoesSCP
+    eyes: ClothingEyesHudMedical
+    gloves: ClothingHandsGlovesLatex
+    id: SCPIDCardThree
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltMedicalFilled
+    head: ClothingHeadHatParamedicsoft
+    mask: ClothingMaskSterile
+    pocket1: EncryptionKeyMedical
+
+- type: emoteSounds
+  id: SCP049
+  params:
+    variation: 0.125
+  sounds:
+    hi1049:
+      collection: hi1049
+    healSCP:
+      collection: healSCP
+    cradleSCP:
+      collection: cradleSCP
+    SearchingSCP:
+      collection: SearchingSCP
+    kidnapSCP:
+      collection: kidnapSCP
+    DetectedSCP:
+      collection: DetectedSCP
+
+- type: emote
+  id: hi1049
+  name: Привет
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Приветствует"]
+  chatTriggers:
+    - Привет
+
+- type: soundCollection
+  id: hi1049
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/hi1.ogg
+    - /Audio/Imperial/Seriozha/SCP/049/hi2.ogg
+
+- type: emote
+  id: healSCP
+  name: я лечение
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Я лечение"]
+  chatTriggers:
+    - я лечение
+
+- type: soundCollection
+  id: healSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/heal.ogg
+
+- type: emote
+  id: cradleSCP
+  name: напивать колыбель
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["напивает колыбель"]
+  chatTriggers:
+    - напивать колыбель
+    - напивает колыбель
+
+- type: soundCollection
+  id: cradleSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/cradle.ogg
+
+- type: emote
+  id: SearchingSCP
+  name: не прячтесь
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["не прячтесь"]
+  chatTriggers:
+    - не прячтесь
+
+- type: soundCollection
+  id: SearchingSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/searching1.ogg
+
+- type: emote
+  id: kidnapSCP
+  name: уверяю вас
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["уверяю вас"]
+  chatTriggers:
+    - уверяю вас
+
+- type: soundCollection
+  id: kidnapSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/kidnap2.ogg
+
+- type: emote
+  id: DetectedSCP
+  name: меня не предупредили
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/049.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["меня не предупредили"]
+  chatTriggers:
+    - меня не предупредили
+
+- type: soundCollection
+  id: DetectedSCP
+  files:
+    - /Audio/Imperial/Seriozha/SCP/049/Detected.ogg
+
+- type: emoteSounds
+  id: SCP106
+  params:
+    variation: 0.125
+  sounds:
+    BreathingSCP106:
+      collection: BreathingSCP106
+    DecaySCP106:
+      collection: DecaySCP106
+    LaughSCP106:
+      collection: LaughSCP106
+
+- type: emote
+  id: BreathingSCP106
+  name: Дышит
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/106.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Дышит"]
+  chatTriggers:
+    - Дышит
+    - Дышу
+
+- type: soundCollection
+  id: BreathingSCP106
+  files:
+    - /Audio/Imperial/Seriozha/SCP/106/Breathing.ogg
+
+- type: emote
+  id: DecaySCP106
+  name: Разлагается
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/106.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Разлагается"]
+  chatTriggers:
+    - Разлагается
+
+- type: soundCollection
+  id: DecaySCP106
+  files:
+    - /Audio/Imperial/Seriozha/SCP/106/Decay0.ogg
+
+- type: emote
+  id: LaughSCP106
+  name: Смеётся
+  category: Vocal
+  icon: Imperial/Seriozha/Fredik21/icon/106.png
+  whitelist:
+    components:
+    - SmokeOnTrigger
+  blacklist:
+    tags:
+    - SiliconEmotes
+  chatMessages: ["Смеётся"]
+  chatTriggers:
+    - Смеётся
+
+- type: soundCollection
+  id: LaughSCP106
+  files:
+    - /Audio/Imperial/Seriozha/SCP/106/Laugh.ogg
+
+- type: entity
+  parent: FaxMachineBase
+  id: FaxMachineNedra
+  suffix: Fredik21, Недра
+  name: fax Nedra
+  description: This is where shopping lists keep popping up. From him only costs
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/fax.rsi
+    drawdepth: SmallObjects
+    netsync: false
+    layers:
+    - state: icon
+      map: ["base"]
+  - type: Icon
+    sprite: Imperial/Seriozha/Fredik21/fax.rsi
+    state: icon
+  - type: FaxMachine
+    name: "Недра"
+
+- type: entity
+  parent: FaxMachineNedra
+  id: FaxMachineNedraO5
+  suffix: Fredik21, Недра
+  name: fax of the management Nedra
+  description: This is where shopping lists keep popping up. From him only costs
+  components:
+  - type: FaxMachine
+    name: "Руководство Недр"
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPOxranaCom
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGearCOM ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesguardscpcom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: OxranaGearCOM
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitSCPCom
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    head: ArmyBeretArmyS
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPSecurity
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: WeaponRevolverAstra903
+    pocket1: SpeedLoaderAstra903
+    pocket2: SpeedLoaderAstra903
+    back: ClothingBackpackSatchelSacerdos_5
+  storage:
+    back:
+    - EncryptionKeyNedraCMDconnection
+
+- type: entity
+  parent: ClothingUniformJumpsuitMinuteManBase
+  id: ClothingUniformJumpsuitSCPCom
+  name: overalls of the head of the Operational Control Group
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/seccomj.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/seccomj.rsi
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPOxranaComAlt
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGearCOMAlt ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesguardscpcom
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: OxranaGearCOMAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorOrange
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHatBeretQM
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPSecurityAlt
+    id: SCPIDCardFive
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: WeaponDisablerSMG
+    pocket1: WeaponPistolMk58Nonlethal
+    pocket2: MagazinePistolRubber
+    back: ClothingBackpackSatchelCargo
+  storage:
+    back:
+    - EncryptionKeyNedraCMDconnection
+
+- type: entity
+  parent: [ClothingOuterBaseLarge, AllowSuitStorageClothing]
+  id: ClothingOuterArmorSCPSecurityAlt
+  name: scp security suit
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorsec.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/cloth/armorsec.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.8
+        Caustic: 0.7
+        Heat: 0.8
+        Stamina: 0.5
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: GroupExamine
+  - type: StaminaResistance
+    damageCoefficient: 0.75
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPOxranaAlt
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ OxranaGearAlt ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - Namesguardscp
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPOxranaAlt-name
+      description: ghost-role-information-PresetSCPOxranaAlt-desc
+      rules: rule
+      raffle:
+        settings: short
+
+- type: startingGear
+  id: OxranaGearAlt
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorOrange
+    mask: ClothingMaskGasSecurity
+    shoes: ClothingShoesBootsWorkSCP
+    head: ClothingHeadHelmetERTEngineer
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterArmorSCPSecurityAlt
+    id: SCPIDCardThreeGray
+    ears: ClothingHeadsetSCPMain
+    belt: ClothingBeltSecurityFilled
+    suitstorage: WeaponPistolMk58Nonlethal
+    pocket1: MagazinePistolRubber
+    pocket2: WeaponDisabler

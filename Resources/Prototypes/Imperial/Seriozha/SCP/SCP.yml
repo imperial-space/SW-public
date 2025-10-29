@@ -86,9 +86,9 @@
       baseSprintSpeed: 1.8
     - type: Vocal
       sounds:
-        Male: DedVoice
-        Unsexed: DedVoice
-        Female: DedVoice
+        Male: SCP106
+        Unsexed: SCP106
+        Female: SCP106
     - type: Fixtures
       fixtures:
         fix1:
@@ -390,9 +390,9 @@
       templateId: docinv
     - type: Vocal
       sounds:
-        Male: DocVoice
-        Unsexed: DocVoice
-        Female: DocVoice
+        Male: SCP049
+        Unsexed: SCP049
+        Female: SCP049
     - type: Tag
       tags:
       - DoorBumpOpener
@@ -585,37 +585,6 @@
         task: SimpleHostileCompound
     - type: ZombieImmune
     - type: NonSpreaderZombie
-
-
-- type: emoteSounds
-  id: DedVoice
-  sounds:
-    Scream:
-      path: /Audio/Imperial/Seriozha/SCP/dedscream.ogg
-    Laugh:
-      path: /Audio/Imperial/Seriozha/SCP/dedlaugh.ogg
-
-- type: emoteSounds
-  id: DocVoice
-  sounds:
-    Scream:
-      path: /Audio/Imperial/Seriozha/SCP/docscream.ogg
-    Laugh:
-      path: /Audio/Imperial/Seriozha/SCP/doclaugh.ogg
-    Sneeze:
-      path: /Audio/Imperial/Seriozha/SCP/docsneeze.ogg
-    Cough:
-      path: /Audio/Imperial/Seriozha/SCP/doccough.ogg
-    Crying:
-      path: /Audio/Imperial/Seriozha/SCP/doccry.ogg
-    Whistle:
-      path: /Audio/Imperial/Seriozha/SCP/docwhistle.ogg
-    Sigh:
-      path: /Audio/Imperial/Seriozha/SCP/docsigh.ogg
-    Yawn:
-      path: /Audio/Imperial/Seriozha/SCP/docyawn.ogg
-    Weh:
-      collection: Weh
 
 - type: inventoryTemplate
   id: docinv

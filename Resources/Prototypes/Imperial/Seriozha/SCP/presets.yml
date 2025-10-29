@@ -166,6 +166,13 @@
     - type: NpcFactionMember
       factions:
       - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPOxrana-name
+      description: ghost-role-information-PresetSCPOxrana-desc
+      rules: rule
+      raffle:
+        settings: short
 
 - type: entity
   parent: ImperialSCPBasePreset
@@ -184,6 +191,13 @@
     - type: NpcFactionMember
       factions:
       - Foundation
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      name: ghost-role-information-PresetSCPDoc-name
+      description: ghost-role-information-PresetSCPDoc-desc
+      rules: rule
+      raffle:
+        settings: short
 
 - type: entity
   parent: ImperialSCPBasePreset
