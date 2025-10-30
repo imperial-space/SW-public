@@ -378,6 +378,7 @@ namespace Content.Server.Cult
                                     _transform.SetCoordinates(victim, ocoords);
                                     if (TryComp<CuffableComponent>(victim, out var cuff))
                                         _container.EmptyContainer(cuff.Container, true);
+                                    _audioSystem.PlayEntity(comp.VictimSuccessSound, Filter.Entities(victim), victim, false, AudioParams.Default.WithVolume(20f));
                                     _chat.TrySendInGameICMessage(victim, "Культ истины провел со мной ритуал связи. Если я буду жертвовать кровь... то есть резать себя около этих кровавых сосудов, к одному из которых меня телепортировало, раз в какое-то время, то я буду получать длительную магическую регенерацию, а культ - алые кристаллы. Это... взаимовыгодно? Лишь бы другие не узнали...", InGameICChatType.Whisper, false);
                                     var cyr = EnsureComp<CultCursedComponent>(victim);
                                     cyr.CurseLevel = cyr.MaxCurseLevel;

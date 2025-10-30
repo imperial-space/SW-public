@@ -3,7 +3,7 @@
   name: ent-MedievalActionCursedFetter
   description: ent-MedievalActionCursedFetter
   productAction: MedievalActionCursedFetter
-  priority: 4
+  priority: 7
   productUpgradeId:
     - MedievalSpellFireFetter
   icon:

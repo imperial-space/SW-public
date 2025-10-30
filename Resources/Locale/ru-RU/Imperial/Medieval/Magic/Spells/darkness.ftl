@@ -88,3 +88,16 @@ medieval-spell-speach-cult-dagger = blò̸̹ò̸̹d kn̴͈͂ifɛ
 
 medieval-store-spells-darkness-cult-dagger-name = Создание кинжала культа
 medieval-store-spells-darkness-cult-dagger-desc = Создаёт в руке кинжал культа. Пригодится, если вы потеряете настоящий.
+
+# Tentacles
+
+medieval-spell-speach-tentacles = Nnua nhini a wɔadome
+
+medieval-store-spells-darkness-tentacles-beginner-name = Проклятые корни
+medieval-store-spells-darkness-tentacles-beginner-desc = Создаёт проклятые корни, которые слегка замедляют противника на них.
+
+medieval-store-spells-darkness-tentacles-middle-name = Проклятая роща
+medieval-store-spells-darkness-tentacles-middle-desc = Создаёт проклятые корни, которые умеренно замедляют противника на них.
+
+medieval-store-spells-darkness-tentacles-senior-name = Проклятая роща
+medieval-store-spells-darkness-tentacles-senior-desc = Создаёт проклятые корни, которые сильно замедляют противника на них.

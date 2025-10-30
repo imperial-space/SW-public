@@ -1198,6 +1198,10 @@
   - type: Strap
     buckleTime: 0.5
     unbuckleTime: 0.5
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed1.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed2.ogg
   - type: Buckle
   - type: BloodRegenBed
     bloodRegenMultiplier: 2.0
@@ -1225,6 +1229,10 @@
   - type: Strap
     buckleTime: 0.5
     unbuckleTime: 0.5
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed1.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed2.ogg
   - type: Buckle
   - type: BloodRegenBed
     bloodRegenMultiplier: 5.0

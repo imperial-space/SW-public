@@ -26,6 +26,10 @@
   - type: Strap
     position: Stand
     buckleOffset: "0,-0.05"
+    buckleSound: 
+      path: /Audio/Imperial/Medieval/Effects/sit_chair2.ogg # imperial medieval
+    unbuckleSound: 
+      path: /Audio/Imperial/Medieval/Effects/sit_chair1.ogg # imperial medieval
   - type: Pullable
   - type: Damageable
     damageContainer: Inorganic

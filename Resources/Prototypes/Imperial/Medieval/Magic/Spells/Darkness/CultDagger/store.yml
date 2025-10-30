@@ -3,7 +3,7 @@
   name: medieval-store-spells-darkness-cult-dagger-name
   description: medieval-store-spells-darkness-cult-dagger-desc
   productAction: MedievalActionCultDagger
-  priority: 4
+  priority: 8
   icon:
     sprite: Imperial/Medieval/Gun/Charmer/dagger_cult_magic.rsi
     state: 1

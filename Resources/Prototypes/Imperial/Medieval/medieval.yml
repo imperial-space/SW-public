@@ -1925,11 +1925,8 @@
     - type: Sprite
       state: brutepack
     - type: Healing
-      # Imperial Medieval Plague start
-      plagueHealingTier: 1
       plagueProgressionDecayPerUse: 1
-      # Imperial Medieval Plague end
-      damageContainer: Biological
+      damageContainers: [Biological]
       damage:
         groups:
           Brute: -15 # 5 for each type in the group
@@ -2141,7 +2138,7 @@
     delay: 3.0
   - type: Summonable
     specialItem: MedievalMobKobold
-    requriesBibleUser: false
+    #requriesBibleUser: false
   - type: Sprite
     sprite: Imperial/Medieval/Summon/murlock.rsi
     state: icon
@@ -2166,7 +2163,7 @@
     delay: 3.0
   - type: Summonable
     specialItem: MedievalMobFire
-    requriesBibleUser: false
+    #requriesBibleUser: false
   - type: Sprite
     sprite: Imperial/Medieval/Summon/human.rsi
     state: icon
@@ -2191,7 +2188,7 @@
     delay: 3.0
   - type: Summonable
     specialItem: MedievalRandomHumanoidSpawnerHewbie
-    requriesBibleUser: false
+    #requriesBibleUser: false
   - type: Sprite
     sprite: Imperial/Medieval/Summon/fire.rsi
     state: icon
@@ -6974,7 +6971,8 @@
   name: marker
   components:
   - type: RoomFill
-    size: 9,9
+    minSize: 9,9
+    maxSize: 9,9
     roomWhitelist:
       tags:
       - SteroidMap
@@ -6985,7 +6983,8 @@
   name: marker
   components:
   - type: RoomFill
-    size: 9,9
+    minSize: 9,9
+    maxSize: 9,9
     roomWhitelist:
       tags:
       - KaravanMap
@@ -7440,9 +7439,9 @@
   id: Vinque
   path: /Fonts/Imperial/Vinque/Vinque.otf
 
-- type: font
-  id: SpellwardFont
-  path: /Fonts/Imperial/Spellward/Monomakh-Regular.ttf
+#- type: font
+#  id: SpellwardFont
+#  path: /Fonts/Imperial/Spellward/Monomakh-Regular.ttf
 
 - type: font
   id: SpellwardBeeBoopFont
