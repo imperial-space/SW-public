@@ -165,7 +165,7 @@
       types:
         Slash: 5
   - type: NeedSleep
-    sleepLevelPerUpdate: 0.36
+    sleepLevelPerUpdate: 0.25
   - type: BadSmellRaceModifier
     modifier: 1.15
   - type: Damageable
