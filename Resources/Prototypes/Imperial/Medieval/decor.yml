@@ -2104,22 +2104,15 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-  - type: StorageFill
-    contents:
+  - type: FullContainer
+    fullable:
       - id: MedievalDaggerT3
-        prob: 0.2
       - id: MedievalWoodenSword
-        prob: 0.2
       - id: MedievalMaceT3HeavyBone
-        prob: 0.2
       - id: BaseBallBat
-        prob: 0.2
       - id: MedievalHatchet
-        prob: 0.2
       - id: KitchenKnife
-        prob: 0.2
       - id: MedievalShortSword
-        prob: 0.2
 
 
 - type: entity
@@ -2170,34 +2163,21 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-  - type: StorageFill
-    contents:
+  - type: FullContainer
+    fullable:
       - id: MedievalClothingHeadHelmetNazal
-        prob: 0.03
       - id: MedievalIronGloves
-        prob: 0.06
       - id: MedievalClothingFeetSteel
-        prob: 0.06
       - id: MedievalClothingHeadHelmetBacinet
-        prob: 0.15
       - id: MedievalClothingHeadHelmetSalad
-        prob: 0.15
       - id: MedievalClothingHeadHelmetSaladLight
-        prob: 0.15
       - id: MedievalClothingHeadHelmetCrusader
-        prob: 0.15
       - id: MedievalClothingHeadHelmetShapel
-        prob: 0.15
       - id: MedievalClothingHeadHelmetNormandFree
-        prob: 0.15
       - id: MedievalClothingHeadHelmetNormand
-        prob: 0.15
       - id: MedievalClothingHeadHelmetHoodHelmet
-        prob: 0.15
       - id: MedievalClothingHeadHelmetNormandFree
-        prob: 0.15
       - id: MedievalClothingHeadHelmetNormandFree
-        prob: 0.15
 
 #- type: tile
 #  id: MedievalFloorPlanetGrass1
