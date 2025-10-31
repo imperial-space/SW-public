@@ -93,7 +93,7 @@
 
 - type: entity
   save: false
-  name: Урист МакБезымянный
+  name: Урист МакРезонат
   parent: BaseMobIllitid
   id: MobIllitid
 
@@ -127,28 +127,6 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.4
-        # they r smaller
-        density: 150
-        restitution: 0.0
-        mask:
-        - MobMask
-        layer:
-        - MobLayer
-      medieval-spawner: # imperial medieval start
-        shape: !type:PhysShapeCircle
-          radius: 0.4
-        layer: []
-        #layer:
-        #- DoorPassable
-        mask:
-        - MedievalSpawnerLayer
-        hard: false # imperial medieval end
   - type: LanguageSpeaker
     languages:
       Common: Speak
@@ -191,9 +169,6 @@
     modifier: 1.15
   - type: Damageable
     damageModifierSet: Illitid
-  - type: LocalLight
-    energy: 0.2
-    radius: 2
 
 - type: damageModifierSet
   id: Illitid
@@ -264,7 +239,7 @@
 
 - type: species
   id: Illitid
-  name: Безымянный
+  name: Резонат
   roundStart: true
   prototype: MobIllitid
   sprites: MobIllitidSprites

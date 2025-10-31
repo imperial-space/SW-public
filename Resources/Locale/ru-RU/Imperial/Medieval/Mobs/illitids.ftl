@@ -1,10 +1,10 @@
-ent-OrganIllitidHeart = сердце безымянного
+ent-OrganIllitidHeart = сердце резоната
     .desc = Внеземное нечто.
     .suffix = { "Средневековье" }
-ent-OrganIllitidLiver = печень безымянного
+ent-OrganIllitidLiver = печень резоната
     .desc = Внеземное нечто.
     .suffix = { "Средневековье" }
-ent-OrganIllitidStomach = желудок безымянного
+ent-OrganIllitidStomach = желудок резоната
     .desc = Внеземное нечто.
     .suffix = { "Средневековье" }
 marking-IllitidFourTent = щупальца (4)
