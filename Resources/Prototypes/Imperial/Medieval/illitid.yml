@@ -99,7 +99,7 @@
 
 - type: entity
   save: false
-  name: Urist McHands The Illitid
+  name: Urist McHands The Resonat
   parent: BaseMobSpeciesOrganic
   id: BaseMobIllitid
   abstract: true
@@ -129,12 +129,13 @@
       amount: 5
   - type: LanguageSpeaker
     languages:
-      Common: Speak
+      Common: Understand
+      Resonat: Speak
       #Goblin: Speak
-      #Ancient: Speak
+      Ancient: Understand
       #Tribe: Speak
       #Orc: Speak
-      #Cursed: Speak
+      Cursed: Understand
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak

@@ -20,3 +20,5 @@ language-Myrmex-name = Мирмексы
 language-Myrmex-description = Псионическая связь
 language-Plague-name = Чума
 language-Plague-description = Коллективный разум чумных призраков
+language-Resonat-name = Псионический
+language-Resonat-description = Псионическая связь
