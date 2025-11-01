@@ -10,6 +10,9 @@ public sealed class SolutionRegenerationSystem : EntitySystem
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    TimeSpan StartTime = TimeSpan.FromSeconds(0f); // imperial medieval start
+    TimeSpan EndTime = TimeSpan.FromSeconds(0f);
+    TimeSpan ReloadTime = TimeSpan.FromSeconds(10f);
 
     public override void Initialize()
     {
@@ -38,32 +41,43 @@ public sealed class SolutionRegenerationSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<SolutionRegenerationComponent, SolutionContainerManagerComponent>();
-        while (query.MoveNext(out var uid, out var regen, out var manager))
+
+        if (_timing.CurTime > EndTime)
         {
-            if (_timing.CurTime < regen.NextRegenTime)
-                continue;
+            StartTime = _timing.CurTime;
+            EndTime = StartTime + ReloadTime; // imperial medieval end
 
-            // timer ignores if its full, it's just a fixed cycle
-            regen.NextRegenTime += regen.Duration;
-            // Needs to be networked and dirtied so that the client can reroll it during prediction
-            Dirty(uid, regen);
-            if (!_solutionContainer.ResolveSolution((uid, manager),
-                    regen.SolutionName,
-                    ref regen.SolutionRef,
-                    out var solution))
-                continue;
+            var query = EntityQueryEnumerator<SolutionRegenerationComponent, SolutionContainerManagerComponent>();
+            while (query.MoveNext(out var uid, out var regen, out var manager))
+            {
+                if (_timing.CurTime < regen.NextRegenTime)
+                    continue;
 
-            var amount = FixedPoint2.Min(solution.AvailableVolume, regen.Generated.Volume);
-            if (amount <= FixedPoint2.Zero)
-                continue;
+                // timer ignores if its full, it's just a fixed cycle
+                regen.NextRegenTime = _timing.CurTime + regen.Duration;
+                if (_solutionContainer.ResolveSolution((uid, manager), regen.SolutionName, ref regen.SolutionRef, out var solution))
+                {
+                    var amount = FixedPoint2.Min(solution.AvailableVolume, regen.Generated.Volume);
+                    amount *= 18; // imperial medieval start
+                    if (amount > (solution.AvailableVolume))
+                        amount = (solution.AvailableVolume); // imperial medieval end
+                    if (amount <= FixedPoint2.Zero)
+                        continue;
 
-            // Don't bother cloning and splitting if adding the whole thing
-            var generated = amount == regen.Generated.Volume
-                ? regen.Generated
-                : regen.Generated.Clone().SplitSolution(amount);
+                    // dont bother cloning and splitting if adding the whole thing
+                    Solution generated;
+                    if (amount == regen.Generated.Volume)
+                    {
+                        generated = regen.Generated;
+                    }
+                    else
+                    {
+                        generated = regen.Generated.Clone().SplitSolution(amount);
+                    }
 
-            _solutionContainer.TryAddSolution(regen.SolutionRef.Value, generated);
-        }
+                    _solutionContainer.TryAddSolution(regen.SolutionRef.Value, generated);
+                }
+            }
+        } // imperial medieval
     }
 }

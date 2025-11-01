@@ -15,7 +15,9 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Audio.Systems;
-
+//upstream need to fix - Кыть, у тебя тут использовалась серверная медиевал.плагуе, визы это перенесли в шеред
+//код восстановить просто так ктрлц+ктрлв я не могу, нужно поправить
+// аналогично затронуло хилингкомпонент
 namespace Content.Shared.Medical.Healing;
 
 public sealed class HealingSystem : EntitySystem

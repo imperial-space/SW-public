@@ -21,6 +21,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Imperial.Medieval.Body;
 
 namespace Content.Shared.Body.Systems;
 
@@ -368,8 +369,13 @@ public abstract class SharedBloodstreamSystem : EntitySystem
             return false;
 
         if (amount >= 0)
+        {
+            // Imperial Medieval Skills start
+            var ev = new GetBloodRegenModifiersEvent(1f);
+            RaiseLocalEvent(ent.Owner, ref ev);
+            // Imperial Medieval Skills end
             return SolutionContainer.TryAddReagent(ent.Comp.BloodSolution.Value, ent.Comp.BloodReagent, amount, null, GetEntityBloodData(ent));
-
+        }
         // Removal is more involved,
         // since we also wanna handle moving it to the temporary solution
         // and then spilling it if necessary.

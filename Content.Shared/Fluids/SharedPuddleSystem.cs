@@ -184,8 +184,7 @@ public abstract partial class SharedPuddleSystem : EntitySystem
 
                 var interpolateValue = quantity.Float() / solution.Volume.Float();
                 color = Color.InterpolateBetween(color,
-                    _prototypeManager.Index<ReagentPrototype>(standout).SubstanceColor,
-                    interpolateValue);
+                    SharedChemistryRandomizationSystem.GetColor(_prototypeManager.Index<ReagentPrototype>(standout)), interpolateValue);  // Imperial Medieval color
             }
         }
 

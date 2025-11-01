@@ -29,7 +29,7 @@ public abstract class SharedChatSystem : EntitySystem
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
     public const int WhisperMuffledRange = 5; // how far whisper goes at all, in world units
     public static readonly SoundSpecifier DefaultAnnouncementSound
-        = new SoundPathSpecifier("/Audio/Corvax/Announcements/announce.ogg"); // Corvax-Announcements
+        = new SoundPathSpecifier("/Audio/Imperial/Medieval/horn.ogg"); // Corvax-Announcements
     public static readonly SoundPathSpecifier CentComAnnouncementSound
         = new SoundPathSpecifier("/Audio/Corvax/Announcements/centcomm.ogg"); // Corvax-Announcements
 
