@@ -1030,8 +1030,8 @@
   loadouts:
   - HeadofSecurityCloak
   - HeadofSecurityMantle
-  - ClothingNeckCloakHosFormal
-  - ClothingNeckMantleHOSShoulder
+  - ClothingNeckCloakHosFormal # Imperial Space
+  - ClothingNeckMantleHOSShoulder # Imperial Space
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
@@ -1039,7 +1039,7 @@
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
-  - ClothingOuterCoatHoSGreatcoat
+  - ClothingOuterCoatHoSGreatcoat # Imperial Space
 
 - type: loadoutGroup
   id: WardenHead
