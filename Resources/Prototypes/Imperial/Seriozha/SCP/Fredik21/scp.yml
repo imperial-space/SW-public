@@ -3386,6 +3386,7 @@
   - type: FootstepModifier
     footstepSoundCollection:
       collection: FootstepSCPADV
+  - type: Unremoveable
 
 - type: entity
   parent: ClothingOuterHardsuitBase
