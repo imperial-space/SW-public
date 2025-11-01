@@ -11,4 +11,6 @@ marking-IllitidFourTent = щупальца (4)
 marking-IllitidTwoTent = щупальца (2)
 marking-IllitidChestSpot = грудные метки
 marking-IllitidHeadTopSpot = лобная метка
+marking-IllitidChestPlates = грудные пластины
+marking-IllitidHeadThirdEye = третий глаз
 
