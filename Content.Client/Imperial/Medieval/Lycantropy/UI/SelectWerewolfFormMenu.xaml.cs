@@ -33,7 +33,7 @@ public sealed partial class SelectWerewolfFormMenu : Content.Client.UserInterfac
             {
                 SetSize = new Vector2(64, 64),
                 ToolTip = Loc.GetString(item.Key),
-            }; // fixed
+            };
 
             var entProtoView = new EntityPrototypeView()
             {
