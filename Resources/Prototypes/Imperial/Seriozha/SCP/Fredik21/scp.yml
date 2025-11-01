@@ -67,6 +67,28 @@
 
 - type: entity
   parent: PosterBase
+  id: PosterTay5
+  name: Poster of the Task Force Control
+  suffix: Fredik21, Недра
+  description: CONTROL TASK FORCE. No chaos!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: tay5
+
+- type: entity
+  parent: PosterBase
+  id: PosterNDA343
+  name: Poster NDA 343
+  suffix: Fredik21, Недра
+  description: NDA - Object 343. Class - Safe. He created everything. What can He create for you?
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/poster.rsi
+    state: n343
+
+- type: entity
+  parent: PosterBase
   id: PosterIPG
   name: Poster Incident Prevention Group
   suffix: Fredik21, Недра
@@ -1292,7 +1314,7 @@
   suffix: Fredik21, Недра
   components:
     - type: IdCard
-      jobIcon: JobIconSCP
+      jobIcon: GOCIconSCP
     - type: Access
       tags:
       - SCPAccesOne
@@ -1302,6 +1324,22 @@
       - Security
       - Brig
       - Armory
+    - type: Sprite
+      sprite: Imperial/Seriozha/Fredik21/goc/id.rsi
+      layers:
+        - state: icon
+    - type: Clothing
+      sprite: Imperial/Seriozha/Fredik21/goc/id.rsi
+
+- type: entity
+  id: SCPIDCardFourGOCnoaccess
+  parent: IDCardStandard
+  name: GOC ID card
+  suffix: Fredik21, Недра, без доступов
+  components:
+    - type: IdCard
+      jobIcon: GOCIconSCP
+    - type: Access
     - type: Sprite
       sprite: Imperial/Seriozha/Fredik21/goc/id.rsi
       layers:
@@ -1885,16 +1923,6 @@
       implants:
       - MindShieldImplant
       - ImperialBlinkImplant
-    - type: Armor
-      modifiers:
-        coefficients:
-          Blunt: 0.5
-          Slash: 0.5
-          Piercing: 0.4
-          Heat: 0.5
-          Radiation: 0.5
-          Caustic: 0.5
-          Stamina: 0.5
     - type: PassiveDamage
       allowedStates:
       - Alive
@@ -2521,7 +2549,7 @@
     eyes: ClothingEyesGlassesMeson
     gloves: ClothingHandsGlovesColorYellow
     outerClothing: ClothingOuterVestHazard
-    id: SCPIDCardThree
+    id: SCPIDCardTwo
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltUtilityEngineering
     head: ClothingHeadHatHardhatYellow
@@ -2560,7 +2588,7 @@
     shoes: ClothingShoesSCP
     eyes: ClothingEyesHudMedical
     gloves: ClothingHandsGlovesLatex
-    id: SCPIDCardThree
+    id: SCPIDCardTwo
     ears: ClothingHeadsetSCPMain
     belt: ClothingBeltMedicalFilled
     head: ClothingHeadHatParamedicsoft
@@ -2771,9 +2799,9 @@
   blacklist:
     tags:
     - SiliconEmotes
-  chatMessages: ["Смеётся"]
+  chatMessages: ["Страшно смеётся"]
   chatTriggers:
-    - Смеётся
+    - лул
 
 - type: soundCollection
   id: LaughSCP106
@@ -2963,3 +2991,724 @@
     suitstorage: WeaponPistolMk58Nonlethal
     pocket1: MagazinePistolRubber
     pocket2: WeaponDisabler
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCP343
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ SCP343Gear ]
+    - type: Pacified
+    - type: Access
+      tags:
+      - SCPAccesOne
+      - SCPAccesTwo
+      - SCPAccesThree
+      - SCPAccesFour
+      - SCPAccesFive
+      - SCPAccesO5
+      - SCPAccesAdministration
+      - CentralCommand
+      - NuclearOperative
+      - SyndicateAgent
+      groups:
+      - AllAccess
+
+- type: startingGear
+  id: SCP343Gear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorWhiteSCP343
+    neck: ClothingNeckMantleCE
+    head: ClothingHeadHatHolyWatermelonSCP343
+    shoes: ClothingShoesSCP
+
+- type: entity
+  parent: ClothingUniformJumpsuitColorWhite
+  id: ClothingUniformJumpsuitColorWhiteSCP343
+  name: Divine Robe
+  suffix: Fredik21, Недра
+  components:
+    - type: Armor
+      modifiers:
+        coefficients:
+          Poison: 0
+          Blunt: 0
+          Slash: 0
+          Heat: 0
+          Piercing: 0
+          Cellular: 0
+          Radiation: 0
+          Caustic: 0
+          Stun: 0
+    - type: Unremoveable
+    - type: ClothingSpeedModifier
+      walkModifier: 1.1
+      sprintModifier: 1.1
+    - type: StaminaResistance
+      damageCoefficient: 0
+    - type: ExplosionResistance
+      damageCoefficient: 0
+    - type: FireProtection
+      reduction: 0
+
+- type: entity
+  parent: ClothingHeadHatHolyWatermelon
+  id: ClothingHeadHatHolyWatermelonSCP343
+  name: Divine Robe
+  suffix: Fredik21, Недра
+  components:
+    - type: Unremoveable
+
+- type: entity
+  parent: BaseItem
+  id: judicialpancake
+  name: judicial pancake
+  suffix: Fredik21, Недра
+  description: Silence in the hall!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/hammer.rsi
+    state: "normal"
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessSound:
+      collection: Hammersound
+      params:
+        variation: 0.03
+        volume: 3
+    onActivate: true
+  - type: EmitSoundOnUse
+    sound:
+      collection: Hammersound
+      params:
+          variation: 0.03
+          volume: 3
+  - type: EmitSoundOnTrigger
+    sound:
+      collection: Hammersound
+      params:
+          variation: 0.03
+          volume: 3
+  - type: EmitSoundOnLand
+    sound:
+      collection: Hammersound
+      params:
+          variation: 0.03
+          volume: 3
+  - type: UseDelay
+    delay: 0.5
+  - type: MeleeWeapon
+    wideAnimationRotation: 180
+    soundHit:
+      collection: Hammersound
+      params:
+          variation: 0.03
+          volume: 3
+    damage:
+      types:
+        Blunt: 4
+
+- type: soundCollection
+  id: Hammersound
+  files:
+  - /Audio/Imperial/Seriozha/SCP/hammer.ogg
+
+- type: entity
+  parent: BaseItem
+  id: judicialgavel
+  name: judicial gavel
+  suffix: Fredik21, Недра
+  description: Silence in the hall!
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/hammern.rsi
+    state: icon
+  - type: WeaponRandom
+    damageBonus:
+      types:
+        Blunt: 1000
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Item
+    size: Small
+    sprite: Imperial/Seriozha/Fredik21/hammern.rsi
+  - type: Appearance
+  - type: DisarmMalus
+    malus: 0
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    soundHit:
+      collection: Hammersound
+      params:
+        variation: 0.03
+        volume: 3
+    soundNoDamage:
+      collection: Hammersound
+      params:
+        variation: 0.03
+        volume: 3
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPjudge
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ judgeSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - judgeSCP
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: judgeSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+    shoes: ClothingShoesBootsCowboyBlack
+    head: ClothingHeadHatPwig
+    eyes: ClothingEyesGlassesCommand
+    gloves: ClothingHandsGlovesColorBlack
+    outerClothing: ClothingOuterRobesJudge
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    pocket1: judicialpancake
+    pocket2: EncryptionKeyNedraCMDconnection
+  inhand:
+  - judicialgavel
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPDetective
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ DetectiveSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: RandomMetadata
+      nameSegments:
+        - DetectiveSCP
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+
+- type: startingGear
+  id: DetectiveSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitDetectiveGrey
+    shoes: ClothingShoesColorBrown
+    head: ClothingHeadHatFedoraBrown
+    eyes: ClothingEyesGlassesSecurity
+    gloves: ClothingHandsGlovesForensic
+    outerClothing: ClothingOuterCoatDetective
+    id: SCPIDCardFour
+    ears: ClothingHeadsetSCPAlt
+    neck: ClothingNeckTieDet
+    belt: ClothingBeltSecurityFilled
+    back: ClothingBackpackSatchelLeather
+  storage:
+    back:
+    - DrinkDetFlask
+    - ForensicScanner
+    - BoxForensicPad
+    - BoxEvidenceMarkers
+
+- type: jobIcon
+  parent: JobIcon
+  id: GOCIconSCP
+  icon:
+    sprite: /Textures/Imperial/Seriozha/Fredik21/goc/icon.rsi
+    state: icon
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSamsaraIrantu
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Tay5IrantuSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialNutrimentPumpImplant
+      - EmpImplant
+      - FreedomImplant
+      - MicroBombImplanter
+      - ImperialBlinkImplant
+      - ImperialSmokeImplant
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+
+- type: startingGear
+  id: Tay5IrantuSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsMagSCPTay5
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTay5Irantu
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    back: ClothingBackpackSatchelHolding
+    mask: MaskAlpha9SCP
+    pocket1: ItemODENMagazine
+    pocket2: ItemODENMagazine
+  storage:
+    back:
+    - EncryptionKeyNedraAlphaconnection
+    - EncryptionKeyNedraMTFconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraLastHopeconnection
+    - EnergySword
+    - HandheldCrewMonitor
+    - HandHeldAtmosAlertsMonitor
+    - HandHeldMassScanner
+    - SyndiHypo
+    - CombatMedipen
+    - CombatMedipen
+    - ChemistryBottleOmnizine
+    - SmokeGrenade
+    - SmokeGrenade
+    - EmpGrenade
+    - EmpGrenade
+    - GrenadeIncendiary
+    - GrenadeIncendiary
+    - ExGrenade
+    - ExGrenade
+    - GrenadeShrapnel
+    - GrenadeShrapnel
+    - SyndicateJawsOfLife
+    - ItemODENMagazine
+    - ItemODENMagazine
+    - MachineGunODEN
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTay5Irantu
+  name: The TAU-5 Irantu Operative's Spacesuit
+  description: The spacesuit of Irantu, commander of the TAU-5 Samsara, is the epitome of offensive power, protection and resilience. Created to be at the forefront, withstand the heaviest collisions and ensure the team's breakthrough, he is a symbol of the relentless power of the NDA Foundation.
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/irantu.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/irantu.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.2
+        Blunt: 0.2
+        Slash: 0.2
+        Heat: 0.2
+        Piercing: 0.2
+        Cellular: 0.2
+        Radiation: 0.2
+        Caustic: 0.2
+        Stun: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.1
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: FireProtection
+    reduction: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTay5Irantu
+  - type: Unremoveable
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitTay5Irantu
+  name: Samsara Irantu TAU-5 Spacesuit Helmet
+  suffix: Fredik21, Недра
+  description: Irantu's helmet, as the commander of the TAU-5 Samsara, is the pinnacle of tactical integration focused on rapid decision-making, group management and survival in the most aggressive combat conditions.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/irantuhelmet.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/irantuhelmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.9
+        Caustic: 0.95
+  - type: PointLight
+    color: "#570404"
+    radius: 10
+    energy: 4
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+        shader: unshaded
+
+- type: entity
+  parent: ClothingShoesBootsMagAdv
+  id: ClothingShoesBootsMagSCPTay5
+  name: Magnetic Boots TAU-5 “Samsara”
+  description: Magnetic boots are most likely specialized equipment used by TAU–5 Samsara operatives to ensure stability, movement in unusual conditions, and possibly to hold or manipulate objects.
+  suffix: Fredik21, Недра
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      collection: FootstepSCPADV
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTay5Munru
+  name: TAU-5 Munru Operative's Spacesuit
+  description: The TAU-5 Munru operative's spacesuit, known as the “Ghost in Sensors” or “Scanner,” is optimized for reconnaissance, anomaly detection, and rapid movement in the unknown. It combines advanced sensor technology with improved mobility and the ability to sneak in.
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/munru.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/munru.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.3
+        Blunt: 0.3
+        Slash: 0.3
+        Heat: 0.3
+        Piercing: 0.3
+        Cellular: 0.3
+        Radiation: 0.3
+        Caustic: 0.3
+        Stun: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 1.3
+    sprintModifier: 1.6
+  - type: StaminaResistance
+    damageCoefficient: 0.3
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: FireProtection
+    reduction: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTay5
+  - type: Unremoveable
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitTay5
+  name: Helmet of the TAU-5 Samsara space suit
+  suffix: Fredik21, Недра
+  description: The helmet is a key component of the spacesuit of any TAU-5 operative, but for the members of this group it acquires special importance as a center of control, life support and integration with anomalous technologies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/helmet.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+        Radiation: 0.9
+        Caustic: 0.95
+  - type: PointLight
+    color: "#570404"
+    radius: 10
+    energy: 4
+  - type: ToggleableLightVisuals
+    clothingVisuals:
+      head:
+      - state: on-equipped-HELMET
+        shader: unshaded
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSamsaraMunru
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Tay5MunruSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialNutrimentPumpImplant
+      - MicroBombImplanter
+      - ImperialBlinkImplant
+      - ImperialSmokeImplant
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+
+- type: startingGear
+  id: Tay5MunruSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsMagSCPTay5
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTay5Munru
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    back: ClothingBackpackSatchelHolding
+    mask: MaskAlpha9SCP
+    pocket1: SyndiHypo
+    pocket2: ChemistryBottleEphedrine
+  storage:
+    back:
+    - EncryptionKeyNedraAlphaconnection
+    - EncryptionKeyNedraMTFconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraLastHopeconnection
+    - EnergySwordDouble
+    - AmpulaDylo
+    - AmpulaDylo
+    - CombatMedipen
+    - CombatMedipen
+    - SyndicateJawsOfLife
+    - SmokeGrenade
+    - SmokeGrenade
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSamsaraOnru
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Tay5OnruSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialNutrimentPumpImplant
+      - MacroBombImplanter
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+
+- type: startingGear
+  id: Tay5OnruSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsMagSCPTay5
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTay5Onru
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    back: ClothingBackpackSatchelHolding
+    mask: MaskAlpha9SCP
+    pocket1: SyndiHypo
+    pocket2: ChemistryBottleEphedrine
+  storage:
+    back:
+    - EncryptionKeyNedraAlphaconnection
+    - EncryptionKeyNedraMTFconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraLastHopeconnection
+    - CombatMedipen
+    - CombatMedipen
+    - SyndicateJawsOfLife
+    - EnergyShield
+    - EnergyShield
+    - EnergyShield
+    - TelescopicShield
+    - TelescopicShield
+    - TelescopicShield
+    - BlackShieldPistol
+    - WeaponAdvancedLaser
+    - WeaponLightMachineGunL6
+    - MagazineLightRifleBox
+    - MagazineLightRifleBox
+  inhand:
+  - SquadShield
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTay5Onru
+  name: TAU-5 Onru operative's spacesuit
+  description: The TAU-5 operative Onru's spacesuit, nicknamed "Bastion," is the embodiment of armored power and physical resilience. Its primary purpose is to withstand colossal loads, protect against the most destructive anomalies, and serve as a shield for the rest of the team.
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/onru.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/onru.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.1
+        Blunt: 0.1
+        Slash: 0.1
+        Heat: 0.1
+        Piercing: 0.1
+        Cellular: 0.1
+        Radiation: 0.1
+        Caustic: 0.1
+        Stun: 0.1
+  - type: ClothingSpeedModifier
+    walkModifier: 1
+    sprintModifier: 0.9
+  - type: StaminaResistance
+    damageCoefficient: 0.1
+  - type: ExplosionResistance
+    damageCoefficient: 0.1
+  - type: FireProtection
+    reduction: 0.9
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTay5
+  - type: Unremoveable
+
+- type: entity
+  parent: ImperialSCPBasePreset
+  id: PresetSCPSamsaraNanku
+  name: Preset
+  suffix: Fredik21, Недра
+  components:
+    - type: Loadout
+      prototypes: [ Tay5NankuSCPGear ]
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+      - ImperialNutrimentPumpImplant
+      - MacroBombImplanter
+    - type: NpcFactionMember
+      factions:
+      - Foundation
+      - RiotControlUnit
+      - DeathSquad
+
+- type: startingGear
+  id: Tay5NankuSCPGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitOperative
+    shoes: ClothingShoesBootsMagSCPTay5
+    eyes: USSPGlassesWar
+    gloves: ClothingHandsGlovesCombat
+    outerClothing: ClothingOuterHardsuitTay5nanku
+    id: SCPIDCardAdm
+    ears: ClothingHeadsetSCPAlt
+    back: ClothingBackpackSatchelHolding
+    mask: MaskAlpha9SCP
+    pocket1: SyndiHypo
+    pocket2: ChemistryBottleEphedrine
+  storage:
+    back:
+    - EncryptionKeyNedraAlphaconnection
+    - EncryptionKeyNedraMTFconnection
+    - EncryptionKeyNedraCMDconnection
+    - EncryptionKeyNedraLastHopeconnection
+    - CombatMedipen
+    - CombatMedipen
+    - SyndicateJawsOfLife
+    - EnergySwordDouble
+    - Hypospray
+    - ChemistryBottleOmnizine
+    - ChemistryBottleOmnizine
+    - ChemistryBottleOmnizine
+    - ChemistryBottleOmnizine
+    - WeaponTaser
+    - WeaponPulseSniper
+    - WeaponPulseShotgunDeathSquad
+    - SCP127
+    - SCP500
+    - SCP500
+    - SCP500
+    - SCP500
+    - SCP207
+
+- type: entity
+  parent: ClothingOuterHardsuitBase
+  id: ClothingOuterHardsuitTay5nanku
+  name: TAU-5 Nanku operative suit
+  description: The TAU-5 Nanku operative's suit, known as the "Anomaly Conductor," is designed with an emphasis on interacting with anomalous phenomena, analyzing them, and, if necessary, controlling their suppression or neutralization.
+  suffix: Fredik21, Недра
+  components:
+  - type: Sprite
+    sprite: Imperial/Seriozha/Fredik21/tay5/nanku.rsi
+  - type: Clothing
+    sprite: Imperial/Seriozha/Fredik21/tay5/nanku.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: Armor
+    modifiers:
+      coefficients:
+        Poison: 0.3
+        Blunt: 0.2
+        Slash: 0.3
+        Heat: 0.2
+        Piercing: 0.3
+        Cellular: 0.2
+        Radiation: 0.3
+        Caustic: 0.2
+        Stun: 0.3
+  - type: ClothingSpeedModifier
+    walkModifier: 1.1
+    sprintModifier: 1.2
+  - type: StaminaResistance
+    damageCoefficient: 0.2
+  - type: ExplosionResistance
+    damageCoefficient: 0.3
+  - type: FireProtection
+    reduction: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitTay5
+  - type: Unremoveable
