@@ -156,7 +156,7 @@ public sealed class ZombieRuleSystem : GameRuleSystem<ZombieRuleComponent>
         _zombie.ZombifyEntity(uid);
         if (component.Action != null)
             Del(component.Action.Value);
-
+        // imperial space fix bug
         if (TryComp<CuffableComponent>(uid, out var cuffable))
         {
             _cuffable.TryUncuff(uid, uid);
