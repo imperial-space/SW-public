@@ -196,6 +196,9 @@
       points: 1
       required: true
       defaultMarkings: [ IllitidTwoTent ]
+    HeadSide:
+      points: 1
+      required: false
     Chest:
       points: 1
       required: false
@@ -224,10 +227,20 @@
   id: IllitidChestSpot
   bodyPart: Chest
   markingCategory: Chest
+  followSkinColor: true
   speciesRestriction: [Illitid]
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: chest
+
+- type: marking
+  id: IllitidChestPlates
+  bodyPart: Chest
+  markingCategory: Chest
+  speciesRestriction: [Illitid]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
+    state: hitin
 
 - type: marking
   id: IllitidHeadTopSpot
@@ -237,6 +250,16 @@
   sprites:
   - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
     state: headtop
+
+- type: marking
+  id: IllitidHeadThirdEye
+  bodyPart: HeadSide
+  markingCategory: HeadSide
+  followSkinColor: true
+  speciesRestriction: [Illitid]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Illitid/spots.rsi
+    state: eye
 
 - type: species
   id: Illitid

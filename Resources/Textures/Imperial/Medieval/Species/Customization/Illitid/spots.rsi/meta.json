@@ -14,6 +14,14 @@
       {
         "name": "headtop",
         "directions": 4
+      },
+      {
+        "name": "hitin",
+        "directions": 4
+      },
+      {
+        "name": "eye",
+        "directions": 4
       }
     ]
   }
