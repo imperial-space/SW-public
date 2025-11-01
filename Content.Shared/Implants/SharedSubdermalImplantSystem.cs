@@ -72,10 +72,6 @@ public abstract partial class SharedSubdermalImplantSystem : EntitySystem
         ent.Comp.ImplantedEntity = null;
         Dirty(ent);
 
-        // imperial medieval languages start
-        var ev = new ImplantRemovedEvent(uid, component.ImplantedEntity.Value);
-        RaiseLocalEvent(uid, ref ev);
-        // imperial medieval languages end
     }
 
     /// <summary>
@@ -201,18 +197,3 @@ public readonly record struct ImplantRemovedEvent
         Implanted = implanted;
     }
 }
-
-// imperial medieval languages start
-[ByRefEvent]
-public readonly struct ImplantRemovedEvent
-{
-    public readonly EntityUid Implant;
-    public readonly EntityUid Implanted;
-
-    public ImplantRemovedEvent(EntityUid implant, EntityUid? implanted)
-    {
-        Implant = implant;
-        Implanted = implanted;
-    }
-}
-// imperial medieval languages end

@@ -854,7 +854,7 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
                 }
 
                 recognized.Add(Loc.GetString("examinable-solution-recognized",
-                                            //("color", proto.SubstanceColor.ToHexNoAlpha()), imperial medieval pashi rot ebal
+                                            ("color", proto.SubstanceColor.ToHexNoAlpha()),
                                             ("chemical", proto.LocalizedName)));
             }
 
@@ -862,8 +862,8 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
                 return;
 
             var msg = ContentLocalizationManager.FormatList(recognized);
-            msg.Append(Loc.GetString(part, ("color", SharedChemistryRandomizationSystem.GetColor(reagent).ToHexNoAlpha()),  // Imperial Medieval color
-                                ("chemical", reagent.LocalizedName)));
+            //msg.Append(Loc.GetString(part, ("color", SharedChemistryRandomizationSystem.GetColor(reagent).ToHexNoAlpha()),  // Imperial Medieval color
+            //                    ("chemical", reagent.LocalizedName)));
             // Finally push the full message
             args.PushMarkup(Loc.GetString(entity.Comp.LocRecognizableReagents,
                 ("recognizedString", msg)));

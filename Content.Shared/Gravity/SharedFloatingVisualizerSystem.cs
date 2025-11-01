@@ -25,7 +25,7 @@ public abstract class SharedFloatingVisualizerSystem : EntitySystem
 
     protected bool CanFloat(Entity<FloatingVisualsComponent> entity)
     {
-        entity.Comp.CanFloat = _gravity.IsWeightless(entity.Owner) || component.IgnoreGravity; // Imperial Medieval - ignoring gravity
+        entity.Comp.CanFloat = _gravity.IsWeightless(entity.Owner) || entity.Comp.IgnoreGravity; // Imperial Medieval - ignoring gravity
         Dirty(entity);
         return entity.Comp.CanFloat;
     }
@@ -44,7 +44,7 @@ public abstract class SharedFloatingVisualizerSystem : EntitySystem
         entity.Comp.CanFloat = CanFloat(entity);
         Dirty(entity);
 
-        if (args.Weightless || floating.IgnoreGravity) // Imperial Medieval - ignoring gravity
+        if (args.Weightless || entity.Comp.IgnoreGravity) // Imperial Medieval - ignoring gravity
             FloatAnimation(entity, entity.Comp.Offset, entity.Comp.AnimationKey, entity.Comp.AnimationTime);
     }
 }

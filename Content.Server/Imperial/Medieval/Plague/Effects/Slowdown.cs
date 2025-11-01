@@ -29,6 +29,6 @@ public sealed partial class Slowdown : BasePlagueEffect
     protected override void Effect(EntityUid uid, IEntityManager entMan)
     {
         var stun = entMan.System<StunSystem>();
-        stun.TrySlowdown(uid, TimeSpan.FromSeconds(Duration), Refresh); ;
+        //stun.TrySlowdown(uid, TimeSpan.FromSeconds(Duration), Refresh); // need to fix - ebain upstream
     }
 }

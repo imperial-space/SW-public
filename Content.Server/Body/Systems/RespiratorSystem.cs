@@ -368,11 +368,11 @@ public sealed class RespiratorSystem : EntitySystem
             _adminLogger.Add(LogType.Asphyxiation, $"{ToPrettyString(ent):entity} started suffocating");
 
         // Imperial Medieval Skills start
-        var ev = new GetSuffocationDamageModifiersEvent(1f);
-        RaiseLocalEvent(ent, ref ev);
+        var evmdv = new GetSuffocationDamageModifiersEvent(1f);
+        RaiseLocalEvent(ent, ref evmdv);
         // Imperial Medieval Skills end
 
-        _damageableSys.TryChangeDamage(ent, ent.Comp.Damage * ev.Modifier, interruptsDoAfters: false);  // Imperial Medieval - modifier added
+        _damageableSys.TryChangeDamage(ent, ent.Comp.Damage * evmdv.Modifier, interruptsDoAfters: false);  // Imperial Medieval - modifier added
 
         if (ent.Comp.SuffocationCycles < ent.Comp.SuffocationCycleThreshold)
             return;

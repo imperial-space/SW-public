@@ -31,6 +31,7 @@ using Content.Server.SSDFree.Components;
 using Content.Shared.Cuffs.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Containers;
+using Content.Shared.Body.Components;
 
 namespace Content.Server.Cult
 {

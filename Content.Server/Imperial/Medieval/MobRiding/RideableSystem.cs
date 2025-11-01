@@ -129,7 +129,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                 _throwing.TryThrow(other, direction * 0.6f);
             if (stunSeconds > 0)
             {
-                _stun.TryStun(other, TimeSpan.FromSeconds(stunSeconds), true);
+                _stun.TryAddStunDuration(other, TimeSpan.FromSeconds(stunSeconds));
                 _stun.TryKnockdown(other, TimeSpan.FromSeconds(stunSeconds), true);
             }
 

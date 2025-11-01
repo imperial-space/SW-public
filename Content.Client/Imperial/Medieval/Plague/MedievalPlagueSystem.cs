@@ -73,9 +73,9 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
             return;
 
         var essence = Math.Clamp(comp.Points, 0, 999);
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit1, $"{(essence / 100) % 10}");
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit2, $"{(essence / 10) % 10}");
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit3, $"{essence % 10}");
+        //_sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit1, $"{(essence / 100) % 10}"); // need to fix -  upstream broken
+        //_sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit2, $"{(essence / 10) % 10}");
+        //_sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit3, $"{essence % 10}");
     }
 
     private void OnInfectedGetStatusIcons(EntityUid uid, MedievalPlagueInfectedComponent component, ref GetStatusIconsEvent args)
