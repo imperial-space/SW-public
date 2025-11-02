@@ -27,6 +27,6 @@ public sealed partial class ImperialEntry
 
     public static void IoCRegister()
     {
-        IoCManager.Register<SponsorsManager>(); //Imperial sponsors
+        //IoCManager.Register<SponsorsManager>(); //Imperial sponsors
     }
 }
