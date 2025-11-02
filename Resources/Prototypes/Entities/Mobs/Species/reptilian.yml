@@ -98,7 +98,8 @@
         sizeMaps:
           32:
             sprite: Mobs/Species/Reptilian/displacement.rsi
-            state: mask  - type: BadSmellRaceModifier # imperial medieval start
+            state: mask
+  - type: BadSmellRaceModifier # imperial medieval start
     modifier: 1.25
   - type: LanguageSpeaker
     languages:

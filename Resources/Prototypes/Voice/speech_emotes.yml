@@ -262,23 +262,23 @@
   - whined
   - whining
 
-- type: emote
-  id: Howl
-  name: chat-emote-name-howl
-  category: Vocal
-  available: false
-  whitelist:
-    components:
-    - Vocal
-  blacklist:
-    components:
-    - BorgChassis
-  chatMessages: ["chat-emote-msg-howl"]
-  chatTriggers:
-  - howl
-  - howls
-  - howling
-  - howled
+#- type: emote
+#  id: Howl
+#  name: chat-emote-name-howl
+#  category: Vocal
+#  available: false
+#  whitelist:
+#    components:
+#    - Vocal
+#  blacklist:
+#    components:
+#    - BorgChassis
+#  chatMessages: ["chat-emote-msg-howl"]
+#  chatTriggers:
+#  - howl
+#  - howls
+#  - howling
+#  - howled
 
 - type: emote
   id: Growl

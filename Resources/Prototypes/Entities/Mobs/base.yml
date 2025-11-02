@@ -58,22 +58,6 @@
   - type: MovementSpeedModifier
   - type: LagCompensation
 
-# The progenitor. This should only container the most basic components possible.
-# Only put things on here if every mob *must* have it. This includes ghosts.
-- type: entity
-  abstract: true
-  save: false
-  parent: BaseControllable
-  id: BaseMob
-  components:
-  - type: MobCollision
-  - type: Physics
-    bodyType: KinematicController
-  - type: InputMover
-  - type: MobMover
-  - type: MovementSpeedModifier
-  - type: LagCompensation
-
 - type: entity
   save: false
   id: MobPolymorphable

@@ -973,7 +973,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcrete
   heatCapacity: 99910000
-  weather: true
   badSmellMod: 0.5 # imperial medieval badsmell
   weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
@@ -994,7 +993,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcreteMono
   heatCapacity: 99910000
-  weather: true
   badSmellMod: 0.5 # imperial medieval badsmell
   weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
@@ -1015,7 +1013,6 @@
     collection: FootstepTile
   itemDrop: FloorTileItemConcreteSmooth
   heatCapacity: 99910000
-  weather: true
   badSmellMod: 0.25 # imperial medieval badsmell
   weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
@@ -1036,7 +1033,6 @@
     collection: FootstepMedievalStone # imperial medieval
   itemDrop: FloorTileItemGrayConcrete
   heatCapacity: 99910000
-  weather: true
   badSmellMod: 0.5 # imperial medieval badsmell
   weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
@@ -1057,7 +1053,6 @@
     collection: FootstepMedievalStone # imperial medieval
   itemDrop: FloorTileItemGrayConcreteMono
   heatCapacity: 99910000
-  weather: true
   badSmellMod: 0.5 # imperial medieval badsmell
   weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
@@ -1078,7 +1073,6 @@
     collection: FootstepMedievalStone # imperial medieval
   itemDrop: FloorTileItemGrayConcreteSmooth
   heatCapacity: 99910000
-  weather: true
   badSmellMod: 0.25 # imperial medieval badsmell
   weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
@@ -1099,7 +1093,6 @@
     collection: FootstepMedievalStone # imperial medieval
   itemDrop: FloorTileItemOldConcrete
   heatCapacity: 99910000
-  weather: true
   badSmellMod: 1.5 # imperial medieval badsmell
   weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
@@ -1120,7 +1113,6 @@
     collection: FootstepMedievalStone # imperial medieval
   itemDrop: FloorTileItemOldConcreteMono
   heatCapacity: 99910000
-  weather: true
   badSmellMod: 1.5 # imperial medieval badsmell
   weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
@@ -1141,7 +1133,6 @@
     collection: FootstepMedievalStone # imperial medieval
   itemDrop: FloorTileItemOldConcreteSmooth
   heatCapacity: 99910000
-  weather: true
   badSmellMod: 1.25 # imperial medieval badsmell
   weather: true # Imperial Space <Добавление компонента weather к тайлам>
 
@@ -2149,16 +2140,6 @@
   isSubfloor: false
   deconstructTools: [ Prying ]
   itemDrop: FloorTileItemAstroAsteroidSand
-  weather: false
-
-- type: tile
-  parent: FloorDesert
-  id: FloorDesertAstroSand
-  name: tiles-desert-astro-sand
-  baseTurf: Plating
-  isSubfloor: false
-  deconstructTools: [ Prying ]
-  itemDrop: FloorTileItemDesertAstroSand
   weather: false
 
 - type: tile

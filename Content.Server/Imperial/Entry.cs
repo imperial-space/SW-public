@@ -6,8 +6,8 @@ namespace Content.Server.Imperial.Entry;
 public sealed partial class ImperialEntry
 {
     public static void Init()
-    {
-        IoCManager.Resolve<SponsorsManager>().Initialize();
+    { // need to fix ya hz che tut ostaviv nado bilo a chto ubrat
+       // IoCManager.Resolve<SponsorsManager>().Initialize();
     }
 
     public static void PostInit()
@@ -17,6 +17,6 @@ public sealed partial class ImperialEntry
 
     public static void IoCRegister()
     {
-        IoCManager.Register<SponsorsManager>();
+        //IoCManager.Register<SponsorsManager>();
     }
 }
