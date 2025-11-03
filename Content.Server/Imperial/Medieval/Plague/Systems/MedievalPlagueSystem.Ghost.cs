@@ -146,7 +146,7 @@ public sealed partial class MedievalPlagueSystem
 
         _jitter.DoJitter(args.Target, TimeSpan.FromSeconds(6), true, 10, 3);
         _drunk.TryApplyDrunkenness(args.Target, TimeSpan.FromSeconds(600));
-        //_stun.TrySlowdown(args.Target, TimeSpan.FromSeconds(6), true); need to fix - upstream ebal v rot
+        //_stun.TrySlowdown(args.Target, TimeSpan.FromSeconds(6), true); //need to fix - upstream ebal v rot
 
         _audio.PlayGlobal(new SoundCollectionSpecifier("PlagueDizziness"), Filter.Empty().FromEntities(args.Target), false);
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/dizzy.ogg"), Filter.Empty().FromEntities(uid), false);

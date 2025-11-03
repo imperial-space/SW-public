@@ -92,7 +92,7 @@ namespace Content.Server.NeedSleep
                 {
                     _popup.PopupEntity("Вам нужно выспаться", uid, uid, PopupType.LargeCaution);
                     //if (TryComp<StatusEffectsComponent>(uid, out var status))
-                    //    _stun.TrySlowdown(uid, TimeSpan.FromSeconds(9.99f), true, 0.85f, 0.85f, status); need to fix
+                    //    _stun.TrySlowdown(uid, TimeSpan.FromSeconds(9.99f), true, 0.85f, 0.85f, status); // need to fix
                 }
 
                 if (comp.SleepLevel >= comp.MaxSleepLevel)
