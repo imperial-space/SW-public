@@ -44,13 +44,12 @@
 
 - type: entity
   id: MedievalMagicWeaponBeam
-  parent: MedievalMagicWeaponPrism
+  parent: BaseItem
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/magic_beam.rsi
     layers:
     - state: base
-      map: ["enum.GunVisualLayers.Base"]
   - type: AddActionOnUse
     actionId: MedievalActionMagicBeam
 
@@ -76,7 +75,7 @@
       groups:
         Burn: 10
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 20
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -84,8 +83,9 @@
     icon:
       sprite: Imperial/Medieval/Gun/prism.rsi
       state: base
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
-      spawnedEntityPrototype: MedievalMagicWeaponBeam
+      spawnedEntityPrototype: MedievalMagicWeaponPrism
       spellCastDoAfter:
         delay: 3.5
         breakOnDropItem: false

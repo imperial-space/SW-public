@@ -5,7 +5,7 @@
   name: medieval-store-spells-darkness-cursed-arrow-kunai-beginner-name
   description: medieval-store-spells-darkness-cursed-arrow-kunai-beginner-desc
   actionLevelUp: 7
-  priority: 4
+  priority: 2
   productUpgradeId:
     - MedievalSpellCursedArrowKunaiMiddle
   icon:
@@ -48,7 +48,7 @@
   id: MedievalSpellCursedArrowKunaiMiddle
   name: medieval-store-spells-darkness-cursed-arrow-kunai-middle-name
   description: medieval-store-spells-darkness-cursed-arrow-kunai-middle-desc
-  priority: 4
+  priority: 2
   productUpgradeId:
     - MedievalSpellCursedArrowKunaiSenior
   icon:
@@ -91,7 +91,7 @@
   id: MedievalSpellCursedArrowKunaiSenior
   name: medieval-store-spells-darkness-cursed-arrow-kunai-senior-name
   description: medieval-store-spells-darkness-cursed-arrow-kunai-senior-desc
-  priority: 4
+  priority: 2
   productUpgradeId:
     - MedievalSpellCursedArrowKunaiSenior
   icon:

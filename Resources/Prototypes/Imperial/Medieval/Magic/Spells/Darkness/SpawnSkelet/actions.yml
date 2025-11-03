@@ -12,15 +12,17 @@
           MagicMedievalDarkness: 1
         bonusEssences:
           MagicMedievalDarkness: 1
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
-    range: 20
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
     icon:
       sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
       state: weak
+  - type: TargetAction
+    range: 20
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerWeak
       spawnType: SpawnOnMousePosition
@@ -43,6 +45,8 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 19
+  - type: SpellCastEffect
+    effectProto: SpawnSkeletSpellCastEffectBeginner
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionSpawnSkeletMiddle
@@ -55,15 +59,17 @@
   description: medieval-store-spells-darkness-spawn-skelet-middle-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
-    range: 20
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
     icon:
       sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
       state: meat
+  - type: TargetAction
+    range: 20
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerMeat
       spawnType: SpawnOnMousePosition
@@ -94,15 +100,17 @@
   description: medieval-store-spells-darkness-spawn-skelet-senior-desc
   components:
   - type: MedievalTargetSpell
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
-    range: 20
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
     icon:
       sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
       state: warior
+  - type: TargetAction
+    range: 20
+  - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
       spawnedEntityPrototype: MedievalSpellMobSpawnerMedievalSpawnerSkeletonSpawnerFighter
       spawnType: SpawnOnMousePosition

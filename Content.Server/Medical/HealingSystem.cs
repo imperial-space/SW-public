@@ -22,6 +22,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Content.Shared.Imperial.Medieval.Medical;
 using Robust.Shared.Audio;
+using Content.Server.Imperial.Medieval.Plague;
 
 namespace Content.Server.Medical;
 
@@ -87,6 +88,14 @@ public sealed class HealingSystem : EntitySystem
 
         if (healed == null && healing.BloodlossModifier != 0)
             return;
+
+        // Imperial Medieval plague start
+        if (healing.PlagueProgressionDecayPerUse > 0)
+        {
+            var ev = new PlagueHealingItemUsedEvent(healing.PlagueProgressionDecayPerUse);
+            RaiseLocalEvent(entity.Owner, ref ev);
+        }
+        // Imperial Medieval plague end
 
         var total = healed?.GetTotal() ?? FixedPoint2.Zero;
 

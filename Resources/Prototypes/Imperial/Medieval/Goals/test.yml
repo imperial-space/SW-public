@@ -1,5 +1,5 @@
 - type: factionGoal
-  id: TestGoal
+  id: MercSurvivalGoal
   name: Test Goal
   description: Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc Desc
   icon:
@@ -7,9 +7,10 @@
     state: legion
   completer: !type:FactionMembersDeathsCounter
     faction: Merc
-    randomCount: [1, 1]
+    lessThan: true
+    randomCount: [5, 10]
 
 - type: factionGoalsPack
   id: TestPack
   goals:
-  - TestGoal
+  - MercSurvivalGoal

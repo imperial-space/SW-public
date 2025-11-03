@@ -114,3 +114,10 @@
 
 - type: Tag
   id: MedievalAntHitin
+
+- type: Tag
+  id: MedievalShowPlagueIcons
+  
+- type: Tag
+  id: WizardKey
+

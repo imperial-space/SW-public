@@ -281,6 +281,9 @@
   - type: Currency
     price:
       Revent: 5
+  - type: MedievalCurrency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -290,7 +293,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalFlowerVetr
-        Quantity: 10
+        Quantity: 35
 
 - type: reagent
   id: MedievalFlowerLipad
@@ -323,6 +326,9 @@
   - type: Currency
     price:
       Revent: 5
+  - type: MedievalCurrency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -332,7 +338,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalFlowerLipad
-        Quantity: 10
+        Quantity: 35
 
 - type: reagent
   id: MedievalFlowerLava
@@ -365,6 +371,9 @@
   - type: Currency
     price:
       Revent: 5
+  - type: MedievalCurrency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -374,7 +383,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalFlowerLava
-        Quantity: 10
+        Quantity: 35
 
 - type: reagent
   id: MedievalFlowerCryo
@@ -407,6 +416,9 @@
   - type: Currency
     price:
       Revent: 5
+  - type: MedievalCurrency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -416,7 +428,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalFlowerCryo
-        Quantity: 10
+        Quantity: 35
 
 - type: reagent
   id: MedievalMushroom1
@@ -445,13 +457,16 @@
   - type: Currency
     price:
       Revent: 8
+  - type: MedievalCurrency
+    price:
+      Revent: 8
   - type: Item
     size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom1
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -485,13 +500,16 @@
   - type: Currency
     price:
       Revent: 8
+  - type: MedievalCurrency
+    price:
+      Revent: 8
   - type: Item
     size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom2
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -525,15 +543,19 @@
   - type: Currency
     price:
       Revent: 8
+  - type: MedievalCurrency
+    price:
+      Revent: 8
   - type: Item
     size: Tiny
   - type: Extractable
     juiceSolution:
       reagents:
       - ReagentId: MedievalMushroom3
-        Quantity: 10
+        Quantity: 35
   - type: Tag
     tags:
     - AlchemicIngredient
     - MyrmexCanTake
     - Mushroom3
+

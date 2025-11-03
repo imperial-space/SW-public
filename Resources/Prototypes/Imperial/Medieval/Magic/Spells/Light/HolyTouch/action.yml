@@ -19,8 +19,10 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 10
+  - type: SpellCastEffect
+    effectProto: HolyTouchSpellCastEffectBeginner
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -28,6 +30,7 @@
     icon:
       sprite: Imperial/Medieval/Magic/holy_touch.rsi
       state: base
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: HolyTouch
       spellCastDoAfter:

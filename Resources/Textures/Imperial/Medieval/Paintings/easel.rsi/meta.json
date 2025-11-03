@@ -12,6 +12,9 @@
     },
     {
         "name": "canvas"
+    },
+    {
+        "name": "palette"
     }
   ]
 }

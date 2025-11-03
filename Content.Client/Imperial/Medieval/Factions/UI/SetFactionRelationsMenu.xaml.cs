@@ -16,32 +16,95 @@ public sealed partial class SetFactionRelationsMenu : DefaultWindow
 
     public Action<ProtoId<MedievalFactionPrototype>, ProtoId<MedievalFactionPrototype>, ProtoId<FactionRelationsPrototype>>? SendPressed;
 
-    public SetFactionRelationsMenu(ProtoId<MedievalFactionPrototype> userFaction, ProtoId<MedievalFactionPrototype> targetFaction)
+    public ProtoId<MedievalFactionPrototype> TargetFaction;
+    public ProtoId<MedievalFactionPrototype> UserFaction;
+    public ProtoId<FactionRelationsPrototype> Relation = "Neutral";
+
+    private bool _paper;
+
+    public SetFactionRelationsMenu(ProtoId<MedievalFactionPrototype> userFaction, ProtoId<MedievalFactionPrototype>? targetFaction, bool paper = false)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        var relations = _proto.EnumeratePrototypes<FactionRelationsPrototype>();
+        UserFaction = userFaction;
+        _paper = paper;
+
+        PopulateFactions(userFaction, targetFaction);
+        PopulateRelations();
+        UpdateMessage();
+
+        SendButton.OnPressed += args =>
+        {
+            SendPressed?.Invoke(UserFaction, TargetFaction, Relation);
+            Close();
+        };
+        DiscardButton.OnPressed += args => Close();
+    }
+
+    private void UpdateMessage()
+    {
+        var relation = _proto.Index(Relation);
+        MainLabel.SetMessage($"Вы уверены, что хотите изменить отношения с фракцией {_proto.Index(TargetFaction).Name} на {relation.Name}?", defaultColor: relation.Color);
+
+        PaperWarning.Visible = _paper;
+    }
+
+    private void PopulateFactions(ProtoId<MedievalFactionPrototype> userFaction, ProtoId<MedievalFactionPrototype>? targetFaction)
+    {
+        if (targetFaction != null)
+        {
+            TargetFaction = targetFaction.Value;
+            UserFaction = userFaction;
+            FactionSelectButton.Visible = false;
+            return;
+        }
+
+        var factions = _proto.EnumeratePrototypes<MedievalFactionPrototype>().Where(x => x.ID != userFaction && !x.BlockedRelations.Contains(userFaction))
+            .ToList();
+        factions.OrderBy(x => x.Name);
+        for (var i = 0; i < factions.Count(); i++)
+        {
+            FactionSelectButton.AddItem(factions[i].Name, i);
+        }
+
+        TargetFaction = factions.ElementAt(0).ID;
+        FactionSelectButton.SelectId(0);
+
+        FactionSelectButton.OnItemSelected += args =>
+        {
+            FactionSelectButton.SelectId(args.Id);
+            TargetFaction = factions.ElementAt(args.Id);
+            UpdateMessage();
+        };
+    }
+
+    private void PopulateRelations()
+    {
+        var relations = _proto.EnumeratePrototypes<FactionRelationsPrototype>().Where(x => IsAllowed(x.ID))
+            .ToList();
         relations.OrderBy(x => x.Name);
         for (var i = 0; i < relations.Count(); i++)
         {
             RelationSelectButton.AddItem(relations.ElementAt(i).Name, i);
         }
 
+        RelationSelectButton.SelectId(0);
+        Relation = relations.ElementAt(0).ID;
+
         RelationSelectButton.OnItemSelected += args =>
         {
             RelationSelectButton.SelectId(args.Id);
-            var relation = relations.ElementAt(args.Id);
-            MainLabel.SetMessage($"Вы уверены, что хотите изменить отношения с фракцией {_proto.Index(targetFaction).Name} на {relation.Name}?", defaultColor: relation.Color);
+            Relation = relations.ElementAt(args.Id).ID;
+            UpdateMessage();
         };
-        RelationSelectButton.SelectId(0);
-        MainLabel.SetMessage($"Вы уверены, что хотите изменить отношения с фракцией {_proto.Index(targetFaction).Name} на {relations.ElementAt(0).Name}?", defaultColor: relations.ElementAt(0).Color);
+    }
 
-        SendButton.OnPressed += args =>
-        {
-            SendPressed?.Invoke(userFaction, targetFaction, relations.ElementAt(RelationSelectButton.SelectedId));
-            Close();
-        };
-        DiscardButton.OnPressed += args => Close();
+    private bool IsAllowed(ProtoId<FactionRelationsPrototype> relation)
+    {
+        if (_proto.Index(UserFaction).BlockedRelations.Contains(TargetFaction))
+            return false;
+
+        return true;
     }
 }

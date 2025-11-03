@@ -4,6 +4,7 @@ using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Medieval.ToggleHair.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Robust.Shared.Input;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -85,9 +86,9 @@ public sealed partial class MedievalToggleHairSystem : EntitySystem
 
         // This method should only be getting called while the clothing is equipped (though possibly currently in
         // the process of getting unequipped).
-        DebugTools.AssertNotNull(clothing.Comp2.InSlot);
-        DebugTools.AssertNotNull(clothing.Comp2.InSlotFlag);
-        DebugTools.AssertNotEqual(inSlot, SlotFlags.NONE);
+
+        if (inSlot == SlotFlags.NONE)
+            return;
 
         var dirty = false;
 

@@ -878,6 +878,30 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth75
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_75.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth76
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Insulated
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiver
   name: MedievalQuiver
@@ -1011,12 +1035,18 @@
   id: MedievalClothingHeadHatPlaguedoctor
   name: MedievalClothingHeadHatPlaguedoctor
   description: MedievalClothingHeadHatPlaguedoctor
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.65
 
 - type: entity
   parent: ClothingMaskPlague
   id: MedievalClothingMaskPlague
   name: MedievalClothingMaskPlague
   description: MedievalClothingMaskPlague
+  components:
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.4
 
 - type: entity
   parent: ClothingMaskMuzzle
@@ -1376,6 +1406,16 @@
 
 - type: entity
   parent: MedievalClothingBackpackSatchelLeather
+  id: MedievalClothingBackpackSatchelLeatherRoyal
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/royal.rsi
+    state: icon
+
+- type: entity
+  parent: MedievalClothingBackpackSatchelLeather
   id: MedievalClothingBackpackSatchelLeather3
   name: satchel
   description: A trendy looking satchel.
@@ -1728,9 +1768,31 @@
 
 - type: entity
   parent: ClothingShoesBase
+  id: MedievalClothingRoyalChaplainBoots
+  name: MedievalClothingRoyalChaplainBoots
+  description: MedievalClothingRoyalChaplainBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/royalchaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/royalchaplain.rsi
+
+- type: entity
+  parent: ClothingShoesBase
   id: MedievalClothingBlackBoots
   name: MedievalClothingBlackBoots
   description: MedievalClothingBlackBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBoots
+  name: MedievalClothingApocrifBoots
+  description: MedievalClothingApocrifBoots
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
@@ -1766,6 +1828,20 @@
     sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
 
 - type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsApocrif
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/blackgloves.rsi
+
+- type: entity
   parent: ClothingOuterStorageBase
   id: MedievalClothingOuterRoyalCoat
   name: MedievalClothingOuterRoyalCoat
@@ -1775,6 +1851,21 @@
     sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Coats/royalcoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageBase
+  id: MedievalClothingOuterRoyalChaplain
+  name: MedievalClothingOuterRoyalChaplain
+  description: MedievalClothingOuterRoyalChaplain
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Coats/royalchaplain.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Cold: 0.95
 
 - type: entity
   parent: ClothingEyesBase
@@ -1847,3 +1938,142 @@
       tags:
         - MonsterLoot
   - type: Dumpable
+
+- type: entity
+  id: MedievalFireFetter
+  name: ent-MedievalFireFetter
+  description: ent-MedievalFireFetter
+  components:
+  - type: RDWeight
+    value: 7
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
+    state: handcuff
+  - type: TimedDespawn
+    lifetime: 180
+  - type: MeleeWeapon
+    wideAnimationRotation: 90
+    resetOnHandSelected: false
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Blunt: 3
+  - type: IgniteOnMeleeHit
+    fireStacks: 0.2
+  - type: Handcuff
+    cuffedRSI: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
+    bodyIconState: body-overlay
+    breakoutTime: 10
+    cuffTime: 3.5
+    uncuffTime: 3.5
+  - type: Item
+    size: Small
+    storedRotation: 90
+  - type: Tag
+    tags:
+    - Handcuffs
+
+- type: entity
+  id: MedievalCursedFetter
+  name: ent-MedievalCursedFetter
+  description: ent-MedievalCursedFetter
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/fetter-spell/cursed-fetter.rsi
+    state: handcuff
+  - type: MeleeWeapon
+    resetOnHandSelected: false
+    animation: WeaponArcDisarm
+    damage:
+      types:
+        Blunt: 3
+  - type: StaminaDamageOnHit
+    damage: 8
+  - type: Handcuff
+    cuffedRSI: Imperial/Medieval/Magic/fetter-spell/cursed-fetter.rsi
+    bodyIconState: body-overlay
+    breakoutTime: 10
+    cuffTime: 3.5
+    uncuffTime: 3.5
+  - type: RDWeight
+    value: 7
+  - type: TimedDespawn
+    lifetime: 180
+  - type: Item
+    size: Small
+    storedRotation: 90
+  - type: Tag
+    tags:
+    - Handcuffs
+
+- type: entity
+  parent: MedievalClothingHeadHelmetShapel
+  id: MedievalSteampunkHat
+  name: Steampunk Hat
+  description: A pretty old inventor's hat with a flashlight on it. Quite a valuable artifact for a person interested in it.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Clothing/Head/steampunk-hat.rsi
+    - type: Clothing
+      sprite: Imperial/Medieval/Clothing/Head/steampunk-hat.rsi
+    - type: PointLight
+      color: "#a0f1e8"
+      enabled: false
+      mask: /Textures/Effects/LightMasks/cone.png
+      radius: 5
+      softness: 20
+      autoRot: true
+    - type: UnpoweredFlashlight
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+    - type: LightBehaviour
+      behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+    - type: HideLayerClothing
+      layers:
+        Hair: HEAD
+        HeadTop: HEAD
+        HeadSide: HEAD
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.85
+          Piercing: 0.95
+
+- type: entity
+  parent: ClothingEyesBase
+  id: MedievalSteampunkGlasses
+  name: Steampunk Glasses
+  description: Homemade glasses with a built-in magnifying glass for zooming in on small details. Its frame is made of pure gold, and the eyepieces are made of rather heavily tempered glass.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Eyes/steampunk.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Eyes/steampunk.rsi
+    slots: eyes
+  - type: Item
+    size: Small
+    storedRotation: -90

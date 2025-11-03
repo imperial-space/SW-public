@@ -1,4 +1,5 @@
 using System.Numerics;
+using Content.Server.Imperial.Medieval.Grab;
 using Content.Server.Inventory;
 using Content.Server.Stack;
 using Content.Server.Stunnable;
@@ -37,6 +38,7 @@ namespace Content.Server.Hands.Systems
         [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
         [Dependency] private readonly PullingSystem _pullingSystem = default!;
         [Dependency] private readonly ThrowingSystem _throwingSystem = default!;
+        [Dependency] private readonly GrabThrowSystem _grabThrowSystem = default!;
 
         private EntityQuery<PhysicsComponent> _physicsQuery;
 
@@ -144,6 +146,11 @@ namespace Content.Server.Hands.Systems
         {
             if (playerSession?.AttachedEntity is not {Valid: true} player || !Exists(player) || !coordinates.IsValid(EntityManager))
                 return false;
+
+            // Start Imperial Medieval Code ThrowGrabbed
+            if (_grabThrowSystem.TryThrowGrabbed(player, coordinates))
+                return true;
+            // End Imperial Medieval Code
 
             return ThrowHeldItem(player, coordinates);
         }

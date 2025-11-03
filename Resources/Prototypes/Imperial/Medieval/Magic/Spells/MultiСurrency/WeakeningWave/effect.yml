@@ -24,3 +24,19 @@
       path: /Audio/Imperial/Medieval/Magic/Spells/stamina_damage.ogg
       params:
         maxDistance: 1
+
+- type: entity
+  id: WeakeningWaveSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/wave.rsi
+    state: beginner
+    color: "#caeef0"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: "#caeef0"
+  - type: TimedDespawn
+    lifetime: 1.5

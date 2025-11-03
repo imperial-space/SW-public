@@ -2449,6 +2449,9 @@
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalRecipeBook
 
 - type: playTimeTracker
   id: JobMedievalLegionAlchemic
@@ -3011,14 +3014,17 @@
   equipment:
     pocket1: MedievalCommsCrystallIns
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
-    neck: MedievalClothingNeckCloakClanFox
+    #neck: MedievalClothingNeckCloakClanFox
     belt: MedievalAlchemicBelt
-    id: MedievalKeyGuard
+    #id: MedievalKeyGuard
   storage:
     back:
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
     - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalChemistryRecipe
+    - MedievalRecipeBook
 
 - type: playTimeTracker
   id: JobMedievalInsurgencyAlchemic
@@ -4244,7 +4250,7 @@
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: SpawnOnAction
       actionId: ActionSpellwardSpawnTradeLegion
-      prototype: MedievalShopHoleLockedLegion
+      prototype: MedievalShopHole
 
 - type: entity
   id: ActionSpellwardSpawnTradeLegion
@@ -4252,11 +4258,13 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: Imperial/Medieval/Misc/mdv_shop.rsi, state: shop }
     useDelay: 3000
-    event: !type:SpawnOnActionEvent ""
     itemIconStyle: BigAction
+  - type: TargetAction
+  - type: WorldTargetAction
+    event: !type:SpawnOnActionEvent ""
 
 - type: roleLoadout
   id: JobMedievalTrader
@@ -4362,7 +4370,7 @@
       objectivePrototype: MedievalGetMoneyObjective5001000
     - type: SpawnOnAction
       actionId: ActionSpellwardSpawnTradeIns
-      prototype: MedievalShopHoleLockedIns
+      prototype: MedievalShopHole
 
 - type: entity
   id: ActionSpellwardSpawnTradeIns
@@ -4370,11 +4378,13 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: Imperial/Medieval/Misc/mdv_shop.rsi, state: shop }
     useDelay: 3000
-    event: !type:SpawnOnActionEvent ""
     itemIconStyle: BigAction
+  - type: TargetAction
+  - type: WorldTargetAction
+    event: !type:SpawnOnActionEvent ""
 
 - type: roleLoadout
   id: JobMedievalTraderN
@@ -4593,9 +4603,9 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth66
     pocket1: MedievalHammerBlacksmith
     pocket2: MedievalCommsCrystallLeg
-    neck: MedievalClothingNeckCloakClanEagle
+    #neck: MedievalClothingNeckCloakClanEagle
     gloves: MedievalGlovesBlacksmith
-    id: MedievalLeatherKey
+    #id: MedievalLeatherKey
 
 - type: playTimeTracker
   id: JobMedievalBlacksmith
@@ -4652,8 +4662,8 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
     pocket1: MedievalHammerBlacksmith
     pocket2: MedievalCommsCrystallIns
-    neck: MedievalClothingNeckCloakClanFox
-    id: MedievalKeyGuard
+    #neck: MedievalClothingNeckCloakClanFox
+    #id: MedievalKeyGuard
     gloves: MedievalGlovesBlacksmith
 
 - type: playTimeTracker
@@ -4711,8 +4721,8 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     pocket1: MedievalRevent50
     pocket2: MedievalCommsCrystallLeg
-    id: MedievalLeatherKey
-    neck: MedievalClothingNeckCloakClanEagle
+    #id: MedievalLeatherKey
+    #neck: MedievalClothingNeckCloakClanEagle
 
 - type: playTimeTracker
   id: JobMedievalBlacksmithYoung
@@ -4769,8 +4779,8 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     pocket1: MedievalRevent50
     pocket2: MedievalCommsCrystallIns
-    neck: MedievalClothingNeckCloakClanFox
-    id: MedievalKeyGuard
+    #neck: MedievalClothingNeckCloakClanFox
+    #id: MedievalKeyGuard
 
 - type: playTimeTracker
   id: JobMedievalBlacksmithYoungN

@@ -50,7 +50,8 @@ public sealed partial class MedievalDashSystem : EntitySystem
             if (!component.IsDashing) continue;
 
             component.IsDashing = false;
-
+            var ev = new DashEndedEvent();
+            RaiseLocalEvent(uid, ref ev);
 
             if (_net.IsClient) return;
 
@@ -89,7 +90,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
                 return false;
             }
         }
-        
+
         var ev = new CanDashEvent();
         RaiseLocalEvent(uid, ref ev);
         return !ev.Cancelled;
@@ -142,6 +143,9 @@ public sealed partial class MedievalDashSystem : EntitySystem
         component.NextDash = _timing.CurTime + component.DashReloadTime + TimeSpan.FromSeconds(staminaEv.Modifier);
         component.DashButtonPressedTick = _timing.CurTick;
         component.IsDashing = true;
+
+        var startEv = new DashStartedEvent();
+        RaiseLocalEvent(player, ref startEv);
 
         return false;
     }

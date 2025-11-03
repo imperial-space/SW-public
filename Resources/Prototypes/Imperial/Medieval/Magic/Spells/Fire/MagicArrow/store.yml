@@ -5,7 +5,7 @@
   name: medieval-store-spells-fire-magic-arrow-beginner-name
   description: medieval-store-spells-fire-magic-arrow-beginner-desc
   productAction: MedievalActionMagicArrowBeginner
-  priority: 6
+  priority: 5
   productUpgradeId:
     - MedievalSpellMagicArrowCursorFolloverBeginner
     - MedievalSpellMagicArrowPlayerFolloverBeginner

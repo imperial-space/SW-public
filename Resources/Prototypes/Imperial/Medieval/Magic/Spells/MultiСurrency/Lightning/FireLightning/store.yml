@@ -5,7 +5,7 @@
   name: medieval-store-spells-light-lightning-middle-fire-name
   description: medieval-store-spells-light-lightning-middle-fire-desc
   actionLevelUp: 2
-  priority: 9
+  priority: 8
   productUpgradeId:
     - MedievalSpellFireLightningSenior
   icon:
@@ -14,7 +14,7 @@
   cost:
     MagicMedievalLight: 40
   categories:
-  - MedievalFireSpells
+  - MedievalLightSpells
   conditions:
   - !type:ImperialListingLimitedStockCondition
     stock: 1
@@ -30,7 +30,7 @@
   id: MedievalSpellFireLightningSenior
   name: medieval-store-spells-light-lightning-senior-fire-name
   description: medieval-store-spells-light-lightning-senior-fire-desc
-  priority: 9
+  priority: 8
   productUpgradeId:
     - MedievalSpellFireLightningSenior
   icon:
@@ -38,8 +38,9 @@
     state: fire-adv
   cost:
     MagicMedievalLight: 40
+    ArchmagePoints: 1
   categories:
-  - MedievalFireSpells
+  - MedievalLightSpells
   conditions:
   - !type:ImperialListingLimitedStockCondition
     stock: 1

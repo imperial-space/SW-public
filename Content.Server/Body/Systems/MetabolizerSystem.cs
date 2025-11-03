@@ -1,9 +1,10 @@
 using Content.Server.Body.Components;
-using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Administration.Logs;
+using Content.Shared.Body.Events;
 using Content.Shared.Body.Organ;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.EntityEffects;
@@ -14,6 +15,7 @@ using Robust.Shared.Collections;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Server.Imperial.Medieval.Plague;
 
 namespace Content.Server.Body.Systems
 {
@@ -172,6 +174,11 @@ namespace Content.Server.Body.Systems
                 if (ent.Comp1.MetabolismGroups is null)
                     continue;
 
+                // Imperial Medieval start
+                var ev = new ReagentMetabolizingEvent(reagent.Prototype);
+                RaiseLocalEvent(ent.Owner, ref ev);
+                // Imperial Medievel end
+
                 foreach (var group in ent.Comp1.MetabolismGroups)
                 {
                     if (!proto.Metabolisms.TryGetValue(group.Id, out var entry))
@@ -230,30 +237,5 @@ namespace Content.Server.Body.Systems
 
             _solutionContainerSystem.UpdateChemicals(soln.Value);
         }
-    }
-
-    // TODO REFACTOR THIS
-    // This will cause rates to slowly drift over time due to floating point errors.
-    // Instead, the system that raised this should trigger an update and subscribe to get-modifier events.
-    [ByRefEvent]
-    public readonly record struct ApplyMetabolicMultiplierEvent(
-        EntityUid Uid,
-        float Multiplier,
-        bool Apply)
-    {
-        /// <summary>
-        /// The entity whose metabolism is being modified.
-        /// </summary>
-        public readonly EntityUid Uid = Uid;
-
-        /// <summary>
-        /// What the metabolism's update rate will be multiplied by.
-        /// </summary>
-        public readonly float Multiplier = Multiplier;
-
-        /// <summary>
-        /// If true, apply the multiplier. If false, revert it.
-        /// </summary>
-        public readonly bool Apply = Apply;
     }
 }
