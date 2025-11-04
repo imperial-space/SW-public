@@ -54,13 +54,13 @@ namespace Content.Server.Flash
             SubscribeLocalEvent<PermanentBlindnessComponent, FlashAttemptEvent>(OnPermanentBlindnessFlashAttempt);
             SubscribeLocalEvent<TemporaryBlindnessComponent, FlashAttemptEvent>(OnTemporaryBlindnessFlashAttempt);
         }
-        
+
         private void OnExamine(Entity<FlashImmunityComponent> ent, ref ExaminedEvent args)
 
         {
             args.PushMarkup(Loc.GetString("flash-protection"));
         }
-        
+
         private void OnFlashMeleeHit(EntityUid uid, FlashComponent comp, MeleeHitEvent args)
         {
             if (!args.IsHit ||
@@ -123,13 +123,17 @@ namespace Content.Server.Flash
             float slowTo,
             bool displayPopup = true,
             bool melee = false,
-            TimeSpan? stunDuration = null)
+            TimeSpan? stunDuration = null,
+            bool ignoreFlashAttempt = false) // imperial medieval edit
         {
-            var attempt = new FlashAttemptEvent(target, user, used);
-            RaiseLocalEvent(target, attempt, true);
+            if (!ignoreFlashAttempt)  // imperial medieval edit
+            {
+                var attempt = new FlashAttemptEvent(target, user, used);
+                RaiseLocalEvent(target, attempt, true);
 
-            if (attempt.Cancelled)
-                return;
+                if (attempt.Cancelled)
+                    return;
+            }
 
             // don't paralyze, slowdown or convert to rev if the target is immune to flashes
             if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, TimeSpan.FromSeconds(flashDuration / 1000f), true))
