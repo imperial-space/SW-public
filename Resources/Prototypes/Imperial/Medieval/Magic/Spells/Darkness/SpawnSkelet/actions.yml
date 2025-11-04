@@ -18,8 +18,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
-      state: weak
+      sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+      state: beginner
   - type: TargetAction
     range: 20
   - type: WorldTargetAction
@@ -65,8 +65,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
-      state: meat
+      sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+      state: middle
   - type: TargetAction
     range: 20
   - type: WorldTargetAction
@@ -106,8 +106,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/Effects/spike-spawn.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
-      state: warior
+      sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+      state: senior
   - type: TargetAction
     range: 20
   - type: WorldTargetAction
