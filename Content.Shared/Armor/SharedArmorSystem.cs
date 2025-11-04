@@ -4,9 +4,6 @@ using Content.Shared.Inventory;
 using Content.Shared.Silicons.Borgs;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
-// stamina resistance begin
-using Content.Shared.Damage.Events;
-// stamina resistance end
 
 namespace Content.Shared.Armor;
 
@@ -26,10 +23,6 @@ public abstract class SharedArmorSystem : EntitySystem
         SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<DamageModifyEvent>>(OnDamageModify);
         SubscribeLocalEvent<ArmorComponent, BorgModuleRelayedEvent<DamageModifyEvent>>(OnBorgDamageModify);
         SubscribeLocalEvent<ArmorComponent, GetVerbsEvent<ExamineVerb>>(OnArmorVerbExamine);
-
-        // stamina resistance begin
-        SubscribeLocalEvent<ArmorComponent, InventoryRelayedEvent<StaminaModifyEvent>>(OnStaminaModify);
-        // stamina resistance end
     }
 
     /// <summary>
@@ -79,23 +72,6 @@ public abstract class SharedArmorSystem : EntitySystem
         foreach (var coefficientArmor in armorModifiers.Coefficients)
         {
             msg.PushNewline();
-
-            // stamina resistance begin
-            if (coefficientArmor.Key != "Stamina")
-            {
-                msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
-                    ("type", coefficientArmor.Key),
-                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,1))
-                    ));
-            }
-            if (coefficientArmor.Key == "Stamina")
-            {
-                msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value-stamina",
-                    ("type", coefficientArmor.Key),
-                    ("value", MathF.Round((1f - coefficientArmor.Value) * 100,1))
-                    ));
-            }
-            // stamina resistance end
         }
 
         foreach (var flatArmor in armorModifiers.FlatReduction)
@@ -111,16 +87,4 @@ public abstract class SharedArmorSystem : EntitySystem
 
         return msg;
     }
-
-    // stamina resistance begin
-    private void OnStaminaModify(EntityUid uid, ArmorComponent component, InventoryRelayedEvent<StaminaModifyEvent> args)
-    {
-        if (args.Args.IgnoreResistances) return;
-
-        if (component.Modifiers.Coefficients.TryGetValue("Stamina", out var coefficient))
-        {
-            args.Args.Damage = args.Args.Damage * coefficient;
-        }
-    }
-    // stamina resistance end
 }
