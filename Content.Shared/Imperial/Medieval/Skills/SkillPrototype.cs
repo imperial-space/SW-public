@@ -12,9 +12,6 @@ public sealed partial class SkillPrototype : IPrototype
     public string Name { get; } = default!;
 
     [DataField]
-    public string Description { get; } = "";
-
-    [DataField]
     public Color Color = Color.White;
 
     [DataField]
