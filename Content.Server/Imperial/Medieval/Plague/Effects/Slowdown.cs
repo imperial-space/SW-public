@@ -1,9 +1,13 @@
 
+using Content.Server.Administration.Commands;
+using Content.Server.Maps;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
+using Content.Shared.Chemistry.Components;
 using Content.Shared.Imperial.Medieval.Plague;
 using Content.Shared.Popups;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Plague;
 
@@ -28,7 +32,10 @@ public sealed partial class Slowdown : BasePlagueEffect
 
     protected override void Effect(EntityUid uid, IEntityManager entMan)
     {
-        var stun = entMan.System<StunSystem>();
-        //stun.TrySlowdown(uid, TimeSpan.FromSeconds(Duration), Refresh); // need to fix - ebain upstream
+        var comp = entMan.EnsureComponent<MovespeedModifierMetabolismComponent>(uid);
+        comp.SprintSpeedModifier = 0.7f;
+        comp.WalkSpeedModifier = 0.7f;
+        comp.ModifierTimer = IoCManager.Resolve<IGameTiming>().CurTime + TimeSpan.FromSeconds(Duration);
+        entMan.Dirty(uid, comp);
     }
 }
