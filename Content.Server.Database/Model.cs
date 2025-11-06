@@ -54,7 +54,7 @@ namespace Content.Server.Database
 
         public DbSet<Painting> Paintings { get; set; } = null!;
         public DbSet<Book> Books { get; set; } = null!;
-        public DbSet<FlavorImage> FlavorImages { get; set; } = null!;
+        public DbSet<FlavorImage> FlavorImages { get; set; } = null!; // Imperial Medieval Flavor Images
         // imperial medieval end
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

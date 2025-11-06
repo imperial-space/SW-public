@@ -871,6 +871,7 @@ namespace Content.Server.Database
             }
             await db.DbContext.SaveChangesAsync(cancel);
         }
+        // Imperial Medieval Flavor Images Begin
         public async Task<FlavorImage?> GetFlavorImage(Guid userId, CancellationToken cancel, int? slot)
         {
             await using var db = await GetDb(cancel);
@@ -938,6 +939,7 @@ namespace Content.Server.Database
             db.DbContext.FlavorImages.Remove(image);
             await db.DbContext.SaveChangesAsync(cancel);
         }
+        // Imperial Medieval Flavor Images End
         #endregion
 
         #region Playtime
