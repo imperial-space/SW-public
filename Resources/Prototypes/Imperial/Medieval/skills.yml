@@ -1,6 +1,6 @@
 - type: skill
   id: Agility
-  name: Ловкость
+  name: skill-agility-name
   color: "#96fff3"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/agility.rsi
   icons:
@@ -30,7 +30,7 @@
 
 - type: skill
   id: Strength
-  name: Сила
+  name: skill-strength-name
   color: "#ff9696"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/strength.rsi
   icons:
@@ -53,7 +53,7 @@
 
 - type: skill
   id: Vitality
-  name: Живучесть
+  name: skill-vitality-name
   color: "#99ff96"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/vitality.rsi
   icons:
@@ -76,7 +76,7 @@
 
 - type: skill
   id: Endurance
-  name: Выносливость
+  name: skill-endurance-name
   color: "#ffec96"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/endurance.rsi
   icons:
@@ -98,7 +98,7 @@
 
 - type: skill
   id: Intelligence
-  name: Интеллект
+  name: skill-intelligence-name
   color: "#ea96ff"
   rsiPath: /Textures/Imperial/Medieval/Interface/Skills/intelligence.rsi
   icons:
