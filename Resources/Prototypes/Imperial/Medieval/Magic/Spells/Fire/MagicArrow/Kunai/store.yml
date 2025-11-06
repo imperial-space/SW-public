@@ -5,7 +5,7 @@
   name: medieval-store-spells-fire-magic-arrow-kunai-beginner-name
   description: medieval-store-spells-fire-magic-arrow-kunai-beginner-desc
   actionLevelUp: 7
-  priority: 7
+  priority: 5
   productUpgradeId:
     - MedievalSpellMagicArrowKunaiMiddle
   icon:
@@ -48,7 +48,7 @@
   id: MedievalSpellMagicArrowKunaiMiddle
   name: medieval-store-spells-fire-magic-arrow-kunai-middle-name
   description: medieval-store-spells-fire-magic-arrow-kunai-middle-desc
-  priority: 7
+  priority: 5
   productUpgradeId:
     - MedievalSpellMagicArrowKunaiSenior
   icon:
@@ -91,7 +91,7 @@
   id: MedievalSpellMagicArrowKunaiSenior
   name: medieval-store-spells-fire-magic-arrow-kunai-senior-name
   description: medieval-store-spells-fire-magic-arrow-kunai-senior-desc
-  priority: 7
+  priority: 5
   productUpgradeId:
     - MedievalSpellMagicArrowKunaiSenior
   icon:

@@ -323,6 +323,10 @@
     buckleOffset: "-0.00, -0.02"
     buckleDoafterTime: 5
     maxBuckleDistance: 1
+    buckleSound: 
+      path: /Audio/Imperial/Medieval/Effects/on_horse.ogg
+    unbuckleSound: 
+      path: /Audio/Imperial/Medieval/Effects/on_horse.ogg
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/animal_horse.ogg

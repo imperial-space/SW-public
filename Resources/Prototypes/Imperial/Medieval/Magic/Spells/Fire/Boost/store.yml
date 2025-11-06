@@ -5,7 +5,7 @@
   name: medieval-store-spells-light-boost-beginner-name
   description: medieval-store-spells-light-boost-beginner-desc
   productAction: MedievalActionBoostBeginner
-  priority: 5
+  priority: 9
   productUpgradeId:
     - MedievalSpellBoostMiddle
   icon:
@@ -25,7 +25,7 @@
   id: MedievalSpellBoostMiddle
   name: medieval-store-spells-light-boost-middle-name
   description: medieval-store-spells-light-boost-middle-desc
-  priority: 5
+  priority: 9
   productUpgradeId:
     - MedievalSpellBoostSenior
   icon:
@@ -48,7 +48,7 @@
   id: MedievalSpellBoostSenior
   name: medieval-store-spells-light-boost-senior-name
   description: medieval-store-spells-light-boost-senior-desc
-  priority: 5
+  priority: 9
   productUpgradeId:
     - MedievalSpellBoostSenior
   icon:

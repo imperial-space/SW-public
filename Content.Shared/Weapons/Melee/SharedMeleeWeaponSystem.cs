@@ -40,6 +40,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
 using Content.Shared.Imperial.Medieval.ChargedAttack;
+using Content.Shared.Imperial.Medieval.Weapons;
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -65,6 +66,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] private   readonly SharedStaminaSystem _stamina = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!; // imperial charged attack
     [Dependency] private readonly ChargedAttackSystem _chargedAttack = default!; // imperial charged attack
+    [Dependency] private readonly InnerWeaponSystem _innerWeapon = default!; // imperial medieval inner weapon
 
 
     private const int AttackMask = (int)(CollisionGroup.MobMask | CollisionGroup.Opaque);
@@ -334,6 +336,16 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
             return true;
         }
 
+        // Imperial Medieval start
+        if (_innerWeapon.TryGetInnerWeapon(entity, out var inner, out _) &&
+            TryComp<MeleeWeaponComponent>(inner, out var innerComp))
+        {
+            weaponUid = inner.Value;
+            melee = innerComp;
+            return true;
+        }
+        // Imperial Medieval end
+
         // Use our own melee
         if (TryComp(entity, out melee))
         {
@@ -596,6 +608,11 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 _stamina.TakeStaminaDamage(target.Value, (bluntDamage * component.BluntStaminaDamageFactor).Float(), visual: false, source: user, with: meleeUid == user ? null : meleeUid);
             }
 
+            // Imperial Medieval start
+            var dealtEv = new MeleeDamageDealtEvent(target.Value, user, weapon, damageResult);
+            RaiseLocalEvent(user, ref dealtEv);
+            // Imperial Medieval end
+
             if (meleeUid == user)
             {
                 AdminLogger.Add(LogType.MeleeHit,
@@ -766,6 +783,12 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
                 }
 
                 appliedDamage += damageResult;
+
+                // Imperial Medieval start
+                var dealtEv = new MeleeDamageDealtEvent(entity, user, weapon, damageResult);
+                RaiseLocalEvent(user, ref dealtEv);
+                // Imperial Medieval end
+
 
                 if (meleeUid == user)
                 {

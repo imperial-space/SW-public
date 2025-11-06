@@ -1925,11 +1925,8 @@
     - type: Sprite
       state: brutepack
     - type: Healing
-      # Imperial Medieval Plague start
-      plagueHealingTier: 1
       plagueProgressionDecayPerUse: 1
-      # Imperial Medieval Plague end
-      damageContainer: Biological
+      damageContainers: [Biological]
       damage:
         groups:
           Brute: -15 # 5 for each type in the group
@@ -8204,3 +8201,18 @@
     - type: WeaponArcVisuals
       animation: CPThrust
 
+- type: entity
+  name: bible
+  description: New Interstellar Version 2340.
+  parent: Bible
+  id: RoyalBible
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/royalbible.rsi
+    layers:
+      - state: default
+      - state: unshaded
+        shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Misc/royalbible.rsi

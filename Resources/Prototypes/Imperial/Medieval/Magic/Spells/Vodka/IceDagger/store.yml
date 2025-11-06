@@ -5,7 +5,7 @@
   name: medieval-store-spells-vodka-ice-dagger-beginner-name
   description: medieval-store-spells-vodka-ice-dagger-beginner-desc
   productAction: MedievalActionIceDaggerBeginner
-  priority: 5
+  priority: 3
   productUpgradeId:
     - MedievalSpellIceDaggerMiddle
   icon:
@@ -25,7 +25,7 @@
   id: MedievalSpellIceDaggerMiddle
   name: medieval-store-spells-vodka-ice-dagger-middle-name
   description: medieval-store-spells-vodka-ice-dagger-middle-desc
-  priority: 5
+  priority: 3
   productUpgradeId:
     - MedievalSpellIceDaggerSenior
   icon:
@@ -48,7 +48,7 @@
   id: MedievalSpellIceDaggerSenior
   name: medieval-store-spells-vodka-ice-dagger-senior-name
   description: medieval-store-spells-vodka-ice-dagger-senior-desc
-  priority: 5
+  priority: 3
   productUpgradeId:
     - MedievalSpellIceDaggerSenior
   icon:
