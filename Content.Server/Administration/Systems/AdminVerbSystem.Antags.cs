@@ -12,6 +12,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using Content.Server.Imperial.Medieval.Lycantropy;
 
 namespace Content.Server.Administration.Systems;
 
@@ -191,5 +192,21 @@ public sealed partial class AdminVerbSystem
 
         if (HasComp<HumanoidAppearanceComponent>(args.Target)) // only humanoids can be cloned
             args.Verbs.Add(paradox);
+
+        // Imperial Medieval start
+        Verb werewolf = new()
+        {
+            Text = Loc.GetString("admin-verb-text-make-werewolf"),
+            Category = VerbCategory.Antag,
+            Icon = new SpriteSpecifier.Rsi(new("/Textures/Imperial/Medieval/Interface/Werewolf/actions.rsi"), "moon"),
+            Act = () =>
+            {
+                _antag.ForceMakeAntag<LycantropyGameRuleComponent>(targetPlayer, "MedievalWerewolves");
+            },
+            Impact = LogImpact.High,
+            Message = string.Join(": ", Loc.GetString("admin-verb-text-make-werewolf"), Loc.GetString("admin-verb-make-werewolf")),
+        };
+        args.Verbs.Add(werewolf);
+        // Imperial Medieval end
     }
 }
