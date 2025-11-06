@@ -1,0 +1,17 @@
+<Document>
+  <Box HorizontalAlignment="Left">
+    <GuideEntityEmbed Entity="GuidebookVitality" Caption=""/>
+    <Box Orientation="Vertical">
+      # Живучесть
+      [italic]Живучесть[/italic] влияет на вашу выживаемость в различных условиях.
+    </Box>
+  </Box>
+
+  ## Показатель живучести влияет на:
+  - Ваше общее здоровье
+  - Эффективность замедления
+  - Эффективность сна
+  - Объём ваших лёгких
+  - Скорость восстановления крови
+
+</Document>
