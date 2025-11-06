@@ -199,6 +199,7 @@
   holder: 9a0a943e-7a19-4795-8fad-7e06d8e99797
   map:
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth72]
+    Log: [MedievalFichtyGlasses]
 
 - type: customization
   id: ungabunga

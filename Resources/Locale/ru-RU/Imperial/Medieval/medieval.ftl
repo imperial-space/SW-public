@@ -5520,3 +5520,6 @@ marking-TiflingLLegPlatesOne = Шрам на ноге (левая)
 marking-TiflingLLegPlatesTwo = Длинный шрам на ноге (левая)
 marking-TiflingRLegPlatesOne = Шрам на ноге (правая)
 marking-TiflingRLegPlatesTwo = Длинный шрам на ноге (правая)
+ent-MedievalFichtyGlasses = роскошные очки
+    .desc = Позолоченные стильные очки.
+    .suffix = { "Средневековье, одежда" }
