@@ -9,7 +9,7 @@
     "states":
     [
     {
-      "name": "spot-middle",
+      "name": "middle-spot",
       "delays": [
         [
           0.1,
@@ -43,7 +43,7 @@
       ]
     },
     {
-      "name": "spot-senior",
+      "name": "senior-spot",
       "delays": [
         [
           0.1,

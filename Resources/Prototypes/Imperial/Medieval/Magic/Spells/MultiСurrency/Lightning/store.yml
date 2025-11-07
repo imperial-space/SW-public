@@ -10,8 +10,8 @@
     - MedievalSpellLightningSenior
     - MedievalSpellFireLightningMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/lightning.rsi
-    state: lightning-basic
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+    state: middle-light
   cost:
     MagicMedievalLight: 40
   categories:
@@ -30,8 +30,8 @@
   productUpgradeId:
     - MedievalSpellLightningSenior
   icon:
-    sprite: Imperial/Medieval/Magic/lightning.rsi
-    state: lightning-adv
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+    state: senior-light
   cost:
     MagicMedievalLight: 75
     ArchmagePoints: 1

@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellWaterSphereMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/ice_pulse.rsi
-    state: ice-basic
+    sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/icons.rsi
+    state: beginner
   cost:
     MagicMedievalVodka: 10
   categories:
@@ -29,8 +29,8 @@
   productUpgradeId:
     - MedievalSpellWaterSphereSenior
   icon:
-    sprite: Imperial/Medieval/Magic/ice_pulse.rsi
-    state: ice-mid
+    sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/icons.rsi
+    state: middle
   cost:
     MagicMedievalVodka: 30
   categories:
@@ -52,8 +52,8 @@
   productUpgradeId:
     - MedievalSpellWaterSphereSenior
   icon:
-    sprite: Imperial/Medieval/Magic/ice_pulse.rsi
-    state: ice-adv
+    sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/icons.rsi
+    state: senior
   cost:
     MagicMedievalVodka: 60
     ArchmagePoints: 1

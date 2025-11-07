@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellDisablerSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Sleep/icons.rsi
+    state: middle
   cost:
     MagicMedievalVodka: 70
   categories:
@@ -29,8 +29,8 @@
   productUpgradeId:
     - MedievalSpellDisablerSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/sleep.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Sleep/icons.rsi
+    state: senior
   cost:
     MagicMedievalVodka: 110
     ArchmagePoints: 1

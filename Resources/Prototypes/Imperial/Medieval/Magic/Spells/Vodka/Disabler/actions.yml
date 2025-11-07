@@ -30,8 +30,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/stun_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Vodka/Disabler/icons.rsi
+      state: beginner
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -70,8 +70,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/stun_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Vodka/Disabler/icons.rsi
+      state: middle
   - type: TargetAction
     checkCanAccess: false
     range: 60

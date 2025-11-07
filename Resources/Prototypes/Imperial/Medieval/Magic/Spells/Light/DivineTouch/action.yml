@@ -30,8 +30,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+      state: beginner
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchBeginner
@@ -76,8 +76,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+      state: middle
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchMiddle
@@ -117,8 +117,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+      state: senior
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: DivineTouchSenior
