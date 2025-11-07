@@ -29,6 +29,7 @@
     - RadiationProtection
     - Drowsiness
     - Adrenaline
+    - IllitidFlashed
   - type: Buckle
   - type: StandingState
   - type: Tag

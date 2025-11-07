@@ -91,6 +91,7 @@
   - type: InnerWeapon
   - type: StatusEffects
     allowed:
+    - IllitidFlashed
     - Stun
     - KnockedDown
     - SlowedDown
