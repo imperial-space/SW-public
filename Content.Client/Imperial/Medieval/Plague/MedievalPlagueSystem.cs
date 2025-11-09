@@ -33,8 +33,6 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
         SubscribeNetworkEvent<OpenPlagueMenuMessage>(OnOpenMenu);
         SubscribeNetworkEvent<PopulatePlagueMenuMessage>(OnPopulateMenu);
 
-        SubscribeLocalEvent<MedievalPlagueGhostComponent, UpdateAlertSpriteEvent>(OnUpdateAlert);
-
         SubscribeLocalEvent<MedievalPlagueInfectedComponent, GetStatusIconsEvent>(OnInfectedGetStatusIcons);
         SubscribeLocalEvent<MedievalPlagueImmuneComponent, GetStatusIconsEvent>(OnImmuneGetStatusIcons);
 
@@ -65,17 +63,6 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
     private void OnPlayerDetached(EntityUid uid, VomitSicknessComponent component, LocalPlayerDetachedEvent args)
     {
         _overlayMan.RemoveOverlay(_overlay);
-    }
-
-    private void OnUpdateAlert(EntityUid uid, MedievalPlagueGhostComponent comp, ref UpdateAlertSpriteEvent args)
-    {
-        if (args.Alert.ID != comp.AlertId)
-            return;
-
-        var essence = Math.Clamp(comp.Points, 0, 999);
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit1, $"{(essence / 100) % 10}");
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit2, $"{(essence / 10) % 10}");
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit3, $"{essence % 10}");
     }
 
     private void OnInfectedGetStatusIcons(EntityUid uid, MedievalPlagueInfectedComponent component, ref GetStatusIconsEvent args)

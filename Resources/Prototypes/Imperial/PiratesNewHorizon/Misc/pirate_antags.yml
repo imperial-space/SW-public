@@ -52,7 +52,7 @@
   id: Pirate
   name: roles-antag-pirate-name
   antagonist: true
-  setPreference: true
+  setPreference: false
   objective: roles-antag-pirate-objective
   requirements:
   - !type:OverallPlaytimeRequirement
@@ -62,7 +62,7 @@
   id: CaptainPirate
   name: roles-antag-captainpirate-name
   antagonist: true
-  setPreference: true
+  setPreference: false
   objective: roles-antag-pirate-objective
   requirements:
   - !type:OverallPlaytimeRequirement

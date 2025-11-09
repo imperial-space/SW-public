@@ -170,7 +170,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             if (TryComp<PolymorphedEntityComponent>(comp.Werewolf, out var polymorphed) && TryComp<LycantropyComponent>(polymorphed.Parent, out var lycantropy))
             {
                 lycantropy.Points += PointsPerInfect;
-                Dirty(polymorphed.Parent, lycantropy);
+                Dirty(polymorphed.Parent.Value, lycantropy);
             }
 
             if (_mind.TryGetMind(uid, out var mindId, out var mind))
@@ -256,7 +256,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (TryComp<PolymorphedEntityComponent>(uid, out var polymorphed) && TryComp<LycantropyComponent>(polymorphed.Parent, out var lycantropy))
         {
             lycantropy.Points += PointsPerCrit;
-            Dirty(polymorphed.Parent, lycantropy);
+            Dirty(polymorphed.Parent.Value, lycantropy);
         }
     }
 
@@ -452,7 +452,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     {
         var abilities = comp.Abilities;
         _audio.PlayGlobal(new SoundCollectionSpecifier("WerewolfTransform"), uid);
-        _stun.TryParalyze(uid, TimeSpan.FromSeconds(3), true);
+        _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(3));
         _jitter.DoJitter(uid, TimeSpan.FromSeconds(3), true);
 
         Timer.Spawn(TimeSpan.FromSeconds(3), () =>

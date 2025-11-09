@@ -193,7 +193,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             var direction = rideablePhysics.LinearVelocity;
 
             _throwing.TryThrow(otherPlayer, direction * 0.6f);
-            _stun.TryStun(otherPlayer, TimeSpan.FromSeconds(2), true);
+            _stun.TryAddStunDuration(otherPlayer, TimeSpan.FromSeconds(2));
             _stun.TryKnockdown(otherPlayer, TimeSpan.FromSeconds(2), true);
             var ev = new GetHorseDamageModifier();
             RaiseLocalEvent(uid, ref ev);

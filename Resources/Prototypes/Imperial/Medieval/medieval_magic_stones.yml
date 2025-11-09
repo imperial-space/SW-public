@@ -65,7 +65,7 @@
   stacks:
     MedievalForstoneIngot: 1
     MedievalGold: 1
-    MedievalAdamIngot: 1
+    MedievalAdam: 1
 
 - type: CP14Recipe
   id: MedievalReliefStoneStrongCraft
@@ -73,7 +73,7 @@
   stacks:
     MedievalForstoneIngot: 2
     MedievalGold: 3
-    MedievalAdamIngot: 2
+    MedievalAdam: 2
     MedievalTopaz: 1
 
 - type: CP14Recipe
@@ -83,7 +83,7 @@
     MedievalForstoneIngot: 3
     MedievalEbonitIngot: 1
     MedievalGold: 5
-    MedievalAdamIngot: 3
+    MedievalAdam: 3
     MedievalTopaz: 2
     MedievalFireSerdolick: 2
 

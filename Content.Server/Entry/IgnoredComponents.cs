@@ -21,6 +21,7 @@ namespace Content.Server.Entry
             "HolidayRsiSwap",
             "OptionsVisualizer",
             "CP14WaveShader", // Imperial medieval CP14 Wave shader,
+            "AnomalyScannerScreen",
             "MultipartMachineGhost"
         };
     }

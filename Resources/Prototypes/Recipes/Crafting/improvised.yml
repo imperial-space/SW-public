@@ -229,6 +229,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: scraparmor
   graph: scraparmor
   startNode: start
@@ -237,6 +238,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: scraphelmet
   graph: scraphelmet
   startNode: start
@@ -245,6 +247,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: ClothingBagPet
   graph: ClothingBagPet
   startNode: start
