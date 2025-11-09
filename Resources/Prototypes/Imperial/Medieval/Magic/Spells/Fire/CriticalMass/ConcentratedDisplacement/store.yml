@@ -9,7 +9,7 @@
   productUpgradeId:
     - MedievalSpellConcentratedDisplacementSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
     state: concentrated_displacement
   cost:
     MagicMedievalFire: 35
@@ -37,7 +37,7 @@
   productUpgradeId:
     - MedievalSpellConcentratedDisplacementSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
     state: concentrated_displacement2
   cost:
     MagicMedievalFire: 70
