@@ -834,9 +834,11 @@
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
     solution: beaker
+    destroyOnEmpty: false
+    utensil: None
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
@@ -907,9 +909,11 @@
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
     solution: beaker
+    destroyOnEmpty: false
+    utensil: None
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
@@ -1075,14 +1079,15 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: OnUseTimerTrigger
+  - type: TriggerOnUse
+  - type: TimerTrigger
+    delay: 2.5
     beepSound:
       path: "/Audio/Imperial/Medieval/bomb.ogg"
       params:
         volume: 7
     initialBeepDelay: 0
-    beepInterval: 6 # 2 beeps total (at 0 and 2)
-    delay: 2.5
+    beepInterval: 6 # 2 beeps total (at 0 and 2)    
   - type: SpawnOnTrigger
     proto: MedievalExplosionEffect
 
@@ -1994,8 +1999,10 @@
         layer:
         - MobLayer
   - type: Pullable
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
+    destroyOnEmpty: false
+    utensil: None
     solution: bucket
   - type: Appearance
   - type: SolutionContainerVisuals

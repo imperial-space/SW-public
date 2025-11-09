@@ -28,6 +28,7 @@ using Content.Shared.Chat;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Client.Imperial.Sponsors; //Imperial sponsors
 using Content.Shared.Players.RateLimiting;
+using Content.Client.Imperial.Entry;
 
 namespace Content.Client.IoC
 {
@@ -68,6 +69,8 @@ namespace Content.Client.IoC
             collection.Register<TitleWindowManager>();
             collection.Register<CharacterBlockManager>(); // Imperial medieval edit
             collection.Register<ClientsidePlaytimeTrackingManager>();
+
+            ImperialEntry.IoCRegister();
         }
     }
 }
