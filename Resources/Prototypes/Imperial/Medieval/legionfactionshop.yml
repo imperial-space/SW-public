@@ -218,7 +218,7 @@
   id: MdvLegionMedievalIronZweihander
   productEntity: MedievalIronZweihander
   cost:
-    MedalLegion: 3
+    MedalLegion: 4
   categories:
   - MedievalLegionWeapon
 
@@ -226,7 +226,7 @@
   id: MdvLegionMedievalIronClaymore
   productEntity: MedievalIronClaymore
   cost:
-    MedalLegion: 3
+    MedalLegion: 4
   categories:
   - MedievalLegionWeapon
 
@@ -258,7 +258,7 @@
   id: MdvLegionMedievalIronZweihanderSteel
   productEntity: MedievalIronZweihanderSteel
   cost:
-    MedalLegion: 9
+    MedalLegion: 10
   categories:
   - MedievalLegionWeapon
 
@@ -266,7 +266,7 @@
   id: MdvLegionMedievalIronClaymoreSteel
   productEntity: MedievalIronClaymoreSteel
   cost:
-    MedalLegion: 9
+    MedalLegion: 10
   categories:
   - MedievalLegionWeapon
 
@@ -274,7 +274,7 @@
   id: MdvLegionMedievalIronHalberdT3
   productEntity: MedievalIronHalberdT3
   cost:
-    MedalLegion: 3
+    MedalLegion: 4
   categories:
   - MedievalLegionWeapon
 

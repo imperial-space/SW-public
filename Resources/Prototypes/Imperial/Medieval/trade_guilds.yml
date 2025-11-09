@@ -392,10 +392,10 @@
     cost: 30
     reputationForBuying: 1
   - productEntity: MedievalIronClaymore
-    cost: 100
+    cost: 155
     reputationForBuying: 7.5
   - productEntity: MedievalIronZweihander
-    cost: 100
+    cost: 155
     reputationForBuying: 7.5
   - productEntity: MedievalSaber
     cost: 40
@@ -499,12 +499,12 @@
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalIronClaymoreSteel
-    cost: 150
+    cost: 330
     reputationForBuying: 5
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalIronZweihanderSteel
-    cost: 150
+    cost: 330
     reputationForBuying: 5
     minReputationPlace: 1
     minReputation: 20
@@ -514,7 +514,7 @@
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalSaberSteel
-    cost: 160
+    cost: 180
     reputationForBuying: 5.3
     minReputationPlace: 1
     minReputation: 20

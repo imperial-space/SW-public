@@ -219,7 +219,7 @@
   id: MdvInsMedievalIronClaymore
   productEntity: MedievalIronClaymore
   cost:
-    MedalIns: 3
+    MedalIns: 4
   categories:
   - MedievalInsWeapon
 
@@ -227,7 +227,7 @@
   id: MdvInsMedievalIronClaymoreSteel
   productEntity: MedievalIronClaymoreSteel
   cost:
-    MedalIns: 9
+    MedalIns: 10
   categories:
   - MedievalInsWeapon
 
@@ -235,7 +235,7 @@
   id: MdvInsMedievalIronZweihander
   productEntity: MedievalIronZweihander
   cost:
-    MedalIns: 3
+    MedalIns: 4
   categories:
   - MedievalInsWeapon
 
@@ -243,7 +243,7 @@
   id: MdvInsMedievalIronZweihanderSteel
   productEntity: MedievalIronZweihanderSteel
   cost:
-    MedalIns: 9
+    MedalIns: 10
   categories:
   - MedievalInsWeapon
 
@@ -251,7 +251,7 @@
   id: MdvInsMedievalIronSekir
   productEntity: MedievalIronSekir
   cost:
-    MedalIns: 3
+    MedalIns: 4
   categories:
   - MedievalInsWeapon
 
