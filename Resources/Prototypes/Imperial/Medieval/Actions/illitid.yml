@@ -8,6 +8,8 @@
     itemIconStyle: BigAction
   - type: TargetAction
     interactOnMiss: false
+    range: 15
+    checkCanAccess: false
   - type: EntityTargetAction
     canTargetSelf: false
     whitelist:
@@ -38,6 +40,8 @@
     itemIconStyle: BigAction
   - type: TargetAction
     interactOnMiss: false
+    range: 15
+    checkCanAccess: false
   - type: EntityTargetAction
     useDelay: 60
     canTargetSelf: false
@@ -58,6 +62,8 @@
     itemIconStyle: BigAction
   - type: TargetAction
     interactOnMiss: false
+    range: 15
+    checkCanAccess: false
   - type: EntityTargetAction
     useDelay: 40
     canTargetSelf: false

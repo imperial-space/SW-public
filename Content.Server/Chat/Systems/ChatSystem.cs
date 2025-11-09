@@ -175,7 +175,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool checkRadioPrefix = true,
         bool ignoreActionBlocker = false,
         Color? color = null,                // Impreial Medieval Magic
-        LanguagePrototype? language = null  // imperial medieval Languages
+        LanguagePrototype? language = null,  // imperial medieval Languages
+        bool checkNrp = true // imperial medieval nrp
         )
     {
         if (HasComp<GhostComponent>(source))
@@ -251,7 +252,7 @@ public sealed partial class ChatSystem : SharedChatSystem
         switch (desiredType)
         {
             case InGameICChatType.Speak:
-                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker, color, language);  // imperial medieval Languages
+                SendEntitySpeak(source, message, range, nameOverride, hideLog, ignoreActionBlocker, color, language, checkNrp);  // imperial medieval Languages & nrp
                 break;
             case InGameICChatType.Whisper:
                 SendEntityWhisper(source, message, range, null, nameOverride, hideLog, ignoreActionBlocker, color, language);  // imperial medieval Languages
@@ -421,7 +422,8 @@ public sealed partial class ChatSystem : SharedChatSystem
         bool hideLog = false,
         bool ignoreActionBlocker = false,
         Color? color = null, // Impreial Medieval Magic
-        LanguagePrototype? language = null  // imperial medieval languages
+        LanguagePrototype? language = null,  // imperial medieval languages
+        bool checkNrp = true // imperial medieval nrp
         )
     {
         // if (!_actionBlocker.CanSpeak(source) && !ignoreActionBlocker)    // imperial medieval Commented
@@ -480,7 +482,7 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (language.LanguageType.RaiseEvent)
         {
-            var ev = new EntitySpokeEvent(source, resultMessage, language, null, null);  // imperial medieval message => resultMessage
+            var ev = new EntitySpokeEvent(source, resultMessage, language, null, null, checkNrp: checkNrp);  // imperial medieval message => resultMessage
             RaiseLocalEvent(source, ev, true);
         }
         // imperial medieval Languages end
@@ -1020,8 +1022,9 @@ public sealed class EntitySpokeEvent : EntityEventArgs
     public RadioChannelPrototype? Channel;
     public readonly LanguagePrototype Language;  // imperial medieval languages
     public readonly bool Whisper;                // imperial medieval languages
+    public readonly bool CheckNrp;               // imperial medieval nrp
 
-    public EntitySpokeEvent(EntityUid source, string message, LanguagePrototype language, RadioChannelPrototype? channel, string? obfuscatedMessage, bool whisper = false)  // imperial medieval languages tweaked
+    public EntitySpokeEvent(EntityUid source, string message, LanguagePrototype language, RadioChannelPrototype? channel, string? obfuscatedMessage, bool whisper = false, bool checkNrp = true)  // imperial medieval languages tweaked
     {
         Source = source;
         Message = message;
@@ -1029,6 +1032,7 @@ public sealed class EntitySpokeEvent : EntityEventArgs
         ObfuscatedMessage = obfuscatedMessage;
         Language = language;    // imperial medieval languages
         Whisper = whisper;      // imperial medieval languages
+        CheckNrp = checkNrp; // imperial medieval nrp
     }
 }
 

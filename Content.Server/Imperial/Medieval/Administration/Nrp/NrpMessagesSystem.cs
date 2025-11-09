@@ -312,6 +312,8 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
     private async void OnEntitySpokeEvent(EntitySpokeEvent ev)
     {
+        if (!ev.CheckNrp)
+            return;
         CheckMessage(ev.Source, ev.Message);
     }
 
