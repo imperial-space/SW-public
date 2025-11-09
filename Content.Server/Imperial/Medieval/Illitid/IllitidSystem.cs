@@ -302,7 +302,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
             return false;
 
 
-        if (!CheckDistance(source, target, 30))
+        if (!CheckDistance(source, target, 15))
             return false;
 
         var msg = $"Голос в вашей голове: {thought}";
