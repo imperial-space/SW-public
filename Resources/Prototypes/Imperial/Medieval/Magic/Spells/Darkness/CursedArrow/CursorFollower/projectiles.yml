@@ -7,9 +7,9 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/projectiles.rsi
     layers:
-    - state: proto
+    - state: cursor
       shader: unshaded
   - type: StaminaDamageOnCollide
     damage: 3
@@ -37,9 +37,9 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/projectiles.rsi
     layers:
-    - state: proto
+    - state: cursor
       shader: unshaded
   - type: StaminaDamageOnCollide
     damage: 3
@@ -67,9 +67,9 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/projectiles.rsi
     layers:
-    - state: proto
+    - state: cursor
       shader: unshaded
   - type: StaminaDamageOnCollide
     damage: 9

@@ -12,8 +12,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Fire/Fireball/icons.rsi
+      state: beginner
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -101,8 +101,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Fire/Fireball/icons.rsi
+      state: middle
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -148,8 +148,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/fireball.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Fire/Fireball/icons.rsi
+      state: senior
   - type: TargetAction
     checkCanAccess: false
     range: 60

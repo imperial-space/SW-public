@@ -50,8 +50,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+      state: beginner
   - type: TargetAction
     checkCanAccess: false
     range: 60

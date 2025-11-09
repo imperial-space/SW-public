@@ -30,8 +30,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
+      state: beginner
   - type: TargetAction
     checkCanAccess: false
     targetingIndicator: false
@@ -52,8 +52,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Structures/Decoration/crystal.rsi
-          state: crystal_grey
+          sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+          state: beginner
         alwaysRender: true
         spriteColor: "#47f8ff"
         inRangeColor: "#CC00AF"
@@ -84,8 +84,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
+      state: middle
   - type: TargetAction
     checkCanAccess: false
     targetingIndicator: false
@@ -102,8 +102,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Structures/Decoration/crystal.rsi
-          state: crystal_grey
+          sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+          state: beginner
         alwaysRender: true
         spriteColor: "#47f8ff"
         inRangeColor: "#CC00AF"
@@ -132,8 +132,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/barrier.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/icons.rsi
+      state: senior
   - type: TargetAction
     checkCanAccess: false
     targetingIndicator: false
@@ -150,8 +150,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Structures/Decoration/crystal.rsi
-          state: crystal_grey
+          sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+          state: beginner
         alwaysRender: true
         spriteColor: "#47f8ff"
         inRangeColor: "#CC00AF"

@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellDivineTouchMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+    state: beginner
   cost:
     MagicMedievalLight: 15
   categories:
@@ -29,8 +29,8 @@
   productUpgradeId:
     - MedievalSpellDivineTouchSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+    state: middle
   cost:
     MagicMedievalLight: 55
   categories:
@@ -52,8 +52,8 @@
   productUpgradeId:
     - MedievalSpellDivineTouchSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Light/DivineTouch/icons.rsi
+    state: senior
   cost:
     MagicMedievalLight: 90
     ArchmagePoints: 1

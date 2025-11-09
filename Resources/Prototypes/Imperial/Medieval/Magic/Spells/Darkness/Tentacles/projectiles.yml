@@ -38,7 +38,7 @@
   name: Tentacles
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/tentacles.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
     state: beginner
     drawdepth: FloorTiles
     noRot: true
@@ -66,7 +66,7 @@
   name: Tentacles
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/tentacles.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
     state: beginner
     drawdepth: FloorTiles
     noRot: true
@@ -92,7 +92,7 @@
   name: Tentacles
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/tentacles.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
     state: middle
     drawdepth: FloorTiles
     noRot: true
@@ -120,7 +120,7 @@
   name: Tentacles
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/tentacles.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
     state: middle
     drawdepth: FloorTiles
     noRot: true
@@ -146,7 +146,7 @@
   name: Tentacles
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/tentacles.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
     state: senior
     drawdepth: FloorTiles
     noRot: true
@@ -174,7 +174,7 @@
   name: Tentacles
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/tentacles.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
     state: senior
     drawdepth: FloorTiles
     noRot: true

@@ -21,8 +21,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/magic_spark.rsi
-      state: icon
+      sprite: Imperial/Medieval/Magic/Fire/MagicSpark/icons.rsi
+      state: beginner
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: SparkBeginner

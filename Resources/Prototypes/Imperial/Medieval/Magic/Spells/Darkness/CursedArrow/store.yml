@@ -11,8 +11,8 @@
     - MedievalSpellCursedArrowPlayerFolloverBeginner
     - MedievalSpellCursedArrowKunaiBeginner
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: beginner
   cost:
     MagicMedievalDarkness: 15
   categories:

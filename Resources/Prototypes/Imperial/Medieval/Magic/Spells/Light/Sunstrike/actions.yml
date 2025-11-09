@@ -23,7 +23,7 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/sunstrike.rsi
+      sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
       state: middle
   - type: TargetAction
     checkCanAccess: false
@@ -77,7 +77,7 @@
     checkCanAccess: false
     range: 60
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/sunstrike.rsi
+      sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
       state: senior
     event: !type:MedievalProjectileSpellEvent
       projectilePrototype:

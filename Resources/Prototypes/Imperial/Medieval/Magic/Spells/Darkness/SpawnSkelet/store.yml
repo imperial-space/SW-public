@@ -7,8 +7,8 @@
   productUpgradeId:
     - MedievalSpellSpawnSkeletMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
-    state: weak
+    sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+    state: beginner
   cost:
     MagicMedievalDarkness: 20
   categories:
@@ -25,8 +25,8 @@
   productUpgradeId:
     - MedievalActionSpawnSkeletSenior
   icon:
-    sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
-    state: meat
+    sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+    state: middle
   cost:
     MagicMedievalDarkness: 50
   categories:
@@ -46,8 +46,8 @@
   productUpgradeId:
     - MedievalActionSpawnSkeletSenior
   icon:
-    sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
-    state: warior
+    sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+    state: senior
   cost:
     MagicMedievalDarkness: 80
     ArchmagePoints: 1

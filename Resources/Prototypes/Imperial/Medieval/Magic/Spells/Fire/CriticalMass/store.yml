@@ -11,7 +11,7 @@
     - MedievalSpellConcentratedDisplacementMiddle
     - MedievalSpellDiffusionMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
     state: supermass
   cost:
     MagicMedievalFire: 15
