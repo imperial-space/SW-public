@@ -2,7 +2,7 @@
   id: SyndieBorg
   name: roles-antag-syndie-borg-agent-name
   antagonist: true
-  setPreference: true
+  setPreference: false
   objective: roles-antag-syndie-borg-agent-objective
   guides: [ Traitors ]
   requirements:

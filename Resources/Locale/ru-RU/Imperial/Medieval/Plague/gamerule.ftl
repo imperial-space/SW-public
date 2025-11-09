@@ -1,4 +1,4 @@
-medieval-plague-title = Испытание Бога: Калинда
+medieval-plague-title = Сома
 medieval-plague-description = На земли опустилась чума! Переживите и излечите эту напасть, пока не стало слишком поздно!
 
 roles-antag-plague-name = Призрак чумы

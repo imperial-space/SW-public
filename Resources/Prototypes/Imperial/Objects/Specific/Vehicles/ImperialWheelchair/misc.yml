@@ -11,18 +11,18 @@
   recipes:
   - ImperialVehicleWheelchairFolded
 
-- type: trait
-  id: ImperialWheelchairBound
-  name: imperial-trait-wheelchair-bound-name
-  description: imperial-trait-wheelchair-bound-desc
-  category: Disabilities
-  blacklist:
-    components:
-      - BorgChassis
-  components:
-    - type: BuckleOnMapInit
-      prototype: ImperialVehicleWheelchair
-    - type: LegsParalyzed
+#- type: trait
+#  id: ImperialWheelchairBound
+#  name: imperial-trait-wheelchair-bound-name
+#  description: imperial-trait-wheelchair-bound-desc
+#  category: Disabilities
+#  blacklist:
+#    components:
+#      - BorgChassis
+#  components:
+#    - type: BuckleOnMapInit
+#      prototype: ImperialVehicleWheelchair
+#    - type: LegsParalyzed
 
 
 - type: entity
