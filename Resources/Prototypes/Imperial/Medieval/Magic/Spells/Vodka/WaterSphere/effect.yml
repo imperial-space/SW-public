@@ -5,7 +5,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: 3
+    state: senior
   - type: PointLight
     color: cyan
     energy: 2
@@ -42,7 +42,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: 3
+    state: senior
   - type: MedievalParticles
     color: "#0CBFE9"
   - type: TimedDespawn
@@ -72,7 +72,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: 3
+    state: senior
   - type: PointLight
     color: cyan
     energy: 2
@@ -109,7 +109,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: 3
+    state: senior
   - type: MedievalParticles
     color: "#0CBFE9"
   - type: TimedDespawn
@@ -123,7 +123,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: 3
+    state: senior
   - type: PointLight
     color: cyan
     energy: 2
@@ -160,7 +160,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: 3
+    state: senior
   - type: MedievalParticles
     color: "#0CBFE9"
   - type: TimedDespawn
