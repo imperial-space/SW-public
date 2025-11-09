@@ -4,7 +4,7 @@
   id: MedievalEffectWaterSphereBeginner
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: 3
   - type: PointLight
     color: cyan
@@ -41,7 +41,7 @@
   id: MedievalEffectWaterSphereBeginnerDespawn
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: 3
   - type: MedievalParticles
     color: "#0CBFE9"
@@ -71,7 +71,7 @@
   id: MedievalEffectWaterSphereMiddle
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: 3
   - type: PointLight
     color: cyan
@@ -108,7 +108,7 @@
   id: MedievalEffectWaterSphereMiddleDespawn
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: 3
   - type: MedievalParticles
     color: "#0CBFE9"
@@ -122,7 +122,7 @@
   id: MedievalEffectWaterSphereSenior
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: 3
   - type: PointLight
     color: cyan
@@ -159,7 +159,7 @@
   id: MedievalEffectWaterSphereSeniorDespawn
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
     state: 3
   - type: MedievalParticles
     color: "#0CBFE9"
