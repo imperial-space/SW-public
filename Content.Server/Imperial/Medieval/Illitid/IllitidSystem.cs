@@ -15,6 +15,7 @@ using Content.Shared.Popups;
 using Content.Shared.StatusEffect;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
@@ -179,7 +180,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
                     thought,
                     InGameICChatType.Speak,
                     ChatTransmitRange.Normal,
-                    true);
+                    true, checkNrp: false);
 
                 SendEffect(args.Target, 1000f, 0.35f, ForceSayReceive);
                 SendEffect(uid, 1000f, 0.05f, ForceSayCast);
@@ -191,7 +192,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
         if (!TryConsumePsi(uid, 4))
             return;
 
-        _flash.Flash(args.Target, uid, uid, TimeSpan.FromSeconds(1500), 0, ignoreFlashAttempt: true, displayPopup: false);
+        _flash.Flash(args.Target, uid, uid, TimeSpan.FromSeconds(1.5f), 0, ignoreFlashAttempt: false, displayPopup: false);
         SendEffect(args.Target, 0f, 0f, BlindnessReceive);
         SendEffect(uid, 1000f, 0.05f, BlindnessCast);
     }
@@ -300,6 +301,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
         if (session == null)
             return false;
 
+
         if (!CheckDistance(source, target, 15))
             return false;
 
@@ -331,7 +333,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
             Flash(target, flashDuration, flashStrength);
 
         if(audio != null)
-            _audio.PlayEntity(audio, target, target);
+            _audio.PlayGlobal(audio, target);
     }
     #endregion
 }
