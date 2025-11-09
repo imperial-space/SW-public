@@ -7403,7 +7403,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
-    state: 3
+    state: senior
   - type: MedievalParticles
     color: "#DD0000"
   - type: TimedDespawn
