@@ -191,7 +191,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
         if (!TryConsumePsi(uid, 4))
             return;
 
-        _flash.Flash(args.Target, uid, uid, 1500, 0, ignoreFlashAttempt: true, displayPopup: false);
+        _flash.Flash(args.Target, uid, uid, TimeSpan.FromSeconds(1500), 0, ignoreFlashAttempt: true, displayPopup: false);
         SendEffect(args.Target, 0f, 0f, BlindnessReceive);
         SendEffect(uid, 1000f, 0.05f, BlindnessCast);
     }

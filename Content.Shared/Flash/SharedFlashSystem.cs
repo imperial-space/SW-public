@@ -153,13 +153,17 @@ public abstract class SharedFlashSystem : EntitySystem
         float slowTo,
         bool displayPopup = true,
         bool melee = false,
-        TimeSpan? stunDuration = null)
+        TimeSpan? stunDuration = null,
+        bool ignoreFlashAttempt = false) // imperial medieval edit)
     {
-        var attempt = new FlashAttemptEvent(target, user, used);
-        RaiseLocalEvent(target, ref attempt, true);
+        if (!ignoreFlashAttempt)  // imperial medieval edit
+        {
+            var attempt = new FlashAttemptEvent(target, user, used);
+            RaiseLocalEvent(target, ref attempt, true);
 
-        if (attempt.Cancelled)
-            return;
+            if (attempt.Cancelled)
+                return;
+        }
 
         // don't paralyze, slowdown or convert to rev if the target is immune to flashes
         if (!_statusEffectsSystem.TryAddStatusEffect<FlashedComponent>(target, FlashedKey, flashDuration, true))
