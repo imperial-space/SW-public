@@ -1617,6 +1617,7 @@
     - !type:TileNotBlocked
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: StationAiCore
   graph: StationAiCore
   startNode: start

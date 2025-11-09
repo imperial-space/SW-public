@@ -290,6 +290,7 @@
   canBuildInImpassable: false
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: DisposalBend
   graph: DisposalPipe
   startNode: start
@@ -608,6 +609,7 @@
   - GasPipeFourwayAlt2
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: GasPipeManifold
   graph: GasPipe
   startNode: start
@@ -825,6 +827,7 @@
   - GasPassiveGateAlt2
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: GasPressureRegulator
   graph: GasBinary
   startNode: start
@@ -940,6 +943,7 @@
   - SignalControlledValveAlt2
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: SignalControlledValveAlt1
   graph: GasBinary
   startNode: start
@@ -955,6 +959,7 @@
   - SignalControlledValveAlt2
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: SignalControlledValveAlt2
   graph: GasBinary
   startNode: start
@@ -1159,6 +1164,7 @@
 
 # DEFENSES
 - type: construction
+  hide: true # imperial medieval craft disable
   id: WeaponEnergyTurretControlPanel
   graph: WeaponEnergyTurretControlPanel
   startNode: start

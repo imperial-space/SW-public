@@ -384,6 +384,7 @@
 ### Recipe
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: ImperialMetalDetector
   graph: ImperialMetalDetector
   category: construction-category-machines

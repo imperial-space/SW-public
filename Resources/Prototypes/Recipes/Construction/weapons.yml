@@ -116,6 +116,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: SpearSharkMinnow
   graph: SpearSharkMinnow
   startNode: start
@@ -180,6 +181,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: ImprovisedArrowCarp
   graph: ImprovisedArrowCarp
   startNode: start
@@ -241,6 +243,7 @@
   objectType: Item
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: ClothingHandsKnuckleDustersBrass
   graph: ClothingHandsKnuckleDustersBrass
   startNode: start

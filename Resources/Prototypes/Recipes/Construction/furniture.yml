@@ -193,6 +193,7 @@
     - !type:TileNotBlocked
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: StoolCard
   graph: Seat
   startNode: start
@@ -629,6 +630,7 @@
 
 #misc
 - type: construction
+  hide: true # imperial medieval craft disable
   id: MeatSpike
   name: Мясной крюк # Imperial Recipes Locale
   description: Крюк для снятия мяса с животных. # Imperial Recipes Locale
