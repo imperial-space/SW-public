@@ -8,7 +8,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/Sleep/projectiles.rsi
-    state: beginner
+    state: bullet
   - type: Projectile
     deleteOnCollide: true
     damage:
@@ -27,7 +27,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/MultiCurrency/Sleep/projectiles.rsi
-    state: beginner
+    state: bullet
   - type: Projectile
     deleteOnCollide: true
     damage:
