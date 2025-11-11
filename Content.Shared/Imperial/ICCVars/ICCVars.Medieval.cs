@@ -15,9 +15,4 @@ public sealed partial class ICCVars
 
     public static readonly CVarDef<TimeSpan> StoreBalanceUpdateInterval =
         CVarDef.Create("store.balance_update_interval", TimeSpan.FromSeconds(60), CVar.SERVERONLY);
-    // Imperial Medieval Flavor Images Begin
-
-    public static readonly CVarDef<int> SetWidthFlavorImages = CVarDef.Create("medieval.flavor_images_width", 256, CVar.REPLICATED | CVar.SERVER);
-    public static readonly CVarDef<int> SetHeightFlavorImages = CVarDef.Create("medieval.flavor_images_height", 256, CVar.REPLICATED | CVar.SERVER);
-    // Imperial Medieval Flavor Images End
 }

@@ -139,7 +139,6 @@ public sealed class StationSpawningSystem : SharedStationSpawningSystem
             if (profile.FlavorText != "" && _configurationManager.GetCVar(CCVars.FlavorText))
             {
                 AddComp<DetailExaminableComponent>(entity.Value).Content = profile.FlavorText;
-                EnsureComp<Shared.Imperial.Medieval.Flavors.FlavorImageComponent>(entity.Value); // Imperial Medieval Flavor Images
             }
         }
 

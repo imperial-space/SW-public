@@ -30,7 +30,6 @@ namespace Content.Client.Lobby;
 public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState>, IOnStateExited<LobbyState>
 {
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
-    [Dependency] private readonly Imperial.Medieval.Flavors.ClientFlavorManager _clientFlavors = default!; // Imperial Medieval Flavor Images
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IFileDialogManager _dialogManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -168,12 +167,6 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
         profileEditor.SetProfile(
             (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter,
             _preferencesManager.Preferences?.SelectedCharacterIndex);
-        // Imperial Medieval Flavor Images Begin
-        if (_preferencesManager.Preferences == null)
-            return;
-
-        profileEditor.SetFlavorImage(_clientFlavors.Images.GetValueOrDefault(_preferencesManager.Preferences.SelectedCharacterIndex));
-        // Imperial Medieval Flavor Images End
     }
 
     /// <summary>
@@ -219,7 +212,6 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             return;
 
         _preferencesManager.UpdateCharacter(EditedProfile, EditedSlot.Value);
-        _clientFlavors.UpdateImage(EditedSlot.Value, _profileEditor?.FlavorImage); // Imperial Medieval Flavor Images
         ReloadCharacterSetup();
     }
 
@@ -282,8 +274,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _prototypeManager,
             _resourceCache,
             _requirements,
-            _markings,
-            _clientFlavors); // Imperial Medieval Flavor Images
+            _markings);
 
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 

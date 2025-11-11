@@ -105,7 +105,6 @@ namespace Content.Server.Entry
                 IoCManager.Resolve<IAdminLogManager>().Initialize();
                 IoCManager.Resolve<IConnectionManager>().Initialize();
                 _dbManager.Init();
-                IoCManager.Resolve<Imperial.Medieval.Flavors.ServerFlavorManager>().Init(); // Imperial Medieval Flavor Images
                 IoCManager.Resolve<IServerPreferencesManager>().Init();
                 IoCManager.Resolve<INodeGroupFactory>().Initialize();
                 IoCManager.Resolve<ContentNetworkResourceManager>().Initialize();

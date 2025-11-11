@@ -577,22 +577,12 @@ namespace Content.Shared.Preferences
             var maxFlavorTextLength = configManager.GetCVar(CCVars.MaxFlavorTextLength);
             if (FlavorText.Length > maxFlavorTextLength)
             {
-                // Imperial Medieval Flavor Images Begin
-                //flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxFlavorTextLength];
-                flavortext = FlavorText[..maxFlavorTextLength];
-                // Imperial Medieval Flavor Images End
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText)[..maxFlavorTextLength];
             }
             else
             {
-                // Imperial Medieval Flavor Images Begin
-                //flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
-                flavortext = FlavorText;
-                // Imperial Medieval Flavor Images End
+                flavortext = FormattedMessage.RemoveMarkupOrThrow(FlavorText);
             }
-            // Imperial Medieval Flavor Images Begin
-            if (flavortext.ToLower().Contains("cmdlink"))
-                flavortext = string.Empty;
-            // Imperial Medieval Flavor Images End
 
             var appearance = HumanoidCharacterAppearance.EnsureValid(Appearance, Species, Sex);
 

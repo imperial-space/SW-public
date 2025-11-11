@@ -68,8 +68,6 @@ namespace Content.Client.IoC
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
             collection.Register<CharacterBlockManager>(); // Imperial medieval edit
-            collection.Register<Imperial.Medieval.Flavors.ClientFlavorManager>(); // Imperial Flavor Images
-            collection.Register<Shared.Imperial.Medieval.Flavors.SharedFlavorManager, Imperial.Medieval.Flavors.ClientFlavorManager>(); // Imperial Flavor Images
             collection.Register<ClientsidePlaytimeTrackingManager>();
 
             ImperialEntry.IoCRegister();
