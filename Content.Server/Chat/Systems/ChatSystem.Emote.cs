@@ -165,22 +165,40 @@ public partial class ChatSystem
         // Imperial Medieval AgePitch Begin
         if (TryComp<Shared.Humanoid.HumanoidAppearanceComponent>(uid, out var comp))
         {
-            float ageDifference = comp.Age - 30f;
+            float age = comp.Age;
 
-            if (ageDifference > 0)
+            // Базовые возрастные группы и их характерные pitch значения
+            if (age < 14f)
             {
-                // Для возраста старше 30: более мягкое понижение
-                // Замена Math.Log на более простую формулу
-                float logApprox = (float)Math.Sqrt(ageDifference + 1) - 1f;
-                param.Pitch += Math.Max(-logApprox * 0.2f, -0.4f);
+                // Дети: высокий голос, но не писклявый
+                float childFactor = (14f - age) / 14f; // от 0 до 1
+                param.Pitch += 0.3f + childFactor * 0.4f; // +0.3 до +0.7
+            }
+            else if (age < 25f)
+            {
+                // Подростки и молодые взрослые: естественный высокий голос
+                float youthFactor = (25f - age) / 11f; // от 0 до 1
+                param.Pitch += 0.1f + youthFactor * 0.2f; // +0.1 до +0.3
+            }
+            else if (age < 50f)
+            {
+                // Взрослые: нейтральный голос с легкими вариациями
+                float adultFactor = (age - 25f) / 25f; // от 0 до 1
+                param.Pitch += 0f - adultFactor * 0.1f; // 0 до -0.1
             }
             else
             {
-                // Для возраста младше 30: более мягкое повышение
-                float absDifference = Math.Abs(ageDifference);
-                float logApprox = (float)Math.Sqrt(absDifference + 1) - 1f;
-                param.Pitch += Math.Min(logApprox * 0.15f, 2f);
+                // Пожилые: более низкий голос, но не глухой
+                float seniorFactor = (age - 50f) / 50f; // от 0 до 1 (ограничиваем эффект)
+                float pitchReduction = seniorFactor * 0.25f; // максимум -0.25
+                param.Pitch -= Math.Min(pitchReduction, 0.25f);
             }
+
+            // Добавляем небольшую случайную вариацию для естественности (±5%)
+            param.Pitch *= 1f + (_random.NextFloat() - 0.5f) * 0.1f;
+
+            // Ограничиваем общий диапазон разумными пределами
+            param.Pitch = Math.Clamp(param.Pitch, 0.7f, 1.8f);
         }
         // Imperial Medieval AgePitch End
         _audio.PlayPvs(sound, uid, param);
