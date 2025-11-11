@@ -39,11 +39,11 @@ public sealed class GrabThrowSystem : EntitySystem
         if (TryComp<SkillsComponent>(player, out var skills))
             skills.Levels.TryGetValue(SharedSkillsSystem.StrengthId, out levelStrength);
 
-        float throwDistance = 3.0f;
+        float throwDistance = 1.8f;
         if (levelStrength > 10)
-            throwDistance += (levelStrength - 10) * 0.33f; // За каждый уровень силы больше 10 прибавляем 0.33 к дальности броска
+            throwDistance += (levelStrength - 10) * 0.23f; // За каждый уровень силы больше 10 прибавляем 0.2 к дальности броска
         else if (levelStrength < 10)
-            throwDistance -= (10 - levelStrength) * 0.25f; // За каждый уровень силы меньше 10 отбавляем 0.25 к дальности броска
+            throwDistance -= (10 - levelStrength) * 0.18f; // За каждый уровень силы меньше 10 отбавляем 0.25 к дальности броска
 
         throwDistance = MathF.Max(throwDistance, 0.5f);
 
@@ -54,7 +54,7 @@ public sealed class GrabThrowSystem : EntitySystem
         if (dirVector.Length() > throwDistance)
             dirVector = dirVector.Normalized() * throwDistance;
 
-        float baseThrowSpeed = (dirVector.Length() / 3f) * 10f;
+        float baseThrowSpeed = (dirVector.Length() / 1.6f) * 10f;
 
         _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/thudswoosh.ogg"), grabbed);
         _throwing.TryThrow(

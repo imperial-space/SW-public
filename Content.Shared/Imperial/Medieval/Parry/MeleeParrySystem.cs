@@ -68,7 +68,7 @@ namespace Content.Shared.MeleeParry
 
             if (TryComp<MeleeParryComponent>(item, out var parry) &&
                 TryComp<UseDelayComponent>(item, out var delay) &&
-                !_useDelay.IsDelayed((uid, delay)) &&
+                !_useDelay.IsDelayed((item.Value, delay)) &&
                 parry.ParriedAgo <= 0f &&
                 TryComp<MeleeParryStaminaComponent>(item, out var stamina))
             {
@@ -130,7 +130,7 @@ namespace Content.Shared.MeleeParry
                     return false;
             }
 
-            if (TryComp<MeleeParryComponent>(item, out var parry) && TryComp<UseDelayComponent>(item, out var delay) && !_useDelay.IsDelayed((uid, delay)) && parry.ParriedAgo <= 0f && parry.RealParry)
+            if (TryComp<MeleeParryComponent>(item, out var parry) && TryComp<UseDelayComponent>(item, out var delay) && !_useDelay.IsDelayed((item.Value, delay)) && parry.ParriedAgo <= 0f && parry.RealParry)
             {
                 if (TryComp<WieldableComponent>(item, out var wield) && wield.Wielded)
                 {
