@@ -23,5 +23,8 @@ public sealed partial class MedievalCCVars : CVars
         CVarDef.Create("medieval.afk_kick_time", 60f, CVar.SERVER | CVar.REPLICATED);
 
     public static readonly CVarDef<int> BloodMoonPeriod =
-        CVarDef.Create("medieval.blood_moon_period", 5, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("medieval.blood_moon_period", 7, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<int> BloodMoonWerewolves =
+        CVarDef.Create("medieval.blood_moon_werewolves", 5, CVar.SERVER | CVar.REPLICATED);
 }
