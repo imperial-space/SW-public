@@ -1087,7 +1087,7 @@
       params:
         volume: 7
     initialBeepDelay: 0
-    beepInterval: 6 # 2 beeps total (at 0 and 2)    
+    beepInterval: 6 # 2 beeps total (at 0 and 2)
   - type: SpawnOnTrigger
     proto: MedievalExplosionEffect
 
@@ -7585,7 +7585,7 @@
 - type: tile
   id: CultFloor
   name: tiles-cult-floor
-  sprite: /Textures/Imperial/Medieval/Tiles/cult_tile.rsi/cult.png
+  sprite: /Textures/Imperial/Medieval/Tiles/CultTile/cult.png
   variants: 1
   baseTurf: Plating
   isSubfloor: false
