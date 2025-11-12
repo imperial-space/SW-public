@@ -526,10 +526,10 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         }
         else
         {
-            if (count <= 3 && count > 0)
+            if (count <= 2 && count > 0)
                 return Math.Clamp(count - 1, 1, 2);
 
-            return count / 3;
+            return count / 2;
         }
     }
 
