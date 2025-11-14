@@ -5,11 +5,11 @@
   name: medieval-store-spells-fire-concentrated-displacement-middle-name
   description: medieval-store-spells-fire-concentrated-displacement-middle-desc
   actionLevelUp: 3
-  priority: 3
+  priority: 4
   productUpgradeId:
     - MedievalSpellConcentratedDisplacementSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
     state: concentrated_displacement
   cost:
     MagicMedievalFire: 35
@@ -33,11 +33,11 @@
   id: MedievalSpellConcentratedDisplacementSenior
   name: medieval-store-spells-fire-concentrated-displacement-senior-name
   description: medieval-store-spells-fire-concentrated-displacement-senior-desc
-  priority: 3
+  priority: 4
   productUpgradeId:
     - MedievalSpellConcentratedDisplacementSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
     state: concentrated_displacement2
   cost:
     MagicMedievalFire: 70

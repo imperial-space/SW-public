@@ -5,11 +5,11 @@
   name: medieval-store-spells-fire-diffusion-middle-name
   description: medieval-store-spells-fire-diffusion-middle-desc
   actionLevelUp: 5
-  priority: 4
+  priority: 3
   productUpgradeId:
     - MedievalSpellDiffusionSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
     state: diffusion
   cost:
     MagicMedievalFire: 35
@@ -33,11 +33,11 @@
   id: MedievalSpellDiffusionSenior
   name: medieval-store-spells-fire-diffusion-senior-name
   description: medieval-store-spells-fire-diffusion-senior-desc
-  priority: 4
+  priority: 3
   productUpgradeId:
     - MedievalSpellDiffusionSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
     state: diffusion2
   cost:
     MagicMedievalFire: 70

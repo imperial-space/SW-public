@@ -227,12 +227,6 @@ chatsan-replacement-139 = перст
 chatsan-word-140 = пальцы
 chatsan-replacement-140 = перста
 
-chatsan-word-141 = глаз
-chatsan-replacement-141 = око
-
-chatsan-word-142 = глаза
-chatsan-replacement-142 = ока
-
 chatsan-word-143 = убийца
 chatsan-replacement-143 = душегуб
 

@@ -168,7 +168,7 @@ public sealed partial class BossSystem : EntitySystem
 
         foreach (var item in players)
         {
-            _flash.Flash(item, null, null, 5, 1, false);
+            _flash.Flash(item, null, null, TimeSpan.FromSeconds(5), 1, false);
             _transform.SetCoordinates(item, _random.Pick(list));
         }
     }

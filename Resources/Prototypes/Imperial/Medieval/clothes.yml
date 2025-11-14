@@ -1406,6 +1406,16 @@
 
 - type: entity
   parent: MedievalClothingBackpackSatchelLeather
+  id: MedievalClothingBackpackSatchelLeatherRoyal
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/royal.rsi
+    state: icon
+
+- type: entity
+  parent: MedievalClothingBackpackSatchelLeather
   id: MedievalClothingBackpackSatchelLeather3
   name: satchel
   description: A trendy looking satchel.
@@ -1937,7 +1947,7 @@
   - type: RDWeight
     value: 7
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
+    sprite: Imperial/Medieval/Magic/Fire/FireFetter/projectiles.rsi
     state: handcuff
   - type: TimedDespawn
     lifetime: 180
@@ -1951,7 +1961,7 @@
   - type: IgniteOnMeleeHit
     fireStacks: 0.2
   - type: Handcuff
-    cuffedRSI: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
+    cuffedRSI: Imperial/Medieval/Magic/Fire/FireFetter/projectiles.rsi
     bodyIconState: body-overlay
     breakoutTime: 10
     cuffTime: 3.5
@@ -1969,7 +1979,7 @@
   description: ent-MedievalCursedFetter
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/fetter-spell/cursed-fetter.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/CursedFetter/projectiles.rsi
     state: handcuff
   - type: MeleeWeapon
     resetOnHandSelected: false
@@ -1980,7 +1990,7 @@
   - type: StaminaDamageOnHit
     damage: 8
   - type: Handcuff
-    cuffedRSI: Imperial/Medieval/Magic/fetter-spell/cursed-fetter.rsi
+    cuffedRSI: Imperial/Medieval/Magic/Darkness/CursedFetter/projectiles.rsi
     bodyIconState: body-overlay
     breakoutTime: 10
     cuffTime: 3.5
@@ -1995,3 +2005,91 @@
   - type: Tag
     tags:
     - Handcuffs
+
+- type: entity
+  parent: MedievalClothingHeadHelmetShapel
+  id: MedievalSteampunkHat
+  name: Steampunk Hat
+  description: A pretty old inventor's hat with a flashlight on it. Quite a valuable artifact for a person interested in it.
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Clothing/Head/steampunk-hat.rsi
+    - type: Clothing
+      sprite: Imperial/Medieval/Clothing/Head/steampunk-hat.rsi
+    - type: PointLight
+      color: "#a0f1e8"
+      enabled: false
+      mask: /Textures/Effects/LightMasks/cone.png
+      radius: 5
+      softness: 20
+      autoRot: true
+    - type: UnpoweredFlashlight
+    - type: PowerCellSlot
+      cellSlotId: cell_slot
+    - type: ContainerContainer
+      containers:
+        cell_slot: !type:ContainerSlot
+    - type: ItemSlots
+      slots:
+        cell_slot:
+          name: power-cell-slot-component-slot-name-default
+    - type: LightBehaviour
+      behaviours:
+      - !type:FadeBehaviour
+        id: radiating
+        interpolate: Linear
+        maxDuration: 2.0
+        startValue: 3.0
+        endValue: 2.0
+        isLooped: true
+        reverseWhenFinished: true
+      - !type:PulseBehaviour
+        id: blinking
+        interpolate: Nearest
+        maxDuration: 1.0
+        minValue: 0.1
+        maxValue: 2.0
+        isLooped: true
+    - type: HideLayerClothing
+      layers:
+        Hair: HEAD
+        HeadTop: HEAD
+        HeadSide: HEAD
+    - type: Armor
+      modifiers:
+        coefficients:
+          Blunt: 0.9
+          Slash: 0.85
+          Piercing: 0.95
+
+- type: entity
+  parent: ClothingEyesBase
+  id: MedievalSteampunkGlasses
+  name: Steampunk Glasses
+  description: Homemade glasses with a built-in magnifying glass for zooming in on small details. Its frame is made of pure gold, and the eyepieces are made of rather heavily tempered glass.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Eyes/steampunk.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Eyes/steampunk.rsi
+    slots: eyes
+  - type: Item
+    size: Small
+    storedRotation: -90
+
+- type: entity
+  parent: ClothingEyesBase
+  id: MedievalFichtyGlasses
+  name: glasses
+  description: cool glasses
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Eyes/fichty.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Eyes/fichty.rsi
+    slots: eyes
+  - type: Item
+    size: Small
+    storedRotation: -90

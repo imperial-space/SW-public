@@ -66,7 +66,7 @@
   - type: Tag
     tags:
     - RawMaterial
-    - MedievalMedalLegion
+    - MedalLegion
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -215,6 +215,22 @@
   - MedievalLegionWeapon
 
 - type: listing
+  id: MdvLegionMedievalIronZweihander
+  productEntity: MedievalIronZweihander
+  cost:
+    MedalLegion: 4
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalIronClaymore
+  productEntity: MedievalIronClaymore
+  cost:
+    MedalLegion: 4
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
   id: MdvLegionMedievalHandcuffs
   productEntity: MedievalHandcuffs
   cost:
@@ -239,10 +255,26 @@
   - MedievalLegionWeapon
 
 - type: listing
+  id: MdvLegionMedievalIronZweihanderSteel
+  productEntity: MedievalIronZweihanderSteel
+  cost:
+    MedalLegion: 10
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalIronClaymoreSteel
+  productEntity: MedievalIronClaymoreSteel
+  cost:
+    MedalLegion: 10
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
   id: MdvLegionMedievalIronHalberdT3
   productEntity: MedievalIronHalberdT3
   cost:
-    MedalLegion: 3
+    MedalLegion: 4
   categories:
   - MedievalLegionWeapon
 

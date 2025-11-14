@@ -13,7 +13,7 @@ namespace Content.Shared.Imperial.Medieval.ChemistryRandomization;
 public class ReactionData : IComparable<ReactionData>
 {
     [DataField("name")]
-    public string Name { get; private set; } = string.Empty;
+    public string Name = string.Empty;
 
     /// <summary>
     /// Reactants required for the reaction to occur.

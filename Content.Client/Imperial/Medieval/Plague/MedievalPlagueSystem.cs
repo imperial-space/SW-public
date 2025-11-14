@@ -15,7 +15,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.Medieval.Plague;
 
-public sealed partial class MedievalPlagueSystem : EntitySystem
+public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -32,8 +32,6 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
 
         SubscribeNetworkEvent<OpenPlagueMenuMessage>(OnOpenMenu);
         SubscribeNetworkEvent<PopulatePlagueMenuMessage>(OnPopulateMenu);
-
-        SubscribeLocalEvent<MedievalPlagueGhostComponent, UpdateAlertSpriteEvent>(OnUpdateAlert);
 
         SubscribeLocalEvent<MedievalPlagueInfectedComponent, GetStatusIconsEvent>(OnInfectedGetStatusIcons);
         SubscribeLocalEvent<MedievalPlagueImmuneComponent, GetStatusIconsEvent>(OnImmuneGetStatusIcons);
@@ -67,17 +65,6 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         _overlayMan.RemoveOverlay(_overlay);
     }
 
-    private void OnUpdateAlert(EntityUid uid, MedievalPlagueGhostComponent comp, ref UpdateAlertSpriteEvent args)
-    {
-        if (args.Alert.ID != comp.AlertId)
-            return;
-
-        var essence = Math.Clamp(comp.Points, 0, 999);
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit1, $"{(essence / 100) % 10}");
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit2, $"{(essence / 10) % 10}");
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit3, $"{essence % 10}");
-    }
-
     private void OnInfectedGetStatusIcons(EntityUid uid, MedievalPlagueInfectedComponent component, ref GetStatusIconsEvent args)
     {
         var proto = _proto.Index<FactionIconPrototype>(component.Incubation ? "MedievalPlagueInfectedIncubation" : "MedievalPlagueInfectedActive");
@@ -105,4 +92,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
             _overlayMan.RemoveOverlay(_overlay);
         }
     }
+
+    public override void GrantPlagueImmunity(EntityUid uid, string? cure) { }
+    public override void TryProgressInfection(EntityUid uid, float amount, string? reagent) { }
 }

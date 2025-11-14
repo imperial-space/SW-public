@@ -22,14 +22,15 @@
   - type: SpellCastEffect
     effectProto: FireFetterSpellCastEffectBeginner
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/fetter-spell/action-fire-fetter.rsi
-      state: base
+      sprite: Imperial/Medieval/Magic/Fire/FireFetter/icons.rsi
+      state: beginner
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: MedievalFireFetter
       spellCastDoAfter:

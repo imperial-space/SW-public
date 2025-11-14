@@ -19,6 +19,7 @@ using Robust.Shared.Audio;
 using Content.Server.SpikeTrap.Components;
 using Content.Server.MagicBarrier.Components;
 using Content.Server.Imperial.Medieval.GameTicking.Rules;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server._CP14.Workbench;
 

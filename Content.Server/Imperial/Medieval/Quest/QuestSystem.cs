@@ -13,6 +13,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Player;
 using Content.Server.Chat.Systems;
 using Content.Server.Imperial.Medieval.Trading;
+using Content.Shared.Storage.Components;
 
 namespace Content.Server.Quest;
 public partial class QuestSystem : EntitySystem

@@ -5,12 +5,12 @@
   description: A deadly knife intended for melee confrontations.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Melee/dagger_cult_magic.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/CultDagger/projectiles.rsi
     size: Small
-    state: icon
+    state: beginner
   - type: Item
     size: Small
-    sprite: Imperial/Medieval/Melee/dagger_cult_magic.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/CultDagger/projectiles.rsi
   - type: TimedDespawn
     lifetime: 15
   - type: SpawnOnDespawn

@@ -3,12 +3,12 @@
   name: medieval-store-spells-darkness-spawn-skelet-beginner-name
   description: medieval-store-spells-darkness-spawn-skelet-beginner-desc
   productAction: MedievalActionSpawnSkeletBeginner
-  priority: 1
+  priority: 5
   productUpgradeId:
     - MedievalSpellSpawnSkeletMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
-    state: weak
+    sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+    state: beginner
   cost:
     MagicMedievalDarkness: 20
   categories:
@@ -21,12 +21,12 @@
   id: MedievalSpellSpawnSkeletMiddle
   name: medieval-store-spells-darkness-spawn-skelet-middle-name
   description: medieval-store-spells-darkness-spawn-skelet-middle-desc
-  priority: 1
+  priority: 5
   productUpgradeId:
     - MedievalActionSpawnSkeletSenior
   icon:
-    sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
-    state: meat
+    sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+    state: middle
   cost:
     MagicMedievalDarkness: 50
   categories:
@@ -42,12 +42,12 @@
   id: MedievalActionSpawnSkeletSenior
   name: medieval-store-spells-darkness-spawn-skelet-senior-name
   description: medieval-store-spells-darkness-spawn-skelet-senior-desc
-  priority: 1
+  priority: 5
   productUpgradeId:
     - MedievalActionSpawnSkeletSenior
   icon:
-    sprite: Imperial/Medieval/Magic/spawn_skeleton.rsi
-    state: warior
+    sprite: Imperial/Medieval/Magic/Darkness/SpawnSkelet/icons.rsi
+    state: senior
   cost:
     MagicMedievalDarkness: 80
     ArchmagePoints: 1

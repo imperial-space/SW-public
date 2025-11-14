@@ -834,9 +834,11 @@
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
     solution: beaker
+    destroyOnEmpty: false
+    utensil: None
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
@@ -907,9 +909,11 @@
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
     solution: beaker
+    destroyOnEmpty: false
+    utensil: None
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
@@ -1075,14 +1079,15 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: OnUseTimerTrigger
+  - type: TriggerOnUse
+  - type: TimerTrigger
+    delay: 2.5
     beepSound:
       path: "/Audio/Imperial/Medieval/bomb.ogg"
       params:
         volume: 7
     initialBeepDelay: 0
     beepInterval: 6 # 2 beeps total (at 0 and 2)
-    delay: 2.5
   - type: SpawnOnTrigger
     proto: MedievalExplosionEffect
 
@@ -1925,11 +1930,8 @@
     - type: Sprite
       state: brutepack
     - type: Healing
-      # Imperial Medieval Plague start
-      plagueHealingTier: 1
       plagueProgressionDecayPerUse: 1
-      # Imperial Medieval Plague end
-      damageContainer: Biological
+      damageContainers: [Biological]
       damage:
         groups:
           Brute: -15 # 5 for each type in the group
@@ -1997,8 +1999,10 @@
         layer:
         - MobLayer
   - type: Pullable
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
+    destroyOnEmpty: false
+    utensil: None
     solution: bucket
   - type: Appearance
   - type: SolutionContainerVisuals
@@ -2141,7 +2145,7 @@
     delay: 3.0
   - type: Summonable
     specialItem: MedievalMobKobold
-    requriesBibleUser: false
+    #requriesBibleUser: false
   - type: Sprite
     sprite: Imperial/Medieval/Summon/murlock.rsi
     state: icon
@@ -2166,7 +2170,7 @@
     delay: 3.0
   - type: Summonable
     specialItem: MedievalMobFire
-    requriesBibleUser: false
+    #requriesBibleUser: false
   - type: Sprite
     sprite: Imperial/Medieval/Summon/human.rsi
     state: icon
@@ -2191,7 +2195,7 @@
     delay: 3.0
   - type: Summonable
     specialItem: MedievalRandomHumanoidSpawnerHewbie
-    requriesBibleUser: false
+    #requriesBibleUser: false
   - type: Sprite
     sprite: Imperial/Medieval/Summon/fire.rsi
     state: icon
@@ -2546,6 +2550,9 @@
     - type: Currency
       price:
         Revent: 160
+    - type: MedievalCurrency
+      price:
+        Revent: 160
     - type: PointLight
       color: purple
       radius: 2
@@ -2573,6 +2580,9 @@
     - type: Currency
       price:
         Revent: 120
+    - type: MedievalCurrency
+      price:
+        Revent: 120
     - type: PointLight
       color: purple
       radius: 2
@@ -2598,6 +2608,9 @@
       intensity: 3
       slope: 0.2
     - type: Currency
+      price:
+        Revent: 120
+    - type: MedievalCurrency
       price:
         Revent: 120
     - type: PointLight
@@ -2708,6 +2721,9 @@
   - type: Currency
     price:
       Revent: 10
+  - type: MedievalCurrency
+    price:
+      Revent: 10
   - type: Item
     size: Tiny
   - type: Stack
@@ -2801,6 +2817,9 @@
   - type: Currency
     price:
       Revent: 14
+  - type: MedievalCurrency
+    price:
+      Revent: 14
   - type: Item
     size: Small
   - type: QuestItem
@@ -2839,6 +2858,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hunter
   - type: Currency
+    price:
+      Revent: 25
+  - type: MedievalCurrency
     price:
       Revent: 25
   - type: Item
@@ -2881,6 +2903,9 @@
   - type: Currency
     price:
       Revent: 7
+  - type: MedievalCurrency
+    price:
+      Revent: 7
   - type: Item
     size: Small
   - type: QuestItem
@@ -2921,6 +2946,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Small
   - type: QuestItem
@@ -2948,6 +2976,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -2968,6 +2999,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Tiny
   - type: Tag
@@ -2984,6 +3018,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hogskin
   - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
     price:
       Revent: 12
   - type: Item
@@ -3004,6 +3041,9 @@
   - type: Currency
     price:
       Revent: 7
+  - type: MedievalCurrency
+    price:
+      Revent: 7
   - type: Item
     size: Tiny
   - type: Tag
@@ -3020,6 +3060,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: wolf2
   - type: Currency
+    price:
+      Revent: 5
+  - type: MedievalCurrency
     price:
       Revent: 5
   - type: Item
@@ -3040,6 +3083,9 @@
   - type: Currency
     price:
       Revent: 27
+  - type: MedievalCurrency
+    price:
+      Revent: 27
   - type: Item
     size: Tiny
 
@@ -3053,6 +3099,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: rabbit
   - type: Currency
+    price:
+      Revent: 30
+  - type: MedievalCurrency
     price:
       Revent: 30
   - type: Item
@@ -3071,6 +3120,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: rabbit
   - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
     price:
       Revent: 12
   - type: Item
@@ -3102,6 +3154,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: dmouse
   - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
     price:
       Revent: 3
   - type: Item
@@ -3146,6 +3201,9 @@
   - type: Currency
     price:
       Revent: 4
+  - type: MedievalCurrency
+    price:
+      Revent: 4
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3174,6 +3232,9 @@
   - type: Currency
     price:
       Revent: 25
+  - type: MedievalCurrency
+    price:
+      Revent: 25
   - type: Item
     size: Tiny
   - type: StealTarget # imperial medieval
@@ -3198,6 +3259,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3218,6 +3282,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: meat
   - type: Currency
+    price:
+      Revent: 25
+  - type: MedievalCurrency
     price:
       Revent: 25
   - type: Item
@@ -3242,6 +3309,9 @@
   - type: Currency
     price:
       Revent: 40
+  - type: MedievalCurrency
+    price:
+      Revent: 40
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3262,6 +3332,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: legion
   - type: Currency
+    price:
+      Revent: 60
+  - type: MedievalCurrency
     price:
       Revent: 60
   - type: Item
@@ -3295,6 +3368,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: egg
   - type: Currency
+    price:
+      Revent: 9
+  - type: MedievalCurrency
     price:
       Revent: 9
   - type: Item
@@ -3333,6 +3409,9 @@
   - type: Currency
     price:
       Revent: 20
+  - type: MedievalCurrency
+    price:
+      Revent: 20
   - type: Item
     size: Normal
   - type: Tag
@@ -3351,6 +3430,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: slugbones
   - type: Currency
+    price:
+      Revent: 30
+  - type: MedievalCurrency
     price:
       Revent: 30
   - type: Item
@@ -6815,7 +6897,7 @@
   name: Smite
   description: Instantly gibs a target.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 60
     itemIconStyle: BigAction
     canTargetSelf: false
@@ -6823,10 +6905,11 @@
     checkConsciousness: false
     interactOnMiss: false
     icon: Interface/Actions/scream.png
-    event: !type:MedievalGhostBooEvent
     whitelist:
       components:
       - MobThresholds
+  - type: InstantAction
+    event: !type:MedievalGhostBooEvent
 
 - type: entity
   name: lol
@@ -6895,7 +6978,8 @@
   name: marker
   components:
   - type: RoomFill
-    size: 9,9
+    minSize: 9,9
+    maxSize: 9,9
     roomWhitelist:
       tags:
       - SteroidMap
@@ -6906,7 +6990,8 @@
   name: marker
   components:
   - type: RoomFill
-    size: 9,9
+    minSize: 9,9
+    maxSize: 9,9
     roomWhitelist:
       tags:
       - KaravanMap
@@ -7305,9 +7390,11 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: deprecated.rsi, state: deprecated}
     useDelay: 1
+  - type: TargetAction
+  - type: WorldTargetAction
     event: !type:SpawnOnActionEvent
 
 - type: entity
@@ -7315,8 +7402,8 @@
   noSpawn: true
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#DD0000"
   - type: TimedDespawn
@@ -7359,9 +7446,9 @@
   id: Vinque
   path: /Fonts/Imperial/Vinque/Vinque.otf
 
-- type: font
-  id: SpellwardFont
-  path: /Fonts/Imperial/Spellward/Monomakh-Regular.ttf
+#- type: font
+#  id: SpellwardFont
+#  path: /Fonts/Imperial/Spellward/Monomakh-Regular.ttf
 
 - type: font
   id: SpellwardBeeBoopFont
@@ -7498,7 +7585,7 @@
 - type: tile
   id: CultFloor
   name: tiles-cult-floor
-  sprite: /Textures/Imperial/Medieval/Tiles/cult_tile.rsi/cult.png
+  sprite: /Textures/Imperial/Medieval/Tiles/CultTile/cult.png
   variants: 1
   baseTurf: Plating
   isSubfloor: false
@@ -7568,6 +7655,9 @@
 #     sprite: Imperial/Medieval/Chem/gribi.rsi
 #     state: grib3
 #   - type: Currency
+#     price:
+#       Revent: 8
+#   - type: MedievalCurrency
 #     price:
 #       Revent: 8
 #   - type: Item
@@ -7926,6 +8016,9 @@
   - type: Currency
     price:
       Revent: 5
+  - type: MedievalCurrency
+    price:
+      Revent: 5
   - type: Tag
     tags:
     - MyrmexCanTake
@@ -8114,3 +8207,19 @@
   components:
     - type: WeaponArcVisuals
       animation: CPThrust
+
+- type: entity
+  name: bible
+  description: New Interstellar Version 2340.
+  parent: Bible
+  id: RoyalBible
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/royalbible.rsi
+    layers:
+      - state: default
+      - state: unshaded
+        shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Misc/royalbible.rsi

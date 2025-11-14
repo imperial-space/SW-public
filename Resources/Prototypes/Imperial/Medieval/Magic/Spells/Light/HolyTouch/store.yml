@@ -3,10 +3,10 @@
   name: medieval-store-spells-light-holy-touch-beginner-name
   description: medieval-store-spells-light-holy-touch-beginner-desc
   productAction: MedievalActionHolyTouchBeginner
-  priority: 5
+  priority: 2
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Light/HolyTouch/icons.rsi
+    state: beginner
   cost:
     MagicMedievalLight: 15
   categories:

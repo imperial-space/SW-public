@@ -4,8 +4,8 @@
   id: MedievalEffectConcentratedDisplacementMiddle
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#764ADB"
     speed: 2.0
@@ -48,8 +48,8 @@
   id: MedievalEffectConcentratedDisplacementSenior
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#B84ADB"
     speed: 2.0
