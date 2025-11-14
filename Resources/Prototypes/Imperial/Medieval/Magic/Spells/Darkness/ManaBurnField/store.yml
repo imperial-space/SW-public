@@ -7,7 +7,10 @@
   productAction: MedievalActionManaBurnFieldBeginner
   productUpgradeId:
     - MedievalSpellManaBurnFieldMiddle
-  priority: 3
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/icons.rsi
+    state: beginner
+  priority: 9
   cost:
     MagicMedievalDarkness: 25
   categories:
@@ -22,9 +25,12 @@
   id: MedievalSpellManaBurnFieldMiddle
   name: medieval-store-spells-darkness-mana-burn-field-middle-name
   description: medieval-store-spells-darkness-mana-burn-field-middle-desc
-  priority: 3
+  priority: 9
   productUpgradeId:
   - MedievalSpellManaBurnFieldSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/icons.rsi
+    state: middle
   cost:
     MagicMedievalDarkness: 55
   categories:
@@ -44,7 +50,10 @@
   description: medieval-store-spells-darkness-mana-burn-field-senior-desc
   productUpgradeId:
   - MedievalSpellManaBurnFieldSenior
-  priority: 3
+  icon:
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/icons.rsi
+    state: senior
+  priority: 9
   cost:
     MagicMedievalDarkness: 70
     ArchmagePoints: 1

@@ -5,7 +5,7 @@ namespace Content.Shared.Imperial.Medieval.Magic.ManaBurn;
 public sealed partial class ManaBurnFieldComponent : Component
 {
     [DataField]
-    public TimeSpan BurnDelay;
+    public TimeSpan BurnDelay = TimeSpan.Zero;
     [DataField]
     public float BurnQuantity = 5;
     [DataField]

@@ -4,7 +4,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/mana_burn.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles.rsi
     state: beginner
     noRot: true
     shader: unshaded
@@ -37,7 +37,7 @@
   name: Mana Burn Field
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/mana_burn.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles.rsi
     state: beginner
   - type: TimedDespawn
     lifetime: 12
@@ -57,7 +57,7 @@
   parent: MedievalManaBurnField
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/mana_burn.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles.rsi
     state: middle
   - type: TimedDespawn
     lifetime: 15
@@ -77,7 +77,7 @@
   parent: MedievalManaBurnField
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/mana_burn.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles.rsi
     state: senior
   - type: TimedDespawn
     lifetime: 20

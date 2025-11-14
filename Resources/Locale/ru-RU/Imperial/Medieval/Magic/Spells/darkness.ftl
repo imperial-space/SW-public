@@ -88,20 +88,6 @@ medieval-spell-speach-cult-dagger = C͢ųlt͝ȩl̡l͜us Sang̢úi̷nis̶
 medieval-store-spells-darkness-cult-dagger-name = Создание кинжала культа
 medieval-store-spells-darkness-cult-dagger-desc = Создаёт в руке кинжал культа. Пригодится, если вы потеряете настоящий.
 
-# Mana Burn Field
-
-medieval-mana-burn-field-popup = Силы покидают меня
-
-medieval-spell-speach-mana-burn-field = Wɛakɛn̴͈͂  my ɛn̴͈͂ɛmiɛs
-
-medieval-store-spells-darkness-mana-burn-field-beginner-name = Поле истощения маны
-medieval-store-spells-darkness-mana-burn-field-beginner-desc = Размещает поле радиусом 2.5 тайла, которое постепенно выжигает ману у стоящих на нём сущностей
-
-medieval-store-spells-darkness-mana-burn-field-middle-name = Поле истощения маны
-medieval-store-spells-darkness-mana-burn-field-middle-desc = Размещает поле радиусом 3 тайла, которое постепенно выжигает ману у стоящих на нём сущностей
-
-medieval-store-spells-darkness-mana-burn-field-senior-name = Дыра истощения маны
-medieval-store-spells-darkness-mana-burn-field-senior-desc = Размещает поле радиусом 3.5 тайла, которое постепенно выжигает ману у стоящих на нём сущностей и притягивает их к центру поля
 # Tentacles
 
 medieval-spell-speach-tentacles = Ŕadįc̀ès ̡Mąl͏edi̸ctae
@@ -114,3 +100,18 @@ medieval-store-spells-darkness-tentacles-middle-desc = Создаёт прокл
 
 medieval-store-spells-darkness-tentacles-senior-name = Проклятая роща
 medieval-store-spells-darkness-tentacles-senior-desc = Создаёт проклятые корни, которые сильно замедляют противника на них.
+
+# Mana Burn Field
+
+medieval-mana-burn-field-popup = Силы покидают меня
+
+medieval-spell-speach-mana-burn-field = C̕͏ą͜mpų́͡s͞ ̵̀Ĺa̕͜ngúo̸̕r̵is̨̢͢
+
+medieval-store-spells-darkness-mana-burn-field-beginner-name = Поле истощения маны
+medieval-store-spells-darkness-mana-burn-field-beginner-desc = Размещает поле радиусом 2.5 тайла, которое постепенно выжигает ману у стоящих на нём сущностей
+
+medieval-store-spells-darkness-mana-burn-field-middle-name = Поле истощения маны
+medieval-store-spells-darkness-mana-burn-field-middle-desc = Размещает поле радиусом 3 тайла, которое постепенно выжигает ману у стоящих на нём сущностей
+
+medieval-store-spells-darkness-mana-burn-field-senior-name = Дыра истощения маны
+medieval-store-spells-darkness-mana-burn-field-senior-desc = Размещает поле радиусом 3.5 тайла, которое постепенно выжигает ману у стоящих на нём сущностей и притягивает их к центру поля
