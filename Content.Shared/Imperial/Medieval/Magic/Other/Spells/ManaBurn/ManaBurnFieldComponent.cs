@@ -4,8 +4,8 @@ namespace Content.Shared.Imperial.Medieval.Magic.ManaBurn;
 [RegisterComponent]
 public sealed partial class ManaBurnFieldComponent : Component
 {
-    [DataField]
-    public TimeSpan BurnDelay = TimeSpan.Zero;
+    [DataField(required: true)]
+    public TimeSpan BurnDelay;
     [DataField]
     public float BurnQuantity = 5;
     [DataField]
