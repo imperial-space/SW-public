@@ -26,7 +26,7 @@ public sealed partial class ManaBurnFieldComponent : Component
     /// The popup that will be sent to the entity after each trigger
     /// </summary>
     [DataField]
-    public LocId BurnPopup;
+    public LocId BurnPopup = string.Empty;
     [ViewVariables]
     public TimeSpan BurnTime = TimeSpan.Zero;
 }

@@ -31,7 +31,7 @@ public sealed partial class ManaBurnFieldSystem : EntitySystem
                     comp.BurnTime = _timing.CurTime + comp.BurnDelay;
                     if (TryComp<ManaComponent>(entity, out var player))
                     {
-                        if (comp.BurnPopup != null)
+                        if (comp.BurnPopup != string.Empty)
                             _popupSystem.PopupEntity(Loc.GetString(comp.BurnPopup), player.Owner);
                         if (player.Mana - comp.BurnQuantity < 0)
                             player.Mana = 0;
