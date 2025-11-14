@@ -20,22 +20,23 @@ public sealed partial class ManaBurnFieldSystem : EntitySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        foreach (var uid in EntityManager.EntityQuery<ManaBurnFieldComponent>())
+        foreach (var comp in EntityManager.EntityQuery<ManaBurnFieldComponent>())
         {
             var xform = Transform(uid.Owner);
             var coords = xform.Coordinates;
-            foreach (var entity in _lookup.GetEntitiesInRange(coords, uid.Radius))
-                if (uid.BurnTime <= _timing.CurTime)
+            foreach (var entity in _lookup.GetEntitiesInRange(coords, comp.Radius))
+                if (comp.BurnTime <= _timing.CurTime)
                 {
                     if (!_net.IsServer) continue;
-                    uid.BurnTime = _timing.CurTime + uid.BurnDelay;
+                    comp.BurnTime = _timing.CurTime + comp.BurnDelay;
                     if (TryComp<ManaComponent>(entity, out var player))
                     {
-                        _popupSystem.PopupEntity(Loc.GetString(uid.BurnPopup), player.Owner);
-                        if (player.Mana - uid.BurnQuantity < 0)
+                        if (comp.BurnPopup != null)
+                            _popupSystem.PopupEntity(Loc.GetString(comp.BurnPopup), player.Owner);
+                        if (player.Mana - comp.BurnQuantity < 0)
                             player.Mana = 0;
                         else
-                            player.Mana -= uid.BurnQuantity;
+                            player.Mana -= comp.BurnQuantity;
                     }
                 }
         }
