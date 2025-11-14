@@ -22,7 +22,7 @@ public sealed partial class ManaBurnFieldSystem : EntitySystem
         base.Update(frameTime);
         foreach (var comp in EntityManager.EntityQuery<ManaBurnFieldComponent>())
         {
-            var xform = Transform(uid.Owner);
+            var xform = Transform(comp.Owner);
             var coords = xform.Coordinates;
             foreach (var entity in _lookup.GetEntitiesInRange(coords, comp.Radius))
                 if (comp.BurnTime <= _timing.CurTime)
