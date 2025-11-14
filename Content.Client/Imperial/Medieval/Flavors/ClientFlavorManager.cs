@@ -84,7 +84,7 @@ namespace Content.Client.Imperial.Medieval.Flavors
             Texture result;
             using (var stream = new MemoryStream(bytes))
             {
-                result = Texture.LoadFromPNGStream(stream, ".webp", new() { SampleParameters = new() { Filter = true } });
+                result = Texture.LoadFromPNGStream(stream, ".webp");
             }
             if (!ImageAllowed(result.Width, result.Height))
                 return (fallback, true);
