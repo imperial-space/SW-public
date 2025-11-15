@@ -54,6 +54,7 @@ namespace Content.Server.Database
 
         public DbSet<Painting> Paintings { get; set; } = null!;
         public DbSet<Book> Books { get; set; } = null!;
+        public DbSet<FlavorImage> FlavorImages { get; set; } = null!; // Imperial Medieval Flavor Images
         // imperial medieval end
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -566,6 +567,14 @@ namespace Content.Server.Database
         public bool Accepted { get; set; }
     }
 
+    public class FlavorImage
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
+        public int Id { get; set; }
+        [ForeignKey(nameof(Profile)), Required]
+        public int ProfileId { get; set; }
+        public byte[] Image { get; set; } = Array.Empty<byte>();
+    }
 
     #endregion
 
