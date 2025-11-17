@@ -32,7 +32,7 @@
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
-      state: concentrated_displacement
+      state: middle-disp
   - type: TargetAction
     checkCanAccess: false
     range: 2
@@ -48,7 +48,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
+          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/projectiles.rsi
           state: concentrated_displacement
         alwaysRender: true
         mixColor: 0.1
@@ -81,7 +81,7 @@
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
-      state: concentrated_displacement2
+      state: senior-disp
   - type: TargetAction
     checkCanAccess: false
     range: 2
@@ -97,7 +97,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
+          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/projectiles.rsi
           state: concentrated_displacement2
         alwaysRender: true
         mixColor: 0.1
