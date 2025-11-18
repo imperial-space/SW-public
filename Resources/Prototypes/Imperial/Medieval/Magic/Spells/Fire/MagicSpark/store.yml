@@ -7,8 +7,8 @@
   productAction: MedievalActionSparkBeginner
   priority: 10
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Fire/MagicSpark/icons.rsi
+    state: beginner
   cost:
     MagicMedievalFire: 20
   categories:

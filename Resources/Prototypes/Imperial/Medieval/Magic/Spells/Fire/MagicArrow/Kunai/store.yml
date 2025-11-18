@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellMagicArrowKunaiMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: beginner-kunai
   cost:
     MagicMedievalFire: 25
   categories:
@@ -52,8 +52,8 @@
   productUpgradeId:
     - MedievalSpellMagicArrowKunaiSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: middle-kunai
   cost:
     MagicMedievalFire: 50
   categories:
@@ -95,8 +95,8 @@
   productUpgradeId:
     - MedievalSpellMagicArrowKunaiSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+    state: senior-kunai
   cost:
     MagicMedievalFire: 80
     ArchmagePoints: 1

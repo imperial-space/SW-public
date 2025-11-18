@@ -2201,6 +2201,338 @@
     sprintModifier: 0.85
 
 - type: entity
+  name: iron zweihander
+  parent: [ BaseItem, BaseTwoHandedCharged ]
+  id: MedievalIronZweihander
+  description: A medieval zweihander.
+  components:
+  - type: RDWeight
+    value: 7
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    angle: 140
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.2
+    wideAnimationRotation: -140
+    attackRate: 0.54
+    damage:
+      types:
+        Piercing: 6
+        Slash: 6
+        Structural: 2
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.6
+    safeToHitGroup: structure
+  - type: Wieldable
+    #wieldTime: 3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 6
+        Structural: 9
+        Slash: 15
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 19
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 1.2
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/zweihander.rsi
+    state: icon
+
+- type: entity
+  name: steel zweihander
+  parent: [ BaseItem, BaseTwoHandedCharged ]
+  id: MedievalIronZweihanderSteel
+  description: A medieval zweihander.
+  components:
+  - type: RDWeight
+    value: 7
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    angle: 140
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.22
+    wideAnimationRotation: -140
+    attackRate: 0.6
+    damage:
+      types:
+        Piercing: 10
+        Slash: 15.7
+        Structural: 3
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.5
+    safeToHitGroup: structure
+  - type: Wieldable
+    #wieldTime: 3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 9
+        Structural: 17
+        Slash: 12
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 19
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 1.2
+    speed: 5
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/zweihander.rsi
+    state: icon
+
+- type: entity
+  name: iron claymore
+  parent: [ BaseItem, BaseTwoHandedCharged ]
+  id: MedievalIronClaymore
+  description: A medieval claymore.
+  components:
+  - type: RDWeight
+    value: 7
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    angle: 140
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.2
+    wideAnimationRotation: -140
+    attackRate: 0.54
+    damage:
+      types:
+        Piercing: 6
+        Slash: 6
+        Structural: 2
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.6
+    safeToHitGroup: structure
+  - type: Wieldable
+    #wieldTime: 3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 8
+        Structural: 9
+        Slash: 14
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 19
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 1.2
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/claymore.rsi
+    state: icon
+
+- type: entity
+  name: steel claymore
+  parent: [ BaseItem, BaseTwoHandedCharged ]
+  id: MedievalIronClaymoreSteel
+  description: A medieval claymore.
+  components:
+  - type: RDWeight
+    value: 7
+  - type: QuestItem
+    contractName: "любое двуручное оружие"
+  - type: EmitSoundOnLand
+    sound:
+      collection: MedievalIronDrop
+      params:
+        variation: 0.02
+        volume: 1
+  - type: Sharp
+  - type: MeleeParry
+    parryChanse: 0.55
+  - type: MeleeWeapon
+    angle: 140
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.22
+    wideAnimationRotation: -140
+    attackRate: 0.6
+    damage:
+      types:
+        Piercing: 8
+        Slash: 17.7
+        Structural: 3
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+  - type: MedievalMeleeResource
+    resourceWaste: 0.5
+    safeToHitGroup: structure
+  - type: Wieldable
+    #wieldTime: 3
+  - type: IncreaseDamageOnWield
+    damage:
+      types:
+        Blunt: 9
+        Structural: 17
+        Slash: 12
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 19
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: MeleeRequiresWield
+  #- type: QualityOfItem
+  #  qualityWeights:
+  #    0: 0
+  #    1: 0
+  #    2: 0
+  #    3: 10
+  #    4: 0
+  #    5: 0
+  #    6: 0
+  - type: MeleeThrowOnHit
+    distance: 1.2
+    speed: 5
+  - type: Meltable
+    resourceCount: 7
+  - type: HeldSpeedModifier
+    walkModifier: 0.85
+    sprintModifier: 0.85
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/claymore.rsi
+    state: icon
+
+- type: entity
   name: falshion
   parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionT3Legion

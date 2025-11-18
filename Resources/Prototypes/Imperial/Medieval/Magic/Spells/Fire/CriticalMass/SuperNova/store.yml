@@ -8,7 +8,7 @@
   productUpgradeId:
     - MedievalSpellCriticalMassSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
     state: supermass2
   cost:
     MagicMedievalFire: 30
@@ -36,7 +36,7 @@
   productUpgradeId:
     - MedievalSpellCriticalMassSenior
   icon:
-    sprite: Imperial/Medieval/Magic/nova.rsi
+    sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
     state: supermass3
   cost:
     MagicMedievalFire: 65

@@ -30,8 +30,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/firewall.rsi
-      state: firewall1
+      sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+      state: beginner
   - type: TargetAction
     targetingIndicator: false
     range: 5
@@ -59,7 +59,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/firewall.rsi
+          sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
           state: firewall1
         alwaysRender: true
         spriteColor: "#47f8ff"
@@ -93,8 +93,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/firewall.rsi
-      state: firewall2
+      sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+      state: middle
   - type: TargetAction
     checkCanAccess: false
     targetingIndicator: false
@@ -118,7 +118,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/firewall.rsi
+          sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
           state: firewall2
         alwaysRender: true
         spriteColor: "#47f8ff"
@@ -150,8 +150,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/firewall.rsi
-      state: firewall3
+      sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+      state: senior
   - type: TargetAction
     range: 5
     checkCanAccess: false
@@ -175,7 +175,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/firewall.rsi
+          sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
           state: firewall3
         alwaysRender: true
         spriteColor: "#47f8ff"

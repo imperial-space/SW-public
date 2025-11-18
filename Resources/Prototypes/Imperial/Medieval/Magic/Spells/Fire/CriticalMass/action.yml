@@ -30,7 +30,7 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/nova.rsi
+      sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
       state: supermass
   - type: TargetAction
     checkCanAccess: false
@@ -47,7 +47,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/nova.rsi
+          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
           state: supermass
         alwaysRender: true
         mixColor: 0.1

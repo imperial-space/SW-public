@@ -21,8 +21,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+      state: beginner
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: BoostBeginner
@@ -76,8 +76,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+      state: middle
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: BoostMiddle
@@ -117,8 +117,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+      state: senior
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: BoostSenior

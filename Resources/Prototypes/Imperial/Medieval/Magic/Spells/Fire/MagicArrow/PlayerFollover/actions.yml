@@ -13,8 +13,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+      state: beginner-aim
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -86,8 +86,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+      state: middle-aim
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -160,8 +160,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/arrow.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Fire/MagicArrow/icons.rsi
+      state: senior-aim
   - type: TargetAction
     checkCanAccess: false
     range: 60

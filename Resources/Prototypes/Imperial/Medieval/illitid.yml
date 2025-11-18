@@ -170,6 +170,7 @@
     modifier: 1.15
   - type: Damageable
     damageModifierSet: Illitid
+  - type: Illitid
 
 - type: damageModifierSet
   id: Illitid

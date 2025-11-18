@@ -391,6 +391,12 @@
   - productEntity: MedievalShortSword
     cost: 30
     reputationForBuying: 1
+  - productEntity: MedievalIronClaymore
+    cost: 155
+    reputationForBuying: 7.5
+  - productEntity: MedievalIronZweihander
+    cost: 155
+    reputationForBuying: 7.5
   - productEntity: MedievalSaber
     cost: 40
     reputationForBuying: 1.3
@@ -492,13 +498,23 @@
     reputationForBuying: 5
     minReputationPlace: 1
     minReputation: 20
+  - productEntity: MedievalIronClaymoreSteel
+    cost: 330
+    reputationForBuying: 5
+    minReputationPlace: 1
+    minReputation: 20
+  - productEntity: MedievalIronZweihanderSteel
+    cost: 330
+    reputationForBuying: 5
+    minReputationPlace: 1
+    minReputation: 20
   - productEntity: MedievalShortSwordSteel
     cost: 130
     reputationForBuying: 4.3
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalSaberSteel
-    cost: 160
+    cost: 180
     reputationForBuying: 5.3
     minReputationPlace: 1
     minReputation: 20

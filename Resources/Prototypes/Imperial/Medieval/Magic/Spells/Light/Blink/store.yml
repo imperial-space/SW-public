@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellBlinkMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-    state: blink
+    sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+    state: beginner
   cost:
     MagicMedievalLight: 25
   categories:
@@ -30,8 +30,8 @@
   productUpgradeId:
     - MedievalSpellBlinkMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-    state: blink
+    sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+    state: beginner
   cost:
     MagicMedievalLight: 55
   categories:

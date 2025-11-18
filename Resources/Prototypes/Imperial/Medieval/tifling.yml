@@ -359,6 +359,7 @@
   id: TiflingTailSmooth
   bodyPart: Tail
   markingCategory: Tail
+  followSkinColor: true
   speciesRestriction: [Tifling]
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/tails.rsi
@@ -368,6 +369,7 @@
   id: TiflingTailSmoothAnimated
   bodyPart: Tail
   markingCategory: Tail
+  followSkinColor: true
   speciesRestriction: []
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/tails.rsi

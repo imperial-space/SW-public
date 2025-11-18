@@ -9,7 +9,7 @@
 #  productUpgradeId:
 #    - MedievalSpellStoneTouchMiddle
 #  icon:
-#    sprite: Imperial/Medieval/Magic/stone_touch.rsi
+#    sprite: Imperial/Medieval/Magic/Darkness/StoneTouch/icons.rsi
 #    state: flesh_to_stone
 #  cost:
 #    MagicMedievalDarkness: 25
@@ -29,7 +29,7 @@
 #  productUpgradeId:
 #    - MedievalSpellStoneTouchMiddle
 #  icon:
-#    sprite: Imperial/Medieval/Magic/stone_touch.rsi
+#    sprite: Imperial/Medieval/Magic/Darkness/StoneTouch/icons.rsi
 #    state: stone_touch
 #  cost:
 #    MagicMedievalDarkness: 40
