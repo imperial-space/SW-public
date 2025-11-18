@@ -20,8 +20,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+      state: beginner-kunai
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -89,8 +89,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+      state: middle-kunai
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -158,8 +158,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/arrow_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+      state: senior-kunai
   - type: TargetAction
     checkCanAccess: false
     range: 60

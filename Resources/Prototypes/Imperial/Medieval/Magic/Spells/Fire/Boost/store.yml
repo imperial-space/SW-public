@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellBoostMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+    state: beginner
   cost:
     MagicMedievalFire: 20
   categories:
@@ -29,8 +29,8 @@
   productUpgradeId:
     - MedievalSpellBoostSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+    state: middle
   cost:
     MagicMedievalFire: 45
   categories:
@@ -52,8 +52,8 @@
   productUpgradeId:
     - MedievalSpellBoostSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/boost.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Fire/Boost/icons.rsi
+    state: senior
   cost:
     MagicMedievalFire: 70
     ArchmagePoints: 1

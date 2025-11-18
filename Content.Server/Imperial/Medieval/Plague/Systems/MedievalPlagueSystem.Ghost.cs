@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Body.Components;
 using Content.Shared.Bed.Sleep;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
 using Content.Shared.Humanoid;
@@ -144,8 +145,12 @@ public sealed partial class MedievalPlagueSystem
         args.Handled = true;
 
         _jitter.DoJitter(args.Target, TimeSpan.FromSeconds(6), true, 10, 3);
-        _drunk.TryApplyDrunkenness(args.Target, 600);
-        _stun.TrySlowdown(args.Target, TimeSpan.FromSeconds(6), true);
+        _drunk.TryApplyDrunkenness(args.Target, TimeSpan.FromSeconds(600));
+        var modifier = EnsureComp<MovespeedModifierMetabolismComponent>(uid);
+        modifier.SprintSpeedModifier = 0.7f;
+        modifier.WalkSpeedModifier = 0.7f;
+        modifier.ModifierTimer = _timing.CurTime + TimeSpan.FromSeconds(6);
+        Dirty(uid, modifier);
 
         _audio.PlayGlobal(new SoundCollectionSpecifier("PlagueDizziness"), Filter.Empty().FromEntities(args.Target), false);
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/dizzy.ogg"), Filter.Empty().FromEntities(uid), false);
@@ -164,7 +169,7 @@ public sealed partial class MedievalPlagueSystem
 
         args.Handled = true;
 
-        _status.TryAddStatusEffect<ForcedSleepingComponent>(args.Target, "ForcedSleep", TimeSpan.FromSeconds(15), true);
+        _status.TryAddStatusEffect<ForcedSleepingStatusEffectComponent>(args.Target, "ForcedSleep", TimeSpan.FromSeconds(15), true);
 
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/Plague/sleepy.ogg"), Filter.Empty().FromEntities(uid, args.Target), false);
         _popup.PopupEntity(Loc.GetString("medieval-plague-forced-sleep-ghost-popup", ("target", Name(args.Target))), args.Target, uid);

@@ -9,7 +9,7 @@
   productUpgradeId:
     - MedievalSpellTentaclesMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/tentacles.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
     state: beginner
   cost:
     MagicMedievalDarkness: 25
@@ -29,7 +29,7 @@
   productUpgradeId:
     - MedievalSpellTentaclesSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/tentacles.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
     state: middle
   cost:
     MagicMedievalDarkness: 60
@@ -52,7 +52,7 @@
   productUpgradeId:
     - MedievalSpellTentaclesSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/tentacles.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
     state: senior
   cost:
     MagicMedievalDarkness: 80

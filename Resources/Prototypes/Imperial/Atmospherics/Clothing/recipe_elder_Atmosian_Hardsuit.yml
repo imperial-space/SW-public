@@ -22,6 +22,7 @@
     entity: ElderAtmosianHardsuit
 
 - type: construction
+  hide: true # imperial medieval craft disable
   id: ElderHardsuit
   graph: ElderHardsuit
   startNode: start

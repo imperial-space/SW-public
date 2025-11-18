@@ -4254,10 +4254,11 @@
   - type: QuestArea
     contractPartner: "тотем племени"
   - type: Speech
-  - type: Advertise
-    pack: MedievalTribeAltarAdvertise
-    minimumWait: 60
-    maximumWait: 180
+  - type: Vocalizer
+    minVocalizeInterval: 1m # Arcades are noisy
+    maxVocalizeInterval: 3m
+  - type: DatasetVocalizer
+    dataset: MedievalTribeAltarAdvertise
   - type: SpriteFade
 
 - type: localizedDataset

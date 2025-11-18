@@ -41,8 +41,9 @@
                         <ScrollContainer
                             Margin="4"
                             HorizontalExpand="True"
-                            HScrollEnabled="True"
-                            SetHeight="50">
+                            HScrollEnabled="False"
+                            SetHeight="75"
+                            SetWidth="300">
                             <RichTextLabel
                                 Name="AbilityDesc"
                                 HorizontalExpand="True"

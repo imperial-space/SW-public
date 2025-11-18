@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellCursedArrowKunaiMiddle
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 2
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: beginner-kunai
   cost:
     MagicMedievalDarkness: 45
   categories:
@@ -52,8 +52,8 @@
   productUpgradeId:
     - MedievalSpellCursedArrowKunaiSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: middle-kunai
   cost:
     MagicMedievalDarkness: 65
   categories:
@@ -95,8 +95,8 @@
   productUpgradeId:
     - MedievalSpellCursedArrowKunaiSenior
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/blood.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/Darkness/CursedArrow/icons.rsi
+    state: senior-kunai
   cost:
     MagicMedievalDarkness: 80
     ArchmagePoints: 1

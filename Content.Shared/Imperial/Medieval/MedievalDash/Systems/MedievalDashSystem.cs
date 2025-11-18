@@ -122,7 +122,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var staminaEv = new CheckDashStaminaCostModifiersEvent(1f);
         RaiseLocalEvent(player, ref staminaEv);
 
-        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage * staminaEv.Modifier, ignoreResistances: true))
+        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage * staminaEv.Modifier, ignoreResist: true))
             return false;
 
         var distEv = new CheckDashDistanceModifiersEvent(1f);

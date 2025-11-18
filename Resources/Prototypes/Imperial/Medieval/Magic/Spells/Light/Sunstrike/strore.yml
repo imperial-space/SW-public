@@ -9,7 +9,7 @@
     - MedievalSpellSunstrikeSenior
   priority: 6
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/sunstrike.rsi
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
     state: middle
   cost:
     MagicMedievalLight: 70
@@ -29,7 +29,7 @@
     - MedievalSpellSunstrikeSenior
   priority: 6
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/sunstrike.rsi
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
     state: senior
   cost:
     MagicMedievalLight: 90

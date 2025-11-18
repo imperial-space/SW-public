@@ -21,8 +21,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightning_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/lightning.rsi
-      state: lightning-basic
+      sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+      state: middle-light
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -88,8 +88,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/lightning_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/lightning.rsi
-      state: lightning-adv
+      sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+      state: senior-light
   - type: TargetAction
     checkCanAccess: false
     range: 60

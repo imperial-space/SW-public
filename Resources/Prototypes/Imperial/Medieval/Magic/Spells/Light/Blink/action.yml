@@ -28,8 +28,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-      state: blink
+      sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+      state: beginner
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -49,8 +49,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-          state: blink
+          sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+          state: beginner
         inRangeColor: "#000062"
         outOfRangeColor: "#4A5076"
         alwaysRender: true
@@ -119,8 +119,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-      state: blink
+      sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+      state: beginner
   - type: TargetAction
     checkCanAccess: false
     range: 60
@@ -140,8 +140,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Gun/Charmer/blink.rsi
-          state: blink
+          sprite: Imperial/Medieval/Magic/Light/Blink/icons.rsi
+          state: beginner
         inRangeColor: "#000062"
         outOfRangeColor: "#4A5076"
         alwaysRender: true

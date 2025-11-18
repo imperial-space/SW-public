@@ -21,8 +21,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+      state: beginner
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: IceDaggerBeginner
@@ -78,8 +78,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+      state: middle
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: IceDaggerMiddle
       spellCastDoAfter:
@@ -128,8 +128,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+      state: senior
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: IceDaggerSenior
       spellCastDoAfter:

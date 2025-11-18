@@ -30,7 +30,7 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/tentacles.rsi
+      sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
       state: beginner
   - type: TargetAction
     targetingIndicator: false
@@ -55,8 +55,8 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/tentacles.rsi
-          state: spawnIcon
+          sprite: Imperial/Medieval/Magic/Darkness/Tentacles/projectiles.rsi
+          state: spawn-icon
         alwaysRender: true
         spriteColor: "#47f8ff"
         inRangeColor: "#CC00AF"
@@ -88,7 +88,7 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/tentacles.rsi
+      sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
       state: middle
   - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
@@ -128,7 +128,7 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/tentacles.rsi
+      sprite: Imperial/Medieval/Magic/Darkness/Tentacles/icons.rsi
       state: senior
   - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent

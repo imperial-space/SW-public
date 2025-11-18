@@ -7,8 +7,8 @@
   productAction: MedievalActionWeakeningWaveSenior
   priority: 1
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   cost:
     MagicMedievalLight: 120
     ArchmagePoints: 1

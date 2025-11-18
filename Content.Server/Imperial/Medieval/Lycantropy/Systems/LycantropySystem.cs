@@ -5,6 +5,7 @@ using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
+using Content.Server.Imperial.DayTime;
 using Content.Server.Jittering;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Components;
@@ -23,6 +24,7 @@ using Content.Shared.Imperial.Medieval.Plague;
 using Content.Shared.Imperial.Medieval.Weapons;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Rejuvenate;
 using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
@@ -64,12 +66,13 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly StunSystem _stun = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _role = default!;
+    [Dependency] private readonly DayTimeSystem _dayTime = default!;
 
     private const int PointsPerNight = 3;
     private const int PointsPerInfect = 4;
     private const int PointsPerCrit = 1;
 
-    private int _curNight = 0;
+    private int _curCycle = 0;
     private bool _isBloodMoon = false;
     private DamageSpecifier _regenAmount = new()
     {
@@ -106,6 +109,9 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         SubscribeLocalEvent<WerewolfComponent, SetWerewolfDamageEvent>(OnSetDamage);
         SubscribeLocalEvent<WerewolfComponent, SetWerewolfDashStrengthEvent>(OnSetDashStrength);
         SubscribeLocalEvent<WerewolfComponent, SetWerewolfMobThresholdsEvent>(OnSetThresholds);
+
+        SubscribeLocalEvent<DayCycleFinishedEvent>(OnDayCycleFinished);
+        SubscribeLocalEvent<DayCycleStageChangedEvent>(OnDayStageChanged);
 
         SubscribeNetworkEvent<SelectWerewolfFormEvent>(OnSelectForm);
         SubscribeNetworkEvent<BuyLycantropyAbilityEvent>(OnBuyAbility);
@@ -170,13 +176,20 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             if (TryComp<PolymorphedEntityComponent>(comp.Werewolf, out var polymorphed) && TryComp<LycantropyComponent>(polymorphed.Parent, out var lycantropy))
             {
                 lycantropy.Points += PointsPerInfect;
-                Dirty(polymorphed.Parent, lycantropy);
+                Dirty(polymorphed.Parent.Value, lycantropy);
             }
 
             if (_mind.TryGetMind(uid, out var mindId, out var mind))
                 _role.MindAddRole(mindId, "MindRoleWerewolf");
 
             RemComp(uid, comp);
+
+            if (_isBloodMoon)
+            {
+                var ev = new RejuvenateEvent();
+                RaiseLocalEvent(uid, ev);
+                Morph(uid, EnsureComp<LycantropyComponent>(uid));
+            }
         }
         else if (args.NewMobState == MobState.Dead)
         {
@@ -256,7 +269,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (TryComp<PolymorphedEntityComponent>(uid, out var polymorphed) && TryComp<LycantropyComponent>(polymorphed.Parent, out var lycantropy))
         {
             lycantropy.Points += PointsPerCrit;
-            Dirty(polymorphed.Parent, lycantropy);
+            Dirty(polymorphed.Parent.Value, lycantropy);
         }
     }
 
@@ -415,12 +428,34 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             _actions.AddAction(uid, item);
     }
 
+    private void OnDayCycleFinished(ref DayCycleFinishedEvent args)
+    {
+        _curCycle++;
+
+        if (EntityManager.AllEntities<LycantropyComponent>().Where(x => _mobState.IsAlive(x)).Count() < _config.GetCVar(MedievalCCVars.BloodMoonWerewolves))
+            return;
+
+        if (_curCycle >= _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
+        {
+            _dayTime.ChangePreset("0", "bloody", true);
+            _isBloodMoon = true;
+            OnNightStarted();
+        }
+    }
+
+    private void OnDayStageChanged(ref DayCycleStageChangedEvent args)
+    {
+        if (_isBloodMoon)
+            return;
+
+        if (args.NextStage == 5)
+            OnNightStarted();
+        else if (args.NextStage == 10)
+            OnNightEnded();
+    }
+
     private void OnNightStarted()
     {
-        _curNight++;
-        if (_curNight > _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
-            _curNight = 1;
-
         var ents = EntityManager.AllEntities<LycantropyComponent>();
         _random.Shuffle(ents);
 
@@ -452,7 +487,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     {
         var abilities = comp.Abilities;
         _audio.PlayGlobal(new SoundCollectionSpecifier("WerewolfTransform"), uid);
-        _stun.TryParalyze(uid, TimeSpan.FromSeconds(3), true);
+        _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(3));
         _jitter.DoJitter(uid, TimeSpan.FromSeconds(3), true);
 
         Timer.Spawn(TimeSpan.FromSeconds(3), () =>
@@ -484,17 +519,17 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
     private float GetWerewolfTransformCount(int count)
     {
-        if (_curNight >= _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
+        if (_curCycle >= _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
         {
             _isBloodMoon = true;
             return count;
         }
         else
         {
-            if (count <= 3 && count > 0)
+            if (count <= 2 && count > 0)
                 return Math.Clamp(count - 1, 1, 2);
 
-            return count / 3;
+            return count / 2;
         }
     }
 
