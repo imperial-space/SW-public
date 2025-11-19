@@ -310,6 +310,14 @@ public sealed class IllitidSystem : SharedIllitidSystem
         _chatManager.ChatMessageToOne(channel: ChatChannel.Server, msg, msg, source, false, session.Channel, Color.Purple);
 
         SendEffect(target, audio: ThoughtReceive);
+
+        _playerManager.TryGetSessionByEntity(source, out var sourceSession);
+        if (sourceSession == null)
+            return false;
+
+        var sourceMsg = $"Ваш голос: {thought}";
+        _chatManager.ChatMessageToOne(channel: ChatChannel.Server, sourceMsg, sourceMsg, source, false, sourceSession.Channel, Color.Purple);
+
         return true;
     }
 
