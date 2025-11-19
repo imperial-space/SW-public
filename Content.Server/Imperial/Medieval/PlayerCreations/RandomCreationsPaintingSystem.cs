@@ -24,7 +24,7 @@ public sealed class RandomCreationsPaintingSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<RandomCreationsPaintingComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<RandomCreationsPaintingComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStart);
     }
 
@@ -33,7 +33,7 @@ public sealed class RandomCreationsPaintingSystem : EntitySystem
         _paintngsSpawned = new();
     }
 
-    public async void OnStartup(EntityUid uid, RandomCreationsPaintingComponent comp, ComponentStartup args)
+    public async void OnMapInit(EntityUid uid, RandomCreationsPaintingComponent comp, MapInitEvent args)
     {
         var maxPaintings = _cfg.GetCVar(MedievalCCVars.CreationsMaxPaintings);
         var acceptedPaintings = await _creations.GetAcceptedPaintingsMessages();
