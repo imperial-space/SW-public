@@ -1901,6 +1901,48 @@
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
 
 - type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalClothingOuterArmorBrigantinGreenKnight
+  name: armor
+  description: An armored northern armor to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterArmorIronCuirassGreenKnight
+  name: armor
+  description: An armored northern armor to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+
+- type: entity
+  parent: MedievalClothingFeetSteel
+  id: MedievalClothingFeetSteelGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/greenknight.rsi
+
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesGreenKnight
+  name: MedievalIronGlovesGreenKnight
+  description: MedievalIronGlovesGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/greenknight.rsi
+
+- type: entity
   parent: MedievalClothingOuterArmorIronCuirass
   id: MedievalClothingOuterArmorNorthern
   name: northern armor

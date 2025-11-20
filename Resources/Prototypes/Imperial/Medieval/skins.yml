@@ -91,7 +91,13 @@
   id: rustyrider
   holder: c3aba6fd-f54b-4331-bd77-ffcd34dd40e0
   map:
-    Log: [ MedievalClothingElectroMask, ClothingEyesElectroBlindfold ]
+    Log: [ MedievalClothingElectroMask, ClothingEyesElectroBlindfold, MedievalClothingNeckCloakGreenKnight, MedaljonGreenKnight ]
+    MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetGreenKnight ]
+    MedievalClothingOuterArmorBrigantin: [ MedievalClothingOuterArmorBrigantinGreenKnight ]
+    MedievalClothingOuterArmorIronCuirass: [ MedievalClothingOuterArmorIronCuirassGreenKnight ]
+    MedievalClothingFeetSteel: [ MedievalClothingFeetSteelGreenKnight ]
+    MedievalIronGloves: [ MedievalIronGlovesGreenKnight ]
+    MedievalClothingNeckCloakClanEagle: [ MedievalClothingNeckCloakGreenKnightLegion ]
 
 - type: customization
   id: arelover
