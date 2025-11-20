@@ -454,6 +454,7 @@
         - TableMask
         layer:
         - TableLayer
+        - LowImpassable
   - type: ExplosionResistance
     damageCoefficient: 2
   - type: Damageable
