@@ -176,6 +176,219 @@
     - Cargo
 
 - type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockCryogenicsLocked
+  components:
+  #- type: AccessReader
+#    access: [["Cryogenics"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - Cryogenics
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockHeadOfSecurityLocked
+  components:
+  #- type: AccessReader
+#    access: [["HeadOfSecurity"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - HeadOfSecurity
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockQuartermasterLocked
+  components:
+  #- type: AccessReader
+#    access: [["Quartermaster"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - Quartermaster
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockResearchDirectorLocked
+  components:
+  #- type: AccessReader
+#    access: [["ResearchDirector"]]
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - ResearchDirector
+
+# Legion tavern room doors
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockLegionTavern1Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTavern1
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockLegionTavern2Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTavern2
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockLegionTavern3Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTavern3
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockLegionTavern4Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTavern4
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockLegionTavern5Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTaver5
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockLegionTavern6Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTaver6
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockLegionTavern7Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTaver7
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockLegionTavern8Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTaver8
+
+# Rebel tavern room doors
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockRebelTavern1Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - RebelTavern1
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockRebelTavern2Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - RebelTavern2
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockRebelTavern3Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - RebelTavern3
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockRebelTavern4Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - RebelTavern4
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockRebelTavern5Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - RebelTavern5
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockRebelTavern6Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - RebelTavern6
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockRebelTavern7Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - RebelTavern7
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockRebelTavern8Locked
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - RebelTavern8
+
+
+- type: entity
   id: MedievalAirlock
   parent: BaseStructure
   placement:
