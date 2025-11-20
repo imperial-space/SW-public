@@ -21,8 +21,6 @@ namespace Content.Server.Imperial.Medieval.Magic;
 /// </summary>
 public sealed partial class MedievalMagicSystem
 {
-    [Dependency] private readonly EntityLookupSystem _entityLookupSystem = default!;
-
     private void InitializeEntityAimingSpells()
     {
         SubscribeNetworkEvent<TargetOverlayShootEvent>(OnTargetСaptured);
