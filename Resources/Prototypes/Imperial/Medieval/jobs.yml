@@ -2439,11 +2439,11 @@
 - type: startingGear
   id: MedievalLegionAlchemicGear
   equipment:
-    pocket1: MedievalCommsCrystallLeg
+    #pocket1: MedievalCommsCrystallLeg
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
-    neck: MedievalClothingNeckCloakClanEagle
+    #neck: MedievalClothingNeckCloakClanEagle
     belt: MedievalAlchemicBelt
-    id: MedievalLeatherKey
+    id: MedievalKeyLegionAlch
   storage:
     back:
     - MedievalChemistryRecipe
@@ -3012,11 +3012,11 @@
 - type: startingGear
   id: MedievalInsurgencyAlchemicGear
   equipment:
-    pocket1: MedievalCommsCrystallIns
+    #pocket1: MedievalCommsCrystallIns
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanFox
     belt: MedievalAlchemicBelt
-    #id: MedievalKeyGuard
+    id: MedievalKeyRebelAlch
   storage:
     back:
     - MedievalChemistryRecipe
@@ -4602,10 +4602,10 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth66
     pocket1: MedievalHammerBlacksmith
-    pocket2: MedievalCommsCrystallLeg
+    #pocket2: MedievalCommsCrystallLeg
     #neck: MedievalClothingNeckCloakClanEagle
     gloves: MedievalGlovesBlacksmith
-    #id: MedievalLeatherKey
+    id: MedievalKeyLegionBlack
 
 - type: playTimeTracker
   id: JobMedievalBlacksmith
@@ -4661,9 +4661,9 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
     pocket1: MedievalHammerBlacksmith
-    pocket2: MedievalCommsCrystallIns
+    #pocket2: MedievalCommsCrystallIns
     #neck: MedievalClothingNeckCloakClanFox
-    #id: MedievalKeyGuard
+    id: MedievalKeyRebelBlack
     gloves: MedievalGlovesBlacksmith
 
 - type: playTimeTracker
@@ -4720,8 +4720,8 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     pocket1: MedievalRevent50
-    pocket2: MedievalCommsCrystallLeg
-    #id: MedievalLeatherKey
+    #pocket2: MedievalCommsCrystallLeg
+    id: MedievalKeyLegionBlack
     #neck: MedievalClothingNeckCloakClanEagle
 
 - type: playTimeTracker
@@ -4778,9 +4778,9 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth14
     pocket1: MedievalRevent50
-    pocket2: MedievalCommsCrystallIns
+    #pocket2: MedievalCommsCrystallIns
     #neck: MedievalClothingNeckCloakClanFox
-    #id: MedievalKeyGuard
+    id: MedievalKeyRebelBlack
 
 - type: playTimeTracker
   id: JobMedievalBlacksmithYoungN
