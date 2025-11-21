@@ -413,7 +413,6 @@
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/purple.rsi
   - type: Insulated
-  - type: Insulated
 
 - type: entity
   parent: ClothingNeckBase
