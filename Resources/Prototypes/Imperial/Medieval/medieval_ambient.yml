@@ -22,10 +22,10 @@
 - type: soundCollection
   id: AmbienceMedievalLegion
   files:
-    - /Audio/Imperial/Medieval/Locations/Adventurer_s-fate.ogg
-    - /Audio/Imperial/Medieval/Locations/Provincefield.ogg
-    - /Audio/Imperial/Medieval/Locations/VastnessFields.ogg
-    - /Audio/Imperial/Medieval/Locations/Ontheedgeoftheforest.ogg
+    - /Audio/Imperial/Medieval/Locations/Be-brave-adventurer.ogg
+    - /Audio/Imperial/Medieval/Locations/Running-around.ogg
+    - /Audio/Imperial/Medieval/Locations/Mushroom-picking.ogg
+    - /Audio/Imperial/Medieval/Locations/Free-in-your-mind.ogg
 
 - type: soundCollection
   id: AmbienceMedievalInsurgency
