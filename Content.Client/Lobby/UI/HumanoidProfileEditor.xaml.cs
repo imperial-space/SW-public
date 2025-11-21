@@ -51,6 +51,7 @@ namespace Content.Client.Lobby.UI
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
         private readonly Imperial.Medieval.Flavors.ClientFlavorManager _flavors; // Imperial Medieval Flavor Images
+        private readonly Shared.Players.PlayTimeTracking.ISharedPlaytimeManager _playtime; // Imperial Medieval Flavor Images
 
         private readonly SpriteSystem _sprite;
 
@@ -121,7 +122,7 @@ namespace Content.Client.Lobby.UI
             IResourceManager resManager,
             JobRequirementsManager requirements,
             MarkingManager markings,
-            Imperial.Medieval.Flavors.ClientFlavorManager flavors) // Imperial Medieval Flavor Images
+            Imperial.Medieval.Flavors.ClientFlavorManager flavors, Shared.Players.PlayTimeTracking.ISharedPlaytimeManager playtime) // Imperial Medieval Flavor Images
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -137,6 +138,7 @@ namespace Content.Client.Lobby.UI
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
             _flavors = flavors; // Imperial Medieval Flavor Images
+            _playtime = playtime; // Imperial Medieval Flavor Images
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);

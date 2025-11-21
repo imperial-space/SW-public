@@ -45,7 +45,7 @@ namespace Content.Client.FlavorText
             if (_fileWindowOpen)
                 return;
 
-            var filters = new FileDialogFilters(new FileDialogFilters.Group("png", "jpeg"));
+            var filters = new FileDialogFilters(new FileDialogFilters.Group("png", "jpeg", "webp"));
             _fileWindowOpen = true;
             await using var file = await _dialogs.OpenFile(filters);
             _fileWindowOpen = false;

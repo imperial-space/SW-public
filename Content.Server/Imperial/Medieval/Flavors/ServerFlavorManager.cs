@@ -10,6 +10,8 @@ using Robust.Shared.Utility;
 using Content.Shared.Mind.Components;
 using Robust.Server.Player;
 using Content.Shared.DetailExaminable;
+using Content.Shared.Players.PlayTimeTracking;
+using Content.Shared.Imperial.ICCVar;
 
 namespace Content.Server.Imperial.Medieval.Flavors
 {
@@ -20,6 +22,7 @@ namespace Content.Server.Imperial.Medieval.Flavors
         [Dependency] private readonly IServerPreferencesManager _prefs = default!;
         [Dependency] private readonly UserDbDataManager _userDb = default!;
         [Dependency] private readonly IPlayerManager _players = default!;
+        [Dependency] private readonly ISharedPlaytimeManager _playtime = default!;
         private Dictionary<NetUserId, Dictionary<string, byte[]>> _imageCache = new();
 
         public void Init()
@@ -35,6 +38,9 @@ namespace Content.Server.Imperial.Medieval.Flavors
         }
         public void UpdateImage(MsgUpdateFlavorImage msg)
         {
+            if (_players.TryGetSessionByChannel(msg.MsgChannel, out var player) && _playtime.GetPlayTimes(player).TryGetValue(PlayTimeTrackingShared.TrackerOverall, out var time) && time < TimeSpan.FromSeconds(Config.GetCVar(ICCVars.FlavorPlaytimeRequirement)))
+                return;
+
             using (var stream = new MemoryStream(msg.Image))
             {
                 using (var img = Image.Load(stream))
