@@ -176,9 +176,10 @@
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorWhiteWizardCharmerLight, MedievalClothingOuterArmorCharmerLightApocrif]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightApocrif]
     Log: [MedievalClothingHandsGlovesWhiteWizard, MedievalClothingHandsApocrif]
-    MedievalShoesChamber: [MedievalClothingApocrifBoots]
+    MedievalShoesChamber: [MedievalClothingApocrifBoots, MedievalClothingApocrifBootsWeak]
     MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer, MedievalClothingOuterArmorCharmerApocrif]
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer, MedievalClothingHeadHelmetCharmerApocrif]
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakApocrif]
 
 - type: customization
   id: scarlatto

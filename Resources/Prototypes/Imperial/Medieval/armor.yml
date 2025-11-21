@@ -1286,6 +1286,19 @@
     sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
 
 - type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakApocrif
+  name: MedievalClothingOuterArmorCharmerWeakApocrif
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif_weak.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif_weak.rsi
+
+- type: entity
   parent: MedievalClothingOuterArmorCharmer
   id: MedievalClothingOuterArmorCharmerPurple
   name: MedievalClothingOuterArmorCharmerPurple
@@ -1359,11 +1372,11 @@
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif_light.rsi
   - type: Clothing
     equipDelay: 4
     unequipDelay: 4
-    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif_light.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight

@@ -690,9 +690,9 @@
   description: MedievalClothingHeadHelmetCharmerLightApocrif
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif_light.rsi
   - type: Clothing
-    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif_light.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
