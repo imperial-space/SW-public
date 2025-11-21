@@ -7,7 +7,8 @@
     xmlns:lyc="clr-namespace:Content.Client.Imperial.Medieval.Lycantropy.UI"
     Title="{Loc 'lycantropy-menu-title'}"
     MinSize="1000 650"
-    SetSize="1000 650">
+    SetSize="1000 650"
+    Resizable="False" >
     <BoxContainer
         HorizontalExpand="True"
         Orientation="Vertical"
