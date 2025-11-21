@@ -8,25 +8,25 @@
     "copyright": "by @thenekron",
     "states": [
         {
-            "name": "beginner"
+            "name": "concentrated_displacement"
         },
         {
-            "name": "middle-nova"
+            "name": "concentrated_displacement2"
         },
         {
-            "name": "senior-nova"
+            "name": "diffusion"
         },
         {
-            "name": "middle-diff"
+            "name": "diffusion2"
         },
         {
-            "name": "senior-diff"
+            "name": "supermass"
         },
         {
-            "name": "middle-disp"
+            "name": "supermass2"
         },
         {
-            "name": "senior-disp"
+            "name": "supermass3"
         }
     ]
 }

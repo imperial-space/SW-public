@@ -32,7 +32,7 @@
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
-      state: diffusion
+      state: middle-diff
   - type: TargetAction
     checkCanAccess: false
     range: 5
@@ -48,7 +48,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
+          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/projectiles.rsi
           state: diffusion
         alwaysRender: true
         mixColor: 0.1
@@ -81,7 +81,7 @@
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
       sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
-      state: diffusion2
+      state: senior-diff
   - type: TargetAction
     checkCanAccess: false
     range: 5
@@ -97,7 +97,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
+          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/projectiles.rsi
           state: diffusion2
         alwaysRender: true
         mixColor: 0.1

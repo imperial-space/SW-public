@@ -10,7 +10,7 @@
     - MedievalSpellConcentratedDisplacementSenior
   icon:
     sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
-    state: concentrated_displacement
+    state: middle-disp
   cost:
     MagicMedievalFire: 35
   categories:
@@ -38,7 +38,7 @@
     - MedievalSpellConcentratedDisplacementSenior
   icon:
     sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
-    state: concentrated_displacement2
+    state: senior-disp
   cost:
     MagicMedievalFire: 70
     ArchmagePoints: 1

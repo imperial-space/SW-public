@@ -12,7 +12,7 @@
     - MedievalSpellDiffusionMiddle
   icon:
     sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
-    state: supermass
+    state: beginner
   cost:
     MagicMedievalFire: 15
   categories:
