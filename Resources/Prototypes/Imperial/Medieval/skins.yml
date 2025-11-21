@@ -176,7 +176,7 @@
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorWhiteWizardCharmerLight, MedievalClothingOuterArmorCharmerLightApocrif]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightApocrif]
     Log: [MedievalClothingHandsGlovesWhiteWizard, MedievalClothingHandsApocrif]
-    MedievalShoesChamber: [MedievalClothingApocrifBoots, MedievalClothingApocrifBootsWeak]
+    MedievalShoesChamber: [MedievalClothingApocrifBoots, MedievalClothingApocrifBootsWeak, MedievalClothingApocrifBootsLight]
     MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer, MedievalClothingOuterArmorCharmerApocrif]
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer, MedievalClothingHeadHelmetCharmerApocrif]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakApocrif]

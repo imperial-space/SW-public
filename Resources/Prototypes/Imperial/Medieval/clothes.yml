@@ -1801,6 +1801,17 @@
 
 - type: entity
   parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBootsLight
+  name: MedievalClothingApocrifBootsLight
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
   id: MedievalClothingApocrifBootsWeak
   name: MedievalClothingApocrifBootsWeak
   description: MedievalClothingApocrifBoots
