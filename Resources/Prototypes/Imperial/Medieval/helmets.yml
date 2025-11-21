@@ -690,9 +690,9 @@
   description: MedievalClothingHeadHelmetCharmerLightApocrif
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif_light.rsi
   - type: Clothing
-    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif.rsi
+    sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif_light.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
@@ -1450,6 +1450,19 @@
     sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetGreenKnight
+  name: MedievalClothingHeadHelmetGreenKnight
+  description: MedievalClothingHeadHelmetGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/greenknight.rsi
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader

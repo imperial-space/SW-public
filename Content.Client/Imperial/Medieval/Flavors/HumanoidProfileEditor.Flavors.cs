@@ -1,5 +1,7 @@
 
 using Content.Client.Imperial.Medieval.Flavors;
+using Content.Shared.Imperial.ICCVar;
+using Content.Shared.Players.PlayTimeTracking;
 
 namespace Content.Client.Lobby.UI;
 
@@ -12,9 +14,25 @@ public sealed partial class HumanoidProfileEditor
     {
         if (_flavorText == null)
             return;
-        _flavorText.OnFlavorImageChanged += OnImageSelected;
+        var session = _playerManager.LocalSession;
+        if (session == null)
+            return;
+
+        var playtimes = _playtime.GetPlayTimes(session);
+        var time = TimeSpan.Zero;
+        playtimes.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out time);
+
+        if (time < TimeSpan.FromSeconds(_cfgManager.GetCVar(ICCVars.FlavorPlaytimeRequirement)))
+        {
+            _flavorText.FlavorImage.Disabled = true;
+            _flavorText.FlavorImage.ToolTip = Loc.GetString("imperial-medieval-flavor-cant", ("hours", Math.Round((_cfgManager.GetCVar(ICCVars.FlavorPlaytimeRequirement) - time.TotalSeconds) / 60 / 60, 1)));
+        }
+        else
+        {
+            _flavorText.OnFlavorImageChanged += OnImageSelected;
+            _flavorText.OnTestPressed += OnTestPressed;
+        }
         _flavorText.OnHelpPressed += OnHelpPressed;
-        _flavorText.OnTestPressed += OnTestPressed;
     }
     public void OnImageSelected(byte[] image)
     {

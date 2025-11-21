@@ -3,9 +3,9 @@
   name: guide-entry-skills
   text: "/ServerInfo/Imperial/Medieval/Guidebook/Skills.xml"
   children:
-  - AgilitySkill
-  - StrengthSkill
-  - VitalitySkill
+  - Agility
+  - Strength
+  - Vitality
   - Endurance
   - Intelligence
 

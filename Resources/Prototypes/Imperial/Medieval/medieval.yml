@@ -454,6 +454,7 @@
         - TableMask
         layer:
         - TableLayer
+        - LowImpassable
   - type: ExplosionResistance
     damageCoefficient: 2
   - type: Damageable
@@ -1123,6 +1124,19 @@
   #    6: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonSpeed # imperial medieval
+
+- type: entity
+  parent: ClothingNeckTieDet
+  id: MedaljonGreenKnight
+  name: MedaljonGreenKnight
+  description: MedaljonGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
 
 - type: entity
   parent: MedaljonSpeed

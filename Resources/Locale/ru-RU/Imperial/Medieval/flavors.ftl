@@ -14,3 +14,4 @@ imperial-medieval-flavor-help = Кликая на квадрат с изобра
     {"[head=1-3]текст[/head]"}
     {"[italic]текст[/italic]"}
 imperial-medieval-flavor-test = Проверить
+imperial-medieval-flavor-cant = Чтобы получить возможность устанавливать изображение персонажа вам нужно доиграть еще {$hours} часов

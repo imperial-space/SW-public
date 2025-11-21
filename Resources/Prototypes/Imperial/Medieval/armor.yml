@@ -1286,6 +1286,19 @@
     sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
 
 - type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakApocrif
+  name: MedievalClothingOuterArmorCharmerWeakApocrif
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif_weak.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif_weak.rsi
+
+- type: entity
   parent: MedievalClothingOuterArmorCharmer
   id: MedievalClothingOuterArmorCharmerPurple
   name: MedievalClothingOuterArmorCharmerPurple
@@ -1359,11 +1372,11 @@
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif_light.rsi
   - type: Clothing
     equipDelay: 4
     unequipDelay: 4
-    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif.rsi
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_apocrif_light.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight
@@ -1899,6 +1912,48 @@
     damageCoefficient: 0.82
   - type: MedievalIronHitSound
     effectSoundOnHit: "/Audio/Imperial/Medieval/chainmail_hit.ogg"
+
+- type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalClothingOuterArmorBrigantinGreenKnight
+  name: armor
+  description: An armored northern armor to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterArmorIronCuirassGreenKnight
+  name: armor
+  description: An armored northern armor to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+
+- type: entity
+  parent: MedievalClothingFeetSteel
+  id: MedievalClothingFeetSteelGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/greenknight.rsi
+
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesGreenKnight
+  name: MedievalIronGlovesGreenKnight
+  description: MedievalIronGlovesGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/greenknight.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirass

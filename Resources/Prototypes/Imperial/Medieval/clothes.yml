@@ -1800,6 +1800,28 @@
     sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
 
 - type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBootsLight
+  name: MedievalClothingApocrifBootsLight
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBootsWeak
+  name: MedievalClothingApocrifBootsWeak
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
   parent: MedievalClothingHandsGlovesCloth
   id: MedievalClothingHandsRoyalGloves
   name: Cloth Gloves
@@ -2093,3 +2115,14 @@
   - type: Item
     size: Small
     storedRotation: -90
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth77
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_77.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_77.rsi
