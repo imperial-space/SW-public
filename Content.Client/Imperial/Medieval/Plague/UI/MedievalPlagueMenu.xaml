@@ -7,7 +7,8 @@
     xmlns:plague="clr-namespace:Content.Client.Imperial.Medieval.Plague.UI"
     Title="{Loc 'plague-menu-title'}"
     MinSize="1000 650"
-    SetSize="1000 650">
+    SetSize="1000 650"
+    Resizable="False">
     <BoxContainer Orientation="Vertical"
                 HorizontalExpand="True"
                 VerticalExpand="True"
