@@ -1132,11 +1132,11 @@
   description: MedaljonGreenKnight
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Medaljons/greenknight.rsi
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
   - type: Clothing
     slots:
     - ears
-    sprite: Imperial/Medieval/Clothing/Medaljons/greenknight.rsi
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
 
 - type: entity
   parent: MedaljonSpeed
