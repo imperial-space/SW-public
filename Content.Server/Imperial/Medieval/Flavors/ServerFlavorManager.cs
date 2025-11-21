@@ -38,7 +38,7 @@ namespace Content.Server.Imperial.Medieval.Flavors
         }
         public void UpdateImage(MsgUpdateFlavorImage msg)
         {
-            if (_players.TryGetSessionByChannel(msg.MsgChannel, out var player) && _playtime.GetPlayTimes(player).TryGetValue(PlayTimeTrackingShared.TrackerOverall, out var time) && time < TimeSpan.FromSeconds(Config.GetCVar(ICCVars.FlavorPlaytimeRequirement)))
+            if (!_players.TryGetSessionByChannel(msg.MsgChannel, out var player) || !_playtime.GetPlayTimes(player).TryGetValue(PlayTimeTrackingShared.TrackerOverall, out var time) || time < TimeSpan.FromSeconds(Config.GetCVar(ICCVars.FlavorPlaytimeRequirement)))
                 return;
 
             using (var stream = new MemoryStream(msg.Image))
