@@ -5,6 +5,7 @@ using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
+using Content.Server.GameTicking;
 using Content.Server.Imperial.DayTime;
 using Content.Server.Jittering;
 using Content.Server.Mind;
@@ -16,7 +17,9 @@ using Content.Server.Stunnable;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
+using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Dash;
 using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.Lycantropy;
@@ -67,6 +70,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _role = default!;
     [Dependency] private readonly DayTimeSystem _dayTime = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private const int PointsPerNight = 3;
     private const int PointsPerInfect = 4;
@@ -74,6 +78,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
     private int _curCycle = 0;
     private bool _isBloodMoon = false;
+    private TimeSpan _roundEnd = TimeSpan.Zero;
     private DamageSpecifier _regenAmount = new()
     {
         DamageDict = new()
@@ -115,6 +120,10 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
         SubscribeNetworkEvent<SelectWerewolfFormEvent>(OnSelectForm);
         SubscribeNetworkEvent<BuyLycantropyAbilityEvent>(OnBuyAbility);
+
+        SubscribeNetworkEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
+        SubscribeNetworkEvent<RoundStartedEvent>(OnRoundStart);
+        SubscribeNetworkEvent<RoundEndedEvent>(OnRoundEnd);
 
         _console.RegisterCommand("setlycantropynight",
             Loc.GetString("cmd-weather-desc"),
@@ -428,6 +437,37 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             _actions.AddAction(uid, item);
     }
 
+    private void OnRoundEndTextAppend(RoundEndTextAppendEvent args)
+    {
+        var werewolfCount = EntityManager.AllEntities<LycantropyComponent>().Count();
+        if (werewolfCount == 0)
+            return;
+
+        args.AddLine(Loc.GetString("round-end-lycantropy-werewolf-count-summary",
+            ("count", werewolfCount)));
+
+        foreach (var item in EntityManager.AllEntities<LycantropyComponent>())
+        {
+            if (TryComp<PolymorphedEntityComponent>(item, out var polymorphed) && TryComp<WerewolfComponent>(polymorphed.Parent, out var werewolf))
+            {
+                args.AddLine(Loc.GetString("round-end-lycantropy-werewolf-summary",
+                    ("name", Name(item.Owner))));
+            }
+        }
+    }
+
+    private void OnRoundStart(RoundStartedEvent args)
+    {
+        _curCycle = 0;
+    }
+
+    private void OnRoundEnd(RoundEndedEvent args)
+    {
+        _isBloodMoon = false;
+        _roundEnd = TimeSpan.Zero;
+    }
+
+
     private void OnDayCycleFinished(ref DayCycleFinishedEvent args)
     {
         _curCycle++;
@@ -438,6 +478,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (_curCycle >= _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
         {
             _dayTime.ChangePreset("0", "bloody", true);
+            _roundEnd = _timing.CurTime + TimeSpan.FromMinutes(10);
             _isBloodMoon = true;
             OnNightStarted();
         }
@@ -536,6 +577,13 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
+
+        if (_isBloodMoon && _timing.CurTime >= _roundEnd)
+        {
+            _gameTicker.EndRound();
+            _isBloodMoon = false;
+            _roundEnd = TimeSpan.Zero;
+        }
 
         var query = EntityQueryEnumerator<WerewolfRegenComponent>();
         while (query.MoveNext(out var uid, out var comp))
