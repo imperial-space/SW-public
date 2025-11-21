@@ -31,6 +31,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
 {
     [Dependency] private readonly IClientPreferencesManager _preferencesManager = default!;
     [Dependency] private readonly Imperial.Medieval.Flavors.ClientFlavorManager _clientFlavors = default!; // Imperial Medieval Flavor Images
+    [Dependency] private readonly Shared.Players.PlayTimeTracking.ISharedPlaytimeManager _playTime = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly IFileDialogManager _dialogManager = default!;
     [Dependency] private readonly IPlayerManager _playerManager = default!;
@@ -283,7 +284,7 @@ public sealed class LobbyUIController : UIController, IOnStateEntered<LobbyState
             _resourceCache,
             _requirements,
             _markings,
-            _clientFlavors); // Imperial Medieval Flavor Images
+            _clientFlavors, _playTime); // Imperial Medieval Flavor Images
 
         _profileEditor.OnOpenGuidebook += _guide.OpenHelp;
 
