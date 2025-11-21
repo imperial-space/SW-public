@@ -98,6 +98,8 @@
     MedievalClothingFeetSteel: [ MedievalClothingFeetSteelGreenKnight ]
     MedievalIronGloves: [ MedievalIronGlovesGreenKnight ]
     MedievalClothingNeckCloakClanEagle: [ MedievalClothingNeckCloakGreenKnightLegion ]
+    MedievalClothingNeckCloakClanMerc: [ MedievalClothingNeckCloakGreenKnightMerc ]
+    MedievalClothingNeckCloakClanWiz: [ MedievalClothingNeckCloakGreenKnightCollegia ]
 
 - type: customization
   id: arelover

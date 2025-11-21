@@ -436,6 +436,26 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakGreenKnightMerc
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/greenknight_merc.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakGreenKnightCollegia
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/greenknight_mage.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivGrey
   name: grey cloak
   description: A cloak to distinguish allies.

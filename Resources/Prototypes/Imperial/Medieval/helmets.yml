@@ -1461,6 +1461,8 @@
     sprite: Imperial/Medieval/Clothing/Head/greenknight.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/greenknight.rsi
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
