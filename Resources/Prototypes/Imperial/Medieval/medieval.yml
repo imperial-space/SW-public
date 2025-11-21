@@ -1126,6 +1126,19 @@
     stealGroup: MedievalGetMedaljonSpeed # imperial medieval
 
 - type: entity
+  parent: ClothingNeckTieDet
+  id: MedaljonGreenKnight
+  name: MedaljonGreenKnight
+  description: MedaljonGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/greenknight.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/greenknight.rsi
+
+- type: entity
   parent: MedaljonSpeed
   id: MedaljonSpeedSkin
   name: MedaljonSpeedSkin
