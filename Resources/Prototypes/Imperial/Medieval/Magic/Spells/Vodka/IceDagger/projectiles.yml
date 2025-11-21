@@ -7,8 +7,8 @@
   description: Hurry up! It will melt soon
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
-    state: beginner
+    sprite: Imperial/Medieval/Melee/ice_dagger_beginner.rsi
+    state: icon
   - type: Item
     size: Small
     sprite: Imperial/Medieval/Melee/ice_dagger_beginner.rsi
@@ -54,8 +54,8 @@
   id: IceDaggerMiddle
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
-    state: middle
+    sprite: Imperial/Medieval/Melee/ice_dagger_middle.rsi
+    state: icon
   - type: Item
     size: Small
     sprite: Imperial/Medieval/Melee/ice_dagger_middle.rsi
@@ -96,8 +96,8 @@
   id: IceDaggerSenior
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
-    state: senior
+    sprite: Imperial/Medieval/Melee/ice_dagger_senior.rsi
+    state: icon
   - type: Item
     size: Small
     sprite: Imperial/Medieval/Melee/ice_dagger_senior.rsi

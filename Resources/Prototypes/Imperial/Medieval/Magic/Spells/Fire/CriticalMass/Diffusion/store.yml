@@ -10,7 +10,7 @@
     - MedievalSpellDiffusionSenior
   icon:
     sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
-    state: diffusion
+    state: middle-diff
   cost:
     MagicMedievalFire: 35
   categories:
@@ -38,7 +38,7 @@
     - MedievalSpellDiffusionSenior
   icon:
     sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
-    state: diffusion2
+    state: senior-diff
   cost:
     MagicMedievalFire: 70
     ArchmagePoints: 1

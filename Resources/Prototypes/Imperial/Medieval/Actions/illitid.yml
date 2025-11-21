@@ -4,7 +4,9 @@
   description: placeholder
   components:
   - type: Action
-    icon: Imperial/Medieval/Interface/Actions/illitid.rsi/thought.png
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
+      state: thought
     itemIconStyle: BigAction
   - type: TargetAction
     interactOnMiss: false
@@ -24,7 +26,9 @@
   description: placeholder
   components:
   - type: Action
-    icon: Imperial/Medieval/Interface/Actions/illitid.rsi/mass.png
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
+      state: mass
     itemIconStyle: BigAction
   - type: InstantAction
     useDelay: 40
@@ -36,7 +40,9 @@
   description: placeholder
   components:
   - type: Action
-    icon: Imperial/Medieval/Interface/Actions/illitid.rsi/control.png
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
+      state: control
     itemIconStyle: BigAction
   - type: TargetAction
     interactOnMiss: false
@@ -58,7 +64,9 @@
   description: placeholder
   components:
   - type: Action
-    icon: Imperial/Medieval/Interface/Actions/illitid.rsi/blind.png
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
+      state: blind
     itemIconStyle: BigAction
   - type: TargetAction
     interactOnMiss: false
