@@ -270,14 +270,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed : 2.5
     baseSprintSpeed : 5
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: mouse-0
-      Critical:
-        Base: dead-0
-      Dead:
-        Base: splat-0
   - type: Food
   - type: FlavorProfile
     flavors:
