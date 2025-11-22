@@ -7,6 +7,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Imperial.DayTime;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
 using Content.Server.Jittering;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Components;
@@ -61,7 +62,6 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly InnerWeaponSystem _inner = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -69,16 +69,12 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly StunSystem _stun = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _role = default!;
-    [Dependency] private readonly DayTimeSystem _dayTime = default!;
     [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private const int PointsPerNight = 3;
     private const int PointsPerInfect = 4;
     private const int PointsPerCrit = 1;
 
-    private int _curCycle = 0;
-    private bool _isBloodMoon = false;
-    private TimeSpan _roundEnd = TimeSpan.Zero;
     private DamageSpecifier _regenAmount = new()
     {
         DamageDict = new()
@@ -115,15 +111,9 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         SubscribeLocalEvent<WerewolfComponent, SetWerewolfDashStrengthEvent>(OnSetDashStrength);
         SubscribeLocalEvent<WerewolfComponent, SetWerewolfMobThresholdsEvent>(OnSetThresholds);
 
-        SubscribeLocalEvent<DayCycleFinishedEvent>(OnDayCycleFinished);
-        SubscribeLocalEvent<DayCycleStageChangedEvent>(OnDayStageChanged);
 
         SubscribeNetworkEvent<SelectWerewolfFormEvent>(OnSelectForm);
         SubscribeNetworkEvent<BuyLycantropyAbilityEvent>(OnBuyAbility);
-
-        SubscribeNetworkEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
-        SubscribeNetworkEvent<RoundStartedEvent>(OnRoundStart);
-        SubscribeNetworkEvent<RoundEndedEvent>(OnRoundEnd);
 
         _console.RegisterCommand("setlycantropynight",
             Loc.GetString("cmd-weather-desc"),
@@ -193,7 +183,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
             RemComp(uid, comp);
 
-            if (_isBloodMoon)
+            if (MedievalLycantropyRuleSystem.IsBloodMoon)
             {
                 var ev = new RejuvenateEvent();
                 RaiseLocalEvent(uid, ev);
@@ -437,65 +427,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             _actions.AddAction(uid, item);
     }
 
-    private void OnRoundEndTextAppend(RoundEndTextAppendEvent args)
-    {
-        var werewolfCount = EntityManager.AllEntities<LycantropyComponent>().Count();
-        if (werewolfCount == 0)
-            return;
 
-        args.AddLine(Loc.GetString("round-end-lycantropy-werewolf-count-summary",
-            ("count", werewolfCount)));
-
-        foreach (var item in EntityManager.AllEntities<LycantropyComponent>())
-        {
-            if (TryComp<PolymorphedEntityComponent>(item, out var polymorphed) && TryComp<WerewolfComponent>(polymorphed.Parent, out var werewolf))
-            {
-                args.AddLine(Loc.GetString("round-end-lycantropy-werewolf-summary",
-                    ("name", Name(item.Owner))));
-            }
-        }
-    }
-
-    private void OnRoundStart(RoundStartedEvent args)
-    {
-        _curCycle = 0;
-    }
-
-    private void OnRoundEnd(RoundEndedEvent args)
-    {
-        _isBloodMoon = false;
-        _roundEnd = TimeSpan.Zero;
-    }
-
-
-    private void OnDayCycleFinished(ref DayCycleFinishedEvent args)
-    {
-        _curCycle++;
-
-        if (EntityManager.AllEntities<LycantropyComponent>().Where(x => _mobState.IsAlive(x)).Count() < _config.GetCVar(MedievalCCVars.BloodMoonWerewolves))
-            return;
-
-        if (_curCycle >= _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
-        {
-            _dayTime.ChangePreset("0", "bloody", true);
-            _roundEnd = _timing.CurTime + TimeSpan.FromMinutes(10);
-            _isBloodMoon = true;
-            OnNightStarted();
-        }
-    }
-
-    private void OnDayStageChanged(ref DayCycleStageChangedEvent args)
-    {
-        if (_isBloodMoon)
-            return;
-
-        if (args.NextStage == 5)
-            OnNightStarted();
-        else if (args.NextStage == 10)
-            OnNightEnded();
-    }
-
-    private void OnNightStarted()
+    public void OnNightStarted()
     {
         var ents = EntityManager.AllEntities<LycantropyComponent>();
         _random.Shuffle(ents);
@@ -508,10 +441,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         }
     }
 
-    private void OnNightEnded()
+    public void OnNightEnded()
     {
-        _isBloodMoon = false;
-
         var ents = EntityManager.AllEntities<WerewolfComponent>();
         foreach (var item in ents)
         {
@@ -560,30 +491,18 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
     private float GetWerewolfTransformCount(int count)
     {
-        if (_curCycle >= _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
-        {
-            _isBloodMoon = true;
+        if (MedievalLycantropyRuleSystem.IsBloodMoon)
             return count;
-        }
-        else
-        {
-            if (count <= 2 && count > 0)
-                return Math.Clamp(count - 1, 1, 2);
 
-            return count / 2;
-        }
+        if (count <= 2 && count > 0)
+            return Math.Clamp(count - 1, 1, 2);
+
+        return count / 2;
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-
-        if (_isBloodMoon && _timing.CurTime >= _roundEnd)
-        {
-            _gameTicker.EndRound();
-            _isBloodMoon = false;
-            _roundEnd = TimeSpan.Zero;
-        }
 
         var query = EntityQueryEnumerator<WerewolfRegenComponent>();
         while (query.MoveNext(out var uid, out var comp))
