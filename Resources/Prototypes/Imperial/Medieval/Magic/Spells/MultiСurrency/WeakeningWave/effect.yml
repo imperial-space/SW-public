@@ -31,10 +31,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/wave.rsi
-    state: beginner
     color: "#caeef0"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 2
