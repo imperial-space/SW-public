@@ -2640,6 +2640,36 @@
     safeToHitGroup: tree
 
 - type: entity
+  name: dark blade
+  parent: MedievalFalshionT3Legion
+  id: MedievalFalshionT3DarkerSword
+  description: Is a mysterious and powerful weapon covered in age-old secrets. Its curved black blade, as if absorbing light, shines only in the light of the moon, thanks to ancient rune inscriptions that twinkle like stars in the night sky. The handle, wrapped in black leather and adorned with mysterious symbols, radiates coldness, causing those skilled in the art of combat to feel an inner strength and attraction.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+  - type: MedievalMeleeResource
+    safeToHitGroup: tree
+
+- type: entity
+  name: dark blade
+  parent: MedievalFalshionT3LegionSteel
+  id: MedievalFalshionT3DarkerSwordSteel
+  description: Is a mysterious and powerful weapon covered in age-old secrets. Its curved black blade, as if absorbing light, shines only in the light of the moon, thanks to ancient rune inscriptions that twinkle like stars in the night sky. The handle, wrapped in black leather and adorned with mysterious symbols, radiates coldness, causing those skilled in the art of combat to feel an inner strength and attraction.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+  - type: MedievalMeleeResource
+    safeToHitGroup: tree
+
+- type: entity
   name: falshion
   parent: MedievalFalshionT3Legion
   id: MedievalFalshionT3Fox

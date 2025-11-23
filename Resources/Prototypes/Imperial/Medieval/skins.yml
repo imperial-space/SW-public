@@ -8,8 +8,8 @@
     MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2, MedievalClothingHeadHelmetCrusaderMorbius ]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightInsBlood]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerInsBlood]
-    MedievalFalshionT3Legion: [MedievalFalshionT3LegionChainMace]
-    MedievalFalshionT3LegionSteel: [MedievalFalshionT3LegionSteelChainMace]
+    MedievalFalshionT3Legion: [MedievalFalshionT3LegionChainMace, MedievalFalshionT3DarkerSword]
+    MedievalFalshionT3LegionSteel: [MedievalFalshionT3LegionSteelChainMace, MedievalFalshionT3DarkerSwordSteel]
     Log: [AhrimanStaffMedieval, MedievalMagicLightningRune]
 
 - type: customization
