@@ -136,7 +136,7 @@ public sealed partial class RandomStealSystem : EntitySystem
         // Дополнительные проверки
         if (stealChance >= 0.85) stealChance = 0.85f;
         // Добавление влияния интеллекта жертвы
-        stealChance = (comp.Chance * modEv.Modifier + victimIntelligenceContribution) / 100;
+        stealChance += victimIntelligenceContribution;
 
         if (stealChance < 0) stealChance = 0;
 
