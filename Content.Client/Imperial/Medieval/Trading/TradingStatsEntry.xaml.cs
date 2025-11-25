@@ -14,7 +14,7 @@ public sealed partial class TradingStatsEntry : Control
         RobustXamlLoader.Load(this);
         EntryLabel.SetMarkup(Loc.GetString("trading-ui-stats-entry",
             ("name", name),
-            ("reputation", reputation)));
+            ("reputation", reputation.ToString("0.0"))));
     }
 
 }

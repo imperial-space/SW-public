@@ -24,7 +24,7 @@ public sealed partial class GuildCardControl : Control
         Guild = guild;
         _user = user;
 
-        GuildName.Text = guild.Name;
+        GuildName.SetMessage(guild.Name);
         var guildType = Loc.GetString($"trading-guild-type-{guild.TypePrototype.Id}");
         GuildType.Text = Loc.GetString("trading-ui-guild-type", ("type", guildType));
 
