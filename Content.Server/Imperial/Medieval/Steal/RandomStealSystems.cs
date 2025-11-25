@@ -118,27 +118,29 @@ public sealed partial class RandomStealSystem : EntitySystem
         var nameFrom = Identity.Name(target, EntityManager); // Имя жертвы
 
         var victimUid = target;
-        var victimIntelligenceContribution = 1; // Вклад интеллекта жертвы на шанс удачного воровства
+        var victimIntelligenceContribution = 0f; // Вклад интеллекта жертвы на шанс удачного воровства
 
         if (TryComp<SkillsComponent>(victimUid, out var victimSkillsComponent))
         {
             if (victimSkillsComponent.Levels.TryGetValue(SharedSkillsSystem.IntelligenceId, out var levelIntelligence))
             {
-                if (levelIntelligence < 3) victimIntelligenceContribution = 10; // Если интеллект жертвы меньше 3, то шанс успешно обворовать увеличивается на 10%
+                if (levelIntelligence < 3) victimIntelligenceContribution = 0.1f; // Если интеллект жертвы меньше 3, то шанс успешно обворовать увеличивается на 10%
                 else if (levelIntelligence < 12) victimIntelligenceContribution = 0; // Если интеллект жертвы от 3 до 12, то шанс успешно обворовать не изменяется
-                else if (levelIntelligence < 15) victimIntelligenceContribution = -10; // Если интеллект жертвы больше 12, то шанс успешно обворовать уменьшается на 10%
+                else if (levelIntelligence < 15) victimIntelligenceContribution = -0.1f; // Если интеллект жертвы больше 12, то шанс успешно обворовать уменьшается на 10%
             }
         }
 
         var modEv = new GetStealChanceModifiersEvent(1f);
         RaiseLocalEvent(ev.User, ref modEv);
-        var stealChance = (comp.Chance * modEv.Modifier + victimIntelligenceContribution) / 100;
-
+        var stealChance = (comp.Chance / 100) * modEv.Modifier;
         // Дополнительные проверки
         if (stealChance >= 0.85) stealChance = 0.85f;
+        // Добавление влияния интеллекта жертвы
+        stealChance = (comp.Chance * modEv.Modifier + victimIntelligenceContribution) / 100;
+
         if (stealChance < 0) stealChance = 0;
 
-        // _random.Next(100) изменено на _random.Prob, поскольку это более математически верный способ высчитывания случайностей.
+        // _random.Next(100) изменено на _random.Prob, поскольку это математически более верный способ высчитывания случайностей.
         if (_random.Prob(stealChance))
         {
             _popupSystem.PopupEntity(Loc.GetString("stealFailedSpellward", ("entity1", nameStealer)), uid, target, Popups.PopupType.LargeCaution);
