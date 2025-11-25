@@ -321,11 +321,11 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     {
         if (_bannedWords.Count == 0)
             return;
-
         if (!_playerManager.TryGetSessionByEntity(source, out var session))
             return;
-
         if (!session.AttachedEntity.HasValue)
+            return;
+        if (HasComp<NrpIgnoreComponent>(source))
             return;
 
         var matches = GetBannedWords(message, _bannedWords);
