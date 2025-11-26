@@ -139,7 +139,7 @@ namespace Content.Shared.Ghost
         /// <summary>
         /// Whether this warp represents a warp point or a player
         /// </summary>
-        public bool IsWarpPoint { get;  }
+        public bool IsWarpPoint { get; }
     }
 
     /// <summary>
@@ -179,6 +179,12 @@ namespace Content.Shared.Ghost
     /// </summary>
     [Serializable, NetSerializable]
     public sealed class GhostnadoRequestEvent : EntityEventArgs;
+
+    /// <summary>
+    /// Запрос клиента серверу, чтобы возвродиться
+    /// </summary>
+    [Serializable, NetSerializable]
+    public sealed class GhostReviveRequestEvent : EntityEventArgs;
 
     /// <summary>
     /// A client to server request for their ghost to return to body
