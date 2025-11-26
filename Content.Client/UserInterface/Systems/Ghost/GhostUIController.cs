@@ -1,6 +1,8 @@
 ﻿using Content.Client.Gameplay;
 using Content.Client.Ghost;
+using Content.Client.Imperial.Medieval.GhostRevive;
 using Content.Client.UserInterface.Systems.Gameplay;
+using Content.Client.UserInterface.Systems.Ghost.Controls.Roles;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.Medieval.Revive;
@@ -17,6 +19,9 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     [UISystemDependency] private readonly GhostSystem? _system = default;
 
     private GhostGui? Gui => UIManager.GetActiveUIWidgetOrNull<GhostGui>();
+
+    // Imperial Medieval Revive
+    private GhostReviveWindow? _windowRules = null;
 
     public override void Initialize()
     {
@@ -118,13 +123,24 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         _net.SendSystemNetworkMessage(msg);
     }
 
-    // Imperial Medieval Revive
+    // Imperial Medieval Revive start
     private void OnGhostReviveClicked()
     {
-        var msg = new GhostReviveRequestEvent();
-        _net.SendSystemNetworkMessage(msg);
+        // При нажатии на кнопку должно открыться окно подтверждения.
+        if (_windowRules != null) return;
+        _windowRules = new GhostReviveWindow("Выбейте необходимое количество магической эссенции из злых духов вокруг и купите за нее магический ключ. После чего кликните ключом по особой двери и отправьтесь на респавн. Учтите, [color=red]ЗАХОДИТЬ ЗА ТОГО ЖЕ ПЕРСОНАЖА НЕЛЬЗЯ[/color]!!", _ =>
+                {
+                    var msg = new GhostReviveRequestEvent();
+                    _net.SendSystemNetworkMessage(msg);
+                    _windowRules?.Close();
+                });
+        _windowRules.OnClose += () =>
+        {
+            _windowRules = null;
+        };
+        _windowRules.OpenCentered();
     }
-
+    // Imperial Medieval Revive end
     public void LoadGui()
     {
         if (Gui == null)
