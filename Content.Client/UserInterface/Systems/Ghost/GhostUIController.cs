@@ -117,6 +117,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         _net.SendSystemNetworkMessage(msg);
     }
 
+    // Imperial Medieval Revive
     private void OnGhostReviveClicked()
     {
         var msg = new GhostReviveRequestEvent();
@@ -133,7 +134,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
         Gui.GhostRolesPressed += GhostRolesPressed;
         Gui.TargetWindow.WarpClicked += OnWarpClicked;
         Gui.TargetWindow.OnGhostnadoClicked += OnGhostnadoClicked;
-        Gui.GhostRevivePressed += OnGhostReviveClicked;
+        Gui.GhostRevivePressed += OnGhostReviveClicked; // Imperial Medieval Revive
 
         UpdateGui();
     }
@@ -145,7 +146,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
 
         Gui.RequestWarpsPressed -= RequestWarps;
         Gui.ReturnToBodyPressed -= ReturnToBody;
-        Gui.GhostRolesPressed -= GhostRolesPressed;
+        Gui.GhostRolesPressed -= GhostRolesPressed; // Imperial Medieval Revive
         Gui.GhostRevivePressed -= OnGhostReviveClicked;
         Gui.TargetWindow.WarpClicked -= OnWarpClicked;
 

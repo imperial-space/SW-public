@@ -7,7 +7,9 @@
         <Button Name="GhostWarpButton"
                 Text="{Loc ghost-gui-ghost-warp-button}"/>
         <Button Name="GhostRolesButton"/>
+        <!-- Imperial Medieval Revive start -->
         <Button Name="GhostReviveButton"
                 Text="{Loc ghost-gui-ghost-revive-button}"/>
+        <!-- Imperial Medieval Revive end -->
     </BoxContainer>
 </widgets:GhostGui>

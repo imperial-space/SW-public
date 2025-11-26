@@ -181,12 +181,6 @@ namespace Content.Shared.Ghost
     public sealed class GhostnadoRequestEvent : EntityEventArgs;
 
     /// <summary>
-    /// Запрос клиента серверу, чтобы возвродиться
-    /// </summary>
-    [Serializable, NetSerializable]
-    public sealed class GhostReviveRequestEvent : EntityEventArgs;
-
-    /// <summary>
     /// A client to server request for their ghost to return to body
     /// </summary>
     [Serializable, NetSerializable]

@@ -106,13 +106,6 @@ namespace Content.Server.Ghost
             SubscribeLocalEvent<ToggleGhostVisibilityToAllEvent>(OnToggleGhostVisibilityToAll);
 
             SubscribeLocalEvent<GhostComponent, GetVisMaskEvent>(OnGhostVis);
-
-            SubscribeNetworkEvent<GhostReviveRequestEvent>(OnGhostReviveRequest);
-        }
-        private void OnGhostReviveRequest(GhostReviveRequestEvent msg, EntitySessionEventArgs args)
-        {
-            Logger.Debug("Получил сообщение от клиента!");
-            // Тут логика перехода в тело возрождения
         }
         private void OnGhostVis(Entity<GhostComponent> ent, ref GetVisMaskEvent args)
         {
