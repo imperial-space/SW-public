@@ -180,6 +180,7 @@
     MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer, MedievalClothingOuterArmorCharmerApocrif]
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer, MedievalClothingHeadHelmetCharmerApocrif]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakApocrif]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCharmerLightApocrif]
 
 - type: customization
   id: scarlatto
