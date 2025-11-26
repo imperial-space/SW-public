@@ -15,7 +15,7 @@ using Content.Shared.Mobs.Systems;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 
-public sealed class MedievalLycantropyRuleSystem : GameRuleSystem<MedievalPlagueRuleComponent>
+public sealed class MedievalLycantropyRuleSystem : GameRuleSystem<MedievalLycantropyRuleComponent>
 {
     [Dependency] private readonly LycantropySystem _lycantropy = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -76,7 +76,7 @@ public sealed class MedievalLycantropyRuleSystem : GameRuleSystem<MedievalPlague
             _lycantropy.OnNightEnded();
     }
 
-    protected override void AppendRoundEndText(EntityUid uid, MedievalPlagueRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
+    protected override void AppendRoundEndText(EntityUid uid, MedievalLycantropyRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
     {
         base.AppendRoundEndText(uid, component, gameRule, ref args);
 
@@ -95,7 +95,7 @@ public sealed class MedievalLycantropyRuleSystem : GameRuleSystem<MedievalPlague
     }
 
 
-    protected override void ActiveTick(EntityUid uid, MedievalPlagueRuleComponent component, GameRuleComponent gameRule, float frameTime)
+    protected override void ActiveTick(EntityUid uid, MedievalLycantropyRuleComponent component, GameRuleComponent gameRule, float frameTime)
     {
         base.ActiveTick(uid, component, gameRule, frameTime);
 
