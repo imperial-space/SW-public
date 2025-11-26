@@ -42,7 +42,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Revive
 {
-    public sealed class MedievalReviveSystem : SharedGhostSystem
+    public sealed class MedievalReviveSystem : EntitySystem
     {
         [Dependency] private readonly MindSystem _minds = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;

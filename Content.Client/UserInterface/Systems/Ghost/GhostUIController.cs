@@ -3,6 +3,7 @@ using Content.Client.Ghost;
 using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.Ghost;
+using Content.Shared.Imperial.Medieval.Revive;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
 
