@@ -17,6 +17,7 @@ using Content.Shared.Eye;
 using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
 using Content.Shared.Ghost;
+using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.Revive;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -47,6 +48,8 @@ namespace Content.Server.Imperial.Medieval.Revive
         [Dependency] private readonly MindSystem _minds = default!;
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -54,6 +57,9 @@ namespace Content.Server.Imperial.Medieval.Revive
         }
         private void OnGhostReviveRequest(GhostReviveRequestEvent msg, EntitySessionEventArgs args)
         {
+            var revivesOn = _cfg.GetCVar(MedievalCCVars.GhostRevive);
+            if (!revivesOn) return;
+
             var player = args.SenderSession;
             var reviveQuery = EntityManager.EntityQuery<MedievalReviveSpawnerComponent>();
 

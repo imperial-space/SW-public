@@ -27,4 +27,8 @@ public sealed partial class MedievalCCVars : CVars
 
     public static readonly CVarDef<int> BloodMoonWerewolves =
         CVarDef.Create("medieval.blood_moon_werewolves", 5, CVar.SERVER | CVar.REPLICATED);
+
+    // Работа возрождений
+    public static readonly CVarDef<bool> GhostRevive =
+    CVarDef.Create("medieval.ghost_revive", true, CVar.SERVER | CVar.REPLICATED);
 }
