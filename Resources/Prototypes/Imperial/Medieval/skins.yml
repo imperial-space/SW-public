@@ -186,12 +186,17 @@
   id: scarlatto
   holder: 9a7c2996-6502-4bc6-b595-0c7df57c1a8d
   map:
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCharmerLightPurpleScar]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightPurpleScar]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakPurpleScar]
     MedievalShoesChamber: [MedievalShoesCharmerPurpleScar]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightPurpleScar]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakPurpleScar]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth77]
+    MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightPurpleScar]
+    MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightPurpleScar]
+    MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightPurpleScar]
+    MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightPurpleScar]
     Log: [MedievalClothingHandsGlovesPurpleScar]
 
 - type: customization
