@@ -103,6 +103,19 @@
   - type: PhysicalComposition
 
 - type: entity
+  parent: PosterBase
+  id: CanvasPoster
+  name: Poster
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Paintings/canvas.rsi
+    layers:
+    - state: canvas
+    - state: dynamic
+  - type: Canvas
+
+- type: entity
   parent: BaseItem
   id: PaintKit
   name: paint kit

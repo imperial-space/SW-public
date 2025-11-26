@@ -4,6 +4,7 @@ using Content.Server.Popups;
 using Content.Server.Stack;
 using Content.Server.Store.Components;
 using Content.Shared.FixedPoint;
+using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.Trading;
 using Content.Shared.Imperial.Medieval.Trading.Prototypes;
 using Content.Shared.Implants.Components;
@@ -36,8 +37,13 @@ public partial class TradingSystem : EntitySystem
         SubscribeLocalEvent<TradingComponent, BeforeActivatableUIOpenEvent>(BeforeActivatableUiOpen);
 
         SubscribeLocalEvent<TradingComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<RoundStartedEvent>(OnRoundStart);
 
         InitializeUi();
+    }
+
+    private void OnRoundStart(RoundStartedEvent args)
+    {
         CreateGuilds();
     }
 

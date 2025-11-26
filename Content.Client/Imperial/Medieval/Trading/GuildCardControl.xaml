@@ -3,7 +3,7 @@
         <PanelContainer>
             <BoxContainer Orientation="Vertical">
                 <TextureRect Name="GuildIcon" Margin="5" Stretch="KeepAspectCentered" HorizontalExpand="True" VerticalExpand="True" HorizontalAlignment="Stretch" TexturePath="/Textures/deprecated.rsi/deprecated.png"></TextureRect>
-                <Label HorizontalAlignment="Center" Name="GuildName"/>
+                <RichTextLabel HorizontalAlignment="Center" Name="GuildName"/>
                 <Label StyleClasses="LabelSmall" Name="GuildType" Modulate="#AAAAAA" HorizontalAlignment="Center" Text=""></Label>
             </BoxContainer>
         </PanelContainer>
