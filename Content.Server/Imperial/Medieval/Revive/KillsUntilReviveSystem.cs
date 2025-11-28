@@ -5,7 +5,9 @@ using Content.Server.Destructible.Thresholds.Behaviors;
 using Content.Server.GameTicking;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
+using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.Revive;
+using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -15,6 +17,8 @@ namespace Content.Server.Imperial.Medieval.Revive
     {
         [Dependency] private readonly SharedTransformSystem _transform = default!;
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -34,8 +38,8 @@ namespace Content.Server.Imperial.Medieval.Revive
         }
         public void OnStart(EntityUid uid, KillsUntilReviveComponent component, ComponentStartup args)
         {
-            // todo: Устанавливаем необходимые переменные в соответствии с CVAR
-            Logger.Debug("OnStart");
+            var currentRequiredKills = _cfg.GetCVar(MedievalCCVars.GhostKillsToRevive);
+            component.RequiredKills = currentRequiredKills;
         }
         public void GoalDamaged(EntityUid uid, KillReviveGoalComponent component, DamageChangedEvent args)
         {

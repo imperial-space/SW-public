@@ -31,4 +31,7 @@ public sealed partial class MedievalCCVars : CVars
     // Работа возрождений
     public static readonly CVarDef<bool> GhostRevive =
     CVarDef.Create("medieval.ghost_revive", true, CVar.SERVER | CVar.REPLICATED);
+    // Количество убийств духов для возрождения
+    public static readonly CVarDef<int> GhostKillsToRevive =
+    CVarDef.Create("medieval.ghost_kills_to_revive", 12, CVar.SERVER | CVar.REPLICATED);
 }
