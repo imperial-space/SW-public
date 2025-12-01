@@ -2,7 +2,6 @@
 
 - type: entity
   id: SparkBeginner
-  parent: BaseItem
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Fire/MagicSpark/projectiles.rsi
@@ -37,6 +36,7 @@
           radius: 0.15
         density: 60
         mask:
+          - MachineMask
         layer:
           - HighImpassable
           - MidImpassable
