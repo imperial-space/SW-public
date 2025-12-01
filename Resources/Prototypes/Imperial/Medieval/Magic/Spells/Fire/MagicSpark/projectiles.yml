@@ -14,12 +14,29 @@
     igniteTime: 1
     igniteChance: 1
     flammableStacks: 0.5
+  - type: TimedDespawn
+    lifetime: 6
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Heat: 5
   - type: Fixtures
     fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
           radius: 0.15
+        density: 60
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+      ignition:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.15
+        density: 60
+        mask:
         layer:
           - HighImpassable
           - MidImpassable
@@ -27,17 +44,14 @@
           - BulletImpassable
           - Opaque
         hard: false
-  - type: TimedDespawn
-    lifetime: 6
-  - type: DamageOtherOnHit
-    damage:
-      types:
-        Heat: 5
   - type: ThrowingAngle
     angle: 0
   - type: EmitSoundOnLand
     sound:
       path: /Audio/Imperial/Medieval/craft_foundry.ogg
   - type: IgniteOnCollide
-    fixtureId: fix1
     fireStacks: 1
+  - type: Item
+  - type: Physics
+    bodyType: Dynamic
+    fixedRotation: false
