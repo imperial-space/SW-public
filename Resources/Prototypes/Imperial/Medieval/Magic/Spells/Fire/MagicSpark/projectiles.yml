@@ -52,6 +52,7 @@
   - type: IgniteOnCollide
     fireStacks: 1
   - type: Item
+    size: Ginormous
   - type: Physics
     bodyType: Dynamic
     fixedRotation: false
