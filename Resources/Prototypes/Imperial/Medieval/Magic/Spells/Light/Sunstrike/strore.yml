@@ -12,7 +12,7 @@
     sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
     state: middle
   cost:
-    MagicMedievalLight: 70
+    MagicMedievalLight: 50
   categories:
   - MedievalLightSpells
   conditions:
@@ -32,7 +32,7 @@
     sprite: Imperial/Medieval/Magic/Light/Sunstrike/icons.rsi
     state: senior
   cost:
-    MagicMedievalLight: 90
+    MagicMedievalLight: 80
     ArchmagePoints: 1
   categories:
   - MedievalLightSpells
