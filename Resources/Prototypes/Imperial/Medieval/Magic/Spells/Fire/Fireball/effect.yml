@@ -47,7 +47,7 @@
     noRot: true
     layers:
      - state: middle
-      shader: unshaded
+       shader: unshaded
   - type: PointLight
     radius: 3
     energy: 2
