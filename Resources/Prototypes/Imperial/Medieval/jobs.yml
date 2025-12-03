@@ -1909,7 +1909,7 @@
     #- type: IdentityFaction
     #  faction: Legion
     - type: MedievalJobSpawn
-      spawnType: LegionJailer
+      spawnType: Legion
     - type: MedievalPasportPerson
       personJob: "[color=cyan]Тюремщик легиона[/color]"
       pasport: MedievalPasportLegion
