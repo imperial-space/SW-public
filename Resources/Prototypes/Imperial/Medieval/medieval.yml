@@ -1069,6 +1069,8 @@
   - type: RDWeight
     value: 2
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: MedievalDefault
     maxIntensity: 4
@@ -1080,7 +1082,6 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: TriggerOnUse
   - type: TimerTrigger
     delay: 2.5
     beepSound:
@@ -1090,6 +1091,8 @@
     initialBeepDelay: 0
     beepInterval: 6 # 2 beeps total (at 0 and 2)
   - type: SpawnOnTrigger
+    keysIn:
+    - timer
     proto: MedievalExplosionEffect
 
 - type: entity
