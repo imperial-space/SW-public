@@ -5,6 +5,9 @@ using Content.Server.Body.Components;
 using Content.Server.Body.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
+using Content.Server.GameTicking;
+using Content.Server.Imperial.DayTime;
+using Content.Server.Imperial.Medieval.GameTicking.Rules;
 using Content.Server.Jittering;
 using Content.Server.Mind;
 using Content.Server.Polymorph.Components;
@@ -15,7 +18,9 @@ using Content.Server.Stunnable;
 using Content.Shared.Administration;
 using Content.Shared.Chat;
 using Content.Shared.Damage;
+using Content.Shared.GameTicking;
 using Content.Shared.Humanoid;
+using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Dash;
 using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.Lycantropy;
@@ -23,6 +28,7 @@ using Content.Shared.Imperial.Medieval.Plague;
 using Content.Shared.Imperial.Medieval.Weapons;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.Rejuvenate;
 using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
@@ -56,7 +62,6 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly InnerWeaponSystem _inner = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -64,13 +69,12 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     [Dependency] private readonly StunSystem _stun = default!;
     [Dependency] private readonly MindSystem _mind = default!;
     [Dependency] private readonly RoleSystem _role = default!;
+    [Dependency] private readonly GameTicker _gameTicker = default!;
 
     private const int PointsPerNight = 3;
     private const int PointsPerInfect = 4;
     private const int PointsPerCrit = 1;
 
-    private int _curNight = 0;
-    private bool _isBloodMoon = false;
     private DamageSpecifier _regenAmount = new()
     {
         DamageDict = new()
@@ -106,6 +110,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         SubscribeLocalEvent<WerewolfComponent, SetWerewolfDamageEvent>(OnSetDamage);
         SubscribeLocalEvent<WerewolfComponent, SetWerewolfDashStrengthEvent>(OnSetDashStrength);
         SubscribeLocalEvent<WerewolfComponent, SetWerewolfMobThresholdsEvent>(OnSetThresholds);
+
 
         SubscribeNetworkEvent<SelectWerewolfFormEvent>(OnSelectForm);
         SubscribeNetworkEvent<BuyLycantropyAbilityEvent>(OnBuyAbility);
@@ -170,13 +175,20 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             if (TryComp<PolymorphedEntityComponent>(comp.Werewolf, out var polymorphed) && TryComp<LycantropyComponent>(polymorphed.Parent, out var lycantropy))
             {
                 lycantropy.Points += PointsPerInfect;
-                Dirty(polymorphed.Parent, lycantropy);
+                Dirty(polymorphed.Parent.Value, lycantropy);
             }
 
             if (_mind.TryGetMind(uid, out var mindId, out var mind))
                 _role.MindAddRole(mindId, "MindRoleWerewolf");
 
             RemComp(uid, comp);
+
+            if (MedievalLycantropyRuleSystem.IsBloodMoon)
+            {
+                var ev = new RejuvenateEvent();
+                RaiseLocalEvent(uid, ev);
+                Morph(uid, EnsureComp<LycantropyComponent>(uid));
+            }
         }
         else if (args.NewMobState == MobState.Dead)
         {
@@ -256,7 +268,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (TryComp<PolymorphedEntityComponent>(uid, out var polymorphed) && TryComp<LycantropyComponent>(polymorphed.Parent, out var lycantropy))
         {
             lycantropy.Points += PointsPerCrit;
-            Dirty(polymorphed.Parent, lycantropy);
+            Dirty(polymorphed.Parent.Value, lycantropy);
         }
     }
 
@@ -415,12 +427,9 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             _actions.AddAction(uid, item);
     }
 
-    private void OnNightStarted()
-    {
-        _curNight++;
-        if (_curNight > _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
-            _curNight = 1;
 
+    public void OnNightStarted()
+    {
         var ents = EntityManager.AllEntities<LycantropyComponent>();
         _random.Shuffle(ents);
 
@@ -432,10 +441,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         }
     }
 
-    private void OnNightEnded()
+    public void OnNightEnded()
     {
-        _isBloodMoon = false;
-
         var ents = EntityManager.AllEntities<WerewolfComponent>();
         foreach (var item in ents)
         {
@@ -452,7 +459,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     {
         var abilities = comp.Abilities;
         _audio.PlayGlobal(new SoundCollectionSpecifier("WerewolfTransform"), uid);
-        _stun.TryParalyze(uid, TimeSpan.FromSeconds(3), true);
+        _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(3));
         _jitter.DoJitter(uid, TimeSpan.FromSeconds(3), true);
 
         Timer.Spawn(TimeSpan.FromSeconds(3), () =>
@@ -484,18 +491,13 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
     private float GetWerewolfTransformCount(int count)
     {
-        if (_curNight >= _config.GetCVar(MedievalCCVars.BloodMoonPeriod))
-        {
-            _isBloodMoon = true;
+        if (MedievalLycantropyRuleSystem.IsBloodMoon)
             return count;
-        }
-        else
-        {
-            if (count <= 3 && count > 0)
-                return Math.Clamp(count - 1, 1, 2);
 
-            return count / 3;
-        }
+        if (count <= 2 && count > 0)
+            return Math.Clamp(count - 1, 1, 2);
+
+        return count / 2;
     }
 
     public override void Update(float frameTime)

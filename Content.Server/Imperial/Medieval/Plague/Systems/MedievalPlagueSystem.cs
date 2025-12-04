@@ -326,7 +326,7 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
             item.Comp.Points++;
             _data.Points++;
             Dirty(item);
-            _alerts.ShowAlert(item, item.Comp.AlertId);
+            _alerts.ShowAlert(item.Owner, item.Comp.AlertId);
         }
 
         UpdateUi();

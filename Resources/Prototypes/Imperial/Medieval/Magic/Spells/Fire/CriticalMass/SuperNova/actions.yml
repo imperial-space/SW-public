@@ -31,8 +31,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/nova.rsi
-      state: supermass2
+      sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
+      state: middle-nova
   - type: TargetAction
     checkCanAccess: false
     range: 5
@@ -48,7 +48,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/nova.rsi
+          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/projectiles.rsi
           state: supermass2
         alwaysRender: true
         mixColor: 0.1
@@ -80,8 +80,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/nova.rsi
-      state: supermass3
+      sprite: Imperial/Medieval/Magic/Fire/CriticalMass/icons.rsi
+      state: senior-nova
   - type: TargetAction
     checkCanAccess: false
     range: 5
@@ -97,7 +97,7 @@
   - type: ShowSpawnedEntity
     sprites:
       - drawedSprite:
-          sprite: Imperial/Medieval/Magic/nova.rsi
+          sprite: Imperial/Medieval/Magic/Fire/CriticalMass/projectiles.rsi
           state: supermass3
         alwaysRender: true
         mixColor: 0.1

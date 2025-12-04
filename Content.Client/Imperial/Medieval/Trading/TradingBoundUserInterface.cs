@@ -2,6 +2,7 @@
 using JetBrains.Annotations;
 using System.Linq;
 using Content.Shared.Imperial.Medieval.Trading;
+using Content.Shared.Imperial.Medieval.Trading.Prototypes;
 using Content.Shared.Store.Components;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
@@ -11,8 +12,13 @@ namespace Content.Client.Imperial.Medieval.Trading;
 [UsedImplicitly]
 public sealed class TradingBoundUserInterface : BoundUserInterface
 {
+    private IPrototypeManager _prototypeManager = default!;
+
     [ViewVariables]
     private TradingMenu? _menu;
+
+    [ViewVariables]
+    private string _search = string.Empty;
 
     [ViewVariables]
     private HashSet<Guild> _guilds = new();
@@ -45,6 +51,12 @@ public sealed class TradingBoundUserInterface : BoundUserInterface
             SendMessage(new TradingBuyMessage(item));
         };
 
+        _menu.SearchTextUpdated += (_, search) =>
+        {
+            _search = search.Trim().ToLowerInvariant();
+            UpdateCurrentGuildWithSearchFilter();
+        };
+
         _menu.OnWithdrawAttempt += (_, type, amount) =>
         {
             SendMessage(new TradingRequestWithdrawMessage(amount));
@@ -72,6 +84,15 @@ public sealed class TradingBoundUserInterface : BoundUserInterface
                 _menu?.SelectGuild();
                 break;
         }
+    }
+
+    private void UpdateCurrentGuildWithSearchFilter()
+    {
+        if (_menu?.CurrentGuild == null)
+            return;
+
+        var guild = _menu.CurrentGuild!;
+        _menu.UpdateItems(guild, _search);
     }
 
     private void UpdateCurrentGuild()

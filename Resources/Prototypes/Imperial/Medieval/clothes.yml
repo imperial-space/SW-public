@@ -1800,6 +1800,28 @@
     sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
 
 - type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBootsLight
+  name: MedievalClothingApocrifBootsLight
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBootsWeak
+  name: MedievalClothingApocrifBootsWeak
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
   parent: MedievalClothingHandsGlovesCloth
   id: MedievalClothingHandsRoyalGloves
   name: Cloth Gloves
@@ -1947,7 +1969,7 @@
   - type: RDWeight
     value: 7
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
+    sprite: Imperial/Medieval/Magic/Fire/FireFetter/projectiles.rsi
     state: handcuff
   - type: TimedDespawn
     lifetime: 180
@@ -1961,7 +1983,7 @@
   - type: IgniteOnMeleeHit
     fireStacks: 0.2
   - type: Handcuff
-    cuffedRSI: Imperial/Medieval/Magic/fetter-spell/fire-fetter.rsi
+    cuffedRSI: Imperial/Medieval/Magic/Fire/FireFetter/projectiles.rsi
     bodyIconState: body-overlay
     breakoutTime: 10
     cuffTime: 3.5
@@ -1979,7 +2001,7 @@
   description: ent-MedievalCursedFetter
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/fetter-spell/cursed-fetter.rsi
+    sprite: Imperial/Medieval/Magic/Darkness/CursedFetter/projectiles.rsi
     state: handcuff
   - type: MeleeWeapon
     resetOnHandSelected: false
@@ -1990,7 +2012,7 @@
   - type: StaminaDamageOnHit
     damage: 8
   - type: Handcuff
-    cuffedRSI: Imperial/Medieval/Magic/fetter-spell/cursed-fetter.rsi
+    cuffedRSI: Imperial/Medieval/Magic/Darkness/CursedFetter/projectiles.rsi
     bodyIconState: body-overlay
     breakoutTime: 10
     cuffTime: 3.5
@@ -2077,3 +2099,30 @@
   - type: Item
     size: Small
     storedRotation: -90
+
+- type: entity
+  parent: ClothingEyesBase
+  id: MedievalFichtyGlasses
+  name: glasses
+  description: cool glasses
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Eyes/fichty.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Eyes/fichty.rsi
+    slots: eyes
+  - type: Item
+    size: Small
+    storedRotation: -90
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth77
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_77.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_77.rsi

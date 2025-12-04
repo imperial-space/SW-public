@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Server.Body.Components;
 using Content.Server.Imperial.Medieval.Skills;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Plague;
@@ -253,7 +254,7 @@ public sealed partial class MedievalPlagueSystem
             comp.NextFall = _timing.CurTime + TimeSpan.FromSeconds(1);
 
             if (_random.Prob(0.04f))
-                _stun.TryParalyze(uid, TimeSpan.FromSeconds(1), false);
+                _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(1));
         }
     }
 

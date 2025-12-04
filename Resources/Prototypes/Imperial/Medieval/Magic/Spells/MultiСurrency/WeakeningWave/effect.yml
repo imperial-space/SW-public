@@ -19,7 +19,8 @@
   - type: TimedDespawn
     lifetime: 1.35
   - type: StaminaDamageOnTrigger
-    damage: 300
+    stamina: 300
+  - type: EmitSoundOnTrigger
     sound:
       path: /Audio/Imperial/Medieval/Magic/Spells/stamina_damage.ogg
       params:
@@ -30,10 +31,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/wave.rsi
-    state: beginner
     color: "#caeef0"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 2

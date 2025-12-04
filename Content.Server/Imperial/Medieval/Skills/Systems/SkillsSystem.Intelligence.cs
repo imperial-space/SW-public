@@ -10,6 +10,7 @@ using Content.Shared.Imperial.Medieval.Language;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Imperial.Medieval.Medical;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Speech;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 

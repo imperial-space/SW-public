@@ -5,10 +5,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/sunstrike.rsi
-    state: middle
     color: "#fee218"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: middle
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 2
@@ -23,10 +24,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/sunstrike.rsi
-    state: senior
     color: "#fee218"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: senior
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 2

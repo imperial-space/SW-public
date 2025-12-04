@@ -454,6 +454,7 @@
         - TableMask
         layer:
         - TableLayer
+        - LowImpassable
   - type: ExplosionResistance
     damageCoefficient: 2
   - type: Damageable
@@ -834,9 +835,11 @@
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
     solution: beaker
+    destroyOnEmpty: false
+    utensil: None
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
@@ -907,9 +910,11 @@
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
     solution: beaker
+    destroyOnEmpty: false
+    utensil: None
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
@@ -1064,6 +1069,8 @@
   - type: RDWeight
     value: 2
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: MedievalDefault
     maxIntensity: 4
@@ -1075,15 +1082,17 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
+    delay: 2.5
     beepSound:
       path: "/Audio/Imperial/Medieval/bomb.ogg"
       params:
         volume: 7
     initialBeepDelay: 0
     beepInterval: 6 # 2 beeps total (at 0 and 2)
-    delay: 2.5
   - type: SpawnOnTrigger
+    keysIn:
+    - timer
     proto: MedievalExplosionEffect
 
 - type: entity
@@ -1118,6 +1127,19 @@
   #    6: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonSpeed # imperial medieval
+
+- type: entity
+  parent: ClothingNeckTieDet
+  id: MedaljonGreenKnight
+  name: MedaljonGreenKnight
+  description: MedaljonGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
 
 - type: entity
   parent: MedaljonSpeed
@@ -1994,8 +2016,10 @@
         layer:
         - MobLayer
   - type: Pullable
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
+    destroyOnEmpty: false
+    utensil: None
     solution: bucket
   - type: Appearance
   - type: SolutionContainerVisuals
@@ -7395,8 +7419,8 @@
   noSpawn: true
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#DD0000"
   - type: TimedDespawn
@@ -7578,7 +7602,7 @@
 - type: tile
   id: CultFloor
   name: tiles-cult-floor
-  sprite: /Textures/Imperial/Medieval/Tiles/cult_tile.rsi/cult.png
+  sprite: /Textures/Imperial/Medieval/Tiles/CultTile/cult.png
   variants: 1
   baseTurf: Plating
   isSubfloor: false

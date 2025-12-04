@@ -56,7 +56,7 @@
 - type: emote
   id: Howl
   name: chat-emote-name-howl
-  category: Invalid
+  category: Vocal
   whitelist:
     components:
     - Vocal

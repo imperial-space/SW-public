@@ -328,6 +328,9 @@
   - type: NeedSleep
     sleepLevelPerUpdate: 0.32
   - type: Wagging
+  - type: AddActionOnSpawn
+    actions:
+      - MedievalActionSparkBeginner
 
 - type: entity
   parent: BaseSpeciesDummy
@@ -359,6 +362,7 @@
   id: TiflingTailSmooth
   bodyPart: Tail
   markingCategory: Tail
+  followSkinColor: true
   speciesRestriction: [Tifling]
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/tails.rsi
@@ -368,6 +372,7 @@
   id: TiflingTailSmoothAnimated
   bodyPart: Tail
   markingCategory: Tail
+  followSkinColor: true
   speciesRestriction: []
   sprites:
   - sprite: Imperial/Medieval/Species/Tifling/tails.rsi

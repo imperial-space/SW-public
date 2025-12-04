@@ -21,7 +21,7 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/stone_touch.rsi
+      sprite: Imperial/Medieval/Magic/Darkness/StoneTouch/icons.rsi
       state: flesh_to_stone
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
@@ -78,7 +78,7 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/stone_touch.rsi
+      sprite: Imperial/Medieval/Magic/Darkness/StoneTouch/icons.rsi
       state: stone_touch
   - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent

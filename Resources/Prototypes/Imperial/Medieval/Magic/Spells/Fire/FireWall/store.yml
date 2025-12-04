@@ -9,8 +9,8 @@
   productUpgradeId:
     - MedievalSpellFireWallMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: firewall1
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+    state: beginner
   cost:
     MagicMedievalFire: 20
   categories:
@@ -29,8 +29,8 @@
   productUpgradeId:
     - MedievalSpellFireWallSenior
   icon:
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: firewall2
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+    state: middle
   cost:
     MagicMedievalFire: 45
   categories:
@@ -52,8 +52,8 @@
   productUpgradeId:
     - MedievalSpellFireWallSenior
   icon:
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: firewall3
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/icons.rsi
+    state: senior
   cost:
     MagicMedievalFire: 70
     ArchmagePoints: 1

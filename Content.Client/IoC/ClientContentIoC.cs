@@ -28,6 +28,7 @@ using Content.Shared.Chat;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Client.Imperial.Sponsors; //Imperial sponsors
 using Content.Shared.Players.RateLimiting;
+using Content.Client.Imperial.Entry;
 
 namespace Content.Client.IoC
 {
@@ -67,7 +68,11 @@ namespace Content.Client.IoC
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
             collection.Register<CharacterBlockManager>(); // Imperial medieval edit
+            collection.Register<Imperial.Medieval.Flavors.ClientFlavorManager>(); // Imperial Flavor Images
+            collection.Register<Shared.Imperial.Medieval.Flavors.SharedFlavorManager, Imperial.Medieval.Flavors.ClientFlavorManager>(); // Imperial Flavor Images
             collection.Register<ClientsidePlaytimeTrackingManager>();
+
+            ImperialEntry.IoCRegister();
         }
     }
 }

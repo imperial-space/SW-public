@@ -24,10 +24,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
-    state: beginner
     color: "#FF7300"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        shader: unshaded
   - type: PointLight
     radius: 3
     energy: 1
@@ -42,10 +43,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
-    state: middle
     color: "#ff4800"
     noRot: true
-    shader: unshaded
+    layers:
+     - state: middle
+       shader: unshaded
   - type: PointLight
     radius: 3
     energy: 2
@@ -60,10 +62,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/fireball.rsi
-    state: senior
     color: "#FF0000"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: senior
+        shader: unshaded
   - type: PointLight
     radius: 3
     energy: 3

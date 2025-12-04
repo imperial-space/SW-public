@@ -12,8 +12,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icebeam_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/ice_pulse.rsi
-      state: ice-basic
+      sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/icons.rsi
+      state: beginner
   - type: TargetAction
     checkCanAccess: false
     targetingIndicator: false
@@ -71,8 +71,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icebeam_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/ice_pulse.rsi
-      state: ice-mid
+      sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/icons.rsi
+      state: middle
   - type: TargetAction
     checkCanAccess: false
     targetingIndicator: false
@@ -115,8 +115,8 @@
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icebeam_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/ice_pulse.rsi
-      state: ice-adv
+      sprite: Imperial/Medieval/Magic/Vodka/WaterSphere/icons.rsi
+      state: senior
   - type: TargetAction
     range: 60
     checkCanAccess: false

@@ -28,7 +28,7 @@ public sealed class FarmerBoostSystem : EntitySystem
         SubscribeLocalEvent<FarmerComponent, UserAfterHarvestEvent>(OnFarmerHarvest);
         SubscribeLocalEvent<AfterMicrowavedEvent>(AfterMicrowawerCheck);
 
-        SubscribeLocalEvent<FarmerBoostOnConsumeComponent, BeforeFullyEatenEvent>(OnBeforeFullyEaten);
+        SubscribeLocalEvent<FarmerBoostOnConsumeComponent, FullyEatenEvent>(OnBeforeFullyEaten);
     }
 
     private void OnMarkerInit(EntityUid uid, AddFarmerBoostOnInitComponent comp, MapInitEvent args)
@@ -65,6 +65,6 @@ public sealed class FarmerBoostSystem : EntitySystem
         boost.Time = 7;
     }
 
-    private void OnBeforeFullyEaten(EntityUid uid, FarmerBoostOnConsumeComponent comp, BeforeFullyEatenEvent args)
+    private void OnBeforeFullyEaten(EntityUid uid, FarmerBoostOnConsumeComponent comp, FullyEatenEvent args)
         => _status.TryAddStatusEffect<FarmerBoostComponent>(args.User, StatusEffectId, TimeSpan.FromMinutes(comp.Time), true);
 }

@@ -28,11 +28,13 @@
         - MobLayer
   - type: Appearance
   - type: Bloodstream
-    bloodMaxVolume: 400
+    bloodMaxVolume: 750
+    bloodRefreshAmount: 3
   - type: ReplacementAccent
     accent: dog
   - type: MeleeWeapon
-    range: 2
+    altDisarm: false
+    range: 2.25
     hidden: true
     angle: 0
     soundHit:
@@ -75,6 +77,9 @@
   - type: Vocal
     sounds:
       Unsexed: Werewolf
+  - type: Speech
+    allowedEmotes:
+    - Howl
   - type: StaminaDamageOnHit
     damage: 20
   - type: Werewolf
@@ -91,6 +96,7 @@
   - type: InnerWeapon
   - type: StatusEffects
     allowed:
+    - IllitidFlashed
     - Stun
     - KnockedDown
     - SlowedDown

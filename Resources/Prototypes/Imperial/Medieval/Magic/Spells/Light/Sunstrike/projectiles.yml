@@ -7,10 +7,10 @@
   description: You better GITTAH WEIGH.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/sunstrike.rsi
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
     noRot: true
     layers:
-    - state: spot-middle
+    - state: middle-spot
       shader: unshaded
   - type: Fixtures
     fixtures:
@@ -39,7 +39,7 @@
   name: Sunstrike
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/sunstrike.rsi
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
     drawdepth: Mobs
     noRot: true
     layers:
@@ -88,6 +88,12 @@
   name: SunstrikeSpot
   description: You better GITTAH WEIGH.
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
+    noRot: true
+    layers:
+    - state: senior-spot
+      shader: unshaded
   - type: ProjectileCursorFollower
     maxLinearVelocityIntensy: 2.3
   - type: DelayedSpawn
@@ -101,7 +107,7 @@
   name: Sunstrike
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/sunstrike.rsi
+    sprite: Imperial/Medieval/Magic/Light/Sunstrike/projectiles.rsi
     drawdepth: Mobs
     noRot: true
     layers:

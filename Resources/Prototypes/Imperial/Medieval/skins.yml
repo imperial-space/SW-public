@@ -8,8 +8,8 @@
     MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetCrusaderWarhammer, MedievalClothingHeadHelmetCrusaderWarhammer2, MedievalClothingHeadHelmetCrusaderMorbius ]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightInsBlood]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerInsBlood]
-    MedievalFalshionT3Legion: [MedievalFalshionT3LegionChainMace]
-    MedievalFalshionT3LegionSteel: [MedievalFalshionT3LegionSteelChainMace]
+    MedievalFalshionT3Legion: [MedievalFalshionT3LegionChainMace, MedievalFalshionT3DarkerSword]
+    MedievalFalshionT3LegionSteel: [MedievalFalshionT3LegionSteelChainMace, MedievalFalshionT3DarkerSwordSteel]
     Log: [AhrimanStaffMedieval, MedievalMagicLightningRune]
 
 - type: customization
@@ -91,7 +91,15 @@
   id: rustyrider
   holder: c3aba6fd-f54b-4331-bd77-ffcd34dd40e0
   map:
-    Log: [ MedievalClothingElectroMask, ClothingEyesElectroBlindfold ]
+    Log: [ MedievalClothingElectroMask, ClothingEyesElectroBlindfold, MedievalClothingNeckCloakGreenKnight, MedaljonGreenKnight ]
+    MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetGreenKnight ]
+    MedievalClothingOuterArmorBrigantin: [ MedievalClothingOuterArmorBrigantinGreenKnight ]
+    MedievalClothingOuterArmorIronCuirass: [ MedievalClothingOuterArmorIronCuirassGreenKnight ]
+    MedievalClothingFeetSteel: [ MedievalClothingFeetSteelGreenKnight ]
+    MedievalIronGloves: [ MedievalIronGlovesGreenKnight ]
+    MedievalClothingNeckCloakClanEagle: [ MedievalClothingNeckCloakGreenKnightLegion ]
+    MedievalClothingNeckCloakClanMerc: [ MedievalClothingNeckCloakGreenKnightMerc ]
+    MedievalClothingNeckCloakClanWiz: [ MedievalClothingNeckCloakGreenKnightCollegia ]
 
 - type: customization
   id: arelover
@@ -168,19 +176,27 @@
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorWhiteWizardCharmerLight, MedievalClothingOuterArmorCharmerLightApocrif]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightApocrif]
     Log: [MedievalClothingHandsGlovesWhiteWizard, MedievalClothingHandsApocrif]
-    MedievalShoesChamber: [MedievalClothingApocrifBoots]
+    MedievalShoesChamber: [MedievalClothingApocrifBoots, MedievalClothingApocrifBootsWeak, MedievalClothingApocrifBootsLight]
     MedievalClothingOuterArmorCharmer: [MedievalClothingOuterYamuroArmorCharmer, MedievalClothingOuterArmorCharmerApocrif]
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadYamuroHelmetCharmer, MedievalClothingHeadHelmetCharmerApocrif]
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakApocrif]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCharmerLightApocrif]
 
 - type: customization
   id: scarlatto
   holder: 9a7c2996-6502-4bc6-b595-0c7df57c1a8d
   map:
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCharmerLightPurpleScar]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightPurpleScar]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakPurpleScar]
     MedievalShoesChamber: [MedievalShoesCharmerPurpleScar]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightPurpleScar]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakPurpleScar]
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth77]
+    MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightPurpleScar]
+    MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightPurpleScar]
+    MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightPurpleScar]
+    MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightPurpleScar]
     Log: [MedievalClothingHandsGlovesPurpleScar]
 
 - type: customization
@@ -199,6 +215,7 @@
   holder: 9a0a943e-7a19-4795-8fad-7e06d8e99797
   map:
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth72]
+    Log: [MedievalFichtyGlasses]
 
 - type: customization
   id: ungabunga

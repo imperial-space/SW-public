@@ -4,8 +4,8 @@
   id: MedievalEffectWaterSphereBeginner
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: PointLight
     color: cyan
     energy: 2
@@ -41,8 +41,8 @@
   id: MedievalEffectWaterSphereBeginnerDespawn
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#0CBFE9"
   - type: TimedDespawn
@@ -53,10 +53,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/vodka/sphere.rsi
-    state: beginner
     color: "#0CBFE9"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 2
@@ -71,8 +72,8 @@
   id: MedievalEffectWaterSphereMiddle
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: PointLight
     color: cyan
     energy: 2
@@ -108,8 +109,8 @@
   id: MedievalEffectWaterSphereMiddleDespawn
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#0CBFE9"
   - type: TimedDespawn
@@ -122,8 +123,8 @@
   id: MedievalEffectWaterSphereSenior
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: PointLight
     color: cyan
     energy: 2
@@ -159,8 +160,8 @@
   id: MedievalEffectWaterSphereSeniorDespawn
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#0CBFE9"
   - type: TimedDespawn

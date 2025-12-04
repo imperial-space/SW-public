@@ -7,8 +7,8 @@
   productUpgradeId:
     - MedievalSpellCursedFetter
   icon:
-    sprite: Imperial/Medieval/Magic/fetter-spell/action-fire-fetter.rsi
-    state: base
+    sprite: Imperial/Medieval/Magic/Fire/FireFetter/icons.rsi
+    state: beginner
   cost:
     MagicMedievalFire: 35
   categories:

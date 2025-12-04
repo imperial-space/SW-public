@@ -130,7 +130,7 @@ public sealed partial class MyrmexSystem : EntitySystem
 
         foreach (EntityUid hitEnt in args.HitEntities)
         {
-            _stunSys.TryStun(hitEnt, ent.Comp.StunDuration, false);
+            _stunSys.TryAddStunDuration(hitEnt, ent.Comp.StunDuration);
         }
     }
 

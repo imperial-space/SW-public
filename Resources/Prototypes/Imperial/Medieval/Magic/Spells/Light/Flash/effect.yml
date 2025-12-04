@@ -30,10 +30,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/light/flash.rsi
-    state: beginner
     color: "#FFE57E"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 1

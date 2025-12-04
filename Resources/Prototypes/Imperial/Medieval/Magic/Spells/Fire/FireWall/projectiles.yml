@@ -6,8 +6,8 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     noRot: true
   - type: Clickable
@@ -48,8 +48,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
   - type: TimedDespawn
     lifetime: 8
   - type: Brarrier
@@ -69,8 +69,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 8
@@ -109,8 +109,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
   - type: TimedDespawn
     lifetime: 20
   - type: IgniteOnCollide
@@ -133,8 +133,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 20
@@ -175,8 +175,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 20
@@ -200,8 +200,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 20

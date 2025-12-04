@@ -3,10 +3,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/darkness/fetter.rsi
-    state: beginner
     color: "#8B008B"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        shader: unshaded
   - type: PointLight
     radius: 3
     energy: 1

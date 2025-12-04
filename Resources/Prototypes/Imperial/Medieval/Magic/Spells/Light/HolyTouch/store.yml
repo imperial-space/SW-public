@@ -5,8 +5,8 @@
   productAction: MedievalActionHolyTouchBeginner
   priority: 2
   icon:
-    sprite: Imperial/Medieval/Gun/Charmer/heal.rsi
-    state: 1
+    sprite: Imperial/Medieval/Magic/Light/HolyTouch/icons.rsi
+    state: beginner
   cost:
     MagicMedievalLight: 15
   categories:

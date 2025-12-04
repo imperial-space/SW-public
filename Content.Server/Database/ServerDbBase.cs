@@ -31,7 +31,6 @@ namespace Content.Server.Database
     public abstract class ServerDbBase
     {
         private readonly ISawmill _opsLog;
-
         public event Action<DatabaseNotification>? OnNotificationReceived;
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
@@ -590,8 +589,6 @@ namespace Content.Server.Database
         #region Imperial Medieval
 
 
-
-
         public async Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel)
         {
             await using var db = await GetDb(cancel);
@@ -871,6 +868,75 @@ namespace Content.Server.Database
             }
             await db.DbContext.SaveChangesAsync(cancel);
         }
+        // Imperial Medieval Flavor Images Begin
+        public async Task<FlavorImage?> GetFlavorImage(Guid userId, CancellationToken cancel, int? slot)
+        {
+            await using var db = await GetDb(cancel);
+            var prefs = await db.DbContext.Preference
+                .Include(x => x.Profiles)
+                .SingleAsync(x => x.UserId == userId, cancel);
+
+            if (slot == null)
+                slot = prefs.SelectedCharacterSlot;
+
+            if (!prefs.Profiles.TryGetValue(slot.Value, out var profile))
+                return null;
+
+            var image = await db.DbContext.FlavorImages.SingleOrDefaultAsync(p => p.ProfileId == profile.Id, cancel);
+
+            return image;
+        }
+        public async Task AddOrUpdateFlavorImage(Guid userId, byte[] image, CancellationToken cancel, int? slot)
+        {
+            await using var db = await GetDb(cancel);
+            var prefs = await db.DbContext.Preference
+                .Include(x => x.Profiles)
+                .SingleAsync(x => x.UserId == userId, cancel);
+
+            if (slot == null)
+                slot = prefs.SelectedCharacterSlot;
+
+            if (!prefs.Profiles.TryGetValue(slot.Value, out var profile))
+                return;
+
+            var entry = await db.DbContext.FlavorImages
+                .SingleOrDefaultAsync(x => x.ProfileId == profile.Id, cancel);
+
+            if (entry == null)
+            {
+                await db.DbContext.AddAsync(new FlavorImage()
+                {
+                    ProfileId = profile.Id,
+                    Image = image
+                });
+            }
+            else
+            {
+                entry.Image = image;
+            }
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+        public async Task RemoveFlavorImage(Guid userId, int slot, CancellationToken cancel)
+        {
+            await using var db = await GetDb(cancel);
+            var prefs = await db.DbContext.Preference
+                .Include(x => x.Profiles)
+                .SingleAsync(x => x.UserId == userId, cancel);
+
+            if (!prefs.Profiles.TryGetValue(slot, out var profile))
+                return;
+
+            var image = await db.DbContext.FlavorImages
+                .SingleOrDefaultAsync(x => x.ProfileId == profile.Id, cancel);
+
+            if (image == null)
+                return;
+
+            db.DbContext.FlavorImages.Remove(image);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+        // Imperial Medieval Flavor Images End
         #endregion
 
         #region Playtime
@@ -1700,7 +1766,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 ban.LastEditedAt,
                 ban.ExpirationTime,
                 ban.Hidden,
-                new [] { ban.RoleId.Replace(BanManager.JobPrefix, null) },
+                new [] { ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null) },
                 MakePlayerRecord(unbanningAdmin),
                 ban.Unban?.UnbanTime);
         }
@@ -2000,7 +2066,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     NormalizeDatabaseTime(firstBan.LastEditedAt),
                     NormalizeDatabaseTime(firstBan.ExpirationTime),
                     firstBan.Hidden,
-                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.JobPrefix, null)).ToArray(),
+                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null)).ToArray(),
                     MakePlayerRecord(unbanningAdmin),
                     NormalizeDatabaseTime(firstBan.Unban?.UnbanTime)));
             }

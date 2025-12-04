@@ -21,6 +21,9 @@ using Robust.Shared.Player;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
+using Content.Server.Mind;
+using Content.Shared.Roles.Jobs;
+
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
@@ -193,7 +196,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<RoundStartAttemptEvent>(OnMapInit);
-        SubscribeLocalEvent<EntitySpokeEvent>(CheckMessage);
+        SubscribeLocalEvent<EntitySpokeEvent>(OnEntitySpokeEvent);
     }
 
     public List<NrpMessage> GetAllMessages()
@@ -310,21 +313,24 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         return result;
     }
 
-    private async void CheckMessage(EntitySpokeEvent ev)
+    private async void OnEntitySpokeEvent(EntitySpokeEvent ev)
     {
-        //if (!_cfg.GetCVar(NrpCCVars.NrpPanelEnabled))
-        //    return;
+        if (!ev.CheckNrp)
+            return;
+        CheckMessage(ev.Source, ev.Message);
+    }
 
+    public async void CheckMessage(EntityUid source, string message)
+    {
         if (_bannedWords.Count == 0)
             return;
-
-        if (!_playerManager.TryGetSessionByEntity(ev.Source, out var session))
+        if (!_playerManager.TryGetSessionByEntity(source, out var session))
             return;
-
         if (!session.AttachedEntity.HasValue)
             return;
+        if (HasComp<NrpIgnoreComponent>(source))
+            return;
 
-        var message = ev.Message;
         var matches = GetBannedWords(message, _bannedWords);
         if (matches.Count == 0)
             return;

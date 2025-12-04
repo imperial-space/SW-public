@@ -5,10 +5,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/lightning.rsi
-    state: middleFire
     color: "#F33900"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: middleFire
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 2
@@ -23,10 +24,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/lightning.rsi
-    state: seniorFire
     color: "#F33900"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: seniorFire
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 2

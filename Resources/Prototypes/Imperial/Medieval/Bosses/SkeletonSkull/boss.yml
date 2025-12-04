@@ -54,7 +54,7 @@
     ignoreGravity: true
   - type: Boss
     song:
-      path: /Audio/Imperial/Medieval/Locations/Laststandofspellward.ogg
+      path: /Audio/Imperial/Medieval/Locations/Pantheon's-wrath.ogg
       params:
         volume: -9
     health: 5000
