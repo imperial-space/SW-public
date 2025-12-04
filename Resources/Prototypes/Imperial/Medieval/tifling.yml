@@ -475,7 +475,7 @@
   defaultSkinTone: "#ffffff"
   markingLimits: MobTiflingMarkingLimits
   dollPrototype: MobTiflingDummy
-  skinColoration: Hues
+  skinColoration: TiflingColors
   maleFirstNames: NamesReptilianMale
   femaleFirstNames: NamesReptilianFemale
   naming: FirstDashFirst

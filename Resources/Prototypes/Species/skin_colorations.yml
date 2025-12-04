@@ -25,3 +25,71 @@
   strategy: !type:ClampedHslColoration
     saturation: [0.0, 0.60]
     lightness: [0.2, 0.9]
+
+- type: skinColoration
+  id: TiflingColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#ff5500"
+    - "#ff2122"
+    - "#ff0000"
+    - "#6f87ff"
+    - "#b480da"
+    - "#b55fda"
+    - "#965fda"
+    - "#ff8aff"
+
+- type: skinColoration
+  id: DarkElfColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#ffffff"
+    - "#ccccff"
+    - "#ccbade"
+    - "#c198e9"
+    - "#8898e9"
+    - "#b5c4ff"
+
+- type: skinColoration
+  id: MoonwolfColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#ffffff"
+    - "#8c8c8c"
+    - "#2c2525"
+    - "#4c6163"
+    - "#504c63"
+    - "#5e404b"
+    - "#a37b55"
+
+- type: skinColoration
+  id: SkeletonColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#ffffff"
+    - "#fff9e2"
+
+- type: skinColoration
+  id: OrcColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#00ff00"
+    - "#3d6424"
+    - "#132906"
+    - "#b0e68e"
+    - "#123013"
+    - "#1dcc22"
+    - "#8fcc1d"
+
+
+- type: skinColoration
+  id: IllitidColors
+  strategy: !type:SelectorColoration
+    colors:
+    - "#B8A2C8"
+    - "#A38FB2"
+    - "#6f7d7d"
+    - "#7d6f7c"
+    - "#443652"
+    - "#4042bd"
+    - "#703d6d"
