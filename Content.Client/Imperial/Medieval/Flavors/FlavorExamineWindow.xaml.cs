@@ -15,28 +15,14 @@ namespace Content.Client.Imperial.Medieval.Flavors
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
         }
-        public FlavorExamineWindow(string details, string? path) : this()
+        public FlavorExamineWindow(string details, string path = "") : this()
         {
-            if (path == null)
-            {
-                FlavorImage.Visible = false;
-            }
-            else
-            {
-                FlavorImage.Texture = _flavors.GetImage(path).texture;
-            }
+            FlavorImage.Texture = _flavors.GetImage(path).texture;
             FlavorText.SetMarkupPermissive(details);
         }
         public FlavorExamineWindow(string details, byte[]? image) : this()
         {
-            if (image == null)
-            {
-                FlavorImage.Visible = false;
-            }
-            else
-            {
-                FlavorImage.Texture = _flavors.GetImageFromByteArray(image).texture;
-            }
+            FlavorImage.Texture = _flavors.GetImageFromByteArray(image).texture;
             FlavorText.SetMarkupPermissive(details);
         }
     }
