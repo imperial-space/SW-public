@@ -30,4 +30,7 @@ public sealed partial class LycantropyComponent : Component
         { "werewolf-purple", "WerwolfPurple" },
         { "werewolf-red", "WerwolfRed" },
     };
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int NightsSpent = 0;
 }

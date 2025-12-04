@@ -232,6 +232,7 @@ namespace Content.Client.Lobby.UI
             {
                 SpeciesButton.SelectId(args.Id);
                 SetSpecies(_species[args.Id].ID);
+                UpdateSkinColor(); // imperial medieval color selector
                 UpdateHairPickers();
                 OnSkinColorOnValueChanged();
             };
@@ -249,6 +250,13 @@ namespace Content.Client.Lobby.UI
             {
                 OnSkinColorOnValueChanged();
             };
+
+            // imperial medieval color selector start
+            SelectorControl.OnColorChanged += _ =>
+            {
+                OnSkinColorOnValueChanged();
+            };
+            // imperial medieval color selector end
 
             #endregion
 
@@ -1109,6 +1117,7 @@ namespace Content.Client.Lobby.UI
                     {
                         Skin.Visible = true;
                         RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
                     var color = strategy.FromUnary(Skin.Value);
@@ -1124,6 +1133,7 @@ namespace Content.Client.Lobby.UI
                     {
                         Skin.Visible = false;
                         RgbSkinColorContainer.Visible = true;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
                     var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
@@ -1133,6 +1143,26 @@ namespace Content.Client.Lobby.UI
 
                     break;
                 }
+                // imperial medieval color selector start
+                case SkinColorationStrategyInput.Selector:
+                {
+                    if (!SelectorControl.Visible)
+                    {
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = true;
+                    }
+
+                    var color = strategy.ClosestSkinColor(SelectorControl.SelectedColor);
+
+                    SelectorControl.UpdateSelectedButton();
+
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+
+                    break;
+                }
+                // imperial medieval color selector end
             }
 
             ReloadProfilePreview();
@@ -1319,6 +1349,7 @@ namespace Content.Client.Lobby.UI
                     {
                         Skin.Visible = true;
                         RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
                     Skin.Value = strategy.ToUnary(Profile.Appearance.SkinColor);
@@ -1331,12 +1362,34 @@ namespace Content.Client.Lobby.UI
                     {
                         Skin.Visible = false;
                         RgbSkinColorContainer.Visible = true;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
                     _rgbSkinColorSelector.Color = strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
 
                     break;
                 }
+                // imperial medieval color selector start
+                case SkinColorationStrategyInput.Selector:
+                {
+                    if (!SelectorControl.Visible)
+                    {
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = true;
+                    }
+
+                    if (strategy is SelectorColoration selector)
+                    {
+                        SelectorControl.Colors = selector.Colors;
+                    }
+
+                    SelectorControl.SelectedColor = strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
+                    SelectorControl.Populate();
+
+                    break;
+                }
+                // imperial medieval color selector end
             }
         }
 

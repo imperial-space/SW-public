@@ -100,6 +100,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             SkinColorationStrategyInput.Unary => skinColoration.FromUnary(speciesPrototype.DefaultHumanSkinTone),
             SkinColorationStrategyInput.Color => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone),
+            SkinColorationStrategyInput.Selector => skinColoration.ClosestSkinColor(speciesPrototype.DefaultSkinTone), // imperial medieval color selector
         };
 
         return new(
@@ -155,6 +156,7 @@ public sealed partial class HumanoidCharacterAppearance : ICharacterAppearance, 
         {
             SkinColorationStrategyInput.Unary => strategy.FromUnary(random.NextFloat(0f, 100f)),
             SkinColorationStrategyInput.Color => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)),
+            SkinColorationStrategyInput.Selector => strategy.ClosestSkinColor(new Color(random.NextFloat(1), random.NextFloat(1), random.NextFloat(1), 1)), // imperial medieval color selector (todo: just randomize from available colors)
         };
 
         return new HumanoidCharacterAppearance(newHairStyle, newHairColor, newFacialHairStyle, newHairColor, newEyeColor, newSkinColor, new ());

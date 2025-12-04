@@ -273,7 +273,7 @@
     boltsDown: True
   - type: LockDoor
     accessLists:
-    - LegionTaver5
+    - LegionTavern5
 
 - type: entity
   parent: MedievalAirlock
@@ -283,7 +283,7 @@
     boltsDown: True
   - type: LockDoor
     accessLists:
-    - LegionTaver6
+    - LegionTavern6
 
 - type: entity
   parent: MedievalAirlock
@@ -293,7 +293,7 @@
     boltsDown: True
   - type: LockDoor
     accessLists:
-    - LegionTaver7
+    - LegionTavern7
 
 - type: entity
   parent: MedievalAirlock
@@ -303,7 +303,7 @@
     boltsDown: True
   - type: LockDoor
     accessLists:
-    - LegionTaver8
+    - LegionTavern8
 
 # Rebel tavern room doors
 

@@ -36,6 +36,9 @@ public enum SkinColorationStrategyInput
     /// A <see cref="Color" />
     /// </summary>
     Color,
+
+    // imperial medieval color select
+    Selector,
 }
 
 /// <summary>
@@ -298,5 +301,50 @@ public sealed partial class ClampedHslColoration : ISkinColorationStrategy
             hsl.Z = Math.Clamp(hsl.Z, minValue, maxValue);
 
         return Color.FromHsl(hsl);
+    }
+}
+
+// imperial medieval color selector
+[DataDefinition]
+[Serializable, NetSerializable]
+public sealed partial class SelectorColoration : ISkinColorationStrategy
+{
+    [DataField]
+    public List<Color> Colors;
+
+
+    public SkinColorationStrategyInput InputType => SkinColorationStrategyInput.Selector;
+
+    public Color ClosestSkinColor(Color color)
+    {
+        KeyValuePair<Color, double>? currentMin = null;
+
+        foreach (var col in Colors)
+        {
+            var range = Math.Pow(color.R - col.R, 2)
+                        + Math.Pow(color.G - col.G, 2)
+                        + Math.Pow(color.B - col.B, 2)
+                        + Math.Pow(color.A - col.A, 2);
+
+            if (currentMin == null)
+            {
+                currentMin = new KeyValuePair<Color, double>(col, range);
+            }
+            else
+            {
+                if(range > currentMin.Value.Value)
+                    continue;
+
+                currentMin = new KeyValuePair<Color, double>(col, range);
+            }
+
+        }
+
+        return currentMin?.Key ?? color;
+    }
+
+    public bool VerifySkinColor(Color color)
+    {
+        return Colors.Contains(color);
     }
 }

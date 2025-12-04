@@ -47,11 +47,8 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
-
-        // imperial medieval start
         public DbSet<NrpViolation> NrpViolations { get; set; } = null!; // Imperial medieval nrp
         public DbSet<NrpResolves> NrpResolves { get; set; } = null!; // Imperial medieval nrp
-
         public DbSet<Painting> Paintings { get; set; } = null!;
         public DbSet<Book> Books { get; set; } = null!;
         public DbSet<FlavorImage> FlavorImages { get; set; } = null!; // Imperial Medieval Flavor Images

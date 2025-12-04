@@ -24,6 +24,7 @@ using Content.Server.Actions;
 using System.Linq;
 using Content.Shared.Imperial.Zlevels;
 using Content.Server.Chat.Systems;
+using Robust.Server.Player;
 
 namespace Content.Server.Myrmex
 {
@@ -45,6 +46,7 @@ namespace Content.Server.Myrmex
         [Dependency] private readonly AppearanceSystem _appearance = default!;
         [Dependency] private readonly ActionsSystem _actions = default!;
         [Dependency] private readonly ChatSystem _chat = default!;
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
 
         public List<string> SporesPull = new()
         {
@@ -256,7 +258,13 @@ namespace Content.Server.Myrmex
             {
                 var time = EnsureComp<TimedDespawnComponent>(uid);
                 time.Lifetime = 0.03f;
-                Spawn(comp.LarvaID, coords);
+
+                var playerCount = _playerManager.PlayerCount;
+                var myrmexCount = ((playerCount + 50) / 50);
+                var myrmexCountInt = (int)MathF.Floor(myrmexCount);
+
+                for (int i = 0; i < myrmexCountInt; i++)
+                    Spawn(comp.LarvaID, coords);
             }
         }
 

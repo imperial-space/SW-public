@@ -24,6 +24,7 @@ using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
 using Robust.Shared.Player;
 using Content.Server.Ghost.Roles.Events;
+using Content.Shared.Imperial.Medieval.SkeletonInvasion;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 
