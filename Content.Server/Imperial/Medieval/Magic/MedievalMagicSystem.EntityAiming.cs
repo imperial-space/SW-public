@@ -8,10 +8,12 @@ using Content.Shared.Imperial.Medieval.Magic;
 using Content.Shared.Imperial.TargetOverlay.Events;
 using Content.Shared.Item;
 using Content.Shared.Physics;
+using Content.Shared.Tag;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Dynamics;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.Medieval.Magic;
 
@@ -23,10 +25,10 @@ public sealed partial class MedievalMagicSystem
 {
     private void InitializeEntityAimingSpells()
     {
-        SubscribeNetworkEvent<TargetOverlayShootEvent>(OnTargetСaptured);
+        SubscribeNetworkEvent<TargetOverlayShootEvent>(OnTargetCaptured);
     }
 
-    private void OnTargetСaptured(TargetOverlayShootEvent args)
+    private void OnTargetCaptured(TargetOverlayShootEvent args)
     {
         if (args.Sender == null) return;
 

@@ -21,6 +21,9 @@ using Robust.Shared.Player;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
+using Content.Server.Mind;
+using Content.Shared.Roles.Jobs;
+
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 

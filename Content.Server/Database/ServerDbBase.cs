@@ -589,8 +589,6 @@ namespace Content.Server.Database
         #region Imperial Medieval
 
 
-
-
         public async Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel)
         {
             await using var db = await GetDb(cancel);
