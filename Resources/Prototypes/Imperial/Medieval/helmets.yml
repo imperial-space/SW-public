@@ -396,6 +396,25 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingMedievalHeadHatHoodCloakAskalSkeleton
+  name: ClothingMedievalHeadHatHoodCloakAskalSkeleton
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/closed_cape_hat.rsi
+  - type: Clothing
+    equipDelay: 2
+    unequipDelay: 2
+    sprite: Imperial/Medieval/Clothing/Head/closed_cape_hat.rsi
+  - type: Tag
+    tags:
+    - HidesHair
+  - type: HideLayerClothing
+    slots:
+    - Hair
+  - type: Insulated
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingMedievalHeadHatHoodCloakBrown
   name: ClothingMedievalHeadHatHoodCloakBrown
   components:
@@ -693,6 +712,50 @@
     sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif_light.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/charmer_apocrif_light.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightGreenKnight
+  name: MedievalClothingHeadHelmetCharmerLightGreenKnight
+  description: MedievalClothingHeadHelmetCharmerLightGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakGreenKnight
+  name: MedievalClothingHeadHelmetCharmerWeakGreenKnight
+  description: MedievalClothingHeadHelmetCharmerWeakGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadHelmetCharmerGreenKnight
+  name: MedievalClothingHeadHelmetCharmerGreenKnight
+  description: MedievalClothingHeadHelmetCharmerGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCollegiumPurpleHat
+  id: MedievalClothingHeadHelmeCollegiumHatGreenKnight
+  name: Collegium White Hat.
+  description: The white magic hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight

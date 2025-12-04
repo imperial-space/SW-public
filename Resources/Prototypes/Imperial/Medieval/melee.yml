@@ -2533,6 +2533,74 @@
     state: icon
 
 - type: entity
+  name: claymore
+  parent: MedievalIronClaymore
+  id: MedievalIronClaymoreKosmos
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: steel claymore
+  parent: MedievalIronClaymoreSteel
+  id: MedievalIronClaymoreSteelKosmos
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerT3
+  id: MedievalDaggerT3Kosmos
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+    size: Small
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerT3Steel
+  id: MedievalDaggerT3SteelKosmos
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+    size: Small
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+
+- type: entity
   name: falshion
   parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionT3Legion
@@ -4913,3 +4981,13 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
+
+- type: entity
+  name: baseball bat
+  parent: BaseBallBat
+  id: BaseBallBatAlaraniel
+  description: A robust baseball bat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bat.rsi
+    state: icon
