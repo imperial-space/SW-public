@@ -16,4 +16,7 @@ public sealed partial class WerewolfComponent : Component
 
     [AutoNetworkedField]
     public Dictionary<string, EntityUid> Actions = new();
+
+    public TimeSpan? RevertTime;
+    public TimeSpan? NextRevertPopup;
 }

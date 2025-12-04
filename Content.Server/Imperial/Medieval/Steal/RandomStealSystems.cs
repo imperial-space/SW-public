@@ -61,7 +61,11 @@ public sealed partial class RandomStealSystem : EntitySystem
             {
                 if (TryComp<StorageComponent>(targetEntity, out var storage) && storage.Container.ContainedEntities.Any())
                 {
-                    targetEntities.Add(_random.Pick(storage.Container.ContainedEntities.Where(x => comp.Sizes.Contains(CompOrNull<ItemComponent>(x)?.Size ?? "")).ToList()));
+                    var potentialTargets = storage.Container.ContainedEntities.Where(x => comp.Sizes.Contains(CompOrNull<ItemComponent>(x)?.Size ?? "")).ToList();
+
+                    if (potentialTargets.Any())
+                        targetEntities.Add(_random.Pick(potentialTargets));
+
                     continue;
                 }
 

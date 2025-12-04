@@ -95,7 +95,7 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
         _strapHealResistance = 0;
         _healItemMod = 1f;
         _spreaders.Clear();
-        _contactSpreadMod = 0f;
+        _contactSpreadChance = 0f;
         _blockersEfficiency = 1f;
         _minSmellLevel = 50f;
         _allergyRandom = new();

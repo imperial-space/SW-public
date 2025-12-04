@@ -91,13 +91,17 @@ namespace Content.Server.Imperial.Medieval.Flavors
         }
         public override bool TryExamine(EntityUid user, Entity<DetailExaminableComponent> ent)
         {
-            if (!EntityManager.TryGetComponent<FlavorImageComponent>(ent, out var imageComponent) || imageComponent.ImagePath == null)
-                return false;
+            if (!EntityManager.TryGetComponent<FlavorImageComponent>(ent, out var imageComponent))
+                return true;
 
             if (!_players.TryGetSessionByEntity(user, out var session))
-                return false;
+                return true;
 
-            _netManager.ServerSendMessage(new OpenFlavorWindowMsg() { Description = ent.Comp.Content, Path = imageComponent.ImagePath }, session.Channel);
+            var path = string.Empty;
+            if (imageComponent.ImagePath != null)
+                path = imageComponent.ImagePath;
+
+            _netManager.ServerSendMessage(new OpenFlavorWindowMsg() { Description = ent.Comp.Content, Path = path }, session.Channel);
             return true;
         }
     }

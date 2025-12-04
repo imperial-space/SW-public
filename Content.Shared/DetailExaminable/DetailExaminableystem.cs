@@ -20,8 +20,10 @@ public sealed class DetailExaminableSystem : EntitySystem
 
     private void OnGetExamineVerbs(Entity<DetailExaminableComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
     {
-        if (Identity.Name(args.Target, EntityManager) != MetaData(args.Target).EntityName)
-            return;
+        // Imperial Medieval Flavor Images Comment Begin
+        //if (Identity.Name(args.Target, EntityManager) != MetaData(args.Target).EntityName)
+        //    return;
+        // Imperial Medieval Flavor Images Comment End
 
         var detailsRange = _examine.IsInDetailsRange(args.User, ent);
 

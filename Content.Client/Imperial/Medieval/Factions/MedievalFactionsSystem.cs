@@ -2,6 +2,8 @@ using Content.Client.Imperial.Medieval.Factions.UI;
 using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Imperial.Medieval.Factions.Prototypes;
+using Content.Shared.StatusIcon;
+using Content.Shared.StatusIcon.Components;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
@@ -15,6 +17,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
     [Dependency] private readonly IUserInterfaceManager _uiMan = default!;
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
 
     public static Dictionary<FactionMemberGroup, Color> GroupColors = new()
     {
@@ -26,10 +29,16 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
         { FactionMemberGroup.Omega, Color.FromHex("#6F4679") },
     };
 
+    private ProtoId<FactionIconPrototype> _friendIcon = "FactionFriend";
+    private ProtoId<FactionIconPrototype> _headIcon = "FactionHead";
+
     public override void Initialize()
     {
         base.Initialize();
         SubscribeLocalEvent<FactionDataContainerComponent, AfterAutoHandleStateEvent>(AfterAutoHandleState);
+
+        SubscribeLocalEvent<MedievalFactionMemberComponent, GetStatusIconsEvent>(OnGetStatusIcons);
+
         SubscribeNetworkEvent<OpenOfferFactionRelationsEvent>(OnOpenOfferWindow);
         SubscribeNetworkEvent<OpenAcceptFactionRelationsEvent>(OnOpenAcceptWindow);
         SubscribeNetworkEvent<OpenFactionRelationsRequestEvent>(OnOpenRequestWindow);
@@ -55,6 +64,24 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
                                     friends.MemberID);
 
         _uiMan.GetUIController<FactionMenuUiController>().PopulateMenu(menuData);
+    }
+
+    private void OnGetStatusIcons(EntityUid uid, MedievalFactionMemberComponent comp, ref GetStatusIconsEvent args)
+    {
+        if (uid == _player.LocalEntity)
+            return;
+
+        if (!TryComp<MedievalFactionMemberComponent>(_player.LocalEntity, out var playerFaction))
+            return;
+
+        if (comp.Faction != playerFaction.Faction)
+            return;
+
+        if (Shared.IdentityManagement.Identity.Name(uid, EntityManager, _player.LocalEntity) != Name(uid))
+            return;
+
+        var iconId = comp.MenuAccess == FactionMenuAccess.Full ? _headIcon : _friendIcon;
+        args.StatusIcons.Add(_proto.Index(iconId));
     }
 
     private void OnOpenOfferWindow(OpenOfferFactionRelationsEvent ev)

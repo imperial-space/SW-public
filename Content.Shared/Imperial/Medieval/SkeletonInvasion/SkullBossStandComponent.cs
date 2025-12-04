@@ -1,11 +1,12 @@
 using Robust.Shared.Audio;
+using Robust.Shared.GameStates;
 
-namespace Content.Server.Imperial.Medieval.SkeletonInvasion;
+namespace Content.Shared.Imperial.Medieval.SkeletonInvasion;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
 public sealed partial class SkullBossStandComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
     public Dictionary<int, bool> AttachedParts = new();
 
     public List<string> AttachedProtos = new();
