@@ -74,6 +74,7 @@
     MedievalWoodenShieldKnight: [MedievalRoyalWoodenShieldKnight]
     MedievalWoodenShield: [MedievalRoyalWoodenShield]
     MedievalWoodenShieldBuckler: [MedievalWoodenShieldBucklerRoyal]
+    MedievalClothingOuterArmorLeatherHeavy: [MedievalClothingOuterLeafRoyalArmorLeatherHeavy]
     MedievalClothingOuterArmorLeatherLight: [MedievalClothingOuterRoyalArmorLeatherLight]
     MedievalClothingOuterArmorStudded: [MedievalClothingOuterArmorFurRoyal]
     MedievalClothingOuterArmorLeather: [MedievalClothingOuterRoyalArmorLeather]
