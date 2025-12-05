@@ -35,7 +35,7 @@
     damageCoefficient: 0.95
 
 - type: entity
-  parent: MedievalClothingOuterArmorFur
+  parent: MedievalClothingOuterArmorStudded
   id: MedievalClothingOuterArmorFurRoyal
   name: fur armor
   description: An armored vest with fur plates to protect against melee weapons.
