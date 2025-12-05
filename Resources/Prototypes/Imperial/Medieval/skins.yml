@@ -75,7 +75,7 @@
     MedievalWoodenShield: [MedievalRoyalWoodenShield]
     MedievalWoodenShieldBuckler: [MedievalWoodenShieldBucklerRoyal]
     MedievalClothingOuterArmorLeatherLight: [MedievalClothingOuterRoyalArmorLeatherLight]
-    MedievalClothingOuterArmorFur: [MedievalClothingOuterArmorFurRoyal]
+    MedievalClothingOuterArmorStudded: [MedievalClothingOuterArmorFurRoyal]
     MedievalClothingBackpackSatchelLeather: [MedievalClothingBackpackSatchelLeatherRoyal]
     MedievalClothingBackpackSatchelLeather2: [MedievalClothingBackpackSatchelLeatherRoyal]
     MedievalClothingBackpackSatchelLeather3: [MedievalClothingBackpackSatchelLeatherRoyal]
