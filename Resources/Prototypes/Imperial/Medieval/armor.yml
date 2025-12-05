@@ -1309,6 +1309,39 @@
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterArmorCharmerBib
+  name: MedievalClothingOuterArmorCharmerBib
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakBib
+  name: MedievalClothingOuterArmorCharmerWeakBib
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightBib
+  name: MedievalClothingOuterArmorCharmerLightBib
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmer
   id: MedievalClothingOuterArmorCharmerApocrif
   name: MedievalClothingOuterArmorCharmerApocrif
   description: An upgraded armor with iron plates to protect against melee weapons.

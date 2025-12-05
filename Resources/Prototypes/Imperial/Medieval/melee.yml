@@ -2616,7 +2616,7 @@
     - state: icon
     - state: unshaded
       shader: unshaded
-  
+
 - type: entity
   name: iron zweihander
   parent: MedievalIronZweihander
@@ -5059,3 +5059,47 @@
   - type: Sprite
     sprite: Imperial/Medieval/Melee/bat.rsi
     state: icon
+
+- type: entity
+  name: MedievalSpear
+  parent: MedievalSpearT3
+  id: MedievalSpearT3Bib
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear
+
+- type: entity
+  name: medieval spear
+  parent: MedievalSpearT3Steel
+  id: MedievalSpearT3SteelBib
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear
+
+- type: entity
+  name: Pilum
+  parent: MedievalSpearPilum
+  id: MedievalSpearPilumBib
+  description: Just a spear
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear
+
+- type: entity
+  name: Sulica
+  parent: MedievalSpearSulica
+  id: MedievalSpearSulicaBib
+  description: Just a spear
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear
