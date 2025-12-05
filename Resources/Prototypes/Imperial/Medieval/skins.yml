@@ -168,6 +168,10 @@
     MedievalClothingNeckCloakClanMerc: [MedievalClothingNeckCloakDarkBlueGold]
     MedievalClothingNeckCloakClanKayot: [MedievalClothingNeckCloakDarkBlueGold]
     MedievalClothingNeckCloakClanWolf: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalIronClaymore: [MedievalIronClaymoreAbibi]
+    MedievalIronClaymoreSteel: [MedievalIronClaymoreSteelAbibi]
+    MedievalIronZweihander: [MedievalIronZweihanderAbibi]
+    MedievalIronZweihanderSteel: [MedievalIronZweihanderSteelAbibi]
 
 - type: customization
   id: drgnar

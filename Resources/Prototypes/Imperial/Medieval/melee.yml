@@ -2567,6 +2567,74 @@
       shader: unshaded
 
 - type: entity
+  name: claymore
+  parent: MedievalIronClaymore
+  id: MedievalIronClaymoreAbibi
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: steel claymore
+  parent: MedievalIronClaymoreSteel
+  id: MedievalIronClaymoreSteelAbibi
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: steel zweihander
+  parent: MedievalIronZweihanderSteel
+  id: MedievalIronZweihanderSteelAbibi
+  description: A medieval zweihander.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  
+- type: entity
+  name: iron zweihander
+  parent: MedievalIronZweihander
+  id: MedievalIronZweihanderAbibi
+  description: A medieval zweihander.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
   name: dagger
   parent:  MedievalDaggerT3
   id: MedievalDaggerT3Kosmos
