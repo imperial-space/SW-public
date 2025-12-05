@@ -46,14 +46,14 @@
     MedievalClothingHeadHelmetHoodHelmet: [MedievalClothingHeadHelmetGoblinSlayer]
     MedievalIronShieldBuckler: [MedievalIronShieldBucklerGoblinSlayer]
     MedievalIronGloves: [MedievalIronGlovesGoblinSlayer, MedievalRoyalIronGloves]
-    Log: [MedievalPasportLegionCatFireBattle, MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth67, MedievalClothingUniformJumpsuitShitCloth70, MedievalClothingHandsRoyalGloves, MedievalClothingNeckRoyalCloakAlt, MedievalClothingNeckRoyalCloak, ClothingBeltRoyalSheath, MedievalClothingRoyalBoots, MedievalClothingOuterRoyalCoat, MedievalClothingRoyalMask, MedievalClothingHeadRoyalHoop, MedievalClothingHeadRoyalHelmet, MedievalClothingHeadHatRoyalChaplain, PlushieVikta, MedievalClothingUniformJumpsuitShitCloth75, MedievalClothingRoyalChaplainBoots, MedievalClothingOuterRoyalChaplain, MedievalClothingUniformJumpsuitShitCloth76, MedievalClothingHeadHelmetLegionOpcionRoyal, MedievalClothingHeadHelmetLegionLegatRoyal, MedievalClothingHeadHelmetRoyalLegioner]
+    Log: [MedievalPasportLegionCatFireBattle, MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth67, MedievalClothingUniformJumpsuitShitCloth70, MedievalClothingHandsRoyalGloves, MedievalClothingNeckRoyalCloakAlt, MedievalClothingNeckRoyalCloak, ClothingBeltRoyalSheath, MedievalClothingRoyalBoots, MedievalClothingOuterRoyalCoat, MedievalClothingRoyalMask, MedievalClothingHeadRoyalHoop, MedievalClothingHeadRoyalHelmet, MedievalClothingHeadHatRoyalChaplain, PlushieVikta, MedievalClothingUniformJumpsuitShitCloth75, MedievalClothingRoyalChaplainBoots, MedievalClothingOuterRoyalChaplain, MedievalClothingUniformJumpsuitShitCloth76, MedievalClothingHeadHelmetLegionOpcionRoyal, MedievalClothingHeadHelmetLegionLegatRoyal, MedievalClothingHeadHelmetRoyalLegioner, MedievalClothingHeadHelmetLegionOpcionRoyal2]
     MedievalFalshionT3: [MedievalIronRoyalSword]
     MedievalFalshionT3Steel: [MedievalSteelRoyalSword]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterAltArmorCharmerLightIns]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadAltHelmetCharmerIns]
     MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterAltArmorCharmerLightLegion]
     MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadAltHelmetCharmerLegion]
-    MedievalClothingHeadHelmetLegionOpcion: [MedievalClothingHeadHelmetLegionOpcionRoyal]
+    MedievalClothingHeadHelmetLegionOpcion: [MedievalClothingHeadHelmetLegionOpcionRoyal, MedievalClothingHeadHelmetLegionOpcionRoyal2]
     MedievalClothingHeadHelmetLegionLegat: [MedievalClothingHeadHelmetLegionLegatRoyal]
     MedievalClothingHeadHelmetLegionLegioner: [MedievalClothingHeadHelmetRoyalLegioner]
     MedievalClothingHeadHelmetLegionRecruit: [MedievalClothingHeadHelmetRoyalLegioner]
@@ -73,9 +73,11 @@
     MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterRoyalArmorIronCuirass]
     MedievalWoodenShieldKnight: [MedievalRoyalWoodenShieldKnight]
     MedievalWoodenShield: [MedievalRoyalWoodenShield]
-    MedievalWoodenShieldBuckler: [MedievalClothingHeadHelmetLegionLegatRoyal]
+    MedievalWoodenShieldBuckler: [MedievalWoodenShieldBucklerRoyal]
+    MedievalClothingOuterArmorLeatherHeavy: [MedievalClothingOuterLeafRoyalArmorLeatherHeavy]
     MedievalClothingOuterArmorLeatherLight: [MedievalClothingOuterRoyalArmorLeatherLight]
-    MedievalClothingOuterArmorFur: [MedievalClothingOuterArmorFurRoyal]
+    MedievalClothingOuterArmorStudded: [MedievalClothingOuterArmorFurRoyal]
+    MedievalClothingOuterArmorLeather: [MedievalClothingOuterRoyalArmorLeather]
     MedievalClothingBackpackSatchelLeather: [MedievalClothingBackpackSatchelLeatherRoyal]
     MedievalClothingBackpackSatchelLeather2: [MedievalClothingBackpackSatchelLeatherRoyal]
     MedievalClothingBackpackSatchelLeather3: [MedievalClothingBackpackSatchelLeatherRoyal]
@@ -93,13 +95,25 @@
   map:
     Log: [ MedievalClothingElectroMask, ClothingEyesElectroBlindfold, MedievalClothingNeckCloakGreenKnight, MedaljonGreenKnight ]
     MedievalClothingHeadHelmetCrusader: [ MedievalClothingHeadHelmetGreenKnight ]
+    MedievalClothingHeadHelmetBacinet: [ MedievalClothingHeadHelmetGreenKnight ]
+    MedievalClothingHeadHelmetShapel: [ MedievalClothingHeadHelmetGreenKnight ]
+    MedievalClothingHeadHelmetNazal: [ MedievalClothingHeadHelmetGreenKnight ]
     MedievalClothingOuterArmorBrigantin: [ MedievalClothingOuterArmorBrigantinGreenKnight ]
     MedievalClothingOuterArmorIronCuirass: [ MedievalClothingOuterArmorIronCuirassGreenKnight ]
+    MedievalClothingOuterArmorIronCuirassLight: [ MedievalClothingOuterArmorIronCuirassLightGreenKnight ]
+    MedievalClothingOuterArmorChainMail: [ MedievalClothingOuterArmorChainMailGreenKnight ]
     MedievalClothingFeetSteel: [ MedievalClothingFeetSteelGreenKnight ]
     MedievalIronGloves: [ MedievalIronGlovesGreenKnight ]
     MedievalClothingNeckCloakClanEagle: [ MedievalClothingNeckCloakGreenKnightLegion ]
     MedievalClothingNeckCloakClanMerc: [ MedievalClothingNeckCloakGreenKnightMerc ]
     MedievalClothingNeckCloakClanWiz: [ MedievalClothingNeckCloakGreenKnightCollegia ]
+    MedievalClothingOuterArmorCharmerWeak: [ MedievalClothingOuterArmorCharmerWeakGreenKnight ]
+    MedievalClothingHeadHelmetCharmerWeak: [ MedievalClothingHeadHelmetCharmerWeakGreenknight ]
+    MedievalClothingOuterArmorCharmerLight: [ MedievalClothingOuterArmorCharmerLightGreenKnight ]
+    MedievalClothingHeadHelmetCharmerLight: [ MedievalClothingHeadHelmetCharmerLightGreenKnight ]
+    MedievalClothingOuterArmorCharmer: [ MedievalClothingOuterArmorCharmerGreenKnight ]
+    MedievalClothingHeadHelmetCharmer: [ MedievalClothingHeadHelmetCharmerGreenKnight ]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [ MedievalClothingHeadHelmeCollegiumHatGreenKnight ]
 
 - type: customization
   id: arelover
@@ -156,6 +170,10 @@
     MedievalClothingNeckCloakClanMerc: [MedievalClothingNeckCloakDarkBlueGold]
     MedievalClothingNeckCloakClanKayot: [MedievalClothingNeckCloakDarkBlueGold]
     MedievalClothingNeckCloakClanWolf: [MedievalClothingNeckCloakDarkBlueGold]
+    MedievalIronClaymore: [MedievalIronClaymoreAbibi]
+    MedievalIronClaymoreSteel: [MedievalIronClaymoreSteelAbibi]
+    MedievalIronZweihander: [MedievalIronZweihanderAbibi]
+    MedievalIronZweihanderSteel: [MedievalIronZweihanderSteelAbibi]
 
 - type: customization
   id: drgnar
@@ -249,3 +267,27 @@
   map:
     MedievalClothingOuterArmorCharmerWeak: [ MedievalClothingOuterArmorCharmerWeakGreen ]
     MedievalClothingHeadHelmetCharmerWeak: [ MedievalClothingHeadHelmetCharmerWeakGreen ]
+
+- type: customization
+  id: kosmos
+  holder: efd01ecb-d2cf-4544-a0b3-b6e6c40d43b3
+  map:
+    MedievalIronClaymore: [MedievalIronClaymoreKosmos]
+    MedievalIronClaymoreSteel: [MedievalIronClaymoreSteelKosmos]
+    MedievalDaggerT3: [MedievalDaggerT3Kosmos]
+    MedievalDaggerT3Steel: [MedievalDaggerT3SteelKosmos]
+
+- type: customization
+  id: askal02
+  holder: 895e9d44-a476-4c66-b4bd-bbb52541533a
+  map:
+    Log: [ClothingMaskAskalSkeleton, MedievalClothingNeckCloakAskalSkeleton, MedievalClothingHandsAskalSkeleton]
+
+- type: customization
+  id: whois
+  holder: 4fedc1a9-e31c-4fcd-b770-dc30f78ead2d
+  map:
+    MedievalWeaponCrossbow: [MedievalWeaponCrossbowWhois]
+    MedievalWeaponBow: [MedievalWeaponBowWhois]
+    MedievalQuiver: [MedievalQuiverWhois]
+    MedievalQuiverSteel: [MedievalQuiverSteelWhois]

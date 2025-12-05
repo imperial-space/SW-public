@@ -35,7 +35,7 @@
     damageCoefficient: 0.95
 
 - type: entity
-  parent: MedievalClothingOuterArmorFur
+  parent: MedievalClothingOuterArmorStudded
   id: MedievalClothingOuterArmorFurRoyal
   name: fur armor
   description: An armored vest with fur plates to protect against melee weapons.
@@ -286,6 +286,17 @@
     sprite: Imperial/Medieval/Clothing/Armor/royal_leather_light.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/royal_leather_light.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorLeather
+  id: MedievalClothingOuterRoyalArmorLeather
+  name: leather armor
+  description: An armored vest with fur plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/royal_leather.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/royal_leather.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorLeather
@@ -1276,6 +1287,72 @@
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterArmorCharmerGreenKnight
+  name: MedievalClothingOuterArmorCharmerGreenKnight
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakGreenKnight
+  name: MedievalClothingOuterArmorCharmerWeakGreenKnight
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightGreenKnight
+  name: MedievalClothingOuterArmorCharmerLightGreenKnight
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterArmorCharmerBib
+  name: MedievalClothingOuterArmorCharmerBib
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakBib
+  name: MedievalClothingOuterArmorCharmerWeakBib
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightBib
+  name: MedievalClothingOuterArmorCharmerLightBib
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/bib_outer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmer
   id: MedievalClothingOuterArmorCharmerApocrif
   name: MedievalClothingOuterArmorCharmerApocrif
   description: An upgraded armor with iron plates to protect against melee weapons.
@@ -1954,6 +2031,28 @@
     sprite: Imperial/Medieval/Clothing/Gloves/greenknight.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/greenknight.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirassLight
+  id: MedievalClothingOuterArmorIronCuirassLightGreenKnight
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalClothingOuterArmorChainMailGreenKnight
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorIronCuirass

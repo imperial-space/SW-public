@@ -456,6 +456,30 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakBib
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/bib_neck.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakAskalSkeleton
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/closed_cape.rsi
+  - type: Insulated
+  - type: ToggleableClothing
+    clothingPrototype: ClothingMedievalHeadHatHoodCloakAskalSkeleton
+    requiredSlot:
+    - neck
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckCloakCivGrey
   name: grey cloak
   description: A cloak to distinguish allies.
