@@ -107,21 +107,11 @@ namespace Content.Client.Imperial.Medieval.Flavors
         }
         public void OpenFlavorWindow(OpenFlavorWindowMsg msg)
         {
-            if (msg.Path == null)
-                return;
-
-            if (!_resources.UserData.Exists(new($"/{msg.Path}.webp")))
-                return;
-
-            var window = new FlavorExamineWindow(msg.Description, msg.Path);
-            window.OpenCentered();
+            new FlavorExamineWindow(msg.Description, msg.Path).OpenCentered();
         }
         public override bool TryExamine(EntityUid user, Entity<DetailExaminableComponent> ent)
         {
-            if (EntityManager.TryGetComponent<FlavorImageComponent>(ent, out var imageComponent) && imageComponent.ImagePath != null && _resources.UserData.Exists(new($"/{imageComponent.ImagePath}.webp")))
-                return true;
-
-            return false;
+            return true;
         }
     }
 }

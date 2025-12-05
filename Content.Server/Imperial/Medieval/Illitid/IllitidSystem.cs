@@ -164,7 +164,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
 
                 if (TryComp<SkillsComponent>(args.Target, out var skills))
                 {
-                    if (skills.Levels.TryGetValue("Intelligence", out var level) && level > 15)
+                    if (skills.Levels.TryGetValue("Intelligence", out var level) && level > 9)
                     {
                         _popup.PopupEntity("Слишком крепкий разум", uid, uid);
                         return;
