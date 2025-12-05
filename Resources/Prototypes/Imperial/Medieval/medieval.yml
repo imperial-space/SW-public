@@ -5549,7 +5549,7 @@
         enum.MedievalMapUIKey.Key:
           type: MedievalMapBoundUserInterface
     - type: MedievalMap
-      mapTexturePath: /Textures/Imperial/Medieval/Misc/map_tabletop.rsi/tabletop.png
+      mapTexturePath: /Textures/Imperial/Medieval/Misc/map_tabletop/tabletop.png
 
 - type: entity
   parent: BaseBoardTabletop
@@ -8104,13 +8104,11 @@
     state: default
   - type: Item
     size: Normal
-  - type: TriggerOnUse
   - type: SpawnItemsOnUse
     items:
     - id: MedievalHorseTransport
     sound:
       path: /Audio/Items/Whistle/trench_whistle_1.ogg
-  - type: DeleteOnTrigger
 
 - type: entity
   parent: MedievalHorseWhistle
