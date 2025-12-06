@@ -1145,8 +1145,8 @@
       - state: inhand-right-leg
 
 - type: entity
-  parent: MedievalClothingHeadHelmetLegionOpcion
-  id: MedievalClothingHeadHelmetLegionOpcionRoyal2
+  parent: MedievalClothingHeadHelmetLegionOpcionWeak
+  id: MedievalClothingHeadHelmetLegionOpcionWeakRoyal
   name: shapel helmet
   description: Medieval shapel helmet
   components:
