@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-  "copyright": "by bib",
+  "copyright": "by @crookielv",
   "size": {
     "x": 32,
     "y": 32
@@ -11,17 +11,7 @@
       "name": "icon"
     },
     {
-      "name": "equipped-MASK",
-      "directions": 4,
-      "delays": [
-        [0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2],
-        [0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2],
-        [0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2],
-        [0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2,0.2]
-    ]
-    },
-    {
-      "name": "up-equipped-MASK",
+      "name": "equipped-FEET",
       "directions": 4
     },
     {

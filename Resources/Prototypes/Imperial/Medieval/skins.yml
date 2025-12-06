@@ -46,14 +46,15 @@
     MedievalClothingHeadHelmetHoodHelmet: [MedievalClothingHeadHelmetGoblinSlayer]
     MedievalIronShieldBuckler: [MedievalIronShieldBucklerGoblinSlayer]
     MedievalIronGloves: [MedievalIronGlovesGoblinSlayer, MedievalRoyalIronGloves]
-    Log: [MedievalPasportLegionCatFireBattle, MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth67, MedievalClothingUniformJumpsuitShitCloth70, MedievalClothingHandsRoyalGloves, MedievalClothingNeckRoyalCloakAlt, MedievalClothingNeckRoyalCloak, ClothingBeltRoyalSheath, MedievalClothingRoyalBoots, MedievalClothingOuterRoyalCoat, MedievalClothingRoyalMask, MedievalClothingHeadRoyalHoop, MedievalClothingHeadRoyalHelmet, MedievalClothingHeadHatRoyalChaplain, PlushieVikta, MedievalClothingUniformJumpsuitShitCloth75, MedievalClothingRoyalChaplainBoots, MedievalClothingOuterRoyalChaplain, MedievalClothingUniformJumpsuitShitCloth76, MedievalClothingHeadHelmetLegionOpcionRoyal, MedievalClothingHeadHelmetLegionLegatRoyal, MedievalClothingHeadHelmetRoyalLegioner, MedievalClothingHeadHelmetLegionOpcionRoyal2]
+    Log: [MedievalPasportLegionCatFireBattle, MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth67, MedievalClothingUniformJumpsuitShitCloth70, MedievalClothingHandsRoyalGloves, MedievalClothingNeckRoyalCloakAlt, MedievalClothingNeckRoyalCloak, ClothingBeltRoyalSheath, MedievalClothingRoyalBoots, MedievalClothingOuterRoyalCoat, MedievalClothingRoyalMask, MedievalClothingHeadRoyalHoop, MedievalClothingHeadRoyalHelmet, MedievalClothingHeadHatRoyalChaplain, PlushieVikta, MedievalClothingUniformJumpsuitShitCloth75, MedievalClothingRoyalChaplainBoots, MedievalClothingOuterRoyalChaplain, MedievalClothingUniformJumpsuitShitCloth76, MedievalClothingHeadHelmetLegionOpcionRoyal, MedievalClothingHeadHelmetLegionLegatRoyal, MedievalClothingHeadHelmetRoyalLegioner, MedievalClothingHeadHelmetLegionOpcionWeakRoyal]
     MedievalFalshionT3: [MedievalIronRoyalSword]
     MedievalFalshionT3Steel: [MedievalSteelRoyalSword]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterAltArmorCharmerLightIns]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadAltHelmetCharmerIns]
     MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterAltArmorCharmerLightLegion]
     MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadAltHelmetCharmerLegion]
-    MedievalClothingHeadHelmetLegionOpcion: [MedievalClothingHeadHelmetLegionOpcionRoyal, MedievalClothingHeadHelmetLegionOpcionRoyal2]
+    MedievalClothingHeadHelmetLegionOpcion: [MedievalClothingHeadHelmetLegionOpcionRoyal]
+    MedievalClothingHeadHelmetLegionOpcionWeak: [MedievalClothingHeadHelmetLegionOpcionWeakRoyal]
     MedievalClothingHeadHelmetLegionLegat: [MedievalClothingHeadHelmetLegionLegatRoyal]
     MedievalClothingHeadHelmetLegionLegioner: [MedievalClothingHeadHelmetRoyalLegioner]
     MedievalClothingHeadHelmetLegionRecruit: [MedievalClothingHeadHelmetRoyalLegioner]
@@ -289,5 +290,40 @@
   map:
     MedievalWeaponCrossbow: [MedievalWeaponCrossbowWhois]
     MedievalWeaponBow: [MedievalWeaponBowWhois]
+    BaseBow: [BaseBowWhois]
     MedievalQuiver: [MedievalQuiverWhois]
     MedievalQuiverSteel: [MedievalQuiverSteelWhois]
+
+- type: customization
+  id: konnor
+  holder: 0499397c-7ac1-47f3-b956-c04c9b8dbbcd
+  map:
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightKonnor]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightKonnor]
+    Log: [MedievalClothingNeckCloakKonnor, MedievalClothingHandsGlovesClothKonnor]
+    MedievalShoesChamber: [MedievalShoesChamberKonnor]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerKonnor]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerKonnor]
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakKonnor]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakKonnor]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatKonnor]
+
+- type: customization
+  id: bib
+  holder: ff1cb225-6404-47a3-b7fa-06604e9bbee5
+  map:
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightBib]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightBib]
+    Log: [MedievalClothingBootsBib, MedievalClothingNeckCloakBib, ClothingMaskBib]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerBib]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerBib]
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakBib]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakBib]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatBib]
+    MedievalSpearT3Steel: [MedievalSpearT3SteelBib]
+
+- type: customization
+  id: alaraniel
+  holder: eb910132-4447-4ab4-bb06-3dc5277783f3
+  map:
+    BaseBallBat: [BaseBallBatAlaraniel]

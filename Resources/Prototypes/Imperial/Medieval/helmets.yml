@@ -747,6 +747,50 @@
     sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightKonnor
+  name: MedievalClothingHeadHelmetCharmerLightKonnor
+  description: MedievalClothingHeadHelmetCharmerLightKonnor
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/konnor_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/konnor_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakKonnor
+  name: MedievalClothingHeadHelmetCharmerWeakKonnor
+  description: MedievalClothingHeadHelmetCharmerWeakKonnor
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/konnor_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/konnor_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadHelmetCharmerKonnor
+  name: MedievalClothingHeadHelmetCharmerKonnor
+  description: MedievalClothingHeadHelmetCharmerKonnor
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/konnor_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/konnor_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCollegiumPurpleHat
+  id: MedievalClothingHeadHelmeCollegiumHatKonnor
+  name: Collegium White Hat.
+  description: The white magic hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/konnor_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/konnor_charmer.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetCollegiumPurpleHat
   id: MedievalClothingHeadHelmeCollegiumHatGreenKnight
   name: Collegium White Hat.
@@ -1145,8 +1189,8 @@
       - state: inhand-right-leg
 
 - type: entity
-  parent: MedievalClothingHeadHelmetLegionOpcion
-  id: MedievalClothingHeadHelmetLegionOpcionRoyal2
+  parent: MedievalClothingHeadHelmetLegionOpcionWeak
+  id: MedievalClothingHeadHelmetLegionOpcionWeakRoyal
   name: shapel helmet
   description: Medieval shapel helmet
   components:
@@ -1592,6 +1636,10 @@
     sprite: Imperial/Medieval/Clothing/Head/viking.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/viking.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHeadHelmetShapel
