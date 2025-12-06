@@ -926,6 +926,28 @@
     size: Ginormous
 
 - type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverWhois
+  name: MedievalQuiver
+  description: A belt used to hold arrows and bolts.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Belt/quiver_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Belt/quiver_whois.rsi
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelWhois
+  name: MedievalQuiverSteel
+  description: A belt used to hold arrows and bolts.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Belt/quiver_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Belt/quiver_whois.rsi
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiverSteel
   name: MedievalQuiverSteel
@@ -1716,6 +1738,24 @@
       - state: unshaded
         shader: unshaded
 
+- type: entity
+  parent: ClothingMaskPlague
+  id: ClothingMaskAskalSkeleton
+  name: mask
+  description: mask
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Mask/brass_skull.rsi
+    layers:
+      - state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Mask/brass_skull.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-MASK
+      - state: eyes_light
+        shader: unshaded
+
 - type: Tag
   id: MedievalIronRoyalSword
 - type: Tag
@@ -1800,6 +1840,28 @@
     sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
 
 - type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBootsLight
+  name: MedievalClothingApocrifBootsLight
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalClothingApocrifBootsWeak
+  name: MedievalClothingApocrifBootsWeak
+  description: MedievalClothingApocrifBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/blackboots.rsi
+
+- type: entity
   parent: MedievalClothingHandsGlovesCloth
   id: MedievalClothingHandsRoyalGloves
   name: Cloth Gloves
@@ -1812,6 +1874,20 @@
   - type: Item
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/royalgloves.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsAskalSkeleton
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/brass_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/brass_gloves.rsi
 
 - type: entity
   parent: MedievalClothingHandsGlovesCloth
@@ -2093,3 +2169,50 @@
   - type: Item
     size: Small
     storedRotation: -90
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth77
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_77.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_77.rsi
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth78
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_78.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_78.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsGlovesClothBib
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/bib_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/bib_gloves.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingBootsBib
+  name: MedievalClothingBootsBib
+  description: MedievalClothingBootsBib
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/bib_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/bib_boots.rsi

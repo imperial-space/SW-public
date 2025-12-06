@@ -50,6 +50,8 @@ namespace Content.Client.Lobby.UI
         private readonly MarkingManager _markingManager;
         private readonly JobRequirementsManager _requirements;
         private readonly LobbyUIController _controller;
+        private readonly Imperial.Medieval.Flavors.ClientFlavorManager _flavors; // Imperial Medieval Flavor Images
+        private readonly Shared.Players.PlayTimeTracking.ISharedPlaytimeManager _playtime; // Imperial Medieval Flavor Images
 
         private readonly SpriteSystem _sprite;
 
@@ -119,7 +121,8 @@ namespace Content.Client.Lobby.UI
             IPrototypeManager prototypeManager,
             IResourceManager resManager,
             JobRequirementsManager requirements,
-            MarkingManager markings)
+            MarkingManager markings,
+            Imperial.Medieval.Flavors.ClientFlavorManager flavors, Shared.Players.PlayTimeTracking.ISharedPlaytimeManager playtime) // Imperial Medieval Flavor Images
         {
             RobustXamlLoader.Load(this);
             _sawmill = logManager.GetSawmill("profile.editor");
@@ -134,6 +137,8 @@ namespace Content.Client.Lobby.UI
             _requirements = requirements;
             _controller = UserInterfaceManager.GetUIController<LobbyUIController>();
             _sprite = _entManager.System<SpriteSystem>();
+            _flavors = flavors; // Imperial Medieval Flavor Images
+            _playtime = playtime; // Imperial Medieval Flavor Images
 
             _maxNameLength = _cfgManager.GetCVar(CCVars.MaxNameLength);
             _allowFlavorText = _cfgManager.GetCVar(CCVars.FlavorText);
@@ -227,6 +232,7 @@ namespace Content.Client.Lobby.UI
             {
                 SpeciesButton.SelectId(args.Id);
                 SetSpecies(_species[args.Id].ID);
+                UpdateSkinColor(); // imperial medieval color selector
                 UpdateHairPickers();
                 OnSkinColorOnValueChanged();
             };
@@ -244,6 +250,13 @@ namespace Content.Client.Lobby.UI
             {
                 OnSkinColorOnValueChanged();
             };
+
+            // imperial medieval color selector start
+            SelectorControl.OnColorChanged += _ =>
+            {
+                OnSkinColorOnValueChanged();
+            };
+            // imperial medieval color selector end
 
             #endregion
 
@@ -454,6 +467,7 @@ namespace Content.Client.Lobby.UI
             SpeciesInfoButton.OnPressed += OnSpeciesInfoButtonPressed;
 
             UpdateSpeciesGuidebookIcon();
+            UpdateFlavorHandle(); // Imperial Medieval Flavors Image
             IsDirty = false;
         }
 
@@ -1103,6 +1117,7 @@ namespace Content.Client.Lobby.UI
                     {
                         Skin.Visible = true;
                         RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
                     var color = strategy.FromUnary(Skin.Value);
@@ -1118,6 +1133,7 @@ namespace Content.Client.Lobby.UI
                     {
                         Skin.Visible = false;
                         RgbSkinColorContainer.Visible = true;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
                     var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
@@ -1127,6 +1143,26 @@ namespace Content.Client.Lobby.UI
 
                     break;
                 }
+                // imperial medieval color selector start
+                case SkinColorationStrategyInput.Selector:
+                {
+                    if (!SelectorControl.Visible)
+                    {
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = true;
+                    }
+
+                    var color = strategy.ClosestSkinColor(SelectorControl.SelectedColor);
+
+                    SelectorControl.UpdateSelectedButton();
+
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+
+                    break;
+                }
+                // imperial medieval color selector end
             }
 
             ReloadProfilePreview();
@@ -1313,6 +1349,7 @@ namespace Content.Client.Lobby.UI
                     {
                         Skin.Visible = true;
                         RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
                     Skin.Value = strategy.ToUnary(Profile.Appearance.SkinColor);
@@ -1325,12 +1362,34 @@ namespace Content.Client.Lobby.UI
                     {
                         Skin.Visible = false;
                         RgbSkinColorContainer.Visible = true;
+                        SelectorControl.Visible = false; // imperial medieval color selector
                     }
 
                     _rgbSkinColorSelector.Color = strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
 
                     break;
                 }
+                // imperial medieval color selector start
+                case SkinColorationStrategyInput.Selector:
+                {
+                    if (!SelectorControl.Visible)
+                    {
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = false;
+                        SelectorControl.Visible = true;
+                    }
+
+                    if (strategy is SelectorColoration selector)
+                    {
+                        SelectorControl.Colors = selector.Colors;
+                    }
+
+                    SelectorControl.SelectedColor = strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
+                    SelectorControl.Populate();
+
+                    break;
+                }
+                // imperial medieval color selector end
             }
         }
 

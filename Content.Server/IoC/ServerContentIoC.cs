@@ -82,6 +82,8 @@ namespace Content.Server.IoC
             IoCManager.Register<CVarControlManager>();
             IoCManager.Register<Content.Server.Imperial.PVS.AlwaysPvsSystem>(); // Imperial AlwaysPvs
             IoCManager.Register<IMedievalAfkManager, MedievalAfkManager>(); // Imperial medieval anti afk
+            IoCManager.Register<Imperial.Medieval.Flavors.ServerFlavorManager>(); // Imperial Medieval Flavor Images
+            IoCManager.Register<Shared.Imperial.Medieval.Flavors.SharedFlavorManager, Imperial.Medieval.Flavors.ServerFlavorManager>(); // Imperial Medieval Flavor Images
 
             IoCManager.Register<DiscordLink>();
             IoCManager.Register<DiscordChatLink>();

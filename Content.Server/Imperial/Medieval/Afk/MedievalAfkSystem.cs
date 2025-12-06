@@ -29,6 +29,7 @@ public sealed class MedievalAfkSystem : EntitySystem
 
     private float _checkDelay;
     private TimeSpan _checkTime;
+    private readonly Dictionary<ICommonSession, AfkState> _afkStates = new();
 
     private readonly Dictionary<ICommonSession, BaseEui> _afkPlayers = new();
 
@@ -74,6 +75,9 @@ public sealed class MedievalAfkSystem : EntitySystem
     {
         base.Update(frameTime);
 
+        if (_timing.CurTime < _checkTime)
+            return;
+
         _checkTime = _timing.CurTime + TimeSpan.FromSeconds(_checkDelay);
 
         foreach (var pSession in Filter.GetAllPlayers())
@@ -84,9 +88,14 @@ public sealed class MedievalAfkSystem : EntitySystem
             if (_admin.IsAdmin(pSession, false))
                 continue;
 
-            var afkState = _afkManager.GetAfkState(pSession);
+            var newState = _afkManager.GetAfkState(pSession);
 
-            switch (afkState)
+            if (_afkStates.TryGetValue(pSession, out var oldState) && oldState == newState)
+                continue;
+
+            _afkStates[pSession] = newState;
+
+            switch (newState)
             {
                 case AfkState.Afk:
                     if (_afkPlayers.ContainsKey(pSession))

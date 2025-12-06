@@ -21,6 +21,9 @@ using Robust.Shared.Player;
 using Content.Shared.IdentityManagement;
 using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
+using Content.Server.Mind;
+using Content.Shared.Roles.Jobs;
+
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
@@ -321,11 +324,11 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     {
         if (_bannedWords.Count == 0)
             return;
-
         if (!_playerManager.TryGetSessionByEntity(source, out var session))
             return;
-
         if (!session.AttachedEntity.HasValue)
+            return;
+        if (HasComp<NrpIgnoreComponent>(source))
             return;
 
         var matches = GetBannedWords(message, _bannedWords);

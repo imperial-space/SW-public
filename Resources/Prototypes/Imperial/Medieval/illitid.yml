@@ -270,7 +270,7 @@
   sprites: MobIllitidSprites
   markingLimits: MobIllitidMarkingLimits
   dollPrototype: MobIllitidDummy
-  skinColoration: Hues
+  skinColoration: IllitidColors
   defaultSkinTone: "#a1889e"
 
 - type: speciesBaseSprites

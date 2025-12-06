@@ -2533,6 +2533,142 @@
     state: icon
 
 - type: entity
+  name: claymore
+  parent: MedievalIronClaymore
+  id: MedievalIronClaymoreKosmos
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: steel claymore
+  parent: MedievalIronClaymoreSteel
+  id: MedievalIronClaymoreSteelKosmos
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: claymore
+  parent: MedievalIronClaymore
+  id: MedievalIronClaymoreAbibi
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: steel claymore
+  parent: MedievalIronClaymoreSteel
+  id: MedievalIronClaymoreSteelAbibi
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: steel zweihander
+  parent: MedievalIronZweihanderSteel
+  id: MedievalIronZweihanderSteelAbibi
+  description: A medieval zweihander.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: iron zweihander
+  parent: MedievalIronZweihander
+  id: MedievalIronZweihanderAbibi
+  description: A medieval zweihander.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerT3
+  id: MedievalDaggerT3Kosmos
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+    size: Small
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerT3Steel
+  id: MedievalDaggerT3SteelKosmos
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+    size: Small
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+
+- type: entity
   name: falshion
   parent: [ BaseItem, BaseOneHandedCharged ]
   id: MedievalFalshionT3Legion
@@ -2636,6 +2772,36 @@
     state: icon
   - type: Clothing
     sprite: Imperial/Medieval/Melee/dark_sword.rsi
+  - type: MedievalMeleeResource
+    safeToHitGroup: tree
+
+- type: entity
+  name: dark blade
+  parent: MedievalFalshionT3Legion
+  id: MedievalFalshionT3DarkerSword
+  description: Is a mysterious and powerful weapon covered in age-old secrets. Its curved black blade, as if absorbing light, shines only in the light of the moon, thanks to ancient rune inscriptions that twinkle like stars in the night sky. The handle, wrapped in black leather and adorned with mysterious symbols, radiates coldness, causing those skilled in the art of combat to feel an inner strength and attraction.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+  - type: MedievalMeleeResource
+    safeToHitGroup: tree
+
+- type: entity
+  name: dark blade
+  parent: MedievalFalshionT3LegionSteel
+  id: MedievalFalshionT3DarkerSwordSteel
+  description: Is a mysterious and powerful weapon covered in age-old secrets. Its curved black blade, as if absorbing light, shines only in the light of the moon, thanks to ancient rune inscriptions that twinkle like stars in the night sky. The handle, wrapped in black leather and adorned with mysterious symbols, radiates coldness, causing those skilled in the art of combat to feel an inner strength and attraction.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/darksword.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/darksword.rsi
   - type: MedievalMeleeResource
     safeToHitGroup: tree
 
@@ -4883,3 +5049,57 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
+
+- type: entity
+  name: baseball bat
+  parent: BaseBallBat
+  id: BaseBallBatAlaraniel
+  description: A robust baseball bat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bat.rsi
+    state: icon
+
+- type: entity
+  name: MedievalSpear
+  parent: MedievalSpearT3
+  id: MedievalSpearT3Bib
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear
+
+- type: entity
+  name: medieval spear
+  parent: MedievalSpearT3Steel
+  id: MedievalSpearT3SteelBib
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear
+
+- type: entity
+  name: Pilum
+  parent: MedievalSpearPilum
+  id: MedievalSpearPilumBib
+  description: Just a spear
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear
+
+- type: entity
+  name: Sulica
+  parent: MedievalSpearSulica
+  id: MedievalSpearSulicaBib
+  description: Just a spear
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear

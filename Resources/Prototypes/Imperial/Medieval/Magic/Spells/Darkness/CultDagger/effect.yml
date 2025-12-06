@@ -17,10 +17,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/darkness/dagger.rsi
-    state: beginner
     color: "#420d0d"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        unshaded: unshaded
   - type: PointLight
     radius: 2
     energy: 2

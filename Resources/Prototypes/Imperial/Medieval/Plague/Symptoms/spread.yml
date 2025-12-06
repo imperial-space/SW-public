@@ -207,7 +207,7 @@
   cost: 3
   category: Spread
   broadcastEvent: !type:SetContactSpreadModifierEvent
-    modifier: 1.2
+    modifier: 0.05
 
 - type: plagueSymptom
   id: ContactSpread2
@@ -222,7 +222,7 @@
   required: [ContactSpread1]
   category: Spread
   broadcastEvent: !type:SetContactSpreadModifierEvent
-    modifier: 1.4
+    modifier: 0.08
 
 - type: plagueSymptom
   id: ContactSpread3
@@ -237,7 +237,7 @@
   required: [ContactSpread2]
   category: Spread
   broadcastEvent: !type:SetContactSpreadModifierEvent
-    modifier: 1.6
+    modifier: 0.1
 
 - type: plagueSymptom
   id: SkeletonSpread

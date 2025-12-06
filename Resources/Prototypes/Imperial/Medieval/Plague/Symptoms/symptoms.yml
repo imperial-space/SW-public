@@ -43,6 +43,9 @@
           duration: 5
       - !type:PlaySound
           sound: /Audio/Imperial/Medieval/Plague/before_vomit.ogg
+      - !type:Infect
+          radius: 3.5
+          chance: 0.02
       delay:
         min: 60
         max: 150
@@ -70,6 +73,9 @@
           duration: 5
       - !type:PlaySound
           sound: /Audio/Imperial/Medieval/Plague/before_vomit.ogg
+      - !type:Infect
+          radius: 3.5
+          chance: 0.05
       delay:
         min: 40
         max: 125
@@ -161,7 +167,7 @@
       other:
       - !type:Infect
           radius: 3.5
-          chance: 0.1
+          chance: 0.02
 
 - type: plagueSymptom
   id: Cough
@@ -184,7 +190,7 @@
       other:
       - !type:Infect
           radius: 4.5
-          chance: 0.2
+          chance: 0.05
   required: [RunnyNose]
 
 - type: plagueSymptom
@@ -208,7 +214,7 @@
       other:
       - !type:Infect
           radius: 4.5
-          chance: 0.2
+          chance: 0.08
       - !type:ChangeDamage
           damage:
             types:
@@ -326,7 +332,7 @@
       other:
       - !type:Infect
           radius: 0.5
-          chance: 0.1
+          chance: 0.03
       - !type:ChangeDamage
           damage:
             types:
@@ -413,7 +419,7 @@
       other:
       - !type:Infect
           radius: 0.5
-          chance: 0.2
+          chance: 0.05
       - !type:ChangeDamage
           damage:
             types:

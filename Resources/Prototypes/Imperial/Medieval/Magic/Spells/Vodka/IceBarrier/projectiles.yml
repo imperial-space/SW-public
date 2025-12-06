@@ -182,8 +182,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     color: "#47f8ff"
   - type: TimedDespawn

@@ -15,7 +15,7 @@ namespace Content.Server.Imperial.Medieval.Plague;
 public sealed partial class MedievalPlagueSystem
 {
     private Dictionary<string, float> _spreaders = new();
-    private float _contactSpreadMod = 0f;
+    private float _contactSpreadChance = 0f;
     private float _blockersEfficiency = 1f;
     private float _minSmellLevel = 50f;
 
@@ -85,7 +85,7 @@ public sealed partial class MedievalPlagueSystem
             return;
 
         comp.NextCollideSpread = _timing.CurTime + TimeSpan.FromSeconds(1);
-        TryInfect(args.OtherEntity, _contactSpreadMod);
+        TryInfect(args.OtherEntity, _contactSpreadChance);
     }
 
     private void OnSpreaderInit(EntityUid uid, MedievalPlagueInfectOnHitComponent comp, ComponentInit args)
@@ -196,7 +196,7 @@ public sealed partial class MedievalPlagueSystem
     }
 
     private void OnSetContactSpreadMod(SetContactSpreadModifierEvent args)
-        => _contactSpreadMod = args.Modifier;
+        => _contactSpreadChance = args.Modifier;
 
     private void OnSetSpreaderChance(SetSpreaderChanceEvent args)
     {

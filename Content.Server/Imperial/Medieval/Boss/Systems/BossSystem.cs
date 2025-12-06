@@ -6,6 +6,7 @@ using Content.Server.Flash;
 using Content.Server.Jittering;
 using Content.Server.MagicBarrier.Components;
 using Content.Shared.Chat;
+using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Medieval.Boss;
 using Content.Shared.Jittering;
 using Content.Shared.Mobs.Systems;
@@ -164,6 +165,12 @@ public sealed partial class BossSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             list.Add(Transform(uid).Coordinates);
+        }
+
+        if (list.Count == 0)
+        {
+            foreach (var item in EntityManager.AllEntities<HumanoidAppearanceComponent>().Where(x => players.Contains(x.Owner)))
+                list.Add(Transform(item.Owner).Coordinates);
         }
 
         foreach (var item in players)

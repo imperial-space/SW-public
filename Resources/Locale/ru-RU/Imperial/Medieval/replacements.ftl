@@ -574,3 +574,9 @@ chatsan-replacement-260 = спустобрешили
 
 chatsan-word-261 = напиздеть
 chatsan-replacement-261 = спустобрешить
+
+chatsan-word-262 = чо
+chatsan-replacement-262 = что
+
+chatsan-word-263 = че
+chatsan-replacement-263 = что

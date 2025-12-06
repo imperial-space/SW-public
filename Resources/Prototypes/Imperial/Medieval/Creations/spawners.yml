@@ -9,3 +9,4 @@
       - sprite: Structures/Wallmounts/paintings.rsi
         state: painting6
   - type: RandomCreationsPainting
+    paintingPrototype: CanvasPoster

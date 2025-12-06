@@ -454,6 +454,7 @@
         - TableMask
         layer:
         - TableLayer
+        - LowImpassable
   - type: ExplosionResistance
     damageCoefficient: 2
   - type: Damageable
@@ -1068,6 +1069,8 @@
   - type: RDWeight
     value: 2
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: MedievalDefault
     maxIntensity: 4
@@ -1079,7 +1082,6 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: TriggerOnUse
   - type: TimerTrigger
     delay: 2.5
     beepSound:
@@ -1089,6 +1091,8 @@
     initialBeepDelay: 0
     beepInterval: 6 # 2 beeps total (at 0 and 2)
   - type: SpawnOnTrigger
+    keysIn:
+    - timer
     proto: MedievalExplosionEffect
 
 - type: entity
@@ -1123,6 +1127,19 @@
   #    6: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonSpeed # imperial medieval
+
+- type: entity
+  parent: ClothingNeckTieDet
+  id: MedaljonGreenKnight
+  name: MedaljonGreenKnight
+  description: MedaljonGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
 
 - type: entity
   parent: MedaljonSpeed
@@ -5532,7 +5549,7 @@
         enum.MedievalMapUIKey.Key:
           type: MedievalMapBoundUserInterface
     - type: MedievalMap
-      mapTexturePath: /Textures/Imperial/Medieval/Misc/map_tabletop.rsi/tabletop.png
+      mapTexturePath: /Textures/Imperial/Medieval/Misc/map_tabletop/tabletop.png
 
 - type: entity
   parent: BaseBoardTabletop
@@ -8087,13 +8104,11 @@
     state: default
   - type: Item
     size: Normal
-  - type: TriggerOnUse
   - type: SpawnItemsOnUse
     items:
     - id: MedievalHorseTransport
     sound:
       path: /Audio/Items/Whistle/trench_whistle_1.ogg
-  - type: DeleteOnTrigger
 
 - type: entity
   parent: MedievalHorseWhistle

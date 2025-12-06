@@ -5,7 +5,8 @@
     xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
     Title="{Loc 'faction-menu-title'}"
     MinSize="1120 512"
-    SetSize="1120 512">
+    SetSize="1120 512"
+    Resizable="False">
     <BoxContainer Name="Main"
                   Orientation="Vertical"
                   HorizontalExpand="True"
