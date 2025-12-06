@@ -62,6 +62,18 @@
     sprite: Imperial/Medieval/Gun/bow_whois.rsi
 
 - type: entity
+  name: bow
+  parent: BaseBow
+  id: BaseBowWhois
+  description: The original rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+
+- type: entity
   name: crossbow
   parent: MedievalWeaponCrossbow
   id: MedievalWeaponMiniCrossbow

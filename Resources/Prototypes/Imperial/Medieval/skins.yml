@@ -290,5 +290,6 @@
   map:
     MedievalWeaponCrossbow: [MedievalWeaponCrossbowWhois]
     MedievalWeaponBow: [MedievalWeaponBowWhois]
+    BaseBow: [BaseBowWhois]
     MedievalQuiver: [MedievalQuiverWhois]
     MedievalQuiverSteel: [MedievalQuiverSteelWhois]
