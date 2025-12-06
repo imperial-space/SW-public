@@ -1781,6 +1781,24 @@
       - state: eyes_light
         shader: unshaded
 
+- type: entity
+  parent: ClothingMaskSterile
+  id: ClothingMaskBib
+  name: mask
+  description: mask
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Mask/bib_mask.rsi
+    layers:
+      - state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Mask/bib_mask.rsi
+    clothingVisuals:
+      eyes:
+      - state: equipped-MASK
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.5
+
 - type: Tag
   id: MedievalIronRoyalSword
 - type: Tag

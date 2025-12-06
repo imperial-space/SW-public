@@ -308,4 +308,18 @@
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakKonnor]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatKonnor]
 
+- type: customization
+  id: bib
+  holder: ff1cb225-6404-47a3-b7fa-06604e9bbee5
+  map:
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightBib]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightBib]
+    Log: [MedievalClothingBootsBib, MedievalClothingNeckCloakBib, ClothingMaskBib]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerBib]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerBib]
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakBib]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakBib]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatBib]
+    MedievalSpearT3Steel: [MedievalSpearT3SteelBib]
+
 

@@ -21,6 +21,10 @@
     ]
     },
     {
+      "name": "up-equipped-MASK",
+      "directions": 4
+    },
+    {
       "name": "inhand-left",
       "directions": 4
     },
