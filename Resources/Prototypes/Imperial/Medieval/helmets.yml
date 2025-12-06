@@ -1592,6 +1592,10 @@
     sprite: Imperial/Medieval/Clothing/Head/viking.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/viking.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHeadHelmetShapel
