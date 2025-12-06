@@ -715,6 +715,17 @@
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightDrGnar
+  name: MedievalClothingHeadHelmetCharmerLightDrGnar
+  description: MedievalClothingHeadHelmetCharmerLightDrGnar
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/drgnar_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/drgnar_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
   id: MedievalClothingHeadHelmetCharmerLightGreenKnight
   name: MedievalClothingHeadHelmetCharmerLightGreenKnight
   description: MedievalClothingHeadHelmetCharmerLightGreenKnight

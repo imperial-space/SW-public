@@ -184,6 +184,8 @@
     MedievalClothingHeadHelmetShapel: [MedievalClothingHelmetBlackLeather]
     MedievalWeaponCrossbow: [MedievalWeaponMiniCrossbow]
     Log: [MedievalClothingHandsBlackGloves, MedievalClothingBlackBoots]
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightDrGnar]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightDrGnar]
 
 - type: customization
   id: salamandraes

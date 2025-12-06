@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-  "copyright": "Аскал 0.2",
+  "copyright": "by crookielv",
   "size": {
     "x": 32,
     "y": 32
@@ -11,11 +11,7 @@
       "name": "icon"
     },
     {
-      "name": "unshaded",
-      "directions": 4
-    },
-    {
-      "name": "equipped-MASK",
+      "name": "equipped-OUTERCLOTHING",
       "directions": 4
     },
     {
