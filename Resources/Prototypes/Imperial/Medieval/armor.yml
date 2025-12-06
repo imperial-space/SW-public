@@ -733,8 +733,8 @@
   - type: MedievalIronHitSound
 
 - type: entity
-  parent: MedievalClothingOuterArmorUpIron
-  id: MedievalClothingOuterArmorUpIronDraconic
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterArmorIronCuirassDraconic
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
