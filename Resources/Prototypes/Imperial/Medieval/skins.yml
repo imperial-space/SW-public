@@ -293,3 +293,19 @@
     BaseBow: [BaseBowWhois]
     MedievalQuiver: [MedievalQuiverWhois]
     MedievalQuiverSteel: [MedievalQuiverSteelWhois]
+
+- type: customization
+  id: konnor
+  holder: 0499397c-7ac1-47f3-b956-c04c9b8dbbcd
+  map:
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightKonnor]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightKonnor]
+    Log: [MedievalClothingNeckCloakKonnor, MedievalClothingHandsGlovesClothKonnor]
+    MedievalShoesChamber: [MedievalShoesChamberKonnor]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerKonnor]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerKonnor]
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakKonnor]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakKonnor]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatKonnor]
+
+

@@ -1173,6 +1173,31 @@
 
 - type: entity
   parent: MedievalShoesChamber
+  id: MedievalShoesChamberKonnor
+  name: MedievalShoesChamberKonnor
+  description: MedievalShoesChamberKonnor
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/konnor_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/konnor_boots.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsGlovesClothKonnor
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/konnor_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/konnor_gloves.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
   id: MedievalShoesCharmerPurpleScar
   name: MedievalShoesCharmerPurpleScar
   description: MedievalShoesCharmerPurpleScar
