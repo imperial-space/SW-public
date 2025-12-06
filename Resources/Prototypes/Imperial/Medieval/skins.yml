@@ -322,4 +322,8 @@
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatBib]
     MedievalSpearT3Steel: [MedievalSpearT3SteelBib]
 
-
+- type: customization
+  id: alaraniel
+  holder: eb910132-4447-4ab4-bb06-3dc5277783f3
+  map:
+    BaseBallBat: [BaseBallBatAlaraniel]
