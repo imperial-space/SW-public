@@ -733,8 +733,8 @@
   - type: MedievalIronHitSound
 
 - type: entity
-  parent: MedievalClothingOuterArmorUpIron
-  id: MedievalClothingOuterArmorUpIronDraconic
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterArmorIronCuirassDraconic
   name: upgrade iron armor
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
@@ -1317,6 +1317,50 @@
     sprite: Imperial/Medieval/Clothing/Armor/greenknight_charmer.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/greenknight_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightDrGnar
+  name: MedievalClothingOuterArmorCharmerLightDrGnar
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/drgnar_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/drgnar_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterArmorCharmerKonnor
+  name: MedievalClothingOuterArmorCharmerKonnor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/konnor_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/konnor_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakKonnor
+  name: MedievalClothingOuterArmorCharmerWeakKonnor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/konnor_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/konnor_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightKonnor
+  name: MedievalClothingOuterArmorCharmerLightKonnor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/konnor_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/konnor_charmer.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmer

@@ -67,13 +67,13 @@ ent-MedievalClothingHandsGlovesPass1 = бархатные перчатки
 ent-MedievalClothingHandsGlovesPass2 = бархатные перчатки
     .desc = Приятные на ощупь перчатки.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ, Эмиссар, Фрейлина" }
-ent-MedievalClothingHandsGlovesPass2 = охотничьи перчатки
+ent-MedievalClothingHandsGlovesPass3 = охотничьи перчатки
     .desc = Плотные и тёплые перчатки.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ, Охотник" }
-ent-MedievalClothingHandsGlovesPass2 = беспалые перчатки
+ent-MedievalClothingHandsGlovesPass4 = беспалые перчатки
     .desc = Перчатки без пальцев.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ, Загадочная Дама" }
-ent-MedievalClothingHandsGlovesPass2 = бордовые перчатки
+ent-MedievalClothingHandsGlovesPass5 = бордовые перчатки
     .desc = Красные перчатки.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ, Дуэлянт" }
 

@@ -2548,6 +2548,9 @@
     - state: icon
     - state: unshaded
       shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
 
 - type: entity
   name: steel claymore
@@ -2565,6 +2568,9 @@
     - state: icon
     - state: unshaded
       shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
 
 - type: entity
   name: claymore
@@ -2582,6 +2588,9 @@
     - state: icon
     - state: unshaded
       shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
 
 - type: entity
   name: steel claymore
@@ -2599,6 +2608,9 @@
     - state: icon
     - state: unshaded
       shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
 
 - type: entity
   name: steel zweihander
@@ -2616,6 +2628,9 @@
     - state: icon
     - state: unshaded
       shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
 
 - type: entity
   name: iron zweihander
@@ -2633,6 +2648,9 @@
     - state: icon
     - state: unshaded
       shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
 
 - type: entity
   name: dagger
@@ -4055,6 +4073,34 @@
     sprite: Imperial/Medieval/Melee/gs_sword.rsi
 
 - type: entity
+  name: short sword
+  parent: MedievalShortSword
+  id: MedievalShortSwordArtur
+  description: MedievalShortSwordArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+
+- type: entity
+  name: short sword
+  parent: MedievalShortSwordSteel
+  id: MedievalShortSwordSteelArtur
+  description: MedievalShortSwordSteelArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+
+- type: entity
   name: dagger
   parent: MedievalShortSword
   id: MedievalShortSwordGold
@@ -5061,43 +5107,10 @@
     state: icon
 
 - type: entity
-  name: MedievalSpear
-  parent: MedievalSpearT3
-  id: MedievalSpearT3Bib
-  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Melee/bib_spear.rsi
-    netsync: false
-    state: spear
-
-- type: entity
   name: medieval spear
   parent: MedievalSpearT3Steel
   id: MedievalSpearT3SteelBib
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Melee/bib_spear.rsi
-    netsync: false
-    state: spear
-
-- type: entity
-  name: Pilum
-  parent: MedievalSpearPilum
-  id: MedievalSpearPilumBib
-  description: Just a spear
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Melee/bib_spear.rsi
-    netsync: false
-    state: spear
-
-- type: entity
-  name: Sulica
-  parent: MedievalSpearSulica
-  id: MedievalSpearSulicaBib
-  description: Just a spear
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Melee/bib_spear.rsi

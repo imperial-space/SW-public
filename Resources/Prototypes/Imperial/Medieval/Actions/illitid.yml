@@ -4,6 +4,7 @@
   description: placeholder
   components:
   - type: Action
+    checkCanInteract: false
     icon:
       sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
       state: thought
@@ -26,6 +27,7 @@
   description: placeholder
   components:
   - type: Action
+    checkCanInteract: false
     icon:
       sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
       state: mass
@@ -40,6 +42,7 @@
   description: placeholder
   components:
   - type: Action
+    checkCanInteract: false
     icon:
       sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
       state: control
@@ -64,6 +67,7 @@
   description: placeholder
   components:
   - type: Action
+    checkCanInteract: false
     icon:
       sprite: Imperial/Medieval/Interface/Actions/illitid.rsi
       state: blind
