@@ -507,14 +507,14 @@
       90: Critical
       200: Dead
   - type: RideableSprint
-    accelerationTime: 5
-    maxSpeedModifier: 2.2
+    accelerationTime: 10
+    maxSpeedModifier: 2
     riderDamageOnCollide:
       types:
-        Blunt: 22
+        Blunt: 45
     damageOnCollide:
       types:
-        Blunt: 6
+        Blunt: 4
 
 - type: entity
   parent: MedievalHorseTransport
