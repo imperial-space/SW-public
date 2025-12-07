@@ -309,6 +309,7 @@
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakKonnor]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakKonnor]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatKonnor]
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth79]
 
 - type: customization
   id: bib
@@ -323,6 +324,7 @@
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakBib]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatBib]
     MedievalSpearT3Steel: [MedievalSpearT3SteelBib]
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth78]
 
 - type: customization
   id: alaraniel

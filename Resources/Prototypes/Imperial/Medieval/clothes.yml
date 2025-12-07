@@ -2236,6 +2236,17 @@
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_78.rsi
 
 - type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth79
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_79.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_79.rsi
+
+- type: entity
   parent: MedievalClothingHandsGlovesCloth
   id: MedievalClothingHandsGlovesClothBib
   name: Cloth Gloves
