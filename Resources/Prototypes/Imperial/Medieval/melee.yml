@@ -2280,6 +2280,7 @@
     sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/zweihander.rsi
     state: icon
@@ -2362,6 +2363,7 @@
     sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/zweihander.rsi
     state: icon
@@ -2446,6 +2448,7 @@
     sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/claymore.rsi
     state: icon
@@ -2528,6 +2531,7 @@
     sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/claymore.rsi
     state: icon
@@ -2542,6 +2546,7 @@
     sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
     layers:
@@ -2562,6 +2567,7 @@
     sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
     layers:
@@ -2582,6 +2588,7 @@
     sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
     layers:
@@ -2602,6 +2609,7 @@
     sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
     layers:
@@ -2622,6 +2630,7 @@
     sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
     layers:
@@ -2642,6 +2651,7 @@
     sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
     layers:
