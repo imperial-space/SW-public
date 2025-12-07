@@ -1550,8 +1550,8 @@
   craftTime: 22
   iconOverride: MedievalIronClaymore
   stacks:
-    MedievalIronIngot: 29
-    WoodPlank: 17
+    MedievalIronIngot: 40
+    WoodPlank: 6
   result: WorkpieceMedievalIronClaymore
 
 - type: CP14Recipe
@@ -1559,8 +1559,8 @@
   craftTime: 22
   iconOverride: MedievalIronClaymoreSteel
   stacks:
-    MedievalIronIngot: 29
-    WoodPlank: 17
+    MedievalSteelIngot: 31
+    WoodPlank: 6
   result: WorkpieceMedievalIronClaymoreSteel
 
 - type: CP14Recipe
@@ -1568,8 +1568,8 @@
   craftTime: 22
   iconOverride: MedievalIronZweihander
   stacks:
-    MedievalIronIngot: 29
-    WoodPlank: 17
+    MedievalIronIngot: 40
+    WoodPlank: 6
   result: WorkpieceMedievalIronZweihander
 
 - type: CP14Recipe
@@ -1577,6 +1577,6 @@
   craftTime: 22
   iconOverride: MedievalIronZweihanderSteel
   stacks:
-    MedievalIronIngot: 29
-    WoodPlank: 17
+    MedievalSteelIngot: 31
+    WoodPlank: 6
   result: WorkpieceMedievalIronZweihanderSteel
