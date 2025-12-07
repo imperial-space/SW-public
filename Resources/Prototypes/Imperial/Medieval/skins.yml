@@ -309,6 +309,7 @@
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakKonnor]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakKonnor]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatKonnor]
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth79]
 
 - type: customization
   id: bib
@@ -323,9 +324,26 @@
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakBib]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatBib]
     MedievalSpearT3Steel: [MedievalSpearT3SteelBib]
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth78]
 
 - type: customization
   id: alaraniel
   holder: eb910132-4447-4ab4-bb06-3dc5277783f3
   map:
     BaseBallBat: [BaseBallBatAlaraniel]
+
+- type: customization
+  id: aniot
+  holder: cd7a98b4-6895-4eeb-b8f1-cb42d87301f3
+  map:
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightBaronSaturday]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumHatBaronSaturday]
+
+- type: customization
+  id: artur
+  holder: 9bf9a5dc-697d-4fcb-8f25-cd68788771f6
+  map:
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth80]
+    MedievalShortSword: [MedievalShortSwordArtur]
+    MedievalShortSwordSteel: [MedievalShortSwordSteelArtur]
+    Log: [MedievalClothingHandsGlovesClothArtur, MedievalClothingBootsArtur, MedievalClothingNeckCloakArtur, ClothingMaskArtur]
