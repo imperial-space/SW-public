@@ -4073,6 +4073,34 @@
     sprite: Imperial/Medieval/Melee/gs_sword.rsi
 
 - type: entity
+  name: short sword
+  parent: MedievalShortSword
+  id: MedievalShortSwordArtur
+  description: MedievalShortSwordArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+
+- type: entity
+  name: short sword
+  parent: MedievalShortSwordSteel
+  id: MedievalShortSwordSteelArtur
+  description: MedievalShortSwordSteelArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+
+- type: entity
   name: dagger
   parent: MedievalShortSword
   id: MedievalShortSwordGold

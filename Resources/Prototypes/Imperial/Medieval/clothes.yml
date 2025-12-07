@@ -1799,6 +1799,24 @@
   - type: MedievalPlagueSpreadBlocking
     modifier: 0.5
 
+- type: entity
+  parent: ClothingMaskPlague
+  id: ClothingMaskArtur
+  name: head
+  description: head
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/artur_head.rsi
+    layers:
+      - state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/artur_head.rsi
+    clothingVisuals:
+      head:
+      - state: equipped-HEAD
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.5
+
 - type: Tag
   id: MedievalIronRoyalSword
 - type: Tag
@@ -2245,6 +2263,42 @@
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_79.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_79.rsi
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth80
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_80.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_80.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsGlovesClothArtur
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/artur_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/artur_gloves.rsi
+
+- type: entity
+  parent: ClothingShoesBase
+  id: MedievalClothingBootsArtur
+  name: MedievalClothingBootsArtur
+  description: MedievalClothingBootsArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/artur_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/artur_boots.rsi
 
 - type: entity
   parent: MedievalClothingHandsGlovesCloth
