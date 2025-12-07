@@ -5844,3 +5844,6 @@ ent-MedievalClothingOuterArmorCharmerLightDrGnar = алое одеяние
 ent-MedievalClothingHeadHelmetCharmerLightDrGnar = латунный обруч
     .desc = Головной магический обруч, вы словно божество.
     .suffix = {"СКИН, Средневековье, одежда"}
+ent-BaseBallBatAlaraniel = дубинка
+    .desc = Прочная дубинка. Чуть лучше кулака.
+    .suffix = {"СКИН, Средневековье, ближка"}
