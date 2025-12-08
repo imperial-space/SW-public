@@ -1463,6 +1463,9 @@
   - productEntity: MedievalMeltingPlaceCraft
     cost: 50
     reputationForBuying: 1.7
+  - productEntity: MedievalFoundryCraft
+    cost: 50
+    reputationForBuying: 1.7
   - productEntity: MedievalLeatherWorkingPlaceCraft
     cost: 50
     reputationForBuying: 1.7
