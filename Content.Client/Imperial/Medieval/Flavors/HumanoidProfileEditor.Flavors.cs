@@ -21,16 +21,19 @@ public sealed partial class HumanoidProfileEditor
         var playtimes = _playtime.GetPlayTimes(session);
         var time = TimeSpan.Zero;
         playtimes.TryGetValue(PlayTimeTrackingShared.TrackerOverall, out time);
+        var requiredTime = _cfgManager.GetCVar(ICCVars.FlavorPlaytimeRequirement);
 
-        if (time < TimeSpan.FromSeconds(_cfgManager.GetCVar(ICCVars.FlavorPlaytimeRequirement)))
+        if (time < TimeSpan.FromSeconds(requiredTime))
         {
             _flavorText.FlavorImage.Disabled = true;
-            _flavorText.FlavorImage.ToolTip = Loc.GetString("imperial-medieval-flavor-cant", ("hours", Math.Round((_cfgManager.GetCVar(ICCVars.FlavorPlaytimeRequirement) - time.TotalSeconds) / 60 / 60, 1)));
+            _flavorText.FlavorImage.ToolTip = Loc.GetString("imperial-medieval-flavor-cant", ("hours", Math.Round((requiredTime - time.TotalSeconds) / 60 / 60, 1)));
         }
         else
         {
             _flavorText.OnFlavorImageChanged += OnImageSelected;
             _flavorText.OnTestPressed += OnTestPressed;
+            _flavorText.FlavorImage.ToolTip = null;
+            _flavorText.FlavorImage.Disabled = false;
         }
         _flavorText.OnHelpPressed += OnHelpPressed;
     }
