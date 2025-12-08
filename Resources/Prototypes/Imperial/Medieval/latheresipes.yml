@@ -1580,3 +1580,28 @@
     MedievalSteelIngot: 31
     WoodPlank: 6
   result: WorkpieceMedievalIronZweihanderSteel
+
+- type: CP14Recipe
+  id: MedievalStoneWallCraft
+  craftTime: 10
+  iconOverride: MedievalStoneWallCraft
+  stacks:
+    MedievalStoneBrick: 5
+  result: MedievalStoneWallCraft
+
+- type: CP14Recipe
+  id: MedievalStoneLoopHoleCraft
+  craftTime: 10
+  iconOverride: MedievalStoneLoopHoleCraft
+  stacks:
+    MedievalStoneBrick: 6
+  result: MedievalStoneLoopHoleCraft
+
+- type: CP14Recipe
+  id: MedievalStoneBrick
+  craftTime: 3
+  iconOverride: MedievalStoneBrick
+  stacks:
+    MedievalGlina: 5
+    MedievalCoal: 1
+  result: MedievalStoneBrick

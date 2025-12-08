@@ -220,6 +220,25 @@
     count: 10
 
 - type: entity
+  parent: BaseItem
+  id: MedievalStoneBrick
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Materials/mdv.rsi
+    state: stone_brick
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Sheet
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      MedievalStoneBrick: 100
+  - type: Stack
+    stackType: MedievalStoneBrick
+    count: 1
+
+- type: entity
   name: MedievalSpiderHair
   parent: BaseItem
   id: MedievalSpiderHair
@@ -590,6 +609,20 @@
   icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: iron_ingot }
   spawn: MedievalIronIngot
   maxCount: 30
+
+- type: material
+  id: MedievalStoneBrick
+  stackEntity: MedievalStoneBrick
+  icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: stone_brick }
+  color: "#d9d9d9"
+  price: 0.1
+
+- type: stack
+  id: MedievalStoneBrick
+  name: materials-medievalstonebrick
+  icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: stone_brick }
+  spawn: MedievalStoneBrick
+  maxCount: 10
 
 - type: material
   id: MedievalSpiderHair
