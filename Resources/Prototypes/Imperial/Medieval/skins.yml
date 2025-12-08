@@ -186,6 +186,7 @@
     Log: [MedievalClothingHandsBlackGloves, MedievalClothingBlackBoots]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightDrGnar]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightDrGnar]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatDrGnar]
 
 - type: customization
   id: salamandraes
@@ -317,7 +318,7 @@
   map:
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightBib]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightBib]
-    Log: [MedievalClothingBootsBib, MedievalClothingNeckCloakBib, ClothingMaskBib]
+    Log: [MedievalClothingBootsBib, MedievalClothingNeckCloakBib, ClothingMaskBib, MedievalClothingHandsGlovesClothBib]
     MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerBib]
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerBib]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakBib]
