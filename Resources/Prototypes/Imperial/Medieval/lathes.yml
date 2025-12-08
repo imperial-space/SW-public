@@ -1145,6 +1145,10 @@
     - MedievalShortSwordSteel
     - MedievalSaber
     - MedievalSaberSteel
+    - MedievalIronClaymore
+    - MedievalIronClaymoreSteel
+    - MedievalIronZweihander
+    - MedievalIronZweihanderSteel
     - MedievalMaceT3Steel
     - MedievalPalice
     - MedievalPaliceSteel

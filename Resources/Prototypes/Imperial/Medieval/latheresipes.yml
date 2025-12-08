@@ -1544,3 +1544,39 @@
     MedievalMushroom2: 1
     MedievalMushroom3: 1
   result: MedievalCurseClot
+
+- type: CP14Recipe
+  id: MedievalIronClaymore
+  craftTime: 22
+  iconOverride: MedievalIronClaymore
+  stacks:
+    MedievalIronIngot: 40
+    WoodPlank: 6
+  result: WorkpieceMedievalIronClaymore
+
+- type: CP14Recipe
+  id: MedievalIronClaymoreSteel
+  craftTime: 22
+  iconOverride: MedievalIronClaymoreSteel
+  stacks:
+    MedievalSteelIngot: 31
+    WoodPlank: 6
+  result: WorkpieceMedievalIronClaymoreSteel
+
+- type: CP14Recipe
+  id: MedievalIronZweihander
+  craftTime: 22
+  iconOverride: MedievalIronZweihander
+  stacks:
+    MedievalIronIngot: 40
+    WoodPlank: 6
+  result: WorkpieceMedievalIronZweihander
+
+- type: CP14Recipe
+  id: MedievalIronZweihanderSteel
+  craftTime: 22
+  iconOverride: MedievalIronZweihanderSteel
+  stacks:
+    MedievalSteelIngot: 31
+    WoodPlank: 6
+  result: WorkpieceMedievalIronZweihanderSteel
