@@ -622,7 +622,7 @@
   name: materials-medievalstonebrick
   icon: { sprite: Imperial/Medieval/Materials/mdv.rsi, state: stone_brick }
   spawn: MedievalStoneBrick
-  maxCount: 10
+  maxCount: 30
 
 - type: material
   id: MedievalSpiderHair
