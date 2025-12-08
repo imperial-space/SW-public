@@ -299,6 +299,14 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopMedievalMeltingPlaceCraft
+  productEntity: MedievalMeltingPlaceCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalLeatherWorkingPlaceCraft
   productEntity: MedievalLeatherWorkingPlaceCraft
   cost:
