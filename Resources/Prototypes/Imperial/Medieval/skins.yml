@@ -186,6 +186,7 @@
     Log: [MedievalClothingHandsBlackGloves, MedievalClothingBlackBoots]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightDrGnar]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightDrGnar]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatDrGnar]
 
 - type: customization
   id: salamandraes
@@ -310,6 +311,10 @@
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakKonnor]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatKonnor]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth79]
+    MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightKonnor]
+    MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightKonnor]
+    MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightKonnor]
+    MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightKonnor]
 
 - type: customization
   id: bib
@@ -317,7 +322,7 @@
   map:
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightBib]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightBib]
-    Log: [MedievalClothingBootsBib, MedievalClothingNeckCloakBib, ClothingMaskBib]
+    Log: [MedievalClothingNeckCloakBib, ClothingMaskBib, MedievalClothingHandsGlovesClothBib]
     MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerBib]
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerBib]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakBib]
@@ -325,6 +330,7 @@
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatBib]
     MedievalSpearT3Steel: [MedievalSpearT3SteelBib]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth78]
+    MedievalShoesChamber: [MedievalShoesChamberBib]
 
 - type: customization
   id: alaraniel

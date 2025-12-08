@@ -725,6 +725,17 @@
     sprite: Imperial/Medieval/Clothing/Head/drgnar_charmer.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCollegiumPurpleHat
+  id: MedievalClothingHeadHelmeCollegiumPurpleHatDrGnar
+  name: Collegium White Hat.
+  description: The white magic hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/drgnar_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/drgnar_charmer.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
   id: MedievalClothingHeadHelmetCharmerLightGreenKnight
   name: MedievalClothingHeadHelmetCharmerLightGreenKnight
