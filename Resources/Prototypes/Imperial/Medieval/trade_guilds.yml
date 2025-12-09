@@ -927,7 +927,7 @@
     minReputationPlace: 1
     minReputation: 20
   - productEntity: MedievalWhiteRoyalHorseWhistle
-    cost: 1200
+    cost: 1600
     reputationForBuying: 40
     minReputationPlace: 1
     minReputation: 20

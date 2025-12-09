@@ -8200,7 +8200,7 @@
     - id: MedievalSkeletonHorseTransport
     sound:
       path: /Audio/Items/Whistle/trench_whistle_1.ogg
-  - type: DeleteOnTrigger
+  #- type: DeleteOnTrigger
   - type: RadiationSource
     intensity: 1
     slope: 1
