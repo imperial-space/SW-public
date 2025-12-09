@@ -186,7 +186,7 @@
     Log: [MedievalClothingHandsBlackGloves, MedievalClothingBlackBoots]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightDrGnar]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightDrGnar]
-    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatDrGnar]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmeCollegiumPurpleHatDrGnar]
 
 - type: customization
   id: salamandraes
