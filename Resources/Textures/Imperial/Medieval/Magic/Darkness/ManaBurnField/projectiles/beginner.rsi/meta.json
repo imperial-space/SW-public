@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-    "copyright": "by mr_fraxu",
+    "copyright": "by discord: rubelaks",
     "size": {
         "x": 192,
         "y": 192
@@ -12,26 +12,21 @@
       "name": "beginner",
       "delays": [
         [
-          0.5,
-          0.5
+          0.25,
+          0.25,
+          0.25,
+          0.25
         ]
       ]
     },
     {
-      "name": "middle",
+      "name": "beginner-spawn",
       "delays": [
         [
-          0.5,
-          0.5
-        ]
-      ]
-    },
-    {
-      "name": "senior",
-      "delays": [
-        [
-          0.5,
-          0.5
+          0.1,
+          0.1,
+          0.1,
+          0.1
         ]
       ]
     }

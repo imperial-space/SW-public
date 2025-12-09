@@ -42,7 +42,7 @@
     targetingIndicator: false
   - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
-      spawnedEntityPrototype: MedievalManaBurnFieldBeginner
+      spawnedEntityPrototype: MedievalManaBurnFieldSpawnBeginner
       spawnType: SpawnOnMousePosition
       spellCastDoAfter:
         delay: 2.5
@@ -56,16 +56,6 @@
           speech: medieval-spell-speach-mana-burn-field
           color: "#B000FF"
           hideChat: true
-  - type: ShowSpawnedEntity
-    sprites:
-      - drawedSprite:
-          sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles.rsi
-          state: beginner
-        alwaysRender: true
-        spriteColor: "#47f8ff"
-        inRangeColor: "#CC00AF"
-        outOfRangeColor: "#CC0000"
-        range: 5
   - type: CheckInitialBarrier
 
 # Middle
@@ -93,7 +83,7 @@
       state: middle
   - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
-      spawnedEntityPrototype: MedievalManaBurnFieldMiddle
+      spawnedEntityPrototype: MedievalManaBurnFieldSpawnMiddle
       spawnType: SpawnOnMousePosition
       spellCastDoAfter:
         delay: 2.5
@@ -107,16 +97,6 @@
           speech: medieval-spell-speach-mana-burn-field
           color: "#B000FF"
           hideChat: true
-  - type: ShowSpawnedEntity
-    sprites:
-      - drawedSprite:
-          sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles.rsi
-          state: middle
-        alwaysRender: true
-        spriteColor: "#47f8ff"
-        inRangeColor: "#CC00AF"
-        outOfRangeColor: "#CC0000"
-        range: 5
 
 # Senior
 
@@ -143,7 +123,7 @@
       state: senior
   - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
-      spawnedEntityPrototype: MedievalManaBurnFieldSenior
+      spawnedEntityPrototype: MedievalManaBurnFieldSpawnSenior
       spawnType: SpawnOnMousePosition
       spellCastDoAfter:
         delay: 2.5
@@ -157,13 +137,3 @@
           speech: medieval-spell-speach-mana-burn-field
           color: "#B000FF"
           hideChat: true
-  - type: ShowSpawnedEntity
-    sprites:
-      - drawedSprite:
-          sprite: Imperial/Medieval/Magic/Darkness/ManaBurnField/projectiles.rsi
-          state: senior
-        alwaysRender: true
-        spriteColor: "#47f8ff"
-        inRangeColor: "#CC00AF"
-        outOfRangeColor: "#CC0000"
-        range: 5
