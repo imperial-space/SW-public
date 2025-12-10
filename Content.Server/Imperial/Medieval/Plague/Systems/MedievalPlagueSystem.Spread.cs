@@ -72,6 +72,7 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<SetSpreaderChanceEvent>(OnSetSpreaderChance);
         SubscribeLocalEvent<SetPlagueBlockerModifierEvent>(OnSetBlockerMod);
         SubscribeLocalEvent<SetStrapHealResistanceEvent>(OnSetStrapResistance);
+        SubscribeLocalEvent<SetPlagueMinSmellLevelEvent>(OnSetBadSmellResistance);
         SubscribeLocalEvent<SetBloodlettingProbabilitiesEvent>(OnSetBloodlettingProb);
         SubscribeLocalEvent<SetPlagueCureEvent>(OnSetCure);
     }
@@ -221,6 +222,11 @@ public sealed partial class MedievalPlagueSystem
     {
         _strapHealResistance = args.StrapResistance;
         _healItemMod = args.HealMod;
+    }
+
+    private void OnSetBadSmellResistance(SetPlagueMinSmellLevelEvent args)
+    {
+        _minSmellLevel = args.Smell;
     }
 
     private void OnSetCure(SetPlagueCureEvent args)
