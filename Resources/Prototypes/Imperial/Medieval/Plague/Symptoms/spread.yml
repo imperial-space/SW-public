@@ -55,7 +55,7 @@
   required: [LowerProtection1]
   category: Spread
   broadcastEvent: !type:SetPlagueMinSmellLevelEvent
-    smell: 30
+    smell: 15
 
 - type: plagueSymptom
   id: CleanResistance2
@@ -70,7 +70,7 @@
   required: [CleanResistance1]
   category: Spread
   broadcastEvent: !type:SetPlagueMinSmellLevelEvent
-    smell: 15
+    smell: 8
 
 - type: plagueSymptom
   id: LowerSleepProtection1

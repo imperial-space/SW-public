@@ -17,7 +17,7 @@ public sealed partial class MedievalPlagueSystem
     private Dictionary<string, float> _spreaders = new();
     private float _contactSpreadChance = 0f;
     private float _blockersEfficiency = 1f;
-    private float _minSmellLevel = 50f;
+    private float _minSmellLevel = 22f;
 
     public ProtoId<ReagentPrototype> CurrentCure = "MedievalPlagueCure4";
 

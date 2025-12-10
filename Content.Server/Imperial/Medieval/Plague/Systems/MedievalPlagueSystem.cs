@@ -74,6 +74,7 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
     private int _strapHealResistance = 0;
     private float _healItemMod = 1f;
 
+    private const int IncubationDuration = 25;
     private const float PointsUpdateInterval = 600f;
     private TimeSpan _nextPointsUpdate = TimeSpan.Zero;
 
@@ -97,7 +98,7 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
         _spreaders.Clear();
         _contactSpreadChance = 0f;
         _blockersEfficiency = 1f;
-        _minSmellLevel = 50f;
+        _minSmellLevel = 22f;
         _allergyRandom = new();
         CurrentCure = "MedievalPlagueCure4";
 
@@ -198,9 +199,9 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
             immune.StartTime = _timing.CurTime;
         }
 
-        else if (comp.Incubation != comp.Progression < 50)
+        else if (comp.Incubation != comp.Progression < IncubationDuration)
         {
-            comp.Incubation = comp.Progression < 50;
+            comp.Incubation = comp.Progression < IncubationDuration;
             Dirty(uid, comp);
 
             if (comp.Incubation)
