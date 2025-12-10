@@ -3449,7 +3449,7 @@
   playTimeTracker: JobMedievalKayotRegular
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Band
+      department: Kayot
       time: 21600 #Imperial role timers
   startingGear: MedievalKayotRegularGear
   icon: "JobIconMedievalKayotRegular"
@@ -3514,7 +3514,7 @@
   playTimeTracker: JobMedievalKayotVeteran
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Band
+      department: Kayot
       time: 36000 #Imperial role timers
   startingGear: MedievalKayotVeteranGear
   icon: "JobIconMedievalKayotVeteran"
@@ -3578,7 +3578,7 @@
   playTimeTracker: JobMedievalKayotLeader
   requirements:
     - !type:DepartmentTimeRequirement
-      department: Band
+      department: Kayot
       time: 50400 #Imperial role timers
   startingGear: MedievalKayotLeaderGear
   icon: "JobIconMedievalKayotLeader"
