@@ -18,11 +18,11 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
 
         SubscribeLocalEvent<MedievalDoAfterEveryComponent, GetVerbsEvent<AlternativeVerb>>(GenerateDoAfter);
 
-        SubscribeLocalEvent<MedievalHitOnDoAfter>(GiveHit);
+        SubscribeLocalEvent<MedievalDoAfterEveryComponent, MedievalHitOnDoAfter>(GiveHit);
     }
-    private void GiveHit(MedievalHitOnDoAfter ev)
+    private void GiveHit(EntityUid uid, MedievalDoAfterEveryComponent comp, MedievalHitOnDoAfter ev)
     {
-        if (ev.Cancelled || !TryComp<DamageableComponent>(ev.Target, out var damagecomp) || !TryComp<MedievalDoAfterEveryComponent>(ev.Target, out var comp)) return;
+        if (ev.Cancelled || !TryComp<DamageableComponent>(uid, out var damagecomp)) return;
         DamageSpecifier damage = new()
         {
             DamageDict = new()
@@ -30,14 +30,13 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
                 { comp.TypeHit, comp.NumHit }
             }
         };
-
-        _damageableSystem.TryChangeDamage(ev.Target, damage, true, false, damagecomp, origin: ev.Target);
+        _damageableSystem.TryChangeDamage(uid, damage, true, false);
         if (TryComp<DamageableComponent>(ev.Target, out var damageable))
             Dirty(ev.Target.Value, damageable);
     }
     private void StartDoAfterHit(GetVerbsEvent<AlternativeVerb> ev)
     {
-        var doAfterHit = new DoAfterArgs(EntityManager, ev.User, TimeSpan.FromSeconds(2f), new MedievalHitOnDoAfter(), target: ev.Target, eventTarget: ev.User)
+        var doAfterHit = new DoAfterArgs(EntityManager, ev.User, TimeSpan.FromSeconds(2f), new MedievalHitOnDoAfter(), ev.Target, ev.User)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -65,7 +64,7 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
                         break;
                 }
             },
-            Text = Loc.GetString(comp.Name)
+            Text = Loc.GetString(comp.NameLocId)
         }
         );
     }

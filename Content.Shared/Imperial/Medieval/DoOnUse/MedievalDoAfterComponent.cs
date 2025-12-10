@@ -5,14 +5,14 @@ namespace Content.Shared.Imperial.Medieval.DoOnUse.DoAfter;
 [RegisterComponent]
 public sealed partial class MedievalDoAfterEveryComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
-    public string Name = "дать хит";
+    [ViewVariables(VVAccess.ReadWrite), DataField (required: true)]
+    public LocId NameLocId;
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public TypeMedievalDoAfter Type = TypeMedievalDoAfter.Hit;
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public string TypeHit = "Blunt";
     [ViewVariables(VVAccess.ReadWrite), DataField]
-    public int NumHit = 5;
+    public float NumHit = 5.0f;
 }
 public enum TypeMedievalDoAfter : byte
 {
