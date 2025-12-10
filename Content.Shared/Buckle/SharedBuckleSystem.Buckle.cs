@@ -362,6 +362,14 @@ public abstract partial class SharedBuckleSystem
 
     private void Buckle(Entity<BuckleComponent> buckle, Entity<StrapComponent> strap, EntityUid? user)
     {
+        // imperial medieval riding start
+        var beforeEv = new BeforeBuckledEvent(strap, buckle);
+        RaiseLocalEvent(buckle, ref beforeEv);
+
+        if (beforeEv.Cancelled)
+            return;
+        // imperial medieval riding end
+
         if (user == buckle.Owner)
             _adminLogger.Add(LogType.Action, LogImpact.Low, $"{ToPrettyString(user):player} buckled themselves to {ToPrettyString(strap)}");
         else if (user != null)

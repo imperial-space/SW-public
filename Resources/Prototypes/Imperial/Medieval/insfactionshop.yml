@@ -475,7 +475,7 @@
   id: MdvInsMedievalWhiteRoyalHorseWhistle
   productEntity: MedievalWhiteRoyalHorseWhistle
   cost:
-    MedalIns: 32
+    MedalIns: 40
   categories:
   - MedievalInsTransport
 
