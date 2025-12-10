@@ -983,6 +983,7 @@
     - MedievalSteelIngot10
     - MedievalGoldOre
     - MedievalGoldOre10
+    - MedievalStoneBrick
     - EbonitMedieval
     - EbonitMedieval10
     - ForstoneMedieval
@@ -1182,6 +1183,8 @@
     - MedievalKeyStorage
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
+    - MedievalStoneWallCraft
+    - MedievalStoneLoopHoleCraft
     - MedievalWeaponTurretNanoTrasenCraft
     - MedievalChemistryEmptyBottle01
     - MedievalChemistryEmptyBottle02
