@@ -34,9 +34,9 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
         if (TryComp<DamageableComponent>(ev.Target, out var damageable))
             Dirty(ev.Target.Value, damageable);
     }
-    private void StartDoAfterHit(GetVerbsEvent<AlternativeVerb> ev)
+    private void StartDoAfterHit(MedievalDoAfterEveryComponent comp, GetVerbsEvent<AlternativeVerb> ev)
     {
-        var doAfterHit = new DoAfterArgs(EntityManager, ev.User, TimeSpan.FromSeconds(2f), new MedievalHitOnDoAfter(), ev.Target, ev.User)
+        var doAfterHit = new DoAfterArgs(EntityManager, ev.User, comp.Time, new MedievalHitOnDoAfter(), ev.Target, ev.User)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
@@ -57,7 +57,7 @@ public sealed partial class MedievalDoAfterSystem : EntitySystem
                 {
                     case TypeMedievalDoAfter.Hit:
                         {
-                            StartDoAfterHit(ev);
+                            StartDoAfterHit(comp, ev);
                             break;
                         }
                     default:

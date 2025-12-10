@@ -4120,6 +4120,7 @@
   - type: MedievalDoAfterEvery
     nameLocId: grass-bush-doafter-name
     numHit: 45.0
+    time: 2
   - type: TriggerOnCollide
     fixtureID: fix1
 

@@ -13,6 +13,8 @@ public sealed partial class MedievalDoAfterEveryComponent : Component
     public string TypeHit = "Blunt";
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public float NumHit = 5.0f;
+    [ViewVariables(VVAccess.ReadWrite), DataField (required: true)]
+    public TimeSpan Time = TimeSpan.Zero;
 }
 public enum TypeMedievalDoAfter : byte
 {
