@@ -42,8 +42,7 @@ public sealed partial class PaintingEntry : Control
         moreDict.Add(Loc.GetString("creations-info-name"), message.Name);
         moreDict.Add(Loc.GetString("creations-info-description"), message.Description);
         moreDict.Add(Loc.GetString("creations-info-author"), message.Author);
-        var data = _playerManager.GetPlayerData(message.SenderUserId);
-        moreDict.Add(Loc.GetString("creations-info-author-nick"), data.UserName);
+        moreDict.Add(Loc.GetString("creations-info-author-nick"), message.SenderUserName);
         var utc = DateTime.SpecifyKind(message.CreationTime, DateTimeKind.Utc);
         var offset = new DateTimeOffset(utc).ToOffset(TimeSpan.FromHours(3));
         moreDict.Add(Loc.GetString("creations-info-creation-time"), offset.ToString("dd.MM.yyyy HH:mm"));
