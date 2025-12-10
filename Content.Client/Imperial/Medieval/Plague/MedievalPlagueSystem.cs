@@ -1,6 +1,7 @@
 using Content.Client.Alerts;
 using Content.Client.Eye.Blinding;
 using Content.Client.Imperial.Medieval.Plague.UI;
+using Content.Shared.Alert.Components;
 using Content.Shared.Imperial.Medieval.Plague;
 using Content.Shared.Revenant;
 using Content.Shared.StatusIcon;
@@ -41,6 +42,8 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
 
         SubscribeLocalEvent<VomitSicknessComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<VomitSicknessComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+
+        SubscribeLocalEvent<MedievalPlagueGhostComponent, GetGenericAlertCounterAmountEvent>(OnGetCounterAmount);
 
         _overlay = new();
     }
@@ -91,6 +94,17 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
         {
             _overlayMan.RemoveOverlay(_overlay);
         }
+    }
+
+    private void OnGetCounterAmount(Entity<MedievalPlagueGhostComponent> ent, ref GetGenericAlertCounterAmountEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (ent.Comp.AlertId != args.Alert)
+            return;
+
+        args.Amount = ent.Comp.Points;
     }
 
     public override void GrantPlagueImmunity(EntityUid uid, string? cure) { }
