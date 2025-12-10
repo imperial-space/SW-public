@@ -3187,6 +3187,10 @@
     fixtureID: fix1
   - type: EmitSoundOnTrigger
     sound: "/Audio/Imperial/Medieval/bush_collide.ogg"
+  - type: MedievalDoAfterEvery
+    nameLocId: grass-bush-doafter-name
+    numHit: 45.0
+    time: 5
 
 - type: entity
   id: RandomBushOffsetSpawner
