@@ -596,6 +596,7 @@
   - type: IngestionBlocker
     enabled: false
   - type: IdentityBlocker
+    enabled: false
   - type: Armor
     modifiers:
       coefficients:
@@ -661,6 +662,7 @@
   - type: IngestionBlocker
     enabled: false
   - type: IdentityBlocker
+    enabled: false
   - type: Armor
     modifiers:
       coefficients:
