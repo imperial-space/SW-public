@@ -4117,6 +4117,10 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.27
     sprintSpeedModifier: 0.27
+  - type: MedievalDoAfterEvery
+    nameLocId: grass-bush-doafter-name
+    numHit: 45.0
+    time: 5
   - type: TriggerOnCollide
     fixtureID: fix1
 

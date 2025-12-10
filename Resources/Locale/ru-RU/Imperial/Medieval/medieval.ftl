@@ -5881,3 +5881,5 @@ ent-MedievalShortSwordArtur = острие воспоминаний
 ent-MedievalShortSwordSteelArtur = острие воспоминаний
     .desc = Длинная, идеально отточенная игла из бледного металла. Лезвие отбрасывает тусклый отсвет, неясный, как сон. Рукоять обмотана чёрными лентами.
     .suffix = {"СКИН, Средневековье, ближка"}
+grass-bush-doafter-name = Собрать ягоды
+remove-barricade-doafter-name = Убрать баррикаду
