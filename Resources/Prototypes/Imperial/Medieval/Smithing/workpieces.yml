@@ -816,3 +816,32 @@
   components:
   - type: SmithingWorkpiece
     finalProductEntity: MedievalCavalerySpearT3
+
+- type: entity
+  id: WorkpieceMedievalIronClaymore
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronClaymore
+
+- type: entity
+  id: WorkpieceMedievalIronClaymoreSteel
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronClaymoreSteel
+
+- type: entity
+  id: WorkpieceMedievalIronZweihander
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronZweihander
+
+- type: entity
+  id: WorkpieceMedievalIronZweihanderSteel
+  parent: BaseWeaponWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalIronZweihanderSteel
+

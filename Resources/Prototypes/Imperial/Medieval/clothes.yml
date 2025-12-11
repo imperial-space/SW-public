@@ -1812,10 +1812,17 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/artur_head.rsi
     clothingVisuals:
-      head:
-      - state: equipped-HEAD
+      mask:
+      - state: equipped-HELMET
   - type: MedievalPlagueSpreadBlocking
     modifier: 0.5
+  - type: HideLayerClothing
+    slots:
+    - Hair
+    - Snout
+    - HeadTop
+    - HeadSide
+    hideOnToggle: true
 
 - type: Tag
   id: MedievalIronRoyalSword
@@ -2315,10 +2322,10 @@
     sprite: Imperial/Medieval/Clothing/Gloves/bib_gloves.rsi
 
 - type: entity
-  parent: ClothingShoesBase
-  id: MedievalClothingBootsBib
-  name: MedievalClothingBootsBib
-  description: MedievalClothingBootsBib
+  parent: MedievalShoesChamber
+  id: MedievalShoesChamberBib
+  name: MedievalShoesChamberBib
+  description: MedievalShoesChamberBib
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Shoes/bib_boots.rsi

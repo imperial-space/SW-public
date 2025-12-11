@@ -527,6 +527,17 @@
     Revent: 50
   categories:
   - MedievalBuild
+  
+- type: listing
+  id: MdvShopMedievalMeltingPlaceCraft
+  productEntity: MedievalMeltingPlaceCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
 
 - type: listing
   id: MdvShopMedievalLeatherWorkingPlaceCraft

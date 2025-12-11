@@ -56,8 +56,8 @@
     spawnedEntityID: MedievalTentaclesBeginnerClone
     spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1"]
   - type: SpeedModifierContacts
-    walkSpeedModifier: 0.5
-    sprintSpeedModifier: 0.5
+    walkSpeedModifier: 0.3
+    sprintSpeedModifier: 0.3
 
 
 - type: entity
@@ -81,8 +81,8 @@
   - type: TimedDespawn
     lifetime: 10
   - type: SpeedModifierContacts
-    walkSpeedModifier: 0.5
-    sprintSpeedModifier: 0.5
+    walkSpeedModifier: 0.3
+    sprintSpeedModifier: 0.3
 
 # Middle
 
@@ -110,8 +110,8 @@
     spawnedEntityID: MedievalTentaclesMiddleClone
     spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1", "0, -1", "-1, 0", "1, 0", "0, 1"]
   - type: SpeedModifierContacts
-    walkSpeedModifier: 0.4
-    sprintSpeedModifier: 0.4
+    walkSpeedModifier: 0.2
+    sprintSpeedModifier: 0.2
 
 
 - type: entity
@@ -135,8 +135,8 @@
   - type: TimedDespawn
     lifetime: 14
   - type: SpeedModifierContacts
-    walkSpeedModifier: 0.4
-    sprintSpeedModifier: 0.4
+    walkSpeedModifier: 0.2
+    sprintSpeedModifier: 0.2
 
 # Senior
 
@@ -164,8 +164,8 @@
     spawnedEntityID: MedievalTentaclesSeniorClone
     spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1", "0, -1", "-1, 0", "1, 0", "0, 1", "0, -2", "-2, 0", "2, 0", "0, 2"]
   - type: SpeedModifierContacts
-    walkSpeedModifier: 0.3
-    sprintSpeedModifier: 0.3
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1
 
 
 - type: entity
@@ -189,5 +189,5 @@
   - type: TimedDespawn
     lifetime: 18
   - type: SpeedModifierContacts
-    walkSpeedModifier: 0.3
-    sprintSpeedModifier: 0.3
+    walkSpeedModifier: 0.1
+    sprintSpeedModifier: 0.1

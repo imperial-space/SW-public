@@ -10,8 +10,8 @@
     15: good
     20: best
   modifiers:
-    PositiveAttackRate: 0.02
-    NegativeAttackRate: -0.01
+    PositiveAttackRate: 0.03
+    NegativeAttackRate: -0.04
     PositiveDashCooldownBonus: -0.1
     NegativeDashCooldownBonus: 0.2
     PositiveDashDistanceBonus: 0.04
@@ -63,8 +63,8 @@
     15: good
     20: best
   modifiers:
-    AliveHealthPerLevel: 0.7
-    WoundedHealthPerLevel: 0.7
+    AliveHealthPerLevel: 1.5
+    WoundedHealthPerLevel: 1.5
     MaxHealthBonus: 25
     PositiveSlowdownModifier: 0.01
     PositiveSleepEffeciencyModifier: -0.03
@@ -86,8 +86,8 @@
     15: good
     20: best
   modifiers:
-    PositiveSprintStaminaDamageModifier: -0.012
-    NegativeSprintStaminaDamageModifier: 0.02
+    PositiveSprintStaminaDamageModifier: -0.05
+    NegativeSprintStaminaDamageModifier: 0.03
     PositiveSlowdownModifier: 0.01
     PositiveStaminaRegenModifier: 0.015
     NegativeStaminaRegenModifier: -0.015
@@ -112,6 +112,6 @@
     NegativeConstructionSpeedModifier: 0.1
     PositiveHealingSpeedModifier: -0.07
     NegativeHealingSpeedModifier: 0.14
-    PositiveManaModifier: 0.02
-    NegativeManaModifier: -0.02
+    PositiveManaModifier: 0.05
+    NegativeManaModifier: -0.09
     LowStupidityChance: 0.2

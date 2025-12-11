@@ -1544,3 +1544,64 @@
     MedievalMushroom2: 1
     MedievalMushroom3: 1
   result: MedievalCurseClot
+
+- type: CP14Recipe
+  id: MedievalIronClaymore
+  craftTime: 22
+  iconOverride: MedievalIronClaymore
+  stacks:
+    MedievalIronIngot: 40
+    WoodPlank: 6
+  result: WorkpieceMedievalIronClaymore
+
+- type: CP14Recipe
+  id: MedievalIronClaymoreSteel
+  craftTime: 22
+  iconOverride: MedievalIronClaymoreSteel
+  stacks:
+    MedievalSteelIngot: 31
+    WoodPlank: 6
+  result: WorkpieceMedievalIronClaymoreSteel
+
+- type: CP14Recipe
+  id: MedievalIronZweihander
+  craftTime: 22
+  iconOverride: MedievalIronZweihander
+  stacks:
+    MedievalIronIngot: 40
+    WoodPlank: 6
+  result: WorkpieceMedievalIronZweihander
+
+- type: CP14Recipe
+  id: MedievalIronZweihanderSteel
+  craftTime: 22
+  iconOverride: MedievalIronZweihanderSteel
+  stacks:
+    MedievalSteelIngot: 31
+    WoodPlank: 6
+  result: WorkpieceMedievalIronZweihanderSteel
+
+- type: CP14Recipe
+  id: MedievalStoneWallCraft
+  craftTime: 10
+  iconOverride: MedievalStoneWallCraft
+  stacks:
+    MedievalStoneBrick: 5
+  result: MedievalStoneWallCraft
+
+- type: CP14Recipe
+  id: MedievalStoneLoopHoleCraft
+  craftTime: 10
+  iconOverride: MedievalStoneLoopHoleCraft
+  stacks:
+    MedievalStoneBrick: 6
+  result: MedievalStoneLoopHoleCraft
+
+- type: CP14Recipe
+  id: MedievalStoneBrick
+  craftTime: 3
+  iconOverride: MedievalStoneBrick
+  stacks:
+    MedievalGlina: 5
+    MedievalCoal: 1
+  result: MedievalStoneBrick
