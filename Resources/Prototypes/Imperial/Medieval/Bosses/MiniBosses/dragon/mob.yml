@@ -1,0 +1,105 @@
+- type: entity
+  name: dragon
+  parent: SimpleMobBaseNoFood
+  id: MedievalBossIceDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Medieval/Mobs/Bosses/icedragon.rsi
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape: !type:PhysShapeCircle
+            radius: 1.5
+          density: 50
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+        Dead:
+          Base: dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        2000: Dead
+    - type: SlowOnDamage
+      speedModifierThresholds:
+        1000: 0.7
+    - type: Tag
+      tags:
+      - FootstepSound
+    - type: Bloodstream
+      bloodMaxVolume: 0
+    - type: NpcFactionMember
+      factions:
+      - Xeno
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+    - type: LanguageSpeaker
+      languages:
+        Common: Speak
+        Goblin: Speak
+        Ancient: Speak
+        Tribe: Speak
+        Orc: Speak
+        Cursed: Speak
+        Growling: Speak
+        Hissing: Speak
+        Elf: Speak
+    # Imperial Space Stamina Resistance Start
+    - type: StaminaResistance
+      damageCoefficient: 0.2
+    # Imperial Space Stamina Resistance End
+    - type: MeleeWeapon
+      hidden: true
+      angle: 0
+      animation: WeaponArcPunch
+      soundHit:
+        path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
+      damage:
+        groups:
+          Brute: 38
+          Structural: 600
+      range: 3
+      attackRate: 0.4
+    - type: FootstepModifier
+      footstepSoundCollection:
+        path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
+        params:
+          volume: -4
+    - type: Speech
+      speechVerb: LargeMob
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 2
+      baseSprintSpeed: 2.5
+    - type: NoSlip
+    - type: HitscanBatteryAmmoProvider
+      proto: MedievalProjectileWaterSphereBeginner
+      fireCost: 1
+    - type: Battery
+      maxCharge: 1000
+      startingCharge: 1000
+    - type: Gun
+      projectileSpeed: 8
+      fireRate: 0.3
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Imperial/Medieval/icebeam_shot.oggyaml
+    - type: AnnounceOnSpawn
+      message: "Вы слышите драконий рог, слышимый по всему острову, кажется, кто-то призвал дракона. Его местонахождение: X = {0}, Y = {1}"
+      color: "red"
+      sender: "Драконий рог"
+      sound:
+        path: /Audio/Animals/dragon_roar.ogg
+        volume: -2
