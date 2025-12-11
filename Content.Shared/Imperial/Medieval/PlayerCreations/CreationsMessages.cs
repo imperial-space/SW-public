@@ -13,9 +13,10 @@ public sealed class CreationPaintingMessage : IEquatable<CreationPaintingMessage
     public string Description { get; }
     public string Author { get; }
     public NetUserId SenderUserId { get; }
+    public string SenderUserName { get; }
     public DateTime CreationTime { get; }
 
-    public CreationPaintingMessage(Color[] painting, string name, string description, string author, NetUserId senderUserId, DateTime creationTime)
+    public CreationPaintingMessage(Color[] painting, string name, string description, string author, NetUserId senderUserId, DateTime creationTime, string senderUserName)
     {
         Painting = painting;
         Name = name;
@@ -23,6 +24,7 @@ public sealed class CreationPaintingMessage : IEquatable<CreationPaintingMessage
         Author = author;
         SenderUserId = senderUserId;
         CreationTime = creationTime;
+        SenderUserName = senderUserName;
     }
 
     public override bool Equals(object? obj) => Equals(obj as CreationPaintingMessage);
