@@ -6624,6 +6624,39 @@
     size: Tiny
 
 - type: entity
+  name: shield repair kit
+  parent: BaseItem
+  id: MedievalShieldRepairKit
+  description: A specialized repair kit for fixing damaged shields.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+  - type: Healing
+    damageContainers:
+      - Shield
+    damage:
+      groups:
+        Brute: -100
+    delay: 3
+    selfHealPenaltyMultiplier: 1
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: StaticPrice
+    price: 50
+
+- type: entity
   name: gol
   parent: BaseItem
   id: MedievalDungeonKey

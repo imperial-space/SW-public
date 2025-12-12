@@ -332,6 +332,8 @@
         prob: 0.1
       - id: MedievalRepairStone
         prob: 0.05
+      - id: MedievalShieldRepairKit
+        prob: 0.05
       - id: MedievalScrollBarrier
         prob: 0.12
       - id: MedievalDrugChemistryBottle
@@ -824,6 +826,8 @@
         prob: 0.22
       - id: MedievalRepairStone
         prob: 0.05
+      - id: MedievalShieldRepairKit
+        prob: 0.05
       - id: MedievalPen
         prob: 0.1
       - id: MedievalDrugChemistryBottle
@@ -1315,6 +1319,8 @@
       - id: MedievalPaper
         prob: 0.22
       - id: MedievalRepairStone
+        prob: 0.05
+      - id: MedievalShieldRepairKit
         prob: 0.05
       - id: MedievalPen
         prob: 0.1
@@ -1865,6 +1871,8 @@
       - id: MedievalScrollBarrier
         prob: 0.05
       - id: MedievalRepairStone
+        prob: 0.05
+      - id: MedievalShieldRepairKit
         prob: 0.05
       - id: MedievalPen
         prob: 0.1

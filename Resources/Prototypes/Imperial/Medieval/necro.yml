@@ -684,6 +684,10 @@
 - type: listing
   id: NecroListingMedievalRepairStone
   productEntity: MedievalRepairStone
+
+- type: listing
+  id: NecroListingMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
   cost:
     UnholyMedieval: 4
   categories:

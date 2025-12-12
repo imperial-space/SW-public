@@ -808,6 +808,15 @@
   result: WorkpieceMedievalRepairStone
 
 - type: CP14Recipe
+  id: MedievalShieldRepairKit
+  craftTime: 4
+  iconOverride: MedievalShieldRepairKit
+  stacks:
+    MedievalLeather1: 2
+    MedievalIronIngot: 1
+  result: MedievalShieldRepairKit
+
+- type: CP14Recipe
   id: MedievalHoe
   craftTime: 7
   iconOverride: MedievalHoe
