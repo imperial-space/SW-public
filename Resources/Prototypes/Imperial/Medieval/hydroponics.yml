@@ -86,8 +86,8 @@
     - MedievalMushroom1
   lifespan: 30
   maturation: 12
-  production: 4
-  yield: 4
+  production: 2
+  yield: 2
   potency: 12
   growthStages: 3
   waterConsumption: 0.80
@@ -111,8 +111,8 @@
     - MedievalMushroom2
   lifespan: 30
   maturation: 12
-  production: 4
-  yield: 4
+  production: 2
+  yield: 2
   potency: 12
   growthStages: 3
   waterConsumption: 0.80
@@ -136,8 +136,8 @@
     - MedievalMushroom3
   lifespan: 30
   maturation: 12
-  production: 4
-  yield: 4
+  production: 2
+  yield: 2
   potency: 12
   growthStages: 3
   waterConsumption: 0.80
@@ -161,8 +161,8 @@
     - MedievalFlowerVetr
   lifespan: 28
   maturation: 9
-  production: 4
-  yield: 4
+  production: 3
+  yield: 3
   potency: 11
   growthStages: 3
   waterConsumption: 0.65
@@ -186,8 +186,8 @@
     - MedievalFlowerCryo
   lifespan: 30
   maturation: 11
-  production: 3
-  yield: 3
+  production: 2
+  yield: 2
   potency: 10
   growthStages: 3
   waterConsumption: 0.60
@@ -211,8 +211,8 @@
     - MedievalFlowerLava
   lifespan: 30
   maturation: 11
-  production: 3
-  yield: 3
+  production: 2
+  yield: 2
   potency: 10
   growthStages: 3
   waterConsumption: 0.55
@@ -236,8 +236,8 @@
     - MedievalFlowerLipad
   lifespan: 28
   maturation: 9
-  production: 4
-  yield: 4
+  production: 3
+  yield: 3
   potency: 11
   growthStages: 3
   waterConsumption: 0.65
@@ -280,10 +280,10 @@
     ingredientType: Vetr
   - type: Currency
     price:
-      Revent: 5
+      Revent: 3
   - type: MedievalCurrency
     price:
-      Revent: 5
+      Revent: 3
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -325,10 +325,10 @@
     ingredientType: Lipad
   - type: Currency
     price:
-      Revent: 5
+      Revent: 3
   - type: MedievalCurrency
     price:
-      Revent: 5
+      Revent: 3
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -370,10 +370,10 @@
     ingredientType: Lava
   - type: Currency
     price:
-      Revent: 5
+      Revent: 3
   - type: MedievalCurrency
     price:
-      Revent: 5
+      Revent: 3
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -415,10 +415,10 @@
     ingredientType: Cryo
   - type: Currency
     price:
-      Revent: 5
+      Revent: 3
   - type: MedievalCurrency
     price:
-      Revent: 5
+      Revent: 3
   - type: Tag
     tags:
     - AlchemicIngredient
@@ -456,10 +456,10 @@
     seedId: Mushroom1
   - type: Currency
     price:
-      Revent: 8
+      Revent: 3
   - type: MedievalCurrency
     price:
-      Revent: 8
+      Revent: 3
   - type: Item
     size: Tiny
   - type: Extractable
@@ -499,10 +499,10 @@
     seedId: Mushroom2
   - type: Currency
     price:
-      Revent: 8
+      Revent: 3
   - type: MedievalCurrency
     price:
-      Revent: 8
+      Revent: 3
   - type: Item
     size: Tiny
   - type: Extractable
@@ -542,10 +542,10 @@
     seedId: Mushroom3
   - type: Currency
     price:
-      Revent: 8
+      Revent: 3
   - type: MedievalCurrency
     price:
-      Revent: 8
+      Revent: 3
   - type: Item
     size: Tiny
   - type: Extractable
