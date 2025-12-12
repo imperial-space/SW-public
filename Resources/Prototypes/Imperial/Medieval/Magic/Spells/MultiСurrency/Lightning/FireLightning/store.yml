@@ -1,28 +1,29 @@
-# # Middle
+# Middle
 
-# - type: imperialListing
-#   id: MedievalSpellFireLightningMiddle
-#   name: medieval-store-spells-light-lightning-middle-fire-name
-#   description: medieval-store-spells-light-lightning-middle-fire-desc
-#   actionLevelUp: 2
-#   priority: 8
-#   productUpgradeId:
-#     - MedievalSpellFireLightningSenior
-#   icon:
-#     sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
-#     state: middle-fire
-#   cost:
-#     MagicMedievalLight: 40
-#   categories:
-#   - MedievalLightSpells
-#   conditions:
-#   - !type:ImperialListingLimitedStockCondition
-#     stock: 1
-#   - !type:ImperialBuyBeforeCondition
-#     whitelist:
-#       - MedievalSpellLightningMiddle
-#     blacklist:
-#       - MedievalSpellLightningSenior
+- type: imperialListing
+  id: MedievalSpellFireLightningMiddle
+  name: medieval-store-spells-light-lightning-middle-fire-name
+  description: medieval-store-spells-light-lightning-middle-fire-desc
+  actionLevelUp: 2
+  priority: 8
+  productUpgradeId:
+    - MedievalSpellFireLightningSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/MultiCurrency/Lightning/icons.rsi
+    state: middle-fire
+  cost:
+    MagicMedievalLight: 40
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellLightningMiddle
+    blacklist:
+      - MedievalSpellLightningSenior # Remove this line, to return spell in Grimoire
+      - MedievalSpellLightningMiddle
 
 # Senior
 
