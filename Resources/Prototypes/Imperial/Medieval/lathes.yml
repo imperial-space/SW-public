@@ -1196,6 +1196,7 @@
     - MedievalHorseChainMailArmor
     - MedievalHorseUpIronArmor
     - MedievalHorseHorseshoe
+    - MedievalBloodlettingNeedle
 
 - type: entity
   parent: CP14BaseWorkbench

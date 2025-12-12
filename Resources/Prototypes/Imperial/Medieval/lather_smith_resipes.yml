@@ -977,3 +977,12 @@
     MedievalLeatherBelt: 1
     MedievalShoulder: 2
   result: WorkpieceMedievalClothingOuterArmorGoblinIron
+
+- type: CP14Recipe
+  id: MedievalBloodlettingNeedle
+  iconOverride: MedievalBloodlettingNeedle
+  craftTime: 4
+  stacks:
+    MedievalIronIngot: 1
+  result: MedievalBloodlettingNeedle
+  
