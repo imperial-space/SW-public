@@ -5901,3 +5901,6 @@ ent-MedievalShortSwordSteelArtur = острие воспоминаний
     .suffix = {"СКИН, Средневековье, ближка"}
 grass-bush-doafter-name = Собрать ягоды
 remove-barricade-doafter-name = Убрать баррикаду
+ent-MedievalManaBurnGrenade = бомбочка выжигания маны
+    .desc = Не убоюсь подлого колдовства!
+    .suffix = {"Средневековье"}

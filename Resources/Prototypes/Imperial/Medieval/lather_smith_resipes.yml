@@ -881,6 +881,15 @@
   result: WorkpieceMedievalGrenade
 
 - type: CP14Recipe
+  id: MedievalManaBurnGrenade
+  craftTime: 5
+  iconOverride: MedievalManaBurnGrenade
+  stacks:
+    MedievalAdam: 4
+    MedievalGold: 2
+  result: MedievalManaBurnGrenade
+
+- type: CP14Recipe
   id: MedievalKeyStorage
   craftTime: 4
   iconOverride: MedievalKeyStorage

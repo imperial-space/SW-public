@@ -1028,6 +1028,7 @@
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
     recipes:
+    - MedievalManaBurnGrenade
     - MedievalGlowStone
     - MedievalCompactDefibrillator
     - MedievalShoesSpeed

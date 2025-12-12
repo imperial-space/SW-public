@@ -1096,6 +1096,37 @@
     proto: MedievalExplosionEffect
 
 - type: entity
+  name: mana burn bomb
+  description: Grenade that creates a mana burn field.
+  parent: GrenadeBase
+  id: MedievalManaBurnGrenade
+  components:
+  - type: RDWeight
+    value: 2
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_grenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: TimerTrigger
+    delay: 2.5
+    beepSound:
+      path: "/Audio/Imperial/Medieval/bomb.ogg"
+      params:
+        volume: 7
+    initialBeepDelay: 0
+    beepInterval: 6 # 2 beeps total (at 0 and 2)
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+  - type: SpawnOnTrigger
+    useMapCoords: true
+    keysIn:
+    - timer
+    proto: MedievalManaBurnFieldSpawnMiddle
+
+
+- type: entity
   parent: MopItem
   id: MedievalMopItem
   name: MedievalMopItem

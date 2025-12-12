@@ -173,6 +173,8 @@
   maximumGuilds: 2
   currency: Revent
   items:
+  - productEntity: MedievalWizardBlacksmithCraft
+    cost: 75
   - productEntity: MedievalReliefStoneWeak
     cost: 220
     reputationForBuying: 7.3
@@ -216,6 +218,9 @@
   - productEntity: MedaljonAntiMana
     cost: 300
     reputationForBuying: 10
+  - productEntity: MedievalManaBurnGrenade
+    cost: 150
+    reputationForBuying: 2
   - productEntity: MedievalGlowStone
     cost: 12
     reputationForBuying: 0.4
