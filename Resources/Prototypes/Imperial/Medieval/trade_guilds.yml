@@ -1467,6 +1467,9 @@
   - productEntity: MedievalMeltingPlaceCraft
     cost: 50
     reputationForBuying: 1.7
+  - productEntity: Medievalalchem_dispenserCraft
+    cost: 50
+    reputationForBuying: 1.7
   - productEntity: MedievalFoundryCraft
     cost: 50
     reputationForBuying: 1.7

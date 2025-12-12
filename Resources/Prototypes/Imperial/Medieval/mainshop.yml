@@ -538,6 +538,17 @@
     Revent: 50
   categories:
   - MedievalBuild
+  
+- type: listing
+  id: MdvShopMedievalalchem_dispenserCraft
+  productEntity: Medievalalchem_dispenserCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
 
 - type: listing
   id: MdvShopMedievalLeatherWorkingPlaceCraft
