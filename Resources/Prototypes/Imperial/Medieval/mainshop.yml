@@ -187,6 +187,7 @@
 #    - MedievalQuestLegion
 #    - MedievalPlants
 #    - MedievalTransport
+#    - MedievalBoss
 #    currencyWhitelist:
 #    - Revent
 #    balance:
@@ -217,6 +218,7 @@
 #    - MedievalQuestIns
 #    - MedievalPlants
 #    - MedievalTransport
+#    - MedievalBoss
 #    currencyWhitelist:
 #    - Revent
 #    balance:
@@ -281,6 +283,43 @@
   id: MedievalClothing
   name: medieval-category-clothing
   priority: 5
+
+- type: storeCategory
+  id: MedievalBoss
+  name: medieval-category-boss
+  priority: 10
+
+- type: listing
+  id: MdvShopBossIceDragonTablet
+  productEntity: MedievalIceDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossFireDragonTablet
+  productEntity: MedievalFireDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossAcidDragonTablet
+  productEntity: MedievalAcidDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossThunderDragonTablet
+  productEntity: MedievalThunderDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
 
 - type: listing
   id: MdvShopFoodBreadPlain
@@ -527,7 +566,7 @@
     Revent: 50
   categories:
   - MedievalBuild
-  
+
 - type: listing
   id: MdvShopMedievalMeltingPlaceCraft
   productEntity: MedievalMeltingPlaceCraft

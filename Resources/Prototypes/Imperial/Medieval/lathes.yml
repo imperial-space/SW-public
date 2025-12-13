@@ -1046,6 +1046,7 @@
     - MedievalReliefStoneWeakCraft
     - MedievalReliefStoneStrongCraft
     - MedievalAntiGravitationStoneCraft
+    - MedievalDragonQuantEssence
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1196,6 +1197,22 @@
     - MedievalHorseChainMailArmor
     - MedievalHorseUpIronArmor
     - MedievalHorseHorseshoe
+    - MedievalClothingHeadHelmetDragonBoneIce
+    - MedievalClothingOuterArmorDragonBoneIce
+    - MedievalDragonBoneGlovesIce
+    - MedievalClothingFeetDragonBoneIce
+    - MedievalClothingHeadHelmetDragonBoneFire
+    - MedievalClothingOuterArmorDragonBoneFire
+    - MedievalDragonBoneGlovesFire
+    - MedievalClothingFeetDragonBoneFire
+    - MedievalClothingHeadHelmetDragonBoneAcid
+    - MedievalClothingOuterArmorDragonBoneAcid
+    - MedievalDragonBoneGlovesAcid
+    - MedievalClothingFeetDragonBoneAcid
+    - MedievalClothingHeadHelmetDragonBoneThunder
+    - MedievalClothingOuterArmorDragonBoneThunder
+    - MedievalDragonBoneGlovesThunder
+    - MedievalClothingFeetDragonBoneThunder
 
 - type: entity
   parent: CP14BaseWorkbench

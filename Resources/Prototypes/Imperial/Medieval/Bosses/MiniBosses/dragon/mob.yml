@@ -1,15 +1,19 @@
+- type: speechSounds
+  id: MedievalDragon
+  saySound:
+    path: /Audio/Imperial/Medieval/dragon_say.ogg
+  askSound:
+    path: /Audio/Imperial/Medieval/dragon_ask.ogg
+  exclaimSound:
+    path: /Audio/Imperial/Medieval/dragon_exclaim.ogg
+
 - type: entity
   name: dragon
+  abstract: true
   parent: SimpleMobBaseNoFood
-  id: MedievalBossIceDragon
+  id: MedievalBossBaseDragon
   description: big dragon
   components:
-    - type: Sprite
-      drawdepth: Mobs
-      layers:
-      - map: ["enum.DamageStateVisualLayers.Base"]
-        state: alive
-        sprite: Imperial/Medieval/Mobs/Bosses/icedragon.rsi
     - type: Fixtures
       fixtures:
         fix1:
@@ -20,6 +24,9 @@
           - MobMask
           layer:
           - MobLayer
+    - type: LocalLight
+      energy: 1
+      radius: 5
     - type: DamageStateVisuals
       states:
         Alive:
@@ -29,10 +36,10 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        2000: Dead
+        1100: Dead
     - type: SlowOnDamage
       speedModifierThresholds:
-        1000: 0.7
+        500: 0.7
     - type: Tag
       tags:
       - FootstepSound
@@ -55,10 +62,6 @@
         Growling: Speak
         Hissing: Speak
         Elf: Speak
-    # Imperial Space Stamina Resistance Start
-    - type: StaminaResistance
-      damageCoefficient: 0.2
-    # Imperial Space Stamina Resistance End
     - type: MeleeWeapon
       hidden: true
       angle: 0
@@ -68,20 +71,67 @@
       damage:
         groups:
           Brute: 38
+        types:
           Structural: 600
       range: 3
-      attackRate: 0.4
+      attackRate: 0.35
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
         params:
           volume: -4
+    - type: NoSlip
     - type: Speech
       speechVerb: LargeMob
+      speechSounds: MedievalDragon
     - type: MovementSpeedModifier
-      baseWalkSpeed: 2
-      baseSprintSpeed: 2.5
-    - type: NoSlip
+      baseWalkSpeed: 4
+      baseSprintSpeed: 2
+    - type: AnnounceOnSpawn
+      message: "Вы слышите рёв, эхом раздающийся по всему континенту, кажется, кто-то пробудил древнего дракона."
+      color: "yellow"
+      sender: "Древняя сущность"
+      sound:
+        path: /Audio/Imperial/Medieval/dragon_summon.ogg
+        volume: -2
+    - type: GhostTakeoverAvailable
+    - type: GhostRole
+      makeSentient: true
+      name: ghost-role-information-dragon-name
+      description: ghost-role-information-dragon-description
+      rules: ghost-role-information-antagonist-rules
+      mindRoles:
+      - MindRoleGhostRoleSoloAntagonist
+      raffle:
+        settings: default
+    - type: Devourer
+      foodPreferenceWhitelist:
+        components:
+        - HumanoidAppearance
+      stomachStorageWhitelist:
+        components:
+        - MobState
+      chemical: Ichor
+      healRate: 7.5
+      whitelist:
+        components:
+        - MobState
+        - Door
+        tags:
+        - Wall
+
+- type: entity
+  name: dragon
+  parent: MedievalBossBaseDragon
+  id: MedievalBossIceDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Medieval/Mobs/Bosses/Dragons/icedragon.rsi
     - type: HitscanBatteryAmmoProvider
       proto: MedievalProjectileWaterSphereBeginner
       fireCost: 1
@@ -90,16 +140,159 @@
       startingCharge: 1000
     - type: Gun
       projectileSpeed: 8
-      fireRate: 0.3
+      fireRate: 0.4
       useKey: false
       selectedMode: SemiAuto
       availableModes:
       - SemiAuto
-      soundGunshot: /Audio/Imperial/Medieval/icebeam_shot.oggyaml
-    - type: AnnounceOnSpawn
-      message: "Вы слышите драконий рог, слышимый по всему острову, кажется, кто-то призвал дракона. Его местонахождение: X = {0}, Y = {1}"
-      color: "red"
-      sender: "Драконий рог"
-      sound:
-        path: /Audio/Animals/dragon_roar.ogg
-        volume: -2
+      soundGunshot: /Audio/Imperial/Medieval/icebeam_shot.ogg
+    - type: Butcherable
+      spawned:
+      - id: MedievalDragonLootIcescale
+        amount: 8
+      - id: MedievalDragonLootBones
+        amount: 5
+      - id: FoodMeat
+        amount: 5
+      - id: MedievalLeather1
+        amount: 3
+      - id: MedievalDragonLootTrueWaterEssence
+        amount: 1
+
+- type: entity
+  name: dragon
+  parent: MedievalBossBaseDragon
+  id: MedievalBossFireDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Medieval/Mobs/Bosses/Dragons/firedragon.rsi
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 10
+      rechargeSound:
+        path: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: BasicEntityAmmoProvider
+      proto: MedievalProjectileFireballBeginner
+      capacity: 1
+      count: 1
+    - type: Gun
+      projectileSpeed: 7
+      fireRate: 0.2
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: Damageable
+      damageModifierSet: FireDragon
+    - type: ExplosionResistance
+      damageCoefficient: 0.35
+    - type: Butcherable
+      spawned:
+      - id: MedievalDragonLootFirescale
+        amount: 8
+      - id: MedievalDragonLootBones
+        amount: 5
+      - id: FoodMeat
+        amount: 5
+      - id: MedievalLeather1
+        amount: 3
+      - id: MedievalDragonLootTrueFireEssence
+        amount: 1
+
+- type: damageModifierSet
+  id: FireDragon
+  coefficients:
+    Heat: 0
+
+- type: entity
+  name: dragon
+  parent: MedievalBossBaseDragon
+  id: MedievalBossAcidDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Medieval/Mobs/Bosses/Dragons/aciddragon.rsi
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 10
+      rechargeSound:
+        path: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: BasicEntityAmmoProvider
+      proto: MedievalProjectileAcidDragon
+      capacity: 1
+      count: 1
+    - type: Gun
+      projectileSpeed: 7
+      fireRate: 0.2
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: Tag
+      tags:
+      - FootstepSound
+      - MyrmexPoisonImmune
+    - type: Butcherable
+      spawned:
+      - id: MedievalDragonLootAcidscale
+        amount: 8
+      - id: MedievalDragonLootBones
+        amount: 5
+      - id: FoodMeat
+        amount: 5
+      - id: MedievalLeather1
+        amount: 3
+      - id: MedievalDragonLootTrueEarthEssence
+        amount: 1
+
+- type: entity
+  name: dragon
+  parent: MedievalBossBaseDragon
+  id: MedievalBossThunderDragon
+  description: big dragon
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      layers:
+      - map: ["enum.DamageStateVisualLayers.Base"]
+        state: alive
+        sprite: Imperial/Medieval/Mobs/Bosses/Dragons/thunderdragon.rsi
+    - type: RechargeBasicEntityAmmo
+      rechargeCooldown: 10
+      rechargeSound:
+        path: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: BasicEntityAmmoProvider
+      proto: MedievalProjectileThunderDragon
+      capacity: 1
+      count: 1
+    - type: Gun
+      projectileSpeed: 7
+      fireRate: 0.2
+      useKey: false
+      selectedMode: SemiAuto
+      availableModes:
+      - SemiAuto
+      soundGunshot: /Audio/Imperial/Medieval/fireball_blast.ogg
+    - type: ExplosionResistance
+      damageCoefficient: 0.35
+    - type: Butcherable
+      spawned:
+      - id: MedievalDragonLootThunderscale
+        amount: 8
+      - id: MedievalDragonLootBones
+        amount: 5
+      - id: FoodMeat
+        amount: 5
+      - id: MedievalLeather1
+        amount: 3
+      - id: MedievalDragonLootTrueAirEssence
+        amount: 1

@@ -5118,8 +5118,8 @@
 
 - type: entity
   name: medieval spear
-  parent: MedievalSpearT3Steel
-  id: MedievalSpearT3SteelBib
+  parent: MedievalSpearT3
+  id: MedievalSpearT3Bib
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
   - type: Sprite
