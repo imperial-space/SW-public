@@ -934,6 +934,94 @@
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalWineskin # imperial medieval
 
+- type: entity
+  abstract: true
+  id: DrinkBaseMaterialGold
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 25
+
+- type: entity
+  abstract: true
+  id: DrinkBaseMaterialSilver
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 25
+
+- type: entity
+  parent: [DrinkBaseMaterialGold, DrinkBaseCup, DrinkVisualsFill]
+  id: MedievalGoldCup
+  name: golden cup
+  description: An elegant golden cup.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/goldcup.rsi
+    layers:
+      - state: icon
+      - state: Fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: Fill-
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: null
+  - type: StaticPrice
+    price: 150
+  - type: Tag
+    tags:
+    - DrinkCup
+    - DrinkGlass
+
+- type: entity
+  parent: [DrinkBaseMaterialSilver, DrinkBaseCup, DrinkVisualsFill]
+  id: MedievalSilverCup
+  name: silver cup
+  description: An elegant silver cup.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/silvercup.rsi
+    layers:
+      - state: icon
+      - state: Fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: Fill-
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: null
+  - type: StaticPrice
+    price: 120
+  - type: Tag
+    tags:
+    - DrinkCup
+    - DrinkGlass
+
 # - type: entity
 #   parent: BaseAPC
 #   id: MedievalAPC
