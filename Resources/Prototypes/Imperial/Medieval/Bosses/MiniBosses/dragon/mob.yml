@@ -45,7 +45,7 @@
         2000: Dead
     - type: SlowOnDamage
       speedModifierThresholds:
-        500: 0.7
+        1500: 0.7
     - type: Tag
       tags:
       - FootstepSound
@@ -79,18 +79,18 @@
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
       damage:
         groups:
-          Brute: 44
+          Brute: 49
         types:
           Structural: 600
-      range: 3
-      attackRate: 0.6
+      range: 3.5
+      attackRate: 0.75
     - type: StaminaDamageOnHit
-      damage: 30
+      damage: 65
     - type: Stamina
       critThreshold: 500
     - type: MeleeThrowOnHit
-      distance: 4
-      speed: 5
+      distance: 7
+      speed: 9
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
