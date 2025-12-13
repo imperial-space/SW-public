@@ -6627,7 +6627,7 @@
   name: shield repair kit
   parent: BaseItem
   id: MedievalShieldRepairKit
-  description: A specialized repair kit for fixing damaged shields.
+  description: Fully restores the shield's durability.
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/repairkit.rsi
@@ -6640,7 +6640,10 @@
       - Shield
     damage:
       groups:
-        Brute: -100
+        Brute: -1000
+      types:
+        Heat: -1000
+        Structural: -1000
     delay: 3
     selfHealPenaltyMultiplier: 1
     healingBeginSound:
