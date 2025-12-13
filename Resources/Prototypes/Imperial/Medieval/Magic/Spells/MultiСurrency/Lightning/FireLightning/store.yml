@@ -22,7 +22,8 @@
     whitelist:
       - MedievalSpellLightningMiddle
     blacklist:
-      - MedievalSpellLightningSenior
+      - MedievalSpellLightningSenior # Remove this line, to return spell in Grimoire
+      - MedievalSpellLightningMiddle
 
 # Senior
 

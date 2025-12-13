@@ -1213,6 +1213,7 @@
     - MedievalClothingOuterArmorDragonBoneThunder
     - MedievalDragonBoneGlovesThunder
     - MedievalClothingFeetDragonBoneThunder
+    - MedievalBloodlettingNeedle
 
 - type: entity
   parent: CP14BaseWorkbench

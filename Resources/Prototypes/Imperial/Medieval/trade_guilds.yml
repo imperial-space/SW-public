@@ -963,6 +963,10 @@
     cost: 220
     reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalBloodlettingNeedle
+    cost: 10
+    reputationForBuying: 0.3
+
 
 - type: guildName
   id: ClothGuild
@@ -1477,6 +1481,9 @@
     cost: 50
     reputationForBuying: 1.7
   - productEntity: MedievalMeltingPlaceCraft
+    cost: 50
+    reputationForBuying: 1.7
+  - productEntity: Medievalalchem_dispenserCraft
     cost: 50
     reputationForBuying: 1.7
   - productEntity: MedievalFoundryCraft
