@@ -6,7 +6,7 @@ namespace Content.Shared.Summoning;
 [RegisterComponent]
 public sealed partial class MedievalSummonOnUseComponent : Component
 {
-    [DataField("entity", required: true)]
+    [DataField("entitySummoned", required: true)]
     public EntProtoId EntityToSummon = string.Empty;
 
     [DataField("smokeEffect")]
