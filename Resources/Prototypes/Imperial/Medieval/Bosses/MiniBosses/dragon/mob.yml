@@ -39,7 +39,7 @@
     - type: MobThresholds
       thresholds:
         0: Alive
-        1100: Dead
+        1400: Dead
     - type: SlowOnDamage
       speedModifierThresholds:
         500: 0.7
