@@ -1,9 +1,10 @@
 using Robust.Shared.Player;
 using Content.Shared.Damage;
+using Robust.Shared.GameStates;
 
-namespace Content.Server.SSDFree.Components
+namespace Content.Shared.SSDFree.Components
 {
-    [RegisterComponent]
+    [RegisterComponent, NetworkedComponent]
     public sealed partial class SSDFreeComponent : Component
     {
         public DamageSpecifier SpikeDamage = new()
@@ -44,6 +45,8 @@ namespace Content.Server.SSDFree.Components
         public bool Enabled = true;
         [DataField]
         public bool GoSkeleton = true;
+        [DataField]
+        public bool DragonEaten = false;
         [DataField]
         public ICommonSession? CommonSession = null;
         [DataField]

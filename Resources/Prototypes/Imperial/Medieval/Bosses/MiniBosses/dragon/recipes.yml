@@ -34,6 +34,7 @@
   stacks:
     MedievalSteelIngot: 5
     MedievalRivets: 2
+  entities:
     MedievalDragonLootIcescale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingHeadHelmetDragonBoneIce
@@ -48,6 +49,7 @@
     MedievalSteelIngot: 10
     MedievalChain: 2
     MedievalShoulder: 2
+  entities:
     MedievalDragonLootIcescale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingOuterArmorDragonBoneIce
@@ -59,6 +61,7 @@
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
+  entities:
     MedievalDragonLootIcescale: 1
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalDragonBoneGlovesIce
@@ -70,6 +73,7 @@
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
+  entities:
     MedievalDragonLootIcescale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingFeetDragonBoneIce
@@ -111,6 +115,7 @@
   stacks:
     MedievalSteelIngot: 5
     MedievalRivets: 2
+  entities:
     MedievalDragonLootFirescale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingHeadHelmetDragonBoneFire
@@ -125,6 +130,7 @@
     MedievalSteelIngot: 10
     MedievalChain: 2
     MedievalShoulder: 2
+  entities:
     MedievalDragonLootFirescale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingOuterArmorDragonBoneFire
@@ -136,6 +142,7 @@
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
+  entities:
     MedievalDragonLootFirescale: 1
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalDragonBoneGlovesFire
@@ -147,6 +154,7 @@
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
+  entities:
     MedievalDragonLootFirescale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingFeetDragonBoneFire
@@ -188,6 +196,7 @@
   stacks:
     MedievalSteelIngot: 5
     MedievalRivets: 2
+  entities:
     MedievalDragonLootAcidscale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingHeadHelmetDragonBoneAcid
@@ -202,6 +211,7 @@
     MedievalSteelIngot: 10
     MedievalChain: 2
     MedievalShoulder: 2
+  entities:
     MedievalDragonLootAcidscale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingOuterArmorDragonBoneAcid
@@ -213,6 +223,7 @@
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
+  entities:
     MedievalDragonLootAcidscale: 1
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalDragonBoneGlovesAcid
@@ -224,6 +235,7 @@
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
+  entities:
     MedievalDragonLootAcidscale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingFeetDragonBoneAcid
@@ -265,6 +277,7 @@
   stacks:
     MedievalSteelIngot: 5
     MedievalRivets: 2
+  entities:
     MedievalDragonLootThunderscale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingHeadHelmetDragonBoneThunder
@@ -279,6 +292,7 @@
     MedievalSteelIngot: 10
     MedievalChain: 2
     MedievalShoulder: 2
+  entities:
     MedievalDragonLootThunderscale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingOuterArmorDragonBoneThunder
@@ -290,6 +304,7 @@
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
+  entities:
     MedievalDragonLootThunderscale: 1
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalDragonBoneGlovesThunder
@@ -301,6 +316,7 @@
   stacks:
     MedievalRivets: 1
     MedievalSteelIngot: 2
+  entities:
     MedievalDragonLootThunderscale: 2
     MedievalDragonLootBones: 1
   result: WorkpieceMedievalClothingFeetDragonBoneThunder
@@ -310,7 +326,7 @@
   id: MedievalDragonQuantEssence
   craftTime: 60
   iconOverride: MedievalDragonQuantEssence
-  stacks:
+  entities:
     MedievalDragonLootTrueFireEssence: 1
     MedievalDragonLootTrueWaterEssence: 1
     MedievalDragonLootTrueAirEssence: 1

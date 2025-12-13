@@ -14,6 +14,9 @@
   id: MedievalBossBaseDragon
   description: big dragon
   components:
+    - type: Flammable
+      firestackFade: -1
+      canResistFire: true
     - type: Fixtures
       fixtures:
         fix1:
