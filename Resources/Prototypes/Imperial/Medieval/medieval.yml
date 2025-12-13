@@ -936,7 +936,7 @@
 
 - type: entity
   abstract: true
-  id: DrinkBaseMaterialGold
+  id: MedievalDrinkBaseMaterialGold
   components:
   - type: Damageable
     damageContainer: Inorganic
@@ -951,7 +951,7 @@
 
 - type: entity
   abstract: true
-  id: DrinkBaseMaterialSilver
+  id: MedievalDrinkBaseMaterialSilver
   components:
   - type: Damageable
     damageContainer: Inorganic
@@ -965,7 +965,7 @@
       Silver: 25
 
 - type: entity
-  parent: [DrinkBaseMaterialGold, DrinkBaseCup, DrinkVisualsFill]
+  parent: [MedievalDrinkBaseMaterialGold, DrinkBaseCup, DrinkVisualsFill]
   id: MedievalGoldCup
   name: golden cup
   description: An elegant golden cup.
@@ -994,7 +994,7 @@
     - DrinkGlass
 
 - type: entity
-  parent: [DrinkBaseMaterialSilver, DrinkBaseCup, DrinkVisualsFill]
+  parent: [MedievalDrinkBaseMaterialSilver, DrinkBaseCup, DrinkVisualsFill]
   id: MedievalSilverCup
   name: silver cup
   description: An elegant silver cup.
