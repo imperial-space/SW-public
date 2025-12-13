@@ -17,7 +17,7 @@
       falloffPower: 3
       intensity: 100
     - type: SmokeOnTrigger
-      duration: 7
+      duration: 40
       spreadAmount: 10
       solution:
         reagents:
