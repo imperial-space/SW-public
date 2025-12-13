@@ -869,6 +869,12 @@
     solution: beaker
   - type: SpillWhenWorn
     solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
 
 - type: entity
   parent: BaseItem
@@ -933,6 +939,16 @@
         acts: [ "Destruction" ]
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalWineskin # imperial medieval
+  - type: Spillable
+    solution: beaker
+  - type: SpillWhenWorn
+    solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
 
 # - type: entity
 #   parent: BaseAPC
