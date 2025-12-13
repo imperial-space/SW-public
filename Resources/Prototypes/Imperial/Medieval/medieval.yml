@@ -1104,7 +1104,7 @@
   - type: RDWeight
     value: 2
   - type: Sprite
-    sprite: Imperial/Medieval/Misc/medieval_grenade.rsi
+    sprite: Imperial/Medieval/Misc/medieval_manaburn_grenade.rsi
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
