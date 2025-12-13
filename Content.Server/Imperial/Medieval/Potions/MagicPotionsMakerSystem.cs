@@ -157,11 +157,13 @@ namespace Content.Server.MagicPotionsMaker
 
         private void OnExamine(EntityUid uid, MagicPotionsMakerComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("[color=cyan]Загружено " + Math.Round(component.Charge, 2) + " игредиентов из " + Math.Round(component.MaxCharge, 2) + "[/color]");
+            var cur = Math.Round(component.Charge, 2);
+            var max = Math.Round(component.MaxCharge, 2);
+            args.PushMarkup(Loc.GetString("medieval-hm-magicpotions-loaded", ("min", $"{cur}"), ("max", $"{max}")));
         }
         private void OnExamineIngredient(EntityUid uid, MagicPotionsIngredientComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("[color=cyan]Это алхимический ингредиент [/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-magicpotions-thisis"));
         }
 
         public override void Update(float frameTime)

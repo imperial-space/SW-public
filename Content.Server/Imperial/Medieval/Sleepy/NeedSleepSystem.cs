@@ -54,7 +54,7 @@ namespace Content.Server.NeedSleep
         private void OnExamine(EntityUid uid, NeedSleepComponent component, ExaminedEvent args)
         {
             if (component.SleepLevel > 80f)
-                args.PushMarkup("[color=cyan]Сонные глаза[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-needsleep-sleepyeyes"));
         }
 
         TimeSpan StartTime = TimeSpan.FromSeconds(0f);
@@ -91,7 +91,7 @@ namespace Content.Server.NeedSleep
 
                         if (comp.SleepLevel > 96.5f && !HasComp<SleepingComponent>(comp.Owner))
                         {
-                            _popup.PopupEntity("Вам нужно выспаться", comp.Owner, comp.Owner, PopupType.LargeCaution);
+                            _popup.PopupEntity(Loc.GetString("medieval-hm-needsleep-sleepphonk"), comp.Owner, comp.Owner, PopupType.LargeCaution);
                             if (TryComp<StatusEffectsComponent>(comp.Owner, out var status))
                                 _stun.TrySlowdown(comp.Owner, TimeSpan.FromSeconds(9.99f), true, 0.85f, 0.85f, status);
                         }

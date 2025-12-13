@@ -41,12 +41,12 @@ public partial class MedievalGhostBooSystem : EntitySystem
         {
             if (!played && _netMan.IsServer)
             {
-                _popup.PopupEntity("Вы колышите воздух", args.Performer, args.Performer, PopupType.Large);
+                _popup.PopupEntity(Loc.GetString("medieval-hm-barrier-ghostboo-wind"), args.Performer, args.Performer, PopupType.Large);
                 played = true;
             }
             if (uid != args.Performer)
             {
-                _popup.PopupEntity("Вы чувствуете дуновение ветра", uid, uid, PopupType.LargeCaution);
+                _popup.PopupEntity(Loc.GetString("medieval-hm-barrier-ghostboo-feelwind"), uid, uid, PopupType.LargeCaution);
                 if (HasComp<MedievalSpikeTargetComponent>(uid))
                 {
                     foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())

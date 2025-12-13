@@ -74,20 +74,21 @@ namespace Content.Server.MagicBarrier
 
         private void OnRoundEnd(RoundEndTextAppendEvent ev)
         {
+            var nobody = Loc.GetString("medieval-hm-barrierpoint-nobody");
             int punchingBagHits = 0;
-            string punchingBagName = "никто";
+            string punchingBagName = nobody;
             int screamerScreams = 0;
-            string screamerName = "никто";
+            string screamerName = nobody;
             int potionsCount = 0;
-            string potionsName = "никто";
+            string potionsName = nobody;
             int lockpickCount = 0;
-            string lockpickerName = "никто";
+            string lockpickerName = nobody;
             int craftsCount = 0;
-            string crafterName = "никто";
+            string crafterName = nobody;
             int diggsCount = 0;
-            string diggerName = "никто";
+            string diggerName = nobody;
             int alcoholDrinks = 0;
-            string alcoholickName = "никто";
+            string alcoholickName = nobody;
             foreach (var comp in EntityManager.EntityQuery<MedievalSpikeTargetComponent>())
             {
                 if (comp.Potions > potionsCount)
@@ -135,9 +136,9 @@ namespace Content.Server.MagicBarrier
             }
 
             int worstSmell = 0;
-            string worstSmellName = "никто";
+            string worstSmellName = nobody;
             int bestSmell = 0;
-            string bestSmellName = "никто";
+            string bestSmellName = nobody;
             foreach (var smell in EntityManager.EntityQuery<BadSmellComponent>())
             {
                 if (smell.WorstSmell > worstSmell)
@@ -172,9 +173,9 @@ namespace Content.Server.MagicBarrier
             int nocturnAnimals = 0;
             int nocturnHumans = 0;
             int nocturnAnimalsMost = 0;
-            string nocturnAnimalsMostName = "никто";
+            string nocturnAnimalsMostName = nobody;
             int nocturnHumansMost = 0;
-            string nocturnHumansMostName = "никто";
+            string nocturnHumansMostName = nobody;
 
             foreach (var comp in EntityManager.EntityQuery<NocturnComponent>())
             {
@@ -196,9 +197,9 @@ namespace Content.Server.MagicBarrier
             int traps = 0;
             int humansHurt = 0;
             int deaths = 0;
-            string firstDeath = "никто";
+            string firstDeath = nobody;
             int openedDungeons = 0;
-            string firstDungeonVisiter = "никто";
+            string firstDungeonVisiter = nobody;
             int screams = 0;
             double zveresHeat = 0;
             int alcohol = 0;
@@ -208,6 +209,7 @@ namespace Content.Server.MagicBarrier
             int lockpicksTotal = 0;
             int craftsTotal = 0;
             int diggsTotal = 0;
+            int trapsdamage = traps * 23;
             foreach (var barrier in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
                 traps = barrier.SpikeTrapActiveted;
@@ -217,7 +219,7 @@ namespace Content.Server.MagicBarrier
                 openedDungeons = barrier.OpenedDungeons;
                 firstDungeonVisiter = barrier.FirstDungeonVisiter;
                 if (firstDungeonVisiter == "nobody")
-                    firstDungeonVisiter = "никто";
+                    firstDungeonVisiter = nobody;
                 screams = barrier.Screams;
                 zveresHeat = Math.Round(barrier.ZveresHeat, 2);
                 alcohol = barrier.AlcoholDrink / 2;
@@ -228,37 +230,37 @@ namespace Content.Server.MagicBarrier
                 craftsTotal = barrier.TotalCrafts;
                 diggsTotal = barrier.TotalDiggs;
             }
-            ev.AddLine("Война: ");
-            ev.AddLine("  [color=cyan]Легиону[/color] подконтрольно: " + legion + " точек в регионе");
-            ev.AddLine("  [color=red]Мятежникам[/color] подконтрольно: " + insurgency + " точек в регионе");
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-war"));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-legioncontrol", ("amount", $"{legion}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-insurgencycontrol", ("amount", $"{insurgency}")));
             ev.AddLine(" ");
-            ev.AddLine("Исследование: ");
-            ev.AddLine("  [color=pink]Открыто древних склепов[/color] " + openedDungeons + ", первый из них открыл(а) [color=pink]" + firstDungeonVisiter + "[/color]!");
-            ev.AddLine("  [color=lightgreen]Шипы в полу[/color] сработали: " + traps + " раз, нанеся " + traps * 23 + " урона");
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-research"));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-researchdungeons", ("amount", $"{openedDungeons}"), ("name", $"{firstDungeonVisiter}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-researchtraps", ("amount", $"{traps}"), ("damage", $"{trapsdamage}")));
             ev.AddLine(" ");
-            ev.AddLine("Бой: ");
-            ev.AddLine("  [color=red]Смертей[/color] за временную петлю: " + deaths);
-            ev.AddLine("  [color=pink]Умер(ла) первым[/color]: " + firstDeath);
-            ev.AddLine("  [color=orange]Ударов по людям[/color] за временную петлю: " + humansHurt);
-            ev.AddLine("  [color=lightblue]Был(а) атакован(а) больше всех [/color](" + punchingBagHits + " раз!) и остался(ась) жив(а) [color=lightblue]" + punchingBagName + "[/color]");
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fight"));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fightdeaths", ("amount", $"{deaths}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fightfirstdeath", ("name", $"{firstDeath}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fighthumanshurt", ("amount", $"{humansHurt}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fightpunchingbag", ("amount", $"{punchingBagHits}"), ("name", $"{punchingBagName}")));
             ev.AddLine(" ");
-            ev.AddLine("Веселье: ");
-            ev.AddLine("  [color=yellow]Криков[/color] " + screams + ", самый крикливый [color=yellow]" + screamerName + "[/color] (кричал(а) " + screamerScreams + " раз)");
-            ev.AddLine("  [color=orange]Мунвульфы получили[/color] " + zveresHeat + " единиц урона ожогами за временную петлю");
-            ev.AddLine("  [color=yellow]Алкоголя выпито[/color] " + alcohol + " унций, самый пьющий - [color=yellow]" + alcoholickName + "[/color], он(а) выпил(а) " + alcoholDrinks + " унций");
-            ev.AddLine("  [color=pink]Призраки всколыхнули воздух[/color] " + ghostBoo + " раз, затронув " + ghostBooPlayers + " людей");
-            ev.AddLine("  Самый грязный(ая) [color=pink]" + worstSmellName + "[/color], а самый чистый(ая) [color=cyan]" + bestSmellName + "[/color]");
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fun"));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funscream", ("amount", $"{screams}"), ("name", $"{screamerName}"), ("amount2", $"{screamerScreams}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funzveres", ("amount", $"{zveresHeat}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funalcohol", ("amount", $"{alcohol}"), ("name", $"{alcoholickName}"), ("amount2", $"{alcoholDrinks}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funghostboo", ("amount", $"{ghostBoo}"), ("amount2", $"{ghostBooPlayers}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funworstsmell", ("name", $"{worstSmell}"), ("name2", $"{bestSmell}")));
             ev.AddLine(" ");
-            ev.AddLine("Ремесло: ");
-            ev.AddLine("  [color=lightgreen]Зелий сварено[/color] " + potionsTotal + ", больше всех приготовил(а) [color=lightgreen]" + potionsName + "[/color] (" + potionsCount + " бутыльков!)");
-            ev.AddLine("  [color=yellow]Дверей взломано[/color] " + lockpicksTotal + ", больше всех взломал(а) [color=yellow]" + lockpickerName + "[/color] (" + lockpickCount + " дверей!)");
-            ev.AddLine("  [color=red]Вещей создано[/color] " + craftsTotal + ", больше всех создал(а) [color=red]" + crafterName + "[/color] (" + craftsCount + " вещей!)");
-            ev.AddLine("  [color=gray]Взмахов киркой[/color] " + diggsTotal + ", больше всех копал(а) [color=gray]" + diggerName + "[/color] (" + diggsCount + " взмахов!)");
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craft"));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craftpotions", ("amount", $"{screams}"), ("name", $"{screamerName}"), ("amount2", $"{screamerScreams}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craftlockpick", ("amount", $"{lockpicksTotal}"), ("name", $"{lockpickerName}"), ("amount2", $"{lockpickCount}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craftcraft", ("amount", $"{craftsTotal}"), ("name", $"{crafterName}"), ("amount2", $"{craftsCount}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craftpickaxe", ("amount", $"{diggsTotal}"), ("name", $"{diggerName}"), ("amount2", $"{diggsCount}")));
             ev.AddLine(" ");
-            ev.AddLine("Ноктюрны: ");
-            ev.AddLine("  [color=red]Крови всего выпито [/color]" + nocturnTotal + " раз. У животных - " + nocturnAnimals + " раз, у людей - " + nocturnHumans + " раз");
-            ev.AddLine("  [color=pink]Больше всего людской крови[/color] пил [color=pink]" + nocturnHumansMostName + "[/color] - " + nocturnHumansMost + " раз");
-            ev.AddLine("  [color=lightgreen]Больше всего животной крови[/color] пил [color=lightgreen]" + nocturnAnimalsMostName + "[/color] - " + nocturnAnimalsMost + " раз");
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-nocturns"));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-nocturnsblood", ("amount", $"{nocturnTotal}"), ("amount2", $"{nocturnAnimals}"), ("amount3", $"{nocturnHumans}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-nocturnshuman", ("amount", $"{nocturnHumansMost}"), ("name", $"{nocturnHumansMostName}")));
+            ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-nocturnsanimal", ("amount", $"{nocturnAnimalsMost}"), ("name", $"{nocturnAnimalsMostName}")));
         }
 
         private void OnScreamAction(EntityUid uid, MedievalSpikeTargetComponent comp, ScreamActionEvent args)
