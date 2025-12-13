@@ -2352,7 +2352,7 @@
   id: MedievalLegionMagGear
   equipment:
     pocket1: MedievalCommsCrystallLeg
-    pocket2: MedievalKeyCargo
+    #pocket2: MedievalKeyCargo
     #back: MedievalClothingBackpackSatchelLeather
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetCharmerLegion
@@ -2927,7 +2927,7 @@
   id: MedievalInsurgencyMagGear
   equipment:
     pocket1: MedievalCommsCrystallIns
-    pocket2: MedievalGuardKey
+    #pocket2: MedievalGuardKey
     #back: MedievalClothingBackpackSatchelLeather
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth5
     head: MedievalClothingHeadHelmetCharmerIns

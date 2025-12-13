@@ -2428,6 +2428,17 @@
   productEntity: MedievalRepairStone
   discountCategory: medievalDiscounts
   discountDownTo:
+    Revent: 20
+  cost:
+    Revent: 30
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
+  discountCategory: medievalDiscounts
+  discountDownTo:
     Revent: 12
   cost:
     Revent: 18
