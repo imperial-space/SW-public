@@ -18,7 +18,7 @@ public sealed class MedievalSummonOnUseSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     private readonly List<SummonRequest> _pendingSummons = new();
-    private const float CheckRadius = 5f;
+    private const float CheckRadius = 3f;
 
     public override void Initialize()
     {
