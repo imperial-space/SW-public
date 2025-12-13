@@ -51,6 +51,8 @@
     - type: InputMover
     - type: MobMover
     - type: HTN
+      rootTask:
+        task: SimpleHostileCompound
     - type: LanguageSpeaker
       languages:
         Common: Speak
@@ -75,6 +77,11 @@
           Structural: 600
       range: 3
       attackRate: 0.35
+    - type: StaminaDamageOnHit
+      damage: 30
+    - type: MeleeThrowOnHit
+      distance: 4
+      speed: 5
     - type: FootstepModifier
       footstepSoundCollection:
         path: /Audio/Imperial/Witchers/FootstepWitchersVendigo.ogg
