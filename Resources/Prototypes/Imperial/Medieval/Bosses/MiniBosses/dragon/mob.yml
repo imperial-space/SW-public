@@ -80,7 +80,7 @@
         types:
           Structural: 600
       range: 3
-      attackRate: 0.35
+      attackRate: 0.6
     - type: StaminaDamageOnHit
       damage: 30
     - type: Stamina
