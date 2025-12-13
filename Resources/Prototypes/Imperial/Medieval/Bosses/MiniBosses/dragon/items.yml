@@ -24,7 +24,7 @@
   - type: Item
     size: Normal
   - type: MedievalSummonOnUse
-    entity: MedievalBossIceDragon
+    entitySummoned: MedievalBossIceDragon
     sound:
       path: /Audio/Imperial/Medieval/Effects/crystal.ogg
 
@@ -44,7 +44,7 @@
   - type: Item
     size: Normal
   - type: MedievalSummonOnUse
-    entity: MedievalBossFireDragon
+    entitySummoned: MedievalBossFireDragon
     sound:
       path: /Audio/Imperial/Medieval/Effects/crystal.ogg
 
@@ -64,7 +64,7 @@
   - type: Item
     size: Normal
   - type: MedievalSummonOnUse
-    entity: MedievalBossAcidDragon
+    entitySummoned: MedievalBossAcidDragon
     sound:
       path: /Audio/Imperial/Medieval/Effects/crystal.ogg
 
@@ -84,7 +84,7 @@
   - type: Item
     size: Normal
   - type: MedievalSummonOnUse
-    entity: MedievalBossThunderDragon
+    entitySummoned: MedievalBossThunderDragon
     sound:
       path: /Audio/Imperial/Medieval/Effects/crystal.ogg
 

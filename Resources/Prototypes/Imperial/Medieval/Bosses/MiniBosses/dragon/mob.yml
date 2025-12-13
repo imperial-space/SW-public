@@ -18,7 +18,7 @@
       fixtures:
         fix1:
           shape: !type:PhysShapeCircle
-            radius: 1.5
+            radius: 1.2
           density: 50
           mask:
           - MobMask
@@ -27,6 +27,9 @@
     - type: LocalLight
       energy: 1
       radius: 5
+    - type: PointLight
+      netsync: false
+      enabled: false
     - type: DamageStateVisuals
       states:
         Alive:
@@ -73,7 +76,7 @@
         path: /Audio/Weapons/Xeno/alien_claw_flesh3.ogg
       damage:
         groups:
-          Brute: 38
+          Brute: 44
         types:
           Structural: 600
       range: 3
@@ -81,7 +84,7 @@
     - type: StaminaDamageOnHit
       damage: 30
     - type: Stamina
-      excess: 500
+      critThreshold: 500
     - type: MeleeThrowOnHit
       distance: 4
       speed: 5
@@ -122,7 +125,7 @@
         components:
         - MobState
       chemical: Ichor
-      healRate: 7.5
+      healRate: 30
       whitelist:
         components:
         - MobState
@@ -141,7 +144,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
-        sprite: Imperial/Medieval/Mobs/Bosses/Dragons/icedragon.rsi
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/icedragon.rsi
     - type: HitscanBatteryAmmoProvider
       proto: MedievalProjectileWaterSphereBeginner
       fireCost: 1
@@ -150,7 +153,7 @@
       startingCharge: 1000
     - type: Gun
       projectileSpeed: 8
-      fireRate: 0.4
+      fireRate: 1
       useKey: false
       selectedMode: SemiAuto
       availableModes:
@@ -180,7 +183,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
-        sprite: Imperial/Medieval/Mobs/Bosses/Dragons/firedragon.rsi
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/firedragon.rsi
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 10
       rechargeSound:
@@ -190,8 +193,8 @@
       capacity: 1
       count: 1
     - type: Gun
-      projectileSpeed: 7
-      fireRate: 0.2
+      projectileSpeed: 8
+      fireRate: 1
       useKey: false
       selectedMode: SemiAuto
       availableModes:
@@ -200,7 +203,7 @@
     - type: Damageable
       damageModifierSet: FireDragon
     - type: ExplosionResistance
-      damageCoefficient: 0.35
+      damageCoefficient: 0.25
     - type: Butcherable
       spawned:
       - id: MedievalDragonLootFirescale
@@ -230,7 +233,7 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
-        sprite: Imperial/Medieval/Mobs/Bosses/Dragons/aciddragon.rsi
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/aciddragon.rsi
     - type: RechargeBasicEntityAmmo
       rechargeCooldown: 10
       rechargeSound:
@@ -275,9 +278,9 @@
       layers:
       - map: ["enum.DamageStateVisualLayers.Base"]
         state: alive
-        sprite: Imperial/Medieval/Mobs/Bosses/Dragons/thunderdragon.rsi
+      sprite: Imperial/Medieval/Mobs/Bosses/Dragons/thunderdragon.rsi
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 10
+      rechargeCooldown: 5
       rechargeSound:
         path: /Audio/Imperial/Medieval/fireball_blast.ogg
     - type: BasicEntityAmmoProvider
@@ -285,8 +288,8 @@
       capacity: 1
       count: 1
     - type: Gun
-      projectileSpeed: 7
-      fireRate: 0.2
+      projectileSpeed: 14
+      fireRate: 1
       useKey: false
       selectedMode: SemiAuto
       availableModes:
