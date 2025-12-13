@@ -88,6 +88,7 @@
       damage: 65
     - type: Stamina
       critThreshold: 500
+    - type: MedievalUnthrowable
     - type: MeleeThrowOnHit
       distance: 7
       speed: 9
