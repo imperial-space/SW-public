@@ -197,7 +197,7 @@
       capacity: 1
       count: 1
     - type: Gun
-      projectileSpeed: 8
+      projectileSpeed: 14
       fireRate: 1
       useKey: false
       selectedMode: SemiAuto
@@ -247,7 +247,7 @@
       capacity: 1
       count: 1
     - type: Gun
-      projectileSpeed: 9
+      projectileSpeed: 11
       fireRate: 1
       useKey: false
       selectedMode: SemiAuto
@@ -292,7 +292,7 @@
       capacity: 1
       count: 1
     - type: Gun
-      projectileSpeed: 14
+      projectileSpeed: 18
       fireRate: 1
       useKey: false
       selectedMode: SemiAuto
