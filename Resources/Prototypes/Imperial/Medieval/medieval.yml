@@ -829,6 +829,8 @@
     solution: beaker
   - type: InjectableSolution
     solution: beaker
+  - type: SolutionItemStatus
+    solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
   - type: UserInterface
@@ -869,6 +871,12 @@
     solution: beaker
   - type: SpillWhenWorn
     solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
 
 - type: entity
   parent: BaseItem
@@ -896,13 +904,15 @@
     solution: beaker
   - type: RefillableSolution
     solution: beaker
-  - type: DrainableSolution
-    solution: beaker
+  # - type: DrainableSolution
+    # solution: beaker
   #- type: ExaminableSolution
   #  solution: beaker
   - type: DrawableSolution
     solution: beaker
   - type: InjectableSolution
+    solution: beaker
+  - type: SolutionItemStatus
     solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
@@ -933,6 +943,16 @@
         acts: [ "Destruction" ]
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalWineskin # imperial medieval
+  - type: Spillable
+    solution: beaker
+  - type: SpillWhenWorn
+    solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
 
 # - type: entity
 #   parent: BaseAPC
