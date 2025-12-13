@@ -45,6 +45,7 @@
       - FootstepSound
     - type: Bloodstream
       bloodMaxVolume: 0
+    - type: Appearance
     - type: NpcFactionMember
       factions:
       - Xeno
@@ -95,11 +96,11 @@
       speechSounds: MedievalDragon
     - type: MovementSpeedModifier
       baseWalkSpeed: 4
-      baseSprintSpeed: 2
+      baseSprintSpeed: 3
     - type: AnnounceOnSpawn
-      message: "Вы слышите рёв, эхом раздающийся по всему континенту, кажется, кто-то пробудил древнего дракона."
+      message: dragon-spawn-announcement
       color: "yellow"
-      sender: "Древняя сущность"
+      sender: ancient-entity
       sound:
         path: /Audio/Imperial/Medieval/dragon_summon.ogg
         volume: -2
@@ -112,7 +113,7 @@
       mindRoles:
       - MindRoleGhostRoleSoloAntagonist
       raffle:
-        settings: default
+        settings: short
     - type: Devourer
       foodPreferenceWhitelist:
         components:
