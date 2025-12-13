@@ -73,8 +73,8 @@ public sealed class MedievalSummonOnUseSystem : EntitySystem
             {
                 if (entity == user) continue;
 
-                if (occluderQuery.HasComponent(entity) ||
-                    physicsQuery.TryGetComponent(entity, out var physics) && physics.CanCollide)
+                if (occluderQuery.HasComponent(entity))// ||
+                    //physicsQuery.TryGetComponent(entity, out var physics) && physics.CanCollide)
                 {
                     return false;
                 }
