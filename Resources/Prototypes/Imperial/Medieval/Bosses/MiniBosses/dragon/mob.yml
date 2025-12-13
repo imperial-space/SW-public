@@ -79,6 +79,8 @@
       attackRate: 0.35
     - type: StaminaDamageOnHit
       damage: 30
+    - type: Stamina
+      excess: 500
     - type: MeleeThrowOnHit
       distance: 4
       speed: 5
