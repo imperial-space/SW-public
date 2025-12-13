@@ -829,6 +829,8 @@
     solution: beaker
   - type: InjectableSolution
     solution: beaker
+  - type: SolutionItemStatus
+    solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
   - type: UserInterface
@@ -869,6 +871,12 @@
     solution: beaker
   - type: SpillWhenWorn
     solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
 
 - type: entity
   parent: BaseItem
@@ -896,13 +904,15 @@
     solution: beaker
   - type: RefillableSolution
     solution: beaker
-  - type: DrainableSolution
-    solution: beaker
+  # - type: DrainableSolution
+    # solution: beaker
   #- type: ExaminableSolution
   #  solution: beaker
   - type: DrawableSolution
     solution: beaker
   - type: InjectableSolution
+    solution: beaker
+  - type: SolutionItemStatus
     solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
@@ -933,6 +943,16 @@
         acts: [ "Destruction" ]
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalWineskin # imperial medieval
+  - type: Spillable
+    solution: beaker
+  - type: SpillWhenWorn
+    solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
 
 # - type: entity
 #   parent: BaseAPC
@@ -3217,10 +3237,10 @@
     state: hitin
   - type: Currency
     price:
-      Revent: 4
+      Revent: 7
   - type: MedievalCurrency
     price:
-      Revent: 4
+      Revent: 7
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -6624,6 +6644,42 @@
     size: Tiny
 
 - type: entity
+  name: shield repair kit
+  parent: BaseItem
+  id: MedievalShieldRepairKit
+  description: Fully restores the shield's durability.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+  - type: Healing
+    damageContainers:
+      - Shield
+    damage:
+      groups:
+        Brute: -1000
+      types:
+        Heat: -1000
+        Structural: -1000
+    delay: 3
+    selfHealPenaltyMultiplier: 1
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: StaticPrice
+    price: 50
+
+- type: entity
   name: gol
   parent: BaseItem
   id: MedievalDungeonKey
@@ -8200,7 +8256,7 @@
     - id: MedievalSkeletonHorseTransport
     sound:
       path: /Audio/Items/Whistle/trench_whistle_1.ogg
-  - type: DeleteOnTrigger
+  #- type: DeleteOnTrigger
   - type: RadiationSource
     intensity: 1
     slope: 1
@@ -8238,3 +8294,232 @@
   - type: Item
     size: Small
     sprite: Imperial/Medieval/Misc/royalbible.rsi
+
+# Rich house keys
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey1
+  name: rich house key №1
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse1
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey2
+  name: rich house key №2
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse2
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey3
+  name: rich house key №3
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse3
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey4
+  name: rich house key №4
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse4
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey5
+  name: rich house key №5
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse5
+    - type: Tag
+      tags:
+        - MedievalKey
+
+# Regular house keys
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey6
+  name: house key №6
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House6
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey7
+  name: house key №7
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House7
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey8
+  name: house key №8
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House8
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey9
+  name: house key №9
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House9
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey10
+  name: house key №10
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House10
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey11
+  name: house key №11
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House11
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey12
+  name: house key №12
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House12
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey13
+  name: house key №13
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House13
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey14
+  name: house key №14
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House14
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey15
+  name: house key №15
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House15
+    - type: Tag
+      tags:
+        - MedievalKey

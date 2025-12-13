@@ -187,6 +187,7 @@
 #    - MedievalQuestLegion
 #    - MedievalPlants
 #    - MedievalTransport
+#    - MedievalBoss
 #    currencyWhitelist:
 #    - Revent
 #    balance:
@@ -217,6 +218,7 @@
 #    - MedievalQuestIns
 #    - MedievalPlants
 #    - MedievalTransport
+#    - MedievalBoss
 #    currencyWhitelist:
 #    - Revent
 #    balance:
@@ -281,6 +283,43 @@
   id: MedievalClothing
   name: medieval-category-clothing
   priority: 5
+
+- type: storeCategory
+  id: MedievalBoss
+  name: medieval-category-boss
+  priority: 10
+
+- type: listing
+  id: MdvShopBossIceDragonTablet
+  productEntity: MedievalIceDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossFireDragonTablet
+  productEntity: MedievalFireDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossAcidDragonTablet
+  productEntity: MedievalAcidDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossThunderDragonTablet
+  productEntity: MedievalThunderDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
 
 - type: listing
   id: MdvShopFoodBreadPlain
@@ -520,6 +559,28 @@
 - type: listing
   id: MdvShopMedievalBlacksmithArmorCraft
   productEntity: MedievalBlacksmithArmorCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalMeltingPlaceCraft
+  productEntity: MedievalMeltingPlaceCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+  
+- type: listing
+  id: MdvShopMedievalalchem_dispenserCraft
+  productEntity: Medievalalchem_dispenserCraft
   discountCategory: medievalDiscounts
   discountDownTo:
     Revent: 35
@@ -2365,6 +2426,17 @@
 - type: listing
   id: MdvShopMedievalRepairStone
   productEntity: MedievalRepairStone
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 20
+  cost:
+    Revent: 30
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
   discountCategory: medievalDiscounts
   discountDownTo:
     Revent: 12

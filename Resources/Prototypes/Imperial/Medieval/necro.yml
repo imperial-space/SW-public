@@ -689,6 +689,13 @@
   categories:
   - MedievalNecroOther
 
+- type: listing
+  id: NecroListingMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
+  cost:
+    UnholyMedieval: 4
+  categories:
+  - MedievalNecroOther
 
 - type: listing
   id: ListingMedievalClothingOuterArmorCharmerNecro2

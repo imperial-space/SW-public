@@ -983,6 +983,7 @@
     - MedievalSteelIngot10
     - MedievalGoldOre
     - MedievalGoldOre10
+    - MedievalStoneBrick
     - EbonitMedieval
     - EbonitMedieval10
     - ForstoneMedieval
@@ -1045,6 +1046,7 @@
     - MedievalReliefStoneWeakCraft
     - MedievalReliefStoneStrongCraft
     - MedievalAntiGravitationStoneCraft
+    - MedievalDragonQuantEssence
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1145,6 +1147,10 @@
     - MedievalShortSwordSteel
     - MedievalSaber
     - MedievalSaberSteel
+    - MedievalIronClaymore
+    - MedievalIronClaymoreSteel
+    - MedievalIronZweihander
+    - MedievalIronZweihanderSteel
     - MedievalMaceT3Steel
     - MedievalPalice
     - MedievalPaliceSteel
@@ -1167,6 +1173,7 @@
     - MedievalPickaxeForStone
     - MedievalPickaxeEbonit
     - MedievalRepairStone
+    - MedievalShieldRepairKit
     - MedievalHoe
     - MedievalScythe
     - MedievalClippers
@@ -1178,6 +1185,8 @@
     - MedievalKeyStorage
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
+    - MedievalStoneWallCraft
+    - MedievalStoneLoopHoleCraft
     - MedievalWeaponTurretNanoTrasenCraft
     - MedievalChemistryEmptyBottle01
     - MedievalChemistryEmptyBottle02
@@ -1189,6 +1198,23 @@
     - MedievalHorseChainMailArmor
     - MedievalHorseUpIronArmor
     - MedievalHorseHorseshoe
+    - MedievalClothingHeadHelmetDragonBoneIce
+    - MedievalClothingOuterArmorDragonBoneIce
+    - MedievalDragonBoneGlovesIce
+    - MedievalClothingFeetDragonBoneIce
+    - MedievalClothingHeadHelmetDragonBoneFire
+    - MedievalClothingOuterArmorDragonBoneFire
+    - MedievalDragonBoneGlovesFire
+    - MedievalClothingFeetDragonBoneFire
+    - MedievalClothingHeadHelmetDragonBoneAcid
+    - MedievalClothingOuterArmorDragonBoneAcid
+    - MedievalDragonBoneGlovesAcid
+    - MedievalClothingFeetDragonBoneAcid
+    - MedievalClothingHeadHelmetDragonBoneThunder
+    - MedievalClothingOuterArmorDragonBoneThunder
+    - MedievalDragonBoneGlovesThunder
+    - MedievalClothingFeetDragonBoneThunder
+    - MedievalBloodlettingNeedle
 
 - type: entity
   parent: CP14BaseWorkbench

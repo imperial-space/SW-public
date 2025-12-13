@@ -52,15 +52,14 @@ public sealed partial record GuildTradingItem
 
         if (MinReputationPlace > 0)
         {
-            var sorted = guild.Reputation
-                .OrderByDescending(x => x.Value)
-                .Select(x => x.Key)
-                .Take(MinReputationPlace)
-                .ToList();
+            if (!guild.Reputation.TryGetValue(ent, out var entRep))
+                return (false, Loc.GetString("trading-ui-reputation-place-lack", ("requiredPlace", MinReputationPlace)));
 
-            if (!sorted.Contains(ent))
+            var betterCount = guild.Reputation.Count(x => x.Value > entRep);
+            if (betterCount >= MinReputationPlace)
                 return (false, Loc.GetString("trading-ui-reputation-place-lack", ("requiredPlace", MinReputationPlace)));
         }
+
 
         if (SpawnOnActionWhitelist != null && entityManager != null)
         {

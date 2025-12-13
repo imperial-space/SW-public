@@ -467,7 +467,6 @@ namespace Content.Client.Lobby.UI
             SpeciesInfoButton.OnPressed += OnSpeciesInfoButtonPressed;
 
             UpdateSpeciesGuidebookIcon();
-            UpdateFlavorHandle(); // Imperial Medieval Flavors Image
             IsDirty = false;
         }
 
@@ -500,6 +499,7 @@ namespace Content.Client.Lobby.UI
                 _flavorTextEdit = null;
                 _flavorText = null;
             }
+            UpdateFlavorHandle(); // Imperial Medieval Flavors Image
         }
 
         /// <summary>

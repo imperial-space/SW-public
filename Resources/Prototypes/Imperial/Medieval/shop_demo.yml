@@ -299,6 +299,22 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopMedievalMeltingPlaceCraft
+  productEntity: MedievalMeltingPlaceCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalalchem_dispenserCraft
+  productEntity: Medievalalchem_dispenserCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalLeatherWorkingPlaceCraft
   productEntity: MedievalLeatherWorkingPlaceCraft
   cost:
@@ -2079,6 +2095,14 @@
 - type: listing
   id: DemoMdvShopMedievalRepairStone
   productEntity: MedievalRepairStone
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
   cost:
     UnknownMedieval: 1
   categories:

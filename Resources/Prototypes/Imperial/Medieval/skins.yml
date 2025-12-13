@@ -186,6 +186,7 @@
     Log: [MedievalClothingHandsBlackGloves, MedievalClothingBlackBoots]
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightDrGnar]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightDrGnar]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmeCollegiumPurpleHatDrGnar]
 
 - type: customization
   id: salamandraes
@@ -292,7 +293,7 @@
   map:
     MedievalWeaponCrossbow: [MedievalWeaponCrossbowWhois]
     MedievalWeaponBow: [MedievalWeaponBowWhois]
-    BaseBow: [BaseBowWhois]
+    BowImprovised: [BowImprovisedWhois]
     MedievalQuiver: [MedievalQuiverWhois]
     MedievalQuiverSteel: [MedievalQuiverSteelWhois]
 
@@ -308,8 +309,12 @@
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerKonnor]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakKonnor]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakKonnor]
-    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatKonnor]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmeCollegiumHatKonnor]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth79]
+    MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightKonnor]
+    MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightKonnor]
+    MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightKonnor]
+    MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightKonnor]
 
 - type: customization
   id: bib
@@ -317,14 +322,15 @@
   map:
     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightBib]
     MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightBib]
-    Log: [MedievalClothingBootsBib, MedievalClothingNeckCloakBib, ClothingMaskBib]
+    Log: [MedievalClothingNeckCloakBib, ClothingMaskBib, MedievalClothingHandsGlovesClothBib]
     MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerBib]
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerBib]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakBib]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakBib]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatBib]
-    MedievalSpearT3Steel: [MedievalSpearT3SteelBib]
+    MedievalSpearT3: [MedievalSpearT3Bib]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth78]
+    MedievalShoesChamber: [MedievalShoesChamberBib]
 
 - type: customization
   id: alaraniel
