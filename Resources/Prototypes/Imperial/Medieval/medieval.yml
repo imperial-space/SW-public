@@ -829,6 +829,8 @@
     solution: beaker
   - type: InjectableSolution
     solution: beaker
+  - type: SolutionItemStatus
+    solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
   - type: UserInterface
@@ -902,13 +904,15 @@
     solution: beaker
   - type: RefillableSolution
     solution: beaker
-  - type: DrainableSolution
-    solution: beaker
+  # - type: DrainableSolution
+    # solution: beaker
   #- type: ExaminableSolution
   #  solution: beaker
   - type: DrawableSolution
     solution: beaker
   - type: InjectableSolution
+    solution: beaker
+  - type: SolutionItemStatus
     solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
