@@ -6098,6 +6098,7 @@ ent-MedievalClothingHeadHelmetDragonBoneThunder = драконий шлем
     .suffix = { "Средневековье, босс, одежда" }
 ghost-role-information-dragon-name = древний дракон
 ghost-role-information-dragon-description = Низшие существа потревожили ваш сон.
+ghost-role-information-dragon-rules = Вы – [color=red]антагонист[/color]. Кусайте, бейте, и крушите! [color=yellow]ЛКМ - бить[/color], [color=yellow]ПКМ - способность[/color]
 dragon-spawn-announcement = Вы слышите рёв, эхом раздающийся по всему континенту, кажется, кто-то пробудил древнего дракона.
 ancient-entity = Древняя сущность
 medieval-category-boss = Призыв

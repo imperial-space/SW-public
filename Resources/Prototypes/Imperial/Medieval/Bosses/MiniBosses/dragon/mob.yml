@@ -109,7 +109,7 @@
       makeSentient: true
       name: ghost-role-information-dragon-name
       description: ghost-role-information-dragon-description
-      rules: ghost-role-information-antagonist-rules
+      rules: ghost-role-information-dragon-rules
       mindRoles:
       - MindRoleGhostRoleSoloAntagonist
       raffle:
@@ -186,7 +186,7 @@
       rechargeSound:
         path: /Audio/Imperial/Medieval/fireball_blast.ogg
     - type: BasicEntityAmmoProvider
-      proto: MedievalProjectileFireballBeginner
+      proto: MedievalProjectileFireballMiddle
       capacity: 1
       count: 1
     - type: Gun
