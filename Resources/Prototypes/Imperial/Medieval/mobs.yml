@@ -2477,7 +2477,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-fighter-name
     description: ghost-role-information-skelet-fighter-description
-    rules: ghost-role-information-skelet-hightier-rules 
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: legion skeleton
@@ -2533,7 +2533,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-legion-name
     description: ghost-role-information-skelet-legion-description
-    rules: ghost-role-information-skelet-hightier-rules 
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: archer skeleton
@@ -2753,7 +2753,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-mace-name
     description: ghost-role-information-skelet-mace-description
-    rules: ghost-role-information-skelet-hightier-rules 
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: skeleton with a spear
@@ -2809,7 +2809,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-spear-name
     description: ghost-role-information-skelet-spear-description
-    rules: ghost-role-information-skelet-hightier-rules 
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: skeleton with a halberd
@@ -2868,7 +2868,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-halberd-name
     description: ghost-role-information-skelet-halberd-description
-    rules: ghost-role-information-skelet-hightier-rules 
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: skeleton with a dagger
@@ -2924,7 +2924,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-dagger-name
     description: ghost-role-information-skelet-dagger-description
-    rules: ghost-role-information-skelet-hightier-rules 
+    rules: ghost-role-information-skelet-hightier-rules
 
 # ===========================
 
