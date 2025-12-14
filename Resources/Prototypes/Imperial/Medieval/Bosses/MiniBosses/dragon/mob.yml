@@ -91,7 +91,7 @@
           Brute: 49
         types:
           Structural: 600
-      range: 3.5
+      range: 2.5
       attackRate: 0.75
     - type: StaminaDamageOnHit
       damage: 65
