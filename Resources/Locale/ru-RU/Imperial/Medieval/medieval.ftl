@@ -6102,3 +6102,8 @@ ghost-role-information-dragon-rules = Вы – [color=red]антагонист[/
 dragon-spawn-announcement = Вы слышите рёв, эхом раздающийся по всему континенту, кажется, кто-то пробудил древнего дракона.
 ancient-entity = Древняя сущность
 medieval-category-boss = Призыв
+stack-dragon-bones = драконьи кости
+stack-dragon-icescale = морозная драконья чешуя
+stack-dragon-firescale = огненная драконья чешуя
+stack-dragon-acidscale = кислотная драконья чешуя
+stack-dragon-thunderscale = громовая драконья чешуя

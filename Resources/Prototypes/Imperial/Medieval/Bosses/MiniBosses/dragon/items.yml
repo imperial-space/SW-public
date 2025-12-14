@@ -88,6 +88,30 @@
     sound:
       path: /Audio/Imperial/Medieval/Effects/crystal.ogg
 
+- type: stack
+  id: MedievalDragonIcescale
+  name: stack-dragon-icescale
+  spawn: MedievalDragonLootIcescale
+  maxCount: 1
+
+- type: stack
+  id: MedievalDragonFirescale
+  name: stack-dragon-firescale
+  spawn: MedievalDragonLootFirescale
+  maxCount: 1
+
+- type: stack
+  id: MedievalDragonAcidscale
+  name: stack-dragon-acidscale
+  spawn: MedievalDragonLootAcidscale
+  maxCount: 1
+
+- type: stack
+  id: MedievalDragonThunderscale
+  name: stack-dragon-thunderscale
+  spawn: MedievalDragonLootThunderscale
+  maxCount: 1
+
 - type: entity
   name: MedievalLoot
   parent: BaseItem
@@ -110,6 +134,8 @@
   - type: Tag
     tags:
       - MonsterLoot
+  - type: Stack
+    stackType: MedievalDragonIcescale
 
 - type: entity
   name: MedievalLoot
@@ -119,6 +145,8 @@
   components:
   - type: Sprite
     state: firescale
+  - type: Stack
+    stackType: MedievalDragonFirescale
 
 - type: entity
   name: MedievalLoot
@@ -128,6 +156,8 @@
   components:
   - type: Sprite
     state: acidscale
+  - type: Stack
+    stackType: MedievalDragonAcidscale
 
 - type: entity
   name: MedievalLoot
@@ -137,6 +167,14 @@
   components:
   - type: Sprite
     state: thunderscale
+  - type: Stack
+    stackType: MedievalDragonThunderscale
+
+- type: stack
+  id: MedievalDragonBones
+  name: stack-dragon-bones
+  spawn: MedievalDragonLootBones
+  maxCount: 1
 
 - type: entity
   name: MedievalLoot
@@ -160,6 +198,8 @@
   - type: Tag
     tags:
       - MonsterLoot
+  - type: Stack
+    stackType: MedievalDragonBones
 
 - type: entity
   name: MedievalLoot
