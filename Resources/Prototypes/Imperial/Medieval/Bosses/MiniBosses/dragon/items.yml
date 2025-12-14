@@ -101,10 +101,10 @@
     state: icescale
   - type: Currency
     price:
-      Revent: 120
+      Revent: 75
   - type: MedievalCurrency
     price:
-      Revent: 120
+      Revent: 75
   - type: Item
     size: Normal
   - type: Tag
@@ -151,10 +151,10 @@
     state: bones
   - type: Currency
     price:
-      Revent: 200
+      Revent: 80
   - type: MedievalCurrency
     price:
-      Revent: 200
+      Revent: 80
   - type: Item
     size: Normal
   - type: Tag
