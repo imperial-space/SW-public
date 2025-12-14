@@ -2077,6 +2077,28 @@
     sprite: Imperial/Medieval/Clothing/Gloves/greenknight.rsi
 
 - type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesFichty
+  name: MedievalIronGlovesFichty
+  description: MedievalIronGlovesFichty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/fichty_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/fichty_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakFichty
+  name: MedievalClothingOuterArmorCharmerWeakFichty
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/fichty_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/fichty_charmer.rsi
+
+- type: entity
   parent: MedievalClothingOuterArmorIronCuirassLight
   id: MedievalClothingOuterArmorIronCuirassLightGreenKnight
   name: iron armor cuirass

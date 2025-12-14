@@ -6102,8 +6102,12 @@ ghost-role-information-dragon-rules = Вы – [color=red]антагонист[/
 dragon-spawn-announcement = Вы слышите рёв, эхом раздающийся по всему континенту, кажется, кто-то пробудил древнего дракона.
 ancient-entity = Древняя сущность
 medieval-category-boss = Призыв
-stack-dragon-bones = драконьи кости
-stack-dragon-icescale = морозная драконья чешуя
-stack-dragon-firescale = огненная драконья чешуя
-stack-dragon-acidscale = кислотная драконья чешуя
-stack-dragon-thunderscale = громовая драконья чешуя
+ent-MedievalIronGlovesFichty = чёрные магдебургские перчатки
+    .desc = Перчатки из тёмной стали.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingOuterArmorCharmerWeakFichty = позолоченная роба послушника
+    .desc = Магическое одеяние.
+    .suffix = {"СКИН, Средневековье, одежда"}
+ent-MedievalClothingHeadHelmetCharmerWeakFichty = позолоченный капюшон послушника
+    .desc = Магический капюшон.
+    .suffix = {"СКИН, Средневековье, одежда"}

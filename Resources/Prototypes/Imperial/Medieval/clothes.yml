@@ -2035,7 +2035,7 @@
   - type: Insulated
 
 - type: entity
-  parent: ClothingUniformBase
+  parent: MedievalClothingUniformJumpsuitShitCloth23
   id: MedievalClothingUniformJumpsuitShitCloth72
   name: MedievalClothingUniformJumpsuitShitCloth72
   description: MedievalClothingUniformJumpsuitShitCloth72
@@ -2223,7 +2223,7 @@
     storedRotation: -90
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: ClothingEyesGlasses
   id: MedievalFichtyGlasses
   name: glasses
   description: cool glasses

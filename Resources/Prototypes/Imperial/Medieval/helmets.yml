@@ -771,6 +771,17 @@
     sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakFichty
+  name: MedievalClothingHeadHelmetCharmerWeakFichty
+  description: MedievalClothingHeadHelmetCharmerWeakFichty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/fichty_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/fichty_charmer.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
   id: MedievalClothingHeadHelmetCharmerLightKonnor
   name: MedievalClothingHeadHelmetCharmerLightKonnor
