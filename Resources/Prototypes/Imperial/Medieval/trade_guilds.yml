@@ -229,7 +229,7 @@
     cost: 2
     reputationForBuying: 0.1
   - productEntity: CreationsBook
-    cost: 15
+    cost: 10
     reputationForBuying: 0.5
   - productEntity: MedievalHolySalt
     cost: 25
