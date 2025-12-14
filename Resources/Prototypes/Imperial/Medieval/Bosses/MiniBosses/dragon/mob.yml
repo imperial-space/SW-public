@@ -198,15 +198,15 @@
         state: alive
       sprite: Imperial/Medieval/Mobs/Bosses/Dragons/firedragon.rsi
     - type: RechargeBasicEntityAmmo
-      rechargeCooldown: 10
+      rechargeCooldown: 18
       rechargeSound:
         path: /Audio/Imperial/Medieval/fireball_blast.ogg
     - type: BasicEntityAmmoProvider
-      proto: MedievalProjectileFireballMiddle
+      proto: MedievalProjectileFireballSenior
       capacity: 1
       count: 1
     - type: Gun
-      projectileSpeed: 14
+      projectileSpeed: 15
       fireRate: 1
       useKey: false
       selectedMode: SemiAuto
