@@ -231,16 +231,16 @@ public sealed partial class SmithingWindow : FancyWindow
 
     private sealed class SmithTargetButton : TextureButton
     {
-        private readonly float _goldTime;
-
-        private readonly float _grayTime;
-
-        private readonly List<ResPath> _spriteStates =
-        [
+        private static readonly ResPath[] _spriteStates =
+        {
             new("/Textures/Imperial/Medieval/Interface/sparkle.rsi/s_0.png"),
             new("/Textures/Imperial/Medieval/Interface/sparkle.rsi/s_1.png"),
             new("/Textures/Imperial/Medieval/Interface/sparkle.rsi/s_2.png"),
-        ];
+        };
+
+        private readonly float _goldTime;
+
+        private readonly float _grayTime;
 
         private int _currentStage;
 
