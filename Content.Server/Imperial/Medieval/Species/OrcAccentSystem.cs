@@ -14,78 +14,92 @@ public sealed class OrcAccentSystem : EntitySystem
         SubscribeLocalEvent<OrcAccentComponent, AccentGetEvent>(OnAccent);
     }
 
-    private void OnAccent(EntityUid uid, OrcAccentComponent component, AccentGetEvent args)
+    public string ToInfinitive(string word)
     {
-        var message = args.Message;
+        var verb = word;
+        verb = Regex.Replace(verb, "ай+", "ать");
+        verb = Regex.Replace(verb, "АЙ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "аю+", "ать");
+        verb = Regex.Replace(verb, "АЮ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "ешь+", "ать");
+        verb = Regex.Replace(verb, "ЕШЬ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "ёшь+", "ать");
+        verb = Regex.Replace(verb, "ЁШЬ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "ете+", "ать");
+        verb = Regex.Replace(verb, "ЕТЕ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "ет+", "ать");
+        verb = Regex.Replace(verb, "ЕТ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "им+", "ать");
+        verb = Regex.Replace(verb, "ИМ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "ишь+", "ать");
+        verb = Regex.Replace(verb, "ИШЬ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "ите+", "ать");
+        verb = Regex.Replace(verb, "ИТЕ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "ят+", "ать");
+        verb = Regex.Replace(verb, "ЯТ+", "АТЬ");
+
+        verb = Regex.Replace(verb, "ал+", "ать");
+        verb = Regex.Replace(verb, "АЛ+", "АТЬ");
+        return verb;
+    }
+
+    public string Accentuate(string message, OrcAccentComponent component)
+    {
+        // прямые замены слов
+        var msg = message;
+
+        msg = Regex.Replace(msg, "не+", "ны");
+        msg = Regex.Replace(msg, "Не+", "Ны");
+        msg = Regex.Replace(msg, "НЕ+", "НЫ");
+
+        msg = Regex.Replace(msg, "да ", "ды ");
+        msg = Regex.Replace(msg, "Да ", "Ды ");
+        msg = Regex.Replace(msg, "ДА ", "ДЫ ");
+
+        msg = Regex.Replace(msg, "маг+", "колдубей");
+        msg = Regex.Replace(msg, "Маг+", "Колдубей");
+        msg = Regex.Replace(msg, "МАГ+", "КОЛДУБЕЙ");
+
+        msg = Regex.Replace(msg, "волшебник+", "колдубей");
+        msg = Regex.Replace(msg, "Волшебник+", "Колдубей");
+        msg = Regex.Replace(msg, "ВОЛШЕБНИК+", "КОЛДУБЕЙ");
+
+        msg = Regex.Replace(msg, "чародей+", "колдубей");
+        msg = Regex.Replace(msg, "Чародей+", "Колдубей");
+        msg = Regex.Replace(msg, "ЧАРОДЕЙ+", "КОЛДУБЕЙ");
 
 
-
-        if (message.StartsWith("я", StringComparison.Ordinal))
+        // прямые замены личных местоимений
+        if (msg.StartsWith("я", StringComparison.Ordinal))
         {
-            message.Remove(0, 1).Insert(0, "моя");
+            msg.Remove(0, 1).Insert(0, "моя");
         }
 
-        message = Regex.Replace(message, "ты+", "твоя");
-        message = Regex.Replace(message, "Ты+", "Твоя");
-        message = Regex.Replace(message, "ТЫ+", "ТВОЯ");
+        msg = Regex.Replace(msg, "ты+", "твоя");
+        msg = Regex.Replace(msg, "Ты+", "Твоя");
+        msg = Regex.Replace(msg, "ТЫ+", "ТВОЯ");
 
-        message = Regex.Replace(message, "тебе+", "твоя");
-        message = Regex.Replace(message, "Тебе+", "Твоя");
-        message = Regex.Replace(message, "ТЕБЕ+", "ТВОЯ");
+        msg = Regex.Replace(msg, "тебе+", "твоя");
+        msg = Regex.Replace(msg, "Тебе+", "Твоя");
+        msg = Regex.Replace(msg, "ТЕБЕ+", "ТВОЯ");
 
-        message = Regex.Replace(message, "маг+", "колдубей");
-        message = Regex.Replace(message, "Маг+", "Колдубей");
-        message = Regex.Replace(message, "МАГ+", "КОЛДУБЕЙ");
+        // приведение глаголов к неопределённой форме
+        msg = ToInfinitive(msg);
 
-        message = Regex.Replace(message, "волшебник+", "колдубей");
-        message = Regex.Replace(message, "Волшебник+", "Колдубей");
-        message = Regex.Replace(message, "ВОЛШЕБНИК+", "КОЛДУБЕЙ");
+        return msg;
+    }
 
-        message = Regex.Replace(message, "чародей+", "колдубей");
-        message = Regex.Replace(message, "Чародей+", "Колдубей");
-        message = Regex.Replace(message, "ЧАРОДЕЙ+", "КОЛДУБЕЙ");
-
-        message = Regex.Replace(message, "не+", "ны");
-        message = Regex.Replace(message, "Не+", "Ны");
-        message = Regex.Replace(message, "НЕ+", "НЫ");
-
-        message = Regex.Replace(message, "ай+", "ать");
-        message = Regex.Replace(message, "АЙ+", "АТЬ");
-
-        message = Regex.Replace(message, "да ", "ды ");
-        message = Regex.Replace(message, "Да ", "Ды ");
-        message = Regex.Replace(message, "ДА ", "ДЫ ");
-
-        message = Regex.Replace(message, "аю+", "ать");
-        message = Regex.Replace(message, "АЮ+", "АТЬ");
-
-        message = Regex.Replace(message, "ешь+", "ать");
-        message = Regex.Replace(message, "ЕШЬ+", "АТЬ");
-
-        message = Regex.Replace(message, "ёшь+", "ать");
-        message = Regex.Replace(message, "ЁШЬ+", "АТЬ");
-
-        message = Regex.Replace(message, "ете+", "ать");
-        message = Regex.Replace(message, "ЕТЕ+", "АТЬ");
-
-        message = Regex.Replace(message, "ет+", "ать");
-        message = Regex.Replace(message, "ЕТ+", "АТЬ");
-
-        message = Regex.Replace(message, "им+", "ать");
-        message = Regex.Replace(message, "ИМ+", "АТЬ");
-
-        message = Regex.Replace(message, "ишь+", "ать");
-        message = Regex.Replace(message, "ИШЬ+", "АТЬ");
-
-        message = Regex.Replace(message, "ите+", "ать");
-        message = Regex.Replace(message, "ИТЕ+", "АТЬ");
-
-        message = Regex.Replace(message, "ят+", "ать");
-        message = Regex.Replace(message, "ЯТ+", "АТЬ");
-
-        message = Regex.Replace(message, "ал+", "ать");
-        message = Regex.Replace(message, "АЛ+", "АТЬ");
-
-        args.Message = message;
+    private void OnAccent(EntityUid uid, OrcAccentComponent component, AccentGetEvent args)
+    {
+        args.Message = Accentuate(args.Message, component);
     }
 }
