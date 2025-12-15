@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
 using Content.Shared.Speech;
 using Robust.Shared.Random;
@@ -7,6 +8,14 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class OrcAccentSystem : EntitySystem
 {
+    // длинные окончания должны идти первыми
+    private static readonly (string ending, string replacement)[] VerbEndings =
+    {
+        ("ай", "ать"), ("аю", "ать"), ("ешь", "ать"), ("ёшь", "ать"),
+        ("ете", "ать"), ("ет", "ать"), ("им", "ать"), ("ишь", "ать"),
+        ("ите", "ать"), ("ят", "ать"), ("ал", "ать")
+    };
+    private static readonly Regex RegexWordSplit = new(@"(?<=[^\p{L}\d])|(?=[^\p{L}\d])");
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
     public override void Initialize()
@@ -15,42 +24,35 @@ public sealed class OrcAccentSystem : EntitySystem
         SubscribeLocalEvent<OrcAccentComponent, AccentGetEvent>(OnAccent);
     }
 
+    private string MatchCase(string src, string dest)
+    {
+        if (string.IsNullOrEmpty(src)) return dest;
+        // целевое окончание может иметь только два регистра
+        // проверяем его по последней букве корня
+        if (char.IsUpper(src[^1])) return dest.ToUpper();
+        return dest;
+    }
+
     public string ToInfinitive(string word)
     {
-        var verb = word;
-        verb = Regex.Replace(verb, "ай+", "ать");
-        verb = Regex.Replace(verb, "АЙ+", "АТЬ");
+        var lower = word.ToLower();
 
-        verb = Regex.Replace(verb, "аю+", "ать");
-        verb = Regex.Replace(verb, "АЮ+", "АТЬ");
+        // последовательная проверка на окончания вместо наивных Regex замен
+        foreach (var (ending, replacement) in VerbEndings)
+        {
+            if (lower.EndsWith(ending))
+            {
+                int end_index = word.Length - ending.Length;
 
-        verb = Regex.Replace(verb, "ешь+", "ать");
-        verb = Regex.Replace(verb, "ЕШЬ+", "АТЬ");
-
-        verb = Regex.Replace(verb, "ёшь+", "ать");
-        verb = Regex.Replace(verb, "ЁШЬ+", "АТЬ");
-
-        verb = Regex.Replace(verb, "ете+", "ать");
-        verb = Regex.Replace(verb, "ЕТЕ+", "АТЬ");
-
-        verb = Regex.Replace(verb, "ет+", "ать");
-        verb = Regex.Replace(verb, "ЕТ+", "АТЬ");
-
-        verb = Regex.Replace(verb, "им+", "ать");
-        verb = Regex.Replace(verb, "ИМ+", "АТЬ");
-
-        verb = Regex.Replace(verb, "ишь+", "ать");
-        verb = Regex.Replace(verb, "ИШЬ+", "АТЬ");
-
-        verb = Regex.Replace(verb, "ите+", "ать");
-        verb = Regex.Replace(verb, "ИТЕ+", "АТЬ");
-
-        verb = Regex.Replace(verb, "ят+", "ать");
-        verb = Regex.Replace(verb, "ЯТ+", "АТЬ");
-
-        verb = Regex.Replace(verb, "ал+", "ать");
-        verb = Regex.Replace(verb, "АЛ+", "АТЬ");
-        return verb;
+                {
+                    string stem = word.Substring(0, end_index);
+                    // TODO: проверить корень и заменить исключения (i.e. поешь)
+                    string infinitive = stem + replacement;
+                    return MatchCase(word, infinitive);
+                }
+            }
+        }
+        return word;
     }
 
     public string Accentuate(string message, OrcAccentComponent component)
@@ -58,16 +60,28 @@ public sealed class OrcAccentSystem : EntitySystem
         // прямые замены слов
         var msg = _replacement.ApplyReplacements(message, "orc");
 
-        // прямые замены личных местоимений
-        if (msg.StartsWith("я", StringComparison.Ordinal))
+        var result = new StringBuilder();
+
+        foreach (var element in RegexWordSplit.Split(msg))
         {
-            msg.Remove(0, 1).Insert(0, "моя");
+            // прямые замены личных местоимений
+
+            if (element.ToLower() == "я")
+            {
+                result.Append("моя");
+            }
+
+            if (element.Length == 1)
+            {
+                result.Append(element);
+                continue;
+            }
+
+            // приведение глаголов к неопределённой форме
+            result.Append(ToInfinitive(element));
         }
 
-        // приведение глаголов к неопределённой форме
-        msg = ToInfinitive(msg);
-
-        return msg;
+        return result.ToString();
     }
 
     private void OnAccent(EntityUid uid, OrcAccentComponent component, AccentGetEvent args)
