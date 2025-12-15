@@ -95,7 +95,7 @@
   description: MedievalLoot
   components:
   - type: RDWeight
-    value: 1
+    value: 3
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
     state: icescale
@@ -145,7 +145,7 @@
   description: MedievalLoot
   components:
   - type: RDWeight
-    value: 2
+    value: 4
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
     state: bones
