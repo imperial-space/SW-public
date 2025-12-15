@@ -113,8 +113,8 @@
       speechVerb: LargeMob
       speechSounds: MedievalDragon
     - type: MovementSpeedModifier
-      baseWalkSpeed: 3.4
-      baseSprintSpeed: 2.4
+      baseWalkSpeed: 3.3
+      baseSprintSpeed: 2
     - type: AnnounceOnSpawn
       message: dragon-spawn-announcement
       color: "yellow"
