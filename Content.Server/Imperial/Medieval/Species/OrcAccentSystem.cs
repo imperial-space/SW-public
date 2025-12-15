@@ -8,6 +8,7 @@ namespace Content.Server.Speech.EntitySystems;
 public sealed class OrcAccentSystem : EntitySystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -55,42 +56,13 @@ public sealed class OrcAccentSystem : EntitySystem
     public string Accentuate(string message, OrcAccentComponent component)
     {
         // прямые замены слов
-        var msg = message;
-
-        msg = Regex.Replace(msg, "не+", "ны");
-        msg = Regex.Replace(msg, "Не+", "Ны");
-        msg = Regex.Replace(msg, "НЕ+", "НЫ");
-
-        msg = Regex.Replace(msg, "да ", "ды ");
-        msg = Regex.Replace(msg, "Да ", "Ды ");
-        msg = Regex.Replace(msg, "ДА ", "ДЫ ");
-
-        msg = Regex.Replace(msg, "маг+", "колдубей");
-        msg = Regex.Replace(msg, "Маг+", "Колдубей");
-        msg = Regex.Replace(msg, "МАГ+", "КОЛДУБЕЙ");
-
-        msg = Regex.Replace(msg, "волшебник+", "колдубей");
-        msg = Regex.Replace(msg, "Волшебник+", "Колдубей");
-        msg = Regex.Replace(msg, "ВОЛШЕБНИК+", "КОЛДУБЕЙ");
-
-        msg = Regex.Replace(msg, "чародей+", "колдубей");
-        msg = Regex.Replace(msg, "Чародей+", "Колдубей");
-        msg = Regex.Replace(msg, "ЧАРОДЕЙ+", "КОЛДУБЕЙ");
-
+        var msg = _replacement.ApplyReplacements(message, "orc");
 
         // прямые замены личных местоимений
         if (msg.StartsWith("я", StringComparison.Ordinal))
         {
             msg.Remove(0, 1).Insert(0, "моя");
         }
-
-        msg = Regex.Replace(msg, "ты+", "твоя");
-        msg = Regex.Replace(msg, "Ты+", "Твоя");
-        msg = Regex.Replace(msg, "ТЫ+", "ТВОЯ");
-
-        msg = Regex.Replace(msg, "тебе+", "твоя");
-        msg = Regex.Replace(msg, "Тебе+", "Твоя");
-        msg = Regex.Replace(msg, "ТЕБЕ+", "ТВОЯ");
 
         // приведение глаголов к неопределённой форме
         msg = ToInfinitive(msg);
