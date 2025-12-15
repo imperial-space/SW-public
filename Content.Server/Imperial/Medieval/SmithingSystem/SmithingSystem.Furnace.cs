@@ -1,5 +1,4 @@
-﻿using Content.Server.Popups;
-using Content.Shared.Containers.ItemSlots;
+﻿using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Medieval.SmithingSystem;
@@ -10,10 +9,9 @@ namespace Content.Server.Imperial.Medieval.SmithingSystem;
 
 public sealed partial class SmithingSystem
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly DamageOnInteractSystem _damageOnInteract = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
 
 
     protected override void InitializeFurnaceSystem()
@@ -34,9 +32,7 @@ public sealed partial class SmithingSystem
         {
             if (!furnaceComponent.UnlockTime.HasValue ||
                 furnaceComponent.UnlockTime > _gameTiming.CurTime)
-            {
                 continue;
-            }
 
             _itemSlots.SetLock(uid, furnaceComponent.MeltingSlot, false);
             _itemSlots.TryEject(uid, furnaceComponent.MeltingSlot, null, out _);
@@ -59,9 +55,7 @@ public sealed partial class SmithingSystem
         _appearanceSystem.SetData(args.Entity, WorkpieceVisuals.Melted, true);
 
         if (TryComp<DamageOnInteractComponent>(args.Entity, out var damageOnInteractComp))
-        {
             _damageOnInteract.SetIsDamageActiveTo((args.Entity, damageOnInteractComp), true);
-        }
 
         Dirty(args.Entity, workpieceComponent);
     }
