@@ -229,7 +229,7 @@
     cost: 2
     reputationForBuying: 0.1
   - productEntity: CreationsBook
-    cost: 15
+    cost: 10
     reputationForBuying: 0.5
   - productEntity: MedievalHolySalt
     cost: 25
@@ -277,16 +277,16 @@
     minReputation: 10
     reputationForBuying: 41.7
   - productEntity: MedievalIceDragonTablet
-    cost: 1200
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalFireDragonTablet
-    cost: 1200
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalAcidDragonTablet
-    cost: 1200
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalThunderDragonTablet
-    cost: 1200
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220

@@ -2379,7 +2379,7 @@
   id: MdvShopCreationsBook
   productEntity: CreationsBook
   cost:
-    Revent: 15
+    Revent: 10
   categories:
   - MedievalMisc
 
