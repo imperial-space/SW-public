@@ -358,6 +358,10 @@
   id: deimon
   holder: 360bb5a1-a446-4aa2-9e5e-efa90d1b4648
   map:
+    MedievalIronHalberdT3: [MedievalIronHalberdT3Deimon]
+    MedievalIronHalberdT3Steel: [MedievalIronHalberdT3SteelDeimon]
+    MedievalIronSekirSteel: [MedievalIronSekirSteelDeimon]
+    MedievalIronSekir: [MedievalIronSekirDeimon]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth81]
     MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuterArmorIronCuirassLightDeimon]
     MedievalClothingOuterArmorBrigantin: [MedievalClothingOuterArmorBrigantinDeimon]
