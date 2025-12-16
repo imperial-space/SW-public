@@ -973,7 +973,7 @@
   - type: StorageFill
     contents:
     - id: MedievalArrow
-      amount: 20
+      amount: 21
 
 - type: entity
   parent: MedievalQuiverSteel
@@ -983,7 +983,7 @@
   - type: StorageFill
     contents:
     - id: MedievalArrowSteel
-      amount: 20
+      amount: 21
 
 - type: entity
   parent: MedievalQuiverSteel
@@ -993,7 +993,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBoltSteel
-      amount: 20
+      amount: 21
 
 - type: entity
   parent: MedievalQuiverSteel
@@ -1003,7 +1003,7 @@
   - type: StorageFill
     contents:
     - id: MedievalBolt
-      amount: 20
+      amount: 21
 
 - type: entity
   parent: MedievalQuiver
