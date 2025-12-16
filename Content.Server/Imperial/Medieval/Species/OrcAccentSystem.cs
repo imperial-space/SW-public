@@ -57,18 +57,19 @@ public sealed class OrcAccentSystem : EntitySystem
 
     public string Accentuate(string message, OrcAccentComponent component)
     {
-        // прямые замены слов
+        // прямые замены слов и местоимений
         var msg = _replacement.ApplyReplacements(message, "orc");
 
         var result = new StringBuilder();
 
         foreach (var element in RegexWordSplit.Split(msg))
         {
-            // прямые замены личных местоимений
+            // замена "Я" с учетом регистра
 
             if (element.ToLower() == "я")
             {
-                result.Append("моя");
+                result.Append(MatchCase(element, "м")).Append("оя");
+                continue;
             }
 
             if (element.Length == 1)
