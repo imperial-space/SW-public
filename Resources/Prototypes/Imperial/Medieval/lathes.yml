@@ -938,6 +938,8 @@
     - MedievalMopItem
     - MedievalMopBucket
     - MedievalKnut
+    - MedievalGoldCup
+    - MedievalSilverCup
 
 - type: entity
   parent: CP14BaseWorkbench

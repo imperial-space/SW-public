@@ -421,6 +421,10 @@
     - id: FoodMeatCooked
     - id: MedievalHatchet
     - id: MedievalJailPosxalka
+    - id: MedievalGoldCup
+      weight: 0.5
+    - id: MedievalSilverCup
+      weight: 0.5
 
 - type: entity
   parent: BaseStructure
