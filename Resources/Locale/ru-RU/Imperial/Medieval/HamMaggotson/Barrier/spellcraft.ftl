@@ -1,0 +1,1 @@
+medieval-hm-barrier-spellcraft-currentcharge = [color=red]Текущий заряд {$charge} из {$max}[/color]

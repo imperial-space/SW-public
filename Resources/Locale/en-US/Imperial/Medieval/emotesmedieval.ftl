@@ -1,0 +1,14 @@
+chat-emote-msg-Hmmm = Thinking
+chat-emote-msg-Hmm = Asking
+chat-emote-msg-warcry = Yeliing
+chat-emote-msg-charge = Calling to attack
+chat-emote-msg-woo = Enthusiastic
+chat-emote-msg-painscream = Screaming
+chat-emote-msg-passivescream = Screaming
+chat-emote-name-dreaminess = Think
+chat-emote-name-questioning = Ask
+chat-emote-name-warcry = Battle cry
+chat-emote-name-charge = Attack!
+chat-emote-name-woo = Rejoice
+chat-emote-name-painscream = Screaming (in pain)
+chat-emote-name-passivescream = Screaming (in silence)

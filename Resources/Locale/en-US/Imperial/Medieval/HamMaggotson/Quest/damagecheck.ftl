@@ -1,0 +1,5 @@
+medieval-hm-damagecheck-almostbroke = [color=red]The object is covered in deep cracks and is about to fall apart[/color]
+medieval-hm-damagecheck-deep = [color=orange]The object is covered in large cracks[/color]
+medieval-hm-damagecheck-broken = [color=orange]Cracks are spreading across the object[/color]
+medieval-hm-damagecheck-ohno = [color=yellow]Noticeable serious scratches[/color]
+medieval-hm-damagecheck-notdamaged = [color=green]Noticeable light scratches[/color]

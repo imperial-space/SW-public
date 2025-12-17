@@ -1,0 +1,9 @@
+ent-MedievalClothingFeetNorthern = северные сапоги
+    .desc = Стильные сапоги из кожи и стали
+    .suffix = { "Средневековье" }
+ent-MedievalClothingOuterArmorNorthern = северная броня
+    .desc = Самая настоящая северная броня.
+    .suffix = { "Средневековье, одежда" }
+ent-MedievalClothingHeadHelmetNorthern = северный шлем
+    .desc = Красивый и надёжный северный шлем.
+    .suffix = { "Средневековье, одежда" }

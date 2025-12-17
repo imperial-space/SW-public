@@ -1,0 +1,11 @@
+stamp-component-stamped-name-medieval-black = Band
+stamp-component-stamped-name-medieval-blue = Legion
+stamp-component-stamped-name-medieval-fish = Merchant Caravan
+stamp-component-stamped-name-medieval-green = The "Snake" Clan
+stamp-component-stamped-name-medieval-red = Rebels
+stamp-component-stamped-name-medieval-white = Clan "Fluffy cat"
+stamp-component-stamped-name-medieval-yellow = Clan "Furious bear"
+stamp-component-stamped-name-medieval-hell = Hellfire
+stamp-component-stamped-name-medieval-wizard = Collegium Of Mages
+stamp-component-stamped-name-medieval-necro = Necromancer
+stamp-component-stamped-name-medieval-mercs = Mercenaries

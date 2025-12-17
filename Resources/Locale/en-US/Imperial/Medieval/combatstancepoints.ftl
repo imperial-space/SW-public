@@ -1,0 +1,10 @@
+medieval-place-alpha = Alpha squad markers
+medieval-place-bravo = Bravo squad markers
+medieval-place-delta = Delta squad markers
+medieval-place-gamma = Gamma squad markers
+medieval-place-omega = Omega squad markers
+medieval-place-stancepoint = Set formation line
+medieval-remove-stancepoints = Delete formation line
+ent-StancePoint = formation point
+    .desc = If the point is red, it means no one is present. If it is yellow, there are fewer than 4 people in the formation, and no bonuses are active. If it is green, the formation effect is active, and everyone in it receives 50% resistance against all damage.
+medieval-cant-place-toomuch-stancepoints = There are not enough people in the squad for this formation. Clear the old points or add more people to the squad.

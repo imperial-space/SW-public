@@ -1,0 +1,11 @@
+alerts-imperial-medieval-mana-name = Mana
+alerts-imperial-medieval-mana-description = Level of mana - magical energy, used for casting spells.
+alerts-imperial-medieval-trade-curse-name = Curse
+alerts-imperial-medieval-trade-curse-description = Every trader has signed a contract with the devil to get access to the trading hole, but in exchange you should visit it regularly or use holy salt. To use holy salt, grab it in a hand and click yourself with left mouse.
+alerts-imperial-medieval-bad-smell-name = Stench
+alerts-imperial-medieval-bad-smell-description = Чем выше уровень вони - тем больше возле вас будут летать мухи и тем больше вы будете вызывать осуждение у окружающих. Снизить уровень вони можно просто искупавшись в воде, но, аккуратно, не захотите глубоко! В воде можно утонуть. Обычная речная или морская вода не поможет вам отмыться до конца, посетите таверну.
+alerts-imperial-medieval-bad-smell-description = The higher your level of stench is - the more flies would fly around you and the more surrounding people would despise you. You can decrease the level of stench by having a swim in water, but be careful not to go too deep! You can drown in the water. Ordinary river or sea water will not completely wash you clean, visit a tavern.
+alerts-imperial-medieval-vigor-name = Vigor
+alerts-imperial-medieval-vigor-description = Like everyone else, you need to sleep periodically. If you don't, you might collapse from exhaustion right in the middle of battle.
+alerts-imperial-medieval-cult-curse-name = Сult bond
+alerts-imperial-medieval-cult-curse-description = The Cult of Truth has performed a ritual on you, and now you are bound to it. If you maintain the connection (periodically approaching the vessels and cutting yourself with a knife), you will have weak magic regeneration. If you do not, you will take a small amount of damage and the bond will be lost.

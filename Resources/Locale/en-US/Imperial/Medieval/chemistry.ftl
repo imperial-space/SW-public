@@ -1,0 +1,19 @@
+imperial-medieval-chemistry-bloodadd = Adds {$amount} blood points to a nocturne 
+imperial-medieval-chemistry-basic-name = a potion
+imperial-medieval-chemistry-examine = [color=yellow]Properties of the potions inside the vessel:[/color]
+ent-MedievalMushroom1 = purple mushroom
+    .desc = A mushroom growing on the ground
+ent-MedievalMushroom2 = blue mushroom
+    .desc = A mushroom growing on the ground
+ent-MedievalMushroom3 = orange mushroom
+    .desc = A mushroom growing on the ground
+ent-MedievalKotel = a cauldron
+    .desc = A cauldron that is convenient to use to brew various potions
+ent-MedievalFirePlate = magic fiery stone
+    .desc = A medieval grill..? How convenient!
+ent-MedievalChemistryRecipe = alchemical recipe
+imperial-medieval-recipewritten = A recipe of some unknown potion is written on the sheet in sloppy handwriting
+ent-MedievalMortarNew = alchemical mortar
+    .desc = A mortar that can be used for grinding ingredients with a pestle
+ent-MedievalMortarTool = a pestle
+    .desc = Required to grind ingredients in a mortar

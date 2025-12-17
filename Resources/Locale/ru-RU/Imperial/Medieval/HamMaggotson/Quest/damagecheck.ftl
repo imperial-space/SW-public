@@ -1,0 +1,5 @@
+medieval-hm-damagecheck-almostbroke = [color=red]Объект весь покрыт крупными трещинами и вот-вот развалится[/color]
+medieval-hm-damagecheck-deep = [color=orange]Объект весь покрыт крупными трещинами[/color]
+medieval-hm-damagecheck-broken = [color=orange]По объекту расходятся трещины[/color]
+medieval-hm-damagecheck-ohno = [color=yellow]Заметны серьезные царапины[/color]
+medieval-hm-damagecheck-notdamaged = [color=green]Заметны легкие царапины[/color]

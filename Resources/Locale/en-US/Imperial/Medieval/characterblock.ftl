@@ -1,0 +1,2 @@
+﻿character-blocked-gui-text = The character {$characterName} has been blocked as he already has been in this round (In the character personalization menu marked with a read line)! Choose another character.
+character-blocked-gui = The character has been blocked.
