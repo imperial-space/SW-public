@@ -32,7 +32,6 @@ public sealed class FightForLifeSystem : EntitySystem
 
         base.Initialize();
 
-        SubscribeLocalEvent<MobStateComponent, MobStateChangedEvent>(OnMobStateChanged);
         SubscribeLocalEvent<FightForLifeActionEvent>(OnFightForLifeAction);
         SubscribeLocalEvent<FightForLifeActionComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<FightForLifeActionComponent, ComponentShutdown>(OnComponentShutdown);
