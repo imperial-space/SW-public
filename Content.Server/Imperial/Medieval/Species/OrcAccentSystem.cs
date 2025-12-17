@@ -1,6 +1,8 @@
 ﻿using System.Text;
 using System.Text.RegularExpressions;
 using Content.Server.Speech.Components;
+using Content.Shared.Imperial.Medieval.Language;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Speech;
 using Robust.Shared.Random;
 
@@ -52,6 +54,7 @@ public sealed class OrcAccentSystem : EntitySystem
     private static readonly Regex RegexWordSplit = new(@"(?<=[^\p{L}\d])|(?=[^\p{L}\d])");
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -116,7 +119,7 @@ public sealed class OrcAccentSystem : EntitySystem
         return word;
     }
 
-    public string Accentuate(string message, OrcAccentComponent component)
+    public string Accentuate(string message, OrcAccentComponent component, string? name)
     {
         // прямые замены слов и местоимений
         var msg = _replacement.ApplyReplacements(message, "orc");
@@ -127,10 +130,10 @@ public sealed class OrcAccentSystem : EntitySystem
         foreach (var element in RegexWordSplit.Split(msg))
         {
             // замена "Я" с учетом регистра
-
             if (element.ToLower() == "я")
             {
-                result.Append(MatchCase(element, "м")).Append("оя");
+                var pronoun = name == null ? "моя" : name;
+                result.Append(MatchCase(element, pronoun.Substring(0, 1))).Append(pronoun.Substring(1));
                 continue;
             }
 
@@ -143,6 +146,16 @@ public sealed class OrcAccentSystem : EntitySystem
 
     private void OnAccent(EntityUid uid, OrcAccentComponent component, AccentGetEvent args)
     {
-        args.Message = Accentuate(args.Message, component);
+        // при разговоре на орочьем языке акцент не применяется
+        if (TryComp<LanguageSpeakerComponent>(uid, out var comp))
+        {
+            if (comp.CurrentLanguage == "Orc")
+            {
+                return;
+            }
+        }
+        // достаточно глупые орки вместо "я" используют свое имя
+        var firstname = Name(uid).Split(' ')[0];
+        args.Message = Accentuate(args.Message, component, _skills.CanRead(uid) ? null : firstname);
     }
 }
