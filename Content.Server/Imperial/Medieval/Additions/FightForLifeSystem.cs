@@ -32,7 +32,7 @@ public sealed class FightForLifeSystem : EntitySystem
 
         base.Initialize();
 
-        SubscribeLocalEvent<FightForLifeActionEvent>(OnFightForLifeAction);
+        SubscribeLocalEvent<FightForLifeActionComponent, FightForLifeActionEvent>(OnFightForLifeAction);
         SubscribeLocalEvent<FightForLifeActionComponent, ComponentStartup>(OnComponentStartup);
         SubscribeLocalEvent<FightForLifeActionComponent, ComponentShutdown>(OnComponentShutdown);
 
@@ -105,7 +105,7 @@ public sealed class FightForLifeSystem : EntitySystem
         _actions.SetEnabled(comp.ActionEntity.Value, !isOnCooldown);
     }
 
-    private void OnFightForLifeAction(FightForLifeActionEvent args)
+    private void OnFightForLifeAction(Entity<FightForLifeActionComponent> ent, ref FightForLifeActionEvent args)
     {
         if (args.Handled)
             return;
