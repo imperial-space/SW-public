@@ -928,7 +928,7 @@
 - type: entity
   parent: MedievalQuiver
   id: MedievalQuiverFullArrowIron
-  suffix: Полный, ЖелСтрелы
+  suffix: Full, IronArrow
   components:
   - type: StorageFill
     contents:
@@ -938,7 +938,7 @@
 - type: entity
   parent: MedievalQuiver
   id: MedievalQuiverFullArrowSteel
-  suffix: Полный, СталСтрелы
+  suffix: Full, SteelArrow
   components:
   - type: StorageFill
     contents:
@@ -948,7 +948,7 @@
 - type: entity
   parent: MedievalQuiver
   id: MedievalQuiverFullBoltSteel
-  suffix: Полный, СталБолты
+  suffix: Full, SteelBolt
   components:
   - type: StorageFill
     contents:
@@ -958,7 +958,7 @@
 - type: entity
   parent: MedievalQuiver
   id: MedievalQuiverFullBoltIron
-  suffix: Полный, ЖелБолты
+  suffix: Full, IronBolt
   components:
   - type: StorageFill
     contents:
@@ -968,7 +968,7 @@
 - type: entity
   parent: MedievalQuiverSteel
   id: MedievalQuiverSteelFullArrowIron
-  suffix: Полный, ЖелСтрелы
+  suffix: Full, IronArrow
   components:
   - type: StorageFill
     contents:
@@ -978,7 +978,7 @@
 - type: entity
   parent: MedievalQuiverSteel
   id: MedievalQuiverSteelFullArrowSteel
-  suffix: Полный, СталСтрелы
+  suffix: Full, SteelArrow
   components:
   - type: StorageFill
     contents:
@@ -988,7 +988,7 @@
 - type: entity
   parent: MedievalQuiverSteel
   id: MedievalQuiverSteelFullBoltSteel
-  suffix: Полный, СталБолты
+  suffix: Full, SteelBolt
   components:
   - type: StorageFill
     contents:
@@ -998,7 +998,7 @@
 - type: entity
   parent: MedievalQuiverSteel
   id: MedievalQuiverSteelFullBoltIron
-  suffix: Полный, ЖелБолты
+  suffix: Full, IronBolt
   components:
   - type: StorageFill
     contents:
