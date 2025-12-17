@@ -27,6 +27,8 @@ using Content.Shared.Inventory;
 using Content.Shared.Chat;
 using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Body.Components;
+using Content.Shared.Imperial.Medieval.Skills;
+using Content.Server.Imperial.Medieval.Skills;
 
 namespace Content.Server.Nocturn
 {
@@ -50,6 +52,7 @@ namespace Content.Server.Nocturn
         [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
         [Dependency] private readonly InventorySystem _inventory = default!;
         [Dependency] private readonly SharedTypingIndicatorSystem _typing = default!;
+        [Dependency] private readonly SkillsSystem _skills = default!;
 
 
         public override void Initialize()
@@ -66,6 +69,20 @@ namespace Content.Server.Nocturn
             SubscribeLocalEvent<NocturnComponent, NocturnDisguiseDoAfterEvent>(OnNocturnDisguiseDoAfter);
             SubscribeLocalEvent<NocturnComponent, ExaminedEvent>(OnExamine);
             SubscribeLocalEvent<ZveresScreamComponent, RefreshMovementSpeedModifiersEvent>(OnZveresMove);
+            SubscribeLocalEvent<FightForLifeActionComponent, CanselDeathEvent>(OnFightForLifeCanselAction);
+        }
+
+        public void OnFightForLifeCanselAction(EntityUid uid, FightForLifeActionComponent comp, CanselDeathEvent args)
+        {
+            args.Handled = true;
+
+
+            if (!_skills.TryGetSkill(uid, "Vitality", out var vitalityLevel) || vitalityLevel < 10)
+                return;
+
+            var heal = 2f + 0.15f * (vitalityLevel - 9);
+
+            _damageableSystem.TryChangeDamage(uid, -comp.Damage * heal, true, false);
         }
 
         public void OnFoodStart(EntityUid uid, NocturnBadFoodComponent component, ComponentStartup args)

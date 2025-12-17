@@ -1,5 +1,6 @@
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.GameStates;
+using Content.Shared.Damage;
 
 namespace Content.Shared.Imperial.Medieval.Skills;
 
@@ -12,4 +13,19 @@ public sealed partial class FightForLifeActionComponent : Component
 
     [AutoNetworkedField]
     public EntityUid? ActionEntity;
+
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public DamageSpecifier Damage = new()
+    {
+        DamageDict = new()
+            {
+                { "Blunt", 1 },
+                { "Slash", 1 },
+                { "Piercing", 1 },
+                { "Heat", 1 },
+                { "Asphyxiation", 5}
+            }
+    };
 }

@@ -15,16 +15,16 @@
 
 - type: entity
   id: FightForLifeAction
-  parent: BaseAction
+  parent: ActionCritSuccumb
   components:
   - type: Action
     startDelay: true
     itemIconStyle: NoItem
     icon:
-      sprite: Interface/Actions/actions.rsi
-      state: syringe
-    useDelay: 60.0
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      state: icon-6
+    useDelay: 40.0
     checkCanInteract: false
     enabled: true
   - type: InstantAction
-    event: !type:FightForLifeActionEvent
+    event: !type:CanselDeathEvent
