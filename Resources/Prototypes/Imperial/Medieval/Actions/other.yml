@@ -18,11 +18,12 @@
   parent: BaseAction
   components:
   - type: Action
+    startDelay: true
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions.rsi
       state: syringe
-    useDelay: 1.0
+    useDelay: 60.0
     checkCanInteract: false
     enabled: true
   - type: InstantAction
