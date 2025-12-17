@@ -128,7 +128,7 @@ public sealed class FightForLifeSystem : EntitySystem
         var omnizineAmount = 0.5f + 0.05f * (vitalityLevel - 9);
         var success = InjectOmnizine(uid, omnizineAmount);
 
-        actionComp.NextUseTime = _timing.CurTime + TimeSpan.FromSeconds(30);
+        //actionComp.NextUseTime = _timing.CurTime + TimeSpan.FromSeconds(30);
         UpdateActionVisibility(uid, actionComp);
 
         if (success)
