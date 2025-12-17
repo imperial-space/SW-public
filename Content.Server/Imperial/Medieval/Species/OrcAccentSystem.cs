@@ -10,12 +10,12 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class OrcAccentSystem : EntitySystem
 {
-    // окончания, суффиксы и другие части слов для замены
-    // увы, без NLP дальше не уйти!
-    // причастия, деепричастия обрабатываться не должны.
+    // Окончания, суффиксы и другие части слов для замены
+    // Увы, без NLP дальше не уйти!
+    // Причастия/деепричастия обрабатываться не должны.
     private static readonly (string ending, string replacement)[] VerbEndings =
     {
-        // настоящее + будущее совершенное время
+        // Настоящее + будущее совершенное время
         ("аю", "ать"), ("аешь", "ать"), ("аёшь", "ать"), ("ает", "ать"),
         ("аёт", "ать"), ("аем", "ать"), ("аём", "ать"), ("ают", "ать"),
 
@@ -25,11 +25,11 @@ public sealed class OrcAccentSystem : EntitySystem
         ("ьем", "ить"), ("ьют", "ить"), ("иву", "ить"), ("ивешь", "ить"),
         ("ивет", "ить"), ("ивем", "ить"), ("ивут", "ить"),
 
-        // будущее время
+        // Будущее время
         ("ам", "ать"), ("ашь", "ать"), ("ану", "ать"), ("аст", "ать"),
         ("адим", "ать"),
 
-        // прошедшее время
+        // Прошедшее время
         ("ал", "ать"), ("ала", "ать"), ("ало", "ать"), ("али", "ать"),
         ("ил", "ить"), ("ила", "ить"), ("ило", "ить"), ("или", "ить"),
         ("ел", "еть"), ("ели", "еть"), ("ело", "еть"), ("ела", "еть"),
@@ -38,12 +38,12 @@ public sealed class OrcAccentSystem : EntitySystem
         ("ял", "ять"), ("яла", "ять"), ("яло", "ять"), ("яли", "ять"),
         ("ла", "ти"), ("ло", "ти"), ("ли", "ти"),
 
-
-        // повелительное наклонение (исключения)
+        // Повелительное наклонение (исключения)
         ("ай", "ать"), ("иви", "ить")
     };
-    // замены в повелительных глаголах
-    // проверяется отдельно для исбежания замен по типу орки – оркать
+    // Замены в повелительных глаголах проверяется отдельно:
+    // Орки – Оркать (неправильно, не обрабатывается);
+    // БегиТЕ - Бегать (правильно, обрабатывается).
     private static readonly (string ending, string replacement)[] VerbEndingsImperative =
     {
         ("иви", "ить"), ("иве", "ить"), ("йди", "йти"), ("ли", "лить"),
@@ -52,7 +52,6 @@ public sealed class OrcAccentSystem : EntitySystem
         ("и", "ать"), ("ь", "ить"),
     };
     private static readonly Regex RegexWordSplit = new(@"(?<=[^\p{L}\d])|(?=[^\p{L}\d])");
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
     [Dependency] private readonly SharedSkillsSystem _skills = default!;
     public override void Initialize()
@@ -64,8 +63,8 @@ public sealed class OrcAccentSystem : EntitySystem
     private string MatchCase(string src, string dest)
     {
         if (string.IsNullOrEmpty(src)) return dest;
-        // целевое окончание может иметь только два регистра
-        // проверяем его по последней букве корня
+        // Целевое окончание может иметь только два регистра;
+        // Проверяем его по последней букве корня.
         if (char.IsUpper(src[^1])) return dest.ToUpper();
         return dest;
     }
@@ -74,14 +73,14 @@ public sealed class OrcAccentSystem : EntitySystem
     {
         var lower = word.ToLower();
 
-        // удаление постфиксов (повелительных и возвратных) если они есть
-        // бьется - бьет
-        // рубитесь - руби
+        // Удаление постфиксов (повелительных и возвратных) если они есть:
+        // Бьется - Бьет;
+        // Рубитесь - Руби.
         bool reflexive = lower.EndsWith("ся") || lower.EndsWith("сь");
         if (reflexive) lower = lower.Substring(0, lower.Length - 2);
         bool imperative = lower.EndsWith("те");
 
-        // повелительное наклонение – отдельная проверка...
+        // Повелительное наклонение – отдельная проверка...
         if (imperative)
         {
             lower = lower.Substring(0, lower.Length - 2);
@@ -101,7 +100,7 @@ public sealed class OrcAccentSystem : EntitySystem
             return word;
         }
 
-        // последовательная проверка на окончания вместо наивных Regex замен
+        // Последовательная проверка на окончания вместо наивных Regex замен
         foreach (var (ending, replacement) in VerbEndings)
         {
             if (lower.EndsWith(ending))
@@ -111,7 +110,7 @@ public sealed class OrcAccentSystem : EntitySystem
                 if (end_index == 0) return word;
 
                 string stem = word.Substring(0, end_index);
-                // TODO: проверить корень и заменить исключения (i.e. поешь)
+                // TODO: Проверить корень и заменить исключения (i.e. сарай, аколит).
                 string infinitive = reflexive ? stem + replacement + "ся" : stem + replacement;
                 return MatchCase(word, infinitive);
             }
@@ -121,15 +120,15 @@ public sealed class OrcAccentSystem : EntitySystem
 
     public string Accentuate(string message, OrcAccentComponent component, string? name)
     {
-        // прямые замены слов и местоимений
+        // Прямые замены слов и местоимений через акцент замены
         var msg = _replacement.ApplyReplacements(message, "orc");
 
         var result = new StringBuilder();
 
-        // каждое слово обрабатывается отдельно и единожды
+        // Каждое слово обрабатывается отдельно и единожды
         foreach (var element in RegexWordSplit.Split(msg))
         {
-            // замена "Я" с учетом регистра
+            // Замена "Я" с учетом регистра
             if (element.ToLower() == "я")
             {
                 var pronoun = name == null ? "моя" : name;
@@ -137,7 +136,7 @@ public sealed class OrcAccentSystem : EntitySystem
                 continue;
             }
 
-            // приведение глаголов к неопределённой форме
+            // Приведение глаголов к неопределённой форме
             result.Append(element.Length <= 1 ? element : ToInfinitive(element));
         }
 
@@ -146,7 +145,7 @@ public sealed class OrcAccentSystem : EntitySystem
 
     private void OnAccent(EntityUid uid, OrcAccentComponent component, AccentGetEvent args)
     {
-        // при разговоре на орочьем языке акцент не применяется
+        // При разговоре на орочьем языке акцент не применяется
         if (TryComp<LanguageSpeakerComponent>(uid, out var comp))
         {
             if (comp.CurrentLanguage == "Orc")
@@ -154,7 +153,7 @@ public sealed class OrcAccentSystem : EntitySystem
                 return;
             }
         }
-        // достаточно глупые орки вместо "я" используют свое имя
+        // Достаточно глупые орки вместо "я" используют свое имя
         var firstname = Name(uid).Split(' ')[0];
         args.Message = Accentuate(args.Message, component, _skills.CanRead(uid) ? null : firstname);
     }
