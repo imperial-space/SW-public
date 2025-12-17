@@ -12,3 +12,18 @@
     useDelay: 0.5
   - type: InstantAction
     event: !type:HideHairToggleEvent
+
+- type: entity
+  id: FightForLifeAction
+  parent: BaseAction
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    icon:
+      sprite: Interface/Actions/actions.rsi
+      state: syringe
+    useDelay: 1.0
+    checkCanInteract: false
+    enabled: true
+  - type: InstantAction
+    event: !type:FightForLifeActionEvent
