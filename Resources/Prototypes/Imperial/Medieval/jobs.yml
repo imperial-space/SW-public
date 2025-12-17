@@ -1553,6 +1553,7 @@
   id: MedievalChaplainGear
   equipment:
     pocket1: MedievalRevent10
+    pocket2: MedievalPinpointerCritical
     #belt: Bible
 
 - type: playTimeTracker
