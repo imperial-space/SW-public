@@ -375,7 +375,6 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
-  - type: FightForLifeAction # Imperial Medieval FightForLife
   - type: BloodTrail # Imperial Space BloodTrail
   - type: Barotrauma
     damage:
