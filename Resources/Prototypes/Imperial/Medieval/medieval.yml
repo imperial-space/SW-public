@@ -8052,6 +8052,19 @@
     delay: 2.0
 
 - type: entity
+  parent: BaseItem
+  id: DeimonStaffMedieval
+  name: DeimonStaffMedieval
+  description: DeimonStaffMedieval
+  components:
+  - type: Item
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    state: icon
+
+- type: entity
   parent: BaseStructureMedieval
   id: MedievalSharpeningMachine
   name: Sharpening machine
