@@ -296,6 +296,21 @@
     cost: 220
     reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalScrollsHalberd
+    cost: 50
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsFalshion
+    cost: 50
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsDagger
+    cost: 50
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsBow
+    cost: 50
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsCrossbow
+    cost: 50
+    reputationForBuying: 1
 
 - type: guildName
   id: WeaponGuild

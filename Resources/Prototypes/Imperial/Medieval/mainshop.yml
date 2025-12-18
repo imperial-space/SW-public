@@ -2917,6 +2917,61 @@
   - MedievalMagic
 
 - type: listing
+  id: MdvShopMedievalScrollsHalberd
+  productEntity: MedievalScrollsHalberd
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsFalshion
+  productEntity: MedievalScrollsFalshion
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsDagger
+  productEntity: MedievalScrollsDagger
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsBow
+  productEntity: MedievalScrollsBow
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsCrossbow
+  productEntity: MedievalScrollsCrossbow
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMagic
+
+- type: listing
   id: MdvShopBible
   productEntity: Bible
   discountCategory: medievalDiscounts

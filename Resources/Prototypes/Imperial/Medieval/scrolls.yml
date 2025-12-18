@@ -441,3 +441,34 @@
     sprite: Imperial/Medieval/scrolls.rsi
     layers:
       - state: crossbow
+
+#CRAFTS
+- type: CP14Recipe
+  id: MedievalScrollsHalberdCraft
+  result: MedievalScrollsHalberd
+  entities:
+    MedievalScrollBarrier: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsFalshionCraft
+  result: MedievalScrollsFalshion
+  entities:
+    MedievalScrollBarrier: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsDaggerCraft
+  result: MedievalScrollsDagger
+  entities:
+    MedievalScrollBarrier: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsBowCraft
+  result: MedievalScrollsBow
+  entities:
+    MedievalScrollBarrier: 1
+
+- type: CP14Recipe
+  id: MedievalScrollsCrossbowCraft
+  result: MedievalScrollsCrossbow
+  entities:
+    MedievalScrollBarrier: 1

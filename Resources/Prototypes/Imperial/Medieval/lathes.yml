@@ -1047,6 +1047,11 @@
     - MedievalReliefStoneStrongCraft
     - MedievalAntiGravitationStoneCraft
     - MedievalDragonQuantEssence
+    - MedievalScrollsHalberdCraft
+    - MedievalScrollsFalshionCraft
+    - MedievalScrollsDaggerCraft
+    - MedievalScrollsBowCraft
+    - MedievalScrollsCrossbowCraft
 
 - type: entity
   parent: CP14BaseWorkbench
