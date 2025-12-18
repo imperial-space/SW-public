@@ -1,11 +1,15 @@
 ﻿using System.Linq;
 using Content.Server.Damage.Components;
+using Content.Server.MedievalMeleeResource;
 using Content.Shared.Armor;
+using Content.Shared.Damage;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.SmithingSystem;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Events;
 using Content.Shared.MedievalMeleeResource.Components;
 using Content.Shared.Weapons.Melee;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.SmithingSystem;
 
@@ -21,60 +25,194 @@ public sealed partial class SmithingSystem
         { ItemQuality.Excellent, "шедевр. " },
     };
 
+    [Dependency] private readonly MedievalMeleeResourceSystem _meleeResource = default!;
+
     private void InitializeBehaviors()
     {
         SubscribeLocalEvent<UpgradeArmorOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(UpgradeArmor);
         SubscribeLocalEvent<UpgradeWeaponOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(UpgradeWeapon);
         SubscribeLocalEvent<DeleteOnLowScoreOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(DeleteOnLowScore);
+        SubscribeLocalEvent<ArmorComponent, ArmorExamineEvent>(OnArmorExamine);
     }
 
-    private void UpgradeArmor(Entity<UpgradeArmorOnSmithCompleteComponent> ent, ref SmithingApplyBehaviorsEvent args)
+    private static DamageModifierSet CopySet(DamageModifierSet src)
     {
-        if (!TryComp<ArmorComponent>(args.Item, out var armorComponent))
+        var copy = new DamageModifierSet();
+
+        foreach (var (k, v) in src.Coefficients)
+        {
+            copy.Coefficients[k] = v;
+        }
+
+        foreach (var (k, v) in src.FlatReduction)
+        {
+            copy.FlatReduction[k] = v;
+        }
+
+        return copy;
+    }
+
+    private void ApplyQualityToArmor(EntityUid item, float q)
+    {
+        if (!TryComp<ArmorComponent>(item, out var armor))
+            return;
+
+        if (!float.IsFinite(q) || q <= 0f)
+            return;
+        var cache = EnsureComp<SmithArmorExamineCacheComponent>(item);
+        cache.Ready = false;
+        Dirty(item, cache);
+        var baseComp = EnsureComp<SmithArmorBaseComponent>(item);
+        if (!baseComp.HasBase)
+        {
+            baseComp.Base = CopySet(armor.Modifiers);
+            baseComp.HasBase = true;
+            Dirty(item, baseComp);
+        }
+
+        var result = CopySet(baseComp.Base);
+
+        if (!MathHelper.CloseTo(q, 1f))
+        {
+            foreach (var key in result.FlatReduction.Keys.ToList())
+            {
+                result.FlatReduction[key] *= q;
+            }
+
+            foreach (var key in result.Coefficients.Keys.ToList())
+            {
+                var newCoeff = result.Coefficients[key] / q;
+                result.Coefficients[key] = MathHelper.Clamp(newCoeff, 0f, 1f);
+            }
+
+        }
+
+        armor.Modifiers = result;
+        Dirty(item, armor);
+
+        cache.Effective = CopySet(result);
+        cache.Ready = true;
+        Dirty(item, cache);
+    }
+
+
+    private void OnArmorExamine(EntityUid uid, ArmorComponent armor, ref ArmorExamineEvent args)
+    {
+        if (TryComp(uid, out SmithArmorExamineCacheComponent? cache) && cache.Ready)
+        {
+            args.Msg = BuildArmorExamine(cache.Effective);
+            return;
+        }
+
+        args.Msg = BuildArmorExamine(armor.Modifiers);
+
+        cache ??= EnsureComp<SmithArmorExamineCacheComponent>(uid);
+        cache.Effective = CopySet(armor.Modifiers);
+        cache.Ready = true;
+        Dirty(uid, cache);
+    }
+
+
+    private FormattedMessage BuildArmorExamine(DamageModifierSet armorModifiers)
+    {
+        var msg = new FormattedMessage();
+        msg.AddMarkupOrThrow(Loc.GetString("armor-examine"));
+
+        foreach (var coefficientArmor in armorModifiers.Coefficients)
+        {
+            msg.PushNewline();
+
+            var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.ToLower());
+
+            var percent = MathF.Round((1f - coefficientArmor.Value) * 100f);
+
+            msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
+                ("type", armorType),
+                ("value", percent)
+            ));
+        }
+
+        foreach (var flatArmor in armorModifiers.FlatReduction)
+        {
+            msg.PushNewline();
+
+            var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
+            msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
+                ("type", armorType),
+                ("value", MathF.Round(flatArmor.Value))
+            ));
+        }
+
+        return msg;
+    }
+
+    private void UpgradeArmor(Entity<UpgradeArmorOnSmithCompleteComponent> ent,
+        ref SmithingApplyBehaviorsEvent args)
+    {
+        if (!TryComp<ArmorComponent>(args.Item, out _))
+            return;
+
+        if (TryComp(args.Item, out SmithQualityComponent? existing) && existing.Applied)
             return;
 
         var modifier = GetBestModifier(args.Score, ent.Comp.ItemQualityTable);
 
-        foreach (var key in armorComponent.Modifiers.FlatReduction.Keys.ToArray())
-        {
-            armorComponent.Modifiers.FlatReduction[key] =
-                MathF.Round(armorComponent.Modifiers.FlatReduction[key] * modifier.Modifier, 2);
-        }
+        var qualityComp = EnsureComp<SmithQualityComponent>(args.Item);
+        qualityComp.Quality = modifier.Quality;
+        qualityComp.Modifier = modifier.Modifier;
+        qualityComp.Applied = true;
+        Dirty(args.Item, qualityComp);
 
-        foreach (var key in armorComponent.Modifiers.Coefficients.Keys.ToArray())
-        {
-            armorComponent.Modifiers.Coefficients[key] =
-                MathF.Round(armorComponent.Modifiers.Coefficients[key] / modifier.Modifier, 2);
-        }
+        ApplyQualityToArmor(args.Item, qualityComp.Modifier);
 
-        EntityManager.DirtyEntity(args.Item);
         SetName(args.Item, modifier.Quality);
+
     }
+
 
     private void UpgradeWeapon(Entity<UpgradeWeaponOnSmithCompleteComponent> ent, ref SmithingApplyBehaviorsEvent args)
     {
+        var item = args.Item;
+
+
+        if (TryComp(item, out SmithQualityComponent? existingQuality) && existingQuality.Applied)
+            return;
+
         var modifier = GetBestModifier(args.Score, ent.Comp.ItemQualityTable);
 
-        if (TryComp<MedievalMeleeResourceComponent>(args.Item, out var resourceComponent))
+        if (TryComp(item, out MedievalMeleeResourceComponent? resourceComponent))
         {
-            resourceComponent.FullModifier = MathF.Round(resourceComponent.FullModifier * modifier.Modifier, 2);
-            resourceComponent.AlmostFullModifier =
-                MathF.Round(resourceComponent.AlmostFullModifier * modifier.Modifier, 2);
-            resourceComponent.DamagedModifier = MathF.Round(resourceComponent.DamagedModifier * modifier.Modifier, 2);
-            resourceComponent.BadlyDamagedModifier =
-                MathF.Round(resourceComponent.BadlyDamagedModifier * modifier.Modifier, 2);
-            resourceComponent.BrokenModifier = MathF.Round(resourceComponent.BrokenModifier * modifier.Modifier, 2);
-            resourceComponent.UpModifier = MathF.Round(resourceComponent.UpModifier * modifier.Modifier, 2);
+            resourceComponent.QualityMultiplier = MathF.Round(modifier.Modifier, 3);
+
+            _meleeResource.RebuildDamageFromBase(item, resourceComponent);
+            _meleeResource.RebuildWieldBonusFromBase(item, resourceComponent);
+            _meleeResource.CheckResource(item, resourceComponent);
+
+            Dirty(item, resourceComponent);
+        }
+        else
+        {
+            if (TryComp(item, out DamageOtherOnHitComponent? damageOtherOnHitComponent))
+            {
+                damageOtherOnHitComponent.Damage *= modifier.Modifier;
+                Dirty(item, damageOtherOnHitComponent);
+            }
+
+            if (TryComp(item, out MeleeWeaponComponent? meleeWeaponComponent))
+            {
+                meleeWeaponComponent.Damage *= modifier.Modifier;
+                Dirty(item, meleeWeaponComponent);
+            }
         }
 
-        if (TryComp<DamageOtherOnHitComponent>(args.Item, out var damageOtherOnHitComponent))
-            damageOtherOnHitComponent.Damage *= modifier.Modifier;
+        var qualityComp = EnsureComp<SmithQualityComponent>(item);
+        qualityComp.Quality = modifier.Quality;
+        qualityComp.Modifier = modifier.Modifier;
+        qualityComp.Applied = true;
+        Dirty(item, qualityComp);
 
-        if (TryComp<MeleeWeaponComponent>(args.Item, out var meleeWeaponComponent))
-            meleeWeaponComponent.Damage *= modifier.Modifier;
+        SetName(item, modifier.Quality);
 
-        EntityManager.DirtyEntity(args.Item);
-        SetName(args.Item, modifier.Quality);
     }
 
 
@@ -88,9 +226,17 @@ public sealed partial class SmithingSystem
     private void SetName(EntityUid entityUid, ItemQuality quality)
     {
         var name = Identity.Name(entityUid, EntityManager);
-        var append = _itemQualityDecorators[quality];
 
-        var newName = append + name;
+        foreach (var prefix in _itemQualityDecorators.Values)
+        {
+            if (name.StartsWith(prefix))
+            {
+                name = name[prefix.Length..];
+                break;
+            }
+        }
+
+        var newName = _itemQualityDecorators[quality] + name;
         _metaDataSystem.SetEntityName(entityUid, newName);
     }
 

@@ -22,10 +22,9 @@ public sealed partial class SmithingSystem
         SubscribeLocalEvent<SmithingFurnaceComponent, EntRemovedFromContainerMessage>(OnEntRemoved);
     }
 
-    private void FurnanceUpdate(float frameTime)
+    private void FurnanceUpdate()
     {
-        base.Update(frameTime);
-
+;
         var query = EntityQueryEnumerator<SmithingFurnaceComponent>();
 
         while (query.MoveNext(out var uid, out var furnaceComponent))
@@ -49,14 +48,15 @@ public sealed partial class SmithingSystem
 
     private void OnEntRemoved(Entity<SmithingFurnaceComponent> ent, ref EntRemovedFromContainerMessage args)
     {
-        var workpieceComponent = Comp<SmithingWorkpieceComponent>(args.Entity);
+        if (!TryComp<SmithingWorkpieceComponent>(args.Entity, out var workpieceComponent))
+            return;
+
         workpieceComponent.ReadyToForge = true;
+        Dirty(args.Entity, workpieceComponent);
 
         _appearanceSystem.SetData(args.Entity, WorkpieceVisuals.Melted, true);
 
         if (TryComp<DamageOnInteractComponent>(args.Entity, out var damageOnInteractComp))
             _damageOnInteract.SetIsDamageActiveTo((args.Entity, damageOnInteractComp), true);
-
-        Dirty(args.Entity, workpieceComponent);
     }
 }
