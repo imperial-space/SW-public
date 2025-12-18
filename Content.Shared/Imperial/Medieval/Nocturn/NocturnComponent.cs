@@ -20,6 +20,7 @@ namespace Content.Shared.Nocturn.Components
     public sealed partial class NocturnDisguiseDoAfterEvent : SimpleDoAfterEvent { }
 
     public sealed partial class ZveresScreamActionEvent : InstantActionEvent { }
+    public sealed partial class CanselDeathEvent : InstantActionEvent { }
 
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class NocturnComponent : Component
