@@ -95,7 +95,7 @@
   description: MedievalLoot
   components:
   - type: RDWeight
-    value: 1
+    value: 3
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
     state: icescale
@@ -145,7 +145,7 @@
   description: MedievalLoot
   components:
   - type: RDWeight
-    value: 2
+    value: 4
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/Bosses/Dragons/items.rsi
     state: bones
@@ -239,3 +239,8 @@
     range: 2
     sound:
       path: /Audio/Ambience/Objects/light_hum.ogg
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 400000 # ~15 tile radius.
+    intensitySlope: 5
+    maxIntensity: 1000

@@ -246,6 +246,9 @@
   - productEntity: MedievalRecipeBook
     cost: 45
     reputationForBuying: 1.5
+  - productEntity: MedievalPinpointerCritical
+    cost: 80
+    reputationForBuying: 2
   - productEntity: CompactDefibrillator
     cost: 100
     reputationForBuying: 3.3
@@ -256,8 +259,9 @@
     cost: 100
     reputationForBuying: 3.3
   - productEntity: MedievalScrollBarrier
-    cost: 50
+    cost: 100
     reputationForBuying: 2
+    minReputation: 15
   - productEntity: Bible
     cost: 150
     reputationForBuying: 5
@@ -277,16 +281,16 @@
     minReputation: 10
     reputationForBuying: 41.7
   - productEntity: MedievalIceDragonTablet
-    cost: 1200
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalFireDragonTablet
-    cost: 1200
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalAcidDragonTablet
-    cost: 1200
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalThunderDragonTablet
-    cost: 1200
+    cost: 1600
     reputationForBuying: 25.5
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
