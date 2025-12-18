@@ -21,8 +21,8 @@
     startDelay: true
     itemIconStyle: NoItem
     icon:
-      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
-      state: icon-6
+      sprite: Imperial/Medieval/Interface/Actions/actions.rsi
+      state: fight
     useDelay: 40.0
     checkCanInteract: false
     enabled: true
