@@ -2535,6 +2535,22 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopMedievalGoldCup
+  productEntity: MedievalGoldCup
+  cost:
+    Revent: 80
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalSilverCup
+  productEntity: MedievalSilverCup
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalReliefStoneWeak
   productEntity: MedievalReliefStoneWeak
   cost:
