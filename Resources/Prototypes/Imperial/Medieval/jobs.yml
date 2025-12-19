@@ -2380,6 +2380,9 @@
     - Skeleton
     inverted: true
   - !type:DepartmentTimeRequirement
+    department: Traders
+    time: 14400 # 4 hours on Traders
+  - !type:DepartmentTimeRequirement
     department: Legion
     time: 28800 # 8 hours on Legion
   startingGear: MedievalLegionTreasurerGear
