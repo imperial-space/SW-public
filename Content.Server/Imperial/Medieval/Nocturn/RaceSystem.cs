@@ -419,7 +419,7 @@ namespace Content.Server.Nocturn
         private void ApplyDisguise(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
         {
             appearance.Species = "Human";
-            component.BloodDrainPerSecond *= 1.4f;
+            component.BloodDrainPerSecond *= 1.3f;
             component.BloodLevel -= 10;
 
             component.IsDisguised = true;
@@ -435,7 +435,7 @@ namespace Content.Server.Nocturn
         private void RevertToOriginalForm(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
         {
             appearance.Species = "Drou";
-            component.BloodDrainPerSecond /= 1.4f;
+            component.BloodDrainPerSecond /= 1.3f;
 
             component.IsDisguised = false;
             _action.SetToggled(component.DisguiseActionEntity, component.IsDisguised);
