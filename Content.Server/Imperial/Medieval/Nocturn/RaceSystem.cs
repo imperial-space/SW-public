@@ -29,6 +29,7 @@ using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Body.Components;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Server.Imperial.Medieval.Skills;
+using Content.Shared.Random.Helpers;
 
 namespace Content.Server.Nocturn
 {
@@ -88,6 +89,7 @@ namespace Content.Server.Nocturn
         public void OnFoodStart(EntityUid uid, NocturnBadFoodComponent component, ComponentStartup args)
         {
             component.MaxTimesCanBeBiten = component.TimesCanBeBiten;
+            component.Taste = _random.Pick(component.Tastes);
         }
         public override void Update(float frameTime)
         {
@@ -333,6 +335,7 @@ namespace Content.Server.Nocturn
                                 {
                                     badfood.TimesCanBeBiten -= 1;
                                     component.DrinkHumans++;
+                                    _popupSystem.PopupEntity("Вкус: " + badfood.Taste, uid, uid, PopupType.Large);
                                 }
                                 else
                                 {
