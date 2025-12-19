@@ -174,3 +174,16 @@
     sprite: Imperial/Medieval/Clothing/Head/traderfox.rsi
   - type: Item
     size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalClothingHeadTreasurer
+  name: Treasurer Hat
+  description: Hat for Legion Treasurer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/treasurer_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Misc/treasurer_hat.rsi
+  - type: Item
+    size: Normal

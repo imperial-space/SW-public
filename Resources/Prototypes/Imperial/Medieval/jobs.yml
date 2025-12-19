@@ -2346,6 +2346,73 @@
   - MedievalTrinkets
   - MedievalGlovesWithIron
 
+# MEDIEVAL LEGION TREASURER
+
+- type: startingGear
+  id: MedievalLegionTreasurerGear
+  equipment:
+    pocket1: MedievalRevent25
+    pocket2: MedievalKeyTreasurer
+    jumpsuit: MedievalClothingTreasurer
+    head: MedievalClothingHeadTreasurer
+    neck: MedievalClothingNeckCloakClanEagle
+    id: MedievalLeatherKey
+
+- type: playTimeTracker
+  id: JobMedievalLegionTreasurer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalLegionTreasurer
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: treasurer
+  jobName: job-name-legionTreasurer-medieval
+
+- type: job
+  id: MedievalLegionTreasurer
+  name: job-name-legionTreasurer-medieval
+  description: job-description-legionTreasurer-medieval
+  playTimeTracker: JobMedievalLegionTreasurer
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Skeleton
+    inverted: true
+  - !type:DepartmentTimeRequirement
+    department: Legion
+    time: 28800 # 8 hours on Legion
+  startingGear: MedievalLegionTreasurerGear
+  icon: "JobIconMedievalLegionTreasurer"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
+    - type: MedievalFactionMember
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
+      menuAccess: Full
+      priority: 1
+    - type: MedievalJobSpawn
+      spawnType: Legion
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: MedievalPasportPerson
+      personJob: "[color=cyan]Казначей легиона[/color]"
+      pasport: MedievalPasportTreasurer
+      jobPrefix: "[КазЛ]"
+
+- type: roleLoadout
+  id: JobMedievalLegionTreasurer
+  groups:
+  - MedievalBackpack
+  - MedievalShoes
+  - MedievalBeltLegion
+  - MedievalTrinkets
+  - MedievalGloves
+
 # MEDIEVAL LegionMAG
 
 - type: startingGear

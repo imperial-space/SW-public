@@ -305,6 +305,43 @@
     accessLists:
     - LegionTavern8
 
+# Legion treasury doors
+- type: entity
+  parent: MedievalAirlockGrille
+  id: MedievalAirlockLegionTreasuryGridLocked
+  name: legion treasury grid door
+  components:
+  - type: DoorBolt
+    boltsDown: False
+  - type: LockDoor
+    accessLists:
+    - LegionTreasury
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockLegionTreasuryLocked
+  name: legion treasury door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTreasury
+
+- type: entity
+  parent: MedievalAirlockReinforced
+  id: MedievalAirlockLegionTreasuryReinforcedLocked
+  name: legion treasury reinforced door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - LegionTreasury
+  - type: Tag
+    tags:
+    - ReinforcedDoor
+
 # Rebel tavern room doors
 
 - type: entity

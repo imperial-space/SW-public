@@ -204,6 +204,20 @@
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_16.rsi
   - type: Insulated
 
+# Treasurer clothing
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingTreasurer
+  name: Treasurer Uniform
+  description: Clothing for the Legion treasurer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/treasurer_clothing.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Misc/treasurer_clothing.rsi
+  - type: Item
+    size: Normal
+
 - type: entity
   parent: ClothingUniformBase
   id: MedievalClothingUniformJumpsuitShitCloth17
