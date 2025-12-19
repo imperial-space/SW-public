@@ -568,6 +568,17 @@
   - MedievalBuild
 
 - type: listing
+  id: MdvShopMedievalWizardBlacksmithCraft
+  productEntity: MedievalWizardBlacksmithCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 75
+  categories:
+  - MedievalBuild
+
+- type: listing
   id: MdvShopMedievalMeltingPlaceCraft
   productEntity: MedievalMeltingPlaceCraft
   discountCategory: medievalDiscounts

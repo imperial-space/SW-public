@@ -1516,6 +1516,9 @@
   - productEntity: MedievalKotel
     cost: 50
     reputationForBuying: 1.7
+  - productEntity: MedievalWizardBlacksmithCraft
+    cost: 75
+    reputationForBuying: 1.7
   - productEntity: MedievalWoodenFloorCraft
     cost: 10
     reputationForBuying: 0.3
