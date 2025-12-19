@@ -9,7 +9,6 @@ using Content.Shared.Imperial.Medieval.SmithingSystem.Behaviours;
 using Content.Shared.Imperial.Medieval.SmithingSystem.Events;
 using Content.Shared.MedievalMeleeResource.Components;
 using Content.Shared.Weapons.Melee;
-using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.SmithingSystem;
 
@@ -32,7 +31,6 @@ public sealed partial class SmithingSystem
         SubscribeLocalEvent<UpgradeArmorOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(UpgradeArmor);
         SubscribeLocalEvent<UpgradeWeaponOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(UpgradeWeapon);
         SubscribeLocalEvent<DeleteOnLowScoreOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(DeleteOnLowScore);
-        SubscribeLocalEvent<ArmorComponent, ArmorExamineEvent>(OnArmorExamine);
     }
 
     private static DamageModifierSet CopySet(DamageModifierSet src)
@@ -59,9 +57,7 @@ public sealed partial class SmithingSystem
 
         if (!float.IsFinite(q) || q <= 0f)
             return;
-        var cache = EnsureComp<SmithArmorExamineCacheComponent>(item);
-        cache.Ready = false;
-        Dirty(item, cache);
+
         var baseComp = EnsureComp<SmithArmorBaseComponent>(item);
         if (!baseComp.HasBase)
         {
@@ -76,75 +72,44 @@ public sealed partial class SmithingSystem
         {
             foreach (var key in result.FlatReduction.Keys.ToList())
             {
-                result.FlatReduction[key] *= q;
+                var flat = result.FlatReduction[key] * q;
+                result.FlatReduction[key] = MathF.Round(flat);
             }
 
             foreach (var key in result.Coefficients.Keys.ToList())
             {
-                var newCoeff = result.Coefficients[key] / q;
-                result.Coefficients[key] = MathHelper.Clamp(newCoeff, 0f, 1f);
+                var coeff = result.Coefficients[key] / q;
+                coeff = MathHelper.Clamp(coeff, 0f, 1f);
+
+                var reductionPercent = (1f - coeff) * 100f;
+                var roundedPercent = MathF.Round(reductionPercent);
+
+                coeff = 1f - roundedPercent / 100f;
+                result.Coefficients[key] = coeff;
+            }
+        }
+        else
+        {
+            foreach (var key in result.FlatReduction.Keys.ToList())
+            {
+                result.FlatReduction[key] = MathF.Round(result.FlatReduction[key]);
             }
 
+            foreach (var key in result.Coefficients.Keys.ToList())
+            {
+                var coeff = MathHelper.Clamp(result.Coefficients[key], 0f, 1f);
+                var reductionPercent = (1f - coeff) * 100f;
+                var roundedPercent = MathF.Round(reductionPercent);
+
+                coeff = 1f - roundedPercent / 100f;
+                result.Coefficients[key] = coeff;
+            }
         }
 
         armor.Modifiers = result;
         Dirty(item, armor);
-
-        cache.Effective = CopySet(result);
-        cache.Ready = true;
-        Dirty(item, cache);
     }
 
-
-    private void OnArmorExamine(EntityUid uid, ArmorComponent armor, ref ArmorExamineEvent args)
-    {
-        if (TryComp(uid, out SmithArmorExamineCacheComponent? cache) && cache.Ready)
-        {
-            args.Msg = BuildArmorExamine(cache.Effective);
-            return;
-        }
-
-        args.Msg = BuildArmorExamine(armor.Modifiers);
-
-        cache ??= EnsureComp<SmithArmorExamineCacheComponent>(uid);
-        cache.Effective = CopySet(armor.Modifiers);
-        cache.Ready = true;
-        Dirty(uid, cache);
-    }
-
-
-    private FormattedMessage BuildArmorExamine(DamageModifierSet armorModifiers)
-    {
-        var msg = new FormattedMessage();
-        msg.AddMarkupOrThrow(Loc.GetString("armor-examine"));
-
-        foreach (var coefficientArmor in armorModifiers.Coefficients)
-        {
-            msg.PushNewline();
-
-            var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.ToLower());
-
-            var percent = MathF.Round((1f - coefficientArmor.Value) * 100f);
-
-            msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
-                ("type", armorType),
-                ("value", percent)
-            ));
-        }
-
-        foreach (var flatArmor in armorModifiers.FlatReduction)
-        {
-            msg.PushNewline();
-
-            var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
-            msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
-                ("type", armorType),
-                ("value", MathF.Round(flatArmor.Value))
-            ));
-        }
-
-        return msg;
-    }
 
     private void UpgradeArmor(Entity<UpgradeArmorOnSmithCompleteComponent> ent,
         ref SmithingApplyBehaviorsEvent args)
@@ -166,7 +131,6 @@ public sealed partial class SmithingSystem
         ApplyQualityToArmor(args.Item, qualityComp.Modifier);
 
         SetName(args.Item, modifier.Quality);
-
     }
 
 
@@ -212,7 +176,6 @@ public sealed partial class SmithingSystem
         Dirty(item, qualityComp);
 
         SetName(item, modifier.Quality);
-
     }
 
 

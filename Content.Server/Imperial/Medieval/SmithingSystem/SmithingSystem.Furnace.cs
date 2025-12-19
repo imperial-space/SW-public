@@ -24,7 +24,6 @@ public sealed partial class SmithingSystem
 
     private void FurnanceUpdate()
     {
-;
         var query = EntityQueryEnumerator<SmithingFurnaceComponent>();
 
         while (query.MoveNext(out var uid, out var furnaceComponent))

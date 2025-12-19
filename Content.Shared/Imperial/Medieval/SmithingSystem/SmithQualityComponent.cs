@@ -23,13 +23,3 @@ public sealed partial class SmithQualityComponent : Component
     [DataField] [AutoNetworkedField]
     public ItemQuality Quality = ItemQuality.Default;
 }
-
-[RegisterComponent] [NetworkedComponent] [AutoGenerateComponentState]
-public sealed partial class SmithArmorExamineCacheComponent : Component
-{
-    [DataField] [AutoNetworkedField]
-    public DamageModifierSet Effective = new();
-
-    [DataField] [AutoNetworkedField]
-    public bool Ready;
-}
