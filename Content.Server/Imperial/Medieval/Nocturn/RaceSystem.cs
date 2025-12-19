@@ -275,8 +275,9 @@ namespace Content.Server.Nocturn
                 BreakOnDamage = false,
                 NeedHand = false
             };
-            if (TryComp<NocturnBadFoodComponent>(target, out var food) && !food.Fresh)
-                _popupSystem.PopupEntity("Какая грязная кровь... мерзко.", uid, uid, PopupType.Large);
+            var xform = Transform(component.Owner);
+            var coords = xform.Coordinates;
+            _popupSystem.PopupCoordinates(Loc.GetString("Пьет кровь"), coords, PopupType.MediumCaution);
             _doAfterSystem.TryStartDoAfter(doAfterEventArgs);
         }
 
@@ -302,11 +303,10 @@ namespace Content.Server.Nocturn
                         {
                             food.TimesCanBeBiten -= 1;
                             component.DrinkAnimals++;
+                            _popupSystem.PopupEntity("Какая грязная кровь... мерзко.", uid, uid, PopupType.Large);
                             _blood.TryModifyBloodLevel(args.Args.Target.Value, -25);
                             component.BloodLevel += 30f * food.BloodMultiplier;
-                            var xform = Transform(component.Owner);
-                            var coords = xform.Coordinates;
-                            _popupSystem.PopupCoordinates(Loc.GetString("Пьет кровь"), coords, PopupType.MediumCaution);
+
                             var txform = Transform(args.Args.Target.Value);
                             var tcoords = txform.Coordinates;
                             Spawn("BloodParticles", tcoords);
@@ -348,7 +348,7 @@ namespace Content.Server.Nocturn
                             component.BloodLevel += 30f;
                             var xform = Transform(component.Owner);
                             var coords = xform.Coordinates;
-                            _popupSystem.PopupCoordinates(Loc.GetString("Пьет кровь"), coords, PopupType.MediumCaution);
+
                             var txform = Transform(args.Args.Target.Value);
                             var tcoords = txform.Coordinates;
                             Spawn("BloodParticles", tcoords);
