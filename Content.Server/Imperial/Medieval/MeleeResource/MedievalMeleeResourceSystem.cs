@@ -48,7 +48,7 @@ public sealed class MedievalMeleeResourceSystem : EntitySystem
                 BreakOnMove = true,
                 BreakOnDamage = true,
                 NeedHand = true,
-                BreakOnDropItem = true,
+                BreakOnDropItem = true
             };
 
         _doAfterSystem.TryStartDoAfter(doAfterArgs);

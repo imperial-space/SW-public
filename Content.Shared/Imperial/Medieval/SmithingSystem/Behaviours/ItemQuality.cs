@@ -10,5 +10,5 @@ public enum ItemQuality : byte
     Bad,
     Default,
     Good,
-    Excellent,
+    Excellent
 }
