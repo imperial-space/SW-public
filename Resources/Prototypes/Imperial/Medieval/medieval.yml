@@ -1040,7 +1040,7 @@
     inHandsMaxFillLevels: 0
     inHandsFillBaseName: null
   - type: StaticPrice
-    price: 120
+    price: 100
   - type: Tag
     tags:
     - DrinkCup
