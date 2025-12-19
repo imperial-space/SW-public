@@ -25,17 +25,17 @@ namespace Content.Server.CustomDoorKey
         private void OnExamineKey(EntityUid uid, CustomDoorKeyComponent component, ExaminedEvent args)
         {
             if (component.linkedKey == null)
-                args.PushMarkup("Ключ [color=red]не привязан[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-customdoorkey-unbound"));
             else
-                args.PushMarkup("Ключ [color=green]привязан[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-customdoorkey-bound"));
         }
 
         private void OnExamine(EntityUid uid, CustomDoorKeyDoorComponent component, ExaminedEvent args)
         {
             if (component.linkedKey == null)
-                args.PushMarkup("Ключ [color=red]не привязан[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-customdoorkey-unbound"));
             else
-                args.PushMarkup("Ключ [color=green]привязан[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-customdoorkey-bound"));
         }
 
         public void OnUseInHand(EntityUid uid, CustomDoorKeyComponent comp, BeforeRangedInteractEvent args)
@@ -53,16 +53,16 @@ namespace Content.Server.CustomDoorKey
             {
                 if (comp.linkedKey != null)
                 {
-                    _popup.PopupEntity("Ключ уже привязан к другой двери", user, PopupType.LargeCaution);
+                    _popup.PopupEntity(Loc.GetString(Loc.GetString("medieval-hm-customdoorkey-boundalr")), user, PopupType.LargeCaution);
                     return;
                 }
                 if (key.linkedKey == null)
                 {
-                    _popup.PopupEntity("С него нЕчего копировать", user, PopupType.LargeCaution);
+                    _popup.PopupEntity(Loc.GetString("medieval-hm-customdoorkey-nothing"), user, PopupType.LargeCaution);
                     return;
                 }
                 comp.linkedKey = key.linkedKey;
-                _popup.PopupEntity("Ключ скопирован", user, PopupType.LargeCaution);
+                _popup.PopupEntity(Loc.GetString("medieval-hm-customdoorkey-keysmth"), user, PopupType.LargeCaution);
             }
             if (TryComp<CustomDoorKeyDoorComponent>(target, out var door) && door != null)
             {
@@ -73,17 +73,17 @@ namespace Content.Server.CustomDoorKey
                 }
                 if (comp.linkedKey != door.Owner && door.linkedKey != null)
                 {
-                    _popup.PopupEntity("Ключ не подходит к этой двери", user, PopupType.LargeCaution);
+                    _popup.PopupEntity(Loc.GetString("medieval-hm-customdoorkey-nope"), user, PopupType.LargeCaution);
                     return;
                 }
                 if (comp.linkedKey != null && comp.linkedKey != target)
                 {
-                    _popup.PopupEntity("Ключ уже привязан к другой двери", user, PopupType.LargeCaution);
+                    _popup.PopupEntity(Loc.GetString("medieval-hm-customdoorkey-boundalr"), user, PopupType.LargeCaution);
                     return;
                 }
                 if (door.linkedKey == null && comp.linkedKey == null)
                 {
-                    _popup.PopupEntity("Ключ привязан", user, PopupType.LargeCaution);
+                    _popup.PopupEntity(Loc.GetString("medieval-hm-customdoorkey-bounded"), user, PopupType.LargeCaution);
                     door.linkedKey = used;
                     comp.linkedKey = door.Owner;
                     return;

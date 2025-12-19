@@ -32,14 +32,14 @@ namespace Content.Server.MedievalPasport
 
         private void OnExamine(EntityUid uid, MedievalPasportComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("Имя: [color=white]" + component.PersonName + "[/color]");
-            if (component.PersonGender == "мужской")
-                args.PushMarkup("Пол: [color=cyan]" + component.PersonGender + "[/color]");
+            var race = Loc.GetString($"species-colored-{component.PersonRace}");
+            if (component.PersonGender == Loc.GetString("medieval-hm-passport-male"))
+                args.PushMarkup(Loc.GetString("medieval-hm-passport-mgender", ("name", $"{component.PersonGender}")));
             else
-                args.PushMarkup("Пол: [color=pink]" + component.PersonGender + "[/color]");
-            args.PushMarkup("Возраст: [color=white]" + component.PersonAge + "[/color]");
-            args.PushMarkup("Должность: " + component.PersonJob);
-            args.PushMarkup($"Раса: {Loc.GetString($"species-colored-{component.PersonRace}")}");
+                args.PushMarkup(Loc.GetString("medieval-hm-passport-fgender", ("name", $"{component.PersonGender}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-passport-age", ("amount", $"{component.PersonAge}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-passport-job", ("name", $"{component.PersonJob}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-passport-race", ("name", $"{race}")));
         }
 
         public void OnStart(EntityUid uid, MedievalPasportPersonComponent comp, ComponentStartup args)
@@ -58,14 +58,14 @@ namespace Content.Server.MedievalPasport
             if (TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
             {
                 if (appearance.Sex == Sex.Male)
-                    pasport.PersonGender = "мужской";
+                    pasport.PersonGender = Loc.GetString("medieval-hm-passport-male");
                 else
-                    pasport.PersonGender = "женский";
+                    pasport.PersonGender = Loc.GetString("medieval-hm-passport-female");
                 pasport.PersonAge = appearance.Age.ToString();
                 pasport.PersonRace = appearance.Species.ToString();
             }
             pasport.PersonJob = comp.PersonJob;
-            _metaData.SetEntityName(comp.PasportEntity.Value, "волшебное удостоверение " + pasport.PersonName);
+            _metaData.SetEntityName(comp.PasportEntity.Value, Loc.GetString("medieval-hm-passport-magicalshit", ("name", $"{comp.PersonName}")));
         }
 
     }

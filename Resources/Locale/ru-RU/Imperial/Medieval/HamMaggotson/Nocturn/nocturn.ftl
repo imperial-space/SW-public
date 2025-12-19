@@ -11,3 +11,4 @@ medieval-hm-nocturn-nope = У него нельзя сейчас выпить к
 medieval-hm-nocturn-isheavampire = [color=red]Во рту видны клыки[/color]
 medieval-hm-nocturn-gf = [color=red]Тяжело дышит[/color]
 medieval-hm-nocturn-dieofdeath = [color=red]На губах видна свежая кровь[/color]
+medieval-hm-nocturn-bitten = [color=red]Traces of bite are visible on neck[/color]

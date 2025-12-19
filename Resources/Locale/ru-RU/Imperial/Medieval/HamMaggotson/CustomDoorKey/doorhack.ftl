@@ -7,6 +7,7 @@ medieval-hm-doorhack-usesleft = Осталось [color=red]{$amount}[/color] и
 medieval-hm-doorhack-hack = Взлом
 medieval-hm-doorhack-hacking = Число от {$min} до {$max}
 medieval-hm-doorhack-toobig = Слишком большое значение
+medieval-hm-doorhack-toosmall = Слишком маленькое значение
 medieval-hm-doorhack-gibberlish = Взлом неверно
 medieval-hm-doorhack-yay = Число {$amount}. Зубец подобран успешно, осталось еще {$amount2} зубцев
 medieval-hm-doorhack-success = Взлом успех

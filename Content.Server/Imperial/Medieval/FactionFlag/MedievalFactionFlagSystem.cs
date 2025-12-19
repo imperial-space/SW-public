@@ -75,14 +75,14 @@ namespace Content.Server.MedievalFactionFlag
                         break;
                 }
             }
-            args.PushMarkup("[color=cyan]" + Loc.GetString("flag-controls-legion") + " " + legion + "[/color]");
-            args.PushMarkup("[color=red]Точек, подконтрольно мятежникам: " + insurgency + "[/color]");
-            args.PushMarkup("[color=white]Свободных точек: " + none + "[/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-factionflag-legion", ("amount", $"{legion}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-factionflag-rebels", ("amount", $"{insurgency}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-factionflag-none", ("amount", $"{none}")));
         }
 
         private void OnPaintExamine(EntityUid uid, MedievalFactionFlagPaintComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("[color=green]Осталось использований: " + component.Uses + "[/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-factionflag-usesleft", ("amount", $"{component.Uses}")));
         }
 
         public override void Update(float frameTime)

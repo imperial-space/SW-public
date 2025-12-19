@@ -74,21 +74,21 @@ public sealed class RoundStatCounterRuleSystem : GameRuleSystem<RoundStatCounter
         ref RoundEndTextAppendEvent args)
     {
         base.AppendRoundEndText(uid, component, gameRule, ref args);
-
+        var nobody = Loc.GetString("medieval-hm-barrierpoint-nobody");
         int punchingBagHits = 0;
-        string punchingBagName = "никто";
+        string punchingBagName = nobody;
         int screamerScreams = 0;
-        string screamerName = "никто";
+        string screamerName = nobody;
         int potionsCount = 0;
-        string potionsName = "никто";
+        string potionsName = nobody;
         int lockpickCount = 0;
-        string lockpickerName = "никто";
+        string lockpickerName = nobody;
         int craftsCount = 0;
-        string crafterName = "никто";
+        string crafterName = nobody;
         int diggsCount = 0;
-        string diggerName = "никто";
+        string diggerName = nobody;
         int alcoholDrinks = 0;
-        string alcoholickName = "никто";
+        string alcoholickName = nobody;
 
         var targets = EntityManager.AllEntities<AffectRoundStatsComponent>();
         if (targets.Count() > 0)
@@ -127,9 +127,9 @@ public sealed class RoundStatCounterRuleSystem : GameRuleSystem<RoundStatCounter
         }
 
         int worstSmell = 0;
-        string worstSmellName = "никто";
+        string worstSmellName = nobody;
         int bestSmell = 0;
-        string bestSmellName = "никто";
+        string bestSmellName = nobody;
 
         var smell = EntityManager.AllEntities<BadSmellComponent>();
         if (smell.Count() > 0)
@@ -161,9 +161,9 @@ public sealed class RoundStatCounterRuleSystem : GameRuleSystem<RoundStatCounter
         int nocturnAnimals = 0;
         int nocturnHumans = 0;
         int nocturnAnimalsMost = 0;
-        string nocturnAnimalsMostName = "никто";
+        string nocturnAnimalsMostName = nobody;
         int nocturnHumansMost = 0;
-        string nocturnHumansMostName = "никто";
+        string nocturnHumansMostName = nobody;
 
         var nocturns = EntityManager.AllEntities<NocturnComponent>();
         if (nocturns.Count() > 0)
@@ -197,36 +197,36 @@ public sealed class RoundStatCounterRuleSystem : GameRuleSystem<RoundStatCounter
         int craftsTotal = component.TotalCrafts;
         int diggsTotal = component.TotalDiggs;
 
-        args.AddLine("Война: ");
-        args.AddLine("  [color=cyan]Легиону[/color] подконтрольно: " + legion + " точек в регионе");
-        args.AddLine("  [color=red]Мятежникам[/color] подконтрольно: " + insurgency + " точек в регионе");
-        args.AddLine(" ");
-        args.AddLine("Исследование: ");
-        args.AddLine("  [color=pink]Открыто древних склепов[/color] " + openedDungeons + ", первый из них открыл(а) [color=pink]" + firstDungeonVisiter + "[/color]!");
-        args.AddLine("  [color=lightgreen]Шипы в полу[/color] сработали: " + traps + " раз, нанеся " + traps * 23 + " урона");
-        args.AddLine(" ");
-        args.AddLine("Бой: ");
-        args.AddLine("  [color=red]Смертей[/color] за временную петлю: " + deaths);
-        args.AddLine("  [color=pink]Умер(ла) первым[/color]: " + firstDeath);
-        args.AddLine("  [color=orange]Ударов по людям[/color] за временную петлю: " + humansHurt);
-        args.AddLine("  [color=lightblue]Был(а) атакован(а) больше всех [/color](" + punchingBagHits + " раз!) и остался(ась) жив(а) [color=lightblue]" + punchingBagName + "[/color]");
-        args.AddLine(" ");
-        args.AddLine("Веселье: ");
-        args.AddLine("  [color=yellow]Криков[/color] " + screams + ", самый крикливый [color=yellow]" + screamerName + "[/color] (кричал(а) " + screamerScreams + " раз)");
-        args.AddLine("  [color=orange]Мунвульфы получили[/color] " + zveresHeat + " единиц урона ожогами за временную петлю");
-        args.AddLine("  [color=yellow]Алкоголя выпито[/color] " + alcohol + " унций, самый пьющий - [color=yellow]" + alcoholickName + "[/color], он(а) выпил(а) " + alcoholDrinks + " унций");
-        args.AddLine("  [color=pink]Призраки всколыхнули воздух[/color] " + ghostBoo + " раз, затронув " + ghostBooPlayers + " людей");
-        args.AddLine("  Самый грязный(ая) [color=pink]" + worstSmellName + "[/color], а самый чистый(ая) [color=cyan]" + bestSmellName + "[/color]");
-        args.AddLine(" ");
-        args.AddLine("Ремесло: ");
-        args.AddLine("  [color=lightgreen]Зелий сварено[/color] " + potionsTotal + ", больше всех приготовил(а) [color=lightgreen]" + potionsName + "[/color] (" + potionsCount + " бутыльков!)");
-        args.AddLine("  [color=yellow]Дверей взломано[/color] " + lockpicksTotal + ", больше всех взломал(а) [color=yellow]" + lockpickerName + "[/color] (" + lockpickCount + " дверей!)");
-        args.AddLine("  [color=red]Вещей создано[/color] " + craftsTotal + ", больше всех создал(а) [color=red]" + crafterName + "[/color] (" + craftsCount + " вещей!)");
-        args.AddLine("  [color=gray]Взмахов киркой[/color] " + diggsTotal + ", больше всех копал(а) [color=gray]" + diggerName + "[/color] (" + diggsCount + " взмахов!)");
-        args.AddLine(" ");
-        args.AddLine("Ноктюрны: ");
-        args.AddLine("  [color=red]Крови всего выпито [/color]" + nocturnTotal + " раз. У животных - " + nocturnAnimals + " раз, у людей - " + nocturnHumans + " раз");
-        args.AddLine("  [color=pink]Больше всего людской крови[/color] пил [color=pink]" + nocturnHumansMostName + "[/color] - " + nocturnHumansMost + " раз");
-        args.AddLine("  [color=lightgreen]Больше всего животной крови[/color] пил [color=lightgreen]" + nocturnAnimalsMostName + "[/color] - " + nocturnAnimalsMost + " раз");
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-war"));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-legioncontrol", ("amount", $"{legion}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-insurgencycontrol", ("amount", $"{insurgency}")));
+        ev.AddLine(" ");
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-research"));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-researchdungeons", ("amount", $"{openedDungeons}"), ("name", $"{firstDungeonVisiter}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-researchtraps", ("amount", $"{traps}"), ("damage", $"{trapsdamage}")));
+        ev.AddLine(" ");
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fight"));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fightdeaths", ("amount", $"{deaths}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fightfirstdeath", ("name", $"{firstDeath}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fighthumanshurt", ("amount", $"{humansHurt}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fightpunchingbag", ("amount", $"{punchingBagHits}"), ("name", $"{punchingBagName}")));
+        ev.AddLine(" ");
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-fun"));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funscream", ("amount", $"{screams}"), ("name", $"{screamerName}"), ("amount2", $"{screamerScreams}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funzveres", ("amount", $"{zveresHeat}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funalcohol", ("amount", $"{alcohol}"), ("name", $"{alcoholickName}"), ("amount2", $"{alcoholDrinks}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funghostboo", ("amount", $"{ghostBoo}"), ("amount2", $"{ghostBooPlayers}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-funworstsmell", ("name", $"{worstSmell}"), ("name2", $"{bestSmell}")));
+        ev.AddLine(" ");
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craft"));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craftpotions", ("amount", $"{screams}"), ("name", $"{screamerName}"), ("amount2", $"{screamerScreams}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craftlockpick", ("amount", $"{lockpicksTotal}"), ("name", $"{lockpickerName}"), ("amount2", $"{lockpickCount}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craftcraft", ("amount", $"{craftsTotal}"), ("name", $"{crafterName}"), ("amount2", $"{craftsCount}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-craftpickaxe", ("amount", $"{diggsTotal}"), ("name", $"{diggerName}"), ("amount2", $"{diggsCount}")));
+        ev.AddLine(" ");
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-nocturns"));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-nocturnsblood", ("amount", $"{nocturnTotal}"), ("amount2", $"{nocturnAnimals}"), ("amount3", $"{nocturnHumans}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-nocturnshuman", ("amount", $"{nocturnHumansMost}"), ("name", $"{nocturnHumansMostName}")));
+        ev.AddLine(Loc.GetString("medieval-hm-barrierpoint-nocturnsanimal", ("amount", $"{nocturnAnimalsMost}"), ("name", $"{nocturnAnimalsMostName}")));
     }
 }

@@ -59,7 +59,7 @@ namespace Content.Server.CustomDoorKey
                 ChangeCode(door.Owner, door);
                 QueueDel(used);
                 if (!_sharedPlayerManager.TryGetSessionByEntity(user, out var session)) return;
-                _prayerSystem.SendSubtleMessage(session, session, "Вы установили новый замок в дверь. Теперь количество зубцов увеличено на 2 и код полностью сброшен.", "Улучшение двери");
+                _prayerSystem.SendSubtleMessage(session, session, Loc.GetString("medieval-hm-doorhack-upgrade"), Loc.GetString("medieval-hm-doorhack-upgrade2"));
             }
         }
         private void OnStart(EntityUid uid, DoorHackableComponent component, ComponentStartup args)
@@ -75,14 +75,14 @@ namespace Content.Server.CustomDoorKey
         }
         private void OnExamineKey(EntityUid uid, DoorHackLockpickComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("Осталось [color=red]" + component.UseCount + "[/color] использований");
+            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-usesleft", ("amount", $"{component.UseCount}")));
         }
 
         private void OnExamine(EntityUid uid, DoorHackableComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("Прогресс взлома [color=red]" + component.LockPickProgress + "[/color] из [color=green]" + component.NumberCount + "[/color]");
-            args.PushMarkup("Длина зубцев в замке от [color=yellow]" + component.MinNumber + "[/color] до [color=yellow]" + component.MaxNumber + "[/color]");
-            args.PushMarkup("Количество зубцев в замке [color=red]" + component.NumberCount + "[/color]");
+            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-progress", ("min", $"{component.LockPickProgress}"), ("max", $"{component.NumberCount}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-length", ("min", $"{component.MinNumber}"), ("max", $"{component.MaxNumber}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-amount", ("amount", $"{component.NumberCount}")));
         }
 
         public void OnUseInHand(EntityUid uid, DoorHackLockpickComponent comp, BeforeRangedInteractEvent args)
@@ -107,7 +107,7 @@ namespace Content.Server.CustomDoorKey
 
                 _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnSucces), door.Owner);
                 if (!_sharedPlayerManager.TryGetSessionByEntity(user, out var session)) return;
-                _quickDialog.OpenDialog(session, "Взлом", "Число от " + door.MinNumber + " до " + door.MaxNumber, (string message) =>
+                _quickDialog.OpenDialog(session, Loc.GetString("medieval-hm-doorhack-hack"), args.PushMarkup(Loc.GetString("medieval-hm-doorhack-hacking", ("min", $"{door.MinNumber}"), ("max", $"{door.MaxNumber}"))), (string message) =>
                 {
                     SendHackMessage(message, session, door.MinNumber, door.MaxNumber, door, comp);
                 });
@@ -120,12 +120,12 @@ namespace Content.Server.CustomDoorKey
             {
                 if (number > max)
                 {
-                    _prayerSystem.SendSubtleMessage(sender, sender, "Слишком большое значение", "Взлом неверно");
+                    _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-toobig"), Loc.GetString("medieval-hm-doorhack-gibberlish"));
                     return;
                 }
                 if (number < min)
                 {
-                    _prayerSystem.SendSubtleMessage(sender, sender, "Слишком маленькое значение", "Взлом неверно");
+                    _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-toosmall"), Loc.GetString("medieval-hm-doorhack-gibberlish"));
                     return;
                 }
 
@@ -146,13 +146,14 @@ namespace Content.Server.CustomDoorKey
                     door.LockPickProgress++;
                     if (door.LockPickProgress < door.NumberCount)
                     {
-                        _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Зубец подобран успешно, осталось еще " + (door.NumberCount - door.LockPickProgress) + " зубцев", "Взлом успех");
+                        var left = door.NumberCount - door.LockPickProgress;
+                        _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-yay", ("amount", $"{number}"), ("amount2", $"{left}")), Loc.GetString("medieval-hm-doorhack-success"));
                         _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnNext), door.Owner);
                         return;
                     }
                     else
                     {
-                        _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Дверь успешно взломана", "Взлом успех");
+                        _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-urhacker", ("amount", $"{number}")), Loc.GetString("medieval-hm-doorhack-success"));
                         _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnOpen), door.Owner);
                         //_door.TryToggleDoor(door.Owner);
                         EnsureComp<DoorBoltComponent>(door.Owner, out var bolt);
@@ -179,13 +180,13 @@ namespace Content.Server.CustomDoorKey
                 {
                     if (number > rightNumber)
                     {
-                        _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Вы надавили на отмычку слишком сильно, сброс прогресса взлома", "Взлом провал");
+                        _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-toostrong", ("amount", $"{number}")), Loc.GetString("medieval-hm-doorhack-usuck"));
                         door.LockPickProgress = 0;
 
                     }
                     else if (number < rightNumber)
                     {
-                        _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Вы надавили на отмычку слишком слабо, сброс прогресса взлома", "Взлом провал");
+                        _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-tooweak", ("amount", $"{number}")), Loc.GetString("medieval-hm-doorhack-usuck"));
                         door.LockPickProgress = 0;
 
                     }
@@ -197,24 +198,24 @@ namespace Content.Server.CustomDoorKey
                         door.LockPickProgress = 0;
 
                         if (number - 1 == rightNumber || number - 2 == rightNumber)
-                            _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Нужно надавить немного слабее, сброс прогресса взлома", "Взлом провал");
+                            _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-abitweaker", ("amount", $"{number}")), Loc.GetString("medieval-hm-doorhack-usuck"));
                         else
-                            _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Нужно надавить слабее, сброс прогресса взлома", "Взлом провал");
+                            _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-weaker", ("amount", $"{number}")), Loc.GetString("medieval-hm-doorhack-usuck"));
                     }
                     else if (number < rightNumber)
                     {
                         door.LockPickProgress = 0;
 
                         if (number + 1 == rightNumber || number + 2 == rightNumber)
-                            _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Нужно надавить немного сильнее, сброс прогресса взлома", "Взлом провал");
+                            _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-abitstronger", ("amount", $"{number}")), Loc.GetString("medieval-hm-doorhack-usuck"));
                         else
-                            _prayerSystem.SendSubtleMessage(sender, sender, "Число " + number + ". Нужно надавить сильнее, сброс прогресса взлома", "Взлом провал");
+                            _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-stronger", ("amount", $"{number}")), Loc.GetString("medieval-hm-doorhack-usuck"));
                     }
                 }
 
                 if (comp.UseCount == 0)
                 {
-                    _prayerSystem.SendSubtleMessage(sender, sender, "Отмычка сломалась", "Взлом провал");
+                    _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-broke"), Loc.GetString("medieval-hm-doorhack-usuck"));
                     if (sender.AttachedEntity != null)
                         _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnBreak), sender.AttachedEntity.Value);
                     QueueDel(comp.Owner);
@@ -222,7 +223,7 @@ namespace Content.Server.CustomDoorKey
             }
             else
             {
-                _prayerSystem.SendSubtleMessage(sender, sender, "Неверное значение", "Взлом неверно");
+                _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-incorrect"), Loc.GetString("medieval-hm-doorhack-gibberlish"));
             }
         }
     }

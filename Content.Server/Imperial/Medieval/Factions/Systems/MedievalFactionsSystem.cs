@@ -41,7 +41,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
     public void OnCloackMessageAction(EntityUid uid, CloackMessageComponent comp, CloackMessageActionEvent args)
     {
         if (!_sharedPlayerManager.TryGetSessionByEntity(uid, out var session)) return;
-        _quickDialog.OpenDialog(session, "Весть", "Сообщение", (string message) =>
+        _quickDialog.OpenDialog(session, Loc.GetString("medieval-hm-factions-news"), Loc.GetString("medieval-hm-factions-message"), (string message) =>
         {
             var query = EntityQueryEnumerator<CloackRecieverComponent>();
             while (query.MoveNext(out var cloackOwner, out var cloack))

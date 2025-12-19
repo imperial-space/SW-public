@@ -147,7 +147,7 @@ public partial class QuestSystem : EntitySystem
         foreach (var spy in EntityManager.EntityQuery<PalletSpyComponent>())
         {
             EnsureComp<SpeechComponent>(spy.Owner);
-            _chat.TrySendInGameICMessage(spy.Owner, "Замечено прибытие ценного груза... его собираются доставить в " + comp.ContractPartner +"!!!", InGameICChatType.Speak, false);
+            _chat.TrySendInGameICMessage(spy.Owner, Loc.GetString("medieval-hm-quest-crates", ("name", $"{comp.ContractPartner}")), InGameICChatType.Speak, false);
         }
     }
 
@@ -160,17 +160,17 @@ public partial class QuestSystem : EntitySystem
 
     private void OnExamine(EntityUid uid, QuestContractComponent comp, ExaminedEvent args)
     {
-        args.PushMarkup("[color=sandybrown]Тип контракта: [/color]добыча");
-        args.PushMarkup("[color=lightgreen]Место сдачи: [/color]" + comp.ContractPartner);
-        args.PushMarkup("[color=orange]Тип добычи: [/color]" + comp.ContractName);
-        args.PushMarkup("[color=red]Необходимое количество: [/color]" + comp.Amount);
-        args.PushMarkup("[color=yellow]Награда: [/color]" + comp.Reward);
+        args.PushMarkup(Loc.GetString("medieval-hm-quest-contractloot"));
+        args.PushMarkup(Loc.GetString("medieval-hm-quest-partner", ("name", $"{comp.ContractPartner}")));
+        args.PushMarkup(Loc.GetString("medieval-hm-quest-name", ("name", $"{comp.ContractName}")));
+        args.PushMarkup(Loc.GetString("medieval-hm-quest-amount", ("amount", $"{comp.Amount}")));
+        args.PushMarkup(Loc.GetString("medieval-hm-quest-reward", ("name", $"{comp.Reward}")));
     }
 
     private void OnExaminePallete(EntityUid uid, PalletContractComponent comp, ExaminedEvent args)
     {
-        args.PushMarkup("[color=sandybrown]Тип контракта: [/color]доставка");
-        args.PushMarkup("[color=lightgreen]Место сдачи: [/color]" + comp.ContractPartner);
-        args.PushMarkup("[color=yellow]Награда: [/color]" + comp.Reward);
+        args.PushMarkup(Loc.GetString("medieval-hm-quest-delivery"));
+        args.PushMarkup(Loc.GetString("medieval-hm-quest-partner", ("name", $"{comp.ContractPartner}")));
+        args.PushMarkup(Loc.GetString("medieval-hm-quest-reward", ("name", $"{comp.Reward}")));
     }
 }
