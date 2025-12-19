@@ -308,7 +308,7 @@ namespace Content.Server.Nocturn
                             var txform = Transform(args.Args.Target.Value);
                             var tcoords = txform.Coordinates;
                             Spawn("BloodParticles", tcoords);
-                            _damageableSystem.TryChangeDamage(component.Owner, -component.RegenDamage * 15 * food.BloodMultiplier, true, false);
+                            _damageableSystem.TryChangeDamage(component.Owner, -component.RegenDamage * 35 * food.BloodMultiplier, true, false);
                             component.FreshDrinkTimer = 60f;
                             if (!HasComp<NocturnBittenComponent>(args.Args.Target))
                             {
