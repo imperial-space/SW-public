@@ -35,7 +35,7 @@ namespace Content.Shared.Nocturn.Components
         public float BloodLevel = 250.0f;
 
         [ViewVariables(VVAccess.ReadWrite)]
-        public float BloodDrainPerSecond = 0.1f;
+        public float BloodDrainPerSecond = 0.115f;
         public TimeSpan StartTime = TimeSpan.FromSeconds(0f);
         public TimeSpan EndTime = TimeSpan.FromSeconds(0f);
         public float FreshDrinkTimer = 0f;
