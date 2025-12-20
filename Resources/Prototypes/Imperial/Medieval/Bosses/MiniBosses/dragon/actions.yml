@@ -4,7 +4,7 @@
   description: medieval-store-spells-light-blink-dragon-desc
   components:
   - type: ManaDrainSpell
-    manaDrain: 45
+    manaDrain: 10
     canUseWithoutMana: true
     manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
     damageOnUseWithoutMana:

@@ -366,6 +366,7 @@
     - type: AddActionOnSpawn
       actions:
         - MedievalActionSpawnSkeletMiddle
+        - MedievalActionBlinkDragon
     - type: MedievalPlagueInfectOnHit
       active: false
       id: Skeleton

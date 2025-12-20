@@ -6316,3 +6316,5 @@ ent-MedievalClothingNeckCloakApolla = плащ
 ent-MedievalShoesChamberApolla = роскошные сапоги
     .desc = Кожаные плотные сапоги, напитывающие владельца маной.
     .suffix = {"СКИН, Средневековье, одежда"}
+medieval-store-spells-light-blink-dragon-name = Драконий блинк
+medieval-store-spells-light-blink-dragon-desc = Действует на 3 метра. Нужен для преодоления дверей и узких проходов. Стоимость 10 маны.
