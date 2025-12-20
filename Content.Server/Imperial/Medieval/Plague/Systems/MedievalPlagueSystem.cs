@@ -100,7 +100,7 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
         _blockersEfficiency = 1f;
         _minSmellLevel = 22f;
         _allergyRandom = new();
-        CurrentCure = "MedievalPlagueCure4";
+        CurrentCureResistance = 0;
 
         _bloodlettingProbabilities = new()
         {
@@ -411,9 +411,9 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
         immune.HardImmunity = true;
     }
 
-    public override void TryProgressInfection(EntityUid uid, float amount, string? reagent)
+    public override void TryProgressInfection(EntityUid uid, float amount, string? reagent, int? curePower)
     {
-        if (reagent != null && reagent != CurrentCure)
+        if (reagent != null && curePower <= CurrentCureResistance)
             return;
 
         TryProgressInfection(uid, amount);
