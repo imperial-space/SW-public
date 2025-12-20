@@ -46,11 +46,23 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     private const string WordBoundaryPattern = @"\b[\p{L}\p{N}_]+\b";
     private readonly Regex _compiledPattern = new(WordBoundaryPattern, RegexOptions.Compiled);
 
-    private readonly List<NrpMessage> _unsolvedMessages = new();
+    private readonly HashSet<NrpMessage> _unsolvedMessages = new();
+    private readonly object _messagesLock = new();
+
     private readonly List<NrpPanelEui> _activeEuis = new();
     private readonly Dictionary<string, (int, int)> _stats = new();
 
-    public async void AddResolveToStats(string administrator, bool isRp, NetUserId id)
+
+    public bool TryRemoveMessage(NrpMessage message)
+    {
+        lock (_messagesLock)
+        {
+            return _unsolvedMessages.Remove(message);
+        }
+    }
+
+
+    public async Task AddResolveToStats(string administrator, bool isRp, NetUserId id)
     {
         _stats.TryAdd(administrator, (0, 0));
         var stat = _stats[administrator];
@@ -94,9 +106,12 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
     public void RemoveMessage(NrpMessage message)
     {
-        _unsolvedMessages.Remove(message);
-        foreach (var eui in _activeEuis)
-            eui.SendRemoveMessage(message);
+        lock (_messagesLock)
+        {
+            _unsolvedMessages.Remove(message);
+            foreach (var eui in _activeEuis)
+                eui.SendRemoveMessage(message);
+        }
     }
 
     public bool ContainsMessage(NrpMessage message)
@@ -180,7 +195,10 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         }
         else
         {
-            var banHours = (uint)(Math.Pow(2, 2 * (violationCount - 2)));
+            var banHours = Math.Min(
+                (uint)Math.Pow(2, 2 * (violationCount - 2)),
+                24 * 30
+            );
             var banMinutes = banHours * 60;
             //Ban(targetId, targetName, senderId, banText, banMinutes);
             if (_playerManager.TryGetSessionById(targetId, out var session))
@@ -199,9 +217,12 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         SubscribeLocalEvent<EntitySpokeEvent>(OnEntitySpokeEvent);
     }
 
-    public List<NrpMessage> GetAllMessages()
+    public HashSet<NrpMessage> GetAllMessages()
     {
-        return _unsolvedMessages;
+        lock (_messagesLock)
+        {
+            return _unsolvedMessages;
+        }
     }
 
     public async Task<int> GetPlayerNrpViolations(NetUserId player, int daysCount)
@@ -317,10 +338,10 @@ public sealed partial class NrpMessagesSystem : EntitySystem
     {
         if (!ev.CheckNrp)
             return;
-        CheckMessage(ev.Source, ev.Message);
+        _ = CheckMessage(ev.Source, ev.Message);
     }
 
-    public async void CheckMessage(EntityUid source, string message)
+    public async Task CheckMessage(EntityUid source, string message)
     {
         if (_bannedWords.Count == 0)
             return;
@@ -345,13 +366,15 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         var name = Identity.Name(session.AttachedEntity.Value, EntityManager);
         var violations = await GetPlayerNrpViolations(session.UserId, 3);
         var nrpMessage = new NrpMessage(message, matches, formattedMessage, session.Name, session.UserId, senderNetEntity, name, playerJob, violations);
-        _unsolvedMessages.Add(nrpMessage);
+        lock (_messagesLock)
+        {
+            _unsolvedMessages.Add(nrpMessage);
+        }
 
         foreach (var eui in _activeEuis)
         {
             eui.SendNewMessage(nrpMessage);
         }
-
 
         _audio.PlayGlobal("/Audio/Imperial/Medieval/Misk/pop.ogg", Filter.Empty().AddPlayers(_adminManager.ActiveAdmins), true, AudioParams.Default.WithVolume(-4f));
     }
