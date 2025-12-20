@@ -388,3 +388,19 @@
     MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightDeimon]
     MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightDeimon]
 
+- type: customization
+  id: aniot
+  holder: e575ce8b-42dd-4112-b2d3-0ae490850c19
+  map:
+    Log: [ApollaStaffMedieval, MedievalClothingNeckCloakApolla, MedievalClothingHandsGlovesClothApolla]
+    MedievalShoesChamber: [MedievalShoesChamberApolla]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerApolla]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerApolla]
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakApolla]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakApolla]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmeCollegiumPurpleHatApolla]
+    MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightApolla]
+    MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightApolla]
+    MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightApolla]
+    MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightApolla]
+
