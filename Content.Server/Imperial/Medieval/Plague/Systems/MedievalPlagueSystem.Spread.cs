@@ -19,7 +19,7 @@ public sealed partial class MedievalPlagueSystem
     private float _blockersEfficiency = 1f;
     private float _minSmellLevel = 22f;
 
-    public ProtoId<ReagentPrototype> CurrentCure = "MedievalPlagueCure4";
+    public int CurrentCureResistance = 0;
 
     private Dictionary<BloodlettingResult, Dictionary<BloodlettingResult, float>> _bloodlettingProbabilities = new()
     {
@@ -231,7 +231,7 @@ public sealed partial class MedievalPlagueSystem
 
     private void OnSetCure(SetPlagueCureEvent args)
     {
-        CurrentCure = args.Reagent;
+        CurrentCureResistance = args.Resistance;
     }
 
     private void OnSetBloodlettingProb(SetBloodlettingProbabilitiesEvent args)
