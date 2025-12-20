@@ -591,6 +591,7 @@ namespace Content.Server.Database
 
         public async Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel)
         {
+            _opsLog.Info("getting painting");
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -604,6 +605,7 @@ namespace Content.Server.Database
 
         public async Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel)
         {
+            _opsLog.Info("getting paintings");
             await using var db = await GetDb(cancel);
 
             var paintings = await db.DbContext.Paintings
@@ -622,6 +624,7 @@ namespace Content.Server.Database
             bool accepted,
             CancellationToken cancel)
         {
+            _opsLog.Info("adding painting");
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -643,6 +646,7 @@ namespace Content.Server.Database
 
         public async Task RemovePainting(Color[] texture, CancellationToken cancel)
         {
+            _opsLog.Info("removing painting");
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -660,6 +664,7 @@ namespace Content.Server.Database
 
         public async Task SetPaintingAccepted(Color[] texture, CancellationToken cancel)
         {
+            _opsLog.Info("set painting accepted");
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -677,6 +682,7 @@ namespace Content.Server.Database
 
         public async Task<Book?> GetBook(string text, CancellationToken cancel)
         {
+            _opsLog.Info("getting book");
             await using var db = await GetDb(cancel);
 
             var book = await db.DbContext.Books
@@ -688,6 +694,7 @@ namespace Content.Server.Database
 
         public async Task<List<Book>> GetBooks(bool accepted, CancellationToken cancel)
         {
+            _opsLog.Info("getting books");
             await using var db = await GetDb(cancel);
 
             var books = await db.DbContext.Books
@@ -706,6 +713,7 @@ namespace Content.Server.Database
             bool accepted,
             CancellationToken cancel)
         {
+            _opsLog.Info("add book");
             await using var db = await GetDb(cancel);
 
             var book = new Book
@@ -725,6 +733,7 @@ namespace Content.Server.Database
 
         public async Task RemoveBook(string text, CancellationToken cancel)
         {
+            _opsLog.Info("remove book");
             await using var db = await GetDb(cancel);
 
             var book = await db.DbContext.Books
@@ -740,6 +749,7 @@ namespace Content.Server.Database
 
         public async Task SetBookAccepted(string text, CancellationToken cancel)
         {
+            _opsLog.Info("set book accepted");
             await using var db = await GetDb(cancel);
 
             var book = await db.DbContext.Books
@@ -755,6 +765,7 @@ namespace Content.Server.Database
 
         public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
         {
+            _opsLog.Info("getting last nrp violations count");
             await using var db = await GetDb(cancel);
 
             var daysAgo = DateTime.UtcNow.AddDays(-daysCount);
@@ -768,6 +779,7 @@ namespace Content.Server.Database
 
         public async Task AddNrpViolation(Guid player, CancellationToken cancel)
         {
+            _opsLog.Info("adding nrp violation");
             await using var db = await GetDb(cancel);
 
             var violation = new NrpViolation
@@ -781,6 +793,7 @@ namespace Content.Server.Database
         }
         public async Task RemoveNrpViolation(Guid player, CancellationToken cancel)
         {
+            _opsLog.Info("removing nrp violation");
             await using var db = await GetDb(cancel);
 
             var violations = await db.DbContext.NrpViolations
@@ -799,6 +812,7 @@ namespace Content.Server.Database
 
         public async Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel)
         {
+            _opsLog.Info("getting nrp resolves");
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .Where(v => v.UserId == player)
@@ -813,6 +827,7 @@ namespace Content.Server.Database
 
         public async Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
         {
+            _opsLog.Info("getting nrp resolves");
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .ToListAsync(cancel);
@@ -821,6 +836,7 @@ namespace Content.Server.Database
 
         public async Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel)
         {
+            _opsLog.Info("adding nrp resolves");
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .Where(v => v.UserId == player)
@@ -846,6 +862,7 @@ namespace Content.Server.Database
 
         public async Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel)
         {
+            _opsLog.Info("removing nrp resolves");
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .Where(v => v.UserId == player)
@@ -871,6 +888,7 @@ namespace Content.Server.Database
         // Imperial Medieval Flavor Images Begin
         public async Task<FlavorImage?> GetFlavorImage(Guid userId, CancellationToken cancel, int? slot)
         {
+            _opsLog.Info("getting flavor image");
             return null;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
@@ -889,6 +907,7 @@ namespace Content.Server.Database
         }
         public async Task AddOrUpdateFlavorImage(Guid userId, byte[] image, CancellationToken cancel, int? slot)
         {
+            _opsLog.Info("adding or updating flavor images");
             return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
@@ -921,6 +940,7 @@ namespace Content.Server.Database
         }
         public async Task RemoveFlavorImage(Guid userId, int slot, CancellationToken cancel)
         {
+            _opsLog.Info("removing flavor images");
             return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
