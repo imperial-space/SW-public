@@ -744,7 +744,7 @@ namespace Content.Server.Database
         // Imperial Medieval Flavor Images Begin
         public Task<FlavorImage?> GetFlavorImage(Guid uid, CancellationToken cancel, int? slot = null)
         {
-            DbWriteOpsMetric.Inc();
+            DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetFlavorImage(uid, cancel, slot));
         }
         public Task AddOrUpdateFlavorImage(Guid uid, byte[] image, CancellationToken cancel, int? slot = null)
