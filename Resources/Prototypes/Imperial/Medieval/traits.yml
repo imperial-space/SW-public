@@ -10,8 +10,8 @@
   category: MedievalBody
   cost: 1
   components:
-    - type: ManaTraitModifier
-      maxManaTraitModifier: 1.1
+    - type: ManaMaxModifier
+      modifier: 1.1
 
 - type: trait
   id: IncreasedManaRegen
@@ -20,8 +20,8 @@
   category: MedievalBody
   cost: 1
   components:
-    - type: ManaTraitModifier
-      regenTraitModifier: 1.1
+    - type: ManaRegenModifier
+      modifier: 1.1
 
 - type: trait
   id: MedievalHoly
