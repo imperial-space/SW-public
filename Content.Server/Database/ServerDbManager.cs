@@ -193,6 +193,7 @@ namespace Content.Server.Database
         public Task AddOrUpdateFlavorImage(Guid uid, byte[] image, CancellationToken cancel, int? slot = null);
         public Task RemoveFlavorImage(Guid uid, int slot, CancellationToken cancel);
         // Imperial Medieval Flavor Images End
+        public Dictionary<string, int> GetDbLogs();
 
         #endregion
 
@@ -758,6 +759,10 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.RemoveFlavorImage(uid, slot, cancel));
         }
         // Imperial Medieval Flavor Images End
+        public Dictionary<string, int> GetDbLogs()
+        {
+            return _db.Logs;
+        }
         #endregion
 
         #region Playtime

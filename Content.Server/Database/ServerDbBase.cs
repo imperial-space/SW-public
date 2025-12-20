@@ -32,6 +32,7 @@ namespace Content.Server.Database
     {
         private readonly ISawmill _opsLog;
         public event Action<DatabaseNotification>? OnNotificationReceived;
+        public Dictionary<string, int> Logs = new(); // Imperial Medieval Temporary Logs
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
         public ServerDbBase(ISawmill opsLog)
@@ -591,6 +592,10 @@ namespace Content.Server.Database
 
         public async Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel)
         {
+            var log = "GetPainting";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -604,6 +609,10 @@ namespace Content.Server.Database
 
         public async Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel)
         {
+            var log = "GetPaintings";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var paintings = await db.DbContext.Paintings
@@ -622,6 +631,10 @@ namespace Content.Server.Database
             bool accepted,
             CancellationToken cancel)
         {
+            var log = "AddPainting";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -643,6 +656,10 @@ namespace Content.Server.Database
 
         public async Task RemovePainting(Color[] texture, CancellationToken cancel)
         {
+            var log = "RemovePainting";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -660,6 +677,10 @@ namespace Content.Server.Database
 
         public async Task SetPaintingAccepted(Color[] texture, CancellationToken cancel)
         {
+            var log = "SetPaintingAccepted";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -677,6 +698,10 @@ namespace Content.Server.Database
 
         public async Task<Book?> GetBook(string text, CancellationToken cancel)
         {
+            var log = "GetBook";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var book = await db.DbContext.Books
@@ -688,6 +713,10 @@ namespace Content.Server.Database
 
         public async Task<List<Book>> GetBooks(bool accepted, CancellationToken cancel)
         {
+            var log = "GetBooks";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var books = await db.DbContext.Books
@@ -706,6 +735,10 @@ namespace Content.Server.Database
             bool accepted,
             CancellationToken cancel)
         {
+            var log = "AddBook";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var book = new Book
@@ -725,6 +758,10 @@ namespace Content.Server.Database
 
         public async Task RemoveBook(string text, CancellationToken cancel)
         {
+            var log = "RemoveBook";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var book = await db.DbContext.Books
@@ -740,6 +777,10 @@ namespace Content.Server.Database
 
         public async Task SetBookAccepted(string text, CancellationToken cancel)
         {
+            var log = "SetBookAccepted";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var book = await db.DbContext.Books
@@ -755,6 +796,10 @@ namespace Content.Server.Database
 
         public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
         {
+            var log = "GetLastNrpViolationsCount";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var daysAgo = DateTime.UtcNow.AddDays(-daysCount);
@@ -768,6 +813,10 @@ namespace Content.Server.Database
 
         public async Task AddNrpViolation(Guid player, CancellationToken cancel)
         {
+            var log = "AddNrpViolation";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var violation = new NrpViolation
@@ -781,6 +830,10 @@ namespace Content.Server.Database
         }
         public async Task RemoveNrpViolation(Guid player, CancellationToken cancel)
         {
+            var log = "RemoveNrpViolation";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var violations = await db.DbContext.NrpViolations
@@ -799,6 +852,10 @@ namespace Content.Server.Database
 
         public async Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel)
         {
+            var log = "GetNrpResolves";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .Where(v => v.UserId == player)
@@ -813,6 +870,10 @@ namespace Content.Server.Database
 
         public async Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
         {
+            var log = "GetNrpResolves";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .ToListAsync(cancel);
@@ -821,6 +882,10 @@ namespace Content.Server.Database
 
         public async Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel)
         {
+            var log = "AddNrpResolve";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .Where(v => v.UserId == player)
@@ -846,6 +911,10 @@ namespace Content.Server.Database
 
         public async Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel)
         {
+            var log = "RemoveNrpResolve";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .Where(v => v.UserId == player)
@@ -871,6 +940,10 @@ namespace Content.Server.Database
         // Imperial Medieval Flavor Images Begin
         public async Task<FlavorImage?> GetFlavorImage(Guid userId, CancellationToken cancel, int? slot)
         {
+            var log = "GetFlavorImage";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             return null;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
@@ -889,6 +962,10 @@ namespace Content.Server.Database
         }
         public async Task AddOrUpdateFlavorImage(Guid userId, byte[] image, CancellationToken cancel, int? slot)
         {
+            var log = "AddOrUpdateFlavorImage";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
@@ -921,6 +998,10 @@ namespace Content.Server.Database
         }
         public async Task RemoveFlavorImage(Guid userId, int slot, CancellationToken cancel)
         {
+            var log = "RemoveFlavorImage";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
