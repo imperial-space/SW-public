@@ -481,7 +481,7 @@
   description: A cloak to distinguish allies.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/Cloaks/deimon_neck.rsi
+    sprite: Imperial/Medieval/Clothing/Cloaks/deimon_cloak.rsi
   - type: Insulated
 
 - type: entity

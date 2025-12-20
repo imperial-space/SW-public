@@ -49,7 +49,7 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
-        FurnanceUpdate(frameTime);
+        FurnanceUpdate();
 
         var query = EntityQueryEnumerator<SmithingWorkplaceComponent>();
 
@@ -148,10 +148,12 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
 
     private void OnEntInserted(Entity<SmithingWorkplaceComponent> ent, ref EntInsertedIntoContainerMessage args)
     {
-        var workpiece = Comp<SmithingWorkpieceComponent>(args.Entity);
+        if (!TryComp<SmithingWorkpieceComponent>(args.Entity, out var workpiece))
+            return;
+
         ent.Comp.Workpiece = (args.Entity, workpiece);
 
-        var gameDataMessage = GenerateGameData(ent.Comp.Workpiece!);
+        var gameDataMessage = GenerateGameData(workpiece);
 
         ent.Comp.GameState = new SmithGameState(workpiece.Steps, gameDataMessage.CalculateTotalTime());
 
@@ -197,6 +199,6 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
 
     private void OnSmithEntRemoved(Entity<SmithingWorkplaceComponent> ent, ref EntRemovedFromContainerMessage args)
     {
-        ent.Comp.Workpiece = null!;
+        ent.Comp.Workpiece = null;
     }
 }

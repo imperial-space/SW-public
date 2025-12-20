@@ -927,6 +927,86 @@
 
 - type: entity
   parent: MedievalQuiver
+  id: MedievalQuiverFullArrowIron
+  suffix: Full, IronArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrow
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullArrowSteel
+  suffix: Full, SteelArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowSteel
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullBoltSteel
+  suffix: Full, SteelBolt
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalBoltSteel
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullBoltIron
+  suffix: Full, IronBolt
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalBolt
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullArrowIron
+  suffix: Full, IronArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrow
+      amount: 21
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullArrowSteel
+  suffix: Full, SteelArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowSteel
+      amount: 21
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullBoltSteel
+  suffix: Full, SteelBolt
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalBoltSteel
+      amount: 21
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullBoltIron
+  suffix: Full, IronBolt
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalBolt
+      amount: 21
+
+- type: entity
+  parent: MedievalQuiver
   id: MedievalQuiverWhois
   name: MedievalQuiver
   description: A belt used to hold arrows and bolts.
