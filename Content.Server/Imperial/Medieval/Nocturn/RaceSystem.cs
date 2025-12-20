@@ -29,6 +29,7 @@ using Content.Shared.Chat.TypingIndicator;
 using Content.Shared.Body.Components;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Server.Imperial.Medieval.Skills;
+using Content.Shared.Random.Helpers;
 
 namespace Content.Server.Nocturn
 {
@@ -88,6 +89,7 @@ namespace Content.Server.Nocturn
         public void OnFoodStart(EntityUid uid, NocturnBadFoodComponent component, ComponentStartup args)
         {
             component.MaxTimesCanBeBiten = component.TimesCanBeBiten;
+            component.Taste = _random.Pick(component.Tastes);
         }
         public override void Update(float frameTime)
         {
@@ -273,8 +275,9 @@ namespace Content.Server.Nocturn
                 BreakOnDamage = false,
                 NeedHand = false
             };
-            if (TryComp<NocturnBadFoodComponent>(target, out var food) && !food.Fresh)
-                _popupSystem.PopupEntity("Какая грязная кровь... мерзко.", uid, uid, PopupType.Large);
+            var xform = Transform(component.Owner);
+            var coords = xform.Coordinates;
+            _popupSystem.PopupCoordinates(Loc.GetString("Пьет кровь"), coords, PopupType.MediumCaution);
             _doAfterSystem.TryStartDoAfter(doAfterEventArgs);
         }
 
@@ -300,15 +303,14 @@ namespace Content.Server.Nocturn
                         {
                             food.TimesCanBeBiten -= 1;
                             component.DrinkAnimals++;
+                            _popupSystem.PopupEntity("Какая грязная кровь... мерзко.", uid, uid, PopupType.Large);
                             _blood.TryModifyBloodLevel(args.Args.Target.Value, -25);
                             component.BloodLevel += 30f * food.BloodMultiplier;
-                            var xform = Transform(component.Owner);
-                            var coords = xform.Coordinates;
-                            _popupSystem.PopupCoordinates(Loc.GetString("Пьет кровь"), coords, PopupType.MediumCaution);
+
                             var txform = Transform(args.Args.Target.Value);
                             var tcoords = txform.Coordinates;
                             Spawn("BloodParticles", tcoords);
-                            _damageableSystem.TryChangeDamage(component.Owner, -component.RegenDamage * 15 * food.BloodMultiplier, true, false);
+                            _damageableSystem.TryChangeDamage(component.Owner, -component.RegenDamage * 35 * food.BloodMultiplier, true, false);
                             component.FreshDrinkTimer = 60f;
                             if (!HasComp<NocturnBittenComponent>(args.Args.Target))
                             {
@@ -333,6 +335,7 @@ namespace Content.Server.Nocturn
                                 {
                                     badfood.TimesCanBeBiten -= 1;
                                     component.DrinkHumans++;
+                                    _popupSystem.PopupEntity("Вкус: " + badfood.Taste, uid, uid, PopupType.Large);
                                 }
                                 else
                                 {
@@ -345,7 +348,7 @@ namespace Content.Server.Nocturn
                             component.BloodLevel += 30f;
                             var xform = Transform(component.Owner);
                             var coords = xform.Coordinates;
-                            _popupSystem.PopupCoordinates(Loc.GetString("Пьет кровь"), coords, PopupType.MediumCaution);
+
                             var txform = Transform(args.Args.Target.Value);
                             var tcoords = txform.Coordinates;
                             Spawn("BloodParticles", tcoords);
@@ -419,7 +422,7 @@ namespace Content.Server.Nocturn
         private void ApplyDisguise(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
         {
             appearance.Species = "Human";
-            component.BloodDrainPerSecond *= 1.4f;
+            component.BloodDrainPerSecond *= 1.3f;
             component.BloodLevel -= 10;
 
             component.IsDisguised = true;
@@ -435,7 +438,7 @@ namespace Content.Server.Nocturn
         private void RevertToOriginalForm(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
         {
             appearance.Species = "Drou";
-            component.BloodDrainPerSecond /= 1.4f;
+            component.BloodDrainPerSecond /= 1.3f;
 
             component.IsDisguised = false;
             _action.SetToggled(component.DisguiseActionEntity, component.IsDisguised);
