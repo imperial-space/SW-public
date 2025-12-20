@@ -1547,6 +1547,56 @@
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
 
+# MEDIEVAL ARCHIVIST
+
+- type: startingGear
+  id: MedievalArchivistGear
+  equipment:
+    pocket1: MedievalRevent25
+    id: MedievalKeyArchivist
+    jumpsuit: MedievalClothingArchivist
+    head: MedievalClothingHeadArchivist
+
+- type: playTimeTracker
+  id: JobMedievalLegionArchivist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalArchivist
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: archivist
+  jobName: job-name-Archivist-medieval
+
+- type: job
+  id: MedievalArchivist
+  name: job-name-archivist-medieval
+  description: job-description-archivist-medieval
+  playTimeTracker: JobMedievalArchivist
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 720
+  startingGear: MedievalArchivistGear
+  icon: "JobIconMedievalArchivist"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
+    - type: MedievalJobSpawn
+      spawnType: Default
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+
+- type: roleLoadout
+  id: JobMedievalArchivist
+  groups:
+  - MedievalBackpack
+  - MedievalShoes
+  - MedievalTrinkets
+  - MedievalGloves
+
 # MEDIEVAL CHAPLAIN
 
 - type: startingGear

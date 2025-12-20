@@ -342,6 +342,43 @@
     tags:
     - ReinforcedDoor
 
+# Archivist doors
+- type: entity
+  parent: MedievalAirlockGrille
+  id: MedievalAirlockArchivistGridLocked
+  name: archivist grid door
+  components:
+  - type: DoorBolt
+    boltsDown: False
+  - type: LockDoor
+    accessLists:
+    - Archivist
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockArchivistLocked
+  name: archivist door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - Archivist
+
+- type: entity
+  parent: MedievalAirlockReinforced
+  id: MedievalAirlockArchivistReinforcedLocked
+  name: archivist reinforced door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - Archivist
+  - type: Tag
+    tags:
+    - ReinforcedDoor
+
 # Rebel tavern room doors
 
 - type: entity

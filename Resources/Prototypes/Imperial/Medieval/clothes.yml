@@ -220,6 +220,19 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: MedievalClothingArchivist
+  name: Archivist Uniform
+  description: Clothing for the Archivist
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/archivist_clothing.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Misc/archivist_clothing.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: ClothingUniformBase
   id: MedievalClothingUniformJumpsuitShitCloth17
   name: shit cloth
   description: hoho

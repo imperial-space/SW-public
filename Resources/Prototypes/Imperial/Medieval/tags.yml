@@ -56,9 +56,6 @@
   id: RebelKey
 
 - type: Tag
-  id: LegionTreasurerKey
-
-- type: Tag
   id: MercenaryKey
 
 - type: Tag
@@ -120,7 +117,7 @@
 
 - type: Tag
   id: MedievalShowPlagueIcons
-  
+
 - type: Tag
   id: WizardKey
 

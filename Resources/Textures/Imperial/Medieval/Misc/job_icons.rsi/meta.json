@@ -180,6 +180,9 @@
         },
         {
             "name": "treasurer"
+        },
+        {
+            "name": "archivist"
         }
     ]
 }

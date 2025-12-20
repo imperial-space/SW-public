@@ -187,3 +187,16 @@
     sprite: Imperial/Medieval/Misc/treasurer_hat.rsi
   - type: Item
     size: Normal
+
+- type: entity
+  parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]
+  id: MedievalClothingHeadArchivist
+  name: Archivist Hat
+  description: Hat for Archivist
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/archivist_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Misc/archivist_hat.rsi
+  - type: Item
+    size: Normal
