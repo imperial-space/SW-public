@@ -43,7 +43,7 @@
         inRangeColor: "#000062"
         outOfRangeColor: "#4A5076"
         alwaysRender: true
-        range: 6
+        range: 3
     rotationPerClick: 0
   - type: MedievalSpellTeleportEffect
     fadeDistortion:
