@@ -65,7 +65,7 @@ public sealed partial class MedievalSprintSystem : EntitySystem
             if (HasComp<FarmerBoostComponent>(uid))
                 stam *= 0.3f;
 
-            _staminaSystem.TryTakeStamina(uid, stam * ev.Modifier, ignoreResist: true);
+            _staminaSystem.TryTakeStamina(uid, stam * ev.Modifier, ignoreResist: true, log: false);
 
             component.Tried = false;
             component.NextStaminaDamageTime = _timing.CurTime + component.StaminaGainPeriod;
