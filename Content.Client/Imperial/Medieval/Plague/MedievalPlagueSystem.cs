@@ -106,7 +106,4 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
 
         args.Amount = ent.Comp.Points;
     }
-
-    public override void GrantPlagueImmunity(EntityUid uid, string? cure) { }
-    public override void TryProgressInfection(EntityUid uid, float amount, string? reagent) { }
 }
