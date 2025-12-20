@@ -871,6 +871,7 @@ namespace Content.Server.Database
         // Imperial Medieval Flavor Images Begin
         public async Task<FlavorImage?> GetFlavorImage(Guid userId, CancellationToken cancel, int? slot)
         {
+            return null;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
                 .Include(x => x.Profiles)
@@ -888,6 +889,7 @@ namespace Content.Server.Database
         }
         public async Task AddOrUpdateFlavorImage(Guid userId, byte[] image, CancellationToken cancel, int? slot)
         {
+            return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
                 .Include(x => x.Profiles)
@@ -919,6 +921,7 @@ namespace Content.Server.Database
         }
         public async Task RemoveFlavorImage(Guid userId, int slot, CancellationToken cancel)
         {
+            return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
                 .Include(x => x.Profiles)
