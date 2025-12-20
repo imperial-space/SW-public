@@ -246,7 +246,8 @@ public abstract partial class SharedStaminaSystem : EntitySystem
     /// <summary>
     /// Tries to take stamina damage without raising the entity over the crit threshold.
     /// </summary>
-    public bool TryTakeStamina(EntityUid uid, float value, StaminaComponent? component = null, EntityUid? source = null, EntityUid? with = null, bool visual = false, bool ignoreResist = false)
+    public bool TryTakeStamina(EntityUid uid, float value, StaminaComponent? component = null, EntityUid? source = null, EntityUid? with = null, bool visual = false, bool ignoreResist = false
+    , bool log = true) // Imperial Medieval Stamina Log Disable
     {
         // Something that has no Stamina component automatically passes stamina checks
         if (!Resolve(uid, ref component, false))
@@ -257,12 +258,13 @@ public abstract partial class SharedStaminaSystem : EntitySystem
         if (oldStam + value >= component.CritThreshold || component.Critical)
             return false;
 
-        TakeStaminaDamage(uid, value, component, source, with, visual: visual, ignoreResist: ignoreResist);
+        TakeStaminaDamage(uid, value, component, source, with, visual: visual, ignoreResist: ignoreResist, log: log); // Imperial Medieval Stamina Log Disable
         return true;
     }
 
     public void TakeStaminaDamage(EntityUid uid, float value, StaminaComponent? component = null,
-        EntityUid? source = null, EntityUid? with = null, bool visual = true, SoundSpecifier? sound = null, bool ignoreResist = false)
+        EntityUid? source = null, EntityUid? with = null, bool visual = true, SoundSpecifier? sound = null, bool ignoreResist = false
+        , bool log = true) // Imperial Medieval Stamina Log Disable
     {
         if (!Resolve(uid, ref component, false))
             return;
@@ -327,6 +329,7 @@ public abstract partial class SharedStaminaSystem : EntitySystem
 
         if (value <= 0)
             return;
+        if (log) // Imperial Medieval Stamina Log Disable
         if (source != null)
         {
             _adminLogger.Add(LogType.Stamina, $"{ToPrettyString(source.Value):user} caused {value} stamina damage to {ToPrettyString(uid):target}{(with != null ? $" using {ToPrettyString(with.Value):using}" : "")}");

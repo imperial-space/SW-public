@@ -193,6 +193,7 @@ namespace Content.Server.Database
         public Task AddOrUpdateFlavorImage(Guid uid, byte[] image, CancellationToken cancel, int? slot = null);
         public Task RemoveFlavorImage(Guid uid, int slot, CancellationToken cancel);
         // Imperial Medieval Flavor Images End
+        public Dictionary<string, int> GetDbLogs();
 
         #endregion
 
@@ -744,7 +745,7 @@ namespace Content.Server.Database
         // Imperial Medieval Flavor Images Begin
         public Task<FlavorImage?> GetFlavorImage(Guid uid, CancellationToken cancel, int? slot = null)
         {
-            DbWriteOpsMetric.Inc();
+            DbReadOpsMetric.Inc();
             return RunDbCommand(() => _db.GetFlavorImage(uid, cancel, slot));
         }
         public Task AddOrUpdateFlavorImage(Guid uid, byte[] image, CancellationToken cancel, int? slot = null)
@@ -758,6 +759,10 @@ namespace Content.Server.Database
             return RunDbCommand(() => _db.RemoveFlavorImage(uid, slot, cancel));
         }
         // Imperial Medieval Flavor Images End
+        public Dictionary<string, int> GetDbLogs()
+        {
+            return _db.Logs;
+        }
         #endregion
 
         #region Playtime
