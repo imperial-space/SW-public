@@ -25,6 +25,7 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Imperial.Medieval.PlayerCreations;
+using Content.Shared.Imperial.Medieval.Skills;
 
 namespace Content.Server.Database
 {
@@ -51,7 +52,6 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
-                .Include(p => p.Profiles).ThenInclude(h => h.Languages) // imperial medieval languages
                 .Include(p => p.Profiles).ThenInclude(h => h.Skills) // imperial medieval
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
@@ -109,7 +109,6 @@ namespace Content.Server.Database
                 .Include(p => p.Jobs)
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
-                .Include(p => p.Languages)  // imperial medieval languages
                 .Include(p => p.Skills) // Imperial medieval
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -214,7 +213,6 @@ namespace Content.Server.Database
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
             var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
-            var languages = profile.Languages.Select(t => new ProtoId<LanguagePrototype>(t.LanguageName)); // imperial medieval languages
 
             var sex = Sex.Male;
             if (Enum.TryParse<Sex>(profile.Sex, true, out var sexVal))
@@ -290,7 +288,6 @@ namespace Content.Server.Database
                 traits.ToHashSet(),
                 loadouts,
                 // Imperial medieval start
-                languages.ToHashSet(),
                 new(profile.Skills.ToDictionary(s => s.SkillName, s => s.SkillLevel))
                 // Imperial medieval end
             );
@@ -375,19 +372,10 @@ namespace Content.Server.Database
             }
 
             // Imperial medieval start
-            profile.Languages.Clear();
-            profile.Languages.AddRange(
-                    humanoid.Languages.Select
-                    (l => new Language { LanguageName = l.ToString() }
-                    )
-                );
-
             profile.Skills.Clear();
             profile.Skills.AddRange(
-                    humanoid.Skills.Select
-                    (s => new Skill { SkillName = s.Key, SkillLevel = s.Value }
-                    )
-                );
+                    humanoid.Skills.Where(x => IoCManager.Resolve<IPrototypeManager>().HasIndex<SkillPrototype>(x.Key))
+                    .Select(s => new Skill { SkillName = s.Key, SkillLevel = s.Value }));
             // Imperial medieval end
 
             return profile;
