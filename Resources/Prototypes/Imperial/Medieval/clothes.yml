@@ -2441,6 +2441,31 @@
 
 - type: entity
   parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsGlovesClothApolla
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/apolla_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/apolla_gloves.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalShoesChamberApolla
+  name: MedievalShoesChamberApolla
+  description: MedievalShoesChamberApolla
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/apolla_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/apolla_boots.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
   id: MedievalClothingHandsGlovesClothBib
   name: Cloth Gloves
   description: Cloth Gloves

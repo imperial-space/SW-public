@@ -8065,6 +8065,19 @@
     state: icon
 
 - type: entity
+  parent: BaseItem
+  id: ApollaStaffMedieval
+  name: ApollaStaffMedieval
+  description: ApollaStaffMedieval
+  components:
+  - type: Item
+    sprite: Imperial/Medieval/Misc/apolla_staff.rsi
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/apolla_staff.rsi
+    state: icon
+
+- type: entity
   parent: BaseStructureMedieval
   id: MedievalSharpeningMachine
   name: Sharpening machine

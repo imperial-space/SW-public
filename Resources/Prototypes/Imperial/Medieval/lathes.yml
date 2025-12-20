@@ -1214,6 +1214,10 @@
     - MedievalClothingOuterArmorDragonBoneThunder
     - MedievalDragonBoneGlovesThunder
     - MedievalClothingFeetDragonBoneThunder
+    - MedievalClothingHeadHelmetDragonBoneBone
+    - MedievalClothingOuterArmorDragonBoneBone
+    - MedievalDragonBoneGlovesBone
+    - MedievalClothingFeetDragonBoneBone
     - MedievalBloodlettingNeedle
 
 - type: entity

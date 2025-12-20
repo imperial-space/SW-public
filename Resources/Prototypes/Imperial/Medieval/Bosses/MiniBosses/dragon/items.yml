@@ -140,6 +140,15 @@
 
 - type: entity
   name: MedievalLoot
+  parent: MedievalDragonLootIcescale
+  id: MedievalDragonLootBonescale
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    state: bonescale
+
+- type: entity
+  name: MedievalLoot
   parent: BaseItem
   id: MedievalDragonLootBones
   description: MedievalLoot

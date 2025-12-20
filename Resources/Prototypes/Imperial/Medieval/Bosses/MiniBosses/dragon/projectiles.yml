@@ -51,3 +51,18 @@
       proto: MedievalLightningEffect
     - type: Ammo
       muzzleFlash: null
+
+- type: hitscan
+  id: MedievalProjectileNecroDragon
+  damage:
+    types:
+      Radiation: 18
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_omni
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_omni
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_omni

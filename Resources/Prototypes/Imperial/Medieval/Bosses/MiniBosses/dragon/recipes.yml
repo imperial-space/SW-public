@@ -322,6 +322,87 @@
   result: WorkpieceMedievalClothingFeetDragonBoneThunder
 ### THUNDER
 
+### BONE
+- type: entity
+  id: WorkpieceMedievalClothingHeadHelmetDragonBoneBone
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingHeadHelmetDragonBoneBone
+
+- type: entity
+  id: WorkpieceMedievalClothingOuterArmorDragonBoneBone
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingOuterArmorDragonBoneBone
+
+- type: entity
+  id: WorkpieceMedievalDragonBoneGlovesBone
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalDragonBoneGlovesBone
+
+- type: entity
+  id: WorkpieceMedievalClothingFeetDragonBoneBone
+  parent: BaseArmorWorkpiece
+  components:
+  - type: SmithingWorkpiece
+    finalProductEntity: MedievalClothingFeetDragonBoneBone
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetDragonBoneBone
+  craftTime: 30
+  iconOverride: MedievalClothingHeadHelmetDragonBoneBone
+  stacks:
+    MedievalSteelIngot: 5
+    MedievalRivets: 2
+  entities:
+    MedievalDragonLootBonescale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingHeadHelmetDragonBoneBone
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorDragonBoneBone
+  craftTime: 60
+  iconOverride: MedievalClothingOuterArmorDragonBoneBone
+  stacks:
+    MedievalRivets: 4
+    MedievalIronPlate: 12
+    MedievalSteelIngot: 10
+    MedievalChain: 2
+    MedievalShoulder: 2
+  entities:
+    MedievalDragonLootBonescale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingOuterArmorDragonBoneBone
+
+- type: CP14Recipe
+  id: MedievalDragonBoneGlovesBone
+  craftTime: 25
+  iconOverride: MedievalDragonBoneGlovesBone
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootBonescale: 1
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalDragonBoneGlovesBone
+
+- type: CP14Recipe
+  id: MedievalClothingFeetDragonBoneBone
+  craftTime: 30
+  iconOverride: MedievalClothingFeetDragonBoneBone
+  stacks:
+    MedievalRivets: 1
+    MedievalSteelIngot: 2
+  entities:
+    MedievalDragonLootBonescale: 2
+    MedievalDragonLootBones: 1
+  result: WorkpieceMedievalClothingFeetDragonBoneBone
+### BONE
+
 - type: CP14Recipe
   id: MedievalDragonQuantEssence
   craftTime: 60

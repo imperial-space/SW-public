@@ -1319,6 +1319,39 @@
     sprite: Imperial/Medieval/Clothing/Armor/greenknight_charmer.rsi
 
 - type: entity
+  parent: MedievalClothingOuterArmorCharmer
+  id: MedievalClothingOuterArmorCharmerApolla
+  name: MedievalClothingOuterArmorCharmerApolla
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/apolla_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/apolla_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerWeak
+  id: MedievalClothingOuterArmorCharmerWeakApolla
+  name: MedievalClothingOuterArmorCharmerWeakApolla
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/apolla_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/apolla_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerLightApolla
+  name: MedievalClothingOuterArmorCharmerLightApolla
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/apolla_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/apolla_charmer.rsi
+
+- type: entity
   parent: MedievalClothingOuterArmorCharmerLight
   id: MedievalClothingOuterArmorCharmerLightDrGnar
   name: MedievalClothingOuterArmorCharmerLightDrGnar

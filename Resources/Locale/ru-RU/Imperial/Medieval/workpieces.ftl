@@ -125,3 +125,7 @@ ent-WorkpieceMedievalClothingOuterArmorDragonBoneThunder = заготовка д
 ent-WorkpieceMedievalDragonBoneGlovesThunder = заготовка драконьих перчаток
 ent-WorkpieceMedievalClothingFeetDragonBoneThunder = заготовка драконьих сапог
 ent-WorkpieceMedievalClothingHeadHelmetDragonBoneThunder = заготовка драконьего шлема
+ent-WorkpieceMedievalClothingOuterArmorDragonBoneBone = заготовка драконьей брони
+ent-WorkpieceMedievalDragonBoneGlovesBone = заготовка драконьих перчаток
+ent-WorkpieceMedievalClothingFeetDragonBoneBone = заготовка драконьих сапог
+ent-WorkpieceMedievalClothingHeadHelmetDragonBoneBone = заготовка драконьего шлема
