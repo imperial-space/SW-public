@@ -2948,9 +2948,9 @@
   productEntity: MedievalScrollsHalberd
   discountCategory: medievalDiscounts
   discountDownTo:
-    Revent: 50
+    Revent: 120
   cost:
-    Revent: 50
+    Revent: 120
   categories:
   - MedievalMagic
 
@@ -2959,9 +2959,9 @@
   productEntity: MedievalScrollsFalshion
   discountCategory: medievalDiscounts
   discountDownTo:
-    Revent: 50
+    Revent: 100
   cost:
-    Revent: 50
+    Revent: 100
   categories:
   - MedievalMagic
 
@@ -2970,9 +2970,9 @@
   productEntity: MedievalScrollsDagger
   discountCategory: medievalDiscounts
   discountDownTo:
-    Revent: 50
+    Revent: 100
   cost:
-    Revent: 50
+    Revent: 100
   categories:
   - MedievalMagic
 
@@ -2981,9 +2981,9 @@
   productEntity: MedievalScrollsBow
   discountCategory: medievalDiscounts
   discountDownTo:
-    Revent: 50
+    Revent: 100
   cost:
-    Revent: 50
+    Revent: 100
   categories:
   - MedievalMagic
 
@@ -2992,9 +2992,9 @@
   productEntity: MedievalScrollsCrossbow
   discountCategory: medievalDiscounts
   discountDownTo:
-    Revent: 50
+    Revent: 120
   cost:
-    Revent: 50
+    Revent: 120
   categories:
   - MedievalMagic
 
