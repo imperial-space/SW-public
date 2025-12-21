@@ -1133,14 +1133,14 @@
   id: MedievalGoldCup
   craftTime: 25
   stacks:
-    MedievalGoldOre: 5
+    MedievalGoldOre: 2
   result: MedievalGoldCup
 
 - type: CP14Recipe
   id: MedievalSilverCup
   craftTime: 25
   stacks:
-    MedievalIronIngot: 5
+    MedievalIronIngot: 2
   result: MedievalSilverCup
 
 - type: CP14Recipe
