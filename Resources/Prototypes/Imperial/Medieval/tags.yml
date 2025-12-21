@@ -117,7 +117,10 @@
 
 - type: Tag
   id: MedievalShowPlagueIcons
-  
+
 - type: Tag
   id: WizardKey
+
+- type: Tag
+  id: ReinforcedDoor
 
