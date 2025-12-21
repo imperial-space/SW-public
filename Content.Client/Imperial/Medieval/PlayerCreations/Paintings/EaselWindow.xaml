@@ -5,6 +5,6 @@
     <BoxContainer Orientation="Vertical">
         <paintings:CanvasDrawControl Name="CanvasControl" MinWidth="200" VerticalExpand="True" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <ColorSelectorSliders Name="CanvasColor"/>
-        <Button Name="Send" HorizontalExpand="True" Text="Отправить"/>
+        <Button Name="Send" HorizontalExpand="True" Text="{Loc 'imperial-hm-ui-send'}"/>
     </BoxContainer>
 </DefaultWindow>

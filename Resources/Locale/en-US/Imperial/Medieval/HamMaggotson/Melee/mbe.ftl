@@ -12,3 +12,4 @@ medieval-hm-mbe-almostfull = This weapon looks [color=#90ee90]slightly scratched
 medieval-hm-mbe-damaged = This weapon shows visible [color=yellow]damage[/color]
 medieval-hm-mbe-badlydamaged = This weapon is in [color=orange]terrible[/color] condition
 medieval-hm-mbe-broken = This weapon is about to [color=red]fall apart[/color]
+medieval-hm-mbe-parryy = Parry

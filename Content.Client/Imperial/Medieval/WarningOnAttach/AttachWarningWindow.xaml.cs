@@ -18,14 +18,14 @@ namespace Content.Client.Imperial.Medieval.WarningOnAttach
 
             CloseButton.Visible = false;
 
-            RequestButton.Text = "Сначала прочитайте текст выше";
+            RequestButton.Text = Loc.GetString("imperial-hm-ui-readabove");
             TopBanner.SetMessage(FormattedMessage.FromMarkupPermissive(rules));
             RequestButton.Disabled = true;
 
             Checkbox.OnToggled += args =>
             {
                 RequestButton.Disabled = !args.Pressed;
-                RequestButton.Text = args.Pressed ? "Закрыть" : "Сначала прочитайте текст выше";
+                RequestButton.Text = args.Pressed ? Loc.GetString("imperial-hm-ui-close") : Loc.GetString("imperial-hm-ui-readabove");
             };
 
             RequestButton.OnPressed += _ => Close();

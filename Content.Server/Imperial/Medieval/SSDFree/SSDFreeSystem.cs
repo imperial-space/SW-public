@@ -54,9 +54,9 @@ namespace Content.Server.SSDFree
             if (TryComp<SSDIndicatorComponent>(uid, out var ssd) && ssd.IsSSD || _mobState.IsDead(uid))
             {
                 if (component.GoSkeleton)
-                    args.PushMarkup("[color=red]Тело не освящено[/color]");
+                    args.PushMarkup(Loc.GetString("medieval-hm-ssdfree-what1"));
                 else
-                    args.PushMarkup("[color=green]Тело освящено[/color]");
+                    args.PushMarkup(Loc.GetString("medieval-hm-ssdfree-what2"));
 
             }
 

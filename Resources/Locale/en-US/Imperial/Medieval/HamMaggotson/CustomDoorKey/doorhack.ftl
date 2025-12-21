@@ -21,3 +21,5 @@ medieval-hm-doorhack-abitstronger = Number {$amount}. Need to press a bit harder
 medieval-hm-doorhack-stronger = Number {$amount}. Need to press harder, lockpicking progress reset.
 medieval-hm-doorhack-broke = The lockpick broke
 medieval-hm-doorhack-incorrect = Incorrect value
+medieval-hm-doorhack-successful = Lockpicking is succesful.
+medieval-hm-doorhack-unsuccessful = Lockpicking is unsuccesful, try again.

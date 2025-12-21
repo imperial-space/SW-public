@@ -80,6 +80,6 @@ public abstract partial class SharedSkillsSystem
             return;
 
         args.Cancel();
-        _popup.PopupPredicted("Вы слишком слабы, чтобы использовать это.", null, args.User, args.User, PopupType.Medium);
+        _popup.PopupPredicted(Loc.GetString("imperial-hm-strength-tooweak"), null, args.User, args.User, PopupType.Medium);
     }
 }

@@ -4,12 +4,12 @@
   <PanelContainer HorizontalAlignment="Stretch" StyleClasses="WindowHeadingBackground" Margin="5">
     <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical">
       <TextureRect Name="PaintingView" Margin="0 15 0 0" SetSize="190 190" Stretch="KeepAspectCentered"/>
-      <RichTextLabel Name="PaintingName" HorizontalAlignment="Center" Text="Картина Тестовая"/>
-      <RichTextLabel Name="PaintingAuthor" HorizontalAlignment="Center" Text="Урист МакЧеловек (Ligyb)"/>
-      <Button Name="MoreButton" HorizontalExpand="True" Text="Подробнее"/>
+      <RichTextLabel Name="PaintingName" HorizontalAlignment="Center" Text="{Loc 'imperial-hm-ui-testpainting'}"/>
+      <RichTextLabel Name="PaintingAuthor" HorizontalAlignment="Center" Text="{Loc 'imperial-hm-ui-urist'}"/>
+      <Button Name="MoreButton" HorizontalExpand="True" Text="{Loc 'imperial-hm-ui-moree'}"/>
       <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Stretch">
-        <Button Name="AcceptButton" HorizontalExpand="True" Text="Принять"/>
-        <Button Name="DeclineButton" HorizontalExpand="True" Text="Отклонить"/>
+        <Button Name="AcceptButton" HorizontalExpand="True" Text="{Loc 'imperial-hm-ui-accept'}"/>
+        <Button Name="DeclineButton" HorizontalExpand="True" Text="{Loc 'imperial-hm-ui-decline'}"/>
       </BoxContainer>
     </BoxContainer>
   </PanelContainer>

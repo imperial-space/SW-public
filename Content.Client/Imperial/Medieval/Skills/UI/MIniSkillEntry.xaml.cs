@@ -33,7 +33,7 @@ public sealed partial class MiniSkillEntry : Control
         RobustXamlLoader.Load(this);
 
         NameLabel.Text = name;
-        LevelLabel.Text = $"УР: {level}";
+        LevelLabel.Text = Loc.GetString("imperial-hm-ui-lvl", ("amount", $"{level}"));
         Level = level;
 
         SetButton.OnPressed += _ =>

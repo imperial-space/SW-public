@@ -42,7 +42,7 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(culture, "NATURALPERCENT", FormatNaturalPercent);
             _loc.AddFunction(culture, "PLAYTIME", FormatPlaytime);
 
-            _loc.LoadCulture(fallbackCulture); //Imperial localization
+   /*          _loc.LoadCulture(fallbackCulture); //Imperial localization
             _loc.SetFallbackCluture(fallbackCulture); //Imperial localization
             _loc.AddFunction(fallbackCulture, "PRESSURE", FormatPressure);
             _loc.AddFunction(fallbackCulture, "POWERWATTS", FormatPowerWatts);
@@ -51,7 +51,7 @@ namespace Content.Shared.Localizations
             _loc.AddFunction(fallbackCulture, "TOSTRING", args => FormatToString(culture, args));
             _loc.AddFunction(fallbackCulture, "LOC", FormatLoc);
             _loc.AddFunction(fallbackCulture, "NATURALFIXED", FormatNaturalFixed);
-            _loc.AddFunction(fallbackCulture, "NATURALPERCENT", FormatNaturalPercent);
+            _loc.AddFunction(fallbackCulture, "NATURALPERCENT", FormatNaturalPercent); */
 
 
             /*

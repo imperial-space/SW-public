@@ -48,23 +48,25 @@ namespace Content.Server.Myrmex
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-        public List<string> SporesPull = new()
-        {
-            Loc.GetString("imperial-hm-myrmex-ironcap"),
-            Loc.GetString("imperial-hm-myrmex-caustic"),
-            Loc.GetString("imperial-hm-myrmex-neuromycite")
-        };
+        public List<string> SporesPull = new List<string>{};
 
-        public List<string> LightsPull = new()
-        {
-            Loc.GetString("imperial-hm-myrmex-runic"),
-            Loc.GetString("imperial-hm-myrmex-ethereal"),
-            Loc.GetString("imperial-hm-myrmex-shadow")
-        };
-
+        public List<string> LightsPull = new List<string>{};
 
         public override void Initialize()
         {
+            
+            SporesPull = new List<string>
+            {
+                Loc.GetString("imperial-hm-myrmex-ironcap"),
+                Loc.GetString("imperial-hm-myrmex-caustic"),
+                Loc.GetString("imperial-hm-myrmex-neuromycite")
+            };
+            LightsPull = new List<string>
+            {
+                Loc.GetString("imperial-hm-myrmex-runic"),
+                Loc.GetString("imperial-hm-myrmex-ethereal"),
+                Loc.GetString("imperial-hm-myrmex-shadow")
+            };
             base.Initialize();
             SubscribeLocalEvent<MyrmexComponent, ComponentStartup>(OnMyrmexStartup);
             SubscribeLocalEvent<MyrmexEggComponent, ExaminedEvent>(OnExamine);

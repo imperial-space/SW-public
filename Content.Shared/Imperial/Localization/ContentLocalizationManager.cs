@@ -7,10 +7,10 @@ public sealed partial class ContentLocalizationManager
 {
     private void InitializeRussianLocale()
     {
-        var culture = new CultureInfo("ru-RU");
+        //var culture = new CultureInfo("ru-RU");
 
-        _loc.AddFunction(culture, "MAKEPLURAL", FormatMakePluralRu);
-        _loc.AddFunction(culture, "MANY", FormatManyRu);
+        //_loc.AddFunction(culture, "MAKEPLURAL", FormatMakePluralRu);
+        //_loc.AddFunction(culture, "MANY", FormatManyRu);
     }
 
     private ILocValue FormatMakePluralRu(LocArgs args)

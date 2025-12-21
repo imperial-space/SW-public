@@ -52,49 +52,49 @@
     value: 0.2
   - type: RDWeightExamine
     examines:
-      "Вес: [color=#A8FF99]невесомый[/color]":
+      "imperial-hm-weight-soolight":
         min: 0
         max: 0.05   # вес пера
-      "Вес: [color=#7DFF66]легкий[/color]":
+      "imperial-hm-weight-light":
         min: 0.05
         max: 0.22   # CURSE OF 220
-      "Вес: [color=#ADFF2F]небольшой[/color]":
+      "imperial-hm-weight-medium":
         min: 0.22
         max: 1      # вес смартфона или книги
-      "Вес: [color=#D4FF33]ощутимый[/color]":
+      "imperial-hm-weight-significant":
         min: 1
         max: 3      # вес ноутбука
-      "Вес: [color=#FFFF00]умеренный[/color]":
+      "imperial-hm-weight-zhirniy":
         min: 3
         max: 7      # вес домашней кошки
-      "Вес: [color=#FFD700]увесистый[/color]":
+      "imperial-hm-weight-fatty":
         min: 7
         max: 15     # вес тяжелого рюкзака
-      "Вес: [color=#FFBF00]довольно тяжелый[/color]":
+      "imperial-hm-weight-kindaheavy":
         min: 15
         max: 25     # вес микроволновки
-      "Вес: [color=#FF8C00]тяжелый[/color]":
+      "imperial-hm-weight-heavy":
         min: 25
         max: 40     # вес мешка с цементом
-      "Вес: [color=#FF4500]очень тяжелый[/color]":
+      "imperial-hm-weight-veryheavy":
         min: 40
         max: 55     # вес крупной собаки
-      "Вес: [color=#FF0000]громоздкий[/color]":
+      "imperial-hm-weight-grozniy":
         min: 55
         max: 70     # вес среднего человека
-      "Вес: [color=#DC143C]весьма солидный[/color]":
+      "imperial-hm-weight-solid":
         min: 70
         max: 85     # вес крупного человека
-      "Вес: [color=#B22222]чрезвычайно тяжелый[/color]":
+      "imperial-hm-weight-insanelyheavy":
         min: 85
         max: 100    # вес наковальни
-      "Вес: [color=#8B0000]невероятно тяжелый[/color]":
+      "imperial-hm-weight-wow":
         min: 100
         max: 120    # вес холодильника
-      "Вес: [color=#800000]почти неподъемный[/color]":
+      "imperial-hm-weight-almunlf":
         min: 120
         max: 135    # вес мотоциклетного двигателя
-      "Вес: [color=#660000]недвижимый[/color]":
+      "imperial-hm-weight-unlf":
         min: 135
         max: 25000    # вес пианино
   - type: RDWeightThrowModifier

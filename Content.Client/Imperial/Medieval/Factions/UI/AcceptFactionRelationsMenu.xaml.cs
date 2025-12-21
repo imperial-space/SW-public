@@ -21,7 +21,7 @@ public sealed partial class AcceptFactionRelationsMenu : DefaultWindow
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
 
-        MainLabel.SetMessage($"Лидер фракции {_proto.Index(proto).Name} предлагает сменить отношения ваших фракций на {_proto.Index(relation).Name}.");
+        MainLabel.SetMessage(Loc.GetString("medieval-hm-relations-leaderchng", ("name", $"{_proto.Index(proto).Name}"), ("name2", $"{_proto.Index(relation).Name}")));
 
         SendButton.OnPressed += args =>
         {

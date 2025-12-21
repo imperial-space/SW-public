@@ -69,13 +69,13 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                     RevealCell(i, j);
                     _hintUsed = true;
                     HintButton.Disabled = true;
-                    StatusLabel.Text = "Подсказка использована!";
+                    StatusLabel.Text = Loc.GetString("imperial-hm-magiscroll-hintalrused");
                     return;
                 }
             }
         }
 
-        StatusLabel.Text = "Нет доступных безопасных клеток для подсказки.";
+        StatusLabel.Text = Loc.GetString("imperial-hm-magicscroll-nothingleft");
         _hintUsed = true;
         HintButton.Disabled = true;
     }
@@ -97,7 +97,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         _playerIntelligence = playerIntelligence;
         _gridSize = gridSize;
         _totalMines = totalMines;
-        RuneLabel.Text = $"Расшифровка руны: {MagicRuneData.GetSymbol(rune)} ({MagicRuneData.GetMeaning(rune)})";
+        RuneLabel.Text = Loc.GetString("imperial-hm-magicscroll-inprocess", ("name", $"{MagicRuneData.GetSymbol(rune)}"), ("name2", $"{MagicRuneData.GetMeaning(rune)}"));
         InitializeGame();
     }
 
@@ -195,7 +195,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                     targetX = randomNeighbor.x;
                     targetY = randomNeighbor.y;
 
-                    StatusLabel.Text = "Промах! Нажали не на ту клетку из-за низкого уровня интеллекта!";
+                    StatusLabel.Text = Loc.GetString("imperial-hm-magicscroll-miss");
                     StatusLabel.Modulate = Color.Orange;
                 }
             }
@@ -359,13 +359,13 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         {
             _revealedCount = _gridSize * _gridSize - _mineCount;
 
-            StatusLabel.Text = "Победа! Руна расшифрована! (Окно закроется через 3 секунды)";
+            StatusLabel.Text = Loc.GetString("imperial-hm-magicscroll-victory");
             StatusLabel.Modulate = Color.Green;
             GameCompleted?.Invoke(true, false);
         }
         else
         {
-            StatusLabel.Text = "Поражение! Вы наступили на мину! (Окно закроется через 3 секунды)";
+            StatusLabel.Text = Loc.GetString("imperial-hm-magicscroll-defeat");
             StatusLabel.Modulate = Color.Red;
 
             for (int i = 0; i < _gridSize; i++)
@@ -396,7 +396,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         if (_gameOver)
         {
             var totalSafeCells = _gridSize * _gridSize - _mineCount;
-            OpenedLabel.Text = $"Открыто: {totalSafeCells}/{totalSafeCells}";
+            OpenedLabel.Text = Loc.GetString("imperial-hm-magicscroll-openthedoor", ("min", $"{totalSafeCells}"), ("max", $"{totalSafeCells}"));
             return;
         }
 
@@ -409,19 +409,19 @@ public sealed partial class MinesweeperWindow : DefaultWindow
             }
         }
 
-        MinesLabel.Text = $"Мины: {_mineCount - flaggedCount}";
-        OpenedLabel.Text = $"Открыто: {_revealedCount}/{_gridSize * _gridSize - _mineCount}";
+        MinesLabel.Text = Loc.GetString("imperial-hm-magicscroll-miness", ("amount", $"{_mineCount - flaggedCount}"));
+        OpenedLabel.Text = Loc.GetString("imperial-hm-magicscroll-openn", ("min", $"{_revealedCount}"), ("max", $"{_gridSize * _gridSize - _mineCount}"));
 
         if (_playerIntelligence < 10)
         {
             var intelligenceDeficit = 10 - _playerIntelligence;
             var misfireChance = intelligenceDeficit * 5;
-            StatusLabel.Text = $"Найдите все безопасные клетки! ВНИМАНИЕ: Шанс промаха {misfireChance}%. Слишком низкий уровень интеллекта!";
+            StatusLabel.Text = Loc.GetString("imperial-hm-magicscroll-ukindacooked", ("amount", $"{misfireChance}"));
             StatusLabel.Modulate = Color.Yellow;
         }
         else
         {
-            StatusLabel.Text = "Найдите все безопасные клетки!";
+            StatusLabel.Text = Loc.GetString("imperial-hm-magicscroll-findallsafestuff");
             StatusLabel.Modulate = Color.White;
         }
     }

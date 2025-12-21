@@ -80,10 +80,10 @@ namespace Content.Server.MedievalTradeCurse
                     {
                         comp.CurseLevel -= 1f;
                         if (comp.CurseLevel < 15f && comp.CurseLevel > 0f)
-                            _popup.PopupEntity("Нужно быть ближе к торговой дыре", comp.Owner, comp.Owner, PopupType.LargeCaution);
+                            _popup.PopupEntity(Loc.GetString("medieval-hm-tradecurse-closer"), comp.Owner, comp.Owner, PopupType.LargeCaution);
                         if (comp.CurseLevel <= 0f)
                         {
-                            _popup.PopupEntity("СРОЧНО к торговой дыре!!", comp.Owner, comp.Owner, PopupType.LargeCaution);
+                            _popup.PopupEntity(Loc.GetString("medieval-hm-tradecurse-somanycursessolittletime"), comp.Owner, comp.Owner, PopupType.LargeCaution);
                             comp.CurseLevel = 0f;
                             if (TryComp<SSDFreeComponent>(comp.Owner, out var ssdfree))
                             {

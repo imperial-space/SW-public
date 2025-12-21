@@ -107,7 +107,7 @@ namespace Content.Server.CustomDoorKey
 
                 _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnSucces), door.Owner);
                 if (!_sharedPlayerManager.TryGetSessionByEntity(user, out var session)) return;
-                _quickDialog.OpenDialog(session, Loc.GetString("medieval-hm-doorhack-hack"), args.PushMarkup(Loc.GetString("medieval-hm-doorhack-hacking", ("min", $"{door.MinNumber}"), ("max", $"{door.MaxNumber}"))), (string message) =>
+                _quickDialog.OpenDialog(session, Loc.GetString("medieval-hm-doorhack-hack"), Loc.GetString("medieval-hm-doorhack-hacking", ("min", $"{door.MinNumber}"), ("max", $"{door.MaxNumber}")), (string message) =>
                 {
                     SendHackMessage(message, session, door.MinNumber, door.MaxNumber, door, comp);
                 });

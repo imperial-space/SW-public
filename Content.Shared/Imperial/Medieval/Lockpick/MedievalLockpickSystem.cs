@@ -72,11 +72,11 @@ public sealed class MedievalLockpickSystem : EntitySystem
 
         if (!_random.Prob(DefaultChance * ev.Modifier))
         {
-            _popupSystem.PopupEntity("Взлом неудачный, попробуйте еще раз", args.Args.User, PopupType.LargeCaution);
+            _popupSystem.PopupEntity(Loc.GetString("medieval-hm-doorhack-unsuccessful"), args.Args.User, PopupType.LargeCaution);
             return;
         }
 
-        _popupSystem.PopupEntity("Взлом успешный", args.Args.User, PopupType.LargeCaution);
+        _popupSystem.PopupEntity(Loc.GetString("medieval-hm-doorhack-successful"), args.Args.User, PopupType.LargeCaution);
 
         switch (doorcomp.State)
         {

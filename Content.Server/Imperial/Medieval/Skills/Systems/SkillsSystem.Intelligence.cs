@@ -124,7 +124,7 @@ public sealed partial class SkillsSystem
         var msg1 = Loc.GetString("imperial-hm-intel-readeyes", ("name", $"{message.Text}"));
         var msg2 = Loc.GetString("imperial-hm-intel-nothing", ("name", $"{Identity.Name(GetEntity(message.Target), EntityManager, GetEntity(message.User))}"));
         var mmssg = FormattedMessage.FromUnformatted(message.Text != string.Empty ? msg1 : msg2);
-        _examine.SendExamineTooltip(GetEntity(message.User), GetEntity(message.Target), mssg, false, false);
+        _examine.SendExamineTooltip(GetEntity(message.User), GetEntity(message.Target), mmssg, false, false);
     }
 
     private string Accentuate(string message, float scale)

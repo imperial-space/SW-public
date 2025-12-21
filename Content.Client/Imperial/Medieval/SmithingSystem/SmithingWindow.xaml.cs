@@ -102,7 +102,7 @@ public sealed partial class SmithingWindow : FancyWindow
             return;
 
         StepsLabel.Text = $"{_completedSteps} / {_totalSteps}";
-        PointsLabel.Text = $"Очки: {_points}";
+        PointsLabel.Text = Loc.GetString("imperial-hm-ui-pointsd", ("amount", $"{_points}"));
 
         if (_completedSteps >= _totalSteps)
         {

@@ -20,3 +20,5 @@ language-Myrmex-name = Myrmexes
 language-Myrmex-description = Psionic link
 language-Plague-name = Plague
 language-Plague-description = Collective mind of plague ghosts
+language-Resonat-name = Psyonic
+language-Resonat-description = Psyonic bond

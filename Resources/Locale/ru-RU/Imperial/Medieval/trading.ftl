@@ -1,20 +1,20 @@
-﻿trading-ui-reputation-leaderboard = Рейтинг репутации
-trading-ui-reputation-text = Репутация: {$rep}
-store-ui-back-button-text = Назад
+﻿trading-ui-reputation-leaderboard = Reputation leaderboard
+trading-ui-reputation-text = Reputation: {$rep}
+store-ui-back-button-text = Back
 
-trading-ui-reputation-lack = Необходимо: {$requiredRep} репутации
-trading-ui-reputation-place-lack = Необходимо: {$requiredPlace} место в рейтинге
+trading-ui-reputation-lack = Required: {$requiredRep} reputation
+trading-ui-reputation-place-lack = Required: {$requiredPlace} place in the leaderboard
 
-trading-ui-guild-type = Тип гильдии: {$type}
+trading-ui-guild-type = Guild type: {$type}
 
-trading-guild-type-TestType = тест
-trading-guild-type-TestType2 = тест 2
-trading-guild-type-MagicGuild = магическая
-trading-guild-type-WeaponGuild = оружейная
-trading-guild-type-ArmorGuild = бронная
-trading-guild-type-FoodGuild = фермерство
-trading-guild-type-ClothGuild = кожевня
-trading-guild-type-BuilderGuild = строительная
+trading-guild-type-TestType = test
+trading-guild-type-TestType2 = test 2
+trading-guild-type-MagicGuild = magic
+trading-guild-type-WeaponGuild = weapon
+trading-guild-type-ArmorGuild = armor
+trading-guild-type-FoodGuild = farming
+trading-guild-type-ClothGuild = leatherworking
+trading-guild-type-BuilderGuild = construction
 
-trading-ui-stats-title = Рейтинг
+trading-ui-stats-title = Leaderboard
 trading-ui-stats-entry = {$name}: {$reputation}
