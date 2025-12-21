@@ -910,6 +910,7 @@
     chance: 0.12
   - type: AllergySpreader
     id: Fur
+  - type: MedievalUnthrowable
 
 - type: entity
   name: bear
@@ -2847,6 +2848,7 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: MedievalUnthrowable
 
 - type: entity
   name: skeleton with a mace
