@@ -336,7 +336,7 @@
   - type: StorageFill
     contents:
     - id: MedievalDraftBoltSteel
-      amount: 30
+      amount: 25
 
 #scrolls
 - type: entity
