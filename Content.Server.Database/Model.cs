@@ -73,10 +73,6 @@ namespace Content.Server.Database
                 .IsUnique();
 
             // imperial medieval start
-            modelBuilder.Entity<Language>()
-                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.LanguageName })
-                .IsUnique();
-
             modelBuilder.Entity<Skill>()
                 .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.SkillName })
                 .IsUnique();
@@ -448,8 +444,6 @@ namespace Content.Server.Database
         public List<Trait> Traits { get; } = new();
 
         // Imperial medieval start
-        public List<Language> Languages { get; } = new();
-
         public List<Skill> Skills { get; } = new();
         // Imperial medieval end
 
@@ -499,15 +493,6 @@ namespace Content.Server.Database
     }
 
     #region Imperial Medieval
-    public class Language
-    {
-        public int Id { get; set; }
-        public Profile Profile { get; set; } = null!;
-        public int ProfileId { get; set; }
-
-        public string LanguageName { get; set; } = null!;
-    }
-
     public class Skill
     {
         public int Id { get; set; }

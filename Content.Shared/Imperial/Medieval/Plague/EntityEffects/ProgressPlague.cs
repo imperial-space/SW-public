@@ -8,6 +8,9 @@ public sealed partial class ProgressPlague : EntityEffect
     [DataField(required: true)]
     public float ProgressAmount;
 
+    [DataField(required: true)]
+    public int CurePower = 1;
+
     public override void Effect(EntityEffectBaseArgs args)
     {
         // upstream need to fix
@@ -17,7 +20,7 @@ public sealed partial class ProgressPlague : EntityEffect
         if (args is EntityEffectReagentArgs reagentArgs)
         {
             if (reagentArgs.Reagent != null)
-                plague.TryProgressInfection(args.TargetEntity, amount *= (float)reagentArgs.Quantity, reagentArgs.Reagent.ID);
+                plague.TryProgressInfection(args.TargetEntity, amount *= (float)reagentArgs.Quantity, reagentArgs.Reagent.ID, CurePower);
         }
     }
 
