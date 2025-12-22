@@ -1129,8 +1129,19 @@
   result: MedievalWeaponCrossbow
 
 
+- type: CP14Recipe
+  id: MedievalGoldCup
+  craftTime: 25
+  stacks:
+    MedievalGold: 2
+  result: MedievalGoldCup
 
-
+- type: CP14Recipe
+  id: MedievalSilverCup
+  craftTime: 25
+  stacks:
+    MedievalIronIngot: 2
+  result: MedievalSilverCup
 
 - type: CP14Recipe
   id: MedievalMopBucket

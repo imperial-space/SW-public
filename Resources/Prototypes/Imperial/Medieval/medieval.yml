@@ -2097,21 +2097,32 @@
   - type: SolutionContainerManager
     solutions:
       bucket:
-        maxVol: 600
+        maxVol: 200
         reagents:
           - ReagentId: Water
-            Quantity: 300
+            Quantity: 200
+  - type: SolutionTransfer
+    transferAmount: 100
+    maxTransferAmount: 100
+    minTransferAmount: 10
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
   - type: Spillable
-    spillDelay: 3.0
+    solution: bucket
   - type: DrainableSolution
+    solution: bucket
+  - type: SolutionItemStatus
     solution: bucket
   - type: RefillableSolution
     solution: bucket
-  #- type: ExaminableSolution
-  #  solution: bucket
+  - type: ExaminableSolution
+    solution: bucket
   - type: Tag
     tags:
-      - Wringer
+    - Bucket
   - type: Physics
     bodyType: Dynamic
   - type: Transform
@@ -2131,8 +2142,10 @@
   - type: Edible
     edible: Drink
     destroyOnEmpty: false
-    utensil: None
+    utensil: Spoon
     solution: bucket
+  - type: Item
+    size: Normal
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 3
