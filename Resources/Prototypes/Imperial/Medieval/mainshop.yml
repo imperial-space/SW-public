@@ -890,7 +890,7 @@
   id: MdvShopMedievalSharpeningMachineCraft
   productEntity: MedievalSharpeningMachineCraft
   cost:
-    Revent: 75
+    Revent: 220
   categories:
   - MedievalBuild
 
