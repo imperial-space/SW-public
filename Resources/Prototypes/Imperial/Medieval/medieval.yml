@@ -2097,10 +2097,10 @@
   - type: SolutionContainerManager
     solutions:
       bucket:
-        maxVol: 100
+        maxVol: 200
         reagents:
           - ReagentId: Water
-            Quantity: 100
+            Quantity: 200
   - type: SolutionTransfer
     transferAmount: 100
     maxTransferAmount: 100
