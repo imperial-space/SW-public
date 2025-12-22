@@ -589,6 +589,14 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopMedievalSharpeningMachineCraft
+  productEntity: MedievalSharpeningMachineCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalMortarCraft
   productEntity: MedievalMortarCraft
   cost:

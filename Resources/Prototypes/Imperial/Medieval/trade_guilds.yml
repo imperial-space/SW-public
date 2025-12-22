@@ -1609,6 +1609,9 @@
   - productEntity: SmithWorkplaceCraft
     cost: 50
     reputationForBuying: 1.7
+  - productEntity: MedievalSharpeningMachineCraft
+    cost: 220
+    reputationForBuying: 1.7
   - productEntity: MedievalCatapultCraft
     cost: 500
     reputationForBuying: 16.7
