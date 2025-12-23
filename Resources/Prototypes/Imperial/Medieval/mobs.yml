@@ -18,11 +18,6 @@
     friction: 1
     baseWalkSpeed: 4.5
     baseSprintSpeed: 6
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   #- type: ReplacementAccent
   #  accent: xeno
   - type: MeleeWeapon
@@ -93,6 +88,12 @@
     baseDecayRate: 0
   - type: NPCRetaliation
     attackMemoryLength: 100
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - Animal #Этот тег убирает из колеса эмоций мобов "человеческие" эмоции (чихание, свист и т.д)
 
 - type: entity
   name: fox
@@ -154,11 +155,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -254,11 +250,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -397,11 +388,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -528,11 +514,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -613,11 +594,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -728,11 +704,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -855,11 +826,6 @@
         ParryAble: 1
     range: 1.6
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -987,11 +953,6 @@
         ParryAble: 1
     range: 1.6
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1602,11 +1563,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1798,11 +1754,6 @@
         ParryAble: 1
         Caustic: 10
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1897,11 +1848,6 @@
         ParryAble: 1
         Caustic: 4
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1996,11 +1942,6 @@
         Caustic: 1
         Bloodloss: 3
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2123,11 +2064,6 @@
         Caustic: 1.9
         Bloodloss: 3
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3206,11 +3142,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3767,11 +3698,6 @@
         ParryAble: 0.2
     range: 1.4
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3859,11 +3785,6 @@
         Bloodloss: 3
         Radiation: 3
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive

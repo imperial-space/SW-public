@@ -10,6 +10,8 @@
   blacklist:
     components:
     - BorgChassis
+    tags:
+    - Animal
   chatMessages: ["chat-emote-msg-sneeze"]
   chatTriggers:
     - sneeze
@@ -26,6 +28,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal
   chatMessages: ["chat-emote-msg-cough"]
   chatTriggers:
     - cough
@@ -73,6 +76,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal
   chatMessages: ["chat-emote-msg-yawn"]
   chatTriggers:
     - yawn
