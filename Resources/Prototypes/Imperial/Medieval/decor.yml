@@ -1176,8 +1176,8 @@
         - SmallMobMask
   - type: PointLight
     color: Orange
-    radius: 18
-    energy: 1.35
+    radius: 5
+    energy: 4
   - type: Anchorable
   - type: AlwaysHot
   - type: AmbientSound
