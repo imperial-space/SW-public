@@ -43,10 +43,17 @@ namespace Content.Server.Imperial.Medieval.Flavors
 
             using (var stream = new MemoryStream(msg.Image))
             {
-                using (var img = Image.Load(stream))
+                try
                 {
-                    if (!ImageAllowed(img.Width, img.Height))
-                        return;
+                    using (var img = Image.Load(stream))
+                    {
+                        if (!ImageAllowed(img.Width, img.Height))
+                            return;
+                    }
+                }
+                catch
+                {
+                    return;
                 }
             }
             var prefs = _prefs.GetPreferencesOrNull(msg.MsgChannel.UserId);
