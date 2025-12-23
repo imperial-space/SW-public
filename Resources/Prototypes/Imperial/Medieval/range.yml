@@ -63,8 +63,8 @@
 
 - type: entity
   name: bow
-  parent: BaseBow
-  id: BaseBowWhois
+  parent: BowImprovised
+  id: BowImprovisedWhois
   description: The original rooty tooty point and shooty.
   abstract: true
   components:
