@@ -1,10 +1,10 @@
 ﻿- type: construction
   hide: true # imperial medieval craft disable
-  name: Инопланетный артефакт # Imperial Recipes Locale
+  #name: Инопланетный артефакт # Imperial Recipes Locale
   id: Artifact
   graph: Artifact
   startNode: start
   targetNode: done
   category: construction-category-misc
   objectType: Item
-  description: Странное устройство пришельцев. # Imperial Recipes Locale
+  #description: Странное устройство пришельцев. # Imperial Recipes Locale

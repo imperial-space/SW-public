@@ -1,18 +1,18 @@
 ﻿- type: construction
   hide: true # imperial medieval craft disable
-  name: Металлический стержень # Imperial Recipes Locale
+  #name: Металлический стержень # Imperial Recipes Locale
   id: MetalRod
   graph: MetalRod
   startNode: start
   targetNode: MetalRod
   category: construction-category-materials
-  description: Прочный металлический стержень, который можно использовать для различных целей. # Imperial Recipes Locale
+  #description: Прочный металлический стержень, который можно использовать для различных целей. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Бронестекло # Imperial Recipes Locale
-  description: Укрепленный лист стекла. # Imperial Recipes Locale
+  #name: Бронестекло # Imperial Recipes Locale
+  #description: Укрепленный лист стекла. # Imperial Recipes Locale
   id: SheetRGlass
   graph: Glass
   startNode: start
@@ -22,8 +22,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Заводное стекло # Imperial Recipes Locale
-  description: Лист закаленного латунного стекла.  # Imperial Recipes Locale
+  #name: Заводное стекло # Imperial Recipes Locale
+  #description: Лист закаленного латунного стекла.  # Imperial Recipes Locale
   id: SheetClockworkGlass
   graph: Glass
   startNode: start
@@ -33,8 +33,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Плазменное стекло # Imperial Recipes Locale
-  description: Лист полупрозрачной плазмы. # Imperial Recipes Locale
+  #name: Плазменное стекло # Imperial Recipes Locale
+  #description: Лист полупрозрачной плазмы. # Imperial Recipes Locale
   id: SheetPGlass
   graph: Glass
   startNode: start
@@ -44,8 +44,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённое плазменное стекло # Imperial Recipes Locale
-  description: Лист укрепленной полупрозрачной плазмы. # Imperial Recipes Locale
+  #name: Укреплённое плазменное стекло # Imperial Recipes Locale
+  #description: Лист укрепленной полупрозрачной плазмы. # Imperial Recipes Locale
   id: SheetRPGlass
   graph: Glass
   startNode: start
@@ -55,8 +55,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённое плазменное стекло # Imperial Recipes Locale
-  description: Лист укрепленной полупрозрачной плазмы. # Imperial Recipes Locale
+  #name: Укреплённое плазменное стекло # Imperial Recipes Locale
+  #description: Лист укрепленной полупрозрачной плазмы. # Imperial Recipes Locale
   id: SheetRPGlass0
   graph: Glass
   startNode: start
@@ -66,8 +66,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённое плазменное стекло # Imperial Recipes Locale
-  description: Лист укрепленной полупрозрачной плазмы. # Imperial Recipes Locale
+  #name: Укреплённое плазменное стекло # Imperial Recipes Locale
+  #description: Лист укрепленной полупрозрачной плазмы. # Imperial Recipes Locale
   id: SheetRPGlass1
   graph: Glass
   startNode: start
@@ -77,19 +77,19 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Дюраткань # Imperial Recipes Locale
+  #name: Дюраткань # Imperial Recipes Locale
   id: MaterialDurathread
   graph: Durathread
   startNode: start
   targetNode: MaterialDurathread
   category: construction-category-materials
-  description: Высококачественная нить, используемая для изготовления прочной одежды. # Imperial Recipes Locale
+  #description: Высококачественная нить, используемая для изготовления прочной одежды. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Урановое стекло # Imperial Recipes Locale
-  description: Лист уранового стекла. # Imperial Recipes Locale
+  #name: Урановое стекло # Imperial Recipes Locale
+  #description: Лист уранового стекла. # Imperial Recipes Locale
   id: SheetUGlass
   graph: Glass
   startNode: start
@@ -99,8 +99,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённое урановое стекло # Imperial Recipes Locale
-  description: Укрепленный лист уранового стекла. # Imperial Recipes Locale
+  #name: Укреплённое урановое стекло # Imperial Recipes Locale
+  #description: Укрепленный лист уранового стекла. # Imperial Recipes Locale
   id: SheetRUGlass
   graph: Glass
   startNode: start
@@ -110,8 +110,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённое урановое стекло # Imperial Recipes Locale
-  description: Укрепленный лист уранового стекла. # Imperial Recipes Locale
+  #name: Укреплённое урановое стекло # Imperial Recipes Locale
+  #description: Укрепленный лист уранового стекла. # Imperial Recipes Locale
   id: SheetRUGlass0
   graph: Glass
   startNode: start
@@ -121,8 +121,8 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённое урановое стекло # Imperial Recipes Locale
-  description: Укрепленный лист уранового стекла. # Imperial Recipes Locale
+  #name: Укреплённое урановое стекло # Imperial Recipes Locale
+  #description: Укрепленный лист уранового стекла. # Imperial Recipes Locale
   id: SheetRUGlass1
   graph: Glass
   startNode: start

@@ -2,7 +2,6 @@ ent-MAignite = Ignite enemy on hit
 ent-MAvampirism = Restores 20% of damage when hitting a humanoid, also restores blood of nocturns.
 ent-MAblink = Allows you to teleport
 ent-MAdamage = Damage is increased by x1.3
-ent-MApenetrate = Пробитие резистов, но урон уменьшен вдвое
 ent-MApenetrate = Penetrates resistances, but the damage is halved 
 ent-MAhunger = Passively restores hunger and thirst
 ent-MAlight = Emits lights, hitting an enemy blinds him for 0.5 seconds.

@@ -12,4 +12,3 @@ chat-emote-name-charge = attack!
 chat-emote-name-woo = rejoice
 chat-emote-name-painscream = screaming (in pain)
 chat-emote-name-passivescream = screaming (in silence)
-chat-emote-name-howl = howl
