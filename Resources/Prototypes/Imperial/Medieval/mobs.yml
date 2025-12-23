@@ -417,7 +417,7 @@
       task: SimpleHostileCompound
   - type: Vocal
     sounds:
-      Unsexed: MedievalBear
+      Unsexed: MedievalWolf
   - type: NocturnBadFood
     timesCanBeBiten: 3
   - type: LanguageSpeaker
