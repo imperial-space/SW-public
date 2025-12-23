@@ -944,7 +944,6 @@ namespace Content.Server.Database
             var value = 0;
             Logs.TryGetValue(log, out value);
             Logs[log] = value + 1;
-            return null;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
                 .Include(x => x.Profiles)
@@ -966,7 +965,6 @@ namespace Content.Server.Database
             var value = 0;
             Logs.TryGetValue(log, out value);
             Logs[log] = value + 1;
-            return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
                 .Include(x => x.Profiles)
@@ -1002,7 +1000,6 @@ namespace Content.Server.Database
             var value = 0;
             Logs.TryGetValue(log, out value);
             Logs[log] = value + 1;
-            return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
                 .Include(x => x.Profiles)
