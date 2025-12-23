@@ -10,7 +10,7 @@
   blacklist:
     components:
     - BorgChassis
-    tags:
+    tags: # imperial medieval "animal tag"
     - Animal
   chatMessages: ["chat-emote-msg-sneeze"]
   chatTriggers:
@@ -28,7 +28,7 @@
   blacklist:
     tags:
     - SiliconEmotes
-    - Animal
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-cough"]
   chatTriggers:
     - cough
@@ -76,7 +76,7 @@
   blacklist:
     tags:
     - SiliconEmotes
-    - Animal
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-yawn"]
   chatTriggers:
     - yawn
