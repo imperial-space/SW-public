@@ -1,8 +1,8 @@
 ﻿<Document>
-  # Технические панели
-  У некоторых машин на станции, например [bold]шлюзов[/bold] или [bold]торговых автоматов[/bold], есть технические панели, [bold]контролирующие их работу[/bold].
+  # Wire Panels
+  Some station devices like airlocks, vending machines, and arcade consoles have wire panels, which control certain aspects of their functionality.
 
-  Вы можете [bold]открыть[bold] эти панели, воспользовавшись [bold]отвёрткой[/bold].
+  These panels can be opened using a screwdriver to access the wiring inside.
 
   <Box>
     <GuideEntityEmbed Entity="Wirecutter"/>
@@ -10,20 +10,20 @@
     <GuideEntityEmbed Entity="Multitool"/>
   </Box>
 
-  Используйте [bold]кусачки[/bold] и [bold]мультитул[/bold] при работе с проводами. Не забывайте носить [color=yellow]изолированные перчатки[/color], так как вас [bold]может ударить током без них[/bold].
+  From here, you can use wirecutters and a multitool to interact with the wiring. Note that interacting with the wiring often requires insulated gloves, as if the wire is live, you can get shocked.
 
   <Box>
     <GuideEntityEmbed Entity="ClothingHandsGlovesColorYellow"/>
   </Box>
 
-  Вы можете [bold]резать[/bold] и [bold]соединять провода[/bold] обратно с помощью [bold]кусачек[/bold] и подавать [bold]импульсы с помощью мультитула[/bold] (нажимая по [color=yellow]жёлтым квадратикам[/color]).
+  You can cut and mend wires using the wirecutters, and pulse wires using the multitool.
 
-  Надрез проводов чаще всего приводит к [bold]потере функционала[/bold] машины (например: надрезка провода питания).
-  Однако, он может привести и к [bold]появлению нового функционала[/bold]. Например: к [color=orange][bold]шокированию людей[/bold][/color], [bold]выпуску болтов[/bold] или [color=red][bold]взрыву[/bold][/color].
+  Cutting wires often completely disables or restores functionality to a device.
+  It may also trigger unintended functionality, like shocking people, dropping door bolts, or exploding.
 
-  Подача импульса может привести к [bold]большому числу эффектов[/bold], но чаще всего она или временно [bold]отключает[/bold], или [bold]включает[/bold] какую-либо функцию машины.
+  Pulsing wires can have a variety of effects, but oftentimes it either temporarily disables or enables functionality.
 
-  На надрезанные провода [bold]нельзя подать импульс[/bold]. Их сначала [bold]надо починить[/bold].
+  You can't pulse wires if the wire you're trying to pulse is cut. You have to mend the wire first.
 
 
 </Document>
