@@ -1218,6 +1218,24 @@
     deleteOnInteract: true
 
 - type: entity
+  name: MedievalSharpeningMachineCraft
+  description: MedievalSharpeningMachineCraft
+  id: MedievalSharpeningMachineCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stockade.rsi
+    state: icon
+  #- type: Damageable
+  #- type: Anchorable
+  - type: SpawnAfterInteract
+    prototype: MedievalSharpeningMachine
+    doAfter: 9
+    deleteOnInteract: true
+
+- type: entity
   name: MedievalSign1Craft
   description: MedievalSign1Craft
   id: MedievalSign1Craft

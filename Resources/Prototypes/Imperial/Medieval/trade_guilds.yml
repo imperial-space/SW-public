@@ -313,7 +313,7 @@
     cost: 100
     reputationForBuying: 1
   - productEntity: MedievalScrollsCrossbow
-    cost: 120
+    cost: 150
     reputationForBuying: 1
 
 - type: guildName
@@ -1510,6 +1510,9 @@
   - productEntity: MedievalLeatherWorkingPlaceCraft
     cost: 50
     reputationForBuying: 1.7
+  - productEntity: MedievalClothWorkingPlaceCraft
+    cost: 50
+    reputationForBuying: 1.7
   - productEntity: MedievalWoodWorkerPlaceCraft
     cost: 50
     reputationForBuying: 1.7
@@ -1517,7 +1520,7 @@
     cost: 50
     reputationForBuying: 1.7
   - productEntity: MedievalWizardBlacksmithCraft
-    cost: 75
+    cost: 200
     reputationForBuying: 1.7
   - productEntity: MedievalWoodenFloorCraft
     cost: 10
@@ -1608,6 +1611,9 @@
     reputationForBuying: 1.7
   - productEntity: SmithWorkplaceCraft
     cost: 50
+    reputationForBuying: 1.7
+  - productEntity: MedievalSharpeningMachineCraft
+    cost: 220
     reputationForBuying: 1.7
   - productEntity: MedievalCatapultCraft
     cost: 500

@@ -83,6 +83,12 @@
     MedievalClothingBackpackSatchelLeather2: [MedievalClothingBackpackSatchelLeatherRoyal]
     MedievalClothingBackpackSatchelLeather3: [MedievalClothingBackpackSatchelLeatherRoyal]
     Bible: [RoyalBible]
+    MedievalClothingTreasurer: [MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth70]
+    MedievalClothingHeadTreasurer: [MedievalClothingHeadRoyalHoop]
+    MedievalClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
+    ClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
+    MedievalShoesSapogi: [MedievalClothingRoyalBoots]
+
 
 - type: customization
   id: game123456
