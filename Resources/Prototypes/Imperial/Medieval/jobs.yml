@@ -4767,6 +4767,7 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth66
     pocket1: MedievalHammerBlacksmith
+    pocket2: MedievalRevent50
     #pocket2: MedievalCommsCrystallLeg
     #neck: MedievalClothingNeckCloakClanEagle
     gloves: MedievalGlovesBlacksmith
@@ -4826,6 +4827,7 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
     pocket1: MedievalHammerBlacksmith
+    pocket2: MedievalRevent50
     #pocket2: MedievalCommsCrystallIns
     #neck: MedievalClothingNeckCloakClanFox
     id: MedievalKeyRebelBlack
