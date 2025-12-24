@@ -16,22 +16,32 @@ namespace Content.Client.Imperial.Medieval.Flavors
     {
         public const string FallbackFlavorImagePath = "/Textures/Imperial/Medieval/Flavors/flavors.rsi";
         public const string FallbackFlavorImageState = "black";
+        public const string FlavorImagesFolderName = "Spellward/FlavorImages";
         [Dependency] private readonly IClientNetManager _netManager = default!;
         [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IResourceCache _resources = default!;
         [Dependency] private readonly IDependencyCollection _collection = default!;
+        [Dependency] private readonly ILogManager _log = default!;
+        private ISawmill _sawmill = default!;
         private SpriteSystem _sprite = default!;
         public event Action? OnServerDataLoaded;
         public Dictionary<int, byte[]> Images { get; private set; } = new();
 
         public void Initialize()
         {
+            _sawmill = _log.GetSawmill("client_flavor_manager");
             _netManager.RegisterNetMessage<FlavorImagesMsg>(ImagesReceived);
             _netManager.RegisterNetMessage<MsgUpdateFlavorImage>();
             _netManager.RegisterNetMessage<UpdateFlavorCacheMsg>(CacheUpdate);
             _netManager.RegisterNetMessage<OpenFlavorWindowMsg>(OpenFlavorWindow);
 
             _baseClient.RunLevelChanged += BaseClientOnRunLevelChanged;
+        }
+        public void Shutdown()
+        {
+            var folder = new ResPath($"/{FlavorImagesFolderName}");
+            _resources.UserData.Delete(folder);
+            _resources.UserData.CreateDir(folder);
         }
         private void CacheUpdate(UpdateFlavorCacheMsg msg)
         {
@@ -66,9 +76,11 @@ namespace Content.Client.Imperial.Medieval.Flavors
         private void ImagesReceived(FlavorImagesMsg message)
         {
             Images = message.PlayerImages;
+            _sawmill.Info("Received Images");
             foreach (var (path, image) in message.CacheImages)
             {
                 SetImage(path, image);
+                _sawmill.Info($"index: {path} value: {image.Count()}");
             }
             OnServerDataLoaded?.Invoke();
         }
@@ -91,9 +103,9 @@ namespace Content.Client.Imperial.Medieval.Flavors
 
             return (result, false);
         }
-        public (Texture texture, bool fallback) GetImage(string path)
+        public (Texture texture, bool fallback) GetImage(string fileName)
         {
-            ResPath resPath = new($"/{path}.webp");
+            ResPath resPath = new(GetPathUsingFileName(fileName));
 
             byte[]? resultBytes = null;
             if (_resources.UserData.Exists(resPath))
@@ -101,27 +113,21 @@ namespace Content.Client.Imperial.Medieval.Flavors
 
             return GetImageFromByteArray(resultBytes);
         }
-        public void SetImage(string path, byte[] image)
+        public void SetImage(string fileName, byte[] image)
         {
-            _resources.UserData.WriteAllBytes(new($"/{path}.webp"), image);
+            _resources.UserData.WriteAllBytes(new(GetPathUsingFileName(fileName)), image);
+        }
+        public string GetPathUsingFileName(string fileName)
+        {
+            return $"/{FlavorImagesFolderName}/{fileName}.webp";
         }
         public void OpenFlavorWindow(OpenFlavorWindowMsg msg)
         {
-            if (msg.Path == null)
-                return;
-
-            if (!_resources.UserData.Exists(new($"/{msg.Path}.webp")))
-                return;
-
-            var window = new FlavorExamineWindow(msg.Description, msg.Path);
-            window.OpenCentered();
+            new FlavorExamineWindow(msg.Description, msg.Path).OpenCentered();
         }
         public override bool TryExamine(EntityUid user, Entity<DetailExaminableComponent> ent)
         {
-            if (EntityManager.TryGetComponent<FlavorImageComponent>(ent, out var imageComponent) && imageComponent.ImagePath != null && _resources.UserData.Exists(new($"/{imageComponent.ImagePath}.webp")))
-                return true;
-
-            return false;
+            return true;
         }
     }
 }

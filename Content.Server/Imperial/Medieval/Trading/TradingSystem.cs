@@ -26,6 +26,7 @@ public partial class TradingSystem : EntitySystem
     [Dependency] private readonly PopupSystem _popup = default!;
 
 
+    [ViewVariables]
     public List<Guild> Guilds = new();
 
     public override void Initialize()
@@ -58,13 +59,10 @@ public partial class TradingSystem : EntitySystem
         if (!component.OwnerOnly)
             return;
 
-        if (!_mind.TryGetMind(args.User, out var mind, out _))
-            return;
-
-        component.AccountOwner ??= mind;
+        component.AccountOwner ??= args.User;
         DebugTools.Assert(component.AccountOwner != null);
 
-        if (component.AccountOwner == mind)
+        if (component.AccountOwner == args.User)
             return;
 
         _popup.PopupEntity(Loc.GetString("store-not-account-owner", ("store", uid)), uid, args.User);

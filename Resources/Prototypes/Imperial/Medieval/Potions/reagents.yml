@@ -49,6 +49,9 @@
             Heat: -3
             Shock: -3
             Cold: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
     Poison:
       effects:
       - !type:Jitter
@@ -87,6 +90,9 @@
           types:
             Asphyxiation: -1
             Bloodloss: -0.5
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
     Poison:
       effects:
       - !type:Jitter
@@ -245,6 +251,9 @@
         damage:
           groups:
             Brute: -6
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
     Poison:
       effects:
       - !type:Jitter
@@ -491,6 +500,9 @@
             Slash: -2
           groups:
             Brute: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
     Poison:
       effects:
       - !type:Jitter
@@ -530,6 +542,9 @@
             Piercing: -2
           groups:
             Brute: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
     Poison:
       effects:
       - !type:Jitter
@@ -569,6 +584,9 @@
             Blunt: -2
           groups:
             Brute: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
     Poison:
       effects:
       - !type:Jitter
@@ -828,6 +846,9 @@
             Bloodloss: -0.5
       - !type:ModifyBleedAmount
         amount: -0.25
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
     Poison:
       effects:
       - !type:Jitter
@@ -897,6 +918,10 @@
             Toxin: -2
             Airloss: -2
             Brute: -2
+      - !type:ProgressPlague
+        progressAmount: -3
+        curePower: 3
+      - !type:GrantPlagueImmunity
     Poison:
       effects:
       - !type:Jitter
@@ -936,6 +961,9 @@
             Slash: -4
           groups:
             Brute: -6
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 2
     Poison:
       effects:
       - !type:Jitter
@@ -975,6 +1003,9 @@
             Piercing: -4
           groups:
             Brute: -6
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 2
     Poison:
       effects:
       - !type:Jitter
@@ -1014,6 +1045,9 @@
             Blunt: -4
           groups:
             Brute: -6
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 2
     Poison:
       effects:
       - !type:Jitter
@@ -1053,6 +1087,9 @@
             Heat: -3
             Shock: -3
             Cold: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 2
     Poison:
       effects:
       - !type:Jitter
@@ -1308,6 +1345,9 @@
             Bloodloss: -2
       - !type:ModifyBleedAmount
         amount: -1
+      - !type:ProgressPlague
+        progressAmount: -3
+        curePower: 3
     Poison:
       effects:
       - !type:Jitter
@@ -1434,6 +1474,9 @@
         conditions:
         - !type:ReagentThreshold
           min: 30
+      - !type:ProgressPlague
+        progressAmount: -8
+        curePower: 3
   reactiveEffects:
     Flammable:
       methods: [ Touch ]
@@ -1567,6 +1610,10 @@
             Toxin: -10
             Airloss: -10
             Brute: -10
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 4
+      - !type:GrantPlagueImmunity
     Poison:
       effects:
       - !type:Jitter

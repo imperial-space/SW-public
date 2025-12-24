@@ -102,9 +102,9 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 4
+        Blunt: 2
         Structural: 4
-        Caustic: 3
+        Caustic: 2
 
 - type: entity
   name: bugs swarm
@@ -181,7 +181,7 @@
     animation: WeaponArcPunch
     damage:
       types:
-        Piercing: 1.5
+        Piercing: 1
   - type: MedievalPlagueInfectOnHit
     chance: 0.1
   - type: NpcFactionMember

@@ -205,6 +205,11 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
     private void OnWerewolfHowl(EntityUid uid, WerewolfComponent comp, WerewolfHowlActionEvent args)
     {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+
         _status.TryAddStatusEffect<WerewolfRegenComponent>(uid, "MedievalWerewolfRegen", TimeSpan.FromSeconds(20), true);
 
         _chat.TryEmoteWithChat(uid, "Howl", ChatTransmitRange.Normal, true);
@@ -218,6 +223,7 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (args.Handled)
             return;
 
+        args.Handled = true;
         _audio.PlayGlobal(args.Sound, uid);
         comp.InfectOn = !comp.InfectOn;
         _actions.SetToggled(comp.InfectAction, comp.InfectOn);
@@ -225,34 +231,28 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
     private void OnWerewolfHit(EntityUid uid, WerewolfComponent comp, MeleeHitEvent args)
     {
-        if (!comp.InfectOn)
-            return;
-
         if (_inner.TryGetInnerWeapon(uid, out var _, out var id) && id == "tearing_weapon")
         {
             _inner.SetWeapon(uid, "");
             _actions.SetToggled(comp.Actions["WerewolfTearingAction"], false);
         }
 
-        if (!comp.InfectOn)
-            return;
-
-        comp.InfectOn = false;
-        _actions.SetToggled(comp.InfectAction, comp.InfectOn);
-
-        foreach (var item in args.HitEntities)
+        if (comp.InfectOn)
         {
-            if (!HasComp<HumanoidAppearanceComponent>(item))
-                continue;
+            foreach (var item in args.HitEntities)
+            {
+                if (!HasComp<HumanoidAppearanceComponent>(item))
+                    continue;
 
-            if (!_mobState.IsCritical(item))
-                continue;
+                if (!_mobState.IsCritical(item))
+                    continue;
 
-            _blood.TryModifyBleedAmount(item, -10);
-            _jitter.DoJitter(item, TimeSpan.FromSeconds(3), true);
-            EnsureComp<LycantropyComponent>(item);
-            var infect = EnsureComp<LycantropyInfectedComponent>(item);
-            infect.Werewolf = uid;
+                _blood.TryModifyBleedAmount(item, -10);
+                _jitter.DoJitter(item, TimeSpan.FromSeconds(3), true);
+                EnsureComp<LycantropyComponent>(item);
+                var infect = EnsureComp<LycantropyInfectedComponent>(item);
+                infect.Werewolf = uid;
+            }
         }
     }
 
@@ -277,6 +277,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (args.Handled)
             return;
 
+        args.Handled = true;
+
         _audio.PlayPvs(args.Sound, uid);
 
         foreach (var item in _lookup.GetEntitiesInRange<WerewolfComponent>(Transform(uid).Coordinates, 5.5f))
@@ -292,6 +294,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     {
         if (args.Handled)
             return;
+
+        args.Handled = true;
 
         var damage = new DamageSpecifier()
         {
@@ -314,6 +318,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (args.Handled)
             return;
 
+        args.Handled = true;
+
         _status.TryAddStatusEffect(uid, args.Key, TimeSpan.FromSeconds(args.Time), args.Refresh, args.Component);
 
         if (args.Global)
@@ -326,6 +332,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     {
         if (args.Handled)
             return;
+
+        args.Handled = true;
 
         if (_inner.TryGetInnerWeapon(uid, out var _, out var id) && id == "tearing_weapon")
         {
@@ -347,6 +355,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         if (args.Handled || !TryComp<MedievalDashComponent>(uid, out var dash))
             return;
 
+        args.Handled = true;
+
         EnsureComp<WerewolfShadowDashComponent>(uid);
     }
 
@@ -354,6 +364,8 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
     {
         if (args.Handled)
             return;
+
+        args.Handled = true;
 
         _appearance.SetData(uid, WerewolfBloodFeelVisuals.Active, !HasComp<WerewolfBloodFeelComponent>(uid));
 
@@ -434,9 +446,16 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         _random.Shuffle(ents);
 
         var count = GetWerewolfTransformCount(ents.Count());
-        for (var i = 0; i < count; i++)
+        for (var i = 0; i < ents.Count(); i++)
         {
             var entity = ents[i];
+
+            if (i >= count && entity.Comp.NightsSpent < 2)
+            {
+                entity.Comp.NightsSpent++;
+                continue;
+            }
+
             Morph(entity.Owner, entity.Comp);
         }
     }
@@ -446,12 +465,9 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         var ents = EntityManager.AllEntities<WerewolfComponent>();
         foreach (var item in ents)
         {
-            var ent = _polymorph.Revert(item.Owner);
-            if (TryComp<LycantropyComponent>(ent, out var comp) && _mobState.IsAlive(ent.Value))
-            {
-                comp.Points += PointsPerNight;
-                Dirty(ent.Value, comp);
-            }
+            item.Comp.RevertTime = _timing.CurTime + TimeSpan.FromSeconds(30);
+            item.Comp.NextRevertPopup = _timing.CurTime;
+            _jitter.DoJitter(item.Owner, TimeSpan.FromSeconds(30), true);
         }
     }
 
@@ -521,6 +537,25 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
             {
                 if (item.Value <= _timing.CurTime)
                     comp.Critted.Remove(item.Key);
+            }
+
+            if (comp.RevertTime.HasValue && comp.RevertTime <= _timing.CurTime)
+            {
+                comp.RevertTime = null;
+                var ent = _polymorph.Revert(uid);
+                if (TryComp<LycantropyComponent>(ent, out var lycantropy) && _mobState.IsAlive(ent.Value))
+                {
+                    lycantropy.Points += PointsPerNight;
+                    Dirty(ent.Value, lycantropy);
+                }
+
+                continue;
+            }
+
+            if (comp.NextRevertPopup.HasValue && comp.NextRevertPopup <= _timing.CurTime)
+            {
+                comp.NextRevertPopup = _timing.CurTime + TimeSpan.FromSeconds(10);
+                _popup.PopupEntity(Loc.GetString("popup-werewolf-revert-soon"), uid, uid);
             }
         }
 

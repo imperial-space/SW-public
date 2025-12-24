@@ -187,6 +187,7 @@
 #    - MedievalQuestLegion
 #    - MedievalPlants
 #    - MedievalTransport
+#    - MedievalBoss
 #    currencyWhitelist:
 #    - Revent
 #    balance:
@@ -217,6 +218,7 @@
 #    - MedievalQuestIns
 #    - MedievalPlants
 #    - MedievalTransport
+#    - MedievalBoss
 #    currencyWhitelist:
 #    - Revent
 #    balance:
@@ -281,6 +283,43 @@
   id: MedievalClothing
   name: medieval-category-clothing
   priority: 5
+
+- type: storeCategory
+  id: MedievalBoss
+  name: medieval-category-boss
+  priority: 10
+
+- type: listing
+  id: MdvShopBossIceDragonTablet
+  productEntity: MedievalIceDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossFireDragonTablet
+  productEntity: MedievalFireDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossAcidDragonTablet
+  productEntity: MedievalAcidDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
+
+- type: listing
+  id: MdvShopBossThunderDragonTablet
+  productEntity: MedievalThunderDragonTablet
+  cost:
+    Revent: 800
+  categories:
+  - MedievalBoss
 
 - type: listing
   id: MdvShopFoodBreadPlain
@@ -529,8 +568,52 @@
   - MedievalBuild
 
 - type: listing
+  id: MdvShopMedievalWizardBlacksmithCraft
+  productEntity: MedievalWizardBlacksmithCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 100
+  cost:
+    Revent: 200
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalMeltingPlaceCraft
+  productEntity: MedievalMeltingPlaceCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+  
+- type: listing
+  id: MdvShopMedievalalchem_dispenserCraft
+  productEntity: Medievalalchem_dispenserCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
   id: MdvShopMedievalLeatherWorkingPlaceCraft
   productEntity: MedievalLeatherWorkingPlaceCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalClothWorkingPlaceCraft
+  productEntity: MedievalClothWorkingPlaceCraft
   discountCategory: medievalDiscounts
   discountDownTo:
     Revent: 35
@@ -811,6 +894,14 @@
   productEntity: SmithWorkplaceCraft
   cost:
     Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSharpeningMachineCraft
+  productEntity: MedievalSharpeningMachineCraft
+  cost:
+    Revent: 220
   categories:
   - MedievalBuild
 
@@ -2318,7 +2409,7 @@
   id: MdvShopCreationsBook
   productEntity: CreationsBook
   cost:
-    Revent: 15
+    Revent: 10
   categories:
   - MedievalMisc
 
@@ -2365,6 +2456,17 @@
 - type: listing
   id: MdvShopMedievalRepairStone
   productEntity: MedievalRepairStone
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 20
+  cost:
+    Revent: 30
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
   discountCategory: medievalDiscounts
   discountDownTo:
     Revent: 12
@@ -2459,6 +2561,22 @@
   productEntity: MedievalWineskin
   cost:
     Revent: 35
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalGoldCup
+  productEntity: MedievalGoldCup
+  cost:
+    Revent: 80
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopMedievalSilverCup
+  productEntity: MedievalSilverCup
+  cost:
+    Revent: 50
   categories:
   - MedievalMisc
 
@@ -2841,6 +2959,61 @@
     Revent: 260
   cost:
     Revent: 300
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsHalberd
+  productEntity: MedievalScrollsHalberd
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 120
+  cost:
+    Revent: 120
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsFalshion
+  productEntity: MedievalScrollsFalshion
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 100
+  cost:
+    Revent: 100
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsDagger
+  productEntity: MedievalScrollsDagger
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 100
+  cost:
+    Revent: 100
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsBow
+  productEntity: MedievalScrollsBow
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 100
+  cost:
+    Revent: 100
+  categories:
+  - MedievalMagic
+
+- type: listing
+  id: MdvShopMedievalScrollsCrossbow
+  productEntity: MedievalScrollsCrossbow
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 150
+  cost:
+    Revent: 150
   categories:
   - MedievalMagic
 

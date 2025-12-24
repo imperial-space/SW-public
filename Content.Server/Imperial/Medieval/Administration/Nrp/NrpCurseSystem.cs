@@ -51,7 +51,7 @@ public sealed partial class NrpCurseSystem : EntitySystem
             var located = await _locator.LookupIdAsync(id);
 
             if (located == null)
-                return;
+                continue;
 
             Ban(id, located.Username, curse.Sender, curse.Text, curse.BanMinutes);
             toRemove.Add(id);

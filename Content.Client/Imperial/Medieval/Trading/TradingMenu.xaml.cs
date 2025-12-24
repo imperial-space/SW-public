@@ -136,12 +136,12 @@ public sealed partial class TradingMenu : DefaultWindow
         if (User == null)
             return;
 
-        var reputation = guild?.GetReputation(User.Value) ?? 0;
-        var reputationRounded = MathF.Round(reputation, 1);
-        ReputationLabel.Text = Loc.GetString("trading-ui-reputation-text", ("rep", reputationRounded.ToString("0.0")));
-
         if (guild == null)
             return;
+
+        var reputation = guild.GetReputation(User.Value);
+        var reputationRounded = MathF.Round(reputation, 1);
+        ReputationLabel.Text = Loc.GetString("trading-ui-reputation-text", ("rep", reputationRounded.ToString("0.0")));
 
         var discount = TradingHelpers.DiscountWithReputation(guild, User.Value) * 100f;
         ReputationDiscoundLabel.Text = discount >= 1

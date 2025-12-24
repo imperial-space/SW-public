@@ -20,6 +20,7 @@ public sealed partial class TradingComponent : Component
     [DataField]
     public ProtoId<CurrencyPrototype> Currency;
 
+    [DataField]
     public EntityUid? AccountOwner = null;
 
     [DataField]

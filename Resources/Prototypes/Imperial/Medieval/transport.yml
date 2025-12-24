@@ -224,7 +224,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.49
+          radius: 0.6
         density: 30
         mask:
         - MobMask
@@ -323,9 +323,9 @@
     buckleOffset: "-0.00, -0.02"
     buckleDoafterTime: 5
     maxBuckleDistance: 1
-    buckleSound: 
+    buckleSound:
       path: /Audio/Imperial/Medieval/Effects/on_horse.ogg
-    unbuckleSound: 
+    unbuckleSound:
       path: /Audio/Imperial/Medieval/Effects/on_horse.ogg
   - type: EmitSoundOnSpawn
     sound:
@@ -504,17 +504,17 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      160: Critical
+      90: Critical
       200: Dead
   - type: RideableSprint
-    accelerationTime: 5
-    maxSpeedModifier: 2.2
+    accelerationTime: 10
+    maxSpeedModifier: 2
     riderDamageOnCollide:
       types:
-        Blunt: 22
+        Blunt: 45
     damageOnCollide:
       types:
-        Blunt: 6
+        Blunt: 4
 
 - type: entity
   parent: MedievalHorseTransport
@@ -531,8 +531,8 @@
   - type: MovementSpeedModifier
     acceleration: 1
     friction: 1
-    baseWalkSpeed: 3.5
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 3.2
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -540,7 +540,7 @@
       570: Dead
   - type: RideableSprint
     accelerationTime: 2.5
-    maxSpeedModifier: 2.4
+    maxSpeedModifier: 2
     riderDamageOnCollide:
       types:
         Blunt: 4

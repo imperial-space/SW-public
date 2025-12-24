@@ -74,6 +74,7 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
     private int _strapHealResistance = 0;
     private float _healItemMod = 1f;
 
+    private const int IncubationDuration = 25;
     private const float PointsUpdateInterval = 600f;
     private TimeSpan _nextPointsUpdate = TimeSpan.Zero;
 
@@ -95,11 +96,11 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
         _strapHealResistance = 0;
         _healItemMod = 1f;
         _spreaders.Clear();
-        _contactSpreadMod = 0f;
+        _contactSpreadChance = 0f;
         _blockersEfficiency = 1f;
-        _minSmellLevel = 50f;
+        _minSmellLevel = 22f;
         _allergyRandom = new();
-        CurrentCure = "MedievalPlagueCure4";
+        CurrentCureResistance = 0;
 
         _bloodlettingProbabilities = new()
         {
@@ -198,9 +199,9 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
             immune.StartTime = _timing.CurTime;
         }
 
-        else if (comp.Incubation != comp.Progression < 50)
+        else if (comp.Incubation != comp.Progression < IncubationDuration)
         {
-            comp.Incubation = comp.Progression < 50;
+            comp.Incubation = comp.Progression < IncubationDuration;
             Dirty(uid, comp);
 
             if (comp.Incubation)
@@ -410,9 +411,9 @@ public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
         immune.HardImmunity = true;
     }
 
-    public override void TryProgressInfection(EntityUid uid, float amount, string? reagent)
+    public override void TryProgressInfection(EntityUid uid, float amount, string? reagent, int? curePower)
     {
-        if (reagent != null && reagent != CurrentCure)
+        if (reagent != null && curePower <= CurrentCureResistance)
             return;
 
         TryProgressInfection(uid, amount);

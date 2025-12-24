@@ -7,6 +7,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
+using Content.Shared.SSDFree.Components;
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
@@ -69,7 +70,6 @@ public sealed class DevourSystem : EntitySystem
         {
             switch (targetState.CurrentState)
             {
-                case MobState.Critical:
                 case MobState.Dead:
 
                     _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, ent.Owner, ent.Comp.DevourTime, new DevourDoAfterEvent(), ent.Owner, target: target, used: ent.Owner)
@@ -77,6 +77,7 @@ public sealed class DevourSystem : EntitySystem
                         BreakOnMove = true,
                     });
                     break;
+                case MobState.Critical: // imperial medieval dragon
                 case MobState.Invalid:
                 case MobState.Alive:
                 default:
@@ -102,7 +103,8 @@ public sealed class DevourSystem : EntitySystem
     {
         if (args.Handled || args.Cancelled)
             return;
-
+        if (TryComp<SSDFreeComponent>(args.Args.Target, out var ssdfree)) // imperial medieval dragon
+            ssdfree.DragonEaten = true; // imperial medieval dragon
         var ichorInjection = new Solution(ent.Comp.Chemical, ent.Comp.HealRate);
 
         // Grant ichor if the devoured thing meets the dragon's food preference

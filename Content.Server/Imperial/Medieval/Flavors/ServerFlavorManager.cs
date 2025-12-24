@@ -43,10 +43,17 @@ namespace Content.Server.Imperial.Medieval.Flavors
 
             using (var stream = new MemoryStream(msg.Image))
             {
-                using (var img = Image.Load(stream))
+                try
                 {
-                    if (!ImageAllowed(img.Width, img.Height))
-                        return;
+                    using (var img = Image.Load(stream))
+                    {
+                        if (!ImageAllowed(img.Width, img.Height))
+                            return;
+                    }
+                }
+                catch
+                {
+                    return;
                 }
             }
             var prefs = _prefs.GetPreferencesOrNull(msg.MsgChannel.UserId);
@@ -91,13 +98,17 @@ namespace Content.Server.Imperial.Medieval.Flavors
         }
         public override bool TryExamine(EntityUid user, Entity<DetailExaminableComponent> ent)
         {
-            if (!EntityManager.TryGetComponent<FlavorImageComponent>(ent, out var imageComponent) || imageComponent.ImagePath == null)
-                return false;
+            if (!EntityManager.TryGetComponent<FlavorImageComponent>(ent, out var imageComponent))
+                return true;
 
             if (!_players.TryGetSessionByEntity(user, out var session))
-                return false;
+                return true;
 
-            _netManager.ServerSendMessage(new OpenFlavorWindowMsg() { Description = ent.Comp.Content, Path = imageComponent.ImagePath }, session.Channel);
+            var path = string.Empty;
+            if (imageComponent.ImagePath != null)
+                path = imageComponent.ImagePath;
+
+            _netManager.ServerSendMessage(new OpenFlavorWindowMsg() { Description = ent.Comp.Content, Path = path }, session.Channel);
             return true;
         }
     }

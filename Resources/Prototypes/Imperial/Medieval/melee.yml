@@ -1063,7 +1063,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 10
+      value: 7
     - type: Sprite
       sprite: Imperial/Medieval/Shields/woodknight.rsi
       state: shield
@@ -1097,20 +1097,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 110
+            damage: 220
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 28
-    - type: HeldSpeedModifier
-      walkModifier: 0.75
-      sprintModifier: 0.75
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -1157,7 +1153,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 7
+      value: 5
     - type: Sprite
       sprite: Imperial/Medieval/Shields/wooden.rsi
       state: shield
@@ -1191,20 +1187,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 60
+            damage: 120
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 15
-    - type: HeldSpeedModifier
-      walkModifier: 0.9
-      sprintModifier: 0.9
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -1213,7 +1205,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 4
+      value: 3
     - type: Sprite
       sprite: Imperial/Medieval/Shields/buckler.rsi
       state: shield
@@ -1247,20 +1239,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 45
+            damage: 90
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 11
-    - type: HeldSpeedModifier
-      walkModifier: 0.97
-      sprintModifier: 0.97
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -1281,7 +1269,7 @@
   description: Iron shield.
   components:
     - type: RDWeight
-      value: 14
+      value: 10
     - type: EmitSoundOnLand
       sound:
         collection: MedievalIronDrop
@@ -1315,7 +1303,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 150
+            damage: 300
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -1323,13 +1311,9 @@
               sound:
                 path: /Audio/Effects/metalbreak.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 40
-    - type: HeldSpeedModifier
-      walkModifier: 0.9
-      sprintModifier: 0.9
-      mirrorClothingModifier: false
     - type: Meltable
       resourceCount: 7
 
@@ -1340,7 +1324,7 @@
   description: Iron shield.
   components:
     - type: RDWeight
-      value: 6
+      value: 4
     - type: EmitSoundOnLand
       sound:
         collection: MedievalIronDrop
@@ -1380,7 +1364,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 78
+            damage: 156
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -1388,13 +1372,9 @@
               sound:
                 path: /Audio/Effects/metalbreak.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 20
-    - type: HeldSpeedModifier
-      walkModifier: 0.95
-      sprintModifier: 0.95
-      mirrorClothingModifier: false
     - type: Meltable
       resourceCount: 7
 
@@ -2201,6 +2181,78 @@
     sprintModifier: 0.85
 
 - type: entity
+  name: iron halberd
+  parent: MedievalIronHalberdT3
+  id: MedievalIronHalberdT3Deimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronHalberdT3Steel
+  id: MedievalIronHalberdT3SteelDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronSekirSteel
+  id: MedievalIronSekirSteelDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronSekir
+  id: MedievalIronSekirDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
   name: iron zweihander
   parent: [ BaseItem, BaseTwoHandedCharged ]
   id: MedievalIronZweihander
@@ -2280,6 +2332,7 @@
     sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/zweihander.rsi
     state: icon
@@ -2362,6 +2415,7 @@
     sprite: Imperial/Medieval/Melee/zweihander_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/zweihander.rsi
     state: icon
@@ -2446,6 +2500,7 @@
     sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/claymore.rsi
     state: icon
@@ -2528,9 +2583,170 @@
     sprite: Imperial/Medieval/Melee/claymore_inhand.rsi
     slots:
     - back
+    - suitStorage
   - type: Sprite
     sprite: Imperial/Medieval/Melee/claymore.rsi
     state: icon
+
+- type: entity
+  name: claymore
+  parent: MedievalIronClaymore
+  id: MedievalIronClaymoreKosmos
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+
+- type: entity
+  name: steel claymore
+  parent: MedievalIronClaymoreSteel
+  id: MedievalIronClaymoreSteelKosmos
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/kosmos_claymore_inhand.rsi
+
+- type: entity
+  name: claymore
+  parent: MedievalIronClaymore
+  id: MedievalIronClaymoreAbibi
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+
+- type: entity
+  name: steel claymore
+  parent: MedievalIronClaymoreSteel
+  id: MedievalIronClaymoreSteelAbibi
+  description: A medieval claymore.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+
+- type: entity
+  name: steel zweihander
+  parent: MedievalIronZweihanderSteel
+  id: MedievalIronZweihanderSteelAbibi
+  description: A medieval zweihander.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+
+- type: entity
+  name: iron zweihander
+  parent: MedievalIronZweihander
+  id: MedievalIronZweihanderAbibi
+  description: A medieval zweihander.
+  components:
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+    slots:
+    - back
+    - suitStorage
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/abibi_claymore.rsi
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerT3
+  id: MedievalDaggerT3Kosmos
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+    size: Small
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+
+- type: entity
+  name: dagger
+  parent:  MedievalDaggerT3Steel
+  id: MedievalDaggerT3SteelKosmos
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
+    size: Small
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/kosmos_dagger.rsi
 
 - type: entity
   name: falshion
@@ -3919,6 +4135,34 @@
     sprite: Imperial/Medieval/Melee/gs_sword.rsi
 
 - type: entity
+  name: short sword
+  parent: MedievalShortSword
+  id: MedievalShortSwordArtur
+  description: MedievalShortSwordArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+
+- type: entity
+  name: short sword
+  parent: MedievalShortSwordSteel
+  id: MedievalShortSwordSteelArtur
+  description: MedievalShortSwordSteelArtur
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+    size: Small
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Melee/artur_sword.rsi
+
+- type: entity
   name: dagger
   parent: MedievalShortSword
   id: MedievalShortSwordGold
@@ -4468,7 +4712,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 3
+      value: 2
     - type: Sprite
       sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
       state: shield
@@ -4502,20 +4746,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 35
+            damage: 70
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 10
-    - type: HeldSpeedModifier
-      walkModifier: 0.98
-      sprintModifier: 0.98
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -4913,3 +5153,24 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
+
+- type: entity
+  name: baseball bat
+  parent: BaseBallBat
+  id: BaseBallBatAlaraniel
+  description: A robust baseball bat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bat.rsi
+    state: icon
+
+- type: entity
+  name: medieval spear
+  parent: MedievalSpearT3
+  id: MedievalSpearT3Bib
+  description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/bib_spear.rsi
+    netsync: false
+    state: spear

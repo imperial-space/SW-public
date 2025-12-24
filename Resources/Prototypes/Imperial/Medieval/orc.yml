@@ -216,7 +216,7 @@
   sprites: MobOrcSprites
   markingLimits: MobHumanMarkingLimits
   dollPrototype: MobOrcDummy
-  skinColoration: TintedHues
+  skinColoration: OrcColors
 
 - type: speciesBaseSprites
   id: MobOrcSprites

@@ -19,16 +19,20 @@
             Orientation="Horizontal"
             SizeFlagsStretchRatio="1"
             VerticalExpand="True">
-            <RichTextLabel
-                Name="PointsCounter"
-                Margin="4,0"
-                HorizontalAlignment="Left" />
             <Button
                 Name="Recenter"
-                Margin="4 0"
-                HorizontalAlignment="Right"
+                Margin="4"
                 StyleClasses="ButtonSquare"
                 Text="Центрировать"/>
+            <RichTextLabel
+                Name="PointsCounter"
+                Margin="4 0" />
+            <TextureButton Name="Info" Scale="0.5 0.5"
+                           VerticalAlignment="Center"
+                           SetSize="32 32"
+                           Margin="4"
+                           TexturePath="/Textures/Interface/VerbIcons/information.svg.192dpi.png"
+                           MouseFilter="Stop"/>
         </BoxContainer>
         <PanelContainer
             Name="Panel"
