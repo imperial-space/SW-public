@@ -13,9 +13,8 @@
     state: 4
   - sprite: /Textures/Imperial/Medieval/Misc/trade_curse.rsi
     state: 5
-  name: Проклятие
-  description: Каждый торговец подписал контракт с дьяволом, чтобы получить доступ к торговой дыре, но в замен нужно регулярно посещать ее или пользоваться святой солью. Для использования святой солью возьмите ее в активную руку и кликните по себе ЛКМ.
-  minSeverity: 0
+  name: alerts-imperial-medieval-trade-curse-name
+  description: alerts-imperial-medieval-trade-curse-description
   maxSeverity: 5
 
 - type: alert
@@ -31,8 +30,8 @@
     state: 3
   - sprite: /Textures/Imperial/Medieval/Misc/bad_smell.rsi
     state: 4
-  name: Вонь
-  description: Чем выше уровень вони - тем больше возле вас будут летать мухи и тем больше вы будете вызывать осуждение у окружающих. Снизить уровень вони можно просто искупавшись в воде, но, аккуратно, не захотите глубоко! В воде можно утонуть. Обычная речная или морская вода не поможет вам отмыться до конца, посетите таверну.
+  name: alerts-imperial-medieval-bad-smell-name
+  description: alerts-imperial-medieval-bad-smell-description
   minSeverity: 0
   maxSeverity: 4
 
@@ -49,8 +48,8 @@
     state: 3
   - sprite: /Textures/Imperial/Medieval/Misc/need_sleep.rsi
     state: 4
-  name: Бодрость
-  description: Вам, как и всем, надо периодически спать. Если этого делать не будете - можете свалиться от усталости прямо посреди битвы.
+  name: alerts-imperial-medieval-vigor-name
+  description: alerts-imperial-medieval-vigor-description
   minSeverity: 0
   maxSeverity: 4
 
@@ -68,8 +67,7 @@
   - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
     state: 4
   - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
-    state: 5
-  name: Связь с культом
-  description: Культ истины провел над вами ритуал и теперь вы связанны с ним. Если вы будете поддерживать связь (периодически подходить к сосудам и бить себя ножом), то у вас будет слабая магическая регенерация. Если не будете, то вы получите немного урона и связь пропадет.
-  minSeverity: 0
+    state: 5  name: alerts-imperial-medieval-cult-curse-name
+
+  description: alerts-imperial-medieval-cult-curse-description
   maxSeverity: 5
