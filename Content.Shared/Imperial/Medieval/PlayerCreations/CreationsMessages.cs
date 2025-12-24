@@ -180,9 +180,10 @@ public sealed class CreationBook : IEquatable<CreationBook>
     public string Description { get; }
     public string Author { get; }
     public NetUserId SenderUserId { get; }
+    public string SenderUserName { get; }
     public DateTime CreationTime { get; }
 
-    public CreationBook(string text, string name, string description, string author, NetUserId senderUserId, DateTime creationTime)
+    public CreationBook(string text, string name, string description, string author, NetUserId senderUserId, DateTime creationTime, string senderUserName)
     {
         Text = text;
         Name = name;
@@ -190,6 +191,7 @@ public sealed class CreationBook : IEquatable<CreationBook>
         Author = author;
         SenderUserId = senderUserId;
         CreationTime = creationTime;
+        SenderUserName = senderUserName;
     }
 
     public override bool Equals(object? obj) => Equals(obj as CreationBook);
