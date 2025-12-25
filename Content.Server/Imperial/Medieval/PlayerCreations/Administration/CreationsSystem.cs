@@ -64,16 +64,26 @@ public sealed partial class CreationsSystem : EntitySystem
 
     }
 
-    private List<CreationBook> ToBookMessages(List<Book> dbBooks)
+    private async Task<List<CreationBook>> ToBookMessages(List<Book> dbBooks)
     {
-        return dbBooks.Select(p =>
-            new CreationBook(
+        var messages = new List<CreationBook>();
+
+        foreach (var p in dbBooks)
+        {
+            var name = await GetPlayerName((NetUserId)p.AuthorUserId);
+
+            messages.Add(new CreationBook(
                 p.Text,
                 p.Name,
                 p.Description,
                 p.Author,
                 (NetUserId)p.AuthorUserId,
-                p.CreationTime)).ToList();
+                p.CreationTime,
+                name
+                ));
+        }
+
+        return messages;
     }
 
     private bool ValidatePaintingInput(Color[] painting, string name, string desc)
@@ -202,12 +212,15 @@ public sealed partial class CreationsSystem : EntitySystem
         if (!ValidateBookInput(args.Text, args.Name, args.Description))
             return;
 
+        var authorName = await GetPlayerName(args.SenderPlayer);
+
         var book = new CreationBook(args.Text,
             args.Name,
             args.Description,
             args.Author,
             args.SenderPlayer,
-            DateTime.UtcNow
+            DateTime.UtcNow,
+            authorName
         );
 
         await AddIncomingBook(book);
@@ -218,13 +231,13 @@ public sealed partial class CreationsSystem : EntitySystem
         => await _db.GetBooks(false);
 
     public async Task<List<CreationBook>> GetIncomingCreationBooks()
-        => ToBookMessages(await GetIncomingBooks());
+        => await ToBookMessages(await GetIncomingBooks());
 
     public async Task<List<Book>> GetAcceptedBooks()
         => await _db.GetBooks(true);
 
     public async Task<List<CreationBook>> GetAcceptedCreationBooks()
-        => ToBookMessages(await GetAcceptedBooks());
+        => await ToBookMessages(await GetAcceptedBooks());
 
 
     public async Task<bool> AddIncomingBook(CreationBook book)
