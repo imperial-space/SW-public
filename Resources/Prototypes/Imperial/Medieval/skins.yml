@@ -242,6 +242,8 @@
   id: fichty
   holder: 9a0a943e-7a19-4795-8fad-7e06d8e99797
   map:
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakFichty]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakFichty]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth72]
     Log: [MedievalFichtyGlasses]
 
