@@ -76,21 +76,23 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
     {
         if (uid == _player.LocalEntity)// Юид это не мы
              return;
-        if (_identity.IsIdentityMasked(uid))
-            return;
 
         if (!TryComp<MedievalFactionMemberComponent>(_player.LocalEntity, out var playerFaction)) // а он вообще из фракции?
             return;
 
         if (comp.Faction != playerFaction.Faction)
         {
-            if (IsRelationEnemy(playerFaction.Faction, comp.Faction) && comp.AttackedFactions.Contains(playerFaction.Faction))// если он из вражеской фракции и если он бил нашу фраку
+            if (IsRelationEnemy(playerFaction.Faction, comp.Faction))// если он из вражеской фракции и если он бил нашу фраку
             {
+                if (_identity.IsIdentityMasked(uid) && !comp.AttackedFactions.Contains(playerFaction.Faction))
+                    return;
                 args.StatusIcons.Add(_proto.Index(_enemyIcon));
             }
         }
         else
         {
+            if (_identity.IsIdentityMasked(uid))
+                return;
             var iconId = comp.MenuAccess == FactionMenuAccess.Full ? _headIcon : _friendIcon;
             args.StatusIcons.Add(_proto.Index(iconId));
         }
