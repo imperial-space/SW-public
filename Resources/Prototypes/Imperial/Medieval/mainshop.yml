@@ -572,9 +572,9 @@
   productEntity: MedievalWizardBlacksmithCraft
   discountCategory: medievalDiscounts
   discountDownTo:
-    Revent: 50
+    Revent: 100
   cost:
-    Revent: 75
+    Revent: 200
   categories:
   - MedievalBuild
 
@@ -603,6 +603,17 @@
 - type: listing
   id: MdvShopMedievalLeatherWorkingPlaceCraft
   productEntity: MedievalLeatherWorkingPlaceCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 35
+  cost:
+    Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalClothWorkingPlaceCraft
+  productEntity: MedievalClothWorkingPlaceCraft
   discountCategory: medievalDiscounts
   discountDownTo:
     Revent: 35
@@ -3000,9 +3011,9 @@
   productEntity: MedievalScrollsCrossbow
   discountCategory: medievalDiscounts
   discountDownTo:
-    Revent: 120
+    Revent: 150
   cost:
-    Revent: 120
+    Revent: 150
   categories:
   - MedievalMagic
 
