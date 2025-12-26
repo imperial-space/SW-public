@@ -62,7 +62,7 @@
                                 Name="BuyButton"
                                 Access="Public"
                                 SetSize="100 40">
-                                <Label Text="Купить" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                <Label Text="{Loc 'imperial-hm-ui-buy'}" HorizontalAlignment="Center" VerticalAlignment="Center" />
                             </fb:FancyButton>
                             <RichTextLabel
                                 Name="Cost"

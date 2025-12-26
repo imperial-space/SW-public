@@ -57,19 +57,19 @@ public sealed partial class MagicScrollWindow : DefaultWindow
     {
         if (_currentState == null) return;
 
-        PowerLabel.Text = $"Сила свитка: {_currentState.ScrollPower:F1}";
+        PowerLabel.Text = Loc.GetString("imperial-hm-magicscroll-stronk", ("amount", $"{_currentState.ScrollPower:F1}"));
 
         var decodedCount = _currentState.DecodedRunes.Count;
         var totalCount = _currentState.EncryptedRunes.Count;
 
         if (decodedCount == totalCount)
         {
-            StatusLabel.Text = "Статус: Полностью расшифрован";
+            StatusLabel.Text = Loc.GetString("imperial-hm-magicscroll-decrypted");
             StatusLabel.Modulate = Color.Green;
         }
         else
         {
-            StatusLabel.Text = $"Статус: Расшифровано {decodedCount}/{totalCount} рун";
+            StatusLabel.Text = Loc.GetString("imperial-hm-magiscroll-minmax", ("min", $"{decodedCount}"), ("max", $"{totalCount}"));
             StatusLabel.Modulate = Color.White;
         }
     }
@@ -101,7 +101,7 @@ public sealed partial class MagicScrollWindow : DefaultWindow
             else
             {
                 label.Modulate = Color.Gray;
-                label.ToolTip = "Не расшифровано";
+                label.ToolTip = Loc.GetString("imperial-hm-magicscroll-notdecrypted");
             }
 
             EncryptedRunesGrid.AddChild(label);
@@ -140,11 +140,11 @@ public sealed partial class MagicScrollWindow : DefaultWindow
 
                 if (isMinesweeperOpen)
                 {
-                    button.ToolTip += " (сапёр уже открыт)";
+                    button.ToolTip += Loc.GetString("imperial-hm-magiscroll-alropen");
                 }
                 else if (!canUse)
                 {
-                    button.ToolTip += " (уже использована или нет подходящих рун для расшифровки)";
+                    button.ToolTip += Loc.GetString("imperial-hm-magiscroll-oopsie");
                 }
             }
 

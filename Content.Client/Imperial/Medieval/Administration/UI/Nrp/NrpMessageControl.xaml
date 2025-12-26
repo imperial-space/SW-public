@@ -9,8 +9,8 @@
                     <cc:CommandButton Margin="2" Name="AHelp" Text="{Loc nrp-panel-button-ahelp}"></cc:CommandButton>
                 </BoxContainer>
                 <BoxContainer Name="Right" HorizontalAlignment="Right">
-                    <Button Margin="2" Name="ResolveRP" Text="{Loc nrp-panel-button-action-no}"></Button>
-                    <Button Margin="2" StyleClasses="Caution" Name="ResolveNRP" Text="{Loc nrp-panel-button-action-yes}"></Button>
+                    <Button Margin="2" Name="ResolveRP" Text="{Loc 'nrp-panel-button-action-no'}"></Button>
+                    <Button Margin="2" StyleClasses="Caution" Name="ResolveNRP" Text="{Loc 'nrp-panel-button-action-yes'}"></Button>
                 </BoxContainer>
             </BoxContainer>
         </BoxContainer>

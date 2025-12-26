@@ -110,7 +110,7 @@ public sealed partial class MedievalFactionsSystem
             if (GetFactionMemberById(item.Key, out var uid))
             {
                 _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/faction_group_assigned.ogg"), uid.Value);
-                _popup.PopupEntity(Loc.GetString("medieval-hm-friends-newtasksassigned"), uid.Value, uid.Value, Shared.Popups.PopupType.Medium);
+                _popup.PopupEntity(Loc.GetString("medieval-hm-factions-newtask"), uid.Value, uid.Value, Shared.Popups.PopupType.Medium);
             }
         }
 
@@ -135,7 +135,7 @@ public sealed partial class MedievalFactionsSystem
             comp.MenuAccess = args.Group == FactionMemberGroup.None ? FactionMenuAccess.None : (data.Leader ? FactionMenuAccess.Group : FactionMenuAccess.None);
 
         _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/faction_group_assigned.ogg"), uid.Value);
-        _popup.PopupEntity(Loc.GetString("medieval-hm-friends-newgroupassigned"), uid.Value, uid.Value, Shared.Popups.PopupType.Medium);
+        _popup.PopupEntity(Loc.GetString("medieval-hm-factions-newgroup"), uid.Value, uid.Value, Shared.Popups.PopupType.Medium);
 
         Dirty(uid.Value, comp);
         RefreshFactionMenu(comp.Faction);
@@ -165,7 +165,7 @@ public sealed partial class MedievalFactionsSystem
                 AddWanted(uid.Value, job.ID, headData.Name, args.Details, comp.Faction);
         }
 
-        SetJob(uid.Value, "Voluntary", Loc.GetString("medieval-hm-friends-nth"));
+        SetJob(uid.Value, "Voluntary", Loc.GetString("medieval-hm-factions-nope"));
     }
 
     private void OnSetLeader(SetGroupLeaderMessage args)

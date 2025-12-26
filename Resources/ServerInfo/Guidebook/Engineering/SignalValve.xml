@@ -1,9 +1,8 @@
 ﻿<Document>
-  # Сигнальный клапан
-
+  # Signal Valve
+  The signal valve is a valve that can be controlled via [textlink="signals." link="Networking"]
   <Box>
     <GuideEntityEmbed Entity="SignalControlledValve"/>
-    Клапан, который можно контролировать с помощью системы [textlink="Сетевых соединений" link="Networking"]. В остальном одинаков с обычным клапаном
   </Box>
 
   The signal valve is similar to the manual valve. Gas can flow unrestricted in both directions, and it can be operated manually.

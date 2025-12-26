@@ -38,7 +38,7 @@ public abstract partial class SharedSkillsSystem
             return;
 
         args.Cancelled = true;
-        args.FailReason = "Вы слишком глупы.";
+        args.FailReason = Loc.GetString("imperial-hm-intel-urtoostupid");
     }
 
 
@@ -63,7 +63,7 @@ public abstract partial class SharedSkillsSystem
                     var ev = new GetEnteredChatMessageMessage(GetNetEntity(uid), GetNetEntity(args.User));
                     RaiseNetworkEvent(ev, session);
                 },
-                Text = Loc.GetString("Заглянуть в голову"),
+                Text = Loc.GetString(Loc.GetString("imperial-hm-intel-lookinhead")),
                 Category = VerbCategory.Examine,
                 Disabled = !args.CanAccess,
                 Message = args.CanAccess ? null : Loc.GetString("detail-examinable-verb-disabled"),

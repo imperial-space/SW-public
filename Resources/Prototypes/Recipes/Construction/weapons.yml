@@ -1,118 +1,118 @@
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Серая кепка # Imperial Recipes Locale
+  #name: Серая кепка # Imperial Recipes Locale
   id: BladedFlatcapGrey
   graph: BladedFlatcapGrey
   startNode: start
   targetNode: icon
   category: construction-category-weapons
-  description: Неприметная шляпка с вшитыми в поля осколками стекла. # Imperial Recipes Locale
+  #description: Неприметная шляпка с вшитыми в поля осколками стекла. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Коричневая кепка # Imperial Recipes Locale
+  #name: Коричневая кепка # Imperial Recipes Locale
   id: BladedFlatcapBrown
   graph: BladedFlatcapBrown
   startNode: start
   targetNode: icon
   category: construction-category-weapons
-  description: Неприметная шляпка с вшитыми в поля осколками стекла. # Imperial Recipes Locale
+  #description: Неприметная шляпка с вшитыми в поля осколками стекла. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Заточка # Imperial Recipes Locale
+  #name: Заточка # Imperial Recipes Locale
   id: Shiv
   graph: Shiv
   startNode: start
   targetNode: icon
   category: construction-category-weapons
-  description: Осколок стекла, обернутый куском ткани. # Imperial Recipes Locale
+  #description: Осколок стекла, обернутый куском ткани. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Усиленная заточка # Imperial Recipes Locale
+  #name: Усиленная заточка # Imperial Recipes Locale
   id: ReinforcedShiv
   graph: ReinforcedShiv
   startNode: start
   targetNode: icon
   category: construction-category-weapons
-  description: Осколок бронестекла, обернутый куском ткани. # Imperial Recipes Locale
+  #description: Осколок бронестекла, обернутый куском ткани. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Плазменная заточка # Imperial Recipes Locale
+  #name: Плазменная заточка # Imperial Recipes Locale
   id: PlasmaShiv
   graph: PlasmaShiv
   startNode: start
   targetNode: icon
   category: construction-category-weapons
-  description: Осколок плазменного стекла, обернутый куском ткани. # Imperial Recipes Locale
+  #description: Осколок плазменного стекла, обернутый куском ткани. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Урановая заточка # Imperial Recipes Locale
+  #name: Урановая заточка # Imperial Recipes Locale
   id: UraniumShiv
   graph: UraniumShiv
   startNode: start
   targetNode: icon
   category: construction-category-weapons
-  description: Осколок уранового стекла, обернутый куском ткани. # Imperial Recipes Locale
+  #description: Осколок уранового стекла, обернутый куском ткани. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Копьё # Imperial Recipes Locale
+  #name: Копьё # Imperial Recipes Locale
   id: Spear
   graph: Spear
   startNode: start
   targetNode: spear
   category: construction-category-weapons
-  description: Грубое копьё на тот случай, если вам нужно проделать в ком-то дырку. # Imperial Recipes Locale
+  #description: Грубое копьё на тот случай, если вам нужно проделать в ком-то дырку. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Усиленное копьё # Imperial Recipes Locale
+  #name: Усиленное копьё # Imperial Recipes Locale
   id: SpearReinforced
   graph: SpearReinforced
   startNode: start
   targetNode: spear
   category: construction-category-weapons
-  description: Грубое усиленное копьё на тот случай, если вам нужно проделать в ком-то дырку. # Imperial Recipes Locale
+  #description: Грубое усиленное копьё на тот случай, если вам нужно проделать в ком-то дырку. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Плазменное копьё # Imperial Recipes Locale
+  #name: Плазменное копьё # Imperial Recipes Locale
   id: SpearPlasma
   graph: SpearPlasma
   startNode: start
   targetNode: spear
   category: construction-category-weapons
-  description: Грубое плазменное копье на тот случай, если вам нужно продырявить кого-нибудь. # Imperial Recipes Locale
+  #description: Грубое плазменное копье на тот случай, если вам нужно продырявить кого-нибудь. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Урановое копье # Imperial Recipes Locale
+  #name: Урановое копье # Imperial Recipes Locale
   id: SpearUranium
   graph: SpearUranium
   startNode: start
   targetNode: spear
   category: construction-category-weapons
-  description: Грубое урановое копье на тот случай, если вам нужно продырявить кого-нибудь. # Imperial Recipes Locale
+  #description: Грубое урановое копье на тот случай, если вам нужно продырявить кого-нибудь. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -127,25 +127,25 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Бола # Imperial Recipes Locale
+  #name: Бола # Imperial Recipes Locale
   id: Bola
   graph: Bola
   startNode: start
   targetNode: bola
   category: construction-category-weapons
-  description: Скрепленные с металлом кабельные стяжки. # Imperial Recipes Locale
+  #description: Скрепленные с металлом кабельные стяжки. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Деревянный баклер # Imperial Recipes Locale
+  #name: Деревянный баклер # Imperial Recipes Locale
   id: WoodenBuckler
   graph: WoodenBuckler
   startNode: start
   targetNode: woodenBuckler
   category: construction-category-weapons
-  description: Небольшой круглый деревянный самодельный щит. # Imperial Recipes Locale
+  #description: Небольшой круглый деревянный самодельный щит. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
@@ -165,19 +165,19 @@
   startNode: start
   targetNode: makeshiftShield
   category: construction-category-weapons
-  description: Ветхий на вид щит, мало на что пригодный. # Imperial Recipes Locale
+  #description: Ветхий на вид щит, мало на что пригодный. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стрела из осколка стекла # Imperial Recipes Locale
+  #name: Стрела из осколка стекла # Imperial Recipes Locale
   id: ImprovisedArrow
   graph: ImprovisedArrow
   startNode: start
   targetNode: ImprovisedArrow
   category: construction-category-weapons
-  description: Стрела с наконечником из осколков стекла, предназначенная для использования с луком. # Imperial Recipes Locale
+  #description: Стрела с наконечником из осколков стекла, предназначенная для использования с луком. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -192,24 +192,24 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стрела из осколка плазменного стекла # Imperial Recipes Locale
+  #name: Стрела из осколка плазменного стекла # Imperial Recipes Locale
   id: ImprovisedArrowPlasma
   graph: ImprovisedArrowPlasma
   startNode: start
   targetNode: ImprovisedArrowPlasma
   category: construction-category-weapons
-  description: Стрела с наконечником из осколков плазменного стекла, предназначенная для использования с луком. # Imperial Recipes Locale
+  #description: Стрела с наконечником из осколков плазменного стекла, предназначенная для использования с луком. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стрела из осколка уранового стекла # Imperial Recipes Locale
+  #name: Стрела из осколка уранового стекла # Imperial Recipes Locale
   id: ImprovisedArrowUranium
   graph: ImprovisedArrowUranium
   startNode: start
   targetNode: ImprovisedArrowUranium
   category: construction-category-weapons
-  description: Стрела с наконечником из осколков уранового стекла, предназначенная для использования с луком. # Imperial Recipes Locale
+  #description: Стрела с наконечником из осколков уранового стекла, предназначенная для использования с луком. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
@@ -228,18 +228,18 @@
   startNode: start
   targetNode: ImprovisedBow
   category: construction-category-weapons
-  description: Некачественный лук, сделанный из дерева и ткани. Это немного, но работа выполнялась на протяжении тысячелетий. # Imperial Recipes Locale
+  #description: Некачественный лук, сделанный из дерева и ткани. Это немного, но работа выполнялась на протяжении тысячелетий. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
-  name: Копьё из костей # Imperial Recipes Locale
+  #name: Копьё из костей # Imperial Recipes Locale
   id: SpearBone
   graph: SpearBone
   startNode: start
   targetNode: spear
   category: construction-category-weapons
-  description: Копьё из костей на тот случай, если вам нужно продырявить кого-нибудь. # Imperial Recipes Locale
+  #description: Копьё из костей на тот случай, если вам нужно продырявить кого-нибудь. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction

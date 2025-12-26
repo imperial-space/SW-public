@@ -76,7 +76,7 @@ namespace Content.Server.MagicBarrier
         {
             AlternativeVerb verb = new()
             {
-                Text = "Пожертвовать собой",
+                Text = Loc.GetString("medieval-hm-barrier-sacrifice"),
                 Act = () => TrySuicide(args.User, uid),
             };
             args.Verbs.Add(verb);
@@ -86,7 +86,7 @@ namespace Content.Server.MagicBarrier
         {
             if (!HasComp<MagicRuneKnowledgeComponent>(uid))
             {
-                _popupSystem.PopupEntity("Я слишком бесполезен..", uid, uid);
+                _popupSystem.PopupEntity(Loc.GetString("medieval-hm-barrier-iamuseless"), uid, uid);
                 return;
             }
 
@@ -146,7 +146,7 @@ namespace Content.Server.MagicBarrier
             Spawn("ShardCrystalRed", coords);
             Spawn("ShockWaveEffect", coords);
             QueueDel(uid);
-            _chat.DispatchGlobalAnnouncement("Проклятый нарост уничтожен, расход стабильности барьера снижен.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
+            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-wart"), playSound: false, colorOverride: Color.LimeGreen, sender: Loc.GetString("medieval-hm-barrier-barrier"));
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
                 comp.Lose *= 0.8f;
@@ -156,8 +156,11 @@ namespace Content.Server.MagicBarrier
 
         private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]");
-            args.PushMarkup("[color=cyan]Текущий расход " + Math.Round(component.Lose, 2) + " стабильности в минуту[/color]");
+            var min = Math.Round(component.Stability, 2);
+            var max = component.MaxStability;
+            var cur = Math.Round(component.Lose, 2);
+            args.PushMarkup(Loc.GetString("medieval-hm-barrier-stability", ("min", $"{min}"), ("max", $"{max}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-barrier-decrease", ("number", $"{cur}")));
         }
 
         public override void Update(float frameTime)
@@ -175,11 +178,11 @@ namespace Content.Server.MagicBarrier
 
                     if (comp.Stability <= 10f && comp.Stability > 5f)
                     {
-                        _chat.DispatchGlobalAnnouncement("Низкий уровень стабильности барьера", playSound: false, colorOverride: Color.GreenYellow, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-lowstab"), playSound: false, colorOverride: Color.GreenYellow, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                     }
                     if (comp.Stability <= 5f)
                     {
-                        _chat.DispatchGlobalAnnouncement("Крайне Низкий уровень стабильности барьера", playSound: false, colorOverride: Color.IndianRed, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-verylowstab"), playSound: false, colorOverride: Color.IndianRed, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                     }
 
                     if (comp.Stability > 0f)
@@ -188,13 +191,13 @@ namespace Content.Server.MagicBarrier
                     }
                     else
                     {
-                        _chat.DispatchGlobalAnnouncement("Барьер не сдержал темную силу.", playSound: false, colorOverride: Color.Red, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-darkforce"), playSound: false, colorOverride: Color.Red, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                         _roundEndSystem.EndRound();
                         //QueueDel(comp.Owner);
                     }
                     if (comp.Stability > comp.MaxStability)
                     {
-                        _chat.DispatchGlobalAnnouncement("Слишком высокий уровень стабильности барьера, сброс.", playSound: false, colorOverride: Color.SeaGreen, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-toohighstab"), playSound: false, colorOverride: Color.SeaGreen, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                         comp.Stability = comp.MaxStability;
                         Spawn("ShockWaveEffect", coords);
                     }
@@ -208,7 +211,7 @@ namespace Content.Server.MagicBarrier
                         var cursexform = Transform(choosenSpawner.Owner);
                         var cursecoords = cursexform.Coordinates;
                         Spawn("MedievalBarrierCurse", cursecoords);
-                        _chat.DispatchGlobalAnnouncement("Расход стабильности барьера увеличен, тьма наступает.", playSound: false, colorOverride: Color.DeepPink, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-decreaserateincreased"), playSound: false, colorOverride: Color.DeepPink, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                         Spawn("ShockWaveEffect", cursecoords);
                         Spawn("ShockWaveEffect", coords);
                     }
@@ -237,14 +240,15 @@ namespace Content.Server.MagicBarrier
                         Spawn("ShockWaveEffect", starfallcoords);
                         string cordX = starfallcoords.X.ToString();
                         string cordY = starfallcoords.Y.ToString();
+                        var side = choosenSpawner.Side;
                         if (randomise > 35)
                         {
-                            _chat.DispatchGlobalAnnouncement("Падающая звезда была замечена " + choosenSpawner.Side + ". Для магической карты: X = " + cordX + ", Y = " + cordY + ".", playSound: true, colorOverride: Color.Yellow, sender: "Событие");
+                            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-fallingstar", ("side", $"{side}"), ("x", $"{cordX}"), ("y", $"{cordY}")), playSound: true, colorOverride: Color.Yellow, sender: Loc.GetString("medieval-hm-barrier-event"));
                             Spawn("MedievalSteroidRoomMarker", starfallcoords);
                         }
                         else
                         {
-                            _chat.DispatchGlobalAnnouncement("Аура проклятого каравана была обнаружена " + choosenSpawner.Side + ". Для магической карты: X = " + cordX + ", Y = " + cordY + ".", playSound: true, colorOverride: Color.Yellow, sender: "Событие");
+                            _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-caravan", ("side", $"{side}"), ("x", $"{cordX}"), ("y", $"{cordY}")), playSound: true, colorOverride: Color.Yellow, sender: Loc.GetString("medieval-hm-barrier-event"));
                             Spawn("MedievalKaravanRoomMarker", starfallcoords);
                         }
                     }
@@ -274,7 +278,7 @@ namespace Content.Server.MagicBarrier
                     if (comp.Cycle == 180)
                     {
                         IsBarrierActive = false;
-                        _chat.DispatchGlobalAnnouncement("Барьер изветшал и рассыпался в пыль.", playSound: true, colorOverride: Color.Red, sender: "Барьер");
+                        _chat.DispatchGlobalAnnouncement(Loc.GetString("medieval-hm-barrier-destroyed"), playSound: true, colorOverride: Color.Red, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                         _roundEndSystem.EndRound();
                     }
                 }

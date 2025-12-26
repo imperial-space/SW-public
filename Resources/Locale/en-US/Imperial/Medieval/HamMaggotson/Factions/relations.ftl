@@ -1,0 +1,21 @@
+medieval-hm-relations-change = Change relations
+medieval-hm-relations-changereq = Request relations change
+medieval-hm-relations-changeanc = Your fraction's relations changed from {$name1} to {$name2}.
+medieval-hm-relations-accept = Accept
+medieval-hm-relations-decline = Decline
+medieval-hm-relations-groups = Groups
+medieval-hm-relations-oopsie = Ranks
+medieval-hm-relations-diplomacy = Diplomacy
+medieval-hm-relations-goals = Goals
+medieval-hm-relations-omniman = [font=Default size=24][bold]Are you sure?[/bold][/font]
+medieval-hm-relations-ooopsie = Someone will be removed from your faction
+medieval-hm-relations-cancel = Cancel
+medieval-hm-relations-fire = Fire
+medieval-hm-relations-fireaward = Fire and set a bounty
+medieval-hm-relations-ready = Ready
+medieval-hm-relations-suggest = Propose relations
+medieval-hm-relations-ucant = You will not be able to change the message content after confirmation!
+medieval-hm-relations-suggesst = Propose
+medieval-hm-relations-leaderchng = The leader of the {$name} faction proposes to change your factions' relations to {$name2}.
+medieval-hm-relations-areusure = Are you sure you want to change your faction's diplomatic relations from {$name} to {$name2}?
+medieval-hm-relations-firefire = {$name}{$name2} will be fired from your faction.

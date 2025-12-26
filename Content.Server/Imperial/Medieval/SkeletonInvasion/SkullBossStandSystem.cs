@@ -46,7 +46,7 @@ public sealed class SkullBossStandSystem : EntitySystem
 
         if (stand.AttachedParts.ContainsKey(comp.Idx))
         {
-            _popup.PopupEntity("Эта часть уже присутствует.", args.Target.Value, args.User);
+            _popup.PopupEntity(Loc.GetString("imperial-hm-skullboss-alr"), args.Target.Value, args.User);
             return;
         }
 
@@ -66,7 +66,7 @@ public sealed class SkullBossStandSystem : EntitySystem
 
         if (comp.Purified)
         {
-            _popup.PopupEntity("Эта часть уже освящена.", uid, args.User);
+            _popup.PopupEntity(Loc.GetString("imperial-hm-skullboss-enl"), uid, args.User);
             return;
         }
 
@@ -86,7 +86,7 @@ public sealed class SkullBossStandSystem : EntitySystem
 
         if (stand.AttachedParts.ContainsKey(comp.Idx))
         {
-            _popup.PopupEntity("Эта часть уже присутствует.", args.Target.Value, args.User);
+            _popup.PopupEntity(Loc.GetString("imperial-hm-skullboss-alr"), args.Target.Value, args.User);
             return;
         }
 
@@ -105,13 +105,13 @@ public sealed class SkullBossStandSystem : EntitySystem
 
         if (comp.Purified)
         {
-            _popup.PopupEntity("Эта часть уже освящена.", uid, args.User);
+            _popup.PopupEntity(Loc.GetString("imperial-hm-skullboss-enl"), uid, args.User);
             return;
         }
 
         comp.Purified = true;
         _appearance.SetData(uid, SkullStandPartAppearance.Key, true);
-        _popup.PopupEntity("Вы освятили часть черепа.", uid, args.User);
+        _popup.PopupEntity(Loc.GetString("imperial-hm-skullboss-enll"), uid, args.User);
     }
 
     private void PartAttached(EntityUid uid, SkullBossStandComponent comp)

@@ -206,7 +206,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             _damageable.TryChangeDamage(otherPlayer, damage * modifier);
 
-            _popup.PopupClient("Вы сшибаете пехотинца с дороги.", rider, rider);
+            _popup.PopupClient(Loc.GetString("imperial-hm-mobriding-knockoff"), rider, rider);
 
             if (!rideableComp.StunList.TryAdd(otherPlayer, _gameTiming.CurTime))
                 rideableComp.StunList[otherPlayer] = _gameTiming.CurTime;
@@ -249,7 +249,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
             if (!TryComp<RideableSprintComponent>(rideable, out var sprintComp))
                 return;
 
-            _popup.PopupClient(ev.Sprinting ? "Вы ускоряетесь!" : "Вы сбавляете ход.", player.Value, player.Value);
+            _popup.PopupClient(ev.Sprinting ? Loc.GetString("imperial-hm-mobriding-accelerate") : Loc.GetString("imperial-hm-mobriding-slowdown"), player.Value, player.Value);
 
             sprintComp.Sprinting = ev.Sprinting;
         }

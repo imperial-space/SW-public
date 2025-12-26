@@ -1,13 +1,13 @@
 #chairs
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стул # Imperial Recipes Locale
+  #name: Стул # Imperial Recipes Locale
   id: Chair
   graph: Seat
   startNode: start
   targetNode: chair
   category: construction-category-furniture
-  description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
+  #description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -16,13 +16,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Табурет # Imperial Recipes Locale
+  #name: Табурет # Imperial Recipes Locale
   id: Stool
   graph: Seat
   startNode: start
   targetNode: stool
   category: construction-category-furniture
-  description: Приложите ягодицы. # Imperial Recipes Locale
+  #description: Приложите ягодицы. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -31,13 +31,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Барный стул # Imperial Recipes Locale
+  #name: Барный стул # Imperial Recipes Locale
   id: StoolBar
   graph: Seat
   startNode: start
   targetNode: stoolBar
   category: construction-category-furniture
-  description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
+  #description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -46,13 +46,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Латунный стул # Imperial Recipes Locale
+  #name: Латунный стул # Imperial Recipes Locale
   id: ChairBrass
   graph: Seat
   startNode: start
   targetNode: chairBrass
   category: construction-category-furniture
-  description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
+  #description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -61,13 +61,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Белое офисное кресло # Imperial Recipes Locale
+  #name: Белое офисное кресло # Imperial Recipes Locale
   id: ChairOfficeLight
   graph: Seat
   startNode: start
   targetNode: chairOffice
   category: construction-category-furniture
-  description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
+  #description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -76,13 +76,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Тёмное офисное кресло # Imperial Recipes Locale
+  #name: Тёмное офисное кресло # Imperial Recipes Locale
   id: ChairOfficeDark
   graph: Seat
   startNode: start
   targetNode: chairOfficeDark
   category: construction-category-furniture
-  description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
+  #description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -90,14 +90,14 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Удобное кресло # Imperial Recipes Locale
+  #name: Удобное кресло # Imperial Recipes Locale
   hide: true # imperial medieval craft disable
   id: ChairComfy
   graph: Seat
   startNode: start
   targetNode: chairComfy
   category: construction-category-furniture
-  description: Выглядит удобно. # Imperial Recipes Locale
+  #description: Выглядит удобно. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -106,13 +106,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Кресло пилота # Imperial Recipes Locale
+  #name: Кресло пилота # Imperial Recipes Locale
   id: chairPilotSeat
   graph: Seat
   startNode: start
   targetNode: chairPilotSeat
   category: construction-category-furniture
-  description: Кресло пилота престижного корабля. # Imperial Recipes Locale
+  #description: Кресло пилота престижного корабля. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -120,13 +120,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Деревянный стул # Imperial Recipes Locale
+ #name: Деревянный стул # Imperial Recipes Locale
   id: ChairWood
   graph: Seat
   startNode: start
   targetNode: chairWood
   category: construction-category-furniture
-  description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
+  #description: Вы сидите на нём. Либо по вашей воле, либо по принуждению. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -135,13 +135,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Мясной стул # Imperial Recipes Locale
+  #name: Мясной стул # Imperial Recipes Locale
   id: ChairMeat
   graph: Seat
   startNode: start
   targetNode: chairMeat
   category: construction-category-furniture
-  description: Неприятно потный. # Imperial Recipes Locale
+  #description: Неприятно потный. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -149,13 +149,13 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Ритуальный стул # Imperial Recipes Locale
+  #name: Ритуальный стул # Imperial Recipes Locale
   id: ChairRitual
   graph: RitualSeat
   startNode: start
   targetNode: chairRitual
   category: construction-category-furniture
-  description: Выглядит неудобно. # Imperial Recipes Locale
+  #description: Выглядит неудобно. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -164,13 +164,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Раскладной стул # Imperial Recipes Locale
+  #name: Раскладной стул # Imperial Recipes Locale
   id: ChairFolding
   graph: Seat
   startNode: start
   targetNode: chairFolding
   category: construction-category-furniture
-  description: Если вы унесёте шесть за раз - вы станете самым крутым парнем в актовом зале. # Imperial Recipes Locale
+  #description: Если вы унесёте шесть за раз - вы станете самым крутым парнем в актовом зале. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -179,13 +179,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стальная скамейка # Imperial Recipes Locale
+  #name: Стальная скамейка # Imperial Recipes Locale
   id: ChairSteelBench
   graph: Seat
   startNode: start
   targetNode: chairSteelBench
   category: construction-category-furniture
-  description: Длинная скамья, созданная для метро. Реально стандартный дизайн. # Imperial Recipes Locale
+  #description: Длинная скамья, созданная для метро. Реально стандартный дизайн. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -211,7 +211,7 @@
   startNode: start
   targetNode: chairWoodBench
   category: construction-category-furniture
-  description: Получили занозу? По крайней мере, она экологически чистая. # Imperial Recipes Locale
+  #description: Получили занозу? По крайней мере, она экологически чистая. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -221,12 +221,12 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: RedComfBench
-  name: Удобная красная скамейка # Imperial Recipes Locale
+  #name: Удобная красная скамейка # Imperial Recipes Locale
   graph: Seat
   startNode: start
   targetNode: redComfBench
   category: construction-category-furniture
-  description: Скамейка с очень удобной спинкой. # Imperial Recipes Locale
+  #description: Скамейка с очень удобной спинкой. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -235,13 +235,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Удобная синяя скамейка # Imperial Recipes Locale
+  #name: Удобная синяя скамейка # Imperial Recipes Locale
   id: BlueComfBench
   graph: Seat
   startNode: start
   targetNode: blueComfBench
   category: construction-category-furniture
-  description: Скамейка с очень удобной спинкой. # Imperial Recipes Locale
+  #description: Скамейка с очень удобной спинкой. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -251,13 +251,13 @@
 #tables
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стол # Imperial Recipes Locale
+  #name: Стол # Imperial Recipes Locale
   id: Table
   graph: Table
   startNode: start
   targetNode: Table
   category: construction-category-furniture
-  description: Квадратный лист металла, стоящий на четырех металлических ножках. # Imperial Recipes Locale
+  #description: Квадратный лист металла, стоящий на четырех металлических ножках. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -266,13 +266,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённый стол # Imperial Recipes Locale
+  #name: Укреплённый стол # Imperial Recipes Locale
   id: TableReinforced
   graph: Table
   startNode: start
   targetNode: TableReinforced
   category: construction-category-furniture
-  description: Квадратный лист металла, стоящий на четырех металлических ножках. Очень прочный. # Imperial Recipes Locale
+  #description: Квадратный лист металла, стоящий на четырех металлических ножках. Очень прочный. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -281,13 +281,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стеклянный стол # Imperial Recipes Locale
+  #name: Стеклянный стол # Imperial Recipes Locale
   id: TableGlass
   graph: Table
   startNode: start
   targetNode: TableGlass
   category: construction-category-furniture
-  description: Квадратный лист стекла, стоящий на четырех металлических ножках. # Imperial Recipes Locale
+  #description: Квадратный лист стекла, стоящий на четырех металлических ножках. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -314,7 +314,7 @@
   startNode: start
   targetNode: TableReinforcedGlass
   category: construction-category-furniture
-  description: Квадратный лист стекла, стоящий на четырех металлических ножках. Очень прочный. # Imperial Recipes Locale
+  #description: Квадратный лист стекла, стоящий на четырех металлических ножках. Очень прочный. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -323,13 +323,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стол из плазменного стекла # Imperial Recipes Locale
+  #name: Стол из плазменного стекла # Imperial Recipes Locale
   id: TablePlasmaGlass
   graph: Table
   startNode: start
   targetNode: TablePlasmaGlass
   category: construction-category-furniture
-  description: Квадратный лист плазмы, стоящий на четырех металлических ножках. Красивый! # Imperial Recipes Locale
+  #description: Квадратный лист плазмы, стоящий на четырех металлических ножках. Красивый! # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -338,13 +338,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Латунный стол # Imperial Recipes Locale
+  #name: Латунный стол # Imperial Recipes Locale
   id: TableBrass
   graph: Table
   startNode: start
   targetNode: TableBrass
   category: construction-category-furniture
-  description: Блестящий, устойчивый к коррозии стол из латуни. # Imperial Recipes Locale
+  #description: Блестящий, устойчивый к коррозии стол из латуни. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -352,13 +352,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Деревянный стол # Imperial Recipes Locale
+  #name: Деревянный стол # Imperial Recipes Locale
   id: TableWood
   graph: Table
   startNode: start
   targetNode: TableWood
   category: construction-category-furniture
-  description: Беречь от огня. По слухам, он легко горит. # Imperial Recipes Locale
+  #description: Беречь от огня. По слухам, он легко горит. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -367,13 +367,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Игорный стол # Imperial Recipes Locale
+  #name: Игорный стол # Imperial Recipes Locale
   id: TableCarpet
   graph: Table
   startNode: start
   targetNode: TableCarpet
   category: construction-category-furniture
-  description: Сыграй с нами, ковбой. # Imperial Recipes Locale
+  #description: Сыграй с нами, ковбой. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -381,13 +381,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Чёрный причудливый стол # Imperial Recipes Locale
+  #name: Чёрный причудливый стол # Imperial Recipes Locale
   id: TableFancyBlack
   graph: Table
   startNode: start
   targetNode: TableFancyBlack
   category: construction-category-furniture
-  description: "Дорого, богато" # Imperial Recipes Locale
+  #description: "Дорого, богато" # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -395,13 +395,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Синий причудливый стол # Imperial Recipes Locale
+  #name: Синий причудливый стол # Imperial Recipes Locale
   id: TableFancyBlue
   graph: Table
   startNode: start
   targetNode: TableFancyBlue
   category: construction-category-furniture
-  description: "Дорого, богато" # Imperial Recipes Locale
+  #description: "Дорого, богато" # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -409,13 +409,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Голубой причудливый стол # Imperial Recipes Locale
+  #name: Голубой причудливый стол # Imperial Recipes Locale
   id: TableFancyCyan
   graph: Table
   startNode: start
   targetNode: TableFancyCyan
   category: construction-category-furniture
-  description: "Дорого, богато" # Imperial Recipes Locale
+  #description: "Дорого, богато" # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -423,13 +423,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Зелёный причудливый стол # Imperial Recipes Locale
+  #name: Зелёный причудливый стол # Imperial Recipes Locale
   id: TableFancyGreen
   graph: Table
   startNode: start
   targetNode: TableFancyGreen
   category: construction-category-furniture
-  description: "Дорого, богато" # Imperial Recipes Locale
+  #description: "Дорого, богато" # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -437,13 +437,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Оранжевый причудливый стол # Imperial Recipes Locale
+  #name: Оранжевый причудливый стол # Imperial Recipes Locale
   id: TableFancyOrange
   graph: Table
   startNode: start
   targetNode: TableFancyOrange
   category: construction-category-furniture
-  description: "Дорого, богато" # Imperial Recipes Locale
+  #description: "Дорого, богато" # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -451,13 +451,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Фиолетовый причудливый стол # Imperial Recipes Locale
+  #name: Фиолетовый причудливый стол # Imperial Recipes Locale
   id: TableFancyPurple
   graph: Table
   startNode: start
   targetNode: TableFancyPurple
   category: construction-category-furniture
-  description: "Дорого, богато" # Imperial Recipes Locale
+  #description: "Дорого, богато" # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -465,13 +465,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Розовый причудливый стол # Imperial Recipes Locale
+  #name: Розовый причудливый стол # Imperial Recipes Locale
   id: TableFancyPink
   graph: Table
   startNode: start
   targetNode: TableFancyPink
   category: construction-category-furniture
-  description: "Дорого,богато" # Imperial Recipes Locale
+  #description: "Дорого,богато" # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -479,13 +479,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Красный причудливый стол # Imperial Recipes Locale
+  #name: Красный причудливый стол # Imperial Recipes Locale
   id: TableFancyRed
   graph: Table
   startNode: start
   targetNode: TableFancyRed
   category: construction-category-furniture
-  description: "Дорого, богато" # Imperial Recipes Locale
+  #description: "Дорого, богато" # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -493,13 +493,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Белый причудливый стол # Imperial Recipes Locale
+  #name: Белый причудливый стол # Imperial Recipes Locale
   id: TableFancyWhite
   graph: Table
   startNode: start
   targetNode: TableFancyWhite
   category: construction-category-furniture
-  description: "Дорого, богато" # Imperial Recipes Locale
+  #description: "Дорого, богато" # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -508,13 +508,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Металлическая стойка # Imperial Recipes Locale
+  #name: Металлическая стойка # Imperial Recipes Locale
   id: TableCounterMetal
   graph: Table
   startNode: start
   targetNode: CounterMetal
   category: construction-category-furniture
-  description: Отличное место чтобы пропустить стаканчик. # Imperial Recipes Locale
+  #description: Отличное место чтобы пропустить стаканчик. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -522,13 +522,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Деревянная стойка # Imperial Recipes Locale
+  #name: Деревянная стойка # Imperial Recipes Locale
   id: TableCounterWood
   graph: Table
   startNode: start
   targetNode: CounterWood
   category: construction-category-furniture
-  description: Беречь от огня. По слухам, она легко горит. # Imperial Recipes Locale
+  #description: Беречь от огня. По слухам, она легко горит. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -538,13 +538,13 @@
 #bathroom
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Туалет # Imperial Recipes Locale
+  #name: Туалет # Imperial Recipes Locale
   id: ToiletEmpty
   graph: Toilet
   startNode: start
   targetNode: toilet
   category: construction-category-furniture
-  description: НТ-451, устройство для удаления мелких отходов, основанное на вращательном моменте. # Imperial Recipes Locale
+  #description: НТ-451, устройство для удаления мелких отходов, основанное на вращательном моменте. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -555,8 +555,8 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: Bed
-  name: Кровать # Imperial Recipes Locale
-  description: На ней можно лежать или спать пристёгнутым. # Imperial Recipes Locale
+  #name: Кровать # Imperial Recipes Locale
+  #description: На ней можно лежать или спать пристёгнутым. # Imperial Recipes Locale
   graph: bed
   startNode: start
   targetNode: bed
@@ -570,8 +570,8 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: MedicalBed
-  name: Больничная койка # Imperial Recipes Locale
-  description: Больничная койка для реабилитации пациентов. Отдых в ней обеспечивает медленное исцеление. # Imperial Recipes Locale
+  #name: Больничная койка # Imperial Recipes Locale
+  #description: Больничная койка для реабилитации пациентов. Отдых в ней обеспечивает медленное исцеление. # Imperial Recipes Locale
   graph: bed
   startNode: start
   targetNode: medicalbed
@@ -585,8 +585,8 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: DogBed
-  name: Собачья лежанка # Imperial Recipes Locale
-  description: Удобная лежанка для собак. Вы даже можете пристегнуть своего питомца в случае отключения гравитации. # Imperial Recipes Locale
+  #name: Собачья лежанка # Imperial Recipes Locale
+  #description: Удобная лежанка для собак. Вы даже можете пристегнуть своего питомца в случае отключения гравитации. # Imperial Recipes Locale
   graph: bed
   startNode: start
   targetNode: dogbed
@@ -600,8 +600,8 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: Dresser
-  name: Комод # Imperial Recipes Locale
-  description: Деревянный комод, в котором можно хранить вещи. # Imperial Recipes Locale
+  #name: Комод # Imperial Recipes Locale
+  #description: Деревянный комод, в котором можно хранить вещи. # Imperial Recipes Locale
   graph: Dresser
   startNode: start
   targetNode: dresser
@@ -616,8 +616,8 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: Rack
-  name: Стойка # Imperial Recipes Locale
-  description: Стойка для хранения вещей. # Imperial Recipes Locale
+  #name: Стойка # Imperial Recipes Locale
+  #description: Стойка для хранения вещей. # Imperial Recipes Locale
   graph: Rack
   startNode: start
   targetNode: Rack
@@ -632,8 +632,8 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: MeatSpike
-  name: Мясной крюк # Imperial Recipes Locale
-  description: Крюк для снятия мяса с животных. # Imperial Recipes Locale
+  #name: Мясной крюк # Imperial Recipes Locale
+  #description: Крюк для снятия мяса с животных. # Imperial Recipes Locale
   graph: MeatSpike
   startNode: start
   targetNode: MeatSpike
@@ -646,8 +646,8 @@
 
 - type: construction
   id: Curtains
-  name: Шторы # Imperial Recipes Locale
-  description: Содержат менее 1 процента ртути. # Imperial Recipes Locale
+  #name: Шторы # Imperial Recipes Locale
+  #description: Содержат менее 1 процента ртути. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: Curtains
@@ -658,8 +658,8 @@
 
 - type: construction
   id: CurtainsBlack
-  name: Чёрные шторы # Imperial Recipes Locale
-  description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
+  #name: Чёрные шторы # Imperial Recipes Locale
+  #description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: CurtainsBlack
@@ -670,8 +670,8 @@
 
 - type: construction
   id: CurtainsBlue
-  name: Синие шторы # Imperial Recipes Locale
-  description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
+  #name: Синие шторы # Imperial Recipes Locale
+  #description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: CurtainsBlue
@@ -682,8 +682,8 @@
 
 - type: construction
   id: CurtainsCyan
-  name: Голубые шторы # Imperial Recipes Locale
-  description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
+  #name: Голубые шторы # Imperial Recipes Locale
+  #description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: CurtainsCyan
@@ -694,8 +694,8 @@
 
 - type: construction
   id: CurtainsGreen
-  name: Зелёные шторы # Imperial Recipes Locale
-  description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
+  #name: Зелёные шторы # Imperial Recipes Locale
+  #description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: CurtainsGreen
@@ -706,8 +706,8 @@
 
 - type: construction
   id: CurtainsOrange
-  name: Оранжевые шторы # Imperial Recipes Locale
-  description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
+  #name: Оранжевые шторы # Imperial Recipes Locale
+  #description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: CurtainsOrange
@@ -718,8 +718,8 @@
 
 - type: construction
   id: CurtainsPink
-  name: Розовые шторы # Imperial Recipes Locale
-  description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
+  #name: Розовые шторы # Imperial Recipes Locale
+  #description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: CurtainsPink
@@ -730,8 +730,8 @@
 
 - type: construction
   id: CurtainsPurple
-  name: Фиолетовые шторы # Imperial Recipes Locale
-  description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
+  #name: Фиолетовые шторы # Imperial Recipes Locale
+  #description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: CurtainsPurple
@@ -742,8 +742,8 @@
 
 - type: construction
   id: CurtainsRed
-  name: Красные шторы # Imperial Recipes Locale
-  description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
+  #name: Красные шторы # Imperial Recipes Locale
+  #description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: CurtainsRed
@@ -754,8 +754,8 @@
 
 - type: construction
   id: CurtainsWhite
-  name: Белые шторы # Imperial Recipes Locale
-  description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
+  #name: Белые шторы # Imperial Recipes Locale
+  #description: Скрывают то, что не должны видеть другие. # Imperial Recipes Locale
   graph: Curtains
   startNode: start
   targetNode: CurtainsWhite
@@ -766,8 +766,8 @@
 
 - type: construction
   id: Bookshelf
-  name: Книжный шкаф # Imperial Recipes Locale
-  description: Преимущественно наполнен эротикой. # Imperial Recipes Locale
+  #name: Книжный шкаф # Imperial Recipes Locale
+  #description: Преимущественно наполнен эротикой. # Imperial Recipes Locale
   graph: Bookshelf
   startNode: start
   targetNode: bookshelf
@@ -781,8 +781,8 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: NoticeBoard
-  name: Доска объявлений # Imperial Recipes Locale
-  description: Деревянная доска объявлений, может хранить внутри себя бумагу. # Imperial Recipes Locale
+  #name: Доска объявлений # Imperial Recipes Locale
+  #description: Деревянная доска объявлений, может хранить внутри себя бумагу. # Imperial Recipes Locale
   graph: NoticeBoard
   startNode: start
   targetNode: noticeBoard
@@ -796,8 +796,8 @@
 
 - type: construction
   id: Mannequin
-  name: Манекен # Imperial Recipes Locale
-  description: Деревянный манекен, предназначенный для демонстрации одежды. # Imperial Recipes Locale
+  #name: Манекен # Imperial Recipes Locale
+  #description: Деревянный манекен, предназначенный для демонстрации одежды. # Imperial Recipes Locale
   graph: Mannequin
   startNode: start
   targetNode: mannequin

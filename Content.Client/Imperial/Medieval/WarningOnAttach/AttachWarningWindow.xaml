@@ -1,5 +1,5 @@
 <DefaultWindow xmlns="https://spacestation14.io"
-            Title="Предупреждение"
+            Title="{Loc 'imperial-hm-ui-warning'}"
             MinSize="500 450"
             SetSize="500 650">
     <BoxContainer Orientation="Vertical"
@@ -14,7 +14,7 @@
                 <RichTextLabel Name="TopBanner" VerticalExpand="True" SizeFlagsStretchRatio="1"/>
             </BoxContainer>
         </ScrollContainer>
-        <CheckBox Name="Checkbox" Text="Я прочитал текст и буду соответствовать роли" SizeFlagsStretchRatio="1" Margin="1"/>
+        <CheckBox Name="Checkbox" Text="{Loc 'imperial-hm-ui-consent'}" SizeFlagsStretchRatio="1" Margin="1"/>
         <Button Name="RequestButton"
                 Text="{Loc 'ghost-roles-window-request-role-button'}"
                 Disabled="True"

@@ -40,7 +40,7 @@ namespace Content.Shared.MeleeParry
         private void OnStart(EntityUid uid, MeleeParryEffectComponent component, ref MapInitEvent args)
         {
             if (_netMan.IsServer)
-                _popup.PopupEntity("Парирование", uid, PopupType.LargeCaution);
+                _popup.PopupEntity(Loc.GetString("medieval-hm-mbe-parryy"), uid, PopupType.LargeCaution);
         }
         private void OnBeforeStaminaDamage(EntityUid uid, MeleeParryAbleComponent component, ref BeforeStaminaDamageEvent args)
         { // Захардкожено для деревянного меча

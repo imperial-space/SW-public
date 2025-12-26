@@ -1,0 +1,15 @@
+ent-OrganIllitidHeart = resonate heart
+.desc = An extraterrestrial something.
+.suffix = { "Medieval" }
+ent-OrganIllitidLiver = resonate liver
+.desc = An extraterrestrial something.
+.suffix = { "Medieval" }
+ent-OrganIllitidStomach = resonate stomach
+.desc = An extraterrestrial something.
+.suffix = { "Medieval" }
+marking-IllitidFourTent = tentacles (4)
+marking-IllitidTwoTent = tentacles (2)
+marking-IllitidChestSpot = chest spots
+marking-IllitidHeadTopSpot = forehead spot
+marking-IllitidChestPlates = chest plates
+marking-IllitidHeadThirdEye = third eye

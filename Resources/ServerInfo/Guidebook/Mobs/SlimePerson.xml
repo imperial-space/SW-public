@@ -1,19 +1,20 @@
 <Document>
-  # Слаймолюды
+  # Slime People
 
   <Box>
     <GuideEntityEmbed Entity="MobSlimePerson" Caption=""/>
   </Box>
 
-  Дышат азотом вместо кислорода, которого очень много в воздухе станции, но сложно найти в баллонах. Получают большой урон, если их обливают водой, но безопасно могут (и им надо) пить её чтобы сохранять уровень воды в организме.
-  Они выдыхают оксид азота и не подвергаются его воздействию.
-  Их тело может одновременно метаболизировать 6 реагентов вместо 2.
+  They breathe nitrogen instead of oxygen, which is abundant in the station air, but harder to find compressed into gas tanks. They take significant damage if they are sprayed or splashed with water, but can
+  (and like other species, need to) drink it safely to stay hydrated.
+  They exhale nitrous oxide and are unaffected by it.
+  Their body can process 6 reagents at the same time instead of just 2.
 
-  У слаймолюдов есть [bold]хранилище 2x3[/bold] внутри их слаймовой мембраны. Кто-угодно может видеть, что внутри и вытаскивать оттуда предметы, так что будьте осторожны.
-  Слаймолюди имеют более ускоренную регенерацию, по сравнению с другими гуманоидами. Они также способны делать их кулаки более толстыми, что позволяет делать более сильные удары, хоть и чуть медленнее.
+  Slimepeople have an [bold]internal 2x3 storage inventory[/bold] inside of their slime membrane. Anyone can see what's inside and take it out of you without asking,
+  so be careful.
 
-  Слаймовая "кровь" не может быть регенерирована с помощью железа. Технически, их кровь может быть источником еды для других видов, однако питьё крови коллег обычно не одобряется.
-  Задыхаются на 80% медленне, но получают на 9% больше урона от давления. Это делает их наиболее способными к выживанию в вакууме.
+  Slimepeople have slight accelerated regeneration compared to other humanoids. They're also capable of hardening their fists, and as such have stronger punches,
+  although they punch a little slower.
 
   Their slime "blood" can not be regenerated from Iron. Slime Blood is technically a source of
   moderately filling food for other species, although drinking the blood of your coworkers is usually frowned upon.

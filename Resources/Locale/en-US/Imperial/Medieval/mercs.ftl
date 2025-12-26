@@ -1,4 +1,4 @@
-﻿ent-MercBountyBoard = Mercenary Bounty Board
+ent-MercBountyBoard = Mercenary bounty board
     .desc = A bloodstained board covered with rugged parchment, where mercenaries find work
 
 ent-MercContract = Contract: elimination

@@ -1,98 +1,98 @@
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Ящик для скота # Imperial Recipes Locale
+  #name: Ящик для скота # Imperial Recipes Locale
   id: CrateLivestock
   graph: CrateLivestock
   startNode: start
   targetNode: cratelivestock
   category: construction-category-storage
-  description: Деревянный ящик для содержания скота. # Imperial Recipes Locale
+  #description: Деревянный ящик для содержания скота. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стальной ящик # Imperial Recipes Locale
+  #name: Стальной ящик # Imperial Recipes Locale
   id: CrateGenericSteel
   graph: CrateGenericSteel
   startNode: start
   targetNode: crategenericsteel
   category: construction-category-storage
-  description: Металлический ящик для хранения вещей. # Imperial Recipes Locale
+  #description: Металлический ящик для хранения вещей. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Защищённый ящик # Imperial Recipes Locale
+  #name: Защищённый ящик # Imperial Recipes Locale
   id: CrateSecure
   graph: CrateSecure
   startNode: start
   targetNode: cratesecure
   category: construction-category-storage
-  description: Надежный металлический ящик для хранения вещей. Доступ может быть настроен с помощью конфигуратора доступов. # Imperial Recipes Locale
+  #description: Надежный металлический ящик для хранения вещей. Доступ может быть настроен с помощью конфигуратора доступов. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   hide: true # imperial medieval craft disable
   id: CrateFreezer
-  name: Холодильник # Imperial Recipes Locale
+  #name: Холодильник # Imperial Recipes Locale
   graph: CrateFreezer
   startNode: start
   targetNode: done
   category: construction-category-storage
-  description: Металлический морозильный ящик для хранения вещей. # Imperial Recipes Locale
+  #description: Металлический морозильный ящик для хранения вещей. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Пластиковый ящик # Imperial Recipes Locale
+  #name: Пластиковый ящик # Imperial Recipes Locale
   id: CratePlastic
   graph: CratePlastic
   startNode: start
   targetNode: crateplastic
   category: construction-category-storage
-  description: Пластиковый ящик для хранения вещей. # Imperial Recipes Locale
+  #description: Пластиковый ящик для хранения вещей. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Картонный ящик # Imperial Recipes Locale
+  #name: Картонный ящик # Imperial Recipes Locale
   id: BigBox
   graph: BaseBigBox
   startNode: start
   targetNode: basebigbox
   category: construction-category-storage
-  description: Большой ящик, в котором можно хранить вещи или прятаться. # Imperial Recipes Locale
+  #description: Большой ящик, в котором можно хранить вещи или прятаться. # Imperial Recipes Locale
   objectType: Structure
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Картонная коробка # Imperial Recipes Locale
+  #name: Картонная коробка # Imperial Recipes Locale
   id: BoxCardboard
   graph: BoxCardboard
   startNode: start
   targetNode: boxcardboard
   category: construction-category-storage
-  description: Маленькая коробка для хранения вещей. # Imperial Recipes Locale
+  #description: Маленькая коробка для хранения вещей. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Коробка пиццы # Imperial Recipes Locale
+  #name: Коробка пиццы # Imperial Recipes Locale
   id: FoodBoxPizza
   graph: FoodBoxPizza
   startNode: start
   targetNode: foodboxpizza
   category: construction-category-storage
-  description: Коробка для пиццы. # Imperial Recipes Locale
+  #description: Коробка для пиццы. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Гроб # Imperial Recipes Locale
+  #name: Гроб # Imperial Recipes Locale
   id: CrateCoffin
   graph: CrateCoffin
   startNode: start
   targetNode: cratecoffin
   category: construction-category-storage
-  description: Гроб для хранения трупов. # Imperial Recipes Locale
+  #description: Гроб для хранения трупов. # Imperial Recipes Locale
   objectType: Structure

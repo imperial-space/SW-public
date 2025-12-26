@@ -1,13 +1,13 @@
 ﻿<Document>
-  # Переносной скруббер
-  Портативная машина, способная очищать подключённую к ней атмосферу.
+  # Portable Scrubber
+  The portable scrubber is a portable machine that can be used to scrub the atmosphere in a room.
   <Box>
     <GuideEntityEmbed Entity="PortableScrubber"/>
   </Box>
 
   It is invaluable for quickly scrubbing unwanted gasses from a room when regular [textlink="scrubbers" link="AirScrubber"] are working too slow, or when a [textlink="scrubber" link="AirScrubber"] is not present.
 
-  Требует [textlink="питания" link="Power"] через [textlink="НВ кабель" link="VoltageNetworks"] неподалёку.
+  The portable scrubber requires [textlink="power" link="Power"] through a nearby [textlink="LV cable" link="VoltageNetworks"] to function.
 
   The portable scrubber automatically starts scrubbing all non-breathable gasses from the room when it is bolted (wrenched) to the floor.
 
@@ -16,6 +16,6 @@
   ## Dumping Waste and Storage
   The scrubber's internal volume can be emptied by bolting (wrenching it) onto a [textlink="connector" link="GasCanisters"].
 
-  Обычно, на станции есть специализированное место для опустошения скрубберов.
+  Stations commonly have a dedicated emptying point to quickly transfer the waste from the scrubber to the station's wastenet.
 
 </Document>

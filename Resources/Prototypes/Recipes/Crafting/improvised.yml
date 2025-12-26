@@ -1,216 +1,216 @@
 - type: construction
-  name: дубинка # Imperial Recipes Locale
+  #name: дубинка # Imperial Recipes Locale
   id: bat
   graph: WoodenBat
   startNode: start
   targetNode: bat
   category: construction-category-weapons
-  description: Прочная дубинка. # Imperial Recipes Locale
+  #description: Прочная дубинка. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Простыня-призрак # Imperial Recipes Locale
+  #name: Простыня-призрак # Imperial Recipes Locale
   id: ghost_sheet
   graph: GhostSheet
   startNode: start
   targetNode: ghost_sheet
   category: construction-category-clothing
-  description: Станьте жутким призраком. Бу! Испугался? Не бойся, я друг! # Imperial Recipes Locale
+  #description: Станьте жутким призраком. Бу! Испугался? Не бойся, я друг! # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стяжки # Imperial Recipes Locale
+  #name: Стяжки # Imperial Recipes Locale
   id: makeshifthandcuffs
   graph: makeshifthandcuffs
   startNode: start
   targetNode: cuffscable
   category: construction-category-tools
-  description: Прочные одноразовые пластиковые кабельные стяжки. # Imperial Recipes Locale
+  #description: Прочные одноразовые пластиковые кабельные стяжки. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Шок-палка # Imperial Recipes Locale
+  #name: Шок-палка # Imperial Recipes Locale
   id: makeshiftstunprod
   graph: makeshiftstunprod
   startNode: start
   targetNode: msstunprod
   category: construction-category-weapons
-  description: Самодельная дубинка-шокер. # Imperial Recipes Locale
+  #description: Самодельная дубинка-шокер. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Намордник # Imperial Recipes Locale
+  #name: Намордник # Imperial Recipes Locale
   id: muzzle
   graph: Muzzle
   startNode: start
   targetNode: muzzle
   category: construction-category-tools
   objectType: Item
-  description: Намордник, чтобы заткнуть жертву. # Imperial Recipes Locale
+  #description: Намордник, чтобы заткнуть жертву. # Imperial Recipes Locale
 
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Импровизированная пневматическая пушка # Imperial Recipes Locale
+  #name: Импровизированная пневматическая пушка # Imperial Recipes Locale
   id: pneumaticcannon
   graph: PneumaticCannon
   startNode: start
   targetNode: cannon
   category: construction-category-weapons
   objectType: Item
-  description: Этот сукин сын может выстрелить из всего, что в него поместится, используя лишь немного газа. # Imperial Recipes Locale
+  #description: Этот сукин сын может выстрелить из всего, что в него поместится, используя лишь немного газа. # Imperial Recipes Locale
 
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Бинт # Imperial Recipes Locale
+  #name: Бинт # Imperial Recipes Locale
   id: gauze
   graph: Gauze
   startNode: start
   targetNode: gauze
   category: construction-category-tools
   objectType: Item
-  description: Когда у тебя действительно ничего не осталось. # Imperial Recipes Locale
+  #description: Когда у тебя действительно ничего не осталось. # Imperial Recipes Locale
 
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Повязка на глаза # Imperial Recipes Locale
+  #name: Повязка на глаза # Imperial Recipes Locale
   id: blindfold
   graph: Blindfold
   startNode: start
   targetNode: blindfold
   category: construction-category-tools
   objectType: Item
-  description: Полоса непроницаемого материала. # Imperial Recipes Locale
+  #description: Полоса непроницаемого материала. # Imperial Recipes Locale
 
 
 - type: construction
-  name: Цветочный венок # Imperial Recipes Locale
+  #name: Цветочный венок # Imperial Recipes Locale
   id: flowerwreath
   graph: flowerwreath
   startNode: start
   targetNode: flowerwreath
   category: construction-category-clothing
-  description: Венок из ярких цветов. # Imperial Recipes Locale
+  #description: Венок из ярких цветов. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Тряпочка # Imperial Recipes Locale
+  #name: Тряпочка # Imperial Recipes Locale
   id: rag
   graph: Rag
   startNode: start
   targetNode: rag
   category: construction-category-tools
   objectType: Item
-  description: Влажная тряпка для очистки земли. Это лучше, чем скользить весь день. # Imperial Recipes Locale
+  #description: Влажная тряпка для очистки земли. Это лучше, чем скользить весь день. # Imperial Recipes Locale
 
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Самодельный дробовик # Imperial Recipes Locale
+  #name: Самодельный дробовик # Imperial Recipes Locale
   id: improvisedshotgun
   graph: ImprovisedShotgunGraph
   startNode: start
   targetNode: shotgun
   category: construction-category-weapons
   objectType: Item
-  description: Дерьмовый дробовик ручной работы, использующий патроны 50-го калибра. В патроннике можно держать лишь один патрон. # Imperial Recipes Locale
+  #description: Дерьмовый дробовик ручной работы, использующий патроны 50-го калибра. В патроннике можно держать лишь один патрон. # Imperial Recipes Locale
 
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Самодельный патрон для дробовика # Imperial Recipes Locale
+  #name: Самодельный патрон для дробовика # Imperial Recipes Locale
   id: ShellShotgunImprovised
   graph: ImprovisedShotgunShellGraph
   startNode: start
   targetNode: shell
   category: construction-category-weapons
   objectType: Item
-  description: Самодельный патрон 50-го калибра, стреляющий шрапнелью из осколков стекла. # Imperial Recipes Locale
+  #description: Самодельный патрон 50-го калибра, стреляющий шрапнелью из осколков стекла. # Imperial Recipes Locale
 
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Приклад # Imperial Recipes Locale
+  #name: Приклад # Imperial Recipes Locale
   id: riflestock
   graph: RifleStockGraph
   startNode: start
   targetNode: riflestock
   category: construction-category-weapons
   objectType: Item
-  description: Ложа, вырезанная из дерева, необходимая для самодельного огнестрельного оружия. # Imperial Recipes Locale
+  #description: Ложа, вырезанная из дерева, необходимая для самодельного огнестрельного оружия. # Imperial Recipes Locale
 
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Зажигательная бомба # Imperial Recipes Locale
+  #name: Зажигательная бомба # Imperial Recipes Locale
   id: firebomb
   graph: FireBomb
   startNode: start
   targetNode: firebomb
   category: construction-category-weapons
   objectType: Item
-  description: Слабое самодельное зажигательное устройство. # Imperial Recipes Locale
+  #description: Слабое самодельное зажигательное устройство. # Imperial Recipes Locale
 
 
 - type: construction
-  name: Хлопковая ткань # Imperial Recipes Locale
+  #name: Хлопковая ткань # Imperial Recipes Locale
   id: CottonWovenCloth
   graph: CottonObjects
   startNode: start
   targetNode: cottoncloth
   category: construction-category-misc
-  description: Кусок хлопчатобумажной ткани, сделанный своими руками, на ощупь грубый. # Imperial Recipes Locale
+  #description: Кусок хлопчатобумажной ткани, сделанный своими руками, на ощупь грубый. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Соломенная шляпа # Imperial Recipes Locale
+  #name: Соломенная шляпа # Imperial Recipes Locale
   id: strawHat
   graph: StrawHat
   startNode: start
   targetNode: strawhat
   category: construction-category-clothing
-  description: Шикарная шапка для жарких дней! Не рекомендуется носить вблизи огня. # Imperial Recipes Locale
+  #description: Шикарная шапка для жарких дней! Не рекомендуется носить вблизи огня. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Трубчатая бомба # Imperial Recipes Locale
+  #name: Трубчатая бомба # Imperial Recipes Locale
   id: pipebomb
   graph: PipeBomb
   startNode: start
   targetNode: pipebomb
   category: construction-category-weapons
   objectType: Item
-  description: Самодельное взрывчатое устройство, сделанное из труб и проволоки. # Imperial Recipes Locale
+  #description: Самодельное взрывчатое устройство, сделанное из труб и проволоки. # Imperial Recipes Locale
   icon:
     sprite: Objects/Weapons/Bombs/pipebomb.rsi
     state: icon
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Скалка # Imperial Recipes Locale
+  #name: Скалка # Imperial Recipes Locale
   id: rollingpin
   graph: WoodenRollingPin
   startNode: start
   targetNode: rollingpin
   category: construction-category-tools
   objectType: Item
-  description: Скалка, используемая для приготовления пищи и защиты кухни. # Imperial Recipes Locale
+  #description: Скалка, используемая для приготовления пищи и защиты кухни. # Imperial Recipes Locale
 
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: pet carrier
+  #name: pet carrier
   id: PetCarrier
   graph: PetCarrier
   startNode: start
@@ -220,7 +220,7 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: goliath hardsuit
+  #name: goliath hardsuit
   id: HardsuitGoliath
   graph: HardsuitGoliath
   startNode: start

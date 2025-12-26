@@ -1,0 +1,21 @@
+medieval-hm-relations-change = Изменить отношения
+medieval-hm-relations-changereq = Сделать запрос на смену отношений
+medieval-hm-relations-changeanc = Отношения вашей фракции с {$name1} изменены на {$name2}.
+medieval-hm-relations-accept = Принять
+medieval-hm-relations-decline = Отказать
+medieval-hm-relations-groups = Группы
+medieval-hm-relations-oopsie = Звания
+medieval-hm-relations-diplomacy = Дипломатия
+medieval-hm-relations-goals = Цели
+medieval-hm-relations-omniman = [font=Default size=24][bold]Вы уверены?[/bold][/font]
+medieval-hm-relations-ooopsie = Кто-то там будет исключён из вашей фракции
+medieval-hm-relations-cancel = Отмена
+medieval-hm-relations-fire = Уволить
+medieval-hm-relations-fireaward = Уволить и назначить награду
+medieval-hm-relations-ready = Готово
+medieval-hm-relations-suggest = Предложить отношения
+medieval-hm-relations-ucant = Вы не сможете изменить содержимое послания после подтверждения!
+medieval-hm-relations-suggesst = Предложить
+medieval-hm-relations-leaderchng = Лидер фракции {$name} предлагает сменить отношения ваших фракций на {$name2}.
+medieval-hm-relations-areusure = Вы уверены, что хотите изменить отношения с фракцией {$name} на {$name2}?
+medieval-hm-relations-firefire = {$name}{$name2} будет исключён из вашей фракции.

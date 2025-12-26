@@ -14,20 +14,21 @@ namespace Content.Server.Imperial.Medieval.SmithingSystem;
 
 public sealed partial class SmithingSystem
 {
-    private readonly Dictionary<ItemQuality, string> _itemQualityDecorators = new()
-    {
-        { ItemQuality.Worst, "отвр. " },
-        { ItemQuality.ReallyBad, "ужс. " },
-        { ItemQuality.Bad, "плох. " },
-        { ItemQuality.Default, "хор. " },
-        { ItemQuality.Good, "отл. " },
-        { ItemQuality.Excellent, "шедевр. " },
-    };
+    private Dictionary<ItemQuality, string> _itemQualityDecorators = new()
+    {};
 
     [Dependency] private readonly MedievalMeleeResourceSystem _meleeResource = default!;
 
     private void InitializeBehaviors()
     {
+        _itemQualityDecorators = new(){
+        { ItemQuality.Worst, Loc.GetString("imperial-hm-smithing-disgusting") },
+        { ItemQuality.ReallyBad, Loc.GetString("imperial-hm-smithing-horrible") },
+        { ItemQuality.Bad, Loc.GetString("imperial-hm-smithing-bad") },
+        { ItemQuality.Default, Loc.GetString("imperial-hm-smithing-good") },
+        { ItemQuality.Good, Loc.GetString("imperial-hm-smithing-excellent") },
+        { ItemQuality.Excellent, Loc.GetString("imperial-hm-smithing-perfect") },
+        };
         SubscribeLocalEvent<UpgradeArmorOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(UpgradeArmor);
         SubscribeLocalEvent<UpgradeWeaponOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(UpgradeWeapon);
         SubscribeLocalEvent<DeleteOnLowScoreOnSmithCompleteComponent, SmithingApplyBehaviorsEvent>(DeleteOnLowScore);
