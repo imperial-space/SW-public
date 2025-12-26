@@ -42,6 +42,8 @@
   blacklist:
     components:
     - BorgChassis
+    tags:
+    - Animal
   chatMessages: ["chat-emote-msg-Hmmm"]
   chatTriggers:
     - хммм
@@ -58,6 +60,8 @@
   blacklist:
     components:
     - BorgChassis
+    tags:
+    - Animal
   chatMessages: ["chat-emote-msg-Hmm"]
   chatTriggers:
     - хмм?
@@ -76,6 +80,8 @@
   blacklist:
     components:
     - BorgChassis
+    tags:
+    - Animal
   chatMessages: ["chat-emote-msg-warcry"]
   chatTriggers:
     - ааааа
@@ -153,6 +159,8 @@
   blacklist:
     components:
     - BorgChassis
+    tags:
+    - Animal
   chatMessages: ["chat-emote-msg-woo"]
   chatTriggers:
     - ууу

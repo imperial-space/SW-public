@@ -235,7 +235,7 @@
   id: LizardChestTiger
   bodyPart: Chest
   markingCategory: Chest
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [ Reptilian, Lamian ]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: body_tiger
@@ -244,7 +244,7 @@
   id: LizardHeadTiger
   bodyPart: Head
   markingCategory: Head
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [ Reptilian, Lamian ]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: head_tiger
@@ -253,7 +253,7 @@
   id: LizardLArmTiger
   bodyPart: LArm
   markingCategory: Arms
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [ Reptilian, Lamian ]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: l_arm_tiger
@@ -262,7 +262,7 @@
   id: LizardLLegTiger
   bodyPart: LLeg
   markingCategory: Legs
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [ Reptilian, Lamian ]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: l_leg_tiger
@@ -271,7 +271,7 @@
   id: LizardRArmTiger
   bodyPart: RArm
   markingCategory: Arms
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [ Reptilian, Lamian ]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: r_arm_tiger
@@ -280,7 +280,7 @@
   id: LizardRLegTiger
   bodyPart: RLeg
   markingCategory: Legs
-  speciesRestriction: [Reptilian]
+  speciesRestriction: [ Reptilian, Lamian ]
   sprites:
   - sprite: Mobs/Customization/reptilian_parts.rsi
     state: r_leg_tiger

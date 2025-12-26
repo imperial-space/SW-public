@@ -14,3 +14,4 @@ chat-emote-name-woo = радоваться
 chat-emote-name-painscream = кричать (боль)
 chat-emote-name-passivescream = кричать (тихо)
 chat-emote-name-howl = выть
+chat-emote-name-hiccup = икать

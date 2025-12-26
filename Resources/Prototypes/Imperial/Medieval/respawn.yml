@@ -233,11 +233,6 @@
     - type: Bloodstream
       bloodMaxVolume: 0
     - type: Puller
-    - type: Tag
-      tags:
-        - CannotSuicide
-        - DoorBumpOpener
-        - FootstepSound
     - type: MobThresholds
       thresholds:
         0: Alive
