@@ -22,6 +22,7 @@ ent-MedievalWeaponCrossbowWhois = crossbow
 ent-MedievalWeaponMiniCrossbow = wrist crossbow
     .desc = An ancient weapon, similar to a bow. Attaches to the forearm and uses heavy metal bolts.
 ent-MedievalWeaponBowWhois = longbow
+    .desc = The longbow is a type of bow that is very long, which allows for long-range shots. The bow is not strongly recurved. Its limbs are relatively narrow, so they have a round or D-shaped cross-section.
     .suffix = { "SKIN, Medieval, bow" }
 ent-BowImprovisedWhois = { ent-BaseBow }
     .desc = { ent-BaseBow.desc }
