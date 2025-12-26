@@ -397,7 +397,7 @@
     MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightDeimon]
 
 - type: customization
-  id: aniot
+  id: apolla
   holder: e575ce8b-42dd-4112-b2d3-0ae490850c19
   map:
     Log: [ApollaStaffMedieval, MedievalClothingNeckCloakApolla, MedievalClothingHandsGlovesClothApolla]
