@@ -28,9 +28,11 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 using Content.Server.SSDFree;
 using Content.Server.SSDFree.Components;
+using Content.Shared.SSDFree.Components;
 using Content.Shared.Cuffs.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Containers;
+using Content.Shared.Body.Components;
 
 namespace Content.Server.Cult
 {
@@ -84,11 +86,11 @@ namespace Content.Server.Cult
         }
         private void OnPlayerAttached(EntityUid uid, TakeNameComponent comp, PlayerAttachedEvent args)
         {
-            if (!_playerManager.TryGetSessionByEntity(uid, out var session) || !comp.HasName) return;
+            if (!_playerManager.TryGetSessionByEntity(uid, out var session) || comp.HasName) return;
             _quickDialog.OpenDialog(session, "Введите имя", "Имя", (string message) =>
             {
                 _metaData.SetEntityName(uid, message);
-                comp.HasName = false;
+                comp.HasName = true;
             });
         }
         private void OnBloodMeleeHit(EntityUid uid, CultBloodMeleeComponent component, MeleeHitEvent args)
@@ -147,6 +149,11 @@ namespace Content.Server.Cult
                         {
                             if (tp.Base != teleport.Base && tp.Sector == teleport.Sector && HasComp<MedievalSpikeTargetComponent>(target))
                             {
+                                var teleported = EnsureComp<CultTeleportedComponent>(target);
+                                teleported.Portal = from;
+                                var txform = Transform(target);
+                                var tcoords = txform.Coordinates;
+                                Spawn("MedievalTeleportEffect", tcoords);
                                 var newxform = Transform(tp.Owner);
                                 var newcoords = newxform.Coordinates;
                                 _transform.SetCoordinates(target, newcoords);
@@ -203,7 +210,7 @@ namespace Content.Server.Cult
                         _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
                         _popupSystem.PopupEntity(Loc.GetString("imperial-hm-cult-terpila"), cursed.Owner, cursed.Owner, PopupType.SmallCaution);
                     }
-                    if (cursed.CurseLevel > 0f && cursed.CurseLevel < 5f)
+                    if (cursed.CurseLevel > 0f && cursed.CurseLevel <= 5f)
                     {
                         _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
                         _popupSystem.PopupEntity(Loc.GetString("imperial-hm-cult-terpi"), cursed.Owner, cursed.Owner, PopupType.SmallCaution);
@@ -217,7 +224,7 @@ namespace Content.Server.Cult
 
                 foreach (var picture in EntityManager.EntityQuery<CultCheckPictureComponent>())
                 {
-                    if (picture.CollegiumUnlocked) return;
+                    if (picture.CollegiumUnlocked) continue;
                     foreach (var cultist in EntityManager.EntityQuery<CultMemberComponent>())
                     {
                         if (TryComp<CultMapBlockerComponent>(cultist.parent, out var blocker))
@@ -350,7 +357,7 @@ namespace Content.Server.Cult
                                         var axform = Transform(altar.Owner);
                                         var acoords = axform.Coordinates;
                                         Spawn("MedievalCultCrystallRed", acoords);
-                                        if (!isDead) Spawn("MedievalCultCrystallRed", acoords);
+                                        //if (!isDead) Spawn("MedievalCultCrystallRed", acoords);
                                         if (isDead && TryComp<SSDFreeComponent>(victim, out var ssdfreeComp) && _playerManager.TryGetSessionByEntity(victim, out var session)) _ssdFreeSystem.GoToSSD(victim, session.UserId, false, ssdfreeComp);
                                     }
                                     _audioSystem.PlayPvs(comp.SuccesSound, uid);
@@ -364,12 +371,16 @@ namespace Content.Server.Cult
                                             needAltars.Add(altar);
                                         }
                                     }
-                                    var ouraltar = _random.Pick(needAltars);
-                                    var oxform = Transform(ouraltar.Owner);
+                                    // var ouraltar = _random.Pick(needAltars); // Obsolete
+
+                                    var ouraltar = EnsureComp<CultTeleportedComponent>(victim).Portal;
+
+                                    var oxform = Transform(ouraltar);
                                     var ocoords = oxform.Coordinates;
                                     _transform.SetCoordinates(victim, ocoords);
                                     if (TryComp<CuffableComponent>(victim, out var cuff))
                                         _container.EmptyContainer(cuff.Container, true);
+                                    _audioSystem.PlayEntity(comp.VictimSuccessSound, Filter.Entities(victim), victim, false, AudioParams.Default.WithVolume(20f));
                                     _chat.TrySendInGameICMessage(victim, Loc.GetString("imperial-hm-cult-neuznayut"), InGameICChatType.Whisper, false);
                                     var cyr = EnsureComp<CultCursedComponent>(victim);
                                     cyr.CurseLevel = cyr.MaxCurseLevel;
@@ -915,7 +926,7 @@ namespace Content.Server.Cult
             {
                 if (comp.CurseLevel > 0f)
                     args.PushMarkup(Loc.GetString("imperial-hm-cult-cultbond"));
-                if (comp.CurseLevel < 0f)
+                if (comp.CurseLevel <= 0f)
                     args.PushMarkup(Loc.GetString("imperial-hm-cult-urodec"));
             }
             if (TryComp<CultCursedComponent>(args.Examiner, out var cursed) && cursed.CurseLevel > 0f && comp.CurseLevel > 0f)
@@ -1539,12 +1550,12 @@ namespace Content.Server.Cult
     {
 (2, 1), (9, 1),
 (1, 2), (2, 2), (5, 2), (6, 2), (9, 2), (10, 2),
-(2, 3), (4, 3), (6, 3), (9, 3),
+(2, 3), (4, 3), (7, 3), (9, 3),
 (1, 4), (4, 4), (5, 4), (6, 4), (7, 4), (10, 4),
 (3, 5), (8, 5),
 (4, 6), (7, 6),
 (6, 7), (5, 7),
-(1, 8), (4, 8), (6, 8), (10, 8),
+(1, 8), (4, 8), (7, 8), (10, 8),
 (1, 9), (2, 9), (9, 9), (10, 9),
 (4, 10), (5, 10), (6, 10), (7, 10)
     };

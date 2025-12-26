@@ -271,8 +271,9 @@
     - id: ClothingMaskBreath
     - id: EmergencyOxygenTankFilled
     - id: EmergencyMedipen
+    - id: SpaceMedipen #Imperial "FixMimeEmergencyKit"
     - id: Flare
-    - id: FoodBreadBaguette
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
 
 - type: entity
@@ -286,7 +287,7 @@
     - id: EmergencyNitrogenTankFilled
     - id: EmergencyMedipen
     - id: Flare
-    - id: FoodBreadBaguette
+    - id: FoodSnackNutribrick
     - id: DrinkWaterBottleFull
   - type: Sprite
     layers:
@@ -294,6 +295,20 @@
     - state: nitrogentank
   - type: Label
     currentLabel: reagent-name-nitrogen
+
+- type: entity
+  parent: BoxSurvival
+  id: BoxMimeMoth
+  suffix: Mime, Emergency moth
+  components:
+  - type: StorageFill
+    contents:
+    - id: ClothingMaskBreath
+    - id: EmergencyOxygenTankFilled
+    - id: EmergencyMedipen
+    - id: Flare
+    - id: FoodSnackNutribrick
+    - id: DrinkWaterBottleFull
 
 - type: entity
   parent: BoxCardboard

@@ -4,6 +4,8 @@
   id: MedievalWeaponCrossbow
   description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
   components:
+  - type: RDWeight
+    value: 4.5
   - type: Sprite
     sprite: Imperial/Medieval/Gun/crossbow.rsi
   - type: Clothing
@@ -39,6 +41,49 @@
 
 - type: entity
   name: crossbow
+  parent: MedievalWeaponCrossbow
+  id: MedievalWeaponCrossbowWhois
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/crossbow_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/crossbow_whois.rsi
+
+- type: entity
+  name: bow
+  parent: MedievalWeaponBow
+  id: MedievalWeaponBowWhois
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+
+- type: entity
+  name: bow
+  parent: BowImprovised
+  id: BowImprovisedWhois
+  description: The original rooty tooty point and shooty.
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+
+- type: entity
+  name: crossbow
+  parent: MedievalWeaponCrossbow
+  id: MedievalWeaponMiniCrossbow
+  description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Gun/minicrossbow.rsi
+
+- type: entity
+  name: crossbow
   parent: BaseWeaponSniper
   id: MedievalWeaponCrossbowSpeed
   description: A portable anti-armour rifle. Fires armor piercing 14.5mm shells. Uses .60 anti-material ammo.
@@ -64,7 +109,6 @@
     - FullAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/ES_Arrow_Release_1_-_SFX_Producer.ogg
-
 
 - type: entity
   parent: BaseCartridge
@@ -412,6 +456,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/ES_Bow_Release_Arrow_-_SFX_Producer.ogg
+    defaultSpread: 10
 
 - type: entity
   parent: BaseArrow
@@ -482,6 +527,7 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/ES_Bow_Release_Arrow_-_SFX_Producer.ogg
+    defaultSpread: 10
   - type: RadiationSource
     intensity: 2
     slope: 3

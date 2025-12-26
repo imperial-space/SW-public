@@ -177,6 +177,7 @@
 - type: typingIndicator
   id: drou
   typingState: drou
+  idleState: drou
   offset: 0, 0.0625
 
 - type: entity
@@ -259,17 +260,20 @@
   #          Blunt: -1
   #          Brute: -1
   #          Slash: -1
-  - type: NeedSleepRaceModifier
-    modifier: 0.65
+  - type: NeedSleep
+    sleepLevelPerUpdate: 0.195
   - type: MobThresholds
     thresholds:
       0: Alive
       95: Critical
-      160: Dead
+      180: Dead
   - type: Mana
     maxManaRaceModifier: 0.95
     regenRaceModifier: 0.95
   - type: Nocturn
+  - type: LocalLight
+    energy: 0.4
+    radius: 4.5
   #- type: Thieving
   #  stripTimeReduction: 1.5
   #  stealthy: false

@@ -16,8 +16,9 @@
   name: gnomish polybolt
   description: Nooo, I don't wanna be clown!
   components:
-  - type: PolymorphOnCollide
+  - type: PolymorphOnTrigger
     polymorph: GnomeCluwne
+  - type: WhitelistTriggerCondition
     whitelist:
       components:
       - Body
@@ -27,19 +28,20 @@
   name: Fireball
   description: Fires an explosive fireball towards the clicked location.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 60 #ибо нехуй спамить заклинанием
     itemIconStyle: BigAction
-    checkCanAccess: false
-    range: 60
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/fireball.ogg
     icon:
       sprite: Imperial/DRGbeer/spells.rsi
       state: Reincarnation-Clown
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
     event: !type:ProjectileSpellEvent
       prototype: ProjectilePolyboltGnomish
-      speech: action-speech-spell-Clowning
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -59,19 +61,20 @@
   name: Summon Magicarp
   description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 50
-    range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/DRGbeer/spells.rsi
       state: gnomes
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: MobGnome
         amount: 3
       offset: 0, 1
-      speech: action-speech-spell-SpawnGome
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -91,19 +94,20 @@
   name: Summon Magicarp
   description: This spell summons three Magi-Carp to your aid! May or may not turn on user.
   components:
-  - type: WorldTargetAction
+  - type: Action
     useDelay: 50
-    range: 4
     itemIconStyle: BigAction
     icon:
       sprite: Imperial/DRGbeer/spells.rsi
       state: Soporificfog
+  - type: TargetAction
+    range: 4
+  - type: WorldTargetAction
     event: !type:WorldSpawnSpellEvent
       prototypes:
       - id: AdminInstantEffectTearGas
         amount: 1
       offset: 0, 1
-      speech: action-speech-spell-smokegnom
 
 - type: entity
   parent: BaseSubdermalImplant

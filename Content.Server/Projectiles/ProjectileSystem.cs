@@ -44,6 +44,15 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             return;
         }
 
+        // imperial medieval rideable start
+        var before = new ProjectileBeforeHitEvent(target, component.Shooter);
+
+        RaiseLocalEvent(uid, ref before);
+
+        if (before.Cancelled) return;
+        // imperial medieval rideable end
+
+
         var ev = new ProjectileHitEvent(component.Damage * _damageableSystem.UniversalProjectileDamageModifier, target, component.Shooter);
         RaiseLocalEvent(uid, ref ev);
 
@@ -57,7 +66,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
         var modifiedDamage = _damageableSystem.TryChangeDamage(target, ev.Damage, component.IgnoreResistances, damageable: damageableComponent, origin: component.Shooter);
         var deleted = Deleted(target);
 
-        if (modifiedDamage is not null && EntityManager.EntityExists(component.Shooter))
+        if (modifiedDamage is not null && Exists(component.Shooter))
         {
             if (modifiedDamage.AnyPositive() && !deleted)
             {
@@ -65,7 +74,7 @@ public sealed class ProjectileSystem : SharedProjectileSystem
             }
 
             _adminLogger.Add(LogType.BulletHit,
-                HasComp<ActorComponent>(target) ? LogImpact.Extreme : LogImpact.High,
+                LogImpact.Medium,
                 $"Projectile {ToPrettyString(uid):projectile} shot by {ToPrettyString(component.Shooter!.Value):user} hit {otherName:target} and dealt {modifiedDamage.GetTotal():damage} damage");
         }
 

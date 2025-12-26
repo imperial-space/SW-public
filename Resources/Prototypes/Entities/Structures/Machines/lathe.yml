@@ -112,6 +112,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
@@ -122,6 +123,7 @@
     - PartsStatic
     - AtmosStatic
     - CablesStatic
+    - PaperworkStatic
     - CargoStatic
     - MaterialsStatic
     - BasicChemistryStatic
@@ -184,15 +186,19 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: Lathe
     idleState: icon
     runningState: building
     unlitIdleState: unlit
     unlitRunningState: unlit-building
     staticPacks:
+    - MedicalImperialVehicleStatic # Imperial "ImperialVehicle"
     - ChemistryStatic
     - SurgeryStatic
     dynamicPacks:
+    - SalvagePlasmaCutterWeapons # Imperial "plasma Cutter + Advanced Version"
+    - SalvageAdvancedPlasmaCutterWeapons # Imperial "plasma Cutter + Advanced Version"
     - AdvancedTools
     - ScienceEquipment
     - ScienceExplosives
@@ -206,7 +212,6 @@
     - Janitor
     - Instruments
     - Equipment
-    - FauxTiles
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo
@@ -254,7 +259,6 @@
     - CargoBoardsStatic
     - MedicalBoardsStatic
     - EngineeringBoardsStatic
-    - CircuitFloorsStatic
     - ImperialCircuitStatic # Imperial Space
     dynamicPacks:
     - EngineeringBoards
@@ -274,6 +278,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
   - type: RequireProjectileTarget
 
 - type: entity
@@ -322,6 +327,7 @@
       - Sheet
       - RawMaterial
       - Ingot
+  - type: OreSiloClient
   - type: GuideHelp
     guides:
     - Robotics
@@ -396,12 +402,15 @@
     - SecurityWeaponsStatic
     - ImperialSecurityStatic # Imperial Space
     dynamicPacks:
+    - SalvageSecurityBoards
+    - SalvageSecurityWeapons
     - SecurityEquipment
     - SecurityBoards
     - SecurityExplosives
     - SecurityAmmo
     - SecurityWeapons
     - ImperialSecurityDynamic # Imperial Space
+    - ImperialSecurityEquipment # Imperial Space Emergency Button
     - SecurityDisablers
   - type: MaterialStorage
     whitelist:
@@ -409,6 +418,9 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
+  - type: LatheAnnouncing
+    channels: [Security]
 
 - type: entity
   id: AmmoTechFab
@@ -442,6 +454,7 @@
           - Sheet
           - RawMaterial
           - Ingot
+    - type: OreSiloClient
 
 - type: entity
   id: MedicalTechFab
@@ -466,6 +479,7 @@
     idleState: icon
     runningState: icon
     staticPacks:
+    - MedicalImperialVehicleStatic # Imperial "ImperialVehicle"
     - TopicalsStatic
     - ChemistryStatic
     - MedicalStatic
@@ -479,6 +493,9 @@
     board: MedicalTechFabCircuitboard
   - type: StealTarget
     stealGroup: MedicalTechFabCircuitboard
+  - type: OreSiloClient
+  - type: LatheAnnouncing
+    channels: [Medical]
 
 - type: entity
   parent: BaseLathe
@@ -525,6 +542,7 @@
         - Sheet
         - RawMaterial
         - Ingot
+  - type: OreSiloClient
 
 - type: entity
   id: Biogenerator
@@ -598,6 +616,7 @@
       idleState: icon
       runningState: building
       defaultProductionAmount: 10
+      priceModifier: 2 # Imperial Lathe Nerf
       staticPacks:
       - OreSmelting
       - RGlassSmelting
@@ -644,6 +663,7 @@
       tags:
       - Raw
       - Wooden
+      - Boll
   - type: Lathe
     idleState: base_machine
     runningState: base_machine_processing
@@ -676,7 +696,16 @@
     idleState: icon
     runningState: building
     staticPacks:
-    - FloorTilesStatic
+    - FloorDarkTilesStatic
+    - FloorSteelTilesStatic
+    - FloorWhiteTilesStatic
+    - FloorMaintsTilesStatic
+    - FloorWoodTilesStatic
+    - FloorConcreteTilesStatic
+    - CircuitFloorsStatic
+    - FloorMarbleTilesStatic
+    dynamicPacks:
+    - FauxTiles
   - type: MaterialStorage
     whitelist:
       tags:
@@ -685,3 +714,4 @@
         - Wooden
         - RawMaterial
         - Plastic
+  - type: OreSiloClient

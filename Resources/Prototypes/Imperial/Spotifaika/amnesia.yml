@@ -1,0 +1,177 @@
+- type: entity
+  parent: XenoStructuralGel
+  id: AmnesiaFleshTile
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
+  suffix: Amnesia, Spotifaika
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      layers:
+        - state: icon-1
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 900
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: XenoStructuralGel
+  id: AmnesiaFleshTile2
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
+  suffix: Amnesia, Spotifaika
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      layers:
+        - state: icon-2
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 900
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: XenoStructuralGel
+  id: AmnesiaFleshTile3
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
+  suffix: Amnesia, Spotifaika
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      layers:
+        - state: icon-3
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 900
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: XenoStructuralGel
+  id: AmnesiaFleshTile4
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
+  suffix: Amnesia, Spotifaika
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      layers:
+        - state: icon-4
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 900
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: XenoStructuralGel
+  id: AmnesiaFleshTile5
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
+  suffix: Amnesia, Spotifaika
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      layers:
+        - state: icon-5
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 900
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: XenoStructuralGel
+  id: AmnesiaFleshTile6
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
+  suffix: Amnesia, Spotifaika
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      layers:
+        - state: icon-6
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 900
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+
+- type: entity
+  parent: XenoStructuralGel
+  id: AmnesiaFleshTileRandom
+  name: fibres of flesh
+  description: Fleshy organic sediment that pulsates slightly.
+  suffix: Amnesia, Spotifaika, Random
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: Sprite
+      sprite: Imperial/Spotifaika/Amnesia/flesh.rsi
+      layers:
+        - state: icon-1
+          map: ["random"]
+    - type: RandomSprite
+      available:
+      - random:
+          icon-1: ""
+          icon-2: ""
+          icon-3: ""
+          icon-4: ""
+          icon-5: ""
+          icon-6: ""
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 900
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]

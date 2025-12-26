@@ -163,7 +163,6 @@
   name: reagent-name-telethanol
   parent: BaseAlcohol
   desc: reagent-desc-telethanol
-  slippery: true
   physicalDesc: reagent-physical-desc-strong-smelling
   flavor: alcohol
   color: "#b05b3c"
@@ -338,51 +337,22 @@
         - ReagentId: Gnomificator
           Quantity: 20
 
-
 - type: entity
-  parent: BaseItem
+  parent: DrinkCanBaseFull
   id: DrinkCanSyndicate
   name: syndicate chemical container
   description: Dangerous!
   components:
-  - type: Drink
-  - type: Openable
-  - type: PressurizedSolution
   - type: SolutionContainerManager
     solutions:
       drink:
         maxVol: 20
-  - type: SolutionTransfer
-    canChangeTransferAmount: true
-    maxTransferAmount: 15
-  - type: UserInterface
-    interfaces:
-      enum.TransferAmountUiKey.Key:
-        type: TransferAmountBoundUserInterface
   - type: Sprite
     sprite: Imperial/DRGbeer/gnomizator.rsi
     state: icon
     layers:
       - state: icon
         map: ["enum.OpenableVisuals.Layer"]
-  - type: DrawableSolution
-    solution: drink
-  - type: RefillableSolution
-    solution: drink
-  - type: DrainableSolution
-    solution: drink
-  - type: Appearance
-  - type: GenericVisualizer
-    visuals:
-      enum.OpenableVisuals.Opened:
-        enum.OpenableVisuals.Layer:
-          True: {state: "icon_open"}
-          False: {state: "icon"}
-  - type: Spillable
-    solution: drink
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 50
 
 - type: listing
   id: UplinkChemicalGnome

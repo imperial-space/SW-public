@@ -950,6 +950,7 @@
       nameSegments:
       - NamesFirst
       - NamesLast
+      nameFormat: name-format-standard
     - type: CrewSkills
       skills:
         - skillBotany
@@ -960,6 +961,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimChiefEngineer
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -976,6 +978,7 @@
       nameSegments:
       - NamesFirst
       - NamesLast
+      nameFormat: name-format-standard
     - type: CrewSkills
       skills:
         - skillBotany
@@ -992,6 +995,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimCMO
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -1008,6 +1012,7 @@
       nameSegments:
       - NamesFirst
       - NamesLast
+      nameFormat: name-format-standard
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1022,6 +1027,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimHeadOfPersonnel
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -1038,6 +1044,7 @@
       nameSegments:
       - NamesFirst
       - NamesLast
+      nameFormat: name-format-standard
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1047,6 +1054,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimHeadOfSecurity
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -1063,6 +1071,7 @@
       nameSegments:
       - NamesFirst
       - NamesLast
+      nameFormat: name-format-standard
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1073,6 +1082,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimResearchDirector
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -1089,6 +1099,7 @@
       nameSegments:
       - NamesFirst
       - NamesLast
+      nameFormat: name-format-standard
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1110,6 +1121,7 @@
 
 - type: randomHumanoidSettings
   id: ChallengeVictimQuartermaster
+  parent: EventHumanoidMindShielded
   randomizeName: false
   components:
     - type: GhostRole
@@ -1126,6 +1138,7 @@
       nameSegments:
       - NamesFirst
       - NamesLast
+      nameFormat: name-format-standard
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1156,6 +1169,7 @@
       nameSegments:
       - NamesFirst
       - NamesLast
+      nameFormat: name-format-standard
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1187,6 +1201,8 @@
       name: ghost-role-information-syndie-soldier-teamlead-name
       description: ghost-role-information-syndie-soldier-teamlead-description
       rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
     - type: Loadout
@@ -1230,6 +1246,8 @@
       name: ghost-role-information-syndie-soldier-name
       description: ghost-role-information-syndie-soldier-description
       rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
     - type: Loadout
@@ -1311,16 +1329,25 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
+      - Pirate #Imperial Space Pirates: New Horizon
     - type: GhostRole
       name: ghost-role-information-pirate-name
       description: ghost-role-information-pirate-description
       rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+    #Imperial Space Pirates: New Horizon; Start
+    - type: RandomMetadata
+      nameSegments:
+      - NamesPirateFirst
+      - NamesPirateLast
+      nameFormat: name-format-standard
     - type: Loadout
-      prototypes: [ PirateScoonerAltA, PirateScoonerAltB, PirateScoonerAltC, PirateScoonerAltD ]
+      prototypes: [ ImperialPirateGear, ImperialPirateFirstmateGear, ImperialPirateBotsmanGear, ImperialPirateTelyNyashkaGear]
       roleLoadout: [ RoleSurvivalEVA ]
+    #Imperial Space Pirates: New Horizon; End
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1346,6 +1373,9 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
+    #Imperial Space Pirates: New Horizon; Start
+    - type: Pirate
+    #Imperial Space Pirates: New Horizon; End
 
 - type: randomHumanoidSettings
   id: PirateCaptainScooner
@@ -1353,16 +1383,25 @@
   components:
     - type: NpcFactionMember
       factions:
-      - Syndicate
+      - Pirate #Imperial Space Pirates: New Horizon
     - type: GhostRole
       name: ghost-role-information-pirate-captain-name
       description: ghost-role-information-pirate-captain-description
       rules: ghost-role-information-rules-team-antagonist
+      mindRoles:
+      - MindRoleGhostRoleTeamAntagonist
       raffle:
         settings: default
+    #Imperial Space Pirates: New Horizon; Start
+    - type: RandomMetadata
+      nameSegments:
+      - NamesPirateFirst
+      - NamesPirateLast
+      nameFormat: name-format-standard
     - type: Loadout
-      prototypes: [ PirateCaptainScooner ]
+      prototypes: [ ImperialPirateCaptainGear ]
       roleLoadout: [ RoleSurvivalEVA ]
+    #Imperial Space Pirates: New Horizon; End
     - type: CrewSkills
       skills:
         - skillBotany
@@ -1388,6 +1427,7 @@
         - skillShooting
         - skillSurgery
         - skillNeuroSurgery
+    - type: PirateCaptain #Imperial Space Pirates: New Horizon
 
 ### Другие
 
@@ -1399,6 +1439,8 @@
       name: ghost-role-information-blackmarketeer-name
       description: ghost-role-information-blackmarketeer-description
       rules: ghost-role-information-freeagent-rules
+      mindRoles:
+      - MindRoleGhostRoleFreeAgent
       raffle:
         settings: default
     - type: Loadout
@@ -1424,6 +1466,8 @@
       name: ghost-role-information-cossack-name
       description: ghost-role-information-cossack-description
       rules: ghost-role-information-freeagent-rules
+      mindRoles:
+      - MindRoleGhostRoleFreeAgent
       raffle:
         settings: default
     - type: Loadout

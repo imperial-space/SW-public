@@ -8,11 +8,13 @@ using Content.Client.Fullscreen;
 using Content.Client.GameTicking.Managers;
 using Content.Client.GhostKick;
 using Content.Client.Guidebook;
+using Content.Client.Imperial.Medieval.CharacterBlock;
 using Content.Client.Imperial.Medieval.JoinQueue;
 using Content.Client.Launcher;
 using Content.Client.Mapping;
 using Content.Client.Parallax.Managers;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Client.Playtime;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Stylesheets;
@@ -26,6 +28,7 @@ using Content.Shared.Chat;
 using Content.Shared.Players.PlayTimeTracking;
 using Content.Client.Imperial.Sponsors; //Imperial sponsors
 using Content.Shared.Players.RateLimiting;
+using Content.Client.Imperial.Entry;
 
 namespace Content.Client.IoC
 {
@@ -36,6 +39,7 @@ namespace Content.Client.IoC
             var collection = IoCManager.Instance!;
 
             collection.Register<IParallaxManager, ParallaxManager>();
+            collection.Register<GeneratedParallaxCache>();
             collection.Register<IChatManager, ChatManager>();
             collection.Register<ISharedChatManager, ChatManager>();
             collection.Register<IClientPreferencesManager, ClientPreferencesManager>();
@@ -63,6 +67,12 @@ namespace Content.Client.IoC
             collection.Register<PlayerRateLimitManager>();
             collection.Register<SharedPlayerRateLimitManager, PlayerRateLimitManager>();
             collection.Register<TitleWindowManager>();
+            collection.Register<CharacterBlockManager>(); // Imperial medieval edit
+            collection.Register<Imperial.Medieval.Flavors.ClientFlavorManager>(); // Imperial Flavor Images
+            collection.Register<Shared.Imperial.Medieval.Flavors.SharedFlavorManager, Imperial.Medieval.Flavors.ClientFlavorManager>(); // Imperial Flavor Images
+            collection.Register<ClientsidePlaytimeTrackingManager>();
+
+            ImperialEntry.IoCRegister();
         }
     }
 }

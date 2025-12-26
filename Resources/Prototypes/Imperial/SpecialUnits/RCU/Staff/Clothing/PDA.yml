@@ -1,0 +1,127 @@
+- type: entity
+  parent: BasePDA
+  id: RCUOperatorPDA
+  name: RCU pda
+  description: It smells of the elite and elitism.
+  suffix: RiotControlUnit, Operator
+  components:
+  - type: Pda
+    id: RCUOperatorIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-bartender
+  - type: PdaBorderColor
+    borderColor: "#333333"
+  - type: Icon
+    state: pda-bartender
+
+- type: entity
+  parent: BasePDA
+  id: RCUOfficerPDA
+  name: RCU pda
+  description: It smells of the elite and elitism.
+  suffix: RiotControlUnit, Officer
+  components:
+  - type: Pda
+    id: RCUOfficerIDCard
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-bartender
+  - type: PdaBorderColor
+    borderColor: "#333333"
+  - type: Icon
+    state: pda-bartender
+
+#id cards
+
+- type: entity
+  parent: CentcomIDCard
+  id: RCUOperatorIDCard
+  name: RCU ID card
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ErtCall/deadsquadCard.rsi
+      layers:
+        - state: blackcard
+        - state: deadsquadID
+    - type: PresetIdCard
+      job: JobRCUOperator
+
+- type: entity
+  parent: CentcomIDCard
+  id: RCUOfficerIDCard
+  name: RCU ID card
+  components:
+    - type: Sprite
+      sprite: Imperial/Other/ErtCall/deadsquadCard.rsi
+      layers:
+        - state: blackcard
+        - state: deadsquadID
+    - type: PresetIdCard
+      job: JobRCUOfficer
+
+#Jobs
+
+- type: job
+  id: JobRCUOperator
+  name: job-name-rcuoperator
+  description: job-description-rcuoperator
+  playTimeTracker: JobRCUOperator
+  weight: 30
+  setPreference: false
+  startingGear: RCUOperatorEVALodout
+  icon: "JobIconRCUOpertor"
+  supervisors: job-supervisors-specialofficer
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: job
+  id: JobRCUOfficer
+  name: job-name-rcuofficer
+  description: job-description-rcuofficer
+  playTimeTracker: JobRCUOfficer
+  weight: 20
+  setPreference: false
+  startingGear: RCUOfficerEVALodout
+  icon: "JobIconRCUOfficer"
+  supervisors: job-supervisors-specialofficer
+  canBeAntag: false
+  accessGroups:
+  - AllAccess
+  access:
+  - CentralCommand
+  special:
+  - !type:AddImplantSpecial
+    implants: [ MindShieldImplant ]
+
+- type: playTimeTracker
+  id: JobRCUOperator
+
+- type: playTimeTracker
+  id: JobRCUOfficer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconRCUOpertor
+  icon:
+    sprite: /Textures/Imperial/SpecialUnits/job_icon.rsi
+    state: Rcuoper
+  jobName: job-name-rcuoperator
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconRCUOfficer
+  icon:
+    sprite: /Textures/Imperial/SpecialUnits/job_icon.rsi
+    state: Rcu
+  jobName: job-name-rcuofficer

@@ -48,6 +48,18 @@
     },
     {
       "name": "storage"
+    },
+    {
+      "name": "kayot"
+    },
+    {
+      "name": "house"
+    },
+    {
+      "name": "richhouse"
+    },
+    {
+      "name": "archivist"
     }
   ]
 }

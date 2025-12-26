@@ -85,11 +85,6 @@ reagent-effect-guidebook-status-effect =
                *[other] удаляют
             } { NATURALFIXED($time, 3) } от { LOC($key) }
     }
-reagent-effect-guidebook-activate-artifact =
-    { $chance ->
-        [1] Пытается
-       *[other] пытаются
-    } активировать артефакт
 reagent-effect-guidebook-set-solution-temperature-effect =
     { $chance ->
         [1] Устанавливает
@@ -123,7 +118,7 @@ reagent-effect-guidebook-adjust-reagent-reagent =
                 [1] добавляют
                *[-1] удаляют
             }
-    } { NATURALFIXED($amount, 2) }ед. от { $reagent } { $deltasign ->
+    } { NATURALFIXED($amount, 2) }ед. { $reagent } { $deltasign ->
         [1] к
        *[-1] из
     } раствора
@@ -200,7 +195,7 @@ reagent-effect-guidebook-cure-eye-damage =
 reagent-effect-guidebook-chem-vomit =
     { $chance ->
         [1] Вызывает
-       *[other] вызывают
+       *[other] вызвать
     } рвоту
 reagent-effect-guidebook-create-gas =
     { $chance ->
@@ -360,6 +355,11 @@ reagent-effect-guidebook-plant-cryoxadone =
         [1] Омолаживает
        *[other] омолаживают
     } растение, в зависимости от возраста растения и времени его роста
+reagent-effect-guidebook-artifact-unlock =
+    { $chance ->
+        [1] Помогает
+        *[other] помогает
+        } разблокировать узел артефакта.
 reagent-effect-guidebook-plant-attribute =
     { $chance ->
         [1] Изменяет
@@ -380,3 +380,16 @@ reagent-effect-guidebook-add-to-solution-reaction =
         [1] Заставляет
        *[other] заставляют
     } химикаты, применённые к объекту, добавиться во внутренний контейнер для растворов этого объекта
+reagent-effect-guidebook-resistance-change =
+    { $chance ->
+        [1] { $gainsorloses ->
+                [heals] добавляет
+                [deals] убавляет
+                *[both] Изменяет защиту на
+             }
+        *[other] { $gainsorloses ->
+                    [heals] добавлять
+                    [deals] убавлять
+                    *[both] изменяют защиту на
+                 }
+    } { $changes }

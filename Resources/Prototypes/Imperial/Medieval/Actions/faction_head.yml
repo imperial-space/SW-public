@@ -5,27 +5,46 @@
   description: Откройте меню фракции со списком всех ваших товарищей.
   components:
   - type: InstantAction
+    event: !type:OpenFactionMenuActionEvent
+  - type: Action
     itemIconStyle: NoItem
     icon:
       sprite: Interface/Actions/actions_mecha.rsi
       state: mech_cycle_equip_on
-    event: !type:OpenFactionMenuActionEvent
     useDelay: 0.5
 
 - type: entity
   id: BanditFactionMenuAction
   parent: BaseFactionMenuAction
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
       state: bandit
 
 - type: entity
+  id: KayotFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: kayot
+
+- type: entity
+  id: VillageFactionMenuAction
+  parent: BaseFactionMenuAction
+  components:
+  - type: Action
+    icon:
+      sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
+      state: village
+
+- type: entity
   id: CollegiumFactionMenuAction
   parent: BaseFactionMenuAction
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
       state: collegium
@@ -34,7 +53,7 @@
   id: CultFactionMenuAction
   parent: BaseFactionMenuAction
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
       state: cult
@@ -43,7 +62,7 @@
   id: InsurgencyFactionMenuAction
   parent: BaseFactionMenuAction
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
       state: insurgency
@@ -52,7 +71,7 @@
   id: LegionFactionMenuAction
   parent: BaseFactionMenuAction
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
       state: legion
@@ -61,7 +80,7 @@
   id: MercFactionMenuAction
   parent: BaseFactionMenuAction
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
       state: merc
@@ -70,7 +89,7 @@
   id: MinerFactionMenuAction
   parent: BaseFactionMenuAction
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
       state: miner
@@ -79,7 +98,7 @@
   id: TribeFactionMenuAction
   parent: BaseFactionMenuAction
   components:
-  - type: InstantAction
+  - type: Action
     icon:
       sprite: Imperial/Medieval/Interface/Actions/faction-menu.rsi
       state: tribe

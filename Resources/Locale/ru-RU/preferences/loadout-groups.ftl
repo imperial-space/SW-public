@@ -27,6 +27,7 @@ loadout-group-hop-jumpsuit = Глава персонала, комбинезон
 loadout-group-hop-neck = Глава персонала, шея
 loadout-group-hop-backpack = Глава персонала, рюкзак
 loadout-group-hop-outerclothing = Глава персонала, верхняя одежда
+loadout-group-hop-glasses = Глава персонала, очки
 
 loadout-group-IAA-jumpsuit = АВД, комбинезон
 loadout-group-IAA-neck = АВД, шея
@@ -181,6 +182,7 @@ loadout-group-SeniorOfficer-jumpsuit = Старший офицер, комбин
 loadout-group-SeniorOfficer-backpack = Старший офицер, рюкзак
 loadout-group-SeniorOfficer-belt = Старший офицер, пояс
 loadout-group-SeniorOfficer-gloves = Старший офицер, перчатки
+loadout-group-SeniorOfficer-head = Старший офицер, голова
 
 # Medical
 loadout-group-medical-gloves = Медицинский отдел, перчатки
@@ -209,6 +211,8 @@ loadout-group-paramedic-head = Парамедик, голова
 loadout-group-paramedic-jumpsuit = Парамедик, комбинезон
 loadout-group-paramedic-outerclothing = Парамедик, верхняя одежда
 loadout-group-paramedic-shoes = Парамедик, обувь
+
+loadout-group-medical-glasses = Medical glasses
 
 loadout-group-JobSeniorPhysician-jumpsuit = Ведущий врач, комбинезон
 loadout-group-JobSeniorPhysician-outerClothing = Ведущий врач, верхняя одежда

@@ -1,9 +1,11 @@
 using System.Linq;
 using Content.Shared.Actions;
+using Content.Shared.Actions.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Imperial.MouseInput.Events;
 using Content.Shared.Mind;
 using Content.Shared.Movement.Systems;
+using Prometheus;
 using Robust.Shared.Map;
 
 namespace Content.Shared.Imperial.Medieval.Magic;
@@ -15,7 +17,6 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _speedModifierSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
-
 
     public override void Initialize()
     {
@@ -48,7 +49,7 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
         InitializeEntityAimingSpells();
     }
 
-    private void OnSpellDoAfterCast(EntityUid uid, MedievalSpellCasterComponent component, MedievalSpellDoAfterEvent args)
+    protected virtual void OnSpellDoAfterCast(EntityUid uid, MedievalSpellCasterComponent component, MedievalSpellDoAfterEvent args)
     {
         if (args.Handled) return;
 
@@ -121,7 +122,7 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
 
     #region Cast Spell
 
-    protected void CastSpell(MedievalSpellDoAfterEvent args)
+    protected virtual void CastSpell(MedievalSpellDoAfterEvent args)
     {
         switch (args)
         {

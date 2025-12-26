@@ -7,6 +7,7 @@ using Content.Client.Fullscreen;
 using Content.Client.GameTicking.Managers;
 using Content.Client.GhostKick;
 using Content.Client.Guidebook;
+using Content.Client.Imperial.Medieval.CharacterBlock;
 using Content.Client.Imperial.Medieval.JoinQueue;
 using Content.Client.Input;
 using Content.Client.IoC;
@@ -15,11 +16,13 @@ using Content.Client.Lobby;
 using Content.Client.MainMenu;
 using Content.Client.Parallax.Managers;
 using Content.Client.Players.PlayTimeTracking;
+using Content.Client.Playtime;
 using Content.Client.Radiation.Overlays;
 using Content.Client.Replay;
 using Content.Client.Screenshot;
 using Content.Client.Singularity;
 using Content.Client.Stylesheets;
+using Content.Client.UserInterface;
 using Content.Client.Viewport;
 using Content.Client.Voting;
 using Content.Shared.Ame.Components;
@@ -37,8 +40,7 @@ using Robust.Shared.ContentPack;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Replays;
 using Robust.Shared.Timing;
-using Content.Client.Imperial.Sponsors;
-using Content.Client.Imperial.ShockWave; // Imperial Shock Wave
+using Content.Client.Imperial.Entry;
 
 namespace Content.Client.Entry
 {
@@ -74,8 +76,11 @@ namespace Content.Client.Entry
         [Dependency] private readonly IReplayLoadManager _replayLoad = default!;
         [Dependency] private readonly ILogManager _logManager = default!;
         [Dependency] private readonly DebugMonitorManager _debugMonitorManager = default!;
-        [Dependency] private readonly SponsorsManager _sponsorsManager = default!; //Imperial sponsors
         [Dependency] private readonly TitleWindowManager _titleWindowManager = default!;
+        [Dependency] private readonly CharacterBlockManager _characterBlock = default!; // Imperial medieval edit1
+        [Dependency] private readonly Imperial.Medieval.Flavors.ClientFlavorManager _clientFlavor = default!; // Imperial Flavor Images
+        [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+        [Dependency] private readonly ClientsidePlaytimeTrackingManager _clientsidePlaytimeManager = default!;
 
         public override void Init()
         {
@@ -125,8 +130,8 @@ namespace Content.Client.Entry
             _prototypeManager.RegisterIgnore("alertLevels");
             _prototypeManager.RegisterIgnore("nukeopsRole");
             _prototypeManager.RegisterIgnore("ghostRoleRaffleDecider");
-            _prototypeManager.RegisterIgnore("stationGoal"); // Corvax-Station
-            _prototypeManager.RegisterIgnore("ertCall"); // Imperial ert call
+            _prototypeManager.RegisterIgnore("codewordGenerator");
+            _prototypeManager.RegisterIgnore("codewordFaction");
 
             _componentFactory.GenerateNetIds();
             _adminManager.Initialize();
@@ -139,6 +144,7 @@ namespace Content.Client.Entry
             _jobRequirements.Initialize();
             _playbackMan.Initialize();
             IoCManager.Resolve<JoinQueueManager>().Initialize(); // Imperial-Medieval-JoinQueue
+            _clientsidePlaytimeManager.Initialize();
 
             //AUTOSCALING default Setup!
             _configManager.SetCVar("interface.resolutionAutoScaleUpperCutoffX", 1080);
@@ -146,12 +152,15 @@ namespace Content.Client.Entry
             _configManager.SetCVar("interface.resolutionAutoScaleLowerCutoffX", 520);
             _configManager.SetCVar("interface.resolutionAutoScaleLowerCutoffY", 240);
             _configManager.SetCVar("interface.resolutionAutoScaleMinimum", 0.5f);
+
+            ImperialEntry.Init(); // Imperial Space
         }
 
         public override void Shutdown()
         {
             base.Shutdown();
             _titleWindowManager.Shutdown();
+            _clientFlavor.Shutdown(); // Imperial Medieval Flavor Images
         }
 
         public override void PostInit()
@@ -167,17 +176,19 @@ namespace Content.Client.Entry
 
             _overlayManager.AddOverlay(new SingularityOverlay());
             _overlayManager.AddOverlay(new RadiationPulseOverlay());
-            _overlayManager.AddOverlay(new ShockWaveDistortionOverlay()); // Imperial Shock Wave
             _chatManager.Initialize();
             _clientPreferencesManager.Initialize();
+            _clientFlavor.Initialize(); // Imperial Medieval Flavor Images
             _euiManager.Initialize();
             _voteManager.Initialize();
             _userInterfaceManager.SetDefaultTheme("MedievalTheme");
             _userInterfaceManager.SetActiveTheme("MedievalTheme");
             _documentParsingManager.Initialize();
 
-            _sponsorsManager.Initialize(); //Imperial sponsors
             _titleWindowManager.Initialize();
+            _characterBlock.Initialize(); // Imperial medieval edit
+
+            ImperialEntry.PostInit(); // Imperial Space
 
             _baseClient.RunLevelChanged += (_, args) =>
             {
@@ -233,6 +244,15 @@ namespace Content.Client.Entry
             if (level == ModUpdateLevel.FramePreEngine)
             {
                 _debugMonitorManager.FrameUpdate();
+            }
+
+            if (level == ModUpdateLevel.PreEngine)
+            {
+                if (_baseClient.RunLevel is ClientRunLevel.InGame or ClientRunLevel.SinglePlayerGame)
+                {
+                    var updateSystem = _entitySystemManager.GetEntitySystem<BuiPreTickUpdateSystem>();
+                    updateSystem.RunUpdates();
+                }
             }
         }
     }

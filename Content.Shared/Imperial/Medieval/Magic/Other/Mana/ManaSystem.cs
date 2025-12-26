@@ -27,6 +27,22 @@ public sealed partial class ManaSystem : EntitySystem
 
         SubscribeLocalEvent<ManaDrainSpellComponent, MedievalBeforeCastSpellEvent>(OnBeforeCast);
         SubscribeLocalEvent<ManaDrainSpellComponent, MedievalAfterCastSpellEvent>(OnAfterCast);
+        SubscribeLocalEvent<ManaMaxModifierComponent, ComponentStartup>(MaxManaModify);
+        SubscribeLocalEvent<ManaRegenModifierComponent, ComponentStartup>(RegenModify);
+    }
+    private void MaxManaModify(EntityUid uid, ManaMaxModifierComponent component, ComponentStartup args)
+    {
+        if (!TryComp<ManaComponent>(uid, out var mana) || mana.ModifiersApplied == false)
+            return;
+
+        mana.MaxMana *= component.Modifier;
+    }
+    private void RegenModify(EntityUid uid, ManaRegenModifierComponent component, ComponentStartup args)
+    {
+        if (!TryComp<ManaComponent>(uid, out var mana) || mana.ModifiersApplied == false)
+            return;
+
+        mana.Regen *= component.Modifier;
     }
 
     public override void Update(float frameTime)
@@ -52,10 +68,13 @@ public sealed partial class ManaSystem : EntitySystem
         component.MaxMana *= component.MaxManaRaceModifier;
         component.Regen *= component.RegenRaceModifier;
 
-        if (TryComp<ManaTraitModifierComponent>(uid, out var trait))
+        if (TryComp<ManaRegenModifierComponent>(uid, out var regenMod))
         {
-            component.MaxMana *= trait.MaxManaTraitModifier;
-            component.Regen *= trait.RegenTraitModifier;
+            component.Regen *= regenMod.Modifier;
+        }
+        if (TryComp<ManaMaxModifierComponent>(uid, out var maxMod))
+        {
+            component.MaxMana *= maxMod.Modifier;
         }
 
         if (TryComp<ManaJobModifierComponent>(uid, out var job))
@@ -63,7 +82,7 @@ public sealed partial class ManaSystem : EntitySystem
             component.MaxMana *= job.MaxManaJobModifier;
             component.Regen *= job.RegenJobModifier;
         }
-
+        component.ModifiersApplied = true;
         component.Mana = component.MaxMana;
     }
 

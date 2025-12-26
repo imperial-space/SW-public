@@ -8,8 +8,8 @@
   - type: Transform
     anchored: true
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#FF0062"
     speed: 2.0
@@ -23,11 +23,28 @@
     spawnedEntity: MedievalProjectileDiffusionMiddle
     barrierLength: 5
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
   - type: TimedDespawn
     lifetime: 1.25
+
+- type: entity
+  id: DiffusionSpellCastEffectMiddle
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    color: "#FF0062"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#FF0062"
+  - type: TimedDespawn
+    lifetime: 0.5
 
 # Senior
 
@@ -39,8 +56,8 @@
   - type: Transform
     anchored: true
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#FF6862"
     speed: 2.0
@@ -54,8 +71,25 @@
     spawnedEntity: MedievalProjectileDiffusionSenior
     barrierLength: 9
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
   - type: TimedDespawn
     lifetime: 1.65
+
+- type: entity
+  id: DiffusionSpellCastEffectSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    color: "#FF6862"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 3
+    color: "#FF6862"
+  - type: TimedDespawn
+    lifetime: 0.5

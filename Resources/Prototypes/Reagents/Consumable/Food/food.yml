@@ -4,6 +4,8 @@
   name: reagent-name-nutriment
   group: Foods
   desc: reagent-desc-nutriment
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   physicalDesc: reagent-physical-desc-opaque
   flavor: nutriment
   color: "#24591F"
@@ -11,6 +13,18 @@
     Food:
       effects:
       - !type:SatiateHunger
+    # Imperial Medieval Plague start
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TargetContainsComponentsCondition
+          componentsWhitelist:
+          - type: StomachCancer
+        damage:
+          groups:
+            Toxin: 1
+    # Imperial Medieval Plague end
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 1.5
@@ -23,6 +37,8 @@
   name: reagent-name-vitamin
   group: Foods
   desc: reagent-desc-vitamin
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   physicalDesc: reagent-physical-desc-chalky
   flavor: vitamin
   color: "#D3D3D3"
@@ -39,6 +55,16 @@
       - !type:ModifyBleedAmount
         amount: -0.25
       - !type:SatiateHunger #Numbers are balanced with this in mind + it helps limit how much healing you can get from food
+      # Imperial Medieval Plague start
+      - !type:HealthChange
+        conditions:
+        - !type:TargetContainsComponentsCondition
+          componentsWhitelist:
+          - type: Gastrite
+        damage:
+          groups:
+            Toxin: -3
+      # Imperial Medieval Plague end
   # Lets plants benefit too
   plantMetabolism:
   - !type:PlantAdjustNutrition
@@ -52,6 +78,8 @@
   name: reagent-name-protein
   group: Foods
   desc: reagent-desc-protein
+  evaporationSpeed: 0.3 # imperial medieval
+  absorbent: true # imperial medieval
   physicalDesc: reagent-physical-desc-clumpy
   flavor: protein
   color: "#FFFFE5"
@@ -66,6 +94,26 @@
       - !type:ModifyBloodLevel
         amount: 1 # weaker than iron but pretty good all things considered
       - !type:SatiateHunger
+    # Imperial Medieval Plague start
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TargetContainsComponentsCondition
+          componentsWhitelist:
+          - type: Gastrite
+        damage:
+          groups:
+            Toxin: 1
+      - !type:HealthChange
+        conditions:
+        - !type:TargetContainsComponentsCondition
+          componentsWhitelist:
+          - type: StomachCancer
+        damage:
+          groups:
+            Toxin: 1
+    # Imperial Medieval Plague end
   pricePerUnit: 3
 
 - type: reagent
@@ -86,6 +134,26 @@
           reagent: Nutriment
           min: 0.1
         factor: 1
+    # Imperial Medieval Plague start
+    Poison:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:TargetContainsComponentsCondition
+          componentsWhitelist:
+          - type: Gastrite
+        damage:
+          groups:
+            Toxin: 1
+      - !type:HealthChange
+        conditions:
+        - !type:TargetContainsComponentsCondition
+          componentsWhitelist:
+          - type: StomachCancer
+        damage:
+          groups:
+            Toxin: 1
+    # Imperial Medieval Plague end
   plantMetabolism:
   - !type:PlantAdjustNutrition
     amount: 0.1

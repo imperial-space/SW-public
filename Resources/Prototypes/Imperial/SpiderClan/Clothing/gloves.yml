@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  parent: ClothingHandsGlovesSpaceNinja
   id: RedGlovesSpaceNinja
   name: space ninja gloves
   suffix: Crook, SpiderClan
@@ -9,52 +9,21 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/redninja.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/redninja.rsi
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon}
           False: {state: off-icon}
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-nanomachines
-  - type: FingerprintMask
-  - type: Thieving
-    stripTimeReduction: 1
-    stealthy: true
-  - type: ToggleClothing
-    action: ActionToggleNinjaGloves
-    disableOnUnequip: true
-  - type: NinjaGloves
-    abilities:
-    - components:
-      - type: BatteryDrainer
-      - type: StunProvider
-        noPowerPopup: ninja-no-power
-        whitelist:
-          components:
-          - Stamina
-      - type: EmagProvider
-        whitelist:
-          components:
-          - Airlock
-    - objective: StealResearchObjective
-      components:
-      - type: ResearchStealer
-    - objective: TerrorObjective
-      components:
-      - type: CommsHacker
-        threats: NinjaThreats
-    - objective: MassArrestObjective
-      components:
-      - type: CriminalRecordsHacker
+  - type: StaticPrice
+    price: 15000
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  parent: ClothingHandsGlovesSpaceNinja
   id: BlueGlovesSpaceNinja
   name: space ninja gloves
   suffix: Crook, SpiderClan
@@ -64,52 +33,21 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/blueninja.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/blueninja.rsi
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon}
           False: {state: off-icon}
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-nanomachines
-  - type: FingerprintMask
-  - type: Thieving
-    stripTimeReduction: 1
-    stealthy: true
-  - type: ToggleClothing
-    action: ActionToggleNinjaGloves
-    disableOnUnequip: true
-  - type: NinjaGloves
-    abilities:
-    - components:
-      - type: BatteryDrainer
-      - type: StunProvider
-        noPowerPopup: ninja-no-power
-        whitelist:
-          components:
-          - Stamina
-      - type: EmagProvider
-        whitelist:
-          components:
-          - Airlock
-    - objective: StealResearchObjective
-      components:
-      - type: ResearchStealer
-    - objective: TerrorObjective
-      components:
-      - type: CommsHacker
-        threats: NinjaThreats
-    - objective: MassArrestObjective
-      components:
-      - type: CriminalRecordsHacker
+  - type: StaticPrice
+    price: 15000
 
 - type: entity
-  parent: [ClothingHandsBase, BaseToggleClothing, BaseMajorContraband]
+  parent: ClothingHandsGlovesSpaceNinja
   id: GreenGlovesSpaceNinja
   name: space ninja gloves
   suffix: Crook, SpiderClan
@@ -119,46 +57,15 @@
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/greenninja.rsi
     layers:
     - state: icon
-      map: [ "enum.ToggleVisuals.Layer" ]
+      map: [ "enum.ToggleableVisuals.Layer" ]
   - type: Clothing
     sprite: Imperial/SpiderClan/Clothing/Default/Gloves/greenninja.rsi
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleVisuals.Toggled:
-        enum.ToggleVisuals.Layer:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
           True: {state: icon}
           False: {state: off-icon}
-  - type: Insulated
-  - type: Fiber
-    fiberMaterial: fibers-nanomachines
-  - type: FingerprintMask
-  - type: Thieving
-    stripTimeReduction: 1
-    stealthy: true
-  - type: ToggleClothing
-    action: ActionToggleNinjaGloves
-    disableOnUnequip: true
-  - type: NinjaGloves
-    abilities:
-    - components:
-      - type: BatteryDrainer
-      - type: StunProvider
-        noPowerPopup: ninja-no-power
-        whitelist:
-          components:
-          - Stamina
-      - type: EmagProvider
-        whitelist:
-          components:
-          - Airlock
-    - objective: StealResearchObjective
-      components:
-      - type: ResearchStealer
-    - objective: TerrorObjective
-      components:
-      - type: CommsHacker
-        threats: NinjaThreats
-    - objective: MassArrestObjective
-      components:
-      - type: CriminalRecordsHacker
+  - type: StaticPrice
+    price: 15000

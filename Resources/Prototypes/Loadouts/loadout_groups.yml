@@ -29,11 +29,19 @@
   - ClothingNeckLesbianPin
   - ClothingNeckNonBinaryPin
   - ClothingNeckPansexualPin
+  - ClothingNeckPluralPin
   - ClothingNeckOmnisexualPin
   - ClothingNeckGenderqueerPin
+  - ClothingNeckGenderfluidPin
   - ClothingNeckTransPin
   - ClothingNeckAutismPin
   - ClothingNeckGoldAutismPin
+  - OffsetCane
+  - OffsetCaneWood
+  - OffsetCaneClown
+  - OffsetCaneMime
+  - OffsetCaneNT
+  - Cane
   - TowelColorBlack
   - TowelColorDarkBlue
   - TowelColorDarkGreen
@@ -78,6 +86,7 @@
   - EmergencyOxygen
   - LoadoutSpeciesVoxNitrogen
 
+# nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
   id: GroupEVATank
   name: loadout-group-EVA-tank
@@ -85,6 +94,14 @@
   loadouts:
   - LoadoutSpeciesEVANitrogen
   - LoadoutSpeciesEVAOxygen
+
+# vox get a nitrogen tank, other species get nothing
+- type: loadoutGroup
+  id: GroupEVATankVox
+  name: loadout-group-vox-tank
+  hidden: true
+  loadouts:
+  - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
   id: GroupPocketTankDouble
@@ -205,6 +222,7 @@
   - GreyJumpskirt
   - AncientJumpsuit
   - RainbowJumpsuit
+  - RainbowJumpskirt
 
 - type: loadoutGroup
   id: PassengerFace
@@ -382,6 +400,17 @@
   - ChaplainNeckCross # Imperial Space chaplain
 
 - type: loadoutGroup
+  id: ChaplainBible
+  name: loadout-group-chaplain-bible
+  minLimit: 1
+  loadouts:
+  - Bible
+  - BibleDruid
+  - BibleNanoTrasen
+  - BibleSatanic
+  - BibleTanakh
+
+- type: loadoutGroup
   id: JanitorHead
   name: loadout-group-janitor-head
   minLimit: 0
@@ -457,6 +486,7 @@
   loadouts:
   - JesterHat
   - JesterAltHat
+  - HonkmotherFace ## Imperial space honkmother loadout
 
 - type: loadoutGroup
   id: ClownJumpsuit
@@ -466,6 +496,7 @@
   - ClownSkirt
   - JesterSuit
   - JesterAltSuit
+  - HonkmotherSuit ## Imperial space honkmother loadout
 
 - type: loadoutGroup
   id: ClownBackpack
@@ -489,6 +520,7 @@
   loadouts:
   - ClownShoes
   - JesterShoes
+  - HonkmotherShoes ## Imperial space honkmother loadout
 
 - type: loadoutGroup
   id: SurvivalClown
@@ -554,6 +586,7 @@
   loadouts:
   - EmergencyNitrogenMime
   - EmergencyOxygenMime
+  - EmergencySpeciesMothMime
   - LoadoutSpeciesVoxNitrogen
 
 - type: loadoutGroup
@@ -604,6 +637,7 @@
   - PanFlute
   - Ocarina
   - Bagpipe
+  - Supersynth # Imperial Loadouts
 
 # Cargo
 - type: loadoutGroup
@@ -683,6 +717,13 @@
   loadouts:
   - BlackShoes
   - CargoWinterBoots
+
+- type: loadoutGroup
+  id: CargoTechnicianID
+  name: loadout-group-cargo-technician-id
+  loadouts:
+  - CargoTechnicianPDA
+  - SeniorCourierPDA
 
 - type: loadoutGroup
   id: SalvageSpecialistBackpack
@@ -825,6 +866,7 @@
   - AtmosphericTechnicianBackpack
   - AtmosphericTechnicianSatchel
   - AtmosphericTechnicianDuffel
+  - ClothingControlModsuitAtmosphericsSealed # Imperial Modsuit for Atmos
 
 - type: loadoutGroup
   id: AtmosphericTechnicianShoes
@@ -988,6 +1030,8 @@
   loadouts:
   - HeadofSecurityCloak
   - HeadofSecurityMantle
+  - ClothingNeckCloakHosFormal # Imperial Space
+  - ClothingNeckMantleHOSShoulder # Imperial Space
 
 - type: loadoutGroup
   id: HeadofSecurityOuterClothing
@@ -995,6 +1039,7 @@
   loadouts:
   - HeadofSecurityCoat
   - HeadofSecurityWinterCoat
+  - ClothingOuterCoatHoSGreatcoat # Imperial Space
 
 - type: loadoutGroup
   id: WardenHead
@@ -1303,7 +1348,20 @@
   name: loadout-group-paramedic-shoes
   loadouts:
   - ShoesParamedic # Imperial
+  - BlueShoes
+  - WhiteShoes
   - MedicalWinterBoots
+
+- type: loadoutGroup
+  id: MedicalEyewear
+  name: loadout-group-medical-glasses
+  minLimit: 0
+  loadouts:
+  - MedicalHud
+  - MedicalEyePatchHud
+  - Glasses
+  - GlassesJamjar
+  - GlassesJensen
 
 - type: loadoutGroup
   id: SurvivalMedical

@@ -63,14 +63,17 @@ ent-BorgModuleHarvesting = урожайный модуль борга
 ent-BorgModuleClowning = клоунский модуль борга
     .desc = { ent-BaseBorgModule.desc }
 
-ent-BorgModuleAdvancedTreatment = усовершенстованный модуль лечения борга
+ent-BorgModuleAdvancedChemical = усовершенстованный модуль лечения борга
     .desc = { ent-BaseBorgModule.desc }
 
-ent-BorgModuleNonLethalSecurity = Нелетальный модуль СБ борга
+ent-BorgModuleNonLethalSecurity = нелетальный модуль СБ борга
    .desc = { ent-BaseBorgModule.desc }
 
-ent-BorgModuleJawsSecurity = Модуль инструментов СБ борга
+ent-BorgModuleJawsSecurity = модуль инструментов СБ борга
    .desc = { ent-BaseBorgModule.desc }
 
-ent-BorgModuleLethalSecurity = Летальный модуль СБ борга
+ent-BorgModuleLethalSecurity = летальный модуль СБ борга
    .desc = { ent-BaseBorgModule.desc }
+
+ent-BorgModuleSurgeryTools = хирургический модуль борга
+    .desc = { ent-BaseBorgModule.desc }

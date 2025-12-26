@@ -1,6 +1,6 @@
 - type: entity
   name: Agram
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseMinorContraband]
   id: WeaponSubMachineGunAgram
   description: A small-sized SMG with above-average ammunition and a 32-round magazine. It has a dark gray color.
   components:
@@ -46,7 +46,7 @@
 
 - type: entity
   id: WeaponFelixMP5
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseMinorContraband]
   suffix: Felix
   components:
   - type: Sprite
@@ -57,7 +57,7 @@
       - state: mag-0
         map: ["enum.GunVisualLayers.Mag"]
   - type: Clothing
-    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP5.rsi
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP5-inhand.rsi
     quickEquip: false
     slots:
     - Back
@@ -92,6 +92,7 @@
       gun_chamber: !type:ContainerSlot
       awnings: !type:Container
   - type: Item
+    sprite: Imperial/DeadSector/weapons/weapons/SMG/MP5-inhand.rsi
     size: Normal
     shape:
     - 0,0,2,1
@@ -103,7 +104,7 @@
 
 - type: entity
   id: WeaponFelixMP9
-  parent: BaseWeaponSubMachineGun
+  parent: [BaseWeaponSubMachineGun, BaseMinorContraband]
   suffix: Felix
   components:
   - type: Sprite
@@ -144,7 +145,7 @@
           - MagazineMP9
       gun_chamber:
         name: Chamber
-        startingItem: CartridgeSubmachine
+        startingItem: CartridgeSubmachineMP9
         priority: 1
         whitelist:
           tags:

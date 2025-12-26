@@ -2,7 +2,7 @@
 
 - type: entity
   name: cannabis leaves
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   id: LeavesCannabis
   description: "Recently legalized in most galaxies."
   components:
@@ -76,14 +76,18 @@
   description: "Is it supposed to be glowing like that...?"
   components:
   - type: Sprite
-    sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+    layers:
+    - sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+      state: produce
+      shader: unshaded
   - type: Produce
     seedId: rainbowCannabis
-  - type: PointLight
-    radius: 1.5
-    energy: 2
-  - type: RgbLightController
-    cycleRate: 0.6
+  # disabled because 50 morbillion point lights still break the lighting engine
+  #- type: PointLight
+  #  radius: 1.5
+  #  energy: 2
+  #- type: RgbLightController
+  #  cycleRate: 0.6
   - type: SolutionContainerManager
     solutions:
       food:
@@ -166,7 +170,7 @@
 
 - type: entity
   name: tea leaves
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   id: LeavesTea
   description: "Can be dried out to make tea."
   components:
@@ -183,7 +187,7 @@
 
 - type: entity
   name: dried tea leaves
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   id: LeavesTeaDried
   description: "Dried tea leaves, ready to be ground."
   components:
@@ -199,7 +203,7 @@
 
 - type: entity
   name: tobacco leaves
-  parent: ProduceBase
+  parent: ProduceBaseRuminant
   id: LeavesTobacco
   description: "Dry them out to make some smokes."
   components:
@@ -211,6 +215,12 @@
     seedId: tobacco
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetLeavesTobacco # imperial medieval
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nicotine
+          Quantity: 2
 
 - type: entity
   name: dried tobacco leaves

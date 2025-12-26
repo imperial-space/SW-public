@@ -18,11 +18,6 @@
     friction: 1
     baseWalkSpeed: 4.5
     baseSprintSpeed: 6
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   #- type: ReplacementAccent
   #  accent: xeno
   - type: MeleeWeapon
@@ -93,6 +88,12 @@
     baseDecayRate: 0
   - type: NPCRetaliation
     attackMemoryLength: 100
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - Animal #Этот тег убирает из колеса эмоций мобов "человеческие" эмоции (чихание, свист и т.д)
 
 - type: entity
   name: fox
@@ -100,7 +101,7 @@
   id: MedievalMobFox
   description: They're a fox.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -154,11 +155,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -183,7 +179,12 @@
       Growling: Understand
       Hissing: Speak
       #Elf: Speak
-
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: AllergySpreader
+    id: Fur
 
 - type: entity
   name: fox
@@ -191,7 +192,7 @@
   id: MedievalMobAnt
   description: They're a fox.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
     scale: 1.2, 1.2
@@ -230,6 +231,9 @@
     spawned:
     - id: MedievalLootAnt
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.01
   - type: Bloodstream
     bloodMaxVolume: 0
   #- type: ReplacementAccent
@@ -246,11 +250,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -271,6 +270,47 @@
       #Growling: Speak
       Hissing: Speak
       #Elf: Speak
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 1000
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1500
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior { }
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Caustic
+        damage: 1
+      behaviors:
+      - !type:GoSSDBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MedievalLootAnt:
+            min: 1
+            max: 1
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/lightburn.ogg
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 
 - type: entity
@@ -292,7 +332,7 @@
   id: MedievalMobWolf
   description: They're a wolf.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -326,6 +366,12 @@
       amount: 3
     - id: MedievalLootWolf
       amount: 1
+    - id: MedievalLootwolf2
+      amount: 3
+      prob: 0.4
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.04
   - type: Bloodstream
     bloodMaxVolume: 40
   #- type: ReplacementAccent
@@ -342,11 +388,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -367,6 +408,8 @@
   - type: NpcFactionMember
     factions:
     - Xeno
+  - type: MedievalDash
+    force: 750
   - type: InputMover
   - type: MobMover
   - type: HTN
@@ -374,7 +417,7 @@
       task: SimpleHostileCompound
   - type: Vocal
     sounds:
-      Unsexed: MedievalBear
+      Unsexed: MedievalWolf
   - type: NocturnBadFood
     timesCanBeBiten: 3
   - type: LanguageSpeaker
@@ -388,6 +431,12 @@
       Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: AllergySpreader
+    id: Fur
 
 - type: entity
   name: wolf
@@ -408,7 +457,7 @@
   id: MedievalMobRabbit
   description: They're a rabbit.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -441,6 +490,14 @@
     - id: MedievalLeather1
       amount: 1
       prob: 0.5
+    - id: MedievalLootrabbit
+      amount: 1
+    - id: MedievalLootrabbit
+      amount: 1
+      prob: 0.2
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.01
   - type: Bloodstream
     bloodMaxVolume: 10
   #- type: ReplacementAccent
@@ -457,15 +514,12 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
       14: Dead
+  - type: MedievalDash
+    force: 790
   - type: MovementSpeedModifier
     baseWalkSpeed: 4.0
     baseSprintSpeed: 5.8
@@ -482,7 +536,8 @@
       #Growling: Speak
       Hissing: Speak
       #Elf: Speak
-
+  - type: AllergySpreader
+    id: Fur
 
 - type: entity
   name: rabbit
@@ -503,7 +558,7 @@
   id: MedievalMobGolemLarge
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     drawdepth: Mobs
@@ -539,11 +594,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -618,7 +668,7 @@
   id: MedievalMobGolem
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -654,11 +704,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -725,7 +770,7 @@
   id: MedievalMobBear
   description: They're a bear.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -759,6 +804,11 @@
       amount: 8
     - id: MedievalLootBear
       amount: 1
+    - id: MedievalLootbearskin
+      amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.18
   - type: Bloodstream
     bloodMaxVolume: 200
   #- type: ReplacementAccent
@@ -776,11 +826,6 @@
         ParryAble: 1
     range: 1.6
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -825,6 +870,13 @@
       Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: AllergySpreader
+    id: Fur
+  - type: MedievalUnthrowable
 
 - type: entity
   name: bear
@@ -845,7 +897,7 @@
   id: MedievalMobHog
   description: They're a hog.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -879,6 +931,11 @@
       amount: 5
     - id: MedievalLootHog
       amount: 1
+    - id: MedievalLoothogskin
+      amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.13
   - type: Bloodstream
     bloodMaxVolume: 140
   #- type: ReplacementAccent
@@ -896,11 +953,6 @@
         ParryAble: 1
     range: 1.6
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -936,6 +988,10 @@
       Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.05
 
 
 - type: entity
@@ -1121,19 +1177,23 @@
     stripTimeReduction: 3
     stealthy: true
   - type: Stripping
+  - type: SSDFree
   - type: MobsterAccent
   - type: GhostTakeoverAvailable
+  - type: WarningOnAttach
+    message: medieval-warning-goblin
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-goblin-name
     description: ghost-role-information-goblin-description
-    rules: Утащите как можно больше в логово. Действуйте в группах. Если вы ушли из логова - [color=red]атакуйте только в крайнем случае[/color], берите в [color=red]плен[/color], требуйте выкуп. Не нападайте на базы фракций в одиночку.
+    rules: ghost-role-information-goblin-rules
   - type: MobThresholds
     thresholds:
       0: Alive
       60: Critical
       140: Dead
   #- type: InventorySlots
+  - type: AreaMarkerInvoker
   - type: NpcFactionMember
     factions:
     - Xeno
@@ -1147,6 +1207,12 @@
       amount: 1
     - id: MedievalLeather1
       amount: 1
+    - id: MedievalLootgoblin2
+      amount: 2
+      prob: 0.7
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.1
   - type: Access
     tags:
     - Maintenance
@@ -1158,6 +1224,8 @@
       Male: Goblins
       Female: Goblins
       Unsexed: Goblins
+  - type: MedievalDash
+    force: 715
   - type: SoftCritEmotes
     minDamage: 45
     emotes:
@@ -1193,6 +1261,151 @@
     languages:
       Goblin: Speak
       Common: Understand
+  - type: WhitelistClothing
+    whitelist: GoblinArmor
+    whitelistState: humanoid
+  - type: AllergySpreader
+    id: Goblin
+
+- type: entity
+  name: giga monkey
+  id: MedievalMobHobGoblin
+  parent: SimpleMobBaseNoFood
+  description: uga buga
+  components:
+  - type: CombatMode
+    disarm: null
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      2: 1
+      15: 0.85
+      28: 0.7
+      40: 0.6
+      430: 0.5
+  - type: InventorySlots
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.3
+        density: 130
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Strippable
+  - type: UserInterface
+    interfaces:
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: ComplexInteraction
+  - type: Sprite
+    drawdepth: Mobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: hobgoblin
+      sprite: Imperial/Medieval/Mobs/hobgoblin.rsi
+  - type: Body
+    prototype: Reptilian
+    requiredLegs: 2
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+  - type: Appearance
+  - type: Puller
+  - type: CanHostGuardian
+  - type: MeleeWeapon
+    range: 2.25
+    attackRate: 0.7
+    hidden: true
+    angle: 0
+    animation: WeaponArcPunch
+    damage:
+      groups:
+        Brute: 12
+  - type: Thieving
+    stripTimeReduction: 3
+    stealthy: true
+  - type: Stripping
+  - type: SSDFree
+  - type: MobsterAccent
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-hobgoblin-name
+    description: ghost-role-information-hobgoblin-description
+    rules: ghost-role-information-goblin-rules
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      200: Dead
+  #- type: InventorySlots
+  - type: AreaMarkerInvoker
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: InputMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: Butcherable
+    spawned:
+    - id: MedievalLootGoblin
+      amount: 2
+    - id: MedievalLeather1
+      amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.1
+  - type: Access
+    tags:
+    - Maintenance
+  - type: Speech
+    speechSounds: Goblin
+    allowedEmotes: ['Scream', 'Laugh', 'Cough', 'Sigh', 'Warcry', 'PainScream', 'PassiveScream']
+  - type: Vocal
+    sounds:
+      Male: Goblins
+      Female: Goblins
+      Unsexed: Goblins
+  - type: MedievalDash
+    force: 715
+  - type: SoftCritEmotes
+    minDamage: 90
+    emotes:
+    - PainScream
+    - Sigh
+    - Cough
+  - type: MedievalMobTrigger
+    fixtureId: "medieval-spawner"
+  - type: Mana
+    maxMana: 50
+    regen: 0.2
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - CanPilot
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 3
+  - type: IgnitPocketFlames
+  - type: MeleeParryAble
+  - type: NocturnBadFood
+    timesCanBeBiten: 2
+  - type: RandomSteal # imperial medieval
+  - type: StealChanceIncreaser
+    bonus: 45
+  #- type: Identity
+  - type: TakeName
+  #- type: IdentityFaction
+  #  faction: "гоблины"
+  - type: LanguageSpeaker
+    languages:
+      Goblin: Speak
+      Common: Speak
 
 - type: entity
   parent: MobChicken
@@ -1208,6 +1421,8 @@
       amount: 1
   - type: NocturnBadFood
     timesCanBeBiten: 2
+  - type: AllergySpreader
+    id: Pet
 
 - type: entity
   parent: MobCow
@@ -1223,6 +1438,8 @@
       amount: 4
   - type: NocturnBadFood
     timesCanBeBiten: 2
+  - type: AllergySpreader
+    id: Pet
 
 - type: entity
   name: kobold
@@ -1346,11 +1563,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1542,11 +1754,6 @@
         ParryAble: 1
         Caustic: 10
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1588,7 +1795,16 @@
       max: 6
     - id: FoodMeatSpiderLeg
       amount: 4
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.08
   - type: IgnoreSpiderWeb
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: AllergySpreader
+    id: Spider
 
 - type: entity
   name: rabbit
@@ -1596,7 +1812,7 @@
   id: MedievalMobSpider
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -1632,11 +1848,6 @@
         ParryAble: 1
         Caustic: 4
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1677,7 +1888,16 @@
       amount: 2
     - id: MedievalSpiderHair
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.08
   - type: IgnoreSpiderWeb
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: AllergySpreader
+    id: Spider
 
 - type: entity
   name: MedievalMobSpiderCave
@@ -1685,7 +1905,7 @@
   id: MedievalMobSpiderCave
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -1722,11 +1942,6 @@
         Caustic: 1
         Bloodloss: 3
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1762,6 +1977,9 @@
       amount: 1
     - id: MedievalSpiderHair
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.08
   - type: IgnoreSpiderWeb
   - type: HTN
     rootTask:
@@ -1782,6 +2000,12 @@
       #Growling: Speak
       Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: AllergySpreader
+    id: Spider
 
 
 - type: entity
@@ -1803,7 +2027,7 @@
   id: MedievalMobSpiderStrongCave
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -1840,11 +2064,6 @@
         Caustic: 1.9
         Bloodloss: 3
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1883,6 +2102,9 @@
       amount: 1
     - id: MedievalSpiderEye
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.08
   - type: IgnoreSpiderWeb
   - type: HTN
     rootTask:
@@ -1903,6 +2125,12 @@
       #Growling: Speak
       Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: AllergySpreader
+    id: Spider
 
 
 - type: entity
@@ -1988,6 +2216,8 @@
       Dead:
         Base: dead
   - type: IgnoreSpiderWeb
+  - type: MedievalDash
+    force: 720
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
@@ -2013,6 +2243,12 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Skeleton
+    chance: 0.2
+  - type: AllergySpreader
+    id: Skeleton
 
 - type: entity
   name: weak skeleton
@@ -2020,7 +2256,7 @@
   id: MedievalMobSkeletWeak
   description: Practically no threat, you can kick back even with your fists
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
     drawdepth: Mobs
@@ -2052,6 +2288,44 @@
     spawned:
     - id: MedievalLootWeak
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.025
+
+- type: entity
+  name: weak skeleton
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletWeakSpell
+  description: Practically no threat, you can kick back even with your fists
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 240
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_weak.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      types:
+        ParryAble: 1
+        Radiation: 0.2
+        Blunt: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      35: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.6
+    baseSprintSpeed: 3.6
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      14: 0.8
+      22: 0.7
+      30: 0.6
+      44: 0.5
 
 - type: entity
   name: weak skeleton
@@ -2072,7 +2346,7 @@
   id: MedievalMobSkeletMeat
   description: Slightly stronger than its previous counterpart, but still squishy.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 240
   - type: Sprite
     drawdepth: Mobs
@@ -2104,6 +2378,44 @@
     spawned:
     - id: MedievalLootMeat
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.04
+
+- type: entity
+  name: meat skeleton
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletMeatSpell
+  description: Slightly stronger than its previous counterpart, but still squishy.
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 240
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      types:
+        ParryAble: 1
+        Radiation: 1
+        Blunt: 7
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.7
+    baseSprintSpeed: 3.7
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      20: 0.8
+      30: 0.7
+      40: 0.6
+      55: 0.5
 
 - type: entity
   name: meat skeleton
@@ -2124,7 +2436,7 @@
   id: MedievalMobSkeletFighter
   description: This one's already looking serious. But 1 on 1, he can still be beaten.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 540
   - type: Sprite
     drawdepth: Mobs
@@ -2157,6 +2469,45 @@
     spawned:
     - id: MedievalLootFighter
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.09
+
+- type: entity
+  name: fighter skeleton
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletFighterSpell
+  description: This one's already looking serious. But 1 on 1, he can still be beaten.
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 540
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 8.5
+      types:
+        ParryAble: 1
+        Radiation: 1.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.9
+    baseSprintSpeed: 3.9
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      45: 0.8
+      60: 0.7
+      85: 0.6
+      100: 0.5
 
 - type: entity
   name: fighter skeleton
@@ -2169,7 +2520,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-fighter-name
     description: ghost-role-information-skelet-fighter-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: legion skeleton
@@ -2177,7 +2528,7 @@
   id: MedievalMobSkeletLegion
   description: You should not approach him if you are not confident in your abilities.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2210,6 +2561,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.16
 
 - type: entity
   name: legion skeleton
@@ -2222,7 +2576,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-legion-name
     description: ghost-role-information-skelet-legion-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: archer skeleton
@@ -2230,7 +2584,7 @@
   id: MedievalMobSkeletArcher
   description: A fairly weak ranged skeleton that doesn't pose much of a threat.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/skelet_bow.rsi
@@ -2272,6 +2626,12 @@
       amount: 1
     - id: MedievalRevent5
       amount: 1
+    - id: MedievalLootskeletonjaw
+      amount: 1
+      prob: 0.2
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.05
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -2282,7 +2642,7 @@
   id: MedievalMobSkeletCrossbow
   description: A pretty serious ranged opponent. It is best to avoid skirmishes with him.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 210
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/skelet_crossbow.rsi
@@ -2324,6 +2684,9 @@
       amount: 1
     - id: MedievalRevent10
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.12
   - type: HTN
     rootTask:
       task: SimpleRangedHostileCompound
@@ -2334,7 +2697,7 @@
   id: MedievalMobSkeletDark
   description: Your death.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/skelet_dark.rsi
@@ -2375,6 +2738,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
 
 - type: entity
   name: skeleton with a mace
@@ -2382,7 +2748,7 @@
   id: MedievalMobSkeletMace
   description: This skeleton has a mace and a shield.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2415,6 +2781,10 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
+  - type: MedievalUnthrowable
 
 - type: entity
   name: skeleton with a mace
@@ -2427,7 +2797,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-mace-name
     description: ghost-role-information-skelet-mace-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: skeleton with a spear
@@ -2435,7 +2805,7 @@
   id: MedievalMobSkeletSpear
   description: This skeleton has a spear.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2468,6 +2838,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
 
 - type: entity
   name: skeleton with a spear
@@ -2480,7 +2853,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-spear-name
     description: ghost-role-information-skelet-spear-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: skeleton with a halberd
@@ -2488,7 +2861,7 @@
   id: MedievalMobSkeletHalberd
   description: This skeleton has a halberd.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2524,6 +2897,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
 
 - type: entity
   name: skeleton with a halberd
@@ -2536,7 +2912,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-halberd-name
     description: ghost-role-information-skelet-halberd-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: skeleton with a dagger
@@ -2544,7 +2920,7 @@
   id: MedievalMobSkeletDagger
   description: This skeleton has a daggers.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2577,6 +2953,9 @@
     spawned:
     - id: MedievalLootLegion
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.17
 
 - type: entity
   name: skeleton with a dagger
@@ -2589,7 +2968,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-dagger-name
     description: ghost-role-information-skelet-dagger-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 # ===========================
 
@@ -2599,7 +2978,7 @@
   id: MedievalMobHunter
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     drawdepth: Mobs
@@ -2675,6 +3054,12 @@
     spawned:
     - id: MedievalLootHunter
       amount: 1
+    - id: MedievalLoothunter2
+      amount: 2
+      prob: 0.1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.1
   - type: IgnoreSpiderWeb
   - type: StaminaDamageOnHit
     damage: 17
@@ -2722,7 +3107,7 @@
   id: MedievalMobDevilMouse
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -2757,11 +3142,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2835,7 +3215,7 @@
   id: MedievalMobCrab
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -2939,7 +3319,7 @@
   id: MedievalMobCrabDevil
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 360
   - type: Sprite
     drawdepth: Mobs
@@ -3018,6 +3398,9 @@
     spawned:
     - id: MedievalLootCrabDevil
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.06
   - type: IgnoreSpiderWeb
   - type: StaminaDamageOnHit
     damage: 8
@@ -3151,7 +3534,7 @@
     baseWalkSpeed: 1.65
     baseSprintSpeed: 1.65
   - type: HellRespawnAble
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 78000
   - type: TDMNaming
   - type: MeleeWeapon
@@ -3175,7 +3558,7 @@
   id: MedievalMobNastyGrowth
   description: They're a golem.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 180
   - type: Sprite
     drawdepth: Mobs
@@ -3249,6 +3632,9 @@
     spawned:
     - id: MedievalLootNastyGrowth
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.3
   - type: DamageStateVisuals
     states:
       Alive:
@@ -3262,7 +3648,7 @@
   id: MedievalMobShieldSlug
   description: They're a slug.
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 600
   - type: Sprite
     drawdepth: Mobs
@@ -3292,6 +3678,9 @@
     spawned:
     - id: MedievalLootShieldSlug
       amount: 1
+    - id: MedievalMagicStoneRandom
+      amount: 1
+      prob: 0.35
   - type: Bloodstream
     bloodMaxVolume: 0
   #- type: ReplacementAccent
@@ -3309,11 +3698,6 @@
         ParryAble: 0.2
     range: 1.4
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3360,7 +3744,7 @@
   id: MedievalMobWingedShadow
   description: MedievalMobWingedShadow
   components:
-  - type: TimedDespawn
+  - type: MedievalTimedDespawn
     lifetime: 780
   - type: Sprite
     drawdepth: Mobs
@@ -3401,11 +3785,6 @@
         Bloodloss: 3
         Radiation: 3
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive

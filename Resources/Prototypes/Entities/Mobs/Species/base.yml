@@ -26,15 +26,23 @@
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
+# Imperial Medieval BadSmell Begin
+    - map: [ "badsmell" ]
+      sprite: Imperial/Medieval/BadSmell/species.rsi
+      visible: false
+      state: dirty1
+# Imperial Medieval BadSmell End
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "outerClothing" ] # Imperial Space для корректного отображения РПС
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
+    # - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
@@ -53,6 +61,12 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
+# Imperial Medieval Surrender Begin
+    - map: [ "surrender" ]
+      sprite: Imperial/Medieval/Surrender/flag.rsi
+      state: flag
+      visible: false
+# Imperial Medieval Surrender End
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:
@@ -74,6 +88,21 @@
         clownedon: # Not 'creampied' bc I can already see Skyrat complaining about conflicts.
           True: {visible: true}
           False: {visible: false}
+  # Imperial Medieval BadSmell Begin
+      enum.BadSmellVisuals.Dirt:
+        badsmell:
+          0: {visible: false}
+          1: {visible: true, state: dirty1}
+          2: {visible: true, state: dirty2}
+          3: {visible: true, state: dirty3}
+          4: {visible: true, state: dirty4}
+  # Imperial Medieval BadSmell End
+  # Imperial Medieval Surrender Begin
+      enum.SurrenderVisuals.Key:
+        surrender:
+          True: {visible: true}
+          False: {visible: false}
+  # Imperial Medieval Surrender End
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
   - type: RotationVisuals
@@ -81,6 +110,7 @@
     horizontalRotation: 90
   - type: HumanoidAppearance
     species: Human
+  - type: TypingIndicator
   - type: SlowOnDamage
     speedModifierThresholds:
       # Imperial Medieval Start
@@ -141,24 +171,16 @@
       - !type:WashCreamPieReaction
   - type: StatusEffects
     allowed:
-    - Stun
-    - KnockedDown
-    - SlowedDown
-    - Stutter
-    - SeeingRainbows
+    - IllitidFlashed
     - Electrocution
-    - Drunk
-    - SlurredSpeech
     - RatvarianLanguage
     - PressureImmunity
     - Muted
-    - ForcedSleep
     - TemporaryBlindness
     - Pacified
     - StaminaModifier
     - Flashed
     - RadiationProtection
-    - Drowsiness
     - Adrenaline
     - MedievalFarmerBoost # Imperial medieval
   - type: Body
@@ -191,6 +213,7 @@
   - type: SleepEmitSound
   - type: SSDIndicator
   - type: StandingState
+  - type: Crawler
   - type: Dna
   - type: MindContainer
     showExamineInfo: true
@@ -247,13 +270,11 @@
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
   - type: EmoteOnDamage
-# imperial medieval "emotions" start
     emotes:
     - PainScream
     emoteChance: 0.3
     withChat: true
     emoteCooldown: 3.5
-# imperial medieval "emotions" end
   - type: MedievalSpikeTarget
   - type: BadSmellFeel
   - type: BadSmell
@@ -281,13 +302,66 @@
       #Hissing: Speak
       #Elf: Speak
   - type: SleepingImperial
-  # Imperial medieval start
   - type: SoftCritEmotes
     emotes:
     - Cough
     - Gasp
     - PassiveScream
-  # Imperial medieval end
+  - type: AreaMarkerInvoker
+  - type: ShieldOnStartup
+  - type: AntiStealAfk
+  - type: CanSurrender
+  - type: RDDeathScreen
+  - type: CombatStance
+  - type: Grabbable
+  - type: Grabber
+  - type: PointLight
+    netsync: false
+    enabled: false
+  - type: LocalLight
+    energy: 0.3
+    radius: 1.18
+  - type: RDWeight
+    value: 63
+  - type: RDWeightSpeedModifier
+    curve: !type:RDWeightModifierLinearCurve
+      min: 90
+      max: 220 # CURSE OF 220
+  - type: RDWeightExamine
+    examines:
+      "[color=#ADFF2F]Налегке[/color]":
+        min: 0
+        max: 85       # несет до 10 кг (легкая сумка, пистолет)
+      "[color=#FFFF00]Слегка загружен[/color]":
+        min: 85
+        max: 95       # несет 10-20 кг (штурмовой рюкзак, автомат)
+      "[color=#FFD700]Хорошо загружен[/color]":
+        min: 95
+        max: 110      # несет 20-35 кг (полный рюкзак, легкая броня)
+      "[color=#FF8C00]Перегружен[/color]":
+        min: 110
+        max: 125      # несет 35-50 кг (тяжелая броня и снаряжение)
+      "[color=#FF4500]Критический перегруз[/color]":
+        min: 125
+        max: 140      # несет 50-65 кг (скорость и выносливость сильно снижены)
+      "[color=#FF0000]Задавлен тяжестью[/color]":
+        min: 140
+        max: 160      # несет 65-85 кг (движение крайне затруднено)
+      "[color=#DC143C]Нечеловеческая ноша[/color]":
+        min: 160
+        max: 180      # несет 85-105 кг (едва способен сделать шаг)
+      "[color=#8B0000]Обездвижен переносимым весом[/color]":
+        min: 180
+        max: 20000      # несет более 105 кг (не может двигаться без посторонней помощи)
+  - type: RDWeightThrowerModifier
+  - type: AffectRoundStats
+  - type: Skills
+    levels:
+      Vitality: 10
+      Strength: 10
+      Agility: 10
+      Intelligence: 10
+      Endurance: 10
 # Imperial Medieval End
 
 - type: entity
@@ -301,6 +375,7 @@
   id: BaseMobSpeciesOrganic
   abstract: true
   components:
+  - type: BloodTrail # Imperial Space BloodTrail
   - type: Barotrauma
     damage:
       types:
@@ -331,9 +406,9 @@
         Heat: 1.5 #per second, scales with temperature & other constants
   - type: TemperatureSpeed
     thresholds:
-      293: 0.8
-      280: 0.6
-      260: 0.4
+      293: 0.9
+      280: 0.8
+      260: 0.7
   - type: ThermalRegulator
     metabolismHeat: 800
     radiatedHeat: 100
@@ -341,7 +416,7 @@
     sweatHeatRegulation: 2000
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 25
+    thermalRegulationTemperatureThreshold: 2
   - type: Perishable
   - type: Butcherable
     butcheringType: Spike # TODO human.
@@ -357,6 +432,8 @@
         Asphyxiation: -1.0
   - type: FireVisuals
     alternateState: Standing
+  - type: MedievalCanBeInfected # Imperial Medieval plague
+  - type: StunVisuals
 
 - type: entity
   save: false
@@ -398,12 +475,14 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
+    - map: [ "outerClothing" ] # Imperial Space для корректного отображения РПС
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    - map: [ "outerClothing" ]
+    # - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]

@@ -12,6 +12,7 @@
   - MedievalInnkeeperN
   - MedievalChaplain
   - MedievalWanderMag
+  - MedievalArchivist
 
 - type: department
   id: Legion
@@ -19,13 +20,17 @@
   description: department-legion-description
   color: "#CCCCCC"
   roles:
+  - MedievalLegionJailed
+  - MedievalLegionJailer
   - MedievalLegionRecruit
   - MedievalLegionLegioner
+  - MedievalLegionTreasurer
   - MedievalLegionGateman
   - MedievalLegionOpcion
   - MedievalLegionTribun
   - MedievalLegionLegat
   - MedievalLegionMag
+  - MedievalLegionAlchemic
 
 - type: department
   id: Insurgency
@@ -40,6 +45,7 @@
   - MedievalInsurgencyTribun
   - MedievalInsurgencyLegat
   - MedievalInsurgencyMag
+  - MedievalInsurgencyAlchemic
 
 - type: department
   id: Band
@@ -51,6 +57,17 @@
   - MedievalBanditRegular
   - MedievalBanditVeteran
   - MedievalBanditLeader
+
+- type: department
+  id: Kayot
+  name: Шайка койота
+  description: Воруй, убивай
+  color: "#CCCCCC"
+  roles:
+  - MedievalKayotRecruit
+  - MedievalKayotRegular
+  - MedievalKayotVeteran
+  - MedievalKayotLeader
 
 - type: department
   id: Collegium
@@ -138,6 +155,7 @@
   - MedievalLegionLegat
   - MedievalInsurgencyLegat
   - MedievalBanditLeader
+  - MedievalKayotLeader
   - MedievalCollegiumLeader
   - MedievalTribeLeader
   - MedievalMercLeader

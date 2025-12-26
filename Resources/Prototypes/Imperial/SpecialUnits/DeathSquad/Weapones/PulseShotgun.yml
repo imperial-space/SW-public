@@ -10,7 +10,7 @@
     layers:
       - state: base
         map: ["enum.GunVisualLayers.Base"]
-      - state: mag-unshaded-3
+      - state: mag-unshaded-4
         map: ["enum.GunVisualLayers.MagUnshaded"]
         shader: unshaded
   - type: MagazineVisuals
@@ -34,3 +34,7 @@
   - type: Battery
     maxCharge: 20000
     startingCharge: 20000
+  - type: ClothingFactionExplosion
+    friendlyFaction: DeathSquad
+    chance: 1
+  - type: Appearance

@@ -39,6 +39,11 @@
   priority: 9
 
 - type: storeCategory
+  id: MedievalTransportDemo
+  name: medieval-category-transport
+  priority: 9
+
+- type: storeCategory
   id: MedievalQuestDemo
   name: medieval-category-quest
   priority: 7
@@ -166,6 +171,14 @@
   - MedievalFoodDemo
 
 - type: listing
+  id: DemoMdvShopFoodCondimentBottleEnzyme
+  productEntity: FoodCondimentBottleEnzyme
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalFoodDemo
+
+- type: listing
   id: DemoMdvShopFoodMeatChickenFried
   productEntity: FoodMeatChickenFried
   cost:
@@ -286,8 +299,40 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopMedievalWizardBlacksmithCraft
+  productEntity: MedievalWizardBlacksmithCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalMeltingPlaceCraft
+  productEntity: MedievalMeltingPlaceCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalalchem_dispenserCraft
+  productEntity: Medievalalchem_dispenserCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalLeatherWorkingPlaceCraft
   productEntity: MedievalLeatherWorkingPlaceCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: MedievalMortarCraft
+  productEntity: MedievalMortarCraft
   cost:
     UnknownMedieval: 1
   categories:
@@ -448,6 +493,78 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopMedievalSign1Craft
+  productEntity: MdvShopMedievalSign1Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign2Craft
+  productEntity: MdvShopMedievalSign2Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign3Craft
+  productEntity: MdvShopMedievalSign3Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign4Craft
+  productEntity: MdvShopMedievalSign4Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign5Craft
+  productEntity: MdvShopMedievalSign5Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign6Craft
+  productEntity: MdvShopMedievalSign6Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign7Craft
+  productEntity: MdvShopMedievalSign7Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign8Craft
+  productEntity: MdvShopMedievalSign8Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSign9Craft
+  productEntity: MdvShopMedievalSign9Craft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalPrisonGrilleCraft
   productEntity: MedievalPrisonGrilleCraft
   cost:
@@ -466,6 +583,22 @@
 - type: listing
   id: DemoMdvShopSmithWorkplaceCraft
   productEntity: SmithWorkplaceCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSharpeningMachineCraft
+  productEntity: MedievalSharpeningMachineCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalClothWorkingPlaceCraft
+  productEntity: MedievalClothWorkingPlaceCraft
   cost:
     UnknownMedieval: 1
   categories:
@@ -496,8 +629,8 @@
   - MedievalArmorDemo
 
 - type: listing
-  id: DemoMdvShopMedievalClothingOuterArmorStudded
-  productEntity: MedievalClothingOuterArmorStudded
+  id: DemoMdvShopMedievalClothingOuterArmorGambeson
+  productEntity: MedievalClothingOuterArmorGambeson
   cost:
     UnknownMedieval: 1
   categories:
@@ -1832,6 +1965,14 @@
   - MedievalBackpackDemo
 
 - type: listing
+  id: DemoMdvShopMonsterBag
+  productEntity: MedievalMonsterBag
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBackpackDemo
+
+- type: listing
   id: DemoMedievalClothingBackpackSatchelLeather
   productEntity: MedievalClothingBackpackSatchelLeather
   cost:
@@ -1912,6 +2053,54 @@
   - MedievalMiscDemo
 
 - type: listing
+  id: DemoMdvShopCreationsBook
+  productEntity: CreationsBook
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopPaintKit
+  productEntity: PaintKit
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopEasel
+  productEntity: Easel
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopCanvas
+  productEntity: Canvas
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalRecipeBook
+  productEntity: MedievalRecipeBook
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalChemistryRecipe
+  productEntity: MedievalChemistryRecipe
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
   id: DemoMdvShopMedievalHammerBlacksmith
   productEntity: MedievalHammerBlacksmith
   cost:
@@ -1930,6 +2119,14 @@
 - type: listing
   id: DemoMdvShopMedievalRepairStone
   productEntity: MedievalRepairStone
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
   cost:
     UnknownMedieval: 1
   categories:
@@ -2144,8 +2341,8 @@
 #  - MedievalPlantsDemo
 
 - type: listing
-  id: DemoMdvShopRobustHarvestChemistryBottle
-  productEntity: RobustHarvestChemistryBottle
+  id: DemoMdvShopChemistryBottleRobustHarvest
+  productEntity: ChemistryBottleRobustHarvest
   cost:
     UnknownMedieval: 1
   categories:
@@ -2280,16 +2477,40 @@
   - MedievalMagicDemo
 
 - type: listing
-  id: DemoMdvShopMedievalScrollBarrierWeak
-  productEntity: MedievalScrollBarrierWeak
+  id: DemoMdvShopMedievalScrollsHalberd
+  productEntity: MedievalScrollsHalberd
   cost:
     UnknownMedieval: 1
   categories:
   - MedievalMagicDemo
 
 - type: listing
-  id: DemoMdvShopMedievalScrollBarrierNormal
-  productEntity: MedievalScrollBarrierNormal
+  id: DemoMdvShopMedievalScrollsFalshion
+  productEntity: MedievalScrollsFalshion
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsDagger
+  productEntity: MedievalScrollsDagger
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsBow
+  productEntity: MedievalScrollsBow
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsCrossbow
+  productEntity: MedievalScrollsCrossbow
   cost:
     UnknownMedieval: 1
   categories:
@@ -2306,6 +2527,30 @@
 - type: listing
   id: DemoMdvShopMedievalGlowStone
   productEntity: MedievalGlowStone
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalReliefStoneWeak
+  productEntity: MedievalReliefStoneWeak
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalReliefStoneStrong
+  productEntity: MedievalReliefStoneStrong
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalAntiGravitationStone
+  productEntity: MedievalAntiGravitationStone
   cost:
     UnknownMedieval: 1
   categories:
@@ -2338,6 +2583,14 @@
 - type: listing
   id: DemoMdvShopMedievalClothingHeadHelmetCharmerWeak
   productEntity: MedievalClothingHeadHelmetCharmerWeak
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollBarrier
+  productEntity: MedievalScrollBarrier
   cost:
     UnknownMedieval: 1
   categories:
@@ -2406,3 +2659,51 @@
     UnknownMedieval: 1
   categories:
   - MedievalQuestDemo
+
+- type: listing
+  id: DemoMdvShopMedievalFlinter
+  productEntity: MedievalFlinter
+  cost:
+    Revent: 10
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMedievalHorseWhistle
+  productEntity: MedievalHorseWhistle
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalTransportDemo
+
+- type: listing
+  id: DemoMdvShopMedievalCatapultCraft
+  productEntity: MedievalCatapultCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
+
+- type: listing
+  id: DemoMdvShopMedievalCatapultAmmoBarrelStone
+  productEntity: MedievalCatapultAmmoBarrelStone
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
+
+- type: listing
+  id: DemoMdvShopMedievalCatapultAmmoBarrelGunpowder
+  productEntity: MedievalCatapultAmmoBarrelGunpowder
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo
+
+- type: listing
+  id: DemoMdvShopMedievalCatapultAmmoBarrelAp
+  productEntity: MedievalCatapultAmmoBarrelAp
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalWeaponDemo

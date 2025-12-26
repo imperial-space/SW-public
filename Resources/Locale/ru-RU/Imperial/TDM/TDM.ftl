@@ -1,15 +1,17 @@
-ent-TDMUrbanSpawner = Спавнер наёмника (Город)
-ent-TDMUrbanPreset = Наёмник (Город)
-ent-TDMForestSpawner = Спавнер наёмника (Лес)
-ent-TDMForestPreset = Наёмник (Лес)
-ent-TDMSnowSpawner = Спавнер наёмника (Тайга)
-ent-TDMSnowPreset = Наёмник (Тайга)
-ent-TDMDesertSpawner = Спавнер наёмника (Пустыня)
-ent-TDMDesertPreset = Наёмник (Пустыня)
-ent-TDMMedicalSpawner = Спавнер Фельдшер наёмников
-ent-TDMMedicalPreset = Фельдшер наёмников
-ent-TDMLeadSpawner = Спавнер Лидер наёмников
-ent-TDMLeadPreset = Лидер наёмников
+# Перевод для ТДМ чувачков с терминалами
+
+ent-TDMUrbanSpawner = спавнер наёмника (Город, С терминалом)
+ent-TDMUrbanPreset = наёмник (Город, С терминалом)
+ent-TDMForestSpawner = спавнер наёмника (Лес, С терминалом)
+ent-TDMForestPreset = наёмник (Лес, С терминалом)
+ent-TDMSnowSpawner = спавнер наёмника (Тайга, С терминалом)
+ent-TDMSnowPreset = наёмник (Тайга, С терминалом)
+ent-TDMDesertSpawner = спавнер наёмника (Пустыня, С терминалом)
+ent-TDMDesertPreset = наёмник (Пустыня, С терминалом)
+ent-TDMMedicalSpawner = спавнер фельдшер наёмников (С терминалом)
+ent-TDMMedicalPreset = фельдшер наёмников (С терминалом)
+ent-TDMLeadSpawner = спавнер лидер наёмников (С терминалом)
+ent-TDMLeadPreset = лидер наёмников (С терминалом)
 tdm-medical-name = Фельдшер наёмников
 tdm-medical-desc = Военный фельдшер лечащий раненных наёмников
 tdm-medical-rules = Слушайтесь своего главу и выполняйте его приказы. Вам ЗАПРЕЩЕНО забирать вещи других наёмников без разрешения их самих или вашего главы. Старайтесь помогать своему отряду, а не зловредничать. Первоочерёдно занимайтесь лечением союзников, а не стрельбой. Веселитесь!

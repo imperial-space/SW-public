@@ -3,6 +3,7 @@ using Content.Client.Gameplay;
 using Content.Shared.CombatMode;
 using Content.Shared.Effects;
 using Content.Shared.Hands.Components;
+using Content.Shared.Imperial.Medieval.ChargedAttack;
 using Content.Shared.Mobs.Components;
 using Content.Shared.StatusEffect;
 using Content.Shared.Weapons.Melee;
@@ -30,6 +31,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     [Dependency] private readonly InputSystem _inputSystem = default!;
     [Dependency] private readonly SharedColorFlashEffectSystem _color = default!;
     [Dependency] private readonly MapSystem _map = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     private EntityQuery<TransformComponent> _xformQuery;
 
@@ -107,33 +109,70 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         {
             coordinates = TransformSystem.ToCoordinates(_map.GetMap(mousePos.MapId), mousePos);
         }
-        
+
         // If the gun has AltFireComponent, it can be used to attack.
         if (TryComp<GunComponent>(weaponUid, out var gun) && gun.UseKey)
         {
             if (!TryComp<AltFireMeleeComponent>(weaponUid, out var altFireComponent) || altDown != BoundKeyState.Down)
                 return;
-            
+
             switch(altFireComponent.AttackType)
             {
                 case AltFireAttackType.Light:
                     ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
                     break;
-                
+
                 case AltFireAttackType.Heavy:
                     ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
                     break;
-                
+
                 case AltFireAttackType.Disarm:
                     ClientDisarm(entity, mousePos, coordinates);
                     break;
             }
-            
+
             return;
         }
 
-        // Heavy attack.
-        if (altDown == BoundKeyState.Down)
+        // imperial medieval charged attack start
+        if (TryComp<ChargedAttackComponent>(weaponUid, out var charged))
+        {
+            if (!charged.CurrentAttacking)
+            {
+                if (altDown == BoundKeyState.Down)
+                {
+                    RaisePredictiveEvent(new ChargedAttackStart(GetNetEntity(weaponUid)));
+                    return;
+                }
+                else if (useDown == BoundKeyState.Down)
+                {
+                    ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
+                    return;
+                }
+            }
+            else if (charged.AttackStart != TimeSpan.FromSeconds(0f))
+            {
+                var attackTime = Timing.CurTime - charged.AttackStart;
+                if (altDown == BoundKeyState.Up && attackTime >= TimeSpan.FromSeconds(charged.MinAttackTime) || attackTime >= TimeSpan.FromSeconds(charged.MaxAttackTime))
+                {
+                    RaisePredictiveEvent(new ChargedAttackEnd(GetNetCoordinates(coordinates), GetNetEntity(weaponUid), attackTime));
+                    Log.Info("1");
+                    return;
+                }
+                else if (altDown == BoundKeyState.Up && attackTime <= TimeSpan.FromSeconds(charged.MinAttackTime))
+                {
+                    if (weapon.AltDisarm && weaponUid == entity)
+                    {
+                        ClientDisarm(entity, mousePos, coordinates);
+                        return;
+                    }
+
+                    ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
+                    return;
+                }
+            }
+        }
+        else if (altDown == BoundKeyState.Down) // Heavy Attack
         {
             // If it's an unarmed attack then do a disarm
             if (weapon.AltDisarm && weaponUid == entity)
@@ -145,10 +184,9 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
             ClientHeavyAttack(entity, coordinates, weaponUid, weapon);
             return;
         }
-
-        // Light attack
-        if (useDown == BoundKeyState.Down)
+        else if (useDown == BoundKeyState.Down) // Light attack
             ClientLightAttack(entity, mousePos, coordinates, weaponUid, weapon);
+        // imperial medieval charged attack end
     }
 
     protected override bool InRange(EntityUid user, EntityUid target, float range, ICommonSession? session)
@@ -164,35 +202,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
     {
         // Server never sends the event to us for predictiveeevent.
         _color.RaiseEffect(Color.Red, targets, Filter.Local());
-    }
-
-    protected override bool DoDisarm(EntityUid user, DisarmAttackEvent ev, EntityUid meleeUid, MeleeWeaponComponent component, ICommonSession? session)
-    {
-        if (!base.DoDisarm(user, ev, meleeUid, component, session))
-            return false;
-
-        if (!TryComp<CombatModeComponent>(user, out var combatMode) ||
-            combatMode.CanDisarm != true)
-        {
-            return false;
-        }
-
-        var target = GetEntity(ev.Target);
-
-        // They need to either have hands...
-        if (!HasComp<HandsComponent>(target!.Value))
-        {
-            // or just be able to be shoved over.
-            if (TryComp<StatusEffectsComponent>(target, out var status) && status.AllowedEffects.Contains("KnockedDown"))
-                return true;
-
-            if (Timing.IsFirstTimePredicted && HasComp<MobStateComponent>(target.Value))
-                PopupSystem.PopupEntity(Loc.GetString("disarm-action-disarmable", ("targetName", target.Value)), target.Value);
-
-            return false;
-        }
-
-        return true;
     }
 
     /// <summary>
@@ -222,7 +231,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
         var entities = GetNetEntityList(ArcRayCast(userPos, direction.ToWorldAngle(), component.Angle, distance, userXform.MapID, user).ToList());
         RaisePredictiveEvent(new HeavyAttackEvent(GetNetEntity(meleeUid), entities.GetRange(0, Math.Min(MaxTargets, entities.Count)), GetNetCoordinates(coordinates)));
     }
-    
+
     private void ClientDisarm(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates)
     {
         EntityUid? target = null;
@@ -232,7 +241,7 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
 
         RaisePredictiveEvent(new DisarmAttackEvent(GetNetEntity(target), GetNetCoordinates(coordinates)));
     }
-    
+
     private void ClientLightAttack(EntityUid attacker, MapCoordinates mousePos, EntityCoordinates coordinates, EntityUid weaponUid, MeleeWeaponComponent meleeComponent)
     {
         var attackerPos = TransformSystem.GetMapCoordinates(attacker);

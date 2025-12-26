@@ -1,0 +1,67 @@
+- type: entity
+  parent: MobHuman
+  id: JRTEVAPreset
+  name: JRT
+  suffix: JRT, EVA
+  components:
+    - type: RandomMetadata
+      nameSegments:
+      - NamesLast
+    - type: Sprite
+      netsync: false
+      sprite: Markers/jobs.rsi
+      state: ertjanitoreva
+    - type: Loadout
+      prototypes: [ JRTGearEVA ]
+    - type: RandomHumanoidAppearance
+      randomizeName: false
+    - type: AutoImplant
+      implants:
+      - MindShieldImplant
+    - type: GhostRole
+      name: jrt-eva-name
+      description: jrt-eva-desc
+      rules: jrt-eva-rules
+      raffle:
+        settings: short
+    - type: GhostTakeoverAvailable
+
+
+- type: entity
+  id: CrateJRTSpaceSprayNozzle
+  parent: CratePlastic
+  name: janitorial supplies crate
+  suffix: JRT
+  description: Fight back against dirt and grime with Nanotrasen's Janitorial Essentials(tm)! Contains three buckets, caution signs, and cleaner grenades. Also has a single mop, broom, spray cleaner, rag, and trash bag.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponSprayNozzle
+      - id: ClothingBackpackWaterTank
+      - id: SpaceCleanerTankFull
+
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelWithHydra
+  name: Duffel bag
+  suffix: JRT
+  description: A duffel bag of S-o.N.A. AI Dynamics corporation, with additional BlueSpace storage, which was leased from NanoTrasen.
+  components:
+  - type: StorageFill
+    contents:
+      - id: WeaponLauncherHydra
+      - id: GrenadeCleanade
+        amount: 8
+
+- type: entity
+  parent: ClothingBackpackDuffel
+  id: ClothingBackpackDuffelWithGrenadesCleanade
+  name: Duffel bag
+  suffix: JRT
+  description: A duffel bag of S-o.N.A. AI Dynamics corporation, with additional BlueSpace storage, which was leased from NanoTrasen.
+  components:
+  - type: StorageFill
+    contents:
+      - id: GrenadeCleanade
+        amount: 12

@@ -31,9 +31,7 @@
     baseSprintSpeed: 4
   - type: FootstepModifier
     footstepSoundCollection:
-      path: /Audio/Effects/Footsteps/slime1.ogg
-      params:
-        volume: 3
+      collection: FootstepSlime
   - type: Tag
     tags:
     - FootstepSound
@@ -138,7 +136,7 @@
     proto: slime
   - type: NpcFactionMember
     factions:
-    - SimpleNeutral
+    - Passive ##Замена фракции, чтобы не абузить нейтральность фракции против агрессивных мобов
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
