@@ -17,6 +17,13 @@
     - type: PickupLock
       holder:
         - "fade5f41-5240-42e4-a425-e84c5719b3f2"
+    - type: MedievalInteractionPopup
+      allowed:
+        - "fade5f41-5240-42e4-a425-e84c5719b3f2"
+      popup: "medieval-interaction-popup"
+      sound:
+        path: /Audio/Imperial/Medieval/crow_kark.ogg
+      delay: 5
     - type: Item
       size: Huge
     - type: InteractionOutline
@@ -37,7 +44,7 @@
         behaviors:
         - !type:PlaySoundBehavior
           sound:
-            path: /Audio/Imperial/Medieval/buff_cast.ogg
+            path: /Audio/Imperial/Medieval/crow_kark.ogg
         - !type:DoActsBehavior
           acts: ["Destruction"]
         - !type:SpawnEntitiesBehavior
@@ -69,7 +76,7 @@
       interactFailureString: petting-failure-generic
       interactSuccessSpawn: EffectHearts
       interactSuccessSound:
-        path: /Audio/Imperial/Medieval/buff_cast.ogg
+        path: /Audio/Imperial/Medieval/crow_kark.ogg
     - type: CanMoveInAir
     - type: Tag
       tags:
@@ -101,7 +108,7 @@
     state: eliminate
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Imperial/Medieval/buff_cast.ogg
+      path: /Audio/Imperial/Medieval/crow_summon.ogg
       params:
         variation: 0.2
 
@@ -115,6 +122,6 @@
     state: eliminate
   - type: EmitSoundOnSpawn
     sound:
-      path: /Audio/Imperial/Medieval/buff_cast.ogg
+      path: /Audio/Imperial/Medieval/crow_summon.ogg
       params:
         variation: 0.2
