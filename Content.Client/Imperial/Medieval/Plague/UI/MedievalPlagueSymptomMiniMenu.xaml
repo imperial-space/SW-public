@@ -39,7 +39,7 @@
                 <Button
                     Name="OpenSliderButton"
                     HorizontalExpand="True"
-                    Text="Добавить очки" />
+                    Text="{Loc 'imperial-hm-ui-addpoints'}" />
                 <BoxContainer
                     Name="SliderContainer"
                     Orientation="Horizontal"
@@ -57,7 +57,7 @@
                         Name="AddPointsButton"
                         VerticalAlignment="Center"
                         HorizontalExpand="True"
-                        Text="Подтв" />
+                        Text="{Loc 'imperial-hm-ui-conf'}" />
                 </BoxContainer>
             </BoxContainer>
 
@@ -68,7 +68,7 @@
                 SizeFlagsStretchRatio="2"
                 VerticalExpand="True">
                 <RichTextLabel
-                    Text="Прогресс болезни"
+                    Text="{Loc 'imperial-hm-ui-illprogress'}"
                     Margin="4"
                     HorizontalAlignment="Center" />
                 <ProgressBar

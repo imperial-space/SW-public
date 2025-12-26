@@ -34,7 +34,7 @@ public abstract partial class SharedMedievalFactionsSystem : EntitySystem
         var otherFaction = Proto.Index(comp.Faction);
 
         if (myFaction == otherFaction && myFaction.ShowKnown)
-            args.PushMarkup("[color=green]Из моей фракции, это [/color] " + data.Job.ToLower());
+            args.PushMarkup(Loc.GetString("medieval-hm-factions-etobil", ("name", $"{data.Job.ToLower()}")));
         else if (myFaction.KnownFactions.TryGetValue(comp.Faction, out var str))
             args.PushMarkup(str);
 

@@ -10,6 +10,8 @@ species-colored-Skeleton = [color=white]skeleton[/color]
 species-colored-Elf = [color=lightgreen]forest elf[/color]
 species-colored-Beastmen = [color=pink]beastman[/color]
 species-colored-Diona = [color=green]dendrit[/color]
+species-colored-Lamian = [color=blue]lamian[/color]
+
 
 species-DarkElf = dark elf
 species-Tifling = infern
@@ -22,5 +24,6 @@ species-Reptilian = reptilian
 species-Skeleton = skeleton
 species-Elf = forest elf
 species-Beastmen = beastman
-species-name-dendrit = Dendrit
-species-Diona = Dendrit
+species-name-dendrit = dendrit
+species-Diona = dendrit
+species-Lamian = lamian

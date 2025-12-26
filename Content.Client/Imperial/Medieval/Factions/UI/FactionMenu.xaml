@@ -15,7 +15,7 @@
                       Orientation="Horizontal"
                       SetHeight="50">
             <Button Name="JobMode"
-                    Text="Звания"
+                    Text="{Loc 'medieval-hm-relations-oopsie'}"
                     ToggleMode="True"
                     VerticalExpand="True"
                     HorizontalExpand="True"
@@ -31,7 +31,7 @@
                             BackgroundPanelColor="#31313D"
                             BorderRadius="25">
                         <RichTextLabel
-                            Text="Звания"
+                            Text="{Loc 'medieval-hm-relations-oopsie'}"
                             HorizontalExpand="True"
                             VerticalExpand="True"
                             Margin="0 0"
@@ -40,7 +40,7 @@
                 </BoxContainer>
             </Button>
             <Button Name="GroupMode"
-                    Text="Группы"
+                    Text="{Loc 'medieval-hm-relations-groups'}"
                     ToggleMode="True"
                     VerticalExpand="True"
                     HorizontalExpand="True"
@@ -56,7 +56,7 @@
                             BackgroundPanelColor="#31313D"
                             BorderRadius="25">
                         <RichTextLabel
-                            Text="Группы"
+                            Text="{Loc 'medieval-hm-relations-groups'}"
                             HorizontalExpand="True"
                             VerticalExpand="True"
                             Margin="0 0"
@@ -65,7 +65,7 @@
                 </BoxContainer>
             </Button>
             <Button Name="RelationsMode"
-                    Text="Дипломатия"
+                    Text="{Loc 'medieval-hm-relations-diplomacy'}"
                     ToggleMode="True"
                     VerticalExpand="True"
                     HorizontalExpand="True"
@@ -81,7 +81,7 @@
                             BackgroundPanelColor="#31313D"
                             BorderRadius="25">
                         <RichTextLabel
-                            Text="Дипломатия"
+                            Text="{Loc 'medieval-hm-relations-diplomacy'}"
                             HorizontalExpand="True"
                             VerticalExpand="True"
                             Margin="0 0"
@@ -90,7 +90,7 @@
                 </BoxContainer>
             </Button>
             <Button Name="GoalsMode"
-                    Text="Цели"
+                    Text="{Loc 'medieval-hm-relations-goals'}"
                     ToggleMode="True"
                     VerticalExpand="True"
                     HorizontalExpand="True"
@@ -106,7 +106,7 @@
                             BackgroundPanelColor="#31313D"
                             BorderRadius="25">
                         <RichTextLabel
-                            Text="Цели"
+                            Text="{Loc 'medieval-hm-relations-goals'}"
                             HorizontalExpand="True"
                             VerticalExpand="True"
                             Margin="0 0"
@@ -132,10 +132,10 @@
                   Orientation="Vertical"
                   Margin="150 100 150 200"
                   Visible="False">
-        <RichTextLabel Text="[font=Default size=24][bold]Вы уверены?[/bold][/font]"
+        <RichTextLabel Text="{Loc 'medieval-hm-relations-omniman'}"
                        HorizontalAlignment="Center"/>
         <RichTextLabel Name="ConfirmationLabel"
-                       Text="Кто-то там будет исключён из вашей фракции"
+                       Text="{Loc 'medieval-hm-relations-ooopsie'}"
                        VerticalExpand="True"
                        HorizontalExpand="True"
                        HorizontalAlignment="Center"/>
@@ -145,7 +145,7 @@
             VerticalExpand="True"
             Margin="30 5">
             <Button Name="Cancel"
-                    Text="Отмена"
+                    Text="{Loc 'medieval-hm-relations-cancel'}"
                     ToggleMode="True"
                     VerticalExpand="True"
                     HorizontalExpand="True"
@@ -160,7 +160,7 @@
                             BackgroundPanelColor="#435E45"
                             BorderRadius="25">
                         <RichTextLabel
-                            Text="Отмена"
+                            Text="{Loc 'medieval-hm-relations-cancel'}"
                             HorizontalExpand="True"
                             VerticalExpand="True"
                             Margin="0 0"
@@ -169,7 +169,7 @@
                 </BoxContainer>
             </Button>
             <Button Name="Fire"
-                    Text="Уволить"
+                    Text="{Loc 'medieval-hm-relations-fire'}"
                     ToggleMode="True"
                     VerticalExpand="True"
                     HorizontalExpand="True"
@@ -184,7 +184,7 @@
                             BackgroundPanelColor="#947452"
                             BorderRadius="25">
                         <RichTextLabel
-                            Text="Уволить"
+                            Text="{Loc 'medieval-hm-relations-fire'}"
                             HorizontalExpand="True"
                             VerticalExpand="True"
                             Margin="0 0"
@@ -210,7 +210,7 @@
                         BackgroundPanelColor="#774D4E"
                         BorderRadius="25">
                     <RichTextLabel
-                        Text="Уволить и назначить награду"
+                        Text="{Loc 'medieval-hm-relations-fireaward'}"
                         HorizontalExpand="True"
                         VerticalExpand="True"
                         Margin="0 0"
@@ -241,7 +241,7 @@
                             BackgroundPanelColor="#774D4E"
                             BorderRadius="25">
                         <RichTextLabel
-                            Text="Готово"
+                            Text="{Loc 'medieval-hm-relations-ready'}"
                             HorizontalExpand="True"
                             VerticalExpand="True"
                             Margin="0 0"

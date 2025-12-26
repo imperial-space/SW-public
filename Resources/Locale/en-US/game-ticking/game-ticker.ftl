@@ -4,18 +4,20 @@ game-ticker-start-round-cannot-start-game-mode-fallback = Failed to start {$fail
 game-ticker-start-round-cannot-start-game-mode-restart = Failed to start {$failedGameMode} mode! Restarting round...
 game-ticker-start-round-invalid-map = Selected map {$map} is inelligible for gamemode {$mode}. Gamemode may not function as intended...
 game-ticker-unknown-role = Unknown
-game-ticker-delay-start = Round start has been delayed for {$seconds} seconds.
-game-ticker-pause-start = Round start has been paused.
-game-ticker-pause-start-resumed = Round start countdown is now resumed.
-game-ticker-player-join-game-message = Welcome to Space Station 14! If this is your first time playing, be sure to read the game rules, and don't be afraid to ask for help in LOOC (local OOC) or OOC (usually available only between rounds).
-game-ticker-get-info-text = Hi and welcome to [color=white]Space Station 14![/color]
-                            The current round is: [color=white]#{$roundId}[/color]
+game-ticker-delay-start = Temporal cycle has been delayed for {$seconds} seconds.
+game-ticker-pause-start = Temporal cycle start has been paused.
+game-ticker-pause-start-resumed = Temporal cycle start countdown is now resumed.
+game-ticker-player-join-game-message = Welcome to Spellward! If this is your first time playing, be sure to read the game rules, and don't be afraid to ask for help in LOOC (local OOC) or OOC (usually available only between rounds).
+game-ticker-get-info-text = Hello and welcome to the [color=white]Spellward[/color]!
+                            We recommend keeping background music enabled in the settings for immersion.
+                            The current temporal cycle: [color=white]#{ $roundId }[/color]
                             The current player count is: [color=white]{$playerCount}[/color]
                             The current map is: [color=white]{$mapName}[/color]
                             The current game mode is: [color=white]{$gmTitle}[/color]
                             >[color=yellow]{$desc}[/color]
-game-ticker-get-info-preround-text = Hi and welcome to [color=white]Space Station 14![/color]
-                            The current round is: [color=white]#{$roundId}[/color]
+game-ticker-get-info-preround-text = Welcome to [color=white]Spellward[/color]!
+                            We recommend keeping background music enabled in the settings for immersion.
+                            The current temporal cycle: [color=white]#{$roundId}[/color]
                             The current player count is: [color=white]{$playerCount}[/color] ([color=white]{$readyCount}[/color] {$readyCount ->
                                 [one] is
                                 *[other] are

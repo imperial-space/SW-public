@@ -106,7 +106,7 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
         {
             Margin = new(2, 0)
         };
-        progressLabel.SetMessage(FormattedMessage.FromMarkupOrThrow($"[bold]Прогресс: {data?.Points ?? 0} / {proto.GetCost(_info)}[/bold]"), defaultColor: Color.FromHex("#00b100ff"));
+        progressLabel.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("imperial-hm-ui-prgg", ("min", $"{data?.Points ?? 0}"), ("max", $"{proto.GetCost(_info)}"))), defaultColor: Color.FromHex("#00b100ff"));
         tooltipContainer.AddChild(progressLabel);
 
         if (proto.Required.Count() > 0)
@@ -116,7 +116,7 @@ public sealed partial class MedievalPlagueMenu : DefaultWindow
                 Margin = new(2, 0)
             };
 
-            label.SetMessage(FormattedMessage.FromMarkupOrThrow("[bold]Требует:[/bold]"), defaultColor: Color.FromHex("#00b100ff"));
+            label.SetMessage(FormattedMessage.FromMarkupOrThrow(Loc.GetString("imperial-hm-ui-reqq")), defaultColor: Color.FromHex("#00b100ff"));
             tooltipContainer.AddChild(label);
             foreach (var item in proto.Required)
             {

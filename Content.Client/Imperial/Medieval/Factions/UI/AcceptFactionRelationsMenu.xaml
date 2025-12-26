@@ -4,7 +4,7 @@
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
     xmlns:friends="clr-namespace:Content.Client.Imperial.Medieval.Friends.UI.Elements"
-    Title="Изменить отношения"
+    Title="{Loc 'medieval-hm-relations-change'}"
     MinSize="512 180"
     SetSize="512 185">
     <BoxContainer Name="Main"
@@ -13,8 +13,8 @@
                   VerticalExpand="True">
         <RichTextLabel Name="MainLabel" Margin="4"/>
         <BoxContainer Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalExpand="True" Margin="4">
-            <Button Name="SendButton" Text="Принять" Margin="8 4" HorizontalAlignment="Center"/>
-            <Button Name="DiscardButton" Text="Отказать" Margin="8 4" HorizontalAlignment="Center"/>
+            <Button Name="SendButton" Text="{Loc 'medieval-hm-relations-accept'}" Margin="8 4" HorizontalAlignment="Center"/>
+            <Button Name="DiscardButton" Text="{Loc 'medieval-hm-relations-decline'}" Margin="8 4" HorizontalAlignment="Center"/>
         </BoxContainer>
     </BoxContainer>
 </DefaultWindow>

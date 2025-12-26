@@ -58,7 +58,7 @@ namespace Content.Server.CustomDoorKey
                 }
                 if (key.linkedKey == null)
                 {
-                    _popup.PopupEntity(Loc.GetString("medieval-hm-customdoorkey-whotfisthisretarded"), user, PopupType.LargeCaution);
+                    _popup.PopupEntity(Loc.GetString("medieval-hm-customdoorkey-nothing"), user, PopupType.LargeCaution);
                     return;
                 }
                 comp.linkedKey = key.linkedKey;

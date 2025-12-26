@@ -48,23 +48,25 @@ namespace Content.Server.Myrmex
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-        public List<string> SporesPull = new()
-        {
-            "споры железошляпника",
-            "едкие споры",
-            "споры нейромицита"
-        };
+        public List<string> SporesPull = new List<string>{};
 
-        public List<string> LightsPull = new()
-        {
-            "руническое",
-            "эфирное",
-            "теневое"
-        };
-
+        public List<string> LightsPull = new List<string>{};
 
         public override void Initialize()
         {
+            
+            SporesPull = new List<string>
+            {
+                Loc.GetString("imperial-hm-myrmex-ironcap"),
+                Loc.GetString("imperial-hm-myrmex-caustic"),
+                Loc.GetString("imperial-hm-myrmex-neuromycite")
+            };
+            LightsPull = new List<string>
+            {
+                Loc.GetString("imperial-hm-myrmex-runic"),
+                Loc.GetString("imperial-hm-myrmex-ethereal"),
+                Loc.GetString("imperial-hm-myrmex-shadow")
+            };
             base.Initialize();
             SubscribeLocalEvent<MyrmexComponent, ComponentStartup>(OnMyrmexStartup);
             SubscribeLocalEvent<MyrmexEggComponent, ExaminedEvent>(OnExamine);
@@ -100,7 +102,7 @@ namespace Content.Server.Myrmex
             ladderEntr.LadderID = f2;
             ladderEx.LadderID = f2;
             QueueDel(choosenSpawner.Owner);
-            _chat.DispatchGlobalAnnouncement("Земля под ногами содрагается... древние мирмексы, что когда-то жили под землей вырылись наружу...", playSound: true, colorOverride: Color.Pink, sender: "Барьер");
+            _chat.DispatchGlobalAnnouncement(Loc.GetString("imperial-hm-myrmex-annc"), playSound: true, colorOverride: Color.Pink, sender: Loc.GetString("imperial-hm-barrier-barrier"));
             // ahahah nihuya ya pridumal costyli smotrite
         }
         private void OnStartEgg(EntityUid uid, MyrmexEggComponent comp, ComponentStartup args)
@@ -122,45 +124,45 @@ namespace Content.Server.Myrmex
             string light = CheckNearby(coords, "light");
             string spore = CheckNearby(coords, "spore");
             string cl = "white";
-            if (comp.LightColor == "руническое")
+            if (comp.LightColor == Loc.GetString("imperial-hm-myrmex-runic"))
                 cl = "cyan";
-            else if (comp.LightColor == "эфирное")
+            else if (comp.LightColor == Loc.GetString("imperial-hm-myrmex-ethereal"))
                 cl = "orange";
-            else if (comp.LightColor == "теневое")
+            else if (comp.LightColor == Loc.GetString("imperial-hm-myrmex-shadow"))
                 cl = "pink";
             string cs = "white";
-            if (comp.SporeType == "споры железошляпника")
+            if (comp.SporeType == Loc.GetString("imperial-hm-myrmex-ironcap"))
                 cs = "cyan";
-            else if (comp.SporeType == "едкие споры")
+            else if (comp.SporeType == Loc.GetString("imperial-hm-myrmex-caustic"))
                 cs = "orange";
-            else if (comp.SporeType == "споры нейромицита")
+            else if (comp.SporeType == Loc.GetString("imperial-hm-myrmex-neuromycite"))
                 cs = "pink";
-            args.PushMarkup($"[color=gray]Для благоприятных условий роста яйцу требуются[/color] [color={cs}]{comp.SporeType}[/color] [color=gray]и[/color] [color={cl}]{comp.LightColor}[/color] [color=gray]свечение[/color]", 3);
+            args.PushMarkup(Loc.GetString("imperial-hm-myrmex-reqs", ("colour", $"{cs}"), ("name", $"{comp.SporeType}"), ("name2", $"{comp.LightColor}")), 3);
 
             if (light == "")
-                args.PushMarkup($"[color=gray]Яйцо [/color][color=red]не освещено[/color]", 1);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-nolight"), 1);
             else if (light == "many")
-                args.PushMarkup($"[color=gray]Яйцо [/color][color=orange]слишком сильно освещено[/color]", 1);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-toomuchlight"), 1);
             else if (light == comp.LightColor)
-                args.PushMarkup($"Яйцо освещено[color=green] верным[/color] свечением", 1);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-correctlight"), 1);
             else if (light != comp.LightColor)
-                args.PushMarkup($"Яйцо освещено[color=orange] неверным[/color] свечением", 1);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-incorrectlight"), 1);
 
             if (spore == "")
-                args.PushMarkup($"[color=gray]Яйцо [/color][color=red]не обрабатывается спорами[/color]", 2);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-nospores"), 2);
             else if (spore == "many")
-                args.PushMarkup($"[color=gray]Яйцо [/color][color=orange]слишком сильно обрабатывается спорами[/color]", 2);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-toomanyspores"), 2);
             else if (spore == comp.SporeType)
-                args.PushMarkup($"Яйцо обрабатывается[color=green] верными[/color] спорами", 2);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-correctspores"), 2);
             else if (spore != comp.SporeType)
-                args.PushMarkup($"Яйцо обрабатывается[color=orange] неверными[/color] спорами", 2);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-incorrectspores"), 2);
 
             if (light == comp.LightColor && spore == comp.SporeType)
-                args.PushMarkup($"Текущие условия [color=green]идеальны[/color]", 0);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-ideal"), 0);
             else if (light != comp.LightColor && spore == comp.SporeType || light == comp.LightColor && spore != comp.SporeType)
-                args.PushMarkup($"Текущие условия [color=yellow]удовлетворительны[/color]", 0);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-fine"), 0);
             else
-                args.PushMarkup($"Текущие условия [color=red]ужасны[/color]", 0);
+                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-horrible"), 0);
         }
         TimeSpan StartTime = TimeSpan.FromSeconds(0f);
         TimeSpan EndTime = TimeSpan.FromSeconds(0f);

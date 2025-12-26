@@ -33,20 +33,20 @@ public abstract class SharedMedievalIdentitySystem : EntitySystem
         {
             Act = () =>
             {
-                _popup.PopupPredicted($"Вы представились {Identity.Name(uid, EntityManager, args.User)}.", null, uid, args.User);
-                _popup.PopupPredicted($"{Name(args.User)} представился вам.", null, args.User, uid);
+                _popup.PopupPredicted(Loc.GetString("imperial-hm-identity-introduce", ("name", $"{Identity.Name(uid, EntityManager, args.User)}")), null, uid, args.User);
+                _popup.PopupPredicted(Loc.GetString("imperial-hm-identity-introduction", ("name", $"{Name(args.User)}")), null, args.User, uid);
                 component.KnownIds.Add(userComp.Identifier);
                 Dirty(uid, component);
             },
             Icon = new SpriteSpecifier.Rsi(new ResPath("/Textures/Imperial/Medieval/date.rsi"), "date"),
             Priority = 1,
-            Text = "Представиться"
+            Text = Loc.GetString("imperial-hm-identity-intrd")
         });
     }
 
     private void OnExamined(EntityUid uid, IdentityRequiresKnowledgeComponent component, ExaminedEvent args)
     {
-        args.PushMarkup($"[font=Default size=8][color=gray]Идентификатор игрока:[/color] {component.Identifier}[/font]", -1);
+        args.PushMarkup(Loc.GetString("imperial-hm-identity-id", ("name", $"{component.Identifier}")), -1);
     }
     public bool IsIdentityMasked(EntityUid entity)
     {

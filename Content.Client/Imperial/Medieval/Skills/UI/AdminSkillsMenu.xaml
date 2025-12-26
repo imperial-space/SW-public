@@ -3,7 +3,7 @@
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     xmlns:cc="clr-namespace:Content.Client.Administration.UI.CustomControls"
     xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
-    Title="Характеристики"
+    Title="{Loc 'imperial-hm-ui-chars'}"
     MinSize="400 200"
     SetSize="450 300">
     <ScrollContainer Name="ScrollContainer"

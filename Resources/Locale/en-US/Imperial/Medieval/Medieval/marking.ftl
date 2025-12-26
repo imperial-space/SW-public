@@ -1,12 +1,1 @@
 marking-ZveresTail = Мунвульф, хвост
-marking-ZveresTailDefault = обычный хвост
-marking-ZveresTailRounded = закруглённый хвост
-marking-ZveresTailShort = короткий хвост
-marking-ZveresEarsDefault = обычные ушки
-marking-ZveresEarsShort = короткие ушки
-marking-ZveresEarsLowered = опущенные ушки
-marking-ZveresAllbodySpots = пятна (тело)
-marking-ZveresEyeLeftSpot = пятно (левый глаз)
-marking-ZveresEyeRightSpot = пятно (правый глаз)
-marking-ZveresJawSpot = пятно (нижняя челюсть)
-marking-ZveresBellySpot = пятно (живот)

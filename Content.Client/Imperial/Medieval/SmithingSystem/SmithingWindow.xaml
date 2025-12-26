@@ -15,6 +15,6 @@
                          MouseFilter="Ignore" />
         </LayoutContainer>
 
-        <Button Name="StartGameButton" Text="Начать!" HorizontalExpand="True" SetHeight="30" />
+        <Button Name="StartGameButton" Text="{Loc 'imperial-hm-ui-start'}" HorizontalExpand="True" SetHeight="30" />
     </BoxContainer>
 </controls:FancyWindow>

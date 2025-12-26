@@ -33,7 +33,7 @@ namespace Content.Server.Imperial.Medieval.Myrmex
 
         private void OnExamine(EntityUid uid, MyrmexStewComponent comp, ExaminedEvent args)
         {
-            args.PushMarkup($"[color=gray]Осталось [bold]{comp.Uses}[/bold] кусочков[/color]", 1);
+            args.PushMarkup(Loc.GetString("imperial-hm-myrmex-left", ("amount", $"{comp.Uses}")), 1);
         }
         private void OnInteractHand(Entity<MyrmexStewComponent> entity, ref ActivateInWorldEvent args)
         {

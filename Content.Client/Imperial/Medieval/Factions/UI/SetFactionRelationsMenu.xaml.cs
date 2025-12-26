@@ -45,7 +45,7 @@ public sealed partial class SetFactionRelationsMenu : DefaultWindow
     private void UpdateMessage()
     {
         var relation = _proto.Index(Relation);
-        MainLabel.SetMessage($"Вы уверены, что хотите изменить отношения с фракцией {_proto.Index(TargetFaction).Name} на {relation.Name}?", defaultColor: relation.Color);
+        MainLabel.SetMessage(Loc.GetString("medieval-hm-relations-leaderchng", ("name", $"{_proto.Index(TargetFaction).Name}"), ("name2", $"{relation.Name}")), defaultColor: relation.Color);
 
         PaperWarning.Visible = _paper;
     }

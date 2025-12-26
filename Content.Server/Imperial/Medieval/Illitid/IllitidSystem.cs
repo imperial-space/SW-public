@@ -98,15 +98,15 @@ public sealed class IllitidSystem : SharedIllitidSystem
         args.Handled = true;
 
         _quickDialog.OpenDialog(session,
-            "Отправить мысль",
-            "Мысль",
+            Loc.GetString("imperial-hm-illitid-send"),
+            Loc.GetString("imperial-hm-illitid-thought"),
             (string thought) =>
             {
                 CheckThought(uid, thought);
                 if (SendThought(uid, args.Target, thought))
                     SendEffect(uid, 1000f, 0.05f, ThoughtCast);
                 else
-                    _popup.PopupEntity("Никто не услышал...", uid, uid);
+                    _popup.PopupEntity(Loc.GetString("imperial-hm-illitid-nobody"), uid, uid);
             });
     }
 
@@ -124,8 +124,8 @@ public sealed class IllitidSystem : SharedIllitidSystem
 
 
         _quickDialog.OpenDialog(session,
-            "Отправить мысль",
-            "Мысль",
+            Loc.GetString("imperial-hm-illitid-send"),
+            Loc.GetString("imperial-hm-illitid-thought"),
             (string thought) =>
             {
                 if (!TryConsumePsi(uid, 3))
@@ -135,7 +135,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
                 if(SendThoughtInRange(uid, 7, thought))
                     SendEffect(uid, 1000f, 0.05f, ThoughtCast);
                 else
-                    _popup.PopupEntity("Никто не услышал...", uid, uid);
+                    _popup.PopupEntity(Loc.GetString("imperial-hm-illitid-nobody"), uid, uid);
             });
     }
 
@@ -152,8 +152,8 @@ public sealed class IllitidSystem : SharedIllitidSystem
 
 
         _quickDialog.OpenDialog(session,
-            "Сказать",
-            "Слова",
+            Loc.GetString("imperial-hm-illitid-say"),
+            Loc.GetString("imperial-hm-illitid-words"),
             (string thought) =>
             {
                 if (!TryConsumePsi(uid, 3))
@@ -166,7 +166,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
                 {
                     if (skills.Levels.TryGetValue("Intelligence", out var level) && level > 9)
                     {
-                        _popup.PopupEntity("Слишком крепкий разум", uid, uid);
+                        _popup.PopupEntity(Loc.GetString("imperial-hm-illitid-toointl"), uid, uid);
                         return;
                     }
                 }
@@ -242,7 +242,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
         if (ChangePsiAmount(uid, -cost))
             return true;
 
-        _popup.PopupEntity("Недостаточно пси-энергии", uid, uid);
+        _popup.PopupEntity(Loc.GetString("imperial-hm-illitid-psi"), uid, uid);
         return false;
     }
 
@@ -305,7 +305,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
         if (!CheckDistance(source, target, 15))
             return false;
 
-        var msg = $"Голос в вашей голове: {thought}";
+        var msg = Loc.GetString("imperial-hm-illitid-voices" , ("name", $"{thought}"));
         _popup.PopupEntity(msg, target, target, PopupType.Medium);
         _chatManager.ChatMessageToOne(channel: ChatChannel.Server, msg, msg, source, false, session.Channel, Color.Purple);
 
@@ -315,7 +315,7 @@ public sealed class IllitidSystem : SharedIllitidSystem
         if (sourceSession == null)
             return false;
 
-        var sourceMsg = $"Ваш голос: {thought}";
+        var sourceMsg = Loc.GetString("imperial-hm-illitid-urvoice" , ("name", $"{thought}"));
         _chatManager.ChatMessageToOne(channel: ChatChannel.Server, sourceMsg, sourceMsg, source, false, sourceSession.Channel, Color.Purple);
 
         return true;

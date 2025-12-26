@@ -41,4 +41,7 @@ imperial-hm-cult-titupoy = You have [color=red]no idea[/color] what this thing i
 imperial-hm-cult-cultbond = Has a [color=red]connection to the cult[/color]
 imperial-hm-cult-urodec = [color=red]Severed[/color] the connection to the cult, sinner!
 imperial-hm-cult-cultbond2 = Also has a [color=red]connection to the cult[/color]
-imperial-hm-cult-needmore = The rune is correct; not enough cult members for the ritual, minimum {$amount} required.
+imperial-hm-cult-needmore = The rune is correct, not enough cult members for the ritual, minimum {$amount} required.
+imperial-hm-cult-entername = Enter name
+imperial-hm-cult-name = Name
+imperial-hm-cult-collegium = This collegium sector needs to be unlocked by a special ritual, get back immediately!
