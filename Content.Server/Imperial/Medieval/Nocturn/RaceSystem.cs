@@ -131,7 +131,7 @@ namespace Content.Server.Nocturn
                         continue;
                     }
 
-                    _alerts.ShowAlert(comp.Owner, comp.BloodAlert, (short)Math.Clamp(Math.Round(comp.BloodLevel / 40f), 0, 10));
+                    _alerts.ShowAlert(comp.Owner, comp.BloodAlert, (short)Math.Clamp(Math.Round(comp.BloodLevel / 22f), 0, 18));
                     comp.StartTime = _timing.CurTime;
 
                     comp.EndTime = comp.StartTime + TimeSpan.FromSeconds(1f);
