@@ -12,7 +12,6 @@ using Content.Server.NPC.HTN;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Server.Imperial.DarkMage.Follower;
-using Content.Client.Imperial.Medieval.DarkMage;
 using Content.Shared.Humanoid;
 
 namespace Content.Server.Imperial.DarkMage.Systems;
@@ -38,6 +37,9 @@ public sealed class DarkMageSystem : EntitySystem
 
         _npcFactionSystem.ClearFactions(darkMageComponent.Target.Value);
         _npcFactionSystem.AddFactions(darkMageComponent.Target.Value, darkMageComponent.Faction);
+
+        QueueDel(darkMageComponent.Flame);
+
         return;
     }
     public override void Update(float frameTime)
@@ -135,21 +137,21 @@ public sealed class DarkMageSystem : EntitySystem
 
                 if (_lastClosest != darkMageComponent.Target && _lastClosest != null)
                 {
-                    if (HasComp<DarkMageAddOverlayComponent>(_lastClosest.Value)) RemComp<DarkMageAddOverlayComponent>(_lastClosest.Value);
+                    RaiseNetworkEvent(new DarkMageRemoveOverlayEvent(), darkMageComponent.Target.Value);
                     _lastClosest = darkMageComponent.Target;
                 }
 
-                EnsureComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
+                RaiseNetworkEvent(new DarkMageAddOverlayEvent(), darkMageComponent.Target.Value);
                 if (_gameTiming.CurTime > darkMageComponent.LastTiming + darkMageComponent.Timing) // 9 секунд по умолчанию
                 {
-                    if (darkMageComponent.Target != null && HasComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value)) RemComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
+                    if (darkMageComponent.Target != null) RaiseNetworkEvent(new DarkMageRemoveOverlayEvent(), darkMageComponent.Target.Value);
                     QueueDel(darkMageComponent.Flame);
                     darkMageComponent.IsCaptured = true;
                 }
             }
             else
             {
-                if (darkMageComponent.Target != null && HasComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value)) RemComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
+                if (darkMageComponent.Target != null) RaiseNetworkEvent(new DarkMageRemoveOverlayEvent(), darkMageComponent.Target.Value);
                 darkMageComponent.LastTiming = _gameTiming.CurTime;
                 if (darkMageComponent.IsCaptured || darkMageComponent.IsDied) continue;
                 var comp = EnsureComp<HTNComponent>(uid);

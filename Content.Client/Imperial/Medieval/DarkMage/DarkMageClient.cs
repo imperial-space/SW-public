@@ -1,3 +1,4 @@
+using Content.Shared.Imperial.DarkMage.Components;
 using Robust.Client.Graphics;
 using Robust.Shared.Timing;
 
@@ -12,15 +13,15 @@ public sealed partial class DarkMageAddOverlay : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DarkMageAddOverlayComponent, ComponentInit>(ComponentStartup);
-        SubscribeLocalEvent<DarkMageAddOverlayComponent, ComponentShutdown>(ComponentShutdown);
+        SubscribeLocalEvent<DarkMageAddOverlayEvent>(OnComponentStartup);
+        SubscribeLocalEvent<DarkMageRemoveOverlayEvent>(OnComponentShutdown);
     }
-    private void ComponentStartup(EntityUid uid, DarkMageAddOverlayComponent component, ComponentInit args)
+    private void OnComponentStartup(DarkMageAddOverlayEvent args)
     {
         _overlay = new(_gameTiming.CurTime);
         _overlayManager.AddOverlay(_overlay);
     }
-    private void ComponentShutdown(EntityUid uid, DarkMageAddOverlayComponent component, ComponentShutdown args)
+    private void OnComponentShutdown(DarkMageRemoveOverlayEvent args)
     {
         _overlayManager.RemoveOverlay(_overlay);
     }

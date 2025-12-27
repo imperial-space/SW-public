@@ -1,6 +1,7 @@
 using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.DarkMage.Components;
 
@@ -44,3 +45,8 @@ public sealed partial class DarkMageComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid Flame;
 }
+[Serializable, NetSerializable]
+public sealed class DarkMageAddOverlayEvent : EntityEventArgs { }
+[Serializable, NetSerializable]
+public sealed class DarkMageRemoveOverlayEvent : EntityEventArgs { }
+
