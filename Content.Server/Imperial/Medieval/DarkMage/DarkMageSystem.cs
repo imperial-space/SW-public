@@ -11,7 +11,7 @@ using Robust.Server.Containers;
 using Content.Server.NPC.HTN;
 using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
-using Content.Server.Imperial.DarkMage.Follower;
+using Content.Shared.Imperial.DarkMage.Follower;
 using Content.Shared.Humanoid;
 using Robust.Shared.Player;
 using Content.Client.Imperial.Medieval.DarkMage;
@@ -39,9 +39,17 @@ public sealed class DarkMageSystem : EntitySystem
         _npcFactionSystem.ClearFactions(darkMageComponent.Target.Value);
         _npcFactionSystem.AddFactions(darkMageComponent.Target.Value, darkMageComponent.Faction);
 
-        QueueDel(darkMageComponent.Flame);
+        ChangeFlame(null, darkMageComponent);
 
         return;
+    }
+    private void ChangeFlame(EntityUid? uid, DarkMageComponent darkMageComponent)
+    {
+        if (HasComp<MedievalFollowerComponent>(darkMageComponent.Flame)) RemComp<MedievalFollowerComponent>(darkMageComponent.Flame.Value);
+        darkMageComponent.Flame = null;
+        if (uid == null) return;
+        darkMageComponent.Flame = uid.Value;
+        AddComp<MedievalFollowerComponent>(uid.Value);
     }
     public override void Update(float frameTime)
     {
@@ -60,7 +68,7 @@ public sealed class DarkMageSystem : EntitySystem
         {
             if (darkMageComponent.IsFirst)
             {
-                darkMageComponent.Flame = Spawn(darkMageComponent.PrototypeFlame);
+                ChangeFlame(uid, darkMageComponent);
                 darkMageComponent.LastTiming = _gameTiming.CurTime;
                 darkMageComponent.IsFirst = false;
             }
@@ -136,7 +144,7 @@ public sealed class DarkMageSystem : EntitySystem
 
                 darkMageComponent.Target = closest;
 
-                EnsureComp<MedievalFollowerComponent>(darkMageComponent.Flame).Target = closest;
+                ChangeFlame(closest, darkMageComponent);
 
                 if (darkMageComponent.LastClosest == null) darkMageComponent.LastClosest = darkMageComponent.Target;
 
@@ -150,7 +158,7 @@ public sealed class DarkMageSystem : EntitySystem
                 if (_gameTiming.CurTime > darkMageComponent.LastTiming + darkMageComponent.Timing) // 9 секунд по умолчанию
                 {
                     if (darkMageComponent.Target != null && HasComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value)) RemComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
-                    QueueDel(darkMageComponent.Flame);
+                    ChangeFlame(null, darkMageComponent);
                     darkMageComponent.IsCaptured = true;
                 }
             }
@@ -164,7 +172,7 @@ public sealed class DarkMageSystem : EntitySystem
                 {
                     Task = "SimpleRangedHostileCompound"
                 };
-                EnsureComp<MedievalFollowerComponent>(darkMageComponent.Flame).Target = uid;
+                ChangeFlame(uid, darkMageComponent);
             }
         }
     }
