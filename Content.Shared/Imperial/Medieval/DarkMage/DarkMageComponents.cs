@@ -1,7 +1,6 @@
 using Content.Shared.NPC.Prototypes;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.DarkMage.Components;
 
