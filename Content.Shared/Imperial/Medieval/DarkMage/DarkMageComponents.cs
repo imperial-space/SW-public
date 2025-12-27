@@ -44,9 +44,5 @@ public sealed partial class DarkMageComponent : Component
     public EntityUid? Action;
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid Flame;
+    public EntityUid? LastClosest;
 }
-[Serializable, NetSerializable]
-public sealed class DarkMageAddOverlayEvent : EntityEventArgs { }
-[Serializable, NetSerializable]
-public sealed class DarkMageRemoveOverlayEvent : EntityEventArgs { }
-

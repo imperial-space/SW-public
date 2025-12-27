@@ -54,6 +54,14 @@ public sealed class FollowerSystem : EntitySystem
         SubscribeLocalEvent<FollowedComponent, PolymorphedEvent>(OnFollowedPolymorphed);
         SubscribeLocalEvent<FollowedComponent, StationAiRemoteEntityReplacementEvent>(OnFollowedStationAiRemoteEntityReplaced);
     }
+    public static Vector2 GetPositionFromRotation(Box2 reactionBounds, float energy, EntityUid uid)
+    {
+        var center = reactionBounds.Center;
+
+        var offset = new Vector2(0f, energy);
+
+        return center + offset;
+    }
 
     private void OnFollowedAttempt(Entity<FollowedComponent> ent, ref ComponentGetStateAttemptEvent args)
     {

@@ -13,12 +13,13 @@ using Content.Shared.NPC.Components;
 using Content.Shared.NPC.Systems;
 using Content.Server.Imperial.DarkMage.Follower;
 using Content.Shared.Humanoid;
+using Robust.Shared.Player;
+using Content.Client.Imperial.Medieval.DarkMage;
 
 namespace Content.Server.Imperial.DarkMage.Systems;
 
 public sealed class DarkMageSystem : EntitySystem
 {
-    private EntityUid? _lastClosest;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -29,7 +30,7 @@ public sealed class DarkMageSystem : EntitySystem
     {
         darkMageComponent.IsDied = true;
         if (darkMageComponent.Target == null || darkMageComponent.Container == null) return;
-
+        if (HasComp<DarkMageAddOverlayComponent>(darkMageComponent.Target)) RemComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
         _mindSystem.TransferTo(darkMageComponent.Mind, darkMageComponent.Target);
 
         _container.RemoveEntity(darkMageComponent.Target.Value, darkMageComponent.Object);
@@ -76,6 +77,7 @@ public sealed class DarkMageSystem : EntitySystem
                 if (darkMageComponent.LastTiming == TimeSpan.Zero) darkMageComponent.LastTiming = _gameTiming.CurTime;
                 if (darkMageComponent.Target == null || darkMageComponent.Container == null) continue;
                 if (darkMageComponent.LastTiming + darkMageComponent.TimeToStop > _gameTiming.CurTime) continue;
+                if (HasComp<DarkMageAddOverlayComponent>(darkMageComponent.Target)) RemComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
                 _mindSystem.TransferTo(darkMageComponent.Mind, darkMageComponent.Target);
 
                 _container.RemoveEntity(darkMageComponent.Target.Value, darkMageComponent.Object);
@@ -128,6 +130,7 @@ public sealed class DarkMageSystem : EntitySystem
                 if (HasComp<HTNComponent>(uid))
                     RemComp<HTNComponent>(uid);
                 var closest = entitiesNearby
+                    .OrderBy(e => HasComp<ActorComponent>(e) && TryComp<MindContainerComponent>(e, out var mindc) && mindc.HasMind) // in priority with mind and actorcomp
                     .OrderBy(e => (_transform.GetMapCoordinates(e).Position - position.Position).LengthSquared()) // Квадрат расстояния
                     .FirstOrDefault();
 
@@ -135,23 +138,25 @@ public sealed class DarkMageSystem : EntitySystem
 
                 EnsureComp<MedievalFollowerComponent>(darkMageComponent.Flame).Target = closest;
 
-                if (_lastClosest != darkMageComponent.Target && _lastClosest != null)
+                if (darkMageComponent.LastClosest == null) darkMageComponent.LastClosest = darkMageComponent.Target;
+
+                if (darkMageComponent.Target != darkMageComponent.LastClosest)
                 {
-                    RaiseNetworkEvent(new DarkMageRemoveOverlayEvent(), darkMageComponent.Target.Value);
-                    _lastClosest = darkMageComponent.Target;
+                    if (HasComp<DarkMageAddOverlayComponent>(darkMageComponent.LastClosest)) RemComp<DarkMageAddOverlayComponent>(darkMageComponent.LastClosest.Value);
+                    darkMageComponent.LastClosest = darkMageComponent.Target;
                 }
 
-                RaiseNetworkEvent(new DarkMageAddOverlayEvent(), darkMageComponent.Target.Value);
+                EnsureComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
                 if (_gameTiming.CurTime > darkMageComponent.LastTiming + darkMageComponent.Timing) // 9 секунд по умолчанию
                 {
-                    if (darkMageComponent.Target != null) RaiseNetworkEvent(new DarkMageRemoveOverlayEvent(), darkMageComponent.Target.Value);
+                    if (darkMageComponent.Target != null && HasComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value)) RemComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
                     QueueDel(darkMageComponent.Flame);
                     darkMageComponent.IsCaptured = true;
                 }
             }
             else
             {
-                if (darkMageComponent.Target != null) RaiseNetworkEvent(new DarkMageRemoveOverlayEvent(), darkMageComponent.Target.Value);
+                if (HasComp<DarkMageAddOverlayComponent>(darkMageComponent.Target)) RemComp<DarkMageAddOverlayComponent>(darkMageComponent.Target.Value);
                 darkMageComponent.LastTiming = _gameTiming.CurTime;
                 if (darkMageComponent.IsCaptured || darkMageComponent.IsDied) continue;
                 var comp = EnsureComp<HTNComponent>(uid);
