@@ -16,9 +16,9 @@ book-window-confirmation-description-length = The book description must be up to
 book-window-confirmation-author-length = The author name must be between {$min} and {$max} characters long.
 
 ent-RandomCreationsBook = random book
-.desc = A random book that can be sent to creations.
-.suffix = { "Medieval" }
+    .desc = A random book that can be sent to creations.
+    .suffix = { "Medieval" }
 
 ent-BookshelfCreationsFilled = { ent-Bookshelf }
-.suffix = Filled, Random, Creations
-.desc = { ent-Bookshelf.desc }
+    .suffix = Filled, Random, Creations
+    .desc = { ent-Bookshelf.desc }
