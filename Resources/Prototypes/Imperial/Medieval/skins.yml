@@ -245,6 +245,7 @@
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakFichty]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakFichty]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth72]
+    MedievalIronGloves: [MedievalIronGlovesFichty]
     Log: [MedievalFichtyGlasses]
 
 - type: customization
