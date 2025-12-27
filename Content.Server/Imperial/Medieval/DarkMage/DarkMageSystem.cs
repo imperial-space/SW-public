@@ -15,6 +15,8 @@ using Content.Shared.Imperial.DarkMage.Follower;
 using Content.Shared.Humanoid;
 using Robust.Shared.Player;
 using Content.Client.Imperial.Medieval.DarkMage;
+using Content.Shared.NPC.Prototypes;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Imperial.DarkMage.Systems;
 
@@ -122,9 +124,9 @@ public sealed class DarkMageSystem : EntitySystem
                     Task = "SimpleHumanoidHostileCompound"
                 };
                 var factioncomp = EnsureComp<NpcFactionMemberComponent>(target);
-
+                darkMageComponent.Faction = factioncomp.Factions;
                 _npcFactionSystem.ClearFactions(target);
-                _npcFactionSystem.AddFaction(target, "Syndicate");
+                _npcFactionSystem.AddFaction(target, new ProtoId<NpcFactionPrototype>("Syndicate"));
                 continue;
             }
 
