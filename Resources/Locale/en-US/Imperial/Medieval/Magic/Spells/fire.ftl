@@ -101,3 +101,22 @@ medieval-store-spells-fire-magic-arrow-player-follover-middle-desc = Fire up to 
 
 medieval-store-spells-fire-magic-arrow-player-follover-senior-name = Magic Arrow: Homing
 medieval-store-spells-fire--magic-arrow-player-follover-senior-desc = Fire up to 6 homing arrows. Cost: 45 mana. Use MMB to select multiple targets.
+
+# Fire Wall
+
+medieval-spell-speach-fire-wall =  ͚̟̼̳̗̂͂M̂u̘͓̠͖̿ͧ͑̏r̘͑ͮu̬̹͓̖s̯͔̋ ͛̾Í̟̞͎g͈̫̜ͩͭͅn̝̼͎̠ḭ̦̱̜̓ͦs͍͕̠
+medieval-store-spells-fire-wall-beginner-name = Fire barrier
+medieval-store-spells-fire-wall-beginner-desc = Creates a small fiery barrier that sets your enemies ablaze. Costs 30 mana.
+
+medieval-store-spells-fire-wall-middle-name = Fire wall
+medieval-store-spells-fire-wall-middle-desc = Creates a wall of fire that sets your enemies ablaze. Costs 40 mana.
+
+medieval-store-spells-fire-wall-senior-name = Heavenly fire
+medieval-store-spells-fire-wall-senior-desc = Who told you they didn't have napalm in the Middle Ages? Costs 55 mana.
+
+# Magic Spark
+medieval-spell-speach-spark = snaps their fingers
+
+medieval-store-spells-fire-spark-beginner-name = Magic spark
+medieval-store-spells-fire-spark-beginner-desc = Creates a magical spark in your hand capable of igniting things. Useful if you happen to have forgotten your flint and steel.
+
