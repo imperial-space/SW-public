@@ -1738,6 +1738,17 @@
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetZablik
+  name: MedievalClothingHeadHelmetZablik
+  description: MedievalClothingHeadHelmetZablik
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/zablik_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/zablik_head.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
   id: MedievalClothingHeadHelmetGreenKnight
   name: MedievalClothingHeadHelmetGreenKnight
   description: MedievalClothingHeadHelmetGreenKnight
