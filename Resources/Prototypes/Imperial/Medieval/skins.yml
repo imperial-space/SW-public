@@ -242,7 +242,10 @@
   id: fichty
   holder: 9a0a943e-7a19-4795-8fad-7e06d8e99797
   map:
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakFichty]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakFichty]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth72]
+    MedievalIronGloves: [MedievalIronGlovesFichty]
     Log: [MedievalFichtyGlasses]
 
 - type: customization
@@ -395,7 +398,7 @@
     MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightDeimon]
 
 - type: customization
-  id: aniot
+  id: apolla
   holder: e575ce8b-42dd-4112-b2d3-0ae490850c19
   map:
     Log: [ApollaStaffMedieval, MedievalClothingNeckCloakApolla, MedievalClothingHandsGlovesClothApolla]
@@ -404,9 +407,27 @@
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerApolla]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakApolla]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakApolla]
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightApolla]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightApolla]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmeCollegiumPurpleHatApolla]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightApolla]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightApolla]
     MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightApolla]
     MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightApolla]
+
+- type: customization
+  id: zablik
+  holder: 4906e0f9-7cf5-46e0-870a-9856b33e23d4
+  map:
+    MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuterArmorIronCuirassLightZablik]
+    MedievalClothingOuterArmorBrigantin: [MedievalClothingOuterArmorBrigantinZablik]
+    MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterArmorIronCuirassZablik]
+    MedievalClothingOuterArmorChainMail: [MedievalClothingOuterArmorChainMailZablik]
+    MedievalClothingOuterArmorIron: [MedievalClothingOuterArmorIronZablik]
+    MedievalClothingOuterArmorUpIron2: [MedievalClothingOuterArmorUpIron2Zablik]
+    MedievalClothingOuterArmorUpIron3: [MedievalClothingOuterArmorUpIron3Zablik]
+    MedievalClothingOuterArmorUpIron: [MedievalClothingOuterArmorUpIronZablik]
+    MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetZablik]
+    MedievalIronGloves: [MedievalIronGlovesZablik]
+    Log: [MedievalClothingNeckCloakZablik, MedievalClothingUniformJumpsuitShitCloth82]
 

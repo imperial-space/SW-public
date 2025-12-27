@@ -374,8 +374,10 @@ namespace Content.Server.Database
 
             // Imperial medieval start
             profile.Skills.Clear();
+
+            var available = new List<string>() { "Strength", "Endurance", "Intelligence", "Agility", "Vitality" };
             profile.Skills.AddRange(
-                    humanoid.Skills.Where(x => IoCManager.Resolve<IPrototypeManager>().HasIndex<SkillPrototype>(x.Key))
+                    humanoid.Skills.Where(x => available.Contains(x.Key))
                     .Select(s => new Skill { SkillName = s.Key, SkillLevel = s.Value }));
             // Imperial medieval end
 
@@ -932,7 +934,6 @@ namespace Content.Server.Database
             var value = 0;
             Logs.TryGetValue(log, out value);
             Logs[log] = value + 1;
-            return null;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
                 .Include(x => x.Profiles)
@@ -954,7 +955,6 @@ namespace Content.Server.Database
             var value = 0;
             Logs.TryGetValue(log, out value);
             Logs[log] = value + 1;
-            return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
                 .Include(x => x.Profiles)
@@ -990,7 +990,6 @@ namespace Content.Server.Database
             var value = 0;
             Logs.TryGetValue(log, out value);
             Logs[log] = value + 1;
-            return;
             await using var db = await GetDb(cancel);
             var prefs = await db.DbContext.Preference
                 .Include(x => x.Profiles)

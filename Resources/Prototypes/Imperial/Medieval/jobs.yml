@@ -2570,6 +2570,7 @@
   id: MedievalLegionAlchemicGear
   equipment:
     #pocket1: MedievalCommsCrystallLeg
+    pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanEagle
     belt: MedievalAlchemicBelt
@@ -3149,6 +3150,7 @@
   id: MedievalInsurgencyAlchemicGear
   equipment:
     #pocket1: MedievalCommsCrystallIns
+    pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanFox
     belt: MedievalAlchemicBelt
@@ -4765,6 +4767,7 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth66
     pocket1: MedievalHammerBlacksmith
+    pocket2: MedievalRevent50
     #pocket2: MedievalCommsCrystallLeg
     #neck: MedievalClothingNeckCloakClanEagle
     gloves: MedievalGlovesBlacksmith
@@ -4824,6 +4827,7 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
     pocket1: MedievalHammerBlacksmith
+    pocket2: MedievalRevent50
     #pocket2: MedievalCommsCrystallIns
     #neck: MedievalClothingNeckCloakClanFox
     id: MedievalKeyRebelBlack

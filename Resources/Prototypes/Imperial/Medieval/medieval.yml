@@ -1861,6 +1861,13 @@
     params:
       variation: 0.125
 
+- type: emoteSounds
+  id: MedievalWolf
+  sound:
+    path: /Audio/Voice/Vulpkanin/howl.ogg
+    params:
+      variation: 0.125
+
 - type: entity
   name: MedievalHandheldHealthAnalyzer
   parent:

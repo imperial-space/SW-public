@@ -1,0 +1,17 @@
+#Beginner
+
+- type: entity
+  id: ManaBurnFieldSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/darkness/mana_burn.rsi
+    state: beginner
+    color: "#B000FF"
+    noRot: true
+    shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#B000FF"
+  - type: TimedDespawn
+    lifetime: 2.5

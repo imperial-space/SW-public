@@ -66,10 +66,26 @@
     state: bleed9
   - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
     state: bleed10
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed11
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed12
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed13
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed14
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed15
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed16
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed17
+  - sprite: /Textures/Imperial/Medieval/Vampire/bleed.rsi
+    state: bleed18
   name: Уровень крови
   description: Шкала, примерно отображающая ваш голод. Если запас крови близок к нулю, идет слабый урон. Если кровь на нуле - сильный урон. Если запас больше половины и полученый урон меньше 70, то идет постепенная слабая регенерация, расход увеличивается в 3 раза. Если запас больше половины и полученый урон от 70 до 100, то регенерация увеличивается в 3 раза, а расход крови в 40 раз.
   minSeverity: 0
-  maxSeverity: 10
+  maxSeverity: 18
 
 - type: entity
   id: ZveresScreamAction
