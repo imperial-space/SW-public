@@ -406,6 +406,8 @@
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerApolla]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakApolla]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakApolla]
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightApolla]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightApolla]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmeCollegiumPurpleHatApolla]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightApolla]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightApolla]
