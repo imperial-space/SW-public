@@ -17,7 +17,7 @@ public partial class FancyButton : Control
     public static readonly Color DefaultColor = Color.FromHex("#141F2F");
     public static readonly Color DefaultBorderColor = Color.FromHex("#4972A1");
     public static readonly Color DefaultHoveredColor = Color.FromHex("#4972A1");
-    private static readonly Color DisabledColor = Color.FromHex("#999999");
+    private static readonly Color DisabledColor = Color.FromHex("#47000fff");
 
     // Использующиеся цвета, меняются в коде или xamlе
     public Color Color = DefaultColor;
@@ -34,7 +34,7 @@ public partial class FancyButton : Control
         UpdateColor();
     }
 
-    protected void UpdateColor()
+    public void UpdateColor()
     {
         var panel = (StyleBoxFlat)Panel.PanelOverride!;
         if (Button.Disabled)

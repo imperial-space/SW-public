@@ -1133,13 +1133,12 @@
         density: 190
         mask:
         - SmallMobMask
-        layer:
-        - MachineLayer
   - type: PointLight
     color: Orange
     radius: 12
     energy: 2.3
   - type: Anchorable
+  - type: AlwaysHot
   - type: AmbientSound
     volume: -15
     range: 1.5
@@ -1175,8 +1174,6 @@
         density: 190
         mask:
         - SmallMobMask
-        layer:
-        - MachineLayer
   - type: PointLight
     color: Orange
     radius: 18
@@ -1198,6 +1195,10 @@
   - type: Strap
     buckleTime: 0.5
     unbuckleTime: 0.5
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed1.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed2.ogg
   - type: Buckle
   - type: BloodRegenBed
     bloodRegenMultiplier: 2.0
@@ -1225,6 +1226,10 @@
   - type: Strap
     buckleTime: 0.5
     unbuckleTime: 0.5
+    buckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed1.ogg
+    unbuckleSound:
+      path: /Audio/Imperial/Medieval/Effects/lay_on_bed2.ogg
   - type: Buckle
   - type: BloodRegenBed
     bloodRegenMultiplier: 5.0
@@ -1887,6 +1892,9 @@
   - type: Currency
     price:
       Revent: 18
+  - type: MedievalCurrency
+    price:
+      Revent: 18
 
 - type: entity
   parent: BasePlushie
@@ -1898,6 +1906,9 @@
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: plushie_traveller
   - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
     price:
       Revent: 12
 
@@ -1913,6 +1924,9 @@
   - type: Currency
     price:
       Revent: 14
+  - type: MedievalCurrency
+    price:
+      Revent: 14
 
 - type: entity
   parent: BasePlushie
@@ -1924,6 +1938,9 @@
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: plushie_wizard
   - type: Currency
+    price:
+      Revent: 15
+  - type: MedievalCurrency
     price:
       Revent: 15
 
@@ -3147,6 +3164,10 @@
     fixtureID: fix1
   - type: EmitSoundOnTrigger
     sound: "/Audio/Imperial/Medieval/bush_collide.ogg"
+  - type: MedievalDoAfterEvery
+    nameLocId: grass-bush-doafter-name
+    numHit: 45.0
+    time: 5
 
 - type: entity
   id: RandomBushOffsetSpawner
@@ -4077,6 +4098,10 @@
   - type: SpeedModifierContacts
     walkSpeedModifier: 0.27
     sprintSpeedModifier: 0.27
+  - type: MedievalDoAfterEvery
+    nameLocId: grass-bush-doafter-name
+    numHit: 45.0
+    time: 5
   - type: TriggerOnCollide
     fixtureID: fix1
 
@@ -4214,10 +4239,11 @@
   - type: QuestArea
     contractPartner: "тотем племени"
   - type: Speech
-  - type: Advertise
-    pack: MedievalTribeAltarAdvertise
-    minimumWait: 60
-    maximumWait: 180
+  - type: Vocalizer
+    minVocalizeInterval: 1m # Arcades are noisy
+    maxVocalizeInterval: 3m
+  - type: DatasetVocalizer
+    dataset: MedievalTribeAltarAdvertise
   - type: SpriteFade
 
 - type: localizedDataset

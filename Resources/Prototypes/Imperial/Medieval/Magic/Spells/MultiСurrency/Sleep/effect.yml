@@ -2,8 +2,8 @@
   id: SleepParticles
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#732CD3"
   - type: TimedDespawn
@@ -14,10 +14,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/MultiCurrency/sleep.rsi
-    state: beginner
     color: "#732CD3"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 2

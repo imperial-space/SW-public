@@ -14,6 +14,9 @@
   - type: Currency
     price:
       Revent: 90
+  - type: MedievalCurrency
+    price:
+      Revent: 90
 
 - type: entity
   id: MedievalReliefStoneStrong
@@ -29,6 +32,9 @@
   - type: RDWeight
     value: -7.5
   - type: Currency
+    price:
+      Revent: 180
+  - type: MedievalCurrency
     price:
       Revent: 180
 
@@ -48,6 +54,9 @@
   - type: Currency
     price:
       Revent: 350
+  - type: MedievalCurrency
+    price:
+      Revent: 350
 
 # Crafting recipes (Magic blacksmith)
 - type: CP14Recipe
@@ -55,16 +64,16 @@
   result: MedievalReliefStoneWeak
   stacks:
     MedievalForstoneIngot: 1
-    MedievalIngotGold: 1
-    MedievalAdamIngot: 1
+    MedievalGold: 1
+    MedievalAdam: 1
 
 - type: CP14Recipe
   id: MedievalReliefStoneStrongCraft
   result: MedievalReliefStoneStrong
   stacks:
     MedievalForstoneIngot: 2
-    MedievalIngotGold: 3
-    MedievalAdamIngot: 2
+    MedievalGold: 3
+    MedievalAdam: 2
     MedievalTopaz: 1
 
 - type: CP14Recipe
@@ -73,8 +82,8 @@
   stacks:
     MedievalForstoneIngot: 3
     MedievalEbonitIngot: 1
-    MedievalIngotGold: 5
-    MedievalAdamIngot: 3
+    MedievalGold: 5
+    MedievalAdam: 3
     MedievalTopaz: 2
     MedievalFireSerdolick: 2
 

@@ -4,7 +4,7 @@
   description: medieval-store-spells-magic-crow-desc
   components:
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 40
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -12,6 +12,7 @@
     icon:
       sprite: Imperial/Medieval/Mobs/crow.rsi
       state: crow
+  - type: InstantAction
     event: !type:MedievalInstantSpawnEvent
       spawnedEntityPrototype: MedievalMagicCrowFollower
       speechPoints:

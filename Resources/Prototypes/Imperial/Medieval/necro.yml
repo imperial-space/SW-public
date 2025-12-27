@@ -643,7 +643,8 @@
         Piercing: 0.75
         Heat: 0.45
         Cold: 0.55
-        Stamina: 0.5 ## Stamina resistance
+  - type: StaminaResistance
+    damageCoefficient: 0.5
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -671,7 +672,8 @@
         Piercing: 0.9
         Heat: 0.75
         Cold: 0.75
-        Stamina: 0.8 ## Stamina resistance
+  - type: StaminaResistance
+    damageCoefficient: 0.8
   - type: Item
     size: Normal
   - type: ExplosionResistance
@@ -687,6 +689,13 @@
   categories:
   - MedievalNecroOther
 
+- type: listing
+  id: NecroListingMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
+  cost:
+    UnholyMedieval: 4
+  categories:
+  - MedievalNecroOther
 
 - type: listing
   id: ListingMedievalClothingOuterArmorCharmerNecro2

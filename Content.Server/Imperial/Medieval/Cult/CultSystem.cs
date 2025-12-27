@@ -28,9 +28,11 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
 using Content.Server.SSDFree;
 using Content.Server.SSDFree.Components;
+using Content.Shared.SSDFree.Components;
 using Content.Shared.Cuffs.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Containers;
+using Content.Shared.Body.Components;
 
 namespace Content.Server.Cult
 {
@@ -378,6 +380,7 @@ namespace Content.Server.Cult
                                     _transform.SetCoordinates(victim, ocoords);
                                     if (TryComp<CuffableComponent>(victim, out var cuff))
                                         _container.EmptyContainer(cuff.Container, true);
+                                    _audioSystem.PlayEntity(comp.VictimSuccessSound, Filter.Entities(victim), victim, false, AudioParams.Default.WithVolume(20f));
                                     _chat.TrySendInGameICMessage(victim, "Культ истины провел со мной ритуал связи. Если я буду жертвовать кровь... то есть резать себя около этих кровавых сосудов, к одному из которых меня телепортировало, раз в какое-то время, то я буду получать длительную магическую регенерацию, а культ - алые кристаллы. Это... взаимовыгодно? Лишь бы другие не узнали...", InGameICChatType.Whisper, false);
                                     var cyr = EnsureComp<CultCursedComponent>(victim);
                                     cyr.CurseLevel = cyr.MaxCurseLevel;
@@ -1544,12 +1547,12 @@ namespace Content.Server.Cult
     {
 (2, 1), (9, 1),
 (1, 2), (2, 2), (5, 2), (6, 2), (9, 2), (10, 2),
-(2, 3), (4, 3), (6, 3), (9, 3),
+(2, 3), (4, 3), (7, 3), (9, 3),
 (1, 4), (4, 4), (5, 4), (6, 4), (7, 4), (10, 4),
 (3, 5), (8, 5),
 (4, 6), (7, 6),
 (6, 7), (5, 7),
-(1, 8), (4, 8), (6, 8), (10, 8),
+(1, 8), (4, 8), (7, 8), (10, 8),
 (1, 9), (2, 9), (9, 9), (10, 9),
 (4, 10), (5, 10), (6, 10), (7, 10)
     };

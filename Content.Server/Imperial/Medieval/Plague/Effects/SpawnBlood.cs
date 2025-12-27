@@ -1,6 +1,7 @@
 using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Fluids.EntitySystems;
+using Content.Shared.Body.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Plague;

@@ -15,11 +15,11 @@ namespace Content.Server.Imperial.Medieval.Plague;
 public sealed partial class MedievalPlagueSystem
 {
     private Dictionary<string, float> _spreaders = new();
-    private float _contactSpreadMod = 0f;
+    private float _contactSpreadChance = 0f;
     private float _blockersEfficiency = 1f;
-    private float _minSmellLevel = 50f;
+    private float _minSmellLevel = 22f;
 
-    public ProtoId<ReagentPrototype> CurrentCure = "MedievalPlagueCure4";
+    public int CurrentCureResistance = 0;
 
     private Dictionary<BloodlettingResult, Dictionary<BloodlettingResult, float>> _bloodlettingProbabilities = new()
     {
@@ -72,6 +72,7 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<SetSpreaderChanceEvent>(OnSetSpreaderChance);
         SubscribeLocalEvent<SetPlagueBlockerModifierEvent>(OnSetBlockerMod);
         SubscribeLocalEvent<SetStrapHealResistanceEvent>(OnSetStrapResistance);
+        SubscribeLocalEvent<SetPlagueMinSmellLevelEvent>(OnSetBadSmellResistance);
         SubscribeLocalEvent<SetBloodlettingProbabilitiesEvent>(OnSetBloodlettingProb);
         SubscribeLocalEvent<SetPlagueCureEvent>(OnSetCure);
     }
@@ -85,7 +86,7 @@ public sealed partial class MedievalPlagueSystem
             return;
 
         comp.NextCollideSpread = _timing.CurTime + TimeSpan.FromSeconds(1);
-        TryInfect(args.OtherEntity, _contactSpreadMod);
+        TryInfect(args.OtherEntity, _contactSpreadChance);
     }
 
     private void OnSpreaderInit(EntityUid uid, MedievalPlagueInfectOnHitComponent comp, ComponentInit args)
@@ -196,7 +197,7 @@ public sealed partial class MedievalPlagueSystem
     }
 
     private void OnSetContactSpreadMod(SetContactSpreadModifierEvent args)
-        => _contactSpreadMod = args.Modifier;
+        => _contactSpreadChance = args.Modifier;
 
     private void OnSetSpreaderChance(SetSpreaderChanceEvent args)
     {
@@ -223,9 +224,14 @@ public sealed partial class MedievalPlagueSystem
         _healItemMod = args.HealMod;
     }
 
+    private void OnSetBadSmellResistance(SetPlagueMinSmellLevelEvent args)
+    {
+        _minSmellLevel = args.Smell;
+    }
+
     private void OnSetCure(SetPlagueCureEvent args)
     {
-        CurrentCure = args.Reagent;
+        CurrentCureResistance = args.Resistance;
     }
 
     private void OnSetBloodlettingProb(SetBloodlettingProbabilitiesEvent args)

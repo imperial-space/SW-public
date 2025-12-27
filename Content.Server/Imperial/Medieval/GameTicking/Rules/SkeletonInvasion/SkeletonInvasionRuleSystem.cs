@@ -24,6 +24,7 @@ using Content.Server.Chat.Managers;
 using Content.Shared.Chat;
 using Robust.Shared.Player;
 using Content.Server.Ghost.Roles.Events;
+using Content.Shared.Imperial.Medieval.SkeletonInvasion;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 
@@ -176,7 +177,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
                 continue;
 
             bossfightPlayers.Add(item.Owner);
-            _flash.Flash(item.Owner, null, null, 5, 0.3f, false);
+            _flash.Flash(item.Owner, null, null, TimeSpan.FromSeconds(5), 0.3f, false);
             _audio.PlayGlobal(new SoundPathSpecifier(new ResPath("/Audio/Imperial/Medieval/Effects/teleport.ogg")), item.Owner);
         }
 

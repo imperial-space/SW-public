@@ -4,6 +4,7 @@
     entity: MedievalMobPlagueMouse
     forced: true
     revertOnEat: true
+    revertOnCrit: true
     transferDamage: false
     allowRepeatedMorphs: false
     transferName: false

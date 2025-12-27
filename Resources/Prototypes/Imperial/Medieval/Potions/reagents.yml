@@ -1,13 +1,34 @@
 - type: reagent
   id: medievalexplosion
   name: ""
-  desc: ""
+  desc: imperial-medieval-medievalexplosion-desc
   physicalDesc: ""
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: bitter
   color: "#FFC8C8"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+
 
 - type: reagent
   id: medievalhealburn
@@ -28,6 +49,28 @@
             Heat: -3
             Shock: -3
             Cold: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalhealbloodandoxygen
@@ -47,6 +90,28 @@
           types:
             Asphyxiation: -1
             Bloodloss: -0.5
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalacid
@@ -95,6 +160,23 @@
       - !type:Emote
         emote: Scream
         probability: 0.3
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalradiation
@@ -128,6 +210,23 @@
         damage:
           types:
             Radiation: 3
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaldrughealmech
@@ -151,8 +250,29 @@
       - !type:HealthChange
         damage:
           groups:
-            Brute: -2
-
+            Brute: -6
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalvomit
@@ -169,6 +289,25 @@
       effects:
       - !type:ChemVomit
         probability: 0.5
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalslow
@@ -186,6 +325,25 @@
       - !type:MovespeedModifier
         walkSpeedModifier: 0.8
         sprintSpeedModifier: 0.8
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalfast
@@ -203,6 +361,25 @@
       - !type:MovespeedModifier
         walkSpeedModifier: 1.2
         sprintSpeedModifier: 1.2
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalstamina
@@ -222,28 +399,87 @@
         component: StaminaModifier
         time: 3
         type: Add
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalsmoke
   name: ""
-  desc: ""
+  desc: imperial-medieval-medievalsmoke-desc
   physicalDesc: ""
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: null
   color: "#FFC8C8"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalcryoexplosion
   name: ""
-  desc: ""
+  desc: imperial-medieval-medievalcryoexplosion-desc
   physicalDesc: ""
   showinbook: false
   evaporationSpeed: 0.3
   absorbent: true
   flavor: null
   color: "#FFC8C8"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalhealslash
@@ -262,6 +498,30 @@
         damage:
           types:
             Slash: -2
+          groups:
+            Brute: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalhealpiercing
@@ -280,6 +540,30 @@
         damage:
           types:
             Piercing: -2
+          groups:
+            Brute: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalhealblunt
@@ -298,6 +582,30 @@
         damage:
           types:
             Blunt: -2
+          groups:
+            Brute: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalmute
@@ -318,6 +626,25 @@
         type: Add
         time: 10
         refresh: false
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalblind
@@ -359,6 +686,25 @@
       - !type:GenericStatusEffect
         key: TemporaryBlindness
         component: TemporaryBlindness
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaljitter
@@ -377,6 +723,25 @@
         key: Stutter
         component: StutteringAccent
       - !type:Jitter
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalsleep
@@ -401,6 +766,23 @@
         time: 4
         type: Add
         refresh: false
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalignite
@@ -427,6 +809,23 @@
       - !type:AdjustTemperature
         amount: 6000
       - !type:Ignite
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalhealandstopblood
@@ -447,15 +846,57 @@
             Bloodloss: -0.5
       - !type:ModifyBleedAmount
         amount: -0.25
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 1
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedsmokeandexplosion
   name: ""
-  desc: ""
+  desc: imperial-medieval-medievaladvancedsmokeandexplosion-desc
   physicalDesc: ""
   showinbook: false
   flavor: null
   color: "#FFC8C8"
+  metabolisms:
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedhealeverything
@@ -477,6 +918,29 @@
             Toxin: -2
             Airloss: -2
             Brute: -2
+      - !type:ProgressPlague
+        progressAmount: -3
+        curePower: 3
+      - !type:GrantPlagueImmunity
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedhealslash
@@ -495,6 +959,30 @@
         damage:
           types:
             Slash: -4
+          groups:
+            Brute: -6
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 2
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedhealpiercing
@@ -513,6 +1001,30 @@
         damage:
           types:
             Piercing: -4
+          groups:
+            Brute: -6
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 2
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedhealblunt
@@ -531,6 +1043,30 @@
         damage:
           types:
             Blunt: -4
+          groups:
+            Brute: -6
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 2
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedhealburn
@@ -551,6 +1087,28 @@
             Heat: -3
             Shock: -3
             Cold: -3
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 2
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedacidradiation
@@ -601,6 +1159,23 @@
       - !type:Emote
         emote: Scream
         probability: 0.3
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedfast
@@ -618,6 +1193,25 @@
       - !type:MovespeedModifier
         walkSpeedModifier: 1.3
         sprintSpeedModifier: 1.3
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedslow
@@ -635,6 +1229,25 @@
       - !type:MovespeedModifier
         walkSpeedModifier: 0.6
         sprintSpeedModifier: 0.6
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedpacifism
@@ -654,6 +1267,23 @@
         component: Pacified
         type: Add
         time: 4
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedteleport
@@ -678,6 +1308,23 @@
         - !type:TeleportEntityEffect
           energyPerUnit: 1
           teleportType: Random
+        - !type:Jitter
+          conditions:
+          - !type:ReagentThreshold
+            min: 30
+        - !type:GenericStatusEffect
+          key: Stutter
+          component: StutteringAccent
+          conditions:
+          - !type:ReagentThreshold
+            min: 30
+        - !type:HealthChange
+          damage:
+            groups:
+              Toxin: 6
+          conditions:
+          - !type:ReagentThreshold
+            min: 30
 
 - type: reagent
   id: medievaladvancedhealandstopblood
@@ -698,6 +1345,28 @@
             Bloodloss: -2
       - !type:ModifyBleedAmount
         amount: -1
+      - !type:ProgressPlague
+        progressAmount: -3
+        curePower: 3
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedstimulant
@@ -750,6 +1419,25 @@
           damage: # heals at the same rate as tricordrazine, doesn't heal poison because if you OD'd I'm not giving you a safety net
             groups:
               Brute: -2
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievaladvancedignite
@@ -769,6 +1457,26 @@
       - !type:AdjustTemperature
         amount: 10000
       - !type:Ignite
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:ProgressPlague
+        progressAmount: -8
+        curePower: 3
   reactiveEffects:
     Flammable:
       methods: [ Touch ]
@@ -791,11 +1499,30 @@
     Medicine:
       effects:
       - !type:NocturnBloodAdd
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalbestexplosion
   name: ""
-  desc: ""
+  desc: imperial-medieval-bestexplosion-desc
   physicalDesc: ""
   showinbook: false
   evaporationSpeed: 0.3
@@ -811,8 +1538,8 @@
         ignoreResistances: false
         damage:
           types:
-            Caustic: 2
-            Radiation: 2
+            Caustic: 20
+            Radiation: 20
       - !type:Emote
         emote: Scream
         probability: 0.3
@@ -822,16 +1549,33 @@
       - !type:HealthChange
         damage:
           types:
-            Caustic: 4
-            Radiation: 4
+            Caustic: 40
+            Radiation: 40
       - !type:PopupMessage
         type: Local
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
-        probability: 0.33
+        probability: 1
       - !type:Emote
         emote: Scream
         probability: 0.3
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalbestheal
@@ -866,6 +1610,29 @@
             Toxin: -10
             Airloss: -10
             Brute: -10
+      - !type:ProgressPlague
+        progressAmount: -2
+        curePower: 4
+      - !type:GrantPlagueImmunity
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalbestpoison
@@ -890,6 +1657,25 @@
         key: TemporaryBlindness
         component: TemporaryBlindness
         time: 6
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
 
 - type: reagent
   id: medievalbeststimulant
@@ -953,3 +1739,22 @@
               Toxin: -5
               Airloss: -5
               Brute: -5
+    Poison:
+      effects:
+      - !type:Jitter
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:GenericStatusEffect
+        key: Stutter
+        component: StutteringAccent
+        conditions:
+        - !type:ReagentThreshold
+          min: 30
+      - !type:HealthChange
+        damage:
+          groups:
+            Toxin: 6
+        conditions:
+        - !type:ReagentThreshold
+          min: 30

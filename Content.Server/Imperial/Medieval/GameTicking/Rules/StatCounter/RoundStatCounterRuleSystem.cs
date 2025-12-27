@@ -11,6 +11,7 @@ using Content.Server.MedievalFactionFlag.Components;
 using Content.Server.Imperial.DayTime;
 using Content.Shared.Damage;
 using Content.Shared.Speech;
+using Content.Shared.Imperial.Medieval.GameTicking.Rules;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 

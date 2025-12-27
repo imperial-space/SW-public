@@ -1,6 +1,7 @@
 using Content.Client.Alerts;
 using Content.Client.Eye.Blinding;
 using Content.Client.Imperial.Medieval.Plague.UI;
+using Content.Shared.Alert.Components;
 using Content.Shared.Imperial.Medieval.Plague;
 using Content.Shared.Revenant;
 using Content.Shared.StatusIcon;
@@ -15,7 +16,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Client.Imperial.Medieval.Plague;
 
-public sealed partial class MedievalPlagueSystem : EntitySystem
+public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
 {
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -33,8 +34,6 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         SubscribeNetworkEvent<OpenPlagueMenuMessage>(OnOpenMenu);
         SubscribeNetworkEvent<PopulatePlagueMenuMessage>(OnPopulateMenu);
 
-        SubscribeLocalEvent<MedievalPlagueGhostComponent, UpdateAlertSpriteEvent>(OnUpdateAlert);
-
         SubscribeLocalEvent<MedievalPlagueInfectedComponent, GetStatusIconsEvent>(OnInfectedGetStatusIcons);
         SubscribeLocalEvent<MedievalPlagueImmuneComponent, GetStatusIconsEvent>(OnImmuneGetStatusIcons);
 
@@ -43,6 +42,8 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
 
         SubscribeLocalEvent<VomitSicknessComponent, LocalPlayerAttachedEvent>(OnPlayerAttached);
         SubscribeLocalEvent<VomitSicknessComponent, LocalPlayerDetachedEvent>(OnPlayerDetached);
+
+        SubscribeLocalEvent<MedievalPlagueGhostComponent, GetGenericAlertCounterAmountEvent>(OnGetCounterAmount);
 
         _overlay = new();
     }
@@ -65,17 +66,6 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
     private void OnPlayerDetached(EntityUid uid, VomitSicknessComponent component, LocalPlayerDetachedEvent args)
     {
         _overlayMan.RemoveOverlay(_overlay);
-    }
-
-    private void OnUpdateAlert(EntityUid uid, MedievalPlagueGhostComponent comp, ref UpdateAlertSpriteEvent args)
-    {
-        if (args.Alert.ID != comp.AlertId)
-            return;
-
-        var essence = Math.Clamp(comp.Points, 0, 999);
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit1, $"{(essence / 100) % 10}");
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit2, $"{(essence / 10) % 10}");
-        _sprite.LayerSetRsiState(args.SpriteViewEnt.AsNullable(), RevenantVisualLayers.Digit3, $"{essence % 10}");
     }
 
     private void OnInfectedGetStatusIcons(EntityUid uid, MedievalPlagueInfectedComponent component, ref GetStatusIconsEvent args)
@@ -104,5 +94,16 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         {
             _overlayMan.RemoveOverlay(_overlay);
         }
+    }
+
+    private void OnGetCounterAmount(Entity<MedievalPlagueGhostComponent> ent, ref GetGenericAlertCounterAmountEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (ent.Comp.AlertId != args.Alert)
+            return;
+
+        args.Amount = ent.Comp.Points;
     }
 }

@@ -31,29 +31,59 @@ public sealed partial class CreationsSystem : EntitySystem
         SubscribeNetworkEvent<SendCreationBookEvent>(OnSendBook);
     }
 
-
-    private List<CreationPaintingMessage> ToPaintingMessages(List<Painting> dbPaintings)
+    private async Task<string> GetPlayerName(NetUserId id)
     {
-        return dbPaintings.Select(p =>
-            new CreationPaintingMessage(
+        var data = await _db.GetPlayerRecordByUserId(id);
+
+        var name = "";
+        if (data != null)
+            name = data.LastSeenUserName;
+
+        return name;
+    }
+
+    private async Task<List<CreationPaintingMessage>> ToPaintingMessages(List<Painting> dbPaintings)
+    {
+        var messages = new List<CreationPaintingMessage>();
+
+        foreach (var p in dbPaintings)
+        {
+            var name = await GetPlayerName((NetUserId)p.AuthorUserId);
+
+            messages.Add(new CreationPaintingMessage(
                 PaintingHelper.StringToColors(p.Texture),
                 p.Name,
                 p.Description,
                 p.Author,
                 (NetUserId)p.AuthorUserId,
-                p.CreationTime)).ToList();
+                p.CreationTime,
+                name));
+        }
+
+        return messages;
+
     }
 
-    private List<CreationBook> ToBookMessages(List<Book> dbBooks)
+    private async Task<List<CreationBook>> ToBookMessages(List<Book> dbBooks)
     {
-        return dbBooks.Select(p =>
-            new CreationBook(
+        var messages = new List<CreationBook>();
+
+        foreach (var p in dbBooks)
+        {
+            var name = await GetPlayerName((NetUserId)p.AuthorUserId);
+
+            messages.Add(new CreationBook(
                 p.Text,
                 p.Name,
                 p.Description,
                 p.Author,
                 (NetUserId)p.AuthorUserId,
-                p.CreationTime)).ToList();
+                p.CreationTime,
+                name
+                ));
+        }
+
+        return messages;
     }
 
     private bool ValidatePaintingInput(Color[] painting, string name, string desc)
@@ -107,29 +137,33 @@ public sealed partial class CreationsSystem : EntitySystem
         if (!ValidatePaintingInput(args.Painting, args.Name, args.Description))
             return;
 
-        var paintingMessage = new CreationPaintingMessage(args.Painting,
+        var authorName = await GetPlayerName(args.SenderPlayer);
+
+        var paintingMessage = new CreationPaintingMessage(
+            args.Painting,
             args.Name,
             args.Description,
             args.Author,
             args.SenderPlayer,
-            DateTime.UtcNow
+            DateTime.UtcNow,
+            authorName
         );
 
         await AddIncomingPainting(paintingMessage);
-
     }
+
 
     public async Task<List<Painting>> GetIncomingPaintings()
         => await _db.GetPaintings(false);
 
     public async Task<List<CreationPaintingMessage>> GetIncomingPaintingsMessages()
-        => ToPaintingMessages(await GetIncomingPaintings());
+        => await ToPaintingMessages(await GetIncomingPaintings());
 
     public async Task<List<Painting>> GetAcceptedPaintings()
         => await _db.GetPaintings(true);
 
     public async Task<List<CreationPaintingMessage>> GetAcceptedPaintingsMessages()
-        => ToPaintingMessages(await GetAcceptedPaintings());
+        => await ToPaintingMessages(await GetAcceptedPaintings());
 
 
     public async Task<bool> AddIncomingPainting(CreationPaintingMessage painting)
@@ -178,12 +212,15 @@ public sealed partial class CreationsSystem : EntitySystem
         if (!ValidateBookInput(args.Text, args.Name, args.Description))
             return;
 
+        var authorName = await GetPlayerName(args.SenderPlayer);
+
         var book = new CreationBook(args.Text,
             args.Name,
             args.Description,
             args.Author,
             args.SenderPlayer,
-            DateTime.UtcNow
+            DateTime.UtcNow,
+            authorName
         );
 
         await AddIncomingBook(book);
@@ -194,13 +231,13 @@ public sealed partial class CreationsSystem : EntitySystem
         => await _db.GetBooks(false);
 
     public async Task<List<CreationBook>> GetIncomingCreationBooks()
-        => ToBookMessages(await GetIncomingBooks());
+        => await ToBookMessages(await GetIncomingBooks());
 
     public async Task<List<Book>> GetAcceptedBooks()
         => await _db.GetBooks(true);
 
     public async Task<List<CreationBook>> GetAcceptedCreationBooks()
-        => ToBookMessages(await GetAcceptedBooks());
+        => await ToBookMessages(await GetAcceptedBooks());
 
 
     public async Task<bool> AddIncomingBook(CreationBook book)

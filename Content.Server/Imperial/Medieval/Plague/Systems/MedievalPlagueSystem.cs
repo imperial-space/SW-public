@@ -38,7 +38,7 @@ using Robust.Shared.Toolshed.Commands.Values;
 
 namespace Content.Server.Imperial.Medieval.Plague;
 
-public sealed partial class MedievalPlagueSystem : EntitySystem
+public sealed partial class MedievalPlagueSystem : SharedMedievalPlagueSystem
 {
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
@@ -74,6 +74,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
     private int _strapHealResistance = 0;
     private float _healItemMod = 1f;
 
+    private const int IncubationDuration = 25;
     private const float PointsUpdateInterval = 600f;
     private TimeSpan _nextPointsUpdate = TimeSpan.Zero;
 
@@ -95,11 +96,11 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         _strapHealResistance = 0;
         _healItemMod = 1f;
         _spreaders.Clear();
-        _contactSpreadMod = 0f;
+        _contactSpreadChance = 0f;
         _blockersEfficiency = 1f;
-        _minSmellLevel = 50f;
+        _minSmellLevel = 22f;
         _allergyRandom = new();
-        CurrentCure = "MedievalPlagueCure4";
+        CurrentCureResistance = 0;
 
         _bloodlettingProbabilities = new()
         {
@@ -198,9 +199,9 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
             immune.StartTime = _timing.CurTime;
         }
 
-        else if (comp.Incubation != comp.Progression < 50)
+        else if (comp.Incubation != comp.Progression < IncubationDuration)
         {
-            comp.Incubation = comp.Progression < 50;
+            comp.Incubation = comp.Progression < IncubationDuration;
             Dirty(uid, comp);
 
             if (comp.Incubation)
@@ -326,7 +327,7 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
             item.Comp.Points++;
             _data.Points++;
             Dirty(item);
-            _alerts.ShowAlert(item, item.Comp.AlertId);
+            _alerts.ShowAlert(item.Owner, item.Comp.AlertId);
         }
 
         UpdateUi();
@@ -396,5 +397,25 @@ public sealed partial class MedievalPlagueSystem : EntitySystem
         var ghosts = EntityManager.AllEntities<MedievalPlagueGhostComponent>();
         foreach (var item in ghosts)
             TryChangePoints(item, points, item.Comp);
+    }
+
+    public override void GrantPlagueImmunity(EntityUid uid, string? cure)
+    {
+        if (HasComp<MedievalPlagueInfectedComponent>(uid) ||
+           HasComp<MedievalPlagueImmuneComponent>(uid) ||
+           !HasComp<MedievalCanBeInfectedComponent>(uid))
+            return;
+
+        var immune = EnsureComp<MedievalPlagueImmuneComponent>(uid);
+        immune.StartTime = _timing.CurTime;
+        immune.HardImmunity = true;
+    }
+
+    public override void TryProgressInfection(EntityUid uid, float amount, string? reagent, int? curePower)
+    {
+        if (reagent != null && curePower <= CurrentCureResistance)
+            return;
+
+        TryProgressInfection(uid, amount);
     }
 }

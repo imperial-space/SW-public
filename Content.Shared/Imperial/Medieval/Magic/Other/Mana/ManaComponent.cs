@@ -37,4 +37,7 @@ public sealed partial class ManaComponent : Component
 
     [ViewVariables]
     public TimeSpan EndTime = TimeSpan.FromSeconds(0f);
+
+    [ViewVariables]
+    public bool ModifiersApplied = false;
 }

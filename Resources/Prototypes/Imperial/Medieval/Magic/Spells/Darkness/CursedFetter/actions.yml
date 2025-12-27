@@ -19,15 +19,18 @@
     damageOnUseWithoutMana:
       groups:
         Burn: 15
+  - type: SpellCastEffect
+    effectProto: CursedFetterSpellCastEffectBeginner
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 30
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/touch_summon.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/fetter-spell/action-cursed-fetter.rsi
-      state: base
+      sprite: Imperial/Medieval/Magic/Darkness/CursedFetter/icons.rsi
+      state: beginner
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: MedievalCursedFetter
       spellCastDoAfter:

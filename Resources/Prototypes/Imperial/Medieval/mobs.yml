@@ -18,11 +18,6 @@
     friction: 1
     baseWalkSpeed: 4.5
     baseSprintSpeed: 6
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   #- type: ReplacementAccent
   #  accent: xeno
   - type: MeleeWeapon
@@ -93,6 +88,12 @@
     baseDecayRate: 0
   - type: NPCRetaliation
     attackMemoryLength: 100
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+    - Animal #Этот тег убирает из колеса эмоций мобов "человеческие" эмоции (чихание, свист и т.д)
 
 - type: entity
   name: fox
@@ -154,11 +155,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -254,11 +250,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -397,11 +388,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -431,7 +417,7 @@
       task: SimpleHostileCompound
   - type: Vocal
     sounds:
-      Unsexed: MedievalBear
+      Unsexed: MedievalWolf
   - type: NocturnBadFood
     timesCanBeBiten: 3
   - type: LanguageSpeaker
@@ -528,11 +514,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -613,11 +594,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -728,11 +704,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -855,11 +826,6 @@
         ParryAble: 1
     range: 1.6
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -910,6 +876,7 @@
     chance: 0.12
   - type: AllergySpreader
     id: Fur
+  - type: MedievalUnthrowable
 
 - type: entity
   name: bear
@@ -986,11 +953,6 @@
         ParryAble: 1
     range: 1.6
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1601,11 +1563,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1797,11 +1754,6 @@
         ParryAble: 1
         Caustic: 10
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1896,11 +1848,6 @@
         ParryAble: 1
         Caustic: 4
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1995,11 +1942,6 @@
         Caustic: 1
         Bloodloss: 3
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2122,11 +2064,6 @@
         Caustic: 1.9
         Bloodloss: 3
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -2357,6 +2294,41 @@
 
 - type: entity
   name: weak skeleton
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletWeakSpell
+  description: Practically no threat, you can kick back even with your fists
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 240
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_weak.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      types:
+        ParryAble: 1
+        Radiation: 0.2
+        Blunt: 4
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      35: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.6
+    baseSprintSpeed: 3.6
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      14: 0.8
+      22: 0.7
+      30: 0.6
+      44: 0.5
+
+- type: entity
+  name: weak skeleton
   parent: MedievalMobSkeletWeak
   id: MedievalMobSkeletWeakGhost
   description: You are a skeleton. Death to the weak.
@@ -2409,6 +2381,41 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.04
+
+- type: entity
+  name: meat skeleton
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletMeatSpell
+  description: Slightly stronger than its previous counterpart, but still squishy.
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 240
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_meat.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      types:
+        ParryAble: 1
+        Radiation: 1
+        Blunt: 7
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      50: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.7
+    baseSprintSpeed: 3.7
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      20: 0.8
+      30: 0.7
+      40: 0.6
+      55: 0.5
 
 - type: entity
   name: meat skeleton
@@ -2468,6 +2475,42 @@
 
 - type: entity
   name: fighter skeleton
+  parent: MedievalMobSkeletBase
+  id: MedievalMobSkeletFighterSpell
+  description: This one's already looking serious. But 1 on 1, he can still be beaten.
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 540
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/skelet_fighter.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: MeleeWeapon
+    damage:
+      groups:
+        Brute: 8.5
+      types:
+        ParryAble: 1
+        Radiation: 1.5
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      100: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.9
+    baseSprintSpeed: 3.9
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      45: 0.8
+      60: 0.7
+      85: 0.6
+      100: 0.5
+
+- type: entity
+  name: fighter skeleton
   parent: MedievalMobSkeletFighter
   id: MedievalMobSkeletFighterGhost
   description: Slightly stronger than its previous counterpart, but still squishy.
@@ -2477,7 +2520,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-fighter-name
     description: ghost-role-information-skelet-fighter-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: legion skeleton
@@ -2533,7 +2576,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-legion-name
     description: ghost-role-information-skelet-legion-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: archer skeleton
@@ -2741,6 +2784,7 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: MedievalUnthrowable
 
 - type: entity
   name: skeleton with a mace
@@ -2753,7 +2797,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-mace-name
     description: ghost-role-information-skelet-mace-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: skeleton with a spear
@@ -2809,7 +2853,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-spear-name
     description: ghost-role-information-skelet-spear-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: skeleton with a halberd
@@ -2868,7 +2912,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-halberd-name
     description: ghost-role-information-skelet-halberd-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 - type: entity
   name: skeleton with a dagger
@@ -2924,7 +2968,7 @@
     makeSentient: true
     name: ghost-role-information-skelet-dagger-name
     description: ghost-role-information-skelet-dagger-description
-    rules: ghost-role-information-skelet-rules
+    rules: ghost-role-information-skelet-hightier-rules
 
 # ===========================
 
@@ -3098,11 +3142,6 @@
       types:
         ParryAble: 1
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3659,11 +3698,6 @@
         ParryAble: 0.2
     range: 1.4
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -3751,11 +3785,6 @@
         Bloodloss: 3
         Radiation: 3
   - type: Puller
-  - type: Tag
-    tags:
-    - CannotSuicide
-    - DoorBumpOpener
-    - FootstepSound
   - type: MobThresholds
     thresholds:
       0: Alive

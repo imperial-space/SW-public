@@ -31,6 +31,10 @@ public sealed partial class MedievalFactionMemberComponent : Component
 
     [AutoNetworkedField]
     public KeyValuePair<ProtoId<MedievalFactionPrototype>, string>? Wanted;
+
+    [DataField]
+    [AutoNetworkedField]
+    public List<ProtoId<MedievalFactionPrototype>> AttackedFactions = new();
 }
 
 [Serializable, NetSerializable]

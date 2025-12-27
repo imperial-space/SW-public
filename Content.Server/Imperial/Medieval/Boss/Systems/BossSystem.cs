@@ -6,6 +6,7 @@ using Content.Server.Flash;
 using Content.Server.Jittering;
 using Content.Server.MagicBarrier.Components;
 using Content.Shared.Chat;
+using Content.Shared.Humanoid;
 using Content.Shared.Imperial.Medieval.Boss;
 using Content.Shared.Jittering;
 using Content.Shared.Mobs.Systems;
@@ -152,13 +153,14 @@ public sealed partial class BossSystem : EntitySystem
         var ev = new BossWonEvent(boss);
         RaiseLocalEvent(ref ev);
 
-        SendPlayersBack(component.Players);
+        SendPlayersBack();
         component.Active = false;
     }
 
-    public void SendPlayersBack(List<EntityUid> players)
+    public void SendPlayersBack()
     {
         var query = AllEntityQuery<MagicBarrierComponent>();
+        var players = EntityManager.AllEntities<FightingBossComponent>().Select(x => x.Owner).ToList();
 
         var list = new List<EntityCoordinates>();
         while (query.MoveNext(out var uid, out var comp))
@@ -166,10 +168,17 @@ public sealed partial class BossSystem : EntitySystem
             list.Add(Transform(uid).Coordinates);
         }
 
+        if (list.Count == 0)
+        {
+            foreach (var item in EntityManager.AllEntities<HumanoidAppearanceComponent>().Where(x => players.Contains(x.Owner)))
+                list.Add(Transform(item.Owner).Coordinates);
+        }
+
         foreach (var item in players)
         {
-            _flash.Flash(item, null, null, 5, 1, false);
+            _flash.Flash(item, null, null, TimeSpan.FromSeconds(5), 1, false);
             _transform.SetCoordinates(item, _random.Pick(list));
+            RemComp<FightingBossComponent>(item);
         }
     }
 
@@ -248,7 +257,7 @@ public sealed partial class BossSystem : EntitySystem
             if (comp.Index >= comp.Explosions)
             {
                 RemComp<ExplosionDefeatedBossComponent>(uid);
-                SendPlayersBack(Comp<BossComponent>(uid).Players);
+                SendPlayersBack();
             }
         }
     }

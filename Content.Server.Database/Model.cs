@@ -47,13 +47,11 @@ namespace Content.Server.Database
         public DbSet<RoleWhitelist> RoleWhitelists { get; set; } = null!;
         public DbSet<BanTemplate> BanTemplate { get; set; } = null!;
         public DbSet<IPIntelCache> IPIntelCache { get; set; } = null!;
-
-        // imperial medieval start
         public DbSet<NrpViolation> NrpViolations { get; set; } = null!; // Imperial medieval nrp
         public DbSet<NrpResolves> NrpResolves { get; set; } = null!; // Imperial medieval nrp
-
         public DbSet<Painting> Paintings { get; set; } = null!;
         public DbSet<Book> Books { get; set; } = null!;
+        public DbSet<FlavorImage> FlavorImages { get; set; } = null!; // Imperial Medieval Flavor Images
         // imperial medieval end
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -75,10 +73,6 @@ namespace Content.Server.Database
                 .IsUnique();
 
             // imperial medieval start
-            modelBuilder.Entity<Language>()
-                .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.LanguageName })
-                .IsUnique();
-
             modelBuilder.Entity<Skill>()
                 .HasIndex(p => new { HumanoidProfileId = p.ProfileId, p.SkillName })
                 .IsUnique();
@@ -450,8 +444,6 @@ namespace Content.Server.Database
         public List<Trait> Traits { get; } = new();
 
         // Imperial medieval start
-        public List<Language> Languages { get; } = new();
-
         public List<Skill> Skills { get; } = new();
         // Imperial medieval end
 
@@ -501,15 +493,6 @@ namespace Content.Server.Database
     }
 
     #region Imperial Medieval
-    public class Language
-    {
-        public int Id { get; set; }
-        public Profile Profile { get; set; } = null!;
-        public int ProfileId { get; set; }
-
-        public string LanguageName { get; set; } = null!;
-    }
-
     public class Skill
     {
         public int Id { get; set; }
@@ -566,6 +549,14 @@ namespace Content.Server.Database
         public bool Accepted { get; set; }
     }
 
+    public class FlavorImage
+    {
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity), Required]
+        public int Id { get; set; }
+        [ForeignKey(nameof(Profile)), Required]
+        public int ProfileId { get; set; }
+        public byte[] Image { get; set; } = Array.Empty<byte>();
+    }
 
     #endregion
 

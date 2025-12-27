@@ -273,3 +273,12 @@
     color: crimson
     font: SpellwardSpecialeliteFont
     fontSize: 14
+
+- type: language
+  id: Resonat
+  roundstart: true
+  priority: 10
+  highIntelligenceAllowed: false
+  speech: !type:CollectiveMind
+    showRank: false
+    color: "#ae76db"

@@ -6,8 +6,8 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     noRot: true
   - type: Reflect
@@ -59,8 +59,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     color: "#47f8ff"
   - type: TimedDespawn
     lifetime: 8
@@ -69,7 +69,7 @@
     spawnedOnInvalidLocation: MedievalIceBarrierBeginnerInvalidPosition
     barrierLength: 1
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -94,8 +94,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     color: "#47f8ff"
   - type: TimedDespawn
@@ -133,7 +133,7 @@
     spawnedEntity: MedievalIceBarrierBeginnerClone
     barrierLength: 1
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -147,8 +147,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     color: "#47f8ff"
   - type: TimedDespawn
     lifetime: 20
@@ -157,7 +157,7 @@
     spawnedOnInvalidLocation: MedievalIceBarrierMiddleInvalidPosition
     barrierLength: 2
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -182,8 +182,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     color: "#47f8ff"
   - type: TimedDespawn
@@ -221,7 +221,7 @@
     spawnedEntity: MedievalIceBarrierMiddleClone
     barrierLength: 2
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -235,8 +235,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     color: "#47f8ff"
   - type: TimedDespawn
     lifetime: 20
@@ -245,7 +245,7 @@
     spawnedOnInvalidLocation: MedievalIceBarrierSeniorInvalidPosition
     barrierLength: 3
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -270,8 +270,8 @@
   name: Ice Barrier
   components:
   - type: Sprite
-    sprite: Structures/Decoration/crystal.rsi
-    state: crystal_grey
+    sprite: Imperial/Medieval/Magic/Vodka/IceBarrier/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     color: "#47f8ff"
   - type: TimedDespawn
@@ -309,7 +309,7 @@
     spawnedEntity: MedievalIceBarrierSeniorClone
     barrierLength: 3
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:

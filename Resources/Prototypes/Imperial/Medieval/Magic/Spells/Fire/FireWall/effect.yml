@@ -5,10 +5,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/wall.rsi
-    state: beginner
     color: "#ff9c24"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        shader: unshaded
   - type: PointLight
     radius: 3
     energy: 2
@@ -23,10 +24,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/wall.rsi
-    state: middle
     color: "#ff9c24"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: middle
+        shader: unshaded
   - type: PointLight
     radius: 3
     energy: 2
@@ -41,10 +43,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/wall.rsi
-    state: senior
     color: "#ff9c24"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: senior
+        shader: unshaded
   - type: PointLight
     radius: 3
     energy: 3

@@ -28,11 +28,13 @@ public partial class ShieldOnStartupSystem : EntitySystem
     }
     public void Init(EntityUid uid, ShieldOnStartupComponent component, ComponentStartup args)
     {
+        if (!component.Enabled) return;
         component.Spawned = _tick.CurTime;
         _alert.ShowAlert(uid, "SpawnProtection", null, (_tick.CurTime, _tick.CurTime + TimeSpan.FromSeconds(45)), true);
     }
     private void OnBeforeDamageChanged(EntityUid uid, ShieldOnStartupComponent component, ref BeforeDamageChangedEvent args)
     {
+        if (!component.Enabled) return;
         if (component.Spawned + TimeSpan.FromSeconds(45) < _tick.CurTime)
         {
             RemComp<ShieldOnStartupComponent>(uid);
@@ -42,6 +44,7 @@ public partial class ShieldOnStartupSystem : EntitySystem
     }
     private void OnBeforeStaminaDamage(EntityUid uid, ShieldOnStartupComponent component, ref BeforeStaminaDamageEvent args)
     {
+        if (!component.Enabled) return;
         if (component.Spawned + TimeSpan.FromSeconds(45) < _tick.CurTime)
         {
             RemComp<ShieldOnStartupComponent>(uid);

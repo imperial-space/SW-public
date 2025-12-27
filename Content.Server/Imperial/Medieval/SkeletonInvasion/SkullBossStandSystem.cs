@@ -28,7 +28,6 @@ public sealed class SkullBossStandSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly JitteringSystem _jitter = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
 
     public override void Initialize()
     {
@@ -93,8 +92,8 @@ public sealed class SkullBossStandSystem : EntitySystem
 
         stand.AttachedParts.Add(comp.Idx, comp.Purified);
         stand.AttachedProtos.Add(Prototype(uid)!.ID);
-        _appearance.SetData(args.Target.Value, SkullStandAppearance.Key, comp.Purified ? comp.Idx : -comp.Idx);
         PartAttached(args.Target.Value, stand);
+        Dirty(args.Target.Value, stand);
 
         _transform.DetachEntity(uid, Transform(uid));
     }

@@ -177,6 +177,12 @@
         },
         {
             "name": "kayot_veteran"
+        },
+        {
+            "name": "treasurer"
+        },
+        {
+            "name": "archivist"
         }
     ]
 }

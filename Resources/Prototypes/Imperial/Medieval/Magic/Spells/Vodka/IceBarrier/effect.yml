@@ -2,8 +2,8 @@
   id: IceBarrierParticles
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#39FFFF"
   - type: TimedDespawn
@@ -19,10 +19,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/vodka/barrier.rsi
-    state: beginner
     color: "#78C6ED"
     noRot: true
-    shader: unshaded
+    layers:
+      - state: beginner
+        shader: unshaded
   - type: PointLight
     radius: 2
     energy: 2

@@ -15,14 +15,15 @@
         bonusEssences:
           MagicMedievalVodka: 1
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 4
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
-      state: 1
+      sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+      state: beginner
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: IceDaggerBeginner
       spellCastDoAfter:
@@ -71,14 +72,15 @@
         bonusEssences:
           MagicMedievalVodka: 1
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 2.5
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
-      state: 2
+      sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+      state: middle
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: IceDaggerMiddle
       spellCastDoAfter:
@@ -121,14 +123,15 @@
         bonusEssences:
           MagicMedievalVodka: 1
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 1.5
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
     icon:
-      sprite: Imperial/Medieval/Gun/Charmer/ice_dagger.rsi
-      state: 3
+      sprite: Imperial/Medieval/Magic/Vodka/IceDagger/icons.rsi
+      state: senior
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: IceDaggerSenior
       spellCastDoAfter:

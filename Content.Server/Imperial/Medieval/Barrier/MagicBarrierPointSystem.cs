@@ -149,8 +149,8 @@ namespace Content.Server.MagicBarrier
             _chat.DispatchGlobalAnnouncement("Проклятый нарост уничтожен, расход стабильности барьера снижен.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
-                comp.Lose = comp.Lose / (comp.Rate - 0.03f);
-                comp.Stability += 7f;
+                comp.Lose *= 0.8f;
+                comp.Stability += 4f;
             }
         }
 
@@ -281,25 +281,5 @@ namespace Content.Server.MagicBarrier
             }
         }
     }
-    public sealed partial class AlcoholDrink : EntityEffect
-    {
-        protected override string? ReagentEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)
-        {
-            return "In round end greentext";
-        }
 
-        public override void Effect(EntityEffectBaseArgs args)
-        {
-            if (args is not EntityEffectReagentArgs reagentArgs)
-                return;
-
-            if (reagentArgs.EntityManager.TryGetComponent<AffectRoundStatsComponent>(args.TargetEntity, out var player))
-                player.Alcohol++;
-
-            foreach (var barrier in reagentArgs.EntityManager.EntityQuery<RoundStatCounterRuleComponent>())
-            {
-                barrier.AlcoholDrink++;
-            }
-        }
-    }
 }

@@ -21,4 +21,17 @@ public sealed partial class MedievalCCVars : CVars
     // суммируется с AfkTime
     public static readonly CVarDef<float> AfkKickTime =
         CVarDef.Create("medieval.afk_kick_time", 60f, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<int> BloodMoonPeriod =
+        CVarDef.Create("medieval.blood_moon_period", 7, CVar.SERVER | CVar.REPLICATED);
+
+    public static readonly CVarDef<int> BloodMoonWerewolves =
+        CVarDef.Create("medieval.blood_moon_werewolves", 5, CVar.SERVER | CVar.REPLICATED);
+
+    // Работа возрождений
+    public static readonly CVarDef<bool> GhostRevive =
+    CVarDef.Create("medieval.ghost_revive", true, CVar.SERVER | CVar.REPLICATED);
+    // Количество убийств духов для возрождения
+    public static readonly CVarDef<int> GhostKillsToRevive =
+    CVarDef.Create("medieval.ghost_kills_to_revive", 12, CVar.SERVER | CVar.REPLICATED);
 }

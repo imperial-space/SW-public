@@ -13,6 +13,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
 namespace Content.Client.Imperial.Medieval.Trading;
@@ -26,8 +27,8 @@ public sealed partial class TradingMenu : DefaultWindow
     private StoreWithdrawWindow? _withdrawWindow;
     private TradingStatsWindow? _statsWindow;
 
+    public event EventHandler<string>? SearchTextUpdated;
     public event Action<BaseButton.ButtonEventArgs, GuildTradingItem>? OnItemButtonPressed;
-
     public event Action<BaseButton.ButtonEventArgs, string, int>? OnWithdrawAttempt;
 
     public FixedPoint2 Balance = new();
@@ -49,6 +50,7 @@ public sealed partial class TradingMenu : DefaultWindow
         WithdrawButton.OnButtonDown += OnWithdrawButtonDown;
         ReputationLeaderboardButton.OnButtonDown += OnLeaderboardButtonDown;
         BackButton.OnButtonDown += _ => SelectGuildTab();
+        SearchBar.OnTextChanged += _ => SearchTextUpdated?.Invoke(this, SearchBar.Text);
 
         OnResized += () => ControlContainer.Columns = (int)(Width / 215);
     }
@@ -124,6 +126,7 @@ public sealed partial class TradingMenu : DefaultWindow
         if (guild != null)
             CurrentGuild = guild;
 
+        SearchBar.Text = "";
         UpdateReputation(CurrentGuild);
         UpdateItems(CurrentGuild);
     }
@@ -133,12 +136,12 @@ public sealed partial class TradingMenu : DefaultWindow
         if (User == null)
             return;
 
-        var reputation = guild?.GetReputation(User.Value) ?? 0;
-        var reputationRounded = MathF.Round(reputation, 1);
-        ReputationLabel.Text = Loc.GetString("trading-ui-reputation-text", ("rep", reputationRounded.ToString("0.0")));
-
         if (guild == null)
             return;
+
+        var reputation = guild.GetReputation(User.Value);
+        var reputationRounded = MathF.Round(reputation, 1);
+        ReputationLabel.Text = Loc.GetString("trading-ui-reputation-text", ("rep", reputationRounded.ToString("0.0")));
 
         var discount = TradingHelpers.DiscountWithReputation(guild, User.Value) * 100f;
         ReputationDiscoundLabel.Text = discount >= 1
@@ -146,23 +149,42 @@ public sealed partial class TradingMenu : DefaultWindow
             : "";
     }
 
-    public void UpdateItems(Guild? guild = null)
+    private IEnumerable<GuildTradingItem> FilterItems(IEnumerable<GuildTradingItem>? items, string search = "")
+    {
+        var filteredItems = items?.Where(data =>
+                            TradingLocalisationHelpers.GetLocalisedNameOrEntityName(data, _prototypeManager)
+                                .Trim()
+                                .ToLowerInvariant()
+                                .Contains(search) ||
+                            TradingLocalisationHelpers.GetLocalisedDescriptionOrEntityDescription(data, _prototypeManager)
+                                .Trim()
+                                .ToLowerInvariant()
+                                .Contains(search))
+                        .OrderBy(itm => TradingLocalisationHelpers.GetLocalisedNameOrEntityName(itm, _prototypeManager))
+                    ?? Enumerable.Empty<GuildTradingItem>();
+
+        return filteredItems;
+    }
+
+    public void UpdateItems(Guild? guild = null, string search = "")
     {
         ClearItems();
 
         var guildType = guild != null ? _prototypeManager.Index(guild.TypePrototype) : null;
         var currency = guildType?.Currency;
 
-        foreach (var item in guild?.Items
-                     .OrderBy(itm => TradingLocalisationHelpers.GetLocalisedNameOrEntityName(itm, _prototypeManager))
-                             ?? Enumerable.Empty<GuildTradingItem>())
+        var items = FilterItems(guild?.Items, search);
+        foreach (var item in items)
         {
             AddItemGui(item, currency);
         }
 
-        foreach (var (item, reason) in guild?.UnavailableItems
-                                           .OrderBy(itm => TradingLocalisationHelpers.GetLocalisedNameOrEntityName(itm.Key, _prototypeManager))
-                                       ?? Enumerable.Empty<KeyValuePair<GuildTradingItem, string>>())
+
+        var filteredUnavailableKeys = FilterItems(guild?.UnavailableItems.Keys, search).ToHashSet();
+        var unavailableItems = guild?.UnavailableItems
+            .Where(kv => filteredUnavailableKeys.Contains(kv.Key))
+            .ToDictionary(kv => kv.Key, kv => kv.Value) ?? new();
+        foreach (var (item, reason) in unavailableItems)
         {
             AddItemGui(item, currency, false, reason);
         }

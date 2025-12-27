@@ -421,6 +421,10 @@
     - id: FoodMeatCooked
     - id: MedievalHatchet
     - id: MedievalJailPosxalka
+    - id: MedievalGoldCup
+      weight: 0.5
+    - id: MedievalSilverCup
+      weight: 0.5
 
 - type: entity
   parent: BaseStructure
@@ -454,6 +458,7 @@
         - TableMask
         layer:
         - TableLayer
+        - LowImpassable
   - type: ExplosionResistance
     damageCoefficient: 2
   - type: Damageable
@@ -828,15 +833,19 @@
     solution: beaker
   - type: InjectableSolution
     solution: beaker
+  - type: SolutionItemStatus
+    solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
   - type: UserInterface
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
     solution: beaker
+    destroyOnEmpty: false
+    utensil: None
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
@@ -866,6 +875,12 @@
     solution: beaker
   - type: SpillWhenWorn
     solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
 
 - type: entity
   parent: BaseItem
@@ -901,15 +916,19 @@
     solution: beaker
   - type: InjectableSolution
     solution: beaker
+  - type: SolutionItemStatus
+    solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
   - type: UserInterface
     interfaces:
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
     solution: beaker
+    destroyOnEmpty: false
+    utensil: None
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 6
@@ -928,6 +947,104 @@
         acts: [ "Destruction" ]
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalWineskin # imperial medieval
+  - type: Spillable
+    solution: beaker
+  - type: SpillWhenWorn
+    solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  abstract: true
+  id: MedievalDrinkBaseMaterialGold
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 25
+
+- type: entity
+  abstract: true
+  id: MedievalDrinkBaseMaterialSilver
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 25
+
+- type: entity
+  parent: [MedievalDrinkBaseMaterialGold, DrinkBaseCup, DrinkVisualsFill]
+  id: MedievalGoldCup
+  name: golden cup
+  description: An elegant golden cup.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/goldcup.rsi
+    layers:
+      - state: icon
+      - state: Fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: Fill-
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: null
+  - type: StaticPrice
+    price: 150
+  - type: Tag
+    tags:
+    - DrinkCup
+    - DrinkGlass
+
+- type: entity
+  parent: [MedievalDrinkBaseMaterialSilver, DrinkBaseCup, DrinkVisualsFill]
+  id: MedievalSilverCup
+  name: silver cup
+  description: An elegant silver cup.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/silvercup.rsi
+    layers:
+      - state: icon
+      - state: Fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: Fill-
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: null
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - DrinkCup
+    - DrinkGlass
 
 # - type: entity
 #   parent: BaseAPC
@@ -1064,6 +1181,8 @@
   - type: RDWeight
     value: 2
   - type: ExplodeOnTrigger
+    keysIn:
+    - timer
   - type: Explosive
     explosionType: MedievalDefault
     maxIntensity: 4
@@ -1075,15 +1194,17 @@
     layers:
     - state: icon
       map: ["enum.TriggerVisualLayers.Base"]
-  - type: OnUseTimerTrigger
+  - type: TimerTrigger
+    delay: 2.5
     beepSound:
       path: "/Audio/Imperial/Medieval/bomb.ogg"
       params:
         volume: 7
     initialBeepDelay: 0
     beepInterval: 6 # 2 beeps total (at 0 and 2)
-    delay: 2.5
   - type: SpawnOnTrigger
+    keysIn:
+    - timer
     proto: MedievalExplosionEffect
 
 - type: entity
@@ -1118,6 +1239,19 @@
   #    6: 0
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonSpeed # imperial medieval
+
+- type: entity
+  parent: ClothingNeckTieDet
+  id: MedaljonGreenKnight
+  name: MedaljonGreenKnight
+  description: MedaljonGreenKnight
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
+  - type: Clothing
+    slots:
+    - ears
+    sprite: Imperial/Medieval/Clothing/Medaljons/cross.rsi
 
 - type: entity
   parent: MedaljonSpeed
@@ -1727,6 +1861,13 @@
     params:
       variation: 0.125
 
+- type: emoteSounds
+  id: MedievalWolf
+  sound:
+    path: /Audio/Voice/Vulpkanin/howl.ogg
+    params:
+      variation: 0.125
+
 - type: entity
   name: MedievalHandheldHealthAnalyzer
   parent:
@@ -1925,11 +2066,8 @@
     - type: Sprite
       state: brutepack
     - type: Healing
-      # Imperial Medieval Plague start
-      plagueHealingTier: 1
       plagueProgressionDecayPerUse: 1
-      # Imperial Medieval Plague end
-      damageContainer: Biological
+      damageContainers: [Biological]
       damage:
         groups:
           Brute: -15 # 5 for each type in the group
@@ -1966,21 +2104,32 @@
   - type: SolutionContainerManager
     solutions:
       bucket:
-        maxVol: 600
+        maxVol: 200
         reagents:
           - ReagentId: Water
-            Quantity: 300
+            Quantity: 200
+  - type: SolutionTransfer
+    transferAmount: 100
+    maxTransferAmount: 100
+    minTransferAmount: 10
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
   - type: Spillable
-    spillDelay: 3.0
+    solution: bucket
   - type: DrainableSolution
+    solution: bucket
+  - type: SolutionItemStatus
     solution: bucket
   - type: RefillableSolution
     solution: bucket
-  #- type: ExaminableSolution
-  #  solution: bucket
+  - type: ExaminableSolution
+    solution: bucket
   - type: Tag
     tags:
-      - Wringer
+    - Bucket
   - type: Physics
     bodyType: Dynamic
   - type: Transform
@@ -1997,9 +2146,13 @@
         layer:
         - MobLayer
   - type: Pullable
-  - type: Drink
-    isOpen: true
+  - type: Edible
+    edible: Drink
+    destroyOnEmpty: false
+    utensil: Spoon
     solution: bucket
+  - type: Item
+    size: Normal
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 3
@@ -2141,7 +2294,7 @@
     delay: 3.0
   - type: Summonable
     specialItem: MedievalMobKobold
-    requriesBibleUser: false
+    #requriesBibleUser: false
   - type: Sprite
     sprite: Imperial/Medieval/Summon/murlock.rsi
     state: icon
@@ -2166,7 +2319,7 @@
     delay: 3.0
   - type: Summonable
     specialItem: MedievalMobFire
-    requriesBibleUser: false
+    #requriesBibleUser: false
   - type: Sprite
     sprite: Imperial/Medieval/Summon/human.rsi
     state: icon
@@ -2191,7 +2344,7 @@
     delay: 3.0
   - type: Summonable
     specialItem: MedievalRandomHumanoidSpawnerHewbie
-    requriesBibleUser: false
+    #requriesBibleUser: false
   - type: Sprite
     sprite: Imperial/Medieval/Summon/fire.rsi
     state: icon
@@ -2546,6 +2699,9 @@
     - type: Currency
       price:
         Revent: 160
+    - type: MedievalCurrency
+      price:
+        Revent: 160
     - type: PointLight
       color: purple
       radius: 2
@@ -2573,6 +2729,9 @@
     - type: Currency
       price:
         Revent: 120
+    - type: MedievalCurrency
+      price:
+        Revent: 120
     - type: PointLight
       color: purple
       radius: 2
@@ -2598,6 +2757,9 @@
       intensity: 3
       slope: 0.2
     - type: Currency
+      price:
+        Revent: 120
+    - type: MedievalCurrency
       price:
         Revent: 120
     - type: PointLight
@@ -2708,6 +2870,9 @@
   - type: Currency
     price:
       Revent: 10
+  - type: MedievalCurrency
+    price:
+      Revent: 10
   - type: Item
     size: Tiny
   - type: Stack
@@ -2801,6 +2966,9 @@
   - type: Currency
     price:
       Revent: 14
+  - type: MedievalCurrency
+    price:
+      Revent: 14
   - type: Item
     size: Small
   - type: QuestItem
@@ -2839,6 +3007,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hunter
   - type: Currency
+    price:
+      Revent: 25
+  - type: MedievalCurrency
     price:
       Revent: 25
   - type: Item
@@ -2881,6 +3052,9 @@
   - type: Currency
     price:
       Revent: 7
+  - type: MedievalCurrency
+    price:
+      Revent: 7
   - type: Item
     size: Small
   - type: QuestItem
@@ -2921,6 +3095,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Small
   - type: QuestItem
@@ -2948,6 +3125,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -2968,6 +3148,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Tiny
   - type: Tag
@@ -2984,6 +3167,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: hogskin
   - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
     price:
       Revent: 12
   - type: Item
@@ -3004,6 +3190,9 @@
   - type: Currency
     price:
       Revent: 7
+  - type: MedievalCurrency
+    price:
+      Revent: 7
   - type: Item
     size: Tiny
   - type: Tag
@@ -3020,6 +3209,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: wolf2
   - type: Currency
+    price:
+      Revent: 5
+  - type: MedievalCurrency
     price:
       Revent: 5
   - type: Item
@@ -3040,6 +3232,9 @@
   - type: Currency
     price:
       Revent: 27
+  - type: MedievalCurrency
+    price:
+      Revent: 27
   - type: Item
     size: Tiny
 
@@ -3053,6 +3248,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: rabbit
   - type: Currency
+    price:
+      Revent: 30
+  - type: MedievalCurrency
     price:
       Revent: 30
   - type: Item
@@ -3071,6 +3269,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: rabbit
   - type: Currency
+    price:
+      Revent: 12
+  - type: MedievalCurrency
     price:
       Revent: 12
   - type: Item
@@ -3102,6 +3303,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: dmouse
   - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
     price:
       Revent: 3
   - type: Item
@@ -3145,7 +3349,10 @@
     state: hitin
   - type: Currency
     price:
-      Revent: 4
+      Revent: 7
+  - type: MedievalCurrency
+    price:
+      Revent: 7
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3174,6 +3381,9 @@
   - type: Currency
     price:
       Revent: 25
+  - type: MedievalCurrency
+    price:
+      Revent: 25
   - type: Item
     size: Tiny
   - type: StealTarget # imperial medieval
@@ -3198,6 +3408,9 @@
   - type: Currency
     price:
       Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3218,6 +3431,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: meat
   - type: Currency
+    price:
+      Revent: 25
+  - type: MedievalCurrency
     price:
       Revent: 25
   - type: Item
@@ -3242,6 +3458,9 @@
   - type: Currency
     price:
       Revent: 40
+  - type: MedievalCurrency
+    price:
+      Revent: 40
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -3262,6 +3481,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: legion
   - type: Currency
+    price:
+      Revent: 60
+  - type: MedievalCurrency
     price:
       Revent: 60
   - type: Item
@@ -3295,6 +3517,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: egg
   - type: Currency
+    price:
+      Revent: 9
+  - type: MedievalCurrency
     price:
       Revent: 9
   - type: Item
@@ -3333,6 +3558,9 @@
   - type: Currency
     price:
       Revent: 20
+  - type: MedievalCurrency
+    price:
+      Revent: 20
   - type: Item
     size: Normal
   - type: Tag
@@ -3351,6 +3579,9 @@
     sprite: Imperial/Medieval/Misc/mdv_loot.rsi
     state: slugbones
   - type: Currency
+    price:
+      Revent: 30
+  - type: MedievalCurrency
     price:
       Revent: 30
   - type: Item
@@ -5450,7 +5681,7 @@
         enum.MedievalMapUIKey.Key:
           type: MedievalMapBoundUserInterface
     - type: MedievalMap
-      mapTexturePath: /Textures/Imperial/Medieval/Misc/map_tabletop.rsi/tabletop.png
+      mapTexturePath: /Textures/Imperial/Medieval/Misc/map_tabletop/tabletop.png
 
 - type: entity
   parent: BaseBoardTabletop
@@ -6525,6 +6756,42 @@
     size: Tiny
 
 - type: entity
+  name: shield repair kit
+  parent: BaseItem
+  id: MedievalShieldRepairKit
+  description: Fully restores the shield's durability.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+  - type: Healing
+    damageContainers:
+      - Shield
+    damage:
+      groups:
+        Brute: -1000
+      types:
+        Heat: -1000
+        Structural: -1000
+    delay: 3
+    selfHealPenaltyMultiplier: 1
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: StaticPrice
+    price: 50
+
+- type: entity
   name: gol
   parent: BaseItem
   id: MedievalDungeonKey
@@ -6815,7 +7082,7 @@
   name: Smite
   description: Instantly gibs a target.
   components:
-  - type: InstantAction
+  - type: Action
     useDelay: 60
     itemIconStyle: BigAction
     canTargetSelf: false
@@ -6823,10 +7090,11 @@
     checkConsciousness: false
     interactOnMiss: false
     icon: Interface/Actions/scream.png
-    event: !type:MedievalGhostBooEvent
     whitelist:
       components:
       - MobThresholds
+  - type: InstantAction
+    event: !type:MedievalGhostBooEvent
 
 - type: entity
   name: lol
@@ -6895,7 +7163,8 @@
   name: marker
   components:
   - type: RoomFill
-    size: 9,9
+    minSize: 9,9
+    maxSize: 9,9
     roomWhitelist:
       tags:
       - SteroidMap
@@ -6906,7 +7175,8 @@
   name: marker
   components:
   - type: RoomFill
-    size: 9,9
+    minSize: 9,9
+    maxSize: 9,9
     roomWhitelist:
       tags:
       - KaravanMap
@@ -7305,9 +7575,11 @@
   description: Spawn urist
   noSpawn: true
   components:
-  - type: WorldTargetAction
+  - type: Action
     icon: { sprite: deprecated.rsi, state: deprecated}
     useDelay: 1
+  - type: TargetAction
+  - type: WorldTargetAction
     event: !type:SpawnOnActionEvent
 
 - type: entity
@@ -7315,8 +7587,8 @@
   noSpawn: true
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/Charmer/disabler.rsi
-    state: 3
+    sprite: Imperial/Medieval/Magic/MultiCurrency/WeakeningWave/icons.rsi
+    state: senior
   - type: MedievalParticles
     color: "#DD0000"
   - type: TimedDespawn
@@ -7359,9 +7631,9 @@
   id: Vinque
   path: /Fonts/Imperial/Vinque/Vinque.otf
 
-- type: font
-  id: SpellwardFont
-  path: /Fonts/Imperial/Spellward/Monomakh-Regular.ttf
+#- type: font
+#  id: SpellwardFont
+#  path: /Fonts/Imperial/Spellward/Monomakh-Regular.ttf
 
 - type: font
   id: SpellwardBeeBoopFont
@@ -7498,7 +7770,7 @@
 - type: tile
   id: CultFloor
   name: tiles-cult-floor
-  sprite: /Textures/Imperial/Medieval/Tiles/cult_tile.rsi/cult.png
+  sprite: /Textures/Imperial/Medieval/Tiles/CultTile/cult.png
   variants: 1
   baseTurf: Plating
   isSubfloor: false
@@ -7568,6 +7840,9 @@
 #     sprite: Imperial/Medieval/Chem/gribi.rsi
 #     state: grib3
 #   - type: Currency
+#     price:
+#       Revent: 8
+#   - type: MedievalCurrency
 #     price:
 #       Revent: 8
 #   - type: Item
@@ -7889,6 +8164,32 @@
     delay: 2.0
 
 - type: entity
+  parent: BaseItem
+  id: DeimonStaffMedieval
+  name: DeimonStaffMedieval
+  description: DeimonStaffMedieval
+  components:
+  - type: Item
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    state: icon
+
+- type: entity
+  parent: BaseItem
+  id: ApollaStaffMedieval
+  name: ApollaStaffMedieval
+  description: ApollaStaffMedieval
+  components:
+  - type: Item
+    sprite: Imperial/Medieval/Misc/apolla_staff.rsi
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/apolla_staff.rsi
+    state: icon
+
+- type: entity
   parent: BaseStructureMedieval
   id: MedievalSharpeningMachine
   name: Sharpening machine
@@ -7924,6 +8225,9 @@
     sprite: Imperial/Medieval/Chem/Garden/root.rsi
     state: icon
   - type: Currency
+    price:
+      Revent: 5
+  - type: MedievalCurrency
     price:
       Revent: 5
   - type: Tag
@@ -7994,13 +8298,11 @@
     state: default
   - type: Item
     size: Normal
-  - type: TriggerOnUse
   - type: SpawnItemsOnUse
     items:
     - id: MedievalHorseTransport
     sound:
       path: /Audio/Items/Whistle/trench_whistle_1.ogg
-  - type: DeleteOnTrigger
 
 - type: entity
   parent: MedievalHorseWhistle
@@ -8092,7 +8394,7 @@
     - id: MedievalSkeletonHorseTransport
     sound:
       path: /Audio/Items/Whistle/trench_whistle_1.ogg
-  - type: DeleteOnTrigger
+  #- type: DeleteOnTrigger
   - type: RadiationSource
     intensity: 1
     slope: 1
@@ -8114,3 +8416,248 @@
   components:
     - type: WeaponArcVisuals
       animation: CPThrust
+
+- type: entity
+  name: bible
+  description: New Interstellar Version 2340.
+  parent: Bible
+  id: RoyalBible
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/royalbible.rsi
+    layers:
+      - state: default
+      - state: unshaded
+        shader: unshaded
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Misc/royalbible.rsi
+
+# Rich house keys
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey1
+  name: rich house key №1
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse1
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey2
+  name: rich house key №2
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse2
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey3
+  name: rich house key №3
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse3
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey4
+  name: rich house key №4
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse4
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey5
+  name: rich house key №5
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse5
+    - type: Tag
+      tags:
+        - MedievalKey
+
+# Regular house keys
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey6
+  name: house key №6
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House6
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey7
+  name: house key №7
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House7
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey8
+  name: house key №8
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House8
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey9
+  name: house key №9
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House9
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey10
+  name: house key №10
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House10
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey11
+  name: house key №11
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House11
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey12
+  name: house key №12
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House12
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey13
+  name: house key №13
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House13
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey14
+  name: house key №14
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House14
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey15
+  name: house key №15
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House15
+    - type: Tag
+      tags:
+        - MedievalKey

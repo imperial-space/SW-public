@@ -75,7 +75,7 @@
       groups:
         Burn: 10
   - type: MedievalInstantSpell
-  - type: InstantAction
+  - type: Action
     useDelay: 20
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
@@ -83,6 +83,7 @@
     icon:
       sprite: Imperial/Medieval/Gun/prism.rsi
       state: base
+  - type: InstantAction
     event: !type:MedievalSpawnInHandSpellEvent
       spawnedEntityPrototype: MedievalMagicWeaponPrism
       spellCastDoAfter:

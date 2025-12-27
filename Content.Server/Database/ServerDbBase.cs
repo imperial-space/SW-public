@@ -25,14 +25,15 @@ using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Content.Shared.Imperial.Medieval.PlayerCreations;
+using Content.Shared.Imperial.Medieval.Skills;
 
 namespace Content.Server.Database
 {
     public abstract class ServerDbBase
     {
         private readonly ISawmill _opsLog;
-
         public event Action<DatabaseNotification>? OnNotificationReceived;
+        public Dictionary<string, int> Logs = new(); // Imperial Medieval Temporary Logs
 
         /// <param name="opsLog">Sawmill to trace log database operations to.</param>
         public ServerDbBase(ISawmill opsLog)
@@ -52,7 +53,6 @@ namespace Content.Server.Database
                 .Include(p => p.Profiles).ThenInclude(h => h.Jobs)
                 .Include(p => p.Profiles).ThenInclude(h => h.Antags)
                 .Include(p => p.Profiles).ThenInclude(h => h.Traits)
-                .Include(p => p.Profiles).ThenInclude(h => h.Languages) // imperial medieval languages
                 .Include(p => p.Profiles).ThenInclude(h => h.Skills) // imperial medieval
                 .Include(p => p.Profiles)
                     .ThenInclude(h => h.Loadouts)
@@ -110,7 +110,6 @@ namespace Content.Server.Database
                 .Include(p => p.Jobs)
                 .Include(p => p.Antags)
                 .Include(p => p.Traits)
-                .Include(p => p.Languages)  // imperial medieval languages
                 .Include(p => p.Skills) // Imperial medieval
                 .Include(p => p.Loadouts)
                     .ThenInclude(l => l.Groups)
@@ -215,7 +214,6 @@ namespace Content.Server.Database
             var jobs = profile.Jobs.ToDictionary(j => new ProtoId<JobPrototype>(j.JobName), j => (JobPriority) j.Priority);
             var antags = profile.Antags.Select(a => new ProtoId<AntagPrototype>(a.AntagName));
             var traits = profile.Traits.Select(t => new ProtoId<TraitPrototype>(t.TraitName));
-            var languages = profile.Languages.Select(t => new ProtoId<LanguagePrototype>(t.LanguageName)); // imperial medieval languages
 
             var sex = Sex.Male;
             if (Enum.TryParse<Sex>(profile.Sex, true, out var sexVal))
@@ -291,7 +289,6 @@ namespace Content.Server.Database
                 traits.ToHashSet(),
                 loadouts,
                 // Imperial medieval start
-                languages.ToHashSet(),
                 new(profile.Skills.ToDictionary(s => s.SkillName, s => s.SkillLevel))
                 // Imperial medieval end
             );
@@ -376,19 +373,12 @@ namespace Content.Server.Database
             }
 
             // Imperial medieval start
-            profile.Languages.Clear();
-            profile.Languages.AddRange(
-                    humanoid.Languages.Select
-                    (l => new Language { LanguageName = l.ToString() }
-                    )
-                );
-
             profile.Skills.Clear();
+
+            var available = new List<string>() { "Strength", "Endurance", "Intelligence", "Agility", "Vitality" };
             profile.Skills.AddRange(
-                    humanoid.Skills.Select
-                    (s => new Skill { SkillName = s.Key, SkillLevel = s.Value }
-                    )
-                );
+                    humanoid.Skills.Where(x => available.Contains(x.Key))
+                    .Select(s => new Skill { SkillName = s.Key, SkillLevel = s.Value }));
             // Imperial medieval end
 
             return profile;
@@ -590,10 +580,12 @@ namespace Content.Server.Database
         #region Imperial Medieval
 
 
-
-
         public async Task<Painting?> GetPainting(Color[] texture, CancellationToken cancel)
         {
+            var log = "GetPainting";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -607,6 +599,10 @@ namespace Content.Server.Database
 
         public async Task<List<Painting>> GetPaintings(bool accepted, CancellationToken cancel)
         {
+            var log = "GetPaintings";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var paintings = await db.DbContext.Paintings
@@ -625,6 +621,10 @@ namespace Content.Server.Database
             bool accepted,
             CancellationToken cancel)
         {
+            var log = "AddPainting";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -646,6 +646,10 @@ namespace Content.Server.Database
 
         public async Task RemovePainting(Color[] texture, CancellationToken cancel)
         {
+            var log = "RemovePainting";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -663,6 +667,10 @@ namespace Content.Server.Database
 
         public async Task SetPaintingAccepted(Color[] texture, CancellationToken cancel)
         {
+            var log = "SetPaintingAccepted";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var textureString = PaintingHelper.ColorsToString(texture);
@@ -680,6 +688,10 @@ namespace Content.Server.Database
 
         public async Task<Book?> GetBook(string text, CancellationToken cancel)
         {
+            var log = "GetBook";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var book = await db.DbContext.Books
@@ -691,6 +703,10 @@ namespace Content.Server.Database
 
         public async Task<List<Book>> GetBooks(bool accepted, CancellationToken cancel)
         {
+            var log = "GetBooks";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var books = await db.DbContext.Books
@@ -709,6 +725,10 @@ namespace Content.Server.Database
             bool accepted,
             CancellationToken cancel)
         {
+            var log = "AddBook";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var book = new Book
@@ -728,6 +748,10 @@ namespace Content.Server.Database
 
         public async Task RemoveBook(string text, CancellationToken cancel)
         {
+            var log = "RemoveBook";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var book = await db.DbContext.Books
@@ -743,6 +767,10 @@ namespace Content.Server.Database
 
         public async Task SetBookAccepted(string text, CancellationToken cancel)
         {
+            var log = "SetBookAccepted";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var book = await db.DbContext.Books
@@ -758,6 +786,10 @@ namespace Content.Server.Database
 
         public async Task<int> GetLastNrpViolationsCount(Guid player, int daysCount, CancellationToken cancel)
         {
+            var log = "GetLastNrpViolationsCount";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var daysAgo = DateTime.UtcNow.AddDays(-daysCount);
@@ -771,6 +803,10 @@ namespace Content.Server.Database
 
         public async Task AddNrpViolation(Guid player, CancellationToken cancel)
         {
+            var log = "AddNrpViolation";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var violation = new NrpViolation
@@ -784,6 +820,10 @@ namespace Content.Server.Database
         }
         public async Task RemoveNrpViolation(Guid player, CancellationToken cancel)
         {
+            var log = "RemoveNrpViolation";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
 
             var violations = await db.DbContext.NrpViolations
@@ -802,6 +842,10 @@ namespace Content.Server.Database
 
         public async Task<(int, int)> GetNrpResolves(Guid player, CancellationToken cancel)
         {
+            var log = "GetNrpResolves";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .Where(v => v.UserId == player)
@@ -816,6 +860,10 @@ namespace Content.Server.Database
 
         public async Task<List<NrpResolves>> GetNrpResolves(CancellationToken cancel)
         {
+            var log = "GetNrpResolves";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .ToListAsync(cancel);
@@ -824,6 +872,10 @@ namespace Content.Server.Database
 
         public async Task AddNrpResolve(Guid player, bool isRp, CancellationToken cancel)
         {
+            var log = "AddNrpResolve";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .Where(v => v.UserId == player)
@@ -849,6 +901,10 @@ namespace Content.Server.Database
 
         public async Task RemoveNrpResolve(Guid player, bool isRp, CancellationToken cancel)
         {
+            var log = "RemoveNrpResolve";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
             await using var db = await GetDb(cancel);
             var current = await db.DbContext.NrpResolves
                 .Where(v => v.UserId == player)
@@ -871,6 +927,87 @@ namespace Content.Server.Database
             }
             await db.DbContext.SaveChangesAsync(cancel);
         }
+        // Imperial Medieval Flavor Images Begin
+        public async Task<FlavorImage?> GetFlavorImage(Guid userId, CancellationToken cancel, int? slot)
+        {
+            var log = "GetFlavorImage";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
+            await using var db = await GetDb(cancel);
+            var prefs = await db.DbContext.Preference
+                .Include(x => x.Profiles)
+                .SingleAsync(x => x.UserId == userId, cancel);
+
+            if (slot == null)
+                slot = prefs.SelectedCharacterSlot;
+
+            if (!prefs.Profiles.TryGetValue(slot.Value, out var profile))
+                return null;
+
+            var image = await db.DbContext.FlavorImages.SingleOrDefaultAsync(p => p.ProfileId == profile.Id, cancel);
+
+            return image;
+        }
+        public async Task AddOrUpdateFlavorImage(Guid userId, byte[] image, CancellationToken cancel, int? slot)
+        {
+            var log = "AddOrUpdateFlavorImage";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
+            await using var db = await GetDb(cancel);
+            var prefs = await db.DbContext.Preference
+                .Include(x => x.Profiles)
+                .SingleAsync(x => x.UserId == userId, cancel);
+
+            if (slot == null)
+                slot = prefs.SelectedCharacterSlot;
+
+            if (!prefs.Profiles.TryGetValue(slot.Value, out var profile))
+                return;
+
+            var entry = await db.DbContext.FlavorImages
+                .SingleOrDefaultAsync(x => x.ProfileId == profile.Id, cancel);
+
+            if (entry == null)
+            {
+                await db.DbContext.AddAsync(new FlavorImage()
+                {
+                    ProfileId = profile.Id,
+                    Image = image
+                });
+            }
+            else
+            {
+                entry.Image = image;
+            }
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+        public async Task RemoveFlavorImage(Guid userId, int slot, CancellationToken cancel)
+        {
+            var log = "RemoveFlavorImage";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
+            await using var db = await GetDb(cancel);
+            var prefs = await db.DbContext.Preference
+                .Include(x => x.Profiles)
+                .SingleAsync(x => x.UserId == userId, cancel);
+
+            if (!prefs.Profiles.TryGetValue(slot, out var profile))
+                return;
+
+            var image = await db.DbContext.FlavorImages
+                .SingleOrDefaultAsync(x => x.ProfileId == profile.Id, cancel);
+
+            if (image == null)
+                return;
+
+            db.DbContext.FlavorImages.Remove(image);
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+        // Imperial Medieval Flavor Images End
         #endregion
 
         #region Playtime
@@ -1700,7 +1837,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                 ban.LastEditedAt,
                 ban.ExpirationTime,
                 ban.Hidden,
-                new [] { ban.RoleId.Replace(BanManager.JobPrefix, null) },
+                new [] { ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null) },
                 MakePlayerRecord(unbanningAdmin),
                 ban.Unban?.UnbanTime);
         }
@@ -2000,7 +2137,7 @@ INSERT INTO player_round (players_id, rounds_id) VALUES ({players[player]}, {id}
                     NormalizeDatabaseTime(firstBan.LastEditedAt),
                     NormalizeDatabaseTime(firstBan.ExpirationTime),
                     firstBan.Hidden,
-                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.JobPrefix, null)).ToArray(),
+                    banGroup.Select(ban => ban.RoleId.Replace(BanManager.PrefixJob, null).Replace(BanManager.PrefixAntag, null)).ToArray(),
                     MakePlayerRecord(unbanningAdmin),
                     NormalizeDatabaseTime(firstBan.Unban?.UnbanTime)));
             }

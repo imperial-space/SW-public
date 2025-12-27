@@ -6,8 +6,8 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
     noRot: true
   - type: Clickable
@@ -48,8 +48,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
   - type: TimedDespawn
     lifetime: 8
   - type: Brarrier
@@ -57,7 +57,7 @@
     spawnedOnInvalidLocation: MedievalFireWallBeginnerInvalidPosition
     barrierLength: 1
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -69,8 +69,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 8
@@ -95,7 +95,7 @@
     spawnedEntity: MedievalFireWallBeginnerClone
     barrierLength: 1
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -109,8 +109,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
   - type: TimedDespawn
     lifetime: 20
   - type: IgniteOnCollide
@@ -121,7 +121,7 @@
     spawnedOnInvalidLocation: MedievalFireWallMiddleInvalidPosition
     barrierLength: 2
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -133,8 +133,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 20
@@ -161,7 +161,7 @@
     spawnedEntity: MedievalFireWallMiddleClone
     barrierLength: 2
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -175,8 +175,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 20
@@ -188,7 +188,7 @@
     spawnedOnInvalidLocation: MedievalFireWallSeniorInvalidPosition
     barrierLength: 3
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:
@@ -200,8 +200,8 @@
   name: Fire Wall
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/firewall.rsi
-    state: fire
+    sprite: Imperial/Medieval/Magic/Fire/FireWall/projectiles.rsi
+    state: beginner
     drawdepth: Mobs
   - type: TimedDespawn
     lifetime: 20
@@ -228,7 +228,7 @@
     spawnedEntity: MedievalFireWallSeniorClone
     barrierLength: 3
     lookupRadius: 0.45
-    barrierSpawnTime: 0.1
+    barrierSpawnTime: 0.3
     permissibleIntersectionsPercentage: 0.3
     spawnRelativePosition: 1,1
     layersBlackList:

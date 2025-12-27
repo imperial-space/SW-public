@@ -12,6 +12,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Damage;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval;
+using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Physics;
 using Content.Shared.Stunnable;
 using Content.Shared.Throwing;
@@ -62,7 +63,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             SubscribeLocalEvent<RideableComponent, StartRideEvent>(OnBuckled);
             SubscribeLocalEvent<RideableComponent, StopRideEvent>(OnUnbuckled);
 
-            SubscribeLocalEvent<RideableComponent, BuckledEvent>(OnSelfBuckled);
+            SubscribeLocalEvent<RideableComponent, BeforeBuckledEvent>(OnSelfBuckled);
             SubscribeLocalEvent<RideableComponent, UnbuckledEvent>(OnSelfUnbuckled);
 
             SubscribeLocalEvent<RideableComponent, StrapAttemptEvent>(OnTryRide);
@@ -77,6 +78,9 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             SubscribeLocalEvent<RideableComponent, StartCollideEvent>(HandleCollide);
 
             SubscribeLocalEvent<EntityTerminatingEvent>(OnEntityTerminating);
+
+            SubscribeLocalEvent<BuckleComponent, PullAttemptEvent>(OnTryPullRider);
+            SubscribeLocalEvent<BuckleComponent, UnbuckleAttemptEvent>(OnUnbuckleAttempt);
         }
 
         #region Pikes
@@ -129,7 +133,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                 _throwing.TryThrow(other, direction * 0.6f);
             if (stunSeconds > 0)
             {
-                _stun.TryStun(other, TimeSpan.FromSeconds(stunSeconds), true);
+                _stun.TryAddStunDuration(other, TimeSpan.FromSeconds(stunSeconds));
                 _stun.TryKnockdown(other, TimeSpan.FromSeconds(stunSeconds), true);
             }
 
@@ -422,9 +426,45 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
         #endregion
 
+        private void OnTryPullRider(EntityUid uid, BuckleComponent comp, ref PullAttemptEvent args)
+        {
+            if (args.PulledUid != uid)
+                return;
+
+            if (!comp.Buckled)
+                return;
+
+            if (!comp.BuckledTo.HasValue)
+                return;
+
+            var buckled = comp.BuckledTo.Value;
+
+            if (HasComp<RideableComponent>(buckled))
+                args.Cancelled = true;
+        }
+
         private void OnTryUnbuckle(EntityUid uid, BuckleComponent comp, ref TryUnbuckleEvent args)
         {
             _buckle.TryUnbuckle(args.Buckle, args.Buckle);
+        }
+
+        private void OnUnbuckleAttempt(EntityUid uid, BuckleComponent comp, ref UnbuckleAttemptEvent args)
+        {
+            if (args.User == args.Buckle.Owner)
+                return;
+
+            if (!comp.Buckled)
+                return;
+
+            if (!comp.BuckledTo.HasValue)
+                return;
+
+            var buckled = comp.BuckledTo.Value;
+
+            if (HasComp<RideableComponent>(buckled))
+                args.Cancelled = true;
+
+            return;
         }
 
         private void OnTryRide(EntityUid uid, RideableComponent component, ref StrapAttemptEvent args)
@@ -459,8 +499,11 @@ namespace Content.Server.Imperial.Medieval.MobRiding
             return true;
         }
 
-        private void OnSelfBuckled(EntityUid uid, RideableComponent component, ref BuckledEvent args)
+        private void OnSelfBuckled(EntityUid uid, RideableComponent component, ref BeforeBuckledEvent args)
         {
+            if (args.Cancelled)
+                return;
+
             if (component.IsRiding && component.Rider.HasValue)
             {
                 _buckle.TryUnbuckle(component.Rider.Value, component.Rider);
