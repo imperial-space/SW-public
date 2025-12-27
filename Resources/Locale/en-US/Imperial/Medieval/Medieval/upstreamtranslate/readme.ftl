@@ -18,6 +18,7 @@ ent-MedievalIronShieldBucklerGoblinSlayer = steel goblin slayer shield
     .desc = Simple and light to carry shield, doens't slow your movement and easy to carry in tight spaces.
     .suffix = { "SKIN, Medieval, melee" }
 ent-MedievalWeaponCrossbowWhois = crossbow
+    .desc = An old weapon, similar to bow. Uses heavy metallic bolts.
     .suffix = { "SKIN, Medieval, crossbow" }
 ent-MedievalWeaponMiniCrossbow = wrist crossbow
     .desc = An ancient weapon, similar to a bow. Attaches to the forearm and uses heavy metal bolts.
