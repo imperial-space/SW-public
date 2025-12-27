@@ -738,7 +738,7 @@ public sealed partial class AdminVerbSystem
         {
             Verb setCapacity = new()
             {
-                Text = "Характеристики",
+                Text = Loc.GetString("imperial-hm-misc-chars"),
                 Category = VerbCategory.Tricks,
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/plus.svg.192dpi.png")),
                 Act = () =>
