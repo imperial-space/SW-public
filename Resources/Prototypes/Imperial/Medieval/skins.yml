@@ -415,3 +415,19 @@
     MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightApolla]
     MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightApolla]
 
+- type: customization
+  id: zablik
+  holder: 4906e0f9-7cf5-46e0-870a-9856b33e23d4
+  map:
+    MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuterArmorIronCuirassLightZablik]
+    MedievalClothingOuterArmorBrigantin: [MedievalClothingOuterArmorBrigantinZablik]
+    MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterArmorIronCuirassZablik]
+    MedievalClothingOuterArmorChainMail: [MedievalClothingOuterArmorChainMailZablik]
+    MedievalClothingOuterArmorIron: [MedievalClothingOuterArmorIronZablik]
+    MedievalClothingOuterArmorUpIron2: [MedievalClothingOuterArmorUpIron2Zablik]
+    MedievalClothingOuterArmorUpIron3: [MedievalClothingOuterArmorUpIron3Zablik]
+    MedievalClothingOuterArmorUpIron: [MedievalClothingOuterArmorUpIronZablik]
+    MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetZablik]
+    MedievalIronGloves: [MedievalIronGlovesZablik]
+    Log: [MedievalClothingNeckCloakZablik, MedievalClothingUniformJumpsuitShitCloth82]
+
