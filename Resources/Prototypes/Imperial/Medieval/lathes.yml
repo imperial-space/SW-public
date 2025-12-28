@@ -1054,6 +1054,10 @@
     - MedievalScrollsDaggerCraft
     - MedievalScrollsBowCraft
     - MedievalScrollsCrossbowCraft
+    - MedievalScrollsFireCraft
+    - MedievalScrollsPnyaCraft
+    - MedievalScrollsKoboldCraft
+    - MedievalScrollsPetSlimeCraft
 
 - type: entity
   parent: CP14BaseWorkbench
