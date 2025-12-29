@@ -1195,10 +1195,10 @@
     - MedievalStoneWallCraft
     - MedievalStoneLoopHoleCraft
     - MedievalWeaponTurretNanoTrasenCraft
-    - MedievalChemistryEmptyBottle01Craft
-    - MedievalChemistryEmptyBottle02Craft
-    - MedievalChemistryEmptyBottle03Craft
-    - MedievalChemistryEmptyBottle04Craft
+    - MedievalChemistryEmptyBottleTempering01Craft
+    - MedievalChemistryEmptyBottleTempering02Craft
+    - MedievalChemistryEmptyBottleTempering03Craft
+    - MedievalChemistryEmptyBottleTempering04Craft
     - MedievalKotel
     - Syringe
     - MedievalHorseLeatherArmor

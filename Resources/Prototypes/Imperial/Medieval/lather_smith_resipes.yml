@@ -935,36 +935,36 @@
   result: WorkpieceSyringe
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle01Craft
+  id: MedievalChemistryEmptyBottleTempering01Craft
   craftTime: 3
-  iconOverride: MedievalChemistryEmptyBottle01
+  iconOverride: MedievalChemistryEmptyBottleTempering01
   stacks:
-    MedievalIronIngot: 2
-  result: MedievalChemistryEmptyBottle01
+    MedievalIronIngot: 1
+  result: MedievalChemistryEmptyBottleTempering01
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle02Craft
+  id: MedievalChemistryEmptyBottleTempering02Craft
   craftTime: 3
-  iconOverride: MedievalChemistryEmptyBottle02
+  iconOverride: MedievalChemistryEmptyBottleTempering02
   stacks:
-    MedievalIronIngot: 2
-  result: MedievalChemistryEmptyBottle02
+    MedievalIronIngot: 1
+  result: MedievalChemistryEmptyBottleTempering02
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle03Craft
-  iconOverride: MedievalChemistryEmptyBottle03
+  id: MedievalChemistryEmptyBottleTempering03Craft
+  iconOverride: MedievalChemistryEmptyBottleTempering03
   craftTime: 3
   stacks:
-    MedievalIronIngot: 2
-  result: MedievalChemistryEmptyBottle03
+    MedievalIronIngot: 1
+  result: MedievalChemistryEmptyBottleTempering03
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle04Craft
-  iconOverride: MedievalChemistryEmptyBottle04
+  id: MedievalChemistryEmptyBottleTempering04Craft
+  iconOverride: MedievalChemistryEmptyBottleTempering04
   craftTime: 3
   stacks:
-    MedievalIronIngot: 2
-  result: MedievalChemistryEmptyBottle04
+    MedievalIronIngot: 1
+  result: MedievalChemistryEmptyBottleTempering04
 
 - type: CP14Recipe
   id: MedievalKotel
