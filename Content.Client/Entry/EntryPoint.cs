@@ -160,6 +160,7 @@ namespace Content.Client.Entry
         {
             base.Shutdown();
             _titleWindowManager.Shutdown();
+            _clientFlavor.Shutdown(); // Imperial Medieval Flavor Images
         }
 
         public override void PostInit()

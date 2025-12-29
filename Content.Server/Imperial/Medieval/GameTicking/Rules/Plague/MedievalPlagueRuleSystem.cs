@@ -1,36 +1,40 @@
 using Content.Shared.GameTicking.Components;
-using Content.Shared.Mobs.Systems;
 using Content.Server.GameTicking.Rules;
 using System.Linq;
-using Content.Server.Chat.Systems;
 using Robust.Shared.Random;
-using Content.Server.MagicBarrier.Components;
-using Robust.Shared.Timing;
-using Robust.Shared.Map;
-using Content.Server.Imperial.Medieval.SkeletonInvasion;
 using Content.Shared.Humanoid;
-using Content.Server.Imperial.Medieval.Boss;
-using Robust.Shared.EntitySerialization.Systems;
-using Robust.Shared.EntitySerialization;
 using Content.Server.GameTicking;
-using Content.Server.Flash;
-using Robust.Server.Audio;
-using Robust.Shared.Audio;
-using Robust.Shared.Utility;
-using Content.Shared.Inventory;
-using Content.Shared.Storage;
-using Content.Server.Storage.EntitySystems;
-using Content.Server.Chat.Managers;
-using Content.Shared.Chat;
-using Robust.Shared.Player;
-using Content.Server.Ghost.Roles.Events;
 using Content.Server.Imperial.Medieval.Plague;
+using Content.Shared.Imperial.Medieval.Plague;
+using Robust.Server.GameObjects;
+using Content.Server.Spawners.Components;
 
 namespace Content.Server.Imperial.Medieval.GameTicking.Rules;
 
 public sealed class MedievalPlagueRuleSystem : GameRuleSystem<MedievalPlagueRuleComponent>
 {
     [Dependency] private readonly MedievalPlagueSystem _plague = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+
+    protected override void ActiveTick(EntityUid uid, MedievalPlagueRuleComponent component, GameRuleComponent gameRule, float frameTime)
+    {
+        base.ActiveTick(uid, component, gameRule, frameTime);
+
+        if (component.SentGhosts)
+            return;
+
+        var targets = EntityManager.AllEntities<SpawnPointComponent>();
+        if (targets.Count() <= 0)
+            return;
+
+        var entities = EntityManager.AllEntities<MedievalPlagueGhostComponent>();
+
+        foreach (var item in entities.ToList())
+            _transform.SetCoordinates(item.Owner, Transform(_random.Pick(targets).Owner).Coordinates);
+
+        component.SentGhosts = true;
+    }
 
     protected override void AppendRoundEndText(EntityUid uid, MedievalPlagueRuleComponent component, GameRuleComponent gameRule, ref RoundEndTextAppendEvent args)
     {

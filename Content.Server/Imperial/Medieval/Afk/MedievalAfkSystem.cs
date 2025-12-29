@@ -3,6 +3,7 @@ using Content.Server.Afk;
 using Content.Server.Afk.Events;
 using Content.Server.EUI;
 using Content.Server.GameTicking;
+using Content.Server.Imperial.Medieval.JoinQueue;
 using Content.Shared.CCVar;
 using Content.Shared.Imperial.Medieval.Afk;
 using Content.Shared.Imperial.Medieval.CCVar;
@@ -26,6 +27,7 @@ public sealed class MedievalAfkSystem : EntitySystem
     [Dependency] private readonly EuiManager _eui = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
     [Dependency] private readonly IServerNetManager _netManager = default!;
+    [Dependency] private readonly JoinQueueManager _joinQueueManager = default!;
 
     private float _checkDelay;
     private TimeSpan _checkTime;
@@ -83,6 +85,9 @@ public sealed class MedievalAfkSystem : EntitySystem
         foreach (var pSession in Filter.GetAllPlayers())
         {
             if (pSession.AttachedEntity != null)
+                continue;
+
+            if (_joinQueueManager.IsInQueue(pSession))
                 continue;
 
             if (_admin.IsAdmin(pSession, false))

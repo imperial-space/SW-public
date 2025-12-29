@@ -801,6 +801,7 @@
     actions:
     - MedievalMyrmexSpawnAction
     - MedievalMyrmexHealAction
+  - type: MedievalUnthrowable
 
 - type: entity
   name: myrmacrid
@@ -878,6 +879,7 @@
   - type: StealthOnMove
     passiveVisibilityRate: -0.3
     movementVisibilityRate: 0.7
+  - type: MedievalUnthrowable
 
 - type: entity
   name: myrmalisk
@@ -941,6 +943,7 @@
     standardArmorProto: MyrmexArmorOff
     activeArmorProto: MyrmexArmorOn
     activeArmorSpeedMultiplier: 0.4
+  - type: MedievalUnthrowable
 
 - type: entity
   name: myrmedon
@@ -1005,6 +1008,7 @@
   - type: StealthOnMove
     passiveVisibilityRate: -0.3
     movementVisibilityRate: 0.7
+  - type: MedievalUnthrowable
 
 - type: entity
   name: myrmelarva
@@ -1196,6 +1200,7 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MeatLaserImpact
+  - type: MedievalUnthrowable
 
 - type: entity
   id: BaseItemMyrmex

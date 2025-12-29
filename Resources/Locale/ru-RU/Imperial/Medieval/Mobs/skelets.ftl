@@ -58,9 +58,16 @@ ent-MedievalMobSkeletDagger = скелет с кинжалами
 ent-MedievalMobSkeletDaggerGhost = скелет с кинжалами
     .desc = Ловкий противник. Достаточно быстр чтобы догнать вас.
     .suffix = { "Средневековье, моб, роль призраков" }
+ent-MedievalMobSkeletWeakSpell = хилый скелет
+    .desc = Практически не представляет угрозы, можно отпинать даже кулаками
+ent-MedievalMobSkeletMeatSpell = мясной скелет
+    .desc = Чуть сильнее своего предыдущего собрата, но все еще хилый.
+ent-MedievalMobSkeletFighterSpell = скелет воин
+    .desc = Этот уже выглядит серьезно. Но 1 на 1 его еще можно победить.
 
 
 ghost-role-information-skelet-rules = Вы - скелет. Смерть жалким человечкам. Аве некромантам и чернокнижникам.
+ghost-role-information-skelet-hightier-rules = Вы - скелет. Смерть жалким человечкам. Аве некромантам и чернокнижникам. [color=red]Вам запрещенно покидать локацию в которой появились[/color]
 ghost-role-information-skelet-weak-name = Хилый скелет
 ghost-role-information-skelet-weak-description = Самый слабый представитель скелетов.
 ghost-role-information-skelet-meat-name = Мясной скелет

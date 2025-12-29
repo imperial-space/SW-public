@@ -109,12 +109,12 @@
   - type: Item
     size: Tiny
 
-- type: entity
-  id: MedievalDarkMageFlame
-  name: flame
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Mobs/dark_mage.rsi
-    layers:
-    - state: flame
-  - type: MedievalFollower
+# - type: entity
+#   id: MedievalDarkMageFlame
+#   name: flame
+#   components:
+#   - type: Sprite
+#     sprite: Imperial/Medieval/Mobs/dark_mage.rsi
+#     layers:
+#     - state: flame
+#   - type: MedievalFollower

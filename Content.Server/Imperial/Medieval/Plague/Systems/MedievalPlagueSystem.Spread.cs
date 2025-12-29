@@ -17,9 +17,9 @@ public sealed partial class MedievalPlagueSystem
     private Dictionary<string, float> _spreaders = new();
     private float _contactSpreadChance = 0f;
     private float _blockersEfficiency = 1f;
-    private float _minSmellLevel = 50f;
+    private float _minSmellLevel = 22f;
 
-    public ProtoId<ReagentPrototype> CurrentCure = "MedievalPlagueCure4";
+    public int CurrentCureResistance = 0;
 
     private Dictionary<BloodlettingResult, Dictionary<BloodlettingResult, float>> _bloodlettingProbabilities = new()
     {
@@ -72,6 +72,7 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<SetSpreaderChanceEvent>(OnSetSpreaderChance);
         SubscribeLocalEvent<SetPlagueBlockerModifierEvent>(OnSetBlockerMod);
         SubscribeLocalEvent<SetStrapHealResistanceEvent>(OnSetStrapResistance);
+        SubscribeLocalEvent<SetPlagueMinSmellLevelEvent>(OnSetBadSmellResistance);
         SubscribeLocalEvent<SetBloodlettingProbabilitiesEvent>(OnSetBloodlettingProb);
         SubscribeLocalEvent<SetPlagueCureEvent>(OnSetCure);
     }
@@ -223,9 +224,14 @@ public sealed partial class MedievalPlagueSystem
         _healItemMod = args.HealMod;
     }
 
+    private void OnSetBadSmellResistance(SetPlagueMinSmellLevelEvent args)
+    {
+        _minSmellLevel = args.Smell;
+    }
+
     private void OnSetCure(SetPlagueCureEvent args)
     {
-        CurrentCure = args.Reagent;
+        CurrentCureResistance = args.Resistance;
     }
 
     private void OnSetBloodlettingProb(SetBloodlettingProbabilitiesEvent args)

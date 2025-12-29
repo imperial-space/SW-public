@@ -2,6 +2,8 @@ using Content.Client.Imperial.Medieval.Factions.UI;
 using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Imperial.Medieval.Factions.Prototypes;
+using Content.Shared.Imperial.Medieval.IdentityManagement;
+using Content.Shared.Popups;
 using Content.Shared.StatusIcon;
 using Content.Shared.StatusIcon.Components;
 using Robust.Client.Player;
@@ -18,6 +20,9 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
     [Dependency] private readonly IGameTiming _time = default!;
     [Dependency] private readonly IPlayerManager _player = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedMedievalIdentitySystem _identity = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+
 
     public static Dictionary<FactionMemberGroup, Color> GroupColors = new()
     {
@@ -31,6 +36,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
 
     private ProtoId<FactionIconPrototype> _friendIcon = "FactionFriend";
     private ProtoId<FactionIconPrototype> _headIcon = "FactionHead";
+    private ProtoId<FactionIconPrototype> _enemyIcon = "FactionEnemy";
 
     public override void Initialize()
     {
@@ -68,21 +74,30 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
 
     private void OnGetStatusIcons(EntityUid uid, MedievalFactionMemberComponent comp, ref GetStatusIconsEvent args)
     {
-        if (uid == _player.LocalEntity)
-            return;
+        if (uid == _player.LocalEntity)// Юид это не мы
+             return;
 
-        if (!TryComp<MedievalFactionMemberComponent>(_player.LocalEntity, out var playerFaction))
+        if (!TryComp<MedievalFactionMemberComponent>(_player.LocalEntity, out var playerFaction)) // а он вообще из фракции?
             return;
 
         if (comp.Faction != playerFaction.Faction)
-            return;
-
-        if (Shared.IdentityManagement.Identity.Name(uid, EntityManager, _player.LocalEntity) != Name(uid))
-            return;
-
-        var iconId = comp.MenuAccess == FactionMenuAccess.Full ? _headIcon : _friendIcon;
-        args.StatusIcons.Add(_proto.Index(iconId));
+        {
+            if (IsRelationEnemy(playerFaction.Faction, comp.Faction))// если он из вражеской фракции и если он бил нашу фраку
+            {
+                if (_identity.IsIdentityMasked(uid) && !comp.AttackedFactions.Contains(playerFaction.Faction))
+                    return;
+                args.StatusIcons.Add(_proto.Index(_enemyIcon));
+            }
+        }
+        else
+        {
+            if (_identity.IsIdentityMasked(uid))
+                return;
+            var iconId = comp.MenuAccess == FactionMenuAccess.Full ? _headIcon : _friendIcon;
+            args.StatusIcons.Add(_proto.Index(iconId));
+        }
     }
+
 
     private void OnOpenOfferWindow(OpenOfferFactionRelationsEvent ev)
     {

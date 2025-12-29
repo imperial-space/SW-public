@@ -234,7 +234,7 @@
     cost: 2
     reputationForBuying: 0.1
   - productEntity: CreationsBook
-    cost: 15
+    cost: 10
     reputationForBuying: 0.5
   - productEntity: MedievalHolySalt
     cost: 25
@@ -251,6 +251,9 @@
   - productEntity: MedievalRecipeBook
     cost: 45
     reputationForBuying: 1.5
+  - productEntity: MedievalPinpointerCritical
+    cost: 80
+    reputationForBuying: 2
   - productEntity: CompactDefibrillator
     cost: 100
     reputationForBuying: 3.3
@@ -261,8 +264,9 @@
     cost: 100
     reputationForBuying: 3.3
   - productEntity: MedievalScrollBarrier
-    cost: 50
+    cost: 100
     reputationForBuying: 2
+    minReputation: 15
   - productEntity: Bible
     cost: 150
     reputationForBuying: 5
@@ -281,6 +285,18 @@
     minReputationPlace: 1
     minReputation: 10
     reputationForBuying: 41.7
+  - productEntity: MedievalIceDragonTablet
+    cost: 1600
+    reputationForBuying: 25.5
+  - productEntity: MedievalFireDragonTablet
+    cost: 1600
+    reputationForBuying: 25.5
+  - productEntity: MedievalAcidDragonTablet
+    cost: 1600
+    reputationForBuying: 25.5
+  - productEntity: MedievalThunderDragonTablet
+    cost: 1600
+    reputationForBuying: 25.5
   - productEntity: MedievalPaperOnValuableCargoLeg
     cost: 220
     reputationForBuying: 7.3
@@ -289,6 +305,21 @@
     cost: 220
     reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalScrollsHalberd
+    cost: 120
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsFalshion
+    cost: 100
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsDagger
+    cost: 100
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsBow
+    cost: 100
+    reputationForBuying: 1
+  - productEntity: MedievalScrollsCrossbow
+    cost: 150
+    reputationForBuying: 1
 
 - type: guildName
   id: WeaponGuild
@@ -352,6 +383,9 @@
   currency: Revent
   items:
   - productEntity: MedievalRepairStone
+    cost: 18
+    reputationForBuying: 0.6
+  - productEntity: MedievalShieldRepairKit
     cost: 18
     reputationForBuying: 0.6
   - productEntity: MedievalLockpick
@@ -900,6 +934,30 @@
   - productEntity: MedievalMopBucket
     cost: 15
     reputationForBuying: 0.5
+  - productEntity: MedievalChemistryEmptyBottle01
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottle02
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottle03
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottle04
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottleTempering01
+    cost: 20
+    reputationForBuying: 0.5
+  - productEntity: MedievalChemistryEmptyBottleTempering02
+    cost: 20
+    reputationForBuying: 0.5
+  - productEntity: MedievalChemistryEmptyBottleTempering03
+    cost: 20
+    reputationForBuying: 0.5
+  - productEntity: MedievalChemistryEmptyBottleTempering04
+    cost: 20
+    reputationForBuying: 0.5
   - productEntity: WheatSeeds
     cost: 10
     reputationForBuying: 0.3
@@ -952,6 +1010,10 @@
     cost: 220
     reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+  - productEntity: MedievalBloodlettingNeedle
+    cost: 10
+    reputationForBuying: 0.3
+
 
 - type: guildName
   id: ClothGuild
@@ -1468,10 +1530,16 @@
   - productEntity: MedievalMeltingPlaceCraft
     cost: 50
     reputationForBuying: 1.7
+  - productEntity: Medievalalchem_dispenserCraft
+    cost: 50
+    reputationForBuying: 1.7
   - productEntity: MedievalFoundryCraft
     cost: 50
     reputationForBuying: 1.7
   - productEntity: MedievalLeatherWorkingPlaceCraft
+    cost: 50
+    reputationForBuying: 1.7
+  - productEntity: MedievalClothWorkingPlaceCraft
     cost: 50
     reputationForBuying: 1.7
   - productEntity: MedievalWoodWorkerPlaceCraft
@@ -1479,6 +1547,9 @@
     reputationForBuying: 1.7
   - productEntity: MedievalKotel
     cost: 50
+    reputationForBuying: 1.7
+  - productEntity: MedievalWizardBlacksmithCraft
+    cost: 200
     reputationForBuying: 1.7
   - productEntity: MedievalWoodenFloorCraft
     cost: 10
@@ -1569,6 +1640,9 @@
     reputationForBuying: 1.7
   - productEntity: SmithWorkplaceCraft
     cost: 50
+    reputationForBuying: 1.7
+  - productEntity: MedievalSharpeningMachineCraft
+    cost: 220
     reputationForBuying: 1.7
   - productEntity: MedievalCatapultCraft
     cost: 500

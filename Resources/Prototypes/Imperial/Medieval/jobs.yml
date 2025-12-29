@@ -1547,12 +1547,63 @@
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
 
+# MEDIEVAL ARCHIVIST
+
+- type: startingGear
+  id: MedievalArchivistGear
+  equipment:
+    pocket1: MedievalRevent25
+    id: MedievalKeyArchivist
+    jumpsuit: MedievalClothingArchivist
+    head: MedievalClothingHeadArchivist
+
+- type: playTimeTracker
+  id: JobMedievalLegionArchivist
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalArchivist
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: archivist
+  jobName: job-name-Archivist-medieval
+
+- type: job
+  id: MedievalArchivist
+  name: job-name-archivist-medieval
+  description: job-description-archivist-medieval
+  playTimeTracker: JobMedievalArchivist
+  requirements:
+  - !type:OverallPlaytimeRequirement
+    time: 720
+  startingGear: MedievalArchivistGear
+  icon: "JobIconMedievalArchivist"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
+    - type: MedievalJobSpawn
+      spawnType: Default
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+
+- type: roleLoadout
+  id: JobMedievalArchivist
+  groups:
+  - MedievalBackpack
+  - MedievalShoes
+  - MedievalTrinkets
+  - MedievalGloves
+
 # MEDIEVAL CHAPLAIN
 
 - type: startingGear
   id: MedievalChaplainGear
   equipment:
     pocket1: MedievalRevent10
+    pocket2: MedievalPinpointerCritical
     #belt: Bible
 
 - type: playTimeTracker
@@ -1801,6 +1852,9 @@
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective400800
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -2303,6 +2357,9 @@
   description: job-description-legionLegat-medieval
   playTimeTracker: JobMedievalLegionLegat
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -2346,13 +2403,83 @@
   - MedievalTrinkets
   - MedievalGlovesWithIron
 
+# MEDIEVAL LEGION TREASURER
+
+- type: startingGear
+  id: MedievalLegionTreasurerGear
+  equipment:
+    pocket1: MedievalRevent25
+    pocket2: MedievalKeyTreasurer
+    jumpsuit: MedievalClothingTreasurer
+    head: MedievalClothingHeadTreasurer
+    neck: MedievalClothingNeckCloakClanEagle
+    id: MedievalLeatherKey
+
+- type: playTimeTracker
+  id: JobMedievalLegionTreasurer
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalLegionTreasurer
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
+    state: treasurer
+  jobName: job-name-legionTreasurer-medieval
+
+- type: job
+  id: MedievalLegionTreasurer
+  name: job-name-legionTreasurer-medieval
+  description: job-description-legionTreasurer-medieval
+  playTimeTracker: JobMedievalLegionTreasurer
+  requirements:
+  - !type:SpeciesRequirement
+    species:
+    - Skeleton
+    inverted: true
+  - !type:DepartmentTimeRequirement
+    department: Traders
+    time: 14400 # 4 hours on Traders
+  - !type:DepartmentTimeRequirement
+    department: Legion
+    time: 28800 # 8 hours on Legion
+  startingGear: MedievalLegionTreasurerGear
+  icon: "JobIconMedievalLegionTreasurer"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-leg
+    - type: MedievalFactionMember
+      faction: Legion
+      factionMenuAction: LegionFactionMenuAction
+      menuAccess: Full
+      priority: 1
+    - type: MedievalJobSpawn
+      spawnType: Legion
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective400800
+    - type: MedievalPasportPerson
+      personJob: "[color=cyan]Казначей легиона[/color]"
+      pasport: MedievalPasportTreasurer
+      jobPrefix: "[КазЛ]"
+
+- type: roleLoadout
+  id: JobMedievalLegionTreasurer
+  groups:
+  - MedievalBackpack
+  - MedievalShoes
+  - MedievalBeltLegion
+  - MedievalTrinkets
+  - MedievalGloves
+
 # MEDIEVAL LegionMAG
 
 - type: startingGear
   id: MedievalLegionMagGear
   equipment:
     pocket1: MedievalCommsCrystallLeg
-    pocket2: MedievalKeyCargo
+    #pocket2: MedievalKeyCargo
     #back: MedievalClothingBackpackSatchelLeather
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetCharmerLegion
@@ -2380,6 +2507,9 @@
   description: job-description-legionMag-medieval
   playTimeTracker: JobMedievalLegionMag
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -2440,6 +2570,7 @@
   id: MedievalLegionAlchemicGear
   equipment:
     #pocket1: MedievalCommsCrystallLeg
+    pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanEagle
     belt: MedievalAlchemicBelt
@@ -2878,6 +3009,9 @@
   description: job-description-InsurgencyLegat-medieval
   playTimeTracker: JobMedievalInsurgencyLegat
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -2927,7 +3061,7 @@
   id: MedievalInsurgencyMagGear
   equipment:
     pocket1: MedievalCommsCrystallIns
-    pocket2: MedievalGuardKey
+    #pocket2: MedievalGuardKey
     #back: MedievalClothingBackpackSatchelLeather
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth5
     head: MedievalClothingHeadHelmetCharmerIns
@@ -2955,6 +3089,9 @@
   description: job-description-InsurgencyMag-medieval
   playTimeTracker: JobMedievalInsurgencyMag
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -3013,6 +3150,7 @@
   id: MedievalInsurgencyAlchemicGear
   equipment:
     #pocket1: MedievalCommsCrystallIns
+    pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanFox
     belt: MedievalAlchemicBelt
@@ -3315,6 +3453,9 @@
   description: job-description-banditLeader-medieval
   playTimeTracker: JobMedievalBanditLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:DepartmentTimeRequirement
     department: Band
     time: 50400 #Imperial role timers
@@ -3577,7 +3718,10 @@
   description: Руководите шайкой разбойников, богайтейте.
   playTimeTracker: JobMedievalKayotLeader
   requirements:
-    - !type:DepartmentTimeRequirement
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
+  - !type:DepartmentTimeRequirement
       department: Kayot
       time: 50400 #Imperial role timers
   startingGear: MedievalKayotLeaderGear
@@ -3709,6 +3853,9 @@
   description: job-description-MercLeader-medieval
   playTimeTracker: JobMedievalMercLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -3789,6 +3936,9 @@
   description: job-description-collegiumRecruit-medieval
   playTimeTracker: JobMedievalCollegiumRecruit
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -3865,6 +4015,9 @@
   description: job-description-collegiumCommon-medieval
   playTimeTracker: JobMedievalCollegiumCommon
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -3942,6 +4095,9 @@
   description: job-description-collegiumLeader-medieval
   playTimeTracker: JobMedievalCollegiumLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 16
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -4092,6 +4248,9 @@
   description: job-description-TribeCommon-medieval
   playTimeTracker: JobMedievalTribeCommon
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 12
   - !type:SpeciesRequirement
     species:
     - Orc
@@ -4168,6 +4327,9 @@
   description: job-description-TribeLeader-medieval
   playTimeTracker: JobMedievalTribeLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:DepartmentTimeRequirement
     department: Tribe
     time: 36000 #Imperial role timers
@@ -4551,6 +4713,9 @@
   description: job-descriptionminerLeader-medieval
   playTimeTracker: JobMedievalMinerLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -4602,6 +4767,7 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth66
     pocket1: MedievalHammerBlacksmith
+    pocket2: MedievalRevent50
     #pocket2: MedievalCommsCrystallLeg
     #neck: MedievalClothingNeckCloakClanEagle
     gloves: MedievalGlovesBlacksmith
@@ -4661,6 +4827,7 @@
   equipment:
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth43
     pocket1: MedievalHammerBlacksmith
+    pocket2: MedievalRevent50
     #pocket2: MedievalCommsCrystallIns
     #neck: MedievalClothingNeckCloakClanFox
     id: MedievalKeyRebelBlack
@@ -4932,6 +5099,9 @@
   description: job-descriptioncultLeader-medieval
   playTimeTracker: JobMedievalCultLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton
@@ -5101,6 +5271,9 @@
   description: job-descriptionvillagerLeader-medieval
   playTimeTracker: JobMedievalVillagerLeader
   requirements:
+  - !type:SkillRequirement
+    skill: Intelligence
+    requiredLevel: 6
   - !type:SpeciesRequirement
     species:
     - Skeleton

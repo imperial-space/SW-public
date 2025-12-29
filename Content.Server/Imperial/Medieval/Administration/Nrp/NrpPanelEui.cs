@@ -69,7 +69,7 @@ public sealed class NrpPanelEui : BaseEui
                 SendMessage(new NrpMessagesResponse(messages));
                 break;
             case ResolveNrpMessageMsg resolve:
-                if (!_nrpSystem.ContainsMessage(resolve.Message))
+                if (!_nrpSystem.TryRemoveMessage(resolve.Message))
                 {
                     SendMessage(new RemoveNrpMessageMsg(resolve.Message));
                     return;

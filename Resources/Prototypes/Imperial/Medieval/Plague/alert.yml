@@ -20,7 +20,7 @@
     layers:
     - map: [ "enum.AlertVisualLayers.Base" ]
     - map: [ "1" ]
-      offset: 0.25, 0
+      offset: 0.5, 0
     - map: [ "10" ]
-      offset: 0.125, 0
+      offset: 0.25, 0
     - map: [ "100" ]

@@ -204,6 +204,33 @@
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_16.rsi
   - type: Insulated
 
+# Treasurer clothing
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingTreasurer
+  name: Treasurer Uniform
+  description: Clothing for the Legion treasurer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/treasurer_clothing.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Misc/treasurer_clothing.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingArchivist
+  name: Archivist Uniform
+  description: Clothing for the Archivist
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/archivist_clothing.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Misc/archivist_clothing.rsi
+  - type: Item
+    size: Normal
+
 - type: entity
   parent: ClothingUniformBase
   id: MedievalClothingUniformJumpsuitShitCloth17
@@ -924,6 +951,86 @@
   - type: Appearance
   - type: Item
     size: Ginormous
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullArrowIron
+  suffix: Full, IronArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrow
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullArrowSteel
+  suffix: Full, SteelArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowSteel
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullBoltSteel
+  suffix: Full, SteelBolt
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalBoltSteel
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullBoltIron
+  suffix: Full, IronBolt
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalBolt
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullArrowIron
+  suffix: Full, IronArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrow
+      amount: 21
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullArrowSteel
+  suffix: Full, SteelArrow
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowSteel
+      amount: 21
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullBoltSteel
+  suffix: Full, SteelBolt
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalBoltSteel
+      amount: 21
+
+- type: entity
+  parent: MedievalQuiverSteel
+  id: MedievalQuiverSteelFullBoltIron
+  suffix: Full, IronBolt
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalBolt
+      amount: 21
 
 - type: entity
   parent: MedievalQuiver
@@ -2036,6 +2143,18 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth82
+  name: песочная одежда война
+  description: Одежда предпочитаемая бандитами. С ней удобно прятаться в песках.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_82.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_82.rsi
+  - type: Insulated
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
   id: MedievalClothingUniformJumpsuitShitCloth72
   name: MedievalClothingUniformJumpsuitShitCloth72
   description: MedievalClothingUniformJumpsuitShitCloth72
@@ -2223,7 +2342,7 @@
     storedRotation: -90
 
 - type: entity
-  parent: ClothingEyesBase
+  parent: ClothingEyesGlasses
   id: MedievalFichtyGlasses
   name: glasses
   description: cool glasses
@@ -2233,6 +2352,22 @@
     state: icon
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Eyes/fichty.rsi
+    slots: eyes
+  - type: Item
+    size: Small
+    storedRotation: -90
+
+- type: entity
+  parent: ClothingEyesGlasses
+  id: MedievalDeimonGlasses
+  name: glasses
+  description: cool glasses
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Eyes/deimon.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Eyes/deimon.rsi
     slots: eyes
   - type: Item
     size: Small
@@ -2306,6 +2441,67 @@
     sprite: Imperial/Medieval/Clothing/Shoes/artur_boots.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/artur_boots.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsGlovesClothDeimon
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/deimon_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/deimon_gloves.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalShoesChamberDeimon
+  name: MedievalShoesChamberDeimon
+  description: MedievalShoesChamberDeimon
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/deimon_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/deimon_boots.rsi
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth81
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_81.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_81.rsi
+
+- type: entity
+  parent: MedievalClothingHandsGlovesCloth
+  id: MedievalClothingHandsGlovesClothApolla
+  name: Cloth Gloves
+  description: Cloth Gloves
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/apolla_gloves.rsi
+    layers:
+    - state: icon
+  - type: Item
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/apolla_gloves.rsi
+
+- type: entity
+  parent: MedievalShoesChamber
+  id: MedievalShoesChamberApolla
+  name: MedievalShoesChamberApolla
+  description: MedievalShoesChamberApolla
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/apolla_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/apolla_boots.rsi
 
 - type: entity
   parent: MedievalClothingHandsGlovesCloth

@@ -30,11 +30,11 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         SubscribeLocalEvent<LycantropyComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
         SubscribeLocalEvent<LycantropyComponent, GetStatusIconsEvent>(OnGetLycantropyIcon);
 
-        SubscribeLocalEvent<WerewolfBloodFeelComponent, ComponentInit>(AddOverlay);
-        SubscribeLocalEvent<WerewolfBloodFeelComponent, ComponentShutdown>(RemoveOverlay);
+        SubscribeLocalEvent<WerewolfBloodFeelComponent, ComponentInit>(OnBloodFeelInit);
+        SubscribeLocalEvent<WerewolfBloodFeelComponent, ComponentShutdown>(OnBloodFeelShutdown);
 
-        SubscribeLocalEvent<WerewolfBloodFeelComponent, LocalPlayerAttachedEvent>(AddOverlay);
-        SubscribeLocalEvent<WerewolfBloodFeelComponent, LocalPlayerDetachedEvent>(RemoveOverlay);
+        SubscribeLocalEvent<WerewolfBloodFeelComponent, LocalPlayerAttachedEvent>(OnLocalPlayerAttached);
+        SubscribeLocalEvent<WerewolfBloodFeelComponent, LocalPlayerDetachedEvent>(OnLocalPlayerDetached);
 
         _overlay = new();
     }
@@ -79,15 +79,25 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
         args.StatusIcons.Add(proto);
     }
 
-    private void AddOverlay(EntityUid uid, WerewolfBloodFeelComponent component, EntityEventArgs args)
+    private void OnBloodFeelInit(EntityUid uid, WerewolfBloodFeelComponent component, ComponentInit args)
     {
         if (_player.LocalEntity == uid)
             _overlayMan.AddOverlay(_overlay);
     }
 
-    private void RemoveOverlay(EntityUid uid, WerewolfBloodFeelComponent component, EntityEventArgs args)
+    private void OnBloodFeelShutdown(EntityUid uid, WerewolfBloodFeelComponent component, ComponentShutdown args)
     {
         if (_player.LocalEntity == uid)
             _overlayMan.RemoveOverlay(_overlay);
+    }
+
+    private void OnLocalPlayerAttached(EntityUid uid, WerewolfBloodFeelComponent component, LocalPlayerAttachedEvent args)
+    {
+        _overlayMan.AddOverlay(_overlay);
+    }
+
+    private void OnLocalPlayerDetached(EntityUid uid, WerewolfBloodFeelComponent component, LocalPlayerDetachedEvent args)
+    {
+        _overlayMan.RemoveOverlay(_overlay);
     }
 }
