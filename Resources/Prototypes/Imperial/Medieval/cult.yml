@@ -328,8 +328,8 @@
     damage:
       types:
         Slash: 14
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -849,8 +849,8 @@
     damage:
       types:
         Slash: 21
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -933,8 +933,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeThrowOnHit
     distance: 2.5
     speed: 5
@@ -974,8 +974,8 @@
     damage:
       types:
         Slash: 5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
