@@ -66,6 +66,7 @@ namespace Content.Server.Imperial.Medieval.Flavors
         }
         public async void FinishLoad(ICommonSession session, MsgPreferencesAndSettings prefsMsg)
         {
+            return; // TODO - PASHA SUKA CHINI
             var images = new Dictionary<int, byte[]>();
             var playerCachedImages = new Dictionary<string, byte[]>();
             foreach (var (key, _) in prefsMsg.Preferences.Characters)
