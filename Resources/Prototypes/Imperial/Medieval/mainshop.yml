@@ -2789,6 +2789,38 @@
   - MedievalPlants
 
 - type: listing
+  id: MdvShopChemistryEmptyBottle01
+  productEntity: MedievalChemistryEmptyBottle01
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle02
+  productEntity: MedievalChemistryEmptyBottle02
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle03
+  productEntity: MedievalChemistryEmptyBottle03
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle04
+  productEntity: MedievalChemistryEmptyBottle04
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
   id: MdvShopWheatSeeds
   productEntity: WheatSeeds
   cost:

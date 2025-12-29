@@ -929,6 +929,18 @@
   - productEntity: MedievalMopBucket
     cost: 15
     reputationForBuying: 0.5
+  - productEntity: MedievalChemistryEmptyBottle01
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottle02
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottle03
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottle04
+    cost: 5
+    reputationForBuying: 0.15
   - productEntity: WheatSeeds
     cost: 10
     reputationForBuying: 0.3

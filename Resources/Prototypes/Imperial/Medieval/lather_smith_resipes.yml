@@ -935,36 +935,36 @@
   result: WorkpieceSyringe
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle01
+  id: MedievalChemistryEmptyBottle01Craft
   craftTime: 3
   iconOverride: MedievalChemistryEmptyBottle01
   stacks:
     MedievalIronIngot: 2
-  result: WorkpieceMedievalChemistryEmptyBottle01
+  result: MedievalChemistryEmptyBottle01
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle02
+  id: MedievalChemistryEmptyBottle02Craft
   craftTime: 3
   iconOverride: MedievalChemistryEmptyBottle02
   stacks:
     MedievalIronIngot: 2
-  result: WorkpieceMedievalChemistryEmptyBottle02
+  result: MedievalChemistryEmptyBottle02
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle03
+  id: MedievalChemistryEmptyBottle03Craft
   iconOverride: MedievalChemistryEmptyBottle03
   craftTime: 3
   stacks:
     MedievalIronIngot: 2
-  result: WorkpieceMedievalChemistryEmptyBottle03
+  result: MedievalChemistryEmptyBottle03
 
 - type: CP14Recipe
-  id: MedievalChemistryEmptyBottle04
+  id: MedievalChemistryEmptyBottle04Craft
   iconOverride: MedievalChemistryEmptyBottle04
   craftTime: 3
   stacks:
     MedievalIronIngot: 2
-  result: WorkpieceMedievalChemistryEmptyBottle04
+  result: MedievalChemistryEmptyBottle04
 
 - type: CP14Recipe
   id: MedievalKotel

@@ -2381,6 +2381,38 @@
   - MedievalPlantsDemo
 
 - type: listing
+  id: DemoMdvShopChemistryEmptyBottle01
+  productEntity: MedievalChemistryEmptyBottle01
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottle02
+  productEntity: MedievalChemistryEmptyBottle02
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottle03
+  productEntity: MedievalChemistryEmptyBottle03
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottle04
+  productEntity: MedievalChemistryEmptyBottle04
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
   id: DemoMdvShopWheatSeeds
   productEntity: WheatSeeds
   cost:
