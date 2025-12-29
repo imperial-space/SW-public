@@ -2121,15 +2121,22 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-  - type: FullContainer
-    fullable:
+  - type: StorageFill
+    contents:
       - id: MedievalDaggerT3
+        prob: 0.2
       - id: MedievalWoodenSword
+        prob: 0.2
       - id: MedievalMaceT3HeavyBone
+        prob: 0.2
       - id: BaseBallBat
+        prob: 0.2
       - id: MedievalHatchet
+        prob: 0.2
       - id: KitchenKnife
+        prob: 0.2
       - id: MedievalShortSword
+        prob: 0.2
 
 
 - type: entity
