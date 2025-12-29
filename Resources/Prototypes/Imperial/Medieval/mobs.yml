@@ -1499,7 +1499,7 @@
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-cobold-name
-    description: ghost-role-information-fire-description
+    description: ghost-role-information-murlok-description
     rules: Вы - фамильяр. Служите тому, кто вас призвал.
   - type: MobThresholds
     thresholds:
@@ -1638,7 +1638,7 @@
     makeSentient: true
     name: ghost-role-information-fire-name
     description: ghost-role-information-fire-description
-    rules: Вы - фамильяр. Служите тому, кто вас призвал.
+    rules: Вы - фамильяр. Служите тому, кто вас призвал. Лкм - удар, пкм - запуск магической искры.
   # - type: Item
   - type: InteractionOutline
   - type: Clickable
@@ -1791,8 +1791,8 @@
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-pnya-name
-    description: ghost-role-information-fire-description
-    rules: Вы - фамильяр. Служите тому, кто вас призвал.
+    description: ghost-role-information-pnya-description
+    rules: Вы - фамильяр. Служите тому, кто вас призвал. Лкм - удар, пкм - запуск исцеляющего снаряда.
   # - type: Item
   - type: IgniteOnMeleeHit
   - type: Destructible
@@ -1900,8 +1900,8 @@
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-slime-name
-    description: ghost-role-information-fire-description
-    rules: Вы - фамильяр. Служите тому, кто вас призвал
+    description: ghost-role-information-slime-description
+    rules: Вы - фамильяр. Служите тому, кто вас призвал.
   - type: HTN
     rootTask:
       task: SimpleHostileCompound
