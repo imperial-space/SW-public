@@ -31,8 +31,8 @@ namespace Content.Client.Imperial.Medieval.Flavors
         {
             _sawmill = _log.GetSawmill("client_flavor_manager");
             _netManager.RegisterNetMessage<FlavorImagesMsg>(ImagesReceived);
-            _netManager.RegisterNetMessage<MsgUpdateFlavorImage>();
-            _netManager.RegisterNetMessage<UpdateFlavorCacheMsg>(CacheUpdate);
+            // _netManager.RegisterNetMessage<MsgUpdateFlavorImage>(); // TODO - PASHA SUKA CHINI
+            //_netManager.RegisterNetMessage<UpdateFlavorCacheMsg>(CacheUpdate); // TODO - PASHA SUKA CHINI
             _netManager.RegisterNetMessage<OpenFlavorWindowMsg>(OpenFlavorWindow);
 
             _baseClient.RunLevelChanged += BaseClientOnRunLevelChanged;
