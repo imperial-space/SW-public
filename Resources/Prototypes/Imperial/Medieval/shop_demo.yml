@@ -299,8 +299,24 @@
   - MedievalBuildDemo
 
 - type: listing
+  id: DemoMdvShopMedievalWizardBlacksmithCraft
+  productEntity: MedievalWizardBlacksmithCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
   id: DemoMdvShopMedievalMeltingPlaceCraft
   productEntity: MedievalMeltingPlaceCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalalchem_dispenserCraft
+  productEntity: Medievalalchem_dispenserCraft
   cost:
     UnknownMedieval: 1
   categories:
@@ -567,6 +583,22 @@
 - type: listing
   id: DemoMdvShopSmithWorkplaceCraft
   productEntity: SmithWorkplaceCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalSharpeningMachineCraft
+  productEntity: MedievalSharpeningMachineCraft
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBuildDemo
+
+- type: listing
+  id: DemoMdvShopMedievalClothWorkingPlaceCraft
+  productEntity: MedievalClothWorkingPlaceCraft
   cost:
     UnknownMedieval: 1
   categories:
@@ -2093,6 +2125,14 @@
   - MedievalMiscDemo
 
 - type: listing
+  id: DemoMdvShopMedievalShieldRepairKit
+  productEntity: MedievalShieldRepairKit
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
   id: DemoCarcBoxClassic
   productEntity: CarcBoxClassic
   cost:
@@ -2341,6 +2381,70 @@
   - MedievalPlantsDemo
 
 - type: listing
+  id: DemoMdvShopChemistryEmptyBottle01
+  productEntity: MedievalChemistryEmptyBottle01
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottle02
+  productEntity: MedievalChemistryEmptyBottle02
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottle03
+  productEntity: MedievalChemistryEmptyBottle03
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottle04
+  productEntity: MedievalChemistryEmptyBottle04
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottleTempering01
+  productEntity: MedievalChemistryEmptyBottleTempering01
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottleTempering02
+  productEntity: MedievalChemistryEmptyBottleTempering02
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottleTempering03
+  productEntity: MedievalChemistryEmptyBottleTempering03
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
+  id: DemoMdvShopChemistryEmptyBottleTempering04
+  productEntity: MedievalChemistryEmptyBottleTempering04
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalPlantsDemo
+
+- type: listing
   id: DemoMdvShopWheatSeeds
   productEntity: WheatSeeds
   cost:
@@ -2431,6 +2535,46 @@
 - type: listing
   id: DemoMdvShopMedaljonAntiMana
   productEntity: MedaljonAntiMana
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsHalberd
+  productEntity: MedievalScrollsHalberd
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsFalshion
+  productEntity: MedievalScrollsFalshion
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsDagger
+  productEntity: MedievalScrollsDagger
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsBow
+  productEntity: MedievalScrollsBow
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMagicDemo
+
+- type: listing
+  id: DemoMdvShopMedievalScrollsCrossbow
+  productEntity: MedievalScrollsCrossbow
   cost:
     UnknownMedieval: 1
   categories:

@@ -10,8 +10,8 @@ public sealed class NrpMessagesRequest : EuiMessageBase;
 [Serializable, NetSerializable]
 public sealed class NrpMessagesResponse : EuiMessageBase
 {
-    public List<NrpMessage> Messages { get; }
-    public NrpMessagesResponse(List<NrpMessage> messages)
+    public HashSet<NrpMessage> Messages { get; }
+    public NrpMessagesResponse(HashSet<NrpMessage> messages)
     {
         Messages = messages;
     }

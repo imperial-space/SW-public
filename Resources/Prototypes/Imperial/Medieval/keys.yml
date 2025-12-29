@@ -806,6 +806,32 @@
 - type: playTimeTracker
   id: Medieval0
 
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyTreasurer
+  name: legion treasurer key
+  description: legion treasurer key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: farmer
+  - type: Key
+    accesses:
+    - LegionTreasury
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyArchivist
+  name: archivist key
+  description: Archivist key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: archivist
+  - type: Key
+    accesses:
+    - Archivist
+
 - type: playTimeTracker
   id: Medieval1
 

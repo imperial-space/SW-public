@@ -596,6 +596,7 @@
   - type: IngestionBlocker
     enabled: false
   - type: IdentityBlocker
+    enabled: false
   - type: Armor
     modifiers:
       coefficients:
@@ -661,6 +662,7 @@
   - type: IngestionBlocker
     enabled: false
   - type: IdentityBlocker
+    enabled: false
   - type: Armor
     modifiers:
       coefficients:
@@ -767,6 +769,105 @@
     sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/greenknight_charmer.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCollegiumPurpleHat
+  id: MedievalClothingHeadHelmeCollegiumPurpleHatDeimon
+  name: Collegium White Hat.
+  description: The white magic hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/deimon_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/deimon_hat.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightDeimon
+  name: MedievalClothingHeadHelmetCharmerLightDeimon
+  description: MedievalClothingHeadHelmetCharmerLightDeimon
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/deimon_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/deimon_hat.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakDeimon
+  name: MedievalClothingHeadHelmetCharmerWeakDeimon
+  description: MedievalClothingHeadHelmetCharmerWeakDeimon
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/deimon_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/deimon_hat.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadHelmetCharmerDeimon
+  name: MedievalClothingHeadHelmetCharmerDeimon
+  description: MedievalClothingHeadHelmetCharmerDeimon
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/deimon_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/deimon_hat.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCollegiumPurpleHat
+  id: MedievalClothingHeadHelmeCollegiumPurpleHatApolla
+  name: Collegium White Hat.
+  description: The white magic hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/apolla_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/apolla_head.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerLightApolla
+  name: MedievalClothingHeadHelmetCharmerLightApolla
+  description: MedievalClothingHeadHelmetCharmerLightApolla
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/apolla_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/apolla_head.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakApolla
+  name: MedievalClothingHeadHelmetCharmerWeakApolla
+  description: MedievalClothingHeadHelmetCharmerWeakApolla
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/apolla_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/apolla_head.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmer
+  id: MedievalClothingHeadHelmetCharmerApolla
+  name: MedievalClothingHeadHelmetCharmerApolla
+  description: MedievalClothingHeadHelmetCharmerApolla
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/apolla_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/apolla_head.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerWeak
+  id: MedievalClothingHeadHelmetCharmerWeakFichty
+  name: MedievalClothingHeadHelmetCharmerWeakFichty
+  description: MedievalClothingHeadHelmetCharmerWeakFichty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/fichty_charmer.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/fichty_charmer.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerLight
@@ -1634,6 +1735,17 @@
     sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetZablik
+  name: MedievalClothingHeadHelmetZablik
+  description: MedievalClothingHeadHelmetZablik
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/zablik_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/zablik_head.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader

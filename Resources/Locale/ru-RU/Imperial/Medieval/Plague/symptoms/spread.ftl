@@ -43,8 +43,15 @@ plague-animal-spread-1-desc = Животные начинают распрост
 plague-animal-spread-2-name = Чумные животные II
 plague-animal-spread-2-desc = Животные начинают сильнее распространять чуму.
 
-plague-reroll-cure-name = Лекарство
-plague-reroll-cure-desc = Меняет зелье, излечивающее от болезни, на другое.
+plague-cure-resistance-1-name = Лекарство I
+plague-cure-resistance-1-desc = Слабые зелья теряют всякий эффект против чумы.
+
+plague-cure-resistance-2-name = Лекарство II
+plague-cure-resistance-2-desc = Даже хорошие зелья теряют эффект против чумы.
+
+plague-cure-resistance-2-name = Лекарство III
+plague-cure-resistance-2-desc = Только лучшее из лучших зелий станет способно противостоять болезни.
+
 
 plague-low-bloodletting-eff-1-name = Незаметность I
 plague-low-bloodletting-eff-1-desc = Кровопускание становится менее точным и чаще показывает ложные результаты.

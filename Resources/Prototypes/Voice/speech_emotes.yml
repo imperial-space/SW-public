@@ -39,6 +39,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-laugh"]
   chatTriggers:
     - смеётся # Imperial rus replace @Ser1-1y
@@ -70,6 +71,7 @@
     - Vocal
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-honk"]
   chatTriggers:
     - honk
@@ -88,6 +90,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-sigh"]
   chatTriggers:
     - вздыхает # Imperial rus replace @Ser1-1y
@@ -106,6 +109,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-whistle"]
   chatTriggers:
     - свистит # Imperial rus replace @Ser1-1y
@@ -124,6 +128,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-crying"]
   chatTriggers:
     - плачет # Imperial rus replace @Ser1-1y
@@ -148,6 +153,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-squish"]
   chatTriggers:
     - squish
@@ -166,6 +172,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-chitter"]
   chatTriggers:
    - chitter
@@ -184,6 +191,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-squeak"]
   chatTriggers:
    - squeak
@@ -310,6 +318,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-clap"]
   chatTriggers:
     - хлопает # Imperial rus replace @Ser1-1y
@@ -328,6 +337,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: [ "chat-emote-msg-clap-single" ]
   chatTriggers:
     - хлопает один раз # Imperial rus replace @Ser1-1y
@@ -348,6 +358,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-snap"]
   chatTriggers:
     - щёлкает пальцами # Imperial rus replace @Ser1-1y
@@ -401,6 +412,7 @@
   blacklist:
     tags:
     - SiliconEmotes
+    - Animal # imperial medieval "animal tag"
   chatMessages: ["chat-emote-msg-salute"]
   chatTriggers:
     - салютует # Imperial rus replace @Ser1-1y

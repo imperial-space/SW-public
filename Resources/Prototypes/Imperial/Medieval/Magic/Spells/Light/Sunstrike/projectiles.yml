@@ -28,7 +28,7 @@
   - type: TimedDespawn
     lifetime: 7
   - type: ProjectileCursorFollower
-    maxLinearVelocityIntensy: 1.7
+    maxLinearVelocityIntensy: 2.6
   - type: DelayedSpawn
     proto: MedievalSunstrikeMiddle
     delay: 1
@@ -95,7 +95,7 @@
     - state: senior-spot
       shader: unshaded
   - type: ProjectileCursorFollower
-    maxLinearVelocityIntensy: 2.3
+    maxLinearVelocityIntensy: 3.4
   - type: DelayedSpawn
     proto: MedievalSunstrikeSenior
     delay: 1

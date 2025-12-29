@@ -9,7 +9,6 @@
     selectionTime: PrePlayerSpawn
     definitions:
     - prefRoles: [ PlagueGhost ]
-      spawnerPrototype: SpawnPointPlagueGhost
       entityPrototype: MedievalMobPlagueGhost
       min: 4
       max: 6

@@ -7,5 +7,5 @@ namespace Content.Server.Imperial.Medieval.Plague;
 public sealed partial class SetPlagueCureEvent : EntityEventArgs
 {
     [DataField(required: true)]
-    public string Reagent = "";
+    public int Resistance = 0;
 }

@@ -938,6 +938,8 @@
     - MedievalMopItem
     - MedievalMopBucket
     - MedievalKnut
+    - MedievalGoldCup
+    - MedievalSilverCup
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -983,6 +985,7 @@
     - MedievalSteelIngot10
     - MedievalGoldOre
     - MedievalGoldOre10
+    - MedievalStoneBrick
     - EbonitMedieval
     - EbonitMedieval10
     - ForstoneMedieval
@@ -1045,6 +1048,16 @@
     - MedievalReliefStoneWeakCraft
     - MedievalReliefStoneStrongCraft
     - MedievalAntiGravitationStoneCraft
+    - MedievalDragonQuantEssence
+    - MedievalScrollsHalberdCraft
+    - MedievalScrollsFalshionCraft
+    - MedievalScrollsDaggerCraft
+    - MedievalScrollsBowCraft
+    - MedievalScrollsCrossbowCraft
+    - MedievalScrollsFireCraft
+    - MedievalScrollsPnyaCraft
+    - MedievalScrollsKoboldCraft
+    - MedievalScrollsPetSlimeCraft
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1171,6 +1184,7 @@
     - MedievalPickaxeForStone
     - MedievalPickaxeEbonit
     - MedievalRepairStone
+    - MedievalShieldRepairKit
     - MedievalHoe
     - MedievalScythe
     - MedievalClippers
@@ -1182,17 +1196,40 @@
     - MedievalKeyStorage
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
+    - MedievalStoneWallCraft
+    - MedievalStoneLoopHoleCraft
     - MedievalWeaponTurretNanoTrasenCraft
-    - MedievalChemistryEmptyBottle01
-    - MedievalChemistryEmptyBottle02
-    - MedievalChemistryEmptyBottle03
-    - MedievalChemistryEmptyBottle04
+    - MedievalChemistryEmptyBottleTempering01Craft
+    - MedievalChemistryEmptyBottleTempering02Craft
+    - MedievalChemistryEmptyBottleTempering03Craft
+    - MedievalChemistryEmptyBottleTempering04Craft
     - MedievalKotel
     - Syringe
     - MedievalHorseLeatherArmor
     - MedievalHorseChainMailArmor
     - MedievalHorseUpIronArmor
     - MedievalHorseHorseshoe
+    - MedievalClothingHeadHelmetDragonBoneIce
+    - MedievalClothingOuterArmorDragonBoneIce
+    - MedievalDragonBoneGlovesIce
+    - MedievalClothingFeetDragonBoneIce
+    - MedievalClothingHeadHelmetDragonBoneFire
+    - MedievalClothingOuterArmorDragonBoneFire
+    - MedievalDragonBoneGlovesFire
+    - MedievalClothingFeetDragonBoneFire
+    - MedievalClothingHeadHelmetDragonBoneAcid
+    - MedievalClothingOuterArmorDragonBoneAcid
+    - MedievalDragonBoneGlovesAcid
+    - MedievalClothingFeetDragonBoneAcid
+    - MedievalClothingHeadHelmetDragonBoneThunder
+    - MedievalClothingOuterArmorDragonBoneThunder
+    - MedievalDragonBoneGlovesThunder
+    - MedievalClothingFeetDragonBoneThunder
+    - MedievalClothingHeadHelmetDragonBoneBone
+    - MedievalClothingOuterArmorDragonBoneBone
+    - MedievalDragonBoneGlovesBone
+    - MedievalClothingFeetDragonBoneBone
+    - MedievalBloodlettingNeedle
 
 - type: entity
   parent: CP14BaseWorkbench

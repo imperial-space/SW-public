@@ -69,9 +69,9 @@
   - type: ActionUpgrade
     effectedLevels:
       2: MedievalActionLightningSenior
-      # Fire Lightning
-      3: MedievalActionFireLightningMiddle
-      4: MedievalActionFireLightningSenior
+      # # Fire Lightning
+      # 3: MedievalActionFireLightningMiddle # Remove this lines, to return spell in Grimoire
+      # 4: MedievalActionFireLightningSenior
 
 # Senior
 

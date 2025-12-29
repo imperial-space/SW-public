@@ -19,7 +19,6 @@ public sealed partial class MedievalPlagueSystem
         SubscribeLocalEvent<MedievalPlagueGhostComponent, ComponentInit>(OnGhostInit);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, ComponentShutdown>(OnGhostShutdown);
 
-
         SubscribeLocalEvent<MedievalPlagueGhostComponent, InfectTargetActionEvent>(OnInfectAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueForcedVomitActionEvent>(OnVomitAction);
         SubscribeLocalEvent<MedievalPlagueGhostComponent, PlagueAsthmaticActionEvent>(OnAsthmaAction);

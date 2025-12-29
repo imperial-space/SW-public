@@ -421,6 +421,10 @@
     - id: FoodMeatCooked
     - id: MedievalHatchet
     - id: MedievalJailPosxalka
+    - id: MedievalGoldCup
+      weight: 0.5
+    - id: MedievalSilverCup
+      weight: 0.5
 
 - type: entity
   parent: BaseStructure
@@ -829,6 +833,8 @@
     solution: beaker
   - type: InjectableSolution
     solution: beaker
+  - type: SolutionItemStatus
+    solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
   - type: UserInterface
@@ -869,6 +875,12 @@
     solution: beaker
   - type: SpillWhenWorn
     solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
 
 - type: entity
   parent: BaseItem
@@ -904,6 +916,8 @@
     solution: beaker
   - type: InjectableSolution
     solution: beaker
+  - type: SolutionItemStatus
+    solution: beaker
   - type: SolutionTransfer
     canChangeTransferAmount: true
   - type: UserInterface
@@ -933,6 +947,104 @@
         acts: [ "Destruction" ]
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedievalWineskin # imperial medieval
+  - type: Spillable
+    solution: beaker
+  - type: SpillWhenWorn
+    solution: beaker
+  - type: MeleeWeapon
+    soundNoDamage:
+      path: "/Audio/Effects/Fluids/splat.ogg"
+    damage:
+      types:
+        Blunt: 0
+
+- type: entity
+  abstract: true
+  id: MedievalDrinkBaseMaterialGold
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 25
+
+- type: entity
+  abstract: true
+  id: MedievalDrinkBaseMaterialSilver
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: FlimsyMetallic
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 25
+
+- type: entity
+  parent: [MedievalDrinkBaseMaterialGold, DrinkBaseCup, DrinkVisualsFill]
+  id: MedievalGoldCup
+  name: golden cup
+  description: An elegant golden cup.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/goldcup.rsi
+    layers:
+      - state: icon
+      - state: Fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: Fill-
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: null
+  - type: StaticPrice
+    price: 150
+  - type: Tag
+    tags:
+    - DrinkCup
+    - DrinkGlass
+
+- type: entity
+  parent: [MedievalDrinkBaseMaterialSilver, DrinkBaseCup, DrinkVisualsFill]
+  id: MedievalSilverCup
+  name: silver cup
+  description: An elegant silver cup.
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 25
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/silvercup.rsi
+    layers:
+      - state: icon
+      - state: Fill-1
+        map: ["enum.SolutionContainerLayers.Fill"]
+        visible: false
+  - type: SolutionContainerVisuals
+    maxFillLevels: 5
+    fillBaseName: Fill-
+    inHandsMaxFillLevels: 0
+    inHandsFillBaseName: null
+  - type: StaticPrice
+    price: 100
+  - type: Tag
+    tags:
+    - DrinkCup
+    - DrinkGlass
 
 # - type: entity
 #   parent: BaseAPC
@@ -1452,6 +1564,9 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle01
+    node: ground
 
 - type: entity
   parent: ChemistryEmptyBottle02
@@ -1461,6 +1576,9 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle02
+    node: ground
 
 - type: entity
   parent: ChemistryEmptyBottle03
@@ -1470,6 +1588,9 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle03
+    node: ground
 
 - type: entity
   parent: ChemistryEmptyBottle04
@@ -1479,6 +1600,225 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle04
+    node: ground
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle01
+  graph: MedievalChemistryEmptyBottle01
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle01
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-1 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle01
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle01
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle01
+      entity: MedievalChemistryEmptyBottle01
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle02
+  graph: MedievalChemistryEmptyBottle02
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle02
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-2 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle02
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle02
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle02
+      entity: MedievalChemistryEmptyBottle02
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle03
+  graph: MedievalChemistryEmptyBottle03
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle03
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-3 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle03
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle03
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle03
+      entity: MedievalChemistryEmptyBottle03
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle04
+  graph: MedievalChemistryEmptyBottle04
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle04
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-4 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle04
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle04
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle04
+      entity: MedievalChemistryEmptyBottle04
+
+- type: entity
+  parent: ChemistryEmptyBottle01
+  id: MedievalChemistryEmptyBottleTempering01
+  name: MedievalChemistryEmptyBottleTempering01
+  description: MedievalChemistryEmptyBottleTempering01
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ChemistryEmptyBottle02
+  id: MedievalChemistryEmptyBottleTempering02
+  name: MedievalChemistryEmptyBottleTempering02
+  description: MedievalChemistryEmptyBottleTempering02
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ChemistryEmptyBottle03
+  id: MedievalChemistryEmptyBottleTempering03
+  name: MedievalChemistryEmptyBottleTempering03
+  description: MedievalChemistryEmptyBottleTempering03
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ChemistryEmptyBottle04
+  id: MedievalChemistryEmptyBottleTempering04
+  name: MedievalChemistryEmptyBottleTempering04
+  description: MedievalChemistryEmptyBottleTempering04
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   name: MedievalLockpickPack
@@ -1749,6 +2089,13 @@
     params:
       variation: 0.125
 
+- type: emoteSounds
+  id: MedievalWolf
+  sound:
+    path: /Audio/Voice/Vulpkanin/howl.ogg
+    params:
+      variation: 0.125
+
 - type: entity
   name: MedievalHandheldHealthAnalyzer
   parent:
@@ -1985,21 +2332,32 @@
   - type: SolutionContainerManager
     solutions:
       bucket:
-        maxVol: 600
+        maxVol: 200
         reagents:
           - ReagentId: Water
-            Quantity: 300
+            Quantity: 200
+  - type: SolutionTransfer
+    transferAmount: 100
+    maxTransferAmount: 100
+    minTransferAmount: 10
+    canChangeTransferAmount: true
+  - type: UserInterface
+    interfaces:
+      enum.TransferAmountUiKey.Key:
+        type: TransferAmountBoundUserInterface
   - type: Spillable
-    spillDelay: 3.0
+    solution: bucket
   - type: DrainableSolution
+    solution: bucket
+  - type: SolutionItemStatus
     solution: bucket
   - type: RefillableSolution
     solution: bucket
-  #- type: ExaminableSolution
-  #  solution: bucket
+  - type: ExaminableSolution
+    solution: bucket
   - type: Tag
     tags:
-      - Wringer
+    - Bucket
   - type: Physics
     bodyType: Dynamic
   - type: Transform
@@ -2019,8 +2377,10 @@
   - type: Edible
     edible: Drink
     destroyOnEmpty: false
-    utensil: None
+    utensil: Spoon
     solution: bucket
+  - type: Item
+    size: Normal
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 3
@@ -3217,10 +3577,10 @@
     state: hitin
   - type: Currency
     price:
-      Revent: 4
+      Revent: 7
   - type: MedievalCurrency
     price:
-      Revent: 4
+      Revent: 7
   - type: Item
     size: Tiny
   - type: QuestItem
@@ -6624,6 +6984,42 @@
     size: Tiny
 
 - type: entity
+  name: shield repair kit
+  parent: BaseItem
+  id: MedievalShieldRepairKit
+  description: Fully restores the shield's durability.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Misc/repairkit.rsi
+  - type: Healing
+    damageContainers:
+      - Shield
+    damage:
+      groups:
+        Brute: -1000
+      types:
+        Heat: -1000
+        Structural: -1000
+    delay: 3
+    selfHealPenaltyMultiplier: 1
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: StaticPrice
+    price: 50
+
+- type: entity
   name: gol
   parent: BaseItem
   id: MedievalDungeonKey
@@ -7996,6 +8392,32 @@
     delay: 2.0
 
 - type: entity
+  parent: BaseItem
+  id: DeimonStaffMedieval
+  name: DeimonStaffMedieval
+  description: DeimonStaffMedieval
+  components:
+  - type: Item
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/ahrimanstaff.rsi
+    state: icon
+
+- type: entity
+  parent: BaseItem
+  id: ApollaStaffMedieval
+  name: ApollaStaffMedieval
+  description: ApollaStaffMedieval
+  components:
+  - type: Item
+    sprite: Imperial/Medieval/Misc/apolla_staff.rsi
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/apolla_staff.rsi
+    state: icon
+
+- type: entity
   parent: BaseStructureMedieval
   id: MedievalSharpeningMachine
   name: Sharpening machine
@@ -8200,7 +8622,7 @@
     - id: MedievalSkeletonHorseTransport
     sound:
       path: /Audio/Items/Whistle/trench_whistle_1.ogg
-  - type: DeleteOnTrigger
+  #- type: DeleteOnTrigger
   - type: RadiationSource
     intensity: 1
     slope: 1
@@ -8238,3 +8660,232 @@
   - type: Item
     size: Small
     sprite: Imperial/Medieval/Misc/royalbible.rsi
+
+# Rich house keys
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey1
+  name: rich house key №1
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse1
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey2
+  name: rich house key №2
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse2
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey3
+  name: rich house key №3
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse3
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey4
+  name: rich house key №4
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse4
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalRichHouseKey5
+  name: rich house key №5
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: richhouse
+    - type: Key
+      accesses:
+        - RichHouse5
+    - type: Tag
+      tags:
+        - MedievalKey
+
+# Regular house keys
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey6
+  name: house key №6
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House6
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey7
+  name: house key №7
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House7
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey8
+  name: house key №8
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House8
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey9
+  name: house key №9
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House9
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey10
+  name: house key №10
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House10
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey11
+  name: house key №11
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House11
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey12
+  name: house key №12
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House12
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey13
+  name: house key №13
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House13
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey14
+  name: house key №14
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House14
+    - type: Tag
+      tags:
+        - MedievalKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalHouseKey15
+  name: house key №15
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/keys.rsi
+      state: house
+    - type: Key
+      accesses:
+        - House15
+    - type: Tag
+      tags:
+        - MedievalKey

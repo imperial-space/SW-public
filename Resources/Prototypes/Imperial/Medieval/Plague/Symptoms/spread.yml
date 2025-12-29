@@ -55,7 +55,7 @@
   required: [LowerProtection1]
   category: Spread
   broadcastEvent: !type:SetPlagueMinSmellLevelEvent
-    smell: 30
+    smell: 15
 
 - type: plagueSymptom
   id: CleanResistance2
@@ -70,7 +70,7 @@
   required: [CleanResistance1]
   category: Spread
   broadcastEvent: !type:SetPlagueMinSmellLevelEvent
-    smell: 15
+    smell: 8
 
 - type: plagueSymptom
   id: LowerSleepProtection1
@@ -289,8 +289,8 @@
 
 - type: plagueSymptom
   id: RerollCure1
-  name: plague-reroll-cure-name
-  desc: plague-reroll-cure-desc
+  name: plague-cure-resistance-1-name
+  desc: plague-cure-resistance-1-desc
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: cure
@@ -300,12 +300,12 @@
   staticCost: true
   category: Spread
   broadcastEvent: !type:SetPlagueCureEvent
-    reagent: MedievalPlagueCure1
+    resistance: 1
 
 - type: plagueSymptom
   id: RerollCure2
-  name: plague-reroll-cure-name
-  desc: plague-reroll-cure-desc
+  name: plague-cure-resistance-2-name
+  desc: plague-cure-resistance-2-desc
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: cure
@@ -316,12 +316,12 @@
   category: Spread
   required: [RerollCure1]
   broadcastEvent: !type:SetPlagueCureEvent
-    reagent: MedievalPlagueCure2
+    resistance: 2
 
 - type: plagueSymptom
   id: RerollCure3
-  name: plague-reroll-cure-name
-  desc: plague-reroll-cure-desc
+  name: plague-cure-resistance-3-name
+  desc: plague-cure-resistance-3-desc
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: cure
@@ -332,4 +332,4 @@
   category: Spread
   required: [RerollCure2]
   broadcastEvent: !type:SetPlagueCureEvent
-    reagent: MedievalPlagueCure3
+    resistance: 3

@@ -1,4 +1,5 @@
 using Content.Shared.Stunnable;
+using Content.Shared.TDMNaming.Components;
 using Content.Shared.Throwing;
 using Content.Shared.Timing;
 using Content.Shared.Weapons.Melee.Components;
@@ -101,6 +102,8 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
 
         if (direction == Vector2.Zero)
             return;
+
+        if (TryComp<MedievalUnthrowableComponent>(target, out var unthrowable)) return; // Imperial Medieval - unthrowable component (for throwing weapons
 
         _throwing.TryThrow(target, direction.Normalized() * startEvent.Distance, ent.Comp.Speed, user, unanchor: ent.Comp.UnanchorOnHit);   // Imperial Medieval - event distance instead of component
     }

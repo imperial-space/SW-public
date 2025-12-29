@@ -47,8 +47,8 @@
     damage:
       types:
         Piercing: 21
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -207,8 +207,8 @@
     wideAnimation: CP14WeaponArcSlash
     cPSwingBeverage: true
     cPAnimationOffset: 0.8
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -272,8 +272,8 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -329,8 +329,8 @@
     damage:
       types:
         Piercing: 14
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -797,8 +797,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.1,0.1
+  #- type: EmbeddableProjectile
+    #offset: 0.1,0.1
   - type: Tag
     tags:
     - Spear
@@ -1063,7 +1063,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 10
+      value: 7
     - type: Sprite
       sprite: Imperial/Medieval/Shields/woodknight.rsi
       state: shield
@@ -1097,20 +1097,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 110
+            damage: 220
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 28
-    - type: HeldSpeedModifier
-      walkModifier: 0.75
-      sprintModifier: 0.75
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -1157,7 +1153,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 7
+      value: 5
     - type: Sprite
       sprite: Imperial/Medieval/Shields/wooden.rsi
       state: shield
@@ -1191,20 +1187,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 60
+            damage: 120
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 15
-    - type: HeldSpeedModifier
-      walkModifier: 0.9
-      sprintModifier: 0.9
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -1213,7 +1205,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 4
+      value: 3
     - type: Sprite
       sprite: Imperial/Medieval/Shields/buckler.rsi
       state: shield
@@ -1247,20 +1239,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 45
+            damage: 90
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 11
-    - type: HeldSpeedModifier
-      walkModifier: 0.97
-      sprintModifier: 0.97
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -1281,7 +1269,7 @@
   description: Iron shield.
   components:
     - type: RDWeight
-      value: 14
+      value: 10
     - type: EmitSoundOnLand
       sound:
         collection: MedievalIronDrop
@@ -1315,7 +1303,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 150
+            damage: 300
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -1323,13 +1311,9 @@
               sound:
                 path: /Audio/Effects/metalbreak.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 40
-    - type: HeldSpeedModifier
-      walkModifier: 0.9
-      sprintModifier: 0.9
-      mirrorClothingModifier: false
     - type: Meltable
       resourceCount: 7
 
@@ -1340,7 +1324,7 @@
   description: Iron shield.
   components:
     - type: RDWeight
-      value: 6
+      value: 4
     - type: EmitSoundOnLand
       sound:
         collection: MedievalIronDrop
@@ -1380,7 +1364,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 78
+            damage: 156
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -1388,13 +1372,9 @@
               sound:
                 path: /Audio/Effects/metalbreak.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 20
-    - type: HeldSpeedModifier
-      walkModifier: 0.95
-      sprintModifier: 0.95
-      mirrorClothingModifier: false
     - type: Meltable
       resourceCount: 7
 
@@ -1633,8 +1613,8 @@
     damage:
       types:
         Slash: 6
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: MedievalItemRust
   #- type: QualityOfItem
   #  qualityWeights:
@@ -1783,8 +1763,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -1984,7 +1964,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.25
     wideAnimationRotation: -140
-    attackRate: 0.4
+    attackRate: 0.26
     damage:
       types:
         Piercing: 9
@@ -2010,8 +1990,8 @@
     damage:
       types:
         Slash: 12
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2057,7 +2037,7 @@
     sprite: Imperial/Medieval/Melee/sekir.rsi
     state: icon
   - type: MeleeParry
-    parryChanse: 0.55
+    parryChanse: 0.35
   - type: MeleeWeapon
     angle: 135
     animation: CP14WeaponArcThrust
@@ -2066,7 +2046,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.54
+    attackRate: 0.35
     damage:
       types:
         Piercing: 6
@@ -2092,8 +2072,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   - type: Clothing
     sprite: Imperial/Medieval/Melee/sekir.rsi
@@ -2144,7 +2124,7 @@
     sprite: Imperial/Medieval/Melee/sekir.rsi
     state: icon
   - type: MeleeParry
-    parryChanse: 0.55
+    parryChanse: 0.35
   - type: MeleeWeapon
     angle: 135
     animation: CP14WeaponArcThrust
@@ -2153,7 +2133,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.6
+    attackRate: 0.4
     damage:
       types:
         Piercing: 10
@@ -2179,8 +2159,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2199,6 +2179,78 @@
   - type: HeldSpeedModifier
     walkModifier: 0.85
     sprintModifier: 0.85
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronHalberdT3
+  id: MedievalIronHalberdT3Deimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronHalberdT3Steel
+  id: MedievalIronHalberdT3SteelDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronSekirSteel
+  id: MedievalIronSekirSteelDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
+
+- type: entity
+  name: iron halberd
+  parent: MedievalIronSekir
+  id: MedievalIronSekirDeimon
+  description: A medieval poleaxe.
+  components:
+  - type: Item
+    size: Huge
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/deimon_halberd.rsi
+    slots:
+    - back
+    - suitStorage
 
 - type: entity
   name: iron zweihander
@@ -2227,7 +2279,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.2
     wideAnimationRotation: -140
-    attackRate: 0.54
+    attackRate: 0.34
     damage:
       types:
         Piercing: 6
@@ -2254,8 +2306,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2312,7 +2364,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.6
+    attackRate: 0.4
     damage:
       types:
         Piercing: 10
@@ -2339,8 +2391,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2395,7 +2447,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.2
     wideAnimationRotation: -140
-    attackRate: 0.54
+    attackRate: 0.34
     damage:
       types:
         Piercing: 6
@@ -2422,8 +2474,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2480,7 +2532,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.6
+    attackRate: 0.4
     damage:
       types:
         Piercing: 8
@@ -2507,8 +2559,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2754,8 +2806,8 @@
     damage:
       types:
         Slash: 10
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -2947,8 +2999,8 @@
     damage:
       types:
         Slash: 11
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -3024,8 +3076,8 @@
     damage:
       types:
         Slash: 10.5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -3166,8 +3218,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3362,7 +3414,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.25
     wideAnimationRotation: -140
-    attackRate: 0.4
+    attackRate: 0.25
     damage:
       types:
         Piercing: 13
@@ -3388,8 +3440,8 @@
     damage:
       types:
         Slash: 28
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   - type: Clothing
     sprite: Imperial/Medieval/Melee/halberd.rsi
@@ -3797,8 +3849,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3877,8 +3929,8 @@
     damage:
       types:
         Slash: 6
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -3953,8 +4005,8 @@
     damage:
       types:
         Slash: 10.5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -4029,8 +4081,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4177,8 +4229,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4272,8 +4324,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4363,8 +4415,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4456,8 +4508,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4531,8 +4583,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4660,7 +4712,7 @@
   description: Wooden shield.
   components:
     - type: RDWeight
-      value: 3
+      value: 2
     - type: Sprite
       sprite: Imperial/Medieval/Shields/bucklergoblin.rsi
       state: shield
@@ -4694,20 +4746,16 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 35
+            damage: 70
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
             - !type:PlaySoundBehavior
               sound: /Audio/Imperial/Medieval/ES_Wood_Break_8_-_SFX_Producer.ogg
     - type: Damageable
-      damageContainer: Inorganic
+      damageContainer: Shield
     #- type: ShieldRegen
       #health: 10
-    - type: HeldSpeedModifier
-      walkModifier: 0.98
-      sprintModifier: 0.98
-      mirrorClothingModifier: false
 
 - type: entity
   name: wooden shield
@@ -4929,8 +4977,8 @@
       types:
         Piercing: 39
         Blunt: 3
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4997,8 +5045,8 @@
       types:
         Piercing: 39
         Blunt: 3
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -5118,8 +5166,8 @@
 
 - type: entity
   name: medieval spear
-  parent: MedievalSpearT3Steel
-  id: MedievalSpearT3SteelBib
+  parent: MedievalSpearT3
+  id: MedievalSpearT3Bib
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
   - type: Sprite

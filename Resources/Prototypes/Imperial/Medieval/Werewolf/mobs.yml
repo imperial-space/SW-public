@@ -121,6 +121,7 @@
         red-eyes:
           True: { visible: true }
           False: { visible: false }
+  - type: MedievalUnthrowable
 
 - type: entity
   name: wolf

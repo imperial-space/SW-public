@@ -231,34 +231,28 @@ public sealed partial class LycantropySystem : SharedLycantropySystem
 
     private void OnWerewolfHit(EntityUid uid, WerewolfComponent comp, MeleeHitEvent args)
     {
-        if (!comp.InfectOn)
-            return;
-
         if (_inner.TryGetInnerWeapon(uid, out var _, out var id) && id == "tearing_weapon")
         {
             _inner.SetWeapon(uid, "");
             _actions.SetToggled(comp.Actions["WerewolfTearingAction"], false);
         }
 
-        if (!comp.InfectOn)
-            return;
-
-        comp.InfectOn = false;
-        _actions.SetToggled(comp.InfectAction, comp.InfectOn);
-
-        foreach (var item in args.HitEntities)
+        if (comp.InfectOn)
         {
-            if (!HasComp<HumanoidAppearanceComponent>(item))
-                continue;
+            foreach (var item in args.HitEntities)
+            {
+                if (!HasComp<HumanoidAppearanceComponent>(item))
+                    continue;
 
-            if (!_mobState.IsCritical(item))
-                continue;
+                if (!_mobState.IsCritical(item))
+                    continue;
 
-            _blood.TryModifyBleedAmount(item, -10);
-            _jitter.DoJitter(item, TimeSpan.FromSeconds(3), true);
-            EnsureComp<LycantropyComponent>(item);
-            var infect = EnsureComp<LycantropyInfectedComponent>(item);
-            infect.Werewolf = uid;
+                _blood.TryModifyBleedAmount(item, -10);
+                _jitter.DoJitter(item, TimeSpan.FromSeconds(3), true);
+                EnsureComp<LycantropyComponent>(item);
+                var infect = EnsureComp<LycantropyInfectedComponent>(item);
+                infect.Werewolf = uid;
+            }
         }
     }
 

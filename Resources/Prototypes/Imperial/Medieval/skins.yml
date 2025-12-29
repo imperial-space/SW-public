@@ -83,6 +83,12 @@
     MedievalClothingBackpackSatchelLeather2: [MedievalClothingBackpackSatchelLeatherRoyal]
     MedievalClothingBackpackSatchelLeather3: [MedievalClothingBackpackSatchelLeatherRoyal]
     Bible: [RoyalBible]
+    MedievalClothingTreasurer: [MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth70]
+    MedievalClothingHeadTreasurer: [MedievalClothingHeadRoyalHoop]
+    MedievalClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
+    ClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
+    MedievalShoesSapogi: [MedievalClothingRoyalBoots]
+
 
 - type: customization
   id: game123456
@@ -236,7 +242,10 @@
   id: fichty
   holder: 9a0a943e-7a19-4795-8fad-7e06d8e99797
   map:
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakFichty]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakFichty]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth72]
+    MedievalIronGloves: [MedievalIronGlovesFichty]
     Log: [MedievalFichtyGlasses]
 
 - type: customization
@@ -293,7 +302,7 @@
   map:
     MedievalWeaponCrossbow: [MedievalWeaponCrossbowWhois]
     MedievalWeaponBow: [MedievalWeaponBowWhois]
-    BaseBow: [BaseBowWhois]
+    BowImprovised: [BowImprovisedWhois]
     MedievalQuiver: [MedievalQuiverWhois]
     MedievalQuiverSteel: [MedievalQuiverSteelWhois]
 
@@ -309,7 +318,7 @@
     MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerKonnor]
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakKonnor]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakKonnor]
-    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatKonnor]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmeCollegiumHatKonnor]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth79]
     MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightKonnor]
     MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightKonnor]
@@ -328,7 +337,7 @@
     MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakBib]
     MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakBib]
     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatBib]
-    MedievalSpearT3Steel: [MedievalSpearT3SteelBib]
+    MedievalSpearT3: [MedievalSpearT3Bib]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth78]
     MedievalShoesChamber: [MedievalShoesChamberBib]
 
@@ -353,3 +362,72 @@
     MedievalShortSword: [MedievalShortSwordArtur]
     MedievalShortSwordSteel: [MedievalShortSwordSteelArtur]
     Log: [MedievalClothingHandsGlovesClothArtur, MedievalClothingBootsArtur, MedievalClothingNeckCloakArtur, ClothingMaskArtur]
+
+- type: customization
+  id: deimon
+  holder: 360bb5a1-a446-4aa2-9e5e-efa90d1b4648
+  map:
+    MedievalIronHalberdT3: [MedievalIronHalberdT3Deimon]
+    MedievalIronHalberdT3Steel: [MedievalIronHalberdT3SteelDeimon]
+    MedievalIronSekirSteel: [MedievalIronSekirSteelDeimon]
+    MedievalIronSekir: [MedievalIronSekirDeimon]
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth81]
+    MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuterArmorIronCuirassLightDeimon]
+    MedievalClothingOuterArmorBrigantin: [MedievalClothingOuterArmorBrigantinDeimon]
+    MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterArmorIronCuirassDeimon]
+    MedievalClothingOuterArmorChainMail: [MedievalClothingOuterArmorChainMailDeimon]
+    MedievalClothingOuterArmorIron: [MedievalClothingOuterArmorIronDeimon]
+    MedievalClothingOuterArmorUpIron2: [MedievalClothingOuterArmorUpIron2Deimon]
+    MedievalClothingOuterArmorUpIron3: [MedievalClothingOuterArmorUpIron3Deimon]
+    MedievalClothingOuterArmorUpIron: [MedievalClothingOuterArmorUpIronDeimon]
+    MedievalClothingOuterArmorEbonit: [MedievalClothingOuterArmorEbonitDeimon]
+    MedievalClothingOuterArmorEbonit2: [MedievalClothingOuterArmorEbonit2Deimon]
+    MedievalClothingOuterArmorForstone: [MedievalClothingOuterArmorForstoneDeimon]
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightDeimon]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightDeimon]
+    Log: [DeimonStaffMedieval, MedievalDeimonGlasses, MedievalClothingNeckCloakDeimon]
+    MedievalShoesChamber: [MedievalShoesChamberDeimon]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerDeimon]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerDeimon]
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakDeimon]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakDeimon]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumPurpleHatDeimon]
+    MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightDeimon]
+    MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightDeimon]
+    MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightDeimon]
+    MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightDeimon]
+
+- type: customization
+  id: apolla
+  holder: e575ce8b-42dd-4112-b2d3-0ae490850c19
+  map:
+    Log: [ApollaStaffMedieval, MedievalClothingNeckCloakApolla, MedievalClothingHandsGlovesClothApolla]
+    MedievalShoesChamber: [MedievalShoesChamberApolla]
+    MedievalClothingOuterArmorCharmer: [MedievalClothingOuterArmorCharmerApolla]
+    MedievalClothingHeadHelmetCharmer: [MedievalClothingHeadHelmetCharmerApolla]
+    MedievalClothingOuterArmorCharmerWeak: [MedievalClothingOuterArmorCharmerWeakApolla]
+    MedievalClothingHeadHelmetCharmerWeak: [MedievalClothingHeadHelmetCharmerWeakApolla]
+    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightApolla]
+    MedievalClothingHeadHelmetCharmerLight: [MedievalClothingHeadHelmetCharmerLightApolla]
+    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmeCollegiumPurpleHatApolla]
+    MedievalClothingOuterArmorCharmerLightIns: [MedievalClothingOuterArmorCharmerLightApolla]
+    MedievalClothingHeadHelmetCharmerIns: [MedievalClothingHeadHelmetCharmerLightApolla]
+    MedievalClothingOuterArmorCharmerLightLegion: [MedievalClothingOuterArmorCharmerLightApolla]
+    MedievalClothingHeadHelmetCharmerLegion: [MedievalClothingHeadHelmetCharmerLightApolla]
+
+- type: customization
+  id: zablik
+  holder: 4906e0f9-7cf5-46e0-870a-9856b33e23d4
+  map:
+    MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuterArmorIronCuirassLightZablik]
+    MedievalClothingOuterArmorBrigantin: [MedievalClothingOuterArmorBrigantinZablik]
+    MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterArmorIronCuirassZablik]
+    MedievalClothingOuterArmorChainMail: [MedievalClothingOuterArmorChainMailZablik]
+    MedievalClothingOuterArmorIron: [MedievalClothingOuterArmorIronZablik]
+    MedievalClothingOuterArmorUpIron2: [MedievalClothingOuterArmorUpIron2Zablik]
+    MedievalClothingOuterArmorUpIron3: [MedievalClothingOuterArmorUpIron3Zablik]
+    MedievalClothingOuterArmorUpIron: [MedievalClothingOuterArmorUpIronZablik]
+    MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetZablik]
+    MedievalIronGloves: [MedievalIronGlovesZablik]
+    Log: [MedievalClothingNeckCloakZablik, MedievalClothingUniformJumpsuitShitCloth82]
+

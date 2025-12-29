@@ -224,7 +224,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.49
+          radius: 0.6
         density: 30
         mask:
         - MobMask
@@ -531,8 +531,8 @@
   - type: MovementSpeedModifier
     acceleration: 1
     friction: 1
-    baseWalkSpeed: 3.5
-    baseSprintSpeed: 3.5
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 3.2
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -540,7 +540,7 @@
       570: Dead
   - type: RideableSprint
     accelerationTime: 2.5
-    maxSpeedModifier: 2.4
+    maxSpeedModifier: 2
     riderDamageOnCollide:
       types:
         Blunt: 4
