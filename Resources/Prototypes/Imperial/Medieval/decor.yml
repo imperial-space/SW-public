@@ -2121,15 +2121,15 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-  #- type: FullContainer
-  #  fullable:
-  #    - id: MedievalDaggerT3
-  #    - id: MedievalWoodenSword
-  #    - id: MedievalMaceT3HeavyBone
-  #    - id: BaseBallBat
-  #    - id: MedievalHatchet
-  #    - id: KitchenKnife
-  #    - id: MedievalShortSword
+  - type: FullContainer
+    fullable:
+      - id: MedievalDaggerT3
+      - id: MedievalWoodenSword
+      - id: MedievalMaceT3HeavyBone
+      - id: BaseBallBat
+      - id: MedievalHatchet
+      - id: KitchenKnife
+      - id: MedievalShortSword
 
 
 - type: entity
@@ -2180,21 +2180,21 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
-  #- type: FullContainer
-  #  fullable:
-  #    - id: MedievalClothingHeadHelmetNazal
-  #    - id: MedievalIronGloves
-  #    - id: MedievalClothingFeetSteel
-  #    - id: MedievalClothingHeadHelmetBacinet
-  #    - id: MedievalClothingHeadHelmetSalad
-  #    - id: MedievalClothingHeadHelmetSaladLight
-  #    - id: MedievalClothingHeadHelmetCrusader
-  #    - id: MedievalClothingHeadHelmetShapel
-  #    - id: MedievalClothingHeadHelmetNormandFree
-  #    - id: MedievalClothingHeadHelmetNormand
-  #    - id: MedievalClothingHeadHelmetHoodHelmet
-  #    - id: MedievalClothingHeadHelmetNormandFree
-  #    - id: MedievalClothingHeadHelmetNormandFree
+  - type: FullContainer
+    fullable:
+      - id: MedievalClothingHeadHelmetNazal
+      - id: MedievalIronGloves
+      - id: MedievalClothingFeetSteel
+      - id: MedievalClothingHeadHelmetBacinet
+      - id: MedievalClothingHeadHelmetSalad
+      - id: MedievalClothingHeadHelmetSaladLight
+      - id: MedievalClothingHeadHelmetCrusader
+      - id: MedievalClothingHeadHelmetShapel
+      - id: MedievalClothingHeadHelmetNormandFree
+      - id: MedievalClothingHeadHelmetNormand
+      - id: MedievalClothingHeadHelmetHoodHelmet
+      - id: MedievalClothingHeadHelmetNormandFree
+      - id: MedievalClothingHeadHelmetNormandFree
 
 #- type: tile
 #  id: MedievalFloorPlanetGrass1
