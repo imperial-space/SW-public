@@ -1638,7 +1638,7 @@
     makeSentient: true
     name: ghost-role-information-fire-name
     description: ghost-role-information-fire-description
-    rules: Вы - фамильяр. Служите тому, кто вас призвал. [color=yellow]Лкм - удар, пкм - запуск магической искры.[/color]
+    rules: Вы - фамильяр. Служите тому, кто вас призвал. [color=yellow]Лкм - удар[/color], [color=yellow]пкм - запуск магической искры.[/color]
   # - type: Item
   - type: InteractionOutline
   - type: Clickable
@@ -1792,7 +1792,7 @@
     makeSentient: true
     name: ghost-role-information-pnya-name
     description: ghost-role-information-pnya-description
-    rules: Вы - фамильяр. Служите тому, кто вас призвал. [color=yellow]Лкм - удар, пкм - запуск исцеляющего снаряда.[/color]
+    rules: Вы - фамильяр. Служите тому, кто вас призвал. [color=yellow]Лкм - удар[/color], [color=yellow]пкм - запуск исцеляющего снаряда.[/color]
   # - type: Item
   - type: IgniteOnMeleeHit
   - type: Destructible
