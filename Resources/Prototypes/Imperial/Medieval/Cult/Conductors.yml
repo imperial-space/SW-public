@@ -1,0 +1,84 @@
+
+- type: entity
+  id: MedievalCultConductor
+  parent: BaseItem
+  name: проводник
+  description: проводник
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+      state: cultdog
+    - type: Tag
+      tags:
+        - CultConductor
+    - type: Butcherable
+      spawned:
+        - id: MedievalLeather1
+          amount: 10
+        - id: MaterialCloth1
+          amount: 10
+    - type: ContainerContainer
+      containers:
+        Conductor1: !type:ContainerSlot
+        Conductor2: !type:ContainerSlot
+        Conductor3: !type:ContainerSlot
+        Conductor4: !type:ContainerSlot
+        Conductor5: !type:ContainerSlot
+    - type: ItemSlots
+      slots:
+        Conductor1:
+          name: Первый стержень
+          startingItem: MedievalCultConductorRod
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+        Conductor2:
+          name: Второй стержень
+          startingItem: MedievalCultConductorRod
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+        Conductor3:
+          name: Третий стержень
+          startingItem: MedievalCultConductorRod
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+        Conductor4:
+          name: Четвёртый стержень
+          startingItem: MedievalCultConductorRod
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+        Conductor5:
+          name: Пятый стержень
+          startingItem: MedievalCultConductorRod
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+
+- type: entity
+  id: MedievalCultConductorRod
+  parent: BaseItem
+  name: Железный стержень
+  description: железный стержень
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+      state: cultdog
+    - type: Tag
+      tags:
+        - CultConductorRod
+    - type: Meltable
+      resourceCount: 2
+      resourceName: MedievalBloodIronIngot

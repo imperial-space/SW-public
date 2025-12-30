@@ -5,6 +5,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Robust.Server.Player;
 using System.Linq;
+using System.Collections.Generic;
 using Content.Shared.Popups;
 using Content.Server.Body.Components;
 using Robust.Shared.Timing;
@@ -22,6 +23,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Server.Administration;
+using Content.Server.Imperial.Medieval.Cult.Bloodspells.mateials;
 using Content.Shared.Alert;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
@@ -32,6 +34,7 @@ using Content.Shared.SSDFree.Components;
 using Content.Shared.Cuffs.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Containers;
+using Content.Shared.Chat;
 using Content.Shared.Body.Components;
 
 namespace Content.Server.Cult
@@ -56,6 +59,7 @@ namespace Content.Server.Cult
         [Dependency] private readonly SharedContainerSystem _container = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
+        public const string ConductorContainer = "Conductor";
 
         private TimeSpan _nextCheckTime;
 
@@ -73,8 +77,15 @@ namespace Content.Server.Cult
             SubscribeLocalEvent<CultRitualMeleeComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<CultBloodMeleeComponent, MeleeHitEvent>(OnBloodMeleeHit);
             SubscribeLocalEvent<TakeNameComponent, PlayerAttachedEvent>(OnPlayerAttached);
+            SubscribeLocalEvent<CultAltarComponent, MapInitEvent>(OnInit);
+            SubscribeLocalEvent<CultMemberComponent, EntitySpokeEvent>(OnSpoke);
 
             _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+        }
+
+        private void OnInit(EntityUid uid, CultAltarComponent component, MapInitEvent args)
+        {
+            _container.EnsureContainer<Container>(uid, ConductorContainer);
         }
         private bool CheckCultWearing(EntityUid uid)
         {
@@ -92,6 +103,85 @@ namespace Content.Server.Cult
                 _metaData.SetEntityName(uid, message);
                 comp.HasName = true;
             });
+        }
+        private void OnSpoke(EntityUid uid, CultMemberComponent component, EntitySpokeEvent args)
+        {
+            if (component.LastSpokenMessages.Count >= 3)
+            {
+                component.LastSpokenMessages.Dequeue(); // Удаляем первый (самый старый) элемент
+            }
+
+            component.LastSpokenMessages.Enqueue((args.Message,
+                _timing.CurTime)); // я бы мог бы сделать сразу что то с акцентами но блин, это всё таки магия и надо быть точным
+
+            if (!TryComp<BloodstreamComponent>(uid, out var bloodstream))
+                return;
+            if (bloodstream.BleedAmount == 0)
+                return;
+
+            string[,] bloodcasts =
+            {
+                {"Ave", "The", "Bronus"},
+                {"katariemai", "opoion", "me chtypisei"},
+                // {"Elderberry", "Fig", "Banana"}
+            };
+            for (int i = bloodcasts.GetLength(0)-1; i > 1; i--)
+            {
+                _popupSystem.PopupEntity("Ресурсов не достаточно1"+ args.Message, uid, uid);
+                if (bloodcasts[i, 2] != args.Message) // Проверяем первое слово
+                {
+                    return;
+                }
+
+                if (!CheckSequenceInQueueFromRow(component.LastSpokenMessages, bloodcasts, i))
+                {
+                    return;
+                }
+                switch (bloodcasts[i, 2])
+                {
+                    case "Bronus":
+                    {
+                        _popupSystem.PopupEntity("Ресурсов не достаточно2"+ args.Message, uid, uid);
+                        var needCount = 5;
+                        foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                        {
+                            if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
+                            {
+                                needCount--;
+                                if (needCount == 0)
+                                {
+                                    Spawn("MedievalClothingOuterArmorCultUp", Transform(uid).Coordinates);
+                                    break;
+                                }
+                            }
+                        }
+                        _popupSystem.PopupEntity("Ресурсов не достаточно", uid, uid);
+                        break;
+                    }
+                }
+
+            }
+
+        }
+
+        private static bool CheckSequenceInQueueFromRow(Queue<(string message, TimeSpan time)> queue, string[,] array, int targetRow)
+        {
+            if (targetRow >= array.GetLength(0) || targetRow < 0) return false;
+
+            int seqLength = array.GetLength(1);
+            if (queue.Count < seqLength) return false;
+
+            var messages = queue.Reverse().Take(seqLength).Reverse().Select(item => item.message).ToArray();
+
+            // Получаем последовательность из ряда
+            var rowSequence = new string[seqLength];
+            for (int j = 0; j < seqLength; j++)
+            {
+                rowSequence[j] = array[targetRow, j];
+            }
+
+            // Сравнение (case-insensitive)
+            return messages.Zip(rowSequence, (msg, seq) => msg.Equals(seq, StringComparison.OrdinalIgnoreCase)).All(match => match);
         }
         private void OnBloodMeleeHit(EntityUid uid, CultBloodMeleeComponent component, MeleeHitEvent args)
         {
@@ -113,6 +203,10 @@ namespace Content.Server.Cult
 
                         _chat.TrySendInGameICMessage(cursed.Owner, "Ave truth...", InGameICChatType.Whisper, false);
                         cursed.CurseLevel = cursed.MaxCurseLevel;
+                        foreach (var key in cursed.RegenDamage.DamageDict.Keys.ToList())
+                        {
+                            cursed.RegenDamage.DamageDict[key] *= cursed.RegenMultiplier;
+                        }
                         foreach (var altar in EntityManager.EntityQuery<CultAltarComponent>())
                         {
                             var axform = Transform(altar.Owner);
@@ -561,11 +655,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -591,11 +685,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -621,11 +715,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -651,11 +745,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -681,11 +775,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -711,11 +805,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -846,7 +940,7 @@ namespace Content.Server.Cult
                     }
                     break;
                 case "manaregen":
-                    if (IsCultistsEnough(uid, 1) && CheckCrystals(uid, comp, 1, 2))
+                    if (IsCultistsEnough(uid, 1) && CheckCrystals(uid, comp, 0, 2))
                     {
                         if (TryComp<ManaComponent>(args.User, out var mana) && mana.MaxManaRaceModifier != 0)
                         {
