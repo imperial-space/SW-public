@@ -125,17 +125,17 @@ namespace Content.Server.Cult
                 {"katariemai", "opoion", "me chtypisei"},
                 // {"Elderberry", "Fig", "Banana"}
             };
-            for (int i = bloodcasts.GetLength(0)-1; i > 1; i--)
+            for (int i = bloodcasts.GetLength(0)-1; i >= 0; i--)
             {
-                _popupSystem.PopupEntity("Ресурсов не достаточно1"+ args.Message, uid, uid);
+                _popupSystem.PopupEntity("Ресурсов не достаточно " + args.Message + "я делаю это " + bloodcasts[i, 2] +
+                                         " а если я делаю это? " + bloodcasts[i, 1] + "ай равно = " + i, uid, uid);
                 if (bloodcasts[i, 2] != args.Message) // Проверяем первое слово
-                {
-                    return;
-                }
+                    continue;
+
 
                 if (!CheckSequenceInQueueFromRow(component.LastSpokenMessages, bloodcasts, i))
                 {
-                    return;
+                    continue;
                 }
                 switch (bloodcasts[i, 2])
                 {
@@ -150,8 +150,15 @@ namespace Content.Server.Cult
                                 needCount--;
                                 if (needCount == 0)
                                 {
-                                    Spawn("MedievalClothingOuterArmorCultUp", Transform(uid).Coordinates);
-                                    break;
+                                    if (TryComp<InventoryComponent>(target, out var inventory) && _inventorySystem.TryGetSlotEntity(target, "outfit", out var existingOutfit))
+                                    {
+
+                                        _inventorySystem.TryUnequip(uid, target, "outfit", silent: true, force: true, inventory: inventory);
+                                        var b = Spawn("MedievalClothingOuterArmorCultUp", Transform(uid).Coordinates);
+                                        _inventorySystem.TryEquip(uid, target, b, "outfit", silent: true, force: true, inventory: inventory);
+                                        break;
+                                    }
+
                                 }
                             }
                         }
