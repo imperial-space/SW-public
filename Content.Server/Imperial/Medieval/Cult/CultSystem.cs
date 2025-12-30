@@ -57,6 +57,7 @@ namespace Content.Server.Cult
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SSDFreeSystem _ssdFreeSystem = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
         public const string ConductorContainer = "Conductor";
@@ -127,8 +128,6 @@ namespace Content.Server.Cult
             };
             for (int i = bloodcasts.GetLength(0)-1; i >= 0; i--)
             {
-                _popupSystem.PopupEntity("Ресурсов не достаточно " + args.Message + "я делаю это " + bloodcasts[i, 2] +
-                                         " а если я делаю это? " + bloodcasts[i, 1] + "ай равно = " + i, uid, uid);
                 if (bloodcasts[i, 2] != args.Message) // Проверяем первое слово
                     continue;
 
@@ -141,7 +140,6 @@ namespace Content.Server.Cult
                 {
                     case "Bronus":
                     {
-                        _popupSystem.PopupEntity("Ресурсов не достаточно2"+ args.Message, uid, uid);
                         var needCount = 5;
                         foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
                         {
@@ -150,13 +148,12 @@ namespace Content.Server.Cult
                                 needCount--;
                                 if (needCount == 0)
                                 {
-                                    if (TryComp<InventoryComponent>(target, out var inventory) && _inventorySystem.TryGetSlotEntity(target, "outfit", out var existingOutfit))
+                                    if (TryComp<InventoryComponent>(uid, out var inventory) && _inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var existingOutfit))
                                     {
-
-                                        _inventorySystem.TryUnequip(uid, target, "outfit", silent: true, force: true, inventory: inventory);
+                                        _entityManager.DeleteEntity(existingOutfit.Value);
                                         var b = Spawn("MedievalClothingOuterArmorCultUp", Transform(uid).Coordinates);
-                                        _inventorySystem.TryEquip(uid, target, b, "outfit", silent: true, force: true, inventory: inventory);
-                                        break;
+                                        _inventorySystem.TryEquip(uid, b, "outerClothing", silent: true, force: true, inventory: inventory);
+                                        return;
                                     }
 
                                 }
