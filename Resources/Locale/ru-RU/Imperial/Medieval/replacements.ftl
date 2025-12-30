@@ -582,4 +582,4 @@ chatsan-word-263 = че
 chatsan-replacement-263 = что
 
 chatsan-word-264 = алё
-chatsan-replacement-264 = услыште же
+chatsan-replacement-264 = услышьте же
