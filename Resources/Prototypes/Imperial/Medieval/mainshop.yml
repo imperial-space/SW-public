@@ -2789,6 +2789,70 @@
   - MedievalPlants
 
 - type: listing
+  id: MdvShopChemistryEmptyBottle01
+  productEntity: MedievalChemistryEmptyBottle01
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle02
+  productEntity: MedievalChemistryEmptyBottle02
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle03
+  productEntity: MedievalChemistryEmptyBottle03
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle04
+  productEntity: MedievalChemistryEmptyBottle04
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottleTempering01
+  productEntity: MedievalChemistryEmptyBottleTempering01
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottleTempering02
+  productEntity: MedievalChemistryEmptyBottleTempering02
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottleTempering03
+  productEntity: MedievalChemistryEmptyBottleTempering03
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottleTempering04
+  productEntity: MedievalChemistryEmptyBottleTempering04
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
   id: MdvShopWheatSeeds
   productEntity: WheatSeeds
   cost:
