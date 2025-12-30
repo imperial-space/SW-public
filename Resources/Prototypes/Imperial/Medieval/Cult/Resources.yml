@@ -74,6 +74,8 @@
       - leather
       - leather_2
       - leather_3
+    - type: BloodMaterial
+      materialType: BloodLeather
 
 - type: entity
   parent: MedievalBloodLeather

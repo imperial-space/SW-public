@@ -123,6 +123,7 @@ namespace Content.Server.Cult
             string[,] bloodcasts =
             {
                 {"Ave", "The", "Bronus"},
+                {"Ave", "The", "Magical"},
                 {"katariemai", "opoion", "me chtypisei"},
                 // {"Elderberry", "Fig", "Banana"}
             };
@@ -141,17 +142,53 @@ namespace Content.Server.Cult
                     case "Bronus":
                     {
                         var needCount = 5;
+                        var myMaterials = new List<EntityUid>{};
                         foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
                         {
                             if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
                             {
+                                myMaterials.Add(target);
                                 needCount--;
                                 if (needCount == 0)
                                 {
                                     if (TryComp<InventoryComponent>(uid, out var inventory) && _inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var existingOutfit))
                                     {
+                                        foreach (var material in myMaterials)
+                                        {
+                                            _entityManager.DeleteEntity(material);
+                                        }
                                         _entityManager.DeleteEntity(existingOutfit.Value);
                                         var b = Spawn("MedievalClothingOuterArmorCultUp", Transform(uid).Coordinates);
+                                        _inventorySystem.TryEquip(uid, b, "outerClothing", silent: true, force: true, inventory: inventory);
+                                        return;
+                                    }
+
+                                }
+                            }
+                        }
+                        _popupSystem.PopupEntity("Ресурсов не достаточно", uid, uid);
+                        break;
+                    }
+                    case "Magical":
+                    {
+                        var needCount = 5;
+                        var myMaterials = new List<EntityUid>{};
+                        foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                        {
+                            if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodLeather")
+                            {
+                                myMaterials.Add(target);
+                                needCount--;
+                                if (needCount == 0)
+                                {
+                                    if (TryComp<InventoryComponent>(uid, out var inventory) && _inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var existingOutfit))
+                                    {
+                                        foreach (var material in myMaterials)
+                                        {
+                                            _entityManager.DeleteEntity(material);
+                                        }
+                                        _entityManager.DeleteEntity(existingOutfit.Value);
+                                        var b = Spawn("MedievalClothingOuterArmorCultMana", Transform(uid).Coordinates);
                                         _inventorySystem.TryEquip(uid, b, "outerClothing", silent: true, force: true, inventory: inventory);
                                         return;
                                     }
