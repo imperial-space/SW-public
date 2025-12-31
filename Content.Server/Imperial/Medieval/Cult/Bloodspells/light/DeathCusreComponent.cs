@@ -15,7 +15,7 @@ public sealed partial class DeathCusreComponent : Component
     {
         DamageDict = new()
         {
-            { "Radiation", 0.2 }
+            { "Radiation", 0.5 }
         }
     };
 }

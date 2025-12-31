@@ -2,6 +2,8 @@ using Content.Shared.Damage;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace Content.Server.Cult.Components;
 
@@ -27,5 +29,5 @@ public sealed partial class CultMemberComponent : Component
     public Queue<(string message, TimeSpan time)> LastSpokenMessages = new();
 
     [DataField]
-    public bool DeathCusre = false;
+    public bool DeathCusre = true;
 }

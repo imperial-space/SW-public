@@ -1,3 +1,4 @@
+using System.Data;
 using Content.Server.Chat.Systems;
 using Content.Server.Cult.Components;
 using Content.Server.Imperial.Medieval.Cult.Bloodspells.mateials;
@@ -29,16 +30,31 @@ public sealed class CultCastSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<CultMemberComponent, EntitySpokeEvent>(OnSpoke);
-        SubscribeLocalEvent<CultMemberComponent, GetMeleeDamageEvent>(OnGetDamage);
-
+        SubscribeLocalEvent<CultMemberComponent, DamageChangedEvent>(OnGetDamage);
 
     }
 
-    private void OnGetDamage(EntityUid uid, CultMemberComponent component, ref GetMeleeDamageEvent args)
+    private void OnGetDamage(EntityUid uid, CultMemberComponent component, DamageChangedEvent args)
     {
         if (!component.DeathCusre)
             return;
-        AddComp<DeathCusreComponent>(uid);
+        if (!args.DamageIncreased)
+            return;
+        if (!args.Origin.HasValue)
+            return;
+        if (HasComp<CultMemberComponent>(args.Origin.Value) || HasComp<CultCursedComponent>(args.Origin.Value))
+            return;
+        if (TryComp<DeathCusreComponent>(args.Origin.Value, out var cursed))
+        {
+            foreach (var key in cursed.CurseDamage.DamageDict.Keys.ToList())
+            {
+                cursed.CurseDamage.DamageDict[key] *= 1.5f;
+            }
+        }
+        else
+        {
+            AddComp<DeathCusreComponent>(args.Origin.Value);
+        }
         component.DeathCusre = false;
     }
 
@@ -62,6 +78,21 @@ public sealed class CultCastSystem : EntitySystem
         return messages.Zip(rowSequence, (msg, seq) => msg.Equals(seq, StringComparison.OrdinalIgnoreCase)).All(match => match);
     }
 
+    private bool CheckTime(Queue<(string message, TimeSpan time)> lastSpokenMessages)
+    {
+        if (lastSpokenMessages.Count == 0)
+            return false;
+
+        var oldest = lastSpokenMessages.MaxBy(item => item.time);
+
+        if (oldest.time.TotalSeconds <= 5)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     private void OnSpoke(EntityUid uid, CultMemberComponent component, EntitySpokeEvent args)
     {
         if (component.LastSpokenMessages.Count >= 3)
@@ -71,7 +102,7 @@ public sealed class CultCastSystem : EntitySystem
 
         component.LastSpokenMessages.Enqueue((args.Message,
             _timing.CurTime)); // я бы мог бы сделать сразу что то с акцентами но блин, это всё таки магия и надо быть точным
-
+        if (CheckTime(component.LastSpokenMessages)) return;
         if (!TryComp<BloodstreamComponent>(uid, out var bloodstream))
             return;
         if (bloodstream.BleedAmount == 0)
@@ -80,6 +111,9 @@ public sealed class CultCastSystem : EntitySystem
         string[,] bloodcasts =
         {
             {"Ave", "The", "Bronus"},
+            {"Ave", "The", "Vilkus"},
+            {"Ave", "The", "Knatus"},
+            {"Ave", "The", "Sekir"},
             {"Ave", "The", "Magical"},
             {"Katariemai", "Opoion", "Me chtypisei"},
             // {"Elderberry", "Fig", "Banana"}
@@ -96,6 +130,8 @@ public sealed class CultCastSystem : EntitySystem
             }
             switch (bloodcasts[i, 2])
             {
+                case "Truth":
+
                 case "Bronus":
                 {
                     var needCount = 5;
@@ -120,6 +156,78 @@ public sealed class CultCastSystem : EntitySystem
                                     return;
                                 }
 
+                            }
+                        }
+                    }
+                    _popupSystem.PopupEntity("Ресурсов не достаточно", uid, uid);
+                    break;
+                }
+                case "Wilkus":
+                {
+                    var needCount = 5;
+                    var myMaterials = new List<EntityUid>{};
+                    foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                    {
+                        if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
+                        {
+                            myMaterials.Add(target);
+                            needCount--;
+                            if (needCount == 0)
+                            {
+                                foreach (var material in myMaterials)
+                                {
+                                    _entityManager.DeleteEntity(material);
+                                }
+                                Spawn("MedievalSpearCult", Transform(uid).Coordinates);
+                                return;
+                            }
+                        }
+                    }
+                    _popupSystem.PopupEntity("Ресурсов не достаточно", uid, uid);
+                    break;
+                }
+                case "Knatus":
+                {
+                    var needCount = 5;
+                    var myMaterials = new List<EntityUid>{};
+                    foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                    {
+                        if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
+                        {
+                            myMaterials.Add(target);
+                            needCount--;
+                            if (needCount == 0)
+                            {
+                                foreach (var material in myMaterials)
+                                {
+                                    _entityManager.DeleteEntity(material);
+                                }
+                                Spawn("MedievalCultYatagan", Transform(uid).Coordinates);
+                                return;
+                            }
+                        }
+                    }
+                    _popupSystem.PopupEntity("Ресурсов не достаточно", uid, uid);
+                    break;
+                }
+                case "Sekir":
+                {
+                    var needCount = 5;
+                    var myMaterials = new List<EntityUid>{};
+                    foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                    {
+                        if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
+                        {
+                            myMaterials.Add(target);
+                            needCount--;
+                            if (needCount == 0)
+                            {
+                                foreach (var material in myMaterials)
+                                {
+                                    _entityManager.DeleteEntity(material);
+                                }
+                                Spawn("MedievalIronSekirCult", Transform(uid).Coordinates);
+                                return;
                             }
                         }
                     }
@@ -162,6 +270,7 @@ public sealed class CultCastSystem : EntitySystem
                     {
                         component.DeathCusre = true;
                     }
+                    _popupSystem.PopupEntity("Да будет проклят тот, кто меня ударит", uid, uid);
                     break;
                 }
             }

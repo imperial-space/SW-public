@@ -6,8 +6,8 @@
   description: проводник
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Decor/medieval_decor.rsi
-      state: cultdog
+      sprite: Imperial/Medieval/Materials/cult.rsi
+      state: cult_rod
     - type: Tag
       tags:
         - CultConductor
@@ -74,8 +74,8 @@
   description: железный стержень
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Decor/medieval_decor.rsi
-      state: cultdog
+      sprite: Imperial/Medieval/Materials/cult.rsi
+      state: rod
     - type: Tag
       tags:
         - CultConductorRod

@@ -77,14 +77,9 @@ namespace Content.Server.Cult
             SubscribeLocalEvent<CultRitualMeleeComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<CultBloodMeleeComponent, MeleeHitEvent>(OnBloodMeleeHit);
             SubscribeLocalEvent<TakeNameComponent, PlayerAttachedEvent>(OnPlayerAttached);
-            SubscribeLocalEvent<CultAltarComponent, MapInitEvent>(OnInit);
             _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
         }
 
-        private void OnInit(EntityUid uid, CultAltarComponent component, MapInitEvent args)
-        {
-            _container.EnsureContainer<Container>(uid, ConductorContainer);
-        }
         private bool CheckCultWearing(EntityUid uid)
         {
             if (!HasComp<CultMemberComponent>(uid) || !TryComp<InventoryComponent>(uid, out var inventoryComponent)) return false;
@@ -142,7 +137,9 @@ namespace Content.Server.Cult
 
         private void OnMeleeHit(EntityUid uid, CultRitualMeleeComponent component, MeleeHitEvent args)
         {
-            if (!HasComp<CultMemberComponent>(args.User)) return;
+            if (!TryComp<CultMemberComponent>(args.User, out var cultComp)) return;
+            if (cultComp.DeathCusre)
+                cultComp.DeathCusre =  false;
             foreach (var entity in args.HitEntities)
             {
                 if (entity != args.User) continue;
@@ -414,15 +411,6 @@ namespace Content.Server.Cult
                         }
                     }
                     break;
-                case "axe":
-                    if (IsCultistsEnough(uid, 2) && CheckCrystals(uid, comp, 0, 2))
-                    {
-                        Spawn("MedievalSpawnCultMelee", coords);
-                        Spawn("ShockWaveEffect", coords);
-                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
-                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва оружия проведен успешно", InGameICChatType.Speak, false);
-                    }
-                    break;
                 case "boat":
                     if (IsCultistsEnough(uid, 5) && CheckCrystals(uid, comp, 2, 2))
                     {
@@ -464,24 +452,6 @@ namespace Content.Server.Cult
                             }
                         }
 
-                    }
-                    break;
-                case "swordshield":
-                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, 1, 2))
-                    {
-                        Spawn("MedievalClothingOuterArmorCultUp", coords);
-                        Spawn("ShockWaveEffect", coords);
-                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
-                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва защитной робы выполнен успешно", InGameICChatType.Speak, false);
-                    }
-                    break;
-                case "wizard":
-                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, 1, 2))
-                    {
-                        Spawn("MedievalClothingOuterArmorCultMana", coords);
-                        Spawn("ShockWaveEffect", coords);
-                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
-                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва магической робы выполнен успешно", InGameICChatType.Speak, false);
                     }
                     break;
                 case "heart":
@@ -1063,16 +1033,10 @@ namespace Content.Server.Cult
 
             if (CheckForChrist(runeCoordinates))
                 return "christ"; // накладывание на человека эффекта проклятой метки
-            if (CheckForAxe(runeCoordinates))
-                return "axe"; // призыв оружия
             if (CheckForBoat(runeCoordinates))
                 return "boat"; // дамаг по барьеру
             if (CheckForKey(runeCoordinates))
                 return "key"; // открытие финального телепорта ПОСЛе того, как культисты открыли для себя все секторы
-            if (CheckForSwordShield(runeCoordinates))
-                return "swordshield"; // покупка брони
-            if (CheckForWizard(runeCoordinates))
-                return "wizard"; // покупка гримуара
             if (CheckForHeart(runeCoordinates))
                 return "heart"; // покупка камня возрождения
             if (CheckForScroll(runeCoordinates))
@@ -1172,25 +1136,6 @@ namespace Content.Server.Cult
             return CheckFigure(coordinates, whitePixels);
         }
 
-        private bool CheckForAxe(List<(int X, int Y)> coordinates)
-        {
-            var whitePixels = new List<(int X, int Y)>
-    {
-        (3, 1), (5, 1), (7, 1),
-        (2, 2), (5, 2), (8, 2),
-        (2, 3), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3), (8, 3),
-        (2, 4), (3, 4), (4, 4), (5, 4), (6, 4), (7, 4), (8, 4),
-        (2, 5), (5, 5), (8, 5),
-        (3, 6), (5, 6), (7, 6),
-        (5, 7), (9, 7), (10, 7),
-        (4, 8), (5, 8), (6, 8), (7, 8), (8, 8), (9, 8), (10, 8),
-        (4, 9), (5, 9), (6, 9), (7, 9), (8, 9), (9, 9), (10, 9),
-        (5, 10)
-    };
-
-            return CheckFigure(coordinates, whitePixels);
-        }
-
         private bool CheckForBoat(List<(int X, int Y)> coordinates)
         {
             var whitePixels = new List<(int X, int Y)>
@@ -1223,44 +1168,6 @@ namespace Content.Server.Cult
         (2, 7), (3, 7), (4, 7), (8, 7),
         (2, 8), (7, 8),
         (1, 9), (2, 9), (3, 9), (4, 9), (6, 9), (7, 9), (8, 9), (9, 9)
-    };
-
-            return CheckFigure(coordinates, whitePixels);
-        }
-
-        private bool CheckForSwordShield(List<(int X, int Y)> coordinates)
-        {
-            var whitePixels = new List<(int X, int Y)>
-    {
-        (3, 1), (6, 1), (8, 1), (10, 1),
-        (2, 2), (3, 2),
-        (2, 3), (6, 3), (8, 3), (10, 3),
-        (2, 4), (3, 4), (6, 4), (7, 4), (8, 4), (9, 4), (10, 4),
-        (3, 5), (6, 5), (7, 5), (8, 5), (9, 5), (10, 5),
-        (2, 6), (3, 6), (6, 6), (7, 6), (8, 6), (9, 6), (10, 6),
-        (2, 7), (7, 7), (8, 7), (9, 7),
-        (1, 8), (2, 8), (3, 8), (4, 8),(8, 8),
-        (2, 9), (3, 9),
-        (2, 10), (3, 10), (8, 10)
-    };
-
-            return CheckFigure(coordinates, whitePixels);
-        }
-
-        private bool CheckForWizard(List<(int X, int Y)> coordinates)
-        {
-            var whitePixels = new List<(int X, int Y)>
-    {
-        (1, 1), (9, 1),
-        (1, 2), (3, 2), (4, 2), (5, 2), (8, 2), (9, 2), (10, 2),
-        (3, 3), (4, 3), (5, 3), (6, 3), (9, 3),
-        (2, 4), (4, 4), (5, 4), (6, 4), (9, 4),
-        (4, 5), (5, 5), (6, 5), (7, 5),
-        (4, 6), (5, 6), (6, 6), (7, 6), (10, 6),
-        (1, 7), (3, 7), (4, 7), (7, 7), (8, 7), (10, 7),
-        (1, 8), (3, 8), (4, 8), (7, 8), (8, 8),
-        (3, 9), (4, 9), (5, 9), (6, 9), (7, 9), (8, 9),
-        (2, 10), (3, 10), (4, 10), (5, 10), (6, 10), (7, 10), (8, 10), (9, 10)
     };
 
             return CheckFigure(coordinates, whitePixels);
