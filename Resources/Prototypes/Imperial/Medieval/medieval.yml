@@ -1212,6 +1212,12 @@
   id: MedievalMopItem
   name: MedievalMopItem
   description: MedievalMopItem
+  components:
+  - type: Spillable
+    solution: absorbed
+    spillWhenThrown: false
+    preventMelee: true
+    maxMeleeSpillAmount: 0
 
 - type: entity
   parent: ClothingNeckTieDet
