@@ -4371,8 +4371,8 @@
         - BulletImpassable
   - type: CultCheckPicture
   - type: ContainerContainer
-    containers:
-      Conductor: !type:ContainerSlot
+      containers:
+        Conductor: !type:ContainerSlot
   - type: ItemSlots
     slots:
       Conductor:

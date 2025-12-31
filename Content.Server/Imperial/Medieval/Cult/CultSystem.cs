@@ -23,6 +23,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Server.Administration;
+using Content.Server.Construction.Conditions;
+using Content.Server.Imperial.Medieval.Cult.Bloodspells;
 using Content.Server.Imperial.Medieval.Cult.Bloodspells.mateials;
 using Content.Shared.Alert;
 using Content.Shared.Inventory;
@@ -36,11 +38,14 @@ using Robust.Shared.Containers;
 using Content.Shared.Containers;
 using Content.Shared.Chat;
 using Content.Shared.Body.Components;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Tag;
 
 namespace Content.Server.Cult
 {
     public sealed partial class MedievalMeleeResourceSystem : EntitySystem
     {
+        [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -57,6 +62,7 @@ namespace Content.Server.Cult
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SSDFreeSystem _ssdFreeSystem = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!;
+        [Dependency] private readonly TagSystem _tags = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
         public const string ConductorContainer = "Conductor";
@@ -868,21 +874,84 @@ namespace Content.Server.Cult
         {
             if (comp.BloodyCrystall < bloodyCost)
             {
-                _chat.TrySendInGameICMessage(uid, $"Для ритуала недостаточно кровавых кристаллов, необходимо {bloodyCost}", InGameICChatType.Speak, false);
+                _chat.TrySendInGameICMessage(uid,
+                    $"Для ритуала недостаточно кровавых кристаллов, необходимо {bloodyCost}",
+                    InGameICChatType.Speak,
+                    false);
                 _audioSystem.PlayPvs(comp.FailSound, uid);
                 return false;
             }
 
             if (comp.RedCrystall < redCost)
             {
-                _chat.TrySendInGameICMessage(uid, $"Для ритуала недостаточно алых кристаллов, необходимо {redCost}", InGameICChatType.Speak, false);
+                _chat.TrySendInGameICMessage(uid,
+                    $"Для ритуала недостаточно алых кристаллов, необходимо {redCost}",
+                    InGameICChatType.Speak,
+                    false);
                 _audioSystem.PlayPvs(comp.FailSound, uid);
                 return false;
             }
 
-            comp.BloodyCrystall -= bloodyCost;
-            comp.RedCrystall -= redCost;
-            return true;
+            if (_itemSlotsSystem.TryGetSlot(uid, ConductorContainer, out var slot) && slot.HasItem && slot.Item != null)
+            {
+                for (int i = 1; i  <= 5; i++)
+                {
+                    if (_itemSlotsSystem.TryGetSlot(slot.Item.Value, "Conductor" + 1, out var container) &&
+                        container.HasItem && container.Item != null)
+                    {
+                        if (!HasComp<TagComponent>(container.Item) &&
+                            !_tags.HasTag(container.Item.Value, "CultConductorRod"))
+                        {
+                            _chat.TrySendInGameICMessage(uid,
+                                $"Для ритуала требуется проводник силы",
+                                InGameICChatType.Speak,
+                                false);
+                            _audioSystem.PlayPvs(comp.FailSound, uid);
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        _chat.TrySendInGameICMessage(uid,
+                            $"Для ритуала требуется проводник силы",
+                            InGameICChatType.Speak,
+                            false);
+                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                        return false;
+                    }
+                }
+                for (int i = 1; i  <= 5; i++)
+                {
+                    if (_itemSlotsSystem.TryGetSlot(slot.Item.Value, "Conductor" + 1, out var container) &&
+                        container.HasItem && container.Item != null)
+                    {
+                        if (TryComp<MedievalBlodedComponent>(container.Item.Value, out var bloodcomp))
+                        {
+                            if (bloodcomp.blood >= 10)
+                            {
+                                var nestedItem = container.Item.Value;
+                                var coords = Transform(nestedItem).Coordinates;
+                                var newItem = Spawn("MedievalCultConductorRod", coords);
+
+                                _itemSlotsSystem.TryInsert(uid, "Conductor" + i, newItem, uid);
+                                QueueDel(nestedItem);
+                            }
+                            else
+                            {
+                                bloodcomp.blood += bloodyCost * 3 + redCost;
+                            }
+                        }
+                        else
+                        {
+                            AddComp<MedievalBlodedComponent>(container.Item.Value);
+                        }
+                    }
+                }
+                comp.BloodyCrystall -= bloodyCost;
+                comp.RedCrystall -= redCost;
+                return true;
+            }
+            return false;
         }
 
         private void OnExamine(EntityUid uid, CultCheckPictureComponent comp, ExaminedEvent args)

@@ -27,7 +27,7 @@
   id: MedievalBloodSteelIngot
   parent: BaseItem
   name: Слиток кровавой стали
-  description: железный стержень
+  description: стальная
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Materials/cult.rsi
@@ -49,7 +49,7 @@
   parent: BaseItem
   suffix: full
   name: Кусок кровавой кожи
-  description: железный стержень
+  description: Очень кровавая
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Materials/cult.rsi

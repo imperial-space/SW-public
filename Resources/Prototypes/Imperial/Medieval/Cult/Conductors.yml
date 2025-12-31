@@ -70,6 +70,22 @@
 - type: entity
   id: MedievalCultConductorRod
   parent: BaseItem
+  name: Кровавый Железный стержень
+  description: железный стержень выглядящий более кроваво
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Materials/cult.rsi
+      state: rod
+    # - type: Tag
+    #   tags:
+    #     - CultConductorRod
+    - type: Meltable
+      resourceCount: 2
+      resourceName: MedievalBloodIronIngot
+
+- type: entity
+  id: MedievalCultConductorRod
+  parent: BaseItem
   name: Железный стержень
   description: железный стержень
   components:
@@ -79,6 +95,3 @@
     - type: Tag
       tags:
         - CultConductorRod
-    - type: Meltable
-      resourceCount: 2
-      resourceName: MedievalBloodIronIngot
