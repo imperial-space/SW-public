@@ -57,7 +57,6 @@ namespace Content.Server.Cult
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SSDFreeSystem _ssdFreeSystem = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!;
-        [Dependency] private readonly IEntityManager _entityManager = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
         public const string ConductorContainer = "Conductor";
@@ -79,8 +78,6 @@ namespace Content.Server.Cult
             SubscribeLocalEvent<CultBloodMeleeComponent, MeleeHitEvent>(OnBloodMeleeHit);
             SubscribeLocalEvent<TakeNameComponent, PlayerAttachedEvent>(OnPlayerAttached);
             SubscribeLocalEvent<CultAltarComponent, MapInitEvent>(OnInit);
-            SubscribeLocalEvent<CultMemberComponent, EntitySpokeEvent>(OnSpoke);
-
             _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
         }
 
@@ -105,125 +102,7 @@ namespace Content.Server.Cult
                 comp.HasName = true;
             });
         }
-        private void OnSpoke(EntityUid uid, CultMemberComponent component, EntitySpokeEvent args)
-        {
-            if (component.LastSpokenMessages.Count >= 3)
-            {
-                component.LastSpokenMessages.Dequeue(); // Удаляем первый (самый старый) элемент
-            }
 
-            component.LastSpokenMessages.Enqueue((args.Message,
-                _timing.CurTime)); // я бы мог бы сделать сразу что то с акцентами но блин, это всё таки магия и надо быть точным
-
-            if (!TryComp<BloodstreamComponent>(uid, out var bloodstream))
-                return;
-            if (bloodstream.BleedAmount == 0)
-                return;
-
-            string[,] bloodcasts =
-            {
-                {"Ave", "The", "Bronus"},
-                {"Ave", "The", "Magical"},
-                {"katariemai", "opoion", "me chtypisei"},
-                // {"Elderberry", "Fig", "Banana"}
-            };
-            for (int i = bloodcasts.GetLength(0)-1; i >= 0; i--)
-            {
-                if (bloodcasts[i, 2] != args.Message) // Проверяем первое слово
-                    continue;
-
-
-                if (!CheckSequenceInQueueFromRow(component.LastSpokenMessages, bloodcasts, i))
-                {
-                    continue;
-                }
-                switch (bloodcasts[i, 2])
-                {
-                    case "Bronus":
-                    {
-                        var needCount = 5;
-                        var myMaterials = new List<EntityUid>{};
-                        foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
-                        {
-                            if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
-                            {
-                                myMaterials.Add(target);
-                                needCount--;
-                                if (needCount == 0)
-                                {
-                                    if (TryComp<InventoryComponent>(uid, out var inventory) && _inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var existingOutfit))
-                                    {
-                                        foreach (var material in myMaterials)
-                                        {
-                                            _entityManager.DeleteEntity(material);
-                                        }
-                                        _entityManager.DeleteEntity(existingOutfit.Value);
-                                        var b = Spawn("MedievalClothingOuterArmorCultUp", Transform(uid).Coordinates);
-                                        _inventorySystem.TryEquip(uid, b, "outerClothing", silent: true, force: true, inventory: inventory);
-                                        return;
-                                    }
-
-                                }
-                            }
-                        }
-                        _popupSystem.PopupEntity("Ресурсов не достаточно", uid, uid);
-                        break;
-                    }
-                    case "Magical":
-                    {
-                        var needCount = 5;
-                        var myMaterials = new List<EntityUid>{};
-                        foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
-                        {
-                            if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodLeather")
-                            {
-                                myMaterials.Add(target);
-                                needCount--;
-                                if (needCount == 0)
-                                {
-                                    if (TryComp<InventoryComponent>(uid, out var inventory) && _inventorySystem.TryGetSlotEntity(uid, "outerClothing", out var existingOutfit))
-                                    {
-                                        foreach (var material in myMaterials)
-                                        {
-                                            _entityManager.DeleteEntity(material);
-                                        }
-                                        _entityManager.DeleteEntity(existingOutfit.Value);
-                                        var b = Spawn("MedievalClothingOuterArmorCultMana", Transform(uid).Coordinates);
-                                        _inventorySystem.TryEquip(uid, b, "outerClothing", silent: true, force: true, inventory: inventory);
-                                        return;
-                                    }
-
-                                }
-                            }
-                        }
-                        _popupSystem.PopupEntity("Ресурсов не достаточно", uid, uid);
-                        break;
-                    }
-                }
-
-            }
-
-        }
-
-        private static bool CheckSequenceInQueueFromRow(Queue<(string message, TimeSpan time)> queue, string[,] array, int targetRow)
-        {
-            if (targetRow >= array.GetLength(0) || targetRow < 0) return false;
-
-            int seqLength = array.GetLength(1);
-            if (queue.Count < seqLength) return false;
-
-            var messages = queue.Reverse().Take(seqLength).Reverse().Select(item => item.message).ToArray();
-
-            // Получаем последовательность из ряда
-            var rowSequence = new string[seqLength];
-            for (int j = 0; j < seqLength; j++)
-            {
-                rowSequence[j] = array[targetRow, j];
-            }
-
-            // Сравнение (case-insensitive)
-            return messages.Zip(rowSequence, (msg, seq) => msg.Equals(seq, StringComparison.OrdinalIgnoreCase)).All(match => match);
-        }
         private void OnBloodMeleeHit(EntityUid uid, CultBloodMeleeComponent component, MeleeHitEvent args)
         {
             foreach (var entity in args.HitEntities)

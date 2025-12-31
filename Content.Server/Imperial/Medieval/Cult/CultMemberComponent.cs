@@ -25,4 +25,7 @@ public sealed partial class CultMemberComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public Queue<(string message, TimeSpan time)> LastSpokenMessages = new();
+
+    [DataField]
+    public bool DeathCusre = false;
 }

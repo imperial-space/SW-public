@@ -29,7 +29,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Imperial\Medieval\Cult\Bloodspells\hard\" />
-    <Folder Include="Imperial\Medieval\Cult\Bloodspells\light\" />
     <Folder Include="Imperial\Medieval\Cult\Bloodspells\medium\" />
     <Folder Include="Imperial\Medieval\Cult\Bloodspells\veryhard\" />
   </ItemGroup>

@@ -17,10 +17,16 @@
       "name": "cloth_3"
     },
     {
-      "name": "iron_ingot"
+      "name": "iron_ingot",
+      "delays": [
+                [ 0.4, 0.4, 0.4, 0.4]
+            ]
     },
     {
-      "name": "steel_ingot"
+        "name": "steel_ingot",
+        "delays": [
+        [ 0.4, 0.4, 0.4, 0.4]
+        ]
     },
     {
       "name": "leather"
