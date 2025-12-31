@@ -894,8 +894,8 @@
   craftTime: 5
   iconOverride: MedievalManaBurnGrenade
   stacks:
-    MedievalAdam: 4
-    MedievalGold: 2
+    MedievalAdam: 1
+    MedievalGold: 1
   result: MedievalManaBurnGrenade
 
 - type: CP14Recipe

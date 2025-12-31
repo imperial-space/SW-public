@@ -173,8 +173,6 @@
   maximumGuilds: 2
   currency: Revent
   items:
-  - productEntity: MedievalWizardBlacksmithCraft
-    cost: 75
   - productEntity: MedievalReliefStoneWeak
     cost: 220
     reputationForBuying: 7.3
