@@ -1527,7 +1527,7 @@
       Common: Speak
       Goblin: Speak
       #Ancient: Speak
-      #Tribe: Speak
+      Tribe: Speak
       #Orc: Speak
       #Cursed: Speak
       #Growling: Speak
@@ -1559,6 +1559,9 @@
   - type: MedievalDash
     force: 715
   - type: SSDFree
+  # - type: MultiHandedItem
+  # - type: Item
+    # size: Ginormous
 
 - type: entity
   name: bat
@@ -1570,7 +1573,7 @@
     baseWalkSpeed: 4.5
     baseSprintSpeed: 2.5
   - type: Sprite
-    drawdepth: SmallMobs
+    # drawdepth: SmallMobs
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: bat
@@ -1585,9 +1588,9 @@
           radius: 0.25
         density: 100
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: DamageStateVisuals
     states:
       Alive:
@@ -1615,7 +1618,7 @@
     damage:
       types:
         Heat: 2
-        # ParryAble: 1
+        ParryAble: 1
   - type: NoSlip
   - type: Puller
     needsHands: true
@@ -1665,7 +1668,7 @@
       Common: Understand
       #Goblin: Speak
       Ancient: Speak
-      #Tribe: Speak
+      Tribe: Understand
       #Orc: Speak
       #Cursed: Speak
       #Growling: Speak
@@ -1704,6 +1707,11 @@
   - type: Flammable
     firestackFade: -1
     canResistFire: true
+  - type: MedievalDash
+    force: 350
+  # - type: MultiHandedItem
+  # - type: Item
+    # size: Ginormous
 
 - type: damageModifierSet
   id: FireFire
@@ -1720,7 +1728,7 @@
     baseWalkSpeed: 4.5
     baseSprintSpeed: 2.5
   - type: Sprite
-    drawdepth: SmallMobs
+    # drawdepth: SmallMobs
     layers:
     - map: ["enum.DamageStateVisualLayers.Base", "movement"]
       state: peni
@@ -1742,9 +1750,9 @@
           radius: 0.25
         density: 100
         mask:
-        - SmallMobMask
+        - MobMask
         layer:
-        - SmallMobLayer
+        - MobLayer
   - type: DamageStateVisuals
     states:
       Alive:
@@ -1812,7 +1820,7 @@
       Common: Understand
       #Goblin: Speak
       #Ancient: Speak
-      #Tribe: Speak
+      Tribe: Understand
       #Orc: Speak
       #Cursed: Speak
       #Growling: Speak
@@ -1834,6 +1842,11 @@
     availableModes:
     - SemiAuto
     soundGunshot: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: MedievalDash
+    force: 350
+  # - type: MultiHandedItem
+  # - type: Item
+    # size: Ginormous
 
 - type: entity
   id: MedievalProjectileHealingBolt
@@ -1863,7 +1876,7 @@
   id: MedievalMobPetSlime
   name: plague slime
   description: wuewuewue
-  parent: MobAdultSlimes
+  parent: [ MobAdultSlimes, SimpleMobBaseNoFood ]
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/petslime.rsi
@@ -1896,6 +1909,7 @@
         Blunt: 10
         Structural: 5
         Caustic: 4
+        ParryAble: 1
   - type: GhostTakeoverAvailable
   - type: GhostRole
     makeSentient: true
@@ -1911,14 +1925,14 @@
   - type: LanguageSpeaker
     languages:
       Common: Understand
-      #Goblin: Speak
-      #Ancient: Speak
-      #Tribe: Speak
-      #Orc: Speak
-      #Cursed: Speak
-      #Growling: Speak
-      #Hissing: Speak
-      #Elf: Speak
+      Goblin: Understand
+      Ancient: Understand
+      Tribe: Understand
+      Orc: Understand
+      Cursed: Understand
+      Growling: Understand
+      Hissing: Understand
+      Elf: Understand
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -1938,6 +1952,30 @@
       types:
         Bloodloss: -1
         Cellular: -0.5
+  - type: MedievalDash
+    force: 550
+  # - type: MultiHandedItem
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 1
+  - type: Hunger
+    thresholds: # only animals and rats are derived from this prototype so let's override it here and in rats' proto
+      Overfed: 100
+      Okay: 50
+      Peckish: 25
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0
+  - type: Thirst
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0
+  - type: Bloodstream
+    bloodMaxVolume: 0
 
 - type: entity
   id: MedievalMobPetSlime1
@@ -1958,6 +1996,9 @@
         Base: dead1
       Dead:
         Base: dead1
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 2
 
 - type: entity
   id: MedievalMobPetSlime2
@@ -1978,6 +2019,9 @@
         Base: dead2
       Dead:
         Base: dead2
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 3
 
 - type: entity
   id: MedievalMobPetSlime3
@@ -1998,6 +2042,9 @@
         Base: dead3
       Dead:
         Base: dead3
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 4
 
 - type: entity
   id: MedievalMobPetSlime4
@@ -2018,6 +2065,9 @@
         Base: dead4
       Dead:
         Base: dead4
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 5
 
 - type: entity
   name: rabbit
