@@ -65,15 +65,16 @@ namespace Content.Shared.Nocturn.Components
         {
             DamageDict = new()
             {
-                { "Asphyxiation", 0.7 },
-                { "Bloodloss", 1.1 },
-                { "Blunt", 0.37 },
-                { "Heat", 0.4 },
-                { "Piercing", 0.6 },
+                { "Asphyxiation", 1.7 },
+                { "Bloodloss", 2.1 },
+                { "Blunt", 1.1 },
+                { "Heat", 0.8 },
+                { "Piercing", 0.9 },
                 { "Poison", 2.1 },
-                { "Slash", 0.7 },
+                { "Slash", 1.1 },
                 { "Shock", 0.5 },
                 { "Radiation", 0.5 },
+                { "Cold", 0.5 },
                 { "Cellular", 1.1 }
             }
         };
