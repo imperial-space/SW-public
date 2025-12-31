@@ -550,10 +550,12 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger
-        damage: 100
+        damage: 250
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]

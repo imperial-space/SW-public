@@ -26,7 +26,8 @@
   - type: Spillable
     solution: absorbed
     spillWhenThrown: false
-    preventMelee: false
+    preventMelee: true
+    maxMeleeSpillAmount: 1
   - type: DrainableSolution
     solution: absorbed
   - type: Wieldable

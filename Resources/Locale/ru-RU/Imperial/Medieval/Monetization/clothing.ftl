@@ -41,6 +41,15 @@ ent-MedievalClothingUniformJumpsuitPass9 = белоснежное платье
 ent-MedievalClothingUniformJumpsuitPass10 = белоснежный костюм
     .desc = Строгий костюм дворецкого.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ, Дворецкий" }
+ent-MedievalClothingUniformJumpsuitPass11 = платье морозной ночи
+    .desc = Платье, источающее дух зимнего присутствия и напоминающее о былых тёплых днях.
+    .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
+ent-MedievalClothingUniformJumpsuitPass12 = костюм морозной ночи
+    .desc = Костюм, источающий дух зимнего присутствия и напоминающий о былых тёплых днях.
+    .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
+ent-MedievalClothingUniformJumpsuitPass13 = одеяние астролога
+    .desc = Одежды того, кто будет любоваться звёздами в эту зимнюю ночь.
+    .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
 
 ent-MedievalPassShoes1 = сапоги со шпорами
     .desc = Сапоги из хорошей кожи, очень подойдут наездникам на лошадях.
@@ -89,3 +98,10 @@ ent-MedievalClothingNeckCloakPass3 = тёмный плащ
 ent-MedievalClothingNeckCloakPass4 = узорчатый плащ
     .desc = Тёмный кожаный плащ с вышитым рисунком.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ" }
+ent-MedievalClothingNeckCloakPass5 = бархатный плащ
+    .desc = Чёрный плащ с красным бархатом во внутренней стороне.
+    .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
+ent-MedievalClothingNeckCloakPass6 = плащ морозной ночи
+    .desc = Плащ с пышным мехом, согреет вас в самые холодные ночи. Будет служить вам напоминанием о прошлом и назревающем будущем.
+    .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
+
