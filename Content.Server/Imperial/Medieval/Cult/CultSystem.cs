@@ -39,6 +39,8 @@ using Content.Shared.Containers;
 using Content.Shared.Chat;
 using Content.Shared.Body.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Storage;
 using Content.Shared.Tag;
 
 namespace Content.Server.Cult
@@ -869,7 +871,6 @@ namespace Content.Server.Cult
             }
 
         }
-
         private bool CheckCrystals(EntityUid uid, CultCheckPictureComponent comp, int bloodyCost, int redCost)
         {
             if (comp.BloodyCrystall < bloodyCost)
@@ -947,13 +948,31 @@ namespace Content.Server.Cult
                         }
                     }
                 }
+
+
+                if (TryComp<MedievalBlodedComponent>(slot.Item.Value, out var blodcomp))
+                {
+                    if (blodcomp.blood >= 10)
+                    {
+                        if (TryComp<ButcherableComponent>(slot.Item.Value, out var butcherable))
+                        {
+                            butcherable.SpawnedEntities = new List<EntitySpawnEntry>
+                            {
+                                new EntitySpawnEntry { spawned = "MedievalBloodLeather", Amount = 10 }
+                            };
+                        }
+                    }
+                }
+                else
+                {
+                    AddComp<MedievalBlodedComponent>(slot.Item.Value);
+                }
                 comp.BloodyCrystall -= bloodyCost;
                 comp.RedCrystall -= redCost;
                 return true;
             }
             return false;
         }
-
         private void OnExamine(EntityUid uid, CultCheckPictureComponent comp, ExaminedEvent args)
         {
             args.PushMarkup("Сейчас заряжено [color=red]" + comp.BloodyCrystall.ToString() + " кровавых[/color] и [color=pink]" + comp.RedCrystall.ToString() + " алых[/color] кристаллов");

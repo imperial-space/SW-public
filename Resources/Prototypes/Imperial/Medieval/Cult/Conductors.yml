@@ -84,7 +84,7 @@
       resourceName: MedievalBloodIronIngot
 
 - type: entity
-  id: MedievalCultConductorRod
+  id: MedievalCultConductorRodIron
   parent: BaseItem
   name: Железный стержень
   description: железный стержень
