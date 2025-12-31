@@ -66,9 +66,12 @@ ent-MedievalPassShoes4 = туфли с чулками
 ent-MedievalPassShoes5 = чёрные туфли
     .desc = Удобные туфли.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ, Эмиссар, Дворецкий, Дуэлянт" }
-ent-MedievalPassShoes6 = белоснежные ботфорты
+ent-MedievalPassShoes6 = ботфорты
     .desc = Удобные сапоги.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ, Столичный Гвардеец" }
+ent-MedievalPassShoes7 = белоснежные сапоги
+    .desc = Зимние сапоги, которые согреют вас в самую сильную бурю.
+    .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
 
 ent-MedievalClothingHandsGlovesPass1 = бархатные перчатки
     .desc = Приятные на ощупь перчатки.
@@ -85,6 +88,9 @@ ent-MedievalClothingHandsGlovesPass4 = беспалые перчатки
 ent-MedievalClothingHandsGlovesPass5 = бордовые перчатки
     .desc = Красные перчатки.
     .suffix = { "МОНЕТИЗАЦИЯ, РЕЛИЗ, Дуэлянт" }
+ent-MedievalClothingHandsGlovesPass6 = белоснежные перчатки
+    .desc = Перчатки, украшенные драгоценными камнями, которые будут сверкать от света луны в эту морозную ночь.
+    .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
 
 ent-MedievalClothingNeckCloakPass1 = красный плащ
     .desc = Бархатный плащ, приятный на ощупь.

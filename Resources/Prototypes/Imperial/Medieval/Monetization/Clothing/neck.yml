@@ -56,4 +56,15 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Monetization/Clothing/Neck/neck6.rsi
+    layers:
+      - state: icon
+      - state: unshaded
+        shader: unshaded
   - type: Insulated
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Neck/neck6.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-unshaded
+        shader: unshaded
