@@ -8,8 +8,10 @@ using Content.Shared.Popups;
 using Robust.Shared.Timing;
 using System.Linq;
 using System.Numerics;
+using Content.Server.Hands.Systems;
 using Content.Server.Imperial.Medieval.Cult.Bloodspells.light;
 using Content.Shared.Damage;
+using Content.Shared.Imperial.Medieval.Cult;
 using Content.Shared.Weapons.Melee.Events;
 
 
@@ -20,6 +22,7 @@ namespace Content.Server.Imperial.Medieval.Cult.Bloodspells;
 /// </summary>
 public sealed class CultCastSystem : EntitySystem
 {
+    [Dependency] private readonly HandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
@@ -43,7 +46,9 @@ public sealed class CultCastSystem : EntitySystem
             return;
         if (!args.Origin.HasValue)
             return;
-        if (HasComp<CultMemberComponent>(args.Origin.Value) || HasComp<CultCursedComponent>(args.Origin.Value))
+        if (HasComp<CultMemberComponent>(args.Origin.Value) || TryComp<CultCursedComponent>(args.Origin.Value, out var curs))
+            return;
+        if (curs == null || curs.CurseLevel == 0)
             return;
         if (TryComp<DeathCusreComponent>(args.Origin.Value, out var cursed))
         {
@@ -91,18 +96,17 @@ public sealed class CultCastSystem : EntitySystem
             if (diff.TotalSeconds < 0.7)
             {
                 _popupSystem.PopupEntity("Ты чуствуешь, что твои слова не успели наполнится магией", uid, uid);
-                return false;
+                return true;
             }
 
         }
 
         var oldest = lastSpokenMessages.MaxBy(item => item.time);
-
         if (oldest.time.TotalSeconds <= 5)
         {
+            _popupSystem.PopupEntity("Ты чуствуешь, что твои слова успели обветшать", uid, uid);
             return true;
         }
-        _popupSystem.PopupEntity("Ты чуствуешь, что твои слова успели обветшать", uid, uid);
         return false;
     }
 
@@ -115,13 +119,10 @@ public sealed class CultCastSystem : EntitySystem
 
         component.LastSpokenMessages.Enqueue((args.Message,
             _timing.CurTime)); // я бы мог бы сделать сразу что то с акцентами но блин, это всё таки магия и надо быть точным
-        if (CheckTime(component.LastSpokenMessages, uid))
-            return;
         if (!TryComp<BloodstreamComponent>(uid, out var bloodstream))
             return;
         if (bloodstream.BleedAmount == 0)
             return;
-
         string[,] bloodcasts =
         {
             {"Ave", "The", "Truth"},
@@ -134,16 +135,18 @@ public sealed class CultCastSystem : EntitySystem
             // {"Дебагус", "Магикус", "Призывус"}
             // {"Elderberry", "Fig", "Banana"}
         };
+
         for (int i = bloodcasts.GetLength(0)-1; i >= 0; i--)
         {
             if (bloodcasts[i, 2] != args.Message) // Проверяем первое слово
                 continue;
 
-
             if (!CheckSequenceInQueueFromRow(component.LastSpokenMessages, bloodcasts, i))
             {
                 continue;
             }
+            if (CheckTime(component.LastSpokenMessages, uid))
+                return;
             switch (bloodcasts[i, 2])
             {
                 case "Призывус":
@@ -166,22 +169,21 @@ public sealed class CultCastSystem : EntitySystem
 
                case "Truth":
                 {
-                    if (TryComp<InventoryComponent>(uid, out var inventory) &&
-                        _inventorySystem.TryGetSlotEntity(uid, "hand", out var existingItem))
+                    if (_handsSystem.TryGetActiveItem(uid, out var heldItem))
                     {
                         // Проверяем, что предмет в руке — это именно книга-прототип (MedievalBookCultGuide)
-                        if (!_entityManager.GetComponent<MetaDataComponent>(existingItem.Value).EntityPrototype?.Name.Equals("MedievalBookCultGuide") == true)
+                        if (!_entityManager.GetComponent<MetaDataComponent>(heldItem.Value).EntityPrototype?.ID.Equals("MedievalBookCultGuide") == true)
                         {
-                            _popupSystem.PopupEntity("В руке должно быть святое писание!", uid, uid);
+                            _popupSystem.PopupEntity("В руке должно быть святое писание! а не "+heldItem+"  "+_entityManager.GetComponent<MetaDataComponent>(heldItem.Value).EntityPrototype?.Name, uid, uid);
                             break;
                         }
 
                         // Удаляем текущий предмет в руке
-                        _entityManager.DeleteEntity(existingItem.Value);
+                        _entityManager.DeleteEntity(heldItem.Value);
 
                         // Спавним новую книгу и экипируем её
                         var newBook = Spawn("MedievalBookCultGuide2", Transform(uid).Coordinates);
-                        _inventorySystem.TryEquip(uid, newBook, "hand", silent: true, force: true, inventory: inventory);
+                        _handsSystem.TryPickup(uid, newBook, checkActionBlocker: false);
                     }
                     else
                     {

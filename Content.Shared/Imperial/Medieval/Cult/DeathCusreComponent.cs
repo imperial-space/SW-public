@@ -1,5 +1,6 @@
 using Content.Shared.Damage;
-namespace Content.Server.Imperial.Medieval.Cult.Bloodspells.light;
+
+namespace Content.Shared.Imperial.Medieval.Cult;
 
 /// <summary>
 /// This is used for...
@@ -7,8 +8,6 @@ namespace Content.Server.Imperial.Medieval.Cult.Bloodspells.light;
 [RegisterComponent]
 public sealed partial class DeathCusreComponent : Component
 {
-    // [DataField("deathCurseTick")]
-    // public float DeathCurseTick = 10f; туду сделать редактируемое
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public DamageSpecifier CurseDamage = new()
