@@ -6,5 +6,7 @@ namespace Content.Server.Imperial.Medieval.Cult.Bloodspells;
 [RegisterComponent]
 public sealed partial class MedievalBlodedComponent : Component
 {
-    public int blood = 0;
+    [DataField("blood")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public int Blood;
 }

@@ -4371,13 +4371,13 @@
         - BulletImpassable
   - type: CultCheckPicture
   - type: ContainerContainer
-      containers:
-        Conductor: !type:ContainerSlot
+    containers:
+      Conductor: !type:ContainerSlot
   - type: ItemSlots
     slots:
       Conductor:
         name: Проводник
-        startingItem: MedievalCultConductor
+        startingItem: MedievalCultConductorFull
         # insertSound: /Audio/Weapons/Guns/MagIn/ltrifle_magin.ogg
         # ejectSound: /Audio/Weapons/Guns/MagOut/ltrifle_magout.ogg
         priority: 2

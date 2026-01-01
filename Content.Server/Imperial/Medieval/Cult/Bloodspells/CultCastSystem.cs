@@ -7,6 +7,7 @@ using Content.Shared.Inventory;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
 using System.Linq;
+using System.Numerics;
 using Content.Server.Imperial.Medieval.Cult.Bloodspells.light;
 using Content.Shared.Damage;
 using Content.Shared.Weapons.Melee.Events;
@@ -78,10 +79,22 @@ public sealed class CultCastSystem : EntitySystem
         return messages.Zip(rowSequence, (msg, seq) => msg.Equals(seq, StringComparison.OrdinalIgnoreCase)).All(match => match);
     }
 
-    private bool CheckTime(Queue<(string message, TimeSpan time)> lastSpokenMessages)
+    private bool CheckTime(Queue<(string message, TimeSpan time)> lastSpokenMessages , EntityUid uid)
     {
         if (lastSpokenMessages.Count == 0)
             return false;
+
+        var messages = lastSpokenMessages.ToArray();
+        for (int i = 1; i < messages.Length; i++)
+        {
+            var diff = messages[i].time - messages[i - 1].time;
+            if (diff.TotalSeconds < 0.7)
+            {
+                _popupSystem.PopupEntity("Ты чуствуешь, что твои слова не успели наполнится магией", uid, uid);
+                return false;
+            }
+
+        }
 
         var oldest = lastSpokenMessages.MaxBy(item => item.time);
 
@@ -89,7 +102,7 @@ public sealed class CultCastSystem : EntitySystem
         {
             return true;
         }
-
+        _popupSystem.PopupEntity("Ты чуствуешь, что твои слова успели обветшать", uid, uid);
         return false;
     }
 
@@ -102,7 +115,8 @@ public sealed class CultCastSystem : EntitySystem
 
         component.LastSpokenMessages.Enqueue((args.Message,
             _timing.CurTime)); // я бы мог бы сделать сразу что то с акцентами но блин, это всё таки магия и надо быть точным
-        if (CheckTime(component.LastSpokenMessages)) return;
+        if (CheckTime(component.LastSpokenMessages, uid))
+            return;
         if (!TryComp<BloodstreamComponent>(uid, out var bloodstream))
             return;
         if (bloodstream.BleedAmount == 0)
@@ -110,12 +124,14 @@ public sealed class CultCastSystem : EntitySystem
 
         string[,] bloodcasts =
         {
+            {"Ave", "The", "Truth"},
             {"Ave", "The", "Bronus"},
             {"Ave", "The", "Vilkus"},
             {"Ave", "The", "Knatus"},
             {"Ave", "The", "Sekir"},
             {"Ave", "The", "Magical"},
             {"Katariemai", "Opoion", "Me chtypisei"},
+            // {"Дебагус", "Магикус", "Призывус"}
             // {"Elderberry", "Fig", "Banana"}
         };
         for (int i = bloodcasts.GetLength(0)-1; i >= 0; i--)
@@ -130,13 +146,56 @@ public sealed class CultCastSystem : EntitySystem
             }
             switch (bloodcasts[i, 2])
             {
-                case "Truth":
+                case "Призывус":
+                {
+                    var center = Transform(uid).Coordinates;
+                    for (int x = -4; x <= 5; x++)
+                    {
+                        for (int y = -4; y <= 5; y++)
+                        {
+                            var b = Spawn("MedievalCultBrushFine", center.Offset(new Vector2(x*0.5f, y*-0.5f)));
+                            if (!TryComp<CultBloodPaintComponent>(b, out var bloodPaint))
+                                break;
+                            bloodPaint.PosX = x+5;
+                            bloodPaint.PosY = y+5;
+                        }
+                    }
+                    break;
+                }
+
+
+               case "Truth":
+                {
+                    if (TryComp<InventoryComponent>(uid, out var inventory) &&
+                        _inventorySystem.TryGetSlotEntity(uid, "hand", out var existingItem))
+                    {
+                        // Проверяем, что предмет в руке — это именно книга-прототип (MedievalBookCultGuide)
+                        if (!_entityManager.GetComponent<MetaDataComponent>(existingItem.Value).EntityPrototype?.Name.Equals("MedievalBookCultGuide") == true)
+                        {
+                            _popupSystem.PopupEntity("В руке должно быть святое писание!", uid, uid);
+                            break;
+                        }
+
+                        // Удаляем текущий предмет в руке
+                        _entityManager.DeleteEntity(existingItem.Value);
+
+                        // Спавним новую книгу и экипируем её
+                        var newBook = Spawn("MedievalBookCultGuide2", Transform(uid).Coordinates);
+                        _inventorySystem.TryEquip(uid, newBook, "hand", silent: true, force: true, inventory: inventory);
+                    }
+                    else
+                    {
+                        _popupSystem.PopupEntity("В руке должно быть святое писание!", uid, uid);
+                    }
+                    break;
+                }
+
 
                 case "Bronus":
                 {
                     var needCount = 5;
                     var myMaterials = new List<EntityUid>{};
-                    foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                    foreach (var target in _lookup.GetEntitiesInRange(uid, 1f))
                     {
                         if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
                         {
@@ -166,7 +225,7 @@ public sealed class CultCastSystem : EntitySystem
                 {
                     var needCount = 5;
                     var myMaterials = new List<EntityUid>{};
-                    foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                    foreach (var target in _lookup.GetEntitiesInRange(uid, 1f))
                     {
                         if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
                         {
@@ -190,7 +249,7 @@ public sealed class CultCastSystem : EntitySystem
                 {
                     var needCount = 5;
                     var myMaterials = new List<EntityUid>{};
-                    foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                    foreach (var target in _lookup.GetEntitiesInRange(uid, 1f))
                     {
                         if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
                         {
@@ -214,7 +273,7 @@ public sealed class CultCastSystem : EntitySystem
                 {
                     var needCount = 5;
                     var myMaterials = new List<EntityUid>{};
-                    foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                    foreach (var target in _lookup.GetEntitiesInRange(uid, 1f))
                     {
                         if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodIron")
                         {
@@ -238,7 +297,7 @@ public sealed class CultCastSystem : EntitySystem
                 {
                     var needCount = 5;
                     var myMaterials = new List<EntityUid>{};
-                    foreach (var target in _lookup.GetEntitiesInRange(uid, 2.5f))
+                    foreach (var target in _lookup.GetEntitiesInRange(uid, 1f))
                     {
                         if (TryComp<BloodMaterialComponent>(target, out var bloodMaterial) && bloodMaterial.MaterialType == "BloodLeather")
                         {
@@ -273,6 +332,9 @@ public sealed class CultCastSystem : EntitySystem
                     _popupSystem.PopupEntity("Да будет проклят тот, кто меня ударит", uid, uid);
                     break;
                 }
+                default:
+                    _popupSystem.PopupEntity("Ты чуствуешь неправильность в своих словах", uid, uid);
+                    break;
             }
         }
 

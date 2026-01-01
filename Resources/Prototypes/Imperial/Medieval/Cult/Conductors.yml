@@ -1,9 +1,8 @@
-
 - type: entity
   id: MedievalCultConductor
   parent: BaseItem
-  name: проводник
-  description: проводник
+  name: Связка
+  description: Связка из ткани и кожи
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Materials/cult.rsi
@@ -28,7 +27,6 @@
       slots:
         Conductor1:
           name: Первый стержень
-          startingItem: MedievalCultConductorRod
           priority: 2
           ejectOnBreak: true
           whitelist:
@@ -36,7 +34,6 @@
               - CultConductorRod
         Conductor2:
           name: Второй стержень
-          startingItem: MedievalCultConductorRod
           priority: 2
           ejectOnBreak: true
           whitelist:
@@ -44,7 +41,6 @@
               - CultConductorRod
         Conductor3:
           name: Третий стержень
-          startingItem: MedievalCultConductorRod
           priority: 2
           ejectOnBreak: true
           whitelist:
@@ -52,7 +48,6 @@
               - CultConductorRod
         Conductor4:
           name: Четвёртый стержень
-          startingItem: MedievalCultConductorRod
           priority: 2
           ejectOnBreak: true
           whitelist:
@@ -60,7 +55,53 @@
               - CultConductorRod
         Conductor5:
           name: Пятый стержень
-          startingItem: MedievalCultConductorRod
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+
+- type: entity
+  id: MedievalCultConductorFull
+  parent: MedievalCultConductor
+  components:
+    - type: ItemSlots
+      slots:
+        Conductor1:
+          name: Первый стержень
+          startingItem: MedievalCultConductorRodIron
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+        Conductor2:
+          name: Второй стержень
+          startingItem: MedievalCultConductorRodIron
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+        Conductor3:
+          name: Третий стержень
+          startingItem: MedievalCultConductorRodIron
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+        Conductor4:
+          name: Четвёртый стержень
+          startingItem: MedievalCultConductorRodIron
+          priority: 2
+          ejectOnBreak: true
+          whitelist:
+            tags:
+              - CultConductorRod
+        Conductor5:
+          name: Пятый стержень
+          startingItem: MedievalCultConductorRodIron
           priority: 2
           ejectOnBreak: true
           whitelist:
@@ -70,15 +111,15 @@
 - type: entity
   id: MedievalCultConductorRod
   parent: BaseItem
-  name: Кровавый Железный стержень
-  description: железный стержень выглядящий более кроваво
+  name: Кровавый стержень
+  description: Железный стержень выглядящий более кроваво
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Materials/cult.rsi
       state: rod
-    # - type: Tag
-    #   tags:
-    #     - CultConductorRod
+    - type: Tag
+      tags:
+        - CultConductorRod
     - type: Meltable
       resourceCount: 2
       resourceName: MedievalBloodIronIngot
@@ -87,7 +128,7 @@
   id: MedievalCultConductorRodIron
   parent: BaseItem
   name: Железный стержень
-  description: железный стержень
+  description: Железно выглядит
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Materials/cult.rsi

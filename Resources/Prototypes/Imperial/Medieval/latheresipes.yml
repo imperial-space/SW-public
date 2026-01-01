@@ -1465,6 +1465,15 @@
   result: ClothingMaskBandBlack
 
 - type: CP14Recipe
+  id: MedievalCultConductor
+  craftTime: 2
+  iconOverride: MedievalCultConductor
+  stacks:
+    Cloth: 10
+    MedievalLeather1: 10
+  result: MedievalCultConductor
+
+- type: CP14Recipe
   id: MedievalClothingOuterArmorGoblinLeather
   craftTime: 6
   stacks:

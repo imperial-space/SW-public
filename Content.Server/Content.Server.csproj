@@ -28,6 +28,7 @@
     <ProjectReference Include="..\Content.Shared\Content.Shared.csproj" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Imperial\Medieval\Cult\Bloodspells\debug\" />
     <Folder Include="Imperial\Medieval\Cult\Bloodspells\hard\" />
     <Folder Include="Imperial\Medieval\Cult\Bloodspells\medium\" />
     <Folder Include="Imperial\Medieval\Cult\Bloodspells\veryhard\GibAllSpell\" />

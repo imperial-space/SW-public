@@ -65,6 +65,7 @@ namespace Content.Server.Cult
         [Dependency] private readonly SSDFreeSystem _ssdFreeSystem = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!;
         [Dependency] private readonly TagSystem _tags = default!;
+        [Dependency] private readonly EntityManager _entityManager = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
         public const string ConductorContainer = "Conductor";
@@ -923,23 +924,22 @@ namespace Content.Server.Cult
                 }
                 for (int i = 1; i  <= 5; i++)
                 {
-                    if (_itemSlotsSystem.TryGetSlot(slot.Item.Value, "Conductor" + 1, out var container) &&
+                    if (_itemSlotsSystem.TryGetSlot(slot.Item.Value, "Conductor" + i, out var container) &&
                         container.HasItem && container.Item != null)
                     {
                         if (TryComp<MedievalBlodedComponent>(container.Item.Value, out var bloodcomp))
                         {
-                            if (bloodcomp.blood >= 10)
+                            if (bloodcomp.Blood >= 10)
                             {
                                 var nestedItem = container.Item.Value;
                                 var coords = Transform(nestedItem).Coordinates;
                                 var newItem = Spawn("MedievalCultConductorRod", coords);
-
-                                _itemSlotsSystem.TryInsert(uid, "Conductor" + i, newItem, uid);
-                                QueueDel(nestedItem);
+                                _entityManager.DeleteEntity(nestedItem);
+                                _itemSlotsSystem.TryInsert(slot.Item.Value, "Conductor" + i, newItem, uid);
                             }
                             else
                             {
-                                bloodcomp.blood += bloodyCost * 3 + redCost;
+                                bloodcomp.Blood += bloodyCost * 3 + redCost;
                             }
                         }
                         else
@@ -952,13 +952,13 @@ namespace Content.Server.Cult
 
                 if (TryComp<MedievalBlodedComponent>(slot.Item.Value, out var blodcomp))
                 {
-                    if (blodcomp.blood >= 10)
+                    if (blodcomp.Blood >= 10)
                     {
                         if (TryComp<ButcherableComponent>(slot.Item.Value, out var butcherable))
                         {
                             butcherable.SpawnedEntities = new List<EntitySpawnEntry>
                             {
-                                new EntitySpawnEntry { spawned = "MedievalBloodLeather", Amount = 10 }
+                                new EntitySpawnEntry { PrototypeId = "MedievalBloodLeather1", Amount = 10 }
                             };
                         }
                     }
