@@ -526,6 +526,14 @@
   - MedievalNecroOther
 
 - type: listing
+  id: MagicNecroShopMedievalManaBurnGrenade
+  productEntity: MedievalManaBurnGrenade
+  cost:
+    UnholyMedieval: 5
+  categories:
+  - MedievalNecroOther
+
+- type: listing
   id: MagicNecroShopMedievalServerMap
   productEntity: MedievalServerMap
   cost:
