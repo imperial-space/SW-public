@@ -427,6 +427,7 @@
     MedievalClothingOuterArmorUpIron2: [MedievalClothingOuterArmorUpIron2Zablik]
     MedievalClothingOuterArmorUpIron3: [MedievalClothingOuterArmorUpIron3Zablik]
     MedievalClothingOuterArmorUpIron: [MedievalClothingOuterArmorUpIronZablik]
+    ClothingOuterArmorPodWars: [ClothingOuterArmorPodWarsZablik]
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetZablik]
     MedievalClothingHeadHelmetSalad: [MedievalClothingHeadHelmetZablik]
     MedievalClothingHeadHelmetSaladLight: [MedievalClothingHeadHelmetZablik]
