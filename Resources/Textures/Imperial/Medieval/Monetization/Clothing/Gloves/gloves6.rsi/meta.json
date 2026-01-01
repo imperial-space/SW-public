@@ -11,14 +11,15 @@
       "name": "icon"
     },
     {
-      "name": "unshaded"
-    },
-    {
-      "name": "equipped-NECK",
+      "name": "equipped-HAND",
       "directions": 4
     },
     {
-      "name": "equipped-unshaded",
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
       "directions": 4
     }
   ]
