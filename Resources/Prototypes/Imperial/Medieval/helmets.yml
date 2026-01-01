@@ -1737,7 +1737,7 @@
     sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
 
 - type: entity
-  parent: MedievalClothingHeadHelmetCrusader
+  parent: MedievalClothingHeadHelmetNormandFree
   id: MedievalClothingHeadHelmetZablik
   name: MedievalClothingHeadHelmetZablik
   description: MedievalClothingHeadHelmetZablik
