@@ -30,7 +30,7 @@
   <ItemGroup>
     <Folder Include="Imperial\Medieval\Cult\Bloodspells\hard\" />
     <Folder Include="Imperial\Medieval\Cult\Bloodspells\medium\" />
-    <Folder Include="Imperial\Medieval\Cult\Bloodspells\veryhard\" />
+    <Folder Include="Imperial\Medieval\Cult\Bloodspells\veryhard\GibAllSpell\" />
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
 </Project>
