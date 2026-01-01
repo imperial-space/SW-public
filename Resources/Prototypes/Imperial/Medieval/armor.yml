@@ -2325,6 +2325,17 @@
   - type: MedievalIronHitSound
 
 - type: entity
+  parent: ClothingOuterArmorPodWars
+  id: ClothingOuterArmorPodWarsZablik
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
   parent: MedievalClothingOuterArmorIronCuirassLight
   id: MedievalClothingOuterArmorIronCuirassLightZablik
   name: iron armor cuirass
