@@ -28,8 +28,8 @@ namespace Content.Server.Imperial.Medieval.Flavors
         public void Init()
         {
             _netManager.RegisterNetMessage<FlavorImagesMsg>();
-            _netManager.RegisterNetMessage<UpdateFlavorCacheMsg>();
-            _netManager.RegisterNetMessage<MsgUpdateFlavorImage>(UpdateImage);
+            //netManager.RegisterNetMessage<UpdateFlavorCacheMsg>(); // TODO - PASHA SUKA CHINI
+            //netManager.RegisterNetMessage<MsgUpdateFlavorImage>(UpdateImage); // TODO - PASHA SUKA CHINI
             _netManager.RegisterNetMessage<OpenFlavorWindowMsg>();
         }
         void IPostInjectInit.PostInject()
@@ -38,6 +38,7 @@ namespace Content.Server.Imperial.Medieval.Flavors
         }
         public void UpdateImage(MsgUpdateFlavorImage msg)
         {
+            return; // TODO - PASHA SUKA CHINI
             if (!_players.TryGetSessionByChannel(msg.MsgChannel, out var player) || !_playtime.GetPlayTimes(player).TryGetValue(PlayTimeTrackingShared.TrackerOverall, out var time) || time < TimeSpan.FromSeconds(Config.GetCVar(ICCVars.FlavorPlaytimeRequirement)))
                 return;
 
@@ -66,6 +67,7 @@ namespace Content.Server.Imperial.Medieval.Flavors
         }
         public async void FinishLoad(ICommonSession session, MsgPreferencesAndSettings prefsMsg)
         {
+            return; // TODO - PASHA SUKA CHINI
             var images = new Dictionary<int, byte[]>();
             var playerCachedImages = new Dictionary<string, byte[]>();
             foreach (var (key, _) in prefsMsg.Preferences.Characters)
@@ -98,6 +100,7 @@ namespace Content.Server.Imperial.Medieval.Flavors
         }
         public override bool TryExamine(EntityUid user, Entity<DetailExaminableComponent> ent)
         {
+            return false; // TODO - PASHA SUKA CHINI
             if (!EntityManager.TryGetComponent<FlavorImageComponent>(ent, out var imageComponent))
                 return true;
 

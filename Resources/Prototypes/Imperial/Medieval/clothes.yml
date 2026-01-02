@@ -2142,6 +2142,42 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth82
+  name: песочная одежда война
+  description: Одежда предпочитаемая бандитами. С ней удобно прятаться в песках.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_82.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_82.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth83
+  name: песочная одежда война
+  description: Одежда предпочитаемая бандитами. С ней удобно прятаться в песках.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+  - type: Insulated
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth2383
+  name: песочная одежда война
+  description: Одежда предпочитаемая бандитами. С ней удобно прятаться в песках.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+  - type: Insulated
+
+- type: entity
   parent: MedievalClothingUniformJumpsuitShitCloth23
   id: MedievalClothingUniformJumpsuitShitCloth72
   name: MedievalClothingUniformJumpsuitShitCloth72

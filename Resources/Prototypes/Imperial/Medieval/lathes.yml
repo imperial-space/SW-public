@@ -550,10 +550,12 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
   - type: Destructible
     thresholds:
     - trigger: !type:DamageTrigger
-        damage: 100
+        damage: 250
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -1030,6 +1032,7 @@
   - type: CP14Workbench
     craftSound: "/Audio/Imperial/Medieval/craft_iron.ogg"
     recipes:
+    - MedievalManaBurnGrenade
     - MedievalGlowStone
     - MedievalCompactDefibrillator
     - MedievalShoesSpeed
@@ -1054,6 +1057,10 @@
     - MedievalScrollsDaggerCraft
     - MedievalScrollsBowCraft
     - MedievalScrollsCrossbowCraft
+    - MedievalScrollsFireCraft
+    - MedievalScrollsPnyaCraft
+    - MedievalScrollsKoboldCraft
+    - MedievalScrollsPetSlimeCraft
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1195,10 +1202,10 @@
     - MedievalStoneWallCraft
     - MedievalStoneLoopHoleCraft
     - MedievalWeaponTurretNanoTrasenCraft
-    - MedievalChemistryEmptyBottle01
-    - MedievalChemistryEmptyBottle02
-    - MedievalChemistryEmptyBottle03
-    - MedievalChemistryEmptyBottle04
+    - MedievalChemistryEmptyBottleTempering01Craft
+    - MedievalChemistryEmptyBottleTempering02Craft
+    - MedievalChemistryEmptyBottleTempering03Craft
+    - MedievalChemistryEmptyBottleTempering04Craft
     - MedievalKotel
     - Syringe
     - MedievalHorseLeatherArmor

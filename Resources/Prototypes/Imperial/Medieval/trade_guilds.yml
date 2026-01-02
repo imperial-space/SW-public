@@ -216,6 +216,9 @@
   - productEntity: MedaljonAntiMana
     cost: 300
     reputationForBuying: 10
+  - productEntity: MedievalManaBurnGrenade
+    cost: 150
+    reputationForBuying: 2
   - productEntity: MedievalGlowStone
     cost: 12
     reputationForBuying: 0.4
@@ -928,6 +931,30 @@
     reputationForBuying: 0.7
   - productEntity: MedievalMopBucket
     cost: 15
+    reputationForBuying: 0.5
+  - productEntity: MedievalChemistryEmptyBottle01
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottle02
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottle03
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottle04
+    cost: 5
+    reputationForBuying: 0.15
+  - productEntity: MedievalChemistryEmptyBottleTempering01
+    cost: 20
+    reputationForBuying: 0.5
+  - productEntity: MedievalChemistryEmptyBottleTempering02
+    cost: 20
+    reputationForBuying: 0.5
+  - productEntity: MedievalChemistryEmptyBottleTempering03
+    cost: 20
+    reputationForBuying: 0.5
+  - productEntity: MedievalChemistryEmptyBottleTempering04
+    cost: 20
     reputationForBuying: 0.5
   - productEntity: WheatSeeds
     cost: 10

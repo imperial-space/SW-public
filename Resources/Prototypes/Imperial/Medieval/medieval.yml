@@ -1208,6 +1208,37 @@
     proto: MedievalExplosionEffect
 
 - type: entity
+  name: mana burn bomb
+  description: Grenade that creates a mana burn field.
+  parent: GrenadeBase
+  id: MedievalManaBurnGrenade
+  components:
+  - type: RDWeight
+    value: 2
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_manaburn_grenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: TimerTrigger
+    delay: 2.5
+    beepSound:
+      path: "/Audio/Imperial/Medieval/bomb.ogg"
+      params:
+        volume: 7
+    initialBeepDelay: 0
+    beepInterval: 6 # 2 beeps total (at 0 and 2)
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+  - type: SpawnOnTrigger
+    useMapCoords: true
+    keysIn:
+    - timer
+    proto: MedievalManaBurnFieldSpawnMiddle
+
+
+- type: entity
   parent: MopItem
   id: MedievalMopItem
   name: MedievalMopItem
@@ -1564,6 +1595,9 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle01
+    node: ground
 
 - type: entity
   parent: ChemistryEmptyBottle02
@@ -1573,6 +1607,9 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle02
+    node: ground
 
 - type: entity
   parent: ChemistryEmptyBottle03
@@ -1582,6 +1619,9 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle03
+    node: ground
 
 - type: entity
   parent: ChemistryEmptyBottle04
@@ -1591,6 +1631,225 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle04
+    node: ground
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle01
+  graph: MedievalChemistryEmptyBottle01
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle01
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-1 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle01
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle01
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle01
+      entity: MedievalChemistryEmptyBottle01
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle02
+  graph: MedievalChemistryEmptyBottle02
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle02
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-2 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle02
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle02
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle02
+      entity: MedievalChemistryEmptyBottle02
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle03
+  graph: MedievalChemistryEmptyBottle03
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle03
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-3 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle03
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle03
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle03
+      entity: MedievalChemistryEmptyBottle03
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle04
+  graph: MedievalChemistryEmptyBottle04
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle04
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-4 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle04
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle04
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle04
+      entity: MedievalChemistryEmptyBottle04
+
+- type: entity
+  parent: ChemistryEmptyBottle01
+  id: MedievalChemistryEmptyBottleTempering01
+  name: MedievalChemistryEmptyBottleTempering01
+  description: MedievalChemistryEmptyBottleTempering01
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ChemistryEmptyBottle02
+  id: MedievalChemistryEmptyBottleTempering02
+  name: MedievalChemistryEmptyBottleTempering02
+  description: MedievalChemistryEmptyBottleTempering02
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ChemistryEmptyBottle03
+  id: MedievalChemistryEmptyBottleTempering03
+  name: MedievalChemistryEmptyBottleTempering03
+  description: MedievalChemistryEmptyBottleTempering03
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ChemistryEmptyBottle04
+  id: MedievalChemistryEmptyBottleTempering04
+  name: MedievalChemistryEmptyBottleTempering04
+  description: MedievalChemistryEmptyBottleTempering04
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   name: MedievalLockpickPack
@@ -1858,6 +2117,13 @@
   id: MedievalBear
   sound:
     path: /Audio/Imperial/Medieval/bear.ogg
+    params:
+      variation: 0.125
+
+- type: emoteSounds
+  id: MedievalWolf
+  sound:
+    path: /Audio/Voice/Vulpkanin/howl.ogg
     params:
       variation: 0.125
 
@@ -8654,3 +8920,44 @@
     - type: Tag
       tags:
         - MedievalKey
+
+- type: entity
+  id: MedievalGussarFlagZablik
+  description: A barricade made out of wood planks. It looks like it can take a few solid hits.
+  parent: BaseStructureMedieval
+  name: wooden barricade
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/gussarflag.rsi
+    state: icon
+    drawdepth: Overdoors
+    noRot: true
+    offset: 0,0.8
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 3
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

@@ -2144,6 +2144,17 @@
 
 - type: entity
   parent: MedievalIronGloves
+  id: MedievalIronGlovesZablik
+  name: MedievalIronGlovesZablik
+  description: MedievalIronGlovesZablik
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/zablik_gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/zablik_gloves.rsi
+
+- type: entity
+  parent: MedievalIronGloves
   id: MedievalIronGlovesFichty
   name: MedievalIronGlovesFichty
   description: MedievalIronGlovesFichty
@@ -2311,6 +2322,108 @@
     sprite: Imperial/Medieval/Clothing/Armor/deimon_armor.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/deimon_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: ClothingOuterArmorPodWars
+  id: ClothingOuterArmorPodWarsZablik
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirassLight
+  id: MedievalClothingOuterArmorIronCuirassLightZablik
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalClothingOuterArmorBrigantinZablik
+  name: armor
+  description: An armored northern armor to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterArmorIronCuirassZablik
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalClothingOuterArmorChainMailZablik
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIron
+  id: MedievalClothingOuterArmorIronZablik
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron2
+  id: MedievalClothingOuterArmorUpIron2Zablik
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron3
+  id: MedievalClothingOuterArmorUpIron3Zablik
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron
+  id: MedievalClothingOuterArmorUpIronZablik
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
   - type: MedievalIronHitSound
 
 - type: entity
