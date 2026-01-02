@@ -8920,3 +8920,44 @@
     - type: Tag
       tags:
         - MedievalKey
+
+- type: entity
+  id: MedievalGussarFlagZablik
+  description: A barricade made out of wood planks. It looks like it can take a few solid hits.
+  parent: BaseStructureMedieval
+  name: wooden barricade
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/gussarflag.rsi
+    state: icon
+    drawdepth: Overdoors
+    noRot: true
+    offset: 0,0.8
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 3
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
