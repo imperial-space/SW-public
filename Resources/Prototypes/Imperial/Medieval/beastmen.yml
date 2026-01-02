@@ -187,6 +187,8 @@
   - type: NeedSleep
     sleepLevelPerUpdate: 0.27
   - type: StealRaceChanceIncreaser
+  - type: TypingIndicator
+    proto: wolf
 
 - type: entity
   parent: BaseMobBeastmen
