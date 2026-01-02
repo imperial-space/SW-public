@@ -6,8 +6,6 @@ using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Imperial.Medieval.Skills;
-using Content.Shared.Inventory;
-using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Timing;
@@ -24,15 +22,12 @@ public abstract class SharedBedSystem : EntitySystem
     [Dependency] private readonly SharedMetabolizerSystem _metabolizer = default!;
     [Dependency] private readonly SharedPowerReceiverSystem _powerReceiver = default!;
     [Dependency] private readonly SleepingSystem _sleepingSystem = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<HealOnBuckleComponent, MapInitEvent>(OnHealMapInit);
-        SubscribeLocalEvent<HealOnBuckleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<HealOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
 
         SubscribeLocalEvent<StasisBedComponent, StrappedEvent>(OnStasisStrapped);
@@ -48,25 +43,6 @@ public abstract class SharedBedSystem : EntitySystem
         Dirty(ent);
     }
 
-    private void OnStrapped(Entity<HealOnBuckleComponent> bed, ref StrappedEvent args)
-    {
-        if (bed.Comp.NextHealTime > Timing.CurTime)
-            return;
-        bed.Comp.NextHealTime = Timing.CurTime + TimeSpan.FromSeconds(bed.Comp.HealTime);
-        if (_inventorySystem.TryGetSlotEntity(args.Buckle.Owner, "outerClothing", out var existingOutfit))
-            return;
-
-        if (_inventorySystem.TryGetSlotEntity(args.Buckle.Owner, "head", out var existingHead))
-            return;
-        EnsureComp<HealOnBuckleHealingComponent>(bed);
-        _actionsSystem.AddAction(args.Buckle, ref bed.Comp.SleepAction, SleepingSystem.SleepActionId, bed);
-        if (TryComp<SkillsComponent>(args.Buckle, out var skills))
-            _actionsSystem.SetCooldown(bed.Comp.SleepAction, TimeSpan.FromSeconds(10 - (skills.Levels[SharedSkillsSystem.VitalityId]-10) * 0.5));
-        Dirty(bed);
-
-        // Single action entity, cannot strap multiple entities to the same bed.
-        DebugTools.AssertEqual(args.Strap.Comp.BuckledEntities.Count, 1);
-    }
 
     private void OnUnstrapped(Entity<HealOnBuckleComponent> bed, ref UnstrappedEvent args)
     {
