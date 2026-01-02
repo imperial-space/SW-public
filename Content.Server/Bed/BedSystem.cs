@@ -59,7 +59,7 @@ namespace Content.Server.Bed
                 }
             }
         }
-
+        // imperial medieval sleep start
         private void OnStrapped(Entity<HealOnBuckleComponent> bed, ref StrappedEvent args)
         {
             if (!Timing.IsFirstTimePredicted)
@@ -89,5 +89,6 @@ namespace Content.Server.Bed
             // Single action entity, cannot strap multiple entities to the same bed.
             //DebugTools.AssertEqual(args.Strap.Comp.BuckledEntities.Count, 1)
         }
+        // imperial medieval sleep end
     }
 }
