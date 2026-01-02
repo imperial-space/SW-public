@@ -1986,7 +1986,6 @@
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallLeg
     #belt: Bible
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetLegionRecruit
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
@@ -2044,6 +2043,7 @@
   #- MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGloves
+  - MedievalJumpsuitLegion
 
 - type: loadoutGroup
   id: MedievalBeltLegion
@@ -2068,6 +2068,23 @@
   equipment:
     belt: MedievalFalshionT3LegionGold
 
+- type: loadoutGroup
+  id: MedievalJumpsuitLegion
+  name: loadout-group-medieval-jumpsuit-legion
+  loadouts:
+  - LegionMedievalClothingUniformJumpsuitShitCloth88
+  - LegionMedievalClothingUniformJumpsuitShitCloth84
+
+- type: loadout
+  id: LegionMedievalClothingUniformJumpsuitShitCloth88
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth88
+
+- type: loadout
+  id: LegionMedievalClothingUniformJumpsuitShitCloth84
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth84
+
 # MEDIEVAL LEGION LEGIONER
 
 - type: startingGear
@@ -2075,8 +2092,7 @@
   equipment:
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallLeg
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
-    head: MedievalClothingHeadHelmetLegionLegioner
+    head: MedievalClothingHeadHelmetLegionLegionerNew
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
 
@@ -2134,6 +2150,7 @@
   - MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGloves
+  - MedievalJumpsuitLegion
 
 # MEDIEVAL LEGION Gateman
 
@@ -2199,8 +2216,8 @@
   equipment:
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallLeg
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
-    head: MedievalClothingHeadHelmetLegionOpcionWeak
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth85
+    head: MedievalClothingHeadHelmetLegionOpcionNew
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
 
@@ -2267,8 +2284,8 @@
   equipment:
     pocket1: MedievalCommsCrystallLeg
     pocket2: MedievalKeyCargo
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
-    head: MedievalClothingHeadHelmetLegionOpcion
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth86
+    head: MedievalClothingHeadHelmetLegionTribuneNew
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
 
@@ -2334,8 +2351,8 @@
   equipment:
     pocket1: MedievalRevent25
     pocket2: MedievalKeyCargo
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
-    head: MedievalClothingHeadHelmetLegionLegat
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth87
+    head: MedievalClothingHeadHelmetLegionLegatAltNew
     neck: MedievalClothingNeckCloakClanEagle
     shoes: MedievalClothingFeetSteel
     id: MedievalLeatherKey
@@ -2402,6 +2419,27 @@
   - MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGlovesWithIron
+  - MedievalHelmetLegionLegat
+
+- type: loadoutGroup
+  id: MedievalHelmetLegionLegat
+  name: loadout-group-medieval-helmet-legion-legat
+  loadouts:
+  - LegionMedievalClothingHeadHelmetLegionLegatNew
+  - LegionMedievalClothingHeadHelmetLegionLegatAltNew
+
+- type: loadout
+  id: LegionMedievalClothingHeadHelmetLegionLegatNew
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LegionTimer30hours
+  equipment:
+    jumpsuit: MedievalClothingHeadHelmetLegionLegatNew
+
+- type: loadout
+  id: LegionMedievalClothingHeadHelmetLegionLegatAltNew
+  equipment:
+    jumpsuit: MedievalClothingHeadHelmetLegionLegatAltNew
 
 # MEDIEVAL LEGION TREASURER
 
@@ -2481,7 +2519,6 @@
     pocket1: MedievalCommsCrystallLeg
     #pocket2: MedievalKeyCargo
     #back: MedievalClothingBackpackSatchelLeather
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetCharmerLegion
     outerClothing: MedievalClothingOuterArmorCharmerLightLegion
     neck: MedievalClothingNeckCloakClanEagle
@@ -2563,6 +2600,7 @@
   #- MedievalMusic
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
+  - MedievalJumpsuitLegion
 
 # MEDIEVAL LegionAlchemic
 
