@@ -2468,26 +2468,26 @@
 
 - type: entity
   parent: ClothingUniformBase
-  id: MedievalClothingUniformJumpsuitShitCloth82
+  id: MedievalClothingUniformJumpsuitShitCloth87
   name: shit cloth
   description: hoho
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_82.rsi
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_87.rsi
   - type: Clothing
-    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_82.rsi
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_87.rsi
   - type: Insulated
 
 - type: entity
   parent: ClothingUniformBase
-  id: MedievalClothingUniformJumpsuitShitCloth83
+  id: MedievalClothingUniformJumpsuitShitCloth88
   name: shit cloth
   description: hoho
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_88.rsi
   - type: Clothing
-    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_88.rsi
   - type: Insulated
 
 - type: entity

@@ -2072,13 +2072,13 @@
   id: MedievalJumpsuitLegion
   name: loadout-group-medieval-jumpsuit-legion
   loadouts:
-  - LegionMedievalClothingUniformJumpsuitShitCloth83
+  - LegionMedievalClothingUniformJumpsuitShitCloth88
   - LegionMedievalClothingUniformJumpsuitShitCloth84
 
 - type: loadout
-  id: LegionMedievalClothingUniformJumpsuitShitCloth83
+  id: LegionMedievalClothingUniformJumpsuitShitCloth88
   equipment:
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth83
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth88
 
 - type: loadout
   id: LegionMedievalClothingUniformJumpsuitShitCloth84
@@ -2351,7 +2351,7 @@
   equipment:
     pocket1: MedievalRevent25
     pocket2: MedievalKeyCargo
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth82
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth87
     head: MedievalClothingHeadHelmetLegionLegatAltNew
     neck: MedievalClothingNeckCloakClanEagle
     shoes: MedievalClothingFeetSteel
