@@ -552,6 +552,20 @@
     tags:
     - LegionnaireKey
 
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyCathedral
+  name: Chaplain key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: chapel
+  - type: Key
+    accesses:
+    - ResearchDirector
+  - type: Tag
+    tags:
+    - CathedralKey
 
 - type: job
   id: TavernaKey
@@ -721,6 +735,18 @@
   access:
   - Medical
 
+- type: job
+  id: CathedralKey
+  name: key
+  setPreference: false
+  description: key
+  playTimeTracker: Medieval15
+  startingGear: CargoTechGear
+  icon: "CargoTechnician"
+  supervisors: job-supervisors-hop-qm
+  access:
+  - ResearchDirector
+
 - type: entity
   parent: ClothingBeltStorageBase
   id: MedievalKeyStorage
@@ -747,7 +773,9 @@
         - TavernKey
         - CultOfTruthKey
         - WizardKey
+        - CathedralKey
         - KayotKey
+
   - type: ItemMapper
     mapLayers:
       medieval_key:
@@ -794,6 +822,10 @@
         whitelist:
           tags:
             - CultOfTruthKey
+      chapel:
+        whitelist:
+          tags:
+            - CathedralKey
     sprite: Imperial/Medieval/Misc/key_storage.rsi
   - type: Appearance
   - type: Item
@@ -873,3 +905,6 @@
 
 - type: playTimeTracker
   id: Medieval14
+
+- type: playTimeTracker
+  id: Medieval15
