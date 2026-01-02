@@ -7158,8 +7158,8 @@
     shoes: MedievalClothingFeetNecromancerLight
     #id: AgentIDCard
     #ears: ClothingHeadsetGrey
-    pocket1: MedievalRevent10
-    pocket2: MedievalRevent25
+    pocket1: MedievalRevent35
+    pocket2: MedievalCursedMarkNecro
     #belt: EnergyKatana
   inhand:
     - MedievalFalshionNecro
