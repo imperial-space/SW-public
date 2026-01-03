@@ -80,9 +80,9 @@ public sealed partial class TwoHandedSkillComponent : Component
 [RegisterComponent, NetworkedComponent]
 public sealed partial class CrossbowSkillComponent : Component
 {
-    [DataField("staminaOnHit")] public float StaminaOnHit = 1000f;
+    [DataField("staminaOnHit")] public float StaminaOnHit = 22f;
     [DataField("bypassType")] public string BypassType = "Piercing";
-    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 1000f;
+    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 6f;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -100,7 +100,6 @@ public sealed partial class ShieldSkillComponent : Component
     [DataField("minBlockFraction")] public float MinBlockFraction = 0.70f;
 }
 
-// СОБЫТИЯ
 
 [ByRefEvent]
 public record struct GetWeaponSkillLightAttackBonusEvent(
@@ -111,7 +110,7 @@ public record struct GetWeaponSkillLightAttackBonusEvent(
     DamageSpecifier? BypassDamage,
     float StaminaDamage,
     float HelmetKnockChance,
-    bool DismountOnHit // [НОВОЕ] Поле для флага сбивания с коня
+    bool DismountOnHit
 )
 {
     public GetWeaponSkillLightAttackBonusEvent(EntityUid weapon, MedievalWeaponSkillId weaponSkill)

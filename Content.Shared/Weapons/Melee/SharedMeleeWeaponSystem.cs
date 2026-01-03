@@ -687,8 +687,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var damage = GetDamage(meleeUid, user, component);
         var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
+        var skillEffects = _imperial.GetSkillEffects(meleeUid, user);
+        damage *= skillEffects.DamageMultiplier;
         // imperial medieval end
-
         if (entities.Count == 0)
         {
             if (meleeUid == user)
@@ -790,7 +791,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             var attackedEvent = new AttackedEvent(meleeUid, user, GetCoordinates(ev.Coordinates));
             RaiseLocalEvent(entity, attackedEvent);
-            var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+            // [IMPERIAL]
+            var totalBonus = hitEvent.BonusDamage + attackedEvent.BonusDamage;
+            if (skillEffects.BonusDamage != null)
+                totalBonus += skillEffects.BonusDamage;
+
+            var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + totalBonus, hitEvent.ModifiersList);
+            // [IMPERIAL]
 
             var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
 
