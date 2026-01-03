@@ -209,6 +209,7 @@ namespace Content.Server.MagicBarrier
                             break;
                     }
                 }
+                else sector0++;
             }
             args.PushMarkup(sector1 + " проклятых наростов в секторе 1 (Некрополь)", -1);
             args.PushMarkup(sector2 + " проклятых наростов в секторе 2 (Мятеж)", -2);
