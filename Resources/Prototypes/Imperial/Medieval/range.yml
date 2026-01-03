@@ -38,6 +38,8 @@
     delay: 4
   - type: TrashClear
     safe: true
+  - type: MedievalWeaponSkillCategory
+    skill: Crossbow
 
 - type: entity
   name: crossbow

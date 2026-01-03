@@ -3,6 +3,7 @@ using Content.Shared.Damage.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Content.Shared.Imperial.Medieval.Skills;
 
 namespace Content.Shared.Blocking;
 
@@ -52,6 +53,12 @@ public sealed partial class BlockingSystem
                 return;
 
             var blockFraction = blocking.IsBlocking ? blocking.ActiveBlockFraction : blocking.PassiveBlockFraction;
+            if (component.BlockingItem is { } shield && HasComp<ShieldSkillComponent>(uid))
+            {
+                var ev = new GetShieldBlockFractionEvent(shield, uid, blockFraction);
+                RaiseLocalEvent(uid, ref ev);
+                blockFraction = ev.BlockFraction;
+            }
             blockFraction = Math.Clamp(blockFraction, 0, 1);
             _damageable.TryChangeDamage(component.BlockingItem, blockFraction * args.OriginalDamage);
 

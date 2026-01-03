@@ -12,6 +12,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Imperial.Medieval.Skills;
 
 namespace Content.Shared.Throwing;
 
@@ -199,6 +200,13 @@ public sealed class ThrowingSystem : EntitySystem
         // If someone changes how tile friction works at some point, this will have to be adjusted.
         // This doesn't actually compensate for air friction, but it's low enough it shouldn't matter.
         var throwSpeed = compensateFriction ? direction.Length() / (flyTime + 1 / tileFriction) : baseThrowSpeed;
+        if (user is { } thrower)
+        {
+            var multEv = new GetThrowSpeedMultiplierEvent(uid, thrower, 1f);
+            RaiseLocalEvent(thrower, ref multEv);
+            if (!compensateFriction)
+                throwSpeed *= multEv.Multiplier;
+        }
         var impulseVector = direction.Normalized() * throwSpeed * physics.Mass;
         _physics.ApplyLinearImpulse(uid, impulseVector, body: physics);
 
