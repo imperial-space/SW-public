@@ -1994,6 +1994,7 @@
   #- MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGloves
+  - MedievalJumpsuitLegion
 
 # MEDIEVAL LEGION RECRUIT
 
@@ -2089,8 +2090,8 @@
   id: MedievalJumpsuitLegion
   name: loadout-group-medieval-jumpsuit-legion
   loadouts:
-  - LegionMedievalClothingUniformJumpsuitShitCloth88
   - LegionMedievalClothingUniformJumpsuitShitCloth84
+  - LegionMedievalClothingUniformJumpsuitShitCloth88
 
 - type: loadout
   id: LegionMedievalClothingUniformJumpsuitShitCloth88
@@ -2225,6 +2226,7 @@
   - MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGloves
+  - MedievalJumpsuitLegion
 
 # MEDIEVAL LEGION OPCION
 
@@ -2369,7 +2371,6 @@
     pocket1: MedievalRevent25
     pocket2: MedievalKeyCargo
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth87
-    head: MedievalClothingHeadHelmetLegionLegatAltNew
     neck: MedievalClothingNeckCloakClanEagle
     shoes: MedievalClothingFeetSteel
     id: MedievalLeatherKey
@@ -2442,8 +2443,8 @@
   id: MedievalHelmetLegionLegat
   name: loadout-group-medieval-helmet-legion-legat
   loadouts:
-  - LegionMedievalClothingHeadHelmetLegionLegatNew
   - LegionMedievalClothingHeadHelmetLegionLegatAltNew
+  - LegionMedievalClothingHeadHelmetLegionLegatNew
 
 - type: loadout
   id: LegionMedievalClothingHeadHelmetLegionLegatNew
@@ -2451,12 +2452,12 @@
   - !type:GroupLoadoutEffect
     proto: LegionTimer30hours
   equipment:
-    jumpsuit: MedievalClothingHeadHelmetLegionLegatNew
+    head: MedievalClothingHeadHelmetLegionLegatNew
 
 - type: loadout
   id: LegionMedievalClothingHeadHelmetLegionLegatAltNew
   equipment:
-    jumpsuit: MedievalClothingHeadHelmetLegionLegatAltNew
+    head: MedievalClothingHeadHelmetLegionLegatAltNew
 
 # MEDIEVAL LEGION TREASURER
 
