@@ -1242,7 +1242,7 @@
       - state: inhand-left
       right:
       - state: inhand-right
-      
+
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
   id: MedievalClothingHeadHelmetLegionLegatAltNew
@@ -1422,6 +1422,39 @@
       - state: inhand-right-leg
 
 - type: entity
+  parent: MedievalClothingHeadHelmetLegionLegionerNew
+  id: MedievalClothingHeadHelmetLegionLegionerNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
+
+- type: entity
+  parent: MedievalClothingHeadHelmetLegionOpcionNew
+  id: MedievalClothingHeadHelmetLegionOpcionNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg3.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg3.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetLegionOpcionWeak
   id: MedievalClothingHeadHelmetLegionOpcionWeakRoyal
   name: shapel helmet
@@ -1433,6 +1466,17 @@
     sprite: Imperial/Medieval/Clothing/Head/royalleg3.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetLegionTribuneNew
+  id: MedievalClothingHeadHelmetLegionTribuneNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg2.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg2.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetLegionOpcion
   id: MedievalClothingHeadHelmetLegionOpcionRoyal
   name: shapel helmet
@@ -1442,6 +1486,28 @@
     sprite: Imperial/Medieval/Clothing/Head/royalleg2.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/royalleg2.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetLegionLegatNew
+  id: MedievalClothingHeadHelmetLegionLegatNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg1.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg1.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetLegionLegatAltNew
+  id: MedievalClothingHeadHelmetLegionLegatAltNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg1.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg1.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetLegionLegat

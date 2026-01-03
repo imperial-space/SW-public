@@ -88,6 +88,17 @@
     MedievalClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
     ClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
     MedievalShoesSapogi: [MedievalClothingRoyalBoots]
+    MedievalClothingUniformJumpsuitShitCloth84: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingUniformJumpsuitShitCloth85: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingUniformJumpsuitShitCloth86: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingUniformJumpsuitShitCloth87: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingUniformJumpsuitShitCloth88: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingHeadHelmetLegionLegionerNew: [MedievalClothingHeadHelmetLegionLegionerNewRoyal]
+    MedievalClothingHeadHelmetLegionOpcionNew: [MedievalClothingHeadHelmetLegionOpcionNewRoyal]
+    MedievalClothingHeadHelmetLegionTribuneNew: [MedievalClothingHeadHelmetLegionTribuneNewRoyal]
+    MedievalClothingHeadHelmetLegionLegatNew: [MedievalClothingHeadHelmetLegionLegatNewRoyal]
+    MedievalClothingHeadHelmetLegionLegatAltNew: [MedievalClothingHeadHelmetLegionLegatAltNewRoyal]
+
 
 
 - type: customization

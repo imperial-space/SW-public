@@ -411,6 +411,8 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_30.rsi
   - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase
@@ -1576,6 +1578,26 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Backpack/leather3.rsi
+    state: icon
+
+- type: entity
+  parent: MedievalClothingBackpackSatchelLeather
+  id: MedievalClothingBackpackSatchelLeatherMag1
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/leather_mag1.rsi
+    state: icon
+
+- type: entity
+  parent: MedievalClothingBackpackSatchelLeather
+  id: MedievalClothingBackpackSatchelLeatherMag2
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/leather_mag2.rsi
     state: icon
 
 - type: entity
