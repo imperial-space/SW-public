@@ -411,6 +411,8 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_30.rsi
   - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase
