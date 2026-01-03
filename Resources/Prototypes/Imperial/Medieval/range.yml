@@ -68,9 +68,9 @@
   description: The original rooty tooty point and shooty.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+    sprite: Imperial/Medieval/Gun/bowwhois.rsi
   - type: Clothing
-    sprite: Imperial/Medieval/Gun/bow_whois.rsi
+    sprite: Imperial/Medieval/Gun/bowwhois.rsi
 
 - type: entity
   name: crossbow
