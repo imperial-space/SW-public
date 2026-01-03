@@ -525,6 +525,23 @@
     back: MedievalClothingBackpackSatchelLeather3
 
 - type: loadoutGroup
+  id: MedievalBackpackMagLegion
+  name: loadout-group-medieval-backpack
+  loadouts:
+  - MedievalClothingBackpackSatchelLeatherMagloadout2
+  - MedievalClothingBackpackSatchelLeatherMagloadout1
+
+- type: loadout
+  id: MedievalClothingBackpackSatchelLeatherMagloadout1
+  equipment:
+    back: MedievalClothingBackpackSatchelLeatherMag1
+
+- type: loadout
+  id: MedievalClothingBackpackSatchelLeatherMagloadout2
+  equipment:
+    back: MedievalClothingBackpackSatchelLeatherMag2
+
+- type: loadoutGroup
   id: MedievalShoes
   name: loadout-group-medieval-shoes
   loadouts:
@@ -2587,7 +2604,7 @@
   #- TravellerHead
   #- ChaplainOuterMedieval
   #- ChaplainJumpsuitMedieval
-  - MedievalBackpack
+  # - MedievalBackpack
   #- MedievalBiblie
   #- MedievalChaplainNeck
   #- SecurityOuterClothing
@@ -2601,6 +2618,7 @@
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
   - MedievalJumpsuitLegion
+  - MedievalBackpackMagLegion
 
 # MEDIEVAL LegionAlchemic
 
@@ -3168,7 +3186,7 @@
   #- TravellerHead
   #- ChaplainOuterMedieval
   #- ChaplainJumpsuitMedieval
-  - MedievalBackpack
+  # - MedievalBackpack
   #- MedievalBiblie
   #- MedievalChaplainNeck
   #- SecurityOuterClothing
@@ -3181,6 +3199,7 @@
   #- MedievalMusic
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
+  - MedievalBackpackMagLegion
 
 # MEDIEVAL InsurgencyAlchemic
 
