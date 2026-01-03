@@ -157,7 +157,7 @@ namespace Content.Server.MagicBarrier
 
         private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]", 0);
+            args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]", 1);
             args.PushMarkup("[color=cyan]Текущий расход " + Math.Round(component.Lose, 2) + " стабильности в минуту[/color]", 0);
             int sector1 = 0;
             int sector2 = 0;
@@ -209,17 +209,17 @@ namespace Content.Server.MagicBarrier
                             break;
                     }
                 }
-                args.PushMarkup(sector1 + " проклятых наростов в секторе 1 (Некрополь)", 1);
-                args.PushMarkup(sector2 + " проклятых наростов в секторе 2 (Мятеж)", 2);
-                args.PushMarkup(sector3 + " проклятых наростов в секторе 3 (Церковь)", 3);
-                args.PushMarkup(sector4 + " проклятых наростов в секторе 4 (Пустыня)", 4);
-                args.PushMarkup(sector5 + " проклятых наростов в секторе 5 (Коллегия)", 5);
-                args.PushMarkup(sector6 + " проклятых наростов в секторе 6 (Шахта)", 6);
-                args.PushMarkup(sector7 + " проклятых наростов в секторе 7 (Гоблины)", 7);
-                args.PushMarkup(sector8 + " проклятых наростов в секторе 8 (Легион)", 8);
-                args.PushMarkup(sector9 + " проклятых наростов в секторе 9 (Племя)", 9);
-                args.PushMarkup(sector0 + " проклятых наростов скрыты в неизвестном месте под землей", 10);
             }
+            args.PushMarkup(sector1 + " проклятых наростов в секторе 1 (Некрополь)", -1);
+            args.PushMarkup(sector2 + " проклятых наростов в секторе 2 (Мятеж)", -2);
+            args.PushMarkup(sector3 + " проклятых наростов в секторе 3 (Церковь)", -3);
+            args.PushMarkup(sector4 + " проклятых наростов в секторе 4 (Пустыня)", -4);
+            args.PushMarkup(sector5 + " проклятых наростов в секторе 5 (Коллегия)", -5);
+            args.PushMarkup(sector6 + " проклятых наростов в секторе 6 (Шахта)", -6);
+            args.PushMarkup(sector7 + " проклятых наростов в секторе 7 (Гоблины)", -7);
+            args.PushMarkup(sector8 + " проклятых наростов в секторе 8 (Легион)", -8);
+            args.PushMarkup(sector9 + " проклятых наростов в секторе 9 (Племя)", -9);
+            args.PushMarkup(sector0 + " проклятых наростов скрыты в неизвестном месте под землей", -10);
         }
         public override void Update(float frameTime)
         {
