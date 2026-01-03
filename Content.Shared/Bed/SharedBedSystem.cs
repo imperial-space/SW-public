@@ -5,6 +5,7 @@ using Content.Shared.Body.Events;
 using Content.Shared.Body.Systems;
 using Content.Shared.Buckle.Components;
 using Content.Shared.Emag.Systems;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Power;
 using Content.Shared.Power.EntitySystems;
 using Robust.Shared.Timing;
@@ -27,7 +28,6 @@ public abstract class SharedBedSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<HealOnBuckleComponent, MapInitEvent>(OnHealMapInit);
-        SubscribeLocalEvent<HealOnBuckleComponent, StrappedEvent>(OnStrapped);
         SubscribeLocalEvent<HealOnBuckleComponent, UnstrappedEvent>(OnUnstrapped);
 
         SubscribeLocalEvent<StasisBedComponent, StrappedEvent>(OnStasisStrapped);
@@ -43,16 +43,6 @@ public abstract class SharedBedSystem : EntitySystem
         Dirty(ent);
     }
 
-    private void OnStrapped(Entity<HealOnBuckleComponent> bed, ref StrappedEvent args)
-    {
-        EnsureComp<HealOnBuckleHealingComponent>(bed);
-        bed.Comp.NextHealTime = Timing.CurTime + TimeSpan.FromSeconds(bed.Comp.HealTime);
-        _actionsSystem.AddAction(args.Buckle, ref bed.Comp.SleepAction, SleepingSystem.SleepActionId, bed);
-        Dirty(bed);
-
-        // Single action entity, cannot strap multiple entities to the same bed.
-        DebugTools.AssertEqual(args.Strap.Comp.BuckledEntities.Count, 1);
-    }
 
     private void OnUnstrapped(Entity<HealOnBuckleComponent> bed, ref UnstrappedEvent args)
     {
@@ -62,7 +52,7 @@ public abstract class SharedBedSystem : EntitySystem
             _actionsSystem.RemoveAction(args.Buckle.Owner, bed.Comp.SleepAction);
             _sleepingSystem.TryWaking(args.Buckle.Owner);
         }
-        
+
         RemComp<HealOnBuckleHealingComponent>(bed);
     }
 

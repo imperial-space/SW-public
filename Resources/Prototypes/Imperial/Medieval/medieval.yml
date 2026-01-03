@@ -1208,6 +1208,37 @@
     proto: MedievalExplosionEffect
 
 - type: entity
+  name: mana burn bomb
+  description: Grenade that creates a mana burn field.
+  parent: GrenadeBase
+  id: MedievalManaBurnGrenade
+  components:
+  - type: RDWeight
+    value: 2
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_manaburn_grenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: TimerTrigger
+    delay: 2.5
+    beepSound:
+      path: "/Audio/Imperial/Medieval/bomb.ogg"
+      params:
+        volume: 7
+    initialBeepDelay: 0
+    beepInterval: 6 # 2 beeps total (at 0 and 2)
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+  - type: SpawnOnTrigger
+    useMapCoords: true
+    keysIn:
+    - timer
+    proto: MedievalManaBurnFieldSpawnMiddle
+
+
+- type: entity
   parent: MopItem
   id: MedievalMopItem
   name: MedievalMopItem
@@ -7498,8 +7529,8 @@
     shoes: MedievalClothingFeetNecromancerLight
     #id: AgentIDCard
     #ears: ClothingHeadsetGrey
-    pocket1: MedievalRevent10
-    pocket2: MedievalRevent25
+    pocket1: MedievalRevent35
+    pocket2: MedievalCursedMarkNecro
     #belt: EnergyKatana
   inhand:
     - MedievalFalshionNecro
@@ -8889,3 +8920,44 @@
     - type: Tag
       tags:
         - MedievalKey
+
+- type: entity
+  id: MedievalGussarFlagZablik
+  description: A barricade made out of wood planks. It looks like it can take a few solid hits.
+  parent: BaseStructureMedieval
+  name: wooden barricade
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/gussarflag.rsi
+    state: icon
+    drawdepth: Overdoors
+    noRot: true
+    offset: 0,0.8
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.2,0.2,0.2"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 3
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

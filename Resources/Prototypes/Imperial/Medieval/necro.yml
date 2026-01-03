@@ -138,10 +138,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth13Necro
     back: ClothingBackpackSatchelNecro
     #pocket1: BaseMagicNecroShop
-
-
-
-
+    pocket2: MedievalCursedMarkNecro
 
 - type: entity
   #noSpawn: true
@@ -194,6 +191,7 @@
     id: MedievalKeyChapel
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth13Necro
     back: ClothingBackpackSatchelNecro
+    pocket2: MedievalCursedMarkNecro
   storage:
     back:
     - BaseMagicNecroShop
@@ -246,6 +244,7 @@
     gloves: MedievalNecroGlovesLight
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth13Necro
     back: ClothingBackpackSatchelNecro
+    pocket2: MedievalCursedMarkNecro
   storage:
     back:
     - BaseMagicNecroShopLeader
@@ -526,6 +525,14 @@
   - MedievalNecroOther
 
 - type: listing
+  id: MagicNecroShopMedievalManaBurnGrenade
+  productEntity: MedievalManaBurnGrenade
+  cost:
+    UnholyMedieval: 5
+  categories:
+  - MedievalNecroOther
+
+- type: listing
   id: MagicNecroShopMedievalServerMap
   productEntity: MedievalServerMap
   cost:
@@ -712,3 +719,22 @@
     UnholyMedieval: 50
   categories:
   - MedievalNecroArmor
+
+- type: entity
+  id: MedievalCursedMarkNecro
+  parent: BaseItem
+  name: Cursed Mark
+  description: This cursed mark created by Morbius for all of the Necropolis citizens.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/cursed_mark.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: PointLight
+    enabled: true
+    color: "#8A1313"
+    radius: 4.0
+    energy: 6.0
+  - type: Unremoveable
+

@@ -105,6 +105,12 @@
         Blunt: 2
         Structural: 4
         Caustic: 2
+  - type: GhostRole
+    makeSentient: true
+    name: Чумной слизень
+    description: Пахнет мучительной смертью.
+    rules: Вы - чумной слизень с неутолимой жаждой убийства. Уничтожьте всех, кто попадётся вам на глаза.
+    raffle: null
 
 - type: entity
   name: bugs swarm

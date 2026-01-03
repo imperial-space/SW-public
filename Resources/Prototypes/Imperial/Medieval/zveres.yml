@@ -205,6 +205,8 @@
   - type: LocalLight
     energy: 0.2
     radius: 2
+  - type: TypingIndicator
+    proto: wolf
 
 - type: damageModifierSet
   id: Zveres
