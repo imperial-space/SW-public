@@ -1,0 +1,48 @@
+# Beginner
+
+- type: entity
+  id: MedievalObeliskBeginner
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Magic/Earth/Obelisk/projectiles.rsi
+      state: spawn
+    - type: SpawnOnDespawn
+      prototype: MedievalObeliskEntBeginner
+    - type: TimedDespawn
+      lifetime: 2.9
+
+- type: entity
+  id: MedievalObeliskEntBeginner
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Magic/Earth/Obelisk/action.rsi
+      state: beginner
+    - type: TimedDespawn
+      lifetime: 56
+
+# Middle
+
+- type: entity
+  id: MedievalObeliskMiddle
+  parent: MedievalObeliskBeginner
+  components:
+    - type: SpawnOnDespawn
+      prototype: MedievalObeliskEntMiddle
+
+- type: entity
+  id: MedievalObeliskEntMiddle
+  parent: MedievalObeliskEntBeginner
+
+# Senior
+
+- type: entity
+  id: MedievalObeliskSenior
+  parent: MedievalObeliskBeginner
+  components:
+    - type: SpawnOnDespawn
+      prototype: MedievalObeliskEntSenior
+
+- type: entity
+  id: MedievalObeliskEntSenior
+  parent: MedievalObeliskEntBeginner
+

@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellObeliskBeginner
+  name: medieval-store-spells-earth-obelisk-beginner-name
+  description: medieval-store-spells-earth-obelisk-beginner-desc
+  productAction: MedievalActionObeliskBeginner
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellObeliskMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Obelisk/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalEarth: 20
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellObeliskMiddle
+  name: medieval-store-spells-earth-obelisk-middle-name
+  description: medieval-store-spells-earth-obelisk-middle-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellObeliskSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Obelisk/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalEarth: 55
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellObeliskBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellObeliskSenior
+  name: medieval-store-spells-earth-obelisk-senior-name
+  description: medieval-store-spells-earth-obelisk-senior-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellObeliskSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Obelisk/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalEarth: 75
+    ArchmagePoints: 1
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellObeliskMiddle
