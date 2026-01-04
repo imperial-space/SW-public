@@ -326,7 +326,7 @@
 - type: trait
   id: SkillOneHandedBlunt
   name: Мастер булав
-  description: +15% урона, +8 урона стамине и пробитие брони булавами.
+  description: +15% урона, +8 урона стамине. Дополнительный урон, пробивающий броню при ЛКМ ударе.
   category: WeaponSkills
   cost: 1
   components:
@@ -335,7 +335,7 @@
 - type: trait
   id: SkillOneHandedBluntLight
   name: Владение легкими булавами
-  description: +15% урона, +4 урона стамине и пробитие брони легкими булавами.
+  description: +15% урона, +4 урона стамине. Дополнительный урон, пробивающий броню при ЛКМ ударе.
   category: WeaponSkills
   cost: 1
   components:
@@ -344,7 +344,7 @@
 - type: trait
   id: SkillOneHandedSmallSlash
   name: Мастер кинжалов
-  description: +15% урона и пробитие брони ножами и кинжалами.
+  description: +15% урона. Дополнительный урон, пробивающий броню при ЛКМ ударе.
   category: WeaponSkills
   cost: 1
   components:
@@ -362,7 +362,7 @@
 - type: trait
   id: SkillSpear
   name: Копейщик
-  description: Дополнительный колющий урон. Удар ЛКМ может скинуть всадника с коня.
+  description: Дополнительный колющий урон. Удар ЛКМ по лошади может скинуть всадника.
   category: WeaponSkills
   cost: 1
   components:
@@ -371,7 +371,7 @@
 - type: trait
   id: SkillTwoHanded
   name: Мастер двуручного оружия
-  description: Шанс 50% сбить шлем при ударе. Усиленное отбрасывание при броске оружия.
+  description: Шанс 50% сбить шлем при ЛКМ ударе. Усиленное отбрасывание при ударе.
   category: WeaponSkills
   cost: 1
   components:
