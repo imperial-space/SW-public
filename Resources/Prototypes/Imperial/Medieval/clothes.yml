@@ -162,6 +162,7 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: Unremoveable
   #- type: Armor
   #  modifiers:
   #    coefficients:
