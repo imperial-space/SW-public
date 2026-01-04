@@ -395,14 +395,14 @@
   components:
   - type: BowSkill
 
-- type: trait
-  id: SkillThrowing
-  name: Метатель
-  description: Скорость полета брошенных предметов увеличена в 1.7 раз.
-  category: WeaponSkills
-  cost: 1
-  components:
-  - type: ThrowingSkill
+#- type: trait
+#  id: SkillThrowing
+#  name: Метатель
+#  description: Скорость полета брошенных предметов увеличена в 1.7 раз.
+#  category: WeaponSkills
+#  cost: 1
+#  components:
+#  - type: ThrowingSkill
 
 - type: trait
   id: SkillShield
