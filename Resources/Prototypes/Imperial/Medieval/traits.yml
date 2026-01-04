@@ -371,7 +371,7 @@
 - type: trait
   id: SkillTwoHanded
   name: Мастер двуручного оружия
-  description: Шанс 50% сбить шлем при ЛКМ ударе. Усиленное отбрасывание при ударе.
+  description: Шанс 50% сбить шлем и усиленное отбрасывание при ЛКМ ударе.
   category: WeaponSkills
   cost: 1
   components:
