@@ -321,7 +321,7 @@
   id: WeaponSkills
   name: Боевые навыки
   description: Специализированная подготовка владения определенными видами оружия.
-  maxTraitPoints: 10
+  maxTraitPoints: 1
 
 - type: trait
   id: SkillOneHandedBlunt
