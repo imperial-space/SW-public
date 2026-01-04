@@ -42,6 +42,7 @@ using Robust.Shared.Timing;
 using ItemToggleMeleeWeaponComponent = Content.Shared.Item.ItemToggle.Components.ItemToggleMeleeWeaponComponent;
 using Content.Shared.Imperial.Medieval.ChargedAttack;
 using Content.Shared.Imperial.Medieval.Weapons;
+using Content.Shared.Imperial.Medieval.WeaponSkillSystem; // imperial medieval
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -69,6 +70,7 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!; // imperial charged attack
     [Dependency] private readonly ChargedAttackSystem _chargedAttack = default!; // imperial charged attack
     [Dependency] private readonly InnerWeaponSystem _innerWeapon = default!; // imperial medieval inner weapon
+    [Dependency] private readonly ImperialMeleeSystem _imperial = default!; // imperial medieval
 
 
     private const int AttackMask = (int)(CollisionGroup.MobMask | CollisionGroup.Opaque);
@@ -525,6 +527,10 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
     {
         // If I do not come back later to fix Light Attacks being Heavy Attacks you can throw me in the spider pit -Errant
         var damage = GetDamage(meleeUid, user, component) * GetHeavyDamageModifier(meleeUid, user, component);
+        // [IMPERIAL]
+        var skillEffects = _imperial.GetSkillEffects(meleeUid, user);
+        damage *= skillEffects.DamageMultiplier;
+        // [IMPERIAL]
         var target = GetEntity(ev.Target);
         var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
 
@@ -597,9 +603,21 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
         // For stuff that cares about it being attacked.
         var attackedEvent = new AttackedEvent(meleeUid, user, targetXform.Coordinates);
         RaiseLocalEvent(target.Value, attackedEvent);
+        // [IMPERIAL] 2. Добавляем бонусный урон
+        var totalBonus = hitEvent.BonusDamage + attackedEvent.BonusDamage;
+        if (skillEffects.BonusDamage != null)
+            totalBonus += skillEffects.BonusDamage;
 
-        var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+        var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + totalBonus, hitEvent.ModifiersList);
+        // ---------------------------------------------------------
         var damageResult = Damageable.TryChangeDamage(target, modifiedDamage, origin:user, ignoreResistances:resistanceBypass);
+        // [IMPERIAL]
+        var bypassResult = _imperial.ApplySkillEffects(target.Value, user, meleeUid, skillEffects, damageResult, component);
+        if ((damageResult == null || damageResult.Empty) && (bypassResult != null && !bypassResult.Empty))
+        {
+            damageResult = bypassResult;
+        }
+        // [IMPERIAL]
 
         if (damageResult is {Empty: false})
         {
@@ -669,8 +687,9 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
         var damage = GetDamage(meleeUid, user, component);
         var resistanceBypass = GetResistanceBypass(meleeUid, user, component);
+        var skillEffects = _imperial.GetSkillEffects(meleeUid, user);
+        damage *= skillEffects.DamageMultiplier;
         // imperial medieval end
-
         if (entities.Count == 0)
         {
             if (meleeUid == user)
@@ -772,7 +791,13 @@ public abstract class SharedMeleeWeaponSystem : EntitySystem
 
             var attackedEvent = new AttackedEvent(meleeUid, user, GetCoordinates(ev.Coordinates));
             RaiseLocalEvent(entity, attackedEvent);
-            var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + hitEvent.BonusDamage + attackedEvent.BonusDamage, hitEvent.ModifiersList);
+            // [IMPERIAL]
+            var totalBonus = hitEvent.BonusDamage + attackedEvent.BonusDamage;
+            if (skillEffects.BonusDamage != null)
+                totalBonus += skillEffects.BonusDamage;
+
+            var modifiedDamage = DamageSpecifier.ApplyModifierSets(damage + totalBonus, hitEvent.ModifiersList);
+            // [IMPERIAL]
 
             var damageResult = Damageable.TryChangeDamage(entity, modifiedDamage, origin: user, ignoreResistances: resistanceBypass);
 

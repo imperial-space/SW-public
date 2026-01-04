@@ -975,7 +975,7 @@
     resourceCount: 2
 
 - type: entity
-  parent: Pickaxe
+  parent: [ Pickaxe, BaseTwoHandedCharged ]
   id: MedievalPickaxeSteel
   name: MedievalPickaxe
   description: MedievalPickaxe
@@ -4937,7 +4937,7 @@
 
 - type: entity
   name: Pilum
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearPilum
   description: Just a spear
   components:
@@ -5005,7 +5005,7 @@
 
 - type: entity
   name: Sulica
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearSulica
   description: Just a spear
   components:
@@ -5101,7 +5101,7 @@
 
 - type: entity
   name: medieval cavalery spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalCavalerySpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:
