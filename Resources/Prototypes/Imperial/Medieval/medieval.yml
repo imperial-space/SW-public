@@ -8926,7 +8926,6 @@
   description: A barricade made out of wood planks. It looks like it can take a few solid hits.
   parent: BaseStructureMedieval
   name: wooden barricade
-  abstract: true
   components:
   - type: InteractionOutline
   - type: Sprite
