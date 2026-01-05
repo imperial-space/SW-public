@@ -1,3 +1,22 @@
+# Blood
+
+- type: reagent
+  id: ZveresBlood
+  parent: Blood
+  name: reagent-name-zveres-blood
+  slipData: null
+  desc: reagent-desc-zveres-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: reagent-physical-desc-zveres-blood
+  color: "#a7002a"
+  flavor: zveresblood
+
+- type: flavor
+  id: zveresblood
+  flavorType: Complex
+  description: flavor-complex-zveres-blood
+
 # TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
@@ -11,7 +30,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 3
-      - ReagentId: Blood
+      - ReagentId: ZveresBlood
         Quantity: 10
 
 - type: entity
@@ -27,7 +46,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 10
-      - ReagentId: Blood
+      - ReagentId: ZveresBlood
         Quantity: 20
 
 - type: entity
