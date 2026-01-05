@@ -68,3 +68,13 @@
       - state: equipped-NECK
       - state: equipped-unshaded
         shader: unshaded
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakMediaSeking
+  name: MedievalClothingNeckCloakPass
+  description: MedievalClothingNeckCloakPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Special/seking_cloak.rsi
+  - type: Insulated
