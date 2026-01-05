@@ -580,3 +580,184 @@ chatsan-replacement-262 = что
 
 chatsan-word-263 = че
 chatsan-replacement-263 = что
+
+chatsan-word-264 = танк
+chatsan-replacement-264 = щитоносец
+
+chatsan-word-265 = танки
+chatsan-replacement-265 = щитоносцы
+
+chatsan-word-266 = танка
+chatsan-replacement-266 = щитоносца
+
+chatsan-word-267 = танку
+chatsan-replacement-267 = щитоносцу
+
+chatsan-word-268 = танком
+chatsan-replacement-268 = щитоносцем
+
+chatsan-word-269 = танке
+chatsan-replacement-269 = щитоносце
+
+chatsan-word-270 = шизик
+chatsan-replacement-270 = безумец
+
+chatsan-word-271 = шизики
+chatsan-replacement-271 = безумцы
+
+chatsan-word-272 = шизика
+chatsan-replacement-272 = безумца
+
+chatsan-word-273 = шизику
+chatsan-replacement-273 = безумцу
+
+chatsan-word-274 = шизиком
+chatsan-replacement-274 = безумцем
+
+chatsan-word-275 = шизике
+chatsan-replacement-275 = безумце
+
+chatsan-word-276 = ало
+chatsan-replacement-276 = слушаю
+
+chatsan-word-277 = але
+chatsan-replacement-277 = слушаю
+
+chatsan-word-278 = алё
+chatsan-replacement-278 = слушаю
+
+chatsan-word-279 = го
+chatsan-replacement-279 = ступай
+
+chatsan-word-280 = рандом
+chatsan-replacement-280 = воля судьбы
+
+chatsan-word-281 = рандома
+chatsan-replacement-281 = воли судьбы
+
+chatsan-word-282 = рандому
+chatsan-replacement-282 = воле судьбы
+
+chatsan-word-283 = рандомом
+chatsan-replacement-283 = волей судьбы
+
+chatsan-word-284 = рандоме
+chatsan-replacement-284 = воле судьбы
+
+chatsan-word-285 = рандомы
+chatsan-replacement-285 = воли судеб
+
+chatsan-word-286 = данж
+chatsan-replacement-286 = подземелье
+
+chatsan-word-287 = данжа
+chatsan-replacement-287 = подземелья
+
+chatsan-word-288 = данжу
+chatsan-replacement-288 = подземелью
+
+chatsan-word-289 = данжем
+chatsan-replacement-289 = подземельем
+
+chatsan-word-290 = данже
+chatsan-replacement-290 = подземелье
+
+chatsan-word-291 = данжи
+chatsan-replacement-291 = подземелья
+
+chatsan-word-292 = кек
+chatsan-replacement-292 = усмешка
+
+chatsan-word-293 = кека
+chatsan-replacement-293 = усмешки
+
+chatsan-word-294 = кеку
+chatsan-replacement-294 = усмешке
+
+chatsan-word-295 = кеком
+chatsan-replacement-295 = усмешкой
+
+chatsan-word-296 = кеке
+chatsan-replacement-296 = усмешке
+
+chatsan-word-297 = кеки
+chatsan-replacement-297 = усмешки
+
+chatsan-word-298 = сорян
+chatsan-replacement-298 = прости
+
+chatsan-word-299 = соси
+chatsan-replacement-299 = послужи
+
+chatsan-word-300 = сосет
+chatsan-replacement-300 = служит
+
+chatsan-word-301 = сосут
+chatsan-replacement-301 = служат
+
+chatsan-word-302 = сосал
+chatsan-replacement-302 = служил
+
+chatsan-word-303 = сосала
+chatsan-replacement-303 = служила
+
+chatsan-word-304 = сосали
+chatsan-replacement-304 = служили
+
+chatsan-word-305 = бро
+chatsan-replacement-305 = брат
+
+chatsan-word-306 = братан
+chatsan-replacement-306 = брат
+
+chatsan-word-307 = брат
+chatsan-replacement-307 = брат
+
+chatsan-word-308 = лаги
+chatsan-replacement-308 = задержки
+
+chatsan-word-309 = лаг
+chatsan-replacement-309 = задержка
+
+chatsan-word-310 = лага
+chatsan-replacement-310 = задержки
+
+chatsan-word-311 = лагу
+chatsan-replacement-311 = задержке
+
+chatsan-word-312 = лагом
+chatsan-replacement-312 = задержкой
+
+chatsan-word-313 = лаге
+chatsan-replacement-313 = задержке
+
+chatsan-word-314 = ужс
+chatsan-replacement-314 = отвратительно
+
+chatsan-word-315 = ужас
+chatsan-replacement-315 = отвратительно
+
+chatsan-word-316 = ужасно
+chatsan-replacement-316 = отвратительно
+
+chatsan-word-317 = ужасный
+chatsan-replacement-317 = отвратительный
+
+chatsan-word-318 = ужасная
+chatsan-replacement-318 = отвратительная
+
+chatsan-word-319 = ужасное
+chatsan-replacement-319 = отвратительное
+
+chatsan-word-320 = ужасные
+chatsan-replacement-320 = отвратительные
+
+chatsan-word-321 = абоба
+chatsan-replacement-321 = простофиля
+
+chatsan-word-322 = абобы
+chatsan-replacement-322 = простофили
+
+chatsan-word-323 = абобе
+chatsan-replacement-323 = простофиле
+
