@@ -449,8 +449,7 @@
     MedievalClothingHeadHelmetHoodHelmet: [MedievalClothingHeadHelmetZablik]
     MedievalClothingHeadHelmetShapel: [MedievalClothingHeadHelmetZablik]
     MedievalIronGloves: [MedievalIronGlovesZablik]
-    MedievalStockade: [MedievalGussarFlagZablik]
-    Log: [MedievalClothingNeckCloakZablik, MedievalClothingUniformJumpsuitShitCloth82]
+    Log: [MedievalClothingNeckCloakZablik, MedievalClothingUniformJumpsuitShitCloth82, MedievalGussarFlagZablik]
 
 - type: customization
   id: mego41
