@@ -437,6 +437,15 @@
     chance: 0.12
   - type: AllergySpreader
     id: Fur
+  - type: Speech
+  - type: TypingIndicator
+    proto: wolf
+
+- type: typingIndicator
+  id: wolf
+  typingState: wolf0
+  idleState: wolf3
+  # offset: 0, 0.125
 
 - type: entity
   name: wolf

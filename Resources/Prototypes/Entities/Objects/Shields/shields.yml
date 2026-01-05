@@ -59,6 +59,8 @@
                   max: 2
     - type: StaticPrice
       price: 100
+    - type: MedievalWeaponSkillCategory
+      skill: Shield
 
 #Security Shields
 

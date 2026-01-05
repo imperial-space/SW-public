@@ -88,6 +88,17 @@
     MedievalClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
     ClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
     MedievalShoesSapogi: [MedievalClothingRoyalBoots]
+    MedievalClothingUniformJumpsuitShitCloth84: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingUniformJumpsuitShitCloth85: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingUniformJumpsuitShitCloth86: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingUniformJumpsuitShitCloth87: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingUniformJumpsuitShitCloth88: [MedievalClothingUniformJumpsuitShitCloth75]
+    MedievalClothingHeadHelmetLegionLegionerNew: [MedievalClothingHeadHelmetLegionLegionerNewRoyal]
+    MedievalClothingHeadHelmetLegionOpcionNew: [MedievalClothingHeadHelmetLegionOpcionNewRoyal]
+    MedievalClothingHeadHelmetLegionTribuneNew: [MedievalClothingHeadHelmetLegionTribuneNewRoyal]
+    MedievalClothingHeadHelmetLegionLegatNew: [MedievalClothingHeadHelmetLegionLegatNewRoyal]
+    MedievalClothingHeadHelmetLegionLegatAltNew: [MedievalClothingHeadHelmetLegionLegatAltNewRoyal]
+
 
 
 - type: customization
@@ -438,5 +449,12 @@
     MedievalClothingHeadHelmetHoodHelmet: [MedievalClothingHeadHelmetZablik]
     MedievalClothingHeadHelmetShapel: [MedievalClothingHeadHelmetZablik]
     MedievalIronGloves: [MedievalIronGlovesZablik]
-    Log: [MedievalClothingNeckCloakZablik, MedievalClothingUniformJumpsuitShitCloth82]
+    Log: [MedievalClothingNeckCloakZablik, MedievalClothingUniformJumpsuitShitCloth82, MedievalGussarFlagZablik]
+
+- type: customization
+  id: mego41
+  holder: 0d102b99-311e-4afc-9891-c3d95eb32b3a
+  map:
+    Log: [MedievalClothingUniformJumpsuitShitCloth83]
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth2383]
 

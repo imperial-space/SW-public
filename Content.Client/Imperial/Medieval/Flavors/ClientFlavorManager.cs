@@ -65,12 +65,18 @@ namespace Content.Client.Imperial.Medieval.Flavors
                 image = Array.Empty<byte>();
 
             Images[slot] = image;
+
+            // TEMP DISABLE: net message not supported yet
+            return;
+
+            /*
             var msg = new MsgUpdateFlavorImage
             {
                 Slot = slot,
                 Image = image
             };
             _netManager.ClientSendMessage(msg);
+            */
         }
 
         private void ImagesReceived(FlavorImagesMsg message)

@@ -45,6 +45,10 @@
       projectiles: !type:ContainerSlot
   - type: ContainerAmmoProvider
     container: projectiles
+    # imperial medieval start
+  - type: MedievalWeaponSkillCategory
+    skill: Bow
+    # imperial medieval end
 
 - type: entity
   id: BowImprovised

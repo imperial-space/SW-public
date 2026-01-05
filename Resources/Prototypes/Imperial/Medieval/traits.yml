@@ -316,3 +316,99 @@
   blacklist:
     components:
     - Mercenary
+
+- type: traitCategory
+  id: WeaponSkills
+  name: Боевые навыки
+  description: Специализированная подготовка владения определенными видами оружия.
+  maxTraitPoints: 1
+
+- type: trait
+  id: SkillOneHandedBlunt
+  name: Мастер булав
+  description: +15% урона, +8 урона стамине. Дополнительный урон, пробивающий броню при ЛКМ ударе.
+  category: WeaponSkills
+  cost: 1
+  components:
+  - type: OneHandedBluntSkill
+
+- type: trait
+  id: SkillOneHandedBluntLight
+  name: Владение легкими булавами
+  description: +15% урона, +4 урона стамине. Дополнительный урон, пробивающий броню при ЛКМ ударе.
+  category: WeaponSkills
+  cost: 1
+  components:
+  - type: OneHandedBluntLightSkill
+
+- type: trait
+  id: SkillOneHandedSmallSlash
+  name: Мастер кинжалов
+  description: +15% урона. Дополнительный урон, пробивающий броню при ЛКМ ударе.
+  category: WeaponSkills
+  cost: 1
+  components:
+  - type: OneHandedSmallSlashSkill
+
+- type: trait
+  id: SkillOneHandedLargeSlash
+  name: Мастер меча
+  description: +25% урона одноручными мечами.
+  category: WeaponSkills
+  cost: 1
+  components:
+  - type: OneHandedLargeSlashSkill
+
+- type: trait
+  id: SkillSpear
+  name: Копейщик
+  description: Дополнительный колющий урон. Удар ЛКМ по лошади может скинуть всадника.
+  category: WeaponSkills
+  cost: 1
+  components:
+  - type: SpearSkill
+
+- type: trait
+  id: SkillTwoHanded
+  name: Мастер двуручного оружия
+  description: Шанс 50% сбить шлем и усиленное отбрасывание при ЛКМ ударе.
+  category: WeaponSkills
+  cost: 1
+  components:
+  - type: TwoHandedSkill
+
+- type: trait
+  id: SkillCrossbow
+  name: Арбалетчик
+  description: Выстрелы наносят огромный урон стамине и пробивают броню.
+  category: WeaponSkills
+  cost: 1
+  components:
+  - type: CrossbowSkill
+
+- type: trait
+  id: SkillBow
+  name: Лучник
+  description: Автоматическая перезарядка лука, если есть колчан.
+  category: WeaponSkills
+  cost: 1
+  components:
+  - type: BowSkill
+
+#- type: trait
+#  id: SkillThrowing
+#  name: Метатель
+#  description: Скорость полета брошенных предметов увеличена в 1.7 раз.
+#  category: WeaponSkills
+#  cost: 1
+#  components:
+#  - type: ThrowingSkill
+
+- type: trait
+  id: SkillShield
+  name: Щитоносец
+  description: Эффективность блока щитом повышена до 70%.
+  category: WeaponSkills
+  cost: 1
+  components:
+  - type: ShieldSkill
