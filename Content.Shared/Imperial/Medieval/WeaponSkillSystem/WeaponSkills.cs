@@ -35,7 +35,7 @@ public sealed partial class OneHandedBluntSkillComponent : Component
     [DataField("staminaDamage")] public float StaminaDamage = 8f;
 
     [DataField("bypassType")] public string BypassType = "Blunt";
-    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 2f;
+    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 2.2f;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -44,7 +44,7 @@ public sealed partial class OneHandedBluntLightSkillComponent : Component
     [DataField("damageMult")] public float DamageMult = 1.15f;
     [DataField("staminaDamage")] public float StaminaDamage = 4f;
     [DataField("bypassType")] public string BypassType = "Blunt";
-    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 2f;
+    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 2.2f;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -52,7 +52,7 @@ public sealed partial class OneHandedSmallSlashSkillComponent : Component
 {
     [DataField("damageMult")] public float DamageMult = 1.15f;
     [DataField("bypassType")] public string BypassType = "Piercing";
-    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 4f;
+    [DataField("bypassAmount")] public FixedPoint2 BypassAmount = 1.8f;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -74,7 +74,7 @@ public sealed partial class SpearSkillComponent : Component
 public sealed partial class TwoHandedSkillComponent : Component
 {
     [DataField("throwOnHitMult")] public float ThrowOnHitMult = 1.5f;
-    [DataField("helmetKnockChance")] public float HelmetKnockChance = 0.5f;
+    [DataField("helmetKnockChance")] public float HelmetKnockChance = 0.6f;
 }
 
 [RegisterComponent, NetworkedComponent]
@@ -91,7 +91,7 @@ public sealed partial class BowSkillComponent : Component { }
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ThrowingSkillComponent : Component
 {
-    [DataField("speedMult")] public float SpeedMult = 1.7f;
+    [DataField("speedMult")] public float SpeedMult = 2.2f;
 }
 
 [RegisterComponent, NetworkedComponent]
