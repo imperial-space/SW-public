@@ -23,6 +23,7 @@ using Robust.Shared.Input.Binding;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using static Content.Client.Inventory.ClientInventorySystem;
+using Content.Client.Imperial.Medieval.ItemShow;  // Imperial medieval edit
 
 namespace Content.Client.UserInterface.Systems.Inventory;
 
@@ -35,6 +36,7 @@ public sealed class InventoryUIController : UIController, IOnStateEntered<Gamepl
     [UISystemDependency] private readonly HandsSystem _handsSystem = default!;
     [UISystemDependency] private readonly ContainerSystem _container = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
+    [UISystemDependency] private readonly ItemDisplaySystem _itemDisplaySystem = default!;  // Imperial medieval edit
 
     private EntityUid? _playerUid;
     private InventorySlotsComponent? _playerInventory;
@@ -303,6 +305,12 @@ public sealed class InventoryUIController : UIController, IOnStateEntered<Gamepl
         {
             _inventorySystem.UIInventoryAltActivateItem(slot, _playerUid.Value);
         }
+        // Imperial medieval edit start
+        else if (args.Function == ContentKeyFunctions.Point && control.Entity != null)
+        {
+            _itemDisplaySystem.RequestItemPreview(control.Entity.Value);
+        }
+        //// Imperial medieval edit end
         else
         {
             return;
