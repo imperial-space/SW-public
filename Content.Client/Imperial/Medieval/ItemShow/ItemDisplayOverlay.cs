@@ -20,6 +20,7 @@ public sealed class ItemDisplayOverlay : Overlay
     private readonly EntityLookupSystem _entityLookupSystem;
     private readonly SpriteSystem _spriteSystem;
 
+
     private ShaderInstance _shader;
     private Texture _boubleTexture;
 
@@ -50,7 +51,8 @@ public sealed class ItemDisplayOverlay : Overlay
             if (xformComponent.MapID != args.MapId || !spriteComponent.Visible)
                 continue;
 
-            if (!_entityManager.TryGetComponent<SpriteComponent>(itemShowComponent.ItemUid, out var itemSprite))
+            if (xformComponent.MapID != args.MapId ||
+                    !spriteComponent.Visible || !_entityManager.TryGetComponent<SpriteComponent>(itemShowComponent.ItemUid, out var itemSprite))
                 continue;
 
             var currentZoom = _eyeManager.CurrentEye.Scale;
@@ -62,7 +64,6 @@ public sealed class ItemDisplayOverlay : Overlay
                                                           .RotateVec(aabb.TopRight - aabb.Center));
             var spriteWorldBound = _spriteSystem.GetLocalBounds((uid, spriteComponent));
             var spriteWorldSize = spriteWorldBound.Size;
-
             var finalScale = 0.7f * currentZoom;
             // 🌫 ТУДУ: сделать нормальный скейлинг что бы мелкие обьекты были нормально видны в облачке
             var boubleOffset = new Vector2(10, -21) * currentZoom;
@@ -74,10 +75,10 @@ public sealed class ItemDisplayOverlay : Overlay
             var itemOffset = new Vector2(13, -19) * currentZoom;
             var itemDrawPos = screenPos + itemOffset;
 
-            args.ScreenHandle.UseShader(_shader);
+            args.ScreenHandle.UseShader(null);
             args.ScreenHandle.DrawTextureRect(_boubleTexture, boubleRect);
             args.ScreenHandle.DrawEntity(itemShowComponent.ItemUid, itemDrawPos, finalScale, Angle.Zero, Angle.Zero, Direction.South);
-            args.ScreenHandle.UseShader(null);
+
         }
     }
 }
