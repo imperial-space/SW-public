@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Examine;
 using Content.Client.Hands.Systems;
+using Content.Client.Imperial.Medieval.ItemShow;
 using Content.Client.Interaction;
 using Content.Client.Storage;
 using Content.Client.Storage.Systems;
@@ -42,6 +43,8 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
     [Dependency] private readonly CloseRecentWindowUIController _closeRecentWindowUIController = default!;
     [UISystemDependency] private readonly StorageSystem _storage = default!;
     [UISystemDependency] private readonly UserInterfaceSystem _ui = default!;
+    [UISystemDependency] private readonly ItemDisplaySystem _itemDisplaySystem = default!;  // Imperial medieval edit
+
 
     private readonly DragDropHelper<ItemGridPiece> _menuDragHelper;
 
@@ -282,6 +285,12 @@ public sealed class StorageUIController : UIController, IOnSystemChanged<Storage
             EntityManager.RaisePredictiveEvent(new InteractInventorySlotEvent(EntityManager.GetNetEntity(control.Entity), altInteract: true));
             args.Handle();
         }
+        // Imperial medieval edit start
+        else if (args.Function == ContentKeyFunctions.Point)
+        {
+            _itemDisplaySystem.RequestItemPreview(control.Entity);
+        }
+        //// Imperial medieval edit end
 
         window.FlagDirty();
     }
