@@ -9,7 +9,7 @@
   evaporationSpeed: 0.3
   absorbent: true
   physicalDesc: reagent-physical-desc-elvish-blood
-  color: "#0048a7"
+  color: "#0072a7"
   flavor: elvishblood
 
 - type: flavor
