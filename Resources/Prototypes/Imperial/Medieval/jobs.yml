@@ -2744,7 +2744,7 @@
   equipment:
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallIns
-    jumpsuit: ClothingShitClothshit_cloth_20
+    jumpsuit: ClothingShitClothshitcloth20
     head: MedievalClothingHeadHelmetFox2
     neck: MedievalClothingNeckCloakClanFox
     id: MedievalKeyGuard
@@ -5318,4 +5318,5 @@
   storage:
     back:
     - MedievalFlinter
+
 
