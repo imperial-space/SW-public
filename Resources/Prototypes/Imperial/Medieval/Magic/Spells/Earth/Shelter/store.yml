@@ -8,6 +8,9 @@
     sprite: Imperial/Medieval/Magic/Earth/Shelter/icons.rsi
     state: senior
   cost:
-    MagicMedievalEarth: 35
+    MagicMedievalEarth: 75
   categories:
   - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1

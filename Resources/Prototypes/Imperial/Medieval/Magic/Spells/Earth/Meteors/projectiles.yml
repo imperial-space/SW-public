@@ -1,43 +1,99 @@
+# Spot
+
+- type: entity
+  id: MedievalMeteorSpot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/projectiles.rsi
+    noRot: true
+    layers:
+    - state: meteor-spot
+      shader: unshaded
+  - type: DelayedSpawn
+    proto: MedievalMeteor
+    delay: 3
+  - type: TimedDespawn
+    lifetime: 5
+
+
+# Meteor
+
+- type: entity
+  id: MedievalMeteor
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/projectiles.rsi
+    noRot: true
+    layers:
+    - state: meteor
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: SpawnOnDespawn
+    prototype: MedievalExplodeMeteor
+
+- type: entity
+  id: MedievalExplodeMeteor
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Meteor
+    maxIntensity: 2
+    intensitySlope: 5
+    totalIntensity: 10
+    canCreateVacuum: false
+  - type: SpawnOnTrigger
+    proto: ShockWaveEffect
+
+- type: explosion
+  id: Meteor
+  damagePerIntensity:
+    types:
+      Blunt: 5
+      Piercing: 5
+  lightColor: Gray
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+  fireColor: Gray
+
 # Beginner
 
 - type: entity
-  id: MedievalEarthshakingBeginner
+  id: MedievalMeteorsBeginner
   components:
   - type: TriggerOnSpawn
-  - type: RepeatingTrigger
-    delay: 3.5
-  - type: VectoredSpawnOnTrigger
-    spawnedEntityID: MedievalProjectileInactiveSpikesBeginner # Proto at Spikes/projectiles.yml
-    spawnPositions: ["0, 0", "-1, 0", "1, 0", "0, 1", "0, -1"]
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalMeteorSpot
+    radius: 1
+    quantity: 2
   - type: TimedDespawn
-    lifetime: 9
+    lifetime: 1
 
 # Middle
 
 - type: entity
-  id: MedievalEarthshakingMiddle
+  id: MedievalMeteorsMiddle
   components:
   - type: TriggerOnSpawn
-  - type: RepeatingTrigger
-    delay: 3.5
-  - type: VectoredSpawnOnTrigger
-    spawnedEntityID: MedievalProjectileInactiveSpikesBeginner
-    spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1", "0, -1", "-1, 0", "1, 0", "0, 1", "0, -2", "-2, 0", "2, 0", "0, 2", "0, 0"]
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalMeteorSpot
+    radius: 1
+    quantity: 4
   - type: TimedDespawn
-    lifetime: 9
+    lifetime: 1
 
 # Senior
 
 - type: entity
-  id: MedievalEarthshakingSenior
+  id: MedievalMeteorsSenior
   components:
   - type: TriggerOnSpawn
-  - type: RepeatingTrigger
-    delay: 3.5
-  - type: VectoredSpawnOnTrigger
-    spawnedEntityID: MedievalProjectileInactiveSpikesBeginner
-    spawnPositions: ["0, 0", "-1, 0", "1, 0", "0, 1", "0, -1", "-1, 1", "1, 1", "-1, -1", "1, -1", "-2, 2", "-1, 2", "0, 2", "1, 2", "2, 2", "-2, 1", "-2, 0", "-2, -1", "-2, -2", "-1, -2", "0, -2", "1, -2", "2, -2", "2, -1", "2, 0", "2, 1", "-3, 0", "3, 0", "0, 3", "0, -3"]
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalMeteorSpot
+    radius: 2
+    quantity: 8
   - type: TimedDespawn
-    lifetime: 9
+    lifetime: 1
 
 

@@ -1,9 +1,9 @@
 # Beginner
 
 - type: entity
-  id: MedievalActionEarthshakingBeginner
-  name: medieval-store-spells-earth-earthshaking-beginner-name
-  description: medieval-store-spells-earth-earthshaking-beginner-desc
+  id: MedievalActionMeteorsBeginner
+  name: medieval-store-spells-earth-meteors-beginner-name
+  description: medieval-store-spells-earth-meteors-beginner-desc
   components:
   - type: CastTraining
     trainingResults:
@@ -22,22 +22,22 @@
       groups:
         Burn: 12
   - type: SpellCastEffect
-    effectProto: EarthshakingSpellCastEffectBeginner
+    effectProto: MeteorsSpellCastEffectBeginner
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 22
+    useDelay: 45
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+      sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
       state: beginner
   - type: TargetAction
     checkCanAccess: false
     range: 8
   - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
-      spawnedEntityPrototype: MedievalEarthshakingBeginner
+      spawnedEntityPrototype: MedievalMeteorsBeginner
       spawnType: SpawnOnMousePosition
       spellCastDoAfter:
         delay: 1
@@ -48,21 +48,21 @@
         speedModifier: 0.3
       speechPoints:
         0:
-          speech: medieval-spell-speach-earthshaking
+          speech: medieval-spell-speach-meteors
           color: "#838275"
           hideChat: true
   - type: ActionUpgrade
     effectedLevels:
-      2: MedievalActionEarthshakingMiddle
-      3: MedievalActionEarthshakingSenior
+      2: MedievalActionMeteorsMiddle
+      3: MedievalActionMeteorsSenior
 
 # Middle
 
 - type: entity
-  id: MedievalActionEarthshakingMiddle
-  name: medieval-store-spells-earth-earthshaking-middle-name
-  description: medieval-store-spells-earth-earthshaking-middle-desc
-  parent: MedievalActionEarthshakingBeginner
+  id: MedievalActionMeteorsMiddle
+  name: medieval-store-spells-earth-meteors-middle-name
+  description: medieval-store-spells-earth-meteors-middle-desc
+  parent: MedievalActionMeteorsBeginner
   components:
   - type: ManaDrainSpell
     manaDrain: 50
@@ -73,22 +73,22 @@
         Burn: 12
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 30
+    useDelay: 60
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+      sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
       state: middle
   - type: TargetAction
     checkCanAccess: false
     range: 8
   - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
-      spawnedEntityPrototype: MedievalEarthshakingMiddle
+      spawnedEntityPrototype: MedievalMeteorsMiddle
       spawnType: SpawnOnMousePosition
       spellCastDoAfter:
-        delay: 1
+        delay: 2
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
@@ -96,17 +96,17 @@
         speedModifier: 0.3
       speechPoints:
         0:
-          speech: medieval-spell-speach-earthshaking
+          speech: medieval-spell-speach-meteors
           color: "#838275"
           hideChat: true
 
 # Senior
 
 - type: entity
-  id: MedievalActionEarthshakingSenior
-  name: medieval-store-spells-earth-earthshaking-senior-name
-  description: medieval-store-spells-earth-earthshaking-senior-desc
-  parent: MedievalActionEarthshakingBeginner
+  id: MedievalActionMeteorsSenior
+  name: medieval-store-spells-earth-meteors-senior-name
+  description: medieval-store-spells-earth-meteors-senior-desc
+  parent: MedievalActionMeteorsBeginner
   components:
   - type: ManaDrainSpell
     manaDrain: 60
@@ -117,22 +117,22 @@
         Burn: 12
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 50
+    useDelay: 80
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
     icon:
-      sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+      sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
       state: senior
   - type: TargetAction
     checkCanAccess: false
     range: 10
   - type: WorldTargetAction
     event: !type:MedievalSpawnSpellEvent
-      spawnedEntityPrototype: MedievalEarthshakingSenior
+      spawnedEntityPrototype: MedievalMeteorsSenior
       spawnType: SpawnOnMousePosition
       spellCastDoAfter:
-        delay: 1
+        delay: 3
         breakOnDropItem: false
         breakOnWeightlessMove: false
         breakOnMove: false
@@ -140,6 +140,6 @@
         speedModifier: 0.3
       speechPoints:
         0:
-          speech: medieval-spell-speach-earthshaking
+          speech: medieval-spell-speach-meteors
           color: "#838275"
           hideChat: true

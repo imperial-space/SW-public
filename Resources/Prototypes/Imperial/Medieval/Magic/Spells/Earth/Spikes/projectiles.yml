@@ -33,7 +33,7 @@
     state: beginner
     drawdepth: FloorTiles
   - type: TimedDespawn
-    lifetime: 2.5
+    lifetime: 1.5
   - type: Clickable
   - type: Physics
   - type: Fixtures
@@ -58,7 +58,7 @@
   - type: DamageContacts
     damage:
       types:
-        Piercing: 15
+        Piercing: 10
 
 - type: entity
   id: MedievalSpikesLineBeginner

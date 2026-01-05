@@ -17,6 +17,13 @@
   - type: InstantAction
     event: !type:MedievalInstantSpawnEvent
       spawnedEntityPrototype: MedievalShelterSenior
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
       speechPoints:
         0:
           speech: medieval-spell-speach-shelter

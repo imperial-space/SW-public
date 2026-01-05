@@ -44,7 +44,7 @@ public sealed partial class RandomOffsetSpawnSystem : EntitySystem
         var coords = _transform.GetMapCoordinates(uid);
         for (var i = 0; i < component.Quantity; i++)
         {
-            var randomVector = new Vector2(_random.Next(-component.Radius, component.Radius), _random.Next(-component.Radius, component.Radius));
+            var randomVector = new Vector2(_random.Next(-component.Radius, component.Radius+1), _random.Next(-component.Radius, component.Radius+1));
             var resultCoords = new MapCoordinates(coords.Position + randomVector, coords.MapId);
             var entityClone = Spawn(component.SpawnedEntityID, resultCoords);
         }

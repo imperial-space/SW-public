@@ -1,18 +1,18 @@
 # Beginner
 
 - type: imperialListing
-  id: MedievalSpellEarthshakingBeginner
-  name: medieval-store-spells-earth-earthshaking-beginner-name
-  description: medieval-store-spells-earth-earthshaking-beginner-desc
-  productAction: MedievalActionEarthshakingBeginner
+  id: MedievalSpellMeteorsBeginner
+  name: medieval-store-spells-earth-meteors-beginner-name
+  description: medieval-store-spells-earth-meteors-beginner-desc
+  productAction: MedievalActionMeteorsBeginner
   priority: 2
   productUpgradeId:
-    - MedievalSpellEarthshakingMiddle
+    - MedievalSpellMeteorsMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
     state: beginner
   cost:
-    MagicMedievalEarth: 20
+    MagicMedievalEarth: 40
   categories:
   - MedievalEarthSpells
   conditions:
@@ -22,17 +22,17 @@
 # Middle
 
 - type: imperialListing
-  id: MedievalSpellEarthshakingMiddle
-  name: medieval-store-spells-earth-earthshaking-middle-name
-  description: medieval-store-spells-earth-earthshaking-middle-desc
+  id: MedievalSpellMeteorsMiddle
+  name: medieval-store-spells-earth-meteors-middle-name
+  description: medieval-store-spells-earth-meteors-middle-desc
   priority: 2
   productUpgradeId:
-    - MedievalSpellEarthshakingSenior
+    - MedievalSpellMeteorsSenior
   icon:
-    sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
     state: middle
   cost:
-    MagicMedievalEarth: 55
+    MagicMedievalEarth: 65
   categories:
   - MedievalEarthSpells
   conditions:
@@ -40,19 +40,19 @@
     stock: 1
   - !type:ImperialBuyBeforeCondition
     whitelist:
-      - MedievalSpellEarthshakingBeginner
+      - MedievalSpellMeteorsBeginner
 
 # Senior
 
 - type: imperialListing
-  id: MedievalSpellEarthshakingSenior
-  name: medieval-store-spells-earth-earthshaking-senior-name
-  description: medieval-store-spells-earth-earthshaking-senior-desc
+  id: MedievalSpellMeteorsSenior
+  name: medieval-store-spells-earth-meteors-senior-name
+  description: medieval-store-spells-earth-meteors-senior-desc
   priority: 2
   productUpgradeId:
-    - MedievalSpellEarthshakingSenior
+    - MedievalSpellMeteorsSenior
   icon:
-    sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
     state: senior
   cost:
     MagicMedievalEarth: 75
@@ -64,4 +64,4 @@
     stock: 1
   - !type:ImperialBuyBeforeCondition
     whitelist:
-      - MedievalSpellEarthshakingMiddle
+      - MedievalSpellMeteorsMiddle

@@ -25,7 +25,7 @@
     effectProto: ObeliskSpellCastEffectBeginner
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 22
+    useDelay: 50
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
@@ -73,7 +73,7 @@
         Burn: 12
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 30
+    useDelay: 55
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
@@ -117,7 +117,7 @@
         Burn: 12
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 50
+    useDelay: 80
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg

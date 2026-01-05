@@ -1,15 +1,15 @@
 # Beginner
 
 - type: imperialListing
-  id: MedievalSpellEarthshakingBeginner
-  name: medieval-store-spells-earth-earthshaking-beginner-name
-  description: medieval-store-spells-earth-earthshaking-beginner-desc
-  productAction: MedievalActionEarthshakingBeginner
+  id: MedievalSpellStoneRidgeBeginner
+  name: medieval-store-spells-earth-stone-ridge-beginner-name
+  description: medieval-store-spells-earth-stone-ridge-beginner-desc
+  productAction: MedievalActionStoneRidgeBeginner
   priority: 2
   productUpgradeId:
-    - MedievalSpellEarthshakingMiddle
+    - MedievalSpellStoneRidgeMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+    sprite: Imperial/Medieval/Magic/Earth/StoneRidge/icons.rsi
     state: beginner
   cost:
     MagicMedievalEarth: 20
@@ -22,14 +22,14 @@
 # Middle
 
 - type: imperialListing
-  id: MedievalSpellEarthshakingMiddle
-  name: medieval-store-spells-earth-earthshaking-middle-name
-  description: medieval-store-spells-earth-earthshaking-middle-desc
+  id: MedievalSpellStoneRidgeMiddle
+  name: medieval-store-spells-earth-stone-ridge-middle-name
+  description: medieval-store-spells-earth-stone-ridge-middle-desc
   priority: 2
   productUpgradeId:
-    - MedievalSpellEarthshakingSenior
+    - MedievalSpellStoneRidgeMiddle
   icon:
-    sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+    sprite: Imperial/Medieval/Magic/Earth/StoneRidge/icons.rsi
     state: middle
   cost:
     MagicMedievalEarth: 55
@@ -40,28 +40,5 @@
     stock: 1
   - !type:ImperialBuyBeforeCondition
     whitelist:
-      - MedievalSpellEarthshakingBeginner
+      - MedievalSpellStoneRidgeBeginner
 
-# Senior
-
-- type: imperialListing
-  id: MedievalSpellEarthshakingSenior
-  name: medieval-store-spells-earth-earthshaking-senior-name
-  description: medieval-store-spells-earth-earthshaking-senior-desc
-  priority: 2
-  productUpgradeId:
-    - MedievalSpellEarthshakingSenior
-  icon:
-    sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
-    state: senior
-  cost:
-    MagicMedievalEarth: 75
-    ArchmagePoints: 1
-  categories:
-  - MedievalEarthSpells
-  conditions:
-  - !type:ImperialListingLimitedStockCondition
-    stock: 1
-  - !type:ImperialBuyBeforeCondition
-    whitelist:
-      - MedievalSpellEarthshakingMiddle

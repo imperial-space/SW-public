@@ -1,5 +1,5 @@
 - type: entity
-  id: EarthshakingSpellCastEffectBeginner
+  id: MeteorsSpellCastEffectBeginner
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
