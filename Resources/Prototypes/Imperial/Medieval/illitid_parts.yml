@@ -1,3 +1,22 @@
+# Blood
+
+- type: reagent
+  id: IllitidBlood
+  parent: Blood
+  name: reagent-name-illitid-blood
+  slipData: null
+  desc: reagent-desc-illitid-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: reagent-physical-desc-illitid-blood
+  color: "#5600a7"
+  flavor: illitidblood
+
+- type: flavor
+  id: illitidblood
+  flavorType: Complex
+  description: flavor-complex-illitid-blood
+
 # TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
@@ -11,7 +30,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 3
-      - ReagentId: Blood
+      - ReagentId: IllitidBlood
         Quantity: 10
 
 - type: entity
@@ -27,7 +46,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 10
-      - ReagentId: Blood
+      - ReagentId: IllitidBlood
         Quantity: 20
 
 - type: entity
@@ -43,7 +62,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: Blood
+      - ReagentId: IllitidBlood
         Quantity: 10
 
 - type: entity

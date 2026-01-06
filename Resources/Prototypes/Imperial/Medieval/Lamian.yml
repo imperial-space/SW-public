@@ -208,6 +208,8 @@
   - type: Damageable
     damageModifierSet: Lamian
   - type: Wagging
+  - type: Bloodstream
+    bloodReagent: LamianBlood
 
 - type: damageModifierSet
   id: Lamian
