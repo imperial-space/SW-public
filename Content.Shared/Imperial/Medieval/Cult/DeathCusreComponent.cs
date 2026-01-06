@@ -17,4 +17,7 @@ public sealed partial class DeathCusreComponent : Component
             { "Radiation", 0.5 }
         }
     };
+
+    [DataField]
+    public int CurseCount;
 }
