@@ -3,7 +3,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
-    color: "#764ADB"
+    color: "#804128"
     noRot: true
     layers:
       - state: beginner
@@ -11,6 +11,6 @@
   - type: PointLight
     radius: 3
     energy: 2
-    color: "#764ADB"
+    color: "#804128"
   - type: TimedDespawn
     lifetime: 0.5
