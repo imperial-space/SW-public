@@ -1,0 +1,16 @@
+- type: entity
+  id: SpikesSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/nova.rsi
+    color: "#764ADB"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: PointLight
+    radius: 3
+    energy: 2
+    color: "#764ADB"
+  - type: TimedDespawn
+    lifetime: 0.5

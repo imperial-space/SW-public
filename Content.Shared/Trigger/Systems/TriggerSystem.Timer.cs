@@ -20,7 +20,10 @@ public sealed partial class TriggerSystem
     // set the time of the first trigger after being spawned
     private void OnRepeatInit(Entity<RepeatingTriggerComponent> ent, ref MapInitEvent args)
     {
-        ent.Comp.NextTrigger = _timing.CurTime + ent.Comp.Delay;
+        if (ent.Comp.FirstDelay == TimeSpan.Zero)
+            ent.Comp.NextTrigger = _timing.CurTime + ent.Comp.Delay;
+        else
+            ent.Comp.NextTrigger = _timing.CurTime + ent.Comp.FirstDelay;
         Dirty(ent);
     }
 
