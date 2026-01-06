@@ -1,3 +1,24 @@
+# Imperial Medieval Start
+# Blood
+
+- type: reagent
+  id: ReptilianBlood
+  parent: Blood
+  name: reagent-name-reptilian-blood
+  slipData: null
+  desc: reagent-desc-reptilian-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: reagent-physical-desc-reptilian-blood
+  color: "#01310b"
+  flavor: reptilianblood
+
+- type: flavor
+  id: reptilianblood
+  flavorType: Complex
+  description: flavor-complex-reptilian-blood
+# Imperial Medieval End
+
 # TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
@@ -11,7 +32,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 3
-      - ReagentId: Blood
+      - ReagentId: ReptilianBlood
         Quantity: 10
 
 - type: entity
@@ -27,7 +48,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 10
-      - ReagentId: Blood
+      - ReagentId: ReptilianBlood
         Quantity: 20
 
 - type: entity
@@ -43,7 +64,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: Blood
+      - ReagentId: ReptilianBlood
         Quantity: 10
 
 - type: entity
