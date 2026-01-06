@@ -58,6 +58,9 @@ medieval-store-spells-earth-stone-ridge-middle-desc = Создаёт в случ
 
 medieval-spell-speach-obelisk = P̮͍y̖̜r̬ͫa̮̲ͅm̞ͅì͔s͎̙̮ A͖̹̅r̦̈c̸ͩa̛̻̪n͐um̸̫
 
+medieval-spells-earth-obelisk-ent-name = каменный обелиск
+medieval-spells-earth-obelisk-ent-desc = Ломайте его!
+
 medieval-store-spells-earth-obelisk-beginner-name = Обелиск
 medieval-store-spells-earth-obelisk-beginner-desc = Создайте в указанном месте разрушаемый обелиск, который будет создавать шипы вокруг себя с каждым ударом.
 

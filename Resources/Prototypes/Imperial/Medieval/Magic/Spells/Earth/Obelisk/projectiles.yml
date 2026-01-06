@@ -13,6 +13,8 @@
 
 - type: entity
   id: MedievalObeliskEntBeginner
+  name: medieval-spells-earth-obelisk-ent-name
+  desc: medieval-spells-earth-obelisk-ent-desc
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Earth/Obelisk/action.rsi
@@ -65,6 +67,8 @@
 
 - type: entity
   id: MedievalObeliskEntMiddle
+  name: medieval-spells-earth-obelisk-ent-name
+  desc: medieval-spells-earth-obelisk-ent-desc
   parent: MedievalObeliskEntBeginner
   components:
   - type: RandomOffsetSpawn
@@ -75,6 +79,8 @@
 
 - type: entity
   id: MedievalObeliskSenior
+  name: medieval-spells-earth-obelisk-ent-name
+  desc: medieval-spells-earth-obelisk-ent-desc
   parent: MedievalObeliskBeginner
   components:
     - type: SpawnOnDespawn
