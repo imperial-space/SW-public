@@ -111,7 +111,9 @@
       #Cursed: Speak
       #Growling: Speak
       Hissing: Speak
-      #Elf: Speak # imperial medieval end
+      #Elf: Speak
+  - type: Bloodstream
+    bloodReagent: ReptilianBlood # imperial medieval end
 
 - type: entity
   parent: BaseSpeciesDummy

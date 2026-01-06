@@ -123,6 +123,8 @@
   - type: Body
     prototype: Beastmen
     requiredLegs: 2
+  - type: Bloodstream
+    bloodReagent: BeastmenBlood
   - type: LanguageSpeaker
     languages:
       Common: Speak
@@ -219,7 +221,6 @@
     damageRecovery:
       types:
         Asphyxiation: -1
-
 
 - type: species
   id: Beastmen

@@ -207,6 +207,8 @@
     radius: 2
   - type: TypingIndicator
     proto: wolf
+  - type: Bloodstream
+    bloodReagent: ZveresBlood
 
 - type: damageModifierSet
   id: Zveres

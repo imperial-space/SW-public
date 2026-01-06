@@ -310,7 +310,7 @@
     sprite: Imperial/Medieval/Clothing/Head/goblin_slayer_helmet.rsi
 
 - type: entity
-  parent: MedievalClothingHelmetBaseHeavy
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetHood
   name: leather hood
   description: Medieval leather hood
@@ -327,7 +327,7 @@
         Piercing: 0.93
 
 - type: entity
-  parent: MedievalClothingHelmetBaseHeavy
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetHood2
   name: leather hood
   description: Medieval leather hood
@@ -345,7 +345,7 @@
         Piercing: 0.93
 
 - type: entity
-  parent: MedievalClothingHelmetBaseHeavy
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetHood3
   name: leather hood
   description: Medieval leather hood

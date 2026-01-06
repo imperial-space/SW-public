@@ -189,6 +189,8 @@
   - type: LocalLight
     energy: 0.2
     radius: 2.8
+  - type: Bloodstream
+    bloodReagent: DarkElvishBlood
 
 - type: entity
   parent: BaseMobDarkElf
