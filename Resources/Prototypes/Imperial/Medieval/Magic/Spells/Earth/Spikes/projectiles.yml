@@ -13,17 +13,10 @@
     fixtures:
       fix1:
         shape:
-          !type:PhysShapeCircle
-          radius: 0.45
-        density: 60
-        mask:
-          - MachineMask
-        layer:
-          - MidImpassable
-          - LowImpassable
-          - BulletImpassable
-          - Opaque
-        hard: false
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 100
+
 
 - type: entity
   id: MedievalProjectileActiveSpikeBeginner

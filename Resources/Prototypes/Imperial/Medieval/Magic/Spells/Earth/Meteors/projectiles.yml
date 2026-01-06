@@ -3,6 +3,15 @@
 - type: entity
   id: MedievalMeteorSpot
   components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 100
+        mask:
+          - FullTileMask
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Earth/Meteors/projectiles.rsi
     noRot: true

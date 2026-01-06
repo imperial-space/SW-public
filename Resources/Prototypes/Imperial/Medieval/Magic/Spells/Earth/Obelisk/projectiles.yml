@@ -26,6 +26,33 @@
     quantity: 5
   - type: TimedDespawn
     lifetime: 35
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+          - !type:DoActsBehavior
+             acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,1.5"
+        density: 100
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
 
 # Middle
 
