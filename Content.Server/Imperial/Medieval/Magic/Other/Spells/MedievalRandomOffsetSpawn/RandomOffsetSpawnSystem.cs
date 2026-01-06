@@ -47,10 +47,8 @@ public sealed partial class RandomOffsetSpawnSystem : EntitySystem
         Vector2 randomDirectionFromAngle;
         MapCoordinates resultCoords;
         bool needNewCoords;
-        int NumOfTries;
         for (var i = 0; i < component.Quantity; i++)
         {
-            NumOfTries = 0;
             if (component.NeedUniqueСoords)
                 do
                 {
@@ -60,8 +58,7 @@ public sealed partial class RandomOffsetSpawnSystem : EntitySystem
                     foreach (var entityNear in _lookup.GetEntitiesInRange(resultCoords, 0.1f))
                         if (component.SpawnedEntitiesUID.Contains(entityNear))
                             needNewCoords = true;
-                    NumOfTries++;
-                } while (needNewCoords & (NumOfTries < 100));
+                } while (needNewCoords);
             else
             {
                 randomVector = new Vector2(_random.Next(-component.Radius, component.Radius+1), _random.Next(-component.Radius, component.Radius+1));
