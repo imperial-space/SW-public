@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Medieval.Cult;
 /// This is used for...
 /// </summary>
 [RegisterComponent]
-public sealed partial class DeathCusreComponent : Component
+public sealed partial class DeathCurseComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]

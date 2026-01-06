@@ -17,7 +17,7 @@ namespace Content.Shared.ChemistryRandomization
 
         public override void Effect(EntityEffectBaseArgs args)
         {
-            if (args.EntityManager.TryGetComponent<DeathCusreComponent>(args.TargetEntity, out var blood))
+            if (args.EntityManager.TryGetComponent<DeathCurseComponent>(args.TargetEntity, out var blood))
             {
                 if (args is EntityEffectReagentArgs reagentArgs)
                 {
@@ -27,7 +27,7 @@ namespace Content.Shared.ChemistryRandomization
                 }
 
                 var popupSystem = args.EntityManager.System<SharedPopupSystem>();
-                args.EntityManager.RemoveComponent<DeathCusreComponent>(args.TargetEntity);
+                args.EntityManager.RemoveComponent<DeathCurseComponent>(args.TargetEntity);
                 popupSystem.PopupEntity(
                     "Ты почувствовал, как тьма покидает твою душу.",
                     args.TargetEntity,

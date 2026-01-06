@@ -40,7 +40,7 @@ public sealed class DeathCurseSystem : EntitySystem
         {
             _nextCheckTime = curTime + TimeSpan.FromSeconds(DeathCurseTick);
 
-            foreach (var curse in EntityManager.EntityQuery<DeathCusreComponent>())
+            foreach (var curse in EntityManager.EntityQuery<DeathCurseComponent>())
             {
                 if (TryComp<SkillsComponent>(curse.Owner, out var skills))
                 {
@@ -55,8 +55,8 @@ public sealed class DeathCurseSystem : EntitySystem
                         curse.CurseCount += 1;
                         if (curse.CurseCount >= 360)
                         {
-                            RemComp<DeathCusreComponent>(curse.Owner);
-                            _popupSystem.PopupClient("Ты чутсвуешь, что боль наконец то отступает", curse.Owner, curse.Owner);
+                            RemComp<DeathCurseComponent>(curse.Owner);
+                            _popupSystem.PopupEntity("Ты чутсвуешь, что боль наконец то отступает", curse.Owner, curse.Owner);
                         }
                     }
                     else
@@ -65,8 +65,8 @@ public sealed class DeathCurseSystem : EntitySystem
                         curse.CurseCount += 2;
                         if (curse.CurseCount >= 360)
                         {
-                            RemComp<DeathCusreComponent>(curse.Owner);
-                            _popupSystem.PopupClient("Ты чутсвуешь, что боль наконец то отступает", curse.Owner, curse.Owner);
+                            RemComp<DeathCurseComponent>(curse.Owner);
+                            _popupSystem.PopupEntity("Ты чутсвуешь, что боль наконец то отступает", curse.Owner, curse.Owner);
                         }
                     }
                 }
@@ -83,8 +83,7 @@ public sealed class DeathCurseSystem : EntitySystem
     {
         if (_timing.CurTime < _nextCheckTimePopup)
             return;
-
-        _popupSystem.PopupClient("Ты чутсвуешь жуткую боль, что растекается по твоим венам", entity, entity);
-        _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DeathCurseTick*10);
+        _popupSystem.PopupEntity("Ты чутсвуешь жуткую боль, что растекается по твоим венам", entity, entity);
+        _nextCheckTimePopup = _timing.CurTime + TimeSpan.FromSeconds(DeathCurseTick*10);
     }
 }

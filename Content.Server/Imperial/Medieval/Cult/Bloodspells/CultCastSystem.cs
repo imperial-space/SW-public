@@ -46,20 +46,25 @@ public sealed class CultCastSystem : EntitySystem
             return;
         if (!args.Origin.HasValue)
             return;
-        if (HasComp<CultMemberComponent>(args.Origin.Value) || TryComp<CultCursedComponent>(args.Origin.Value, out var curs))
+        if (HasComp<CultMemberComponent>(args.Origin.Value))
             return;
-        if (curs == null || curs.CurseLevel == 0)
-            return;
-        if (TryComp<DeathCusreComponent>(args.Origin.Value, out var cursed))
+        if (TryComp<CultCursedComponent>(args.Origin.Value, out var curs))
+        {
+            if (curs.CurseLevel != 0)
+                return;
+        }
+
+        if (TryComp<DeathCurseComponent>(args.Origin.Value, out var cursed))
         {
             foreach (var key in cursed.CurseDamage.DamageDict.Keys.ToList())
             {
                 cursed.CurseDamage.DamageDict[key] *= 1.5f;
+                cursed.CurseCount /= 2;
             }
         }
         else
         {
-            AddComp<DeathCusreComponent>(args.Origin.Value);
+            AddComp<DeathCurseComponent>(args.Origin.Value);
         }
         component.DeathCusre = false;
     }
