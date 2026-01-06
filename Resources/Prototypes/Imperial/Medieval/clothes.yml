@@ -967,12 +967,32 @@
 
 - type: entity
   parent: MedievalQuiver
+  id: MedievalQuiverFullArrowIronPhysics
+  suffix: Full, IronArrowPhysics
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowIronPhysics
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
   id: MedievalQuiverFullArrowSteel
   suffix: Full, SteelArrow
   components:
   - type: StorageFill
     contents:
     - id: MedievalArrowSteel
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullArrowSteelPhysics
+  suffix: Full, SteelArrowPhysics
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowSteelPhysics
       amount: 18
 
 - type: entity
