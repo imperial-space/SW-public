@@ -48,7 +48,7 @@
     sprites:
       - drawedSprite:
           sprite: Imperial/Medieval/Magic/Earth/Spikes/projectiles.rsi
-          state: beginner-spawn
+          state: pointer
         alwaysRender: true
         mixColor: 0.1
         inRangeColor: "#C12AFF"

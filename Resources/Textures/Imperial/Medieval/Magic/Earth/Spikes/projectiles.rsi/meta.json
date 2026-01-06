@@ -12,6 +12,9 @@
       "name": "beginner-spawn"
     },
     {
+      "name": "pointer"
+    },
+    {
       "name": "beginner",
       "delays": [
         [
