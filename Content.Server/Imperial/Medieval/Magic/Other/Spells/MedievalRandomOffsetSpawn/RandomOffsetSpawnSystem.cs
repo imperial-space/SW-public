@@ -47,9 +47,10 @@ public sealed partial class RandomOffsetSpawnSystem : EntitySystem
         Vector2 randomDirectionFromAngle;
         MapCoordinates resultCoords;
         bool needNewCoords;
+        int NumOfTries;
         for (var i = 0; i < component.Quantity; i++)
         {
-            var NumOfTries = 0;
+            NumOfTries = 0;
             if (component.NeedUniqueСoords)
                 do
                 {
@@ -60,7 +61,7 @@ public sealed partial class RandomOffsetSpawnSystem : EntitySystem
                         if (component.SpawnedEntitiesUID.Contains(entityNear))
                             needNewCoords = true;
                     NumOfTries++;
-                } while (needNewCoords & NumOfTries < 100);
+                } while (needNewCoords & (NumOfTries < 100));
             else
             {
                 randomVector = new Vector2(_random.Next(-component.Radius, component.Radius+1), _random.Next(-component.Radius, component.Radius+1));
