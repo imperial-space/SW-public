@@ -66,7 +66,7 @@ public sealed partial class FoodComponent : Component
     ///     Should probably be smaller for small items like pills.
     /// </summary>
     [DataField]
-    public float ForceFeedDelay = 3;
+    public float ForceFeedDelay = 1;
 
     /// <summary>
     /// For mobs that are food, requires killing them before eating.
