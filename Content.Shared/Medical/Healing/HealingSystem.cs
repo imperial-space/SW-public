@@ -7,6 +7,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
@@ -210,11 +211,16 @@ public sealed class HealingSystem : EntitySystem
             var msg = Loc.GetString("medical-item-popup-target", ("user", Identity.Entity(user, EntityManager)), ("item", healing.Owner));
             _popupSystem.PopupEntity(msg, target, target, PopupType.Medium);
         }
-
+        // Medieval Imperial Edit start
+        var healingSkill = 0f;
+        if (TryComp<SkillsComponent>(target, out var skills))
+        {
+            healingSkill = (skills.Levels["Intelligence"]-10)*0.25f;
+        }
         var delay = isNotSelf
-            ? healing.Comp.Delay
-            : healing.Comp.Delay * GetScaledHealingPenalty(target, healing.Comp.SelfHealPenaltyMultiplier);
-
+            ? healing.Comp.Delay-TimeSpan.FromSeconds(healingSkill)
+            : healing.Comp.Delay * GetScaledHealingPenalty(target, healing.Comp.SelfHealPenaltyMultiplier)-TimeSpan.FromSeconds(healingSkill);
+        // Medieval Imperial Edit end
         var doAfterEventArgs =
             new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), target, target: target, used: healing)
             {

@@ -7,6 +7,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Gravity;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Input;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
@@ -516,9 +517,26 @@ public abstract partial class SharedStunSystem
 
     private void OnGetStandUpTime(Entity<GravityAffectedComponent> entity, ref GetStandUpTimeEvent args)
     {
+
         // Get up instantly if weightless
         if (entity.Comp.Weightless)
+        {
             args.DoAfterTime = TimeSpan.Zero;
+            return;
+        }
+        // medieval imperial edit start
+        // Check if entity has a SkillsComponent and get Dexterity
+        if (TryComp<SkillsComponent>(entity, out var skills) &&
+            skills.Levels.TryGetValue("Agility", out var agility))
+        {
+            args.DoAfterTime = TimeSpan.FromSeconds(2.5f-(agility-10f)/5f);
+        }
+        else
+        {
+            args.DoAfterTime = TimeSpan.FromSeconds(1);
+        }
+
+        // medieval imperial edit end
     }
 
     #endregion
