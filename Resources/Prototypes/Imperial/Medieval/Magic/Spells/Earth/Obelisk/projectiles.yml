@@ -1,0 +1,135 @@
+# Beginner
+
+- type: entity
+  id: MedievalObeliskBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Obelisk/projectiles.rsi
+    state: spawn
+  - type: SpawnOnDespawn
+    prototype: MedievalObeliskEntBeginner
+  - type: TimedDespawn
+    lifetime: 2.9
+
+- type: entity
+  id: MedievalObeliskEntBeginner
+  name: medieval-spells-earth-obelisk-ent-name
+  desc: medieval-spells-earth-obelisk-ent-desc
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Obelisk/action.rsi
+    state: beginner
+  - type: RepeatingTrigger
+    delay: 3.5
+    firstDelay: 1.5
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalProjectileInactiveSpikesBeginner
+    radius: 2
+    quantity: 5
+  - type: TimedDespawn
+    lifetime: 35
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+          - !type:PlaySoundBehavior
+            sound: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+          - !type:DoActsBehavior
+             acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,1.5"
+        density: 100
+        mask:
+          - MachineMask
+        layer:
+          - MidImpassable
+          - LowImpassable
+          - BulletImpassable
+          - Opaque
+
+# Middle
+
+- type: entity
+  id: MedievalObeliskMiddle
+  parent: MedievalObeliskBeginner
+  components:
+  - type: SpawnOnDespawn
+    prototype: MedievalObeliskEntMiddle
+
+- type: entity
+  id: MedievalObeliskEntMiddle
+  name: medieval-spells-earth-obelisk-ent-name
+  desc: medieval-spells-earth-obelisk-ent-desc
+  parent: MedievalObeliskEntBeginner
+  components:
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalProjectileInactiveSpikesBeginner
+    radius: 3
+    quantity: 10
+# Senior
+
+- type: entity
+  id: MedievalObeliskSenior
+  name: medieval-spells-earth-obelisk-ent-name
+  desc: medieval-spells-earth-obelisk-ent-desc
+  parent: MedievalObeliskBeginner
+  components:
+    - type: SpawnOnDespawn
+      prototype: MedievalObeliskEntSenior
+
+- type: entity
+  id: MedievalObeliskEntSenior
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Obelisk/action.rsi
+    state: beginner
+  - type: RepeatingTrigger
+    delay: 3.5
+    firstDelay: 1.5
+  - type: SpawnOnTrigger
+    proto: MedievalObeliskEntSeniorEffect1
+  - type: TimedDespawn
+    lifetime: 35
+
+- type: entity
+  id: MedievalObeliskEntSeniorEffect1
+  components:
+  - type: TriggerOnSpawn
+  - type: VectoredSpawnOnTrigger
+    spawnedEntityID: MedievalProjectileInactiveSpikesBeginner
+    spawnPositions: ["0, 2", "1, 1", "2, 0", "1, -1", "0, -2", "-1, -1", "-2, 0", "-1, 1"]
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: SpawnOnDespawn
+    prototype: MedievalObeliskEntSeniorEffect2
+
+- type: entity
+  id: MedievalObeliskEntSeniorEffect2
+  components:
+  - type: TriggerOnSpawn
+  - type: VectoredSpawnOnTrigger
+    spawnedEntityID: MedievalProjectileInactiveSpikesBeginner
+    spawnPositions: ["0, 3", "1, 2", "2, 1", "3, 0", "2, -1", "1, -2", "0, -3", "-1, -2", "-2, -1", "-3, 0", "-2, 1", "-1, 2"]
+  - type: TimedDespawn
+    lifetime: 0.5
+  - type: SpawnOnDespawn
+    prototype: MedievalObeliskEntSeniorEffect3
+
+- type: entity
+  id: MedievalObeliskEntSeniorEffect3
+  components:
+  - type: TriggerOnSpawn
+  - type: VectoredSpawnOnTrigger
+    spawnedEntityID: MedievalProjectileInactiveSpikesBeginner
+    spawnPositions: ["0, 4", "1, 3", "2, 2", "3, 1", "4, 0", "3, -1", "2, -2", "1, -3", "0, -4", "-1, -3", "-2, -2", "-3, -1", "-4, 0", "-3, 1", "-2, 2", "-1, 3"]
+  - type: TimedDespawn
+    lifetime: 1

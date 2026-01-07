@@ -1,3 +1,22 @@
+# Blood
+
+- type: reagent
+  id: LamianBlood
+  parent: Blood
+  name: reagent-name-lamian-blood
+  slipData: null
+  desc: reagent-desc-lamian-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: reagent-physical-desc-lamian-blood
+  color: "#00a7a7"
+  flavor: lamianblood
+
+- type: flavor
+  id: lamianblood
+  flavorType: Complex
+  description: flavor-complex-lamian-blood
+
 # TODO: Add descriptions (many)
 # TODO BODY: Part damage
 - type: entity
@@ -11,7 +30,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 3
-      - ReagentId: Blood
+      - ReagentId: LamianBlood
         Quantity: 10
 
 - type: entity
@@ -27,7 +46,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 10
-      - ReagentId: Blood
+      - ReagentId: LamianBlood
         Quantity: 20
 
 - type: entity
@@ -43,7 +62,7 @@
       reagents:
       - ReagentId: Fat
         Quantity: 5
-      - ReagentId: Blood
+      - ReagentId: LamianBlood
         Quantity: 10
 
 - type: entity

@@ -1,0 +1,145 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionEarthshakingBeginner
+  name: medieval-store-spells-earth-earthshaking-beginner-name
+  description: medieval-store-spells-earth-earthshaking-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalEarth: 1
+        bonusEssences:
+          MagicMedievalEarth: 1
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: SpellCastEffect
+    effectProto: EarthshakingSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 22
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 8
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalEarthshakingBeginner
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-earthshaking
+          color: "#838275"
+          hideChat: true
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionEarthshakingMiddle
+      3: MedievalActionEarthshakingSenior
+
+# Middle
+
+- type: entity
+  id: MedievalActionEarthshakingMiddle
+  name: medieval-store-spells-earth-earthshaking-middle-name
+  description: medieval-store-spells-earth-earthshaking-middle-desc
+  parent: MedievalActionEarthshakingBeginner
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 50
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    range: 8
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalEarthshakingMiddle
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 3
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-earthshaking
+          color: "#838275"
+          hideChat: true
+
+# Senior
+
+- type: entity
+  id: MedievalActionEarthshakingSenior
+  name: medieval-store-spells-earth-earthshaking-senior-name
+  description: medieval-store-spells-earth-earthshaking-senior-desc
+  parent: MedievalActionEarthshakingBeginner
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 60
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 50
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/Earthshaking/icons.rsi
+      state: senior
+  - type: TargetAction
+    checkCanAccess: false
+    range: 10
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalEarthshakingSenior
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 4
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-earthshaking
+          color: "#838275"
+          hideChat: true

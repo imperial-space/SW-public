@@ -125,7 +125,7 @@ namespace Content.Shared.Preferences
             PreferenceUnavailableMode.SpawnAsOverflow;
 
         // imperial medieval start
-        [DataField]
+
         public Dictionary<string, int> Skills = new();
         // imperial medieval end
 

@@ -1,7 +1,7 @@
 using System.Linq;
 using System.Numerics;
-using Content.Shared.Imperial.Medieval.Magic;
-using Content.Shared.Imperial.Medieval.Magic.Overlays;
+using Content.Shared.Trigger.Components.Effects;
+using Content.Shared.Trigger.Components.Triggers;
 using Content.Shared.Mind.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
@@ -10,9 +10,9 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Imperial.Medieval.Magic;
+namespace Content.Shared.Trigger.Systems;
 
-public sealed partial class VectoredSpawnSystem : EntitySystem
+public sealed partial class VectoredSpawnOnTriggerSystem : EntitySystem
 {
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
@@ -20,10 +20,24 @@ public sealed partial class VectoredSpawnSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<VectoredSpawnComponent, MedievalAfterSpawnEntityBySpellEvent>(OnSpawn);
+        SubscribeLocalEvent<VectoredSpawnOnTriggerComponent, TriggerEvent>(HandleSpawnOnTrigger);
     }
 
-    private void OnSpawn(EntityUid uid, VectoredSpawnComponent component, MedievalAfterSpawnEntityBySpellEvent args)
+    private void HandleSpawnOnTrigger(Entity<VectoredSpawnOnTriggerComponent> ent, ref TriggerEvent args)
+    {
+        if (args.Key != null && !ent.Comp.KeysIn.Contains(args.Key))
+            return;
+
+        var target = ent.Comp.TargetUser ? args.User : ent.Owner;
+
+        if (target == null)
+            return;
+
+        SpawnOnTrigger(ent, ent.Comp);
+    }
+
+
+    private void SpawnOnTrigger(EntityUid uid, VectoredSpawnOnTriggerComponent component)
     {
         var coords = _transform.GetMapCoordinates(uid);
         var length = component.SpawnPositions.Count;

@@ -14,6 +14,11 @@
   priority: 3
 
 - type: imperialStoreCategory
+  id: MedievalEarthSpells
+  name: medieval-store-category-earth
+  priority: 4
+
+- type: imperialStoreCategory
   id: MedievalDarknessSpells
   name: medieval-store-category-darkness
-  priority: 4
+  priority: 5

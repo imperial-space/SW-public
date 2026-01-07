@@ -1,0 +1,108 @@
+# Spot
+
+- type: entity
+  id: MedievalMeteorSpot
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 100
+        mask:
+          - FullTileMask
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/projectiles.rsi
+    noRot: true
+    layers:
+    - state: meteor-spot
+      shader: unshaded
+  - type: DelayedSpawn
+    proto: MedievalMeteor
+    delay: 3
+  - type: TimedDespawn
+    lifetime: 5
+
+
+# Meteor
+
+- type: entity
+  id: MedievalMeteor
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/projectiles.rsi
+    noRot: true
+    layers:
+    - state: meteor
+      shader: unshaded
+  - type: TimedDespawn
+    lifetime: 1.5
+  - type: SpawnOnDespawn
+    prototype: MedievalExplodeMeteor
+
+- type: entity
+  id: MedievalExplodeMeteor
+  components:
+  - type: TriggerOnSpawn
+  - type: ExplodeOnTrigger
+  - type: Explosive
+    explosionType: Meteor
+    maxIntensity: 2
+    intensitySlope: 5
+    totalIntensity: 10
+    canCreateVacuum: false
+  - type: SpawnOnTrigger
+    proto: ShockWaveEffect
+
+- type: explosion
+  id: Meteor
+  damagePerIntensity:
+    types:
+      Blunt: 5
+      Piercing: 5
+  lightColor: Gray
+  texturePath: /Textures/Effects/fire.rsi
+  fireStates: 3
+  fireColor: Gray
+
+# Beginner
+
+- type: entity
+  id: MedievalMeteorsBeginner
+  components:
+  - type: TriggerOnSpawn
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalMeteorSpot
+    radius: 1
+    quantity: 2
+  - type: TimedDespawn
+    lifetime: 1
+
+# Middle
+
+- type: entity
+  id: MedievalMeteorsMiddle
+  components:
+  - type: TriggerOnSpawn
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalMeteorSpot
+    radius: 1
+    quantity: 4
+  - type: TimedDespawn
+    lifetime: 1
+
+# Senior
+
+- type: entity
+  id: MedievalMeteorsSenior
+  components:
+  - type: TriggerOnSpawn
+  - type: RandomOffsetSpawn
+    spawnedEntityID: MedievalMeteorSpot
+    radius: 2
+    quantity: 8
+  - type: TimedDespawn
+    lifetime: 1
+
+

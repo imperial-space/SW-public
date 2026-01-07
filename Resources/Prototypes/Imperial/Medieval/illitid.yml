@@ -171,6 +171,8 @@
   - type: Damageable
     damageModifierSet: Illitid
   - type: Illitid
+  - type: Bloodstream
+    bloodReagent: IllitidBlood
 
 - type: damageModifierSet
   id: Illitid
