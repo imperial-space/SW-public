@@ -1438,12 +1438,6 @@
     size: Large
 
 - type: entity
-  id: MedievalWrench
-  name: MedievalWrench
-  description: MedievalWrench
-  parent: Wrench
-
-- type: entity
   name: falshion
   parent: MedievalFalshionT3
   id: MedievalFalshionT3Gold

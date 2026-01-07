@@ -1,0 +1,91 @@
+# - type: entity
+#   parent: MedievalFoundry
+#   id: MedievalSmelteryEvent
+#   name: foundry
+#   description: It produces sheets and ingots using ores.
+#   components:
+#   - type: Sprite
+#     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/ore_processor.rsi
+#     layers:
+#       - state: icon
+#       - state: unshaded
+#         shader: unshaded
+
+# - type: entity
+#   parent: CP14BaseWorkbench
+#   id: MedievalAutolathe
+#   name: foundry
+#   description: It produces sheets and ingots using ores.
+#   components:
+#   - type: Sprite
+#     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/autolathe.rsi
+#     layers:
+#       - state: building
+#       - state: unlit
+#         shader: unshaded
+#   - type: Appearance
+#   - type: Physics
+#     bodyType: Static
+#   - type: Fixtures
+#     fixtures:
+#       fix1:
+#         shape: !type:PhysShapeAabb
+#           bounds: "-0.45,-0.45,0.45,0.45"
+#         density: 190
+#         mask:
+#         - MachineMask
+#         layer:
+#         - MachineLayer
+#   - type: Destructible
+#     thresholds:
+#     - trigger: !type:DamageTrigger
+#         damage: 180
+#       behaviors:
+#       - !type:DoActsBehavior
+#         acts: [ "Destruction" ]
+#   - type: Transform
+#     anchored: true
+#   - type: Pullable
+#   - type: CP14Workbench
+#     craftSpeed: 1
+#     craftSound: "/Audio/Machines/circuitprinter.ogg"
+#     recipes:
+#     -
+
+# - type: entity
+#   parent: CP14BaseWorkbench
+#   id: MedievalSteelWorkbench
+#   name: foundry
+#   description: It produces sheets and ingots using ores.
+#   components:
+#   - type: Sprite
+#     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+#     state: craft
+#   - type: Appearance
+#   - type: Physics
+#     bodyType: Static
+#   - type: Fixtures
+#     fixtures:
+#       fix1:
+#         shape: !type:PhysShapeAabb
+#           bounds: "-0.45,-0.45,0.45,0.45"
+#         density: 190
+#         mask:
+#         - MachineMask
+#         layer:
+#         - MachineLayer
+#   - type: Destructible
+#     thresholds:
+#     - trigger: !type:DamageTrigger
+#         damage: 180
+#       behaviors:
+#       - !type:DoActsBehavior
+#         acts: [ "Destruction" ]
+#   - type: Transform
+#     anchored: true
+#   - type: Pullable
+#   - type: CP14Workbench
+#     craftSpeed: 1
+#     craftSound: "/Audio/Items/welder2.ogg"
+#     recipes:
+#     -
