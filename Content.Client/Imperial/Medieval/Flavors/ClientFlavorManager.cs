@@ -20,7 +20,6 @@ namespace Content.Client.Imperial.Medieval.Flavors
         [Dependency] private readonly IClientNetManager _netManager = default!;
         [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IResourceCache _resources = default!;
-        [Dependency] private readonly IDependencyCollection _collection = default!;
         [Dependency] private readonly ILogManager _log = default!;
         private ISawmill _sawmill = default!;
         private SpriteSystem _sprite = default!;
@@ -31,8 +30,8 @@ namespace Content.Client.Imperial.Medieval.Flavors
         {
             _sawmill = _log.GetSawmill("client_flavor_manager");
             _netManager.RegisterNetMessage<FlavorImagesMsg>(ImagesReceived);
-            // _netManager.RegisterNetMessage<MsgUpdateFlavorImage>(); // TODO - PASHA SUKA CHINI
-            //_netManager.RegisterNetMessage<UpdateFlavorCacheMsg>(CacheUpdate); // TODO - PASHA SUKA CHINI
+            _netManager.RegisterNetMessage<MsgUpdateFlavorImage>();
+            _netManager.RegisterNetMessage<UpdateFlavorCacheMsg>(CacheUpdate);
             _netManager.RegisterNetMessage<OpenFlavorWindowMsg>(OpenFlavorWindow);
 
             _baseClient.RunLevelChanged += BaseClientOnRunLevelChanged;
@@ -65,18 +64,12 @@ namespace Content.Client.Imperial.Medieval.Flavors
                 image = Array.Empty<byte>();
 
             Images[slot] = image;
-
-            // TEMP DISABLE: net message not supported yet
-            return;
-
-            /*
             var msg = new MsgUpdateFlavorImage
             {
                 Slot = slot,
                 Image = image
             };
             _netManager.ClientSendMessage(msg);
-            */
         }
 
         private void ImagesReceived(FlavorImagesMsg message)
