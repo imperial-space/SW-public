@@ -946,7 +946,7 @@ namespace Content.Server.Database
                 return null;
 
             var image = await db.DbContext.FlavorImages.SingleOrDefaultAsync(p => p.ProfileId == profile.Id, cancel);
-
+            _opsLog.Debug($"Getting image for {userId} image bytecount is {(image != null ? image.Image.Count() : 0)} slot is {slot}");
             return image;
         }
         public async Task AddOrUpdateFlavorImage(Guid userId, byte[] image, CancellationToken cancel, int? slot)
@@ -981,7 +981,7 @@ namespace Content.Server.Database
             {
                 entry.Image = image;
             }
-
+            _opsLog.Debug($"Updating image for {userId} new image bytecount is {image.Count()} slot is {slot}");
             await db.DbContext.SaveChangesAsync(cancel);
         }
         public async Task RemoveFlavorImage(Guid userId, int slot, CancellationToken cancel)
@@ -1005,6 +1005,7 @@ namespace Content.Server.Database
                 return;
 
             db.DbContext.FlavorImages.Remove(image);
+            _opsLog.Debug($"Removing image for {userId} old image bytecount is {image.Image.Count()} slot is {slot}");
             await db.DbContext.SaveChangesAsync(cancel);
         }
         // Imperial Medieval Flavor Images End
