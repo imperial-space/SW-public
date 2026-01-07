@@ -104,10 +104,12 @@
     wideAnimationRotation: -135
     damage:
       types:
-        Blunt: 15.5
+        Blunt: 20
         Structural: 10
     soundHit:
       collection: MetalThud
+  - type: StaminaDamageOnHit
+    damage: 7
   - type: Meltable
     resourceCount: 1
   - type: MeleeThrowOnHit
@@ -130,11 +132,11 @@
     cPSwingBeverage: true
     cPAnimationOffset: 0.8
     clickDamageModifier: 1.33
-    attackRate: 1.35
+    attackRate: 1.21
     range: 1
     damage:
       types:
-        Slash: 14
+        Slash: 13
         ParryAble: 1
     soundHit:
       path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
@@ -143,6 +145,8 @@
     damage:
       types:
         Slash: 18
+  - type: StaminaDamageOnHit
+    damage: 3
   - type: EmbeddableProjectile
     offset: 0.15,0.15
   - type: ThrowingAngle
@@ -154,8 +158,6 @@
   - type: MeleeThrowOnHit
     distance: 0.3
     speed: 5
-  - type: StaminaDamageOnHit
-    damage: 2
   - type: Meltable
     resourceCount: 2
 

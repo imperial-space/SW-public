@@ -4,6 +4,17 @@
   name: starcorps wall
   suffix: Felix
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
   - type: Sprite
     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/shuttle.rsi
   - type: Icon
@@ -15,6 +26,17 @@
   name: starcorps wall
   suffix: Felix
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
   - type: Sprite
     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_shuttle.rsi
   - type: Icon
@@ -30,6 +52,17 @@
     snap:
     - Wall
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
   - type: Sprite
     drawdepth: Walls
     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/diagonal.rsi
@@ -48,6 +81,17 @@
     snap:
     - Wall
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
   - type: Sprite
     drawdepth: Walls
     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_diagonal.rsi

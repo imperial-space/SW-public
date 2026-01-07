@@ -145,6 +145,8 @@
     - Plastic
     - Sheet
     - ConstructionMaterial
+    - RawMaterial # Imperial Space
+    - Ore # Imperial Space
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -211,6 +213,13 @@
   - type: PhysicalComposition
     materialComposition:
       Uranium: 100
+  # Imperial Space Start
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Ore
+    - Sheet
+  # Imperial Space End
   - type: Stack
     stackType: Uranium
     baseLayer: base
