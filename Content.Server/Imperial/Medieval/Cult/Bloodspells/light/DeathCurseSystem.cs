@@ -3,6 +3,8 @@ using Content.Server.Cult.Components;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Cult;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
 
@@ -42,6 +44,10 @@ public sealed class DeathCurseSystem : EntitySystem
 
             foreach (var curse in EntityManager.EntityQuery<DeathCurseComponent>())
             {
+                if (!TryComp<MobStateComponent>(curse.Owner, out var state))
+                    continue;
+                if (state.CurrentState == MobState.Dead)
+                    continue;
                 if (TryComp<SkillsComponent>(curse.Owner, out var skills))
                 {
                     if (skills.Levels.TryGetValue("Endurance", out var endurance) && endurance <= _random.Next(1, 20))
