@@ -1,0 +1,155 @@
+- type: entity
+  id: MedievalBloodIronIngot
+  parent: BaseItem
+  name: Слиток кровавого железа
+  description: железный стержень
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Materials/cult.rsi
+      state: iron_ingot
+    - type: Tag
+      tags:
+      - RawMaterial
+      - Sheet
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        MedievalBloodIronIngot: 100
+    - type: Stack
+      stackType: MedievalBloodIronIngot
+      count: 1
+    - type: BloodMaterial
+      materialType: BloodIron
+    - type: CurseItem
+      cult: true
+
+
+
+- type: entity
+  id: MedievalBloodSteelIngot
+  parent: BaseItem
+  name: Слиток кровавой стали
+  description: стальная
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Materials/cult.rsi
+      state: steel_ingot
+    - type: Tag
+      tags:
+      - RawMaterial
+      - Sheet
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        MedievalBloodSteelIngot: 100
+    - type: Stack
+      stackType: MedievalBloodSteelIngot
+      count: 1
+    - type: CurseItem
+      cult: true
+
+- type: entity
+  id: MedievalBloodLeather
+  parent: BaseItem
+  suffix: full
+  name: Кусок кровавой кожи
+  description: Очень кровавая
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Materials/cult.rsi
+      state: leather_3
+      layers:
+        - state: leather_3
+          map: ["base"]
+    - type: Tag
+      tags:
+      - RawMaterial
+      - MedievalLeather
+      - Sheet
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        MedievalBloodLeather: 100
+    - type: Stack
+      stackType: MedievalBloodLeather
+      count: 30
+      baseLayer: base
+      layerStates:
+      - leather
+      - leather_2
+      - leather_3
+    - type: BloodMaterial
+      materialType: BloodLeather
+    - type: CurseItem
+      cult: true
+
+- type: entity
+  parent: MedievalBloodLeather
+  id: MedievalBloodLeather10
+  name: Кусок кровавой кожи
+  suffix: 10
+  components:
+  - type: Sprite
+    state: leather_2
+  - type: Stack
+    stackType: MedievalBloodLeather
+    count: 10
+
+- type: entity
+  parent: MedievalBloodLeather
+  id: MedievalBloodLeather1
+  name: Кусок кровавой кожи
+  suffix: Single
+  components:
+  - type: Sprite
+    state: leather
+  - type: Stack
+    stackType: MedievalBloodLeather
+    count: 1
+
+
+
+- type: material
+  id: MedievalBloodIronIngot
+  stackEntity: MedievalBloodIronIngot
+  name: materials-medieval-blood-iron
+  icon: { sprite: Imperial/Medieval/Materials/cult.rsi, state: iron_ingot }
+  color: "#d9d9d9"
+  price: 0.1
+
+- type: stack
+  id: MedievalBloodIronIngot
+  name: materials-medieval-blood-iron
+  icon: { sprite: Imperial/Medieval/Materials/cult.rsi, state: iron_ingot }
+  spawn: MedievalBloodIronIngot
+  maxCount: 30
+
+- type: material
+  id: MedievalBloodSteelIngot
+  stackEntity: MedievalBloodSteelIngot
+  name: materials-medieval-blood-steel
+  icon: { sprite: Imperial/Medieval/Materials/cult.rsi, state: steel_ingot }
+  color: "#d9d9d9"
+  price: 0.1
+
+- type: stack
+  id: MedievalBloodSteelIngot
+  name: materials-medieval-blood-steel
+  icon: { sprite: Imperial/Medieval/Materials/cult.rsi, state: steel_ingot }
+  spawn: MedievalBloodSteelIngot
+  maxCount: 30
+
+- type: material
+  id: MedievalBloodLeather
+  stackEntity: MedievalBloodLeather1
+  name: materials-medieval-blood-leather
+  icon: { sprite: Imperial/Medieval/Materials/cult.rsi, state: leather }
+  color: "#d9d9d9"
+  price: 0.1
+
+- type: stack
+  id: MedievalBloodLeather
+  name: materials-medieval-blood-leather
+  icon: { sprite: Imperial/Medieval/Materials/cult.rsi, state: leather }
+  spawn: MedievalBloodLeather1
+  maxCount: 30

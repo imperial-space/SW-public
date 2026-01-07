@@ -159,6 +159,7 @@
   - type: Tag
     tags:
     - NecromancerKey
+  - type: CurseItem
 
 - type: entity
   parent: MedievalKeyBase
@@ -219,6 +220,8 @@
   - type: Tag
     tags:
     - CultOfTruthKey
+  - type: CurseItem
+    cult: true
 
 - type: entity
   parent: MedievalKeyBase
@@ -794,7 +797,7 @@
         whitelist:
           tags:
           - CultOfTruthKey
-     
+
     sprite: Imperial/Medieval/Misc/key_storage.rsi
   - type: Appearance
   - type: Item

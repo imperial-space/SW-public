@@ -1152,6 +1152,9 @@
         emote: Scream
         probability: 0.8
   metabolisms:
+    Medicine:
+      effects:
+      - !type:DeleteDeathCurseEffect
     Poison:
       effects:
       - !type:HealthChange
@@ -1460,6 +1463,9 @@
   flavor: null
   color: "#63806e"
   metabolisms:
+    Medicine:
+      effects:
+      - !type:DeleteDeathCurseEffect
     Poison:
       effects:
       - !type:FlammableReaction
@@ -1655,6 +1661,9 @@
   flavor: null
   color: "#63806e"
   metabolisms:
+    Medicine:
+      effects:
+      - !type:DeleteDeathCurseEffect
     Narcotic:
       effects:
       - !type:MovespeedModifier

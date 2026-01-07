@@ -282,6 +282,8 @@
     preset: StorePresetMedievalNecro
     balance:
       UnholyMedieval: 140
+  - type: CurseItem
+    cult: true
 
 - type: entity
   parent: BaseMagicNecroShop
@@ -615,6 +617,7 @@
         - id: MedievalClothingOuterArmorNecro
         - id: MedievalClothingFeetNecromancer
         - id: MedievalNecroGloves
+    - type: CurseItem
 
 - type: entity
   #noSpawn: true
@@ -658,6 +661,7 @@
     damageCoefficient: 0.75
   - type: ManaRegen
     regen: 0.7
+  - type: CurseItem
 
 - type: entity
   parent: ClothingOuterBase
@@ -687,6 +691,7 @@
     damageCoefficient: 0.85
   - type: ManaRegen
     regen: 2.5
+  - type: CurseItem
 
 - type: listing
   id: NecroListingMedievalRepairStone
@@ -737,4 +742,5 @@
     radius: 4.0
     energy: 6.0
   - type: Unremoveable
+  - type: CurseItem
 

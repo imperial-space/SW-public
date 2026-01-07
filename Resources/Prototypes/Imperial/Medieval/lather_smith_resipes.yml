@@ -1003,3 +1003,11 @@
   stacks:
     MedievalIronIngot: 1
   result: MedievalBloodlettingNeedle
+
+- type: CP14Recipe
+  id: MedievalCultConductorRodIron
+  craftTime: 2
+  iconOverride: MedievalCultConductorRodIron
+  stacks:
+    MedievalIronIngot: 2
+  result: MedievalCultConductorRodIron
