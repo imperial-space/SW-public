@@ -1,0 +1,101 @@
+- type: entity
+  parent: WallShuttle
+  id: WallShuttleStarCorps
+  name: starcorps wall
+  suffix: Felix
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/shuttle.rsi
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/shuttle.rsi
+
+- type: entity
+  parent: WallShuttle
+  id: DarkWallShuttleStarCorps
+  name: starcorps wall
+  suffix: Felix
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_shuttle.rsi
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_shuttle.rsi
+
+- type: entity
+  parent: WallShuttleDiagonal
+  id: DiagonalWallShuttleStarCorps
+  name: starcorps wall
+  suffix: Diagonal, Felix
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Sprite
+    drawdepth: Walls
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/diagonal.rsi
+    state: state0
+
+- type: entity
+  parent: WallShuttleDiagonal
+  id: DiagonalDarkWallShuttleStarCorps
+  name: starcorps wall
+  suffix: Diagonal, Felix
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 5000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Sprite
+    drawdepth: Walls
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_diagonal.rsi
+    state: state0

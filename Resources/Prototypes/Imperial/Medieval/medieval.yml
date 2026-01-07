@@ -8441,6 +8441,12 @@
   name: ApollaStaffMedieval
   description: ApollaStaffMedieval
   components:
+  - type: PointLight
+    enabled: false
+    color: "#E25822"
+    radius: 1.0
+    energy: 5.0
+    netsync: false
   - type: Item
     sprite: Imperial/Medieval/Misc/apolla_staff.rsi
     size: Large

@@ -58,6 +58,14 @@
   - type: PhysicalComposition
     materialComposition:
       Glass: 100
+  # Imperial Space Start
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Ore
+    - Sheet
+  - type: Material
+  # Imperial Space End
   - type: Stack
     stackType: Glass
     baseLayer: base
@@ -119,6 +127,14 @@
   - type: PhysicalComposition
     materialComposition:
       ReinforcedGlass: 100
+  # Imperial Space Start
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Ore
+    - Sheet
+  - type: Material
+  # Imperial Space End
   - type: Stack
     stackType: ReinforcedGlass
     baseLayer: base
@@ -278,6 +294,14 @@
   - type: PhysicalComposition
     materialComposition:
       ReinforcedPlasmaGlass: 100
+  # Imperial Space Start
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Ore
+    - Sheet
+  - type: Material
+  # Imperial Space End
   - type: Stack
     stackType: ReinforcedPlasmaGlass
     baseLayer: base

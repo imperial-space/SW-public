@@ -1,0 +1,163 @@
+- type: entity
+  name: wrench
+  parent: Wrench
+  id: MedievalWrench
+  description: 'A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.'
+  components:
+  - type: RDWeight
+    value: 1
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.5
+    damage:
+      types:
+        Blunt: 8
+    soundHit:
+      collection: MetalThud
+  - type: Meltable
+    resourceCount: 1
+
+- type: entity
+  name: screwdriver
+  parent: Screwdriver
+  id: MedievalScrewdriver
+  description: Industrial grade torque in a small screwdriving package.
+  components:
+  - type: RDWeight
+    value: 1
+  - type: MeleeWeapon
+    wideAnimationRotation: -140
+    angle: 0
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.5
+    damage:
+      types:
+        Piercing: 6
+    soundHit:
+      collection: MetalThud
+  - type: Meltable
+    resourceCount: 1
+
+- type: entity
+  name: wirecutter
+  parent: Wirecutter
+  id: MedievalWirecutter
+  description: This kills the wire.
+  components:
+  - type: RDWeight
+    value: 1
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.5
+    damage:
+      types:
+        Slash: 6
+    soundHit:
+      collection: MetalThud
+  - type: Meltable
+    resourceCount: 1
+
+- type: entity
+  parent: Crowbar
+  id: MedievalCrowbar
+  description: A multipurpose tool to pry open doors and fight interdimensional invaders.
+  components:
+  - type: RDWeight
+    value: 1
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.5
+    damage:
+      types:
+        Blunt: 10
+    soundHit:
+      collection: MetalThud
+  - type: Meltable
+    resourceCount: 1
+
+- type: entity
+  name: truncheon
+  parent: Truncheon
+  id: MedievalTruncheon
+  description: A rigid, steel-studded baton, meant to harm.
+  components:
+  - type: RDWeight
+    value: 2
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.5
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Blunt: 20
+        Structural: 10
+    soundHit:
+      collection: MetalThud
+  - type: StaminaDamageOnHit
+    damage: 7
+  - type: Meltable
+    resourceCount: 1
+  - type: MeleeThrowOnHit
+    distance: 1
+    speed: 2.1
+
+- type: entity
+  name: combat knife
+  parent: CombatKnife
+  id: MedievalCombatKnife
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: RDWeight
+    value: 1
+  - type: MeleeParry
+    parryChanse: 0.20
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.8
+    clickDamageModifier: 1.33
+    attackRate: 1.21
+    range: 1
+    damage:
+      types:
+        Slash: 13
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Imperial/Medieval/ES_Knife_Stab_2_-_SFX_Producer.ogg
+    resetOnHandSelected: false
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Slash: 18
+  - type: StaminaDamageOnHit
+    damage: 3
+  - type: EmbeddableProjectile
+    offset: 0.15,0.15
+  - type: ThrowingAngle
+    angle: 225
+  - type: Tag
+    tags:
+    - Spear
+    - Knife
+  - type: MeleeThrowOnHit
+    distance: 0.3
+    speed: 5
+  - type: Meltable
+    resourceCount: 2
+

@@ -1,0 +1,137 @@
+- type: CP14Recipe
+  id: SheetGlass10
+  craftTime: 5
+  iconOverride: SheetGlass10
+  stacks:
+    MedievalGlina: 5
+  result: SheetGlass10
+
+- type: CP14Recipe
+  id: SheetSteel10
+  craftTime: 5
+  iconOverride: SheetSteel10
+  stacks:
+    MedievalSteelIngot: 1
+  result: SheetSteel10
+
+- type: CP14Recipe
+  id: MaterialDurathread10
+  craftTime: 5
+  iconOverride: MaterialDurathread10
+  stacks:
+    Plastic: 10
+    Cloth: 10
+  result: MaterialDurathread10
+
+- type: CP14Recipe
+  id: PartRodMetal5
+  craftTime: 5
+  iconOverride: PartRodMetal5
+  stacks:
+    Steel: 1
+  result: PartRodMetal5
+
+- type: CP14Recipe
+  id: SheetRGlass10
+  craftTime: 5
+  iconOverride: SheetRGlass10
+  stacks:
+    MetalRod: 10
+    Glass: 10
+  result: SheetRGlass10
+
+- type: CP14Recipe
+  id: SheetRPGlass10
+  craftTime: 5
+  iconOverride: SheetRPGlass10
+  stacks:
+    ReinforcedGlass: 10
+    MetalRod: 10
+  result: SheetRPGlass10
+
+- type: CP14Recipe
+  id: SheetUGlass10
+  craftTime: 5
+  iconOverride: SheetUGlass10
+  stacks:
+    Glass: 10
+    Uranium: 10
+  result: SheetUGlass10
+
+- type: CP14Recipe
+  id: SheetRUGlass10
+  craftTime: 5
+  iconOverride: SheetRUGlass10
+  stacks:
+    UraniumGlass: 10
+    MetalRod: 10
+  result: SheetRUGlass10
+
+- type: CP14Recipe
+  id: MedievalWindowCraft
+  craftTime: 10
+  iconOverride: MedievalWindowCraft
+  stacks:
+    Glass: 5
+  result: MedievalWindowCraft
+
+- type: CP14Recipe
+  id: MedievalArmWindowCraft
+  craftTime: 10
+  iconOverride: MedievalArmWindowCraft
+  stacks:
+    ReinforcedPlasmaGlass: 5
+  result: MedievalArmWindowCraft
+
+- type: CP14Recipe
+  id: MedievalGrilleCraft
+  craftTime: 10
+  iconOverride: MedievalGrilleCraft
+  stacks:
+    MetalRod: 8
+  result: MedievalGrilleCraft
+
+- type: CP14Recipe
+  id: MedievalComputerFrameCraft
+  craftTime: 10
+  iconOverride: MedievalComputerFrameCraft
+  stacks:
+    Steel: 5
+  result: MedievalComputerFrameCraft
+
+- type: CP14Recipe
+  id: MedievalUnfinishedMachineFrameCraft
+  craftTime: 10
+  iconOverride: MedievalUnfinishedMachineFrameCraft
+  stacks:
+    Steel: 5
+  result: MedievalUnfinishedMachineFrameCraft
+
+- type: CP14Recipe
+  id: MedievalCombatKnife
+  craftTime: 20
+  iconOverride: MedievalCombatKnife
+  stacks:
+    Plastic: 5
+    Plasteel: 12
+  result: MedievalCombatKnife
+
+- type: CP14Recipe
+  id: MedievalTruncheon
+  craftTime: 20
+  iconOverride: MedievalTruncheon
+  stacks:
+    Plastic: 10
+    Plasteel: 15
+    Durathread: 2
+  result: MedievalTruncheon
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorStandard
+  craftTime: 20
+  iconOverride: MedievalClothingOuterArmorStandard
+  stacks:
+    Plastic: 5
+    Plasteel: 10
+    Durathread: 15
+  result: MedievalClothingOuterArmorStandard
