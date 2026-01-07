@@ -45,5 +45,5 @@ flavor-complex-reptilian-blood = как пресная вода
 
 reagent-name-dwarf-blood = кровь дворфа
 reagent-desc-dwarf-blood = Пиво!
-reagent-physical-desc-dwarf-blood = пиво
+reagent-physical-desc-dwarf-blood = хмельное
 flavor-complex-dwarf-blood = как пиво
