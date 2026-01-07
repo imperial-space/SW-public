@@ -52,7 +52,8 @@
              acts: [ "Destruction" ]
   - type: TimedDespawn
     lifetime: 10
-  - type: VectoredSpawn
+  - type: TriggerOnSpawn
+  - type: VectoredSpawnOnTrigger
     spawnedEntityID: MedievalTentaclesBeginnerClone
     spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1"]
   - type: SpeedModifierContacts
@@ -106,7 +107,8 @@
              acts: [ "Destruction" ]
   - type: TimedDespawn
     lifetime: 14
-  - type: VectoredSpawn
+  - type: TriggerOnSpawn
+  - type: VectoredSpawnOnTrigger
     spawnedEntityID: MedievalTentaclesMiddleClone
     spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1", "0, -1", "-1, 0", "1, 0", "0, 1"]
   - type: SpeedModifierContacts
@@ -160,7 +162,8 @@
              acts: [ "Destruction" ]
   - type: TimedDespawn
     lifetime: 18
-  - type: VectoredSpawn
+  - type: TriggerOnSpawn
+  - type: VectoredSpawnOnTrigger
     spawnedEntityID: MedievalTentaclesSeniorClone
     spawnPositions: ["-1, -1", "1, -1", "-1, 1", "1, 1", "0, -1", "-1, 0", "1, 0", "0, 1", "0, -2", "-2, 0", "2, 0", "0, 2"]
   - type: SpeedModifierContacts

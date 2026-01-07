@@ -181,7 +181,7 @@
   id: MdvInsBowImprovised
   productEntity: BowImprovised
   cost:
-    MedalLegion: 1
+    MedalIns: 1
   categories:
   - MedievalInsWeapon
 
@@ -189,15 +189,23 @@
   id: MdvInsMedievalWeaponCrossbow
   productEntity: MedievalWeaponCrossbow
   cost:
-    MedalLegion: 5
+    MedalIns: 5
   categories:
   - MedievalInsWeapon
 
 - type: listing
-  id: MdvInsMedievalQuiverFullArrowIron
-  productEntity: MedievalQuiverFullArrowIron
+  id: MdvInsMedievalQuiverFullArrowIronPhysics
+  productEntity: MedievalQuiverFullArrowIronPhysics
   cost:
-    MedalLegion: 1
+    MedalIns: 1
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
+  id: MdvInsMedievalQuiverFullArrowSteelPhysics
+  productEntity: MedievalQuiverFullArrowSteelPhysics
+  cost:
+    MedalIns: 2
   categories:
   - MedievalInsWeapon
 
@@ -205,7 +213,15 @@
   id: MdvInsMedievalQuiverFullBoltIron
   productEntity: MedievalQuiverFullBoltIron
   cost:
-    MedalLegion: 2
+    MedalIns: 3
+  categories:
+  - MedievalInsWeapon
+
+- type: listing
+  id: MdvInsMedievalQuiverFullBoltSteel
+  productEntity: MedievalQuiverFullBoltSteel
+  cost:
+    MedalIns: 4
   categories:
   - MedievalInsWeapon
 

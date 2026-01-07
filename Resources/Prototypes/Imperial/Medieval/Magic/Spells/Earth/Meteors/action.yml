@@ -1,0 +1,145 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionMeteorsBeginner
+  name: medieval-store-spells-earth-meteors-beginner-name
+  description: medieval-store-spells-earth-meteors-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalEarth: 1
+        bonusEssences:
+          MagicMedievalEarth: 1
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: SpellCastEffect
+    effectProto: MeteorsSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 45
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 8
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalMeteorsBeginner
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-meteors
+          color: "#838275"
+          hideChat: true
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionMeteorsMiddle
+      3: MedievalActionMeteorsSenior
+
+# Middle
+
+- type: entity
+  id: MedievalActionMeteorsMiddle
+  name: medieval-store-spells-earth-meteors-middle-name
+  description: medieval-store-spells-earth-meteors-middle-desc
+  parent: MedievalActionMeteorsBeginner
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 50
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 60
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    range: 8
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalMeteorsMiddle
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 2
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-meteors
+          color: "#838275"
+          hideChat: true
+
+# Senior
+
+- type: entity
+  id: MedievalActionMeteorsSenior
+  name: medieval-store-spells-earth-meteors-senior-name
+  description: medieval-store-spells-earth-meteors-senior-desc
+  parent: MedievalActionMeteorsBeginner
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 60
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 80
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
+      state: senior
+  - type: TargetAction
+    checkCanAccess: false
+    range: 10
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalMeteorsSenior
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 3
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-meteors
+          color: "#838275"
+          hideChat: true

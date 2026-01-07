@@ -1,3 +1,4 @@
+using Content.Server.Administration.Managers;
 using Content.Server.Chat.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
@@ -24,6 +25,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly PopupSystem _popup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly IBanManager _ban = default!;
 
     private TimeSpan _nextUpdate = TimeSpan.Zero;
 
@@ -78,6 +80,17 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
             !protoJob.ApplySkills)
             return;
 
+        var sum = Points + 1;
+        foreach (var skill in args.Profile.Skills)
+        {
+            sum += GetPointsCost(skill.Value);
+        }
+        if (sum < 0)
+        {
+            _ban.CreateServerBan(args.Player.UserId, args.Player.Name, null, null, null, 0, Shared.Database.NoteSeverity.High, Loc.GetString("skills-autoban-points"));
+            return;
+        }
+
         SetSkills(args.Mob, args.Profile.Skills);
     }
 
@@ -99,7 +112,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         {
             var oldLevel = comp.Levels.GetValueOrDefault(skill.ID, 10);
 
-            comp.Levels[skill.ID] = skills.GetValueOrDefault(skill.ID, 10);
+            comp.Levels[skill.ID] = Math.Clamp(skills.GetValueOrDefault(skill.ID, 10), 1, 20);
             var ev = new SkillLevelChangedEvent(skill.ID, comp.Levels[skill.ID], oldLevel);
             RaiseLocalEvent(uid, ref ev);
         }

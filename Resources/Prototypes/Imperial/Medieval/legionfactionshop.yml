@@ -201,10 +201,18 @@
   - MedievalLegionWeapon
 
 - type: listing
-  id: MdvLegionMedievalQuiverFullArrowIron
-  productEntity: MedievalQuiverFullArrowIron
+  id: MdvLegionMedievalQuiverFullArrowIronPhysics
+  productEntity: MedievalQuiverFullArrowIronPhysics
   cost:
     MedalLegion: 1
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalQuiverFullArrowSteelPhysics
+  productEntity: MedievalQuiverFullArrowSteelPhysics
+  cost:
+    MedalLegion: 2
   categories:
   - MedievalLegionWeapon
 
@@ -212,7 +220,15 @@
   id: MdvLegionMedievalQuiverFullBoltIron
   productEntity: MedievalQuiverFullBoltIron
   cost:
-    MedalLegion: 2
+    MedalLegion: 3
+  categories:
+  - MedievalLegionWeapon
+
+- type: listing
+  id: MdvLegionMedievalQuiverFullBoltSteel
+  productEntity: MedievalQuiverFullBoltSteel
+  cost:
+    MedalLegion: 4
   categories:
   - MedievalLegionWeapon
 

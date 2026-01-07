@@ -1,16 +1,16 @@
 using System.Numerics;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 
-namespace Content.Server.Imperial.Medieval.Magic;
-
+namespace Content.Shared.Trigger.Components.Effects;
 
 /// <summary>
-/// Spawn entities in any order specified in the List
+/// Spawn entities in any order specified in the List when triggered
 /// How many vectors are set, the same number of objects will be spawned
 /// </summary>
 [RegisterComponent]
-public sealed partial class VectoredSpawnComponent : Component
+public sealed partial class VectoredSpawnOnTriggerComponent : BaseXOnTriggerComponent
 {
     /// <summary>
     /// The entity that will be copied to create
