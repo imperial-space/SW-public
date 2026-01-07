@@ -47,7 +47,7 @@ public sealed partial class FoodComponent : Component
     ///     Used to simulate 'ruminant' digestive systems (which can digest grass)
     /// </summary>
     [DataField]
-    public int RequiredStomachs = 1;
+    public int RequiredStomachs = 3;
 
     /// <summary>
     /// The localization identifier for the eat message. Needs a "food" entity argument passed to it.
