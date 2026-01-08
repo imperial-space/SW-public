@@ -113,7 +113,7 @@ namespace Content.Server.Cult
             {
                 if (!TryComp<CultCursedComponent>(args.User, out var cursed)) continue;
                 if (entity != args.User) continue;
-                if (cursed.CurseLevel > 75 && !cursed.CultistMessages) // спам сообщениями для культистов при телепортах ни к чему
+                if (cursed.CurseLevel > 75 && !HasComp<CultMemberComponent>(cursed.Owner)) // спам сообщениями для культистов при телепортах ни к чему
                     _popupSystem.PopupEntity(Loc.GetString("medieval-cult-cursed-too-early"), cursed.Owner, cursed.Owner, PopupType.Small);
                 if (cursed.CurseLevel > 75)
                     return;
@@ -245,7 +245,7 @@ namespace Content.Server.Cult
                     if (cursed.CurseLevel > 60f && isValidDamage)
                         _popupSystem.PopupEntity(Loc.GetString("medieval-cult-cursed-heal"), cursed.Owner, cursed.Owner, PopupType.Small);
 
-                    if (cursed.CultistMessages && cursed.CurseLevel > 0f && cursed.CurseLevel < 24f)
+                    if (HasComp<CultMemberComponent>(cursed.Owner) && cursed.CurseLevel > 0f && cursed.CurseLevel < 24f)
                     {
                         _popupSystem.PopupEntity(Loc.GetString("medieval-cult-cursed-low-cult-member"), cursed.Owner, cursed.Owner, PopupType.SmallCaution);
                     }
