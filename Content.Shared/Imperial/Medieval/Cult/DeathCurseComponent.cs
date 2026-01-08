@@ -1,4 +1,6 @@
+using Content.Shared.Alert;
 using Content.Shared.Damage;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Imperial.Medieval.Cult;
 
@@ -8,6 +10,9 @@ namespace Content.Shared.Imperial.Medieval.Cult;
 [RegisterComponent]
 public sealed partial class DeathCurseComponent : Component
 {
+    [DataField]
+    public ProtoId<AlertPrototype> CurseAlert = "DeathCurse";
+
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public DamageSpecifier CurseDamage = new()

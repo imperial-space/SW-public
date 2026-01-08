@@ -1,5 +1,6 @@
 using Content.Server.Chat;
 using Content.Server.Cult.Components;
+using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Cult;
 using Content.Shared.Imperial.Medieval.Skills;
@@ -18,6 +19,7 @@ public sealed class DeathCurseSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly DamageableSystem _damageableSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly AlertsSystem _alertsSystem = default!;
 
     /// <inheritdoc/>
     private TimeSpan _nextCheckTime;
@@ -48,6 +50,7 @@ public sealed class DeathCurseSystem : EntitySystem
                     continue;
                 if (state.CurrentState == MobState.Dead)
                     continue;
+                _alertsSystem.ShowAlert(curse.Owner, curse.CurseAlert, (short)Math.Clamp(Math.Round((360-curse.CurseCount) / 120f), 0, 2));
                 if (TryComp<SkillsComponent>(curse.Owner, out var skills))
                 {
                     if (skills.Levels.TryGetValue("Endurance", out var endurance) && endurance <= _random.Next(1, 20))
@@ -73,6 +76,7 @@ public sealed class DeathCurseSystem : EntitySystem
                         {
                             RemComp<DeathCurseComponent>(curse.Owner);
                             _popupSystem.PopupEntity("Ты чутсвуешь, что боль наконец то отступает", curse.Owner, curse.Owner);
+                            _alertsSystem.ClearAlert(curse.Owner, curse.CurseAlert);
                         }
                     }
                 }

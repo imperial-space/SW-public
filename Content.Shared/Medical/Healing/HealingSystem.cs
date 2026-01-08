@@ -213,7 +213,7 @@ public sealed class HealingSystem : EntitySystem
         }
         // Medieval Imperial Edit start
         var healingSkill = 0f;
-        if (TryComp<SkillsComponent>(target, out var skills))
+        if (TryComp<SkillsComponent>(user, out var skills))
         {
             healingSkill = (skills.Levels["Intelligence"]-10)*0.25f;
         }
