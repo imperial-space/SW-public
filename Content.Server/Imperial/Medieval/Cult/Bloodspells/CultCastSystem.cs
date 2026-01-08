@@ -228,7 +228,7 @@ public sealed class CultCastSystem : EntitySystem
                     _popupSystem.PopupEntity("Ресурсов не достаточно", uid, uid);
                     break;
                 }
-                case "Wilkus":
+                case "Vilkus":
                 {
                     var needCount = 5;
                     var myMaterials = new List<EntityUid>{};
@@ -335,8 +335,12 @@ public sealed class CultCastSystem : EntitySystem
                     if (component.DeathCusre)
                     {
                         component.DeathCusre = true;
+                        _popupSystem.PopupEntity("Да будет проклят тот, кто меня ударит", uid, uid);
                     }
-                    _popupSystem.PopupEntity("Да будет проклят тот, кто меня ударит", uid, uid);
+                    else
+                    {
+                        _popupSystem.PopupEntity("Ты чуствуешь, что проклятье сильно", uid, uid);
+                    }
                     break;
                 }
                 default:
