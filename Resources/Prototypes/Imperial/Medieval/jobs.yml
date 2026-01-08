@@ -5115,6 +5115,10 @@
       personJob: "[color=red]Культист[/color]"
       pasport: no
       jobPrefix: "[Культ]"
+    - type: CultCursed
+      silenceMessages: true
+      giveCrystals: false
+      canLost: false
 
 # MEDIEVAL CultLeader
 
@@ -5191,6 +5195,10 @@
     - type: CloackMessage
       action: CloackMessageActionIns
       faction: "cult"
+    - type: CultCursed
+      silenceMessages: true
+      giveCrystals: false
+      canLost: false
 
 # MEDIEVAL Villager REGULAR
 
