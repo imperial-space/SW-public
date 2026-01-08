@@ -557,6 +557,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  #- type: CurseItem
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -582,6 +583,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  #- type: CurseItem
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight

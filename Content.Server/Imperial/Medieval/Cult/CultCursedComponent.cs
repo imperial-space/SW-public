@@ -20,6 +20,9 @@ public sealed partial class CultCursedComponent : Component
     [DataField]
     public float MaxCurseLevel = 100f;
 
+    [DataField]
+    public float RegenMultiplier = 1.3f;
+
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public DamageSpecifier RegenDamage = new()

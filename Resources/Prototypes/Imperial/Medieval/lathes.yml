@@ -883,6 +883,7 @@
     - MedievalMonsterBag
     - MedievalAlchemicBelt
     - MedievalClothingHeadHatCowboyBrown
+    - MedievalCultConductor
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1233,6 +1234,7 @@
     - MedievalDragonBoneGlovesBone
     - MedievalClothingFeetDragonBoneBone
     - MedievalBloodlettingNeedle
+    - MedievalCultConductorRodIron
 
 - type: entity
   parent: CP14BaseWorkbench

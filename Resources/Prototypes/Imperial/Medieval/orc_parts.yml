@@ -9,7 +9,6 @@
   evaporationSpeed: 0.3
   absorbent: true
   physicalDesc: reagent-physical-desc-orc-blood
-  color: "#f00505"
   flavor: orcblood
 
 - type: flavor

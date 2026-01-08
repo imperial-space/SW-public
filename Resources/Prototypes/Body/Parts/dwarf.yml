@@ -9,6 +9,7 @@
   desc: reagent-desc-dwarf-blood
   evaporationSpeed: 0.3
   absorbent: true
+  color: "#8a0000"
   physicalDesc: reagent-physical-desc-dwarf-blood
   flavor: dwarfblood
 

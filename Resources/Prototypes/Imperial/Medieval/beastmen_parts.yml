@@ -9,7 +9,7 @@
   evaporationSpeed: 0.3
   absorbent: true
   physicalDesc: reagent-physical-desc-beastmen-blood
-  color: "#ff0000"
+  color: "#9b0015"
   flavor: beastmenblood
 
 - type: flavor

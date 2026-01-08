@@ -5,6 +5,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
 using Robust.Server.Player;
 using System.Linq;
+using System.Collections.Generic;
 using Content.Shared.Popups;
 using Content.Server.Body.Components;
 using Robust.Shared.Timing;
@@ -22,6 +23,9 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Server.Administration;
+using Content.Server.Construction.Conditions;
+using Content.Server.Imperial.Medieval.Cult.Bloodspells;
+using Content.Server.Imperial.Medieval.Cult.Bloodspells.mateials;
 using Content.Shared.Alert;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
@@ -32,12 +36,18 @@ using Content.Shared.SSDFree.Components;
 using Content.Shared.Cuffs.Components;
 using Robust.Shared.Containers;
 using Content.Shared.Containers;
+using Content.Shared.Chat;
 using Content.Shared.Body.Components;
+using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Nutrition.Components;
+using Content.Shared.Storage;
+using Content.Shared.Tag;
 
 namespace Content.Server.Cult
 {
     public sealed partial class MedievalMeleeResourceSystem : EntitySystem
     {
+        [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
@@ -54,8 +64,11 @@ namespace Content.Server.Cult
         [Dependency] private readonly InventorySystem _inventorySystem = default!;
         [Dependency] private readonly SSDFreeSystem _ssdFreeSystem = default!;
         [Dependency] private readonly SharedContainerSystem _container = default!;
+        [Dependency] private readonly TagSystem _tags = default!;
+        [Dependency] private readonly EntityManager _entityManager = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
+        public const string ConductorContainer = "Conductor";
 
         private TimeSpan _nextCheckTime;
 
@@ -73,9 +86,9 @@ namespace Content.Server.Cult
             SubscribeLocalEvent<CultRitualMeleeComponent, MeleeHitEvent>(OnMeleeHit);
             SubscribeLocalEvent<CultBloodMeleeComponent, MeleeHitEvent>(OnBloodMeleeHit);
             SubscribeLocalEvent<TakeNameComponent, PlayerAttachedEvent>(OnPlayerAttached);
-
             _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
         }
+
         private bool CheckCultWearing(EntityUid uid)
         {
             if (!HasComp<CultMemberComponent>(uid) || !TryComp<InventoryComponent>(uid, out var inventoryComponent)) return false;
@@ -93,6 +106,7 @@ namespace Content.Server.Cult
                 comp.HasName = true;
             });
         }
+
         private void OnBloodMeleeHit(EntityUid uid, CultBloodMeleeComponent component, MeleeHitEvent args)
         {
             foreach (var entity in args.HitEntities)
@@ -113,6 +127,10 @@ namespace Content.Server.Cult
 
                         _chat.TrySendInGameICMessage(cursed.Owner, "Ave truth...", InGameICChatType.Whisper, false);
                         cursed.CurseLevel = cursed.MaxCurseLevel;
+                        foreach (var key in cursed.RegenDamage.DamageDict.Keys.ToList())
+                        {
+                            cursed.RegenDamage.DamageDict[key] *= cursed.RegenMultiplier;
+                        }
                         foreach (var altar in EntityManager.EntityQuery<CultAltarComponent>())
                         {
                             var axform = Transform(altar.Owner);
@@ -128,7 +146,9 @@ namespace Content.Server.Cult
 
         private void OnMeleeHit(EntityUid uid, CultRitualMeleeComponent component, MeleeHitEvent args)
         {
-            if (!HasComp<CultMemberComponent>(args.User)) return;
+            if (!TryComp<CultMemberComponent>(args.User, out var cultComp)) return;
+            if (cultComp.DeathCusre)
+                cultComp.DeathCusre =  false;
             foreach (var entity in args.HitEntities)
             {
                 if (entity != args.User) continue;
@@ -400,15 +420,6 @@ namespace Content.Server.Cult
                         }
                     }
                     break;
-                case "axe":
-                    if (IsCultistsEnough(uid, 2) && CheckCrystals(uid, comp, 0, 2))
-                    {
-                        Spawn("MedievalSpawnCultMelee", coords);
-                        Spawn("ShockWaveEffect", coords);
-                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
-                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва оружия проведен успешно", InGameICChatType.Speak, false);
-                    }
-                    break;
                 case "boat":
                     if (IsCultistsEnough(uid, 5) && CheckCrystals(uid, comp, 2, 2))
                     {
@@ -450,24 +461,6 @@ namespace Content.Server.Cult
                             }
                         }
 
-                    }
-                    break;
-                case "swordshield":
-                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, 1, 2))
-                    {
-                        Spawn("MedievalClothingOuterArmorCultUp", coords);
-                        Spawn("ShockWaveEffect", coords);
-                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
-                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва защитной робы выполнен успешно", InGameICChatType.Speak, false);
-                    }
-                    break;
-                case "wizard":
-                    if (IsCultistsEnough(uid, 3) && CheckCrystals(uid, comp, 1, 2))
-                    {
-                        Spawn("MedievalClothingOuterArmorCultMana", coords);
-                        Spawn("ShockWaveEffect", coords);
-                        _audioSystem.PlayPvs(comp.SuccesSound, uid);
-                        _chat.TrySendInGameICMessage(uid, "Ритуал призыва магической робы выполнен успешно", InGameICChatType.Speak, false);
                     }
                     break;
                 case "heart":
@@ -561,11 +554,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -591,11 +584,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -621,11 +614,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -651,11 +644,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -681,11 +674,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -711,11 +704,11 @@ namespace Content.Server.Cult
                         switch (comp.UnlockedSectors)
                         {
                             case 1: comp.NewSectorCost = 0; break;
-                            case 2: comp.NewSectorCost = 2; break;
-                            case 3: comp.NewSectorCost = 3; break;
-                            case 4: comp.NewSectorCost = 4; break;
-                            case 5: comp.NewSectorCost = 4; break;
-                            case 6: comp.NewSectorCost = 4; break;
+                            case 2: comp.NewSectorCost = 1; break;
+                            case 3: comp.NewSectorCost = 2; break;
+                            case 4: comp.NewSectorCost = 2; break;
+                            case 5: comp.NewSectorCost = 3; break;
+                            case 6: comp.NewSectorCost = 3; break;
                         }
                     }
                     break;
@@ -846,7 +839,7 @@ namespace Content.Server.Cult
                     }
                     break;
                 case "manaregen":
-                    if (IsCultistsEnough(uid, 1) && CheckCrystals(uid, comp, 1, 2))
+                    if (IsCultistsEnough(uid, 1) && CheckCrystals(uid, comp, 0, 2))
                     {
                         if (TryComp<ManaComponent>(args.User, out var mana) && mana.MaxManaRaceModifier != 0)
                         {
@@ -879,28 +872,107 @@ namespace Content.Server.Cult
             }
 
         }
-
         private bool CheckCrystals(EntityUid uid, CultCheckPictureComponent comp, int bloodyCost, int redCost)
         {
             if (comp.BloodyCrystall < bloodyCost)
             {
-                _chat.TrySendInGameICMessage(uid, $"Для ритуала недостаточно кровавых кристаллов, необходимо {bloodyCost}", InGameICChatType.Speak, false);
+                _chat.TrySendInGameICMessage(uid,
+                    $"Для ритуала недостаточно кровавых кристаллов, необходимо {bloodyCost}",
+                    InGameICChatType.Speak,
+                    false);
                 _audioSystem.PlayPvs(comp.FailSound, uid);
                 return false;
             }
 
             if (comp.RedCrystall < redCost)
             {
-                _chat.TrySendInGameICMessage(uid, $"Для ритуала недостаточно алых кристаллов, необходимо {redCost}", InGameICChatType.Speak, false);
+                _chat.TrySendInGameICMessage(uid,
+                    $"Для ритуала недостаточно алых кристаллов, необходимо {redCost}",
+                    InGameICChatType.Speak,
+                    false);
                 _audioSystem.PlayPvs(comp.FailSound, uid);
                 return false;
             }
 
-            comp.BloodyCrystall -= bloodyCost;
-            comp.RedCrystall -= redCost;
-            return true;
-        }
+            if (_itemSlotsSystem.TryGetSlot(uid, ConductorContainer, out var slot) && slot.HasItem && slot.Item != null)
+            {
+                for (int i = 1; i  <= 5; i++)
+                {
+                    if (_itemSlotsSystem.TryGetSlot(slot.Item.Value, "Conductor" + 1, out var container) &&
+                        container.HasItem && container.Item != null)
+                    {
+                        if (!HasComp<TagComponent>(container.Item) &&
+                            !_tags.HasTag(container.Item.Value, "CultConductorRod"))
+                        {
+                            _chat.TrySendInGameICMessage(uid,
+                                $"Для ритуала требуется проводник силы",
+                                InGameICChatType.Speak,
+                                false);
+                            _audioSystem.PlayPvs(comp.FailSound, uid);
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        _chat.TrySendInGameICMessage(uid,
+                            $"Для ритуала требуется проводник силы",
+                            InGameICChatType.Speak,
+                            false);
+                        _audioSystem.PlayPvs(comp.FailSound, uid);
+                        return false;
+                    }
+                }
+                for (int i = 1; i  <= 5; i++)
+                {
+                    if (_itemSlotsSystem.TryGetSlot(slot.Item.Value, "Conductor" + i, out var container) &&
+                        container.HasItem && container.Item != null)
+                    {
+                        if (TryComp<MedievalBlodedComponent>(container.Item.Value, out var bloodcomp))
+                        {
+                            if (bloodcomp.Blood >= 10)
+                            {
+                                var nestedItem = container.Item.Value;
+                                var coords = Transform(nestedItem).Coordinates;
+                                var newItem = Spawn("MedievalCultConductorRod", coords);
+                                _entityManager.DeleteEntity(nestedItem);
+                                _itemSlotsSystem.TryInsert(slot.Item.Value, "Conductor" + i, newItem, uid);
+                            }
+                            else
+                            {
+                                bloodcomp.Blood += bloodyCost * 3 + redCost;
+                            }
+                        }
+                        else
+                        {
+                            AddComp<MedievalBlodedComponent>(container.Item.Value);
+                        }
+                    }
+                }
 
+
+                if (TryComp<MedievalBlodedComponent>(slot.Item.Value, out var blodcomp))
+                {
+                    if (blodcomp.Blood >= 10)
+                    {
+                        if (TryComp<ButcherableComponent>(slot.Item.Value, out var butcherable))
+                        {
+                            butcherable.SpawnedEntities = new List<EntitySpawnEntry>
+                            {
+                                new EntitySpawnEntry { PrototypeId = "MedievalBloodLeather1", Amount = 10 }
+                            };
+                        }
+                    }
+                }
+                else
+                {
+                    AddComp<MedievalBlodedComponent>(slot.Item.Value);
+                }
+                comp.BloodyCrystall -= bloodyCost;
+                comp.RedCrystall -= redCost;
+                return true;
+            }
+            return false;
+        }
         private void OnExamine(EntityUid uid, CultCheckPictureComponent comp, ExaminedEvent args)
         {
             args.PushMarkup("Сейчас заряжено [color=red]" + comp.BloodyCrystall.ToString() + " кровавых[/color] и [color=pink]" + comp.RedCrystall.ToString() + " алых[/color] кристаллов");
@@ -1049,16 +1121,10 @@ namespace Content.Server.Cult
 
             if (CheckForChrist(runeCoordinates))
                 return "christ"; // накладывание на человека эффекта проклятой метки
-            if (CheckForAxe(runeCoordinates))
-                return "axe"; // призыв оружия
             if (CheckForBoat(runeCoordinates))
                 return "boat"; // дамаг по барьеру
             if (CheckForKey(runeCoordinates))
                 return "key"; // открытие финального телепорта ПОСЛе того, как культисты открыли для себя все секторы
-            if (CheckForSwordShield(runeCoordinates))
-                return "swordshield"; // покупка брони
-            if (CheckForWizard(runeCoordinates))
-                return "wizard"; // покупка гримуара
             if (CheckForHeart(runeCoordinates))
                 return "heart"; // покупка камня возрождения
             if (CheckForScroll(runeCoordinates))
@@ -1158,25 +1224,6 @@ namespace Content.Server.Cult
             return CheckFigure(coordinates, whitePixels);
         }
 
-        private bool CheckForAxe(List<(int X, int Y)> coordinates)
-        {
-            var whitePixels = new List<(int X, int Y)>
-    {
-        (3, 1), (5, 1), (7, 1),
-        (2, 2), (5, 2), (8, 2),
-        (2, 3), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3), (8, 3),
-        (2, 4), (3, 4), (4, 4), (5, 4), (6, 4), (7, 4), (8, 4),
-        (2, 5), (5, 5), (8, 5),
-        (3, 6), (5, 6), (7, 6),
-        (5, 7), (9, 7), (10, 7),
-        (4, 8), (5, 8), (6, 8), (7, 8), (8, 8), (9, 8), (10, 8),
-        (4, 9), (5, 9), (6, 9), (7, 9), (8, 9), (9, 9), (10, 9),
-        (5, 10)
-    };
-
-            return CheckFigure(coordinates, whitePixels);
-        }
-
         private bool CheckForBoat(List<(int X, int Y)> coordinates)
         {
             var whitePixels = new List<(int X, int Y)>
@@ -1209,44 +1256,6 @@ namespace Content.Server.Cult
         (2, 7), (3, 7), (4, 7), (8, 7),
         (2, 8), (7, 8),
         (1, 9), (2, 9), (3, 9), (4, 9), (6, 9), (7, 9), (8, 9), (9, 9)
-    };
-
-            return CheckFigure(coordinates, whitePixels);
-        }
-
-        private bool CheckForSwordShield(List<(int X, int Y)> coordinates)
-        {
-            var whitePixels = new List<(int X, int Y)>
-    {
-        (3, 1), (6, 1), (8, 1), (10, 1),
-        (2, 2), (3, 2),
-        (2, 3), (6, 3), (8, 3), (10, 3),
-        (2, 4), (3, 4), (6, 4), (7, 4), (8, 4), (9, 4), (10, 4),
-        (3, 5), (6, 5), (7, 5), (8, 5), (9, 5), (10, 5),
-        (2, 6), (3, 6), (6, 6), (7, 6), (8, 6), (9, 6), (10, 6),
-        (2, 7), (7, 7), (8, 7), (9, 7),
-        (1, 8), (2, 8), (3, 8), (4, 8),(8, 8),
-        (2, 9), (3, 9),
-        (2, 10), (3, 10), (8, 10)
-    };
-
-            return CheckFigure(coordinates, whitePixels);
-        }
-
-        private bool CheckForWizard(List<(int X, int Y)> coordinates)
-        {
-            var whitePixels = new List<(int X, int Y)>
-    {
-        (1, 1), (9, 1),
-        (1, 2), (3, 2), (4, 2), (5, 2), (8, 2), (9, 2), (10, 2),
-        (3, 3), (4, 3), (5, 3), (6, 3), (9, 3),
-        (2, 4), (4, 4), (5, 4), (6, 4), (9, 4),
-        (4, 5), (5, 5), (6, 5), (7, 5),
-        (4, 6), (5, 6), (6, 6), (7, 6), (10, 6),
-        (1, 7), (3, 7), (4, 7), (7, 7), (8, 7), (10, 7),
-        (1, 8), (3, 8), (4, 8), (7, 8), (8, 8),
-        (3, 9), (4, 9), (5, 9), (6, 9), (7, 9), (8, 9),
-        (2, 10), (3, 10), (4, 10), (5, 10), (6, 10), (7, 10), (8, 10), (9, 10)
     };
 
             return CheckFigure(coordinates, whitePixels);
