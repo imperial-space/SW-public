@@ -257,7 +257,6 @@ namespace Content.Server.Cult
                     {
                         _popupSystem.PopupEntity("Еще немного, и связь с культом разорвется. Терпеть осталось недолго.", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
                     }
-                    }
                 }
 
                 foreach (var picture in EntityManager.EntityQuery<CultCheckPictureComponent>())
