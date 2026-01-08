@@ -2156,6 +2156,11 @@
   #- type: EmbeddableProjectile
     #offset: 0.15,0.15
   - type: MeleeRequiresWield
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/sekir.rsi
+    slots:
+    - back
+    - suitStorage
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
