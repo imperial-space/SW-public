@@ -11,12 +11,21 @@ public sealed partial class CultCursedComponent : Component
     [DataField]
     public ProtoId<AlertPrototype> CurseAlert = "CultCurse";
 
+    /// <summary>
+    /// изменяет сообщения при сдаче крови у алтаря
+    /// </summary>
     [DataField]
     public bool CultistMessages = false;
 
+    /// <summary>
+    /// должны ли при сдаче крови появляться кристаллы
+    /// </summary>
     [DataField]
     public bool GiveCrystals = true;
 
+    /// <summary>
+    /// может ли привязанный потерять связь
+    /// </summary>
     [DataField]
     public bool CanLost = true;
 
