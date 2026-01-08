@@ -113,7 +113,7 @@ namespace Content.Server.Cult
             {
                 if (!TryComp<CultCursedComponent>(args.User, out var cursed)) continue;
                 if (entity != args.User) continue;
-                if (cursed.CurseLevel > 75 && !cursed.SilenceMessages)
+                if (cursed.CurseLevel > 75 && !cursed.CultistMessages) // спам сообщениями для культистов при телепортах ни к чему
                     _chat.TrySendInGameICMessage(cursed.Owner, "Кровь культу была отдана совсем недавно, больше ее пока не нужно, надо подождать", InGameICChatType.Whisper, false);
                 if (cursed.CurseLevel > 75)
                     return;
@@ -242,17 +242,22 @@ namespace Content.Server.Cult
                     if (cursed.CurseLevel > 0f && cursed.CurseLevel < 24f)
                         _damageableSystem.TryChangeDamage(cursed.Owner, cursed.LostDamage, true, false);
 
-                    if (cursed.SilenceMessages)
-                        continue;
-
                     if (cursed.CurseLevel > 60f && isValidDamage)
                         _popupSystem.PopupEntity("Связь с культом восстанавливает твои раны", cursed.Owner, cursed.Owner, PopupType.Small);
 
-                    if (cursed.CurseLevel > 5f && cursed.CurseLevel < 24f)
+                    if (cursed.CultistMessages && cursed.CurseLevel > 0f && cursed.CurseLevel < 24f)
+                    {
+                        _popupSystem.PopupEntity("Все ваше тело болит из-за того, что вы не поддерживаете зов культа. Сдайте кровь у алтаря!", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
+                    }
+                    else if (cursed.CurseLevel > 5f && cursed.CurseLevel < 24f)
+                    {
                         _popupSystem.PopupEntity("Все ваше тело болит из-за того, что вы не поддерживаете зов культа. Терпеть?", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
-
-                    if (cursed.CurseLevel > 0f && cursed.CurseLevel <= 5f)
+                    }
+                    else if (cursed.CurseLevel > 0f && cursed.CurseLevel <= 5f)
+                    {
                         _popupSystem.PopupEntity("Еще немного, и связь с культом разорвется. Терпеть осталось недолго.", cursed.Owner, cursed.Owner, PopupType.SmallCaution);
+                    }
+                    }
                 }
 
                 foreach (var picture in EntityManager.EntityQuery<CultCheckPictureComponent>())

@@ -5116,7 +5116,7 @@
       pasport: no
       jobPrefix: "[Культ]"
     - type: CultCursed
-      silenceMessages: true
+      cultistMessages: true
       giveCrystals: false
       canLost: false
 
@@ -5196,7 +5196,7 @@
       action: CloackMessageActionIns
       faction: "cult"
     - type: CultCursed
-      silenceMessages: true
+      cultistMessages: true
       giveCrystals: false
       canLost: false
 

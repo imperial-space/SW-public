@@ -12,7 +12,7 @@ public sealed partial class CultCursedComponent : Component
     public ProtoId<AlertPrototype> CurseAlert = "CultCurse";
 
     [DataField]
-    public bool SilenceMessages = false;
+    public bool CultistMessages = false;
 
     [DataField]
     public bool GiveCrystals = true;
