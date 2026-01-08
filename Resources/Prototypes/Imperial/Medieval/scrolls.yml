@@ -564,32 +564,32 @@
 
 - type: CP14Recipe
   id: MedievalScrollsFireCraft
+  result: MedievalScrollsFire
   entities:
     MedievalScrollBarrier: 1
   stacks:
     MedievalFireSerdolick: 1
-  result: MedievalScrollsFire
 
 - type: CP14Recipe
   id: MedievalScrollsPnyaCraft
+  result: MedievalScrollsPnya
   entities:
     MedievalScrollBarrier: 1
   stacks:
     MedievalAdam: 1
-  result: MedievalScrollsPnya
 
 - type: CP14Recipe
   id: MedievalScrollsKoboldCraft
+  result: MedievalScrollsKobold
   entities:
     MedievalScrollBarrier: 1
   stacks:
-    MedievalIngotGold: 3
-  result: MedievalScrollsKobold
+    MedievalGold: 3
 
 - type: CP14Recipe
   id: MedievalScrollsPetSlimeCraft
+  result: MedievalScrollsPetSlime
   entities:
     MedievalScrollBarrier: 1
   stacks:
     MedievalTopaz: 1
-  result: MedievalScrollsPetSlime

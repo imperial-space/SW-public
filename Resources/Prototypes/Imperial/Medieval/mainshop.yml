@@ -568,6 +568,17 @@
   - MedievalBuild
 
 - type: listing
+  id: MdvShopMedievalSeedExtractorNewCraft
+  productEntity: MedievalSeedExtractorNewCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 100
+  categories:
+  - MedievalBuild
+
+- type: listing
   id: MdvShopMedievalWizardBlacksmithCraft
   productEntity: MedievalWizardBlacksmithCraft
   discountCategory: medievalDiscounts

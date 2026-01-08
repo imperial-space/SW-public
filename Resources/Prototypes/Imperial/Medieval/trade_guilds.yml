@@ -1546,9 +1546,12 @@
   - productEntity: MedievalKotel
     cost: 50
     reputationForBuying: 1.7
+  - productEntity: MedievalSeedExtractorNewCraft
+    cost: 100
+    reputationForBuying: 2
   - productEntity: MedievalWizardBlacksmithCraft
     cost: 200
-    reputationForBuying: 1.7
+    reputationForBuying: 4
   - productEntity: MedievalWoodenFloorCraft
     cost: 10
     reputationForBuying: 0.3
