@@ -11,8 +11,8 @@
     state: red
   - type: CultCrystall
     bloody: false
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: gol
@@ -27,8 +27,8 @@
     state: bloody
   - type: CultCrystall
     bloody: true
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingOuterBase
@@ -57,8 +57,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: CultClothing
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingOuterArmorCult
@@ -101,8 +101,8 @@
   - type: ManaRegen
     regen: 2
   - type: CultClothing
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingOuterArmorCultMana
@@ -147,8 +147,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.45
   - type: CultClothing
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingOuterArmorCultUp
@@ -193,8 +193,8 @@
   - type: ManaRegen
     regen: 1
   - type: CultClothing
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingOuterArmorCultLeader
@@ -217,8 +217,8 @@
     sprite: Imperial/Medieval/Clothing/Shoes/cult_shoes.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/cult_shoes.rsi
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingShoesBase
@@ -230,8 +230,8 @@
     sprite: Imperial/Medieval/Clothing/Shoes/cult_altshoes.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/cult_altshoes.rsi
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingHandsBase
@@ -243,8 +243,8 @@
     sprite: Imperial/Medieval/Clothing/Gloves/cult_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/cult_gloves.rsi
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingHandsBase
@@ -256,8 +256,8 @@
     sprite: Imperial/Medieval/Clothing/Gloves/cult_altgloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/cult_altgloves.rsi
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingHeadBase
@@ -291,8 +291,8 @@
     slots:
     - Hair
   - type: CultClothing
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingHeadHelmetCult
@@ -364,8 +364,8 @@
     speed: 5
   - type: StaminaDamageOnHit
     damage: 6
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: dagger
@@ -417,15 +417,15 @@
       energy: 3
     - type: TrashClear # imperial medieval
       safe: true # imperial medieval
-    - type: CurseItem
-      cult: true
+    #- type: CurseItem
+    #  cult: true
 
 - type: entity
   parent: MedievalBookCultGuide
   id: MedievalBookCultGuide2
   components:
-    - type: CurseItem
-      cult: true
+    #- type: CurseItem
+    #  cult: true
     - type: Sprite
       sprite: Imperial/Medieval/Misc/cult.rsi
       layers:
@@ -949,8 +949,8 @@
     speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: iron halberd
@@ -1014,8 +1014,8 @@
   - type: MeleeThrowOnHit
     distance: 2.5
     speed: 5
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: dagger
@@ -1070,8 +1070,8 @@
   - type: MeleeThrowOnHit
     distance: 0.7
     speed: 5
-  - type: CurseItem
-    cult: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: Exception Spawner
