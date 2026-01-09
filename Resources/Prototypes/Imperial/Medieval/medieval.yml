@@ -3753,6 +3753,29 @@
     tags:
       - MonsterLoot
 
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalLootWingedShadow
+  description: MedievalLoot
+  components:
+  - type: RDWeight
+    value: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/wingedshadow.rsi
+    state: part
+  - type: Currency
+    price:
+      Revent: 90
+  - type: MedievalCurrency
+    price:
+      Revent: 90
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+      - MonsterLoot
+
 - type: reagent
   id: MedievalLootEgg
   name: ent-MedievalLootEgg
@@ -8442,11 +8465,9 @@
   description: ApollaStaffMedieval
   components:
   - type: PointLight
-    enabled: false
     color: "#E25822"
     radius: 1.0
     energy: 5.0
-    netsync: false
   - type: Item
     sprite: Imperial/Medieval/Misc/apolla_staff.rsi
     size: Large

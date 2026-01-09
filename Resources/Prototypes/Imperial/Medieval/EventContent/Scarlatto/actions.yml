@@ -1,0 +1,139 @@
+- type: entity
+  parent: BaseActionPolymorph
+  id: MedievalActionPolymorphIceDragon
+  name: Dragon Polymorph
+  description: Polymorphs you into a Dragon.
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+      state: polymorph
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: MedievalBossIceDragon
+
+- type: entity
+  parent: BaseActionPolymorph
+  id: MedievalActionPolymorphFireDragon
+  name: Dragon Polymorph
+  description: Polymorphs you into a Dragon.
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+      state: polymorph
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: MedievalBossFireDragon
+
+- type: entity
+  parent: BaseActionPolymorph
+  id: MedievalActionPolymorphAcidDragon
+  name: Dragon Polymorph
+  description: Polymorphs you into a Dragon.
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+      state: polymorph
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: MedievalBossAcidDragon
+
+- type: entity
+  parent: BaseActionPolymorph
+  id: MedievalActionPolymorphThunderDragon
+  name: Dragon Polymorph
+  description: Polymorphs you into a Dragon.
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+      state: polymorph
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: MedievalBossThunderDragon
+
+- type: entity
+  parent: BaseActionPolymorph
+  id: MedievalActionPolymorphNecroDragon
+  name: Dragon Polymorph
+  description: Polymorphs you into a Dragon.
+  components:
+  - type: Action
+    icon:
+      sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+      state: polymorph
+  - type: InstantAction
+    event: !type:PolymorphActionEvent
+      protoId: MedievalBossNecroDragon
+
+- type: entity
+  id: MedievalItemPolymorphIceDragon
+  parent: BaseItem
+  name: essence of vodka
+  description: Magical essence of vodka
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#3863E3"
+    state: essence
+    noRot: true
+  - type: AddActionOnUse
+    actionId: MedievalActionPolymorphIceDragon
+
+- type: entity
+  id: MedievalItemPolymorphFireDragon
+  parent: BaseItem
+  name: essence of vodka
+  description: Magical essence of vodka
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#3863E3"
+    state: essence
+    noRot: true
+  - type: AddActionOnUse
+    actionId: MedievalActionPolymorphFireDragon
+
+- type: entity
+  id: MedievalItemPolymorphAcidDragon
+  parent: BaseItem
+  name: essence of vodka
+  description: Magical essence of vodka
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#3863E3"
+    state: essence
+    noRot: true
+  - type: AddActionOnUse
+    actionId: MedievalActionPolymorphAcidDragon
+
+- type: entity
+  id: MedievalItemPolymorphThunderDragon
+  parent: BaseItem
+  name: essence of vodka
+  description: Magical essence of vodka
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#3863E3"
+    state: essence
+    noRot: true
+  - type: AddActionOnUse
+    actionId: MedievalActionPolymorphThunderDragon
+
+- type: entity
+  id: MedievalItemPolymorphNecroDragon
+  parent: BaseItem
+  name: essence of vodka
+  description: Magical essence of vodka
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#3863E3"
+    state: essence
+    noRot: true
+  - type: AddActionOnUse
+    actionId: MedievalActionPolymorphNecroDragon

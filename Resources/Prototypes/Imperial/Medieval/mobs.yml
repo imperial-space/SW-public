@@ -2921,6 +2921,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.09
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: fighter skeleton
@@ -3013,6 +3015,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.16
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: legion skeleton
@@ -3234,6 +3238,8 @@
       amount: 1
       prob: 0.17
   - type: MedievalUnthrowable
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a mace
@@ -3290,6 +3296,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a spear
@@ -3349,6 +3357,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a halberd
@@ -3405,6 +3415,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a dagger
@@ -4227,17 +4239,17 @@
       path: /Audio/Weapons/bladeslice.ogg
     damage:
       groups:
-        Airloss: 2
+        Airloss: 3
       types:
-        Slash: 8.5
+        Slash: 17
         ParryAble: 1
-        Bloodloss: 3
-        Radiation: 3
+        Bloodloss: 4.5
+        Radiation: 4.5
   - type: Puller
   - type: MobThresholds
     thresholds:
       0: Alive
-      125: Dead
+      375: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3.2
@@ -4252,7 +4264,7 @@
   - type: MobMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      10: 1.1
+      150: 1.1
       65: 1.2
   - type: DamageStateVisuals
     states:
@@ -4271,6 +4283,7 @@
       path: /Audio/Imperial/Medieval/0919132c658e1be.ogg
       params:
         variation: 0.125
+        volume: -7
   - type: LanguageSpeaker
     languages:
       #Common: Understand
@@ -4282,3 +4295,11 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: Butcherable
+    spawned:
+    - id: MedievalLeather1
+      amount: 3
+    - id: MedievalLootWingedShadow
+      amount: 1
+    - id: MedievalWingedShadowRandomOreSpawner
+      amount: 1

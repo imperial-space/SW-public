@@ -11,6 +11,8 @@
     state: red
   - type: CultCrystall
     bloody: false
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: gol
@@ -25,6 +27,8 @@
     state: bloody
   - type: CultCrystall
     bloody: true
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingOuterBase
@@ -53,6 +57,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.65
   - type: CultClothing
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingOuterArmorCult
@@ -64,6 +70,7 @@
     sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/cult_altarmor.rsi
+
 
 - type: entity
   parent: ClothingOuterBase
@@ -94,6 +101,8 @@
   - type: ManaRegen
     regen: 2
   - type: CultClothing
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingOuterArmorCultMana
@@ -138,6 +147,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.45
   - type: CultClothing
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingOuterArmorCultUp
@@ -182,6 +193,8 @@
   - type: ManaRegen
     regen: 1
   - type: CultClothing
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingOuterArmorCultLeader
@@ -204,6 +217,8 @@
     sprite: Imperial/Medieval/Clothing/Shoes/cult_shoes.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/cult_shoes.rsi
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingShoesBase
@@ -215,6 +230,8 @@
     sprite: Imperial/Medieval/Clothing/Shoes/cult_altshoes.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Shoes/cult_altshoes.rsi
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingHandsBase
@@ -226,6 +243,8 @@
     sprite: Imperial/Medieval/Clothing/Gloves/cult_gloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/cult_gloves.rsi
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingHandsBase
@@ -237,6 +256,8 @@
     sprite: Imperial/Medieval/Clothing/Gloves/cult_altgloves.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/cult_altgloves.rsi
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: ClothingHeadBase
@@ -270,6 +291,8 @@
     slots:
     - Hair
   - type: CultClothing
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   parent: MedievalClothingHeadHelmetCult
@@ -341,6 +364,8 @@
     speed: 5
   - type: StaminaDamageOnHit
     damage: 6
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: dagger
@@ -360,7 +385,7 @@
 - type: entity
   parent: BookBase
   id: MedievalBookCultGuide
-  name: book
+  name: книга ритуалов культа истины
   description: The book is in good condition
   components:
     - type: Sprite
@@ -372,12 +397,57 @@
         [italic]
         Книга ритуалов культа истины.
         Автор - Т. В.
+        Слава истине! Барьер падёт!
+        Для начала вашего пути скажите заветные фразы:
+        Ave (пауза)
+        The (пауза)
+        Truth
+        Произнести их надо чётко, с растановкой, грамотно, не слишком быстро и не слишком медленно и без ошибок.
+        Магия не терпит ошибок особенно в произнесении.
+        Ритуал свершится лишь в том случае если, Заклинатель пред произнесением последней фразы окрапит себя кровью.
+    - type: Currency
+      price:
+        Revent: 60
+    - type: MedievalCurrency
+      price:
+        Revent: 60
+    - type: PointLight
+      color: red
+      radius: 1.5
+      energy: 3
+    - type: TrashClear # imperial medieval
+      safe: true # imperial medieval
+    #- type: CurseItem
+    #  cult: true
 
-        Для начала ритуала необходимо начертить правильную руну, загрузить в каменную статую волка  необходимое для ритуала количество алых и кровавых кристаллов, после чего погладить статую.
+- type: entity
+  parent: MedievalBookCultGuide
+  id: MedievalBookCultGuide2
+  components:
+    #- type: CurseItem
+    #  cult: true
+    - type: Sprite
+      sprite: Imperial/Medieval/Misc/cult.rsi
+      layers:
+        - state: book
+    - type: Paper
+      content: >-
+        [italic]
+        Книга ритуалов культа истины.
+        Автор - Т. В.
+        Редакция 2 - Архимаг Крови M. S.
+
+        Для начала ритуала необходимо начертить правильную руну, загрузить в каменную статую волка  необходимое для ритуала количество алых и кровавых кристаллов и связку с проводниками, после чего погладить статую.
+
+        При любом ритуале использующем камни, проводник будет изнашиватся. Новые проводники могут быть изготовлены кузнецом, портной же может сделать для них крепление.
+        Отработанные стержни, можно расплавить на плавильне в прекрасный кровавый метал, отработавшая связка может быть распорота на кровавую кожу.
 
         Если культист находится в секторе, в который не проведён портал, он постепенно умирает.
 
         Кредо культа истинны не позволяет без причины убивать жертв. Лучше всего провести над ними ритуал связи, ведь принесёт больше пользы для культа
+
+        Глава 1 Большие ритуалы
+        Все большие ритуалы проводятся на специально подготовленном месте.
 
         Крест - ритуал связи с жертвой:
 
@@ -590,7 +660,6 @@
 
 
 
-
         Конвертация фолианта проклятий в 5 алых кристаллов:
 
         ░░░░░░██░░░░██░░░░░░
@@ -646,41 +715,6 @@
         Необходимо культистов - 3.
         Стоимость - 1 кровавый кристалл.
 
-
-        Секира:
-
-        ░░░░██░░██░░██░░░░░░
-        ░░██░░░░██░░░░██░░░░
-        ░░██████████████░░░░
-        ░░██████████████░░░░
-        ░░██░░░░██░░░░██░░░░
-        ░░░░██░░██░░██░░░░░░
-        ░░░░░░░░██░░░░░░████
-        ░░░░░░██████████████
-        ░░░░░░██████████████
-        ░░░░░░░░██░░░░░░░░░░
-
-        Призывает случайное оружие культа истинны.
-        Необходимо культистов - 2.
-        Стоимость - 2 алых кристалла.
-
-        Меч и щит:
-
-        ░░░░██░░░░██░░██░░██
-        ░░████░░░░░░░░░░░░░░
-        ░░██░░░░░░██░░██░░██
-        ░░████░░░░██████████
-        ░░░░██░░░░██████████
-        ░░████░░░░██████████
-        ░░██░░░░░░░░██████░░
-        ████████░░░░░░██░░░░
-        ░░████░░░░░░░░░░░░░░
-        ░░████░░░░░░░░██░░░░
-
-        Призывает бронированную робу культа истинны.
-        Необходимо культистов - 3.
-        Стоимость - 1 кровавый кристалл, 2 алых кристалла.
-
         Ключ:
 
         ░░████░░░░░░░░░░░░░░
@@ -714,23 +748,6 @@
         Снижает стабильность барьера на треть от текущей.
         Необходимо культистов - 5.
         Стоимость - 2 алых кристалла, 2 кровавых кристалла.
-
-        Шляпа:
-
-        ██░░░░░░░░░░░░░░██░░
-        ██░░██████░░░░██████
-        ░░░░████████░░░░██░░
-        ░░██░░██████░░░░██░░
-        ░░░░░░████████░░░░░░
-        ░░░░░░████████░░░░██
-        ██░░████░░░░████░░██
-        ██░░████░░░░████░░░░
-        ░░░░████████████░░░░
-        ░░████████████████░░
-
-        Призывает робу регенерации маны.
-        Необходимо культистов - 3.
-        Стоимость - 1 кровавый кристалл, 2 алых кристалла.
 
         Сердце:
 
@@ -783,19 +800,78 @@
 
         Необходимо культистов - 2.
         Не требует кристаллов.
-    - type: Currency
-      price:
-        Revent: 60
-    - type: MedievalCurrency
-      price:
-        Revent: 60
-    - type: PointLight
-      color: red
-      radius: 1.5
-      energy: 3
-    - type: TrashClear # imperial medieval
-      safe: true # imperial medieval
 
+
+        Глава 2 Малые ритуалы
+
+        Малые ритуалы это направление ритуалистики использующей в качестве заклинания звук.
+        Поэтому требующяя максимальной чёткости произношения и собьлюдения времени произнесения.
+
+        Между каждой фразой должно пройти не менее одного мига.
+        Произнесение всей фразы же не должно занять более 5.
+
+        Основное заклинание магии крови, а именно
+
+        Проклятье крови
+
+        Произнесение:
+
+        Katariemai (пауза)
+
+        Opoion (пауза)
+
+        Me chtypisei (пауза)
+
+
+        Каждый кто ударит с этого момента будет проклят страшным проклятьем, что будет подтачивать его силы и постепенно убивать.
+
+        Заклинание не слишком стабильно, из за чего при атаке развеится не выдержав.
+
+        Из за слабой стабильности, пролятье можно снять мощьными элексирами, которые просто сломают структуру заклятья.
+
+        Заклятье брони
+
+        Произнесение:
+
+        Ave (пауза)
+
+        The (пауза)
+
+        Bronus
+
+
+        Сливает во едино 5 слитков кровавого железа лежащих вокруг и вашу мантию делая её бронированной.
+
+        Заклятье магической робы
+
+        Произнесение:
+
+        Ave  (пауза)
+
+        The  (пауза)
+
+        Magical    (пауза)
+
+        Сливает во едино 5 кровавой кожи лежащих вокруг и вашу мантию делая её проводимее для магии.
+
+        Заклятья оружия
+
+        Требует, 5 слитков кровавого железа вокруг вас
+
+        Произнесение
+
+        Ave    (пауза)
+
+        The   (пауза)
+
+
+        И тут идёт ваш выбор
+
+        Могучее копьё, Vilkus
+
+        Сильный ятаган, Knatus
+
+        Коса, что режет врагов Sekir
 
 - type: entity
   name: medieval spear
@@ -875,6 +951,8 @@
     speed: 5
   - type: StaminaDamageOnHit
     damage: 5 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: iron halberd
@@ -938,6 +1016,8 @@
   - type: MeleeThrowOnHit
     distance: 2.5
     speed: 5
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: dagger
@@ -992,6 +1072,8 @@
   - type: MeleeThrowOnHit
     distance: 0.7
     speed: 5
+  #- type: CurseItem
+  #  cult: true
 
 - type: entity
   name: Exception Spawner

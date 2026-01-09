@@ -1079,6 +1079,7 @@
   - type: RadiationSource
     intensity: 0.3
     slope: 0.2
+  #- type: CurseItem
 
 - type: entity
   parent: ClothingHandsBase
@@ -1188,6 +1189,7 @@
     intensity: 0.3
     slope: 0.2
   - type: MedievalIronHitSound
+  #- type: CurseItem
 
 - type: entity
   parent: Clothing
@@ -1232,6 +1234,7 @@
     intensity: 0.3
     slope: 0.2
   - type: ProtectedFromStepTriggers
+  #- type: CurseItem
 
 - type: entity
   parent: ClothingOuterBase

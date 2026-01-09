@@ -127,3 +127,8 @@
 - type: Tag
   id: ReinforcedDoor
 
+- type: Tag
+  id: CultConductor
+
+- type: Tag
+  id: CultConductorRod

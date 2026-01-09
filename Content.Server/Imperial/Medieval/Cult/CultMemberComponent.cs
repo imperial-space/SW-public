@@ -1,9 +1,11 @@
 using Content.Shared.Damage;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
+using System.Collections.Generic;
+using System;
+using System.Linq;
 
 namespace Content.Server.Cult.Components;
-
 
 [RegisterComponent]
 public sealed partial class CultMemberComponent : Component
@@ -21,4 +23,11 @@ public sealed partial class CultMemberComponent : Component
                 { "Asphyxiation", 10}
             }
     };
+
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField]
+    public Queue<(string message, TimeSpan time)> LastSpokenMessages = new();
+
+    [DataField]
+    public bool DeathCusre = true;
 }
