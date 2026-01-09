@@ -93,7 +93,7 @@ public sealed partial class MedievalFactionsSystem
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
         }
-        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full)
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != ev.UserFaction)
         {
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
@@ -111,7 +111,7 @@ public sealed partial class MedievalFactionsSystem
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
         }
-        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full)
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != ev.UserFaction)
         {
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
@@ -128,7 +128,7 @@ public sealed partial class MedievalFactionsSystem
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
         }
-        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full)
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != request.From)
         {
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
@@ -187,7 +187,7 @@ public sealed partial class MedievalFactionsSystem
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
         }
-        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full)
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != ev.UserFaction)
         {
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
