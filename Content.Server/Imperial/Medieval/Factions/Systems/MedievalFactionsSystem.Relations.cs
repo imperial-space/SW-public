@@ -121,6 +121,9 @@ public sealed partial class MedievalFactionsSystem
 
     private void OnSetRelationsByRequest(SetFactionRelationsByRequestEvent ev, EntitySessionEventArgs args)
     {
+        if (!TryComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target), out var request))
+            return;
+
         var senderSession = args.SenderSession;
         var senderUid = senderSession.AttachedEntity;
         if (senderUid == null)
@@ -139,15 +142,25 @@ public sealed partial class MedievalFactionsSystem
             return;
         }
 
-        if (!TryComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target), out var request))
-            return;
 
         SetRelations(request.From, request.To, request.Relation);
         RemComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target));
     }
 
-    private void OnCreateRequest(CreateFactionRelationsRequestEvent ev)
+    private void OnCreateRequest(CreateFactionRelationsRequestEvent ev, EntitySessionEventArgs args)
     {
+        var senderSession = args.SenderSession;
+        var senderUid = senderSession.AttachedEntity;
+        if (senderUid == null)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != ev.UserFaction)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
         var target = GetEntity(ev.Target);
         var faction = Proto.Index(ev.UserFaction);
 
