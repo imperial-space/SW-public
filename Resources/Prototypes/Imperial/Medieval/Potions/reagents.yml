@@ -314,6 +314,180 @@
           min: 30
 
 - type: reagent
+  id: medievalAmmonia
+  showinbook: false
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#77b58e"
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: 1
+  - !type:PlantAdjustHealth
+    amount: 0.5
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 1
+    Gas:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Rat
+          shouldHave: false
+        - !type:ReagentThreshold
+          reagent: Ammonia
+          min: 1
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 0.25
+      - !type:ChemVomit
+        probability: 0.12
+        conditions:
+        - !type:OrganType
+          type: Rat
+          shouldHave: false
+        - !type:OrganType
+          type: Vox
+          shouldHave: false
+        - !type:ReagentThreshold
+          reagent: Ammonia
+          min: 0.8
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "ammonia-smell" ]
+        probability: 0.1
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Ammonia
+          min: 0.25
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Rat
+        - !type:ReagentThreshold
+          reagent: Ammonia
+          min: 1
+        scaleByQuantity: true
+        ignoreResistances: true
+        damage:
+          groups:
+            Brute: -5
+            Burn: -5
+          types:
+            Bloodloss: -5
+      - !type:Oxygenate # ammonia displaces nitrogen in vox blood
+        conditions:
+        - !type:OrganType
+          type: Vox
+        factor: -4
+
+- type: reagent
+  id: medievalPlantBGone
+  showinbook: false
+  name: ""
+  desc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#49002E"
+  physicalDesc: ""
+  plantMetabolism:
+    - !type:PlantAdjustToxins
+      amount: 6
+    - !type:PlantAdjustWeeds
+      amount: -8
+    - !type:PlantAdjustHealth
+      amount: -20
+    - !type:PlantAdjustMutationMod
+      amount: 0.1
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -4
+            Blunt: 2
+            Slash: 1
+            Piercing: 1
+        conditions:
+        - !type:OrganType
+          type: Plant
+
+- type: reagent
+  id: medievalLeft4Zed
+  showinbook: false
+  name: ""
+  desc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#5b406c"
+  physicalDesc: ""
+  plantMetabolism:
+    - !type:PlantAdjustNutrition
+      amount: 1
+    - !type:PlantAdjustHealth
+      amount: -0.5
+    - !type:PlantAdjustMutationMod
+      probability: 0.3
+      amount: 0.4
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:SatiateHunger
+        conditions:
+        - !type:OrganType
+          type: Plant
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+        conditions:
+        - !type:OrganType
+          type: Plant
+
+- type: reagent
+  id: medievalDiethylamine
+  showinbook: false
+  name: ""
+  desc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: ""
+  flavor: null
+  color: "#a1000b"
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: 0.1
+  - !type:PlantAdjustPests
+    probability: 0.1
+    amount: -1
+  - !type:PlantAdjustHealth
+    amount: 0.1
+  - !type:PlantAffectGrowth
+    probability: 0.2
+    amount: 1
+  - !type:PlantDiethylamine {}
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 1
+
+- type: reagent
   id: medievalslow
   name: ""
   desc: ""
@@ -453,6 +627,29 @@
         conditions:
         - !type:ReagentThreshold
           min: 30
+
+- type: reagent
+  id: medievalAntihol
+  showinbook: false
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  flavor: null
+  color: "#b0a28a"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        damage:
+          types:
+            Poison: -0.65
+      - !type:GenericStatusEffect
+        key: Drunk
+        time: 1.0
+        type: Remove
 
 - type: reagent
   id: medievalcryoexplosion
