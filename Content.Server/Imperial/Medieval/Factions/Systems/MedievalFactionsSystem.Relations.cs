@@ -11,6 +11,8 @@ using Robust.Shared.Utility;
 using Content.Server.Imperial.Medieval.Factions.Components;
 using Content.Shared.Paper;
 using Robust.Shared.Containers;
+using Robust.Shared.Player;
+using Content.Server.Administration.Managers;
 
 namespace Content.Server.Imperial.Medieval.Factions;
 
@@ -19,6 +21,7 @@ public sealed partial class MedievalFactionsSystem
     [Dependency] private readonly IChatManager _chatMan = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly IBanManager _ban = default!;
 
     private void InitializeRelations()
     {
@@ -81,34 +84,83 @@ public sealed partial class MedievalFactionsSystem
         args.Verbs.Add(verb);
     }
 
-    private void OnOfferRelations(OfferFactionRelationsEvent ev)
+    private void OnOfferRelations(OfferFactionRelationsEvent ev, EntitySessionEventArgs args)
     {
+        var senderSession = args.SenderSession;
+        var senderUid = senderSession.AttachedEntity;
+        if (senderUid == null)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != ev.UserFaction)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
         var openEv = new OpenAcceptFactionRelationsEvent(ev.UserFaction, ev.TargetFaction, ev.Relation);
         RaiseNetworkEvent(openEv, GetEntity(ev.Target));
     }
 
-    private void OnAcceptRelations(AcceptFactionRelationsEvent ev)
+    private void OnAcceptRelations(AcceptFactionRelationsEvent ev, EntitySessionEventArgs args)
     {
+        var senderSession = args.SenderSession;
+        var senderUid = senderSession.AttachedEntity;
+        if (senderUid == null)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != ev.UserFaction)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
         SetRelations(ev.UserFaction, ev.TargetFaction, ev.Relation);
     }
 
-    private void OnSetRelationsByRequest(SetFactionRelationsByRequestEvent ev)
+    private void OnSetRelationsByRequest(SetFactionRelationsByRequestEvent ev, EntitySessionEventArgs args)
     {
+        if (!TryComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target), out var request))
+            return;
+
+        var senderSession = args.SenderSession;
+        var senderUid = senderSession.AttachedEntity;
+        if (senderUid == null)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != request.From)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
         if (ev.Decline)
         {
             RemComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target));
             return;
         }
 
-        if (!TryComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target), out var request))
-            return;
 
         SetRelations(request.From, request.To, request.Relation);
         RemComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target));
     }
 
-    private void OnCreateRequest(CreateFactionRelationsRequestEvent ev)
+    private void OnCreateRequest(CreateFactionRelationsRequestEvent ev, EntitySessionEventArgs args)
     {
+        var senderSession = args.SenderSession;
+        var senderUid = senderSession.AttachedEntity;
+        if (senderUid == null)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != ev.UserFaction)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
         var target = GetEntity(ev.Target);
         var faction = Proto.Index(ev.UserFaction);
 
@@ -132,11 +184,27 @@ public sealed partial class MedievalFactionsSystem
         if (container != null)
             _container.InsertOrDrop(env, container);
     }
-
-    private void OnDispatchWar(DispatchWarEvent ev)
+    private void BanPerson(ICommonSession session, string mes)
+    {
+        _ban.CreateServerBan(session.UserId, session.Name, null, null, null, 0, Shared.Database.NoteSeverity.High, mes);
+    }
+    private void OnDispatchWar(DispatchWarEvent ev, EntitySessionEventArgs args)
     {
         if (!TryGetFactionDataContainer(out var cont))
             return;
+
+        var senderSession = args.SenderSession;
+        var senderUid = senderSession.AttachedEntity;
+        if (senderUid == null)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != ev.UserFaction)
+        {
+            BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
+            return;
+        }
 
         ref var relations = ref cont.Value.Comp.Relations;
         relations[ev.UserFaction][ev.TargetFaction] = "War";
