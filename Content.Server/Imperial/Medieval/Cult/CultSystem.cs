@@ -23,6 +23,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Content.Shared.Random.Helpers;
 using Content.Server.Administration;
+using Content.Server.Administration.Logs;
+using Content.Server.Construction.Completions;
 using Content.Server.Construction.Conditions;
 using Content.Server.Imperial.Medieval.Cult.Bloodspells;
 using Content.Server.Imperial.Medieval.Cult.Bloodspells.mateials;
@@ -39,6 +41,7 @@ using Content.Shared.Containers;
 using Content.Shared.Chat;
 using Content.Shared.Body.Components;
 using Content.Shared.Containers.ItemSlots;
+using Content.Shared.Database;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Storage;
 using Content.Shared.Tag;
@@ -66,6 +69,7 @@ namespace Content.Server.Cult
         [Dependency] private readonly SharedContainerSystem _container = default!;
         [Dependency] private readonly TagSystem _tags = default!;
         [Dependency] private readonly EntityManager _entityManager = default!;
+        [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
         private const float DefaultReloadTimeSeconds = 10f;
         public const string ConductorContainer = "Conductor";
@@ -135,9 +139,9 @@ namespace Content.Server.Cult
                         {
                             var axform = Transform(altar.Owner);
                             var acoords = axform.Coordinates;
-                            Spawn("MedievalCultCrystallRed", acoords);
-                            Spawn("MedievalCultCrystallRed", acoords);
-                            Spawn("MedievalCultCrystallRed", acoords);
+                            _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", acoords)} {ToPrettyString(cursed.Owner):player} сдал кровь культу в {ToPrettyString(altar.Owner):altar}");
+                            _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", acoords)} {ToPrettyString(cursed.Owner):player} сдал кровь культу в {ToPrettyString(altar.Owner):altar}");
+                            _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", acoords)} {ToPrettyString(cursed.Owner):player} сдал кровь культу в {ToPrettyString(altar.Owner):altar}");
                         }
                     }
                 }
@@ -376,9 +380,11 @@ namespace Content.Server.Cult
                                     {
                                         var axform = Transform(altar.Owner);
                                         var acoords = axform.Coordinates;
-                                        Spawn("MedievalCultCrystallRed", acoords);
+
                                         //if (!isDead) Spawn("MedievalCultCrystallRed", acoords);
                                         if (isDead && TryComp<SSDFreeComponent>(victim, out var ssdfreeComp) && _playerManager.TryGetSessionByEntity(victim, out var session)) _ssdFreeSystem.GoToSSD(victim, session.UserId, false, ssdfreeComp);
+                                        if (!isDead)
+                                            _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", acoords)} призван от привязки {blood.Owner} {ToPrettyString(altar.Owner):altar}");
                                     }
                                     _audioSystem.PlayPvs(comp.SuccesSound, uid);
 
@@ -715,7 +721,7 @@ namespace Content.Server.Cult
                 case "crystall":
                     if (IsCultistsEnough(uid, 1) && CheckCrystals(uid, comp, 0, 3))
                     {
-                        Spawn("MedievalCultCrystallBloody", coords);
+                        _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallBloody", coords)} призван от конвертации ");
                         Spawn("ShockWaveEffect", coords);
                         _audioSystem.PlayPvs(comp.SuccesSound, uid);
                         _chat.TrySendInGameICMessage(uid, "Алые кристаллы успешно конвертированы в кровавый", InGameICChatType.Speak, false);
@@ -807,9 +813,9 @@ namespace Content.Server.Cult
                             if (victim != center.Owner)
                             {
                                 QueueDel(victim);
-                                Spawn("MedievalCultCrystallRed", coords);
-                                Spawn("MedievalCultCrystallRed", coords);
-                                Spawn("MedievalCultCrystallRed", coords);
+                                _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", coords)} призван от конвертации шарда");
+                                _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", coords)} призван от конвертации шарда");
+                                _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", coords)} призван от конвертации шарда");
                                 Spawn("ShockWaveEffect", coords);
                                 _audioSystem.PlayPvs(comp.SuccesSound, uid);
                                 _chat.TrySendInGameICMessage(uid, "Осколок хрусталя успешно преобразован в алые кристаллы", InGameICChatType.Speak, false);
@@ -826,11 +832,11 @@ namespace Content.Server.Cult
                             if (victim != center.Owner)
                             {
                                 QueueDel(victim);
-                                Spawn("MedievalCultCrystallRed", coords);
-                                Spawn("MedievalCultCrystallRed", coords);
-                                Spawn("MedievalCultCrystallRed", coords);
-                                Spawn("MedievalCultCrystallRed", coords);
-                                Spawn("MedievalCultCrystallRed", coords);
+                                _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", coords)} призван от конвертации гримуара");
+                                _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", coords)} призван от конвертации гримуара");
+                                _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", coords)} призван от конвертации гримуара");
+                                _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", coords)} призван от конвертации гримуара");
+                                _adminLog.Add(LogType.Action, LogImpact.Low, $"Кристал {Spawn("MedievalCultCrystallRed", coords)} призван от конвертации гримуара");
                                 Spawn("ShockWaveEffect", coords);
                                 _audioSystem.PlayPvs(comp.SuccesSound, uid);
                                 _chat.TrySendInGameICMessage(uid, "Проклятый фолиант успешно преобразован кристаллы", InGameICChatType.Speak, false);
