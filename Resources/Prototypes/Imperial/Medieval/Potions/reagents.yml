@@ -150,9 +150,6 @@
         emote: Scream
         probability: 0.8
   metabolisms:
-    Medicine:
-      effects:
-      - !type:DeleteDeathCurseEffect
     Poison:
       effects:
       - !type:HealthChange
@@ -1352,6 +1349,9 @@
         emote: Scream
         probability: 0.8
   metabolisms:
+    Medicine:
+      effects:
+      - !type:DeleteDeathCurseEffect
     Poison:
       effects:
       - !type:HealthChange
