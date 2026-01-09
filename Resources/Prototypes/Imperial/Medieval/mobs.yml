@@ -2921,6 +2921,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.09
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: fighter skeleton
@@ -3013,6 +3015,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.16
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: legion skeleton
@@ -3234,6 +3238,8 @@
       amount: 1
       prob: 0.17
   - type: MedievalUnthrowable
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a mace
@@ -3290,6 +3296,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a spear
@@ -3349,6 +3357,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a halberd
@@ -3405,6 +3415,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a dagger
