@@ -34,6 +34,7 @@ using Content.Shared.Warps;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
@@ -50,6 +51,9 @@ namespace Content.Server.Imperial.Medieval.Revive
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
 
+        private const int MaxRevives = 3;
+        private readonly Dictionary<NetUserId, int> _reviveCount = new();
+
         public override void Initialize()
         {
             base.Initialize();
@@ -61,6 +65,15 @@ namespace Content.Server.Imperial.Medieval.Revive
             if (!revivesOn) return;
 
             var player = args.SenderSession;
+            var playerUid = player.UserId;
+
+            if (!_reviveCount.ContainsKey(playerUid))
+                _reviveCount[playerUid] = 0;
+
+            if (_reviveCount[playerUid] >= MaxRevives)
+                return;
+
+
             var reviveQuery = EntityManager.EntityQuery<MedievalReviveSpawnerComponent>();
 
             if (reviveQuery.Count() == 0) return;
@@ -84,6 +97,8 @@ namespace Content.Server.Imperial.Medieval.Revive
 
             _minds.SetUserId(newMind, player.UserId);
             _minds.TransferTo(newMind, mob);
+
+            _reviveCount[playerUid]++;
         }
     }
 }
