@@ -182,14 +182,14 @@
   result: SheetUranium10
 
 - type: CP14Recipe
-  id: HydroponicsToolHatchet
+  id: MedievalHatchetEvent
   craftTime: 20
-  iconOverride: HydroponicsToolHatchet
+  iconOverride: MedievalHatchetEvent
   stacks:
     Steel: 12
     Plastic: 5
     WoodPlank: 4
-  result: HydroponicsToolHatchet
+  result: MedievalHatchetEvent
 
 - type: CP14Recipe
   id: MedievalPickaxeEvent

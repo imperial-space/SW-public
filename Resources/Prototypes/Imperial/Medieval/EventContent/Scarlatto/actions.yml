@@ -1,3 +1,48 @@
+- type: polymorph
+  id: IceDragon
+  configuration:
+    entity: MedievalBossIceDragonNoAnnouncement
+    transferName: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+
+- type: polymorph
+  id: FireDragon
+  configuration:
+    entity: MedievalBossFireDragonNoAnnouncement
+    transferName: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+
+- type: polymorph
+  id: AcidDragon
+  configuration:
+    entity: MedievalBossAcidDragonNoAnnouncement
+    transferName: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+
+- type: polymorph
+  id: ThunderDragon
+  configuration:
+    entity: MedievalBossThunderDragonNoAnnouncement
+    transferName: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+
+- type: polymorph
+  id: NecroDragon
+  configuration:
+    entity: MedievalBossNecroDragonNoAnnouncement
+    transferName: false
+    inventory: None
+    revertOnDeath: true
+    revertOnCrit: true
+
 - type: entity
   parent: BaseActionPolymorph
   id: MedievalActionPolymorphIceDragon
@@ -10,7 +55,7 @@
       state: polymorph
   - type: InstantAction
     event: !type:PolymorphActionEvent
-      protoId: MedievalBossIceDragon
+      protoId: IceDragon
 
 - type: entity
   parent: BaseActionPolymorph
@@ -24,7 +69,7 @@
       state: polymorph
   - type: InstantAction
     event: !type:PolymorphActionEvent
-      protoId: MedievalBossFireDragon
+      protoId: FireDragon
 
 - type: entity
   parent: BaseActionPolymorph
@@ -38,7 +83,7 @@
       state: polymorph
   - type: InstantAction
     event: !type:PolymorphActionEvent
-      protoId: MedievalBossAcidDragon
+      protoId: AcidDragon
 
 - type: entity
   parent: BaseActionPolymorph
@@ -52,7 +97,7 @@
       state: polymorph
   - type: InstantAction
     event: !type:PolymorphActionEvent
-      protoId: MedievalBossThunderDragon
+      protoId: ThunderDragon
 
 - type: entity
   parent: BaseActionPolymorph
@@ -66,7 +111,7 @@
       state: polymorph
   - type: InstantAction
     event: !type:PolymorphActionEvent
-      protoId: MedievalBossNecroDragon
+      protoId: NecroDragon
 
 - type: entity
   id: MedievalItemPolymorphIceDragon

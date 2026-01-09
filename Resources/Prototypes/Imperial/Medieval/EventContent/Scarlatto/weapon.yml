@@ -164,3 +164,14 @@
   - type: Meltable
     resourceCount: 2
 
+- type: entity
+  name: combat knife
+  parent: MedievalHatchet
+  id: MedievalHatchetEvent
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Hydroponics/hatchet.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/Hydroponics/hatchet.rsi
