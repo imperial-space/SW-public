@@ -131,7 +131,7 @@ public sealed partial class MedievalFactionsSystem
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
         }
-        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != request.From)
+        if (!TryComp<MedievalFactionMemberComponent>(senderUid, out var friends) || friends.MenuAccess != FactionMenuAccess.Full || friends.Faction != request.To)
         {
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
