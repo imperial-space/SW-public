@@ -530,12 +530,18 @@
   parent: BannerBase
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Mobs/wingedshadow.rsi
     state: statue
+  - type: Transform
+    noRot: true
+    anchored: true
   - type: Physics
     bodyType: Static
+    fixedRotation: true
   - type: Damageable
   - type: Destructible
     thresholds:
@@ -557,23 +563,41 @@
             max: 1
   - type: Fixtures
     fixtures:
-      fix1:
-        shape: !type:PhysShapeCircle
-          radius: 0.35
-        density: 190
-        mask:
-        - MachineMask
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.5"
+        hard: false
         layer:
-        - Opaque
-        - MidImpassable
-        - HighImpassable
-        - BulletImpassable
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
   - type: TimedDespawn
     lifetime: 500
   - type: MedievalDiggAble
   - type: MedievalMeleeBadTarget # imperial medieval
     safeToHitGroup: ore # imperial medieval
     breakMultiplier: 10
+  - type: Slippery
+    staminaDamage: 0
+    frictionStatusTime: 0
+    slipData:
+      stunTime: 0
+      knockdownTime: 0
+      launchForwardsMultiplier: 0
+    slipSound:
+      path: /Audio/Imperial/Medieval/stone_release.ogg
+      params:
+        variation: 0.125
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    stepOn: true
+  - type: TriggerOnStepTrigger
+  - type: SpawnOnTrigger
+    proto: MedievalMobWingedShadow
+  - type: DeleteOnTrigger
 
 - type: entity
   id: MedievalWingedShadow2

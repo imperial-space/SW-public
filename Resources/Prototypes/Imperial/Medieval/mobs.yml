@@ -4283,7 +4283,7 @@
       path: /Audio/Imperial/Medieval/0919132c658e1be.ogg
       params:
         variation: 0.125
-        volume: -4
+        volume: -7
   - type: LanguageSpeaker
     languages:
       #Common: Understand
