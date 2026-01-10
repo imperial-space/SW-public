@@ -1,6 +1,6 @@
-ent-AncientOakCloset = старинный дубовый шкаф
+ent-MedievalAncientOakCloset = старинный дубовый шкаф
     .desc = Выглядит старым, быть может он застал вашего пра или прапрадеда
 
-ent-AncientOakClosetAlh = старинный дубовый шкаф
+ent-MedievalAncientOakClosetAlh = старинный дубовый шкаф
     .desc = Пропитан странным алхимический запахом, интересно, кому он принадлежит?
     .suffix = { "Алхимик" }

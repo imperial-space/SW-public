@@ -1,6 +1,6 @@
 - type: entity
   parent: CrateLivestock
-  id: AncientOakCloset
+  id: MedievalAncientOakCloset
   name: ancient oak closet
   components:
   - type: Sprite
@@ -27,7 +27,7 @@
 
 - type: entity
   parent: AncientOakCloset
-  id: AncientOakClosetAlh
+  id: MedievalAncientOakClosetAlh
   name: ancient oak closets
   suffix: Alh
   components:
@@ -37,7 +37,7 @@
         tableId: AlchemyCloset
 
 - type: entityTable
-  id: AlchemyCloset
+  id: MedievalAlchemyCloset
   table: !type:AllSelector
     children:
     - id: MedievalPaper
