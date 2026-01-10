@@ -65,6 +65,7 @@
     MedievalClothingNeckCloakClanEagle: [MedievalClothingNeckCloakRoyalLegionEagle]
     MedievalClothingNeckCloakClanFox: [MedievalClothingNeckCloakRoyalInsFox]
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadRoyalHelmet, MedievalClothingHeadHatRoyalChaplain]
+    ClothingUniformJumpsuitChaplain: [MedievalClothingUniformJumpsuitShitCloth76]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth73]
     MedievalClothingUniformJumpsuitShitCloth26: [MedievalClothingUniformJumpsuitShitCloth75]
     MedievalClothingUniformJumpsuitShitCloth3: [MedievalClothingUniformJumpsuitShitCloth75]
@@ -87,7 +88,7 @@
     MedievalClothingHeadTreasurer: [MedievalClothingHeadRoyalHoop]
     MedievalClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
     ClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
-    MedievalShoesSapogi: [MedievalClothingRoyalBoots]
+    MedievalShoesSapogi: [MedievalClothingRoyalBoots, MedievalClothingRoyalChaplainBoots]
     MedievalClothingUniformJumpsuitShitCloth84: [MedievalClothingUniformJumpsuitShitCloth75]
     MedievalClothingUniformJumpsuitShitCloth85: [MedievalClothingUniformJumpsuitShitCloth75]
     MedievalClothingUniformJumpsuitShitCloth86: [MedievalClothingUniformJumpsuitShitCloth75]
@@ -98,8 +99,6 @@
     MedievalClothingHeadHelmetLegionTribuneNew: [MedievalClothingHeadHelmetLegionTribuneNewRoyal]
     MedievalClothingHeadHelmetLegionLegatNew: [MedievalClothingHeadHelmetLegionLegatNewRoyal]
     MedievalClothingHeadHelmetLegionLegatAltNew: [MedievalClothingHeadHelmetLegionLegatAltNewRoyal]
-
-
 
 - type: customization
   id: game123456

@@ -1,18 +1,43 @@
-# - type: entity
-#   parent: MedievalFoundry
-#   id: MedievalSmelteryEvent
-#   name: foundry
-#   description: It produces sheets and ingots using ores.
-#   components:
-#   - type: Sprite
-#     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/ore_processor.rsi
-#     layers:
-#       - state: icon
-#       - state: unshaded
-#         shader: unshaded
+- type: entity
+  parent: MedievalFoundry
+  id: MedievalSmeltery
+  name: foundry
+  description: It produces sheets and ingots using ores.
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/ore_processor.rsi
+    layers:
+      - state: icon
+      - state: unshaded
+        shader: unshaded
+  - type: CP14Workbench
+    craftSpeed: 1
+    craftSound: "/Audio/Imperial/Medieval/craft_foundry.ogg"
+    recipes:
+    - MedievalGlinaFormaReady
+    - FoodBowlBig
+    - SheetSteelMedieval
+    - SheetSteelMedieval10
+    - MedievalSteelIngot
+    - MedievalSteelIngot10
+    - MedievalGoldOre
+    - MedievalGoldOre10
+    - MedievalStoneBrick
+    - EbonitMedieval
+    - EbonitMedieval10
+    - ForstoneMedieval
+    - ForstoneMedieval10
+    - MaterialGunpowder
+    - MaterialGunpowder10
+    - MedievalCoal
+    - MedievalCoal10
+    - SheetPlasma1
+    - SheetPlasma10
+    - SheetUranium1
+    - SheetUranium10
 
 # - type: entity
-#   parent: CP14BaseWorkbench
+#   parent: BaseLatheLube
 #   id: MedievalAutolathe
 #   name: foundry
 #   description: It produces sheets and ingots using ores.
@@ -20,9 +45,33 @@
 #   - type: Sprite
 #     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/autolathe.rsi
 #     layers:
-#       - state: building
-#       - state: unlit
-#         shader: unshaded
+#     - state: icon
+#       map: ["enum.LatheVisualLayers.IsRunning"]
+#     - state: unlit
+#       shader: unshaded
+#       map: ["enum.PowerDeviceVisualLayers.Powered"]
+#     - state: inserting
+#       map: ["enum.MaterialStorageVisualLayers.Inserting"]
+#     - state: panel
+#       map: ["enum.WiresVisualLayers.MaintenancePanel"]
+#   - type: MaterialStorage
+#     whitelist:
+#       tags:
+#         - Sheet
+#         - RawMaterial
+#         - Ingot
+#   - type: Lathe
+#     idleState: icon
+#     runningState: building
+#     unlitIdleState: unlit
+#     unlitRunningState: unlit-building
+#     staticPacks:
+#     - MedievalToolsStatic
+#     - MedievalPartsStatic
+#     - CablesStatic
+#     - MaterialsStatic
+#     - BasicChemistryStatic
+#     - PowerCellsStatic
 #   - type: Appearance
 #   - type: Physics
 #     bodyType: Static
@@ -39,18 +88,17 @@
 #   - type: Destructible
 #     thresholds:
 #     - trigger: !type:DamageTrigger
-#         damage: 180
+#         damage: 280
 #       behaviors:
 #       - !type:DoActsBehavior
 #         acts: [ "Destruction" ]
 #   - type: Transform
 #     anchored: true
 #   - type: Pullable
-#   - type: CP14Workbench
-#     craftSpeed: 1
-#     craftSound: "/Audio/Machines/circuitprinter.ogg"
-#     recipes:
-#     -
+#   - type: ContainerContainer
+#     containers:
+#       machine_board: !type:Container
+#       machine_parts: !type:Container
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -92,6 +140,7 @@
     - SheetSteel10
     - PartRodMetal5
     - SheetRGlass10
+    - SheetPGlass10
     - SheetRPGlass10
     - SheetUGlass10
     - SheetRUGlass10
@@ -102,4 +151,6 @@
     - MedievalUnfinishedMachineFrameCraft
     - MedievalCombatKnife
     - MedievalTruncheon
+    - HydroponicsToolHatchet
+    - MedievalPickaxeEvent
     - MedievalClothingOuterArmorStandard

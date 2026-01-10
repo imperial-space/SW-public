@@ -15,9 +15,17 @@
         "name": "dead"
       },
       {
+        "name": "packed"
+      },
+      {
+        "name": "statue"
+      },
+      {
+        "name": "part"
+      },
+      {
         "name": "unshaded",
         "directions": 4
       }
     ]
   }
-  

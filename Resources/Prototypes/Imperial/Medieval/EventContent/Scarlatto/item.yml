@@ -17,14 +17,12 @@
   name: modular machine part
   parent: BaseStockPart
   description: A basic machine part used in the construction of a variety of devices.
-  suffix: 30
   components:
     - type: Sprite
       sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
       state: capacitor
     - type: Stack
       stackType: Capacitor
-      count: 30
 
 - type: entity
   id: CapacitorStockPart1
@@ -39,14 +37,12 @@
   name: modular machine part
   parent: BaseStockPart
   description: A basic machine part used in the construction of a variety of devices.
-  suffix: 30
   components:
     - type: Sprite
       sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
       state: matterbin
     - type: Stack
       stackType: MatterBin
-      count: 30
 
 - type: entity
   id: MatterBinStockPart1
@@ -84,18 +80,6 @@
     count: 10
 
 - type: entity
-  parent: SheetPGlass
-  id: SheetPGlass10
-  name: plasma glass
-  suffix: Single
-  components:
-  - type: Sprite
-    state: pglass
-  - type: Stack
-    stackType: PlasmaGlass
-    count: 10
-
-- type: entity
   parent: MaterialDurathread
   id: MaterialDurathread10
   suffix: Single
@@ -109,7 +93,7 @@
   parent: SheetRPGlass
   id: SheetRPGlass10
   name: reinforced plasma glass
-  suffix: Single
+  suffix: 10
   components:
   - type: Sprite
     state: rpglass
@@ -118,10 +102,31 @@
     count: 10
 
 - type: entity
+  parent: SheetPGlass
+  id: SheetPGlass10
+  name: plasma glass
+  suffix: 10
+  components:
+  - type: Sprite
+    state: pglass
+  - type: Stack
+    stackType: PlasmaGlass
+    count: 10
+
+- type: entity
+  parent: SheetUranium
+  id: SheetUranium10
+  name: uranium
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
   parent: SheetUGlass
   id: SheetUGlass10
   name: uranium glass
-  suffix: Single
+  suffix: 10
   components:
   - type: Sprite
     state: uglass
@@ -133,7 +138,7 @@
   parent: SheetRUGlass
   id: SheetRUGlass10
   name: reinforced uranium glass
-  suffix: Single
+  suffix: 10
   components:
   - type: Sprite
     state: ruglass

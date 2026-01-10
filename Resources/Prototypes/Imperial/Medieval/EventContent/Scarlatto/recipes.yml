@@ -41,11 +41,20 @@
   result: SheetRGlass10
 
 - type: CP14Recipe
+  id: SheetPGlass10
+  craftTime: 5
+  iconOverride: SheetPGlass10
+  stacks:
+    Plasma: 10
+    Glass: 10
+  result: SheetPGlass10
+
+- type: CP14Recipe
   id: SheetRPGlass10
   craftTime: 5
   iconOverride: SheetRPGlass10
   stacks:
-    ReinforcedGlass: 10
+    PlasmaGlass: 10
     MetalRod: 10
   result: SheetRPGlass10
 
@@ -80,7 +89,7 @@
   craftTime: 10
   iconOverride: MedievalArmWindowCraft
   stacks:
-    ReinforcedPlasmaGlass: 5
+    ReinforcedGlass: 5
   result: MedievalArmWindowCraft
 
 - type: CP14Recipe
@@ -135,3 +144,148 @@
     Plasteel: 10
     Durathread: 15
   result: MedievalClothingOuterArmorStandard
+
+- type: CP14Recipe
+  id: SheetPlasma1
+  craftTime: 5
+  iconOverride: SheetPlasma1
+  stacks:
+    PlasmaOre: 1
+    MedievalCoal: 1
+  result: SheetPlasma1
+
+- type: CP14Recipe
+  id: SheetPlasma10
+  craftTime: 15
+  iconOverride: SheetPlasma10
+  stacks:
+    PlasmaOre: 10
+    MedievalCoal: 10
+  result: SheetPlasma10
+
+- type: CP14Recipe
+  id: SheetUranium1
+  craftTime: 5
+  iconOverride: SheetUranium1
+  stacks:
+    UraniumOre: 1
+    MedievalCoal: 1
+  result: SheetUranium1
+
+- type: CP14Recipe
+  id: SheetUranium10
+  craftTime: 15
+  iconOverride: SheetUranium10
+  stacks:
+    UraniumOre: 10
+    MedievalCoal: 10
+  result: SheetUranium10
+
+- type: CP14Recipe
+  id: MedievalHatchetEvent
+  craftTime: 20
+  iconOverride: MedievalHatchetEvent
+  stacks:
+    Steel: 12
+    Plastic: 5
+    WoodPlank: 4
+  result: MedievalHatchetEvent
+
+- type: CP14Recipe
+  id: MedievalPickaxeEvent
+  craftTime: 20
+  iconOverride: MedievalPickaxe
+  stacks:
+    Steel: 14
+    WoodPlank: 8
+  result: MedievalPickaxe
+
+# - type: latheRecipePack
+#   id: MedievalToolsStatic
+#   recipes:
+#   - MedievalWirecutterCraft
+#   - MedievalScrewdriverCraft
+#   - MedievalWrenchCraft
+#   - MedievalCrowbarCraft
+#   - Welder
+#   - SprayPainter
+#   - SprayPainterAmmo
+#   - FlashlightLantern
+#   - UtilityBelt
+#   - HandheldGPSBasic
+#   - ClothingHeadHatWelding
+
+# - type: latheRecipePack
+#   id: MedievalPartsStatic
+#   recipes:
+#   - MedievalCapacitorStockPart
+#   - MedievalMicroManipulatorStockPart
+#   - MedievalMatterBinStockPart
+#   - MedievalProximitySensor
+
+# - type: latheRecipe
+#   parent: BaseToolRecipe
+#   id: MedievalWirecutterCraft
+#   result: MedievalWirecutter
+#   materials:
+#     Steel: 500
+#     Plastic: 300
+
+# - type: latheRecipe
+#   parent: BaseToolRecipe
+#   id: MedievalScrewdriverCraft
+#   result: MedievalScrewdriver
+#   materials:
+#     Steel: 500
+#     Plastic: 300
+
+# - type: latheRecipe
+#   parent: BaseToolRecipe
+#   id: MedievalCrowbarCraft
+#   result: MedievalCrowbar
+#   materials:
+#     Steel: 1000
+
+# - type: latheRecipe
+#   parent: BaseToolRecipe
+#   id: MedievalWrenchCraft
+#   result: MedievalWrench
+#   materials:
+#     Steel: 700
+
+# - type: latheRecipe
+#   parent: BaseToolRecipe
+#   id: MedievalCapacitorStockPart
+#   result: CapacitorStockPart
+#   materials:
+#     Steel: 500
+#     Plastic: 300
+#     Plasma: 300
+#     Uranium: 200
+
+# - type: latheRecipe
+#   parent: BaseToolRecipe
+#   id: MedievalMicroManipulatorStockPart
+#   result: MicroManipulatorStockPart
+#   materials:
+#     Steel: 300
+#     Plastic: 200
+#     MedievalGold: 50
+
+# - type: latheRecipe
+#   parent: BaseToolRecipe
+#   id: MedievalMatterBinStockPart
+#   result: MatterBinStockPart
+#   materials:
+#     Plasteel: 400
+#     Glass: 300
+#     MedievalGold: 30
+
+# - type: latheRecipe
+#   parent: BaseToolRecipe
+#   id: MedievalProximitySensor
+#   result: ProximitySensor
+#   materials:
+#     Plastic: 500
+#     Glass: 200
+#     MedievalGold: 30

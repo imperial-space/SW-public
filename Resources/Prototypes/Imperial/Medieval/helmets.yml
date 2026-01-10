@@ -1893,7 +1893,7 @@
     sprite: Imperial/Medieval/Clothing/Head/up_ironroyalhelm.rsi
 
 - type: entity
-  parent: MedievalClothingHeadHelmetCrusader
+  parent: MedievalClothingHeadHelmetNormandFree
   id: MedievalClothingHeadHatRoyalChaplain
   name: MedievalClothingHeadHatRoyalChaplain
   description: MedievalClothingHeadHatRoyalChaplain

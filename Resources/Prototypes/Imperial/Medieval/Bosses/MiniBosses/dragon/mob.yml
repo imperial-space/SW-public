@@ -115,13 +115,6 @@
     - type: MovementSpeedModifier
       baseWalkSpeed: 3.3
       baseSprintSpeed: 2
-    - type: AnnounceOnSpawn
-      message: dragon-spawn-announcement
-      color: "yellow"
-      sender: ancient-entity
-      sound:
-        path: /Audio/Imperial/Medieval/dragon_summon.ogg
-        volume: -2
     - type: GhostTakeoverAvailable
     - type: GhostRole
       makeSentient: true
@@ -151,7 +144,7 @@
 - type: entity
   name: dragon
   parent: MedievalBossBaseDragon
-  id: MedievalBossIceDragon
+  id: MedievalBossIceDragonNoAnnouncement
   description: big dragon
   components:
     - type: Sprite
@@ -189,8 +182,22 @@
 
 - type: entity
   name: dragon
+  parent: MedievalBossIceDragonNoAnnouncement
+  id: MedievalBossIceDragon
+  description: big dragon
+  components:
+    - type: AnnounceOnSpawn
+      message: dragon-spawn-announcement
+      color: "yellow"
+      sender: ancient-entity
+      sound:
+        path: /Audio/Imperial/Medieval/dragon_summon.ogg
+        volume: -2
+
+- type: entity
+  name: dragon
   parent: MedievalBossBaseDragon
-  id: MedievalBossFireDragon
+  id: MedievalBossFireDragonNoAnnouncement
   description: big dragon
   components:
     - type: Sprite
@@ -232,6 +239,20 @@
       - id: MedievalDragonLootTrueFireEssence
         amount: 1
 
+- type: entity
+  name: dragon
+  parent: MedievalBossFireDragonNoAnnouncement
+  id: MedievalBossFireDragon
+  description: big dragon
+  components:
+    - type: AnnounceOnSpawn
+      message: dragon-spawn-announcement
+      color: "yellow"
+      sender: ancient-entity
+      sound:
+        path: /Audio/Imperial/Medieval/dragon_summon.ogg
+        volume: -2
+
 - type: damageModifierSet
   id: FireDragon
   coefficients:
@@ -240,7 +261,7 @@
 - type: entity
   name: dragon
   parent: MedievalBossBaseDragon
-  id: MedievalBossAcidDragon
+  id: MedievalBossAcidDragonNoAnnouncement
   description: big dragon
   components:
     - type: Sprite
@@ -284,8 +305,22 @@
 
 - type: entity
   name: dragon
+  parent: MedievalBossAcidDragonNoAnnouncement
+  id: MedievalBossAcidDragon
+  description: big dragon
+  components:
+    - type: AnnounceOnSpawn
+      message: dragon-spawn-announcement
+      color: "yellow"
+      sender: ancient-entity
+      sound:
+        path: /Audio/Imperial/Medieval/dragon_summon.ogg
+        volume: -2
+
+- type: entity
+  name: dragon
   parent: MedievalBossBaseDragon
-  id: MedievalBossThunderDragon
+  id: MedievalBossThunderDragonNoAnnouncement
   description: big dragon
   components:
     - type: Sprite
@@ -327,8 +362,22 @@
 
 - type: entity
   name: dragon
+  parent: MedievalBossThunderDragonNoAnnouncement
+  id: MedievalBossThunderDragon
+  description: big dragon
+  components:
+    - type: AnnounceOnSpawn
+      message: dragon-spawn-announcement
+      color: "yellow"
+      sender: ancient-entity
+      sound:
+        path: /Audio/Imperial/Medieval/dragon_summon.ogg
+        volume: -2
+
+- type: entity
+  name: dragon
   parent: MedievalBossBaseDragon
-  id: MedievalBossNecroDragon
+  id: MedievalBossNecroDragonNoAnnouncement
   description: big dragon
   components:
     - type: Sprite
@@ -381,3 +430,17 @@
         amount: 8
       - id: MedievalLeather1
         amount: 3
+
+- type: entity
+  name: dragon
+  parent: MedievalBossNecroDragonNoAnnouncement
+  id: MedievalBossNecroDragon
+  description: big dragon
+  components:
+    - type: AnnounceOnSpawn
+      message: dragon-spawn-announcement
+      color: "yellow"
+      sender: ancient-entity
+      sound:
+        path: /Audio/Imperial/Medieval/dragon_summon.ogg
+        volume: -2
