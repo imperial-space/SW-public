@@ -292,6 +292,8 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_91.rsi
   - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase
@@ -2593,6 +2595,8 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_89.rsi
   - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase
@@ -2605,6 +2609,8 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_90.rsi
   - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase
