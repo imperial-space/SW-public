@@ -75,7 +75,8 @@ namespace Content.Server.Imperial.Medieval.Revive
 
             if (_reviveCount[playerUid] >= MaxRevives)
                 return;
-
+            if (!HasComp<GhostComponent>(player.AttachedEntity))
+                return;
 
             var reviveQuery = EntityManager.EntityQuery<MedievalReviveSpawnerComponent>();
 

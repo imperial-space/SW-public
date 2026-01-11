@@ -31,6 +31,9 @@ public sealed class DeathCurseSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<DeathCurseComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<DeathCurseComponent, ComponentRemove>(OnRemove);
+
         _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DeathCurseTick);
         _nextCheckTimePopup = _timing.CurTime + TimeSpan.FromSeconds(DeathCurseTick*10);
     }
@@ -76,7 +79,6 @@ public sealed class DeathCurseSystem : EntitySystem
                         {
                             RemComp<DeathCurseComponent>(curse.Owner);
                             _popupSystem.PopupEntity("Ты чутсвуешь, что боль наконец то отступает", curse.Owner, curse.Owner);
-                            _alertsSystem.ClearAlert(curse.Owner, curse.CurseAlert);
                         }
                     }
                 }
@@ -95,5 +97,15 @@ public sealed class DeathCurseSystem : EntitySystem
             return;
         _popupSystem.PopupEntity("Ты чутсвуешь жуткую боль, что растекается по твоим венам", entity, entity);
         _nextCheckTimePopup = _timing.CurTime + TimeSpan.FromSeconds(DeathCurseTick*10);
+    }
+
+    private void OnInit(EntityUid uid, DeathCurseComponent component, ComponentInit args)
+    {
+        _alertsSystem.ShowAlert(component.Owner, component.CurseAlert, (short)Math.Clamp(Math.Round((360-component.CurseCount) / 120f), 0, 2));
+    }
+
+    private void OnRemove(EntityUid uid, DeathCurseComponent component, ComponentRemove args)
+    {
+        _alertsSystem.ClearAlert(component.Owner, component.CurseAlert);
     }
 }
