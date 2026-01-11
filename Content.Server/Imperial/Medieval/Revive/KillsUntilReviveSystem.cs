@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Server.Administration.Logs;
 using Content.Server.Destructible;
 using Content.Server.Destructible.Thresholds;
 using Content.Server.Destructible.Thresholds.Behaviors;
@@ -6,6 +7,7 @@ using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Shared.Alert;
 using Content.Shared.Damage;
+using Content.Shared.Database;
 using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.Revive;
 using Content.Shared.Mind.Components;
@@ -21,6 +23,7 @@ namespace Content.Server.Imperial.Medieval.Revive
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
         public override void Initialize()
         {
@@ -87,7 +90,7 @@ namespace Content.Server.Imperial.Medieval.Revive
         }
         private void OnGhost(EntityUid uid, KillsUntilReviveComponent component, MindRemovedMessage args)
         {
-            Log.Info("Пытаюсь удалить "+uid);
+            _adminLog.Add(LogType.Action, LogImpact.Medium, $"{ToPrettyString(uid):player} убил {component.CurrentKills} призраков и вышел из тела");
             _entityManager.DeleteEntity(uid);
         }
     }

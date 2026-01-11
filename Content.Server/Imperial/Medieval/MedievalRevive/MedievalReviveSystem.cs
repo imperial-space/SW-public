@@ -18,6 +18,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.Medieval.CCVar;
+using Content.Shared.Imperial.Medieval.MedievalReviveSpawner;
 using Content.Shared.Imperial.Medieval.Revive;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -50,6 +51,7 @@ namespace Content.Server.Imperial.Medieval.Revive
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
 
         private const int MaxRevives = 3;
         private readonly Dictionary<NetUserId, int> _reviveCount = new();
@@ -58,6 +60,7 @@ namespace Content.Server.Imperial.Medieval.Revive
         {
             base.Initialize();
             SubscribeNetworkEvent<GhostReviveRequestEvent>(OnGhostReviveRequest);
+            SubscribeNetworkEvent<ReviveCountRequestEvent>(OnReviveCountRequest);
         }
         private void OnGhostReviveRequest(GhostReviveRequestEvent msg, EntitySessionEventArgs args)
         {
@@ -76,7 +79,8 @@ namespace Content.Server.Imperial.Medieval.Revive
 
             var reviveQuery = EntityManager.EntityQuery<MedievalReviveSpawnerComponent>();
 
-            if (reviveQuery.Count() == 0) return;
+            if (reviveQuery.Count() == 0)
+                return;
 
             var reviveList = reviveQuery.ToList();
 
@@ -97,8 +101,19 @@ namespace Content.Server.Imperial.Medieval.Revive
 
             _minds.SetUserId(newMind, player.UserId);
             _minds.TransferTo(newMind, mob);
-
             _reviveCount[playerUid]++;
+        }
+
+        private void OnReviveCountRequest(ReviveCountRequestEvent msg, EntitySessionEventArgs args)
+        {
+            var player = args.SenderSession;
+            var playerUid = player.UserId;
+
+            if (!_reviveCount.ContainsKey(playerUid))
+                _reviveCount[playerUid] = 0;
+
+            // Отправляем ответ
+            RaiseNetworkEvent(new ReviveCountResponseEvent(_reviveCount[playerUid], MaxRevives), args.SenderSession);
         }
     }
 }
