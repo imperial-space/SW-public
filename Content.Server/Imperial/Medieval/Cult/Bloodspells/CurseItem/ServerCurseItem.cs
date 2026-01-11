@@ -28,7 +28,7 @@ public sealed class ServerCurseItem : EntitySystem
 
     private TimeSpan _nextCheckTime;
 
-    private const float CurseTick = 1f;
+    private const float CurseTick = 60f;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -85,7 +85,7 @@ public sealed class ServerCurseItem : EntitySystem
                     .Any(x => HasComp<CurseItemComponent>(x)) &&
                 !_hands.EnumerateHeld((parent, hands)).Any(y => HasComp<CurseItemComponent>(y)))
                 continue; // не особо мне нравится эта проверка но она проверяет в руках или одето или тащит человек
-            
+
             if (!TryComp<SkillsComponent>(parent, out var skills))
                 Curse(parent);
             else if (!skills.Levels.TryGetValue("Intelligence", out var intelligence))
