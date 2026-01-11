@@ -168,7 +168,7 @@
   #    coefficients:
   #      Radiation: 0.0
   #      Caustic: 0.0
-  #- type: CurseItem
+  - type: CurseItem
 
 - type: entity
   parent: ClothingUniformBase
