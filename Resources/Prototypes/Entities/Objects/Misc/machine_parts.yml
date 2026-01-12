@@ -19,6 +19,10 @@
   description: A basic machine part used in the construction of a variety of devices.
   suffix: Rating 1
   components:
+    - type: Material # Imperial Space
+    - type: PhysicalComposition # Imperial Space
+      materialComposition:
+        Manipulator: 100
     - type: Sprite
       state: micro_mani
     - type: Stack
@@ -26,3 +30,5 @@
     - type: Tag # Imperial Space Добавлен тег для инженерного киборга
       tags:
       - Manipulator
+      - RawMaterial
+      - ConstructionMaterial
