@@ -20,8 +20,8 @@
       count: 1
     - type: BloodMaterial
       materialType: BloodIron
-    #- type: CurseItem
-    #  cult: true
+    - type: CurseItem
+      cult: true
 
 
 
@@ -45,8 +45,8 @@
     - type: Stack
       stackType: MedievalBloodSteelIngot
       count: 1
-    #- type: CurseItem
-    #  cult: true
+    - type: CurseItem
+      cult: true
 
 - type: entity
   id: MedievalBloodLeather
@@ -80,8 +80,8 @@
       - leather_3
     - type: BloodMaterial
       materialType: BloodLeather
-    #- type: CurseItem
-    #  cult: true
+    - type: CurseItem
+      cult: true
 
 - type: entity
   parent: MedievalBloodLeather
