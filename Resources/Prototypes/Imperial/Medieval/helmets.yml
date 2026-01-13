@@ -685,6 +685,17 @@
     - Hair
 
 - type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerNeutral
+  name: MedievalClothingHeadHelmetCharmerNeutral
+  description: Medieval salad helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmer_neutral.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmer_neutral.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetCollegiumPurpleHat
   id: MedievalClothingHeadHelmetCollegiumHatBaronSaturday
   name: MedievalClothingHeadHelmetCollegiumHatBaronSaturday

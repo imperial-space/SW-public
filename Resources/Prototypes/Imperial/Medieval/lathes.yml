@@ -1062,6 +1062,8 @@
     - MedievalScrollsPnyaCraft
     - MedievalScrollsKoboldCraft
     - MedievalScrollsPetSlimeCraft
+    - MedievalClothingHeadHelmetCharmerNeutral
+    - MedievalClothingOuterArmorCharmerNeutral
 
 - type: entity
   parent: CP14BaseWorkbench

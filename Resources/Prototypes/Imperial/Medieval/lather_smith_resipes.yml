@@ -1011,3 +1011,23 @@
   stacks:
     MedievalIronIngot: 2
   result: MedievalCultConductorRodIron
+
+- type: CP14Recipe
+  id: MedievalClothingOuterArmorCharmerNeutral
+  craftTime: 14
+  iconOverride: MedievalClothingOuterArmorCharmerNeutral
+  stacks:
+    MedievalSteelIngot: 2
+    Cloth: 16
+    MedievalAdam: 4
+  result: MedievalClothingOuterArmorCharmerNeutral
+
+- type: CP14Recipe
+  id: MedievalClothingHeadHelmetCharmerNeutral
+  craftTime: 14
+  iconOverride: MedievalClothingHeadHelmetCharmerNeutral
+  stacks:
+    MedievalSteelIngot: 1
+    Cloth: 8
+    MedievalAdam: 2
+  result: MedievalClothingHeadHelmetCharmerNeutral
