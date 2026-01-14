@@ -1,3 +1,4 @@
+using Robust.Shared.Network;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 
@@ -44,6 +45,9 @@ namespace Content.Server.MagicBarrier.Components
 
         [DataField]
         public float StarfallRandomise = 10;
+
+        [DataField]
+        public Dictionary<NetUserId, int> ReviveCount = new();
 
     }
 }
