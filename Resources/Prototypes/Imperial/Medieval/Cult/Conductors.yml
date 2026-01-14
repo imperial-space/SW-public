@@ -60,6 +60,7 @@
           whitelist:
             tags:
               - CultConductorRod
+    - type: BloodMaterial
 
 - type: entity
   id: MedievalCultConductorFull
@@ -132,7 +133,15 @@
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Materials/cult.rsi
-      state: rod
+      state: rod_iron
     - type: Tag
       tags:
         - CultConductorRod
+    - type: BloodMaterial
+
+- type: entity
+  id: CultCraftAnimate
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Cult/animations/craft.rsi
+      state: main

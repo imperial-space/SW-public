@@ -4,11 +4,47 @@
   name: proximity sensor
   description: Senses things in close proximity.
   components:
+  # Imperial Space
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      ProximitySensor: 100
+  - type: Stack
+    stackType: ProximitySensor
+  # Imperial Space
   - type: Sprite
     sprite: Objects/Misc/proximity_sensor.rsi
     state: icon
   - type: Tag
     tags:
       - ProximitySensor
+      - RawMaterial # Imperial Space
+      - ConstructionMaterial # Imperial Space
   - type: StaticPrice
     price: 40
+
+  # Imperial Space
+- type: entity
+  id: ProximitySensor1
+  name: modular machine part
+  parent: ProximitySensor
+  components:
+    - type: Stack
+      count: 1
+
+- type: material
+  id: ProximitySensor
+  stackEntity: ProximitySensor1
+  name: датчик движения
+  unit: materials-unit-bar
+  icon: { sprite: Objects/Misc/proximity_sensor.rsi, state: icon }
+  color: "#d9d9d9"
+  price: 0.1
+
+- type: stack
+  id: ProximitySensor
+  name: датчик движения
+  icon: { sprite: Objects/Misc/proximity_sensor.rsi, state: icon}
+  spawn: ProximitySensor1
+  maxCount: 30
+  # Imperial Space

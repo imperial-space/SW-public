@@ -65,7 +65,9 @@
     MedievalClothingNeckCloakClanEagle: [MedievalClothingNeckCloakRoyalLegionEagle]
     MedievalClothingNeckCloakClanFox: [MedievalClothingNeckCloakRoyalInsFox]
     MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadRoyalHelmet, MedievalClothingHeadHatRoyalChaplain]
-    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth73]
+    ClothingUniformJumpsuitChaplain: [MedievalClothingUniformJumpsuitShitCloth76]
+    MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth73, MedievalClothingUniformJumpsuitShitCloth7623]
+    MedievalClothingUniformJumpsuitShitCloth24: [MedievalClothingUniformJumpsuitShitCloth69, MedievalClothingUniformJumpsuitShitCloth70]
     MedievalClothingUniformJumpsuitShitCloth26: [MedievalClothingUniformJumpsuitShitCloth75]
     MedievalClothingUniformJumpsuitShitCloth3: [MedievalClothingUniformJumpsuitShitCloth75]
     MedievalClothingUniformJumpsuitShitCloth1: [MedievalClothingUniformJumpsuitShitCloth67]
@@ -87,7 +89,7 @@
     MedievalClothingHeadTreasurer: [MedievalClothingHeadRoyalHoop]
     MedievalClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
     ClothingHandsGlovesColorLightBrown: [MedievalClothingHandsRoyalGloves]
-    MedievalShoesSapogi: [MedievalClothingRoyalBoots]
+    MedievalShoesSapogi: [MedievalClothingRoyalBoots, MedievalClothingRoyalChaplainBoots]
     MedievalClothingUniformJumpsuitShitCloth84: [MedievalClothingUniformJumpsuitShitCloth75]
     MedievalClothingUniformJumpsuitShitCloth85: [MedievalClothingUniformJumpsuitShitCloth75]
     MedievalClothingUniformJumpsuitShitCloth86: [MedievalClothingUniformJumpsuitShitCloth75]
@@ -98,8 +100,6 @@
     MedievalClothingHeadHelmetLegionTribuneNew: [MedievalClothingHeadHelmetLegionTribuneNewRoyal]
     MedievalClothingHeadHelmetLegionLegatNew: [MedievalClothingHeadHelmetLegionLegatNewRoyal]
     MedievalClothingHeadHelmetLegionLegatAltNew: [MedievalClothingHeadHelmetLegionLegatAltNewRoyal]
-
-
 
 - type: customization
   id: game123456

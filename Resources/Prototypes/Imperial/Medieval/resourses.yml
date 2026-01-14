@@ -774,13 +774,14 @@
   spawn: MedievalAdam
   maxCount: 30
 
-#- type: material
-#  id: MedievalGold
-#  stackEntity: MedievalGold
-#  name: materials-gold
-#  icon: { sprite: Imperial/Medieval/Materials/ingots.rsi, state: gold }
-#  color: "#d9d9d9"
-#  price: 0.1
+- type: material
+  id: MedievalGold
+  stackEntity: MedievalIngotGold
+  name: materials-gold
+  unit: materials-unit-bar
+  icon: { sprite: Imperial/Medieval/Materials/ingots.rsi, state: gold }
+  color: "#d9d9d9"
+  price: 0.1
 
 - type: stack
   id: MedievalGold
@@ -924,11 +925,13 @@
     tags:
     - RawMaterial
     - Sheet
+    - Ingot
+    - ConstructionMaterial
     #- Ore
   - type: Material
-  #- type: PhysicalComposition
-  #  materialComposition:
-  #    MedievalGold: 100
+  - type: PhysicalComposition
+    materialComposition:
+      MedievalGold: 100
   - type: Stack
     stackType: MedievalGold
     count: 1

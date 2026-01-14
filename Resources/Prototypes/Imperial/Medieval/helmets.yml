@@ -557,7 +557,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  #- type: CurseItem
+  - type: CurseItem
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -583,7 +583,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
-  #- type: CurseItem
+  - type: CurseItem
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -683,6 +683,17 @@
   - type: HideLayerClothing
     slots:
     - Hair
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerNeutral
+  name: MedievalClothingHeadHelmetCharmerNeutral
+  description: Medieval salad helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmer_neutral.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmer_neutral.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCollegiumPurpleHat
@@ -1902,6 +1913,10 @@
     sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader

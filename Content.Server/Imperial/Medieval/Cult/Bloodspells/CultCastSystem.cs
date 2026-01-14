@@ -10,8 +10,10 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Hands.Systems;
 using Content.Server.Imperial.Medieval.Cult.Bloodspells.light;
+using Content.Shared.Alert;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Cult;
+using Content.Shared.Interaction.Events;
 using Content.Shared.Weapons.Melee.Events;
 
 
@@ -29,13 +31,23 @@ public sealed class CultCastSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly AlertsSystem _alert = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
     {
         SubscribeLocalEvent<CultMemberComponent, EntitySpokeEvent>(OnSpoke);
         SubscribeLocalEvent<CultMemberComponent, DamageChangedEvent>(OnGetDamage);
+        SubscribeLocalEvent<CultMemberComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<CultMemberComponent, AttackAttemptEvent>(OnAttack);
 
+
+    }
+
+    private void OnInit(EntityUid uid, CultMemberComponent component, ComponentInit args)
+    {
+        if (component.DeathCusre)
+            _alert.ShowAlert(uid, component.DeathCurseAlert);
     }
 
     private void OnGetDamage(EntityUid uid, CultMemberComponent component, DamageChangedEvent args)
@@ -67,6 +79,22 @@ public sealed class CultCastSystem : EntitySystem
             AddComp<DeathCurseComponent>(args.Origin.Value);
         }
         component.DeathCusre = false;
+        _alert.ClearAlert(uid, component.DeathCurseAlert);
+    }
+
+    private void OnAttack(EntityUid uid, CultMemberComponent component, AttackAttemptEvent args)
+    {
+        if (!component.DeathCusre)
+            return;
+        if (args.Target == null)
+            return;
+        if (HasComp<CultMemberComponent>(args.Target.Value))
+            return;
+        if  (TryComp<CultCursedComponent>(args.Target.Value, out var curs) && curs.CurseLevel != 0)
+            return;
+
+        component.DeathCusre =  false;
+        _alert.ClearAlert(uid, component.DeathCurseAlert);
     }
 
     private static bool CheckSequenceInQueueFromRow(Queue<(string message, TimeSpan time)> queue, string[,] array, int targetRow)
@@ -179,7 +207,7 @@ public sealed class CultCastSystem : EntitySystem
                         // Проверяем, что предмет в руке — это именно книга-прототип (MedievalBookCultGuide)
                         if (!_entityManager.GetComponent<MetaDataComponent>(heldItem.Value).EntityPrototype?.ID.Equals("MedievalBookCultGuide") == true)
                         {
-                            _popupSystem.PopupEntity("В руке должно быть святое писание! а не "+heldItem+"  "+_entityManager.GetComponent<MetaDataComponent>(heldItem.Value).EntityPrototype?.Name, uid, uid);
+                            _popupSystem.PopupEntity("В руке должно быть святое писание! а не "+ heldItem+"  "+_entityManager.GetComponent<MetaDataComponent>(heldItem.Value).EntityPrototype?.Name, uid, uid);
                             break;
                         }
 
@@ -228,7 +256,7 @@ public sealed class CultCastSystem : EntitySystem
                     _popupSystem.PopupEntity("Ресурсов не достаточно", uid, uid);
                     break;
                 }
-                case "Wilkus":
+                case "Vilkus":
                 {
                     var needCount = 5;
                     var myMaterials = new List<EntityUid>{};
@@ -332,11 +360,16 @@ public sealed class CultCastSystem : EntitySystem
                 }
                 case "Me chtypisei":
                 {
-                    if (component.DeathCusre)
+                    if (!component.DeathCusre)
                     {
                         component.DeathCusre = true;
+                        _popupSystem.PopupEntity("Да будет проклят тот, кто меня ударит", uid, uid);
+                        _alert.ShowAlert(uid, component.DeathCurseAlert);
                     }
-                    _popupSystem.PopupEntity("Да будет проклят тот, кто меня ударит", uid, uid);
+                    else
+                    {
+                        _popupSystem.PopupEntity("Ты чуствуешь, что проклятье сильно", uid, uid);
+                    }
                     break;
                 }
                 default:

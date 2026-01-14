@@ -5,7 +5,7 @@
   description: 'A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.'
   components:
   - type: RDWeight
-    value: 1
+    value: 0.5
   - type: MeleeWeapon
     animation: CP14WeaponArcThrust
     wideAnimation: CP14WeaponArcSlash
@@ -14,7 +14,8 @@
     clickDamageModifier: 1.5
     damage:
       types:
-        Blunt: 8
+        Blunt: 4.5
+    attackRate: 1.5
     soundHit:
       collection: MetalThud
   - type: Meltable
@@ -27,7 +28,7 @@
   description: Industrial grade torque in a small screwdriving package.
   components:
   - type: RDWeight
-    value: 1
+    value: 0.5
   - type: MeleeWeapon
     wideAnimationRotation: -140
     angle: 0
@@ -39,6 +40,7 @@
     damage:
       types:
         Piercing: 6
+    attackRate: 1
     soundHit:
       collection: MetalThud
   - type: Meltable
@@ -51,7 +53,7 @@
   description: This kills the wire.
   components:
   - type: RDWeight
-    value: 1
+    value: 0.5
   - type: MeleeWeapon
     animation: CP14WeaponArcThrust
     wideAnimation: CP14WeaponArcSlash
@@ -60,7 +62,8 @@
     clickDamageModifier: 1.5
     damage:
       types:
-        Slash: 6
+        Piercing: 3
+    attackRate: 2
     soundHit:
       collection: MetalThud
   - type: Meltable
@@ -72,7 +75,7 @@
   description: A multipurpose tool to pry open doors and fight interdimensional invaders.
   components:
   - type: RDWeight
-    value: 1
+    value: 0.5
   - type: MeleeWeapon
     animation: CP14WeaponArcThrust
     wideAnimation: CP14WeaponArcSlash
@@ -94,7 +97,7 @@
   description: A rigid, steel-studded baton, meant to harm.
   components:
   - type: RDWeight
-    value: 2
+    value: 1
   - type: MeleeWeapon
     animation: CP14WeaponArcThrust
     wideAnimation: CP14WeaponArcSlash
@@ -123,7 +126,7 @@
   description: A deadly knife intended for melee confrontations.
   components:
   - type: RDWeight
-    value: 1
+    value: 0.5
   - type: MeleeParry
     parryChanse: 0.20
   - type: MeleeWeapon
@@ -161,3 +164,14 @@
   - type: Meltable
     resourceCount: 2
 
+- type: entity
+  name: combat knife
+  parent: MedievalHatchet
+  id: MedievalHatchetEvent
+  description: A deadly knife intended for melee confrontations.
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/Hydroponics/hatchet.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/Hydroponics/hatchet.rsi

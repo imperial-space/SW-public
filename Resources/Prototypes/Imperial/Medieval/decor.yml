@@ -2756,6 +2756,59 @@
     state: treelarge06
 
 - type: entity
+  parent: MedievalBaseTree
+  id: MedievalBaseMushroomTree
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/flora_mushroomtrees.rsi
+    offset: 0, 1.25
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.1, 0, 0.1, 0.35"
+        density: 2000
+        layer:
+        - WallLayer
+
+- type: entity
+  parent: MedievalBaseMushroomTree
+  id: MedievalMushroomTree4
+  components:
+  - type: Sprite
+    state: mushroomtree4
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 8
+          MedievalMushroom4:
+            min: 3
+            max: 5
+
+- type: entity
   id: MedievalBarrierMagic
   parent: BaseStructure
   name: nanotrasen banner

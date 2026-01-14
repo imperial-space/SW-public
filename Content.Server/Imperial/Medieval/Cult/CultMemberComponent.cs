@@ -4,6 +4,7 @@ using Robust.Shared.Prototypes;
 using System.Collections.Generic;
 using System;
 using System.Linq;
+using Content.Shared.Alert;
 
 namespace Content.Server.Cult.Components;
 
@@ -30,4 +31,7 @@ public sealed partial class CultMemberComponent : Component
 
     [DataField]
     public bool DeathCusre = true;
+
+    [DataField]
+    public ProtoId<AlertPrototype> DeathCurseAlert = "CultDeathCurse";
 }

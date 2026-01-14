@@ -2,8 +2,10 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Components;
+using Content.Server.MagicBarrier.Components;
 using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
 using Content.Shared.Actions;
@@ -18,6 +20,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Follower;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.Medieval.CCVar;
+using Content.Shared.Imperial.Medieval.MedievalReviveSpawner;
 using Content.Shared.Imperial.Medieval.Revive;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
@@ -34,12 +37,14 @@ using Content.Shared.Warps;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Revive
 {
@@ -49,21 +54,41 @@ namespace Content.Server.Imperial.Medieval.Revive
         [Dependency] private readonly TransformSystem _transformSystem = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
+
+        private const int MaxRevives = 3;
+
 
         public override void Initialize()
         {
             base.Initialize();
             SubscribeNetworkEvent<GhostReviveRequestEvent>(OnGhostReviveRequest);
+            SubscribeNetworkEvent<ReviveCountRequestEvent>(OnReviveCountRequest);
         }
         private void OnGhostReviveRequest(GhostReviveRequestEvent msg, EntitySessionEventArgs args)
         {
             var revivesOn = _cfg.GetCVar(MedievalCCVars.GhostRevive);
-            if (!revivesOn) return;
+            if (!revivesOn)
+                return;
 
             var player = args.SenderSession;
+            var playerUid = player.UserId;
+            if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
+                return;
+
+
+            if (!barrier.ReviveCount.ContainsKey(playerUid))
+                barrier.ReviveCount[playerUid] = 0;
+
+            if (barrier.ReviveCount[playerUid] >= MaxRevives)
+                return;
+            if (!HasComp<GhostComponent>(player.AttachedEntity))
+                return;
+
             var reviveQuery = EntityManager.EntityQuery<MedievalReviveSpawnerComponent>();
 
-            if (reviveQuery.Count() == 0) return;
+            if (reviveQuery.Count() == 0)
+                return;
 
             var reviveList = reviveQuery.ToList();
 
@@ -84,6 +109,21 @@ namespace Content.Server.Imperial.Medieval.Revive
 
             _minds.SetUserId(newMind, player.UserId);
             _minds.TransferTo(newMind, mob);
+            barrier.ReviveCount[playerUid]++;
+        }
+
+        private void OnReviveCountRequest(ReviveCountRequestEvent msg, EntitySessionEventArgs args)
+        {
+            var player = args.SenderSession;
+            var playerUid = player.UserId;
+            if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
+                return;
+
+            if (!barrier.ReviveCount.ContainsKey(playerUid))
+                barrier.ReviveCount[playerUid] = 0;
+
+            // Отправляем ответ
+            RaiseNetworkEvent(new ReviveCountResponseEvent(barrier.ReviveCount[playerUid], MaxRevives), args.SenderSession);
         }
     }
 }

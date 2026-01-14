@@ -3,6 +3,7 @@ using Content.Server.Chat.Systems;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
+using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs.Systems;
@@ -26,6 +27,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly StunSystem _stun = default!;
     [Dependency] private readonly IBanManager _ban = default!;
+    [Dependency] private readonly IAdminManager _admin = default!;
 
     private TimeSpan _nextUpdate = TimeSpan.Zero;
 
@@ -94,8 +96,13 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         SetSkills(args.Mob, args.Profile.Skills);
     }
 
-    private void OnSetSkillLevel(SetSkillLevelMessage msg)
+    private void OnSetSkillLevel(SetSkillLevelMessage msg, EntitySessionEventArgs args)
     {
+        if (!_admin.HasAdminFlag(args.SenderSession, AdminFlags.Admin))
+        {
+            _ban.CreateServerBan(args.SenderSession.UserId, args.SenderSession.Name, null, null, null, 0, Shared.Database.NoteSeverity.High, Loc.GetString("skills-autoban-set"));
+            return;
+        }
         var uid = GetEntity(msg.Target);
         var comp = EnsureComp<SkillsComponent>(uid);
 

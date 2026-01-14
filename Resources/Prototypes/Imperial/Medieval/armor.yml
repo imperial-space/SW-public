@@ -1079,7 +1079,7 @@
   - type: RadiationSource
     intensity: 0.3
     slope: 0.2
-  #- type: CurseItem
+  - type: CurseItem
 
 - type: entity
   parent: ClothingHandsBase
@@ -1189,7 +1189,7 @@
     intensity: 0.3
     slope: 0.2
   - type: MedievalIronHitSound
-  #- type: CurseItem
+  - type: CurseItem
 
 - type: entity
   parent: Clothing
@@ -1234,7 +1234,7 @@
     intensity: 0.3
     slope: 0.2
   - type: ProtectedFromStepTriggers
-  #- type: CurseItem
+  - type: CurseItem
 
 - type: entity
   parent: ClothingOuterBase
@@ -1541,6 +1541,19 @@
     damageCoefficient: 0.7
   - type: ManaRegen
     regen: 1.2
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerNeutral
+  name: MedievalClothingOuterArmorCharmerNeutral
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_neutral.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_neutral.rsi
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight

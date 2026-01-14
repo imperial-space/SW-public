@@ -37,11 +37,17 @@
     {
       "name": "leather_3"
     },
-        {
+    {
       "name": "cult_rod"
     },
+    {
+      "name": "rod_iron"
+    },
         {
-      "name": "rod"
+      "name": "rod",
+      "delays": [
+      [ 0.1, 0.1, 0.1, 0.1]
+            ]
     }
   ]
 }
