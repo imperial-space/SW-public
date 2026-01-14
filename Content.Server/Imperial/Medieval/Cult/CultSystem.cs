@@ -151,8 +151,6 @@ namespace Content.Server.Cult
         private void OnMeleeHit(EntityUid uid, CultRitualMeleeComponent component, MeleeHitEvent args)
         {
             if (!TryComp<CultMemberComponent>(args.User, out var cultComp)) return;
-            if (cultComp.DeathCusre)
-                cultComp.DeathCusre =  false;
             foreach (var entity in args.HitEntities)
             {
                 if (entity != args.User) continue;
@@ -935,6 +933,7 @@ namespace Content.Server.Cult
                     {
                         if (TryComp<MedievalBlodedComponent>(container.Item.Value, out var bloodcomp))
                         {
+                            bloodcomp.Blood += bloodyCost * 3 + redCost;
                             if (bloodcomp.Blood >= 10)
                             {
                                 var nestedItem = container.Item.Value;
@@ -942,10 +941,6 @@ namespace Content.Server.Cult
                                 var newItem = Spawn("MedievalCultConductorRod", coords);
                                 _entityManager.DeleteEntity(nestedItem);
                                 _itemSlotsSystem.TryInsert(slot.Item.Value, "Conductor" + i, newItem, uid);
-                            }
-                            else
-                            {
-                                bloodcomp.Blood += bloodyCost * 3 + redCost;
                             }
                         }
                         else
@@ -958,6 +953,7 @@ namespace Content.Server.Cult
 
                 if (TryComp<MedievalBlodedComponent>(slot.Item.Value, out var blodcomp))
                 {
+                    blodcomp.Blood += bloodyCost * 3 + redCost;
                     if (blodcomp.Blood >= 10)
                     {
                         if (TryComp<ButcherableComponent>(slot.Item.Value, out var butcherable))

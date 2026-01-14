@@ -159,7 +159,7 @@
   - type: Tag
     tags:
     - NecromancerKey
-  #- type: CurseItem
+  - type: CurseItem
 
 - type: entity
   parent: MedievalKeyBase
@@ -220,8 +220,8 @@
   - type: Tag
     tags:
     - CultOfTruthKey
-  #- type: CurseItem
-  #  cult: true
+  - type: CurseItem
+    cult: true
 
 - type: entity
   parent: MedievalKeyBase
