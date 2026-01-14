@@ -2,8 +2,10 @@ using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
 using Content.Server.Ghost.Components;
+using Content.Server.MagicBarrier.Components;
 using Content.Server.Mind;
 using Content.Server.Roles.Jobs;
 using Content.Shared.Actions;
@@ -42,6 +44,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Revive
 {
@@ -54,7 +57,7 @@ namespace Content.Server.Imperial.Medieval.Revive
         [Dependency] private readonly SharedPopupSystem _popup = default!;
 
         private const int MaxRevives = 3;
-        private readonly Dictionary<NetUserId, int> _reviveCount = new();
+
 
         public override void Initialize()
         {
@@ -65,15 +68,19 @@ namespace Content.Server.Imperial.Medieval.Revive
         private void OnGhostReviveRequest(GhostReviveRequestEvent msg, EntitySessionEventArgs args)
         {
             var revivesOn = _cfg.GetCVar(MedievalCCVars.GhostRevive);
-            if (!revivesOn) return;
+            if (!revivesOn)
+                return;
 
             var player = args.SenderSession;
             var playerUid = player.UserId;
+            if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
+                return;
 
-            if (!_reviveCount.ContainsKey(playerUid))
-                _reviveCount[playerUid] = 0;
 
-            if (_reviveCount[playerUid] >= MaxRevives)
+            if (!barrier.ReviveCount.ContainsKey(playerUid))
+                barrier.ReviveCount[playerUid] = 0;
+
+            if (barrier.ReviveCount[playerUid] >= MaxRevives)
                 return;
             if (!HasComp<GhostComponent>(player.AttachedEntity))
                 return;
@@ -102,19 +109,21 @@ namespace Content.Server.Imperial.Medieval.Revive
 
             _minds.SetUserId(newMind, player.UserId);
             _minds.TransferTo(newMind, mob);
-            _reviveCount[playerUid]++;
+            barrier.ReviveCount[playerUid]++;
         }
 
         private void OnReviveCountRequest(ReviveCountRequestEvent msg, EntitySessionEventArgs args)
         {
             var player = args.SenderSession;
             var playerUid = player.UserId;
+            if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
+                return;
 
-            if (!_reviveCount.ContainsKey(playerUid))
-                _reviveCount[playerUid] = 0;
+            if (!barrier.ReviveCount.ContainsKey(playerUid))
+                barrier.ReviveCount[playerUid] = 0;
 
             // Отправляем ответ
-            RaiseNetworkEvent(new ReviveCountResponseEvent(_reviveCount[playerUid], MaxRevives), args.SenderSession);
+            RaiseNetworkEvent(new ReviveCountResponseEvent(barrier.ReviveCount[playerUid], MaxRevives), args.SenderSession);
         }
     }
 }
