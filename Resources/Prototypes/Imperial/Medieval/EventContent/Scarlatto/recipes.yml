@@ -249,7 +249,7 @@
   id: MedievalWeaponsAutolath
   recipes:
   - MedievalWeaponPulseCarbine
-  - MedievalWeaponLaserSvalinn
+  - MedievalWeaponAdvancedLaser
   - MedievalFlashlightSecliteCraft
   - MedievalFlashCraft
 
@@ -322,8 +322,8 @@
 
 - type: latheRecipe
   parent: BaseToolRecipe
-  id: MedievalWeaponLaserSvalinn
-  result: WeaponLaserSvalinn
+  id: MedievalWeaponAdvancedLaser
+  result: WeaponAdvancedLaser
   materials:
     Plasteel: 700
     Uranium: 500
