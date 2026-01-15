@@ -1813,6 +1813,18 @@
     equipDelay: 4
     unequipDelay: 4
     sprite: Imperial/Medieval/Clothing/Armor/stray.rsi
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerNeutral
+  id: MedievalClothingOuterArmorCharmerNeutralStrayMage
+  name: MedievalClothingOuterArmorCharmerNeutralStrayMage
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/stray.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/stray.rsi
 
 - type: entity
   parent: ClothingOuterArmorPodWars
