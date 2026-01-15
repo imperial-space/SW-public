@@ -1671,4 +1671,6 @@
     cost: 220
     reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
-
+  - productEntity: PottedPlantRandomSW
+    cost: 125
+    reputationForBuying: 2
