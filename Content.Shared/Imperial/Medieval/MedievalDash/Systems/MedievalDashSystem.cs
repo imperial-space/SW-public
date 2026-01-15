@@ -128,7 +128,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var forceDirection = targetRotation - Angle.FromDegrees(45);
 
         var impulse = forceDirection.RotateVec(force);
-        var dashTime = TimeSpan.FromSeconds(0.7f);
+        var dashTime = TimeSpan.FromSeconds(0.5f);
 
         var staminaEv = new CheckDashStaminaCostModifiersEvent(1f);
         RaiseLocalEvent(player, ref staminaEv);
