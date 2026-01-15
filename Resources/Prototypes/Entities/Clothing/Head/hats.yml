@@ -27,7 +27,7 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
-    - ReticenceBeret # Imperial Mech
+    #- ReticenceBeret # Imperial Mech
 
 - type: entity
   parent: ClothingHeadBase
@@ -48,7 +48,7 @@
     - ClothMade
     - Recyclable
     - WhitelistChameleon
-    - ReticenceBeret # Imperial Mech
+    #- ReticenceBeret # Imperial Mech
 
 - type: entity
   parent: ClothingHeadBase

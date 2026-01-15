@@ -72,6 +72,8 @@ namespace Content.Client.ContextMenu.UI
 
         protected override void Dispose(bool disposing)
         {
+            if (Disposed)
+            return;
             MenuBody.OnChildRemoved -= ctrl => _uiController.OnRemoveElement(this, ctrl);
             ParentElement = null;
             base.Dispose(disposing);

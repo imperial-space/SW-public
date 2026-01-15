@@ -4530,6 +4530,7 @@
   description: It's the concept of a banner, you shouldn't be seeing this.
   abstract: true
   components:
+  - type: CEZPhysics
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner

@@ -54,3 +54,157 @@
 #    popup: CE-respawn-action-popup
 #  - type: InstantAction
 #    event: !type:CERespawnAction
+- type: shader
+  id: CEZBlur
+  kind: source
+  path: "/Textures/_CE/Shaders/zblur.swsl"
+
+- type: gameMap
+  id: EmptyTemplate
+  mapName: EmptyTemplate
+  minPlayers: 1
+  maxPlayers: 2000
+  mapsBelow:
+  - /Maps/_CE/Empty.yml
+  mapPath: /Maps/_CE/Empty.yml
+  mapsAbove:
+  - /Maps/_CE/Empty.yml
+  zLevelsComponentOverrides:
+    - type: MapAtmosphere
+      space: False
+      mixture:
+        volume: 2500
+        immutable: True
+        temperature: 293.15
+        moles:
+          Oxygen: 21.824879
+          Nitrogen: 82.10312
+    #- type: Parallax
+    #  parallax: CESky
+    - type: SunShadowCycle
+      #offset: 490
+    - type: LightCycle
+      #offset: 490
+      originalColor: "#b8d9dc"
+    - type: CEZLevelMapRoof
+    - type: SunShadow
+    - type: MapLight
+      ambientLightColor: "#b8d9dc"
+  stations:
+    EmptyTemplate:
+      stationProto: StandardStationArena
+      components:
+        - type: StationNameSetup
+          mapNameTemplate: "EmptyTemplate"
+        - type: StationJobs
+          availableJobs:
+            MedievalTraveller: [ -1, -1 ]
+
+# We just need simple non-saveable prototype for zEye entities
+- type: entity
+  id: CEZLevelEye
+  save: false
+  categories: [ HideSpawnMenu ]
+
+- type: entity
+  id: CEZLevelLadderBase
+  abstract: true
+  categories: [ ForkFiltered ]
+  parent: BaseStructure
+  name: stairs
+  description: Be careful, the higher you ascend, the more painful the fall.
+  placement:
+      mode: SnapgridCenter
+      snap:
+      - Wall
+  components:
+  #- type: CEAutoTilePlacement
+  #  tile: CEPlanks
+  #- type: ReplaceFloorOnSpawn
+  #  offsets:
+  #  - [0,0]
+  #  replaceableTiles:
+  #  replacementTiles:
+  #  - FloorWood
+  - type: PlacementReplacement
+    key: walls
+  - type: Occluder
+    boundingBox: "-0.5,0.25,0.5,0.5"
+  #- type: Sprite
+  #  state: straight
+  #  drawdepth: Mobs
+  - type: Transform
+    anchored: True
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,0.6,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+        hard: true
+  - type: CEZLevelHighGround
+    stick: true
+    heightCurve:
+    - 1.05
+    - 1.05
+    - 0.1
+
+- type: entity
+  parent: CEZLevelLadderBase
+  id: CEZLevelLadderCornerBase
+  abstract: true
+  placement:
+      mode: SnapgridCenter
+      snap:
+      - Wall
+  components:
+  - type: Sprite
+    state: corner
+  - type: Occluder
+    enabled: false
+  - type: CEZLevelHighGround
+    corner: true
+    heightCurve:
+    - 1.05
+    - 1.05
+    - 0.5
+    - 0.1
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.5,0.5,0.6,0.6"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 1000
+        hard: true
+
+- type: entity
+  parent: CEZLevelLadderCornerBase
+  id: CEZLevelLadderCornerInnerBase
+  abstract: true
+  placement:
+      mode: SnapgridCenter
+      snap:
+      - Wall
+  components:
+  - type: Occluder
+    enabled: true
+    boundingBox: "-0.5,-0.5,0.5,0.5"
+  - type: Sprite
+    state: internal_corner
+
+- type: entity
+  parent: [CEZLevelLadderBase, StairWood]
+  id: MedievalZLevelsStairWood

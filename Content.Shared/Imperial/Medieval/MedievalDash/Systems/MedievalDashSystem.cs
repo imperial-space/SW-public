@@ -13,6 +13,8 @@ using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Content.Shared.ActionBlocker;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._CE.ZLevels.Core.EntitySystems;
+using Content.Shared._CE.ZLevels.Core.Components;
 
 namespace Content.Shared.Imperial.Dash;
 
@@ -27,6 +29,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly CESharedZLevelsSystem _zLevel = default!;
 
 
     public override void Initialize()
@@ -36,8 +39,14 @@ public sealed partial class MedievalDashSystem : EntitySystem
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.MedievalDash, new PointerInputCmdHandler(DashButtonPressed))
             .Register<MedievalDashSystem>();
-    }
 
+        SubscribeLocalEvent<MedievalDashComponent, CECheckGravityEvent>(OnGravityCheck);
+    }
+    public void OnGravityCheck(EntityUid uid, MedievalDashComponent component, ref CECheckGravityEvent args)
+    {
+        if (component.IsDashing) args.Gravity = 0;
+
+    }
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
@@ -48,8 +57,10 @@ public sealed partial class MedievalDashSystem : EntitySystem
         {
             if (_timing.CurTime < component.DashEndTime) continue;
             if (!component.IsDashing) continue;
-
+            var zlev = EnsureComp<CEZPhysicsComponent>(uid);
             component.IsDashing = false;
+            zlev.GravityMultiplier = 0;
+            _zLevel.UpdateGravityState(uid);
             var ev = new DashEndedEvent();
             RaiseLocalEvent(uid, ref ev);
 
@@ -117,7 +128,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
         var forceDirection = targetRotation - Angle.FromDegrees(45);
 
         var impulse = forceDirection.RotateVec(force);
-        var dashTime = TimeSpan.FromSeconds(component.Force / 990 / physicsComponent.Mass);
+        var dashTime = TimeSpan.FromSeconds(0.7f);
 
         var staminaEv = new CheckDashStaminaCostModifiersEvent(1f);
         RaiseLocalEvent(player, ref staminaEv);
@@ -143,7 +154,9 @@ public sealed partial class MedievalDashSystem : EntitySystem
         component.NextDash = _timing.CurTime + component.DashReloadTime + TimeSpan.FromSeconds(staminaEv.Modifier);
         component.DashButtonPressedTick = _timing.CurTick;
         component.IsDashing = true;
-
+        var zlev = EnsureComp<CEZPhysicsComponent>(player);
+        zlev.GravityMultiplier = 0;
+        //_zLevel.UpdateGravityState(player);
         var startEv = new DashStartedEvent();
         RaiseLocalEvent(player, ref startEv);
 

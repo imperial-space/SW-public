@@ -33,7 +33,7 @@ public abstract partial class CESharedZLevelsSystem
     /// <summary>
     /// The minimum speed required to trigger LandEvent events.
     /// </summary>
-    private const float ImpactVelocityLimit = 5f;
+    private const float ImpactVelocityLimit = 3f;
 
     private EntityQuery<CEZLevelHighGroundComponent> _highgroundQuery;
 
@@ -115,7 +115,7 @@ public abstract partial class CESharedZLevelsSystem
         _stun.TryKnockdown(ent.Owner, TimeSpan.FromSeconds(knockdownTime));
 
         var damageType = _proto.Index<DamageTypePrototype>("Blunt");
-        var damageAmount = args.ImpactPower * 2f;
+        var damageAmount = args.ImpactPower * 5f;
 
         _damage.TryChangeDamage(ent.Owner, new DamageSpecifier(damageType, damageAmount));
     }
@@ -494,12 +494,12 @@ public abstract partial class CESharedZLevelsSystem
         //welp, that default Chasm behavior. Not really good, but ok for now.
         if (HasComp<ChasmFallingComponent>(ent))
             return false; //Already falling
-
-        var audio = new SoundPathSpecifier("/Audio/Effects/falling.ogg");
-        _audio.PlayPredicted(audio, Transform(ent).Coordinates, ent);
-        var falling = AddComp<ChasmFallingComponent>(ent);
-        falling.NextDeletionTime = _timing.CurTime + falling.DeletionTime;
-        _blocker.UpdateCanMove(ent);
+        TryMoveUp(ent);
+        //var audio = new SoundPathSpecifier("/Audio/Effects/falling.ogg");
+        //_audio.PlayPredicted(audio, Transform(ent).Coordinates, ent);
+        //var falling = AddComp<ChasmFallingComponent>(ent);
+        //falling.NextDeletionTime = _timing.CurTime + falling.DeletionTime;
+        //_blocker.UpdateCanMove(ent);
 
         return false;
     }

@@ -4,6 +4,21 @@
   mapPath: /Maps/Imperial/Medieval/Sector8V28.yml
   minPlayers: 150
   #maxPlayers: 215
+  #mapsBelow:
+  #- /Maps/_CE/Empty.yml
+  mapsAbove:
+  - /Maps/_CE/Empty.yml
+  - /Maps/_CE/Empty.yml
+  zLevelsComponentOverrides:
+    - type: MapAtmosphere
+      space: False
+      mixture:
+        volume: 2500
+        immutable: True
+        temperature: 293.15
+        moles:
+          Oxygen: 21.824879
+          Nitrogen: 82.10312
   stations:
     Medieval:
       stationProto: StandardStationArena

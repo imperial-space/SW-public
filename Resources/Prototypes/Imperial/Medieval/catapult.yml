@@ -135,6 +135,9 @@
     - type: Sprite
       sprite: Imperial/Medieval/Decor/catapult_hit.rsi
       state: barrel
+    - type: CEZPhysics
+    - type: Physics
+      bodyType: Dynamic
 
 - type: entity
   id: MedievalExplodeBarrel
@@ -173,6 +176,9 @@
     - type: Sprite
       sprite: Imperial/Medieval/Decor/catapult_hit.rsi
       state: gunpowder
+    - type: CEZPhysics
+    - type: Physics
+      bodyType: Dynamic
 
 - type: entity
   id: MedievalExplodeGunpowder
@@ -211,6 +217,9 @@
     - type: Sprite
       sprite: Imperial/Medieval/Decor/catapult_hit.rsi
       state: ap
+    - type: CEZPhysics
+    - type: Physics
+      bodyType: Dynamic
 
 - type: entity
   id: MedievalExplodeAp
@@ -249,6 +258,9 @@
     - type: Sprite
       sprite: Imperial/Medieval/Decor/catapult_hit.rsi
       state: stone
+    - type: CEZPhysics
+    - type: Physics
+      bodyType: Dynamic
 
 - type: entity
   id: MedievalExplodeStone
