@@ -2,10 +2,10 @@
   parent: MarkerBase
   id: PottedPlantRandom
   name: random potted plant spawner
+  description: Чудесный кусочек природы, заключенный в глиняном горшке. Он станет прекрасным украшением в доме одинокого человека.
   components:
   - type: Sprite
     layers:
-      - state: red
       - sprite: Structures/Furniture/potted_plants.rsi
         state: random
   - type: RandomSpawner
