@@ -5,7 +5,7 @@
   components:
   - type: Sprite
     layers:
-      - state: red
+#      - state: red
       - sprite: Structures/Furniture/potted_plants.rsi
         state: random
   - type: RandomSpawner
