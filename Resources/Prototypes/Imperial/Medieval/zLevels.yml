@@ -1,0 +1,56 @@
+- type: entity
+  id: CEActionZLevelUp
+  name: Move up
+  description: Move up one Z-Level
+  components:
+  - type: Action
+    checkCanInteract: false
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_cycle_equip_on
+  - type: InstantAction
+    event: !type:CEZLevelActionUp
+
+- type: entity
+  id: CEActionZLevelDown
+  name: Move down
+  description: Move down one Z-Level
+  components:
+  - type: Action
+    checkCanInteract: false
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_cycle_equip_on
+  - type: InstantAction
+    event: !type:CEZLevelActionDown
+
+- type: entity
+  id: CEActionToggleLookUp
+  name: Look up
+  description: You lift your head and look up at the sky.
+  components:
+  - type: Action
+    checkCanInteract: false
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_cycle_equip_on
+  - type: InstantAction
+    event: !type:CEToggleZLevelLookUpAction
+
+#- type: entity
+#  id: CEActionRespawn
+#  name: Respawn
+#  description: Return to the lobby to connect with a new character.
+#  components:
+#  - type: Action
+#    priority: 20
+#    startDelay: true
+#    useDelay: 300
+#    checkCanInteract: false
+#    icon:
+#      sprite: _CE/Actions/zLevel.rsi
+#      state: respawn
+#  - type: ConfirmableAction
+#    popup: CE-respawn-action-popup
+#  - type: InstantAction
+#    event: !type:CERespawnAction

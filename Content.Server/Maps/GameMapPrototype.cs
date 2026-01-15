@@ -4,7 +4,7 @@ using Robust.Shared.Utility;
 using System.Diagnostics;
 using Content.Shared.Station;
 
-namespace Content.Server.Maps;
+namespace Content.Shared.Maps;
 
 /// <summary>
 /// Prototype data for a game map.
@@ -43,6 +43,26 @@ public sealed partial class GameMapPrototype : IPrototype
     /// </summary>
     [DataField(required: true)]
     public ResPath MapPath { get; private set; } = default!;
+
+    /// <summary>
+    /// CrystallEdge: Additional maps loaded below the main map (at negative depth levels).
+    /// Each map in the list is loaded at depth -N, -N+1, ..., -1, with <see cref="MapPath"/> at depth 0.
+    /// </summary>
+    [DataField]
+    public List<ResPath> MapsBelow = new();
+
+    /// <summary>
+    /// CrystallEdge: additional maps loaded above the main map (at positive depth levels).
+    /// Each map in the list is loaded at depth 1, 2, ..., N. <see cref="MapPath"/> works as depth 0.
+    /// </summary>
+    [DataField]
+    public List<ResPath> MapsAbove = new();
+
+    /// <summary>
+    /// CrystallEdge: ability to setup shared components for all zLevels
+    /// </summary>
+    [DataField]
+    public ComponentRegistry ZLevelsComponentOverrides = new();
 
     [DataField("stations", required: true)]
     private Dictionary<string, StationConfig> _stations = new();
