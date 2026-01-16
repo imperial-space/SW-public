@@ -2618,8 +2618,25 @@
   #- MedievalMusic
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
-  - MedievalJumpsuitLegion
+  - MedievalJumpsuitMagLegion
   - MedievalBackpackMagLegion
+
+- type: loadoutGroup
+  id: MedievalJumpsuitMagLegion
+  name: loadout-group-medieval-jumpsuit-legion
+  loadouts:
+  - LegionMedievalClothingUniformJumpsuitShitCloth89
+  - LegionMedievalClothingUniformJumpsuitShitCloth90
+
+- type: loadout
+  id: LegionMedievalClothingUniformJumpsuitShitCloth89
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth89
+
+- type: loadout
+  id: LegionMedievalClothingUniformJumpsuitShitCloth90
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth90
 
 # MEDIEVAL LegionAlchemic
 
@@ -3120,7 +3137,7 @@
     pocket1: MedievalCommsCrystallIns
     #pocket2: MedievalGuardKey
     #back: MedievalClothingBackpackSatchelLeather
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth5
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth91
     head: MedievalClothingHeadHelmetCharmerIns
     outerClothing: MedievalClothingOuterArmorCharmerLightIns
     neck: MedievalClothingNeckCloakClanFox
