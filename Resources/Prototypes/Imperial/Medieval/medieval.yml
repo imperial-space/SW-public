@@ -2112,6 +2112,8 @@
     #- type: OreVein
     #  oreChance: 0.9
     #  oreRarityPrototypeId: MedievalRandom
+    - type: CEZLevelHighGround
+
 
 - type: emoteSounds
   id: MedievalBear

@@ -10,7 +10,7 @@
     - Wall
   components:
   - type: Anchorable
-    flags: 
+    flags:
     - Anchorable
   - type: Rotatable
   - type: RangedDamageSound
@@ -57,6 +57,7 @@
   - type: SunShadowCast
   - type: MedievalMeleeBadTarget # imperial medieval
     safeToHitGroup: structure # imperial medieval
+  - type: CEZLevelHighGround
 
 - type: entity
   abstract: true

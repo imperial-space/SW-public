@@ -817,6 +817,8 @@
       state: rock_north
     - map: [ "enum.EdgeLayer.West" ]
       state: rock_west
+    - type: CEZLevelHighGround
+
 
 # Ore veins
 - type: entity
@@ -1165,7 +1167,6 @@
       state: rock_wall_north
     - map: [ "enum.EdgeLayer.West" ]
       state: rock_wall_west
-
 - type: entity
   id: WallRockBasaltCoal
   parent: WallRockBasalt
