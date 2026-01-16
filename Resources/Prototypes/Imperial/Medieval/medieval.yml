@@ -3417,6 +3417,27 @@
       - MonsterLoot
 
 - type: entity
+  name: medieval loot
+  parent: BaseItem
+  id: MedievalLootanglerskin
+  description: medieval loot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: anglerskin
+  - type: Currency
+    price:
+      Revent: 280
+  - type: MedievalCurrency
+    price:
+      Revent: 280
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+      - MonsterLoot
+
+- type: entity
   name: шкура кабана
   parent: BaseItem
   id: MedievalLoothogskin
@@ -3813,6 +3834,27 @@
       reagents:
       - ReagentId: MedievalLootEgg
         Quantity: 35
+  - type: Tag
+    tags:
+      - MonsterLoot
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalLootAnglerEgg
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: angleregg
+  - type: Currency
+    price:
+      Revent: 420
+  - type: MedievalCurrency
+    price:
+      Revent: 420
+  - type: Item
+    size: Tiny
   - type: Tag
     tags:
       - MonsterLoot
@@ -8955,3 +8997,99 @@
             max: 3
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
+- type: entity
+  id: MedievalAnglerWeb1
+  name: angler web
+  description: Sticky and slippy
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+      state: web1
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 30
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.8
+      sprintSpeedModifier: 0.8
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+#    - type: StepTrigger
+#    - type: StunOnContact
+#      blacklist:
+#        tags:
+#        - Goliath
+#    - type: SpawnOnTrigger
+#      proto: MedievalAnglerMobSlowSpawner
+
+- type: entity
+  parent: MedievalAnglerWeb1
+  id: MedievalAnglerWeb2
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+    state: web2
+
+- type: entity
+  parent: MedievalAnglerWeb1
+  id: MedievalAnglerWeb3
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+    state: web3
+
+- type: entity
+  parent: MedievalAnglerWeb1
+  id: MedievalAnglerWeb4
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+    state: web4
+
+- type: entity
+  parent: MedievalAnglerWeb1
+  id: MedievalAnglerWeb5
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+    state: web5
