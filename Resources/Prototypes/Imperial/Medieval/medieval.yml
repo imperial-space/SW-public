@@ -9055,6 +9055,7 @@
         components:
             - IgnoreSpiderWeb
 #    - type: StepTrigger
+#      RequiredTriggeredSpeed: 2.0
 #    - type: StunOnContact
 #      blacklist:
 #        tags:
