@@ -6,7 +6,7 @@
     state: beginner-spawn
     drawdepth: FloorTiles
   - type: TimedDespawn
-    lifetime: 1
+    lifetime: 0.5
   - type: SpawnOnDespawn
     prototype: MedievalProjectileActiveSpikeBeginner
   - type: Fixtures

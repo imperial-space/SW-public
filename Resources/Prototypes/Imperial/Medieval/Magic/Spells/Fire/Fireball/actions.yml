@@ -7,7 +7,7 @@
   components:
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 180
+    useDelay: 30
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
@@ -37,7 +37,7 @@
   - type: SpellCastEffect
     effectProto: FireballSpellCastEffectBeginner
   - type: ManaDrainSpell
-    manaDrain: 70
+    manaDrain: 35
     canUseWithoutMana: true
     manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
     damageOnUseWithoutMana:
@@ -86,7 +86,7 @@
   description: medieval-store-spells-fire-fireball-middle-desc
   components:
   - type: ManaDrainSpell
-    manaDrain: 85
+    manaDrain: 40
     canUseWithoutMana: true
     manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
     damageOnUseWithoutMana:
@@ -96,7 +96,7 @@
     effectProto: FireballSpellCastEffectMiddle
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 155
+    useDelay: 35
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
@@ -133,7 +133,7 @@
   description: medieval-store-spells-fire-fireball-senior-desc
   components:
   - type: ManaDrainSpell
-    manaDrain: 90
+    manaDrain: 40
     canUseWithoutMana: true
     manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
     damageOnUseWithoutMana:
@@ -143,7 +143,7 @@
     effectProto: FireballSpellCastEffectSenior
   - type: MedievalTargetSpell
   - type: Action
-    useDelay: 135
+    useDelay: 60
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/fireball_cast.ogg
