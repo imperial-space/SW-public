@@ -118,7 +118,12 @@ public partial class QuestSystem : EntitySystem
                 return;
 
             var netUser = GetNetEntity(user);
-            guild.AddReputation(netUser, reputationReward);
+
+            string? name = null;
+            if (TryComp(user, out MetaDataComponent? meta))
+                name = meta.EntityName;
+
+            guild.AddReputation(netUser, reputationReward, name);
         }
 
         QueueDel(contract);
