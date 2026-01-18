@@ -43,12 +43,6 @@ public sealed class Guild : IEquatable<Guild>
             ReputationNames[ent] = name;
     }
 
-
-    // public void AddReputation(NetEntity ent, float val)
-    // {
-    //     Reputation[ent] = Reputation.GetValueOrDefault(ent) + val;
-    // }
-
     private Guild(Guid id, string name, ProtoId<GuildTypePrototype> typePrototype, string iconPath, List<GuildTradingItem>? items = null)
     {
         items ??= new();
