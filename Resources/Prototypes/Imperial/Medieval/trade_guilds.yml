@@ -815,6 +815,7 @@
   maximumGuilds: 3
   currency: Revent
   items:
+    reputationForBuying: 0.0
   - productEntity: MedievalBeaker
     cost: 10
     reputationForBuying: 0.3
