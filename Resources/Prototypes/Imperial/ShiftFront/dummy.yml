@@ -16,7 +16,7 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      70: Critical
+      80: Critical
       250: Dead
   - type: GhostRole
     prob: 0
