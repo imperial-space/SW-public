@@ -9057,6 +9057,7 @@
 #    - type: StepTrigger
 #      RequiredTriggeredSpeed: 2.0
 #    - type: StunOnContact
+#      duration: 0.6
 #      blacklist:
 #        tags:
 #        - Goliath
