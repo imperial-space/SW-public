@@ -46,11 +46,15 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Enums;
 using Content.Server.Spawners.Components;
+using Content.Shared.Interaction.Events;
+using Content.Shared.Movement.Events;
 
 namespace Content.Server.ShiftFront
 {
     public sealed partial class ShiftFrontSystem : EntitySystem
     {
+        private TimeSpan _lastAFKCheckTime = TimeSpan.Zero;
+        private readonly TimeSpan _afkCheckInterval = TimeSpan.FromSeconds(30);
         [Dependency] internal readonly IEntityManager _entityManager = default!;
         [Dependency] internal readonly IMapManager _mapManager = default!;
         [Dependency] protected readonly SharedAudioSystem _audio = default!;
@@ -110,8 +114,48 @@ namespace Content.Server.ShiftFront
             SubscribeLocalEvent<ShiftTankTurretComponent, GunShotEvent>(OnShootTurret);
             SubscribeLocalEvent<ShiftTankHullComponent, DamageChangedEvent>(OnDamageTank);
             SubscribeLocalEvent<ShiftCommandComponent, GetVerbsEvent<AlternativeVerb>>(OnGetComVerbs);
+            SubscribeLocalEvent<ShiftPlayerComponent, EntityUnpausedEvent>(OnPlayerUnpaused);
+            SubscribeLocalEvent<ShiftPlayerComponent, InteractionAttemptEvent>(OnInteractionAttempt);
+            SubscribeLocalEvent<ShiftPlayerComponent, AttackAttemptEvent>(OnAttackAttempt);
+            SubscribeLocalEvent<ShiftPlayerComponent, SpeakAttemptEvent>(OnSpeakAttempt);
+            SubscribeLocalEvent<ShiftPlayerComponent, MoveInputEvent>(OnMoveInput);
+        }
+        private void OnPlayerUnpaused(EntityUid uid, ShiftPlayerComponent comp, EntityUnpausedEvent args)
+        {
+            comp.LastActivityTime += args.PausedTime;
         }
 
+        private void OnInteractionAttempt(EntityUid uid, ShiftPlayerComponent comp, InteractionAttemptEvent args)
+        {
+            UpdateActivity(uid, comp);
+        }
+
+        private void OnAttackAttempt(EntityUid uid, ShiftPlayerComponent comp, AttackAttemptEvent args)
+        {
+            UpdateActivity(uid, comp);
+        }
+
+        private void OnSpeakAttempt(EntityUid uid, ShiftPlayerComponent comp, SpeakAttemptEvent args)
+        {
+            UpdateActivity(uid, comp);
+        }
+
+        private void OnMoveInput(EntityUid uid, ShiftPlayerComponent comp, MoveInputEvent args)
+        {
+            UpdateActivity(uid, comp);
+        }
+
+        private void UpdateActivity(EntityUid uid, ShiftPlayerComponent comp)
+        {
+            comp.LastActivityTime = _timing.CurTime;
+            comp.IsAFK = false;
+
+
+            if (TryGetCommandForPlayer(uid, comp.Faction, out var command))
+            {
+
+            }
+        }
         private void OnExamineTeam(EntityUid uid, ShiftCommandComponent comp, ExaminedEvent args)
         {
             args.PushMarkup($"Всего игроков: [color=cyan]{comp.Players.Count}[/color]", 11);
@@ -813,15 +857,22 @@ namespace Content.Server.ShiftFront
             if (!ent.Comp.Newbie)
                 Spawn("AnomalyCoreFleshShiftFront", coords);
         }
-
+        // Обновляем существующие методы
         private void OnPlayerDetached(Entity<ShiftPlayerComponent> ent, ref PlayerDetachedEvent args)
         {
             var session = args.Player;
             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+
             while (dquery.MoveNext(out var couid, out var command))
             {
-                if (ent.Comp.Faction == command.Faction && !command.RespawnQueue.Contains(session))
-                    command.RespawnQueue.Add(session);
+                if (ent.Comp.Faction == command.Faction)
+                {
+                    if (!command.RespawnQueue.Contains(session))
+                        command.RespawnQueue.Add(session);
+
+                    // Начинаем отсчет AFK при отключении
+                    ent.Comp.LastActivityTime = _timing.CurTime;
+                }
             }
         }
 
@@ -829,10 +880,17 @@ namespace Content.Server.ShiftFront
         {
             var session = args.Player;
             var dquery = EntityQueryEnumerator<ShiftCommandComponent>();
+
             while (dquery.MoveNext(out var couid, out var command))
             {
-                if (ent.Comp.Faction == command.Faction && command.RespawnQueue.Contains(session))
+                //if (ent.Comp.Faction == command.Faction)
+                //{
+                if (command.RespawnQueue.Contains(session))
                     command.RespawnQueue.Remove(session);
+
+                // Сбрасываем AFK при подключении
+                UpdateActivity(ent, ent.Comp);
+                //}
             }
         }
 
@@ -1408,11 +1466,123 @@ namespace Content.Server.ShiftFront
             }
             return true;
         }
+
+
+        private void CheckAFKPlayers()
+        {
+            var query = EntityQueryEnumerator<ShiftPlayerComponent>();
+            var now = _timing.CurTime;
+
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                // Проверяем время бездействия
+                var timeInactive = now - comp.LastActivityTime;
+
+                if (timeInactive >= comp.AFKThreshold && !comp.IsAFK)
+                {
+                    // Помечаем как AFK
+                    comp.IsAFK = true;
+
+                    // Исключаем из команды
+                    RemoveFromTeamForAFK(uid, comp, timeInactive);
+                }
+                else if (timeInactive < comp.AFKThreshold && comp.IsAFK)
+                {
+                    // Игрок вернулся
+                    comp.IsAFK = false;
+                    Logger.Info($"Игрок {MetaData(uid).EntityName} вернулся из AFK");
+                }
+            }
+        }
+
+        private void RemoveFromTeamForAFK(EntityUid playerUid, ShiftPlayerComponent playerComp, TimeSpan afkTime)
+        {
+            if (string.IsNullOrEmpty(playerComp.Faction))
+                return;
+
+            var minutes = (int)afkTime.TotalMinutes;
+
+            // Ищем команду игрока
+            var commandQuery = EntityQueryEnumerator<ShiftCommandComponent>();
+            while (commandQuery.MoveNext(out var commandUid, out var commandComp))
+            {
+                if (commandComp.Faction != playerComp.Faction)
+                    continue;
+
+                // Находим сессию игрока
+                if (!_sharedPlayerManager.TryGetSessionByEntity(playerUid, out var session))
+                    continue;
+
+                if (!commandComp.Players.Contains(session))
+                    continue;
+
+                // Удаляем из команды
+                commandComp.Players.Remove(session);
+                if (commandComp.RespawnQueue.Contains(session))
+                    commandComp.RespawnQueue.Remove(session);
+
+                // Уведомления
+                _chat.DispatchGlobalAnnouncement(
+                    $"Игрок {session.Name} исключен из команды {playerComp.Faction} за AFK ({minutes} минут)",
+                    playSound: false,
+                    colorOverride: Color.Orange,
+                    sender: "Система контроля активности"
+                );
+
+                // Локальное сообщение игроку (если он вернется)
+                if (TryComp<ActorComponent>(playerUid, out var actor))
+                {
+                    _prayerSystem.SendSubtleMessage(
+                        actor.PlayerSession,
+                        actor.PlayerSession,
+                        $"Вы были исключены из команды {playerComp.Faction} за AFK ({minutes} минут)",
+                        "Исключение из команды"
+                    );
+                }
+
+                // Сбрасываем фракцию у игрока
+                playerComp.Faction = string.Empty;
+
+                Logger.Info($"Игрок {session.Name} исключен из команды {playerComp.Faction} за AFK ({minutes} минут)");
+                break;
+            }
+        }
+
+        private bool TryGetCommandForPlayer(EntityUid playerUid, string faction, out ShiftCommandComponent? commandComp)
+        {
+            commandComp = null;
+
+            if (string.IsNullOrEmpty(faction))
+                return false;
+
+            var query = EntityQueryEnumerator<ShiftCommandComponent>();
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                if (comp.Faction == faction)
+                {
+                    commandComp = comp;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         public TimeSpan StartTime = TimeSpan.FromSeconds(0f);
         public TimeSpan EndTime = TimeSpan.FromSeconds(0f);
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
+
+
+            if (_timing.CurTime - _lastAFKCheckTime > _afkCheckInterval)
+            {
+                CheckAFKPlayers();
+                _lastAFKCheckTime = _timing.CurTime;
+            }
+
+
+
 
             if (_timing.CurTime > EndTime)
             {

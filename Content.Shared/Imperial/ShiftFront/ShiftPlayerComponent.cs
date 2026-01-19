@@ -41,4 +41,14 @@ public sealed partial class ShiftPlayerComponent : Component
     [DataField]
     public EntityUid? Vehicle;
 
+
+    [DataField]
+    public TimeSpan LastActivityTime { get; set; } = TimeSpan.Zero;
+
+    [DataField]
+    public bool IsAFK { get; set; }
+
+    [DataField]
+    public TimeSpan AFKThreshold { get; set; } = TimeSpan.FromMinutes(10);
+
 }
