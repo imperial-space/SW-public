@@ -54,11 +54,9 @@ public partial class MagicRuneSystem
 
         component.DecodedRunes.Add(args.Rune);
 
-        /** Выдача эссенции за расшифровку рун отключена, проверял - работает, но клиент вылетает в дебаг версии.
         var essence = Spawn("MagicMedievalDarkness1", args.Actor.ToCoordinates());
-        _stackSystem.SetCount(essence, 2^component.DecodedRunes.Count);
+        _stackSystem.SetCount(essence, component.DecodedRunes.Count, Comp<StackComponent>(essence));
         _handsSystem.TryPickupAnyHand(args.Actor, essence);
-        */
 
         RecalculateScrollPower(uid, component);
         SendScrollState(uid, component, knowledge, args.Actor);
