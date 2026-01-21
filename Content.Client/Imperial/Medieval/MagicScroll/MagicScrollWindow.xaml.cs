@@ -25,7 +25,7 @@ public sealed partial class MagicScrollWindow : DefaultWindow
     private int _playerIntelligence = 10;
     private int _gridSize = 5;
     private int _totalMines = 2;
-
+    private int _decodedRunes = 0;
     public MagicScrollBoundUserInterface? Owner;
 
     public MagicScrollWindow()
@@ -48,6 +48,7 @@ public sealed partial class MagicScrollWindow : DefaultWindow
         _playerIntelligence = state.PlayerIntelligence;
         _gridSize = state.GridSize;
         _totalMines = state.TotalMines;
+        _decodedRunes = state.DecodedRunes.Count;
         UpdatePowerDisplay();
         UpdateEncryptedRunes();
         UpdateKnownRunes();
@@ -113,6 +114,9 @@ public sealed partial class MagicScrollWindow : DefaultWindow
     {
         if (_currentState == null) return;
 
+        // Проверяем, что контрол не был disposed перед использованием
+        if (KnownRunesGrid.Disposed) return;
+
         KnownRunesGrid.RemoveAllChildren();
         _knownRuneButtons.Clear();
 
@@ -175,7 +179,7 @@ public sealed partial class MagicScrollWindow : DefaultWindow
             _minesweeperWindow = null;
             UpdateKnownRunes();
         };
-        _minesweeperWindow.StartGame(rune, _playerIntelligence, _gridSize, _totalMines);
+        _minesweeperWindow.StartGame(rune, _playerIntelligence, _gridSize, _totalMines, _decodedRunes);
         _minesweeperWindow.OpenCentered();
 
         UpdateKnownRunes();

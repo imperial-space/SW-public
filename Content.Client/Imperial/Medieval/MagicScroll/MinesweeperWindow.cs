@@ -100,12 +100,12 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         }
     }
 
-    public void StartGame(MagicRune rune, int playerIntelligence, int gridSize, int totalMines)
+    public void StartGame(MagicRune rune, int playerIntelligence, int gridSize, int totalMines, int decodedRunes)
     {
         _currentRune = rune;
         _playerIntelligence = playerIntelligence;
-        _gridSize = gridSize;
-        _totalMines = totalMines;
+        _gridSize = gridSize + decodedRunes;
+        _totalMines = totalMines + decodedRunes * 4;
         RuneLabel.Text = $"Расшифровка руны: {MagicRuneData.GetSymbol(rune)} ({MagicRuneData.GetMeaning(rune)})";
         InitializeGame();
     }
@@ -121,6 +121,8 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         _gameEndTime = null;
         _hintUsed = false;
         HintButton.Disabled = false;
+
+        if (_playerIntelligence <= 15) HintButton.Disabled = true;
 
         var positions = new List<(int, int)>();
         for (int i = 0; i < _gridSize; i++)
@@ -171,11 +173,20 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                 {
                     if (_gameOver) return;
 
-                    if(args.Event.Function == EngineKeyFunctions.UIClick)
+                    if (args.Event.Function == EngineKeyFunctions.UIClick)
                     {
+                        if (_revealedCount == 0)
+                        {
+                            while (true)
+                            {
+                                if (!_mineField[x, y] && CountAdjacentMines(x, y) == 0) break;
+                                else InitializeGame();
+                            }
+                        }
+
                         HandleCellClick(x, y);
                     }
-                    else if(args.Event.Function == EngineKeyFunctions.UIRightClick)
+                    else if (args.Event.Function == EngineKeyFunctions.UIRightClick)
                     {
                         ToggleFlag(x, y);
                     }
