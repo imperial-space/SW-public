@@ -132,8 +132,6 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     private void OnReviveCountResponse(ReviveCountResponseEvent ev, EntitySessionEventArgs args)
     {
         reviveCount = ev.MaxCount - ev.CurrentCount;
-        if (_windowRules != null)
-            return;
 
         _windowRules = new GhostReviveWindow("Выбейте необходимое количество магической эссенции из злых духов вокруг и купите за нее магический ключ. После чего кликните ключом по особой двери и отправьтесь на респавн. Учтите, [color=red]ЗАХОДИТЬ ЗА ТОГО ЖЕ ПЕРСОНАЖА НЕЛЬЗЯ[/color]!! У вас осталось "+reviveCount+" жизней", _ =>
         {

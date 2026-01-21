@@ -27,14 +27,20 @@ public sealed class Guild : IEquatable<Guild>
     [DataField]
     public Dictionary<NetEntity, float> Reputation = new();
 
+    [DataField]
+    public Dictionary<NetEntity, string> ReputationNames = new();
+
     public float GetReputation(NetEntity ent)
     {
         return Reputation.GetValueOrDefault(ent, 0);
     }
 
-    public void AddReputation(NetEntity ent, float val)
+    public void AddReputation(NetEntity ent, float val, string? name = null)
     {
         Reputation[ent] = Reputation.GetValueOrDefault(ent) + val;
+
+        if (name != null)
+            ReputationNames[ent] = name;
     }
 
     private Guild(Guid id, string name, ProtoId<GuildTypePrototype> typePrototype, string iconPath, List<GuildTradingItem>? items = null)
