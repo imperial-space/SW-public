@@ -30,6 +30,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
 using Content.Shared.NameModifier.EntitySystems;
+using Content.Shared.Players;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
@@ -83,7 +84,19 @@ namespace Content.Server.Imperial.Medieval.Revive
 
             if (barrier.ReviveCount[playerUid] >= MaxRevives)
                 return;
-            if (!HasComp<GhostComponent>(player.AttachedEntity))
+            if (!_minds.TryGetNetEntity(player.GetMind(), out var netEntity))
+                return;
+            if (EntityManager.GetEntity(netEntity) == null)
+                return;
+            var playerMind = EntityManager.GetEntity(netEntity);
+
+            if (!playerMind.HasValue)
+                return;
+            var playerEntity = EntityManager.GetComponent<MindComponent>(playerMind.Value).CurrentEntity;
+
+            _adminlog.Add(LogType.Action, LogImpact.High, $"у нас разум {netEntity} revived {playerEntity}");
+
+            if (!HasComp<GhostComponent>(playerEntity))
                 return;
 
             var reviveQuery = EntityManager.EntityQuery<MedievalReviveSpawnerComponent>();
