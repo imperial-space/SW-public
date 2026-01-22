@@ -90,9 +90,9 @@ namespace Content.Server.Imperial.Medieval.Revive
                 return;
             var playerMind = EntityManager.GetEntity(netEntity);
 
-            if (playerMind == null)
+            if (!playerMind.HasValue)
                 return;
-            var playerEntity = EntityManager.GetComponent<MindComponent>(playerMind).CurrentEntity;
+            var playerEntity = EntityManager.GetComponent<MindComponent>(playerMind.Value).CurrentEntity;
 
             _adminlog.Add(LogType.Action, LogImpact.High, $"у нас разум {netEntity} revived {playerEntity}");
 
