@@ -6,7 +6,7 @@ namespace Content.Shared.Imperial.Medieval.SmithingSystem.Bui;
 public sealed class SmithStepData
 {
     public SmithHitState State;
-
+    public bool IsPenaltyActivator;
     public float PerfectHitTime;
     public float GoodHitTime;
 }
