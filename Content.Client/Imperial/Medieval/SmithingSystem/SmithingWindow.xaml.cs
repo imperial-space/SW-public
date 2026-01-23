@@ -188,8 +188,6 @@ public sealed partial class SmithingWindow : FancyWindow
             else if (state == SmithHitState.Penalty)
                 _points -= 6;
 
-            // Penalty activators must NOT consume a scoring step.
-            // We send Increment=false to the server and queue a replacement normal step locally.
             if (!isPenalty)
             {
                 _completedSteps++;
@@ -199,7 +197,6 @@ public sealed partial class SmithingWindow : FancyWindow
             {
                 TargetHit?.Invoke(new SmithHitMesage(state, false));
 
-                // Replace this non-scoring penalty target with a normal scoring target later.
                 _pendingSteps?.Push(new SmithStepData
                 {
                     State = SmithHitState.Missed,
@@ -227,10 +224,8 @@ public sealed partial class SmithingWindow : FancyWindow
             }
             else
             {
-                // Penalty expired: no -1 and does not consume a step.
                 TargetExpired?.Invoke(new SmithHitMesage(state, false));
 
-                // Queue a replacement normal scoring target.
                 _pendingSteps?.Push(new SmithStepData
                 {
                     State = SmithHitState.Missed,
