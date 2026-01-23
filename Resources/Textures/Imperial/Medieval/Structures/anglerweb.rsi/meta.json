@@ -1,0 +1,26 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "sprited by @crookielv",
+    "size": {
+      "x": 64,
+      "y": 64
+    },
+    "states": [
+      {
+        "name": "web1"
+      },
+      {
+        "name": "web2"
+      },
+      {
+        "name": "web3"
+      },
+      {
+        "name": "web4"
+      },
+      {
+        "name": "web5"
+      }
+    ]
+  }

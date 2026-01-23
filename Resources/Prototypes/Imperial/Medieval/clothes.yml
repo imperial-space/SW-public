@@ -283,6 +283,20 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth91
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_91.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_91.rsi
+  - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
+
+- type: entity
+  parent: ClothingUniformBase
   id: MedievalClothingUniformJumpsuitShitCloth21
   name: shit cloth
   description: hoho
@@ -2581,6 +2595,34 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_88.rsi
   - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth89
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_89.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_89.rsi
+  - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth90
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_90.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_90.rsi
+  - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase

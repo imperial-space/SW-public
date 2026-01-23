@@ -7,7 +7,8 @@ public enum SmithHitState
 {
     Good,
     Neutral,
-    Missed
+    Missed,
+    Penalty
 }
 
 

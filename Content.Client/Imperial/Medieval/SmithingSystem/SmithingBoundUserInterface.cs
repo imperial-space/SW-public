@@ -27,9 +27,8 @@ public sealed class SmithingBoundUserInterface : BoundUserInterface
         _window.TargetExpired += OnTargetExpired;
     }
 
-    private void OnTargetExpired()
+    private void OnTargetExpired(SmithHitMesage message)
     {
-        var message = new SmithHitMesage(SmithHitState.Missed, true);
         SendMessage(message);
     }
 
