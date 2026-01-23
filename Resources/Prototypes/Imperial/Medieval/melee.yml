@@ -1518,6 +1518,28 @@
 
 - type: entity
   name: falshion
+  parent: MedievalFalshionT3Steel
+  id: MedievalFalshionT3SteelFoxei
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3
+  id: MedievalFalshionT3Foxei
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+
+- type: entity
+  name: falshion
   parent: MedievalFalshionT3LegionSteel
   id: MedievalFalshionT3LegionSteelChainMace
   description: An ancient war blade.
