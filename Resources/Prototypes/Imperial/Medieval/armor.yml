@@ -2151,6 +2151,17 @@
     sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
 
 - type: entity
+  parent: ClothingOuterArmorPodWars
+  id: ClothingOuterArmorPodWarsFoxei
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+
+- type: entity
   parent: MedievalClothingFeetSteel
   id: MedievalClothingFeetSteelFoxei
   components:

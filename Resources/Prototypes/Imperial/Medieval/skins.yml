@@ -460,3 +460,26 @@
     Log: [MedievalClothingUniformJumpsuitShitCloth83]
     MedievalClothingUniformJumpsuitShitCloth23: [MedievalClothingUniformJumpsuitShitCloth2383]
 
+- type: customization
+  id: foxei
+  holder: 3aad2ad7-548c-4ddc-a2f3-d0166780e02d
+  map:
+    Log: [MedievalClothingNeckCloakFoxei]
+    MedievalClothingHeadHelmetCrusader: [MedievalClothingHeadHelmetFoxei]
+    MedievalClothingFeetSteel: [MedievalClothingFeetSteelFoxei]
+    MedievalIronGloves: [MedievalIronGlovesFoxei]
+    MedievalClothingOuterArmorIronCuirassLight: [MedievalClothingOuterArmorIronCuirassLightFoxei]
+    MedievalClothingOuterArmorBrigantin: [MedievalClothingOuterArmorBrigantinFoxei]
+    MedievalClothingOuterArmorIronCuirass: [MedievalClothingOuterArmorIronCuirassFoxei]
+    MedievalClothingOuterArmorChainMail: [MedievalClothingOuterArmorChainMailFoxei]
+    MedievalClothingOuterArmorIron: [MedievalClothingOuterArmorIronFoxei]
+    MedievalClothingOuterArmorUpIron2: [MedievalClothingOuterArmorUpIron2Foxei]
+    MedievalClothingOuterArmorUpIron3: [MedievalClothingOuterArmorUpIron3Foxei]
+    MedievalClothingOuterArmorUpIron: [MedievalClothingOuterArmorUpIronFoxei]
+    MedievalClothingOuterArmorEbonit: [MedievalClothingOuterArmorEbonitFoxei]
+    MedievalClothingOuterArmorEbonit2: [MedievalClothingOuterArmorEbonit2Foxei]
+    MedievalClothingOuterArmorForstone: [MedievalClothingOuterArmorForstoneFoxei]
+    ClothingOuterArmorPodWars: [ClothingOuterArmorPodWarsFoxei]
+    MedievalFalshionT3Steel: [MedievalFalshionT3SteelFoxei]
+    MedievalFalshionT3: [MedievalFalshionT3Foxei]
+
