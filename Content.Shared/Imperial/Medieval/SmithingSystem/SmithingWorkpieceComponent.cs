@@ -23,6 +23,9 @@ public sealed partial class SmithingWorkpieceComponent : Component
     [DataField]
     public float ExcellentTime = 0.5f;
 
+    [DataField]
+    public float PenaltyActivatorChance = 0.3f;
+
     #endregion
 
     [ViewVariables(VVAccess.ReadWrite)]
