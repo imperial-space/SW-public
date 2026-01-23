@@ -16,9 +16,9 @@
         sound:
           collection: MetalSlam
   - type: Sprite
-    sprite: /Textures/Imperial/Medieval/EventContent/Medieval/EventContent/Scarlatto/Walls/shuttle.rsi
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/shuttle.rsi
   - type: Icon
-    sprite: /Textures/Imperial/Medieval/EventContent/Medieval/EventContent/Scarlatto/Walls/shuttle.rsi
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/shuttle.rsi
 
 - type: entity
   parent: WallShuttle
@@ -38,9 +38,9 @@
         sound:
           collection: MetalSlam
   - type: Sprite
-    sprite: /Textures/Imperial/Medieval/EventContent/Medieval/EventContent/Scarlatto/Walls/dark_shuttle.rsi
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_shuttle.rsi
   - type: Icon
-    sprite: /Textures/Imperial/Medieval/EventContent/Medieval/EventContent/Scarlatto/Walls/dark_shuttle.rsi
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_shuttle.rsi
 
 - type: entity
   parent: WallShuttleDiagonal
@@ -65,10 +65,10 @@
           collection: MetalSlam
   - type: Sprite
     drawdepth: Walls
-    sprite: /Textures/Imperial/Medieval/EventContent/Medieval/EventContent/Scarlatto/Walls/diagonal.rsi
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/diagonal.rsi
     state: state0
   - type: Icon
-    sprite: /Textures/Imperial/Medieval/EventContent/Medieval/EventContent/Scarlatto/Walls/diagonal.rsi
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/diagonal.rsi
     state: state0
 
 - type: entity
@@ -94,10 +94,10 @@
           collection: MetalSlam
   - type: Sprite
     drawdepth: Walls
-    sprite: /Textures/Imperial/Medieval/EventContent/Medieval/EventContent/Scarlatto/Walls/dark_diagonal.rsi
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_diagonal.rsi
     state: state0
   - type: Icon
-    sprite: /Textures/Imperial/Medieval/EventContent/Medieval/EventContent/Scarlatto/Walls/dark_diagonal.rsi
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_diagonal.rsi
     state: state0
 
 - type: entity
