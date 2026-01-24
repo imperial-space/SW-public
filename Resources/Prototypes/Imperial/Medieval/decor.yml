@@ -2775,8 +2775,179 @@
 
 - type: entity
   parent: MedievalBaseMushroomTree
+  id: MedievalMushroomTree11
+  components:
+  - type: PointLight
+    castShadows: false
+    radius: 2
+    energy: 2
+    color: "#7a29dc"
+    offset: 0, 1.25
+  - type: Sprite
+    state: mushroomtree11
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 8
+          MedievalMushroom1:
+            min: 3
+            max: 5
+
+- type: entity
+  parent: MedievalMushroomTree11
+  id: MedievalMushroomTree12
+  components:
+  - type: Sprite
+    state: mushroomtree12
+
+- type: entity
+  parent: MedievalMushroomTree11
+  id: MedievalMushroomTree13
+  components:
+  - type: Sprite
+    state: mushroomtree13
+
+- type: entity
+  parent: MedievalBaseMushroomTree
+  id: MedievalMushroomTree21
+  components:
+  - type: PointLight
+    castShadows: false
+    radius: 2
+    energy: 2
+    color: "#6196d4"
+    offset: 0, 1.25
+  - type: Sprite
+    state: mushroomtree21
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 8
+          MedievalMushroom2:
+            min: 3
+            max: 5
+
+- type: entity
+  parent: MedievalMushroomTree21
+  id: MedievalMushroomTree22
+  components:
+  - type: Sprite
+    state: mushroomtree22
+
+- type: entity
+  parent: MedievalMushroomTree21
+  id: MedievalMushroomTree23
+  components:
+  - type: Sprite
+    state: mushroomtree23
+
+- type: entity
+  parent: MedievalBaseMushroomTree
+  id: MedievalMushroomTree31
+  components:
+  - type: PointLight
+    castShadows: false
+    radius: 2
+    energy: 2
+    color: "#cd672a"
+    offset: 0, 1.25
+  - type: Sprite
+    state: mushroomtree31
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 8
+          MedievalMushroom3:
+            min: 3
+            max: 5
+
+- type: entity
+  parent: MedievalMushroomTree31
+  id: MedievalMushroomTree32
+  components:
+  - type: Sprite
+    state: mushroomtree32
+
+- type: entity
+  parent: MedievalMushroomTree31
+  id: MedievalMushroomTree33
+  components:
+  - type: Sprite
+    state: mushroomtree33
+
+- type: entity
+  parent: MedievalBaseMushroomTree
   id: MedievalMushroomTree4
   components:
+  - type: PointLight
+    castShadows: false
+    radius: 2
+    energy: 2
+    color: "#9ab4d2"
+    offset: 0, 1.25
   - type: Sprite
     state: mushroomtree4
   - type: Destructible

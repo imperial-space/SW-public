@@ -11,6 +11,7 @@ seeds-starflower-display-name = звездоцвет счастливый
 seeds-darkflower-display-name = темноцвет мрачный
 seeds-bloodflower-display-name = кровавая веснушка
 seeds-whiteflower-display-name = белосветник
+seeds-blackflower-display-name = черносветник
 
 seeds-mushroom1-display-name = фиолетовый гриб
 seeds-mushroom2-display-name = синий гриб
@@ -37,6 +38,8 @@ ent-MedievalBloodSeeds = мешочек семян кровавой веснуш
     .desc = Эти семена дадут вам цветок, полный крови павших воинов
 ent-MedievalWhiteSeeds = мешочек семян белосветника
     .desc = Эти семена дадут вам ангельски белый цветок
+ent-MedievalBlackSeeds = мешочек семян черносветника
+    .desc = Эти семена дадут вам проклятый чёрный цветок
 
 ent-MedievalMushroom1Spores = мешочек спор нейромицита
     .desc = Этот мешочек полный спор даст вам нейромицит.
@@ -88,6 +91,9 @@ ent-MedievalFlowerBlood = кровавая весшунка
     .desc = Магический цветок, растущий в местах повышенного скопления маны.
     .suffix = { "Средневековье, цветок" }
 ent-MedievalFlowerWhite = белосветник
+    .desc = Магический цветок, растущий в местах повышенного скопления маны.
+    .suffix = { "Средневековье, цветок" }
+ent-MedievalFlowerBlack = черносветник
     .desc = Магический цветок, растущий в местах повышенного скопления маны.
     .suffix = { "Средневековье, цветок" }
 
