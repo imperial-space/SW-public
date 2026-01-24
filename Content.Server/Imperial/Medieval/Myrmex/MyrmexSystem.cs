@@ -1,41 +1,39 @@
-using Content.Server.BadSmell.Components;
-using Content.Shared.Examine;
-using Robust.Shared.Map;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Random;
-using Robust.Shared.Audio;
-using Robust.Shared.Timing;
-using Content.Shared.Popups;
-using Content.Shared.Alert;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Inventory;
-using Content.Shared.BadSmell;
-using Content.Shared.Damage;
-using Robust.Server.GameObjects;
-using Robust.Shared.Map.Components;
-using Content.Shared.Maps;
+using System.Linq;
+using System.Numerics;
+using Content.Server.Actions;
+using Content.Server.Chat.Systems;
 using Content.Server.MagicBarrier.Components;
 using Content.Server.Myrmex.Components;
-using Robust.Shared.Spawners;
-using System.Numerics;
+using Content.Server.BadSmell.Components;
+using Content.Shared.Alert;
+using Content.Shared.BadSmell;
 using Content.Shared.Body.Components;
-using Content.Shared.Jittering;
-using Content.Server.Actions;
-using System.Linq;
+using Content.Shared.Damage;
+using Content.Shared.Examine;
 using Content.Shared.Imperial.Zlevels;
-using Content.Server.Chat.Systems;
+using Content.Shared.Inventory;
+using Content.Shared.Jittering;
+using Content.Shared.Maps;
+using Content.Shared.Mobs.Systems;
+using Content.Shared.Popups;
+using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Localization;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Random;
+using Robust.Shared.Spawners;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Myrmex
 {
     public sealed partial class MyrmexSystem : EntitySystem
     {
         [Dependency] private readonly EntityLookupSystem _lookup = default!;
-        [Dependency] internal readonly IEntityManager _entityManager = default!;
-        [Dependency] internal readonly IMapManager _mapManager = default!;
-        [Dependency] protected readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly DamageableSystem _damageableSystem = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly SharedJitteringSystem _jitter = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
@@ -48,184 +46,215 @@ namespace Content.Server.Myrmex
         [Dependency] private readonly ChatSystem _chat = default!;
         [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-        public List<string> SporesPull = new()
-        {
-            "споры железошляпника",
-            "едкие споры",
-            "споры нейромицита"
-        };
-
-        public List<string> LightsPull = new()
-        {
-            "руническое",
-            "эфирное",
-            "теневое"
-        };
-
+        private const float UpdateInterval = 15f;
+        private const float EggJitterThreshold = 200f;
+        private const float EggGrowthRange = 1.5f;
+        
+        private TimeSpan _nextUpdate = TimeSpan.Zero;
 
         public override void Initialize()
         {
-            base.Initialize();
             SubscribeLocalEvent<MyrmexComponent, ComponentStartup>(OnMyrmexStartup);
-            SubscribeLocalEvent<MyrmexEggComponent, ExaminedEvent>(OnExamine);
-            SubscribeLocalEvent<MyrmexEggComponent, ComponentStartup>(OnStartEgg);
-            SubscribeLocalEvent<MyrmexGrowerComponent, ComponentStartup>(OnStartGrower);
-            SubscribeLocalEvent<MyrmexHoleComponent, ComponentStartup>(OnStartHole);
+            SubscribeLocalEvent<MyrmexEggComponent, ExaminedEvent>(OnEggExamined);
+            SubscribeLocalEvent<MyrmexEggComponent, ComponentStartup>(OnEggStartup);
+            SubscribeLocalEvent<MyrmexHoleComponent, ComponentStartup>(OnHoleStartup);
+
             InitializeActions();
         }
 
-        private void OnMyrmexStartup(EntityUid uid, MyrmexComponent myrmex, ref ComponentStartup args)
+        private void OnMyrmexStartup(Entity<MyrmexComponent> myrmex, ref ComponentStartup args)
         {
-            foreach (string actionProto in myrmex.Actions)
+            foreach (var action in myrmex.Comp.Actions)
             {
-                _actions.AddAction(uid, actionProto);
+                _actions.AddAction(myrmex, action);
             }
         }
 
-        private void OnStartHole(EntityUid uid, MyrmexHoleComponent comp, ComponentStartup args)
+        private void OnHoleStartup(EntityUid uid, MyrmexHoleComponent comp, ComponentStartup args)
         {
-            string f1 = _random.Next(0, 10000).ToString();
-            string f2 = _random.Next(0, 10000).ToString();
-            if (comp.Entrance) return;
-            var cursespawners = EntityManager.EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
-            if (cursespawners.Count() == 0) return;
-            var choosenSpawner = _random.Pick(cursespawners);
-            var cursexform = Transform(choosenSpawner.Owner);
-            var cursecoords = cursexform.Coordinates;
-            var secondHole = Spawn("MedievalMyrmexBigHoleExit", cursecoords);
-            var ladderEntr = EnsureComp<LadderComponent>(secondHole);
-            var ladderEx = EnsureComp<LadderComponent>(uid);
-            ladderEntr.GroupID = f1;
-            ladderEx.GroupID = f1;
-            ladderEntr.LadderID = f2;
-            ladderEx.LadderID = f2;
-            QueueDel(choosenSpawner.Owner);
-            _chat.DispatchGlobalAnnouncement("Земля под ногами содрагается... древние мирмексы, что когда-то жили под землей вырылись наружу...", playSound: true, colorOverride: Color.Pink, sender: "Барьер");
-            // ahahah nihuya ya pridumal costyli smotrite
-        }
-        private void OnStartEgg(EntityUid uid, MyrmexEggComponent comp, ComponentStartup args)
-        {
-            comp.SporeType = SporesPull[_random.Next(0, SporesPull.Count)];
-            comp.LightColor = LightsPull[_random.Next(0, LightsPull.Count)];
-        }
-        private void OnStartGrower(EntityUid uid, MyrmexGrowerComponent comp, ComponentStartup args)
-        {
-            //if (comp.ResType == "spore")
-            //    comp.ResCur = SporesPull[_random.Next(0, SporesPull.Count)];
-            //else
-            //    comp.ResCur = LightsPull[_random.Next(0, LightsPull.Count)];
-        }
-        private void OnExamine(EntityUid uid, MyrmexEggComponent comp, ExaminedEvent args)
-        {
-            var xform = Transform(uid);
-            var coords = xform.Coordinates;
-            string light = CheckNearby(coords, "light");
-            string spore = CheckNearby(coords, "spore");
-            string cl = "white";
-            if (comp.LightColor == "руническое")
-                cl = "cyan";
-            else if (comp.LightColor == "эфирное")
-                cl = "orange";
-            else if (comp.LightColor == "теневое")
-                cl = "pink";
-            string cs = "white";
-            if (comp.SporeType == "споры железошляпника")
-                cs = "cyan";
-            else if (comp.SporeType == "едкие споры")
-                cs = "orange";
-            else if (comp.SporeType == "споры нейромицита")
-                cs = "pink";
-            args.PushMarkup($"[color=gray]Для благоприятных условий роста яйцу требуются[/color] [color={cs}]{comp.SporeType}[/color] [color=gray]и[/color] [color={cl}]{comp.LightColor}[/color] [color=gray]свечение[/color]", 3);
+            if (comp.Entrance) 
+                return;
 
-            if (light == "")
-                args.PushMarkup($"[color=gray]Яйцо [/color][color=red]не освещено[/color]", 1);
-            else if (light == "many")
-                args.PushMarkup($"[color=gray]Яйцо [/color][color=orange]слишком сильно освещено[/color]", 1);
-            else if (light == comp.LightColor)
-                args.PushMarkup($"Яйцо освещено[color=green] верным[/color] свечением", 1);
-            else if (light != comp.LightColor)
-                args.PushMarkup($"Яйцо освещено[color=orange] неверным[/color] свечением", 1);
+            var curseSpawners = EntityQuery<MagicBarrierCurseSpawnComponent>().ToArray();
+            if (curseSpawners.Length == 0) 
+                return;
 
-            if (spore == "")
-                args.PushMarkup($"[color=gray]Яйцо [/color][color=red]не обрабатывается спорами[/color]", 2);
-            else if (spore == "many")
-                args.PushMarkup($"[color=gray]Яйцо [/color][color=orange]слишком сильно обрабатывается спорами[/color]", 2);
-            else if (spore == comp.SporeType)
-                args.PushMarkup($"Яйцо обрабатывается[color=green] верными[/color] спорами", 2);
-            else if (spore != comp.SporeType)
-                args.PushMarkup($"Яйцо обрабатывается[color=orange] неверными[/color] спорами", 2);
+            var chosenSpawner = _random.Pick(curseSpawners);
+            var curseCoords = Transform(chosenSpawner.Owner).Coordinates;
+            
+            var secondHole = Spawn("MedievalMyrmexBigHoleExit", curseCoords);
+            var groupId = _random.Next(0, 10000).ToString();
+            var ladderId = _random.Next(0, 10000).ToString();
+            
+            var ladderEntrance = EnsureComp<LadderComponent>(secondHole);
+            var ladderExit = EnsureComp<LadderComponent>(uid);
+            
+            ladderEntrance.GroupID = groupId;
+            ladderExit.GroupID = groupId;
+            ladderEntrance.LadderID = ladderId;
+            ladderExit.LadderID = ladderId;
+            
+            QueueDel(chosenSpawner.Owner);
+            
+            _chat.DispatchGlobalAnnouncement(
+                Loc.GetString("myrmex-hole-spawn-announcement"),
+                playSound: true, 
+                colorOverride: Color.Pink, 
+                sender: Loc.GetString("myrmex-hole-spawn-sender")
+            );
+        }
 
-            if (light == comp.LightColor && spore == comp.SporeType)
-                args.PushMarkup($"Текущие условия [color=green]идеальны[/color]", 0);
-            else if (light != comp.LightColor && spore == comp.SporeType || light == comp.LightColor && spore != comp.SporeType)
-                args.PushMarkup($"Текущие условия [color=yellow]удовлетворительны[/color]", 0);
+        private void OnEggStartup(EntityUid uid, MyrmexEggComponent comp, ComponentStartup args)
+        {
+            comp.RequiredSporeType = GetRandomEnum<MyrmexSporeType>();
+            comp.RequiredLightType = GetRandomEnum<MyrmexLightType>();
+        }
+
+        private T GetRandomEnum<T>() where T : struct, Enum
+        {
+            var values = Enum.GetValues<T>()
+                .Where(x => !x.Equals(default(T)))
+                .ToArray();
+
+            return values[_random.Next(values.Length)];
+        }
+
+        private void OnEggExamined(EntityUid uid, MyrmexEggComponent comp, ExaminedEvent args)
+        {
+            var coords = Transform(uid).Coordinates;
+            var nearbyLight = GetNearbyLightType(coords);
+            var nearbySpore = GetNearbySporeType(coords);
+            
+            var lightName = Loc.GetString("myrmex-light-type", ("type", comp.RequiredLightType.ToString()));
+            var sporeName = Loc.GetString("myrmex-spore-type", ("type", comp.RequiredSporeType.ToString()));
+
+            args.PushMarkup(
+                Loc.GetString("myrmex-egg-requirements",
+                    ("spore", sporeName),
+                    ("light", lightName)), 
+                3
+            );
+
+            PushLightStatus(args, nearbyLight, comp.RequiredLightType);
+            PushSporeStatus(args, nearbySpore, comp.RequiredSporeType);
+            PushOverallStatus(args, nearbyLight, nearbySpore, comp.RequiredLightType, comp.RequiredSporeType);
+        }
+
+        private void PushLightStatus(ExaminedEvent args, MyrmexLightType? nearby, MyrmexLightType required)
+        {
+            string message;
+
+            if (nearby == null)
+                message = Loc.GetString("myrmex-egg-light-too-many");
+            else if (nearby == MyrmexLightType.None)
+                message = Loc.GetString("myrmex-egg-light-none");
+            else if (nearby == required)
+                message = Loc.GetString("myrmex-egg-light-correct");
             else
-                args.PushMarkup($"Текущие условия [color=red]ужасны[/color]", 0);
+                message = Loc.GetString("myrmex-egg-light-wrong");
+
+            args.PushMarkup(message, 1);
         }
-        TimeSpan StartTime = TimeSpan.FromSeconds(0f);
-        TimeSpan EndTime = TimeSpan.FromSeconds(0f);
-        TimeSpan ReloadTime = TimeSpan.FromSeconds(15f);
+
+        private void PushSporeStatus(ExaminedEvent args, MyrmexSporeType? nearby, MyrmexSporeType required)
+        {
+            string message;
+
+            if (nearby == null)
+                message = Loc.GetString("myrmex-egg-spore-too-many");
+            else if (nearby == MyrmexSporeType.None)
+                message = Loc.GetString("myrmex-egg-spore-none");
+            else if (nearby == required)
+                message = Loc.GetString("myrmex-egg-spore-correct");
+            else
+                message = Loc.GetString("myrmex-egg-spore-wrong");
+
+            args.PushMarkup(message, 2);
+        }
+
+        private void PushOverallStatus(ExaminedEvent args, MyrmexLightType? nearbyLight, MyrmexSporeType? nearbySpore, 
+            MyrmexLightType requiredLight, MyrmexSporeType requiredSpore)
+        {
+            string message;
+
+            if (nearbyLight == requiredLight && nearbySpore == requiredSpore)
+                message = Loc.GetString("myrmex-egg-conditions-perfect");
+            else if (nearbyLight == requiredLight || nearbySpore == requiredSpore)
+                message = Loc.GetString("myrmex-egg-conditions-satisfactory");
+            else
+                message = Loc.GetString("myrmex-egg-conditions-terrible");
+
+            args.PushMarkup(message, 0);
+        }
 
         public override void Update(float frameTime)
         {
             base.Update(frameTime);
 
             var curTime = _timing.CurTime;
+            if (curTime < _nextUpdate)
+                return;
 
-            if (curTime > EndTime)
+            _nextUpdate = curTime + TimeSpan.FromSeconds(UpdateInterval);
+
+            foreach (var comp in EntityQuery<MyrmexEggComponent>())
             {
-                StartTime = _timing.CurTime;
-                EndTime = StartTime + ReloadTime;
-
-                foreach (var comp in EntityManager.EntityQuery<MyrmexEggComponent>())
-                {
-                    UpdateGrow(comp.Owner, comp);
-                }
-
-                foreach (var rockfall in EntityManager.EntityQuery<MyrmexRockFallComponent>())
-                {
-                    UpdateRockfall(rockfall.Owner, rockfall);
-                }
+                UpdateEggGrowth(comp.Owner, comp);
             }
 
+            foreach (var rockfall in EntityQuery<MyrmexRockFallComponent>())
+            {
+                UpdateRockfall(rockfall.Owner, rockfall);
+            }
         }
+
         private void UpdateRockfall(EntityUid uid, MyrmexRockFallComponent comp)
         {
-            var c = Transform(uid).Coordinates;
-            if (_random.Prob(comp.Chanse) && !CheckProp(c, comp.Range) && comp.BadCount < comp.MaxBadCount)
+            var coords = Transform(uid).Coordinates;
+            
+            if (_random.Prob(comp.Chanse) && !HasNearbyProps(coords, comp.Range) && comp.BadCount < comp.MaxBadCount)
             {
-                comp.BadCount += 1;
-                Spawn(comp.WarningID, c);
+                comp.BadCount++;
+                Spawn(comp.WarningID, coords);
             }
+            
             if (comp.BadCount >= comp.MaxBadCount)
             {
-
-                foreach (var entity in _lookup.GetEntitiesInRange(c, comp.Range))
-                {
-                    if (HasComp<BodyComponent>(entity))
-                        _damageableSystem.TryChangeDamage(entity, comp.Damage, true, true);
-                }
-
-                Spawn(comp.EndID, c);
-                Spawn(comp.FallID, c);
-                Spawn(comp.FallID, c.Offset(new Vector2(-1, -1)));
-                Spawn(comp.FallID, c.Offset(new Vector2(-1, 1)));
-                Spawn(comp.FallID, c.Offset(new Vector2(1, -1)));
-                Spawn(comp.FallID, c.Offset(new Vector2(1, 1)));
-                Spawn(comp.FallID, c.Offset(new Vector2(-1, 0)));
-                Spawn(comp.FallID, c.Offset(new Vector2(0, -1)));
-                Spawn(comp.FallID, c.Offset(new Vector2(1, 0)));
-                Spawn(comp.FallID, c.Offset(new Vector2(0, 1)));
-                Spawn(comp.FallID, c.Offset(new Vector2(-2, 0)));
-                Spawn(comp.FallID, c.Offset(new Vector2(2, 0)));
-                Spawn(comp.FallID, c.Offset(new Vector2(0, 2)));
-                Spawn(comp.FallID, c.Offset(new Vector2(0, -2)));
-                var time = EnsureComp<TimedDespawnComponent>(uid);
-                time.Lifetime = 0.03f;
+                DamageNearbyEntities(coords, comp.Range, comp.Damage);
+                SpawnRockfallDebris(coords, comp);
+                
+                var despawn = EnsureComp<TimedDespawnComponent>(uid);
+                despawn.Lifetime = 0.03f;
             }
         }
 
-        public bool CheckProp(EntityCoordinates coords, float range)
+        private void DamageNearbyEntities(EntityCoordinates coords, float range, DamageSpecifier damage)
+        {
+            foreach (var entity in _lookup.GetEntitiesInRange(coords, range))
+            {
+                if (HasComp<BodyComponent>(entity))
+                    _damageable.TryChangeDamage(entity, damage, true, true);
+            }
+        }
+
+        private void SpawnRockfallDebris(EntityCoordinates coords, MyrmexRockFallComponent comp)
+        {
+            Spawn(comp.EndID, coords);
+            
+            var offsets = new Vector2[]
+            {
+                new(0, 0), new(-1, -1), new(-1, 1), new(1, -1), new(1, 1),
+                new(-1, 0), new(0, -1), new(1, 0), new(0, 1),
+                new(-2, 0), new(2, 0), new(0, 2), new(0, -2)
+            };
+
+            foreach (var offset in offsets)
+            {
+                Spawn(comp.FallID, coords.Offset(offset));
+            }
+        }
+
+        private bool HasNearbyProps(EntityCoordinates coords, float range)
         {
             foreach (var entity in _lookup.GetEntitiesInRange(coords, range))
             {
@@ -234,58 +263,103 @@ namespace Content.Server.Myrmex
             }
             return false;
         }
-        private void UpdateGrow(EntityUid uid, MyrmexEggComponent comp)
-        {
 
-            var xform = Transform(uid);
-            var coords = xform.Coordinates;
-            string light = CheckNearby(coords, "light");
-            string spore = CheckNearby(coords, "spore");
-            float temp = 15f;
-            if (light == comp.LightColor)
-                temp *= 2f;
-            if (spore == comp.SporeType)
-                temp *= 2f;
-            if (light == comp.LightColor && spore == comp.SporeType)
-                temp *= 1.5f;
-            comp.TimeTillSpawn -= temp;
-            if (comp.TimeTillSpawn < 200)
+        private void UpdateEggGrowth(EntityUid uid, MyrmexEggComponent comp)
+        {
+            var coords = Transform(uid).Coordinates;
+            var nearbyLight = GetNearbyLightType(coords);
+            var nearbySpore = GetNearbySporeType(coords);
+            
+            var growthMultiplier = CalculateGrowthMultiplier(nearbyLight, nearbySpore, 
+                comp.RequiredLightType, comp.RequiredSporeType);
+            
+            comp.TimeTillSpawn -= UpdateInterval * growthMultiplier;
+
+            if (comp.TimeTillSpawn < EggJitterThreshold)
             {
                 _jitter.AddJitter(uid);
                 _jitter.DoJitter(uid, TimeSpan.FromSeconds(12f), true);
             }
+
             if (comp.TimeTillSpawn <= 0)
+                HatchEgg(uid, comp, coords);
+        }
+
+        private float CalculateGrowthMultiplier(MyrmexLightType? nearbyLight, MyrmexSporeType? nearbySpore,
+            MyrmexLightType requiredLight, MyrmexSporeType requiredSpore)
+        {
+            var multiplier = 1f;
+
+            if (nearbyLight == requiredLight)
+                multiplier *= 2f;
+
+            if (nearbySpore == requiredSpore)
+                multiplier *= 2f;
+
+            if (nearbyLight == requiredLight && nearbySpore == requiredSpore)
+                multiplier *= 1.5f;
+
+            return multiplier;
+        }
+
+        private void HatchEgg(EntityUid uid, MyrmexEggComponent comp, EntityCoordinates coords)
+        {
+            var despawn = EnsureComp<TimedDespawnComponent>(uid);
+            despawn.Lifetime = 0.03f;
+
+            var playerCount = _playerManager.PlayerCount;
+            var myrmexCount = (int)MathF.Floor((playerCount + 50) / 50f);
+
+            for (var i = 0; i < myrmexCount; i++)
             {
-                var time = EnsureComp<TimedDespawnComponent>(uid);
-                time.Lifetime = 0.03f;
-
-                var playerCount = _playerManager.PlayerCount;
-                var myrmexCount = ((playerCount + 50) / 50);
-                var myrmexCountInt = (int)MathF.Floor(myrmexCount);
-
-                for (int i = 0; i < myrmexCountInt; i++)
-                    Spawn(comp.LarvaID, coords);
+                Spawn(comp.LarvaID, coords);
             }
         }
 
-        public string CheckNearby(EntityCoordinates coords, string need)
+        private MyrmexLightType? GetNearbyLightType(EntityCoordinates coords)
         {
-            int cnt = 0;
-            string res = "";
-            foreach (var entity in _lookup.GetEntitiesInRange(coords, 1.5f))
+            var count = 0;
+            var result = MyrmexLightType.None;
+
+            foreach (var entity in _lookup.GetEntitiesInRange(coords, EggGrowthRange))
             {
-                if (TryComp<MyrmexGrowerComponent>(entity, out var grower) && grower.ResType == need)
+                if (TryComp<MyrmexGrowerComponent>(entity, out var grower) && 
+                    grower.LightType != MyrmexLightType.None)
                 {
-                    cnt++;
-                    res = grower.ResCur;
+                    count++;
+                    result = grower.LightType;
                 }
             }
-            if (cnt > 1)
-                return "many";
-            else if (cnt == 1)
-                return res;
-            else return "";
+
+            return count switch
+            {
+                > 1 => null,
+                1 => result,
+                _ => MyrmexLightType.None
+            };
         }
 
+        private MyrmexSporeType? GetNearbySporeType(EntityCoordinates coords)
+        {
+            var count = 0;
+            var result = MyrmexSporeType.None;
+
+            foreach (var entity in _lookup.GetEntitiesInRange(coords, EggGrowthRange))
+            {
+                if (TryComp<MyrmexGrowerComponent>(entity, out var grower) && 
+                    grower.SporeType != MyrmexSporeType.None)
+                {
+                    count++;
+                    result = grower.SporeType;
+                }
+            }
+
+            return count switch
+            {
+                > 1 => null,
+                1 => result,
+                _ => MyrmexSporeType.None
+            };
+        }
     }
 }
