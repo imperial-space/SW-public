@@ -94,10 +94,13 @@ namespace Content.Server.Imperial.Medieval.Revive
                 return;
             var playerEntity = EntityManager.GetComponent<MindComponent>(playerMind.Value).CurrentEntity;
 
-            _adminlog.Add(LogType.Action, LogImpact.High, $"у нас разум {netEntity} revived {playerEntity}");
+
 
             if (!HasComp<GhostComponent>(playerEntity))
+            {
+                _adminlog.Add(LogType.Action, LogImpact.High, $"Обнаружена подозрительная активность, разум {netEntity} в теле {playerEntity} пытался возродится, либо софт либо баг менюшки");
                 return;
+            }
 
             var reviveQuery = EntityManager.EntityQuery<MedievalReviveSpawnerComponent>();
 
