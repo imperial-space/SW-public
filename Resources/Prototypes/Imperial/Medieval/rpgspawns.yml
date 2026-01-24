@@ -2384,6 +2384,16 @@
   - type: AntiSSDFreeArea
 
 - type: entity
+  name: MedievalSpawnerRandomMushroomTreeLifetime1200
+  noSpawn: true
+  id: MedievalSpawnerRandomMushroomTreeLifetime1200
+  components:
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MedievalSpawnerRandomMushroomTree
+
+- type: entity
   name: MedievalSpawnerRandomMushroomTree
   noSpawn: true
   id: MedievalSpawnerRandomMushroomTree
@@ -2394,6 +2404,15 @@
     - state: red
   - type: RandomSpawner
     prototypes:
+    - MedievalMushroomTree11
+    - MedievalMushroomTree12
+    - MedievalMushroomTree13
+    - MedievalMushroomTree21
+    - MedievalMushroomTree22
+    - MedievalMushroomTree23
+    - MedievalMushroomTree31
+    - MedievalMushroomTree32
+    - MedievalMushroomTree33
     - MedievalMushroomTree4
     chance: 1
     offset: 0
