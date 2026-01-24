@@ -9095,3 +9095,21 @@
   - type: Sprite
     sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
     state: web5
+
+- type: entity
+  id: WeaponArcAbibi
+  parent: WeaponArcStatic
+  components:
+    - type: WeaponArcVisuals
+      fadeOut: false
+    - type: Sprite
+      layers:
+      - sprite: Imperial/Medieval/Effects/arc.rsi
+        state: arc_abibi
+        shader: unshaded
+    - type: TimedDespawn
+      lifetime: 1.26
+    - type: PointLight
+      color: "#ff2400"
+      radius: 1.5
+      energy: 6
