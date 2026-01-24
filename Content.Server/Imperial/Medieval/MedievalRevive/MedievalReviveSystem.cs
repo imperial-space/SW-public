@@ -76,28 +76,47 @@ namespace Content.Server.Imperial.Medieval.Revive
             var player = args.SenderSession;
             var playerUid = player.UserId;
             if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
+            {
+                _adminlog.Add(LogType.Action, LogImpact.Low, $"Игрок {player.Name} попытался возродиться, но барьер не найден");
                 return;
-
+            }
 
             if (!barrier.ReviveCount.ContainsKey(playerUid))
                 barrier.ReviveCount[playerUid] = 0;
 
             if (barrier.ReviveCount[playerUid] >= MaxRevives)
+            {
+                _adminlog.Add(LogType.Action, LogImpact.High, $"Игрок {player.Name} попытался возродиться, но у него уже {MaxRevives} возрождений");
                 return;
+            }
             if (!_minds.TryGetNetEntity(player.GetMind(), out var netEntity))
+            {
+                _adminlog.Add(LogType.Action, LogImpact.High, $"Разум {player.GetMind()} не имеет значения");
                 return;
+            }
             if (EntityManager.GetEntity(netEntity) == null)
+            {
+                _adminlog.Add(LogType.Action, LogImpact.High, $"Сущность {netEntity} не имеет значения");
                 return;
+            }
+
             var playerMind = EntityManager.GetEntity(netEntity);
 
             if (!playerMind.HasValue)
+            {
+                _adminlog.Add(LogType.Action, LogImpact.High, $"Разум {playerMind} не имеет значения");
                 return;
+            }
+
             var playerEntity = EntityManager.GetComponent<MindComponent>(playerMind.Value).CurrentEntity;
 
-            _adminlog.Add(LogType.Action, LogImpact.High, $"у нас разум {netEntity} revived {playerEntity}");
+
 
             if (!HasComp<GhostComponent>(playerEntity))
+            {
+                _adminlog.Add(LogType.Action, LogImpact.High, $"Обнаружена подозрительная активность, разум {netEntity} в теле {playerEntity} пытался возродится, либо софт либо баг менюшки");
                 return;
+            }
 
             var reviveQuery = EntityManager.EntityQuery<MedievalReviveSpawnerComponent>();
 
