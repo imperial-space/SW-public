@@ -9098,6 +9098,7 @@
 
 - type: entity
   id: WeaponArcAbibi
+  categories: [ HideSpawnMenu ]
   parent: WeaponArcStatic
   components:
     - type: WeaponArcVisuals
@@ -9113,3 +9114,6 @@
       color: "#ff2400"
       radius: 1.5
       energy: 6
+    - type: Tag
+      tags:
+        - HideContextMenu
