@@ -121,6 +121,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         _gameEndTime = null;
         _hintUsed = false;
         HintButton.Disabled = false;
+        if (_playerIntelligence <= 15) HintButton.Disabled = true;
 
         var positions = new List<(int, int)>();
         for (int i = 0; i < _gridSize; i++)
@@ -173,6 +174,15 @@ public sealed partial class MinesweeperWindow : DefaultWindow
 
                     if(args.Event.Function == EngineKeyFunctions.UIClick)
                     {
+                        if (_revealedCount == 0)
+                        {
+                            while (true)
+                            {
+                                if (!_mineField[x, y] && CountAdjacentMines(x, y) == 0) break;
+                                else InitializeGame();
+                            }
+                        }
+
                         HandleCellClick(x, y);
                     }
                     else if(args.Event.Function == EngineKeyFunctions.UIRightClick)
