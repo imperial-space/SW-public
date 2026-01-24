@@ -100,12 +100,12 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         }
     }
 
-    public void StartGame(MagicRune rune, int playerIntelligence, int gridSize, int totalMines)
+    public void StartGame(MagicRune rune, int playerIntelligence, int gridSize, int totalMines, int decodedRunes)
     {
         _currentRune = rune;
         _playerIntelligence = playerIntelligence;
-        _gridSize = gridSize;
-        _totalMines = totalMines;
+        _gridSize = gridSize + decodedRunes;
+        _totalMines = totalMines + decodedRunes * 4;
         RuneLabel.Text = $"Расшифровка руны: {MagicRuneData.GetSymbol(rune)} ({MagicRuneData.GetMeaning(rune)})";
         InitializeGame();
     }
@@ -121,6 +121,8 @@ public sealed partial class MinesweeperWindow : DefaultWindow
         _gameEndTime = null;
         _hintUsed = false;
         HintButton.Disabled = false;
+        if (_playerIntelligence <= 15) HintButton.Disabled = true;
+
         if (_playerIntelligence <= 15) HintButton.Disabled = true;
 
         var positions = new List<(int, int)>();
@@ -172,7 +174,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
                 {
                     if (_gameOver) return;
 
-                    if(args.Event.Function == EngineKeyFunctions.UIClick)
+                    if (args.Event.Function == EngineKeyFunctions.UIClick)
                     {
                         if (_revealedCount == 0)
                         {
@@ -185,7 +187,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
 
                         HandleCellClick(x, y);
                     }
-                    else if(args.Event.Function == EngineKeyFunctions.UIRightClick)
+                    else if (args.Event.Function == EngineKeyFunctions.UIRightClick)
                     {
                         ToggleFlag(x, y);
                     }

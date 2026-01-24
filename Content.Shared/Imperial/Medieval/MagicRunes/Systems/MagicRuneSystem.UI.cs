@@ -1,6 +1,9 @@
 using Content.Shared.Imperial.Medieval.MagicRunes.Components;
 using Content.Shared.Imperial.Medieval.MagicRunes.Data;
 using Content.Shared.UserInterface;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Stacks;
+using Content.Shared.Coordinates;
 
 //=========================================================================
 // MagicRuneSystem.UI.cs
@@ -13,6 +16,9 @@ namespace Content.Shared.Imperial.Medieval.MagicRunes.Systems;
 
 public partial class MagicRuneSystem
 {
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedStackSystem _stackSystem = default!;
+
     public void InitializeUI()
     {
         SubscribeLocalEvent<MagicScrollComponent, ActivatableUIOpenAttemptEvent>(UIOpenAttempt);
@@ -47,6 +53,10 @@ public partial class MagicRuneSystem
             return;
 
         component.DecodedRunes.Add(args.Rune);
+
+        var essence = Spawn("MagicMedievalDarkness1", args.Actor.ToCoordinates());
+        _stackSystem.SetCount(essence, component.DecodedRunes.Count, Comp<StackComponent>(essence));
+        _handsSystem.TryPickupAnyHand(args.Actor, essence);
 
         RecalculateScrollPower(uid, component);
         SendScrollState(uid, component, knowledge, args.Actor);
