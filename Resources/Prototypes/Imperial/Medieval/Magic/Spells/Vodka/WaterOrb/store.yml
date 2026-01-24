@@ -1,0 +1,19 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellWaterOrbBeginner
+  name: medieval-store-spells-vodka-water-orb-beginner-name #add name
+  description: medieval-store-spells-vodka-water-orb-beginner-desc #add desc
+  productAction: MedievalActionWaterOrbBeginner
+  priority: 10
+  icon:
+    sprite: Imperial/Medieval/Magic/Vodka/WaterOrb/icons.rsi #Change icon!
+    state: beginner
+  cost:
+    MagicMedievalVodka: 10
+  categories:
+  - MedievalVodkaSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+

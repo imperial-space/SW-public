@@ -59,3 +59,10 @@ medieval-store-spells-vodka-ice-dagger-middle-desc = Конвертируйте 
 
 medieval-store-spells-vodka-ice-dagger-senior-name = Совершенный ледяной кинжал
 medieval-store-spells-vodka-ice-dagger-senior-desc = Конвертируйте манну в жидкость и охладите ее в руке для создания ледяного кинжала, который значительно острее обычного кинжала и исчезнет через 30 секунд. Стоимость 12 маны, перезарядка 1.5 секунды.
+
+# Water Orb
+
+medieval-spell-speach-water-orb = C͍̪̟ͫ͗̐ō͕̯͛n̩̙̘͌̑̓g͚̠͊̄e̬̼ͯ͛r̥̞ͪ̿i͍̗̐ͯe̫̬̓̌s͚̩ͨ͋ ͙͗̐A̫̬͆̔q͕̞ͯ̚u̬̖͌ͫa͍̪̓̿e̲̩ͪ̎
+
+medieval-store-spells-vodka-water-orb-beginner-name = Сгусток воды
+medieval-store-spells-vodka-water-orb-beginner-desc = 5 унций чистейшей воды удерживаемые магией

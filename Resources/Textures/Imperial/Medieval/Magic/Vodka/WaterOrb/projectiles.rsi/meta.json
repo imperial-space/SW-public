@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "size": {
+      "x": 16,
+      "y": 16
+    },
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "by zakvielian, contributor",
+    "states": [
+        {
+            "name": "beginner"
+        }
+    ]
+}

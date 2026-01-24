@@ -1,0 +1,14 @@
+#Beginner
+
+- type: entity
+  id: WaterOrbSpellCastEffectBeginner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/SpellCastEffects/fire/boost.rsi #Change sprite
+    color: "#FF5900"
+    noRot: true
+    layers:
+      - state: beginner
+        shader: unshaded
+  - type: TimedDespawn
+    lifetime: 0.5
