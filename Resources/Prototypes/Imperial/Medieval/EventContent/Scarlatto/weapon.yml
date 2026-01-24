@@ -1,7 +1,7 @@
 - type: entity
   name: wrench
   parent: Wrench
-  id: MedievalWrench
+  id: MedievalWrenchEvent
   description: 'A common tool for assembly and disassembly. Remember: lefty latchy, righty removey.'
   components:
   - type: RDWeight
