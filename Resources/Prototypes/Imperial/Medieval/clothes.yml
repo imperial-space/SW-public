@@ -2297,6 +2297,34 @@
   - type: Dumpable
 
 - type: entity
+  name: heal bag
+  id: MedievalHealBag
+  parent: BaseStorageItem
+  description: A bag for real monster hunters
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/heal_bag.rsi
+    state: icon
+  - type: Item
+    storedRotation: -90
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: Storage
+    grid:
+    - 0,0,7,4
+    maxItemSize: Small
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+        - Gauze
+        - Ointment
+        - Brutepack
+  - type: Dumpable
+
+- type: entity
   id: MedievalFireFetter
   name: ent-MedievalFireFetter
   description: ent-MedievalFireFetter
