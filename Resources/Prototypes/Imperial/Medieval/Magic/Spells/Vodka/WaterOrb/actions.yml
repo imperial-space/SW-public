@@ -16,7 +16,7 @@
           MagicMedievalVodka: 1
   - type: MedievalInstantSpell
   - type: Action
-    useDelay: 1
+    useDelay: 10
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
