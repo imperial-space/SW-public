@@ -55,6 +55,7 @@ namespace Content.Server.Imperial.Medieval.Revive
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IConfigurationManager _cfg = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
+        [Dependency] private readonly IAdminLogManager _adminlog = default!;
 
         private const int MaxRevives = 3;
 
@@ -117,7 +118,12 @@ namespace Content.Server.Imperial.Medieval.Revive
             var player = args.SenderSession;
             var playerUid = player.UserId;
             if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
+            {
+                _adminlog.Add(LogType.Action,
+                    LogImpact.High,
+                    $"Player {player.Name} tried to revive but magic barrier was not found");
                 return;
+            }
 
             if (!barrier.ReviveCount.ContainsKey(playerUid))
                 barrier.ReviveCount[playerUid] = 0;
