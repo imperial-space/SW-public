@@ -1079,6 +1079,9 @@
   maximumGuilds: 3
   currency: Revent
   items:
+  - productEntity: MaterialCloth10
+    cost: 20
+    reputationForBuying: 0.0
   - productEntity: MedievalRope
     cost: 15
     reputationForBuying: 0.5
@@ -1671,4 +1674,5 @@
     cost: 220
     reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
+
 
