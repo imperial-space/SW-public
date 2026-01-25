@@ -350,7 +350,7 @@
   components:
   - type: RDWeight
     value: 2
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/wooden_sword.rsi
     state: icon
