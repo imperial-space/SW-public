@@ -1954,6 +1954,17 @@
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetFoxei
+  name: MedievalClothingHeadHelmetFoxei
+  description: MedievalClothingHeadHelmetFoxei
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/foxei_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/foxei_helmet.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
   id: MedievalClothingHeadHelmetViking
   name: MedievalClothingHeadHelmetViking
   description: MedievalClothingHeadHelmetViking

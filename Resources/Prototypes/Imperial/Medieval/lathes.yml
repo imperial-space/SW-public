@@ -941,8 +941,6 @@
     - MedievalMopItem
     - MedievalMopBucket
     - MedievalKnut
-    - MedievalGoldCup
-    - MedievalSilverCup
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1203,6 +1201,7 @@
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
     - MedievalStoneWallCraft
+    - MedievalFireplaceCraft
     - MedievalStoneLoopHoleCraft
     - MedievalWeaponTurretNanoTrasenCraft
     - MedievalChemistryEmptyBottleTempering01Craft
@@ -1237,7 +1236,13 @@
     - MedievalClothingFeetDragonBoneBone
     - MedievalBloodlettingNeedle
     - MedievalCultConductorRodIron
-
+    - Spoon
+    - Fork
+    - MedievalSilverCup
+    - MedievalGoldCup
+    - GoldenFork
+    - GoldenSpoon
+    - GoldenPlate
 - type: entity
   parent: CP14BaseWorkbench
   id: MedievalClothWorkingPlace

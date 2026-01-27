@@ -7,6 +7,7 @@ public sealed class SmithGameState(int steps, float maxGameTime)
         { SmithHitState.Good, 0 },
         { SmithHitState.Neutral, 0 },
         { SmithHitState.Missed, 0 },
+        { SmithHitState.Penalty, 0 },
     };
 
     private int _misclickPenalty;
@@ -39,7 +40,11 @@ public sealed class SmithGameState(int steps, float maxGameTime)
         }
 
         if (state == SmithHitState.Missed)
+        {
             _misclickPenalty++;
+            return;
+        }
+        _hitStates[state]++;
     }
 
     public int CalculateScore()
@@ -48,6 +53,7 @@ public sealed class SmithGameState(int steps, float maxGameTime)
 
         score += _hitStates[SmithHitState.Good];
         score -= _hitStates[SmithHitState.Missed];
+        score -= _hitStates[SmithHitState.Penalty] * 6;
 
         var forceEnded = StepsTotal - CompletedSteps;
         score -= forceEnded;

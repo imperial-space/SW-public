@@ -437,7 +437,7 @@
 - type: latheRecipe
   parent: BaseToolRecipe
   id: MedievalWrenchCraft
-  result: MedievalWrench
+  result: MedievalWrenchEvent
   materials:
     Steel: 700
 
