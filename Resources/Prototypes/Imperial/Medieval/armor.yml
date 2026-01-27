@@ -1276,6 +1276,15 @@
     damageCoefficient: 0.75
   - type: ManaRegen
     regen: 2.2
+  - type: SoulboundTrigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - soulboundtrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 20.0
+    intensitySlope: 5
+    maxIntensity: 10
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmer
