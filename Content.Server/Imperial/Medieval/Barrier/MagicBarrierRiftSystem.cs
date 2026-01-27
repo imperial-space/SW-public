@@ -63,6 +63,9 @@ public sealed class MagicBarrierRiftSystem : EntitySystem
         if (!TryComp<MagicBarrierRiftComponent>(component.Rift, out var riftComponent))
             return;
 
+        if (!riftComponent.Guardians.Contains(uid))
+            return;
+
         riftComponent.Guardians.Remove(uid);
         if (riftComponent.Guardians.Count == 0)
         {
