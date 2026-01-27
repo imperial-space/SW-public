@@ -4745,6 +4745,17 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailing
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb 
+          bounds: "-0.49,-0.15,0.49,0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   parent: RailingCorner
@@ -4783,6 +4794,26 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingCorner
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2:  #horizontal
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.15,0.15,-0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   parent: RailingCornerSmall
@@ -4821,6 +4852,18 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingCornerSmall
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+
 
 - type: entity
   parent: RailingRound
@@ -4859,6 +4902,26 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingRound
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.49,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2: #horizontal
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.15,0.15,0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   id: MedievalDecorWoodenClock
