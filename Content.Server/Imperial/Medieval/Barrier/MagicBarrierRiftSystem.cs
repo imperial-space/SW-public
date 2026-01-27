@@ -18,19 +18,14 @@ public sealed class MagicBarrierRiftSystem : EntitySystem
 
     private void OnRiftUse(EntityUid uid, MagicBarrierRiftComponent component, AfterInteractUsingEvent args)
     {
-        if (args.Handled || args.Target == null)
+        if (args.Handled || args.Target == null || !args.CanReach)
             return;
 
-        if(!args.CanReach)
-            return;
-
-        if (!TryComp<RiftKeyComponent>(args.Used, out var keyComponent))
+        if (!TryComp<RiftKeyComponent>(args.Used, out var keyComponent)
+            || !string.Equals(keyComponent.Element, component.Element, StringComparison.OrdinalIgnoreCase))
             return;
 
         if (component.GuardiansSpawned)
-            return;
-
-        if (!string.Equals(keyComponent.Element, component.Element, StringComparison.OrdinalIgnoreCase))
             return;
 
         component.GuardiansSpawned = true;
@@ -38,17 +33,23 @@ public sealed class MagicBarrierRiftSystem : EntitySystem
 
         QueueDel(args.Used);
 
-        var coords = Transform(uid).Coordinates;
-        SpawnGuardian(uid, component, coords.Offset(new Vector2(1f, 1f)));
-        SpawnGuardian(uid, component, coords.Offset(new Vector2(-1f, 1f)));
-        SpawnGuardian(uid, component, coords.Offset(new Vector2(1f, -1f)));
-        SpawnGuardian(uid, component, coords.Offset(new Vector2(-1f, -1f)));
+        for (var i = 0; i < component.GuardianEntities.Count; i++)
+        {
+            SpawnGuardian(uid, component, i);
+        }
         args.Handled = true;
     }
 
-    private void SpawnGuardian(EntityUid rift, MagicBarrierRiftComponent component, EntityCoordinates coords)
+    private void SpawnGuardian(EntityUid rift, MagicBarrierRiftComponent component, int index)
     {
-        var guardian = Spawn("MedievalMobSkeletMeat", coords);
+        if (index < 0 || index >= component.GuardianEntities.Count)
+            return;
+
+        var offset = index < component.GuardianOffsets.Count
+            ? component.GuardianOffsets[index]
+            : Vector2.Zero;
+        var coords = Transform(rift).Coordinates.Offset(offset);
+        var guardian = Spawn(component.GuardianEntities[index], coords);
         var guardianComponent = EnsureComp<RiftGuardianComponent>(guardian);
         guardianComponent.Rift = rift;
         component.Guardians.Add(guardian);
@@ -64,6 +65,10 @@ public sealed class MagicBarrierRiftSystem : EntitySystem
 
         riftComponent.Guardians.Remove(uid);
         if (riftComponent.Guardians.Count == 0)
+        {
+            var coords = Transform(component.Rift).Coordinates;
+            Spawn("MedievalSkeletDespawnEffect", coords);
             QueueDel(component.Rift);
+        }
     }
 }

@@ -56,10 +56,10 @@ namespace Content.Server.MagicBarrier.Components
         public float ElementalRiftStabilityLossPerMinute = 0.0015f;
 
         [DataField]
-        public float ElementalRiftMinSpawnMinutes = 25f;
+        public float ElementalRiftMinSpawnMinutes = 30f;
 
         [DataField]
-        public float ElementalRiftMaxSpawnMinutes = 40f;
+        public float ElementalRiftMaxSpawnMinutes = 60f;
 
     }
 }
