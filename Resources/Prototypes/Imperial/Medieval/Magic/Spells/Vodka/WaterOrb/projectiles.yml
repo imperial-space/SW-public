@@ -8,7 +8,7 @@
     sprite: Imperial/Medieval/Magic/Vodka/WaterOrb/projectiles.rsi
     state: beginner
   - type: TimedDespawn
-    lifetime: 5
+    lifetime: 6
   - type: Fixtures
     fixtures:
       fix1:
@@ -60,7 +60,7 @@
   - type: Edible
     edible: Drink
     solution: waterorb
-    destroyOnEmpty: true
+    destroyOnEmpty: false
     utensil: None
   - type: Damageable
     damageContainer: Inorganic
@@ -86,4 +86,12 @@
       - !type:SpillBehavior { }
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Timer
+  - type: TriggerOnGotEquippedHand
+  - type: TimerTrigger
+    delay: 5
+  - type: DamageOnTrigger
+    keysIn:
+      - timer
+    damage:
+      types:
+        Blunt: 10
