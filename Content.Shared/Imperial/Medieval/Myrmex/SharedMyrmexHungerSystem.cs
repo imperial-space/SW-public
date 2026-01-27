@@ -4,6 +4,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Examine;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.Medieval.Myrmex
@@ -13,12 +14,12 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly MovementSpeedModifierSystem _speedModifier = default!;
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
+        [Dependency] private readonly INetManager _net = default!;
         public override void Initialize()
         {
             base.Initialize();
             SubscribeLocalEvent<MyrmexHungerComponent, RefreshMovementSpeedModifiersEvent>(OnSpeedRefresh);
             SubscribeLocalEvent<MyrmexHungerComponent, ComponentInit>(OnInit);
-
             SubscribeLocalEvent<MyrmexHungerComponent, StaminaModifyEvent>(OnModifyStaminaDamage);
             SubscribeLocalEvent<MyrmexHungerComponent, GetMeleeDamageEvent>(OnGetDamage);
             SubscribeLocalEvent<MyrmexHungerComponent, DamageModifyEvent>(OnGetDamageModifiers);
@@ -27,7 +28,22 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
 
         private void OnInit(EntityUid uid, MyrmexHungerComponent comp, ref ComponentInit args)
         {
-            comp.LastEaten = _gameTiming.CurTime;
+            if (!_net.IsServer)
+                return;
+            var initialCooldown = TimeSpan.FromSeconds(comp.EatCooldownSeconds + 1);
+            comp.LastEaten = _gameTiming.CurTime - initialCooldown;
+            Clamp(uid, comp);
+        }
+
+        private void Clamp(EntityUid uid, MyrmexHungerComponent comp)
+        {
+            if (comp.MaxBuffs < 0)
+                comp.MaxBuffs = 0;
+
+            if (comp.Buffs.Count <= comp.MaxBuffs)
+                return;
+            comp.Buffs.RemoveRange(comp.MaxBuffs, comp.Buffs.Count - comp.MaxBuffs);
+            Dirty(uid, comp);
         }
 
         #region Buffs
@@ -43,7 +59,6 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
         private void OnModifyStaminaDamage(EntityUid uid, MyrmexHungerComponent comp, StaminaModifyEvent args)
         {
             var buff = MyrmexBuff.MultiplyBuffs(comp.Buffs);
-
             args.Damage *= buff.Stamina;
         }
 

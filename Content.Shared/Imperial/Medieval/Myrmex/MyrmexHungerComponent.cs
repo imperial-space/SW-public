@@ -10,6 +10,7 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
         [DataField, AutoNetworkedField] public float EatCooldownSeconds = 180;
         [DataField, AutoNetworkedField] public float SecondsToHungry = 1500;
         [DataField, AutoNetworkedField] public float HungrySpeedModifier = 0.3f;
+        [DataField, AutoNetworkedField] public int MaxBuffs = 10;
         [DataField, AutoNetworkedField] public List<MyrmexBuff> Buffs = [];
         [DataField, AutoNetworkedField] public EntProtoId IconPrototype = "HungerIconStarving";
     }
