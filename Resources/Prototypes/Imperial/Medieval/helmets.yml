@@ -623,8 +623,8 @@
     - soulboundtrigger
   - type: Explosive
     explosionType: Default
-    totalIntensity: 20.0
-    intensitySlope: 5
+    totalIntensity: 4
+    intensitySlope: 4
     maxIntensity: 4
 
 - type: entity
