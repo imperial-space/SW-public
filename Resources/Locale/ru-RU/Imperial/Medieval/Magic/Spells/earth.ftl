@@ -69,3 +69,10 @@ medieval-store-spells-earth-obelisk-middle-desc = Создайте в указа
 
 medieval-store-spells-earth-obelisk-senior-name = Обелиск
 medieval-store-spells-earth-obelisk-senior-desc = Создайте в указанном месте разрушаемый обелиск, который будет создавать волны шипов с каждым ударом.
+
+# Earth bed
+
+medieval-spell-speach-earth-bed = L̰ͧe͉ͩc̰̍ṭ̛ựs̰̅ ̰ͩT̰ͤe͉ͩṛ̛ṛ̛a̰ͤḛ̅
+
+medieval-store-spells-earth-bed-beginner-name = Ложе из земли
+medieval-store-spells-earth-bed-beginner-desc = Создайте в указаном месте не особо удобное место для сна.
