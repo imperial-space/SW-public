@@ -2,6 +2,7 @@
   parent: CrateLivestock
   id: MedievalAncientOakCloset
   name: ancient oak closet
+  suffix: Medieval
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Structures/Storage/closet.rsi
@@ -29,7 +30,7 @@
   parent: MedievalAncientOakCloset
   id: MedievalAncientOakClosetAlh
   name: ancient oak closets
-  suffix: Alh
+  suffix: Alh, Medieval
   components:
   - type: EntityTableContainerFill
     containers:
