@@ -1103,6 +1103,9 @@
   - productEntity: MedievalMonsterBag
     cost: 25
     reputationForBuying: 1
+  - productEntity: MedievalHealBag
+    cost: 25
+    reputationForBuying: 1
   - productEntity: MedievalClothingBackpackSatchelLeather
     cost: 25
     reputationForBuying: 1
@@ -1671,4 +1674,7 @@
     cost: 220
     reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
-
+  - productEntity: PottedPlantRandomSW
+    cost: 50
+    reputationForBuying: 1.5
+    

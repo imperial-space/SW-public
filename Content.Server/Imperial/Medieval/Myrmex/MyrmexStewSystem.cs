@@ -67,14 +67,13 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             if (HasComp<LarvaComponent>(user.Owner) && !stew.Comp.EdibleByLarva)
                 return false;
 
-            if (diff.HasValue && diff.Value.Duration() < TimeSpan.FromSeconds(user.Comp.EatCooldownSeconds))
-            {
-                if (!silent)
-                    _popup.PopupEntity(Loc.GetString("medieval-myrmex-stew-cooldown"), user.Owner, user.Owner);
-                return false;
-            }
+            if (!diff.HasValue || diff.Value.Duration() >= TimeSpan.FromSeconds(user.Comp.EatCooldownSeconds))
+                return true;
 
-            return true;
+            if (!silent)
+                _popup.PopupEntity(Loc.GetString("medieval-myrmex-stew-cooldown"), user.Owner, user.Owner);
+            return false;
+
         }
 
         private (bool Success, bool Handled) TryFeed(Entity<MyrmexStewComponent> stew, Entity<MyrmexHungerComponent> user)
@@ -124,8 +123,13 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             hunger.LastEaten = _gameTiming.CurTime;
 
             if (entity.Comp.Buff != null)
-                hunger.Buffs.Add(entity.Comp.Buff);
-
+            {
+                var max = hunger.MaxBuffs;
+                if (hunger.Buffs.Count < max)
+                    hunger.Buffs.Add(entity.Comp.Buff);
+                else
+                    _popup.PopupEntity($"Лимит баффов: {max}. Новый бафф не добавлен.", args.User, args.User);
+            }
             hunger.Dirty();
 
             if (TryComp<LarvaComponent>(args.User, out var larva))

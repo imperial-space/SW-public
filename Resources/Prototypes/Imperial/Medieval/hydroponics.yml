@@ -99,6 +99,17 @@
 
 - type: entity
   parent: SeedBase
+  name: seed-black-name
+  id: MedievalBlackSeeds
+  description: seed-blackseeds-desc
+  components:
+    - type: Seed
+      seedId: BlackFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/black.rsi
+
+- type: entity
+  parent: SeedBase
   name: seed-mushroom1spores-name
   id: MedievalMushroom1Spores
   description: seed-mushroom1spores-desc
@@ -151,7 +162,7 @@
       seedId: Mushroom5
     - type: Sprite
       sprite: Imperial/Medieval/Chem/Garden/mushroom5.rsi
-  
+
 - type: entity
   parent: SeedBase
   name: seed-mushroom6spores-name
@@ -522,6 +533,31 @@
   packetPrototype: MedievalWhiteSeeds
   productPrototypes:
     - MedievalFlowerWhite
+  lifespan: 28
+  maturation: 9
+  production: 3
+  yield: 3
+  potency: 11
+  growthStages: 3
+  waterConsumption: 0.65
+  nutrientConsumption: 0.45
+  idealLight: 8
+  idealHeat: 295
+  chemicals:
+    MedievalFlowerWhite:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: BlackFlower
+  name: seeds-blackflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-blackflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/black.rsi
+  packetPrototype: MedievalBlackSeeds
+  productPrototypes:
+    - MedievalFlowerBlack
   lifespan: 28
   maturation: 9
   production: 3
@@ -941,6 +977,51 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalFlowerWhite
+        Quantity: 35
+
+- type: reagent
+  id: MedievalFlowerBlack
+  name: ent-MedievalFlowerBlack
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerBlack
+  description: gol
+  components:
+  - type: RDWeight
+    value: 0.05
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/black.rsi
+    state: produce
+  - type: Produce
+    seedId: BlackFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Black
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerBlack
         Quantity: 35
 
 - type: reagent

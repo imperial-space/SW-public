@@ -23,5 +23,8 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
 
         [DataField, AutoNetworkedField]
         public EntProtoId IconPrototype = "HungerIconStarving";
+
+        [DataField, AutoNetworkedField] 
+         public int MaxBuffs = 10;
     }
 }
