@@ -937,6 +937,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: mogila3
+    drawdepth: Overdoors
+  - type: SpriteFade
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -959,8 +961,6 @@
         - MachineMask
         layer:
         - Opaque
-        - MidImpassable
-        - HighImpassable
         - BulletImpassable
 
 - type: entity
