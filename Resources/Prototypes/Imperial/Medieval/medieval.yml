@@ -1474,6 +1474,8 @@
         Blunt: 0.85
         Slash: 0.85
         Piercing: 0.85
+  - type: StaminaResistance
+    damageCoefficient: 0.85
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
