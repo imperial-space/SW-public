@@ -1401,6 +1401,9 @@
     accent: NoSlip
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonNoslip # imperial medieval
+  - type: Armor
+  - type: StaminaResistance
+    damageCoefficient: 0.7
 
 - type: entity
   parent: MedaljonFlashImmune
@@ -1474,8 +1477,6 @@
         Blunt: 0.85
         Slash: 0.85
         Piercing: 0.85
-  - type: StaminaResistance
-    damageCoefficient: 0.85
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
