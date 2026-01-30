@@ -93,3 +93,10 @@ medieval-store-spells-light-sunstrike-senior-name = Солнечный луч
 medieval-store-spells-light-sunstrike-senior-desc = Ускоренная версия солнечного луча. Стоимость 60 маны
 
 MagicSpark = Магическая искра
+
+# Summon Foliant
+
+medieval-spell-speach-summon-foliant = E̸V͢O̸CÁ͠T͢IÓ̵ G̡RÍ̛M͢O̸I͜RÍÍ͠
+
+medieval-store-spells-magic-light-summon-foliant-beginner-name = Призыва гримура
+medieval-store-spells-light-summon-foliant-beginner-desc = Призывает связанный с вами гримуар. Стоимость 25 маны
