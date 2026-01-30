@@ -17,10 +17,11 @@ namespace Content.Server.Imperial.Medieval.Myrmex
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
-        private readonly string[] _feedSounds = new[] {
-                "/Audio/Imperial/Medieval/ant_feed1.ogg",
+        private readonly string[] _feedSounds =
+        [
+            "/Audio/Imperial/Medieval/ant_feed1.ogg",
                 "/Audio/Imperial/Medieval/ant_feed2.ogg",
-            };
+        ];
 
         public override void Initialize()
         {
@@ -66,27 +67,23 @@ namespace Content.Server.Imperial.Medieval.Myrmex
         private bool FeedCheck(Entity<MyrmexStewComponent> stew, Entity<MyrmexHungerComponent> user, bool silent = false)
         {
             var curTime = _gameTiming.CurTime;
-
             var diff = (curTime - user.Comp.LastEaten);
 
             if (HasComp<LarvaComponent>(user.Owner) && !stew.Comp.EdibleByLarva)
                 return false;
 
-            if(diff.HasValue && diff.Value.Duration() < TimeSpan.FromSeconds(user.Comp.EatCooldownSeconds))
-            {
-                if(!silent)
-                    _popup.PopupEntity(Loc.GetString("medieval-myrmex-stew-cooldown"), user.Owner, user.Owner);
-                return false;
-            }
+            if (!diff.HasValue || diff.Value.Duration() >= TimeSpan.FromSeconds(user.Comp.EatCooldownSeconds))
+                return true;
+            if (!silent)
+                _popup.PopupEntity(Loc.GetString("medieval-myrmex-stew-cooldown"), user.Owner, user.Owner);
+            return false;
 
-            return true;
         }
 
         private (bool Success, bool Handled) TryFeed(Entity<MyrmexStewComponent> stew, Entity<MyrmexHungerComponent> user)
         {
             if (!FeedCheck(stew, user))
                 return (false, true);
-
 
             var sound = _random.Pick(_feedSounds);
             _audio.PlayPvs(sound, user.Owner);
@@ -129,9 +126,15 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             entity.Comp.Uses--;
 
             hunger.LastEaten = _gameTiming.CurTime;
-            if(entity.Comp.Buff != null)
-                hunger.Buffs.Add(entity.Comp.Buff);
 
+            if (entity.Comp.Buff != null)
+            {
+                var max = hunger.MaxBuffs;
+                if (hunger.Buffs.Count < max)
+                    hunger.Buffs.Add(entity.Comp.Buff);
+                else
+                    _popup.PopupEntity($"Лимит баффов: {max}. Новый бафф не добавлен.", args.User, args.User);
+            }
             hunger.Dirty();
 
             if (TryComp<LarvaComponent>(args.User, out var larva))

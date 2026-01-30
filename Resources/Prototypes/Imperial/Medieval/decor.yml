@@ -937,6 +937,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Decor/medieval_decor.rsi
     state: mogila3
+    drawdepth: Overdoors
+  - type: SpriteFade
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -959,8 +961,6 @@
         - MachineMask
         layer:
         - Opaque
-        - MidImpassable
-        - HighImpassable
         - BulletImpassable
 
 - type: entity
@@ -1170,7 +1170,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.35
+          radius: 0.25
         density: 190
         mask:
         - SmallMobMask
@@ -2775,8 +2775,179 @@
 
 - type: entity
   parent: MedievalBaseMushroomTree
+  id: MedievalMushroomTree11
+  components:
+  - type: PointLight
+    castShadows: false
+    radius: 2
+    energy: 2
+    color: "#7a29dc"
+    offset: 0, 1.25
+  - type: Sprite
+    state: mushroomtree11
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 8
+          MedievalMushroom1:
+            min: 3
+            max: 5
+
+- type: entity
+  parent: MedievalMushroomTree11
+  id: MedievalMushroomTree12
+  components:
+  - type: Sprite
+    state: mushroomtree12
+
+- type: entity
+  parent: MedievalMushroomTree11
+  id: MedievalMushroomTree13
+  components:
+  - type: Sprite
+    state: mushroomtree13
+
+- type: entity
+  parent: MedievalBaseMushroomTree
+  id: MedievalMushroomTree21
+  components:
+  - type: PointLight
+    castShadows: false
+    radius: 2
+    energy: 2
+    color: "#6196d4"
+    offset: 0, 1.25
+  - type: Sprite
+    state: mushroomtree21
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 8
+          MedievalMushroom2:
+            min: 3
+            max: 5
+
+- type: entity
+  parent: MedievalMushroomTree21
+  id: MedievalMushroomTree22
+  components:
+  - type: Sprite
+    state: mushroomtree22
+
+- type: entity
+  parent: MedievalMushroomTree21
+  id: MedievalMushroomTree23
+  components:
+  - type: Sprite
+    state: mushroomtree23
+
+- type: entity
+  parent: MedievalBaseMushroomTree
+  id: MedievalMushroomTree31
+  components:
+  - type: PointLight
+    castShadows: false
+    radius: 2
+    energy: 2
+    color: "#cd672a"
+    offset: 0, 1.25
+  - type: Sprite
+    state: mushroomtree31
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/tree_fell.ogg
+          params:
+            volume: 5
+            variation: 0.05
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 2
+            max: 8
+          MedievalMushroom3:
+            min: 3
+            max: 5
+
+- type: entity
+  parent: MedievalMushroomTree31
+  id: MedievalMushroomTree32
+  components:
+  - type: Sprite
+    state: mushroomtree32
+
+- type: entity
+  parent: MedievalMushroomTree31
+  id: MedievalMushroomTree33
+  components:
+  - type: Sprite
+    state: mushroomtree33
+
+- type: entity
+  parent: MedievalBaseMushroomTree
   id: MedievalMushroomTree4
   components:
+  - type: PointLight
+    castShadows: false
+    radius: 2
+    energy: 2
+    color: "#9ab4d2"
+    offset: 0, 1.25
   - type: Sprite
     state: mushroomtree4
   - type: Destructible
@@ -4813,6 +4984,17 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailing
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb 
+          bounds: "-0.49,-0.15,0.49,0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   parent: RailingCorner
@@ -4851,6 +5033,26 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingCorner
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2:  #horizontal
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.15,0.15,-0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   parent: RailingCornerSmall
@@ -4889,6 +5091,18 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingCornerSmall
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+
 
 - type: entity
   parent: RailingRound
@@ -4927,6 +5141,26 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingRound
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.49,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2: #horizontal
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.15,0.15,0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   id: MedievalDecorWoodenClock
@@ -5117,3 +5351,93 @@
         layer:
         - WallLayer
   - type: InteractionOutline
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  id: CandleWall
+  components:
+    # - type: AmbientSound
+      # volume: -15
+      # range: 1.5
+      # sound:
+        # path: /Audio/Ambience/Objects/fireplace.ogg
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+        - state: fire
+          shader: unshaded
+    - type: PointLight
+      color: "#e39c40"
+      radius: 3.5
+      power: 10
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.1,0.5,0.1,0.255"
+          density: 190
+          mask:
+          - None
+          layer:
+          - TabletopMachineLayer
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors: #excess damage, don't spawn entities.
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Construction
+      graph: LightFixture
+      node: bulbLight
+    - type: Transform
+      anchored: true
+    - type: Clickable
+    - type: InteractionOutline
+    # - type: RCDDeconstructable
+      # cost: 4
+      # delay: 2
+      # fx: EffectRCDDeconstruct2
+    # - type: PlacementReplacement
+      # key: MedievalBannerBase
+    # placement:
+      # mode: SnapgridCenter
+      # snap:
+      # - Wallmount
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: CandleWall1
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall1.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+        - state: fire
+          shader: unshaded
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: CandleWall2
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall2.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+        - state: fire
+          shader: unshaded
