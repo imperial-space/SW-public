@@ -65,4 +65,4 @@ medieval-store-spells-vodka-ice-dagger-senior-desc = Конвертируйте 
 medieval-spell-speach-water-orb = S̰ͧp̝ͥh̼ͨa̰ͤe͉ͩṛ̛a̰̍ ̰ͩA̰ͥq̰ͮựa̰ͤḛ̅
 
 medieval-store-spells-vodka-water-orb-beginner-name = Шарик воды
-medieval-store-spells-vodka-water-orb-beginner-desc = Небольшое количество воды, заточенное в сферу из тонкого льда
+medieval-store-spells-vodka-water-orb-beginner-desc = Небольшое количество воды, заточенное в сферу из тонкого льда. Стоимость 10 маны

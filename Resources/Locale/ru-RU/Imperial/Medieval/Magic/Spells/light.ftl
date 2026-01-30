@@ -98,5 +98,5 @@ MagicSpark = Магическая искра
 
 medieval-spell-speach-summon-foliant = E̸V͢O̸CÁ͠T͢IÓ̵ G̡RÍ̛M͢O̸I͜RÍÍ͠
 
-medieval-store-spells-magic-light-summon-foliant-beginner-name = Призыва гримура
+medieval-store-spells-magic-light-summon-foliant-beginner-name = Призыв гримура
 medieval-store-spells-light-summon-foliant-beginner-desc = Призывает связанный с вами гримуар. Стоимость 25 маны

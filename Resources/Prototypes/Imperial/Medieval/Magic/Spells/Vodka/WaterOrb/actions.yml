@@ -16,7 +16,7 @@
           MagicMedievalVodka: 1
   - type: MedievalInstantSpell
   - type: Action
-    useDelay: 15
+    useDelay: 20
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Imperial/Medieval/icewall_cast.ogg
@@ -41,11 +41,11 @@
           hideChat: true
   - type: MedievalSpawnOnlyInFreeHands
   - type: ManaDrainSpell
-    manaDrain: 5
+    manaDrain: 10
     canUseWithoutMana: true
     manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
     damageOnUseWithoutMana:
       groups:
-        Burn: 2
+        Burn: 5
   - type: SpellCastEffect
-    effectProto: IceDaggerSpellCastEffectBeginner #Whynot
+    effectProto: IceDaggerSpellCastEffectBeginner

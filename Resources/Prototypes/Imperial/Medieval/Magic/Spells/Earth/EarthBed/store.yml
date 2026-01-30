@@ -5,7 +5,7 @@
   name: medieval-store-spells-earth-bed-beginner-name
   description: medieval-store-spells-earth-bed-beginner-desc
   productAction: MedievalActionEarthBedBeginner
-  priority: 10
+  priority: 7
   icon:
     sprite: Imperial/Medieval/Magic/Earth/EarthBed/icons.rsi
     state: beginner
