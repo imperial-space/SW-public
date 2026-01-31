@@ -47,9 +47,9 @@
     - MedievalMobWolf
     - MedievalMobWolf
     GuardianOffsets:
-    - 1, 1
-    - -1, 1
-    - -1, 0
+    - 1,1
+    - -1,1
+    - -1,0
 
 - type: entity
   id: MedievalBarrierRiftFire
@@ -70,7 +70,7 @@
     GuardianEntities:
     - MedievalMobSkeletHalberd
     GuardianOffsets:
-    - 0, 0
+    - 0,0
 
 - type: entity
   id: MedievalBarrierRiftWater
@@ -98,14 +98,14 @@
     - MedievalMobCrab
     - MedievalMobCrab
     GuardianOffsets:
-    - 1, 1
-    - 1, 0
-    - 1, -1
-    - 0, 1
-    - 0, -1
-    - -1, 1
-    - -1, 0
-    - -1, -1
+    - 1,1
+    - 1,0
+    - 1,-1
+    - 0,1
+    - 0,-1
+    - -1,1
+    - -1,0
+    - -1,-1
 
 - type: entity
   id: MedievalBarrierRiftLight
@@ -126,7 +126,7 @@
     GuardianEntities:
     - MedievalMobBear
     GuardianOffsets:
-    - -1, 0
+    - -1,0
 
 - type: entity
   id: MedievalRiftKeyEarth
