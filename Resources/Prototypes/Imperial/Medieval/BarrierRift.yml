@@ -42,6 +42,14 @@
     castShadows: false
   - type: MagicBarrierRift
     element: earth
+    GuardianEntities:
+    - MedievalMobWolf
+    - MedievalMobWolf
+    - MedievalMobWolf
+    GuardianOffsets:
+    - 1, 1
+    - -1, 1
+    - -1, 0
 
 - type: entity
   id: MedievalBarrierRiftFire
@@ -59,6 +67,10 @@
     castShadows: false
   - type: MagicBarrierRift
     element: fire
+    GuardianEntities:
+    - MedievalMobSkeletHalberd
+    GuardianOffsets:
+    - 0, 0
 
 - type: entity
   id: MedievalBarrierRiftWater
@@ -76,6 +88,24 @@
     castShadows: false
   - type: MagicBarrierRift
     element: water
+    GuardianEntities:
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    GuardianOffsets:
+    - 1, 1
+    - 1, 0
+    - 1, -1
+    - 0, 1
+    - 0, -1
+    - -1, 1
+    - -1, 0
+    - -1, -1
 
 - type: entity
   id: MedievalBarrierRiftLight
@@ -93,6 +123,10 @@
     castShadows: false
   - type: MagicBarrierRift
     element: light
+    GuardianEntities:
+    - MedievalMobBear
+    GuardianOffsets:
+    - -1, 0
 
 - type: entity
   id: MedievalRiftKeyEarth
