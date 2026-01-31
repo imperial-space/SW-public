@@ -14,6 +14,9 @@ ent-MedievalPassHat4 = дамская шапочка
 ent-MedievalClothingMaskPlaguePass1 = мрачная маска доктора
     .desc = Выглядит страшно. Кажется, что носитель видел многое.
     .suffix = { "МОНЕТИЗАЦИЯ" }
+ent-MedievalClothingMaskPlaguePass2 = золотая маска
+    .desc = Золотая маска с клювом, чем-то напоминает маски чумных докторов.
+    .suffix = { "МОНЕТИЗАЦИЯ" }
 
 ent-MedievalClothingUniformJumpsuitPass1 = костюм дворянина
     .desc = Элегантный костюм с позолоченными элементами.
@@ -54,6 +57,12 @@ ent-MedievalClothingUniformJumpsuitPass12 = костюм морозной ноч
 ent-MedievalClothingUniformJumpsuitPass13 = одеяние астролога
     .desc = Одежды того, кто будет любоваться звёздами в эту зимнюю ночь.
     .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
+ent-MedievalClothingUniformJumpsuitPass14 = форма священнослужителя
+    .desc = Одеяние в сочетании белого и чёрного, пахнет благовониями.
+    .suffix = { "МОНЕТИЗАЦИЯ, Священник" }
+ent-MedievalClothingUniformJumpsuitPass15 = паломническая ряса
+    .desc = Свободная одежда, не сковывающая ваших движений.
+    .suffix = { "МОНЕТИЗАЦИЯ, Паломник" }
 
 ent-MedievalPassShoes1 = сапоги со шпорами
     .desc = Сапоги из хорошей кожи, очень подойдут наездникам на лошадях.
@@ -76,6 +85,9 @@ ent-MedievalPassShoes6 = ботфорты
 ent-MedievalPassShoes7 = белоснежные сапоги
     .desc = Зимние сапоги, которые согреют вас в самую сильную бурю.
     .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
+ent-MedievalPassShoes8 = чёрные туфли
+    .desc = Кожаные туфли, окрашенные в чёрное.
+    .suffix = { "МОНЕТИЗАЦИЯ, Священник, Паломник" }
 
 ent-MedievalClothingHandsGlovesPass1 = бархатные перчатки
     .desc = Приятные на ощупь перчатки.
@@ -95,6 +107,9 @@ ent-MedievalClothingHandsGlovesPass5 = бордовые перчатки
 ent-MedievalClothingHandsGlovesPass6 = белоснежные перчатки
     .desc = Перчатки, украшенные драгоценными камнями, которые будут сверкать от света луны в эту морозную ночь.
     .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
+ent-MedievalClothingHandsGlovesPass7 = чёрные перчатки
+    .desc = Кожаные перчатки, окрашенные в чёрное.
+    .suffix = { "МОНЕТИЗАЦИЯ, Священник, Паломник" }
 
 ent-MedievalClothingNeckCloakPass1 = красный плащ
     .desc = Бархатный плащ, приятный на ощупь.
@@ -114,6 +129,9 @@ ent-MedievalClothingNeckCloakPass5 = бархатный плащ
 ent-MedievalClothingNeckCloakPass6 = плащ морозной ночи
     .desc = Плащ с пышным мехом, согреет вас в самые холодные ночи. Будет служить вам напоминанием о прошлом и назревающем будущем.
     .suffix = { "МОНЕТИЗАЦИЯ, НГ2026" }
+ent-MedievalClothingNeckCloakPass7 = плащ военачальника
+    .desc = Плащ с золотистыми эполетами, придаёт вам внушающий вид.
+    .suffix = { "МОНЕТИЗАЦИЯ" }
 
 ent-MedievalClothingNeckCloakMediaSeking = плащ заката
     .desc = Плащ из мягкого чёрного бархата, пояс и отвороты воротника украшены вышивкой жёлтого шёлка. У горла повязан изящный розовый фишю, контрастирующий с суровостью воротника.

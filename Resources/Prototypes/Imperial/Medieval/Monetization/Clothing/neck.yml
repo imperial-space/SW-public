@@ -71,6 +71,16 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakPass7
+  name: MedievalClothingNeckCloakPass
+  description: MedievalClothingNeckCloakPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Neck/neck7.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckCloakMediaSeking
   name: MedievalClothingNeckCloakPass
   description: MedievalClothingNeckCloakPass
