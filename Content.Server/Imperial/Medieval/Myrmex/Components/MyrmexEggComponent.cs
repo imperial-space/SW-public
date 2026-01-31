@@ -5,14 +5,14 @@ namespace Content.Server.Myrmex.Components
     {
         [DataField]
         public float TimeTillSpawn = 900f;
+        
         [DataField]
         public string LarvaID = "MedievalMyrmexLarva";
 
         [DataField]
-        public string SporeType = "";
+        public MyrmexSporeType RequiredSporeType = MyrmexSporeType.None;
 
         [DataField]
-        public string LightColor = "";
-
+        public MyrmexLightType RequiredLightType = MyrmexLightType.None;
     }
 }
