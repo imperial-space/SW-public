@@ -6,6 +6,9 @@
   description: medieval-store-spells-light-magic-light-beginner-desc
   productAction: MedievalActionMagicLightBeginner
   priority: 5
+  productUpgradeId:
+    - MedievalSpellMagicLightStationaryMiddle
+    - MedievalSpellMagicLightFollowerMiddle
   icon:
     sprite: Imperial/Medieval/Magic/Light/MagicLight/icons.rsi
     state: beginner
@@ -16,3 +19,49 @@
   conditions:
   - !type:ImperialListingLimitedStockCondition
     stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellMagicLightStationaryMiddle
+  name: medieval-store-spells-magic-light-flash-stationary-middle-name #
+  description: medieval-store-spells-light-magic-light-stationary-middle-desc #
+  productAction: MedievalActionMagicLightStationaryMiddle
+  priority: 5
+  icon:
+    sprite: Imperial/Medieval/Magic/Light/MagicLight/icons.rsi
+    state: middleStationary
+  cost:
+    MagicMedievalLight: 30
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellMagicLightBeginner
+    blacklist:
+      - MedievalSpellMagicLightFollowerMiddle
+
+- type: imperialListing
+  id: MedievalSpellMagicLightFollowerMiddle
+  name: medieval-store-spells-magic-light-flash-follower-middle-name #
+  description: medieval-store-spells-light-magic-light-follower-middle-desc #
+  productAction: MedievalActionMagicLightFollowerMiddle
+  priority: 5
+  icon:
+    sprite: Imperial/Medieval/Magic/Light/MagicLight/icons.rsi
+    state: middleFollower
+  cost:
+    MagicMedievalLight: 30
+  categories:
+  - MedievalLightSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellMagicLightBeginner
+    blacklist:
+      - MedievalSpellMagicLightStationaryMiddle
