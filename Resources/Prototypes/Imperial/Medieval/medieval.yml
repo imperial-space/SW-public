@@ -3997,7 +3997,41 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
 
+- type: entity
+  id: MedievalCommsLegion
+  parent: MedievalComms
+  name: computer
+  components:
+  - type: CommunicationsConsole
+    title: medieval-announcement-title-horn-legion
+    color: "#035afc"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/Medieval/horn.ogg
 
+- type: entity
+  id: MedievalCommsInsurgency
+  parent: MedievalComms
+  name: computer
+  components:
+  - type: CommunicationsConsole
+    title: medieval-announcement-title-horn-insurgency
+    color: "#ff0000"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/Medieval/horn.ogg
+
+- type: entity
+  id: MedievalCommsCollegium
+  parent: MedievalComms
+  name: computer
+  components:
+  - type: CommunicationsConsole
+    title: medieval-announcement-title-horn-collegium
+    color: "#9403fc"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/Medieval/horn.ogg
 
 - type: entity
   id: MedievalWaterDeepDarkEntity
