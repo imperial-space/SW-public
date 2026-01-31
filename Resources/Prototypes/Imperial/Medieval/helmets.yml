@@ -617,6 +617,15 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: SoulboundTrigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - soulboundtrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 4
+    intensitySlope: 4
+    maxIntensity: 4
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmer
