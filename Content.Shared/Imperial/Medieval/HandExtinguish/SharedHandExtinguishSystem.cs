@@ -34,25 +34,8 @@ public sealed class SharedHandExtinguishSystem : EntitySystem
 
     private void OnInteractHand(EntityUid uid, FlammableComponent flammable, InteractHandEvent args)
     {
-        if (args.Handled || args.User == args.Target)
+        if (args.Handled || args.User == args.Target || !HasComp<HandsComponent>(args.User))
             return;
-
-        if (!HasComp<HandsComponent>(args.User))
-            return;
-
-        var onFire = flammable.OnFire;
-
-        if (!onFire || !flammable.CanExtinguish)
-            return;
-
-        if (_netManager.IsClient &&
-            TryComp<AppearanceComponent>(uid, out var appearance) &&
-            _appearance.TryGetData(uid, FireVisuals.OnFire, out bool visualOnFire, appearance))
-        {
-            onFire = visualOnFire;
-            if (!onFire)
-                return;
-        }
 
         var now = _gameTiming.CurTime;
         if (_lastInteractByUser.TryGetValue(args.User, out var last) && now < last + UserInteractCooldown)
@@ -61,36 +44,38 @@ public sealed class SharedHandExtinguishSystem : EntitySystem
             return;
         }
 
+        if (_netManager.IsClient &&
+            TryComp<AppearanceComponent>(uid, out var appearance) &&
+            _appearance.TryGetData(uid, FireVisuals.OnFire, out bool visualOnFire, appearance))
+        {
+            if (!visualOnFire)
+                return;
+
+            args.Handled = true;
+            var targetName = Identity.Name(uid, EntityManager, args.User);
+            _popupSystem.PopupClient($"Вы тушите {targetName}", uid, args.User);
+            _lastInteractByUser[args.User] = now;
+        }
+
+        var onFire = flammable.OnFire;
+        if (!onFire || !flammable.CanExtinguish)
+            return;
         _lastInteractByUser[args.User] = now;
         args.Handled = true;
-
-        var targetName = Identity.Name(uid, EntityManager, args.User);
-        _popupSystem.PopupClient($"Вы тушите {targetName}", uid, args.User);
-
         if (_netManager.IsServer)
         {
             string? othersMessage = null;
-            if (TryComp<InteractionPopupComponent>(uid, out var component) &&
-                !string.IsNullOrEmpty(component.MessagePerceivedByOthers))
-            {
-                othersMessage = Loc.GetString(component.MessagePerceivedByOthers,
-                    ("user", Identity.Entity(args.User, EntityManager)),
-                    ("target", Identity.Entity(uid, EntityManager)));
-            }
-            else
-            {
-                var userName = Identity.Name(args.User, EntityManager);
-                var targetNameOthers = Identity.Name(uid, EntityManager);
-                othersMessage = $"{userName} тушит {targetNameOthers}";
-            }
-
+            var userName = Identity.Name(args.User, EntityManager);
+            var targetNameOthers = Identity.Name(uid, EntityManager);
+            othersMessage = $"{userName} тушит {targetNameOthers}";
             _popupSystem.PopupEntity(othersMessage, uid, Filter.PvsExcept(args.User, entityManager: EntityManager), true);
+            flammable.FireStacks +=  FireStackReduction;
+            Dirty(uid, flammable);
         }
 
         if (!_netManager.IsServer)
             return;
 
-        flammable.FireStacks +=  FireStackReduction;
-        Dirty(uid, flammable);
+
     }
 }
