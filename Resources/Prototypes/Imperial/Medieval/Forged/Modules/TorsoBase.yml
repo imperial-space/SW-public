@@ -1,0 +1,23 @@
+- type: entity
+  id: TorsoBase # Базовый торс-родитель для других торсов.
+  name: TorsoBase
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/sprites.rsi # Путь к твоему спрайту
+    state: TorsoBase
+    drawdepth: Items
+    layers:
+    - state: TorsoBase
+      map: ["torso"]
+    - state: blank
+      map: ["r_arm"]
+    - state: blank
+      map: ["l_arm"]
+    - state: blank
+      map: ["core"]
+    - state: blank
+      map: ["legs"]
+  - type: Clickable
+  - type: Appearance
+  - type: ForgedAssembly
