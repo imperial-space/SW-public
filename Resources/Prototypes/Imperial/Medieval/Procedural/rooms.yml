@@ -1,0 +1,12 @@
+- type: entity
+  id: MedievalDungeonRoomMarker
+  parent: BaseRoomMarker
+  name: marker
+  components:
+  - type: RoomFill
+    size: 13,13
+    roomWhitelist:
+      tags:
+      - MedievalDungeonRoom
+
+# add room prototypes here under this comment and add MedievalDungeonRoom tag to them
