@@ -14,10 +14,14 @@ namespace Content.Shared.Imperial.Medieval.HandExtinguish;
 public sealed class SharedHandExtinguishSystem : EntitySystem
 {
     private const float FireStackReduction = -0.5f; // how much a fire stack should change on hand interaction
+    private static readonly System.TimeSpan UserInteractCooldown = System.TimeSpan.FromSeconds(0.5);
 
     [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private readonly Robust.Shared.Timing.IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+
+    private readonly System.Collections.Generic.Dictionary<EntityUid, System.TimeSpan> _lastInteractByUser = new();
 
     public override void Initialize()
     {
@@ -30,11 +34,14 @@ public sealed class SharedHandExtinguishSystem : EntitySystem
 
     private void OnInteractHand(EntityUid uid, FlammableComponent flammable, InteractHandEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || args.User == args.Target)
             return;
 
-        if (args.User == args.Target)
+        var now = _gameTiming.CurTime;
+        if (_lastInteractByUser.TryGetValue(args.User, out var last) && now < last + UserInteractCooldown)
             return;
+
+        _lastInteractByUser[args.User] = now;
 
         var onFire = flammable.OnFire;
 
