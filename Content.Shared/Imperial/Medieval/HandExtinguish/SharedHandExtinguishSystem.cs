@@ -42,15 +42,17 @@ public sealed class SharedHandExtinguishSystem : EntitySystem
 
         var onFire = flammable.OnFire;
 
+        if (!onFire || !flammable.CanExtinguish)
+            return;
+
         if (_netManager.IsClient &&
             TryComp<AppearanceComponent>(uid, out var appearance) &&
             _appearance.TryGetData(uid, FireVisuals.OnFire, out bool visualOnFire, appearance))
         {
             onFire = visualOnFire;
+            if (!onFire)
+                return;
         }
-
-        if (!onFire || !flammable.CanExtinguish)
-            return;
 
         var now = _gameTiming.CurTime;
         if (_lastInteractByUser.TryGetValue(args.User, out var last) && now < last + UserInteractCooldown)
