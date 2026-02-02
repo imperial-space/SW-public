@@ -140,6 +140,7 @@
     # нужно создать прототип личной торговой дыры (?)
     # все остальные ограничения по типу дыры для легиона настраиваются также, как раньше
     ownerOnly: true
+  - type: TradingPitCollect
   - type: TrashDefendArea
   - type: Transform
     anchored: true

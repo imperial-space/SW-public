@@ -6708,3 +6708,4 @@ ent-CandleWall1 = настенный подсвечник
 ent-CandleWall2 = настенный подсвечник
     .desc = Освещает
     .suffix = { "Средневековье, декор" }
+trading-pit-collect-verb = Собрать вокруг
