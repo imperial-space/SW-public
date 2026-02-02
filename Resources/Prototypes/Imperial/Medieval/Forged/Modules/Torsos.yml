@@ -1,6 +1,6 @@
 - type: entity
-  id: TorsoBase # Базовый торс-родитель для других торсов.
-  name: TorsoBase
+  id: ForgedTorsoBase # Базовый торс-родитель для других торсов.
+  name: ForgedTorsoBase
   parent: BaseItem
   components:
   - type: Sprite
@@ -10,6 +10,8 @@
     layers:
     - state: TorsoBase
       map: ["torso"]
+    - state: blank
+      map: ["head"]
     - state: blank
       map: ["r_arm"]
     - state: blank

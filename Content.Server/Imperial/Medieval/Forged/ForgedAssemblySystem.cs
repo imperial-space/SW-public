@@ -39,7 +39,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
             return;
         }
 
-        string slotName = part.PartSlot;
+        string slotName = part.moduleSlot;
 
         if (!_containerSystem.TryGetContainer(uid, slotName, out var container))
         {
@@ -83,19 +83,13 @@ public sealed class ForgedAssemblySystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, logMissing: false)) return;
 
-        if (ent.Comp1.FittedParts.TryGetValue("head", out var headUid) && TryComp<ForgedPartComponent>(headUid, out var head))
-            _appearanceSystem.SetData(ent, ForgedVisuals.head, head.LayerState, ent.Comp2);
-
-        if (ent.Comp1.FittedParts.TryGetValue("r_arm", out var rArmUid) && TryComp<ForgedPartComponent>(rArmUid, out var rArm))
-            _appearanceSystem.SetData(ent, ForgedVisuals.r_arm, rArm.LayerState, ent.Comp2);
-
-        if (ent.Comp1.FittedParts.TryGetValue("l_arm", out var lArmUid) && TryComp<ForgedPartComponent>(lArmUid, out var lArm))
-            _appearanceSystem.SetData(ent, ForgedVisuals.l_arm, lArm.LayerState, ent.Comp2);
-
-        if (ent.Comp1.FittedParts.TryGetValue("core", out var coreUid) && TryComp<ForgedPartComponent>(coreUid, out var core))
-            _appearanceSystem.SetData(ent, ForgedVisuals.core, core.LayerState, ent.Comp2);
-
-        if (ent.Comp1.FittedParts.TryGetValue("legs", out var legsUid) && TryComp<ForgedPartComponent>(legsUid, out var legs))
-            _appearanceSystem.SetData(ent, ForgedVisuals.legs, legs.LayerState, ent.Comp2);
+        foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
+        {
+            string key = visualKey.ToString();
+            if (ent.Comp1.FittedParts.TryGetValue(key, out var moduleUid) && moduleUid.IsValid() && TryComp<ForgedPartComponent>(moduleUid, out var module))
+                _appearanceSystem.SetData(ent, visualKey, module.LayerState, ent.Comp2);
+            else
+                _appearanceSystem.SetData(ent, visualKey, "blank", ent.Comp2);
+        }
     }
 }

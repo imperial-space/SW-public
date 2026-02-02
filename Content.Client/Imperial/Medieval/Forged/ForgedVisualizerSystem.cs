@@ -17,11 +17,11 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedAssemblyComp
 
     private void UpdateAppearance(EntityUid uid, ForgedAssemblyComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
-        if (AppearanceSystem.TryGetData<string>(uid, ForgedVisuals.head, out var headState, appearance)) SetLayer(uid, "head", headState, sprite);
-        if (AppearanceSystem.TryGetData<string>(uid, ForgedVisuals.r_arm, out var r_armState, appearance)) SetLayer(uid, "r_arm", r_armState, sprite);
-        if (AppearanceSystem.TryGetData<string>(uid, ForgedVisuals.l_arm, out var l_armState, appearance)) SetLayer(uid, "l_arm", l_armState, sprite);
-        if (AppearanceSystem.TryGetData<string>(uid, ForgedVisuals.core, out var coreState, appearance)) SetLayer(uid, "core", coreState, sprite);
-        if (AppearanceSystem.TryGetData<string>(uid, ForgedVisuals.legs, out var legsState, appearance)) SetLayer(uid, "legs", legsState, sprite);
+        foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
+        {
+            string key = visualKey.ToString();
+            if (AppearanceSystem.TryGetData<string>(uid, visualKey, out var state, appearance)) SetLayer(uid, key, state, sprite);
+        }
     }
 
     private void SetLayer(EntityUid uid, string layerName, string state, SpriteComponent sprite)

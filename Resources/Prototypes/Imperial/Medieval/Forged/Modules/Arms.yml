@@ -1,0 +1,25 @@
+- type: entity
+  id: ForgedRArmBase # Базовый торс-родитель для других торсов.
+  name: ForgedRArmBase
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/sprites.rsi
+    state: RArmBase
+    drawdepth: Items
+  - type: ForgedPart
+    partSlot: r_arm
+    layerState: RArmBase
+
+- type: entity
+  id: ForgedLArmBase # Базовый торс-родитель для других торсов.
+  name: ForgedLArmBase
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/sprites.rsi
+    state: LArmBase
+    drawdepth: Items
+  - type: ForgedPart
+    partSlot: l_arm
+    layerState: LArmBase

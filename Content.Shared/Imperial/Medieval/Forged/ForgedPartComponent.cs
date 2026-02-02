@@ -8,8 +8,11 @@ public sealed partial class ForgedPartComponent : Component
     /// Например: "head", "l_arm", "r_arm", "leg".
     /// </summary>
     [DataField("partSlot"), ViewVariables(VVAccess.ReadWrite)]
-    public string PartSlot = "head";
+    public string moduleSlot = "head";
 
+    /// <summary>
+    /// Название модуля. Скопировать с state из спрайта
+    /// </summary>
     [DataField("layerState"), ViewVariables(VVAccess.ReadWrite)]
     public string LayerState = string.Empty;
 

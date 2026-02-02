@@ -1,0 +1,12 @@
+- type: entity
+  id: ForgedLegsBase # Базовый торс-родитель для других торсов.
+  name: ForgedLegsBase
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/sprites.rsi
+    state: LegsBase
+    drawdepth: Items
+  - type: ForgedPart
+    partSlot: legs
+    layerState: LegsBase

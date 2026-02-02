@@ -1,0 +1,12 @@
+- type: entity
+  id: ForgedHeadBase # Базовый торс-родитель для других торсов.
+  name: ForgedHeadBase
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/sprites.rsi
+    state: HeadBase
+    drawdepth: Items
+  - type: ForgedPart
+    partSlot: head
+    layerState: HeadBase
