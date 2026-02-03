@@ -21,5 +21,21 @@
     - state: blank
       map: ["legs"]
   - type: Clickable
+  - type: Item
+    _deleted: true
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 150
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Pullable
   - type: Appearance
   - type: ForgedAssembly
