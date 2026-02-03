@@ -149,3 +149,38 @@ ent-MedievalMyrmexHealAction = Восстановление
 ent-MedievalMyrmexBigHoleExit = большая смоляная нора мирмексов
     .desc = Эта огромная яма позволяет перемещаться даже самым большим созданиям.
 .suffix = { "НЕ СПАВНИТЬ СЛОМАЕТЕ СЕРВ НАХУЙ, Средневековье, мирмексы" }
+
+myrmex-hole-spawn-announcement = Земля под ногами содрагается... древние мирмексы, что когда-то жили под землей вырылись наружу...
+myrmex-hole-spawn-sender = Барьер
+
+myrmex-light-type =
+    { $type ->
+        [Runic] руническое
+        [Ethereal] эфирное
+        [Shadow] теневое
+       *[other] неизвестное
+    }
+
+myrmex-spore-type =
+    { $type ->
+        [IronCap] споры железошляпника
+        [Caustic] едкие споры
+        [Neuromycite] споры нейромицита
+       *[other] неизвестные споры
+    }
+
+myrmex-egg-requirements = [color=gray]Для благоприятных условий роста яйцу требуются[/color] { $spore } [color=gray]и[/color] { $light } [color=gray]свечение[/color]
+
+myrmex-egg-light-none = [color=gray]Яйцо [/color][color=red]не освещено[/color]
+myrmex-egg-light-too-many = [color=gray]Яйцо [/color][color=orange]слишком сильно освещено[/color]
+myrmex-egg-light-correct = Яйцо освещено[color=green] верным[/color] свечением
+myrmex-egg-light-wrong = Яйцо освещено[color=orange] неверным[/color] свечением
+
+myrmex-egg-spore-none = [color=gray]Яйцо [/color][color=red]не обрабатывается спорами[/color]
+myrmex-egg-spore-too-many = [color=gray]Яйцо [/color][color=orange]слишком сильно обрабатывается спорами[/color]
+myrmex-egg-spore-correct = Яйцо обрабатывается[color=green] верными[/color] спорами
+myrmex-egg-spore-wrong = Яйцо обрабатывается[color=orange] неверными[/color] спорами
+
+myrmex-egg-conditions-perfect = Текущие условия [color=green]идеальны[/color]
+myrmex-egg-conditions-satisfactory = Текущие условия [color=yellow]удовлетворительны[/color]
+myrmex-egg-conditions-terrible = Текущие условия [color=red]ужасны[/color]

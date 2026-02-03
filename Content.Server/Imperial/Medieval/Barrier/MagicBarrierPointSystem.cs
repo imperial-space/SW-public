@@ -146,6 +146,7 @@ namespace Content.Server.MagicBarrier
             var coords = xform.Coordinates;
             Spawn("ShardCrystalRed", coords);
             Spawn("ShockWaveEffect", coords);
+            RemComp(uid, component);
             QueueDel(uid);
             _chat.DispatchGlobalAnnouncement("Проклятый нарост уничтожен, расход стабильности барьера снижен.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())

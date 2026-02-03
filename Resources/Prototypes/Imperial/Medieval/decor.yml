@@ -1204,7 +1204,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.35
+          radius: 0.25
         density: 190
         mask:
         - SmallMobMask
@@ -5018,6 +5018,17 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailing
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb 
+          bounds: "-0.49,-0.15,0.49,0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   parent: RailingCorner
@@ -5056,6 +5067,26 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingCorner
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2:  #horizontal
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.15,0.15,-0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   parent: RailingCornerSmall
@@ -5094,6 +5125,18 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingCornerSmall
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+
 
 - type: entity
   parent: RailingRound
@@ -5132,6 +5175,26 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingRound
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.49,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2: #horizontal
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.15,0.15,0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   id: MedievalDecorWoodenClock
@@ -5322,3 +5385,93 @@
         layer:
         - WallLayer
   - type: InteractionOutline
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  id: CandleWall
+  components:
+    # - type: AmbientSound
+      # volume: -15
+      # range: 1.5
+      # sound:
+        # path: /Audio/Ambience/Objects/fireplace.ogg
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+        - state: fire
+          shader: unshaded
+    - type: PointLight
+      color: "#e39c40"
+      radius: 3.5
+      power: 10
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.1,0.5,0.1,0.255"
+          density: 190
+          mask:
+          - None
+          layer:
+          - TabletopMachineLayer
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors: #excess damage, don't spawn entities.
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Construction
+      graph: LightFixture
+      node: bulbLight
+    - type: Transform
+      anchored: true
+    - type: Clickable
+    - type: InteractionOutline
+    # - type: RCDDeconstructable
+      # cost: 4
+      # delay: 2
+      # fx: EffectRCDDeconstruct2
+    # - type: PlacementReplacement
+      # key: MedievalBannerBase
+    # placement:
+      # mode: SnapgridCenter
+      # snap:
+      # - Wallmount
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: CandleWall1
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall1.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+        - state: fire
+          shader: unshaded
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: CandleWall2
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall2.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+        - state: fire
+          shader: unshaded
