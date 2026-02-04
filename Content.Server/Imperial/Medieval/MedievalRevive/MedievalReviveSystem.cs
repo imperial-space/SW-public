@@ -1,167 +1,111 @@
 using System.Linq;
-using System.Numerics;
 using Content.Server.Administration.Logs;
-using Content.Server.Chat.Managers;
-using Content.Server.Chat.Systems;
-using Content.Server.GameTicking;
 using Content.Server.Ghost.Components;
 using Content.Server.MagicBarrier.Components;
 using Content.Server.Mind;
-using Content.Server.Roles.Jobs;
-using Content.Shared.Actions;
-using Content.Shared.CCVar;
-using Content.Shared.Coordinates;
-using Content.Shared.Damage;
-using Content.Shared.Damage.Prototypes;
 using Content.Shared.Database;
-using Content.Shared.Examine;
-using Content.Shared.Eye;
-using Content.Shared.FixedPoint;
-using Content.Shared.Follower;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.Medieval.CCVar;
 using Content.Shared.Imperial.Medieval.MedievalReviveSpawner;
 using Content.Shared.Imperial.Medieval.Revive;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Movement.Events;
-using Content.Shared.Movement.Systems;
-using Content.Shared.NameModifier.EntitySystems;
-using Content.Shared.Players;
-using Content.Shared.Popups;
-using Content.Shared.Storage.Components;
-using Content.Shared.Tag;
-using Content.Shared.Warps;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
-using Robust.Shared.Map;
-using Robust.Shared.Network;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Imperial.Medieval.Revive
+namespace Content.Server.Imperial.Medieval.Revive;
+
+public sealed class MedievalReviveSystem : EntitySystem
 {
-    public sealed class MedievalReviveSystem : EntitySystem
+    [Dependency] private readonly MindSystem _minds = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
+
+    private const int MaxRevives = 3;
+
+    public override void Initialize()
     {
-        [Dependency] private readonly MindSystem _minds = default!;
-        [Dependency] private readonly TransformSystem _transformSystem = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        [Dependency] private readonly IConfigurationManager _cfg = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly IAdminLogManager _adminlog = default!;
+        SubscribeNetworkEvent<GhostReviveRequestEvent>(OnGhostReviveRequest);
+        SubscribeNetworkEvent<ReviveCountRequestEvent>(OnReviveCountRequest);
+    }
 
-        private const int MaxRevives = 3;
+    private void OnGhostReviveRequest(GhostReviveRequestEvent ev, EntitySessionEventArgs args)
+    {
+        if (!_cfg.GetCVar(MedievalCCVars.GhostRevive))
+            return;
 
+        var session = args.SenderSession;
+        var userId = session.UserId;
 
-        public override void Initialize()
+        if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
         {
-            base.Initialize();
-            SubscribeNetworkEvent<GhostReviveRequestEvent>(OnGhostReviveRequest);
-            SubscribeNetworkEvent<ReviveCountRequestEvent>(OnReviveCountRequest);
-        }
-        private void OnGhostReviveRequest(GhostReviveRequestEvent msg, EntitySessionEventArgs args)
-        {
-            var revivesOn = _cfg.GetCVar(MedievalCCVars.GhostRevive);
-            if (!revivesOn)
-                return;
-
-            var player = args.SenderSession;
-            var playerUid = player.UserId;
-            if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
-            {
-                _adminlog.Add(LogType.Action, LogImpact.Low, $"Игрок {player.Name} попытался возродиться, но барьер не найден");
-                return;
-            }
-
-            if (!barrier.ReviveCount.ContainsKey(playerUid))
-                barrier.ReviveCount[playerUid] = 0;
-
-            if (barrier.ReviveCount[playerUid] >= MaxRevives)
-            {
-                _adminlog.Add(LogType.Action, LogImpact.High, $"Игрок {player.Name} попытался возродиться, но у него уже {MaxRevives} возрождений");
-                return;
-            }
-            if (!_minds.TryGetNetEntity(player.GetMind(), out var netEntity))
-            {
-                _adminlog.Add(LogType.Action, LogImpact.High, $"Разум {player.GetMind()} не имеет значения");
-                return;
-            }
-            if (EntityManager.GetEntity(netEntity) == null)
-            {
-                _adminlog.Add(LogType.Action, LogImpact.High, $"Сущность {netEntity} не имеет значения");
-                return;
-            }
-
-            var playerMind = EntityManager.GetEntity(netEntity);
-
-            if (!playerMind.HasValue)
-            {
-                _adminlog.Add(LogType.Action, LogImpact.High, $"Разум {playerMind} не имеет значения");
-                return;
-            }
-
-            var playerEntity = EntityManager.GetComponent<MindComponent>(playerMind.Value).CurrentEntity;
-
-
-
-            if (!HasComp<GhostComponent>(playerEntity))
-            {
-                _adminlog.Add(LogType.Action, LogImpact.High, $"Обнаружена подозрительная активность, разум {netEntity} в теле {playerEntity} пытался возродится, либо софт либо баг менюшки");
-                return;
-            }
-
-            var reviveQuery = EntityManager.EntityQuery<MedievalReviveSpawnerComponent>();
-
-            if (reviveQuery.Count() == 0)
-                return;
-
-            var reviveList = reviveQuery.ToList();
-
-            _random.Shuffle<MedievalReviveSpawnerComponent>(reviveList);
-            var component = reviveList.ElementAt(0);
-            var spawner = component.Owner;
-
-            var mob = Spawn(component.Prototype, Transform(spawner).Coordinates);
-            _transformSystem.AttachToGridOrMap(mob);
-
-            EnsureComp<MindContainerComponent>(mob);
-
-            if (_minds.TryGetMind(player.UserId, out _, out var mind) && !mind.IsVisitingEntity)
-                _minds.WipeMind(player);
-
-            var newMind = _minds.CreateMind(player.UserId,
-                Comp<MetaDataComponent>(mob).EntityName);
-
-            _minds.SetUserId(newMind, player.UserId);
-            _minds.TransferTo(newMind, mob);
-            barrier.ReviveCount[playerUid]++;
+            _adminLog.Add(LogType.Action, LogImpact.Low, $"Игрок {session.Name} попытался возродиться, но барьер не найден");
+            return;
         }
 
-        private void OnReviveCountRequest(ReviveCountRequestEvent msg, EntitySessionEventArgs args)
+        if (!barrier.ReviveCount.TryGetValue(userId, out var reviveCount))
+            reviveCount = 0;
+
+        if (reviveCount >= MaxRevives)
         {
-            var player = args.SenderSession;
-            var playerUid = player.UserId;
-            if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
-            {
-                _adminlog.Add(LogType.Action,
-                    LogImpact.High,
-                    $"Player {player.Name} tried to revive but magic barrier was not found");
-                return;
-            }
-
-            if (!barrier.ReviveCount.ContainsKey(playerUid))
-                barrier.ReviveCount[playerUid] = 0;
-
-            // Отправляем ответ
-            RaiseNetworkEvent(new ReviveCountResponseEvent(barrier.ReviveCount[playerUid], MaxRevives), args.SenderSession);
+            _adminLog.Add(LogType.Action, LogImpact.High, $"Игрок {session.Name} превысил лимит возрождений ({MaxRevives})");
+            return;
         }
+
+        if (!_minds.TryGetMind(userId, out _, out var oldMind))
+        {
+            _adminLog.Add(LogType.Action, LogImpact.High, $"Игрок {session.Name} не имеет разума");
+            return;
+        }
+
+        var currentEntity = oldMind.CurrentEntity;
+        if (currentEntity == null || !HasComp<GhostComponent>(currentEntity))
+        {
+            _adminLog.Add(LogType.Action, LogImpact.High, $"Игрок {session.Name} попытался возродиться не находясь в состоянии призрака");
+            return;
+        }
+
+        var spawnerQuery = EntityQuery<MedievalReviveSpawnerComponent>();
+        if (!spawnerQuery.Any())
+            return;
+
+        var spawner = _random.Pick<MedievalReviveSpawnerComponent>(spawnerQuery.ToList());
+        var spawnerCoords = _transform.GetMoverCoordinates(spawner.Owner);
+        var mob = Spawn(spawner.Prototype, spawnerCoords);
+
+        _transform.AttachToGridOrMap(mob);
+        EnsureComp<MindContainerComponent>(mob);
+
+        if (!oldMind.IsVisitingEntity)
+            _minds.WipeMind(session);
+
+        var newMind = _minds.CreateMind(userId, Comp<MetaDataComponent>(mob).EntityName);
+
+        _minds.SetUserId(newMind, userId);
+        _minds.TransferTo(newMind, mob);
+
+        barrier.ReviveCount[userId] = reviveCount + 1;
+    }
+
+    private void OnReviveCountRequest(ReviveCountRequestEvent _, EntitySessionEventArgs args)
+    {
+        var session = args.SenderSession;
+        var userId = session.UserId;
+
+        if (!EntityQuery<MagicBarrierComponent>().TryFirstOrDefault(out var barrier))
+        {
+            _adminLog.Add(LogType.Action, LogImpact.High, $"Игрок {session.Name} запросил количество возрождений, но барьер не найден");
+            return;
+        }
+
+        if (!barrier.ReviveCount.TryGetValue(userId, out var reviveCount))
+            reviveCount = 0;
+
+        RaiseNetworkEvent(new ReviveCountResponseEvent(reviveCount, MaxRevives), session);
     }
 }

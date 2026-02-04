@@ -3,7 +3,6 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototy
 using Robust.Shared.Prototypes;
 using System.Collections.Generic;
 using System;
-using System.Linq;
 using Content.Shared.Alert;
 
 namespace Content.Server.Cult.Components;
@@ -12,17 +11,17 @@ namespace Content.Server.Cult.Components;
 public sealed partial class CultMemberComponent : Component
 {
     [DataField]
-    public EntityUid? parent;
+    public EntityUid? Parent;
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public DamageSpecifier Damage = new()
     {
         DamageDict = new()
-            {
-                { "Poison", 10 },
-                { "Asphyxiation", 10}
-            }
+        {
+            { "Poison", 10 },
+            { "Asphyxiation", 10 }
+        }
     };
 
     [ViewVariables(VVAccess.ReadWrite)]
@@ -30,7 +29,7 @@ public sealed partial class CultMemberComponent : Component
     public Queue<(string message, TimeSpan time)> LastSpokenMessages = new();
 
     [DataField]
-    public bool DeathCusre = true;
+    public bool DeathCurse = true;
 
     [DataField]
     public ProtoId<AlertPrototype> DeathCurseAlert = "CultDeathCurse";

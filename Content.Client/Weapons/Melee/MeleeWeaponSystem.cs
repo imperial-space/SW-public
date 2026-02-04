@@ -156,7 +156,6 @@ public sealed partial class MeleeWeaponSystem : SharedMeleeWeaponSystem
                 if (altDown == BoundKeyState.Up && attackTime >= TimeSpan.FromSeconds(charged.MinAttackTime) || attackTime >= TimeSpan.FromSeconds(charged.MaxAttackTime))
                 {
                     RaisePredictiveEvent(new ChargedAttackEnd(GetNetCoordinates(coordinates), GetNetEntity(weaponUid), attackTime));
-                    Log.Info("1");
                     return;
                 }
                 else if (altDown == BoundKeyState.Up && attackTime <= TimeSpan.FromSeconds(charged.MinAttackTime))

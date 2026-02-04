@@ -1,0 +1,85 @@
+- type: bloodSpell
+  id: SpellBookUpgrade
+  incantation:
+    - Ave
+    - The
+    - Truth
+  spellType: ItemUpgrade
+  requiredHeldItem: MedievalBookCultGuide
+  replacementItem: MedievalBookCultGuideUnlocked
+  successMessage: cult-spell-book-upgraded
+  failureMessage: cult-spell-need-holy-scripture
+
+- type: bloodSpell
+  id: SpellCraftArmorIron
+  incantation:
+    - Ave
+    - The
+    - Bronus
+  spellType: CraftArmor
+  requiredMaterial: BloodIron
+  requiredMaterialCount: 5
+  spawnProto: MedievalClothingOuterArmorCultUp
+  equipmentSlot: outerClothing
+  replaceEquipment: true
+  failureMessage: cult-spell-insufficient-materials
+
+- type: bloodSpell
+  id: SpellCraftSpear
+  incantation:
+    - Ave
+    - The
+    - Vilkus
+  spellType: CraftItem
+  requiredMaterial: BloodIron
+  requiredMaterialCount: 5
+  spawnProto: MedievalSpearCult
+  failureMessage: cult-spell-insufficient-materials
+
+- type: bloodSpell
+  id: SpellCraftYatagan
+  incantation:
+    - Ave
+    - The
+    - Knatus
+  spellType: CraftItem
+  requiredMaterial: BloodIron
+  requiredMaterialCount: 5
+  spawnProto: MedievalCultYatagan
+  failureMessage: cult-spell-insufficient-materials
+
+- type: bloodSpell
+  id: SpellCraftSekir
+  incantation:
+    - Ave
+    - The
+    - Sekir
+  spellType: CraftItem
+  requiredMaterial: BloodIron
+  requiredMaterialCount: 5
+  spawnProto: MedievalIronSekirCult
+  failureMessage: cult-spell-insufficient-materials
+
+- type: bloodSpell
+  id: SpellCraftArmorMana
+  incantation:
+    - Ave
+    - The
+    - Magical
+  spellType: CraftArmor
+  requiredMaterial: BloodLeather
+  requiredMaterialCount: 5
+  spawnProto: MedievalClothingOuterArmorCultMana
+  equipmentSlot: outerClothing
+  replaceEquipment: true
+  failureMessage: cult-spell-insufficient-materials
+
+- type: bloodSpell
+  id: SpellDeathCurse
+  incantation:
+    - Katariemai
+    - Opoion
+    - Me chtypisei
+  spellType: DeathCurse
+  successMessage: cult-spell-death-curse-activated
+  failureMessage: cult-spell-death-curse-already-active
