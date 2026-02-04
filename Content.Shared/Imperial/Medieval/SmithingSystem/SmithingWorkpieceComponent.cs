@@ -15,16 +15,16 @@ public sealed partial class SmithingWorkpieceComponent : Component
     public int Steps = 20;
 
     [DataField]
-    public float StepsSpawnSpeed = 1.5f;
+    public float StepsSpawnSpeed = 1.1f;
 
     [DataField]
-    public float NothingTime = 1f;
+    public float NothingTime = 0.7f;
 
     [DataField]
-    public float ExcellentTime = 0.5f;
+    public float ExcellentTime = 0.4f;
 
     [DataField]
-    public float PenaltyActivatorChance = 0.3f;
+    public float PenaltyActivatorChance = 0.35f;
 
     #endregion
 
