@@ -113,3 +113,243 @@
   color: "#ff2222"
   # long range since I don't wanna make a special xenoborg telecomm server
   longRange: true
+
+########################################
+# BASE CONSTANT POWER CONSUMER (MYRMEX)
+########################################
+
+- type: entity
+  id: BaseConstantPowerConsumer
+  abstract: true
+  name: constant power consumer
+  description: A device that constantly draws power from the Myrmex network.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Sprite
+      sprite: Structures/Piping/high_pressure_machine_frame.rsi
+      state: frame
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 150
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Anchorable
+    - type: Pullable
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexDeviceNode
+          nodeGroupID: HVPower
+          connectDirections: South, West, North, East
+    - type: MyrmexPipeEndpoint
+    - type: PowerConsumer
+      drawRate: 10000
+      voltage: High
+    - type: Appearance
+    - type: PointLight
+      enabled: true
+      radius: 2
+      energy: 1.5
+      color: "#4e94df"
+
+########################################
+# CONSTANT POWER CONSUMER VARIANTS
+########################################
+
+- type: entity
+  parent: BaseConstantPowerConsumer
+  id: ConstantPowerConsumerTiny
+  name: tiny power consumer
+  suffix: Tiny, 1kW
+  components:
+    - type: PowerConsumer
+      drawRate: 1000
+
+- type: entity
+  parent: BaseConstantPowerConsumer
+  id: ConstantPowerConsumerTinyBlue
+  name: tiny power consumer blue
+  suffix: Tiny, 1kW
+  components:
+    - type: Sprite
+      sprite: Structures/Piping/high_pressure_machine_frame.rsi
+      state: frame
+      color: CadetBlue
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexDeviceNode
+          nodeGroupID: MVPower
+          connectDirections: South, West, North, East
+    - type: MyrmexPipeEndpoint
+    - type: PowerConsumer
+      drawRate: 1000
+      voltage: Medium
+
+
+########################################
+# BASE PASSIVE GENERATOR (MYRMEX)
+########################################
+
+- type: entity
+  id: BasePassiveGenerator
+  abstract: true
+  name: passive generator
+  description: A device that generates power into the Myrmex network.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Sprite
+      sprite: Structures/Power/smes.rsi
+      snapCardinals: true
+      state: smes
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 190
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Anchorable
+    - type: Pullable
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexDeviceNode
+          nodeGroupID: HVPower
+          connectDirection: South
+    - type: MyrmexPipeEndpoint
+    - type: PowerSupplier
+      supplyRate: 15000
+      voltage: High
+    - type: Appearance
+
+########################################
+# PASSIVE GENERATOR VARIANTS
+########################################
+
+- type: entity
+  parent: BasePassiveGenerator
+  id: PassiveGeneratorSmall
+  name: small passive generator
+  suffix: Small, 5kW
+  components:
+    - type: PowerSupplier
+      supplyRate: 5000
+
+- type: entity
+  parent: BasePassiveGenerator
+  id: PassiveGeneratorSmallBlue
+  name: small passive generator blue
+  suffix: Small, 5kW
+  components:
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexDeviceNode
+          nodeGroupID: MVPower
+          connectDirection: South
+    - type: MyrmexPipeEndpoint
+    - type: PowerSupplier
+      supplyRate: 5000
+      voltage: Medium
+    - type: Sprite
+      sprite: Structures/Power/smes.rsi
+      snapCardinals: true
+      state: smes
+      color: CadetBlue
+
+########################################
+# BASE MYRMEX PIPE
+########################################
+
+- type: entity
+  id: BaseMyrmexPipe
+  abstract: true
+  name: myrmex pipe
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Sprite
+      sprite: Imperial/ussp/urbandeco/pipes.rsi
+      drawdepth: ThickPipe
+    - type: Transform
+      anchored: true
+      noRot: false
+    - type: InteractionOutline
+    - type: Clickable
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.25,-0.5,0.25,0.5"
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexPipeNode
+          nodeGroupID: HVPower
+    - type: MyrmexPipe
+      pipeType: Straight
+    - type: Physics
+
+########################################
+# MYRMEX PIPE VARIANTS
+########################################
+
+- type: entity
+  parent: BaseMyrmexPipe
+  id: MyrmexPipeStraight
+  components:
+    - type: Sprite
+      state: pipe-s
+    - type: MyrmexPipe
+      pipeType: Straight
+
+- type: entity
+  parent: BaseMyrmexPipe
+  id: MyrmexPipeCorner
+  components:
+    - type: Sprite
+      state: pipe-c
+    - type: MyrmexPipe
+      pipeType: Corner
+
+
+- type: entity
+  parent: BaseMyrmexPipe
+  id: MyrmexPipeKaboomTest
+  components:
+    - type: Sprite
+      state: pipe-s
+      color: CadetBlue
+    - type: MyrmexPipe
+      pipeType: Straight
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexPipeNode
+          nodeGroupID: MVPower
