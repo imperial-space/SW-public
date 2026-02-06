@@ -1,0 +1,89 @@
+- type: entity
+  save: false
+  name: Forged
+  parent:
+  - MobFlammable
+  - BaseMobSpecies
+  id: ForgedPerson
+  components:
+  - type: Appearance
+  - type: Damageable
+    damageContainer: Biological
+    damageModifierSet: Skeleton
+  - type: DamageVisuals
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#555555AA"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: MobState
+  - type: MobThresholds # Изменить отнистельно модулей!!!
+    thresholds:
+      0: Alive
+      110: Critical # Imperial Medieval
+      111: Dead # Imperial Medieval
+  - type: Destructible # Изменить относительно модулей!!!
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 110 # Imperial Medieval
+      behaviors:
+      - !type:GoSSDBehavior { } # Imperial Medieval
+      - !type:GibBehavior { }
+  - type: Speech
+    speechVerb: Skeleton
+  - type: ZombieImmune
+  - type: Vocal
+    sounds:
+      Male: Forged
+      Female: Forged
+      Unsexed: Forged
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        restitution: 0.0
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+      # Imperial Medieval Start
+      medieval-spawner:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        layer: []
+        mask:
+        - MedievalSpawnerLayer
+        hard: false
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+      # Imperial Medieval End
+  - type: FireVisuals
+    alternateState: Standing
+  - type: FlashImmunity
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-goblin-name
+    description: ghost-role-information-goblin-description
+    rules: ghost-role-information-goblin-rules
