@@ -322,22 +322,91 @@
 
 - type: entity
   parent: BaseMyrmexPipe
-  id: MyrmexPipeStraight
+  id: MedievalMyrmexPipeStraight
+  name: myrmex pipe straight
   components:
     - type: Sprite
       state: pipe-s
     - type: MyrmexPipe
       pipeType: Straight
+    - type: Construction
+      graph: MedievalMyrmexPipeStraight
+      node: medievalMyrmexPipeStraight
 
 - type: entity
   parent: BaseMyrmexPipe
-  id: MyrmexPipeCorner
+  id: MedievalMyrmexPipeCorner
+  name: myrmex pipe corner
   components:
     - type: Sprite
       state: pipe-c
     - type: MyrmexPipe
       pipeType: Corner
+    - type: Construction
+      graph: MedievalMyrmexPipeCorner
+      node: medievalMyrmexPipeCorner
 
+- type: entity
+  parent: BaseMyrmexPipe
+  id: MedievalMyrmexPipeCross
+  name: myrmex pipe cross
+  components:
+    - type: Sprite
+      state: pipe-s
+    - type: MyrmexPipe
+      pipeType: Cross
+    - type: Construction
+      graph: MedievalMyrmexPipeCross
+      node: medievalMyrmexPipeCross
+
+- type: entity
+  parent: BaseMyrmexPipe
+  id: MedievalMyrmexPipeTJunction
+  name: myrmex pipe TJunction
+  components:
+    - type: Sprite
+      state: pipe-s
+    - type: MyrmexPipe
+      pipeType: TJunction
+    - type: Construction
+      graph: MedievalMyrmexPipeTJunction
+      node: medievalMyrmexPipeTJunction
+
+- type: entity
+  parent: BaseMyrmexPipe
+  id: MedievalMyrmexPipeValve
+  name: myrmex pipe valve
+  components:
+  - type: Sprite
+    layers:
+    - map: ["base"]
+      state: pipe-s
+      color: Red
+      visible: true
+    - map: ["closed"]
+      state: pipe-s
+      color: CadetBlue
+      visible: false
+  - type: GenericVisualizer
+    visuals:
+      enum.MyrmexValveVisuals.State:
+        base:
+          True:
+            visible: true
+          False:
+            visible: false
+        closed:
+          True:
+            visible: false
+          False:
+            visible: true
+  - type: Appearance
+  - type: MyrmexPipe
+    pipeType: Straight
+  - type: MyrmexValvePipe
+  - type: Construction
+    graph: MedievalMyrmexPipeValve
+    node: medievalMyrmexPipeValve
 
 - type: entity
   parent: BaseMyrmexPipe

@@ -505,6 +505,18 @@
     - MedievalMyrmexResourceYant
     - MedievalMyrmexFibeStack5
     - MedievalMyrmexResourceGum
+  - type: NodeContainer
+    nodes:
+      power:
+        !type:MyrmexDeviceNode
+        nodeGroupID: HVPower
+        connectDirections: South, West, North, East
+  - type: MyrmexPipeEndpoint
+  - type: PowerConsumer
+    drawRate: 1000
+    voltage: High
+  - type: ActivatableUIRequiresMedievalPower
+  - type: MedievalPowerState
 
 - type: entity
   id: MedievalMyrmexToxicHole
