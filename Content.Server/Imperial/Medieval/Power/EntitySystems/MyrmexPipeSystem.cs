@@ -1,8 +1,14 @@
 using System.Linq;
+using Content.Shared.DoAfter;
+using Content.Shared.Interaction;
 using Content.Shared.Examine;
 using Content.Shared.Verbs;
 using Content.Shared.NodeContainer;
 using Content.Shared.NodeContainer.NodeGroups;
+using Content.Server.NodeContainer;
+using Content.Server.NodeContainer.EntitySystems;
+using Content.Server.NodeContainer.Nodes;
+using Content.Shared.Imperial.Medieval.Power;
 using Content.Shared.Explosion.EntitySystems;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
@@ -23,6 +29,10 @@ public sealed class MyrmexPipeSystem : EntitySystem
     [Dependency] private readonly PowerNetSystem _powerNet = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ExamineSystemShared _examine = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     private TimeSpan _nextCheckTime = TimeSpan.Zero;
     private readonly TimeSpan _checkInterval = TimeSpan.FromSeconds(20);
@@ -31,6 +41,43 @@ public sealed class MyrmexPipeSystem : EntitySystem
     {
         SubscribeLocalEvent<MyrmexPipeComponent, AnchorStateChangedEvent>(OnAnchorChanged);
         SubscribeLocalEvent<MyrmexPipeComponent, GetVerbsEvent<ExamineVerb>>(OnGetExamineVerbs);
+        SubscribeLocalEvent<MyrmexValvePipeComponent, InteractHandEvent>(OnValveInteractHand);
+        SubscribeLocalEvent<MyrmexValvePipeComponent, MyrmexValveDoAfterEvent>(OnValveDoAfter);
+    }
+
+    private void OnValveInteractHand(Entity<MyrmexValvePipeComponent> pipe, ref InteractHandEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        if (!HasComp<MyrmexComponent>(args.User))
+            return;
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, args.User, pipe.Comp.DoAfterTime, new MyrmexValveDoAfterEvent(), pipe, pipe)
+        {
+            BreakOnMove = true,
+            BreakOnDamage = true,
+            NeedHand = true
+        };
+
+        _doAfterSystem.TryStartDoAfter(doAfterArgs);
+        args.Handled = true;
+    }
+
+    private void OnValveDoAfter(Entity<MyrmexValvePipeComponent> pipe, ref MyrmexValveDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled)
+            return;
+
+        if (!_nodeContainer.TryGetNode<MyrmexPipeNode>(pipe.Owner, pipe.Comp.NodeId, out var pipeNode))
+            return;
+
+        pipeNode.Enabled ^= true;
+
+        _nodeGroupSystem.QueueReflood(pipeNode);
+        _appearance.SetData(pipe, MyrmexValveVisuals.State, pipeNode.Enabled);
+
+        args.Handled = true;
     }
 
     private void OnGetExamineVerbs(EntityUid uid, MyrmexPipeComponent component, GetVerbsEvent<ExamineVerb> args)
@@ -66,6 +113,7 @@ public sealed class MyrmexPipeSystem : EntitySystem
         {
             if (!(node.Value.NodeGroup is IBasePowerNet))
                 continue;
+
             var p = (IBasePowerNet) node.Value.NodeGroup;
             var ps = _powerNet.GetNetworkStatistics(p.NetworkNode);
 
@@ -84,6 +132,7 @@ public sealed class MyrmexPipeSystem : EntitySystem
                 ("storageom", ps.OutStorageMax)
             );
         }
+
         return Loc.GetString("cable-multitool-system-internal-error-no-power-node");
     }
 
