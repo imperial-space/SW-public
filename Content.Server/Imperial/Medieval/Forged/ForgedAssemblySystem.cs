@@ -6,6 +6,7 @@ using Content.Shared.DoAfter;
 using Robust.Shared.Containers;
 using Content.Shared.Verbs;
 using Content.Shared.Imperial.Medieval.MagicRunes.Components;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Forged;
 
@@ -44,9 +45,9 @@ public sealed class ForgedAssemblySystem : EntitySystem
             TransferToMob(uid, component,args);
             return;
         }
-        if (!TryComp<ForgedPartComponent>(args.Used, out var part)) return;
+        if (!TryComp<ForgedModuleComponent>(args.Used, out var part)) return;
 
-        string slotName = part.moduleSlot;
+        string slotName = part.ModuleSlot;
 
         if (!_containerSystem.TryGetContainer(uid, slotName, out var container))
         {
@@ -108,9 +109,9 @@ public sealed class ForgedAssemblySystem : EntitySystem
 
         if (args.Inserting)
         {
-            if (args.Args.Used == null || !TryComp<ForgedPartComponent>(args.Args.Used, out var part)) return;
+            if (args.Args.Used == null || !TryComp<ForgedModuleComponent>(args.Args.Used, out var part)) return;
 
-            if (!_containerSystem.TryGetContainer(uid, part.moduleSlot, out var container) || container.Count > 0) return;
+            if (!_containerSystem.TryGetContainer(uid, part.ModuleSlot, out var container) || container.Count > 0) return;
 
             if (_containerSystem.Insert(args.Args.Used.Value, container))
             {
@@ -164,10 +165,16 @@ public sealed class ForgedAssemblySystem : EntitySystem
         foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
         {
             string key = visualKey.ToString();
-            if (ent.Comp1.FittedParts.TryGetValue(key, out var moduleUid) && moduleUid.IsValid() && TryComp<ForgedPartComponent>(moduleUid, out var module))
-                _appearanceSystem.SetData(ent, visualKey, module.LayerState, ent.Comp2);
+            if (ent.Comp1.FittedParts.TryGetValue(key, out var moduleUid) && moduleUid.IsValid() && TryComp<ForgedModuleComponent>(moduleUid, out var module))
+            {
+                ForgedVisualsPacket packet = new ForgedVisualsPacket(module.LayerState, module.RsiPath);
+                _appearanceSystem.SetData(ent, visualKey, packet, ent.Comp2);
+            }
             else
-                _appearanceSystem.SetData(ent, visualKey, "blank", ent.Comp2);
+            {
+                ForgedVisualsPacket packet = new ForgedVisualsPacket("blank", new ResPath("Imperial/Medieval/Forged/torsos.rsi"));
+                _appearanceSystem.SetData(ent, visualKey, packet, ent.Comp2);
+            }
         }
     }
 

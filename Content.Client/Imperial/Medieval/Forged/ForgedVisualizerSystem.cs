@@ -20,15 +20,16 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedAssemblyComp
         foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
         {
             string key = visualKey.ToString();
-            if (AppearanceSystem.TryGetData<string>(uid, visualKey, out var state, appearance)) SetLayer(uid, key, state, sprite);
+            if (AppearanceSystem.TryGetData<ForgedVisualsPacket>(uid, visualKey, out var packet, appearance)) SetLayer(uid, key, packet, sprite);
         }
     }
 
-    private void SetLayer(EntityUid uid, string layerName, string state, SpriteComponent sprite)
+    private void SetLayer(EntityUid uid, string layerName, ForgedVisualsPacket packet, SpriteComponent sprite)
     {
         if (_sprite.LayerMapTryGet((uid, sprite), layerName, out var index, false))
         {
-            _sprite.LayerSetRsiState((uid, sprite), index, state);
+            _sprite.LayerSetRsiState((uid, sprite), index, packet.State);
+            _sprite.LayerSetRsi((uid, sprite), index, packet.RsiPath);
             _sprite.LayerSetVisible((uid, sprite), index, true);
         }
     }

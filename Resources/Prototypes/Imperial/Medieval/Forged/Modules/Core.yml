@@ -4,9 +4,10 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/sprites.rsi
+    sprite: Imperial/Medieval/Forged/cores.rsi
     state: CoreBase
     drawdepth: Items
-  - type: ForgedPart
+  - type: ForgedModule
     partSlot: core
     layerState: CoreBase
+    rsiPath: Imperial/Medieval/Forged/cores.rsi

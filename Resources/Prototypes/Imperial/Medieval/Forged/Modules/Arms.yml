@@ -4,12 +4,13 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/sprites.rsi
+    sprite: Imperial/Medieval/Forged/arms.rsi
     state: RArmBase
     drawdepth: Items
-  - type: ForgedPart
+  - type: ForgedModule
     partSlot: r_arm
     layerState: RArmBase
+    rsiPath: Imperial/Medieval/Forged/arms.rsi
 
 - type: entity
   id: ForgedLArmBase # Базовый торс-родитель для других торсов.
@@ -17,9 +18,10 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/sprites.rsi
+    sprite: Imperial/Medieval/Forged/arms.rsi
     state: LArmBase
     drawdepth: Items
-  - type: ForgedPart
+  - type: ForgedModule
     partSlot: l_arm
     layerState: LArmBase
+    rsiPath: Imperial/Medieval/Forged/arms.rsi

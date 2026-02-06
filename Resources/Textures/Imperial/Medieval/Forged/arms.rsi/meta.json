@@ -8,25 +8,10 @@
   },
   "states": [
     {
-        "name": "blank"
-    },
-    {
-        "name": "TorsoBase"
-    },
-    {
-        "name": "HeadBase"
-    },
-    {
         "name": "RArmBase"
     },
     {
         "name": "LArmBase"
-    },
-    {
-        "name": "CoreBase"
-    },
-    {
-        "name": "LegsBase"
     }
   ]
 }
