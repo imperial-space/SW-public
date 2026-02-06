@@ -34,7 +34,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
         foreach (string layer in component.RequiredSlots)
         {
             _containerSystem.EnsureContainer<ContainerSlot>(uid, layer);
-            component.FittedParts.Add(layer, EntityUid.Invalid);
+            component.FittedModules.Add(layer, EntityUid.Invalid);
         }
     }
 
@@ -85,14 +85,14 @@ public sealed class ForgedAssemblySystem : EntitySystem
 
         var removeCategory = new VerbCategory("Извлечь модуль", null);
 
-        foreach (var (slotId, partEntity) in component.FittedParts)
+        foreach (var (slotId, moduleEntity) in component.FittedModules)
         {
-            if (!partEntity.IsValid())
+            if (!moduleEntity.IsValid())
                 continue;
 
             EquipmentVerb verb = new()
             {
-                Text = $"Снять {Name(partEntity)}",
+                Text = $"Снять {Name(moduleEntity)}",
                 Category = removeCategory,
                 Act = () =>
                 {
@@ -115,9 +115,9 @@ public sealed class ForgedAssemblySystem : EntitySystem
 
         if (args.Inserting)
         {
-            if (args.Args.Used == null || !TryComp<ForgedModuleComponent>(args.Args.Used, out var part)) return;
+            if (args.Args.Used == null || !TryComp<ForgedModuleComponent>(args.Args.Used, out var module)) return;
 
-            if (!_containerSystem.TryGetContainer(uid, part.ModuleSlot, out var container) || container.Count > 0) return;
+            if (!_containerSystem.TryGetContainer(uid, module.ModuleSlot, out var container) || container.Count > 0) return;
 
             if (_containerSystem.Insert(args.Args.Used.Value, container))
             {
@@ -130,10 +130,10 @@ public sealed class ForgedAssemblySystem : EntitySystem
             if (!_containerSystem.TryGetContainer(uid, args.SlotId, out var container) || container.Count == 0)
                 return;
 
-            var part = container.ContainedEntities[0];
-            if (_containerSystem.TryRemoveFromContainer(part))
+            var module = container.ContainedEntities[0];
+            if (_containerSystem.TryRemoveFromContainer(module))
             {
-                _popup.PopupEntity($"Вы извлекли {Name(part)}", uid, args.User);
+                _popup.PopupEntity($"Вы извлекли {Name(module)}", uid, args.User);
                 FinalizeUpdate(uid, component);
             }
         }
@@ -143,23 +143,23 @@ public sealed class ForgedAssemblySystem : EntitySystem
 
     private void FinalizeUpdate(EntityUid uid, ForgedAssemblyComponent component)
     {
-        UpdateFittedParts(uid, component);
+        UpdateFittedModules(uid, component);
         if (TryComp<AppearanceComponent>(uid, out var appearance)) UpdateAppearance((uid, component, appearance));
     }
 
-    private void UpdateFittedParts(EntityUid uid, ForgedAssemblyComponent component)
+    private void UpdateFittedModules(EntityUid uid, ForgedAssemblyComponent component)
     {
-        component.FittedParts.Clear();
+        component.FittedModules.Clear();
         foreach (string layer in component.RequiredSlots)
         {
-            component.FittedParts.Add(layer, EntityUid.Invalid);
+            component.FittedModules.Add(layer, EntityUid.Invalid);
         }
 
         foreach (var container in _containerSystem.GetAllContainers(uid))
         {
             if (container.Count > 0)
             {
-                component.FittedParts[container.ID] = container.ContainedEntities[0];
+                component.FittedModules[container.ID] = container.ContainedEntities[0];
             }
         }
     }
@@ -171,7 +171,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
         foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
         {
             string key = visualKey.ToString();
-            if (ent.Comp1.FittedParts.TryGetValue(key, out var moduleUid) && moduleUid.IsValid() && TryComp<ForgedModuleComponent>(moduleUid, out var module))
+            if (ent.Comp1.FittedModules.TryGetValue(key, out var moduleUid) && moduleUid.IsValid() && TryComp<ForgedModuleComponent>(moduleUid, out var module))
             {
                 ForgedVisualsPacket packet = new ForgedVisualsPacket(module.LayerState, module.RsiPath);
                 _appearanceSystem.SetData(ent, visualKey, packet, ent.Comp2);
@@ -201,7 +201,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
         var mobUid = Spawn("ForgedPerson", coordinates);
         TryComp<ForgedComponent>(uid, out var forgedComponent);
         if (forgedComponent != null)
-            forgedComponent.FittedParts = new Dictionary<string, EntityUid>(component.FittedParts);
+            forgedComponent.FittedModules = new Dictionary<string, EntityUid>(component.FittedModules);
 
         args.Handled = true;
         QueueDel(args.Used);

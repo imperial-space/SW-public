@@ -13,5 +13,5 @@ public sealed partial class ForgedAssemblyComponent : Component
     /// Хранит ID вставленных сущностей, чтобы потом перенести их в финального моба.
     /// </summary>
     [ViewVariables]
-    public Dictionary<string, EntityUid> FittedParts = new();
+    public Dictionary<string, EntityUid> FittedModules = new();
 }

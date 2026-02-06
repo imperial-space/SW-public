@@ -11,6 +11,6 @@ public sealed class ForgedSystem : EntitySystem
 
     private void OnCompInit(EntityUid uid, ForgedComponent component, ComponentInit args)
     {
-        component.FittedParts = new();
+        component.FittedModules = new();
     }
 }
