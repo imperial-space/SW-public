@@ -10,7 +10,13 @@ public sealed partial class ForgedModuleComponent : Component
     /// Например: "head", "l_arm", "r_arm", "leg".
     /// </summary>
     [DataField("partSlot"), ViewVariables(VVAccess.ReadWrite)]
-    public string ModuleSlot = "head";
+    public string ModuleSlot = string.Empty;
+
+    /// <summary>
+    /// Что уже должно быть вставленно, чтобы можно было вставить этот модуль
+    /// </summary>
+    [DataField("requiredModule"), ViewVariables(VVAccess.ReadWrite)]
+    public string RequiredModule = string.Empty;
 
     /// <summary>
     /// Название модуля. Скопировать с state из спрайта
@@ -19,7 +25,7 @@ public sealed partial class ForgedModuleComponent : Component
     public string LayerState = string.Empty;
 
     /// <summary>
-    /// Название модуля. Скопировать с state из спрайта
+    /// Путь где хранятся спрайты
     /// </summary>
     [DataField("rsiPath"), ViewVariables(VVAccess.ReadWrite)]
     public ResPath RsiPath = ResPath.Empty;

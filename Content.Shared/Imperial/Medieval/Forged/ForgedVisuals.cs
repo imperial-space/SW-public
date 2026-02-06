@@ -9,8 +9,10 @@ public enum ForgedVisuals : byte
     /// Ключ для передачи данных о деталях (руки, ноги, голова).
     /// </summary>
     head,
-    l_arm,
     r_arm,
+    l_arm,
+    r_hand,
+    l_hand,
     legs,
     core
 }

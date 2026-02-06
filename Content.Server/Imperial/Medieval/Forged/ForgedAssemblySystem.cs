@@ -42,12 +42,12 @@ public sealed class ForgedAssemblySystem : EntitySystem
     {
         if (TryComp<MagicScrollComponent>(args.Used, out var scroll))
         {
-            TransferToMob(uid, component,args);
+            TransferToMob(uid, component, args);
             return;
         }
-        if (!TryComp<ForgedModuleComponent>(args.Used, out var part)) return;
+        if (!TryComp<ForgedModuleComponent>(args.Used, out var module)) return;
 
-        string slotName = part.ModuleSlot;
+        string slotName = module.ModuleSlot;
 
         if (!_containerSystem.TryGetContainer(uid, slotName, out var container))
         {
@@ -58,6 +58,12 @@ public sealed class ForgedAssemblySystem : EntitySystem
         if (container.Count > 0)
         {
             _popup.PopupEntity("Этот слот уже занят", uid, args.User);
+            return;
+        }
+
+        if (module.RequiredModule != string.Empty && _containerSystem.TryGetContainer(uid, module.RequiredModule, out var reqContainer) && reqContainer?.Count == 0)
+        {
+            _popup.PopupEntity("Нужно сначала вставить " + module.RequiredModule, uid, args.User);
             return;
         }
 

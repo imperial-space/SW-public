@@ -16,6 +16,10 @@
     - state: blank
       map: ["l_arm"]
     - state: blank
+      map: ["r_hand"]
+    - state: blank
+      map: ["l_hand"]
+    - state: blank
       map: ["core"]
     - state: blank
       map: ["legs"]

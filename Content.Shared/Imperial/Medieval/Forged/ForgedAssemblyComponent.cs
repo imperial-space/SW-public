@@ -7,7 +7,7 @@ public sealed partial class ForgedAssemblyComponent : Component
     /// Список слотов, которые обязательно должны быть заполнены для "оживления".
     /// </summary>
     [DataField("requiredSlots")]
-    public List<string> RequiredSlots = new() { "head", "l_arm", "r_arm", "core", "legs" };
+    public List<string> RequiredSlots = new() { "head", "r_arm", "l_arm", "r_hand", "l_hand", "core", "legs" };
 
     /// <summary>
     /// Хранит ID вставленных сущностей, чтобы потом перенести их в финального моба.

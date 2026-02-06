@@ -1,0 +1,29 @@
+- type: entity
+  id: ForgedRHandBase # Базовый торс-родитель для других торсов.
+  name: ForgedHandBase
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/hands.rsi
+    state: RHandBase
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: r_hand
+    layerState: RHandBase
+    rsiPath: Imperial/Medieval/Forged/hands.rsi
+    requiredModule: r_arm
+
+- type: entity
+  id: ForgedLHandBase # Базовый торс-родитель для других торсов.
+  name: ForgedLHandBase
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/hands.rsi
+    state: LHandBase
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: l_hand
+    layerState: LHandBase
+    rsiPath: Imperial/Medieval/Forged/hands.rsi
+    requiredModule: l_arm
