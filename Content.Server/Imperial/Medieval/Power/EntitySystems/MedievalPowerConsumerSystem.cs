@@ -5,6 +5,7 @@ using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Imperial.Medieval.Power;
 using Content.Shared.UserInterface;
+using ActivatableUISystem = Content.Shared.UserInterface.ActivatableUISystem;
 using Content.Shared.Popups;
 
 namespace Content.Server.Imperial.Medieval.Power;
@@ -12,23 +13,47 @@ namespace Content.Server.Imperial.Medieval.Power;
 public sealed class MedievalPowerConsumerSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly ActivatableUISystem _activatableUI = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+
         SubscribeLocalEvent<PowerConsumerComponent, PowerConsumerReceivedChanged>(OnReceivedChanged);
-        SubscribeLocalEvent<ActivatableUIRequiresPowerConsumerComponent, ActivatableUIOpenAttemptEvent>(OnActivate);
-        SubscribeLocalEvent<PowerConsumerComponent, ExaminedEvent>(OnExamined);
+
+        SubscribeLocalEvent<ActivatableUIRequiresMedievalPowerComponent, ActivatableUIOpenAttemptEvent>(OnActivate);
+        SubscribeLocalEvent<ActivatableUIRequiresMedievalPowerComponent, PowerChangedEvent>(OnPowerChanged);
+
+        SubscribeLocalEvent<MedievalPowerStateComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<MedievalPowerStateComponent, ComponentStartup>(OnStateCompStartup);
     }
-    // перенести на клиент туду
-    private void OnExamined(Entity<PowerConsumerComponent> ent, ref ExaminedEvent args)
+
+    private void OnExamined(Entity<MedievalPowerStateComponent> ent, ref ExaminedEvent args)
     {
         string text = Loc.GetString("power-receiver-component-on-examine-main",
-                    ("stateText", Loc.GetString(IsPowered(ent.Owner)
+                    ("stateText", Loc.GetString(ent.Comp.Powered
                         ? "power-receiver-component-on-examine-powered"
                         : "power-receiver-component-on-examine-unpowered"))); // shitcode by wiz
 
         args.PushMarkup(text);
+    }
+
+    private void OnActivate(Entity<ActivatableUIRequiresMedievalPowerComponent> ent, ref ActivatableUIOpenAttemptEvent args)
+    {
+        if (args.Cancelled || IsPowered(ent.Owner))
+            return;
+
+        _popup.PopupClient(Loc.GetString("base-computer-ui-component-not-powered", ("machine", ent.Owner)), args.User, args.User);
+        args.Cancel();
+    }
+
+    private void OnStateCompStartup(Entity<MedievalPowerStateComponent> ent, ref ComponentStartup args)
+    {
+        if (TryComp<PowerConsumerComponent>(ent, out var power))
+        {
+            ent.Comp.Powered = power.Powered;
+            Dirty(ent);
+        }
     }
 
     private void OnReceivedChanged(Entity<PowerConsumerComponent> ent, ref PowerConsumerReceivedChanged args)
@@ -40,6 +65,13 @@ public sealed class MedievalPowerConsumerSystem : EntitySystem
         if (component.Powered != isPowered)
         {
             component.Powered = isPowered;
+            
+            if (TryComp<MedievalPowerStateComponent>(ent, out var state))
+            {
+                state.Powered = isPowered;
+                Dirty(ent, state);
+            }
+            
             var ev = new PowerChangedEvent(isPowered, args.ReceivedPower);
             RaiseLocalEvent(ent, ref ev);
         }
@@ -52,13 +84,10 @@ public sealed class MedievalPowerConsumerSystem : EntitySystem
 
         return component.Powered;
     }
-    // перенести на клиент туду
-    private void OnActivate(Entity<ActivatableUIRequiresPowerConsumerComponent> ent, ref ActivatableUIOpenAttemptEvent args)
-    {
-        if (args.Cancelled || IsPowered(ent.Owner))
-            return;
 
-        _popup.PopupClient(Loc.GetString("base-computer-ui-component-not-powered", ("machine", ent.Owner)), args.User, args.User);
-        args.Cancel();
+    private void OnPowerChanged(Entity<ActivatableUIRequiresMedievalPowerComponent> ent, ref PowerChangedEvent args)
+    {
+        if (!args.Powered)
+            _activatableUI.CloseAll(ent.Owner);
     }
 }
