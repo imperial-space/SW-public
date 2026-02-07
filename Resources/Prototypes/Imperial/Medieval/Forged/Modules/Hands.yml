@@ -1,6 +1,6 @@
 - type: entity
   id: ForgedRHandBase # Базовый торс-родитель для других торсов.
-  name: ForgedHandBase
+  name: ForgedRHandBase
   parent: BaseItem
   components:
   - type: Sprite

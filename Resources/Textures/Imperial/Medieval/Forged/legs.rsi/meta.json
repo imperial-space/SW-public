@@ -8,7 +8,12 @@
   },
   "states": [
     {
-        "name": "LegsBase"
+        "name": "LLegBase",
+        "directions": 4
+    },
+    {
+        "name": "RLegBase",
+        "directions": 4
     }
   ]
 }

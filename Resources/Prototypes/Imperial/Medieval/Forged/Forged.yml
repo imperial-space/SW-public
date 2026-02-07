@@ -18,7 +18,7 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: MobState
-  - type: MobThresholds # Изменить отнистельно модулей!!!
+  - type: MobThresholds # Изменить относительно модулей!!!
     thresholds:
       0: Alive
       110: Critical # Imperial Medieval
@@ -51,7 +51,6 @@
           - MobMask
         layer:
           - MobLayer
-      # Imperial Medieval Start
       medieval-spawner:
         shape: !type:PhysShapeCircle
           radius: 0.4
@@ -84,6 +83,11 @@
   - type: GhostTakeoverAvailable
   - type: GhostRole
     makeSentient: true
-    name: ghost-role-information-goblin-name
-    description: ghost-role-information-goblin-description
-    rules: ghost-role-information-goblin-rules
+    name: ghost-role-information-forged-name
+    description: ghost-role-information-forged-description
+    rules: ghost-role-information-forged-rules
+  - type: Body
+    prototype: Forged
+    requiredLegs: 2
+  - type: HumanoidAppearance
+    species: Skeleton

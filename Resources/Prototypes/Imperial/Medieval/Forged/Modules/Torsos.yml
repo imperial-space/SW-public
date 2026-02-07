@@ -21,8 +21,11 @@
       map: ["l_hand"]
     - state: blank
       map: ["core"]
+      offset: 0, -0.1
     - state: blank
-      map: ["legs"]
+      map: ["r_leg"]
+    - state: blank
+      map: ["l_leg"]
   - type: Clickable
   - type: InteractionOutline
   - type: Physics

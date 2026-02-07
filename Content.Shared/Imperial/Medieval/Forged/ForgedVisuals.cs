@@ -13,6 +13,7 @@ public enum ForgedVisuals : byte
     l_arm,
     r_hand,
     l_hand,
-    legs,
+    r_leg,
+    l_leg,
     core
 }

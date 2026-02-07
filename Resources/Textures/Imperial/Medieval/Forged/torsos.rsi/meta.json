@@ -11,7 +11,8 @@
         "name": "blank"
     },
     {
-        "name": "TorsoBase"
+        "name": "TorsoBase",
+        "directions": 4
     }
   ]
 }

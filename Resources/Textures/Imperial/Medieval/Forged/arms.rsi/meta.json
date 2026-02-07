@@ -8,10 +8,12 @@
   },
   "states": [
     {
-        "name": "RArmBase"
+        "name": "RArmBase",
+        "directions": 4
     },
     {
-        "name": "LArmBase"
+        "name": "LArmBase",
+        "directions": 4
     }
   ]
 }

@@ -8,10 +8,12 @@
   },
   "states": [
     {
-        "name": "RHandBase"
+        "name": "RHandBase",
+        "directions": 4
     },
     {
-        "name": "LHandBase"
+        "name": "LHandBase",
+        "directions": 4
     }
   ]
 }
