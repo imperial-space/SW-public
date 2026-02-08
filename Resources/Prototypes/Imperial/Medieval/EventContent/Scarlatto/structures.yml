@@ -390,3 +390,49 @@
     state: stoneplatform_round
   - type: Icon
     state: stoneplatform_round
+
+- type: shader
+  id: GlitchWall
+  kind: source
+  path: "/Textures/Imperial/Shaders/glitch.swsl"
+  params:
+    shake_power: 1
+    shake_rate: 1
+    shake_speed: 1
+    shake_block_size: 0.2
+    shake_color_rate: 2
+
+- type: entity
+  parent: BaseWall
+  id: MedievalWallBlackScarlatto
+  name: wall
+  description: wall
+  components:
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: SmoothEdge
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Walls/black.rsi
+    layers:
+    - state: icon
+    - map: [ "enum.EdgeLayer.South" ]
+      state: south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: west
+  - type: Icon
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Walls/black.rsi
+    state: icon
+    shader: GlitchWall
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9999999
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]

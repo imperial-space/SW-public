@@ -2464,7 +2464,7 @@
 - type: startingGear
   id: MedievalLegionTreasurerGear
   equipment:
-    pocket1: MedievalRevent25
+    pocket1: MedievalStampMedievalTreasurer
     pocket2: MedievalKeyTreasurer
     jumpsuit: MedievalClothingTreasurer
     head: MedievalClothingHeadTreasurer
@@ -2643,7 +2643,7 @@
 - type: startingGear
   id: MedievalLegionAlchemicGear
   equipment:
-    #pocket1: MedievalCommsCrystallLeg
+    pocket1: MedievalStampMedievalAlch
     pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanEagle
@@ -3224,7 +3224,7 @@
 - type: startingGear
   id: MedievalInsurgencyAlchemicGear
   equipment:
-    #pocket1: MedievalCommsCrystallIns
+    pocket1: MedievalStampMedievalAlch
     pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanFox
@@ -5358,7 +5358,7 @@
   id: MedievalVillagerLeaderGear
   equipment:
     pocket1: MedievalRevent50
-    pocket2: MedievalRevent25
+    pocket2: MedievalStampMedievalVillage
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
     head: MedievalClothingHeadArcherHat
 
