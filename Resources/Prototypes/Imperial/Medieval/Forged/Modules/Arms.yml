@@ -8,9 +8,12 @@
     state: RArmBase
     drawdepth: Items
   - type: ForgedModule
-    partSlot: r_arm
+    partSlot: right_arm
     layerState: RArmBase
     rsiPath: Imperial/Medieval/Forged/arms.rsi
+  - type: BodyPart
+    partType: Arm
+    symmetry: Right
 
 - type: entity
   id: ForgedLArmBase # Базовый торс-родитель для других торсов.
@@ -22,6 +25,9 @@
     state: LArmBase
     drawdepth: Items
   - type: ForgedModule
-    partSlot: l_arm
+    partSlot: left_arm
     layerState: LArmBase
     rsiPath: Imperial/Medieval/Forged/arms.rsi
+  - type: BodyPart
+    partType: Arm
+    symmetry: Left

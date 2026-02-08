@@ -12,20 +12,20 @@
     - state: blank
       map: ["head"]
     - state: blank
-      map: ["r_arm"]
+      map: ["right_arm"]
     - state: blank
-      map: ["l_arm"]
+      map: ["left_arm"]
     - state: blank
-      map: ["r_hand"]
+      map: ["right_hand"]
     - state: blank
-      map: ["l_hand"]
+      map: ["left_hand"]
     - state: blank
       map: ["core"]
       offset: 0, -0.1
     - state: blank
-      map: ["r_leg"]
+      map: ["right_leg"]
     - state: blank
-      map: ["l_leg"]
+      map: ["left_leg"]
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -44,3 +44,20 @@
   - type: Pullable
   - type: Appearance
   - type: ForgedAssembly
+    torso: ForgedTorsoBase2
+
+- type: entity
+  id: ForgedTorsoBase2 # Базовый торс-родитель для других торсов.
+  name: ForgedTorsoBase2
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/torsos.rsi
+    state: TorsoBase
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: torso
+    layerState: TorsoBase
+    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+  - type: BodyPart
+    partType: Torso

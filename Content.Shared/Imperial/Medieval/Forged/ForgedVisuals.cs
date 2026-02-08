@@ -3,17 +3,18 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Forged;
 
 [Serializable, NetSerializable]
-public enum ForgedVisuals : byte
+public enum ForgedAssemblyVisuals : byte
 {
     /// <summary>
     /// Ключ для передачи данных о деталях (руки, ноги, голова).
     /// </summary>
     head,
-    r_arm,
-    l_arm,
-    r_hand,
-    l_hand,
-    r_leg,
-    l_leg,
-    core
+    right_arm,
+    left_arm,
+    right_hand,
+    left_hand,
+    right_leg,
+    left_leg,
+    core,
+    torso
 }

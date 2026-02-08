@@ -11,3 +11,5 @@
     partSlot: head
     layerState: HeadBase
     rsiPath: Imperial/Medieval/Forged/heads.rsi
+  - type: BodyPart
+    partType: Head

@@ -168,9 +168,10 @@ public sealed class ForgedAssemblySystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, logMissing: false)) return;
 
-        foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
+        foreach (ForgedAssemblyVisuals visualKey in Enum.GetValues(typeof(ForgedAssemblyVisuals)))
         {
             string key = visualKey.ToString();
+            if (key == "torso") continue;
             if (ent.Comp1.FittedModules.TryGetValue(key, out var moduleUid) && moduleUid.IsValid() && TryComp<ForgedModuleComponent>(moduleUid, out var module))
             {
                 ForgedVisualsPacket packet = new ForgedVisualsPacket(module.LayerState, module.RsiPath);
@@ -186,9 +187,10 @@ public sealed class ForgedAssemblySystem : EntitySystem
 
     private void TransferToMob(EntityUid uid, ForgedAssemblyComponent component, InteractUsingEvent args)
     {
-        foreach (var container in _containerSystem.GetAllContainers(uid))
+        // Проверка сборки...
+        foreach (var slot in component.RequiredSlots)
         {
-            if (container.Count == 0)
+            if (!component.FittedModules.TryGetValue(slot, out var moduleUid) || !EntityManager.EntityExists(moduleUid))
             {
                 _popup.PopupEntity("Сборка не завершена!", uid, args.User);
                 return;
@@ -198,10 +200,31 @@ public sealed class ForgedAssemblySystem : EntitySystem
         var xform = Transform(uid);
         var coordinates = xform.Coordinates;
 
-        var mobUid = Spawn("ForgedPerson", coordinates);
-        TryComp<ForgedComponent>(uid, out var forgedComponent);
-        if (forgedComponent != null)
-            forgedComponent.FittedModules = new Dictionary<string, EntityUid>(component.FittedModules);
+        var mobUid = EntityManager.CreateEntityUninitialized("ForgedPerson", coordinates);
+
+        if (TryComp<ForgedComponent>(mobUid, out var forgedComponent))
+        {
+            var newModulesDict = new Dictionary<string, EntityUid>();
+
+            var torso = Spawn("ForgedTorsoBase2", coordinates);
+            newModulesDict["torso"] = torso;
+
+            foreach (var (slotId, moduleUid) in component.FittedModules)
+            {
+                if (slotId == "torso") continue;
+
+                if (_containerSystem.TryGetContainer(uid, slotId, out var container))
+                {
+                    _containerSystem.Remove(moduleUid, container, force: true);
+                    newModulesDict[slotId] = moduleUid;
+                }
+            }
+
+            forgedComponent.FittedModules = newModulesDict;
+            Dirty(mobUid, forgedComponent);
+        }
+
+        EntityManager.InitializeAndStartEntity(mobUid);
 
         args.Handled = true;
         QueueDel(args.Used);

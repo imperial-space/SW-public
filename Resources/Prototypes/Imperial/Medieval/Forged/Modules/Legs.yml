@@ -8,9 +8,12 @@
     state: RLegBase
     drawdepth: Items
   - type: ForgedModule
-    partSlot: r_leg
+    partSlot: right_leg
     layerState: RLegBase
     rsiPath: Imperial/Medieval/Forged/legs.rsi
+  - type: BodyPart
+    partType: Leg
+    symmetry: Right
 
 - type: entity
   id: ForgedLLegBase # Базовый торс-родитель для других торсов.
@@ -22,6 +25,10 @@
     state: LLegBase
     drawdepth: Items
   - type: ForgedModule
-    partSlot: l_leg
+    partSlot: left_leg
     layerState: LLegBase
     rsiPath: Imperial/Medieval/Forged/legs.rsi
+  - type: BodyPart
+    partType: Leg
+    symmetry: Left
+

@@ -3,12 +3,6 @@
   name: "forged"
   root: torso
   slots:
-    head:
-      part: HeadHuman
-      connections:
-      - torso
-    # organs:
-    #   eyes: OrganForgedEyes
     torso:
       part: TorsoHuman
       connections:
@@ -16,8 +10,12 @@
       - left_arm
       - right_leg
       - left_leg
+    head:
+      part: HeadHuman
+      connections:
+      - torso
     # organs:
-    #   core: OrganForgedCore
+    #   eyes: OrganForgedEyes
     right_arm:
       part: RightArmHuman
       connections:

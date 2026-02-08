@@ -8,10 +8,13 @@
     state: RHandBase
     drawdepth: Items
   - type: ForgedModule
-    partSlot: r_hand
+    partSlot: right_hand
     layerState: RHandBase
     rsiPath: Imperial/Medieval/Forged/hands.rsi
-    requiredModule: r_arm
+    requiredModule: right_arm
+  - type: BodyPart
+    partType: Arm
+    symmetry: Right
 
 - type: entity
   id: ForgedLHandBase # Базовый торс-родитель для других торсов.
@@ -23,7 +26,10 @@
     state: LHandBase
     drawdepth: Items
   - type: ForgedModule
-    partSlot: l_hand
+    partSlot: left_hand
     layerState: LHandBase
     rsiPath: Imperial/Medieval/Forged/hands.rsi
-    requiredModule: l_arm
+    requiredModule: left_arm
+  - type: BodyPart
+    partType: Arm
+    symmetry: Left
