@@ -24,6 +24,7 @@ public sealed partial class GiveItemObjectiveComponent : Component
         "MedievalGetMedievalPersonalAI",
         "MedievalGetMedievalDaggerT3Bone",
         "MedievalGetFoodMeatSalami",
+        "MedievalGetClothingHeadHelmetBone",
         "MedievalGetClothingHeadHatCowboyBrown",
         "MedievalGetDiceBag",
         "MedievalGetFoodApple",
@@ -36,12 +37,21 @@ public sealed partial class GiveItemObjectiveComponent : Component
         "MedievalGetMedaljonSpeed",
         "MedievalGetMedaljonNoslip",
         "MedievalGetMedaljonDark",
+        "MedievalGetMedievalClothingNeckCloakClanTribe",
+        "MedievalGetMedievalClothingNeckCloakClanEagle",
+        "MedievalGetMedievalClothingNeckCloakClanWolf",
+        "MedievalGetMedievalClothingNeckCloakClanFox",
+        "MedievalGetMedievalClothingHeadHelmetFox4",
+        "MedievalGetMedievalClothingHeadHelmetLegionLegat",
+        "MedievalGetMedievalClothingHeadHelmetBand3",
 
         "MedievalGetLeavesCannabis",
         "MedievalGetLeavesTobacco",
         "MedievalGetMedievalClothingOuterArmorUpIron",
         "MedievalGetMedievalClothingNeckCloakGoblin",
-        "MedievalGetShardCrystalRed"
+        "MedievalGetShardCrystalRed",
+
+        "MedievalGetMedievalClothingHeadHelmetTribe3"
         };
 
     [DataField]
