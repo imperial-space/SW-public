@@ -322,6 +322,24 @@
         "name": "paper_stamp-coroner"
     },
     {
+        "name": "stamp-alch"
+    },
+    {
+        "name": "paper_stamp-alch"
+    },
+    {
+        "name": "stamp-treasurer"
+    },
+    {
+        "name": "paper_stamp-treasurer"
+    },
+    {
+        "name": "stamp-village"
+    },
+    {
+        "name": "paper_stamp-village"
+    },
+    {
         "name": "stamp-detective"
     }
 ]
