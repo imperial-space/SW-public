@@ -11,9 +11,7 @@
     partSlot: right_leg
     layerState: RLegBase
     rsiPath: Imperial/Medieval/Forged/legs.rsi
-  - type: BodyPart
-    partType: Leg
-    symmetry: Right
+    speedModifier: 0.5
 
 - type: entity
   id: ForgedLLegBase # Базовый торс-родитель для других торсов.
@@ -28,7 +26,5 @@
     partSlot: left_leg
     layerState: LLegBase
     rsiPath: Imperial/Medieval/Forged/legs.rsi
-  - type: BodyPart
-    partType: Leg
-    symmetry: Left
+    speedModifier: 0.5
 

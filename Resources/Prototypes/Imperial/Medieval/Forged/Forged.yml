@@ -3,7 +3,11 @@
   name: Forged
   parent:
   - MobFlammable
-  - BaseMobSpecies
+  - BaseMob
+  - MobDamageable
+  - MobPolymorphable
+  - MobCombat
+  - StripableInventoryBase
   id: ForgedPerson
   components:
   - type: Sprite
@@ -25,12 +29,10 @@
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
-# Imperial Medieval BadSmell Begin
     - map: [ "badsmell" ]
       sprite: Imperial/Medieval/BadSmell/species.rsi
       visible: false
       state: dirty1
-# Imperial Medieval BadSmell End
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
@@ -66,19 +68,266 @@
       state: flag
       visible: false
 # Imperial Medieval Surrender End
-  - type: Appearance
-  - type: Damageable
-    damageContainer: Biological
-    damageModifierSet: Skeleton
   - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
     damageOverlayGroups:
       Brute:
         sprite: Mobs/Effects/brute_damage.rsi
         color: "#555555AA"
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon: # Not 'creampied' bc I can already see Skyrat complaining about conflicts.
+          True: {visible: true}
+          False: {visible: false}
+  # Imperial Medieval BadSmell Begin
+      enum.BadSmellVisuals.Dirt:
+        badsmell:
+          0: {visible: false}
+          1: {visible: true, state: dirty1}
+          2: {visible: true, state: dirty2}
+          3: {visible: true, state: dirty3}
+          4: {visible: true, state: dirty4}
+  # Imperial Medieval BadSmell End
+  # Imperial Medieval Surrender Begin
+      enum.SurrenderVisuals.Key:
+        surrender:
+          True: {visible: true}
+          False: {visible: false}
+  # Imperial Medieval Surrender End
+  - type: StatusIcon
+    bounds: -0.5,-0.5,0.5,0.5
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: TypingIndicator
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      # Imperial Medieval Start
+      # 60: 0.7
+      # 80: 0.5
+      10: 0.95
+      20: 0.9
+      30: 0.83
+      40: 0.75
+      50: 0.7
+      60: 0.63
+      70: 0.58
+      80: 0.53
+      90: 0.4
+      # imperial Medieval End
+  - type: FloorOcclusion
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MeatBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MeatLaserImpact
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [Touch, Ingestion]
+    reactions:
+    - reagents: [Water, SpaceCleaner]
+      methods: [Touch]
+      effects:
+      - !type:WashCreamPieReaction
+  - type: StatusEffects
+    allowed:
+    - IllitidFlashed
+    - Electrocution
+    - RatvarianLanguage
+    - PressureImmunity
+    - Muted
+    - TemporaryBlindness
+    - Pacified
+    - StaminaModifier
+    - Flashed
+    - RadiationProtection
+    - Adrenaline
+    - MedievalFarmerBoost # Imperial medieval
+  - type: Identity
+  #- type: IdExaminable # Imperial Medieval
+  - type: Hands
+  - type: ComplexInteraction
+  - type: Internals
+  - type: FloatingVisuals
+  - type: Climbing
+  - type: Cuffable
+  - type: Ensnareable
+    sprite: Objects/Misc/ensnare.rsi
+    state: icon
+  - type: AnimationPlayer
+  - type: Buckle
+  - type: CombatMode
+    canDisarm: true
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 5
+  - type: SleepEmitSound
+  - type: SSDIndicator
+  - type: StandingState
+  - type: Crawler
+  - type: Dna
+  - type: MindContainer
+    showExamineInfo: true
+  - type: CanEnterCryostorage
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: CanHostGuardian
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: CreamPied
+  - type: Stripping
+  - type: UserInterface
+    interfaces:
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: Puller
+  - type: Speech
+    speechSounds: Alto
+  - type: DamageForceSay
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: Emoting
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: MobPrice
+    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
+    deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+  - type: InjectNeed # imperial hardsuit injection
+  # Imperial Medieval Start
+  - type: MedievalMobTrigger
+    fixtureId: "medieval-spawner"
+  - type: Mana
+    maxMana: 100
+    regen: 0.25
+  - type: SSDFree
+  - type: MedievalIronHitSound
+  - type: IgnitPocketFlames
+  - type: EmoteOnDamage
+    emotes:
+    - PainScream
+    emoteChance: 0.3
+    withChat: true
+    emoteCooldown: 3.5
+  - type: MedievalSpikeTarget
+  - type: BadSmellFeel
+  - type: BadSmell
+  - type: MeleeParryAble
+  - type: ReligionMember
+  - type: NocturnBadFood
+    timesCanBeBiten: 6
+    bloodMultiplier: 1
+    fresh: true
+  - type: RandomSteal
+  - type: Customizer
+  - type: IdentityRequiresKnowledge
+  - type: SleepingImperial
+  - type: SoftCritEmotes
+    emotes:
+    - Cough
+    - Gasp
+    - PassiveScream
+  - type: AreaMarkerInvoker
+  - type: ShieldOnStartup
+  - type: AntiStealAfk
+  - type: CanSurrender
+  - type: RDDeathScreen
+  - type: CombatStance
+  - type: Grabbable
+  - type: Grabber
+  - type: PointLight
+    netsync: false
+    enabled: false
+  - type: LocalLight
+    energy: 0.3
+    radius: 1.18
+  - type: RDWeight
+    value: 63
+  - type: RDWeightSpeedModifier
+    curve: !type:RDWeightModifierLinearCurve
+      min: 90
+      max: 220 # CURSE OF 220
+  - type: RDWeightExamine
+    examines:
+      "[color=#ADFF2F]Налегке[/color]":
+        min: 0
+        max: 85       # несет до 10 кг (легкая сумка, пистолет)
+      "[color=#FFFF00]Слегка загружен[/color]":
+        min: 85
+        max: 95       # несет 10-20 кг (штурмовой рюкзак, автомат)
+      "[color=#FFD700]Хорошо загружен[/color]":
+        min: 95
+        max: 110      # несет 20-35 кг (полный рюкзак, легкая броня)
+      "[color=#FF8C00]Перегружен[/color]":
+        min: 110
+        max: 125      # несет 35-50 кг (тяжелая броня и снаряжение)
+      "[color=#FF4500]Критический перегруз[/color]":
+        min: 125
+        max: 140      # несет 50-65 кг (скорость и выносливость сильно снижены)
+      "[color=#FF0000]Задавлен тяжестью[/color]":
+        min: 140
+        max: 160      # несет 65-85 кг (движение крайне затруднено)
+      "[color=#DC143C]Нечеловеческая ноша[/color]":
+        min: 160
+        max: 180      # несет 85-105 кг (едва способен сделать шаг)
+      "[color=#8B0000]Обездвижен переносимым весом[/color]":
+        min: 180
+        max: 20000      # несет более 105 кг (не может двигаться без посторонней помощи)
+  - type: RDWeightThrowerModifier
+  - type: AffectRoundStats
+  - type: Skills
+    levels:
+      Vitality: 10
+      Strength: 10
+      Agility: 10
+      Intelligence: 10
+      Endurance: 10
+# Imperial Medieval End
+  - type: Appearance
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Skeleton
   - type: MobState
-  - type: MobThresholds # Изменить относительно модулей!!!
+  - type: MobThresholds
     thresholds:
       0: Alive
       110: Critical # Imperial Medieval
@@ -91,14 +340,7 @@
       behaviors:
       - !type:GoSSDBehavior { } # Imperial Medieval
       - !type:GibBehavior { }
-  - type: Speech
-    speechVerb: Skeleton
   - type: ZombieImmune
-  - type: Vocal
-    sounds:
-      Male: Forged
-      Female: Forged
-      Unsexed: Forged
   - type: Fixtures
     fixtures:
       fix1:
@@ -150,3 +392,4 @@
     prototype: Forged
     requiredLegs: 2
   - type: Forged
+

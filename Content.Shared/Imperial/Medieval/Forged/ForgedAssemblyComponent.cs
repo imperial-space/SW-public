@@ -17,6 +17,6 @@ public sealed partial class ForgedAssemblyComponent : Component
     [ViewVariables]
     public Dictionary<string, EntityUid> FittedModules = new();
 
-    [DataField("Torso"), ViewVariables(VVAccess.ReadWrite)]
-    public EntProtoId? PrototypeId;
+    [DataField("torso"), ViewVariables(VVAccess.ReadWrite)]
+    public EntProtoId? TorsoID;
 }

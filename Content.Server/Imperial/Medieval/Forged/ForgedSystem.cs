@@ -8,6 +8,8 @@ using Content.Shared.Imperial.Medieval.Forged;
 using Content.Shared.Body.Events;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using Content.Shared.Movement.Systems;
+using Content.Shared.Damage;
 
 namespace Content.Shared.Forged;
 
@@ -16,6 +18,7 @@ public sealed class ForgedSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
 
     public override void Initialize()
     {
@@ -23,6 +26,9 @@ public sealed class ForgedSystem : EntitySystem
         SubscribeLocalEvent<ForgedComponent, MapInitEvent>(OnMapInit);
 
         SubscribeLocalEvent<ForgedComponent, BeingGibbedEvent>(OnGibbed);
+
+        SubscribeLocalEvent<ForgedComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
+        SubscribeLocalEvent<ForgedComponent, DamageModifyEvent>(OnDamageModify);
     }
 
     private void OnMapInit(EntityUid uid, ForgedComponent component, MapInitEvent args)
@@ -44,37 +50,31 @@ public sealed class ForgedSystem : EntitySystem
         }
 
         if (TryComp<AppearanceComponent>(uid, out var appearance)) UpdateAppearance((uid, component, appearance));
+
+        _movementSpeedModifierSystem.RefreshMovementSpeedModifiers(uid);
     }
 
     private void OnGibbed(EntityUid uid, ForgedComponent component, BeingGibbedEvent args)
     {
         foreach (var (slotId, moduleUid) in component.FittedModules)
         {
-            // Если модуль уже удален движком — пропускаем
             if (TerminatingOrDeleted(moduleUid)) continue;
 
-            // Пытаемся найти контейнер
             if (_containerSystem.TryGetContainer(uid, slotId, out var container))
             {
-                // --- ГЛАВНОЕ ИСПРАВЛЕНИЕ ---
-                // Проверяем, действительно ли этот модуль СЕЙЧАС внутри этого контейнера.
-                // Если BodySystem уже выкинула голову, то container.Contains вернет false,
-                // и мы не будем пытаться выкинуть её второй раз (что вызывало краш).
                 if (!container.Contains(moduleUid))
                 {
                     continue;
                 }
 
-                // Вытаскиваем предмет (force: true выбрасывает его в мир)
                 _containerSystem.Remove(moduleUid, container, force: true);
 
-                if (slotId == "Torso")
+                if (slotId == "torso")
                 {
                     QueueDel(moduleUid);
                     continue;
                 }
 
-                // Логика 50% шанса уничтожения
                 if (_random.Prob(0.5f))
                 {
                     QueueDel(moduleUid);
@@ -87,7 +87,7 @@ public sealed class ForgedSystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, logMissing: false)) return;
 
-        foreach (ForgedAssemblyVisuals visualKey in Enum.GetValues(typeof(ForgedAssemblyVisuals)))
+        foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
         {
             string key = visualKey.ToString();
             if (ent.Comp1.FittedModules.TryGetValue(key, out var moduleUid) && moduleUid.IsValid() && TryComp<ForgedModuleComponent>(moduleUid, out var module))
@@ -101,5 +101,45 @@ public sealed class ForgedSystem : EntitySystem
                 _appearanceSystem.SetData(ent, visualKey, packet, ent.Comp2);
             }
         }
+    }
+
+    private float GetModuleSpeedModifier(ForgedComponent component)
+    {
+        float speedMod = 1f;
+
+        foreach (var (state, moduleUid) in component.FittedModules)
+        {
+            if (!TryComp<ForgedModuleComponent>(moduleUid, out var module)) continue;
+
+            speedMod += module.SpeedModifier;
+        }
+
+        return Math.Max(0.1f, speedMod);
+    }
+
+    private float GetModuleResistanceModifier(ForgedComponent component)
+    {
+        float damageMod = 1f;
+
+        foreach (var (state, moduleUid) in component.FittedModules)
+        {
+            if (!TryComp<ForgedModuleComponent>(moduleUid, out var module)) continue;
+
+            damageMod -= module.ResistanceModifier;
+        }
+
+        return Math.Max(0.01f, damageMod);
+    }
+
+    private void OnRefreshSpeed(EntityUid uid, ForgedComponent component, RefreshMovementSpeedModifiersEvent args)
+    {
+        float mod = GetModuleSpeedModifier(component);
+        args.ModifySpeed(mod, mod);
+    }
+
+    private void OnDamageModify(EntityUid uid, ForgedComponent component, DamageModifyEvent args)
+    {
+        float mod = GetModuleResistanceModifier(component);
+        args.Damage *= mod;
     }
 }

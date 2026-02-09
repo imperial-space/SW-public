@@ -18,7 +18,7 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
 
     private void UpdateAppearance(EntityUid uid, ForgedComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
-        foreach (ForgedAssemblyVisuals visualKey in Enum.GetValues(typeof(ForgedAssemblyVisuals)))
+        foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
         {
             if (AppearanceSystem.TryGetData<ForgedVisualsPacket>(uid, visualKey, out var packet, appearance)) SetLayer(uid, visualKey, packet, sprite);
         }
@@ -27,24 +27,24 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
         _sprite.LayerSetVisible((uid, sprite), HumanoidVisualLayers.RFoot, false);
     }
 
-    private void SetLayer(EntityUid uid, ForgedAssemblyVisuals partKey, ForgedVisualsPacket packet, SpriteComponent sprite)
+    private void SetLayer(EntityUid uid, ForgedVisuals partKey, ForgedVisualsPacket packet, SpriteComponent sprite)
     {
-        if (partKey != ForgedAssemblyVisuals.core)
+        if (partKey != ForgedVisuals.core)
         {
             HumanoidVisualLayers? targetLayer = partKey switch
             {
-                ForgedAssemblyVisuals.head       => HumanoidVisualLayers.Head,
-                ForgedAssemblyVisuals.torso      => HumanoidVisualLayers.Chest, // Torso в коде обычно мапится на Chest
-                ForgedAssemblyVisuals.right_arm  => HumanoidVisualLayers.RArm,
-                ForgedAssemblyVisuals.left_arm   => HumanoidVisualLayers.LArm,
-                ForgedAssemblyVisuals.right_hand => HumanoidVisualLayers.RHand,
-                ForgedAssemblyVisuals.left_hand  => HumanoidVisualLayers.LHand,
-                ForgedAssemblyVisuals.right_leg  => HumanoidVisualLayers.RLeg,
-                ForgedAssemblyVisuals.left_leg   => HumanoidVisualLayers.LLeg,
+                ForgedVisuals.head       => HumanoidVisualLayers.Head,
+                ForgedVisuals.torso      => HumanoidVisualLayers.Chest, // Torso в коде обычно мапится на Chest
+                ForgedVisuals.right_arm  => HumanoidVisualLayers.RArm,
+                ForgedVisuals.left_arm   => HumanoidVisualLayers.LArm,
+                ForgedVisuals.right_hand => HumanoidVisualLayers.RHand,
+                ForgedVisuals.left_hand  => HumanoidVisualLayers.LHand,
+                ForgedVisuals.right_leg  => HumanoidVisualLayers.RLeg,
+                ForgedVisuals.left_leg   => HumanoidVisualLayers.LLeg,
 
                 // Core (Ядро) обычно не имеет внешнего визуального слоя на кукле человека,
                 // поэтому возвращаем null или дефолтное значение.
-                ForgedAssemblyVisuals.core       => null,
+                ForgedVisuals.core       => null,
 
                 _ => null // Для любых непредусмотренных случаев
             };

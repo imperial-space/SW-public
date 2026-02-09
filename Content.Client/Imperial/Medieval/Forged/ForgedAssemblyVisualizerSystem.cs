@@ -17,7 +17,7 @@ public sealed class ForgedAssemblyVisualizerSystem : VisualizerSystem<ForgedAsse
 
     private void UpdateAppearance(EntityUid uid, ForgedAssemblyComponent component, SpriteComponent sprite, AppearanceComponent appearance)
     {
-        foreach (ForgedAssemblyVisuals visualKey in Enum.GetValues(typeof(ForgedAssemblyVisuals)))
+        foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
         {
             string key = visualKey.ToString();
             if (AppearanceSystem.TryGetData<ForgedVisualsPacket>(uid, visualKey, out var packet, appearance)) SetLayer(uid, key, packet, sprite);

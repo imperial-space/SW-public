@@ -21,14 +21,23 @@ public sealed partial class ForgedModuleComponent : Component
     /// <summary>
     /// Название модуля. Скопировать с state из спрайта
     /// </summary>
-    [DataField("layerState"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField("layerState")]
     public string LayerState = string.Empty;
 
     /// <summary>
     /// Путь где хранятся спрайты
     /// </summary>
-    [DataField("rsiPath"), ViewVariables(VVAccess.ReadWrite)]
+    [DataField("rsiPath")]
     public ResPath RsiPath = ResPath.Empty;
+
+    /// <summary>
+    /// Будет ли эта деталь давать особые способности (на будущее).
+    /// </summary>
+    [DataField("speedModifier")]
+    public float SpeedModifier = 0;
+
+    [DataField("resistanceModifier")]
+    public float ResistanceModifier = 0;
 
     /// <summary>
     /// Будет ли эта деталь давать особые способности (на будущее).

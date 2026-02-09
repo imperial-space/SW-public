@@ -44,20 +44,9 @@
   - type: Pullable
   - type: Appearance
   - type: ForgedAssembly
-    torso: ForgedTorsoBase2
-
-- type: entity
-  id: ForgedTorsoBase2 # Базовый торс-родитель для других торсов.
-  name: ForgedTorsoBase2
-  parent: BaseItem
-  components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Forged/torsos.rsi
-    state: TorsoBase
-    drawdepth: Items
+    torso: ForgedTorsoBase
   - type: ForgedModule
     partSlot: torso
     layerState: TorsoBase
     rsiPath: Imperial/Medieval/Forged/torsos.rsi
-  - type: BodyPart
-    partType: Torso
+    resistanceModifier: 0.9

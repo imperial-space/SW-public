@@ -168,7 +168,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, logMissing: false)) return;
 
-        foreach (ForgedAssemblyVisuals visualKey in Enum.GetValues(typeof(ForgedAssemblyVisuals)))
+        foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
         {
             string key = visualKey.ToString();
             if (key == "torso") continue;
@@ -206,7 +206,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
         {
             var newModulesDict = new Dictionary<string, EntityUid>();
 
-            var torso = Spawn("ForgedTorsoBase2", coordinates);
+            var torso = Spawn(component.TorsoID, coordinates);
             newModulesDict["torso"] = torso;
 
             foreach (var (slotId, moduleUid) in component.FittedModules)
