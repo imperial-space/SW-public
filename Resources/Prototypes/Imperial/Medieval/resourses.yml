@@ -85,6 +85,15 @@
   - type: MedievalCurrency
     price:
       Revent: 10
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 5
+  - type: ForgedFoodStack
 
 - type: entity
   name: MedievalTopazOre
@@ -918,6 +927,7 @@
         reagents:
         - ReagentId: MedievalMagicCrystallReagent
           Quantity: 5
+  - type: ForgedFoodStack
 
 
 - type: entity
@@ -1007,6 +1017,7 @@
         reagents:
         - ReagentId: MedievalMagicCrystallReagent
           Quantity: 5
+  - type: ForgedFoodStack
 
 - type: material
   id: MedievalEbonitIngot

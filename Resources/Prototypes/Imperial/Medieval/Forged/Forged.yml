@@ -16,6 +16,7 @@
           types:
             Blunt: -1
       - !type:SatiateHunger
+        factor: 10
 
 - type: entity
   save: false
