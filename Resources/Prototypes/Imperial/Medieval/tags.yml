@@ -32,6 +32,9 @@
   id: MedievalAdamOre
 
 - type: Tag
+  id: MedievalAdam
+
+- type: Tag
   id: MedievalFireSerdolick
 
 - type: Tag

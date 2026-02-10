@@ -19,6 +19,7 @@ public sealed class ForgedSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
+    [Dependency] private readonly SharedBodySystem _bodySystem = default!;
 
     public override void Initialize()
     {
@@ -42,6 +43,10 @@ public sealed class ForgedSystem : EntitySystem
                 var container = _containerSystem.EnsureContainer<ContainerSlot>(uid, "forgedhead");
                 _containerSystem.Insert(moduleUid, container);
             }
+            else if (module.ModuleSlot == "core")
+            {
+                SetupCore(uid, moduleUid);
+            }
             else
             {
                 var container = _containerSystem.EnsureContainer<ContainerSlot>(uid, module.ModuleSlot);
@@ -52,6 +57,32 @@ public sealed class ForgedSystem : EntitySystem
         if (TryComp<AppearanceComponent>(uid, out var appearance)) UpdateAppearance((uid, component, appearance));
 
         _movementSpeedModifierSystem.RefreshMovementSpeedModifiers(uid);
+    }
+
+    private void SetupCore(EntityUid uid, EntityUid coreId)
+    {
+        Timer.Spawn(0, () =>
+        {
+            var test = _bodySystem.GetBodyChildren(uid).ToList();
+            EntityUid? torsoId = null;
+            foreach (var part in _bodySystem.GetBodyChildren(uid))
+            {
+                if (part.Component.PartType == BodyPartType.Torso)
+                {
+                    torsoId = part.Id;
+                    break;
+                }
+            }
+            if (torsoId == null) return;
+
+            foreach (var part in _bodySystem.GetBodyOrgans(uid))
+            {
+                _bodySystem.RemoveOrgan(part.Id);
+                QueueDel(part.Id);
+            }
+
+            _bodySystem.InsertOrgan(torsoId.Value, coreId, "stomach");
+        });
     }
 
     private void OnGibbed(EntityUid uid, ForgedComponent component, BeingGibbedEvent args)
@@ -75,7 +106,7 @@ public sealed class ForgedSystem : EntitySystem
                     continue;
                 }
 
-                if (_random.Prob(0.5f))
+                if (_random.Prob(1.0f))
                 {
                     QueueDel(moduleUid);
                 }

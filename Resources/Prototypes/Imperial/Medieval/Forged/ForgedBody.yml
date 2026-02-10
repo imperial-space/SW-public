@@ -10,12 +10,14 @@
       - left_arm
       - right_leg
       - left_leg
+      organs:
+        stomach: OrganHumanStomach
     head:
       part: HeadHuman
       connections:
       - torso
-    # organs:
-    #   eyes: OrganForgedEyes
+      organs:
+        eyes: OrganHumanEyes
     right_arm:
       part: RightArmHuman
       connections:

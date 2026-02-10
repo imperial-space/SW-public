@@ -910,6 +910,15 @@
   - type: MedievalCurrency
     price:
       Revent: 10
+  - type: Food
+  - type: SolutionContainerManager # Нужен для работы Food системы
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 5
+
 
 - type: entity
   name: MedievalIngotGold
@@ -971,6 +980,7 @@
     - RawMaterial
     - Sheet
     - Ore
+    - MedievalAdam
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -988,6 +998,15 @@
   - type: MedievalCurrency
     price:
       Revent: 10
+  - type: Food # Обязательно для начала процесса поедания
+    requiresSpecialDigestion: true # Только для тех, у кого вайтлист (ваше ядро)
+  - type: SolutionContainerManager # Нужен для работы Food системы
+    solutions:
+      food:
+        maxVol: 5
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 5
 
 - type: material
   id: MedievalEbonitIngot

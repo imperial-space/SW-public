@@ -1,3 +1,22 @@
+- type: reagent
+  id: MedievalMagicCrystallReagent
+  name: reagent-name-medieval-magic-crystall
+  slipData: null
+  desc: Очень сильно истолченные магические камни.
+  evaporationSpeed: 1
+  absorbent: true
+  color: "#ffffff"
+  physicalDesc: Переливается странной радугой.
+  flavor: Неописуем
+  metabolisms:
+    Food:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Blunt: -1
+      - !type:SatiateHunger
+
 - type: entity
   save: false
   name: Forged
@@ -324,8 +343,8 @@
 # Imperial Medieval End
   - type: Appearance
   - type: Damageable
-    damageContainer: Inorganic
-    damageModifierSet: Skeleton
+    damageContainer: Forged
+    damageModifierSet: Forged
   - type: MobState
   - type: MobThresholds
     thresholds:
@@ -392,4 +411,6 @@
     prototype: Forged
     requiredLegs: 2
   - type: Forged
+  - type: Hunger
+    baseDecayRate: 0.5
 

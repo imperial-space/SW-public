@@ -11,3 +11,48 @@
     partSlot: core
     layerState: CoreBase
     rsiPath: Imperial/Medieval/Forged/cores.rsi
+  - type: Organ
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - MedievalFireSerdolick
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+  - type: Metabolizer
+    maxReagents: 6
+    metabolizerTypes: [ Android ]
+    removeEmpty: true
+    groups:
+      - id: Food
+      - id: Drink
+      - id: Medicine
+      - id: Poison
+      - id: Narcotic
+      - id: Alcohol
+        rateModifier: 0.25
+
+- type: entity
+  id: ForgedCoreBase2 # Базовый торс-родитель для других торсов.
+  name: ForgedCoreBase2
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: CoreBase
+    color: "#ff0000"
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: core
+    layerState: CoreBase
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
+  - type: Organ
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - MedievalAdam
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
