@@ -30,7 +30,7 @@
   icon:
     sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
     state: alc
-  jobName: job-name-InsurgencyAlchemic-medieval
+  jobName: job-name-WanderingAlchemic-medieval
 
 - type: playTimeTracker
   id: JobMedievalWanderingAlchemic
