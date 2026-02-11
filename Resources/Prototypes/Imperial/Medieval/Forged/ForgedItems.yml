@@ -1,0 +1,33 @@
+- type: entity
+  name: MedievalMagicGlina
+  description: Глина перемешанная с магической пылью.
+  parent: BaseHealingItem
+  id: MedievalMagicGlina
+  components:
+    - type: Tag
+      tags:
+        - ForgedHealItem
+    - type: Sprite
+      sprite: Imperial/Medieval/Forged/items.rsi
+      state: magicGlina
+    - type: Healing
+      plagueProgressionDecayPerUse: 1
+      damageContainers: [Biological]
+      damage:
+        groups:
+          Brute: -50 # 5 for each type in the group
+          Heat: -50
+      healingBeginSound:
+        path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      healingEndSound:
+        path: "/Audio/Items/Medical/brutepack_end.ogg"
+    - type: Stack
+      stackType: MedievalMagicGlina
+      count: 1
+
+- type: stack
+  id: MedievalMagicGlina
+  name: MedievalMagicGlina
+  icon: { sprite: Imperial/Medieval/Forged/items.rsi, state: magicGlina }
+  spawn: MedievalMagicGlina
+  maxCount: 30

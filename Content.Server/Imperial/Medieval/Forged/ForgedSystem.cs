@@ -10,6 +10,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Hands.EntitySystems;
 
 namespace Content.Shared.Forged;
 
@@ -20,6 +21,8 @@ public sealed class ForgedSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -75,10 +78,11 @@ public sealed class ForgedSystem : EntitySystem
             }
             if (torsoId == null) return;
 
-            foreach (var part in _bodySystem.GetBodyOrgans(uid))
+            foreach (var organ in _bodySystem.GetBodyOrgans(uid))
             {
-                _bodySystem.RemoveOrgan(part.Id);
-                QueueDel(part.Id);
+                if (!HasComp<StomachComponent>(organ.Id)) continue;
+                _bodySystem.RemoveOrgan(organ.Id, organ.Component);
+                QueueDel(organ.Id);
             }
 
             _bodySystem.InsertOrgan(torsoId.Value, coreId, "stomach");
@@ -172,5 +176,14 @@ public sealed class ForgedSystem : EntitySystem
     {
         float mod = GetModuleResistanceModifier(component);
         args.Damage *= mod;
+    }
+
+    private bool IsHealing(DamageSpecifier damage)
+    {
+        foreach (var value in damage.DamageDict.Values)
+        {
+            if (value > 0) return false;
+        }
+        return true;
     }
 }

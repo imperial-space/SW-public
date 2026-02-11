@@ -16,7 +16,9 @@
           types:
             Blunt: -1
       - !type:SatiateHunger
-        factor: 10
+
+- type: Tag
+  id: ForgedHealItem
 
 - type: entity
   save: false
@@ -344,7 +346,7 @@
 # Imperial Medieval End
   - type: Appearance
   - type: Damageable
-    damageContainer: Forged
+    damageContainer: Biological
     damageModifierSet: Forged
   - type: MobState
   - type: MobThresholds
@@ -413,5 +415,5 @@
     requiredLegs: 2
   - type: Forged
   - type: Hunger
-    baseDecayRate: 0.5
+    baseDecayRate: 0.1
 

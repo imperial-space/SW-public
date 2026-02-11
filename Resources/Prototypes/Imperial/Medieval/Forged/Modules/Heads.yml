@@ -4,8 +4,8 @@
   parent: BaseItem
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/heads.rsi
-    state: HeadBase
+    sprite: Imperial/Medieval/Clothing/Mask/brass_skull.rsi
+    state: icon
     drawdepth: Items
   - type: ForgedModule
     partSlot: head
