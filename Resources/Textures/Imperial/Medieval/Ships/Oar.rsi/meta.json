@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "license": null,
+  "copyright": null,
+  "size": {
+    "x": 48,
+    "y": 48
+  },
+  "states": [
+    {
+      "name": "base",
+      "directions": 4
+    }
+  ]
+}
