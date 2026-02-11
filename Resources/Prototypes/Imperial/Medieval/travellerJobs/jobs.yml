@@ -22,14 +22,14 @@
   - !type:AddComponentSpecial
     components:
     - type: MedievalJobSpawn
-      spawnType: Default  
+      spawnType: Default
 
 - type: jobIcon
   parent: JobIcon
   id: JobIconMedievalWanderingAlchemic
   icon:
     sprite: /Textures/Imperial/Medieval/Misc/job_icons.rsi
-    state: alchemic
+    state: alc
   jobName: job-name-InsurgencyAlchemic-medieval
 
 - type: playTimeTracker
