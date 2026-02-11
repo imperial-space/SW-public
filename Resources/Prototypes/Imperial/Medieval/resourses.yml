@@ -240,7 +240,7 @@
   - type: DamageOtherOnHit
     damage:
       types:
-        Blunt: 12
+        Blunt: 5
 
 - type: entity
   name: MedievalSpiderHair
