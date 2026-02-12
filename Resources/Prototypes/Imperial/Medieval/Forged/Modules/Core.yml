@@ -21,10 +21,14 @@
       stomach:
         maxVol: 50
   - type: Metabolizer
-    maxReagents: 6
+    solution: stomach
+    solutionOnBody: false
+    maxReagents: 2
     removeEmpty: true
+    metabolizerTypes: [ Forged ]
     groups:
       - id: Food
+      - id: Drink
 
 - type: entity
   id: ForgedCoreAdam
@@ -49,15 +53,19 @@
       stomach:
         maxVol: 50
   - type: Metabolizer
-    maxReagents: 6
+    solution: stomach
+    solutionOnBody: false
+    maxReagents: 2
     removeEmpty: true
+    metabolizerTypes: [ Forged ]
     groups:
       - id: Food
+      - id: Drink
 
 - type: entity
   id: ForgedCoreTopaz # Базовый торс-родитель для других торсов.
   name: ForgedCoreTopaz
-  parent: BaseItem
+  parent: BaseHumanOrgan
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/cores.rsi
@@ -77,7 +85,10 @@
       stomach:
         maxVol: 50
   - type: Metabolizer
-    maxReagents: 6
+    solution: stomach
+    solutionOnBody: false
+    maxReagents: 2
     removeEmpty: true
+    metabolizerTypes: [ Forged ]
     groups:
       - id: Food

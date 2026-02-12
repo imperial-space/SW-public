@@ -1,25 +1,3 @@
-- type: reagent
-  id: MedievalMagicCrystallReagent
-  name: reagent-name-medieval-magic-crystall
-  slipData: null
-  desc: Очень сильно истолченные магические камни.
-  evaporationSpeed: 1
-  absorbent: true
-  color: "#ffffff"
-  physicalDesc: Переливается странной радугой.
-  flavor: Неописуем
-  metabolisms:
-    Food:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Blunt: -1
-      - !type:SatiateHunger
-
-- type: Tag
-  id: ForgedHealItem
-
 - type: entity
   save: false
   name: Forged
@@ -204,8 +182,7 @@
     attackRate: 1
     damage:
       types:
-        Blunt: 5
-  - type: SleepEmitSound
+        Blunt: 10
   - type: SSDIndicator
   - type: StandingState
   - type: Crawler
@@ -233,13 +210,11 @@
   - type: Puller
   - type: Speech
     speechSounds: Alto
-  - type: DamageForceSay
   - type: Vocal
     sounds:
       Male: MaleHuman
       Female: FemaleHuman
       Unsexed: MaleHuman
-  - type: Emoting
   - type: BodyEmotes
     soundsId: GeneralBodyEmotes
   - type: Grammar
@@ -258,36 +233,14 @@
   # Imperial Medieval Start
   - type: MedievalMobTrigger
     fixtureId: "medieval-spawner"
-  - type: Mana
-    maxMana: 100
-    regen: 0.25
-  - type: SSDFree
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
-  - type: EmoteOnDamage
-    emotes:
-    - PainScream
-    emoteChance: 0.3
-    withChat: true
-    emoteCooldown: 3.5
   - type: MedievalSpikeTarget
-  - type: BadSmellFeel
   - type: BadSmell
   - type: MeleeParryAble
-  - type: ReligionMember
-  - type: NocturnBadFood
-    timesCanBeBiten: 6
-    bloodMultiplier: 1
-    fresh: true
   - type: RandomSteal
   - type: Customizer
   - type: IdentityRequiresKnowledge
-  - type: SleepingImperial
-  - type: SoftCritEmotes
-    emotes:
-    - Cough
-    - Gasp
-    - PassiveScream
   - type: AreaMarkerInvoker
   - type: ShieldOnStartup
   - type: AntiStealAfk
@@ -338,15 +291,15 @@
   - type: AffectRoundStats
   - type: Skills
     levels:
-      Vitality: 10
-      Strength: 10
-      Agility: 10
-      Intelligence: 10
-      Endurance: 10
+      Vitality: 15
+      Strength: 15
+      Agility: 15
+      Intelligence: 6
+      Endurance: 15
 # Imperial Medieval End
   - type: Appearance
   - type: Damageable
-    damageContainer: Biological
+    damageContainer: Forged
     damageModifierSet: Forged
   - type: MobState
   - type: MobThresholds

@@ -79,7 +79,8 @@
   id: Forged
   supportedGroups:
     - Brute
-  supportedTypes:
-    - Heat
-    - Shock
+    - Burn
+    - Toxin
+    - Airloss
+    - Genetic
 #Imperial Forged ends
