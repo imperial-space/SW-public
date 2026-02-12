@@ -26,5 +26,5 @@ public sealed partial class WaveComponent : Component
     [DataField]
     public float Strength = 1;
     [DataField]
-    public float Direction = 1;;
+    public float Direction = 1;
 }
