@@ -4,7 +4,7 @@
   name: legat's rubber stamp
   parent: RubberStampBase
   id: RubberStampLegat
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-legat
@@ -17,7 +17,7 @@
   name: head of fox rubber stamp
   parent: RubberStampBase
   id: RubberStampHeadFox
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-headfox
@@ -30,7 +30,7 @@
   name: village elder rubber stamp
   parent: RubberStampBase
   id: RubberStampVillageElder
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-village
@@ -43,7 +43,7 @@
   name: harmer's rubber stamp
   parent: RubberStampBase
   id: RubberStampHarmer
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-harmer
@@ -56,7 +56,7 @@
   name: green head rubber stamp
   parent: RubberStampBase
   id: RubberStampGreenHead
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-greenhead
@@ -69,7 +69,7 @@
   name: merc lead's rubber stamp
   parent: RubberStampBase
   id: RubberStampMercLead
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-merclead
@@ -97,7 +97,7 @@
   name: innkeeper's rubber stamp of North
   parent: RubberStampBase
   id: RubberStampInnkeeperN
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-innkeeperN
@@ -110,7 +110,7 @@
   name: innkeeper's rubber stamp of South
   parent: RubberStampBase
   id: RubberStampInnkeeperS
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-innkeeperS
@@ -123,7 +123,7 @@
   name: Alch's rubber stamp of North
   parent: RubberStampBase
   id: RubberStampAlchN
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-alchN
@@ -136,7 +136,7 @@
   name: Alch's rubber stamp of South
   parent: RubberStampBase
   id: RubberStampAlchS
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-alchS
@@ -149,7 +149,7 @@
   name: Blacksmith's rubber stamp of North
   parent: RubberStampBase
   id: RubberStampBlacksmithN
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-blacksmithN
@@ -162,7 +162,7 @@
   name: Blacksmith's rubber stamp of South
   parent: RubberStampBase
   id: RubberStampBlacksmithS
-  categories: [ DoNotMap ]
+  suffix: ForMap
   components:
   - type: Stamp
     stampedName: stamp-component-stamped-name-blacksmithS
