@@ -1,9 +1,10 @@
 - type: entity
   id: ForgedTorsoBase # Базовый торс-родитель для других торсов.
   name: ForgedTorsoBase
+  abstract: true
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/torsos.rsi # Путь к твоему спрайту
+    sprite: Imperial/Medieval/Forged/torsos.rsi
     state: TorsoBase
     drawdepth: Items
     layers:
@@ -11,6 +12,8 @@
       map: ["torso"]
     - state: blank
       map: ["head"]
+    - state: blank
+      map: ["eyes"]
     - state: blank
       map: ["right_arm"]
     - state: blank
@@ -45,8 +48,38 @@
   - type: Appearance
   - type: ForgedAssembly
     torso: ForgedTorsoBase
+    requiredSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg" ]
   - type: ForgedModule
     partSlot: torso
     layerState: TorsoBase
     rsiPath: Imperial/Medieval/Forged/torsos.rsi
-    resistanceModifier: 0.9
+
+- type: entity
+  id: ForgedWoodenTorso
+  name: ForgedWoodenTorso
+  parent: ForgedTorsoBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/torsos.rsi
+    state: TorsoBase
+  - type: ForgedModule
+    partSlot: torso
+    layerState: TorsoBase
+    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+    resistanceModifier: 0.04
+    speedModifier: -0.1
+
+- type: entity
+  id: ForgedIronTorso
+  name: ForgedIronTorso
+  parent: ForgedTorsoBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/torsos.rsi
+    state: TorsoBase
+  - type: ForgedModule
+    partSlot: torso
+    layerState: TorsoBase
+    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+    resistanceModifier: 0.08
+    speedModifier: -0.2

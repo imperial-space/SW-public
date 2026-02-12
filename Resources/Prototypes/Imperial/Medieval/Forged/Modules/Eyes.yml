@@ -1,0 +1,17 @@
+- type: entity
+  id: ForgedEyesBase
+  parent: BaseItem
+  name: ForgedEyesBase
+  description: "I see you!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: BaseEyes
+  - type: Item
+    size: Small
+    heldPrefix: eyeballs
+  - type: ForgedModule
+    partSlot: eyes
+    layerState: eyes
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
+  - type: Organ

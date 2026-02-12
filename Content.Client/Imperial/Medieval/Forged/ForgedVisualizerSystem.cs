@@ -34,7 +34,8 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
             HumanoidVisualLayers? targetLayer = partKey switch
             {
                 ForgedVisuals.head       => HumanoidVisualLayers.Head,
-                ForgedVisuals.torso      => HumanoidVisualLayers.Chest, // Torso в коде обычно мапится на Chest
+                ForgedVisuals.eyes       => HumanoidVisualLayers.Eyes,
+                ForgedVisuals.torso      => HumanoidVisualLayers.Chest,
                 ForgedVisuals.right_arm  => HumanoidVisualLayers.RArm,
                 ForgedVisuals.left_arm   => HumanoidVisualLayers.LArm,
                 ForgedVisuals.right_hand => HumanoidVisualLayers.RHand,
@@ -42,11 +43,9 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
                 ForgedVisuals.right_leg  => HumanoidVisualLayers.RLeg,
                 ForgedVisuals.left_leg   => HumanoidVisualLayers.LLeg,
 
-                // Core (Ядро) обычно не имеет внешнего визуального слоя на кукле человека,
-                // поэтому возвращаем null или дефолтное значение.
                 ForgedVisuals.core       => null,
 
-                _ => null // Для любых непредусмотренных случаев
+                _ => null
             };
 
             if (targetLayer == null) return;

@@ -14,7 +14,6 @@
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "core" ]
-      offset: 0, -0.1
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -291,11 +290,11 @@
   - type: AffectRoundStats
   - type: Skills
     levels:
-      Vitality: 15
-      Strength: 15
-      Agility: 15
-      Intelligence: 6
-      Endurance: 15
+      Vitality: 10
+      Strength: 10
+      Agility: 5
+      Intelligence: 7
+      Endurance: 20
 # Imperial Medieval End
   - type: Appearance
   - type: Damageable

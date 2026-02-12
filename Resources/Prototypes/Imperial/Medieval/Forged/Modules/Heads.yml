@@ -2,6 +2,7 @@
   id: ForgedHeadBase # Базовый торс-родитель для других торсов.
   name: ForgedHeadBase
   parent: BaseItem
+  abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Mask/brass_skull.rsi
@@ -11,5 +12,33 @@
     partSlot: head
     layerState: HeadBase
     rsiPath: Imperial/Medieval/Forged/heads.rsi
-  - type: BodyPart
-    partType: Head
+
+- type: entity
+  id: ForgedWoodenHead
+  name: ForgedWoodenHead
+  parent: ForgedHeadBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/torsos.rsi
+    state: TorsoBase
+  - type: ForgedModule
+    partSlot: head
+    layerState: HeadBase #
+    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+    resistanceModifier: 0.01
+    speedModifier: -0.03
+
+- type: entity
+  id: ForgedIronHead
+  name: ForgedIronHead
+  parent: ForgedHeadBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/heads.rsi
+    state: TorsoBase
+  - type: ForgedModule
+    partSlot: head
+    layerState: HeadBase #
+    rsiPath: Imperial/Medieval/Forged/heads.rsi
+    resistanceModifier: 0.02
+    speedModifier: -0.06
