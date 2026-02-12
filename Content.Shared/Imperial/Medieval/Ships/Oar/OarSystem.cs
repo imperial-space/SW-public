@@ -32,7 +32,7 @@ public sealed class OarSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly RDWeightSystem  _rdWeight = default!;
-public override void Initialize()
+    public override void Initialize()
     {
         SubscribeLocalEvent<OarComponent, AfterInteractEvent>(OnOarAfterInteract);
         SubscribeLocalEvent<MetaDataComponent, OnOarDoAfterEvent>(OnOarDoAfter);
