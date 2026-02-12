@@ -1824,7 +1824,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_mace.rsi
     state: icon
@@ -1891,7 +1891,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/heavy_mace.rsi
     state: icon
@@ -3318,7 +3318,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_mace.rsi
     state: icon
@@ -3385,7 +3385,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/heavy_mace.rsi
     state: icon
@@ -4512,7 +4512,7 @@
 
 - type: entity
   name: dagger
-  parent: [ BaseKnife, BaseCrushingCharged ]
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalPalice
   description: A deadly knife intended for melee confrontations.
   components:
@@ -4587,7 +4587,7 @@
 
 - type: entity
   name: dagger
-  parent: [ BaseKnife, BaseCrushingCharged ]
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalPaliceSteel
   description: A deadly knife intended for melee confrontations.
   components:
@@ -4670,7 +4670,7 @@
     value: 3
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/bone_mace.rsi
     state: icon

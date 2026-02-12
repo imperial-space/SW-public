@@ -7,32 +7,30 @@ namespace Content.Server.Myrmex.Components;
 [RegisterComponent]
 public sealed partial class MyrmexComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite)]
-    [DataField(customTypeSerializer: typeof(PrototypeIdListSerializer<EntityPrototype>))]
-    public List<string> Actions;
+    [DataField]
+    public List<EntProtoId> Actions;
 
-    //since multiple actions can modify speed we have to track the total speed percentage
+    [DataField]
     public float CurrentSpeedMultiplier = 1;
 
+    [DataField]
     public bool StealthActive;
 
+    [DataField]
     public bool StunActive;
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public TimeSpan StunDuration;
 
+    [DataField]
     public bool ArmorActive;
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
-    public ProtoId<DamageModifierSetPrototype> StandardArmorProto; //PrototypeIdSerializer<DamageModifierSetPrototype> would be nice but it isn't implemented
+    public ProtoId<DamageModifierSetPrototype> StandardArmorProto;
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public ProtoId<DamageModifierSetPrototype> ActiveArmorProto;
 
-    [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public float ActiveArmorSpeedMultiplier;
 }

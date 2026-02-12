@@ -16,12 +16,6 @@ namespace Content.Server.Imperial.Medieval.Myrmex
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        private readonly string[] _feedSounds =
-        [
-            "/Audio/Imperial/Medieval/ant_feed1.ogg",
-                "/Audio/Imperial/Medieval/ant_feed2.ogg",
-        ];
 
         public override void Initialize()
         {
@@ -34,8 +28,9 @@ namespace Content.Server.Imperial.Medieval.Myrmex
 
         private void OnExamine(EntityUid uid, MyrmexStewComponent comp, ExaminedEvent args)
         {
-            args.PushMarkup($"[color=gray]Осталось [bold]{comp.Uses}[/bold] кусочков[/color]", 1);
+            args.PushMarkup(Loc.GetString("medieval-myrmex-stew-remaining-pieces", ("uses", comp.Uses)), 1);
         }
+
         private void OnInteractHand(Entity<MyrmexStewComponent> entity, ref ActivateInWorldEvent args)
         {
             if (args.Handled)
@@ -74,6 +69,7 @@ namespace Content.Server.Imperial.Medieval.Myrmex
 
             if (!diff.HasValue || diff.Value.Duration() >= TimeSpan.FromSeconds(user.Comp.EatCooldownSeconds))
                 return true;
+
             if (!silent)
                 _popup.PopupEntity(Loc.GetString("medieval-myrmex-stew-cooldown"), user.Owner, user.Owner);
             return false;
@@ -85,8 +81,8 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             if (!FeedCheck(stew, user))
                 return (false, true);
 
-            var sound = _random.Pick(_feedSounds);
-            _audio.PlayPvs(sound, user.Owner);
+            _audio.PlayPvs(stew.Comp.FeedSounds, user.Owner);
+
             var doAfterArgs = new DoAfterArgs(EntityManager,
                 user.Owner,
                 TimeSpan.FromSeconds(2),
@@ -101,7 +97,9 @@ namespace Content.Server.Imperial.Medieval.Myrmex
                 DistanceThreshold = 2,
                 BreakOnMove = true,
             };
+
             _doAfter.TryStartDoAfter(doAfterArgs);
+
             return (true, true);
         }
 
@@ -112,19 +110,16 @@ namespace Content.Server.Imperial.Medieval.Myrmex
 
             if (!TryComp(args.User, out MyrmexHungerComponent? hunger))
                 return;
+
             if (!TryComp(entity.Owner, out MetaDataComponent? metadata))
-                return;
-            if (!TryComp(entity.Owner, out TransformComponent? transform))
                 return;
 
             args.Handled = true;
 
-            var userEntity = new Entity<MyrmexHungerComponent>(args.User, hunger);
-            if (!FeedCheck(entity, userEntity))
+            if (!FeedCheck(entity, (args.User, hunger)))
                 return;
 
             entity.Comp.Uses--;
-
             hunger.LastEaten = _gameTiming.CurTime;
 
             if (entity.Comp.Buff != null)
@@ -141,12 +136,13 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             {
                 if (metadata.EntityPrototype == null)
                     return;
+
                 var ev = new LarvaFeedEvent(metadata.EntityPrototype);
                 RaiseLocalEvent(args.User, ev);
             }
 
             if (entity.Comp.Uses == 0)
-                PredictedQueueDel(new Entity<MetaDataComponent?, TransformComponent?>(entity.Owner, metadata, transform));
+                PredictedQueueDel(entity.Owner);
         }
     }
 }

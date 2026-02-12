@@ -1,0 +1,132 @@
+<Document>
+    <Box Orientation="Vertical" Margin="0 8">
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+      <Box Orientation="Horizontal">
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOn" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+        <GuideEntityEmbed Entity="MedievalCultBrushOff" Scale="2" Caption="" Margin="0 0"/>
+      </Box>
+    </Box>
+  
+  Для совершения ритуала нужно поднести проклятый фолиант в центр руны.
+  
+  [bold]Необходимо культистов:[/bold] 2
+  
+  [bold]Стоимость:[/bold] Не использует кристаллы
+
+  - Преобразует проклятый фолиант в [bold][color=#ff0000]5 алых[/bold] кристаллов[/color].
+</Document>
