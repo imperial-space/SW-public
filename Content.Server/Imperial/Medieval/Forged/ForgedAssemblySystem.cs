@@ -200,7 +200,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
         var xform = Transform(uid);
         var coordinates = xform.Coordinates;
 
-        var mobUid = EntityManager.CreateEntityUninitialized("ForgedPerson", coordinates);
+        var mobUid = EntityManager.CreateEntityUninitialized("MedievalForgedMob", coordinates);
 
         if (TryComp<ForgedComponent>(mobUid, out var forgedComponent))
         {

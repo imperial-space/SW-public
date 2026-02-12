@@ -2326,7 +2326,7 @@
       state: brutepack
     - type: Healing
       plagueProgressionDecayPerUse: 1
-      damageContainers: [Biological, Forged]
+      damageContainers: [Biological]
       damage:
         groups:
           Brute: -15 # 5 for each type in the group

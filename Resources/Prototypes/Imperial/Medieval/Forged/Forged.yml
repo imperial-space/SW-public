@@ -1,6 +1,6 @@
 - type: entity
   save: false
-  name: Forged
+  name: MedievalForgedMob
   parent:
   - MobFlammable
   - BaseMob
@@ -8,7 +8,7 @@
   - MobPolymorphable
   - MobCombat
   - StripableInventoryBase
-  id: ForgedPerson
+  id: MedievalForgedMob
   components:
   - type: Sprite
     layers:
@@ -363,10 +363,12 @@
     name: ghost-role-information-forged-name
     description: ghost-role-information-forged-description
     rules: ghost-role-information-forged-rules
+    raffle:
+      settings: default
   - type: Body
     prototype: Forged
     requiredLegs: 2
   - type: Forged
   - type: Hunger
-    baseDecayRate: 0.1
+    baseDecayRate: 0.01
 

@@ -792,6 +792,9 @@ ent-MedievalMobGoblin = гоблин
 ent-MedievalMobHobGoblin = хобгоблин
     .desc = Большая бегающая тварь. Пока ты успеешь одуматься тебя уже убьют.
     .suffix = { "Средневековье, моб" }
+ent-MedievalForgedMob = Кованный
+    .desc = Механизм, оживший благодаря магии
+    .suffix = { "Средневековье, моб" }
 ent-MedievalTarget = тренировочный манекен
     .desc = Груша для битья
     .suffix = { "Средневековье" }
@@ -1109,6 +1112,8 @@ ent-MedievalClothingHeadFarmerHat = фермерская шляпка
     .suffix = { "Средневековье, одежда" }
 ghost-role-information-goblin-name = Гоблин
 ghost-role-information-goblin-description = Воришка
+ghost-role-information-forged-name = Кованный
+ghost-role-information-forged-description = Мой механизм не даст уснуть, пока мои глаза открыты
 ghost-role-information-hobgoblin-name = Хобгоблин
 ghost-role-information-hobgoblin-description = Мускулистый воришка
 ghost-role-information-goblin-rules = Утащите как можно больше в логово. Действуйте в группах. Если вы ушли из логова - [color=red]атакуйте только в крайнем случае[/color], берите в [color=red]плен[/color], требуйте выкуп. Не нападайте на базы фракций в одиночку.
@@ -6696,3 +6701,5 @@ ent-MedievalAnglerWeb5 = тонко натянутая нить
 ent-MedievalFireplaceCraft = заготовка камина
     .desc = Кликните с заготовкой в активной руке по месту, куда вы хотите разместить объект, чтобы смастерить камин.
     .suffix = { "Средневековье" }
+ghost-role-information-forged-rules = Вы разумное существо. Вы можете либо отыгрывать свободного кованного, либо быть подконтрольным существом, служа своему/своим хозяину/хозяинам. После этого выбора придерживайтесь его. На вас распространяются те же правила, что и на обычного гуманоида.
+
