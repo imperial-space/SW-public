@@ -1,5 +1,5 @@
 - type: entity
-  id: ForgedHeadBase # Базовый торс-родитель для других торсов.
+  id: ForgedHeadBase
   name: ForgedHeadBase
   parent: BaseItem
   abstract: true
@@ -19,12 +19,12 @@
   parent: ForgedHeadBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/torsos.rsi
-    state: TorsoBase
+    sprite: Imperial/Medieval/Forged/heads.rsi
+    state: wooden_head_icon
   - type: ForgedModule
     partSlot: head
-    layerState: HeadBase #
-    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+    layerState: wooden_head
+    rsiPath: Imperial/Medieval/Forged/heads.rsi
     resistanceModifier: 0.01
     speedModifier: -0.03
 

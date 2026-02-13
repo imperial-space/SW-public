@@ -1062,6 +1062,16 @@
     - MedievalScrollsPetSlimeCraft
     - MedievalClothingHeadHelmetCharmerNeutral
     - MedievalClothingOuterArmorCharmerNeutral
+    - ForgedCoreSerdolicCraft
+    - ForgedCoreAdamCraft
+    - ForgedCoreTopazCraft
+    - ForgedCoreGoldCraft
+    - ForgedWoodenHeadCraft
+    - ForgedWoodenTorsoCraft
+    - ForgedWoodenRArmCraft
+    - ForgedWoodenLArmCraft
+    - ForgedWoodenRLegCraft
+    - ForgedWoodenLLegCraft
 
 - type: entity
   parent: CP14BaseWorkbench

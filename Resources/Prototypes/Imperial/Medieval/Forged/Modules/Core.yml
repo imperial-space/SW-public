@@ -1,94 +1,100 @@
 - type: entity
-  id: ForgedCoreSerdolic
-  name: ForgedCoreSerdolic
-  parent: BaseItem
+  id: ForgedCoreBase
+  name: ForgedCoreBase
+  parent: BaseHumanOrgan
+  abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/cores.rsi
-    state: CoreBase
+    state: base_core
     drawdepth: Items
   - type: ForgedModule
     partSlot: core
-    layerState: CoreBase
+    layerState: base_core
     rsiPath: Imperial/Medieval/Forged/cores.rsi
   - type: Organ
+  - type: Stomach
+    #specialDigestible:
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+        canReact: false
+  - type: Metabolizer
+    solution: stomach
+    solutionOnBody: false
+    maxReagents: 2
+    removeEmpty: true
+    metabolizerTypes: [ Forged ]
+    groups:
+      - id: Food
+
+- type: entity
+  id: ForgedCoreSerdolic
+  name: ForgedCoreSerdolic
+  parent: ForgedCoreBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: serdolic_core_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: core
+    layerState: serdolic_core
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
   - type: Stomach
     specialDigestible:
       tags:
       - MedievalFireSerdolick
-  - type: SolutionContainerManager
-    solutions:
-      stomach:
-        maxVol: 50
-  - type: Metabolizer
-    solution: stomach
-    solutionOnBody: false
-    maxReagents: 2
-    removeEmpty: true
-    metabolizerTypes: [ Forged ]
-    groups:
-      - id: Food
-      - id: Drink
 
 - type: entity
   id: ForgedCoreAdam
   name: ForgedCoreAdam
-  parent: BaseItem
+  parent: ForgedCoreBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/cores.rsi
-    state: CoreBase
+    state: adamantite_core_icon
     drawdepth: Items
   - type: ForgedModule
     partSlot: core
-    layerState: CoreBase
+    layerState: adamantite_core
     rsiPath: Imperial/Medieval/Forged/cores.rsi
-  - type: Organ
   - type: Stomach
     specialDigestible:
       tags:
       - MedievalAdam
-  - type: SolutionContainerManager
-    solutions:
-      stomach:
-        maxVol: 50
-  - type: Metabolizer
-    solution: stomach
-    solutionOnBody: false
-    maxReagents: 2
-    removeEmpty: true
-    metabolizerTypes: [ Forged ]
-    groups:
-      - id: Food
-      - id: Drink
 
 - type: entity
-  id: ForgedCoreTopaz # Базовый торс-родитель для других торсов.
+  id: ForgedCoreTopaz
   name: ForgedCoreTopaz
-  parent: BaseHumanOrgan
+  parent: ForgedCoreBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/cores.rsi
-    state: CoreBase
+    state: topaz_core_icon
     drawdepth: Items
   - type: ForgedModule
     partSlot: core
-    layerState: CoreBase
+    layerState: topaz_core
     rsiPath: Imperial/Medieval/Forged/cores.rsi
-  - type: Organ
   - type: Stomach
     specialDigestible:
       tags:
       - MedievalTopaz
-  - type: SolutionContainerManager
-    solutions:
-      stomach:
-        maxVol: 50
-  - type: Metabolizer
-    solution: stomach
-    solutionOnBody: false
-    maxReagents: 2
-    removeEmpty: true
-    metabolizerTypes: [ Forged ]
-    groups:
-      - id: Food
+
+- type: entity
+  id: ForgedCoreGold
+  name: ForgedCoreGold
+  parent: ForgedCoreBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: gold_core_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: core
+    layerState: gold_core
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
+  - type: Stomach
+

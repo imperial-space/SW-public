@@ -1,6 +1,6 @@
 using Content.Shared.Imperial.Medieval.Forged;
 using Content.Shared.Nutrition.Components;
-using Content.Shared.Stacks; // Важно для работы со стаками
+using Content.Shared.Stacks;
 
 namespace Content.Shared.Nutrition.EntitySystems;
 

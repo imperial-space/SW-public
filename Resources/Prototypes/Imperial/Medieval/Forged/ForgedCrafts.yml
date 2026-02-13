@@ -1,0 +1,97 @@
+- type: construction
+  name: Магическая глина
+  id: MedievalMagicGlina
+  graph: MedievalMagicGlina
+  startNode: start
+  targetNode: MedievalMagicGlina
+  category: construction-category-misc
+  description: "Глина перемешанная с магической пылью."
+  icon: { sprite: Imperial/Medieval/Forged/items.rsi, state: magicGlina }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalMagicGlina
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalMagicGlina
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+            - material: MedievalMagicDust
+              amount: 1
+    - node: MedievalMagicGlina
+      entity: MedievalMagicGlina
+
+- type: CP14Recipe
+  id: ForgedWoodenHeadCraft
+  result: ForgedWoodenHead
+  stacks:
+    WoodPlank: 5
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenTorsoCraft
+  result: ForgedWoodenTorso
+  stacks:
+    WoodPlank: 25
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenRArmCraft
+  result: ForgedWoodenRArm
+  stacks:
+    WoodPlank: 15
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenLArmCraft
+  result: ForgedWoodenLArm
+  stacks:
+    WoodPlank: 15
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenRLegCraft
+  result: ForgedWoodenRLeg
+  stacks:
+    WoodPlank: 15
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenLLegCraft
+  result: ForgedWoodenLLeg
+  stacks:
+    WoodPlank: 15
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedCoreSerdolicCraft
+  result: ForgedCoreSerdolic
+  stacks:
+    MedievalFireSerdolick: 1
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedCoreAdamCraft
+  result: ForgedCoreAdam
+  stacks:
+    MedievalAdam: 1
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedCoreTopazCraft
+  result: ForgedCoreTopaz
+  stacks:
+    MedievalTopaz: 1
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedCoreGoldCraft
+  result: ForgedCoreGold
+  stacks:
+    MedievalGold: 1
+    MedievalMagicGlina: 1
+

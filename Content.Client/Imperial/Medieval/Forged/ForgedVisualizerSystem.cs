@@ -52,8 +52,8 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
 
             if (_sprite.LayerMapTryGet((uid, sprite), targetLayer.Value, out var index, false))
             {
-                _sprite.LayerSetRsiState((uid, sprite), index, packet.State);
                 _sprite.LayerSetRsi((uid, sprite), index, packet.RsiPath);
+                _sprite.LayerSetRsiState((uid, sprite), index, packet.State);
                 _sprite.LayerSetVisible((uid, sprite), index, true);
             }
         }
@@ -61,8 +61,8 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
         {
             if (_sprite.LayerMapTryGet((uid, sprite), partKey.ToString(), out var index, false))
             {
-                _sprite.LayerSetRsiState((uid, sprite), index, packet.State);
                 _sprite.LayerSetRsi((uid, sprite), index, packet.RsiPath);
+                _sprite.LayerSetRsiState((uid, sprite), index, packet.State);
                 _sprite.LayerSetVisible((uid, sprite), index, true);
             }
         }

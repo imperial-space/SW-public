@@ -1,19 +1,27 @@
 {
-   "version":1,
-   "license":"this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-   "copyright":"Made for the Imperial Space community, authors'es discord nickname: Zakvielian",
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made for the Imperial Space community, authors\u0027es discord nickname: Zakvielian",
     "size": {
-      "x": 32,
-      "y": 32
-  },
-  "states": [
-    {
-        "name": "RArmBase",
-        "directions": 4
+        "x": 32,
+        "y": 32
     },
-    {
-        "name": "LArmBase",
-        "directions": 4
-    }
-  ]
+    "states": [
+        {
+            "name": "base_right_arm",
+            "directions": 4
+        },
+        {
+            "name": "base_left_armbase",
+            "directions": 4
+        },
+        {
+            "name": "wooden_left_arm",
+            "directions": 4
+        },
+        {
+            "name": "wooden_right_arm",
+            "directions": 4
+        }
+    ]
 }

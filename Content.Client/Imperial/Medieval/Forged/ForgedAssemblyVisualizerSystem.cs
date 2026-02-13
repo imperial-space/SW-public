@@ -26,7 +26,6 @@ public sealed class ForgedAssemblyVisualizerSystem : VisualizerSystem<ForgedAsse
 
     private void SetLayer(EntityUid uid, string layerName, ForgedVisualsPacket packet, SpriteComponent sprite)
     {
-
         if (_sprite.LayerMapTryGet((uid, sprite), layerName, out var index, false))
         {
             _sprite.LayerSetRsiState((uid, sprite), index, packet.State);

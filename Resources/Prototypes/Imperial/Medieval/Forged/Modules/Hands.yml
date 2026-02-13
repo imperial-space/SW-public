@@ -2,6 +2,7 @@
   id: ForgedRHandBase # Базовый торс-родитель для других торсов.
   name: ForgedRHandBase
   parent: BaseItem
+  abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/hands.rsi
@@ -20,6 +21,7 @@
   id: ForgedLHandBase # Базовый торс-родитель для других торсов.
   name: ForgedLHandBase
   parent: BaseItem
+  abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/hands.rsi

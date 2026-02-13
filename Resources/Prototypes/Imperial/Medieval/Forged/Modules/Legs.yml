@@ -6,11 +6,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/legs.rsi
-    state: RLegBase
+    state: base_right_leg #
     drawdepth: Items
   - type: ForgedModule
     partSlot: right_leg
-    layerState: RLegBase
+    layerState: base_right_leg
     rsiPath: Imperial/Medieval/Forged/legs.rsi
 
 - type: entity
@@ -21,11 +21,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/legs.rsi
-    state: LLegBase
+    state: base_left_leg #
     drawdepth: Items
   - type: ForgedModule
     partSlot: left_leg
-    layerState: LLegBase
+    layerState: base_left_leg
     rsiPath: Imperial/Medieval/Forged/legs.rsi
 
 - type: entity
@@ -35,11 +35,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/legs.rsi
-    state: RLegBase #
+    state: wooden_right_leg #
     drawdepth: Items
   - type: ForgedModule
     partSlot: right_leg
-    layerState: RLegBase #
+    layerState: wooden_right_leg
     rsiPath: Imperial/Medieval/Forged/legs.rsi
     resistanceModifier: 0.015
     speedModifier: 0.05
@@ -51,18 +51,18 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/legs.rsi
-    state: LLegBase #
+    state: wooden_left_leg #
     drawdepth: Items
   - type: ForgedModule
     partSlot: left_leg
-    layerState: LLegBase #
+    layerState: wooden_left_leg
     rsiPath: Imperial/Medieval/Forged/legs.rsi
     resistanceModifier: 0.015
     speedModifier: 0.05
 
 - type: entity
   id: ForgedIronRLeg
-  name: ForgedWoodenRLeg
+  name: ForgedIronRLeg
   parent: ForgedRLegBase
   components:
   - type: Sprite
@@ -78,7 +78,7 @@
 
 - type: entity
   id: ForgedIronLLeg
-  name: ForgedWoodenLLeg
+  name: ForgedIronLLeg
   parent: ForgedLLegBase
   components:
   - type: Sprite

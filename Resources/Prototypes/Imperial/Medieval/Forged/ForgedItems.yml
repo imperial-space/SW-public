@@ -1,4 +1,33 @@
 - type: entity
+  name: MedievalMagicDust
+  description: Пыль из магических камней
+  parent: BaseItem
+  id: MedievalMagicDust
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Forged/items.rsi
+      state: magicDust
+    - type: Stack
+      stackType: MedievalMagicDust
+      count: 1
+    - type: Material
+
+- type: stack
+  id: MedievalMagicDust
+  name: materials-magic-dust
+  icon: { sprite: Imperial/Medieval/Forged/items.rsi, state: magicDust }
+  spawn: MedievalMagicDust
+  maxCount: 30
+
+- type: material
+  id: MedievalMagicDust
+  stackEntity: MedievalMagicDust
+  name: materials-magic-dust
+  icon: { sprite: Imperial/Medieval/Forged/items.rsi, state: magicDust }
+  color: "#d9d9d9"
+  price: 0.1
+
+- type: entity
   name: MedievalMagicGlina
   description: Глина перемешанная с магической пылью.
   parent: BaseHealingItem
@@ -15,8 +44,8 @@
       damageContainers: [Forged]
       damage:
         groups:
-          Brute: -50
-          Burn: -50
+          Brute: -25
+          Burn: -25
       healingBeginSound:
         path: "/Audio/Items/Medical/brutepack_begin.ogg"
       healingEndSound:
@@ -24,16 +53,28 @@
     - type: Stack
       stackType: MedievalMagicGlina
       count: 1
+    - type: Construction
+      graph: MedievalMagicGlina
+      node: ground
+    - type: Material
 
 - type: stack
   id: MedievalMagicGlina
-  name: MedievalMagicGlina
+  name: materials-magic-glina
   icon: { sprite: Imperial/Medieval/Forged/items.rsi, state: magicGlina }
   spawn: MedievalMagicGlina
   maxCount: 30
 
+- type: material
+  id: MedievalMagicGlina
+  stackEntity: MedievalMagicGlina
+  name: materials-magic-glina
+  icon: { sprite: Imperial/Medieval/Forged/items.rsi, state: magicGlina }
+  color: "#d9d9d9"
+  price: 0.1
+
 - type: reagent
-  id: MedievalMagicCrystallReagent
+  id: MedievalMagicCrystallReagent # Он мгновенно превращается в пыль, игрок не может напрямую увидеть его
   name: reagent-name-medieval-magic-crystall
   slipData: null
   desc: Очень сильно истолченные магические камни.
@@ -53,3 +94,15 @@
 
 - type: Tag
   id: ForgedHealItem
+
+- type: reaction
+  id: CreateMagicDust
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    MedievalMagicCrystallReagent:
+      amount: 1
+  effects:
+    - !type:CreateEntityReactionEffect
+      entity: MedievalMagicDust

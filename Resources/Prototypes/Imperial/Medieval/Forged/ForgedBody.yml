@@ -16,8 +16,8 @@
       part: HeadHuman
       connections:
       - torso
-      organs:
-        eyes: OrganHumanEyes
+      #organs:
+        #eyes: OrganHumanEyes
     right_arm:
       part: RightArmHuman
       connections:

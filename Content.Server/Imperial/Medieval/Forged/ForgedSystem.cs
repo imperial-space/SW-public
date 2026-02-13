@@ -108,7 +108,7 @@ public sealed class ForgedSystem : EntitySystem
                     continue;
                 }
 
-                if (_random.Prob(1.0f))
+                if (_random.Prob(0.5f))
                 {
                     QueueDel(moduleUid);
                 }
@@ -174,14 +174,5 @@ public sealed class ForgedSystem : EntitySystem
     {
         float mod = GetModuleResistanceModifier(component);
         args.Damage *= mod;
-    }
-
-    private bool IsHealing(DamageSpecifier damage)
-    {
-        foreach (var value in damage.DamageDict.Values)
-        {
-            if (value > 0) return false;
-        }
-        return true;
     }
 }

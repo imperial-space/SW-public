@@ -89,11 +89,17 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 2
+        canReact: false
         reagents:
         - ReagentId: MedievalMagicCrystallReagent
-          Quantity: 5
+          Quantity: 2
   - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 2
 
 - type: entity
   name: MedievalTopazOre
@@ -920,14 +926,20 @@
     price:
       Revent: 10
   - type: Food
-  - type: SolutionContainerManager # Нужен для работы Food системы
+  - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 2
+        canReact: false
         reagents:
         - ReagentId: MedievalMagicCrystallReagent
-          Quantity: 5
+          Quantity: 2
   - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 2
 
 
 - type: entity
@@ -1008,16 +1020,22 @@
   - type: MedievalCurrency
     price:
       Revent: 10
-  - type: Food # Обязательно для начала процесса поедания
-    requiresSpecialDigestion: true # Только для тех, у кого вайтлист (ваше ядро)
-  - type: SolutionContainerManager # Нужен для работы Food системы
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 5
+        maxVol: 2
+        canReact: false
         reagents:
         - ReagentId: MedievalMagicCrystallReagent
-          Quantity: 5
+          Quantity: 2
   - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 2
 
 - type: material
   id: MedievalEbonitIngot
