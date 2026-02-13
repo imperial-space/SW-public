@@ -1,0 +1,25 @@
+- type: entity
+  name: Сумка курьера
+  id: CourierBag
+  parent: BaseStorageItem
+  description: надёжный курьерский портфель для переноса кучи писем
+  components:
+  - type: Sprite
+    sprite: Clothing/Back/Satchels/leather.rsi
+    state: icon
+  - type: Item
+    storedRotation: -90
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: Storage
+    grid:
+    - 0,0,7,4
+    quickInsert: true
+    areaInsert: true
+    maxItemSize: Large
+    whitelist:
+      tags:
+      - CourierLetter
+  - type: Dumpable

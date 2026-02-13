@@ -1,0 +1,225 @@
+- type: entity
+  id: medievalCourierHole
+  name: courier pit
+  description: A magical pit for receiving courier parcels and salary.
+  suffix: Empty
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_shop.rsi
+    layers:
+    - state: shop
+    netsync: false
+  - type: UserInterface
+    interfaces:
+      enum.courierUiKey.key:
+        type: courierBoundUserInterface
+  - type: ActivatableUI
+    singleUser: true
+    key: enum.courierUiKey.key
+  - type: courierPitComponent
+    guildName: courier-ui-guild-name
+    mailLootTable: MailLootTable
+    boxMailLootTable: BoxMailLootTable
+    minDeliveryPointsReward: 3
+    maxDeliveryPointsReward: 4
+    minBalanceReward: 30
+    maxBalanceReward: 40
+    urgentBalanceRewardMultiplier: 3
+    boxBalanceRewardMultiplier: 9
+    minUrgentMinutes: 30
+    maxUrgentMinutes: 40
+    offers:
+    - productEntity: CourierLetter
+      freeMailsCost: 1
+      descriptionLoc: courier-ui-offer-free-mail
+    - productEntity: CourierLetter
+      deliveryPointsCost: 2
+      descriptionLoc: courier-ui-offer-reputation-mail
+    - productEntity: CourierUrgentLetter
+      deliveryPointsCost: 5
+      descriptionLoc: courier-ui-offer-urgent-mail
+    - productEntity: BoxLetter
+      deliveryPointsCost: 15
+      balanceCost: 50
+      descriptionLoc: courier-ui-offer-box-mail
+  - type: TrashDefendArea
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 60
+        mask:
+        - MachineMask
+        layer:
+        - MidImpassable
+        - LowImpassable
+  - type: Tag
+    tags:
+      - Structure
+  - type: PointLight
+
+- type: entityTable
+  id: MailLootTable
+  table: !type:GroupSelector
+    children:
+    - id: PresentTrashNG1
+    - id: MedievalPlushieTraveller
+    - id: MedievalPlushieWizard
+    - id: MedievalPlushieArcher
+    - id: MedievalPlushieNecro
+    - id: MedievalHealthChemistryBottle
+    - id: MedievalRecipeBook
+    - id: FoodBakedCookieSugar
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: FoodMeatDuckCooked
+    - id: FoodMeatChickenFried
+    - id: FoodCakeAppleSlice
+    - id: FoodPieMeatSlice
+    - id: FoodCakeChocolateSlice
+    - id: FoodCakeBlueberrySlice
+    - id: FoodCheeseSlice
+    - id: MedievalDungeonKey
+    - id: MedievalClothingHeadHelmetNormandFree
+    - id: MedievalWoodenShieldBuckler
+    - id: MedievalClothingHeadHelmetShapel
+    - id: MedievalIronIngot10
+    - id: MedievalIngotGold
+    - id: MedievalClothingOuterArmorFur
+    - id: MedievalAdam
+    - id: MedievalReliefStoneWeak
+    - id: MedievalScrollsCrossbow
+    - id: MedievalScrollsFalshion
+    - id: MedievalScrollsDagger
+    - id: MedievalLootDevilMouse
+    - id: MedievalScrollBarrier
+    - id: MedievalClothingOuterArmorLeatherLight
+    - id: MedievalScrollsHalberd
+    - id: MedievalDaggerT3
+    - id: MedievalShieldRepairKit
+    - id: MedievalClothingOuterArmorIronCuirassLight
+    - id: MedievalScrollsBow
+    - id: MedievalGrenade
+    - id: MedievalHandheldHealthAnalyzer
+    - id: MedievalLockpickPack
+    - id: MedievalLockpick
+    - id: MedievalRepairStone
+    - id: MedievalClothingOuterArmorGambeson
+    - id: MedievalMyrmexEgg
+    - id: MedievalPinpointerCritical
+    - id: MedievalGlowStone
+    - id: MedievalScrollsFire
+    - id: MedievalScrollsPnya
+    - id: MedievalScrollsKobold
+    - id: MedievalScrollsPetSlime
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+    - id: MedievalRevent80
+    - id: MedievalRevent70
+    - id: MedievalRevent50
+    - id: MedievalRevent25
+    - id: MedievalRevent100
+
+- type: entityTable
+  id: BoxMailLootTable
+  table: !type:GroupSelector
+    children:
+    - id: MedievalIngotGold10
+    - id: MedievalFireSerdolick10
+    - id: MedievalTopaz10
+    - id: MedievalAdam10
+    - id: MedievalSteelIngot30
+    - id: MedievalEssence5
+    - id: MedievalClothingOuterArmorBrigantin
+    - id: MedievalFalshionT3Steel
+    - id: MedievalIronClaymoreSteel
+    - id: MedievalMaceT3SteelHeavy
+    - id: MedievalReliefStoneStrong
+    - id: MedievalLootAnglerEgg
+    - id: MedievalWeaponCrossbow
+    - id: MedievalClothingOuterArmorIronCuirass
+    - id: MedievalSpearT3Steel
+    - id: MedievalIronSekirSteel
+    - id: MedievalClothingOuterArmorLeatherHeavy
+    - id: MedievalClothingBackpackSatchelTraveller
+    - id: MedievalClothingOuterArmorCharmerWeak
+    - id: MedievalBlackSpotHorseWhistle
+      weight: 0.5
+    - id: MedaljonDark
+      weight: 0.5
+    - id: MedaljonDef
+      weight: 0.5
+    - id: MedaljonSpeed
+      weight: 0.5
+    - id: MedaljonExpl
+      weight: 0.5
+    - id: MedaljonMana
+      weight: 0.5

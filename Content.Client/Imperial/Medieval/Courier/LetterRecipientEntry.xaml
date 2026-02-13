@@ -1,0 +1,61 @@
+<Control
+    xmlns="https://spacestation14.io"
+    xmlns:imp="clr-namespace:Content.Client.Imperial.Roadmap.UI"
+    SetHeight="450"
+    Margin="4 4">
+    <BoxContainer
+        Orientation="Vertical"
+        VerticalExpand="True"
+        HorizontalExpand="True">
+        <imp:BorderedPanelContainer ModulateSelfOverride="White"
+                                    BackgroundPanelColor="#202022"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="True"
+                                    RectClipContent="True">
+            <BoxContainer Name="Main"
+                          Orientation="Vertical"
+                          VerticalExpand="True"
+                          HorizontalExpand="True">
+                <BoxContainer Name="PreviewBox"
+                              Orientation="Vertical"
+                              VerticalExpand="True"
+                              HorizontalExpand="True"
+                              SizeFlagsStretchRatio="3"
+                              Margin="15">
+                    <RichTextLabel Name="RecipientName"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Top"/>
+                    <SpriteView Name="Character"
+                                Scale="4 4"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
+                </BoxContainer>
+                <BoxContainer Name="MainInfoBox"
+                              Orientation="Vertical"
+                              HorizontalExpand="True"
+                              VerticalExpand="True"
+                              SizeFlagsStretchRatio="2"
+                              Margin="15 5">
+                    <imp:BorderedPanelContainer ModulateSelfOverride="White"
+                                                BackgroundPanelColor="#2A292E"
+                                                HorizontalExpand="True"
+                                                VerticalExpand="True"
+                                                BorderRadius="10">
+                        <BoxContainer Orientation="Vertical" Margin="5 10">
+                            <RichTextLabel Name="MainInfoTitle"
+                                           HorizontalAlignment="Left"/>
+                            <RichTextLabel Name="RecipientInfoName"
+                                           HorizontalAlignment="Left"/>
+                            <RichTextLabel Name="Job"
+                                           HorizontalAlignment="Left"/>
+                            <RichTextLabel Name="Species"
+                                           HorizontalAlignment="Left"/>
+                            <RichTextLabel Name="Sex"
+                                           HorizontalAlignment="Left"/>
+                        </BoxContainer>
+                    </imp:BorderedPanelContainer>
+                </BoxContainer>
+            </BoxContainer>
+        </imp:BorderedPanelContainer>
+    </BoxContainer>
+</Control>

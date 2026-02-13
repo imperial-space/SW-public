@@ -1,0 +1,149 @@
+- type: entity
+  parent: BaseItem
+  id: CourierLetter
+  name: letter
+  description: A courier letter.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Courier/mail/Mail.rsi
+    layers:
+    - state: icon
+      map: [ "enum.CourierLetterVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CourierLetterVisuals.State:
+        enum.CourierLetterVisuals.Layer:
+          icon:
+            state: icon
+          opened:
+            state: opened
+          destroyed:
+            state: destroyed
+  - type: Item
+    sprite: Imperial/Medieval/Courier/mail/Mail.rsi
+    storedRotation: 90
+  - type: Tag
+    tags:
+    - CourierLetter
+  - type: UserInterface
+    interfaces:
+      enum.LetterRecipientUiKey.Key:
+        type: LetterRecipientBoundUserInterface
+  - type: letterComponent
+    iconSpriteState: icon
+    openedSpriteState: opened
+    trashSpriteState: destroyed
+
+- type: entity
+  parent: BaseItem
+  id: CourierUrgentLetter
+  name: urgent letter
+  description: A courier letter marked as urgent.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Courier/mail/Mail.rsi
+    layers:
+    - state: icon
+      map: [ "enum.CourierLetterVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CourierLetterVisuals.State:
+        enum.CourierLetterVisuals.Layer:
+          icon:
+            state: icon
+          opened:
+            state: opened
+          destroyed:
+            state: destroyed
+  - type: Item
+    sprite: Imperial/Medieval/Courier/mail/Mail.rsi
+    storedRotation: 90
+  - type: Tag
+    tags:
+    - CourierLetter
+  - type: UserInterface
+    interfaces:
+      enum.LetterRecipientUiKey.Key:
+        type: LetterRecipientBoundUserInterface
+  - type: letterComponent
+    iconSpriteState: icon
+    openedSpriteState: opened
+    trashSpriteState: destroyed
+    isUrgent: true
+
+- type: entity
+  parent: BaseItem
+  id: BoxLetter
+  name: box letter
+  description: A large courier parcel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Courier/boxmail/BoxMail.rsi
+    layers:
+    - state: icon
+      map: [ "enum.CourierLetterVisuals.Layer" ]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CourierLetterVisuals.State:
+        enum.CourierLetterVisuals.Layer:
+          icon:
+            state: icon
+          opened:
+            state: opened
+          destroyed:
+            state: destroyed
+  - type: Item
+    sprite: Imperial/Medieval/Courier/boxmail/BoxMail.rsi
+    size: Large
+  - type: RDWeight
+    value: 12
+  - type: Tag
+    tags:
+    - CourierLetter
+  - type: Damageable
+    damageModifierSet: BoxLetterResistances
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: DamageOnLand
+    ignoreResistances: true
+    damage:
+      types:
+        Blunt: 20
+  - type: veryFragile
+  - type: UserInterface
+    interfaces:
+      enum.LetterRecipientUiKey.Key:
+        type: LetterRecipientBoundUserInterface
+  - type: letterComponent
+    iconSpriteState: icon
+    openedSpriteState: opened
+    trashSpriteState: destroyed
+    isBox: true
+
+- type: damageModifierSet
+  id: BoxLetterResistances
+  coefficients:
+    Blunt: 1.0
+    Slash: 1.0
+    Piercing: 1.0
+    Heat: 1.0
+    Asphyxiation: 0.0
+    Bloodloss: 0.0
+    Cellular: 0.0
+    Caustic: 0.2
+    Cold: 0.2
+    Poison: 0.0
+    Radiation: 0.0
+    Shock: 0.2
+    Structural: 2.0
+    Holy: 0.0
+    ParryAble: 0.0
