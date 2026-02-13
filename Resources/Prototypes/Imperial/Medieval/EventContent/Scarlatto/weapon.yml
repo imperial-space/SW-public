@@ -499,7 +499,6 @@
     soundHit:
       path: /Audio/Weapons/eblade1.ogg
     wideAnimationRotation: -135
-    attackRate: 1
     damage:
       types:
         Slash: 15
