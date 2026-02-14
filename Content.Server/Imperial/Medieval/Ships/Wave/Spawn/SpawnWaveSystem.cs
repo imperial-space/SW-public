@@ -2,7 +2,7 @@ using Content.Shared.Damage;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
-namespace Content.Server.Imperial.Medieval.Ships.Wave;
+namespace Content.Server.Imperial.Medieval.Ships.Wave.Spawn;
 
 /// <summary>
 /// Спавнит волны, щиииииткод
@@ -25,12 +25,14 @@ public sealed class SpawnWaveSystem : EntitySystem
         var entcoords = _transform.GetMoverCoordinates(uid);
         var mapcoords = _transform.GetMapCoordinates(uid);
         var grid = _mapManager.CreateGridEntity(mapcoords.MapId);
-        _transform.SetCoordinates(grid, entcoords);
-        EnsureComp<WaveComponent>(grid);
+        var waveComponent = EnsureComp<WaveComponent>(grid);
+        waveComponent.DeleteOnCollide = component.DeleteOnCollide;
         _tileDefinitionManager.TryGetDefinition("FloorWood", out var tileDefinition);// сюда поставить воду
         if (tileDefinition == null)
             return;
         _map.SetTile(grid, new Vector2i(0,0),new Tile(tileDefinition.TileId, 0, 0));// создаёт тайлик воды надо поставить воду вон туда
+        if (HasComp<TransformComponent>(grid))
+            _transform.SetCoordinates(grid, entcoords);
         _entityManager.DeleteEntity(uid);
     }
 }

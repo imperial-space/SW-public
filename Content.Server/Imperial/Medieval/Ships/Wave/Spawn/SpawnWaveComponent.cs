@@ -1,4 +1,4 @@
-namespace Content.Server.Imperial.Medieval.Ships.Wave;
+namespace Content.Server.Imperial.Medieval.Ships.Wave.Spawn;
 
 /// <summary>
 /// This is used for...
@@ -6,5 +6,6 @@ namespace Content.Server.Imperial.Medieval.Ships.Wave;
 [RegisterComponent]
 public sealed partial class SpawnWaveComponent : Component
 {
-    
+    [DataField]
+    public bool DeleteOnCollide = true;
 }

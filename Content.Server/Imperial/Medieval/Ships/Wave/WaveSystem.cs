@@ -1,8 +1,10 @@
 using System.Linq;
 using System.Numerics;
+using Content.Server.Administration.Logs;
 using Content.Server.Destructible;
 using Content.Shared.Construction.Conditions;
 using Content.Shared.Damage;
+using Content.Shared.Database;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
@@ -41,6 +43,7 @@ public sealed class WaveSystem : EntitySystem
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly IAdminLogManager _adminlogs = default!;
 
 
     private readonly Random _random = new();
@@ -51,92 +54,106 @@ public sealed class WaveSystem : EntitySystem
         ("Plating", (ushort)3),
         ("FloorWhite", (ushort)4)
     };
+    private const float RadiusTiles = 2f;
+    private bool _initialized;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<WaveComponent, StartCollideEvent>(OnCollide);
 
-        foreach (var stage in Stages)
-        {
-            _tileDefinitionManager.TryGetDefinition(stage.Item1, out var tileDefinition);
-            if (tileDefinition == null)
-                continue;
-            var full = Stages.Index();
-
-            int index = 0;
-            foreach (var hah in full)
-            {
-                if (hah.Item2 == stage)
-                {
-                    index = hah.Item1;
-                    break;
-                }
-            }
-            Stages[index] = (stage.Item1, tileDefinition.TileId);
-        }
     }
+    private void Startup()
+    {
+        if (_initialized)
+            return;
+        if (Stages == null || Stages.Length == 0)
+        {
+            Logger.Error("Stages is null or empty! Cannot initialize.");
+            return;
+        }
 
+        // Используем for вместо foreach для изменения коллекции
+        for (int i = 0; i < Stages.Length; i++)
+        {
+            var stage = Stages[i];
+            if (!_tileDefinitionManager.TryGetDefinition(stage.Item1, out var tileDefinition))
+                continue;
+
+            Stages[i] = (stage.Item1, tileDefinition.TileId);
+            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"Тайл айди {tileDefinition.TileId} для '{stage.Item1}'");
+        }
+        _initialized = true;
+    }
 
     private void OnCollide(EntityUid uid, WaveComponent component, ref StartCollideEvent args)
     {
+        if (!_initialized)
+            Startup();
         if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OtherEntity))
             return;
         if (component.HitList.Contains(args.OtherEntity))
             return;
-
+        EnsureComp<TransformComponent>(args.OurEntity);
         var collisionPos = _transform.GetMapCoordinates(args.OurEntity);
         var gridEntity = args.OtherEntity;
-        _popup.PopupEntity(Loc.GetString($"{gridEntity}"), uid);
         if (!_entityManager.TryGetComponent<MapGridComponent>(gridEntity, out var mapGridComp))
             return;
-        _popup.PopupEntity(Loc.GetString($"{gridEntity}"), uid);
+
 
         var grid = new Entity<MapGridComponent>(gridEntity, mapGridComp);
         var tileRef = _map.GetTileRef(grid, collisionPos);
+        var centerTilePos = _map.MapToGrid(grid, collisionPos);
 
-        var centerTilePos = tileRef.GridIndices;
-        const float radiusTiles = 1.5f;
-
-
+        var antiradius = (int)RadiusTiles*-1;
         var nearbyTiles = new List<Vector2i>();
-        for (int dx = -2; dx <= 2; dx++)
+        for (int dx = antiradius; dx <= RadiusTiles; dx++)
         {
-            for (int dy = -2; dy <= 2; dy++)
+            for (int dy = antiradius; dy <= RadiusTiles; dy++)
             {
-                var tilePos = centerTilePos + new Vector2i(dx, dy);
+                var tilePos = centerTilePos + new EntityCoordinates(gridEntity, new Vector2(dx, dy)) ;
                 var tile = _map.GetTileRef(grid, tilePos);
+
                 if (tile.Tile.IsEmpty)
                     continue;
 
-                var distance = Vector2.Distance(centerTilePos, tilePos);
-                if (distance <= radiusTiles)
-                    nearbyTiles.Add(tilePos);
+                var distance = Vector2.Distance(centerTilePos.Position, tilePos.Position);
+                if (distance <= RadiusTiles)
+                    nearbyTiles.Add(((int)tilePos.X, (int)tilePos.Y));
             }
         }
 
         _random.Shuffle(nearbyTiles);
-        int tilesToReplace = Math.Min(2, nearbyTiles.Count);
 
-
-
+        int tilesToReplace = Math.Min(_random.Next(0,4), nearbyTiles.Count);
+        _popup.PopupEntity(Loc.GetString($"   {tilesToReplace}"), uid);
         for (int i = 0; i < tilesToReplace; i++)
         {
             var tilePos = nearbyTiles[i];
-            _map.TryGetTile(grid, tilePos, out var tile);
-
-            if (tile.TypeId == Stages[Stages.Length].Item2)
+            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"тайл поз {tilePos} грид {grid} {_map.TryGetTile(grid, tilePos, out var tiles)}");
+            if (!_map.TryGetTile(grid, tilePos, out var tile))
                 continue;
+            var stagelast = Stages.Length-1;
+            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"тайл айди {tile.TypeId} длина стейжеса {Stages.Length}");
+
+            if (tile.TypeId == Stages[stagelast].Item2)
+                continue;
+            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"грид2 {i}");
             var index = 0;
             foreach (var stage in Stages)
             {
+                _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"грид3 {stage}");
                 if (stage.Item2 == tile.TypeId)
                     break;
                 index++;
             }
+            if (index == stagelast+1)
+                index = 0;
             _map.SetTile(grid.Owner, grid , tilePos, new Tile(Stages[index+1].Item2, 0, 0));
+            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"индекс {index}");
         }
         if (!TerminatingOrDeleted(args.OtherEntity))
             component.HitList.Add(args.OtherEntity);
-        _entityManager.DeleteEntity(uid);
+        if (component.DeleteOnCollide)
+            _entityManager.DeleteEntity(args.OurEntity);
     }
 }

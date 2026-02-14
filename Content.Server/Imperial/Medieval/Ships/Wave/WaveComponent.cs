@@ -27,4 +27,7 @@ public sealed partial class WaveComponent : Component
     public float Strength = 1;
     [DataField]
     public float Direction = 1;
+
+    [DataField]
+    public bool DeleteOnCollide = true;
 }
