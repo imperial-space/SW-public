@@ -44,31 +44,36 @@ public sealed class ChargedAttackSystem : EntitySystem
 
     private void OnHit(EntityUid weapon, ChargedAttackComponent charged, MeleeHitEvent args)
     {
-        if (!args.HitEntities.Any())
-            return;
-
         if (charged.Modifier == 0f)
             return;
 
-        var modifier = charged.Modifier - 1;
+        var modifier = charged.Modifier;
 
-        args.BonusDamage = args.BaseDamage * modifier;
         charged.Modifier = 0f;
         Dirty(weapon, charged);
+
+        if (!args.HitEntities.Any())
+            return;
+
+        args.BonusDamage = args.BaseDamage * (modifier - 1);
     }
 
     private void OnStaminaHit(EntityUid weapon, ChargedAttackComponent charged, StaminaMeleeHitEvent args)
     {
-        if (!args.HitList.Any())
-            return;
-
         if (charged.Modifier == 0f)
             return;
 
-        args.Multiplier *= charged.Modifier;
+        var modifier = charged.Modifier;
+
         charged.Modifier = 0f;
         Dirty(weapon, charged);
+
+        if (!args.HitList.Any())
+            return;
+
+        args.Multiplier *= modifier;
     }
+
 
     public override void Update(float frameTime)
     {
@@ -169,6 +174,7 @@ public sealed class ChargedAttackSystem : EntitySystem
     {
         charged.CurrentAttacking = false;
         charged.AttackStart = TimeSpan.FromSeconds(0f);
+        charged.Modifier = 0f;
         _modifierSystem.RefreshMovementSpeedModifiers(user);
         EndEffect(entity, charged);
         Dirty(entity, charged);
