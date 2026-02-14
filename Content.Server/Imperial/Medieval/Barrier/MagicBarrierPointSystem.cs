@@ -142,6 +142,10 @@ namespace Content.Server.MagicBarrier
 
         private void OnCurseDamage(EntityUid uid, MagicBarrierCurseComponent component, ref BeforeDamageChangedEvent args)
         {
+            if (component.Triggered)
+                return;
+
+            component.Triggered = true;
             var xform = Transform(component.Owner);
             var coords = xform.Coordinates;
             Spawn("ShardCrystalRed", coords);

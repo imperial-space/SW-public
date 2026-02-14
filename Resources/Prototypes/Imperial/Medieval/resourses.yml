@@ -237,6 +237,10 @@
   - type: Stack
     stackType: MedievalStoneBrick
     count: 1
+  - type: DamageOtherOnHit
+    damage:
+      types:
+        Blunt: 5
 
 - type: entity
   name: MedievalSpiderHair

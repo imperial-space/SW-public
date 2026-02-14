@@ -157,3 +157,58 @@
     - MedievalHatchetEvent
     - MedievalPickaxeEvent
     - MedievalClothingOuterArmorStandard
+
+- type: entity
+  parent: CP14BaseWorkbench
+  id: MedievalSteelWeaponery
+  name: foundry
+  description: It produces sheets and ingots using ores.
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/weaponery.rsi
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+    - state: unlit
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: Appearance
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 180
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Transform
+    anchored: true
+  - type: Pullable
+  - type: ApcPowerReceiver
+    powerLoad: 1000
+  - type: ExtensionCableReceiver
+  - type: LightningTarget
+    priority: 1
+  - type: ActivatableUIRequiresPower
+  - type: CP14Workbench
+    craftSpeed: 1
+    craftSound: "/Audio/Items/welder2.ogg"
+    recipes:
+    - WeaponPistolViperEvent
+    - WeaponAdvancedLaserEvent
+    - WeaponPulsePistolEvent
+    - WeaponPistolViperEvent
+    - WeaponPulseCarbineEvent
+    - WeaponRifleM90GrenadeLauncherImperialEvent
+    - WeaponSniperHristovEvent
