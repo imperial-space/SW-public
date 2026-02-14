@@ -647,13 +647,24 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 5000
+        damage: 300
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
-          collection: MetalSlam
+          collection: WoodDestroyHeavy
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+      - !type:ChangeConstructionNodeBehavior
+        node: Barricade
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Sprite
     drawdepth: Walls
     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/wood.rsi
@@ -679,7 +690,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 5000
+        damage: 600
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -719,7 +730,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 750
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -729,3 +740,249 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
+
+- type: entity
+  id: MedievalVintageWindow
+  name: reinforced window
+  parent: Window
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/window.rsi
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/window.rsi
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 2
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: woods
+    base: window
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 3
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+
+- type: entity
+  id: MedievalVintageStoneWindow
+  name: reinforced window
+  parent: MedievalVintageWindow
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 1750
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stonewindow.rsi
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stonewindow.rsi
+  - type: IconSmooth
+    key: walls
+    base: window
+
+- type: entity
+  id: WallDirectionalWood
+  parent: BaseStructure
+  name: directional wall
+  description: Don't smudge up the glass down there.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/directional.rsi
+    state: wood
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/directional.rsi
+    state: wood
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.5,0.49,-0.25"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+  - type: Occluder
+    boundingBox: "-0.5,-0.5,0.5,-0.25"
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: WallDirectionalStone
+  parent: WallDirectionalWood
+  name: directional wall
+  description: Don't smudge up the glass down there.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    state: stone
+  - type: Icon
+    state: stone
+
+- type: entity
+  parent: WallDiagonalBase
+  id: DiagonalVintageWindowWood
+  name: wall
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Sprite
+    drawdepth: Walls
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/window_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/window_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: woods
+    base: state
+
+- type: entity
+  parent: DiagonalVintageWindowWood
+  id: DiagonalVintageWindowStone
+  name: wall
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stonewindow_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stonewindow_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
