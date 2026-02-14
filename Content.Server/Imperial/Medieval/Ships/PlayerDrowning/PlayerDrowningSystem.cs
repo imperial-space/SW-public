@@ -1,4 +1,6 @@
 using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 
@@ -16,6 +18,8 @@ public sealed class PlayerDrowningSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedStaminaSystem _staminaSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -37,39 +41,46 @@ public sealed class PlayerDrowningSystem : EntitySystem
 
             foreach (var component in EntityManager.EntityQuery<DrownerComponent>())
             {
-                if (!TryComp<MapComponent>(component.Owner, out var map))
+                if (!TryComp<TransformComponent>(component.Owner, out var transform))
                     return;
-
-                var drowningPlayers = new HashSet<Entity<TransformComponent>>();
-
-                _lookup.GetEntitiesOnMap(map.MapId, drowningPlayers);
-
-                foreach (var entity in drowningPlayers)
+                var childs = new List<EntityUid>();
+                var childEnum = transform.ChildEnumerator;
+                while (childEnum.MoveNext(out var child))
                 {
-                    var transformComp = entity.Comp;
-                    var uid = entity.Owner;
-                    ProcessDrowning(uid, transformComp);
+                    ProcessDrowning(child);
                 }
+
             }
         }
     }
 
-    private void ProcessDrowning(EntityUid uid, TransformComponent transform)
+    private void ProcessDrowning(EntityUid uid)
     {
+        if (HasComp<MapGridComponent>(uid))
+            return;
+
         if (!TryComp<PlayerDrowningComponent>(uid, out var drowner))
             EnsureComp<PlayerDrowningComponent>(uid);
         else
         {
+            if (drowner.Undrowable)
+                return;
+            if (HasComp<UndrowableComponent>(uid))
+                return;
+
             if (TryComp<StaminaComponent>(uid, out var stamina))
             {
                 if (stamina.Critical)
-                    _entityManager.DeleteEntity(uid);
-                else
                 {
-                    stamina.StaminaDamage += 1;
+                    _entityManager.DeleteEntity(uid);
+                    return;
                 }
+
+                if (_staminaSystem.TryTakeStamina(uid, 25, ignoreResist: true))
+                    return;
+
             }
-            else if (drowner.DrownTime >= DrownTimeMax)
+            if (drowner.DrownTime >= DrownTimeMax)
             {
                 _entityManager.DeleteEntity(uid);
             }

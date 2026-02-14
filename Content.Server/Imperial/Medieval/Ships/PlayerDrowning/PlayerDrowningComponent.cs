@@ -7,5 +7,8 @@ namespace Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 public sealed partial class PlayerDrowningComponent : Component
 {
     [DataField("drownTime")]
-    public int DrownTime = 15;
+    public int DrownTime;
+
+    [DataField("Undrowable")]
+    public bool Undrowable;
 }

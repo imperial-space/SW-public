@@ -67,10 +67,8 @@ public sealed class WaveSystem : EntitySystem
         if (_initialized)
             return;
         if (Stages == null || Stages.Length == 0)
-        {
-            Logger.Error("Stages is null or empty! Cannot initialize.");
             return;
-        }
+
 
         // Используем for вместо foreach для изменения коллекции
         for (int i = 0; i < Stages.Length; i++)
@@ -80,7 +78,6 @@ public sealed class WaveSystem : EntitySystem
                 continue;
 
             Stages[i] = (stage.Item1, tileDefinition.TileId);
-            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"Тайл айди {tileDefinition.TileId} для '{stage.Item1}'");
         }
         _initialized = true;
     }
@@ -129,19 +126,15 @@ public sealed class WaveSystem : EntitySystem
         for (int i = 0; i < tilesToReplace; i++)
         {
             var tilePos = nearbyTiles[i];
-            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"тайл поз {tilePos} грид {grid} {_map.TryGetTile(grid, tilePos, out var tiles)}");
             if (!_map.TryGetTile(grid, tilePos, out var tile))
                 continue;
             var stagelast = Stages.Length-1;
-            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"тайл айди {tile.TypeId} длина стейжеса {Stages.Length}");
 
             if (tile.TypeId == Stages[stagelast].Item2)
                 continue;
-            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"грид2 {i}");
             var index = 0;
             foreach (var stage in Stages)
             {
-                _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"грид3 {stage}");
                 if (stage.Item2 == tile.TypeId)
                     break;
                 index++;
@@ -149,7 +142,6 @@ public sealed class WaveSystem : EntitySystem
             if (index == stagelast+1)
                 index = 0;
             _map.SetTile(grid.Owner, grid , tilePos, new Tile(Stages[index+1].Item2, 0, 0));
-            _adminlogs.Add(LogType.Trigger, LogImpact.Extreme, $"индекс {index}");
         }
         if (!TerminatingOrDeleted(args.OtherEntity))
             component.HitList.Add(args.OtherEntity);
