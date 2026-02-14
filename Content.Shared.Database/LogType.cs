@@ -478,4 +478,9 @@ public enum LogType
     /// Events relating to midi playback.
     /// </summary>
     Instrument = 103,
+
+    /// <summary>
+    /// Medieval factions relations interactions.
+    /// </summary>
+    MedievalFactionRelations = 104,
 }
