@@ -1032,7 +1032,7 @@
     - type: GiveItemObjective
     - type: MoneyCollector
       objectivePrototype: MedievalGetMoneyObjective300500
-    - type: courierComponent
+    - type: Courier
     - type: MedievalPasportPerson
       personJob: "[color=cyan]Курьер[/color]"
       pasport: MedievalPasportLegion

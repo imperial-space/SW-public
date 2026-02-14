@@ -1,6 +1,6 @@
 namespace Content.Server.Imperial.Medieval.Courier;
 
-[RegisterComponent, ComponentProtoName("courierComponent")]
+[RegisterComponent, ComponentProtoName("Courier")]
 public sealed partial class CourierComponent : Component
 {
     [DataField]
