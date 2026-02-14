@@ -40,6 +40,19 @@ public sealed class NrpMessage : EuiMessageBase
     public string EntityName { get; }
     public string? JobName { get; }
     public int Violations { get; }
+
+    public bool Resolved { get; private set; }
+
+    public bool TryResolve()
+    {
+        if (Resolved)
+            return false;
+
+        Resolved = true;
+        return true;
+    }
+
+
     public NrpMessage(string unformattedMessage, Dictionary<string, bool> bannedWords, string message, string playerName, NetUserId playerId, NetEntity? playerAttachedEntity, string entityName, string? jobName, int violations)
     {
         UnformattedMessage = unformattedMessage;
