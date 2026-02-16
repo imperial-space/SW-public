@@ -986,3 +986,224 @@
     mode: Diagonal
     key: walls
     base: state
+
+- type: entity
+  parent: Railing
+  id: WoodRailingScarlatto
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side
+  - type: Transform
+    anchored: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: WoodRailingScarlatto
+  id: WoodRailingSideScarlatto
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side1
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side1
+
+- type: entity
+  parent: WoodRailingScarlatto
+  id: WoodRailingCornerScarlatto
+  components:
+  - type: Sprite
+    state: corner
+  - type: Icon
+    state: corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: WoodRailingScarlatto
+  id: WoodRailingCornerSmallScarlatto
+  components:
+  - type: Sprite
+    state: corner_small
+  - type: Icon
+    state: corner_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: Railing
+  id: StoneRailingScarlatto
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/stonerailing.rsi
+    state: side
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/stonerailing.rsi
+    state: side
+  - type: Transform
+    anchored: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 120
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: StoneRailingScarlatto
+  id: StoneRailingSideScarlatto
+  components:
+  - type: Sprite
+    state: side1
+  - type: Icon
+    state: side1
+
+- type: entity
+  parent: StoneRailingScarlatto
+  id: StoneRailingCornerScarlatto
+  components:
+  - type: Sprite
+    state: corner
+  - type: Icon
+    state: corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: StoneRailingScarlatto
+  id: StoneRailingCornerSmallScarlatto
+  components:
+  - type: Sprite
+    state: corner_small
+  - type: Icon
+    state: corner_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
