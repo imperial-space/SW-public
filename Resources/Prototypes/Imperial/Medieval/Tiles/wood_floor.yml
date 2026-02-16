@@ -1,0 +1,79 @@
+- type: tile
+  id: woodenfloor
+  name: Деревянный пол
+  sprite: /Textures/Imperial/Medieval/Tiles/woodbroken/wooden_floor.png
+  variants: 1
+  baseTurf: Plating
+  isSubfloor: false
+  canCrowbar: true
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemSteel
+  heatCapacity: 10000
+  badSmellMod: 0.5
+
+- type: tile
+  id: woodenfloorwood
+  name: Деревянный пол
+  sprite: /Textures/Imperial/Medieval/Tiles/wood/wood.png
+  variants: 1
+  baseTurf: Plating
+  isSubfloor: false
+  canCrowbar: true
+  footstepSounds:
+    collection: FootstepFloor
+  itemDrop: FloorTileItemSteel
+  heatCapacity: 10000
+  badSmellMod: 0.5
+
+- type: tile
+  id: FloorBrokenWoodDDD
+  name: tiles-wood3
+  sprite: /Textures/Imperial/Medieval/Tiles/woodbrokenmass/woodbroken.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: FloorCave
+  isSubfloor: false
+  #deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepWood
+  barestepSounds:
+    collection: BarestepWood
+  itemDrop: MaterialWoodPlank1
+  heatCapacity: 99910000
+  badSmellMod: 0.75 # imperial medieval badsmell
+  weather: true # Imperial Space <Добавление компонента weather к тайлам>
+
+- type: parallax
+  id: MedievalMidwater
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallax/midwater.png"  
+      slowness: 0.99
+      scale: "1, 1"
+
+- type: parallax
+  id: MedievalWater
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallax/water.png"  
+      slowness: 0.01
+      scale: "1, 1"
+
+- type: parallax
+  id: Medievaldeepwater
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallax/deepwater.png"  
+      slowness: 0.01
+      scale: "1, 1"
+
