@@ -272,4 +272,16 @@ ent-StoneRailingCornerScarlatto = {ent-StoneRailingScarlatto}
 ent-StoneRailingCornerSmallScarlatto = {ent-StoneRailingScarlatto}
     .desc = {ent-WoodRailingScarlatto.desc}
     .suffix = { "Средневековье, Конструкция, Scarlatto" }
+ent-DiagonalWallWoodEventUndestructible = {ent-WallWood}
+    .desc = {ent-WallWood.desc}
+    .suffix = { "НЕРАЗРУШИМЫЙ, ДИАГОНАЛЬ, Средневековье, Конструкция, Scarlatto" }
+ent-WallWoodUndestructible = {ent-WallWood}
+    .desc = {ent-WallWood.desc}
+    .suffix = { "НЕРАЗРУШИМЫЙ, Средневековье, Конструкция, Scarlatto" }
+ent-DiagonalWallStoneEventUndestructible = {ent-WallNecropolis}
+    .desc = {ent-WallNecropolis.desc}
+    .suffix = { "НЕРАЗРУШИМЫЙ, ДИАГОНАЛЬ, Средневековье, Конструкция, Scarlatto" }
+ent-WallNecropolisUndestructible = {ent-WallNecropolis}
+    .desc = {ent-WallNecropolis.desc}
+    .suffix = { "НЕРАЗРУШИМЫЙ, Средневековье, Конструкция, Scarlatto" }
 
