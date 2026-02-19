@@ -1,0 +1,74 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "sprited by @gag08984",
+    "size": {
+      "x": 64,
+      "y": 64
+    },
+    "states": [
+      {
+        "name": "blue_state",
+        "delays": [
+          [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        ]
+      },
+      {
+        "name": "frame"
+      },
+      {
+        "name": "left_crystal_blue"
+      },
+      {
+        "name": "left_crystal_green"
+      },
+      {
+        "name": "left_crystal_pink"
+      },
+      {
+        "name": "left_crystal_purple"
+      },
+      {
+        "name": "left_crystal_red"
+      },
+      {
+        "name": "left_crystal_yellow"
+      },
+      {
+        "name": "red_state",
+        "delays": [
+          [
+            0.1,
+            0.1,
+            0.1,
+            0.1,
+            0.1
+          ]
+        ]
+      },
+      {
+        "name": "right_crystal_blue"
+      },
+      {
+        "name": "right_crystal_green"
+      },
+      {
+        "name": "right_crystal_pink"
+      },
+      {
+        "name": "right_crystal_purple"
+      },
+      {
+        "name": "right_crystal_red"
+      },
+      {
+        "name": "right_crystal_yellow"
+      }
+    ]
+  }

@@ -850,7 +850,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
-    state: tavern
+    state: doorA
   - type: Key
     accesses:
     - DungeonA
@@ -866,7 +866,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
-    state: tavern
+    state: doorB
   - type: Key
     accesses:
     - DungeonB
@@ -882,7 +882,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
-    state: tavern
+    state: doorC
   - type: Key
     accesses:
     - DungeonC
@@ -898,7 +898,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
-    state: tavern
+    state: doorD
   - type: Key
     accesses:
     - DungeonD
@@ -914,7 +914,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
-    state: tavern
+    state: doorE
   - type: Key
     accesses:
     - DungeonE
@@ -930,7 +930,7 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Misc/keys.rsi
-    state: tavern
+    state: doorF
   - type: Key
     accesses:
     - DungeonF

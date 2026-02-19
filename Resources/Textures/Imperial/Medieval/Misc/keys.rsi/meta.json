@@ -60,6 +60,24 @@
     },
     {
       "name": "archivist"
+    },
+    {
+      "name": "doorA"
+    },
+    {
+      "name": "doorB"
+    },
+    {
+      "name": "doorC"
+    },
+    {
+      "name": "doorD"
+    },
+    {
+      "name": "doorE"
+    },
+    {
+      "name": "doorF"
     }
   ]
 }

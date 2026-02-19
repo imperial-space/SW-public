@@ -22,7 +22,6 @@ public sealed partial class DungeonGenerationSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefMan = default!;
     [Dependency] private readonly TileSystem _tileSys = default!;
-    [Dependency] private readonly IConsoleHost _console = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly EntityStorageSystem _entityStorage = default!;
     [Dependency] private readonly TagSystem _tag = default!;
@@ -39,59 +38,34 @@ public sealed partial class DungeonGenerationSystem : EntitySystem
     private readonly EntProtoId[] _wallProtoIds =
     [
         "MedievalStoneBrickWallIndestructable",
-        "MedievalStoneBrickWallIndestructable", //here I need to replace with other 2 walls, which are not sprited now  
-        "MedievalStoneBrickWallIndestructable"
+        "WallReinforced", //here I need to replace with other 2 walls, which are not sprited now
+        "WallReinforcedRust"
     ];
 
     private readonly Vector2i _size = new Vector2i(15, 15);
 
-    public override void Initialize()
+    public void GenerateDungeon(int width, int height, out MapId mapId, out List<EntityCoordinates> toSpawn)
     {
-        base.Initialize();
-        _console.RegisterCommand("impdungen", "Generate dungeon instantly", "impdungen", GenerateCommand);
-    }
-
-    private void GenerateCommand(IConsoleShell shell, string argstr, string[] args)
-    {
-        if (!GenerateDungeon(5, 5, out var grid))
-        {
-            shell.WriteLine("Failed to generate dungeon.");
-        }
-        else
-        {
-            shell.WriteLine($"Created dungeon on Map {grid.Value.Owner}");
-        }
-    }
-
-    public bool GenerateDungeon(int width, int height, [NotNullWhen(true)] out Entity<MapGridComponent>? dungeonGrid)
-    {
-        dungeonGrid = null;
+        toSpawn = new();
         var random = new Random();
-
-        // 1. Логика
         var layout = GenerateLogicalLayout(width, height, random);
-
-        // 2. Инициализация карты
         var totalPixelWidth = width * (_size.X - 1) + 1;
         var totalPixelHeight = height * (_size.Y - 1) + 1;
         var dungeonBox = new Box2i(-totalPixelWidth / 2, -totalPixelHeight / 2, -totalPixelWidth / 2 + totalPixelWidth, -totalPixelHeight / 2 + totalPixelHeight);
 
-        if (!PrepareDungeonBase(dungeonBox, random, out dungeonGrid, out _))
-            return false;
+        if (!PrepareDungeonBase(dungeonBox, random, out var dungeonGrid, out mapId))
+            return;
 
         var gridUid = dungeonGrid.Value.Owner;
         var gridComp = dungeonGrid.Value.Comp;
 
-        // 3. Стены и двери
         BuildInternalStructure(gridUid, gridComp, layout, dungeonBox.BottomLeft, width, height);
 
-        // 4. Декор (спавн мебели, сундуков и т.д.)
         SpawnRoomDecoration(gridUid, gridComp, dungeonBox.BottomLeft, width, height);
 
-        // 5. Поиск сундуков и раскидывание ключей
         SpawnKeysInExistingChests(gridUid, gridComp, dungeonBox.BottomLeft, layout.SpecialPairs);
 
-        return true;
+        GetPlayerSpawns(gridUid, gridComp, dungeonBox.BottomLeft, layout.StartRooms, out toSpawn);
     }
 
     private bool PrepareDungeonBase(Box2i box, Random random, [NotNullWhen(true)] out Entity<MapGridComponent>? dungeonGrid, out MapId mapId)
@@ -209,15 +183,6 @@ public sealed partial class DungeonGenerationSystem : EntitySystem
                 var roomCenterY = startPos.Y + (y * stepY) + halfY;
 
                 Spawn(_centerEntityProtoId, _mapSys.ToCoordinates(gridUid, new Vector2i(roomCenterX, roomCenterY), grid));
-
-                // Пример: Спавним сундук с шансом 70%
-                // Если не заспавнится, ключ будет лежать на полу.
-                if (_random.NextFloat() > 0.3f)
-                {
-                    var chestPos = new Vector2i(roomCenterX + 2, roomCenterY + 2);
-                    var chest = Spawn("MedievalChest", _mapSys.ToCoordinates(gridUid, chestPos, grid));
-                    _tag.AddTag(chest, _chestTag);
-                }
             }
         }
     }
@@ -236,24 +201,28 @@ public sealed partial class DungeonGenerationSystem : EntitySystem
             var keyProto = $"MedievalKeyDungeon{letter}";
 
             var roomIdx = pair.Room;
-            // Границы тайлов внутри комнаты (исключая стены)
-            var roomStartX = startPos.X + (roomIdx.X * stepX) + 1;
-            var roomStartY = startPos.Y + (roomIdx.Y * stepY) + 1;
+            var roomStartX = startPos.X + roomIdx.X * stepX + 1;
+            var roomStartY = startPos.Y + roomIdx.Y * stepY + 1;
             var roomEndX = roomStartX + stepX - 2;
             var roomEndY = roomStartY + stepY - 2;
 
             EntityUid? targetChest = null;
-            var validTiles = new List<Vector2i>(); // Список всех тайлов комнаты, где можно заспавнить ключ
+            var validTiles = new List<Vector2i>();
 
             // Сканируем комнату
             for (var x = roomStartX; x <= roomEndX; x++)
             {
                 for (var y = roomStartY; y <= roomEndY; y++)
                 {
-                    var pos = new Vector2i(x, y);
-                    validTiles.Add(pos); // Запоминаем тайл как потенциальное место спавна
-
+                    var posCoords = new Vector2i(startPos.X + roomIdx.X * stepX + x, startPos.Y + roomIdx.Y * stepY + y);
+                    var pos = _mapSys.ToCoordinates(gridUid, posCoords, grid);
                     var entities = _mapSys.GetAnchoredEntities(gridUid, grid, pos);
+                    if (!entities.Any())
+                    {
+                        validTiles.Add(posCoords);
+                        continue;
+                    }
+
                     foreach (var ent in entities)
                     {
                         if (HasComp<EntityStorageComponent>(ent) && _tag.HasTag(ent, _chestTag))
@@ -276,7 +245,7 @@ public sealed partial class DungeonGenerationSystem : EntitySystem
             else
             {
                 // Вариант 2: Сундука нет, спавним на случайном тайле
-                var spawnPos = new Vector2i(startPos.X + (roomIdx.X * stepX) + halfX, startPos.Y + (roomIdx.Y * stepY) + halfY); // По дефолту центр
+                var spawnPos = new Vector2i(startPos.X + roomIdx.X * stepX + halfX, startPos.Y + roomIdx.Y * stepY + halfY); // По дефолту центр
 
                 if (validTiles.Count > 0)
                 {
@@ -285,6 +254,48 @@ public sealed partial class DungeonGenerationSystem : EntitySystem
 
                 Spawn(keyProto, _mapSys.ToCoordinates(gridUid, spawnPos, grid));
             }
+        }
+    }
+
+    private void GetPlayerSpawns(EntityUid gridUid, MapGridComponent grid, Vector2i startPos, List<Vector2i> roomCoords, out List<EntityCoordinates> toSpawn)
+    {
+        toSpawn = new();
+
+        var stepX = _size.X - 1;
+        var stepY = _size.Y - 1;
+        var halfX = _size.X / 2;
+        var halfY = _size.Y / 2;
+
+        foreach (var roomIdx in roomCoords)
+        {
+            var roomStartX = startPos.X + roomIdx.X * stepX + 1;
+            var roomStartY = startPos.Y + roomIdx.Y * stepY + 1;
+            var roomEndX = roomStartX + stepX - 2;
+            var roomEndY = roomStartY + stepY - 2;
+
+            var validTiles = new List<Vector2i>();
+
+            for (var x = roomStartX; x <= roomEndX; x++)
+            {
+                for (var y = roomStartY; y <= roomEndY; y++)
+                {
+                    var posCoords = new Vector2i(startPos.X + roomIdx.X * stepX + x, startPos.Y + roomIdx.Y * stepY + y);
+                    var pos = _mapSys.ToCoordinates(gridUid, posCoords, grid);
+                    var entities = _mapSys.GetAnchoredEntities(gridUid, grid, pos);
+                    if (!entities.Any())
+                    {
+                        validTiles.Add(posCoords);
+                    }
+                }
+            }
+            var spawnPos = new Vector2i(startPos.X + roomIdx.X * stepX + halfX, startPos.Y + roomIdx.Y * stepY + halfY);
+            if (validTiles.Count > 0)
+            {
+                spawnPos = _random.Pick(validTiles);
+            }
+
+            var spawnCoords = _mapSys.ToCoordinates(gridUid, spawnPos, grid);
+            toSpawn.Add(spawnCoords);
         }
     }
 

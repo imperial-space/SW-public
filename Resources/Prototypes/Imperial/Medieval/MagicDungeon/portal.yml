@@ -1,0 +1,97 @@
+- type: entity
+  id: MagicPortalFrame
+  parent: BaseStructure
+  name: magic portal
+  description: This portal can send you somewhere. But what's inside?
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicDungeon/frame.rsi
+    layers:
+      - state: frame
+      - map: ["enum.DungeonPortalVisualLayers.IsOpened"]
+        visible: false
+        shader: unshaded
+      - visible: false
+        map: ["enum.DungeonPortalVisualLayers.LeftPart"]
+        shader: unshaded
+      - visible: false
+        map: ["enum.DungeonPortalVisualLayers.RightPart"]
+        shader: unshaded
+  - type: GenericVisualizer
+    visuals:
+      enum.DungeonPortalVisuals.OpenState:
+        enum.DungeonPortalVisualLayers.IsOpened:
+          0: { visible: false }
+          1: { visible: true, state: red_state }
+          2: { visible: true, state: blue_state }
+      enum.DungeonPortalVisuals.LeftState:
+        enum.DungeonPortalVisualLayers.LeftPart:
+          0: { visible: false }
+          1: { visible: true, state: left_crystal_blue }
+          2: { visible: true, state: left_crystal_green }
+          3: { visible: true, state: left_crystal_pink }
+          4: { visible: true, state: left_crystal_purple }
+          5: { visible: true, state: left_crystal_red }
+          6: { visible: true, state: left_crystal_yellow }
+      enum.DungeonPortalVisuals.RightState:
+        enum.DungeonPortalVisualLayers.RightPart:
+          0: { visible: false }
+          1: { visible: true, state: right_crystal_blue }
+          2: { visible: true, state: right_crystal_green }
+          3: { visible: true, state: right_crystal_pink }
+          4: { visible: true, state: right_crystal_purple }
+          5: { visible: true, state: right_crystal_red }
+          6: { visible: true, state: right_crystal_yellow }
+  - type: Physics
+    bodyType: Static
+  - type: Transform
+    noRot: true
+  - type: Fixtures
+    fixtures:
+      portalFixture:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.48,0.25,0.48"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        hard: false
+  - type: Appearance
+  - type: ItemSlots
+    slots:
+      shard1:
+        name: ShardSlot1
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - DungeonShard
+      shard2:
+        name: ShardSlot2
+        insertSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        ejectSound:
+          path: /Audio/Machines/terminal_insert_disc.ogg
+        whitelist:
+          components:
+          - DungeonShard
+  - type: ContainerContainer
+    containers:
+      shard1: !type:ContainerSlot {}
+      shard2: !type:ContainerSlot {}
+
+- type: entity
+  parent: BaseItem
+  id: BaseShard
+  abstract: true
+  name: base shard
+  description: This shiny shard of magic looks so beatiful...
+  components:
+  - type: Item
+    sprite: Imperial/Medieval/MagicDungeon/shard.rsi
+    size: Tiny
+  - type: Sprite
+    sprite: Imperial/Medieval/MagicDungeon/shard.rsi
