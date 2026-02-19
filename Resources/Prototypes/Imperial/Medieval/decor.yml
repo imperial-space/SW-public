@@ -3889,7 +3889,6 @@
     color: red
     castShadows: false
 
-
 - type: entity
   id: MedievalFlagCaptureBlueGold
   parent: BaseStructure
@@ -3897,7 +3896,7 @@
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
-    drawdepth: Overdoors
+    drawdepth: 3
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_blul_gold
   - type: MedievalFactionFlagChecker
@@ -3918,20 +3917,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.45
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - Opaque
-        - MidImpassable
-        - HighImpassable
-        - BulletImpassable
 
 - type: entity
   id: MedievalFlagCaptureRedGold
@@ -3940,7 +3925,7 @@
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
-    drawdepth: Overdoors
+    drawdepth: 3
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_red_gold
   - type: MedievalFactionFlagChecker
@@ -3968,13 +3953,6 @@
           !type:PhysShapeCircle
           radius: 0.45
         density: 190
-        mask:
-        - MachineMask
-        layer:
-        - Opaque
-        - MidImpassable
-        - HighImpassable
-        - BulletImpassable
 
 - type: entity
   id: MedievalDecorPerekatiPole

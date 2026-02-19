@@ -423,7 +423,7 @@
 - type: entity
   parent: BaseItem
   name: книга ритуалов культа истины
-  id: MedievalBookCultGuide2
+  id: MedievalBookCultGuideUnlocked
   components:
     - type: Sprite
       sprite: Imperial/Medieval/Misc/cult.rsi

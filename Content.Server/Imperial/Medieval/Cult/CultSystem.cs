@@ -27,7 +27,7 @@ using Content.Server.Administration.Logs;
 using Content.Server.Construction.Completions;
 using Content.Server.Construction.Conditions;
 using Content.Server.Imperial.Medieval.Cult.Bloodspells;
-using Content.Server.Imperial.Medieval.Cult.Bloodspells.mateials;
+using Content.Server.Imperial.Medieval.Cult.Bloodspells.Materials;
 using Content.Shared.Alert;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs.Components;
@@ -249,7 +249,7 @@ namespace Content.Server.Cult
                     if (picture.CollegiumUnlocked) continue;
                     foreach (var cultist in EntityManager.EntityQuery<CultMemberComponent>())
                     {
-                        if (TryComp<CultMapBlockerComponent>(cultist.parent, out var blocker))
+                        if (TryComp<CultMapBlockerComponent>(cultist.Parent, out var blocker))
                         {
                             switch (blocker.Sector)
                             {
@@ -332,7 +332,7 @@ namespace Content.Server.Cult
             if (!args.ParentChanged)
                 return;
 
-            comp.parent = newParent;
+            comp.Parent = newParent;
         }
         public void OnActivated(EntityUid uid, CultCheckPictureComponent comp, ActivateInWorldEvent args)
         {
@@ -931,7 +931,7 @@ namespace Content.Server.Cult
                     if (_itemSlotsSystem.TryGetSlot(slot.Item.Value, "Conductor" + i, out var container) &&
                         container.HasItem && container.Item != null)
                     {
-                        if (TryComp<MedievalBlodedComponent>(container.Item.Value, out var bloodcomp))
+                        if (TryComp<MedievalBloodedComponent>(container.Item.Value, out var bloodcomp))
                         {
                             bloodcomp.Blood += bloodyCost * 3 + redCost;
                             if (bloodcomp.Blood >= 10)
@@ -945,13 +945,13 @@ namespace Content.Server.Cult
                         }
                         else
                         {
-                            AddComp<MedievalBlodedComponent>(container.Item.Value);
+                            EnsureComp<MedievalBloodedComponent>(container.Item.Value);
                         }
                     }
                 }
 
 
-                if (TryComp<MedievalBlodedComponent>(slot.Item.Value, out var blodcomp))
+                if (TryComp<MedievalBloodedComponent>(slot.Item.Value, out var blodcomp))
                 {
                     blodcomp.Blood += bloodyCost * 3 + redCost;
                     if (blodcomp.Blood >= 10)
@@ -967,7 +967,7 @@ namespace Content.Server.Cult
                 }
                 else
                 {
-                    AddComp<MedievalBlodedComponent>(slot.Item.Value);
+                    EnsureComp<MedievalBloodedComponent>(slot.Item.Value);
                 }
                 comp.BloodyCrystall -= bloodyCost;
                 comp.RedCrystall -= redCost;
