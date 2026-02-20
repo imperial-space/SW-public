@@ -10,4 +10,16 @@ public enum MyrmexValveVisuals : byte
 }
 
 [Serializable, NetSerializable]
+public enum MyrmexPowerVisuals : byte
+{
+    Powered,
+}
+
+[Serializable, NetSerializable]
+public enum RandomPowerVisuals : byte
+{
+    Voltage,
+}
+
+[Serializable, NetSerializable]
 public sealed partial class MyrmexValveDoAfterEvent : SimpleDoAfterEvent;

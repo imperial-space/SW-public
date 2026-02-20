@@ -1,0 +1,86 @@
+- type: entity
+  parent: MarkerBase
+  name: myrmex geyser spawner
+  id: MedievalMyrmexGeyserSpawner
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Mobs/Species/Skeleton/parts.rsi
+        state: skull_icon
+  - type: RandomPoolSpawner
+    pool:
+      - MedievalMyrmexGeyserAcid
+      - MedievalMyrmexGeyserResin
+      - MedievalMyrmexGeyserSteam
+    groupId: myrmexGeysers
+
+- type: entity
+  id: MedievalMyrmexGeyserResin
+  name: смоляной гейзер мирмексов
+  description: Это смоляной гейзер мирмексов. Подобные гейзеры вырабатывают энергию, необходимую для питания их построек и механизмов.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/geyser.rsi
+    state: geyser
+  - type: NodeContainer
+    nodes:
+      power:
+        !type:MyrmexDeviceNode
+        nodeGroupID: HVPower
+        connectDirections: South
+  - type: MyrmexPipeEndpoint
+  - type: PowerSupplier
+    supplyRate: 1000
+    voltage: High
+  - type: Appearance
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+          - MachineMask
+        layer:
+          - MachineLayer
+  - type: Transform
+    anchored: true
+
+- type: entity
+  id: MedievalMyrmexGeyserAcid
+  parent: MedievalMyrmexGeyserResin
+  name: кислотный гейзер мирмексов
+  description: Это кислотный гейзер мирмексов. Подобные гейзеры вырабатывают энергию, необходимую для питания их построек и механизмов.
+  components:
+  - type: NodeContainer
+    nodes:
+      power:
+        !type:MyrmexDeviceNode
+        nodeGroupID: Apc
+        connectDirections: South
+  - type: PowerSupplier
+    supplyRate: 1000
+    voltage: Apc
+
+- type: entity
+  id: MedievalMyrmexGeyserSteam
+  parent: MedievalMyrmexGeyserResin
+  name: паровой гейзер мирмексов
+  description: Это паровой гейзер мирмексов. Подобные гейзеры вырабатывают энергию, необходимую для питания их построек и механизмов.
+  components:
+  - type: NodeContainer
+    nodes:
+      power:
+        !type:MyrmexDeviceNode
+        nodeGroupID: MVPower
+        connectDirections: South
+  - type: PowerSupplier
+    supplyRate: 1000
+    voltage: Medium

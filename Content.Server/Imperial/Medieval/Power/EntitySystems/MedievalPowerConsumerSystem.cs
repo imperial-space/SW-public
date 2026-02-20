@@ -1,12 +1,12 @@
+using Content.Shared.Popups;
 using Content.Shared.Power;
 using Content.Shared.Examine;
-using Content.Server.Imperial.Medieval.Power;
-using Content.Server.Power.Components;
-using Content.Server.Power.EntitySystems;
 using Content.Shared.Imperial.Medieval.Power;
 using Content.Shared.UserInterface;
 using ActivatableUISystem = Content.Shared.UserInterface.ActivatableUISystem;
-using Content.Shared.Popups;
+using Content.Server.Imperial.Medieval.Power;
+using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
 
 namespace Content.Server.Imperial.Medieval.Power;
 
@@ -14,6 +14,7 @@ public sealed class MedievalPowerConsumerSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly ActivatableUISystem _activatableUI = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
@@ -26,6 +27,15 @@ public sealed class MedievalPowerConsumerSystem : EntitySystem
 
         SubscribeLocalEvent<MedievalPowerStateComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<MedievalPowerStateComponent, ComponentStartup>(OnStateCompStartup);
+        SubscribeLocalEvent<MedievalPowerStateComponent, PowerChangedEvent>(OnStateCompPowerChanged);
+    }
+
+    private void OnStateCompPowerChanged(Entity<MedievalPowerStateComponent> ent, ref PowerChangedEvent args)
+    {
+        if (ent.Comp.Powered != args.Powered)
+            return;
+
+        _appearance.SetData(ent.Owner, MyrmexPowerVisuals.Powered, args.Powered);
     }
 
     private void OnExamined(Entity<MedievalPowerStateComponent> ent, ref ExaminedEvent args)

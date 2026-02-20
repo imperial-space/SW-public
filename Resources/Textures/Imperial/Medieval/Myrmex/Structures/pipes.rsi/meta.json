@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": ".......... pipe-c, pipe-s by @ungabunga0464_99904",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "pipe-c",
+      "directions": 4
+    },
+    {
+      "name": "pipe-s",
+      "directions": 4
+    },
+    {
+      "name": "pipe-cross"
+    },
+    {
+      "name": "pipe-t",
+      "directions": 4
+    }
+  ]
+}

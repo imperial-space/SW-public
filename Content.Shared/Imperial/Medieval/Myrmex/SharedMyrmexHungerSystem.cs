@@ -4,6 +4,7 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Examine;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Weapons.Melee.Events;
+using Content.Shared.Myrmex.Hive;
 using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
@@ -15,6 +16,8 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
         [Dependency] private readonly MovementSpeedModifierSystem _speedModifier = default!;
         [Dependency] private readonly AlertsSystem _alertsSystem = default!;
         [Dependency] private readonly INetManager _net = default!;
+        [Dependency] private readonly SharedMyrmexHiveSystem _hive = default!;
+
         public override void Initialize()
         {
             base.Initialize();
@@ -30,6 +33,7 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
         {
             if (!_net.IsServer)
                 return;
+
             var initialCooldown = TimeSpan.FromSeconds(comp.EatCooldownSeconds + 1);
             comp.LastEaten = _gameTiming.CurTime - initialCooldown;
             Clamp(uid, comp);
@@ -37,13 +41,16 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
 
         private void Clamp(EntityUid uid, MyrmexHungerComponent comp)
         {
-            if (comp.MaxBuffs < 0)
-                comp.MaxBuffs = 0;
-
-            if (comp.Buffs.Count <= comp.MaxBuffs)
+            if (!_hive.TryGetHive(out var hive))
                 return;
-            comp.Buffs.RemoveRange(comp.MaxBuffs, comp.Buffs.Count - comp.MaxBuffs);
-            Dirty(uid, comp);
+
+            var maxBuffs = hive!.Value.Comp.MaxBuffs;
+
+            if (comp.Buffs.Count > maxBuffs)
+            {
+                comp.Buffs.RemoveRange(maxBuffs, comp.Buffs.Count - maxBuffs);
+                Dirty(uid, comp);
+            }
         }
 
         #region Buffs

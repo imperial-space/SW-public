@@ -1,0 +1,185 @@
+- type: entity
+  id: MedievalBaseMyrmexPowerReceiverStructure
+  abstract: true
+  name: power receiver structure
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/altar.rsi
+    layers:
+      - state: connector
+        map: ["pipe_connector"]
+      - state: base
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.45,-0.45,0.45,0.45"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: Anchorable
+  - type: Pullable
+  - type: NodeContainer
+    nodes:
+      power:
+        !type:MyrmexDeviceNode
+        nodeGroupID: HVPower
+        connectDirections: South
+  - type: MyrmexPipeEndpoint
+  - type: PowerConsumer
+    drawRate: 1000
+    voltage: High
+  - type: Appearance
+  - type: PointLight
+    enabled: true
+    radius: 2
+    energy: 1.5
+    color: "#4e94df"
+  - type: RandomPower
+    node: power
+  - type: MedievalPowerExaminable
+    examinableNode: power
+  - type: MedievalPowerState
+  - type: ReplaceFloorOnSpawn
+    replaceableTiles:
+    replacementTiles:
+    - MedievalMyrmexFloor2
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -8
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: MedievalMyrmexTerraAltar
+  name: Алтарь Терры
+  description: Алтарь богини Терры, который позволяет мирмексам становится сильнее, потребляя больше блюд
+  parent: MedievalBaseMyrmexPowerReceiverStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/altar.rsi
+    offset: 0, 0.15
+    layers:
+      - state: connector
+        map: ["enum.RandomPowerVisuals.Voltage"]
+      - state: base
+  - type: MyrmexAltar
+  - type: PowerConsumer
+    drawRate: 550
+    voltage: High
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-1,-0.6,1,1"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: Construction
+    graph: MedievalMyrmexTerraAltar
+    node: medievalMyrmexTerraAltar
+
+- type: entity
+  id: MedievalMyrmexRadar
+  name: Подземный радар
+  description: Радар, который оповещает мирмексов о вторжении чужаков в их пещеру
+  parent: MedievalBaseMyrmexPowerReceiverStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/radar.rsi
+    layers:
+      - state: connector
+        map: ["enum.RandomPowerVisuals.Voltage"]
+      - state: radar_static
+        map: ["base"]
+  - type: GenericVisualizer
+    visuals:
+      enum.MyrmexPowerVisuals.Powered:
+        base:
+          True:
+            state: radar_animated
+          False:
+            state: radar_static
+  - type: MyrmexRadar
+    entityWhitelist:
+      components:
+      - HumanoidAppearance
+  - type: PowerConsumer
+    drawRate: 350
+    voltage: High
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.6,0.6,0.6"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: Construction
+    graph: MedievalMyrmexRadar
+    node: medievalMyrmexRadar
+
+- type: entity
+  id: MedievalMyrmexLifeSource
+  name: Источник Жизни
+  description: Фонтан с живым существом в центре, извергающим кровь при подаче энергии, увеличивая здоровье мирмексов
+  parent: MedievalBaseMyrmexPowerReceiverStructure
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/fountain.rsi
+    offset: 0, 0.1
+    layers:
+      - state: connector
+        map: ["enum.RandomPowerVisuals.Voltage"]
+      - state: fountain_static
+        map: ["base"]
+  - type: GenericVisualizer
+    visuals:
+      enum.MyrmexPowerVisuals.Powered:
+        base:
+          True:
+            state: fountain_animated
+          False:
+            state: fountain_static
+  - type: MyrmexLifeSource
+  - type: PowerConsumer
+    drawRate: 550
+    voltage: High
+  - type: Construction
+    graph: MedievalMyrmexLifeSource
+    node: medievalMyrmexLifeSource

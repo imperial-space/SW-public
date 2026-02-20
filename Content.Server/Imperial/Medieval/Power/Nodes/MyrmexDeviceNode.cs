@@ -30,7 +30,8 @@ public partial class MyrmexDeviceNode : Node
             if (dir == Direction.Invalid)
                 continue;
 
-            if ((ConnectDirections & dir.AsFlag()) != 0 && node is MyrmexPipeNode pipeNode)
+            if ((ConnectDirections == DirectionFlag.None || (ConnectDirections & dir.AsFlag()) != 0) 
+                && node is MyrmexPipeNode pipeNode)
             {
                 if (CanPipeConnectFromDirection(pipeNode, dir.GetOpposite(), entMan, xformQuery))
                     yield return node;

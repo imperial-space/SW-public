@@ -80,6 +80,17 @@ public abstract partial class Node
         Owner = owner;
     }
 
+    // Imperial-Medieval-Power-Tweak-Start
+    /// <summary>
+    ///     Sets the NodeGroupID for this node.
+    /// </summary>
+    /// <param name="nodeGroupID">The new NodeGroupID to set.</param>
+    public void SetNodeGroupID(NodeGroupID nodeGroupID)
+    {
+        NodeGroupID = nodeGroupID;
+    }
+    // Imperial-Medieval-Power-Tweak-End
+
     /// <summary>
     ///     How this node will attempt to find other reachable <see cref="Node"/>s to group with.
     ///     Returns a set of <see cref="Node"/>s to consider grouping with. Should not return this current <see cref="Node"/>.

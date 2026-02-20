@@ -114,91 +114,6 @@
   # long range since I don't wanna make a special xenoborg telecomm server
   longRange: true
 
-########################################
-# BASE CONSTANT POWER CONSUMER (MYRMEX)
-########################################
-
-- type: entity
-  id: BaseConstantPowerConsumer
-  abstract: true
-  name: constant power consumer
-  description: A device that constantly draws power from the Myrmex network.
-  placement:
-    mode: SnapgridCenter
-  components:
-    - type: Clickable
-    - type: InteractionOutline
-    - type: Sprite
-      sprite: Structures/Piping/high_pressure_machine_frame.rsi
-      state: frame
-    - type: Transform
-      anchored: true
-    - type: Physics
-      bodyType: Static
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.45,-0.45,0.45,0.45"
-          density: 150
-          mask:
-            - MachineMask
-          layer:
-            - MachineLayer
-    - type: Anchorable
-    - type: Pullable
-    - type: NodeContainer
-      nodes:
-        power:
-          !type:MyrmexDeviceNode
-          nodeGroupID: HVPower
-          connectDirections: South, West, North, East
-    - type: MyrmexPipeEndpoint
-    - type: PowerConsumer
-      drawRate: 10000
-      voltage: High
-    - type: Appearance
-    - type: PointLight
-      enabled: true
-      radius: 2
-      energy: 1.5
-      color: "#4e94df"
-
-########################################
-# CONSTANT POWER CONSUMER VARIANTS
-########################################
-
-- type: entity
-  parent: BaseConstantPowerConsumer
-  id: ConstantPowerConsumerTiny
-  name: tiny power consumer
-  suffix: Tiny, 1kW
-  components:
-    - type: PowerConsumer
-      drawRate: 1000
-
-- type: entity
-  parent: BaseConstantPowerConsumer
-  id: ConstantPowerConsumerTinyBlue
-  name: tiny power consumer blue
-  suffix: Tiny, 1kW
-  components:
-    - type: Sprite
-      sprite: Structures/Piping/high_pressure_machine_frame.rsi
-      state: frame
-      color: CadetBlue
-    - type: NodeContainer
-      nodes:
-        power:
-          !type:MyrmexDeviceNode
-          nodeGroupID: MVPower
-          connectDirections: South, West, North, East
-    - type: MyrmexPipeEndpoint
-    - type: PowerConsumer
-      drawRate: 1000
-      voltage: Medium
-
 
 ########################################
 # BASE PASSIVE GENERATOR (MYRMEX)
@@ -246,6 +161,11 @@
       supplyRate: 15000
       voltage: High
     - type: Appearance
+    - type: RandomPower
+      node: power
+    - type: MedievalPowerExaminable
+      examinableNode: power
+      isGeyser: true
 
 ########################################
 # PASSIVE GENERATOR VARIANTS
@@ -254,7 +174,25 @@
 - type: entity
   parent: BasePassiveGenerator
   id: PassiveGeneratorSmall
-  name: small passive generator
+  name: 1
+  suffix: Small, 5kW
+  components:
+    - type: PowerSupplier
+      supplyRate: 5000
+
+- type: entity
+  parent: BasePassiveGenerator
+  id: PassiveGeneratorSmall2
+  name: 2
+  suffix: Small, 5kW
+  components:
+    - type: PowerSupplier
+      supplyRate: 5000
+
+- type: entity
+  parent: BasePassiveGenerator
+  id: PassiveGeneratorSmall3
+  name: 3
   suffix: Small, 5kW
   components:
     - type: PowerSupplier
@@ -270,155 +208,14 @@
       nodes:
         power:
           !type:MyrmexDeviceNode
-          nodeGroupID: MVPower
+          nodeGroupID: HVPower
           connectDirection: South
     - type: MyrmexPipeEndpoint
     - type: PowerSupplier
       supplyRate: 5000
-      voltage: Medium
+      voltage: High
     - type: Sprite
       sprite: Structures/Power/smes.rsi
       snapCardinals: true
       state: smes
       color: CadetBlue
-
-########################################
-# BASE MYRMEX PIPE
-########################################
-
-- type: entity
-  id: BaseMyrmexPipe
-  abstract: true
-  name: myrmex pipe
-  placement:
-    mode: SnapgridCenter
-  components:
-    - type: Sprite
-      sprite: Imperial/ussp/urbandeco/pipes.rsi
-      drawdepth: ThickPipe
-    - type: Transform
-      anchored: true
-      noRot: false
-    - type: InteractionOutline
-    - type: Clickable
-    - type: Fixtures
-      fixtures:
-        fix1:
-          shape:
-            !type:PhysShapeAabb
-            bounds: "-0.25,-0.5,0.25,0.5"
-    - type: NodeContainer
-      nodes:
-        power:
-          !type:MyrmexPipeNode
-          nodeGroupID: HVPower
-    - type: MyrmexPipe
-      pipeType: Straight
-    - type: Physics
-
-########################################
-# MYRMEX PIPE VARIANTS
-########################################
-
-- type: entity
-  parent: BaseMyrmexPipe
-  id: MedievalMyrmexPipeStraight
-  name: myrmex pipe straight
-  components:
-    - type: Sprite
-      state: pipe-s
-    - type: MyrmexPipe
-      pipeType: Straight
-    - type: Construction
-      graph: MedievalMyrmexPipeStraight
-      node: medievalMyrmexPipeStraight
-
-- type: entity
-  parent: BaseMyrmexPipe
-  id: MedievalMyrmexPipeCorner
-  name: myrmex pipe corner
-  components:
-    - type: Sprite
-      state: pipe-c
-    - type: MyrmexPipe
-      pipeType: Corner
-    - type: Construction
-      graph: MedievalMyrmexPipeCorner
-      node: medievalMyrmexPipeCorner
-
-- type: entity
-  parent: BaseMyrmexPipe
-  id: MedievalMyrmexPipeCross
-  name: myrmex pipe cross
-  components:
-    - type: Sprite
-      state: pipe-s
-    - type: MyrmexPipe
-      pipeType: Cross
-    - type: Construction
-      graph: MedievalMyrmexPipeCross
-      node: medievalMyrmexPipeCross
-
-- type: entity
-  parent: BaseMyrmexPipe
-  id: MedievalMyrmexPipeTJunction
-  name: myrmex pipe TJunction
-  components:
-    - type: Sprite
-      state: pipe-s
-    - type: MyrmexPipe
-      pipeType: TJunction
-    - type: Construction
-      graph: MedievalMyrmexPipeTJunction
-      node: medievalMyrmexPipeTJunction
-
-- type: entity
-  parent: BaseMyrmexPipe
-  id: MedievalMyrmexPipeValve
-  name: myrmex pipe valve
-  components:
-  - type: Sprite
-    layers:
-    - map: ["base"]
-      state: pipe-s
-      color: Red
-      visible: true
-    - map: ["closed"]
-      state: pipe-s
-      color: CadetBlue
-      visible: false
-  - type: GenericVisualizer
-    visuals:
-      enum.MyrmexValveVisuals.State:
-        base:
-          True:
-            visible: true
-          False:
-            visible: false
-        closed:
-          True:
-            visible: false
-          False:
-            visible: true
-  - type: Appearance
-  - type: MyrmexPipe
-    pipeType: Straight
-  - type: MyrmexValvePipe
-  - type: Construction
-    graph: MedievalMyrmexPipeValve
-    node: medievalMyrmexPipeValve
-
-- type: entity
-  parent: BaseMyrmexPipe
-  id: MyrmexPipeKaboomTest
-  components:
-    - type: Sprite
-      state: pipe-s
-      color: CadetBlue
-    - type: MyrmexPipe
-      pipeType: Straight
-    - type: NodeContainer
-      nodes:
-        power:
-          !type:MyrmexPipeNode
-          nodeGroupID: MVPower

@@ -26,6 +26,7 @@ entities:
   entities:
   - uid: 1
     components:
+    - type: MyrmexMap
     - type: MetaData
     - type: Transform
     - type: Map

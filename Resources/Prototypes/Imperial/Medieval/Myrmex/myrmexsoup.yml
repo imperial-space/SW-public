@@ -152,6 +152,13 @@
   result: MedievalMyrmexResourceYant
 
 - type: CP14Recipe
+  id: MedievalMyrmexResourceYantGear
+  craftTime: 5
+  entities:
+    MedievalMyrmexResourceYant: 3
+  result: MedievalMyrmexResourceYantGear
+
+- type: CP14Recipe
   id: MedievalMyrmexFibeStack5
   craftTime: 10
   entities:
