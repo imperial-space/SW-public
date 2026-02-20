@@ -9,8 +9,18 @@
     drawdepth: Overdoors
     sprite: Imperial/Medieval/Decor/barrier_curse.rsi
     state: curse
+  - type: FloatingVisuals
+    offset: 0, 0.15
+    animationTime: 2
+    ignoreGravity: true
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/Ambience/anomaly_drone.ogg
   - type: Physics
     bodyType: Static
+    bodyStatus: InAir
   - type: Fixtures
     fixtures:
       fix1:
@@ -33,8 +43,8 @@
   components:
   - type: Sprite
     drawdepth: Overdoors
-    sprite: Imperial/Medieval/Decor/barrier_curse.rsi
-    state: curse
+    sprite: Imperial/Medieval/Decor/barrier_rift_earth.rsi
+    state: earth-rift
   - type: PointLight
     radius: 4.5
     energy: 15
@@ -58,8 +68,8 @@
   components:
   - type: Sprite
     drawdepth: Overdoors
-    sprite: Imperial/Medieval/Decor/barrier_curse.rsi
-    state: curse
+    sprite: Imperial/Medieval/Decor/barrier_rift_fire.rsi
+    state: fire-rift
   - type: PointLight
     radius: 4.5
     energy: 15
@@ -79,8 +89,8 @@
   components:
   - type: Sprite
     drawdepth: Overdoors
-    sprite: Imperial/Medieval/Decor/barrier_curse.rsi
-    state: curse
+    sprite: Imperial/Medieval/Decor/barrier_rift_water.rsi
+    state: water-rift
   - type: PointLight
     radius: 4.5
     energy: 15
@@ -114,8 +124,8 @@
   components:
   - type: Sprite
     drawdepth: Overdoors
-    sprite: Imperial/Medieval/Decor/barrier_curse.rsi
-    state: curse
+    sprite: Imperial/Medieval/Decor/barrier_rift_light.rsi
+    state: light-rift
   - type: PointLight
     radius: 4.5
     energy: 15
@@ -135,7 +145,7 @@
   description: A lock attuned to the power of earth.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Misc/respawn_key.rsi
+    sprite: Imperial/Medieval/Misc/rift_key_earth.rsi
     state: icon
   - type: Item
     size: Small
@@ -149,7 +159,7 @@
   description: A lock attuned to the power of fire.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Misc/respawn_key.rsi
+    sprite: Imperial/Medieval/Misc/rift_key_fire.rsi
     state: icon
   - type: Item
     size: Small
@@ -163,7 +173,7 @@
   description: A lock attuned to the power of water.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Misc/respawn_key.rsi
+    sprite: Imperial/Medieval/Misc/rift_key_water.rsi
     state: icon
   - type: Item
     size: Small
@@ -177,7 +187,7 @@
   description: A lock attuned to the power of light.
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Misc/respawn_key.rsi
+    sprite: Imperial/Medieval/Misc/rift_key_light.rsi
     state: icon
   - type: Item
     size: Small
