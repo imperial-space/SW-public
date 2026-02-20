@@ -95,7 +95,7 @@ public sealed partial class CreationsSystem : EntitySystem
 
     private bool ValidateBookInput(string text, string name, string desc)
     {
-        return text.Length < 12000 &&
+        return text.Length <= 12000 &&
                name.Length < 40 &&
                desc.Length < 500;
     }

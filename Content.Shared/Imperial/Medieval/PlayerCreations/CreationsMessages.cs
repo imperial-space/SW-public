@@ -194,20 +194,18 @@ public sealed class CreationBook : IEquatable<CreationBook>
         SenderUserName = senderUserName;
     }
 
-    public override bool Equals(object? obj) => Equals(obj as CreationBook);
-
     public bool Equals(CreationBook? other)
     {
-        if (other is null)
-            return false;
-
-        return Text.SequenceEqual(other.Text);
+        if (other is null) return false;
+        return SenderUserId == other.SenderUserId && CreationTime == other.CreationTime;
     }
 
     public override int GetHashCode()
     {
-        return Text.GetHashCode();
+        return HashCode.Combine(SenderUserId, CreationTime);
     }
+
+    public override bool Equals(object? obj) => Equals(obj as CreationBook);
 
     public static bool operator ==(CreationBook? left, CreationBook? right)
     {
