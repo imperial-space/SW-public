@@ -2108,6 +2108,16 @@
         - BulletImpassable
 
 - type: entity
+  id: MedievalDecorDangerSign4
+  parent: MedievalDecorDangerSign3
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: danger4
+
+- type: entity
   id: MedievalDecorCastle1
   parent: MedievalBannerBase
   name: nanotrasen banner
@@ -5000,7 +5010,7 @@
     fixtures:
       fix1:  #vertical
         shape:
-          !type:PhysShapeAabb 
+          !type:PhysShapeAabb
           bounds: "-0.49,-0.15,0.49,0.15"
         density: 1000
         mask:
