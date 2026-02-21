@@ -1,0 +1,51 @@
+using Content.Shared.Administration;
+using Robust.Shared.Console;
+
+namespace Content.Server.Imperial.Medieval.XxRaay.Systems;
+
+[AdminCommand(AdminFlags.Spawn)]
+public sealed class MedievalAmbientToggleCommand : LocalizedCommands
+{
+    [Dependency] private readonly MedievalAmbientToggleSystem _toggle = default!;
+
+    public override string Command => "medievalambient";
+
+    public override void Execute(IConsoleShell shell, string argStr, string[] args)
+    {
+        bool? setEnabled = null;
+        if (args.Length > 0)
+        {
+            switch (args[0].ToLowerInvariant())
+            {
+                case "on":
+                    setEnabled = true;
+                    break;
+                case "off":
+                    setEnabled = false;
+                    break;
+                case "toggle":
+                    break;
+                default:
+                    shell.WriteError("Usage: medievalambient <on|off|toggle>");
+                    return;
+            }
+        }
+        else
+        {
+            setEnabled = !_toggle.IsMedievalAmbientEnabled;
+        }
+
+        bool newState = setEnabled.HasValue
+            ? _toggle.SetMedievalAmbientEnabled(setEnabled.Value)
+            : _toggle.ToggleMedievalAmbient();
+
+        shell.WriteLine(newState ? "Medieval ambient music enabled." : "Medieval ambient music disabled.");
+    }
+
+    public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    {
+        if (args.Length == 1)
+            return CompletionResult.FromOptions(new[] { "on", "off", "toggle" });
+        return CompletionResult.Empty;
+    }
+}
