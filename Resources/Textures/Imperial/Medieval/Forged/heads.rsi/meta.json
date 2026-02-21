@@ -17,6 +17,13 @@
         {
             "name": "wooden_head",
             "directions": 4
+        },
+        {
+            "name": "golden_head_icon"
+        },
+        {
+            "name": "golden_head",
+            "directions": 4
         }
     ]
 }

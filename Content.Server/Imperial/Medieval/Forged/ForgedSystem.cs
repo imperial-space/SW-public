@@ -11,6 +11,7 @@ using Robust.Shared.Utility;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Damage;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Forged;
 
@@ -21,6 +22,7 @@ public sealed class ForgedSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;
+    [Dependency] private readonly ForgedAbilitySystem _forgedAbility = default!;
 
     public override void Initialize()
     {
@@ -53,6 +55,8 @@ public sealed class ForgedSystem : EntitySystem
                 var container = _containerSystem.EnsureContainer<ContainerSlot>(uid, module.ModuleSlot);
                 _containerSystem.Insert(moduleUid, container);
             }
+
+            if (module.AbilityId != null) _forgedAbility.ExecuteAbility(uid, moduleUid, module.AbilityId);
         }
 
         if (TryComp<AppearanceComponent>(uid, out var appearance)) UpdateAppearance((uid, component, appearance));
@@ -60,7 +64,7 @@ public sealed class ForgedSystem : EntitySystem
         _movementSpeedModifierSystem.RefreshMovementSpeedModifiers(uid);
     }
 
-    private void SetupCore(EntityUid uid, EntityUid coreId)
+    private void SetupCore(EntityUid uid, EntityUid moduleId)
     {
         Timer.Spawn(0, () =>
         {
@@ -78,12 +82,15 @@ public sealed class ForgedSystem : EntitySystem
 
             foreach (var organ in _bodySystem.GetBodyOrgans(uid))
             {
-                if (!HasComp<StomachComponent>(organ.Id)) continue;
-                _bodySystem.RemoveOrgan(organ.Id, organ.Component);
-                QueueDel(organ.Id);
+                if (HasComp<StomachComponent>(organ.Id))
+                {
+                    _bodySystem.RemoveOrgan(organ.Id, organ.Component);
+                    QueueDel(organ.Id);
+                    break;
+                }
             }
 
-            _bodySystem.InsertOrgan(torsoId.Value, coreId, "stomach");
+            _bodySystem.InsertOrgan(torsoId.Value, moduleId, "stomach");
         });
     }
 

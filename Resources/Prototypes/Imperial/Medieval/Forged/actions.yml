@@ -1,0 +1,15 @@
+- type: entity
+  id: ThermalEyesAction
+  name: ThermalEyes
+  description: papa pepe gemabodi pava peve djast enavo
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: termaloff
+    iconOn:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: termalon
+  - type: InstantAction
+    event: !type:ThermalEyesActionEvent

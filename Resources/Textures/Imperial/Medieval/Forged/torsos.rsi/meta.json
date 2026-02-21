@@ -17,6 +17,10 @@
         {
             "name": "wooden_torso",
             "directions": 4
+        },
+        {
+            "name": "golden_torso",
+            "directions": 4
         }
     ]
 }

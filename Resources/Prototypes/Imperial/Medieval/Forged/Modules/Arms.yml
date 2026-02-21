@@ -91,3 +91,37 @@
     rsiPath: Imperial/Medieval/Forged/arms.rsi
     resistanceModifier: 0.02
     speedModifier: -0.07
+
+
+- type: entity
+  id: ForgedGoldenRArm
+  name: ForgedGoldenRArm
+  parent: ForgedRLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/arms.rsi
+    state: golden_arm_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_arm
+    layerState: golden_right_arm
+    rsiPath: Imperial/Medieval/Forged/arms.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.0105
+
+- type: entity
+  id: ForgedGoldenLArm
+  name: ForgedGoldenLArm
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/arms.rsi
+    state: golden_arm_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_arm
+    layerState: golden_left_arm
+    rsiPath: Imperial/Medieval/Forged/arms.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.0105

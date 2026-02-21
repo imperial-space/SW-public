@@ -1,7 +1,7 @@
 using Content.Shared.Actions;
 using Content.Shared.Forged;
+using Content.Shared.Imperial.Medieval.Lycantropy;
 using Content.Shared.Popups;
-using Robust.Shared.Toolshed.TypeParsers;
 
 namespace Content.Shared.Imperial.Medieval.Forged;
 
@@ -13,13 +13,12 @@ public sealed class ForgedAbilitySystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        // Подписываемся на событие использования способности, если она выдается через Actions, на будующее
-        //SubscribeLocalEvent<ForgedComponent, ForgedAbilityActionEvent>(OnAbilityPerformed);
+
+        SubscribeLocalEvent<ForgedComponent, ThermalEyesActionEvent>(OnThermalEyes);
     }
 
     public void ExecuteAbility(EntityUid forgedUid, EntityUid moduleUid, string abilityId)
     {
-        // Тот самый "другой файл" с логикой действий
         switch (abilityId)
         {
             case "ThermalEyes":
@@ -32,9 +31,20 @@ public sealed class ForgedAbilitySystem : EntitySystem
 
     private void ThermalEyes(EntityUid forgedUid)
     {
-        if (!TryComp<EyeComponent>(forgedUid, out var comp)) return;
+        _actions.AddAction(forgedUid, "ThermalEyesAction");
+    }
 
-        //comp.VisibilityMask.
+    private void OnThermalEyes(EntityUid uid, ForgedComponent comp, ThermalEyesActionEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+
+        if (HasComp<WerewolfBloodFeelComponent>(uid))
+            RemComp<WerewolfBloodFeelComponent>(uid);
+        else
+            EnsureComp<WerewolfBloodFeelComponent>(uid);
     }
 }
 

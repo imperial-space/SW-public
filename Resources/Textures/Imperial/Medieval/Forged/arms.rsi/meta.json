@@ -12,7 +12,7 @@
             "directions": 4
         },
         {
-            "name": "base_left_armbase",
+            "name": "base_left_arm",
             "directions": 4
         },
         {
@@ -21,6 +21,17 @@
         },
         {
             "name": "wooden_right_arm",
+            "directions": 4
+        },
+        {
+            "name": "golden_arm_icon"
+        },
+        {
+            "name": "golden_right_arm",
+            "directions": 4
+        },
+        {
+            "name": "golden_left_arm",
             "directions": 4
         }
     ]

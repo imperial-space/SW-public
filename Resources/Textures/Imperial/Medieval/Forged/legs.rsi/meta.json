@@ -22,6 +22,17 @@
         {
             "name": "wooden_right_leg",
             "directions": 4
+        },
+        {
+            "name": "goleden_leg_icon"
+        },
+        {
+            "name": "golden_right_leg",
+            "directions": 4
+        },
+        {
+            "name": "golden_left_leg",
+            "directions": 4
         }
     ]
 }

@@ -3,6 +3,7 @@
   parent: BaseItem
   name: ForgedEyesBase
   description: "I see you!"
+  abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/cores.rsi
@@ -14,4 +15,19 @@
     partSlot: eyes
     layerState: eyes
     rsiPath: Imperial/Medieval/Forged/cores.rsi
-  - type: Organ
+    abilityId: ThermalEyes
+
+- type: entity
+  id: ForgedTopazEyes
+  parent: ForgedEyesBase
+  name: ForgedTopazEyes
+  description: "I see you!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: BaseEyes
+  - type: ForgedModule
+    partSlot: eyes
+    layerState: eyes
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
+    abilityId: ThermalEyes

@@ -47,7 +47,7 @@
   - type: Appearance
   - type: ForgedAssembly
     torso: ForgedTorsoBase
-    requiredSlots: [ "head", "right_arm", "left_arm", "core", "right_leg", "left_leg" ]
+    requiredSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg" ]
   - type: ForgedModule
     partSlot: torso
     layerState: base_torso
@@ -129,3 +129,42 @@
     rsiPath: Imperial/Medieval/Forged/torsos.rsi
     resistanceModifier: 0.08
     speedModifier: -0.2
+
+- type: entity
+  id: ForgedGoldenTorso
+  name: ForgedGoldenTorso
+  parent: ForgedTorsoBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/torsos.rsi
+    state: TorsoBase
+    layers:
+    - state: golden_torso
+      map: ["torso"]
+    - state: blank
+      map: ["head"]
+    - state: blank
+      map: ["eyes"]
+    - state: blank
+      map: ["right_arm"]
+    - state: blank
+      map: ["left_arm"]
+    - state: blank
+      map: ["right_hand"]
+    - state: blank
+      map: ["left_hand"]
+    - state: blank
+      map: ["core"]
+      offset: 0, -0.1
+    - state: blank
+      map: ["right_leg"]
+    - state: blank
+      map: ["left_leg"]
+  - type: ForgedAssembly
+    torso: ForgedGoldenTorso
+  - type: ForgedModule
+    partSlot: torso
+    layerState: golden_torso
+    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+    resistanceModifier: 0.12
+    speedModifier: -0.3

@@ -91,3 +91,36 @@
     rsiPath: Imperial/Medieval/Forged/legs.rsi
     resistanceModifier: 0.03
     speedModifier: 0.1
+
+- type: entity
+  id: ForgedGoldenRLeg
+  name: ForgedGoldenRLeg
+  parent: ForgedRLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/legs.rsi
+    state: goleden_leg_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_leg
+    layerState: golden_right_leg
+    rsiPath: Imperial/Medieval/Forged/legs.rsi
+    resistanceModifier: 0.045
+    speedModifier: 0.15
+
+- type: entity
+  id: ForgedGoldenLLeg
+  name: ForgedGoldenLLeg
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/legs.rsi
+    state: goleden_leg_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_leg
+    layerState: golden_left_leg
+    rsiPath: Imperial/Medieval/Forged/legs.rsi
+    resistanceModifier: 0.045
+    speedModifier: 0.15

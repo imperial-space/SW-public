@@ -42,3 +42,18 @@
     rsiPath: Imperial/Medieval/Forged/heads.rsi
     resistanceModifier: 0.02
     speedModifier: -0.06
+
+- type: entity
+  id: ForgedGoldenHead
+  name: ForgedGoldenHead
+  parent: ForgedHeadBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/heads.rsi
+    state: golden_head_icon
+  - type: ForgedModule
+    partSlot: head
+    layerState: golden_head
+    rsiPath: Imperial/Medieval/Forged/heads.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.09
