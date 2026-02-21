@@ -1198,6 +1198,11 @@
     - MedievalHatchet
     - BarberScissors
     - MedievalGrenade
+    - MedievalLintstock
+    - MedievalGunpowderCharge
+    - MedievalCannonballShip
+    - MedievalCannonballExplosive
+    - MedievalGrapeshot
     - MedievalKeyStorage
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft

@@ -1,0 +1,64 @@
+- type: entity
+  id: MedievalBaseCannon
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 400
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Anchorable
+  - type: Pullable
+  - type: Rotatable
+  - type: Gun
+    showExamineText: false
+    fireRate: 10
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/Cannon/cannon_shot.ogg
+      params:
+        volume: 8
+        maxDistance: 30
+  - type: Canon
+    loadAmmoSound:
+      path: /Audio/Imperial/Medieval/Cannon/cannonball_insert.ogg
+    ammoWhitelist:
+      tags:
+      - CannonBall
+  - type: Appearance
+
+- type: entity
+  id: MedievalShipCannon
+  parent: MedievalBaseCannon
+  name: ship cannon
+  description: A heavy naval cannon mounted on a carriage.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Cannon/ship_cannon.rsi
+    state: icon
+
+- type: entity
+  id: MedievalFieldCannon
+  parent: MedievalBaseCannon
+  name: field cannon
+  description: A mobile artillery cannon on a carriage.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Cannon/field_cannon.rsi
+    state: icon
