@@ -31,7 +31,7 @@ public sealed partial class ContentAudioSystem
     [Dependency] private readonly IStateManager _state = default!;
     [Dependency] private readonly RulesSystem _rules = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency(optional: true)] private readonly MedievalAmbientToggleClientSystem? _medievalAmbientToggle = default!;
+    [Dependency] private readonly MedievalAmbientToggleClientSystem _medievalAmbientToggle = default!;
 
     private readonly TimeSpan _minAmbienceTime = TimeSpan.FromSeconds(30);
     private readonly TimeSpan _maxAmbienceTime = TimeSpan.FromSeconds(60);
@@ -250,7 +250,7 @@ public sealed partial class ContentAudioSystem
                 continue;
 
             // Imperial Medieval Ambient Toggle command start
-            if (_medievalAmbientToggle != null && !_medievalAmbientToggle.IsMedievalAmbientEnabled && MedievalAmbientRules.IsMedievalRule(amb.Rules))
+            if (!_medievalAmbientToggle.IsMedievalAmbientEnabled && MedievalAmbientRules.IsMedievalRule(amb.Rules))
                 continue;
             // Imperial Medieval Ambient Toggle command end
 
