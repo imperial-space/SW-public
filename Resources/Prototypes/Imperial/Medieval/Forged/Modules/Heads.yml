@@ -13,18 +13,20 @@
     layerState: HeadBase
     rsiPath: Imperial/Medieval/Forged/heads.rsi
 
+###
+
 - type: entity
   id: ForgedWoodenHead
   name: ForgedWoodenHead
   parent: ForgedHeadBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/heads.rsi
+    sprite: Imperial/Medieval/Forged/wooden.rsi
     state: wooden_head_icon
   - type: ForgedModule
     partSlot: head
     layerState: wooden_head
-    rsiPath: Imperial/Medieval/Forged/heads.rsi
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
     resistanceModifier: 0.01
     speedModifier: -0.03
 
@@ -34,12 +36,12 @@
   parent: ForgedHeadBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/heads.rsi
-    state: TorsoBase
+    sprite: Imperial/Medieval/Forged/iron.rsi
+    state: iron_head_icon
   - type: ForgedModule
     partSlot: head
-    layerState: HeadBase #
-    rsiPath: Imperial/Medieval/Forged/heads.rsi
+    layerState: iron_head
+    rsiPath: Imperial/Medieval/Forged/iron.rsi
     resistanceModifier: 0.02
     speedModifier: -0.06
 
@@ -49,11 +51,11 @@
   parent: ForgedHeadBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/heads.rsi
+    sprite: Imperial/Medieval/Forged/golden.rsi
     state: golden_head_icon
   - type: ForgedModule
     partSlot: head
     layerState: golden_head
-    rsiPath: Imperial/Medieval/Forged/heads.rsi
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
     resistanceModifier: 0.03
     speedModifier: -0.09

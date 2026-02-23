@@ -14,6 +14,7 @@
     layers:
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "core" ]
+      offset: 0, -0.1
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -35,11 +36,10 @@
     - map: [ "gloves" ]
     - map: [ "shoes" ]
     - map: [ "ears" ]
-    - map: [ "outerClothing" ] # Imperial Space для корректного отображения РПС
+    - map: [ "outerClothing" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
-    # - map: [ "outerClothing" ]
     - map: [ "back" ]
     - map: [ "neck" ]
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
@@ -61,12 +61,10 @@
       sprite: "Effects/creampie.rsi"
       state: "creampie_human"
       visible: false
-# Imperial Medieval Surrender Begin
     - map: [ "surrender" ]
       sprite: Imperial/Medieval/Surrender/flag.rsi
       state: flag
       visible: false
-# Imperial Medieval Surrender End
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:
@@ -85,10 +83,9 @@
   - type: GenericVisualizer
     visuals:
       enum.CreamPiedVisuals.Creamed:
-        clownedon: # Not 'creampied' bc I can already see Skyrat complaining about conflicts.
+        clownedon:
           True: {visible: true}
           False: {visible: false}
-  # Imperial Medieval BadSmell Begin
       enum.BadSmellVisuals.Dirt:
         badsmell:
           0: {visible: false}
@@ -96,13 +93,10 @@
           2: {visible: true, state: dirty2}
           3: {visible: true, state: dirty3}
           4: {visible: true, state: dirty4}
-  # Imperial Medieval BadSmell End
-  # Imperial Medieval Surrender Begin
       enum.SurrenderVisuals.Key:
         surrender:
           True: {visible: true}
           False: {visible: false}
-  # Imperial Medieval Surrender End
   - type: StatusIcon
     bounds: -0.5,-0.5,0.5,0.5
   - type: RotationVisuals
@@ -111,9 +105,6 @@
   - type: TypingIndicator
   - type: SlowOnDamage
     speedModifierThresholds:
-      # Imperial Medieval Start
-      # 60: 0.7
-      # 80: 0.5
       10: 0.95
       20: 0.9
       30: 0.83
@@ -123,7 +114,6 @@
       70: 0.58
       80: 0.53
       90: 0.4
-      # imperial Medieval End
   - type: FloorOcclusion
   - type: RangedDamageSound
     soundGroups:
@@ -157,9 +147,8 @@
     - Flashed
     - RadiationProtection
     - Adrenaline
-    - MedievalFarmerBoost # Imperial medieval
+    - MedievalFarmerBoost
   - type: Identity
-  #- type: IdExaminable # Imperial Medieval
   - type: Hands
   - type: ComplexInteraction
   - type: Internals
@@ -219,17 +208,13 @@
   - type: Grammar
     attributes:
       proper: true
-  - type: MobPrice
-    price: 1500 # Kidnapping a living person and selling them for cred is a good move.
-    deathPenalty: 0.01 # However they really ought to be living and intact, otherwise they're worth 100x less.
   - type: Tag
     tags:
     - CanPilot
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
-  - type: InjectNeed # imperial hardsuit injection
-  # Imperial Medieval Start
+  - type: InjectNeed
   - type: MedievalMobTrigger
     fixtureId: "medieval-spawner"
   - type: MedievalIronHitSound
@@ -259,7 +244,7 @@
   - type: RDWeightSpeedModifier
     curve: !type:RDWeightModifierLinearCurve
       min: 90
-      max: 220 # CURSE OF 220
+      max: 220 # CURSE OF 220 DAAAA
   - type: RDWeightExamine
     examines:
       "[color=#ADFF2F]Налегке[/color]":
@@ -345,7 +330,6 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
-      # Imperial Medieval End
   - type: FireVisuals
     alternateState: Standing
   - type: FlashImmunity
@@ -370,4 +354,5 @@
   - type: Forged
   - type: Hunger
     baseDecayRate: 0.005
+  - type: TakeName
 

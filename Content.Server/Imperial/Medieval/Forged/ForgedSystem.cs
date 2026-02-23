@@ -10,8 +10,6 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Damage;
-using Content.Shared.Hands.EntitySystems;
-using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Forged;
 
@@ -44,6 +42,11 @@ public sealed class ForgedSystem : EntitySystem
             if (module.ModuleSlot == "head")
             {
                 var container = _containerSystem.EnsureContainer<ContainerSlot>(uid, "forgedhead");
+                _containerSystem.Insert(moduleUid, container);
+            }
+            if (module.ModuleSlot == "eyes")
+            {
+                var container = _containerSystem.EnsureContainer<ContainerSlot>(uid, "forgedeyes");
                 _containerSystem.Insert(moduleUid, container);
             }
             else if (module.ModuleSlot == "core")
@@ -137,7 +140,7 @@ public sealed class ForgedSystem : EntitySystem
             }
             else
             {
-                ForgedVisualsPacket packet = new ForgedVisualsPacket("blank", new ResPath("Imperial/Medieval/Forged/torsos.rsi"));
+                ForgedVisualsPacket packet = new ForgedVisualsPacket("blank", new ResPath("Imperial/Medieval/Forged/wooden.rsi"));
                 _appearanceSystem.SetData(ent, visualKey, packet, ent.Comp2);
             }
         }

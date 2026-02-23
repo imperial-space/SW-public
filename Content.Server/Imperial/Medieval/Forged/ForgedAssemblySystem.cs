@@ -7,6 +7,8 @@ using Robust.Shared.Containers;
 using Content.Shared.Verbs;
 using Content.Shared.Imperial.Medieval.MagicRunes.Components;
 using Robust.Shared.Utility;
+using Robust.Shared.Audio.Systems;
+using Robust.Shared.Audio;
 
 namespace Content.Server.Imperial.Medieval.Forged;
 
@@ -16,6 +18,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearanceSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -122,6 +125,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
             if (_containerSystem.Insert(args.Args.Used.Value, container))
             {
                 _popup.PopupEntity($"Вы успешно закрепили {Name(args.Args.Used.Value)}", uid, args.User);
+                _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/buckle.ogg"), uid);
                 FinalizeUpdate(uid, component);
             }
         }
@@ -134,6 +138,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
             if (_containerSystem.TryRemoveFromContainer(module))
             {
                 _popup.PopupEntity($"Вы извлекли {Name(module)}", uid, args.User);
+                _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/unbuckle.ogg"), uid);
                 FinalizeUpdate(uid, component);
             }
         }
@@ -179,7 +184,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
             }
             else
             {
-                ForgedVisualsPacket packet = new ForgedVisualsPacket("blank", new ResPath("Imperial/Medieval/Forged/torsos.rsi"));
+                ForgedVisualsPacket packet = new ForgedVisualsPacket("blank", new ResPath("Imperial/Medieval/Forged/wooden.rsi"));
                 _appearanceSystem.SetData(ent, visualKey, packet, ent.Comp2);
             }
         }
@@ -187,7 +192,6 @@ public sealed class ForgedAssemblySystem : EntitySystem
 
     private void TransferToMob(EntityUid uid, ForgedAssemblyComponent component, InteractUsingEvent args)
     {
-        // Проверка сборки...
         foreach (var slot in component.RequiredSlots)
         {
             if (!component.FittedModules.TryGetValue(slot, out var moduleUid) || !EntityManager.EntityExists(moduleUid))
@@ -201,6 +205,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
         var coordinates = xform.Coordinates;
 
         var mobUid = EntityManager.CreateEntityUninitialized("MedievalForgedMob", coordinates);
+        _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/scroll_use.ogg"), mobUid);
 
         if (TryComp<ForgedComponent>(mobUid, out var forgedComponent))
         {

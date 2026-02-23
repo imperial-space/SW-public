@@ -1,30 +1,39 @@
 {
     "version": 1,
     "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-    "copyright": "Made for the Imperial Space community, authors\u0027es discord nickname: Zakvielian",
+    "copyright": "Made for the Imperial Space community, authors discord nickname: Zakvielian, Passajir, Ungabunga, Piter Panker",
     "size": {
         "x": 32,
         "y": 32
     },
     "states": [
         {
-            "name": "base_left_leg",
+            "name": "golden_arm_icon"
+        },
+        {
+            "name": "golden_right_arm",
             "directions": 4
         },
         {
-            "name": "base_right_leg",
+            "name": "golden_left_arm",
             "directions": 4
         },
         {
-            "name": "wooden_left_leg",
+            "name": "golden_leg_icon"
+        },
+        {
+            "name": "golden_torso",
             "directions": 4
         },
         {
-            "name": "wooden_right_leg",
+            "name": "golden_head_icon"
+        },
+        {
+            "name": "golden_head",
             "directions": 4
         },
         {
-            "name": "goleden_leg_icon"
+            "name": "blank"
         },
         {
             "name": "golden_right_leg",

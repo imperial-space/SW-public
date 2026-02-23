@@ -6,16 +6,18 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/cores.rsi
+    sprite: Imperial/Medieval/Forged/eyes.rsi
     state: BaseEyes
   - type: Item
     size: Small
     heldPrefix: eyeballs
   - type: ForgedModule
     partSlot: eyes
-    layerState: eyes
-    rsiPath: Imperial/Medieval/Forged/cores.rsi
-    abilityId: ThermalEyes
+    layerState: blank
+    rsiPath: Imperial/Medieval/Forged/eyes.rsi
+    abilityId: AbilityExample
+
+###
 
 - type: entity
   id: ForgedTopazEyes
@@ -24,10 +26,55 @@
   description: "I see you!"
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/cores.rsi
-    state: BaseEyes
+    sprite: Imperial/Medieval/Forged/eyes.rsi
+    state: topaz_eyes_icon
   - type: ForgedModule
     partSlot: eyes
-    layerState: eyes
-    rsiPath: Imperial/Medieval/Forged/cores.rsi
-    abilityId: ThermalEyes
+    layerState: topaz_eyes
+    rsiPath: Imperial/Medieval/Forged/eyes.rsi
+    abilityId: MedicalEyes
+
+- type: entity
+  id: ForgedAdamEyes
+  parent: ForgedEyesBase
+  name: ForgedAdamEyes
+  description: "I see you!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/eyes.rsi
+    state: adam_eyes_icon
+  - type: ForgedModule
+    partSlot: eyes
+    layerState: adam_eyes
+    rsiPath: Imperial/Medieval/Forged/eyes.rsi
+    abilityId: NightVisionEyes
+
+- type: entity
+  id: ForgedSerdolickEyes
+  parent: ForgedEyesBase
+  name: ForgedSerdolickEyes
+  description: "I see you!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/eyes.rsi
+    state: serdolick_eyes_icon
+  - type: ForgedModule
+    partSlot: eyes
+    layerState: serdolick_eyes
+    rsiPath: Imperial/Medieval/Forged/eyes.rsi
+    abilityId: InvisibleVisionEyes
+
+- type: entity
+  id: ForgedBloodEyes
+  parent: ForgedEyesBase
+  name: ForgedBloodEyes
+  description: "I see you!"
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/eyes.rsi
+    state: blood_eyes_icon
+  - type: ForgedModule
+    partSlot: eyes
+    layerState: blood_eyes
+    rsiPath: Imperial/Medieval/Forged/eyes.rsi
+    abilityId: BloodVisionEyes

@@ -1,12 +1,12 @@
 - type: entity
-  id: ForgedRLegBase # Базовый торс-родитель для других торсов.
+  id: ForgedRLegBase
   name: ForgedRLegBase
   parent: BaseItem
   abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/legs.rsi
-    state: base_right_leg #
+    state: base_right_leg
     drawdepth: Items
   - type: ForgedModule
     partSlot: right_leg
@@ -14,19 +14,21 @@
     rsiPath: Imperial/Medieval/Forged/legs.rsi
 
 - type: entity
-  id: ForgedLLegBase # Базовый торс-родитель для других торсов.
+  id: ForgedLLegBase
   name: ForgedLLegBase
   parent: BaseItem
   abstract: true
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/legs.rsi
-    state: base_left_leg #
+    state: base_left_leg
     drawdepth: Items
   - type: ForgedModule
     partSlot: left_leg
     layerState: base_left_leg
     rsiPath: Imperial/Medieval/Forged/legs.rsi
+
+###
 
 - type: entity
   id: ForgedWoodenRLeg
@@ -34,13 +36,13 @@
   parent: ForgedRLegBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/legs.rsi
-    state: wooden_right_leg #
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: wooden_leg_icon
     drawdepth: Items
   - type: ForgedModule
     partSlot: right_leg
     layerState: wooden_right_leg
-    rsiPath: Imperial/Medieval/Forged/legs.rsi
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
     resistanceModifier: 0.015
     speedModifier: 0.05
 
@@ -50,13 +52,14 @@
   parent: ForgedLLegBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/legs.rsi
-    state: wooden_left_leg #
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    state: wooden_leg_icon
     drawdepth: Items
+    scale: -1, 1
   - type: ForgedModule
     partSlot: left_leg
     layerState: wooden_left_leg
-    rsiPath: Imperial/Medieval/Forged/legs.rsi
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
     resistanceModifier: 0.015
     speedModifier: 0.05
 
@@ -66,13 +69,13 @@
   parent: ForgedRLegBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/legs.rsi
-    state: RLegBase #
+    sprite: Imperial/Medieval/Forged/iron.rsi
+    state: iron_leg_icon #
     drawdepth: Items
   - type: ForgedModule
     partSlot: right_leg
-    layerState: RLegBase #
-    rsiPath: Imperial/Medieval/Forged/legs.rsi
+    layerState: iron_right_leg #
+    rsiPath: Imperial/Medieval/Forged/iron.rsi
     resistanceModifier: 0.03
     speedModifier: 0.1
 
@@ -82,13 +85,14 @@
   parent: ForgedLLegBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/legs.rsi
-    state: LLegBase #
+    sprite: Imperial/Medieval/Forged/iron.rsi
+    state: iron_leg_icon #
     drawdepth: Items
+    scale: -1, 1
   - type: ForgedModule
     partSlot: left_leg
-    layerState: LLegBase #
-    rsiPath: Imperial/Medieval/Forged/legs.rsi
+    layerState: iron_left_leg #
+    rsiPath: Imperial/Medieval/Forged/iron.rsi
     resistanceModifier: 0.03
     speedModifier: 0.1
 
@@ -98,13 +102,13 @@
   parent: ForgedRLegBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/legs.rsi
-    state: goleden_leg_icon
+    sprite: Imperial/Medieval/Forged/golden.rsi
+    state: golden_leg_icon
     drawdepth: Items
   - type: ForgedModule
     partSlot: right_leg
     layerState: golden_right_leg
-    rsiPath: Imperial/Medieval/Forged/legs.rsi
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
     resistanceModifier: 0.045
     speedModifier: 0.15
 
@@ -114,13 +118,13 @@
   parent: ForgedLLegBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/legs.rsi
-    state: goleden_leg_icon
+    sprite: Imperial/Medieval/Forged/golden.rsi
+    state: golden_leg_icon
     drawdepth: Items
     scale: -1, 1
   - type: ForgedModule
     partSlot: left_leg
     layerState: golden_left_leg
-    rsiPath: Imperial/Medieval/Forged/legs.rsi
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
     resistanceModifier: 0.045
     speedModifier: 0.15

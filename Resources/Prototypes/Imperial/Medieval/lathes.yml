@@ -1072,6 +1072,22 @@
     - ForgedWoodenLArmCraft
     - ForgedWoodenRLegCraft
     - ForgedWoodenLLegCraft
+    - ForgedIronHeadCraft
+    - ForgedIronTorsoCraft
+    - ForgedIronRArmCraft
+    - ForgedIronLArmCraft
+    - ForgedIronRLegCraft
+    - ForgedIronLLegCraft
+    - ForgedGoldenHeadCraft
+    - ForgedGoldenTorsoCraft
+    - ForgedGoldenRArmCraft
+    - ForgedGoldenLArmCraft
+    - ForgedGoldenRLegCraft
+    - ForgedGoldenLLegCraft
+    - ForgedEyesSerdolickCraft
+    - ForgedEyesAdamCraft
+    - ForgedEyesTopazCraft
+    - ForgedEyesBloodCraft
 
 - type: entity
   parent: CP14BaseWorkbench

@@ -85,9 +85,11 @@ public sealed class HealingSystem : EntitySystem
 
         DamageSpecifier heal = healing.Damage;
 
+        // Start Imperial Forged
         ProtoId<TagPrototype> tag = "ForgedHealItem";
         if (HasComp<ForgedComponent>(target.Owner) && !_tag.HasTag(args.Used.Value, tag))
             heal *= 0.5;
+        // End Imperial Forged
 
         var healed = _damageable.TryChangeDamage(target.Owner, heal * _damageable.UniversalTopicalsHealModifier, true, origin: args.Args.User);
 

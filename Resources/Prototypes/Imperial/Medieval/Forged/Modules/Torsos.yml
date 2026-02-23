@@ -1,18 +1,20 @@
 - type: entity
-  id: ForgedTorsoBase # Базовый торс-родитель для других торсов.
+  id: ForgedTorsoBase
   name: ForgedTorsoBase
   abstract: true
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/torsos.rsi
+    sprite: Imperial/Medieval/Forged/wooden.rsi
     drawdepth: Items
+    noRot: true
     layers:
-    - state: base_torso
+    - state: wooden_torso
       map: ["torso"]
     - state: blank
       map: ["head"]
     - state: blank
       map: ["eyes"]
+      visible: false
     - state: blank
       map: ["right_arm"]
     - state: blank
@@ -50,7 +52,7 @@
     requiredSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg" ]
   - type: ForgedModule
     partSlot: torso
-    layerState: base_torso
+    layerState: wooden_torso
     rsiPath: Imperial/Medieval/Forged/torsos.rsi
 
 - type: entity
@@ -59,7 +61,7 @@
   parent: ForgedTorsoBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/torsos.rsi
+    sprite: Imperial/Medieval/Forged/wooden.rsi
     layers:
     - state: wooden_torso
       map: ["torso"]
@@ -87,7 +89,7 @@
   - type: ForgedModule
     partSlot: torso
     layerState: wooden_torso
-    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+    rsiPath: Imperial/Medieval/Forged/wooden.rsi
     resistanceModifier: 0.04
     speedModifier: -0.1
 
@@ -97,10 +99,10 @@
   parent: ForgedTorsoBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/torsos.rsi
-    state: TorsoBase
+    sprite: Imperial/Medieval/Forged/iron.rsi
+    state: iron_torso
     layers:
-    - state: base_torso
+    - state: iron_torso
       map: ["torso"]
     - state: blank
       map: ["head"]
@@ -122,11 +124,11 @@
     - state: blank
       map: ["left_leg"]
   - type: ForgedAssembly
-    torso: ForgedTorsoBase
+    torso: ForgedIronTorso
   - type: ForgedModule
     partSlot: torso
-    layerState: TorsoBase
-    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+    layerState: iron_torso
+    rsiPath: Imperial/Medieval/Forged/iron.rsi
     resistanceModifier: 0.08
     speedModifier: -0.2
 
@@ -136,7 +138,7 @@
   parent: ForgedTorsoBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Forged/torsos.rsi
+    sprite: Imperial/Medieval/Forged/golden.rsi
     state: TorsoBase
     layers:
     - state: golden_torso
@@ -165,6 +167,6 @@
   - type: ForgedModule
     partSlot: torso
     layerState: golden_torso
-    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
     resistanceModifier: 0.12
     speedModifier: -0.3

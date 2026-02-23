@@ -1,15 +1,64 @@
 - type: entity
-  id: ThermalEyesAction
+  id: BloodEyesAction
   name: ThermalEyes
   description: papa pepe gemabodi pava peve djast enavo
   components:
   - type: Action
     itemIconStyle: BigAction
     icon:
-      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi #
       state: termaloff
     iconOn:
       sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
       state: termalon
   - type: InstantAction
-    event: !type:ThermalEyesActionEvent
+    event: !type:BloodEyesActionEvent
+
+- type: entity
+  id: MedicalEyesAction
+  name: MedicalEyes
+  description: papa pepe gemabodi pava peve djast enavo
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi #
+      state: termaloff
+    iconOn:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: termalon
+  - type: InstantAction
+    event: !type:MedicalEyesActionEvent
+
+- type: entity
+  id: InvisibleVisionEyesAction
+  name: AnalizeEyes
+  description: papa pepe gemabodi pava peve djast enavo
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi #
+      state: termaloff
+    iconOn:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: termalon
+  - type: InstantAction
+    event: !type:InvisibleVisionEyesActionEvent
+
+- type: entity
+  id: NightVisionEyesAction
+  name: NightVisionEyes
+  description: papa pepe gemabodi pava peve djast enavo
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi #
+      state: termaloff
+    iconOn:
+      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
+      state: termalon
+  - type: InstantAction
+    event: !type:NightVisionEyesActionEvent
+
