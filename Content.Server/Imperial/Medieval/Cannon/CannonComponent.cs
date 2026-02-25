@@ -1,6 +1,7 @@
 using Content.Shared.Whitelist;
 using Robust.Shared.Audio;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.ViewVariables;
 
 namespace Content.Server.Imperial.Medieval.Cannon;
@@ -19,6 +20,15 @@ public sealed partial class CannonComponent : Component
 
     [DataField("loadAmmoSound")]
     public SoundSpecifier? LoadAmmoSound;
+
+    [DataField("shotSmokePrototype")]
+    public EntProtoId ShotSmokePrototype = "Smoke";
+
+    [DataField("shotSmokeDuration")]
+    public TimeSpan ShotSmokeDuration = TimeSpan.FromSeconds(2);
+
+    [DataField("shotSmokeSpreadAmount")]
+    public int ShotSmokeSpreadAmount = 5;
 
     [ViewVariables]
     public EntityUid? LoadedPayload;

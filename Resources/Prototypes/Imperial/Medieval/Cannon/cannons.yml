@@ -33,11 +33,14 @@
     soundGunshot:
       path: /Audio/Imperial/Medieval/Cannon/cannon_shot.ogg
       params:
-        volume: 8
+        volume: 10.4
         maxDistance: 30
   - type: Canon
     loadAmmoSound:
       path: /Audio/Imperial/Medieval/Cannon/cannonball_insert.ogg
+    shotSmokePrototype: Smoke
+    shotSmokeDuration: 2
+    shotSmokeSpreadAmount: 5
     ammoWhitelist:
       tags:
       - CannonBall

@@ -1,7 +1,11 @@
+using Content.Server.Fluids.EntitySystems;
 using Content.Server.Weapons.Ranged.Systems;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Coordinates.Helpers;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
 using Content.Shared.Imperial.Medieval.Cannon;
+using Content.Shared.Imperial.Medieval.Igniter;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Content.Shared.Temperature;
@@ -21,6 +25,7 @@ public sealed class CannonSystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containers = default!;
     [Dependency] private readonly GunSystem _gunSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SmokeSystem _smoke = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
 
     public override void Initialize()
@@ -33,6 +38,7 @@ public sealed class CannonSystem : EntitySystem
         SubscribeLocalEvent<CannonComponent, ContainerIsRemovingAttemptEvent>(OnAmmoRemoveAttempt);
         SubscribeLocalEvent<CannonComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<CannonComponent, InteractUsingEvent>(OnInteractUsing, before: [typeof(SharedGunSystem)]);
+        SubscribeLocalEvent<CannonComponent, IgniteEvent>(OnIgnite);
 
         SubscribeLocalEvent<CannonComponent, CannonRamrodDoAfterEvent>(OnRamrodDoAfter);
         SubscribeLocalEvent<CannonComponent, CannonGunpowderDoAfterEvent>(OnGunpowderDoAfter);
@@ -139,6 +145,11 @@ public sealed class CannonSystem : EntitySystem
 
         var stateText = Loc.GetString(GetStateExamineLocKey(ent.Comp.State));
         args.PushMarkup($"[color=#C6B28A]{stateText}[/color]");
+    }
+
+    private void OnIgnite(Entity<CannonComponent> ent, ref IgniteEvent args)
+    {
+        TryFire(ent, null);
     }
 
     private bool TryStartRamrodDoAfter(Entity<CannonComponent> ent, EntityUid user, EntityUid used)
@@ -302,7 +313,7 @@ public sealed class CannonSystem : EntitySystem
         return true;
     }
 
-    private bool TryFire(Entity<CannonComponent> ent, EntityUid user)
+    private bool TryFire(Entity<CannonComponent> ent, EntityUid? user)
     {
         if (ent.Comp.State != CannonState.ReadyToFire)
             return false;
@@ -334,17 +345,37 @@ public sealed class CannonSystem : EntitySystem
         var fromCoordinates = Transform(ent.Owner).Coordinates;
         var toCoordinates = new EntityCoordinates(ent.Owner, gun.DefaultDirection);
         _gunSystem.Shoot(ent.Owner, gun, payload, fromCoordinates, toCoordinates, out _, user);
+        SpawnShotSmoke(ent, gun);
 
         // GunSystem uses PlayPredicted for gunshots, which excludes the initiating user on the server.
         // Cannons fire via server-side interaction (no client gun prediction), so explicitly play the shot for the shooter.
         var gunshotSound = gun.SoundGunshotModified ?? gun.SoundGunshot;
-        if (gunshotSound != null)
-            _audio.PlayEntity(gunshotSound, user, ent.Owner);
+        if (gunshotSound != null && user != null)
+            _audio.PlayEntity(gunshotSound, user.Value, ent.Owner);
 
         ent.Comp.LoadedPayload = null;
         ent.Comp.State = CannonState.Dirty;
         Dirty(ent);
         return true;
+    }
+
+    private void SpawnShotSmoke(Entity<CannonComponent> ent, GunComponent gun)
+    {
+        var direction = gun.DefaultDirection;
+        if (direction == default)
+            return;
+
+        var smokeCoords = new EntityCoordinates(ent.Owner, direction.Normalized())
+            .SnapToGrid(EntityManager);
+
+        var smoke = Spawn(ent.Comp.ShotSmokePrototype, smokeCoords);
+        if (!TryComp<SmokeComponent>(smoke, out var smokeComp))
+        {
+            Del(smoke);
+            return;
+        }
+
+        _smoke.StartSmoke(smoke, new Solution(), (float) ent.Comp.ShotSmokeDuration.TotalSeconds, ent.Comp.ShotSmokeSpreadAmount, smokeComp);
     }
 
     private static bool TryGetRamrodNextState(CannonState current, out CannonState next)
