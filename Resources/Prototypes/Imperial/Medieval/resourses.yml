@@ -99,7 +99,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalMagicCrystallReagent
-        Quantity: 2
+        Quantity: 4
 
 - type: entity
   name: MedievalTopazOre
@@ -939,7 +939,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalMagicCrystallReagent
-        Quantity: 2
+        Quantity: 4
 
 
 - type: entity
@@ -1035,7 +1035,7 @@
     juiceSolution:
       reagents:
       - ReagentId: MedievalMagicCrystallReagent
-        Quantity: 2
+        Quantity: 4
 
 - type: material
   id: MedievalEbonitIngot

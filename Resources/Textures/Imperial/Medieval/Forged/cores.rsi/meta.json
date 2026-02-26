@@ -37,6 +37,9 @@
         {
             "name": "topaz_core",
             "directions": 4
+        },
+        {
+            "name": "blank"
         }
     ]
 }

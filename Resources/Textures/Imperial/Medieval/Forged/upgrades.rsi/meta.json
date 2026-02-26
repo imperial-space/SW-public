@@ -1,0 +1,25 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made for the Imperial Space community, authors discord nickname: Zakvielian, Passajir, Ungabunga, Piter Panker",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "iron_arm_blade_item"
+        },
+        {
+            "name": "iron_right_arm_blade",
+            "directions": 4
+        },
+        {
+            "name": "iron_left_arm_blade",
+            "directions": 4
+        },
+        {
+            "name": "iron_arm_blade_item1"
+        }
+    ]
+}

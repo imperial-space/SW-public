@@ -65,6 +65,8 @@
       sprite: Imperial/Medieval/Surrender/flag.rsi
       state: flag
       visible: false
+    - state: blank
+      map : [ "upgrade1" ]
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:

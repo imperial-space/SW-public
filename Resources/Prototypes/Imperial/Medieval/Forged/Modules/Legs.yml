@@ -111,6 +111,7 @@
     rsiPath: Imperial/Medieval/Forged/golden.rsi
     resistanceModifier: 0.045
     speedModifier: 0.15
+    abilityId: Boost
 
 - type: entity
   id: ForgedGoldenLLeg
@@ -128,3 +129,4 @@
     rsiPath: Imperial/Medieval/Forged/golden.rsi
     resistanceModifier: 0.045
     speedModifier: 0.15
+    abilityId: BoostReq

@@ -22,14 +22,11 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
         {
             if (AppearanceSystem.TryGetData<ForgedVisualsPacket>(uid, visualKey, out var packet, appearance)) SetLayer(uid, visualKey, packet, sprite);
         }
-
-        _sprite.LayerSetVisible((uid, sprite), HumanoidVisualLayers.LFoot, false);
-        _sprite.LayerSetVisible((uid, sprite), HumanoidVisualLayers.RFoot, false);
     }
 
     private void SetLayer(EntityUid uid, ForgedVisuals partKey, ForgedVisualsPacket packet, SpriteComponent sprite)
     {
-        if (partKey != ForgedVisuals.core)
+        if (partKey != ForgedVisuals.core && partKey != ForgedVisuals.upgrade1)
         {
             HumanoidVisualLayers? targetLayer = partKey switch
             {
@@ -42,8 +39,8 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
                 ForgedVisuals.left_hand  => HumanoidVisualLayers.LHand,
                 ForgedVisuals.right_leg  => HumanoidVisualLayers.RLeg,
                 ForgedVisuals.left_leg   => HumanoidVisualLayers.LLeg,
-
-                ForgedVisuals.core       => null,
+                ForgedVisuals.right_foot  => HumanoidVisualLayers.RFoot,
+                ForgedVisuals.left_foot   => HumanoidVisualLayers.LFoot,
 
                 _ => null
             };

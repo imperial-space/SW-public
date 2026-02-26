@@ -1,64 +1,63 @@
 - type: entity
   id: BloodEyesAction
-  name: ThermalEyes
-  description: papa pepe gemabodi pava peve djast enavo
+  name: Кровавый взор
+  description: Выделяет живых существ кровавым окрасом
   components:
   - type: Action
     itemIconStyle: BigAction
     icon:
-      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi #
-      state: termaloff
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: blood_eyes_off
     iconOn:
-      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
-      state: termalon
+      sprite: Imperial/Medieval/Forged/abilities.rsi
+      state: blood_eyes_on
   - type: InstantAction
-    event: !type:BloodEyesActionEvent
+    event: !type:ForgedBloodEyesActionEvent
 
 - type: entity
-  id: MedicalEyesAction
-  name: MedicalEyes
-  description: papa pepe gemabodi pava peve djast enavo
+  id: BoostAction
+  name: Ускорение
+  description: Увеличивает вашу скорость, взамен делает вас хрупким
   components:
   - type: Action
     itemIconStyle: BigAction
+    useDelay: 30
     icon:
-      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi #
-      state: termaloff
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: golden_leg_off
     iconOn:
-      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
-      state: termalon
+      sprite: Imperial/Medieval/Forged/abilities.rsi
+      state: golden_leg_on
   - type: InstantAction
-    event: !type:MedicalEyesActionEvent
+    event: !type:ForgedBoostActionEvent
 
 - type: entity
-  id: InvisibleVisionEyesAction
-  name: AnalizeEyes
-  description: papa pepe gemabodi pava peve djast enavo
+  id: SilaAction
+  name: Усиление
+  description: Увеличивает вашу силу, взамен делает вас медленным
   components:
   - type: Action
     itemIconStyle: BigAction
+    useDelay: 30
     icon:
-      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi #
-      state: termaloff
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: golden_arm_off
     iconOn:
-      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
-      state: termalon
+      sprite: Imperial/Medieval/Forged/abilities.rsi
+      state: golden_arm_on
   - type: InstantAction
-    event: !type:InvisibleVisionEyesActionEvent
+    event: !type:ForgedSilaActionEvent
 
 - type: entity
-  id: NightVisionEyesAction
-  name: NightVisionEyes
-  description: papa pepe gemabodi pava peve djast enavo
+  id: RepairAction
+  name: Восстановление
+  description: Восстанавливает часть повреждений, но делает вас недееспособным некоторое время
   components:
   - type: Action
     itemIconStyle: BigAction
+    useDelay: 60
     icon:
-      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi #
-      state: termaloff
-    iconOn:
-      sprite: Imperial/Medieval/Interface/Werewolf/actions.rsi
-      state: termalon
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: golden_torso
   - type: InstantAction
-    event: !type:NightVisionEyesActionEvent
-
+    event: !type:ForgedRepairActionEvent

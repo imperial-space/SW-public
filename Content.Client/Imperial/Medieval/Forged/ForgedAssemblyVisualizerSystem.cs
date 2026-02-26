@@ -12,10 +12,10 @@ public sealed class ForgedAssemblyVisualizerSystem : VisualizerSystem<ForgedAsse
     {
         if (args.Sprite == null) return;
 
-        UpdateAppearance(uid, component, args.Sprite, args.Component);
+        UpdateAppearance(uid, args.Sprite, args.Component);
     }
 
-    private void UpdateAppearance(EntityUid uid, ForgedAssemblyComponent component, SpriteComponent sprite, AppearanceComponent appearance)
+    private void UpdateAppearance(EntityUid uid, SpriteComponent sprite, AppearanceComponent appearance)
     {
         foreach (ForgedVisuals visualKey in Enum.GetValues(typeof(ForgedVisuals)))
         {
@@ -28,8 +28,8 @@ public sealed class ForgedAssemblyVisualizerSystem : VisualizerSystem<ForgedAsse
     {
         if (_sprite.LayerMapTryGet((uid, sprite), layerName, out var index, false))
         {
-            _sprite.LayerSetRsiState((uid, sprite), index, packet.State);
             _sprite.LayerSetRsi((uid, sprite), index, packet.RsiPath);
+            _sprite.LayerSetRsiState((uid, sprite), index, packet.State);
             _sprite.LayerSetVisible((uid, sprite), index, true);
         }
     }

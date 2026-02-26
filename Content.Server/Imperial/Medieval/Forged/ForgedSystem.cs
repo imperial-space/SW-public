@@ -10,6 +10,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Damage;
+using Content.Shared.Interaction.Components;
 
 namespace Content.Shared.Forged;
 
@@ -37,14 +38,14 @@ public sealed class ForgedSystem : EntitySystem
     {
         foreach (var (state, moduleUid) in component.FittedModules)
         {
-            if (!TryComp<ForgedModuleComponent>(moduleUid, out var module))
-                continue;
+            if (!TryComp<ForgedModuleComponent>(moduleUid, out var module)) continue;
+
             if (module.ModuleSlot == "head")
             {
                 var container = _containerSystem.EnsureContainer<ContainerSlot>(uid, "forgedhead");
                 _containerSystem.Insert(moduleUid, container);
             }
-            if (module.ModuleSlot == "eyes")
+            else if (module.ModuleSlot == "eyes")
             {
                 var container = _containerSystem.EnsureContainer<ContainerSlot>(uid, "forgedeyes");
                 _containerSystem.Insert(moduleUid, container);
@@ -58,8 +59,10 @@ public sealed class ForgedSystem : EntitySystem
                 var container = _containerSystem.EnsureContainer<ContainerSlot>(uid, module.ModuleSlot);
                 _containerSystem.Insert(moduleUid, container);
             }
-
-            if (module.AbilityId != null) _forgedAbility.ExecuteAbility(uid, moduleUid, module.AbilityId);
+            Timer.Spawn(0, () =>
+            {
+                if (module.AbilityId != null) _forgedAbility.ExecuteAbility(uid, moduleUid, module.AbilityId);
+            });
         }
 
         if (TryComp<AppearanceComponent>(uid, out var appearance)) UpdateAppearance((uid, component, appearance));
@@ -122,6 +125,7 @@ public sealed class ForgedSystem : EntitySystem
                 {
                     QueueDel(moduleUid);
                 }
+
             }
         }
     }
@@ -152,9 +156,8 @@ public sealed class ForgedSystem : EntitySystem
 
         foreach (var (state, moduleUid) in component.FittedModules)
         {
-            if (!TryComp<ForgedModuleComponent>(moduleUid, out var module)) continue;
-
-            speedMod += module.SpeedModifier;
+            if (TryComp<ForgedModuleComponent>(moduleUid, out var module))
+                speedMod += module.SpeedModifier;
         }
 
         return Math.Max(0.1f, speedMod);
@@ -166,9 +169,8 @@ public sealed class ForgedSystem : EntitySystem
 
         foreach (var (state, moduleUid) in component.FittedModules)
         {
-            if (!TryComp<ForgedModuleComponent>(moduleUid, out var module)) continue;
-
-            damageMod -= module.ResistanceModifier;
+            if (TryComp<ForgedModuleComponent>(moduleUid, out var module))
+                damageMod -= module.ResistanceModifier;
         }
 
         return Math.Max(0.01f, damageMod);

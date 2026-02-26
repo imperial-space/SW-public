@@ -12,10 +12,10 @@
     size: Small
     heldPrefix: eyeballs
   - type: ForgedModule
+    requiredModule: head
     partSlot: eyes
     layerState: blank
     rsiPath: Imperial/Medieval/Forged/eyes.rsi
-    abilityId: AbilityExample
 
 ###
 

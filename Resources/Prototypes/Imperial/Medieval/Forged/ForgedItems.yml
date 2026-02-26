@@ -1,3 +1,4 @@
+
 - type: entity
   name: MedievalMagicDust
   description: Пыль из магических камней
@@ -106,3 +107,40 @@
   effects:
     - !type:CreateEntityReactionEffect
       entity: MedievalMagicDust
+
+- type: entity
+  name: ForgedArmBlade
+  parent: [ BaseItem, BaseOneHandedCharged ]
+  id: ForgedArmBlade
+  description: An ancient war blade.
+  components:
+  - type: Sharp
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_blade_item
+  - type: MeleeParry
+    parryChanse: 0.5
+  - type: MeleeWeapon
+    clickDamageModifier: 1.5
+    wideAnimationRotation: -140
+    attackRate: 0.7
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    resetOnHandSelected: false
+    cPAnimationOffset: 1
+    damage:
+      types:
+        Slash: 20
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Imperial/Medieval/sword_swing.ogg
+  - type: Item
+    size: Normal
+  - type: DisarmMalus
+    malus: 1
+  - type: StaminaDamageOnHit
+    damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
+  - type: Unremoveable

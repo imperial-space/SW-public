@@ -1,0 +1,53 @@
+- type: entity
+  id: ForgedIronLArm
+  name: ForgedIronLArm
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/iron.rsi
+    state: iron_arm_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_arm
+    layerState: iron_left_arm
+    rsiPath: Imperial/Medieval/Forged/iron.rsi
+    resistanceModifier: 0.02
+    speedModifier: -0.07
+
+- type: entity
+  id: ForgedIronRArmBlade
+  name: ForgedIronRArmBlade
+  parent: ForgedRLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_blade_item1
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_hand
+    layerState: iron_right_arm_blade
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.02
+    speedModifier: -0.07
+    abilityId: Right_blade
+    requiredModule: right_arm
+
+- type: entity
+  id: ForgedIronLArmBlade
+  name: ForgedIronLArmBlade
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_blade_item1
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_hand
+    layerState: iron_left_arm_blade
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.02
+    speedModifier: -0.07
+    abilityId: Left_blade
+    requiredModule: left_arm

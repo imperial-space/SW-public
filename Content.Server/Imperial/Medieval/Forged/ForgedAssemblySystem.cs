@@ -34,7 +34,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
 
     private void OnCompInit(EntityUid uid, ForgedAssemblyComponent component, ComponentInit args)
     {
-        foreach (string layer in component.RequiredSlots)
+        foreach (string layer in component.AvaibleSlots)
         {
             _containerSystem.EnsureContainer<ContainerSlot>(uid, layer);
             component.FittedModules.Add(layer, EntityUid.Invalid);
@@ -155,7 +155,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
     private void UpdateFittedModules(EntityUid uid, ForgedAssemblyComponent component)
     {
         component.FittedModules.Clear();
-        foreach (string layer in component.RequiredSlots)
+        foreach (string layer in component.AvaibleSlots)
         {
             component.FittedModules.Add(layer, EntityUid.Invalid);
         }
@@ -192,7 +192,7 @@ public sealed class ForgedAssemblySystem : EntitySystem
 
     private void TransferToMob(EntityUid uid, ForgedAssemblyComponent component, InteractUsingEvent args)
     {
-        foreach (var slot in component.RequiredSlots)
+        foreach (var slot in component.RequireSlots)
         {
             if (!component.FittedModules.TryGetValue(slot, out var moduleUid) || !EntityManager.EntityExists(moduleUid))
             {

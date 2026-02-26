@@ -6,7 +6,6 @@
   - type: Sprite
     sprite: Imperial/Medieval/Forged/wooden.rsi
     drawdepth: Items
-    noRot: true
     layers:
     - state: wooden_torso
       map: ["torso"]
@@ -14,7 +13,6 @@
       map: ["head"]
     - state: blank
       map: ["eyes"]
-      visible: false
     - state: blank
       map: ["right_arm"]
     - state: blank
@@ -30,6 +28,12 @@
       map: ["right_leg"]
     - state: blank
       map: ["left_leg"]
+    - state: blank
+      map: ["right_foot"]
+    - state: blank
+      map: ["left_foot"]
+    - state: blank
+      map : ["upgrade1"]
   - type: Clickable
   - type: InteractionOutline
   - type: Physics
@@ -49,7 +53,8 @@
   - type: Appearance
   - type: ForgedAssembly
     torso: ForgedTorsoBase
-    requiredSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg" ]
+    avaibleSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg", "right_hand", "left_hand", "right_foot", "left_foot" ]
+    requireSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg" ]
   - type: ForgedModule
     partSlot: torso
     layerState: wooden_torso
@@ -84,6 +89,12 @@
       map: ["right_leg"]
     - state: blank
       map: ["left_leg"]
+    - state: blank
+      map: ["right_foot"]
+    - state: blank
+      map: ["left_foot"]
+    - state: blank
+      map : ["upgrade1"]
   - type: ForgedAssembly
     torso: ForgedWoodenTorso
   - type: ForgedModule
@@ -123,6 +134,12 @@
       map: ["right_leg"]
     - state: blank
       map: ["left_leg"]
+    - state: blank
+      map: ["right_foot"]
+    - state: blank
+      map: ["left_foot"]
+    - state: blank
+      map : ["upgrade1"]
   - type: ForgedAssembly
     torso: ForgedIronTorso
   - type: ForgedModule
@@ -162,6 +179,12 @@
       map: ["right_leg"]
     - state: blank
       map: ["left_leg"]
+    - state: blank
+      map: ["right_foot"]
+    - state: blank
+      map: ["left_foot"]
+    - state: blank
+      map : ["upgrade1"]
   - type: ForgedAssembly
     torso: ForgedGoldenTorso
   - type: ForgedModule
@@ -170,3 +193,4 @@
     rsiPath: Imperial/Medieval/Forged/golden.rsi
     resistanceModifier: 0.12
     speedModifier: -0.3
+    abilityId: Repair

@@ -16,6 +16,9 @@ public enum ForgedVisuals : byte
     left_hand,
     right_leg,
     left_leg,
+    right_foot,
+    left_foot,
     core,
-    torso
+    torso,
+    upgrade1
 }

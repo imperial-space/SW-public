@@ -71,7 +71,7 @@
   id: ForgedIronHeadCraft
   result: ForgedIronHead
   stacks:
-    MedievalSteelIngot: 2
+    MedievalIronIngot: 2
     MedievalRivets: 1
     MedievalIronPlateSmall: 2
     MedievalMagicGlina: 1
@@ -80,7 +80,7 @@
   id: ForgedIronTorsoCraft
   result: ForgedIronTorso
   stacks:
-    MedievalSteelIngot: 5
+    MedievalIronIngot: 5
     MedievalIronPlate: 6
     MedievalRivets: 2
     MedievalIronPlateSmall: 12
@@ -90,7 +90,7 @@
   id: ForgedIronRArmCraft
   result: ForgedIronRArm
   stacks:
-    MedievalSteelIngot: 2
+    MedievalIronIngot: 2
     MedievalGear: 2
     MedievalIronPlateSmall: 2
     MedievalShoulder: 1
@@ -101,7 +101,7 @@
   id: ForgedIronLArmCraft
   result: ForgedIronLArm
   stacks:
-    MedievalSteelIngot: 2
+    MedievalIronIngot: 2
     MedievalGear: 2
     MedievalIronPlateSmall: 2
     MedievalShoulder: 1
@@ -112,7 +112,7 @@
   id: ForgedIronRLegCraft
   result: ForgedIronRLeg
   stacks:
-    MedievalSteelIngot: 2
+    MedievalIronIngot: 2
     MedievalGear: 2
     MedievalIronPlateSmall: 2
     MedievalRivets: 4
@@ -122,7 +122,7 @@
   id: ForgedIronLLegCraft
   result: ForgedIronLLeg
   stacks:
-    MedievalSteelIngot: 2
+    MedievalIronIngot: 2
     MedievalGear: 2
     MedievalIronPlateSmall: 2
     MedievalRivets: 4
@@ -162,7 +162,7 @@
 
 - type: CP14Recipe
   id: ForgedGoldenRLegCraft
-  result: ForgedWoodenRLeg
+  result: ForgedGoldenRLeg
   stacks:
     MedievalGold: 1
   entities:
@@ -170,7 +170,7 @@
 
 - type: CP14Recipe
   id: ForgedGoldenLLegCraft
-  result: ForgedWoodenLLeg
+  result: ForgedGoldenLLeg
   stacks:
     MedievalGold: 1
   entities:
@@ -208,26 +208,37 @@
   id: ForgedEyesSerdolickCraft
   result: ForgedSerdolickEyes
   stacks:
-    MedievalFireSerdolick: 2
-    MedievalMagicGlina: 1
+    MedievalFireSerdolick: 1
 
 - type: CP14Recipe
   id: ForgedEyesAdamCraft
   result: ForgedAdamEyes
   stacks:
-    MedievalAdam: 2
-    MedievalMagicGlina: 1
+    MedievalAdam: 1
 
 - type: CP14Recipe
   id: ForgedEyesTopazCraft
   result: ForgedTopazEyes
   stacks:
-    MedievalTopaz: 2
-    MedievalMagicGlina: 1
+    MedievalTopaz: 1
 
 - type: CP14Recipe
   id: ForgedEyesBloodCraft
   result: ForgedBloodEyes
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: ForgedIronRArmBladeCraft
+  result: ForgedIronRArmBlade
   stacks:
-    MedievalGold: 2
-    MedievalMagicGlina: 1
+    MedievalIronPlateSmall: 2
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedIronLArmBladeCraft
+  result: ForgedIronLArmBlade
+  stacks:
+    MedievalIronPlateSmall: 2
+    MedievalSteelIngot: 1
+

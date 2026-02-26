@@ -59,3 +59,4 @@
     rsiPath: Imperial/Medieval/Forged/golden.rsi
     resistanceModifier: 0.03
     speedModifier: -0.09
+    abilityId: VerySmart

@@ -1,3 +1,4 @@
+using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Medieval.Forged;
@@ -31,16 +32,19 @@ public sealed partial class ForgedModuleComponent : Component
     public ResPath RsiPath = ResPath.Empty;
 
     /// <summary>
-    /// Будет ли эта деталь давать особые способности (на будущее).
+    /// Модификатор скорости кованного.
     /// </summary>
     [DataField("speedModifier")]
     public float SpeedModifier = 0;
 
+    /// <summary>
+    /// Модификатор резиста кованного.
+    /// </summary>
     [DataField("resistanceModifier")]
     public float ResistanceModifier = 0;
 
     /// <summary>
-    /// Будет ли эта деталь давать особые способности (на будущее).
+    /// Будет ли эта деталь давать особые способности.
     /// </summary>
     [DataField("abilityId")]
     public string? AbilityId;

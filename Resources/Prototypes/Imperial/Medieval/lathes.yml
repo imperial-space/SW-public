@@ -1088,6 +1088,8 @@
     - ForgedEyesAdamCraft
     - ForgedEyesTopazCraft
     - ForgedEyesBloodCraft
+    - ForgedIronRArmBladeCraft
+    - ForgedIronLArmBladeCraft
 
 - type: entity
   parent: CP14BaseWorkbench

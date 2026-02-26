@@ -1,0 +1,32 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made for the Imperial Space community, authors\u0027es discord nickname: Zakvielian",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "blood_eyes_on"
+        },
+        {
+            "name": "blood_eyes_off"
+        },
+        {
+            "name": "golden_torso"
+        },
+        {
+            "name": "golden_arm_off"
+        },
+        {
+            "name": "golden_arm_on"
+        },
+        {
+            "name": "golden_leg_off"
+        },
+        {
+            "name": "golden_leg_on"
+        }
+    ]
+}
