@@ -1,16 +1,18 @@
 - type: entity
   id: BloodEyesAction
   name: Кровавый взор
-  description: Выделяет живых существ кровавым окрасом
+  description: Выделяет живых существ
   components:
   - type: Action
     itemIconStyle: BigAction
+    useDelay: 1
+    sound: /Audio/Effects/card_drag.ogg
     icon:
       sprite: Imperial/Medieval/Forged/abilities.rsi #
-      state: blood_eyes_off
+      state: ability_bloody_eyes_off
     iconOn:
       sprite: Imperial/Medieval/Forged/abilities.rsi
-      state: blood_eyes_on
+      state: ability_bloody_eyes
   - type: InstantAction
     event: !type:ForgedBloodEyesActionEvent
 
@@ -22,12 +24,13 @@
   - type: Action
     itemIconStyle: BigAction
     useDelay: 30
+    sound: /Audio/Effects/card_drag.ogg
     icon:
       sprite: Imperial/Medieval/Forged/abilities.rsi #
-      state: golden_leg_off
+      state: ability_speed_off
     iconOn:
       sprite: Imperial/Medieval/Forged/abilities.rsi
-      state: golden_leg_on
+      state: ability_speed
   - type: InstantAction
     event: !type:ForgedBoostActionEvent
 
@@ -39,12 +42,13 @@
   - type: Action
     itemIconStyle: BigAction
     useDelay: 30
+    sound: /Audio/Effects/card_drag.ogg
     icon:
       sprite: Imperial/Medieval/Forged/abilities.rsi #
-      state: golden_arm_off
+      state: ability_gain_off
     iconOn:
       sprite: Imperial/Medieval/Forged/abilities.rsi
-      state: golden_arm_on
+      state: ability_gain
   - type: InstantAction
     event: !type:ForgedSilaActionEvent
 
@@ -56,8 +60,9 @@
   - type: Action
     itemIconStyle: BigAction
     useDelay: 60
+    sound: /Audio/Effects/card_drag.ogg
     icon:
       sprite: Imperial/Medieval/Forged/abilities.rsi #
-      state: golden_torso
+      state: ability_gold_regeneration
   - type: InstantAction
     event: !type:ForgedRepairActionEvent

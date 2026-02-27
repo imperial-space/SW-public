@@ -229,16 +229,30 @@
     ShardCrystalRed: 1
 
 - type: CP14Recipe
-  id: ForgedIronRArmBladeCraft
-  result: ForgedIronRArmBlade
+  id: ForgedRHandBladeCraft
+  result: ForgedRHandBlade
   stacks:
     MedievalIronPlateSmall: 2
     MedievalSteelIngot: 1
 
 - type: CP14Recipe
-  id: ForgedIronLArmBladeCraft
-  result: ForgedIronLArmBlade
+  id: ForgedLHandBladeCraft
+  result: ForgedLHandBlade
   stacks:
     MedievalIronPlateSmall: 2
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedCrossbowRHandCraft
+  result: ForgedCrossbowRHand
+  entities:
+    MedievalWeaponCrossbow: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedCrossbowLHandCraft
+  result: ForgedCrossbowLHand
+  entities:
+    MedievalWeaponCrossbow: 1
     MedievalSteelIngot: 1
 

@@ -20,6 +20,20 @@
         },
         {
             "name": "iron_arm_blade_item1"
+        },
+        {
+            "name": "iron_arm_crossbow_item"
+        },
+        {
+            "name": "iron_righ_arm_crossbow",
+            "directions": 4
+        },
+        {
+            "name": "iron_left_arm_crossbow",
+            "directions": 4
+        },
+        {
+            "name": "blank"
         }
     ]
 }

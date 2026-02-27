@@ -8,25 +8,25 @@
     },
     "states": [
         {
-            "name": "blood_eyes_on"
+            "name": "ability_speed"
         },
         {
-            "name": "blood_eyes_off"
+            "name": "ability_bloody_eyes"
         },
         {
-            "name": "golden_torso"
+            "name": "ability_gain"
         },
         {
-            "name": "golden_arm_off"
+            "name": "ability_gold_regeneration"
         },
         {
-            "name": "golden_arm_on"
+            "name": "ability_gain_off"
         },
         {
-            "name": "golden_leg_off"
+            "name": "ability_speed_off"
         },
         {
-            "name": "golden_leg_on"
+            "name": "ability_bloody_eyes_off"
         }
     ]
 }

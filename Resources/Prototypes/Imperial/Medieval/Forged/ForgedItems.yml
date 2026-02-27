@@ -144,3 +144,41 @@
   - type: StaminaDamageOnHit
     damage: 4 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
   - type: Unremoveable
+
+- type: entity
+  name: ForgedArmCrossbow
+  id: ForgedArmCrossbow
+  parent: BaseItem
+  description: tra-ta-ta-ta-ta ya grajdansky ya grajdansky tra-ta-ta-ta.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_crossbow_item
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - Bolt
+    capacity: 5
+    proto: MedievalBolt
+    autoCycle: true
+    soundInsert:
+      path: /Audio/Imperial/Medieval/ES_Crossbow_Fire_10_-_SFX_Producer.ogg
+  - type: Gun
+    resetOnHandSelected: false
+    fireRate: 0.4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/ES_Arrow_Release_1_-_SFX_Producer.ogg
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Unremoveable
+  - type: Tag
+    tags:
+      - ForgedArmCrossbow
+
+- type: Tag
+  id: ForgedArmCrossbow

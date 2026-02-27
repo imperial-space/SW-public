@@ -64,6 +64,23 @@
     speedModifier: -0.035
 
 - type: entity
+  id: ForgedIronLArm
+  name: ForgedIronLArm
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/iron.rsi
+    state: iron_arm_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_arm
+    layerState: iron_left_arm
+    rsiPath: Imperial/Medieval/Forged/iron.rsi
+    resistanceModifier: 0.02
+    speedModifier: -0.07
+
+- type: entity
   id: ForgedIronRArm
   name: ForgedIronRArm
   parent: ForgedRLegBase

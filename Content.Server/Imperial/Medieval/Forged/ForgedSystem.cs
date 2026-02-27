@@ -10,7 +10,12 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Damage;
-using Content.Shared.Interaction.Components;
+using Content.Shared.Weapons.Ranged.Components;
+using Content.Shared.Interaction;
+using Content.Shared.Tag;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Forged;
 
@@ -22,6 +27,8 @@ public sealed class ForgedSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifierSystem = default!;
     [Dependency] private readonly SharedBodySystem _bodySystem = default!;
     [Dependency] private readonly ForgedAbilitySystem _forgedAbility = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly TagSystem _tagSystem = default!;
 
     public override void Initialize()
     {
@@ -32,6 +39,8 @@ public sealed class ForgedSystem : EntitySystem
 
         SubscribeLocalEvent<ForgedComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
         SubscribeLocalEvent<ForgedComponent, DamageModifyEvent>(OnDamageModify);
+
+        SubscribeLocalEvent<ForgedComponent, InteractUsingEvent>(OnReloadCrossbow);
     }
 
     private void OnMapInit(EntityUid uid, ForgedComponent component, MapInitEvent args)
@@ -125,11 +134,9 @@ public sealed class ForgedSystem : EntitySystem
                 {
                     QueueDel(moduleUid);
                 }
-
             }
         }
     }
-
     private void UpdateAppearance(Entity<ForgedComponent?, AppearanceComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, logMissing: false)) return;
@@ -186,5 +193,19 @@ public sealed class ForgedSystem : EntitySystem
     {
         float mod = GetModuleResistanceModifier(component);
         args.Damage *= mod;
+    }
+
+    private void OnReloadCrossbow(EntityUid forgedUid, ForgedComponent comp, InteractUsingEvent args)
+    {
+        if (args.Handled) return;
+
+        if (!_hands.TryGetActiveItem(forgedUid, out var activeItem)) return;
+
+        ProtoId<TagPrototype> tag = "ForgedArmCrossbow";
+        if (!_tagSystem.HasTag(activeItem.Value, tag)) return;
+
+        var weaponInteractArgs = new InteractUsingEvent(args.User, args.Used, activeItem.Value, args.ClickLocation);
+        RaiseLocalEvent(activeItem.Value, weaponInteractArgs);
+        if (weaponInteractArgs.Handled) args.Handled = true;
     }
 }
