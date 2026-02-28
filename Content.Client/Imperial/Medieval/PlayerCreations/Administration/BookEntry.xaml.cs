@@ -11,7 +11,7 @@ public sealed partial class BookEntry : Control
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    public BookEntry(CreationBook book, Action? onAccept = null, Action? onDecline = null, bool acceptEnabled = true)
+    public BookEntry(CreationBook book, Action? onAccept = null, Action? onDecline = null, bool acceptEnabled = true, bool editable = false, Action<EditedCreationData>? onEdit = null)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -25,7 +25,7 @@ public sealed partial class BookEntry : Control
             window.OpenCentered();
         };
 
-        MoreButton.OnPressed += _ => OpenMoreWindow(book);
+        MoreButton.OnPressed += _ => OpenMoreWindow(book, editable, onEdit);
 
         DeclineButton.OnPressed += _ => onDecline?.Invoke();
 
@@ -35,7 +35,7 @@ public sealed partial class BookEntry : Control
             AcceptButton.OnPressed += _ => onAccept?.Invoke();
     }
 
-    private void OpenMoreWindow(CreationBook book)
+    private void OpenMoreWindow(CreationBook book, bool editable, Action<EditedCreationData>? onEdit)
     {
         var moreWindow = new MoreWindow();
 
@@ -48,7 +48,7 @@ public sealed partial class BookEntry : Control
         var offset = new DateTimeOffset(utc).ToOffset(TimeSpan.FromHours(3));
         moreDict.Add(Loc.GetString("creations-info-creation-time"), offset.ToString("dd.MM.yyyy HH:mm"));
 
-        moreWindow.Populate(moreDict);
+        moreWindow.PopulateBook(book, editable, onEdit);
         moreWindow.OpenCentered();
     }
 }
