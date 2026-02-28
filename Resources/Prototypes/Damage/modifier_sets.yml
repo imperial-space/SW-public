@@ -339,6 +339,7 @@
     Heat: 1.15
     Cold: 0.85
 
+# Imperial Forged Start
 # Forged immune to everything except physical and heat damage (*0.5) and radiation (*0.5)
 - type: damageModifierSet
   id: Forged
@@ -355,3 +356,4 @@
     Cellular: 0.0
   flatReductions:
     Slash: 0
+# Imperial Forged End

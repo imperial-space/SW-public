@@ -224,12 +224,12 @@ public sealed class ForgedAbilitySystem : EntitySystem
                 if (!isToggled)
                 {
                     module.SpeedModifier += 0.50f;
-                    module.ResistanceModifier -= 1.0f;
+                    module.ResistanceModifier -= 1.25f;
                 }
                 else
                 {
                     module.SpeedModifier -= 0.50f;
-                    module.ResistanceModifier += 1.0f;
+                    module.ResistanceModifier += 1.25f;
                 }
 
                 _movementSpeedModifier.RefreshMovementSpeedModifiers(forgedUid);
@@ -272,12 +272,12 @@ public sealed class ForgedAbilitySystem : EntitySystem
                 if (!isToggled)
                 {
                     skills.Levels["Strength"] = 20;
-                    module.SpeedModifier -= 0.5f;
+                    module.SpeedModifier -= 0.25f;
                 }
                 else
                 {
                     skills.Levels["Strength"] = 10;
-                    module.SpeedModifier += 0.5f;
+                    module.SpeedModifier += 0.25f;
                 }
 
                 _movementSpeedModifier.RefreshMovementSpeedModifiers(forgedUid);

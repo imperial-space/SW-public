@@ -45,6 +45,8 @@
   id: Arachnid
   name: metabolizer-type-arachnid
 
+# Medieval Imperial Forged start
 - type: metabolizerType
   id: Forged
   name: metabolizer-type-forged
+# Medieval Imperial Forged end

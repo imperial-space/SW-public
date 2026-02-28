@@ -37,7 +37,9 @@
     # Imperial Medieval Plague end
     damageContainers:
       - Biological
+      # Imperial Medieval Forged start
       - Forged
+      # Imperial Medieval Forged end
     damage:
       types:
         Heat: -5
@@ -315,7 +317,9 @@
     # Imperial Medieval Plague end
     damageContainers:
       - Biological
+      # Imperial Medieval Forged start
       - Forged
+      # Imperial Medieval Forged end
     damage:
       types:
         Slash: -5

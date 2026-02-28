@@ -1,7 +1,7 @@
 - type: entity
   id: BloodEyesAction
-  name: Кровавый взор
-  description: Выделяет живых существ
+  name: BloodEyesAction
+  description: BloodEyesAction
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -18,8 +18,8 @@
 
 - type: entity
   id: BoostAction
-  name: Ускорение
-  description: Увеличивает вашу скорость, взамен делает вас хрупким
+  name: BoostAction
+  description: BoostAction
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -36,8 +36,8 @@
 
 - type: entity
   id: SilaAction
-  name: Усиление
-  description: Увеличивает вашу силу, взамен делает вас медленным
+  name: SilaAction
+  description: SilaAction
   components:
   - type: Action
     itemIconStyle: BigAction
@@ -54,8 +54,8 @@
 
 - type: entity
   id: RepairAction
-  name: Восстановление
-  description: Восстанавливает часть повреждений, но делает вас недееспособным некоторое время
+  name: RepairAction
+  description: RepairAction
   components:
   - type: Action
     itemIconStyle: BigAction
