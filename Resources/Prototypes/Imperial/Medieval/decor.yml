@@ -259,6 +259,9 @@
     node: cratelivestock
     containers:
     - entity_storage
+  - type: Tag
+    tags:
+    - MedievalChest
 
 - type: entity
   parent: CrateGeneric
@@ -308,6 +311,9 @@
     node: cratelivestock
     containers:
     - entity_storage
+  - type: Tag
+    tags:
+    - MedievalChest
 
 - type: entity
   parent: CrateGeneric
@@ -357,6 +363,9 @@
     node: cratelivestock
     containers:
     - entity_storage
+  - type: Tag
+    tags:
+    - MedievalChest
 
 - type: entity
   parent: CrateGeneric
@@ -404,6 +413,9 @@
   - type: Construction
     graph: MedievalChest4
     node: MedievalChest4
+  - type: Tag
+    tags:
+    - MedievalChest
 
 - type: construction
   id: MedievalChest4

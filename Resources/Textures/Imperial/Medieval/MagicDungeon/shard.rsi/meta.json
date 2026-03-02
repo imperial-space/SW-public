@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "sprited by @gag08984",
+    "size": {
+      "x": 32,
+      "y": 32
+    },
+    "states": [
+      {
+        "name": "shard_blue"
+      },
+      {
+        "name": "shard_green"
+      },
+      {
+        "name": "shard_red"
+      },
+      {
+        "name": "shard_pink"
+      },
+      {
+        "name": "shard_purple"
+      },
+      {
+        "name": "shard_yellow"
+      }
+    ]
+  }

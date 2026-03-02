@@ -26,6 +26,25 @@
     damageCoefficient: 19
 
 - type: entity
+  parent: BaseWall
+  id: MedievalStoneBrickWallIndestructable
+  name: stone wall
+  components:
+  - type: Tag
+    tags:
+    - Wall
+  - type: Sprite
+    sprite: Imperial/Medieval/Walls/stone_brick.rsi
+  - type: Icon
+    sprite: Imperial/Medieval/Walls/stone_brick.rsi
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: IconSmooth
+    key: walls
+    base: brick
+
+- type: entity
   parent: BarricadeMedieval
   id: MedievalStockade
   name: MedievalStockade

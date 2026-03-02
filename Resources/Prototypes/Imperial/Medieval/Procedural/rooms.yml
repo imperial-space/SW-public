@@ -1,0 +1,30 @@
+- type: entity
+  id: MedievalDungeonRoomMarker
+  parent: BaseRoomMarker
+  name: marker
+  components:
+  - type: RoomFill
+    minSize: 13,13
+    maxSize: 13,13
+    roomWhitelist:
+      tags:
+      - MedievalDungeonRoom
+
+# add room prototypes here under this comment and add MedievalDungeonRoom tag to them
+- type: dungeonRoom
+  id: MedievalDungeon13x13a
+  ignoreTile: FloorShuttlePurple
+  size: 13,13
+  atlas: /Maps/Dungeon/govno.yml
+  offset: 0,0
+  tags:
+  - MedievalDungeonRoom
+
+- type: dungeonRoom
+  id: MedievalDungeon13x13b
+  ignoreTile: FloorShuttlePurple
+  size: 13,13
+  atlas: /Maps/Dungeon/govno.yml
+  offset: 14,0
+  tags:
+  - MedievalDungeonRoom

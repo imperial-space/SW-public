@@ -461,6 +461,73 @@
     accessLists:
     - RebelTavern8
 
+# Procedural generated doors start
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockDungeonA
+  name: dungeon door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - DungeonA
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockDungeonB
+  name: dungeon door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - DungeonB
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockDungeonC
+  name: dungeon door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - DungeonC
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockDungeonD
+  name: dungeon door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - DungeonD
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockDungeonE
+  name: dungeon door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - DungeonE
+
+- type: entity
+  parent: MedievalAirlock
+  id: MedievalAirlockDungeonF
+  name: dungeon door
+  components:
+  - type: DoorBolt
+    boltsDown: True
+  - type: LockDoor
+    accessLists:
+    - DungeonF
+# Procedural generated doors end
 
 - type: entity
   id: MedievalAirlock

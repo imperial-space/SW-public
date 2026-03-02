@@ -132,3 +132,12 @@
 
 - type: Tag
   id: CultConductorRod
+
+- type: Tag
+  id: ProceduralDoorKey
+
+- type: Tag
+  id: MedievalDungeonRoom
+
+- type: Tag
+  id: MedievalChest

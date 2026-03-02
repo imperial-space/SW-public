@@ -842,6 +842,104 @@
     tags:
     - LegionnaireKey
 
+# Procedural generated doorkeys start
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyDungeonA
+  name: dungeon key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: doorA
+  - type: Key
+    accesses:
+    - DungeonA
+  - type: Tag
+    tags:
+    - MedievalKey
+    - ProceduralDoorKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyDungeonB
+  name: dungeon key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: doorB
+  - type: Key
+    accesses:
+    - DungeonB
+  - type: Tag
+    tags:
+    - MedievalKey
+    - ProceduralDoorKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyDungeonC
+  name: dungeon key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: doorC
+  - type: Key
+    accesses:
+    - DungeonC
+  - type: Tag
+    tags:
+    - MedievalKey
+    - ProceduralDoorKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyDungeonD
+  name: dungeon key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: doorD
+  - type: Key
+    accesses:
+    - DungeonD
+  - type: Tag
+    tags:
+    - MedievalKey
+    - ProceduralDoorKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyDungeonE
+  name: dungeon key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: doorE
+  - type: Key
+    accesses:
+    - DungeonE
+  - type: Tag
+    tags:
+    - MedievalKey
+    - ProceduralDoorKey
+
+- type: entity
+  parent: MedievalKeyBase
+  id: MedievalKeyDungeonF
+  name: dungeon key
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/keys.rsi
+    state: doorF
+  - type: Key
+    accesses:
+    - DungeonF
+  - type: Tag
+    tags:
+    - MedievalKey
+    - ProceduralDoorKey
+# Procedural generated doorkeys end
+
 - type: playTimeTracker
   id: Medieval1
 
