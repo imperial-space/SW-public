@@ -1,0 +1,208 @@
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: BardArlekinoHead
+  name: Arlekino Head
+  description: A headpiece for a bard's costume.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/arlekino_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/arlekino_head.rsi
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: BardAsianHat
+  name: Asian Hat
+  description: A hat from the far east.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/Asian_hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/Asian_hat.rsi
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: BardCrown
+  name: Crown
+  description: A crown for a king.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/crown.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/crown.rsi
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: BardHat
+  name: Hat
+  description: A simple hat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/hat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/hat.rsi
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: BardHeadscarf
+  name: Headscarf
+  description: A simple headscarf.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/headscarf.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/headscarf.rsi
+
+- type: entity
+  parent: BaseItem
+  id: BardHorse
+  name: Horse Stick
+  description: A horse head on a stick.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/horse.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/BardCloth/horse.rsi
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: BardManHead
+  name: Man Head
+  description: A man's head.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/man_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/man_head.rsi
+
+- type: entity
+  parent: MedievalClothingHeadBase
+  id: BardWig
+  name: Wig
+  description: A wig.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/wig.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/wig.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: BardArlekino
+  name: Arlekino
+  description: A bard's costume.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/arlekino.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/arlekino.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingOuterBase
+  id: BardBear
+  name: Bear Suit
+  description: A bear costume.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/bear.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/bear.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: BardKimano
+  name: Kimano
+  description: A traditional kimano.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/kimano.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/kimano.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: BardMagicDress
+  name: Magic Dress
+  description: A magical dress.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/magic_dress.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/magic_dress.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: BardPierro
+  name: Pierro
+  description: A Pierro costume.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/Pierro.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/Pierro.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingOuterBase
+  id: BardGrinCoat
+  name: Grin Coat
+  description: A grinning coat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/grin_coat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/grin_coat.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingOuterBase
+  id: BardRedcoat
+  name: Redcoat
+  description: A redcoat.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/redcoat.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/redcoat.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingMaskBase
+  id: BardMaskLove
+  name: Love Mask
+  description: A mask of love.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/mask_love.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/mask_love.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingMaskBase
+  id: BardMaskSad
+  name: Sad Mask
+  description: A sad mask.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/mask_sad.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/mask_sad.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingMaskBase
+  id: BardMaskSmile
+  name: Smile Mask
+  description: A smiling mask.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardCloth/mask_smile.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/BardCloth/mask_smile.rsi
+  - type: Insulated
