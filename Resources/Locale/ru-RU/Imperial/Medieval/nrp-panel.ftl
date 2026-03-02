@@ -32,7 +32,7 @@ nrp-ban-wrap-opening-tag = ->
 nrp-ban-wrap-closing-tag = <-
 nrp-remark-wrap-opening-tag = ->
 nrp-remark-wrap-closing-tag = <-
-nrp-log-wrap-opening-tag = {
-nrp-log-wrap-closing-tag = }
+nrp-log-wrap-opening-tag = [
+nrp-log-wrap-closing-tag = ]
 
 nrp-uncurse-message = Ваша блокировка была отменена.
