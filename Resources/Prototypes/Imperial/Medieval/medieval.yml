@@ -1401,6 +1401,14 @@
     accent: NoSlip
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonNoslip # imperial medieval
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.99
+        Slash: 0.99
+        Piercing: 0.99
+  - type: StaminaResistance
+    damageCoefficient: 0.7
 
 - type: entity
   parent: MedaljonFlashImmune
@@ -2761,6 +2769,45 @@
     state: stamp-ce
 
 - type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: MedievalStampMedievalAlch
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-medieval-alch
+    stampState: "paper_stamp-alch"
+    stampedColor: brown
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
+    state: stamp-alch
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: MedievalStampMedievalTreasurer
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-medieval-treasurer
+    stampState: "paper_stamp-treasurer"
+    stampedColor: "#3333ff"
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
+    state: stamp-treasurer
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: MedievalStampMedievalVillage
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-medieval-village
+    stampState: "paper_stamp-village"
+    stampedColor: "#d49d06"
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
+    state: stamp-village
+
+- type: entity
   id: MedievalWoodenFloor
   parent: BaseStructure
   description: "Fancy walking surface."
@@ -3997,7 +4044,41 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
 
+- type: entity
+  id: MedievalCommsLegion
+  parent: MedievalComms
+  name: computer
+  components:
+  - type: CommunicationsConsole
+    title: medieval-announcement-title-horn-legion
+    color: "#035afc"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/Medieval/horn.ogg
 
+- type: entity
+  id: MedievalCommsInsurgency
+  parent: MedievalComms
+  name: computer
+  components:
+  - type: CommunicationsConsole
+    title: medieval-announcement-title-horn-insurgency
+    color: "#ff0000"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/Medieval/horn.ogg
+
+- type: entity
+  id: MedievalCommsCollegium
+  parent: MedievalComms
+  name: computer
+  components:
+  - type: CommunicationsConsole
+    title: medieval-announcement-title-horn-collegium
+    color: "#9403fc"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/Medieval/horn.ogg
 
 - type: entity
   id: MedievalWaterDeepDarkEntity
@@ -6597,24 +6678,6 @@
 
 - type: entity
   parent: BaseMedievalGetItemObjective
-  id: MedievalGetClothingHeadHelmetBone
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetClothingHeadHelmetBone
-    descriptionText: Устрашающий шлем. Слышал, что такой есть у старейшины гоблинов.
-    descriptionMultiplyText: Устрашающий шлем. Слышал, что такой есть у старейшины гоблинов.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetClothingHeadHelmetBone
-  name: костяной шлем
-  sprite:
-    sprite: Clothing/Head/Helmets/bone_helmet.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
   id: MedievalGetClothingHeadHatCowboyBrown
   components:
   - type: StealCondition
@@ -6827,150 +6890,6 @@
   name: медальон защиты от темных сил
   sprite:
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_dark.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingNeckCloakClanTribe
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingNeckCloakClanTribe
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingNeckCloakClanTribe
-  name: ожерелье члена племени
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Cloaks/clan_tribe.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingNeckCloakClanEagle
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingNeckCloakClanEagle
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingNeckCloakClanEagle
-  name: плащ легионера
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Cloaks/clan_eagle.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingNeckCloakClanWolf
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingNeckCloakClanWolf
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingNeckCloakClanWolf
-  name: плащ разбойника
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Cloaks/clan_wolf.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingNeckCloakClanFox
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingNeckCloakClanFox
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingNeckCloakClanFox
-  name: плащ мятежника
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Cloaks/clan_fox.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingHeadHelmetFox4
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingHeadHelmetFox4
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingHeadHelmetFox4
-  name: шлем ярла мятежников
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Head/fox4.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingHeadHelmetLegionLegat
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingHeadHelmetLegionLegat
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingHeadHelmetLegionLegat
-  name: шлем легата легиона
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingHeadHelmetBand3
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingHeadHelmetBand3
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingHeadHelmetBand3
-  name: капюшон главаря бандитов
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Head/band3.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingHeadHelmetTribe3
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingHeadHelmetTribe3
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingHeadHelmetTribe3
-  name: племеннная маска вождя
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Head/tribe3.rsi
     state: icon
 
 - type: entity

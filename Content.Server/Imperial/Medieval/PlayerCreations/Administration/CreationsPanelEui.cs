@@ -4,6 +4,7 @@ using Content.Shared.Administration;
 using Content.Shared.Eui;
 using Content.Server.Administration;
 using Content.Shared.Imperial.Medieval.PlayerCreations;
+using Microsoft.CodeAnalysis.Differencing;
 
 namespace Content.Server.Imperial.Medieval.PlayerCreations.Administration;
 
@@ -124,6 +125,12 @@ public sealed class CreationsPanelEui : BaseEui
                 break;
             case RemoveAcceptedCreationBook remove:
                 _creationsSystem.RemoveAcceptedBook(remove.Book);
+                break;
+            case EditPaintingMsg edit:
+                await _creationsSystem.EditPainting(edit.Painting, edit.Edited);
+                break;
+            case EditBookMsg edit:
+                await _creationsSystem.EditBook(edit.Book, edit.Edited);
                 break;
         }
     }

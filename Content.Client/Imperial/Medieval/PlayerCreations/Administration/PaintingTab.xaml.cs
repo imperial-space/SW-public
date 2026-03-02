@@ -10,13 +10,21 @@ public sealed partial class PaintingTab : Control
     public PaintingTab()
     {
         RobustXamlLoader.Load(this);
-
-        OnResized += () => PaintingContainer.Columns = (int)(Width / 255);
     }
 
     public void AddEntry(PaintingEntry entry)
     {
         PaintingContainer.AddChild(entry);
+
+        PaintingContainer.InvalidateArrange();
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+
+        PaintingContainer.InvalidateMeasure();
+        PaintingContainer.InvalidateArrange();
     }
 
     public void RemoveEntry(PaintingEntry entry)

@@ -7,7 +7,4 @@ using Content.Shared.Roles;
 namespace Content.Server.GameTicking.Rules.Components;
 
 [RegisterComponent, Access(typeof(MyrmexRuleSystem))]
-public sealed partial class MyrmexRuleComponent : Component
-{
-
-}
+public sealed partial class MyrmexRuleComponent : Component;

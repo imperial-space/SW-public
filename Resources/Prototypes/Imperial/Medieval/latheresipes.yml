@@ -389,6 +389,15 @@
   result: MedievalMonsterBag
 
 - type: CP14Recipe
+  id: MedievalHealBag
+  craftTime: 10
+  stacks:
+    MedievalLeather1: 2
+    MedievalRope: 1
+    MedievalLeatherBelt: 2
+  result: MedievalHealBag
+
+- type: CP14Recipe
   id: MedievalWineskin
   craftTime: 6
   stacks:

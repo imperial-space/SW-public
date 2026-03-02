@@ -444,6 +444,13 @@
   color: "#60d1e6"
   price: 0.1
 
+- type: stack
+  id: BluespaceEssence
+  name: блюспейс эссенция
+  icon: { sprite: /Textures/Imperial/Medieval/Magic/essence.rsi, state: essence}
+  spawn: BluespaceEssence1
+  maxCount: 30
+
 - type: entity
   id: MedievalItemBluespaceEssence
   parent: BaseItem
@@ -462,6 +469,16 @@
     color: "#60d1e6"
     state: essence
     noRot: true
+  - type: Stack
+    stackType: BluespaceEssence
+
+- type: entity
+  id: BluespaceEssence1
+  name: modular machine part
+  parent: MedievalItemBluespaceEssence
+  components:
+    - type: Stack
+      count: 1
 
 - type: entity
   name: seclite

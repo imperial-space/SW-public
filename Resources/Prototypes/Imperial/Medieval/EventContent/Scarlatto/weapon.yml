@@ -175,3 +175,348 @@
     state: icon
   - type: Item
     sprite: Objects/Tools/Hydroponics/hatchet.rsi
+
+- type: entity
+  name: viper
+  parent: WeaponPistolViper
+  id: WeaponPistolViperEvent
+  description: A common handgun illegally modified by the Syndicate. The Viper sports a selector switch between semi-auto and ‘rock and roll’. The standard sidearm for any soldier who fights under the three serpents. Feeds from .35 pistol magazines.
+  components:
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazinePistol
+        insertSound: /Audio/Weapons/Guns/MagIn/pistol_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/pistol_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazinePistol
+            - MagazinePistolHighCapacity
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgePistol
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgePistol
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Gun
+    projectileSpeed: 10
+    fireRate: 6
+    selectedMode: SemiAuto
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/pistol.ogg
+  - type: StaticPrice
+    price: 1000
+
+- type: hitscan
+  id: PulseEvent
+  damage:
+    types:
+      Heat: 25
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_blue
+
+- type: entity
+  name: pulse carbine
+  parent: WeaponPulseCarbine
+  id: WeaponPulseCarbineEvent
+  description: A high tech energy carbine favoured by the NT-ERT operatives.
+  components:
+  - type: RDWeight
+    value: 7
+  - type: Item
+    size: Large
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Weapons/pulse_carbine.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Appearance
+  - type: Clothing
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Weapons/pulse_carbine.rsi
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 2
+    availableModes:
+      - SemiAuto
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: PulseEvent
+    fireCost: 200
+  - type: Battery
+    maxCharge: 5000
+    startingCharge: 5000
+
+- type: hitscan
+  id: PulsePistolEvent
+  damage:
+    types:
+      Heat: 32
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_blue
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: beam_blue
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_blue
+
+- type: entity
+  name: pulse pistol
+  parent: WeaponPulsePistol
+  id: WeaponPulsePistolEvent
+  description: A state of the art energy pistol favoured as a sidearm by the NT operatives.
+  components:
+  - type: RDWeight
+    value: 0.5
+  - type: Item
+    storedOffset: -2,-5
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: false
+  - type: Gun
+    selectedMode: SemiAuto
+    fireRate: 1.5
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser3.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: PulsePistolEvent
+    fireCost: 200
+  - type: Battery
+    maxCharge: 2000
+    startingCharge: 2000
+
+- type: entity
+  name: M90 GL
+  parent: WeaponRifleM90GrenadeLauncherImperial
+  id: WeaponRifleM90GrenadeLauncherImperialEvent
+  description: "An older bullpup carbine model, with an attached underbarrel grenade launcher.\nFeeds from .20 rifle magazines."
+  components:
+  - type: RDWeight
+    value: 5
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Weapons/carbine.rsi
+    layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-0
+        map: ["enum.GunVisualLayers.Mag"]
+  - type: Clothing
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Weapons/carbine.rsi
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineRifle
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineRifle
+        whitelistFailPopup: gun-magazine-whitelist-fail
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeRifle
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeRifle
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+  - type: Gun
+    projectileSpeed: 10
+    fireRate: 5
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+      - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/batrifle.ogg
+  - type: MagazineVisuals
+    magState: mag
+    steps: 1
+    zeroVisible: true
+  - type: Appearance
+
+- type: entity
+  name: advanced laser pistol
+  parent: WeaponAdvancedLaser
+  id: WeaponAdvancedLaserEvent
+  description: An experimental high-energy laser pistol with a self-charging nuclear battery.
+  components:
+  - type: RDWeight
+    value: 1
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: HitscanBatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 30
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 63
+
+- type: entity
+  name: Hristov
+  parent: WeaponSniperHristov
+  id: WeaponSniperHristovEvent
+  description: For when you absolutely, positively need to make someone regret their life choices from a safe distance. Uses .60 anti-materiel ammo.
+  components:
+  - type: RDWeight
+    value: 8
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,5,1
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Weapons/heavy_sniper.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Weapons/heavy_sniper.rsi
+  - type: GunRequiresWield
+  - type: Gun
+    projectileSpeed: 20
+    fireRate: 0.4
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/sniper.ogg
+  - type: BallisticAmmoProvider
+    whitelist:
+      tags:
+      - CartridgeAntiMateriel
+    capacity: 5
+    proto: CartridgeAntiMateriel
+  - type: SpeedModifiedOnWield
+    walkModifier: 0.90 # Imperial balance
+    sprintModifier: 0.90 # Imperial balance
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 3
+    pvsIncrease: 0.3
+  - type: GunWieldBonus # Imperial balance
+    minAngle: -20
+    maxAngle: -10
+  - type: StaticPrice
+    price: 3500
+
+- type: entity
+  name: Deckard
+  parent: WeaponRevolverDeckard
+  id: WeaponRevolverDeckardEvent
+  description: A beautifully machined, custom-built revolver. Used when there is no time for the Voight-Kampff test. Loads 5 rounds of .45 magnum.
+  components:
+  - type: RDWeight
+    value: 0.5
+  - type: Gun
+    projectileSpeed: 10
+    fireRate: 2
+  - type: RevolverAmmoProvider
+    capacity: 5
+    chambers: [ True, True, True, True, True ]
+    ammoSlots: [ null, null, null, null, null ]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 4
+    zeroVisible: true
+  - type: Appearance
+  - type: StaticPrice
+    price: 1500
+
+- type: entity
+  id: MedievalMeleeWeaponEnergy
+  parent: BaseItem
+  components:
+  - type: RDWeight
+    value: 0.5
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/e_sword.rsi
+    layers:
+    - state: e_sword
+    - state: e_sword_blade
+      color: "#d41b1b"
+      shader: unshaded
+      map: [ "blade" ]
+  - type: Item
+    sprite: Objects/Weapons/Melee/e_sword-inhands.rsi
+  - type: EnergySword
+  - type: Sharp
+  - type: DisarmMalus
+    malus: 0.6
+  - type: Execution
+    doAfterDuration: 4.0
+  - type: MeleeWeapon
+    attackRate: 0.6
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 1
+    clickDamageModifier: 1.33
+    soundHit:
+      path: /Audio/Weapons/eblade1.ogg
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 15
+        Heat: 15
+        Structural: 20
+  - type: UseDelay
+    delay: 1.0
+  - type: PointLight
+    radius: 2
+    energy: 2
+    color: red
+    netsync: false
+  - type: Appearance
+  - type: Reflect
+  - type: IgnitionSource
+    temperature: 700
+  - type: AmbientSound
+    sound:
+      path: /Audio/Weapons/ebladehum.ogg
+      params:
+        volume: -3
