@@ -246,8 +246,7 @@
   - type: Projectile
     damage:
       types:
-        Piercing: 25
-        Structural: 5
+        Piercing: 50
 
 - type: entity
   id: PelletGrapeshotSpread
@@ -256,8 +255,8 @@
   components:
   - type: ProjectileSpread
     proto: PelletGrapeshot
-    count: 5
-    spread: 40
+    count: 8
+    spread: 30
 
 - type: entity
   id: PelletGlass
