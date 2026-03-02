@@ -1,8 +1,5 @@
-namespace Content.Server.Imperial.Medieval.Cult.Bloodspells.mateials;
+namespace Content.Server.Imperial.Medieval.Cult.Bloodspells.Materials;
 
-/// <summary>
-/// This is used for...
-/// </summary>
 [RegisterComponent]
 public sealed partial class BloodMaterialComponent : Component
 {
