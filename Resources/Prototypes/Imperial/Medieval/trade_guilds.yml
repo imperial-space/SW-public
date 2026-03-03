@@ -1103,6 +1103,9 @@
   - productEntity: MedievalMonsterBag
     cost: 25
     reputationForBuying: 1
+  - productEntity: FishingBag
+    cost: 25
+    reputationForBuying: 1
   - productEntity: MedievalHealBag
     cost: 25
     reputationForBuying: 1
