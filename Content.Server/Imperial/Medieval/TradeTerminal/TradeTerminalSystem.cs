@@ -611,7 +611,7 @@ public sealed class TradeTerminalSystem : SharedTradeTerminalSystem
             comp.CountdownEndTime,
             comp.CountdownDuration,
             confirmedByName,
-            MakeDirectory(uid),
+            comp.State == TradeSessionState.Idle ? MakeDirectory(uid) : new List<TradeTerminalDto>(),
             comp.HasConfirmed,
             partnerConfirmed
         );
