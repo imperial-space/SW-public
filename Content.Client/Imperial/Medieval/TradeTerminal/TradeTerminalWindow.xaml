@@ -1,0 +1,188 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+               x:Class="Content.Client.Trade.UI.TradeTerminalWindow"
+               MinSize="680 540">
+
+    <BoxContainer Orientation="Vertical" Margin="10">
+
+        <!--══════════════════════════════════════════════════════════════════
+            PANEL: Directory (Idle)
+        ══════════════════════════════════════════════════════════════════════-->
+        <BoxContainer Name="PanelDirectory"
+                      Orientation="Vertical"
+                      VerticalExpand="True">
+
+            <Label Name="LblDirTitle"
+                   StyleClasses="LabelKeyText"
+                   Margin="0 0 0 6"/>
+
+            <Label Name="LblDirHint"
+                   StyleClasses="LabelSubText"
+                   Margin="0 0 0 6"/>
+
+            <PanelContainer VerticalExpand="True">
+                <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                    <BoxContainer Name="DirectoryList"
+                                  Orientation="Vertical"
+                                  HorizontalExpand="True"
+                                  Margin="4 4"/>
+                </ScrollContainer>
+            </PanelContainer>
+
+        </BoxContainer>
+
+        <!--══════════════════════════════════════════════════════════════════
+            PANEL: Calling (исходящий звонок)
+        ══════════════════════════════════════════════════════════════════════-->
+        <BoxContainer Name="PanelCalling"
+                      Orientation="Vertical"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Visible="False">
+
+            <Label Name="LblCallingTitle"
+                   StyleClasses="LabelKeyText"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 16"/>
+
+            <Button Name="BtnHangUpCalling"
+                    HorizontalAlignment="Center"
+                    MinWidth="140"/>
+
+        </BoxContainer>
+
+        <!--══════════════════════════════════════════════════════════════════
+            PANEL: Ringing (входящий звонок)
+        ══════════════════════════════════════════════════════════════════════-->
+        <BoxContainer Name="PanelRinging"
+                      Orientation="Vertical"
+                      VerticalAlignment="Center"
+                      HorizontalAlignment="Center"
+                      Visible="False">
+
+            <Label Name="LblRingingTitle"
+                   StyleClasses="LabelKeyText"
+                   HorizontalAlignment="Center"
+                   Margin="0 0 0 20"/>
+
+            <BoxContainer Orientation="Horizontal"
+                          HorizontalAlignment="Center">
+
+                <Button Name="BtnAccept"
+                        StyleClasses="Constructive"
+                        MinWidth="120"
+                        Margin="0 0 12 0"/>
+
+                <Button Name="BtnDecline"
+                        StyleClasses="Caution"
+                        MinWidth="120"/>
+
+            </BoxContainer>
+
+        </BoxContainer>
+
+        <!--══════════════════════════════════════════════════════════════════
+            PANEL: Trade  (Active / Countdown / Completed)
+        ══════════════════════════════════════════════════════════════════════-->
+        <BoxContainer Name="PanelTrade"
+                      Orientation="Vertical"
+                      VerticalExpand="True"
+                      Visible="False">
+
+            <!-- Строка статуса -->
+            <BoxContainer Orientation="Horizontal" Margin="0 0 0 4">
+                <Label Name="LblStatus"
+                       HorizontalExpand="True"
+                       StyleClasses="LabelSubText"/>
+                <Label Name="LblCountdown"
+                       StyleClasses="LabelKeyText"
+                       Visible="False"/>
+            </BoxContainer>
+
+            <!-- Прогресс-бар обратного отсчёта -->
+            <ProgressBar Name="BarCountdown"
+                         MinValue="0"
+                         MaxValue="1"
+                         Value="0"
+                         MinHeight="12"
+                         Visible="False"
+                         Margin="0 0 0 6"/>
+
+            <!-- Две колонки предметов -->
+            <BoxContainer Orientation="Horizontal" VerticalExpand="True">
+
+                <!-- Моё предложение -->
+                <BoxContainer Orientation="Vertical"
+                              HorizontalExpand="True"
+                              Margin="0 0 4 0">
+
+                    <Label Name="LblOwnColumn"
+                           StyleClasses="LabelKeyText"
+                           Margin="0 0 0 2"/>
+
+                    <Label Name="LblInsertHint"
+                           StyleClasses="LabelSubText"
+                           Margin="0 0 0 4"/>
+
+                    <PanelContainer VerticalExpand="True">
+                        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                            <BoxContainer Name="OwnItemList"
+                                          Orientation="Vertical"
+                                          HorizontalExpand="True"
+                                          Margin="4"/>
+                        </ScrollContainer>
+                    </PanelContainer>
+
+                </BoxContainer>
+
+                <!-- Вертикальный разделитель -->
+                <customControls:VSeparator Margin="0 0 4 0"/>
+
+                <!-- Предложение партнёра -->
+                <BoxContainer Orientation="Vertical"
+                              HorizontalExpand="True"
+                              Margin="4 0 0 0">
+
+                    <Label Name="LblPartnerColumn"
+                           StyleClasses="LabelKeyText"
+                           Margin="0 0 0 2"/>
+
+                    <!-- Пустой label для выравнивания высоты с левой колонкой -->
+                    <Label StyleClasses="LabelSubText" Margin="0 0 0 4"/>
+
+                    <PanelContainer VerticalExpand="True">
+                        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                            <BoxContainer Name="PartnerItemList"
+                                          Orientation="Vertical"
+                                          HorizontalExpand="True"
+                                          Margin="4"/>
+                        </ScrollContainer>
+                    </PanelContainer>
+
+                </BoxContainer>
+
+            </BoxContainer>
+
+            <!-- Нижняя панель кнопок -->
+            <BoxContainer Orientation="Horizontal"
+                          HorizontalAlignment="Right"
+                          Margin="0 8 0 0">
+
+                <Button Name="BtnHangUp"
+                        Margin="0 0 8 0"/>
+
+                <Button Name="BtnCancel"
+                        StyleClasses="Caution"
+                        Margin="0 0 8 0"/>
+
+                <Button Name="BtnConfirm"
+                        StyleClasses="Constructive"
+                        MinWidth="160"/>
+
+            </BoxContainer>
+
+        </BoxContainer>
+
+    </BoxContainer>
+</DefaultWindow>
