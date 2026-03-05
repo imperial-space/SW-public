@@ -7,7 +7,7 @@ namespace Content.Server.Imperial.Medieval.XxRaay.Systems;
 [AdminCommand(AdminFlags.Spawn)]
 public sealed class MedievalAmbientToggleCommand : LocalizedCommands
 {
-    [Dependency] private readonly MedievalAmbientToggleSystem _toggle = default!;
+    [Dependency] private readonly IEntitySystemManager _entitySystems = default!;
 
     public override string Command => "medievalambient";
 
@@ -33,12 +33,12 @@ public sealed class MedievalAmbientToggleCommand : LocalizedCommands
         }
         else
         {
-            setEnabled = !_toggle.IsMedievalAmbientEnabled;
+            setEnabled = !Toggle.IsMedievalAmbientEnabled;
         }
 
         bool newState = setEnabled.HasValue
-            ? _toggle.SetMedievalAmbientEnabled(setEnabled.Value)
-            : _toggle.ToggleMedievalAmbient();
+            ? Toggle.SetMedievalAmbientEnabled(setEnabled.Value)
+            : Toggle.ToggleMedievalAmbient();
 
         shell.WriteLine(newState ? "Medieval ambient music enabled." : "Medieval ambient music disabled.");
     }
