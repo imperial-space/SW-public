@@ -1,6 +1,4 @@
 using Content.Shared.NodeContainer.NodeGroups;
-using Content.Shared.Power;
-using Robust.Shared.Maths;
 using Robust.Shared.GameStates;
 
 namespace Content.Shared.Imperial.Medieval.Power;
@@ -12,13 +10,10 @@ public sealed partial class RandomPowerComponent : Component
     public string Node = string.Empty;
 
     [DataField]
-    public string PipeLayerKey = "pipe_connector";
-
-    [DataField]
-    public Dictionary<NodeGroupID, Color> AvailableVoltages = new()
+    public Dictionary<NodeGroupID, string> AvailableVoltages = new()
     {
-        { NodeGroupID.HVPower, Color.FromHex("#666666") },
-        { NodeGroupID.MVPower, Color.FromHex("#FFFFFF") },
-        { NodeGroupID.Apc,     Color.FromHex("#33FF33") },
+        { NodeGroupID.HVPower, "connector_hv" },
+        { NodeGroupID.MVPower, "connector_mv" },
+        { NodeGroupID.Apc,     "connector_lv" },
     };
 }

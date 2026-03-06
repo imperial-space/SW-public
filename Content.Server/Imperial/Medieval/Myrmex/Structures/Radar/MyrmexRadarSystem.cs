@@ -1,7 +1,8 @@
 using Content.Shared.Power;
 using Content.Shared.Whitelist;
 using Content.Shared.Chat;
-using Content.Server.Chat.Systems;
+using Content.Shared.Imperial.Medieval.Language;
+using Content.Server.Imperial.Medieval.Language;
 using Content.Server.Myrmex.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Player;
@@ -10,13 +11,12 @@ namespace Content.Server.Myrmex.Structures;
 
 public sealed partial class MyrmexRadarSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<ActorComponent, EntParentChangedMessage >(OnMapChanged);
+        SubscribeLocalEvent<ActorComponent, EntParentChangedMessage>(OnMapChanged);
         SubscribeLocalEvent<MyrmexRadarComponent, PowerChangedEvent>(OnPowerChanged);
     }
 
@@ -28,7 +28,8 @@ public sealed partial class MyrmexRadarSystem : EntitySystem
         if (!HasComp<MyrmexMapComponent>(args.Transform.MapUid))
             return;
 
-        var foundRadar = false;
+        EntityUid? radarUid = null;
+        MyrmexRadarComponent? radarComp = null;
 
         var query = EntityQueryEnumerator<MyrmexRadarComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
@@ -42,26 +43,27 @@ public sealed partial class MyrmexRadarSystem : EntitySystem
             if (_whitelist.IsWhitelistFail(comp.EntityWhitelist, ent.Owner))
                 continue;
 
-            foundRadar = true;
+            radarUid = uid;
+            radarComp = comp;
             break;
         }
 
-        if (!foundRadar)
+        if (radarUid == null || radarComp == null)
             return;
 
-        var filter = Filter.Empty()
-            .AddWhereAttachedEntity(uid => HasComp<MyrmexComponent>(uid));
+        if (!_protoMan.TryIndex<LanguagePrototype>(radarComp.Language, out var collectiveMind))
+            return;
 
-        var text = Loc.GetString("medieval-myrmex-radar-detect");
-        _chat.ChatMessageToManyFiltered(
-            filter,
-            ChatChannel.IC,
-            text,
-            text,
-            uid,
-            false,
-            true,
-            Color.Orange);
+        collectiveMind.LanguageType.Speak(
+            radarUid.Value,
+            Loc.GetString("medieval-myrmex-radar-detect"),
+            Name(radarUid.Value),
+            null!,
+            ChatTransmitRange.Normal,
+            EntityManager,
+            out _,
+            out _);
+
     }
 
     private void OnPowerChanged(Entity<MyrmexRadarComponent> radar, ref PowerChangedEvent args)

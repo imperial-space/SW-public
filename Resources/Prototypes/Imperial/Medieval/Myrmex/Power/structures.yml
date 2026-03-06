@@ -10,8 +10,8 @@
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Structures/altar.rsi
     layers:
-      - state: connector
-        map: ["pipe_connector"]
+      - state: connector_mv
+        map: ["enum.RandomPowerVisuals.Voltage"]
       - state: base
   - type: Transform
     anchored: true
@@ -78,14 +78,13 @@
   name: Алтарь Терры
   description: Алтарь богини Терры, который позволяет мирмексам становится сильнее, потребляя больше блюд
   parent: MedievalBaseMyrmexPowerReceiverStructure
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Structures/altar.rsi
     offset: 0, 0.15
-    layers:
-      - state: connector
-        map: ["enum.RandomPowerVisuals.Voltage"]
-      - state: base
+    state: base
   - type: MyrmexAltar
   - type: PowerConsumer
     drawRate: 550
@@ -113,11 +112,13 @@
   name: Подземный радар
   description: Радар, который оповещает мирмексов о вторжении чужаков в их пещеру
   parent: MedievalBaseMyrmexPowerReceiverStructure
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Structures/radar.rsi
     layers:
-      - state: connector
+      - state: connector_mv
         map: ["enum.RandomPowerVisuals.Voltage"]
       - state: radar_static
         map: ["base"]
@@ -130,9 +131,10 @@
           False:
             state: radar_static
   - type: MyrmexRadar
+    language: Myrmex
     entityWhitelist:
       components:
-      - HumanoidAppearance
+      - Myrmex
   - type: PowerConsumer
     drawRate: 350
     voltage: High
@@ -141,7 +143,7 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.6,-0.6,0.6,0.6"
+          bounds: "-0.5,-0.5,0.5,0.5"
         density: 190
         mask:
         - MachineMask
@@ -159,12 +161,14 @@
   name: Источник Жизни
   description: Фонтан с живым существом в центре, извергающим кровь при подаче энергии, увеличивая здоровье мирмексов
   parent: MedievalBaseMyrmexPowerReceiverStructure
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Structures/fountain.rsi
     offset: 0, 0.1
     layers:
-      - state: connector
+      - state: connector_mv
         map: ["enum.RandomPowerVisuals.Voltage"]
       - state: fountain_static
         map: ["base"]

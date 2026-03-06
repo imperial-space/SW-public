@@ -6,7 +6,7 @@
     mode: SnapgridCenter
   components:
     - type: Sprite
-      sprite: Imperial/Medieval/Myrmex/Structures/pipes.rsi
+      sprite: Imperial/Medieval/Myrmex/Structures/Pipes/pipes_steam.rsi
       drawdepth: ThickPipe
     - type: Transform
       anchored: true
@@ -92,8 +92,9 @@
   parent: BaseMyrmexPipe
   components:
     - type: Sprite
+      sprite: Imperial/Medieval/Myrmex/Structures/Pipes/pipes_acid.rsi
+      drawdepth: ThickPipe
       state: pipe-s
-      color: "#33FF33"
     - type: MyrmexPipe
       pipeType: Straight
     - type: NodeContainer
@@ -150,8 +151,9 @@
   parent: BaseMyrmexPipe
   components:
     - type: Sprite
+      sprite: Imperial/Medieval/Myrmex/Structures/Pipes/pipes_resin.rsi
+      drawdepth: ThickPipe
       state: pipe-s
-      color: "#666666"
     - type: MyrmexPipe
       pipeType: Straight
     - type: NodeContainer

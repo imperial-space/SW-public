@@ -2,6 +2,8 @@
   parent: MarkerBase
   name: myrmex geyser spawner
   id: MedievalMyrmexGeyserSpawner
+  placement:
+    mode: SnapgridCenter
   components:
   - type: Sprite
     sprite: Markers/jobs.rsi
@@ -23,13 +25,15 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Myrmex/Structures/geyser.rsi
-    state: geyser
+    layers:
+    - state: connector_hv
+      map: ["connector"]
+    - state: geyser
   - type: NodeContainer
     nodes:
       power:
         !type:MyrmexDeviceNode
         nodeGroupID: HVPower
-        connectDirections: South
   - type: MyrmexPipeEndpoint
   - type: PowerSupplier
     supplyRate: 1000
@@ -59,12 +63,17 @@
   name: кислотный гейзер мирмексов
   description: Это кислотный гейзер мирмексов. Подобные гейзеры вырабатывают энергию, необходимую для питания их построек и механизмов.
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/geyser.rsi
+    layers:
+    - state: connector_lv
+      map: ["connector"]
+    - state: geyser
   - type: NodeContainer
     nodes:
       power:
         !type:MyrmexDeviceNode
         nodeGroupID: Apc
-        connectDirections: South
   - type: PowerSupplier
     supplyRate: 1000
     voltage: Apc
@@ -75,12 +84,17 @@
   name: паровой гейзер мирмексов
   description: Это паровой гейзер мирмексов. Подобные гейзеры вырабатывают энергию, необходимую для питания их построек и механизмов.
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/Structures/geyser.rsi
+    layers:
+    - state: connector_mv
+      map: ["connector"]
+    - state: geyser
   - type: NodeContainer
     nodes:
       power:
         !type:MyrmexDeviceNode
         nodeGroupID: MVPower
-        connectDirections: South
   - type: PowerSupplier
     supplyRate: 1000
     voltage: Medium

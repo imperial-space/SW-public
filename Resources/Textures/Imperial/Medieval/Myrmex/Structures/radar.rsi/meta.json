@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "license": "This content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "license": "ICLA",
     "copyright": "by gag08984",
     "size": {
         "x": 64,
@@ -8,16 +8,22 @@
     },
     "states": [
         {
-            "name": "connector"
-        },
-        {
             "name": "radar_animated",
             "delays": [
                 [0.17, 0.17, 0.17, 0.17, 0.17, 0.17, 0.17, 0.17]
             ]
         },
         {
-            "name": "radar_static"
+          "name": "radar_static"
+        },
+        {
+          "name": "connector_mv"
+        },
+        {
+          "name": "connector_hv"
+        },
+        {
+          "name": "connector_lv"
         }
     ]
 }

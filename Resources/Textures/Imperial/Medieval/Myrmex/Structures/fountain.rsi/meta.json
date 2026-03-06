@@ -1,6 +1,6 @@
 {
     "version": 1,
-    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "license": "ICLA",
     "copyright": "by gag08984",
     "size": {
         "x": 64,
@@ -17,7 +17,13 @@
             "name": "fountain_static"
         },
         {
-            "name": "connector"
+          "name": "connector_mv"
+        },
+        {
+          "name": "connector_hv"
+        },
+        {
+          "name": "connector_lv"
         }
     ]
 }

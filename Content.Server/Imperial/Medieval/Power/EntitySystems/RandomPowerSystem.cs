@@ -61,8 +61,8 @@ public sealed class RandomPowerSystem : EntitySystem
         if (TryComp<PowerSupplierComponent>(ent, out var supplier))
             supplier.Voltage = (Voltage)voltage;
 
-        var color = ent.Comp.AvailableVoltages[voltage];
-        _appearance.SetData(ent, RandomPowerVisuals.Voltage, color);
+        var state = ent.Comp.AvailableVoltages[voltage];
+        _appearance.SetData(ent, RandomPowerVisuals.Voltage, state);
 
         _nodeGroupSystem.QueueReflood(node);
     }

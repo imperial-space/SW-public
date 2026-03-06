@@ -10,9 +10,9 @@ public sealed class RandomPowerVisualizerSystem : VisualizerSystem<RandomPowerCo
         if (args.Sprite == null)
             return;
 
-        if (!AppearanceSystem.TryGetData<Color>(uid, RandomPowerVisuals.Voltage, out var color, args.Component))
+        if (!AppearanceSystem.TryGetData<string>(uid, RandomPowerVisuals.Voltage, out var state, args.Component))
             return;
 
-        SpriteSystem.LayerSetColor((uid, args.Sprite), RandomPowerVisuals.Voltage, color);
+        SpriteSystem.LayerSetRsiState((uid, args.Sprite), RandomPowerVisuals.Voltage, state);
     }
 }

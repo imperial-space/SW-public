@@ -13,10 +13,10 @@ public sealed partial class RandomPoolSpawnerComponent : Component
     public string GroupId;
 
     [DataField]
-    public float ExtraChance = 0.5f;
+    public float ExtraChance = 0.8f;
 
     [DataField]
-    public int ExtraAttempts = 4;
+    public int ExtraAttempts = 8;
 
     [DataField]
     public bool DeleteAfterSpawn = true;
