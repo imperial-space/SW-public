@@ -3,6 +3,7 @@ using Content.Server.Administration.Commands;
 using Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 using Content.Server.Imperial.Medieval.Ships.Wave;
 using Content.Shared.Damage;
+using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 
@@ -19,7 +20,6 @@ public sealed class ShipDrowningSystem : EntitySystem
     [Dependency] private readonly WaveSystem _wave = default!;
 
     private const float DefaultReloadTimeSeconds = 10f;
-    public const string ConductorContainer = "Conductor";
 
     private TimeSpan _nextCheckTime;
     /// <inheritdoc/>
