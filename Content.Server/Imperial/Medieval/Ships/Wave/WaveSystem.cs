@@ -54,7 +54,7 @@ public sealed class WaveSystem : EntitySystem
         ("Plating", (ushort)3),
         ("FloorWhite", (ushort)4)
     };
-    private const float RadiusTiles = 2f;
+    private const float RadiusTiles = 3f;
     private bool _initialized;
 
     public override void Initialize()
@@ -96,13 +96,16 @@ public sealed class WaveSystem : EntitySystem
         if (!_entityManager.TryGetComponent<MapGridComponent>(gridEntity, out var mapGridComp))
             return;
 
-
         var grid = new Entity<MapGridComponent>(gridEntity, mapGridComp);
+
         var tileRef = _map.GetTileRef(grid, collisionPos);
+
         var centerTilePos = _map.MapToGrid(grid, collisionPos);
 
         var antiradius = (int)RadiusTiles*-1;
+
         var nearbyTiles = new List<Vector2i>();
+
         for (int dx = antiradius; dx <= RadiusTiles; dx++)
         {
             for (int dy = antiradius; dy <= RadiusTiles; dy++)

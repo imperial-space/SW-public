@@ -5022,7 +5022,7 @@
     fixtures:
       fix1:  #vertical
         shape:
-          !type:PhysShapeAabb 
+          !type:PhysShapeAabb
           bounds: "-0.49,-0.15,0.49,0.15"
         density: 1000
         mask:
@@ -5385,6 +5385,11 @@
         layer:
         - WallLayer
   - type: InteractionOutline
+  - type: Sail
+    SailSize: 5
+  - type: Rotatable
+    RotateWhileAnchored: true
+    Increment: 5
 
 - type: entity
   name: small light

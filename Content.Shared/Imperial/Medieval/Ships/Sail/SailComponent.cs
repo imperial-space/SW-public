@@ -1,4 +1,4 @@
-namespace Content.Server.Imperial.Medieval.Ships.Sail;
+namespace Content.Shared.Imperial.Medieval.Ships.Sail;
 
 /// <summary>
 /// This is used for...
@@ -11,4 +11,10 @@ public sealed partial class SailComponent : Component
 
     [DataField("Folded")]
     public bool Folded;
+
+    [DataField("Helm")]
+    public bool Helm;
+
+    [DataField("Push")]
+    public bool Push = true;
 }

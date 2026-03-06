@@ -42,15 +42,26 @@ public sealed class PlayerDrowningSystem : EntitySystem
             foreach (var component in EntityManager.EntityQuery<DrownerComponent>())
             {
                 if (!TryComp<TransformComponent>(component.Owner, out var transform))
-                    return;
-                var childs = new List<EntityUid>();
-                var childEnum = transform.ChildEnumerator;
-                while (childEnum.MoveNext(out var child))
+                    continue;
+                var childBasement = transform.ChildEnumerator;
+                while (childBasement.MoveNext(out var childUid))
+                    EnsureComp<PlayerDrowningComponent>(childUid);
+            }
+
+            foreach (var component in EntityManager.EntityQuery<PlayerDrowningComponent>())
+            {
+                if (HasComp<DrownerComponent>(_transform.GetParentUid(component.Owner)))
                 {
-                    ProcessDrowning(child);
+                    ProcessDrowning(component.Owner);
+                    continue;
                 }
+                if (component.DrownTime > 0)
+                    component.DrownTime -= 1;
+                else
+                    RemComp<PlayerDrowningComponent>(component.Owner);
 
             }
+
         }
     }
 
@@ -76,7 +87,7 @@ public sealed class PlayerDrowningSystem : EntitySystem
                     return;
                 }
 
-                if (_staminaSystem.TryTakeStamina(uid, 25, ignoreResist: true))
+                if (_staminaSystem.TryTakeStamina(uid, 10, ignoreResist: true))
                     return;
 
             }

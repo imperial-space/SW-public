@@ -1,15 +1,25 @@
 using System.Numerics;
+using Content.Server.Administration.Logs;
+using Content.Server.Imperial.Medieval.Ships.Helm;
+using Content.Server.Imperial.Medieval.Ships.ShipDrowning;
+using Content.Server.Imperial.Medieval.Ships.WeatherVane;
 using Content.Shared._RD.Weight.Components;
 using Content.Shared._RD.Weight.Systems;
+using Content.Shared.Changeling;
+using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Administration.Ships;
+using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Imperial.Medieval.Ships.Wind;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Popups;
+using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Maths;
 
 namespace Content.Server.Imperial.Medieval.Ships.Sail;
 
@@ -29,12 +39,13 @@ public sealed class SailSystem : EntitySystem
     [Dependency] private readonly RDWeightSystem  _rdWeight = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private readonly HelmSystem _helm = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
-    private const float DefaultReloadTimeSeconds = 1f;
     private TimeSpan _nextCheckTime;
 
-    private int _windForce;
-    private int _windAngle;
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -48,21 +59,13 @@ public sealed class SailSystem : EntitySystem
 
         if (curTime > _nextCheckTime)
         {
-            _nextCheckTime = curTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+            _nextCheckTime = curTime + TimeSpan.FromSeconds(_cfg.GetCVar(ShipsCCVars.WindChangeTime));
 
-            // Плавные изменения ветра (0–10)
-            if (_windForce <= 0)
-                _windForce += _random.Next(0, 2);
-            else if (_windForce >= 10)
-                _windForce -= _random.Next(0, 2);
-            else
-                _windForce += _random.Next(-1, 2);
+            RandomiseVind();
 
-            // Угол ветра: -45° до +45° (в градусах) — реалистично для моря
-            _windAngle += _random.Next(-5, 6); // ±5 градусов за шаг
-            _windAngle = Math.Clamp(_windAngle, -45, 45);
-
-            // --- Обработка каждого паруса ---
+            var ships = new List<EntityUid>();
+            var windAngle = _cfg.GetCVar(ShipsCCVars.WindRotation);
+            var windForce = _cfg.GetCVar(ShipsCCVars.WindPower);
             foreach (var sailComponent in EntityManager.EntityQuery<SailComponent>())
             {
                 if (sailComponent.Folded)
@@ -70,76 +73,56 @@ public sealed class SailSystem : EntitySystem
 
                 var sailEntity = sailComponent.Owner;
                 var boat = _transform.GetParentUid(sailEntity);
-                if (!EntityManager.TryGetComponent(boat, out PhysicsComponent? boatBody))
-                    continue;
-
-                // Получаем углы в радианах
-                float sailAngleRad = (float)_transform.GetWorldRotation(sailEntity).Theta;
-                float boatAngleRad = (float)_transform.GetWorldRotation(boat).Theta;
-                float windAngleRad = _windAngle * MathF.PI / 180f; // ветер в радианах
-
-                // Направление ветра как вектор
-                Vector2 windDirection = new Vector2(
-                    MathF.Cos(windAngleRad),
-                    MathF.Sin(windAngleRad)
-                );
-
-                // Нормаль паруса — перпендикуляр к его поверхности (наружу)
-                // Парус — плоскость, нормаль — направление, в которое он "ловит" ветер
-                var sailNormalAngleRad = sailAngleRad + MathF.PI / 2f;
-                var sailNormal = new Vector2(
-                    MathF.Cos(sailNormalAngleRad),
-                    MathF.Sin(sailNormalAngleRad)
-                );
-
-                // Угол между ветром и нормалью паруса
-                var dot = Math.Clamp(Vector2.Dot(windDirection, sailNormal), -1f, 1f);
-                var angleBetween = MathF.Acos(dot);
-
-                // Эффективность: максимальна, когда ветер перпендикулярен парусу (0°)
-                // Минимальна, когда ветер параллелен (90°+)
-                var efficiency = MathF.Cos(angleBetween);
-
-                // Если ветер дует сзади (угол > 90°), всё равно даём слабую тягу
-                // (реальные паруса могут работать и на "бейсинге")
-                if (angleBetween > MathF.PI / 2f)
-                    efficiency = MathF.Max(0.05f, efficiency); // 5% тяги сзади
-                else
-                    efficiency = MathF.Max(0f, efficiency);
-
-                // Сила ветра = базовая сила × площадь × эффективность
-                var forceMagnitude = _windForce * sailComponent.SailSize * efficiency;
-
-                // Направление силы — вдоль нормали паруса
-                var forceDirection = sailNormal * forceMagnitude;
-
-                // Крутящий момент: сила × плечо × sin(разница между парусом и кораблём)
-                // Плечо — расстояние от центра корабля до центра паруса (условное)
-                var sailOffset = 0.5f; // метры — можно настроить в компоненте
-                var torqueFactor = MathF.Sin(sailAngleRad - boatAngleRad); // как сильно парус "выступает" вбок
-                var torque = forceMagnitude * sailOffset * torqueFactor * 0.1f; // масштабируем
-
-                var windEffect = new WindEffect
+                EnsureComp<ShipDrowningComponent>(boat);
+                var boatAngle = new Angle();
+                var entities = _lookup.GetEntitiesIntersecting(boat);
+                foreach (var entity in entities)
                 {
-                    PushForce = forceDirection,
-                    RotationTorque = torque
-                };
+                    if (HasComp<SteeringOarComponent>(entity))
+                        boatAngle = _transform.GetWorldRotation(entity);
 
-                Push(sailEntity, sailComponent, windEffect);
+                }
+
+                var sailAngle = (float)_transform.GetWorldRotation(sailEntity)*180;
+
+                while ( Math.Abs(sailAngle) > 360)
+                {
+                    if (sailAngle > 0)
+                        sailAngle -= 360;
+                    else
+                        sailAngle += 360;
+                }
+
+                while ( Math.Abs(sailAngle) > 360)
+                {
+                    if (sailAngle > 0)
+                        sailAngle -= 360;
+                    else
+                        sailAngle += 360;
+                }
+
+                var diffAngle = sailAngle - windAngle;
+                var force = windForce * MathF.Cos(diffAngle/180) * sailComponent.SailSize;
+
+                Push(sailEntity, force, boatAngle , push: sailComponent.Push, helm: sailComponent.Helm);
+                if (!ships.Contains(boat))
+                    ships.Add(boat);
             }
         }
     }
 
-    private void Push(EntityUid sail, SailComponent sailComponent, WindEffect windForce)
+    private void Push(EntityUid sail, float windForce, Angle torque , bool push = true, bool helm = false)
     {
         var boat = _transform.GetParentUid(sail);
 
-        var entities = _lookup.GetEntitiesIntersecting(boat);
-
-        if (entities.Count > 1000)
-            return;
+        var boatAngle = _transform.GetWorldRotation(boat);
 
         var weight = _rdWeight.GetTotal(boat);
+
+        var entities = _lookup.GetEntitiesIntersecting(boat);
+
+        if (entities.Count > 1000000)
+            return;
 
         foreach (var entity in entities)
         {
@@ -149,13 +132,47 @@ public sealed class SailSystem : EntitySystem
 
         if (weight == 0)
             weight = 10;
-        var impulse = windForce.PushForce;
-        var angleimpulse = windForce.RotationTorque;
-        if (EntityManager.TryGetComponent(boat, out PhysicsComponent? body))
+        torque += Angle.FromDegrees(90);
+        if (windForce < 0)
+            windForce *= (float)0.5;
+        var impulse = torque.ToVec() * windForce;
+        if (!push)
         {
-            _physics.WakeBody(boat);
-            _physics.ApplyLinearImpulse(boat, impulse, body: body);
-            _physics.ApplyAngularImpulse(boat, angleimpulse);
+            _transform.SetWorldRotation(sail, Angle.FromDegrees(_cfg.GetCVar(ShipsCCVars.WindRotation)));
         }
+
+        if (helm)
+            _helm.RotateShip(boat,sail, _helm.CheckForce(boat, sail));
+
+        if (_helm.CheckForce(boat, sail) > _cfg.GetCVar(ShipsCCVars.ShipsMaxSpeed))
+            return;
+
+        _physics.ApplyLinearImpulse(boat, impulse);
+    }
+
+    private void RandomiseVind()
+    {
+
+
+
+        // ветерок сила
+        var windForce = _cfg.GetCVar(ShipsCCVars.WindPower);
+        if (windForce <= 0)
+            windForce += _random.Next(0, 2);
+        else if (windForce >= 10)
+            windForce -= _random.Next(0, 2);
+        else
+            windForce += _random.Next(-1, 2);
+        _cfg.SetCVar(ShipsCCVars.WindPower, windForce);
+
+        // ветерок направление
+        var windAngle = _cfg.GetCVar(ShipsCCVars.WindRotation);
+        windAngle += _random.Next(-1, 2)*5; // ±5 градусов за шаг
+        if (Math.Abs(windAngle) > 360)
+            windAngle = 0;
+        else if (windAngle < 0)
+            windAngle += 360;
+
+        _cfg.SetCVar(ShipsCCVars.WindRotation, windAngle);
     }
 }
