@@ -160,7 +160,7 @@
   id: ImperialAmbientTriggerCollege
   name: Imperial Ambient Trigger - College
   description: Desc
-  suffix: AUDIO AMBIENCE
+  : AUDIO AMBIENCE
   components:
   - type: LocationTrigger
     locationId: location_college

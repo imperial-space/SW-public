@@ -143,7 +143,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 120
+        damage: 260
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -185,7 +185,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 120
+        damage: 260
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -218,7 +218,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 120
+        damage: 260
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -251,7 +251,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 260
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -265,6 +265,14 @@
   parent: PlatformWoodScarlatto
   id: PlatformStonebrickScarlatto
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: Sprite
     state: stoneplatform
   - type: Icon
@@ -274,6 +282,14 @@
   parent: PlatformWoodCornerScarlatto
   id: PlatformStonebrickCornerScarlatto
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: Sprite
     state: stoneplatform_corner
   - type: Icon
@@ -283,6 +299,14 @@
   parent: PlatformWoodCornerSmallScarlatto
   id: PlatformStonebrickCornerSmallScarlatto
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: Sprite
     state: stoneplatform_deco
   - type: Icon
@@ -292,6 +316,14 @@
   parent: PlatformWoodRoundScarlatto
   id: PlatformStonebrickRoundScarlatto
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: Sprite
     state: stoneplatform_round
   - type: Icon
@@ -322,26 +354,10 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 260
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 20
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-          params:
-            volume: -6
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          PartRodMetal1:
-            min: 0
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Construction
     graph: Railing
     node: railing
@@ -358,6 +374,14 @@
   parent: ScarlattoPlatform
   id: ScarlattoStonePlatform
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: Sprite
     state: stoneplatform
   - type: Icon
@@ -397,26 +421,10 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 260
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 20
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-          params:
-            volume: -6
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          PartRodMetal1:
-            min: 0
-            max: 2
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Construction
     graph: Railing
     node: railingCorner
@@ -433,6 +441,14 @@
   parent: ScarlattoPlatformCorner
   id: ScarlattoStonePlatformCorner
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: Sprite
     state: stoneplatform_corner
   - type: Icon
@@ -463,26 +479,10 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 260
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 20
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-          params:
-            volume: -6
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          PartRodMetal1:
-            min: 0
-            max: 1
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Construction
     graph: Railing
     node: railingCornerSmall
@@ -499,6 +499,14 @@
   parent: ScarlattoPlatformCornerSmall
   id: ScarlattoStonePlatformCornerSmall
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: Sprite
     state: stoneplatform_deco
   - type: Icon
@@ -547,26 +555,10 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 260
       behaviors:
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 20
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-          params:
-            volume: -6
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          PartRodMetal1:
-            min: 0
-            max: 2
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
   - type: Construction
     graph: Railing
     node: railingRound
@@ -583,6 +575,14 @@
   parent: ScarlattoPlatformRound
   id: ScarlattoStonePlatformRound
   components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
   - type: Sprite
     state: stoneplatform_round
   - type: Icon
@@ -678,6 +678,23 @@
     base: wood
 
 - type: entity
+  parent: DiagonalWallWoodEvent
+  id: DiagonalWallWoodEventUndestructible
+  name: wall
+  components:
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000 # imperial medieval
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
   parent: WallDiagonalBase
   id: DiagonalWallStoneEvent
   name: wall
@@ -686,17 +703,17 @@
     snap:
     - Wall
   components:
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 600
+        damage: 3600 # imperial medieval
       behaviors:
       - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
+        acts: [ "Destruction" ]
   - type: Sprite
     drawdepth: Walls
     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stone.rsi
@@ -704,6 +721,23 @@
   - type: Icon
     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stone.rsi
     state: state0
+
+- type: entity
+  parent: DiagonalWallStoneEvent
+  id: DiagonalWallStoneEventUndestructible
+  name: wall
+  components:
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000 # imperial medieval
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   id: StoneStairsEvent
@@ -723,20 +757,14 @@
     drawdepth: FloorTiles
   - type: Transform
     anchored: true
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
         damage: 750
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-    - trigger:
-        !type:DamageTrigger
-        damage: 50
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -761,7 +789,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 100
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -770,7 +798,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 750
+        damage: 75
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -802,7 +830,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 2000
+        damage: 400
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -811,7 +839,7 @@
           collection: WindowShatter
     - trigger:
         !type:DamageTrigger
-        damage: 1750
+        damage: 280
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -888,7 +916,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 1000
+        damage: 250
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -915,7 +943,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 2000
+        damage: 2800
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -937,7 +965,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150
+        damage: 100
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -969,7 +997,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 400
       behaviors:
       - !type:DoActsBehavior
         acts: ["Destruction"]
@@ -986,3 +1014,246 @@
     mode: Diagonal
     key: walls
     base: state
+
+- type: entity
+  parent: Railing
+  id: WoodRailingScarlatto
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side
+  - type: Transform
+    anchored: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: WoodRailingScarlatto
+  id: WoodRailingSideScarlatto
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side1
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side1
+
+- type: entity
+  parent: WoodRailingScarlatto
+  id: WoodRailingCornerScarlatto
+  components:
+  - type: Sprite
+    state: corner
+  - type: Icon
+    state: corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: WoodRailingScarlatto
+  id: WoodRailingCornerSmallScarlatto
+  components:
+  - type: Sprite
+    state: corner_small
+  - type: Icon
+    state: corner_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: Railing
+  id: StoneRailingScarlatto
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/stonerailing.rsi
+    state: side
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/stonerailing.rsi
+    state: side
+  - type: Transform
+    anchored: false
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1200 # imperial medieval
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: StoneRailingScarlatto
+  id: StoneRailingSideScarlatto
+  components:
+  - type: Sprite
+    state: side1
+  - type: Icon
+    state: side1
+
+- type: entity
+  parent: StoneRailingScarlatto
+  id: StoneRailingCornerScarlatto
+  components:
+  - type: Sprite
+    state: corner
+  - type: Icon
+    state: corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: StoneRailingScarlatto
+  id: StoneRailingCornerSmallScarlatto
+  components:
+  - type: Sprite
+    state: corner_small
+  - type: Icon
+    state: corner_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: WallWood
+  id: WallWoodUndestructible
+  name: wood wall
+  description: The traditional greytide defense.
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: WallNecropolis
+  id: WallNecropolisUndestructible
+  name: stone wall
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

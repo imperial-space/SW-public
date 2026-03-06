@@ -360,12 +360,12 @@
   map:
     BaseBallBat: [BaseBallBatAlaraniel]
 
-- type: customization
-  id: aniot
-  holder: cd7a98b4-6895-4eeb-b8f1-cb42d87301f3
-  map:
-    MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightBaronSaturday]
-    MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumHatBaronSaturday]
+# - type: customization
+#   id: aniot
+#   holder: cd7a98b4-6895-4eeb-b8f1-cb42d87301f3
+#   map:
+#     MedievalClothingOuterArmorCharmerLight: [MedievalClothingOuterArmorCharmerLightBaronSaturday]
+#     MedievalClothingHeadHelmetCollegiumPurpleHat: [MedievalClothingHeadHelmetCollegiumHatBaronSaturday]
 
 - type: customization
   id: artur

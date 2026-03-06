@@ -1,0 +1,22 @@
+- type: entity
+  id: MedievalGunpowderCharge
+  parent: BaseItem
+  name: gunpowder charge
+  description: A compact charge of black powder.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Cannon/gunpowder_charge.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Cannon/gunpowder_charge.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: CanonGunpowder
+    insertSound:
+      path: /Audio/Imperial/Medieval/Cannon/gunpowder_insert.ogg
+      params:
+        volume: 8

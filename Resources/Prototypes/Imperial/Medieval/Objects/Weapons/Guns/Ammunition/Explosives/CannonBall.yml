@@ -1,0 +1,20 @@
+- type: entity
+  id: CannonBallMedieva
+  suffix: Средневековье
+  parent: BaseCannonBall
+  components:
+  - type: CartridgeAmmo
+    proto: BulletCannonBall
+    deleteOnSpawn: true
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Ammunition/Explosives/explosives.rsi
+    state: cannonball
+
+- type: entity
+  id: GrapeshotMedieva
+  suffix: Средневековье
+  parent: CannonBallGrapeshot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Ammunition/Explosives/grapeshot.rsi
+    state: grapeshot
