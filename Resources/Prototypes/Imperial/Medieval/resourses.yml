@@ -85,6 +85,21 @@
   - type: MedievalCurrency
     price:
       Revent: 10
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        canReact: false
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 2
+  - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 4
 
 - type: entity
   name: MedievalTopaz10
@@ -944,6 +959,22 @@
   - type: MedievalCurrency
     price:
       Revent: 10
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        canReact: false
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 2
+  - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 4
+
 
 - type: entity
   name: MedievalFireSerdolick10
@@ -1015,6 +1046,7 @@
     - RawMaterial
     - Sheet
     - Ore
+    - MedievalAdam
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -1032,6 +1064,22 @@
   - type: MedievalCurrency
     price:
       Revent: 10
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        canReact: false
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 2
+  - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 4
 
 - type: entity
   name: MedievalAdam10

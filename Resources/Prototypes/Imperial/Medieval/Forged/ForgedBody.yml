@@ -1,0 +1,35 @@
+- type: body
+  id: Forged
+  name: "forged"
+  root: torso
+  slots:
+    torso:
+      part: TorsoHuman
+      connections:
+      - right_arm
+      - left_arm
+      - right_leg
+      - left_leg
+      organs:
+        stomach: OrganHumanStomach
+    head:
+      part: HeadHuman
+      connections:
+      - torso
+    right_arm:
+      part: RightArmHuman
+      connections:
+      - right_hand
+    left_arm:
+      part: LeftArmHuman
+      connections:
+      - left_hand
+    right_hand:
+      part: RightHandHuman
+    left_hand:
+      part: LeftHandHuman
+    right_leg:
+      part: RightLegHuman
+    left_leg:
+      part: LeftLegHuman
+

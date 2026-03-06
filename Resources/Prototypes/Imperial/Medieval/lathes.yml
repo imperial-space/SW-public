@@ -1063,6 +1063,36 @@
     - MedievalScrollsPetSlimeCraft
     - MedievalClothingHeadHelmetCharmerNeutral
     - MedievalClothingOuterArmorCharmerNeutral
+    - ForgedCoreSerdolicCraft
+    - ForgedCoreAdamCraft
+    - ForgedCoreTopazCraft
+    - ForgedCoreGoldCraft
+    - ForgedWoodenHeadCraft
+    - ForgedWoodenTorsoCraft
+    - ForgedWoodenRArmCraft
+    - ForgedWoodenLArmCraft
+    - ForgedWoodenRLegCraft
+    - ForgedWoodenLLegCraft
+    - ForgedIronHeadCraft
+    - ForgedIronTorsoCraft
+    - ForgedIronRArmCraft
+    - ForgedIronLArmCraft
+    - ForgedIronRLegCraft
+    - ForgedIronLLegCraft
+    - ForgedGoldenHeadCraft
+    - ForgedGoldenTorsoCraft
+    - ForgedGoldenRArmCraft
+    - ForgedGoldenLArmCraft
+    - ForgedGoldenRLegCraft
+    - ForgedGoldenLLegCraft
+    - ForgedEyesSerdolickCraft
+    - ForgedEyesAdamCraft
+    - ForgedEyesTopazCraft
+    - ForgedEyesBloodCraft
+    - ForgedRHandBladeCraft
+    - ForgedLHandBladeCraft
+    - ForgedCrossbowRHandCraft
+    - ForgedCrossbowLHandCraft
 
 - type: entity
   parent: CP14BaseWorkbench

@@ -1,0 +1,45 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "Made for the Imperial Space community, authors\u0027es discord nickname: Zakvielian",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "base_core"
+        },
+        {
+            "name": "adamantite_core_icon"
+        },
+        {
+            "name": "adamantite_core",
+            "directions": 4
+        },
+        {
+            "name": "gold_core_icon"
+        },
+        {
+            "name": "gold_core",
+            "directions": 4
+        },
+        {
+            "name": "serdolic_core_icon"
+        },
+        {
+            "name": "serdolic_core",
+            "directions": 4
+        },
+        {
+            "name": "topaz_core_icon"
+        },
+        {
+            "name": "topaz_core",
+            "directions": 4
+        },
+        {
+            "name": "blank"
+        }
+    ]
+}
