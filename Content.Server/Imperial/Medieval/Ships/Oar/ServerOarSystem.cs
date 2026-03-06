@@ -72,6 +72,7 @@ public sealed class OarSystem : EntitySystem
             RequireCanInteract = false,
             BreakOnDropItem = true,
             BreakOnHandChange = true,
+            NeedHand = true,
         };
         _doAfter.TryStartDoAfter(sdoAfter);
         var playerPosition = _transform.GetWorldPosition(playerEntity);

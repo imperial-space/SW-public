@@ -50,6 +50,7 @@ public sealed class SailSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
+        SubscribeLocalEvent<SailComponent, SailFoldEvent>(OnFold);
     }
 
     public override void Update(float frameTime)
@@ -153,9 +154,6 @@ public sealed class SailSystem : EntitySystem
 
     private void RandomiseVind()
     {
-
-
-
         // ветерок сила
         var windForce = _cfg.GetCVar(ShipsCCVars.WindPower);
         if (windForce <= 0)
@@ -175,5 +173,22 @@ public sealed class SailSystem : EntitySystem
             windAngle += 360;
 
         _cfg.SetCVar(ShipsCCVars.WindRotation, windAngle);
+    }
+
+
+    private void OnFold(EntityUid uid, SailComponent component, SailFoldEvent args)
+    {
+        if (args.Cancelled)
+            return;
+
+        var rot = _transform.GetWorldRotation(uid);
+        var coords = _transform.GetMapCoordinates(uid);
+        Del(uid);
+        if (component.Folded)
+            Spawn("MedievalDecorShipSailReady", coords, rotation: rot);
+        else
+        {
+            Spawn("MedievalDecorShipSailShipup", coords, rotation: rot);
+        }
     }
 }

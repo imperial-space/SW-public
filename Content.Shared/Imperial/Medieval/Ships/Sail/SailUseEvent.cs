@@ -9,3 +9,7 @@ namespace Content.Shared.Imperial.Medieval.Ships.Sail;
 public sealed partial class SailUseEvent : SimpleDoAfterEvent
 {
 }
+
+public sealed partial class SailFoldEvent : SimpleDoAfterEvent
+{
+}
