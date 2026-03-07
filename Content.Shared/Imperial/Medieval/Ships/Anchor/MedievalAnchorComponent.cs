@@ -4,7 +4,8 @@ namespace Content.Shared.Imperial.Medieval.Ships.Anchor;
 /// This is used for...
 /// </summary>
 [RegisterComponent]
-public sealed partial class AnchorSwithComponent : Component
+public sealed partial class MedievalAnchorComponent : Component
 {
-    
+    [DataField("Enabled")]
+    public bool Enabled;
 }
