@@ -61,9 +61,7 @@ public sealed class SailSystem : EntitySystem
 
         if (curTime > _nextCheckTime)
         {
-            _nextCheckTime = curTime + TimeSpan.FromSeconds(_cfg.GetCVar(ShipsCCVars.WindChangeTime));
-
-            RandomiseVind();
+            _nextCheckTime = curTime + TimeSpan.FromSeconds(_cfg.GetCVar(ShipsCCVars.WindDelay));
 
             var ships = new List<EntityUid>();
             var windAngle = _cfg.GetCVar(ShipsCCVars.WindRotation);
@@ -150,29 +148,6 @@ public sealed class SailSystem : EntitySystem
             return;
 
         _physics.ApplyLinearImpulse(boat, impulse);
-    }
-
-    private void RandomiseVind()
-    {
-        // ветерок сила
-        var windForce = _cfg.GetCVar(ShipsCCVars.WindPower);
-        if (windForce <= 0)
-            windForce += _random.Next(0, 2);
-        else if (windForce >= 10)
-            windForce -= _random.Next(0, 2);
-        else
-            windForce += _random.Next(-1, 2);
-        _cfg.SetCVar(ShipsCCVars.WindPower, windForce);
-
-        // ветерок направление
-        var windAngle = _cfg.GetCVar(ShipsCCVars.WindRotation);
-        windAngle += _random.Next(-1, 2)*5; // ±5 градусов за шаг
-        if (Math.Abs(windAngle) > 360)
-            windAngle = 0;
-        else if (windAngle < 0)
-            windAngle += 360;
-
-        _cfg.SetCVar(ShipsCCVars.WindRotation, windAngle);
     }
 
 

@@ -79,6 +79,14 @@ public sealed class OarSystem : EntitySystem
         var boatPosition = _transform.ToWorldPosition(args.ClickLocation);
         var direction = (playerPosition - boatPosition).Normalized();
         component.Direction = direction;
+        var pushAngle = direction.ToAngle();
+        var boatAngle = _transform.GetWorldRotation(boat);
+
+        var text = "по курсу";
+        if (Math.Abs(pushAngle-boatAngle)*180 > 90)
+            text = "против курса";
+
+        _popup.PopupClient($"Ты гребёшь {text} лодки", playerEntity);
     }
 
     private void OnOarDoAfter(EntityUid uid, OarComponent component, ref OnOarDoAfterEvent args)

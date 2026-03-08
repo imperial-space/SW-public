@@ -43,5 +43,5 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
 
         shuttleComponent.Enabled = !enabled;
         component.Enabled = !enabled;
-        }
+    }
 }
