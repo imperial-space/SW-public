@@ -3,8 +3,6 @@
   recipe:
   - Any
   - Any
-  - Any
-  - Any
   resultEntity: PolymorphMedievalMyrmexWorker
   priority: 999
 
@@ -36,8 +34,6 @@
   recipe:
   - MedievalSoupMushroom
   - MedievalSoupMushroom
-  - Any
-  - Any
   condition:
     a: 2
     b: 3
@@ -53,15 +49,11 @@
     revertOnCrit: false
     allowRepeatedMorphs: true
 
-
-
 - type: larvaGrow
   id: LarvaGrowElite
   recipe:
   - MedievalSoupYant
   - MedievalSoupYant
-  - Any
-  - Any
   condition:
     a: 2
     b: 3
@@ -77,15 +69,11 @@
     revertOnCrit: false
     allowRepeatedMorphs: true
 
-
-
 - type: larvaGrow
   id: LarvaGrowWarrior
   recipe:
   - MedievalSoupResin
   - MedievalSoupResin
-  - Any
-  - Any
   condition:
     a: 2
     b: 3

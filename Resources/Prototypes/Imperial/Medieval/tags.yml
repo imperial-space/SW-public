@@ -104,6 +104,9 @@
   id: MyrmexResourceYant
 
 - type: Tag
+  id: MyrmexResourceYantGear
+
+- type: Tag
   id: Mushroom1
 
 - type: Tag

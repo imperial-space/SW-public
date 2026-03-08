@@ -89,6 +89,22 @@
     - MyrmexCanTake
     - MyrmexResourceYant
 
+- type: entity
+  id: MedievalMyrmexResourceYantGear
+  name: янтарная шестерня
+  description: Довольно некачественная шестерня из янтаря, сделанная на скорую лапу
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/resingear.rsi
+    state: resingear
+  - type: Item
+    size: Ginormous
+  - type: Tag
+    tags:
+    - MyrmexCanTake
+    - MyrmexResourceYantGear
+
   # - type: Construction
   #   graph: MedievalChest4
   #   node: MedievalChest4
@@ -505,6 +521,7 @@
     - MedievalMyrmexResourceYant
     - MedievalMyrmexFibeStack5
     - MedievalMyrmexResourceGum
+    - MedievalMyrmexResourceYantGear
 
 - type: entity
   id: MedievalMyrmexToxicHole
@@ -636,3 +653,10 @@
   - type: Construction
     graph: MMyrmexIncubatorCraft
     node: medievalMyrmexIncubator
+
+- type: entity
+  id: MyrmexHive
+  name: Default
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MyrmexHive

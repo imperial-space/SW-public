@@ -10,7 +10,7 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
         public TimeSpan? LastEaten;
 
         [DataField, AutoNetworkedField]
-        public float EatCooldownSeconds = 180;
+        public float EatCooldownSeconds = 120;
 
         [DataField, AutoNetworkedField]
         public float SecondsToHungry = 1500;
@@ -23,8 +23,5 @@ namespace Content.Shared.Imperial.Medieval.Myrmex
 
         [DataField, AutoNetworkedField]
         public EntProtoId IconPrototype = "HungerIconStarving";
-
-        [DataField, AutoNetworkedField] 
-         public int MaxBuffs = 10;
     }
 }
