@@ -1087,6 +1087,9 @@
   groups:
   - BardHead
   - BardJumpsuit
+  - BardOuter
+  - BardMask
+  - BardItems
   - MedievalBackpack
   #- SecurityOuterClothing
   - MedievalShoes
@@ -1097,6 +1100,22 @@
   - MedievalMusic
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
+
+- type: loadoutGroup
+  id: BardItems
+  name: loadout-group-traveller-items
+  minLimit: 0
+  loadouts:
+  - BardHorse
+
+- type: loadout
+  id: BardHorse
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  storage:
+    back:
+    - BardHorse
 
 - type: loadoutGroup
   id: BardHead
@@ -1118,6 +1137,13 @@
   - MedievalWanderHat
   - MedievalGreenHat
   - MedievalWhiteHat
+  - BardArlekinoHead
+  - BardAsianHat
+  - BardCrown
+  - BardHat
+  - BardHeadscarf
+  - BardManHead
+  - BardWig
   #- TravellerHood
 
 - type: loadout
@@ -1232,6 +1258,62 @@
   equipment:
     head: MedievalWhiteHat
 
+- type: loadout
+  id: BardArlekinoHead
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardArlekinoHead
+
+- type: loadout
+  id: BardAsianHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardAsianHat
+
+- type: loadout
+  id: BardCrown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer10hours
+  equipment:
+    head: BardCrown
+
+- type: loadout
+  id: BardHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardHat
+
+- type: loadout
+  id: BardHeadscarf
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardHeadscarf
+
+- type: loadout
+  id: BardManHead
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardManHead
+
+- type: loadout
+  id: BardWig
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardWig
+
 
 
 - type: loadoutGroup
@@ -1244,6 +1326,10 @@
   - BardReallyGood
   - BardGor1
   - BardGor2
+  - BardArlekino
+  - BardKimano
+  - BardMagicDress
+  - BardPierro
 
 - type: loadout
   id: BardDefault
@@ -1292,6 +1378,106 @@
     proto: BardTimer30hours
   equipment:
     jumpsuit: ClothingUniformJumpskirtJanimaid
+
+- type: loadout
+  id: BardArlekino
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    jumpsuit: BardArlekino
+
+- type: loadout
+  id: BardKimano
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    jumpsuit: BardKimano
+
+- type: loadout
+  id: BardMagicDress
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer10hours
+  equipment:
+    jumpsuit: BardMagicDress
+
+- type: loadout
+  id: BardPierro
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    jumpsuit: BardPierro
+
+- type: loadoutGroup
+  id: BardOuter
+  name: loadout-group-traveller-outer
+  minLimit: 0
+  loadouts:
+  - BardBear
+  - BardGrinCoat
+  - BardRedcoat
+
+- type: loadout
+  id: BardBear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer10hours
+  equipment:
+    outerClothing: BardBear
+
+- type: loadout
+  id: BardGrinCoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    outerClothing: BardGrinCoat
+
+- type: loadout
+  id: BardRedcoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    outerClothing: BardRedcoat
+
+- type: loadoutGroup
+  id: BardMask
+  name: loadout-group-traveller-mask
+  minLimit: 0
+  loadouts:
+  - BardMaskLove
+  - BardMaskSad
+  - BardMaskSmile
+
+- type: loadout
+  id: BardMaskLove
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    mask: BardMaskLove
+
+- type: loadout
+  id: BardMaskSad
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    mask: BardMaskSad
+
+- type: loadout
+  id: BardMaskSmile
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    mask: BardMaskSmile
+
+
 
 - type: loadoutGroup
   id: MedievalMusic
