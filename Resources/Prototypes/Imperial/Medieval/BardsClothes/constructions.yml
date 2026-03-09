@@ -1,0 +1,79 @@
+- type: entity
+  parent: BaseStructureDynamic
+  id: MedievalDecorBardBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardClothes/bard_decorations.rsi
+    no_rotation: true
+  - type: Damageable
+    damageContainer: Inorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/poster_broken.ogg
+  - type: Item
+    size: Huge
+
+- type: entity
+  parent: MedievalDecorBardBase
+  id: MedievalDecorBardDragon
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardClothes/bard_decorations.rsi
+    state: dragon
+
+- type: entity
+  parent: MedievalDecorBardBase
+  id: MedievalDecorBardFire
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardClothes/bard_decorations.rsi
+    state: fire
+
+- type: entity
+  parent: MedievalDecorBardBase
+  id: MedievalDecorBardMoon
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardClothes/bard_decorations.rsi
+    state: moon
+
+- type: entity
+  parent: MedievalDecorBardBase
+  id: MedievalDecorBardSun
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardClothes/bard_decorations.rsi
+    state: sun
+
+- type: entity
+  parent: MedievalDecorBardBase
+  id: MedievalDecorBardThrone
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardClothes/bard_decorations.rsi
+    state: throne
+
+- type: entity
+  parent: MedievalDecorBardBase
+  id: MedievalDecorBardTower
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardClothes/bard_decorations.rsi
+    state: tower
+
+- type: entity
+  parent: MedievalDecorBardBase
+  id: MedievalDecorBardTree
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/BardClothes/bard_decorations.rsi
+    state: tree

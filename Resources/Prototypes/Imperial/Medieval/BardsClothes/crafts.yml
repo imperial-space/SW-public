@@ -130,3 +130,52 @@
   stacks:
     Cloth: 2
   result: BardMaskSmile
+
+- type: CP14Recipe
+  id: MedievalDecorBardDragon
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: MedievalDecorBardDragon
+
+- type: CP14Recipe
+  id: MedievalDecorBardFire
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: MedievalDecorBardFire
+
+- type: CP14Recipe
+  id: MedievalDecorBardMoon
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: MedievalDecorBardMoon
+
+- type: CP14Recipe
+  id: MedievalDecorBardSun
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: MedievalDecorBardSun
+
+- type: CP14Recipe
+  id: MedievalDecorBardThrone
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: MedievalDecorBardThrone
+
+- type: CP14Recipe
+  id: MedievalDecorBardTower
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: MedievalDecorBardTower
+
+- type: CP14Recipe
+  id: MedievalDecorBardTree
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: MedievalDecorBardTree
