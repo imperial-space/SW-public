@@ -1,5 +1,5 @@
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: ClothingHeadBase
   id: BardArlekinoHead
   name: Arlekino Head
   description: A headpiece for a bard's costume.
@@ -10,7 +10,7 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/arlekino_head.rsi
 
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: ClothingHeadBase
   id: BardAsianHat
   name: Asian Hat
   description: A hat from the far east.
@@ -21,7 +21,7 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/Asian_hat.rsi
 
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: ClothingHeadBase
   id: BardCrown
   name: Crown
   description: A crown for a king.
@@ -32,7 +32,7 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/crown.rsi
 
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: ClothingHeadBase
   id: BardHat
   name: Hat
   description: A simple hat.
@@ -43,7 +43,7 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/hat.rsi
 
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: ClothingHeadBase
   id: BardHeadscarf
   name: Headscarf
   description: A simple headscarf.
@@ -66,7 +66,7 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/horse.rsi
 
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: ClothingHeadBase
   id: BardManHead
   name: Man Head
   description: A man's head.
@@ -77,7 +77,7 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/man_head.rsi
 
 - type: entity
-  parent: MedievalClothingHeadBase
+  parent: ClothingHeadBase
   id: BardWig
   name: Wig
   description: A wig.
@@ -97,7 +97,6 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/arlekino.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/arlekino.rsi
-  - type: Insulated
 
 - type: entity
   parent: ClothingOuterBase
@@ -109,7 +108,6 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/bear.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/bear.rsi
-  - type: Insulated
 
 - type: entity
   parent: ClothingUniformBase
@@ -121,7 +119,6 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/kimano.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/kimano.rsi
-  - type: Insulated
 
 - type: entity
   parent: ClothingUniformBase
@@ -133,7 +130,6 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/magic_dress.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/magic_dress.rsi
-  - type: Insulated
 
 - type: entity
   parent: ClothingUniformBase
@@ -145,7 +141,6 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/Pierro.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/Pierro.rsi
-  - type: Insulated
 
 - type: entity
   parent: ClothingOuterBase
@@ -157,7 +152,6 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/grin_coat.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/grin_coat.rsi
-  - type: Insulated
 
 - type: entity
   parent: ClothingOuterBase
@@ -169,7 +163,6 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/redcoat.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/redcoat.rsi
-  - type: Insulated
 
 - type: entity
   parent: ClothingMaskBase
@@ -181,7 +174,6 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/mask_love.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/mask_love.rsi
-  - type: Insulated
 
 - type: entity
   parent: ClothingMaskBase
@@ -193,7 +185,6 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/mask_sad.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/mask_sad.rsi
-  - type: Insulated
 
 - type: entity
   parent: ClothingMaskBase
@@ -205,4 +196,3 @@
     sprite: Imperial/Medieval/Clothing/BardCloth/mask_smile.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/BardCloth/mask_smile.rsi
-  - type: Insulated

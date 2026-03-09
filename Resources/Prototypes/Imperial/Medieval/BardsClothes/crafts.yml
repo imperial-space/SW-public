@@ -1,0 +1,132 @@
+- type: CP14Recipe
+  id: BardArlekinoHead
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardArlekinoHead
+
+- type: CP14Recipe
+  id: BardAsianHat
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardAsianHat
+
+- type: CP14Recipe
+  id: BardCrown
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardCrown
+
+- type: CP14Recipe
+  id: BardArlekinoHead
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardArlekinoHead
+
+- type: CP14Recipe
+  id: BardHat
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardHat
+
+- type: CP14Recipe
+  id: BardHeadscarf
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardHeadscarf
+
+- type: CP14Recipe
+  id: BardHorse
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardHorse
+
+- type: CP14Recipe
+  id: BardManHead
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardManHead
+
+- type: CP14Recipe
+  id: BardWig
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardWig
+
+- type: CP14Recipe
+  id: BardArlekino
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardArlekino
+
+- type: CP14Recipe
+  id: BardBear
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardBear
+
+- type: CP14Recipe
+  id: BardKimano
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardKimano
+
+- type: CP14Recipe
+  id: BardMagicDress
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardMagicDress
+
+- type: CP14Recipe
+  id: BardPierro
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardPierro
+
+- type: CP14Recipe
+  id: BardGrinCoat
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardGrinCoat
+
+- type: CP14Recipe
+  id: BardRedcoat
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardRedcoat
+
+- type: CP14Recipe
+  id: BardMaskLove
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardMaskLove
+
+- type: CP14Recipe
+  id: BardMaskSad
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardMaskSad
+
+- type: CP14Recipe
+  id: BardMaskSmile
+  craftTime: 3
+  stacks:
+    Cloth: 2
+  result: BardMaskSmile
