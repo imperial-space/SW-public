@@ -8,6 +8,6 @@ public sealed class StormSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        
+
     }
 }

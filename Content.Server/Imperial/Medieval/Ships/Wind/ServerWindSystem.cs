@@ -43,7 +43,7 @@ public sealed class ServerWindSystem : EntitySystem
     private void RandomiseVind()
     {
         // ветерок сила
-        var windForce = _cfg.GetCVar(ShipsCCVars.WindPower);
+        var windForce = _cfg.GetCVar(ShipsCCVars.StormLevel);
         var countShips = FindShips();
 
         if (windForce <= 0+countShips)

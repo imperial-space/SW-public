@@ -65,7 +65,7 @@ public sealed class SailSystem : EntitySystem
 
             var ships = new List<EntityUid>();
             var windAngle = _cfg.GetCVar(ShipsCCVars.WindRotation);
-            var windForce = _cfg.GetCVar(ShipsCCVars.WindPower);
+            var windForce = _cfg.GetCVar(ShipsCCVars.StormLevel);
             foreach (var sailComponent in EntityManager.EntityQuery<SailComponent>())
             {
                 if (sailComponent.Folded)
@@ -102,7 +102,7 @@ public sealed class SailSystem : EntitySystem
                 }
 
                 var diffAngle = sailAngle - windAngle;
-                var force = windForce * MathF.Cos(diffAngle/180) * sailComponent.SailSize;
+                var force = windForce * MathF.Cos(diffAngle/180) * sailComponent.SailSize * _cfg.GetCVar(ShipsCCVars.WindPower);
 
                 Push(sailEntity, force, boatAngle , push: sailComponent.Push, helm: sailComponent.Helm);
                 if (!ships.Contains(boat))

@@ -5,6 +5,7 @@ using Content.Server.Destructible;
 using Content.Shared.Construction.Conditions;
 using Content.Shared.Damage;
 using Content.Shared.Database;
+using Content.Shared.Imperial.Medieval.Additions;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
@@ -69,8 +70,6 @@ public sealed class WaveSystem : EntitySystem
         if (Stages == null || Stages.Length == 0)
             return;
 
-
-        // Используем for вместо foreach для изменения коллекции
         for (int i = 0; i < Stages.Length; i++)
         {
             var stage = Stages[i];
@@ -133,7 +132,7 @@ public sealed class WaveSystem : EntitySystem
                 continue;
             var stagelast = Stages.Length-1;
 
-            if (tile.TypeId == Stages[stagelast].Item2)
+            if (tile.TypeId == Stages[stagelast].Item2 || tile.IsEmpty)
                 continue;
             var index = 0;
             foreach (var stage in Stages)
@@ -150,5 +149,37 @@ public sealed class WaveSystem : EntitySystem
             component.HitList.Add(args.OtherEntity);
         if (component.DeleteOnCollide)
             _entityManager.DeleteEntity(args.OurEntity);
+    }
+    /// <summary>
+    /// призывает грид на куазанных координатах относительно какой то сущности и даёт ей силу
+    /// coords кординаты это сущность от которой считать и вектор смещения
+    /// mapId айди мапы
+    /// force вектор силы который мы прикладываем если надо
+    /// deleteOnCollide при столкновении удаляем
+    /// lifetime = 0 не будет удалять сущность по истечению таймера
+    /// </summary>
+    public void SpawnWave(EntityCoordinates coords, MapId mapId, Vector2 force = new Vector2(), bool deleteOnCollide = true, float lifetime = 60)
+    {
+        var grid = _mapManager.CreateGridEntity(mapId);
+        var waveComponent = EnsureComp<WaveComponent>(grid);
+        waveComponent.DeleteOnCollide = deleteOnCollide;
+        _tileDefinitionManager.TryGetDefinition("FloorWood", out var tileDefinition);// сюда поставить воду
+        if (tileDefinition == null)
+            return;
+        _map.SetTile(grid, new Vector2i(0,0),new Tile(tileDefinition.TileId, 0, 0));// создаёт тайлик воды надо поставить воду вон туда
+        if (HasComp<TransformComponent>(grid))
+        {
+            _transform.SetCoordinates(grid, coords);
+            _physics.WakeBody(grid);
+            _physics.ApplyLinearImpulse(grid, force);
+            if (lifetime > 0)
+            {
+                var despawnComponent = EnsureComp<MedievalTimedDespawnComponent>(grid);
+                despawnComponent.Lifetime = lifetime;
+                despawnComponent.OriginalLifeTime = lifetime;
+            }
+        }
+
+
     }
 }

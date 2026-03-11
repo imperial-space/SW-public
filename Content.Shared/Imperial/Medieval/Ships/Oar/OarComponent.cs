@@ -15,5 +15,5 @@ public sealed partial class OarComponent : Component
     public int SpeedModifier = 1;
 
     [DataField]
-    public Vector2 Direction;
+    public Angle Direction;
 }

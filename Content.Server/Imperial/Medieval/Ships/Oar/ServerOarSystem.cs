@@ -15,6 +15,8 @@ using Robust.Shared.Physics.Systems;
 using Content.Shared.Database;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Ships.Oar;
+using Content.Shared.Interaction.Components;
+using Content.Shared.Movement.Components;
 
 
 namespace Content.Server.Imperial.Medieval.Ships.Oar;
@@ -35,62 +37,17 @@ public sealed class OarSystem : EntitySystem
     [Dependency] private readonly RDWeightSystem  _rdWeight = default!;
     public override void Initialize()
     {
-        SubscribeLocalEvent<OarComponent, AfterInteractEvent>(OnOarAfterInteract);
         SubscribeLocalEvent<OarComponent, OnOarDoAfterEvent>(OnOarDoAfter);
-    }
-
-    private void OnOarAfterInteract(EntityUid uid, OarComponent component, AfterInteractEvent args)
-    {
-        var playerEntity = args.User;
-
-        if (args.Handled || !args.CanReach )
-            return;
-
-        var boat = _transform.GetParentUid(playerEntity);
-
-        if (boat == args.ClickLocation.EntityId)
-            return;
-
-        var clickEntity = args.ClickLocation.EntityId;
-        if (boat == _transform.GetParentUid(clickEntity))
-            return;
-
-        var time = 7 -_skills.GetSkillLevel(playerEntity, "Agility") * 0.3f;
-        var sdoAfter = new DoAfterArgs(EntityManager,
-            playerEntity,
-            time,
-            new OnOarDoAfterEvent(),
-            args.Used,
-            args.Target,
-            args.Used)
-        {
-            MovementThreshold = 0.5f,
-            BreakOnMove = true,
-            CancelDuplicate = true,
-            DistanceThreshold = 2,
-            BreakOnDamage = true,
-            RequireCanInteract = false,
-            BreakOnDropItem = true,
-            BreakOnHandChange = true,
-            NeedHand = true,
-        };
-        _doAfter.TryStartDoAfter(sdoAfter);
-        var playerPosition = _transform.GetWorldPosition(playerEntity);
-        var boatPosition = _transform.ToWorldPosition(args.ClickLocation);
-        var direction = (playerPosition - boatPosition).Normalized();
-        component.Direction = direction;
-        var pushAngle = direction.ToAngle();
-        var boatAngle = _transform.GetWorldRotation(boat);
-
-        var text = "по курсу";
-        if (Math.Abs(pushAngle-boatAngle)*180 > 90)
-            text = "против курса";
-
-        _popup.PopupClient($"Ты гребёшь {text} лодки", playerEntity);
     }
 
     private void OnOarDoAfter(EntityUid uid, OarComponent component, ref OnOarDoAfterEvent args)
     {
+        if (args.Cancelled)
+        {
+            RemComp<NoRotateOnInteractComponent>(args.User);
+            RemComp<NoRotateOnMoveComponent>(args.User);
+        }
+
         var item = _hands.GetActiveItem(args.User);
         if (args.Cancelled || args.Handled || item == null)
             return;
@@ -103,11 +60,15 @@ public sealed class OarSystem : EntitySystem
         args.Repeat = true;
     }
 
-    private void Push(EntityUid item, Vector2 direction, float power, EntityUid player)
+    private void Push(EntityUid item, Angle direction, float power, EntityUid player)
     {
-        power += power * (10 - _skills.GetSkillLevel(player, "Strength")) * 0.1f;
+        power += power * (-10 + _skills.GetSkillLevel(player, "Strength")) * 0.1f;
 
         var boat = _transform.GetParentUid(player);
+
+        var boatAngle = _transform.GetWorldRotation(boat);
+
+        var playerAngle = _transform.GetWorldRotation(player);
 
         var entities = _lookup.GetEntitiesIntersecting(boat);
 
@@ -124,16 +85,47 @@ public sealed class OarSystem : EntitySystem
 
         if (weight == 0)
             weight = 10;
-        var impulse = direction * (power / weight);
+
+        var directionVec = Vector2.Zero;
+        while (direction > 2)
+        {
+            direction -= 2;
+        }
+
+
+        direction += Angle.FromDegrees(45);
+        // от 0 до 0.5 (1,0)
+        // от 0.5 до 1 (0,1)
+        // от 1 до 1,5 (0,-1)
+        // от 1,5 до 0 (-1,0)
+        if (direction > 1)
+        {
+            if (direction > 1.5)
+                directionVec = new Vector2(-1,0);
+            else
+            {
+                directionVec = new Vector2(0,-1);
+            }
+        }
+        else
+        {
+            if (direction > 0.5)
+                directionVec = new Vector2(0,1);
+            else
+            {
+                directionVec = new Vector2(1,0);
+            }
+        }
+
+        directionVec = playerAngle.RotateVec(directionVec);
+        var impulse = directionVec * (power / weight);
         var angleimpulse = (power / weight);
-        if (direction.X < 0)
-            angleimpulse = -angleimpulse;
 
         if (EntityManager.TryGetComponent(boat, out PhysicsComponent? body))
         {
             _physics.WakeBody(boat);
             _physics.ApplyLinearImpulse(boat, impulse, body: body);
-            _physics.ApplyAngularImpulse(boat, angleimpulse, body: body);
+            // _physics.ApplyAngularImpulse(boat, angleimpulse, body: body);
         }
     }
 }

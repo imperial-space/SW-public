@@ -57,7 +57,7 @@ public sealed class SummonShipSystem : EntitySystem
             _adminLog.Add(LogType.Action, LogImpact.High, $"Ошибка Загрузки грида из {path} сущность загрузки {uid}");
             return;
         }
-
+        
         EntityManager.QueueDeleteEntity(uid);
     }
 }
