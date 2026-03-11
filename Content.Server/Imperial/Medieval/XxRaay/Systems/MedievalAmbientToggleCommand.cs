@@ -13,7 +13,9 @@ public sealed class MedievalAmbientToggleCommand : LocalizedCommands
 
     public override void Execute(IConsoleShell shell, string argStr, string[] args)
     {
+        var toggleSystem = _entitySystems.GetEntitySystem<MedievalAmbientToggleSystem>();
         bool? setEnabled = null;
+
         if (args.Length > 0)
         {
             switch (args[0].ToLowerInvariant())
@@ -33,12 +35,12 @@ public sealed class MedievalAmbientToggleCommand : LocalizedCommands
         }
         else
         {
-            setEnabled = !Toggle.IsMedievalAmbientEnabled;
+            setEnabled = !toggleSystem.IsMedievalAmbientEnabled;
         }
 
         bool newState = setEnabled.HasValue
-            ? Toggle.SetMedievalAmbientEnabled(setEnabled.Value)
-            : Toggle.ToggleMedievalAmbient();
+            ? toggleSystem.SetMedievalAmbientEnabled(setEnabled.Value)
+            : toggleSystem.ToggleMedievalAmbient();
 
         shell.WriteLine(newState ? "Medieval ambient music enabled." : "Medieval ambient music disabled.");
     }
