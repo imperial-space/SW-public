@@ -11,6 +11,7 @@ using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
+using Content.Shared.Tag;
 using Content.Shared.Tiles;
 using Content.Shared.Trigger.Components;
 using Robust.Server.GameObjects;
@@ -48,6 +49,7 @@ public sealed class WaveSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IAdminLogManager _adminlogs = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly TagSystem _tags = default!;
 
 
     private readonly Random _random = new();
@@ -91,6 +93,8 @@ public sealed class WaveSystem : EntitySystem
             return;
         if (component.HitList.Contains(args.OtherEntity))
             return;
+        if (_cfg.GetCVar(ShipsCCVars.WaveMinToBreakLevel) > _cfg.GetCVar(ShipsCCVars.StormLevel))
+            _entityManager.DeleteEntity(args.OurEntity);
         EnsureComp<TransformComponent>(args.OurEntity);
         var collisionPos = _transform.GetMapCoordinates(args.OurEntity);
         var gridEntity = args.OtherEntity;
@@ -109,6 +113,7 @@ public sealed class WaveSystem : EntitySystem
 
         var nearbyTiles = new List<Vector2i>();
 
+
         for (int dx = antiradius; dx <= radiusTiles; dx++)
         {
             for (int dy = antiradius; dy <= radiusTiles; dy++)
@@ -117,6 +122,19 @@ public sealed class WaveSystem : EntitySystem
                 var tile = _map.GetTileRef(grid, tilePos);
 
                 if (tile.Tile.IsEmpty)
+                    continue;
+                var wallcheck = new HashSet<EntityUid>();
+                _lookup.GetEntitiesInTile(tile, wallcheck);
+                var stop = false;
+                foreach (var wall in wallcheck)
+                {
+                    if (_tags.HasTag(wall, "Wall"))
+                    {
+                        stop = true;
+                    }
+
+                }
+                if (stop)
                     continue;
 
                 var distance = Vector2.Distance(centerTilePos.Position, tilePos.Position);
@@ -127,7 +145,7 @@ public sealed class WaveSystem : EntitySystem
 
         _random.Shuffle(nearbyTiles);
 
-        int tilesToReplace = Math.Min(_random.Next(0,4), nearbyTiles.Count);
+        int tilesToReplace = Math.Min(_random.Next(0,_cfg.GetCVar(ShipsCCVars.WaveMaxBreakCount)), nearbyTiles.Count);
         for (int i = 0; i < tilesToReplace; i++)
         {
             var tilePos = nearbyTiles[i];
@@ -163,7 +181,13 @@ public sealed class WaveSystem : EntitySystem
     /// </summary>
     public void SpawnWave(EntityCoordinates coords, MapId mapId, Vector2 force = new Vector2(), bool deleteOnCollide = true, float lifetime = 60)
     {
+        if (!_map.TryGetMap(mapId, out var mapEntity))
+        {
+            return;
+        }
+
         var grid = _mapManager.CreateGridEntity(mapId);
+        _transform.AttachToGridOrMap(grid);
         var waveComponent = EnsureComp<WaveComponent>(grid);
         waveComponent.DeleteOnCollide = deleteOnCollide;
         _tileDefinitionManager.TryGetDefinition("FloorWood", out var tileDefinition);// сюда поставить воду
@@ -182,7 +206,5 @@ public sealed class WaveSystem : EntitySystem
                 despawnComponent.OriginalLifeTime = lifetime;
             }
         }
-
-
     }
 }
