@@ -51,7 +51,7 @@ public sealed class SpawnWindWaveSystem : EntitySystem
                 {
                     var ship = shipcomp.Owner;
 
-                    var waveCount = _random.Next(1, 5);
+                    var waveCount = _random.Next(0, (int)_cfg.GetCVar(ShipsCCVars.StormLevel));
                     var waveCoords = new EntityCoordinates(ship, GenerateWave());
                     Vector2 force;
                     for (var i = 0; i < waveCount; i++)
@@ -68,22 +68,32 @@ public sealed class SpawnWindWaveSystem : EntitySystem
 
         }
     }
-    private Vector2 GenerateWave(float radius = 0)
+    private Vector2 GenerateWave(float radius = 0, float targetAngle = 0, float halfAngle = 3.0235f)
     {
+        if (halfAngle == 3.0235f) // я прифигею если вы рандомно сможете получить это число
+            halfAngle = _cfg.GetCVar(ShipsCCVars.WaveSpawnAngle)*_cfg.GetCVar(ShipsCCVars.StormLevel);
+
+        halfAngle /= 180;
+
+        if (targetAngle == 0)
+            targetAngle = _cfg.GetCVar(ShipsCCVars.WindRotation);
         if (radius == 0)
             radius = _cfg.GetCVar(ShipsCCVars.WaveSpawnRange);
-        // ----- 1. Случайные числа u, v ∈ [0,1) -----
+
         var u = _random.NextDouble();
         var v = _random.NextDouble();
 
-        // ----- 2. Полярные координаты (равномерно по площади) -----
-        var rho = radius * Math.Sqrt(u); // расстояние от центра
-        var phi = 2.0 * Math.PI * v; // угол в радианах
+        var rho = radius * Math.Sqrt(u);
 
-        // ----- 3. Преобразуем в декартовы координаты -----
+        var phiMin = targetAngle - halfAngle;
+        var phiMax = targetAngle + halfAngle;
+        var phi = phiMin + (phiMax - phiMin) * v;
+
+
         var x = (float)(rho * Math.Cos(phi));
         var y = (float)(rho * Math.Sin(phi));
 
         return new Vector2(x, y);
     }
+
 }

@@ -6,6 +6,7 @@ using Content.Shared.Construction.Conditions;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Imperial.Medieval.Additions;
+using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Physics;
@@ -15,6 +16,7 @@ using Content.Shared.Trigger.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
@@ -45,6 +47,7 @@ public sealed class WaveSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IAdminLogManager _adminlogs = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
 
 
     private readonly Random _random = new();
@@ -55,7 +58,6 @@ public sealed class WaveSystem : EntitySystem
         ("Plating", (ushort)3),
         ("FloorWhite", (ushort)4)
     };
-    private const float RadiusTiles = 3f;
     private bool _initialized;
 
     public override void Initialize()
@@ -101,13 +103,15 @@ public sealed class WaveSystem : EntitySystem
 
         var centerTilePos = _map.MapToGrid(grid, collisionPos);
 
-        var antiradius = (int)RadiusTiles*-1;
+        var radiusTiles = _cfg.GetCVar(ShipsCCVars.WaveRadiusTiles) + _cfg.GetCVar(ShipsCCVars.StormLevel);
+
+        var antiradius = (int)radiusTiles*-1;
 
         var nearbyTiles = new List<Vector2i>();
 
-        for (int dx = antiradius; dx <= RadiusTiles; dx++)
+        for (int dx = antiradius; dx <= radiusTiles; dx++)
         {
-            for (int dy = antiradius; dy <= RadiusTiles; dy++)
+            for (int dy = antiradius; dy <= radiusTiles; dy++)
             {
                 var tilePos = centerTilePos + new EntityCoordinates(gridEntity, new Vector2(dx, dy)) ;
                 var tile = _map.GetTileRef(grid, tilePos);
@@ -116,7 +120,7 @@ public sealed class WaveSystem : EntitySystem
                     continue;
 
                 var distance = Vector2.Distance(centerTilePos.Position, tilePos.Position);
-                if (distance <= RadiusTiles)
+                if (distance <= radiusTiles)
                     nearbyTiles.Add(((int)tilePos.X, (int)tilePos.Y));
             }
         }
@@ -124,7 +128,6 @@ public sealed class WaveSystem : EntitySystem
         _random.Shuffle(nearbyTiles);
 
         int tilesToReplace = Math.Min(_random.Next(0,4), nearbyTiles.Count);
-        _popup.PopupEntity(Loc.GetString($"   {tilesToReplace}"), uid);
         for (int i = 0; i < tilesToReplace; i++)
         {
             var tilePos = nearbyTiles[i];
