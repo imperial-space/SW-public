@@ -93,7 +93,7 @@ public sealed class SpawnWindWaveSystem : EntitySystem
         var x = (float)(rho * Math.Cos(phi));
         var y = (float)(rho * Math.Sin(phi));
 
-        return new Vector2(x, y);
+        return new Vector2(x*100, y);
     }
 
 }

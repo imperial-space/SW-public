@@ -182,18 +182,16 @@ public sealed class WaveSystem : EntitySystem
     public void SpawnWave(EntityCoordinates coords, MapId mapId, Vector2 force = new Vector2(), bool deleteOnCollide = true, float lifetime = 60)
     {
         if (!_map.TryGetMap(mapId, out var mapEntity))
-        {
             return;
-        }
 
         var grid = _mapManager.CreateGridEntity(mapId);
-        _transform.AttachToGridOrMap(grid);
+        _transform.SetParent(grid, mapEntity.Value);
         var waveComponent = EnsureComp<WaveComponent>(grid);
         waveComponent.DeleteOnCollide = deleteOnCollide;
         _tileDefinitionManager.TryGetDefinition("FloorWood", out var tileDefinition);// сюда поставить воду
         if (tileDefinition == null)
             return;
-        _map.SetTile(grid, new Vector2i(0,0),new Tile(tileDefinition.TileId, 0, 0));// создаёт тайлик воды надо поставить воду вон туда
+        _map.SetTile(grid, new Vector2i(0,0), new Tile(tileDefinition.TileId, 0, 0));// создаёт тайлик воды надо поставить воду вон туда
         if (HasComp<TransformComponent>(grid))
         {
             _transform.SetCoordinates(grid, coords);
