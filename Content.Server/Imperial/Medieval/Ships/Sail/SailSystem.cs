@@ -62,7 +62,8 @@ public sealed class SailSystem : EntitySystem
         if (curTime > _nextCheckTime)
         {
             _nextCheckTime = curTime + TimeSpan.FromSeconds(_cfg.GetCVar(ShipsCCVars.WindDelay));
-
+            if (!_cfg.GetCVar(ShipsCCVars.WindEnabled))
+                return;
             var ships = new List<EntityUid>();
             var windAngle = _cfg.GetCVar(ShipsCCVars.WindRotation);
             var windForce = _cfg.GetCVar(ShipsCCVars.StormLevel);

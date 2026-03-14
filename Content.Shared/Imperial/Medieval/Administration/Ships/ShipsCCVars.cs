@@ -20,6 +20,9 @@ public sealed class ShipsCCVars : CVars
     // как часто появляются волны
     public static readonly CVarDef<float> WaveDelay =
         CVarDef.Create("ships.wavedelay", 1f, CVar.REPLICATED | CVar.SERVER);
+    // Минимальный уровень для поломки лодки (Шторма если кто не понял)
+    public static readonly CVarDef<bool> WindEnabled =
+        CVarDef.Create("ships.waveenabled", true, CVar.REPLICATED | CVar.SERVER);
     // сила с которой ветер толкает
     public static readonly CVarDef<float> WindPower =
         CVarDef.Create("ships.windpower", 1f, CVar.REPLICATED | CVar.SERVER);
