@@ -2,6 +2,7 @@
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Movement.Systems;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Imperial.Medieval.MobRiding;
@@ -28,15 +29,24 @@ public sealed class HorseMoverSystem : EntitySystem
 
         var dt = Timing.FrameTime.TotalSeconds;
 
+        var speed = 0f;
+        if (TryComp<PhysicsComponent>(ent, out var physics))
+            speed = physics.LinearVelocity.Length();
+
+        var turnSpeed = ent.Comp.TurnSpeed;
+        if (speed > 0f && ent.Comp.TurnSpeedSlowdown > 0f)
+            turnSpeed /= 1f + speed * ent.Comp.TurnSpeedSlowdown;
+
         if ((buttons & MoveButtons.Left) != 0)
-            xform.LocalRotation += Angle.FromDegrees(ent.Comp.TurnSpeed * dt);
+            xform.LocalRotation += Angle.FromDegrees(turnSpeed * dt);
 
         if ((buttons & MoveButtons.Right) != 0)
-            xform.LocalRotation -= Angle.FromDegrees(ent.Comp.TurnSpeed * dt);
+            xform.LocalRotation -= Angle.FromDegrees(turnSpeed * dt);
 
         var forward = xform.WorldRotation.ToWorldVec();
 
-        Vector2 wish = Vector2.Zero;
+        var wish = Vector2.Zero;
+        var desiredSpeed = ev.WishDir.Length();
 
         if ((buttons & MoveButtons.Up) != 0)
             wish += forward;
@@ -45,7 +55,7 @@ public sealed class HorseMoverSystem : EntitySystem
             wish -= forward * ent.Comp.BackwardsModifier;
 
         if (wish != Vector2.Zero)
-            wish = wish.Normalized();
+            wish *= desiredSpeed;
 
         ev.WishDir = wish;
     }
