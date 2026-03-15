@@ -4,6 +4,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Friction;
 using Content.Shared.Gravity;
+using Content.Shared.Imperial.Medieval.MobRiding;
 using Content.Shared.Inventory;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
