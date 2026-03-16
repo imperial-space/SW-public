@@ -28,23 +28,44 @@
       layers:
         - state: merccontract
           map: ["base"]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.TradeTerminalVisuals.State:
+          base:
+            Idle:
+              state: merccontract
+            Calling:
+              state: merc
+            Ringing:
+              state: merc
+            Active:
+              state: mag
+            Countdown:
+              state: band
+            Completed:
+              state: ins
     - type: Clickable
     - type: Storage
       maxItemSize: Huge
+      openOnActivate: false
+      clickInsert: false
+      showVerb: false
       grid:
-        - 0,0,7,4
+        - 0,0,39,39
     - type: ContainerContainer
       containers:
         storagebase: !type:Container
     - type: TradeTerminal
       containerId: storagebase
+      offerGridWidth: 8
+      offerGridHeight: 5
       countdownDuration: 10.0
+      completedCleanupDelay: 120.0
     - type: UserInterface
       interfaces:
         enum.TradeUiKey.Key:
           type: TradeTerminalBoundUserInterface
-        enum.StorageUiKey.Key:
-          type: StorageBoundUserInterface
     - type: Telephone
       transmissionRange: Unlimited
       compatibleRanges:
@@ -53,7 +74,6 @@
       speakerVolume: Speak
     - type: Speech
     - type: InteractionOutline
-    - type: Examine
     - type: Damageable
       damageContainer: Inorganic
       damageModifierSet: Metallic

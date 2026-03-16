@@ -14,6 +14,7 @@ trade-terminal-btn-confirm          = Скрепить договор
 trade-terminal-btn-confirm-waiting  = Ожидание...
 trade-terminal-btn-cancel           = Прервать ритуал
 trade-terminal-btn-remove-item-tooltip = Вернуть подношение
+trade-terminal-ready = ГОТОВ
 
 trade-terminal-calling-label = Взываем к: {$target}...
 trade-terminal-ringing-label = Мистический резонанс от {$caller}
@@ -21,20 +22,26 @@ trade-terminal-ringing-label = Мистический резонанс от {$ca
 trade-terminal-col-own              = Ваше подношение
 trade-terminal-col-partner          = Дары партнёра
 trade-terminal-col-partner-named    = Дары: {$name}
-trade-terminal-insert-hint          = Поместите предметы в магическое хранилище.
+trade-terminal-insert-hint          = ЛКМ: вложить или объединить. ПКМ: вложить 1 из стака. Занятая без подходящего стака: вернуть.
+trade-terminal-take-hint            = После ритуала заберите дары кликом по занятым клеткам.
+trade-terminal-partner-hint         = Чужие дары появятся здесь после завершения ритуала.
+trade-terminal-offer-changed        = Партнёр изменил подношение. Подтверждения были сброшены.
 trade-terminal-no-items             = Пустота
+trade-terminal-no-held-item         = У вас нет предмета в активной руке.
 
 trade-terminal-status-active        = Ритуал начат. Предложите дары и скрепите договор.
 trade-terminal-status-countdown     = Закрепление договора начато ({$name}). Вы еще можете отменить его.
-trade-terminal-status-completed     = Обмен успешно свершился!
+trade-terminal-status-completed     = Обмен завершён. Заберите свои предметы до сброса кристалла.
 trade-terminal-countdown-label      = {$seconds}с
 
 trade-terminal-busy                 = Этот кристалл уже откликается другой душе.
+trade-terminal-already-using        = Вы уже используете другой торговый кристалл.
 trade-terminal-target-busy          = Целевой кристалл не отвечает на зов.
 trade-terminal-not-active           = Кристалл не находится в состоянии резонанса.
 trade-terminal-full                 = Хранилище переполнено (максимум {$max} даров).
 trade-terminal-insert-failed        = Магия отторгает этот предмет.
 trade-terminal-locked               = Дары скованы ритуалом закрепления.
+trade-terminal-call-timed-out       = Резонанс угас. На зов никто не ответил.
 trade-terminal-incoming-popup       = Мистический отклик от {$caller}!
 trade-terminal-connected            = Духовная связь с {$partner} установлена.
 trade-terminal-hung-up              = {$partner} разорвал(а) связь.

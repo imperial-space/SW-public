@@ -1,10 +1,10 @@
+using Content.Shared.Storage;
 using Content.Shared.Trade;
 
 namespace Content.Client.Trade.UI;
 
 public sealed class TradeTerminalBoundUserInterface : BoundUserInterface
 {
-
     private TradeTerminalWindow? _window;
 
     public TradeTerminalBoundUserInterface(EntityUid owner, Enum uiKey)
@@ -16,13 +16,14 @@ public sealed class TradeTerminalBoundUserInterface : BoundUserInterface
     {
         base.Open();
 
-        _window = new TradeTerminalWindow();
+        _window = new TradeTerminalWindow(Owner);
 
         _window.OnCall       += target => SendMessage(new TradeCallMessage(target));
         _window.OnAccept     += ()     => SendMessage(new TradeAcceptCallMessage());
         _window.OnHangUp     += ()     => SendMessage(new TradeHangUpMessage());
         _window.OnConfirm    += ()     => SendMessage(new TradeConfirmMessage());
         _window.OnCancel     += ()     => SendMessage(new TradeCancelMessage());
+        _window.OnInsertAt   += (location, amount) => SendMessage(new TradeInsertHeldItemAtMessage(location, amount));
         _window.OnRemoveItem += item   => SendMessage(new TradeRemoveItemMessage(item));
 
         _window.OnClose += Close;
