@@ -28,6 +28,7 @@ public sealed partial class TradeTerminalSystem : SharedTradeTerminalSystem
     private readonly HashSet<EntityUid> _ringingTerminals = new();
     private readonly HashSet<EntityUid> _countdownTerminals = new();
     private readonly HashSet<EntityUid> _completedTerminals = new();
+    private readonly HashSet<EntityUid> _internalTransferTerminals = new();
     private readonly List<EntityUid> _updateBuffer = new();
     private readonly List<TradeTerminalDto> _directoryCache = new();
     private bool _directoryDirty = true;

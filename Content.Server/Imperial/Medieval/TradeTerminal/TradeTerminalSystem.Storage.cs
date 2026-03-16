@@ -26,6 +26,9 @@ public sealed partial class TradeTerminalSystem
         if (args.Container.ID != comp.ContainerId)
             return;
 
+        if (_internalTransferTerminals.Contains(uid))
+            return;
+
         if (comp.State != TradeSessionState.Active || comp.HasConfirmed)
             args.Cancel();
     }
@@ -41,21 +44,20 @@ public sealed partial class TradeTerminalSystem
 
     private bool TryInsertOffer(EntityUid uid, TradeTerminalComponent comp, EntityUid user, EntityUid item)
     {
-        if (!CanInsertOffer(uid, comp, user))
+        if (!CanInsertOffer(uid, comp, user) ||
+            !TryGetOfferStorage(uid, out var storage))
             return false;
 
-        NormalizeOfferSlots(uid, comp);
-
-        if (!TryGetFirstFreeOfferSlot(comp, item, out var slot))
+        if (!_storage.TryGetAvailableGridSpace((uid, storage), (item, null), out var location))
         {
             _popup.PopupEntity(
-                Loc.GetString("trade-terminal-full", ("max", GetOfferSlotCount(comp))),
+                Loc.GetString("trade-terminal-full", ("max", GetOfferSlotCount(storage))),
                 uid,
                 user);
             return false;
         }
 
-        return TryInsertOfferAt(uid, comp, user, item, new ItemStorageLocation(Angle.Zero, slot));
+        return TryInsertOfferAt(uid, comp, user, item, location.Value);
     }
 
     private bool TryInsertOfferAt(
@@ -66,19 +68,19 @@ public sealed partial class TradeTerminalSystem
         ItemStorageLocation location,
         int amount = 0)
     {
-        if (!CanInsertOffer(uid, comp, user))
+        if (!CanInsertOffer(uid, comp, user) ||
+            !TryGetOfferStorage(uid, out var storage))
             return false;
 
-        NormalizeOfferSlots(uid, comp);
         var slot = location.Position;
 
-        if (!IsValidOfferSlot(comp, slot))
+        if (!IsValidOfferSlot(storage, slot))
         {
             _popup.PopupEntity(Loc.GetString("trade-terminal-insert-failed"), uid, user);
             return false;
         }
 
-        if (TryGetOfferSlotEntity(comp, slot, out var occupiedItem))
+        if (TryGetOfferSlotEntity(storage, slot, out var occupiedItem))
         {
             if (TryMergeOfferStacks(uid, comp, user, item, occupiedItem, amount))
                 return true;
@@ -87,7 +89,7 @@ public sealed partial class TradeTerminalSystem
             return false;
         }
 
-        if (!CanItemFitOfferSlot(comp, item, slot))
+        if (!_storage.ItemFitsInGridLocation((item, null), (uid, storage), location))
         {
             _popup.PopupEntity(Loc.GetString("trade-terminal-insert-failed"), uid, user);
             return false;
@@ -111,13 +113,8 @@ public sealed partial class TradeTerminalSystem
             spawnedSplit = true;
         }
 
-        comp.PendingOfferSlots[insertItem] = slot;
-
-        if (!TryComp<StorageComponent>(uid, out var storage) ||
-            !_storage.Insert(uid, insertItem, out _, user, storage, stackAutomatically: false))
+        if (!_storage.InsertAt((uid, storage), (insertItem, null), location, out _, user, stackAutomatically: false))
         {
-            comp.PendingOfferSlots.Remove(insertItem);
-
             if (spawnedSplit)
                 QueueDel(insertItem);
 
@@ -151,22 +148,6 @@ public sealed partial class TradeTerminalSystem
         UpdateBothUi(uid, comp);
         DirtyAppearance(uid, comp);
         return true;
-    }
-
-    private void AssignOfferSlotOnInsert(EntityUid uid, TradeTerminalComponent comp, EntityUid item)
-    {
-        if (comp.OfferSlots.ContainsKey(item))
-            return;
-
-        if (comp.PendingOfferSlots.Remove(item, out var pendingSlot) &&
-            CanItemFitOfferSlot(comp, item, pendingSlot, ignoredItem: item))
-        {
-            comp.OfferSlots[item] = pendingSlot;
-            return;
-        }
-
-        if (TryGetFirstFreeOfferSlot(comp, item, out var freeSlot))
-            comp.OfferSlots[item] = freeSlot;
     }
 
     private bool CanInsertOffer(EntityUid uid, TradeTerminalComponent comp, EntityUid user)
@@ -219,8 +200,6 @@ public sealed partial class TradeTerminalSystem
         if (args.Container.ID != comp.ContainerId)
             return;
 
-        AssignOfferSlotOnInsert(uid, comp, args.Entity);
-        NormalizeOfferSlots(uid, comp);
         ResetConfirmations(comp);
         UpdateBothUi(uid, comp);
         DirtyAppearance(uid, comp);
@@ -231,9 +210,6 @@ public sealed partial class TradeTerminalSystem
         if (args.Container.ID != comp.ContainerId)
             return;
 
-        comp.PendingOfferSlots.Remove(args.Entity);
-        comp.OfferSlots.Remove(args.Entity);
-        NormalizeOfferSlots(uid, comp);
         ResetConfirmations(comp);
         UpdateBothUi(uid, comp);
         DirtyAppearance(uid, comp);

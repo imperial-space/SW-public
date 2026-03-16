@@ -1,5 +1,5 @@
+using System.Linq;
 using Content.Shared.Stacks;
-using Content.Shared.Storage;
 using Content.Shared.Trade;
 
 namespace Content.Server.Trade;
@@ -81,20 +81,19 @@ public sealed partial class TradeTerminalSystem
 
     private List<TradeItemDto> MakeItemList(EntityUid uid, TradeTerminalComponent comp)
     {
-        NormalizeOfferSlots(uid, comp);
-        var container = GetOfferContainer(uid, comp);
-        var list = new List<TradeItemDto>(container.ContainedEntities.Count);
+        if (!TryGetOfferStorage(uid, out var storage))
+            return new List<TradeItemDto>();
 
-        foreach (var item in container.ContainedEntities)
+        var list = new List<TradeItemDto>(storage.StoredItems.Count);
+
+        foreach (var (item, location) in storage.StoredItems.OrderBy(entry => entry.Value.Position.Y).ThenBy(entry => entry.Value.Position.X))
         {
             var meta = MetaData(item);
             int? stackCount = null;
             if (TryComp<StackComponent>(item, out var stack))
                 stackCount = stack.Count;
 
-            var slot = comp.OfferSlots.GetValueOrDefault(item, Vector2i.Zero);
-            var location = new ItemStorageLocation(Angle.Zero, slot);
-            var size = GetOfferItemSize(item);
+            var size = GetOfferItemSize(item, location.Rotation);
 
             list.Add(new TradeItemDto(
                 GetNetEntity(item),
@@ -111,10 +110,11 @@ public sealed partial class TradeTerminalSystem
 
     private TradeOfferGridDto MakeOfferGrid(EntityUid uid)
     {
-        if (!TryComp<TradeTerminalComponent>(uid, out var terminal))
+        if (!TryGetOfferStorage(uid, out var storage))
             return new TradeOfferGridDto(1, 1);
 
-        return new TradeOfferGridDto(terminal.OfferGridWidth, terminal.OfferGridHeight);
+        var bounds = GetOfferGridBounds(storage);
+        return new TradeOfferGridDto(bounds.Width + 1, bounds.Height + 1);
     }
 
     private List<TradeTerminalDto> MakeDirectory(EntityUid excludeUid)

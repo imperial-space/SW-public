@@ -258,7 +258,9 @@ public sealed partial class TradeTerminalSystem
 
     private void ExecuteTrade(EntityUid uidA, TradeTerminalComponent compA, EntityUid uidB, TradeTerminalComponent compB)
     {
-        if (compA.State != TradeSessionState.Countdown)
+        if (compA.State != TradeSessionState.Countdown ||
+            !TryGetOfferStorage(uidA, out var storageA) ||
+            !TryGetOfferStorage(uidB, out var storageB))
             return;
 
         SetState(uidA, compA, TradeSessionState.Completed);
@@ -278,28 +280,44 @@ public sealed partial class TradeTerminalSystem
 
         var containerA = GetOfferContainer(uidA, compA);
         var containerB = GetOfferContainer(uidB, compB);
+        var itemsA = storageA.StoredItems.ToList();
+        var itemsB = storageB.StoredItems.ToList();
 
-        var itemsA = containerA.ContainedEntities.ToList();
-        var itemsB = containerB.ContainedEntities.ToList();
+        _internalTransferTerminals.Add(uidA);
+        _internalTransferTerminals.Add(uidB);
 
-        foreach (var item in itemsA)
+        try
         {
-            Containers.Remove(item, containerA, force: true);
+            foreach (var (item, _) in itemsA)
+            {
+                Containers.Remove(item, containerA, force: true);
+            }
+
+            foreach (var (item, _) in itemsB)
+            {
+                Containers.Remove(item, containerB, force: true);
+            }
+
+            foreach (var (item, location) in itemsB)
+            {
+                if (_storage.InsertAt((uidA, storageA), (item, null), location, out _, playSound: false, stackAutomatically: false))
+                    continue;
+
+                Containers.Insert(item, containerA, force: true);
+            }
+
+            foreach (var (item, location) in itemsA)
+            {
+                if (_storage.InsertAt((uidB, storageB), (item, null), location, out _, playSound: false, stackAutomatically: false))
+                    continue;
+
+                Containers.Insert(item, containerB, force: true);
+            }
         }
-
-        foreach (var item in itemsB)
+        finally
         {
-            Containers.Remove(item, containerB, force: true);
-        }
-
-        foreach (var item in itemsB)
-        {
-            Containers.Insert(item, containerA, force: true);
-        }
-
-        foreach (var item in itemsA)
-        {
-            Containers.Insert(item, containerB, force: true);
+            _internalTransferTerminals.Remove(uidA);
+            _internalTransferTerminals.Remove(uidB);
         }
 
         if (compA.Owner != null)
@@ -318,7 +336,6 @@ public sealed partial class TradeTerminalSystem
         if (comp.Owner != null)
             _activeUsers.Remove(comp.Owner.Value);
 
-        ClearOfferSlots(comp);
         comp.Owner = null;
         comp.LinkedTerminal = null;
         comp.CountdownEndTime = TimeSpan.Zero;

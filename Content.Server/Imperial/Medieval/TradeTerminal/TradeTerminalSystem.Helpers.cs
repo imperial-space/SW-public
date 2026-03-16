@@ -1,6 +1,9 @@
+using System;
+using System.Diagnostics.CodeAnalysis;
 using Content.Shared.Item;
 using Content.Shared.Storage;
 using Content.Shared.Trade;
+using Robust.Shared.Maths;
 
 namespace Content.Server.Trade;
 
@@ -76,7 +79,6 @@ public sealed partial class TradeTerminalSystem
         if (comp.Owner != null)
             _activeUsers.Remove(comp.Owner.Value);
 
-        ClearOfferSlots(comp);
         ReturnItemsToWorld(uid, comp);
 
         if (!TryGetPartner(comp, out var partnerId, out var partner))
@@ -92,7 +94,6 @@ public sealed partial class TradeTerminalSystem
         }
 
         ReturnItemsToWorld(partnerId, partner);
-        ClearOfferSlots(partner);
         ResetTerminal(partnerId, partner);
     }
 
@@ -132,75 +133,39 @@ public sealed partial class TradeTerminalSystem
     private bool AreOffersEmpty(EntityUid uid, TradeTerminalComponent comp)
         => GetOfferContainer(uid, comp).ContainedEntities.Count == 0;
 
-    private int GetOfferSlotCount(TradeTerminalComponent comp)
-        => comp.OfferGridWidth * comp.OfferGridHeight;
+    private bool TryGetOfferStorage(EntityUid uid, [NotNullWhen(true)] out StorageComponent? storage)
+        => TryComp(uid, out storage) && storage.Grid.Count > 0;
 
-    private bool IsValidOfferSlot(TradeTerminalComponent comp, Vector2i slot)
-    {
-        return slot.X >= 0 &&
-               slot.Y >= 0 &&
-               slot.X < comp.OfferGridWidth &&
-               slot.Y < comp.OfferGridHeight;
-    }
+    private static Box2i GetOfferGridBounds(StorageComponent storage)
+        => storage.Grid.Count == 0
+            ? new Box2i(0, 0, 0, 0)
+            : storage.Grid.GetBoundingBox();
 
-    private Vector2i GetOfferItemSize(EntityUid item)
+    private static int GetOfferSlotCount(StorageComponent storage)
+        => storage.Grid.GetArea();
+
+    private static bool IsValidOfferSlot(StorageComponent storage, Vector2i slot)
+        => storage.Grid.Contains(slot);
+
+    private Vector2i GetOfferItemSize(EntityUid item, Angle rotation)
     {
         if (!TryComp<ItemComponent>(item, out var itemComp))
             return new Vector2i(1, 1);
 
-        var bounds = _item.GetAdjustedItemShape((item, itemComp), Angle.Zero, Vector2i.Zero).GetBoundingBox();
+        var bounds = _item.GetAdjustedItemShape((item, itemComp), rotation, Vector2i.Zero).GetBoundingBox();
         return new Vector2i(Math.Max(1, bounds.Width + 1), Math.Max(1, bounds.Height + 1));
     }
 
-    private static bool DoOfferRectsOverlap(Vector2i aPos, Vector2i aSize, Vector2i bPos, Vector2i bSize)
+    private bool TryGetOfferSlotEntity(StorageComponent storage, Vector2i slot, out EntityUid item)
     {
-        return aPos.X < bPos.X + bSize.X &&
-               aPos.X + aSize.X > bPos.X &&
-               aPos.Y < bPos.Y + bSize.Y &&
-               aPos.Y + aSize.Y > bPos.Y;
-    }
-
-    private bool CanItemFitOfferSlot(
-        TradeTerminalComponent comp,
-        EntityUid item,
-        Vector2i slot,
-        IReadOnlyDictionary<EntityUid, Vector2i>? layout = null,
-        EntityUid? ignoredItem = null)
-    {
-        var size = GetOfferItemSize(item);
-        if (slot.X < 0 ||
-            slot.Y < 0 ||
-            slot.X + size.X > comp.OfferGridWidth ||
-            slot.Y + size.Y > comp.OfferGridHeight)
+        foreach (var (entity, location) in storage.StoredItems)
         {
-            return false;
-        }
-
-        var source = layout ?? comp.OfferSlots;
-        foreach (var (otherItem, otherSlot) in source)
-        {
-            if (ignoredItem == otherItem)
+            if (!TryComp<ItemComponent>(entity, out var itemComp))
                 continue;
 
-            if (DoOfferRectsOverlap(slot, size, otherSlot, GetOfferItemSize(otherItem)))
-                return false;
-        }
-
-        return true;
-    }
-
-    private bool TryGetOfferSlotEntity(TradeTerminalComponent comp, Vector2i slot, out EntityUid item)
-    {
-        foreach (var (entity, entitySlot) in comp.OfferSlots)
-        {
-            var size = GetOfferItemSize(entity);
-            if (slot.X < entitySlot.X ||
-                slot.Y < entitySlot.Y ||
-                slot.X >= entitySlot.X + size.X ||
-                slot.Y >= entitySlot.Y + size.Y)
-            {
+            var shape = _item.GetAdjustedItemShape((entity, itemComp), location.Rotation, location.Position);
+            if (!shape.Contains(slot))
                 continue;
-            }
 
             item = entity;
             return true;
@@ -208,58 +173,6 @@ public sealed partial class TradeTerminalSystem
 
         item = EntityUid.Invalid;
         return false;
-    }
-
-    private bool TryGetFirstFreeOfferSlot(
-        TradeTerminalComponent comp,
-        EntityUid item,
-        out Vector2i slot,
-        IReadOnlyDictionary<EntityUid, Vector2i>? layout = null)
-    {
-        for (var y = 0; y < comp.OfferGridHeight; y++)
-        {
-            for (var x = 0; x < comp.OfferGridWidth; x++)
-            {
-                slot = new Vector2i(x, y);
-                if (CanItemFitOfferSlot(comp, item, slot, layout))
-                    return true;
-            }
-        }
-
-        slot = default;
-        return false;
-    }
-
-    private void NormalizeOfferSlots(EntityUid uid, TradeTerminalComponent comp)
-    {
-        var container = GetOfferContainer(uid, comp);
-        var normalized = new Dictionary<EntityUid, Vector2i>(container.ContainedEntities.Count);
-        foreach (var item in container.ContainedEntities)
-        {
-            if (comp.OfferSlots.TryGetValue(item, out var existingSlot) &&
-                CanItemFitOfferSlot(comp, item, existingSlot, normalized))
-            {
-                normalized[item] = existingSlot;
-                continue;
-            }
-
-            if (!TryGetFirstFreeOfferSlot(comp, item, out var slot, normalized))
-                continue;
-
-            normalized[item] = slot;
-        }
-
-        comp.OfferSlots.Clear();
-        foreach (var (item, slot) in normalized)
-        {
-            comp.OfferSlots[item] = slot;
-        }
-    }
-
-    private void ClearOfferSlots(TradeTerminalComponent comp)
-    {
-        comp.OfferSlots.Clear();
-        comp.PendingOfferSlots.Clear();
     }
 
     private bool TryCleanupCompletedPair(EntityUid uid, TradeTerminalComponent comp)

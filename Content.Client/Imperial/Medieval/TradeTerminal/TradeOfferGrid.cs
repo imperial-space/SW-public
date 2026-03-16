@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Hands.Systems;
 using Content.Client.Items.Systems;
+using Content.Client.UserInterface.Systems.Storage.Controls;
 using Content.Shared.Input;
 using Content.Shared.Item;
 using Content.Shared.Stacks;
@@ -24,8 +26,10 @@ public sealed class TradeOfferGrid : PanelContainer
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
 
-    private static readonly Color BaseCellColor = Color.FromHex("#af8d58");
+    private static readonly Color BaseCellColor = Color.FromHex("#8e7348");
+    private static readonly Angle RotatedInsertionAngle = Angle.FromDegrees(90);
 
+    private readonly Control _layerRoot;
     private readonly GridContainer _backgroundGrid;
     private readonly GridContainer _pieceGrid;
     private readonly List<TradeOfferCell> _cells = new();
@@ -36,6 +40,7 @@ public sealed class TradeOfferGrid : PanelContainer
     private Vector2i _gridSize;
     private Vector2i? _hoveredCell;
     private bool _canInsert;
+    private Angle _insertRotation = Angle.Zero;
 
     public event Action<ItemStorageLocation, int>? OnInsertAt;
     public event Action<NetEntity>? OnRemoveItem;
@@ -56,15 +61,16 @@ public sealed class TradeOfferGrid : PanelContainer
             VSeparationOverride = 0,
         };
 
-        AddChild(new Control
+        _layerRoot = new Control
         {
             Children =
             {
                 _backgroundGrid,
                 _pieceGrid,
             },
-        });
+        };
 
+        AddChild(_layerRoot);
         OnThemeUpdated();
     }
 
@@ -72,18 +78,22 @@ public sealed class TradeOfferGrid : PanelContainer
     {
         base.OnThemeUpdated();
         _emptyTexture = Theme.ResolveTextureOrNull(_emptyTexturePath)?.Texture;
+        _gridSize = Vector2i.Zero;
     }
 
     public void SetStorageEntity(EntityUid storageEntity)
     {
-        // Hidden storage is now decoupled from the visible trade slots.
+        // Trade terminal uses its own trade UI and only mirrors the underlying storage grid.
     }
 
     public void UpdateOffer(TradeOfferGridDto grid, List<TradeItemDto>? items, bool canInsert, bool canRemove)
     {
         _canInsert = canInsert;
         if (!canInsert)
+        {
             _hoveredCell = null;
+            _insertRotation = Angle.Zero;
+        }
 
         BuildBackground(grid);
         BuildCells(grid, canInsert);
@@ -99,16 +109,20 @@ public sealed class TradeOfferGrid : PanelContainer
         }
     }
 
-    private void ResetCellState(bool canInsert, bool canRemove)
-    {
-        foreach (var cell in _cells)
-        {
-            cell.SetEmpty(canInsert, canRemove);
-        }
-    }
-
     private void BuildBackground(TradeOfferGridDto grid)
     {
+        var cellSize = GetCellSize();
+        var gridPixelSize = new Vector2(cellSize.X * grid.Width, cellSize.Y * grid.Height);
+
+        MinSize = gridPixelSize;
+        SetSize = gridPixelSize;
+        _layerRoot.MinSize = gridPixelSize;
+        _layerRoot.SetSize = gridPixelSize;
+        _backgroundGrid.MinSize = gridPixelSize;
+        _backgroundGrid.SetSize = gridPixelSize;
+        _pieceGrid.MinSize = gridPixelSize;
+        _pieceGrid.SetSize = gridPixelSize;
+
         if (_gridSize.X == grid.Width &&
             _gridSize.Y == grid.Height &&
             _backgroundGrid.ChildCount == grid.Width * grid.Height)
@@ -116,16 +130,10 @@ public sealed class TradeOfferGrid : PanelContainer
             return;
         }
 
-        var cellSize = GetCellSize();
-
         _backgroundGrid.RemoveAllChildren();
         _backgroundCells.Clear();
         _backgroundGrid.Rows = grid.Height;
         _backgroundGrid.Columns = grid.Width;
-        var gridPixelSize = new Vector2(cellSize.X * grid.Width, cellSize.Y * grid.Height);
-        MinSize = gridPixelSize;
-        _backgroundGrid.MinSize = gridPixelSize;
-        _pieceGrid.MinSize = gridPixelSize;
 
         for (var y = 0; y < grid.Height; y++)
         {
@@ -134,8 +142,9 @@ public sealed class TradeOfferGrid : PanelContainer
                 var textureRect = new TextureRect
                 {
                     Texture = _emptyTexture,
-                    TextureScale = new Vector2(3, 3),
+                    TextureScale = new Vector2(2, 2),
                     ModulateSelfOverride = BaseCellColor,
+                    MinSize = cellSize,
                 };
 
                 _backgroundGrid.AddChild(textureRect);
@@ -188,6 +197,14 @@ public sealed class TradeOfferGrid : PanelContainer
         }
     }
 
+    private void ResetCellState(bool canInsert, bool canRemove)
+    {
+        foreach (var cell in _cells)
+        {
+            cell.SetEmpty(canInsert, canRemove);
+        }
+    }
+
     private void ClearPieces()
     {
         foreach (var cell in _cells)
@@ -202,23 +219,21 @@ public sealed class TradeOfferGrid : PanelContainer
             return;
 
         var position = item.StorageLocation.Position;
-        var index = position.X + position.Y * _gridSize.X;
-        if (index < 0 || index >= _cells.Count)
+        if (!TryGetCell(position.X, position.Y, out var cell))
             return;
 
-        var cell = _cells[index];
         RegisterOccupiedCells(item, canRemove);
 
         var localUid = _entityManager.GetEntity(item.Entity);
-        if (localUid != EntityUid.Invalid && _entityManager.EntityExists(localUid))
+        if (localUid != EntityUid.Invalid &&
+            _entityManager.EntityExists(localUid) &&
+            _entityManager.TryGetComponent<ItemComponent>(localUid, out _))
         {
-            cell.AddChild(new TradeItemSlotControl(localUid, item, GetCellSize()));
+            cell.AddChild(new TradeItemSlotControl(localUid, item, GetCellSize(), _entityManager));
             return;
         }
 
-        var fallback = new TradeFallbackItemControl(item, GetCellSize());
-        fallback.MouseFilter = MouseFilterMode.Ignore;
-        cell.AddChild(fallback);
+        cell.AddChild(new TradeFallbackItemControl(item, GetCellSize()));
     }
 
     private void RegisterOccupiedCells(TradeItemDto item, bool canRemove)
@@ -241,7 +256,7 @@ public sealed class TradeOfferGrid : PanelContainer
         if (!TryGetCell(x, y, out var cell))
             return;
 
-        var location = new ItemStorageLocation(Angle.Zero, new Vector2i(x, y));
+        var location = new ItemStorageLocation(_insertRotation, new Vector2i(x, y));
 
         if (cell.OccupiedItem != null)
         {
@@ -257,17 +272,14 @@ public sealed class TradeOfferGrid : PanelContainer
             return;
         }
 
-        if (!cell.AcceptsInsert)
-            return;
-
-        if (TryGetHeldItem(out var emptyCellHeldItem) &&
-            !CanInsertIntoGrid(emptyCellHeldItem, new Vector2i(x, y), GetItemGridSize(emptyCellHeldItem)))
+        if (!cell.AcceptsInsert ||
+            !TryGetHeldItem(out var emptyCellHeldItem) ||
+            !CanInsertIntoGrid(emptyCellHeldItem, new Vector2i(x, y), GetItemGridSize(emptyCellHeldItem, _insertRotation)))
         {
             return;
         }
 
-        if (cell.AcceptsInsert)
-            OnInsertAt?.Invoke(location, 0);
+        OnInsertAt?.Invoke(location, 0);
     }
 
     private void OnCellSecondaryPressed(int x, int y)
@@ -284,12 +296,12 @@ public sealed class TradeOfferGrid : PanelContainer
             if (!CanInsertIntoCell(heldItem, cell))
                 return;
         }
-        else if (!CanInsertIntoGrid(heldItem, new Vector2i(x, y), GetItemGridSize(heldItem)))
+        else if (!CanInsertIntoGrid(heldItem, new Vector2i(x, y), GetItemGridSize(heldItem, _insertRotation)))
         {
             return;
         }
 
-        OnInsertAt?.Invoke(new ItemStorageLocation(Angle.Zero, new Vector2i(x, y)), 1);
+        OnInsertAt?.Invoke(new ItemStorageLocation(_insertRotation, new Vector2i(x, y)), 1);
     }
 
     private void OnCellHoverEntered(int x, int y)
@@ -305,15 +317,17 @@ public sealed class TradeOfferGrid : PanelContainer
 
     private void OnCellRotatePressed()
     {
-        // Slot-based trade grid does not rotate items.
+        _insertRotation = _insertRotation == Angle.Zero
+            ? RotatedInsertionAngle
+            : Angle.Zero;
     }
 
     private Vector2 GetCellSize()
     {
         if (_emptyTexture == null)
-            return new Vector2(48, 48);
+            return new Vector2(32, 32);
 
-        return _emptyTexture.Size * 3;
+        return _emptyTexture.Size * 2;
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
@@ -336,7 +350,7 @@ public sealed class TradeOfferGrid : PanelContainer
             return;
         }
 
-        var heldSize = GetItemGridSize(heldItem);
+        var heldSize = GetItemGridSize(heldItem, _insertRotation);
         var previewColor = CanInsertIntoGrid(heldItem, hoveredCell, heldSize)
             ? Color.Goldenrod
             : Color.FromHex("#B40046");
@@ -377,13 +391,13 @@ public sealed class TradeOfferGrid : PanelContainer
                heldStack.StackTypeId == targetStack.StackTypeId;
     }
 
-    private Vector2i GetItemGridSize(EntityUid item)
+    private Vector2i GetItemGridSize(EntityUid item, Angle rotation)
     {
         if (!_entityManager.TryGetComponent<ItemComponent>(item, out var itemComp))
             return new Vector2i(1, 1);
 
         var bounds = _entityManager.System<ItemSystem>()
-            .GetAdjustedItemShape((item, itemComp), Angle.Zero, Vector2i.Zero)
+            .GetAdjustedItemShape((item, itemComp), rotation, Vector2i.Zero)
             .GetBoundingBox();
 
         return new Vector2i(Math.Max(1, bounds.Width + 1), Math.Max(1, bounds.Height + 1));
@@ -425,8 +439,7 @@ public sealed class TradeOfferGrid : PanelContainer
         if (occupiedItem == null)
             return true;
 
-        return size == new Vector2i(1, 1) &&
-               TryGetCell(origin.X, origin.Y, out var occupiedCell) &&
+        return TryGetCell(origin.X, origin.Y, out var occupiedCell) &&
                CanInsertIntoCell(heldItem, occupiedCell);
     }
 
@@ -458,13 +471,6 @@ public sealed class TradeOfferGrid : PanelContainer
 
         cell = _backgroundCells[index];
         return true;
-    }
-
-    private static string FormatItemTitle(TradeItemDto item)
-    {
-        return item.StackCount.HasValue
-            ? $"{item.Name} x{item.StackCount.Value}"
-            : item.Name;
     }
 
     private sealed class TradeOfferCell : PanelContainer
@@ -549,6 +555,7 @@ public sealed class TradeOfferGrid : PanelContainer
 
             if (args.Function != EngineKeyFunctions.UIClick)
                 return;
+
             PrimaryPressed?.Invoke(GridX, GridY);
             args.Handle();
         }
@@ -558,10 +565,10 @@ public sealed class TradeOfferGrid : PanelContainer
             if (OccupiedItem != null)
             {
                 PanelOverride = MakeCellStyle(
-                    _hovered ? "#8a682f7a" : "#4c39181f",
+                    _hovered ? "#7e622d5c" : "#2c20110e",
                     CanRemoveOccupied
-                        ? (_hovered ? "#f1c876" : "#bc9452")
-                        : (_hovered ? "#8d7a59" : "#66563d"),
+                        ? (_hovered ? "#f2cf88" : "#bf9557")
+                        : (_hovered ? "#8a7859" : "#64553e"),
                     _hovered ? 2 : 1);
                 return;
             }
@@ -569,13 +576,13 @@ public sealed class TradeOfferGrid : PanelContainer
             if (AcceptsInsert)
             {
                 PanelOverride = MakeCellStyle(
-                    _hovered ? "#946f2a5c" : "#24180c16",
-                    _hovered ? "#efc77a" : "#8d6e41",
+                    _hovered ? "#90712f3f" : "#20170d08",
+                    _hovered ? "#eec97b" : "#846743",
                     _hovered ? 2 : 1);
                 return;
             }
 
-            PanelOverride = MakeCellStyle("#1a14110f", "#4d403050", 1);
+            PanelOverride = MakeCellStyle("#16110d08", "#4d403050", 1);
         }
 
         private static StyleBoxFlat MakeCellStyle(string background, string border, int thickness)
@@ -607,7 +614,7 @@ public sealed class TradeOfferGrid : PanelContainer
                 content.AddChild(new Label
                 {
                     Text = $"{Loc.GetString("cargo-console-order-menu-amount-label")} {item.StackCount.Value}",
-                    ModulateSelfOverride = Color.FromHex("#f7e6bc"),
+                    ModulateSelfOverride = Color.FromHex("#f6e4ba"),
                 });
             }
 
@@ -651,11 +658,11 @@ public sealed class TradeOfferGrid : PanelContainer
         }
     }
 
-    private abstract class TradeOverlayControl : Control
+    private abstract class TradePieceOverlay : Control
     {
         private readonly Vector2 _cellSize;
 
-        protected TradeOverlayControl(Vector2 cellSize)
+        protected TradePieceOverlay(Vector2 cellSize)
         {
             _cellSize = cellSize;
             MinSize = cellSize;
@@ -683,15 +690,11 @@ public sealed class TradeOfferGrid : PanelContainer
         }
     }
 
-    private sealed class TradeFallbackItemControl : TradeOverlayControl
+    private sealed class TradeFallbackItemControl : TradePieceOverlay
     {
         public TradeFallbackItemControl(TradeItemDto item, Vector2 cellSize)
             : base(cellSize)
         {
-            ToolTip = item.Description != null
-                ? $"{FormatItemTitle(item)}\n{item.Description}"
-                : FormatItemTitle(item);
-
             var itemPixelSize = new Vector2(cellSize.X * item.GridWidth, cellSize.Y * item.GridHeight);
             var panel = new PanelContainer
             {
@@ -706,7 +709,9 @@ public sealed class TradeOfferGrid : PanelContainer
 
             var label = new Label
             {
-                Text = FormatItemTitle(item),
+                Text = item.StackCount is > 1
+                    ? $"{item.Name} x{item.StackCount.Value}"
+                    : item.Name,
                 ClipText = true,
                 HorizontalExpand = true,
                 VerticalExpand = true,
@@ -721,30 +726,27 @@ public sealed class TradeOfferGrid : PanelContainer
         }
     }
 
-    private sealed class TradeItemSlotControl : TradeOverlayControl
+    private sealed class TradeItemSlotControl : TradePieceOverlay
     {
-        public TradeItemSlotControl(EntityUid entity, TradeItemDto item, Vector2 cellSize)
+        public TradeItemSlotControl(EntityUid entity, TradeItemDto item, Vector2 cellSize, IEntityManager entityManager)
             : base(cellSize)
         {
-            var itemPixelSize = new Vector2(cellSize.X * item.GridWidth, cellSize.Y * item.GridHeight);
+            if (!entityManager.TryGetComponent<ItemComponent>(entity, out var itemComp))
+                return;
 
+            var itemPixelSize = new Vector2(cellSize.X * item.GridWidth, cellSize.Y * item.GridHeight);
             var layout = new LayoutContainer
             {
                 MinSize = itemPixelSize,
                 MouseFilter = MouseFilterMode.Ignore,
             };
 
-            var sprite = new SpriteView
+            var piece = new ItemGridPiece((entity, itemComp), item.StorageLocation, entityManager)
             {
-                SetSize = itemPixelSize,
-                Stretch = SpriteView.StretchMode.Fill,
-                Scale = new Vector2(2f, 2f),
-                OverrideDirection = Direction.South,
+                MinSize = cellSize,
                 MouseFilter = MouseFilterMode.Ignore,
             };
-            sprite.SetEntity(entity);
-            LayoutContainer.SetAnchorPreset(sprite, LayoutContainer.LayoutPreset.Wide);
-            layout.AddChild(sprite);
+            layout.AddChild(piece);
 
             if (item.StackCount is > 1)
             {
@@ -756,9 +758,9 @@ public sealed class TradeOfferGrid : PanelContainer
                         BackgroundColor = Color.FromHex("#25160ccc"),
                         BorderColor = Color.FromHex("#f0cf89"),
                         BorderThickness = new Thickness(1),
-                        ContentMarginLeftOverride = 3,
+                        ContentMarginLeftOverride = 2,
                         ContentMarginTopOverride = 0,
-                        ContentMarginRightOverride = 3,
+                        ContentMarginRightOverride = 2,
                         ContentMarginBottomOverride = 0,
                     },
                     Children =
@@ -774,7 +776,7 @@ public sealed class TradeOfferGrid : PanelContainer
                     },
                 };
 
-                LayoutContainer.SetAnchorAndMarginPreset(badge, LayoutContainer.LayoutPreset.TopRight, margin: 3);
+                LayoutContainer.SetAnchorAndMarginPreset(badge, LayoutContainer.LayoutPreset.TopRight, margin: 2);
                 LayoutContainer.SetGrowHorizontal(badge, LayoutContainer.GrowDirection.Begin);
                 LayoutContainer.SetGrowVertical(badge, LayoutContainer.GrowDirection.Begin);
                 layout.AddChild(badge);
