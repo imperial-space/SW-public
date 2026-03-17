@@ -11,6 +11,7 @@ using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sail;
+using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Imperial.Medieval.Ships.Wind;
 using Content.Shared.Imperial.Medieval.Skills;
@@ -103,7 +104,10 @@ public sealed class SailSystem : EntitySystem
                 }
 
                 var diffAngle = sailAngle - windAngle;
-                var force = windForce * MathF.Cos(diffAngle/180) * sailComponent.SailSize * _cfg.GetCVar(ShipsCCVars.WindPower);
+                var wind = _cfg.GetCVar(ShipsCCVars.WindPower);
+                if (!HasComp < SeaComponent > (_transform.GetMap(boat)))
+                    wind = 1;
+                var force = windForce * MathF.Cos(diffAngle/180) * sailComponent.SailSize * wind;
 
                 Push(sailEntity, force, boatAngle , push: sailComponent.Push, helm: sailComponent.Helm);
                 if (!ships.Contains(boat))

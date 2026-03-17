@@ -70,7 +70,6 @@ public sealed class HelmSystem : EntitySystem
         var helmsin = MathF.Sin(boatAngle);
         var helmVector = _physics.GetMapLinearVelocity(boat);
         var helmForce = Math.Abs(helmVector.X) + Math.Abs(helmVector.Y);
-        _adminLog.Add(LogType.Action, LogImpact.Extreme, $"хельма {helmForce}");
         return helmForce;
     }
 }

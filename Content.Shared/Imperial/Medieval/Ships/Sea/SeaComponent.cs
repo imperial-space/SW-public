@@ -1,7 +1,7 @@
 namespace Content.Shared.Imperial.Medieval.Ships.Sea;
 
 /// <summary>
-/// This is used for...
+/// Компонент моря
 /// </summary>
 [RegisterComponent]
 public sealed partial class SeaComponent : Component

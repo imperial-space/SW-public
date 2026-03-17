@@ -1,4 +1,5 @@
 using Content.Server.MagicBarrier.Components;
+using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
@@ -13,6 +14,7 @@ public sealed class SeaMatrixInitSystem : EntitySystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityManager _entManager = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -46,7 +48,9 @@ public sealed class SeaMatrixInitSystem : EntitySystem
                     }
                 }
                 var mapUid = _map.CreateMap();
+                _metaData.SetEntityName(mapUid, $"Море {x} {y}");
                 var mapId = _transform.GetMapId(mapUid);
+                AddComp<SeaComponent>(mapUid);
                 seamat.SetSeaId(x,y,mapId);
                 seamat.SetGenerated(x,y,true);
 
@@ -113,7 +117,6 @@ public sealed class SeaMatrix
         }
     }
 
-
     /// <summary>
     /// Получение ячейки по координатам
     /// </summary>
@@ -149,6 +152,24 @@ public sealed class SeaMatrix
     public void SetGenerated(int x, int y, bool generated)
     {
         _matrix[x, y].NeedGenerate = generated;
+    }
+
+    /// <summary>
+    /// Поиск ячейки по айди
+    /// </summary>
+    public (int, int)? FoundSell(MapId seaId, SeaMatrix seaMatrix)
+    {
+        for (int x = 0; x < 5; x++)
+        {
+            for (int y = 0; y < 5; y++)
+            {
+                if (_matrix[x, y].SeaId == seaId)
+                {
+                    return (x, y);
+                }
+            }
+        }
+        return null;
     }
 }
 public struct SeaCell
