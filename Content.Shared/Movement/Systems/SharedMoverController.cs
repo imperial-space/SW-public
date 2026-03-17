@@ -4,6 +4,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Friction;
 using Content.Shared.Gravity;
+using Content.Shared.Imperial.Medieval.MobRiding;
 using Content.Shared.Inventory;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
@@ -282,6 +283,12 @@ public abstract partial class SharedMoverController : VirtualController
             accel = moveSpeedComponent?.Acceleration ?? MovementSpeedModifierComponent.DefaultAcceleration;
             accel *= tileDef?.MobAcceleration ?? 1f;
         }
+
+        // imperial medieval rideable start
+        var wishOverrideEvent = new WishDirOverrideEvent(uid, wishDir);
+        RaiseLocalEvent(uid, ref wishOverrideEvent, true);
+        wishDir = wishOverrideEvent.WishDir;
+        // imperial medieval rideable end
 
         // This way friction never exceeds acceleration when you're trying to move.
         // If you want to slow down an entity with "friction" you shouldn't be using this system.
