@@ -1,3 +1,4 @@
+using Content.Shared.Storage;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Trade;
@@ -26,6 +27,19 @@ public sealed class TradeRemoveItemMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
+public sealed class TradeInsertHeldItemAtMessage : BoundUserInterfaceMessage
+{
+    public ItemStorageLocation Location;
+    public int Amount;
+
+    public TradeInsertHeldItemAtMessage(ItemStorageLocation location, int amount = 0)
+    {
+        Location = location;
+        Amount = amount;
+    }
+}
+
+[Serializable, NetSerializable]
 public sealed class TradeConfirmMessage : BoundUserInterfaceMessage { }
 
 [Serializable, NetSerializable]
@@ -38,13 +52,39 @@ public sealed class TradeItemDto
     public string    Name;
     public string?   Description;
     public int?      StackCount;
+    public ItemStorageLocation StorageLocation;
+    public int GridWidth;
+    public int GridHeight;
 
-    public TradeItemDto(NetEntity entity, string name, string? description = null, int? stackCount = null)
+    public TradeItemDto(
+        NetEntity entity,
+        string name,
+        string? description = null,
+        int? stackCount = null,
+        ItemStorageLocation storageLocation = default,
+        int gridWidth = 1,
+        int gridHeight = 1)
     {
         Entity      = entity;
         Name        = name;
         Description = description;
         StackCount  = stackCount;
+        StorageLocation = storageLocation;
+        GridWidth = gridWidth;
+        GridHeight = gridHeight;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class TradeOfferGridDto
+{
+    public int Width;
+    public int Height;
+
+    public TradeOfferGridDto(int width, int height)
+    {
+        Width = width;
+        Height = height;
     }
 }
 
@@ -69,10 +109,12 @@ public sealed class TradeBuiState : BoundUserInterfaceState
     public TradeSessionState  OwnState;
     public string             OwnName;
     public List<TradeItemDto> OwnItems;
+    public TradeOfferGridDto  OwnGrid;
 
     public string?              PartnerName;
     public TradeSessionState?   PartnerState;
     public List<TradeItemDto>?  PartnerItems;
+    public TradeOfferGridDto    PartnerGrid;
 
     public string?  IncomingCallerName;
     public TimeSpan CountdownEndTime;
@@ -87,9 +129,11 @@ public sealed class TradeBuiState : BoundUserInterfaceState
         TradeSessionState ownState,
         string ownName,
         List<TradeItemDto> ownItems,
+        TradeOfferGridDto ownGrid,
         string? partnerName,
         TradeSessionState? partnerState,
         List<TradeItemDto>? partnerItems,
+        TradeOfferGridDto partnerGrid,
         string? incomingCallerName,
         TimeSpan countdownEndTime,
         float countdownDuration,
@@ -101,9 +145,11 @@ public sealed class TradeBuiState : BoundUserInterfaceState
         OwnState           = ownState;
         OwnName            = ownName;
         OwnItems           = ownItems;
+        OwnGrid            = ownGrid;
         PartnerName        = partnerName;
         PartnerState       = partnerState;
         PartnerItems       = partnerItems;
+        PartnerGrid        = partnerGrid;
         IncomingCallerName = incomingCallerName;
         CountdownEndTime   = countdownEndTime;
         CountdownDuration  = countdownDuration;

@@ -5,7 +5,7 @@ namespace Content.Shared.Imperial.Medieval.XxRaay.MedievalAmbientToggle;
 /// </summary>
 public static class MedievalAmbientRules
 {
-    public static readonly HashSet<string> RuleIds = new(StringComparer.Ordinal)
+    public static readonly HashSet<string> RuleIds = new()
     {
         "NearLegion",
         "NearLegionTown",
