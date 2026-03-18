@@ -15,53 +15,13 @@ public sealed class SeaMatrixInitSystem : EntitySystem
     [Dependency] private readonly MapSystem _map = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly EntityManager _entManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<MagicBarrierComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<MapForSeasInitComponent, ComponentInit>(OnInitMap);
         SubscribeLocalEvent<MapForSeasInitComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<MapForSeasInitComponent, InteractUsingEvent>(OnInteractUsing);
-    }
-
-    private void OnInit(EntityUid uid, MagicBarrierComponent component, ComponentInit args)
-    {
-        if (component.SeaMatrix == null)
-            component.SeaMatrix = new SeaMatrix(new List<(int x, int y)>
-            {
-                (2, 2), (2, 3), (2, 4),
-                (3, 2), (3, 3), (3, 4),
-                (4, 2), (4, 3), (4, 4),
-            });
-
-        if (component.SeaInitalazed)
-            return;
-
-        var seamat = component.SeaMatrix;
-
-        for (int x = 0; x < 5; x++)
-        {
-            for (int y = 0; y < 5; y++)
-            {
-                if (!seamat.NeedsGeneration(x, y))
-                {
-                    if (seamat.GetCell(x, y).SeaId == new MapId(1))
-                    {
-                        seamat.SetSeaId(x, y, TryFoundMap(x,y));
-                    }
-                }
-                var mapUid = _map.CreateMap();
-                _metaData.SetEntityName(mapUid, $"Море {x} {y}");
-                var mapId = _transform.GetMapId(mapUid);
-                AddComp<SeaComponent>(mapUid);
-                seamat.SetSeaId(x,y,mapId);
-                seamat.SetGenerated(x,y,true);
-
-            }
-        }
-
-
     }
 
     private void OnInitMap(EntityUid uid, MapForSeasInitComponent component, ComponentInit args)

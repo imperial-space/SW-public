@@ -1,0 +1,20 @@
+- type: island
+  id: PirateIslands
+  size: 20
+  spawnWeight: 20
+  name: "Пиратский остров"
+
+- type: island
+  id: FrendlyIslands
+  name: "Дружелюбный остров"
+  size: 5
+  spawnWeight: 5
+
+- type: island
+  id: VolcanicIsland
+  name: "Вулканический остров"
+  size: 3
+  spawnWeight: 8
+
+
+

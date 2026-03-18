@@ -82,7 +82,7 @@ public sealed class ShipsCCVars : CVars
     /// размер карты
     /// </summary>
     public static readonly CVarDef<int> MapScale =
-        CVarDef.Create("ships.mapscale", 200, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.mapscale", 100, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// радиус с которого телепортирует корабль
     /// </summary>
