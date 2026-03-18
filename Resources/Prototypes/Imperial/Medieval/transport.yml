@@ -296,6 +296,7 @@
     friction: 1
     baseWalkSpeed: 3
     baseSprintSpeed: 3
+  - type: NoRotateOnMove
   - type: MobThresholds
     thresholds:
       0: Alive
@@ -330,6 +331,7 @@
   - type: EmitSoundOnSpawn
     sound:
       path: /Audio/Imperial/Medieval/animal_horse.ogg
+  - type: HorseControl
   - type: Rideable
     pikeShape: !type:PolygonShape
       vertices:

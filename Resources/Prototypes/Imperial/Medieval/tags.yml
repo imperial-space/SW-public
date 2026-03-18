@@ -32,6 +32,9 @@
   id: MedievalAdamOre
 
 - type: Tag
+  id: MedievalAdam
+
+- type: Tag
   id: MedievalFireSerdolick
 
 - type: Tag
@@ -99,6 +102,9 @@
 
 - type: Tag
   id: MyrmexResourceYant
+
+- type: Tag
+  id: MyrmexResourceYantGear
 
 - type: Tag
   id: Mushroom1

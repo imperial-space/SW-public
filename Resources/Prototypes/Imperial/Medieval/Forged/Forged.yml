@@ -1,0 +1,360 @@
+- type: entity
+  save: false
+  name: MedievalForgedMob
+  parent:
+  - MobFlammable
+  - BaseMob
+  - MobDamageable
+  - MobPolymorphable
+  - MobCombat
+  - StripableInventoryBase
+  id: MedievalForgedMob
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+    - map: [ "core" ]
+      offset: 0, -0.1
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: [ "badsmell" ]
+      sprite: Imperial/Medieval/BadSmell/species.rsi
+      visible: false
+      state: dirty1
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "outerClothing" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+    - map: [ "clownedon" ] # Dynamically generated
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
+    - map: [ "surrender" ]
+      sprite: Imperial/Medieval/Surrender/flag.rsi
+      state: flag
+      visible: false
+    - state: blank
+      map : [ "upgrade1" ]
+  - type: DamageVisuals
+    thresholds: [ 10, 20, 30, 50, 70, 100 ]
+    targetLayers:
+    - "enum.HumanoidVisualLayers.Chest"
+    - "enum.HumanoidVisualLayers.Head"
+    - "enum.HumanoidVisualLayers.LArm"
+    - "enum.HumanoidVisualLayers.LLeg"
+    - "enum.HumanoidVisualLayers.RArm"
+    - "enum.HumanoidVisualLayers.RLeg"
+    damageOverlayGroups:
+      Brute:
+        sprite: Mobs/Effects/brute_damage.rsi
+        color: "#555555AA"
+      Burn:
+        sprite: Mobs/Effects/burn_damage.rsi
+  - type: GenericVisualizer
+    visuals:
+      enum.CreamPiedVisuals.Creamed:
+        clownedon:
+          True: {visible: true}
+          False: {visible: false}
+      enum.BadSmellVisuals.Dirt:
+        badsmell:
+          0: {visible: false}
+          1: {visible: true, state: dirty1}
+          2: {visible: true, state: dirty2}
+          3: {visible: true, state: dirty3}
+          4: {visible: true, state: dirty4}
+      enum.SurrenderVisuals.Key:
+        surrender:
+          True: {visible: true}
+          False: {visible: false}
+  - type: StatusIcon
+    bounds: -0.5,-0.5,0.5,0.5
+  - type: RotationVisuals
+    defaultRotation: 90
+    horizontalRotation: 90
+  - type: TypingIndicator
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 0.95
+      20: 0.9
+      30: 0.83
+      40: 0.75
+      50: 0.7
+      60: 0.63
+      70: 0.58
+      80: 0.53
+      90: 0.4
+  - type: FloorOcclusion
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MeatBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MeatLaserImpact
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [Touch, Ingestion]
+    reactions:
+    - reagents: [Water, SpaceCleaner]
+      methods: [Touch]
+      effects:
+      - !type:WashCreamPieReaction
+  - type: StatusEffects
+    allowed:
+    - IllitidFlashed
+    - Electrocution
+    - RatvarianLanguage
+    - PressureImmunity
+    - Muted
+    - TemporaryBlindness
+    - Pacified
+    - StaminaModifier
+    - Flashed
+    - RadiationProtection
+    - Adrenaline
+    - MedievalFarmerBoost
+  - type: Identity
+  - type: Hands
+  - type: ComplexInteraction
+  - type: Internals
+  - type: FloatingVisuals
+  - type: Climbing
+  - type: Cuffable
+  - type: Ensnareable
+    sprite: Objects/Misc/ensnare.rsi
+    state: icon
+  - type: AnimationPlayer
+  - type: Buckle
+  - type: CombatMode
+    canDisarm: true
+  - type: MeleeWeapon
+    soundHit:
+      collection: Punch
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 10
+  - type: SSDIndicator
+  - type: StandingState
+  - type: Crawler
+  - type: Dna
+  - type: MindContainer
+    showExamineInfo: true
+  - type: CanEnterCryostorage
+  - type: InteractionPopup
+    successChance: 1
+    interactSuccessString: hugging-success-generic
+    interactSuccessSound: /Audio/Effects/thudswoosh.ogg
+    messagePerceivedByOthers: hugging-success-generic-others
+  - type: CanHostGuardian
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: CreamPied
+  - type: Stripping
+  - type: UserInterface
+    interfaces:
+      enum.HumanoidMarkingModifierKey.Key:
+        type: HumanoidMarkingModifierBoundUserInterface
+      enum.StrippingUiKey.Key:
+        type: StrippableBoundUserInterface
+  - type: Puller
+  - type: Speech
+    speechSounds: Alto
+  - type: Vocal
+    sounds:
+      Male: MaleHuman
+      Female: FemaleHuman
+      Unsexed: MaleHuman
+  - type: BodyEmotes
+    soundsId: GeneralBodyEmotes
+  - type: Grammar
+    attributes:
+      proper: true
+  - type: Tag
+    tags:
+    - CanPilot
+    - FootstepSound
+    - DoorBumpOpener
+    - AnomalyHost
+  - type: InjectNeed
+  - type: MedievalMobTrigger
+    fixtureId: "medieval-spawner"
+  - type: MedievalIronHitSound
+  - type: IgnitPocketFlames
+  - type: MedievalSpikeTarget
+  - type: BadSmell
+  - type: MeleeParryAble
+  - type: RandomSteal
+  - type: Customizer
+  - type: IdentityRequiresKnowledge
+  - type: AreaMarkerInvoker
+  - type: ShieldOnStartup
+  - type: AntiStealAfk
+  - type: CanSurrender
+  - type: RDDeathScreen
+  - type: CombatStance
+  - type: Grabbable
+  - type: Grabber
+  - type: PointLight
+    netsync: false
+    enabled: false
+  - type: LocalLight
+    energy: 0.3
+    radius: 1.18
+  - type: RDWeight
+    value: 63
+  - type: RDWeightSpeedModifier
+    curve: !type:RDWeightModifierLinearCurve
+      min: 90
+      max: 220 # CURSE OF 220 DAAAA
+  - type: RDWeightExamine
+    examines:
+      "[color=#ADFF2F]Налегке[/color]":
+        min: 0
+        max: 85       # несет до 10 кг (легкая сумка, пистолет)
+      "[color=#FFFF00]Слегка загружен[/color]":
+        min: 85
+        max: 95       # несет 10-20 кг (штурмовой рюкзак, автомат)
+      "[color=#FFD700]Хорошо загружен[/color]":
+        min: 95
+        max: 110      # несет 20-35 кг (полный рюкзак, легкая броня)
+      "[color=#FF8C00]Перегружен[/color]":
+        min: 110
+        max: 125      # несет 35-50 кг (тяжелая броня и снаряжение)
+      "[color=#FF4500]Критический перегруз[/color]":
+        min: 125
+        max: 140      # несет 50-65 кг (скорость и выносливость сильно снижены)
+      "[color=#FF0000]Задавлен тяжестью[/color]":
+        min: 140
+        max: 160      # несет 65-85 кг (движение крайне затруднено)
+      "[color=#DC143C]Нечеловеческая ноша[/color]":
+        min: 160
+        max: 180      # несет 85-105 кг (едва способен сделать шаг)
+      "[color=#8B0000]Обездвижен переносимым весом[/color]":
+        min: 180
+        max: 20000      # несет более 105 кг (не может двигаться без посторонней помощи)
+  - type: RDWeightThrowerModifier
+  - type: AffectRoundStats
+  - type: Skills
+    levels:
+      Vitality: 10
+      Strength: 10
+      Agility: 5
+      Intelligence: 7
+      Endurance: 20
+# Imperial Medieval End
+  - type: Appearance
+  - type: Damageable
+    damageContainer: Forged
+    damageModifierSet: Forged
+  - type: MobState
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      110: Critical # Imperial Medieval
+      111: Dead # Imperial Medieval
+  - type: Destructible # Изменить относительно модулей!!!
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 110 # Imperial Medieval
+      behaviors:
+      - !type:GoSSDBehavior { } # Imperial Medieval
+      - !type:GibBehavior { }
+  - type: ZombieImmune
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 130
+        restitution: 0.0
+        mask:
+          - MobMask
+        layer:
+          - MobLayer
+      medieval-spawner:
+        shape: !type:PhysShapeCircle
+          radius: 0.4
+        layer: []
+        mask:
+        - MedievalSpawnerLayer
+        hard: false
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+  - type: FireVisuals
+    alternateState: Standing
+  - type: FlashImmunity
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-forged-name
+    description: ghost-role-information-forged-description
+    rules: ghost-role-information-forged-rules
+    raffle:
+      settings: default
+  - type: Body
+    prototype: Forged
+    requiredLegs: 2
+  - type: Forged
+  - type: Hunger
+    baseDecayRate: 0.005
+  - type: TakeName
+
