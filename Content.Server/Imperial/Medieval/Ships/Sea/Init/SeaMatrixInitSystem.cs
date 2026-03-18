@@ -1,5 +1,6 @@
 using Content.Server.MagicBarrier.Components;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 
@@ -19,6 +20,9 @@ public sealed class SeaMatrixInitSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<MagicBarrierComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<MapForSeasInitComponent, ComponentInit>(OnInitMap);
+        SubscribeLocalEvent<MapForSeasInitComponent, ActivateInWorldEvent>(OnActivate);
+        SubscribeLocalEvent<MapForSeasInitComponent, InteractUsingEvent>(OnInteractUsing);
     }
 
     private void OnInit(EntityUid uid, MagicBarrierComponent component, ComponentInit args)
@@ -60,6 +64,34 @@ public sealed class SeaMatrixInitSystem : EntitySystem
 
     }
 
+    private void OnInitMap(EntityUid uid, MapForSeasInitComponent component, ComponentInit args)
+    {
+        if (component.MapX == 0 && component.MapY == 0)
+            return;
+        SetMapPos(uid, component.MapX, component.MapY);
+    }
+
+
+    private void OnActivate(EntityUid uid, MapForSeasInitComponent component, ActivateInWorldEvent args)
+    {
+        SetMapPos(args.Target, component.MapX, component.MapY);
+    }
+
+    private void OnInteractUsing(EntityUid uid, MapForSeasInitComponent component, InteractUsingEvent args)
+    {
+        SetMapPos(args.Target, component.MapX, component.MapY);
+    }
+
+    public void SetMapPos(EntityUid uid, int x, int y)
+    {
+        var mapId = _transform.GetMapId(uid);
+        foreach (var magicBarrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+        {
+            if (magicBarrier.SeaMatrix is null)
+                continue;
+            magicBarrier.SeaMatrix.SetSeaId(x,y,mapId);
+        }
+    }
     /// <summary>
     /// ищем мапу либо -1 пишем
     /// </summary>

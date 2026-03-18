@@ -8,48 +8,86 @@ namespace Content.Shared.Imperial.Medieval.Administration.Ships;
 [CVarDefs]
 public sealed class ShipsCCVars : CVars
 {
-    // максимальная скорость
+    /// <summary>
+    /// максимальная скорость
+    /// </summary>
     public static readonly CVarDef<float> ShipsMaxSpeed =
         CVarDef.Create("ships.maxspeed", 20f, CVar.REPLICATED | CVar.SERVER);
-    // как часто меняется ветер
+    /// <summary>
+    /// как часто меняется ветер
+    /// </summary>
     public static readonly CVarDef<float> WindChangeTime =
         CVarDef.Create("ships.windchangetime", 1f, CVar.REPLICATED | CVar.SERVER);
-    // как часто ветер дует
+    /// <summary>
+    /// как часто ветер дует
+    /// </summary>
     public static readonly CVarDef<float> WindDelay =
         CVarDef.Create("ships.winddelay", 1f, CVar.REPLICATED | CVar.SERVER);
-    // как часто появляются волны
+    /// <summary>
+    /// как часто появляются волны
+    /// </summary>
     public static readonly CVarDef<float> WaveDelay =
         CVarDef.Create("ships.wavedelay", 1f, CVar.REPLICATED | CVar.SERVER);
-    // Минимальный уровень для поломки лодки (Шторма если кто не понял)
+    /// <summary>
+    /// Минимальный уровень для поломки лодки (Шторма если кто не понял)
+    /// </summary>
     public static readonly CVarDef<bool> WindEnabled =
         CVarDef.Create("ships.waveenabled", true, CVar.REPLICATED | CVar.SERVER);
-    // сила с которой ветер толкает
+    /// <summary>
+    /// сила с которой ветер толкает
+    /// </summary>
     public static readonly CVarDef<float> WindPower =
         CVarDef.Create("ships.windpower", 1f, CVar.REPLICATED | CVar.SERVER);
-    // угол поворота ветра
+    /// <summary>
+    /// угол поворота ветра
+    /// </summary>
     public static readonly CVarDef<float> WindRotation =
         CVarDef.Create("ships.windrotation", 0f, CVar.REPLICATED | CVar.SERVER);
-    // уровень шторма
+    /// <summary>
+    /// уровень шторма
+    /// </summary>
     public static readonly CVarDef<float> StormLevel =
         CVarDef.Create("ships.stormlevel", 1f, CVar.REPLICATED | CVar.SERVER);
-    // скорость с которой волна спавнится
+    /// <summary>
+    /// скорость с которой волна спавнится
+    /// </summary>
     public static readonly CVarDef<float> WaveForce =
         CVarDef.Create("ships.waveforce", 1f, CVar.REPLICATED | CVar.SERVER);
-    // радиус спавна волн
+    /// <summary>
+    /// радиус спавна волн
+    /// </summary>
     public static readonly CVarDef<float> WaveSpawnRange =
         CVarDef.Create("ships.wavespawnrange", 40f, CVar.REPLICATED | CVar.SERVER);
-    // угол разброса волн
+    /// <summary>
+    /// угол разброса волн
+    /// </summary>
     public static readonly CVarDef<float> WaveSpawnAngle =
         CVarDef.Create("ships.wavespawnangle", 10f, CVar.REPLICATED | CVar.SERVER);
-    // в каком радиусе ломает волна
+    /// <summary>
+    /// в каком радиусе ломает волна
+    /// </summary>
     public static readonly CVarDef<float> WaveRadiusTiles =
         CVarDef.Create("ships.waveradiustiles", 3f, CVar.REPLICATED | CVar.SERVER);
-    // какое максимальное количество тайлов может сломать волна
+    /// <summary>
+    /// какое максимальное количество тайлов может сломать волна
+    /// </summary>
     public static readonly CVarDef<int> WaveMaxBreakCount =
         CVarDef.Create("ships.wavemaxbreakcount", 3, CVar.REPLICATED | CVar.SERVER);
-    // Минимальный уровень для поломки лодки (Шторма если кто не понял)
+    /// <summary>
+    /// Минимальный уровень для поломки лодки (Шторма если кто не понял)
+    /// </summary>
     public static readonly CVarDef<int> WaveMinToBreakLevel =
         CVarDef.Create("ships.wavemintobreaklevel", 2, CVar.REPLICATED | CVar.SERVER);
+    /// <summary>
+    /// размер карты
+    /// </summary>
+    public static readonly CVarDef<int> MapScale =
+        CVarDef.Create("ships.mapscale", 200, CVar.REPLICATED | CVar.SERVER);
+    /// <summary>
+    /// радиус с которого телепортирует корабль
+    /// </summary>
+    public static readonly CVarDef<int> TeleportRange =
+        CVarDef.Create("ships.teleportrange", 50, CVar.REPLICATED | CVar.SERVER);
 
 }
 

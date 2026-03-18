@@ -4,6 +4,7 @@ using Content.Server.MagicBarrier.Components;
 using Content.Shared.Database;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -66,6 +67,9 @@ public sealed class ShipTeleportSystem : EntitySystem
 
     private void TeleportShip(EntityUid ship, MapCoordinates coords)
     {
+        var mapScale = _cfg.GetCVar(ShipsCCVars.MapScale);
+        var tpRange = _cfg.GetCVar(ShipsCCVars.TeleportRange);
+        var tpDist = mapScale + tpRange;
         var newcoords = coords.Position;
         foreach (var magicBarrier in EntityManager.EntityQuery<MagicBarrierComponent>())
         {
@@ -78,34 +82,46 @@ public sealed class ShipTeleportSystem : EntitySystem
 
             var (x, y) = seamap.Value;
 
-            if (Math.Abs(newcoords.X) > 250)
+            if (Math.Abs(newcoords.X) > tpDist)
             {
                 if (newcoords.X > 0)
+                {
                     x += 1;
+                    newcoords.X = -tpDist;
+                }
                 else
                 {
                     x -= 1;
+                    newcoords.X = tpDist;
                 }
-                newcoords.X *= -1;
             }
 
-            if (Math.Abs(newcoords.Y) > 250)
+            if (Math.Abs(newcoords.Y) > tpDist)
             {
                 if (newcoords.Y > 0)
+                {
                     y += 1;
+                    newcoords.Y = -tpDist;
+                }
+
                 else
                 {
                     y -= 1;
+                    newcoords.Y = tpDist;
                 }
-                newcoords.Y *= -1;
             }
 
             var mapId = seematrix.GetCell(x,y).SeaId;
+            if (mapId == new MapId(-1))
+            {
+                EnsureComp<ShipDrowningComponent>(ship, out var comp);
+                comp.DrownLevel += (int)Math.Abs(coords.Position.X) + (int)Math.Abs(coords.Position.Y);
+            }
 
             var nmapcoords = new MapCoordinates(newcoords, mapId);
 
             _transform.SetMapCoordinates(ship, nmapcoords);
-
+            break;
         }
 
 
