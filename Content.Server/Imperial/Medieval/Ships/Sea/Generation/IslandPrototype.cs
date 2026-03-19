@@ -30,4 +30,11 @@ public sealed partial class IslandPrototype : IPrototype
     /// </summary>
     [DataField("name", required: false)]
     public string? Name { get; private set; }
+
+    /// <summary>
+    /// Опциональное имя для логирования или интерфейса (не используется в спавне).
+    /// </summary>
+    [DataField("path")]
+    public string? Path { get; private set; }
+
 }

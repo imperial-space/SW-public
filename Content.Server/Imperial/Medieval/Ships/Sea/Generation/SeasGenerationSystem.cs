@@ -1,14 +1,17 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using Content.Server.Imperial.Medieval.Ships.Sea.Init;
 using Content.Server.MagicBarrier.Components;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Ships.Sea.Generation;
 
@@ -57,7 +60,8 @@ public sealed class SeasGenerationSystem : EntitySystem
         {
             for (int y = 0; y < 5; y++)
             {
-                if (!seaMatrix.NeedsGeneration(x, y)) continue;
+                if (!seaMatrix.NeedsGeneration(x, y))
+                    continue;
 
                 var mapUid = _map.CreateMap();
                 _metaData.SetEntityName(mapUid, $"Море {x} {y}");
@@ -105,7 +109,7 @@ public sealed class SeasGenerationSystem : EntitySystem
         foreach (var (prototypeId, count) in IslandConfig)
         {
             // Проверяем, существует ли прототип
-            if (!_prototypeManager.TryIndex<IslandPrototype>(prototypeId, out var prototype))
+            if (!_prototypeManager.TryIndex<IslandPrototype>(prototypeId, out var prototype) || prototype.Path == null)
             {
                 Logger.Warning($"Island prototype '{prototypeId}' not found! Skipping.");
                 continue;
@@ -115,7 +119,6 @@ public sealed class SeasGenerationSystem : EntitySystem
             {
                 int attempts = 0;
                 const int maxAttempts = 100;
-                EntityUid? newObj = null;
 
                 while (++attempts <= maxAttempts)
                 {
@@ -148,9 +151,7 @@ public sealed class SeasGenerationSystem : EntitySystem
 
                     if (!overlaps)
                     {
-                        // ✅ СПАВН С ПРОТОТИПОМ, а не строкой!
-                        newObj = EntityManager.SpawnEntity(prototypeId, new MapCoordinates(x, y, targetMapId));
-                        // _mapLoader.TryLoadGrid(targetMapId, );
+                        _mapLoader.TryLoadGrid(targetMapId, new ResPath(prototype.Path), out var newObj, offset: new Vector2(x,y));
                         if (newObj.HasValue)
                         {
                             generatedObjects.Add(newObj.Value);
