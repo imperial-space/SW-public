@@ -1,3 +1,4 @@
+using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
@@ -5,7 +6,7 @@ namespace Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 /// <summary>
 /// This is used for...
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class ShipDrowningComponent : Component
 {
     /// <summary>
