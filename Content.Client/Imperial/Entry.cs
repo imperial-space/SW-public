@@ -1,5 +1,6 @@
 using Content.Client.Imperial.ShockWave;
 using Content.Client.Imperial.Sponsors;
+using Content.Client.Imperial.Medieval.Ships.Wind;
 using Robust.Client.Graphics;
 using Robust.Shared.Prototypes;
 
@@ -21,6 +22,8 @@ public sealed partial class ImperialEntry
         var overlayManager = IoCManager.Resolve<IOverlayManager>();
 
         overlayManager.AddOverlay(new ShockWaveDistortionOverlay());
+        overlayManager.AddOverlay(new SeaShipRippleOverlay());
+        overlayManager.AddOverlay(new SeaWindOverlay());
 
         IoCManager.Resolve<SponsorsManager>().Initialize();
     }
