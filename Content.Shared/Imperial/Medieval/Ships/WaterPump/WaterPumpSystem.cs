@@ -34,19 +34,19 @@ public sealed class WaterPumpSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<WaterPumpBucketComponent, AfterInteractEvent>(OnAfterInteract);
-        SubscribeLocalEvent<WaterPumpBucketComponent, ActivateInWorldEvent>(OnActivateInWorld);
-        SubscribeLocalEvent<WaterPumpBucketComponent, PumpUseEvent>(OnBucketUse);
+        SubscribeLocalEvent<WaterPumpComponent, AfterInteractEvent>(OnAfterInteract);
+        SubscribeLocalEvent<WaterPumpComponent, ActivateInWorldEvent>(OnActivateInWorld);
+        SubscribeLocalEvent<WaterPumpComponent, PumpUseEvent>(OnBucketUse);
     }
 
-    private void OnAfterInteract(EntityUid uid, WaterPumpBucketComponent component, AfterInteractEvent args)
+    private void OnAfterInteract(EntityUid uid, WaterPumpComponent component, AfterInteractEvent args)
     {
         if (args.Handled || !args.CanReach )
             return;
         Use(args.User, uid);
     }
 
-    private void OnActivateInWorld(EntityUid uid, WaterPumpBucketComponent component, ActivateInWorldEvent args)
+    private void OnActivateInWorld(EntityUid uid, WaterPumpComponent component, ActivateInWorldEvent args)
     {
         if (args.Handled)
             return;
@@ -88,7 +88,7 @@ public sealed class WaterPumpSystem : EntitySystem
         _doAfter.TryStartDoAfter(sdoAfter);
     }
 
-    private void OnBucketUse(EntityUid uid, WaterPumpBucketComponent component, PumpUseEvent args)
+    private void OnBucketUse(EntityUid uid, WaterPumpComponent component, PumpUseEvent args)
     {
         if (args.Cancelled || args.Target is null || args.Handled)
             return;
