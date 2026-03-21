@@ -7,7 +7,6 @@ using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
 using Content.Shared.Popups;
-using Content.Shared.Stacks;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Systems;
@@ -17,7 +16,7 @@ namespace Content.Shared.Imperial.Medieval.Ships.WaterPump;
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class WaterPumpBucketSystem : EntitySystem
+public sealed class WaterPumpSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
@@ -36,34 +35,45 @@ public sealed class WaterPumpBucketSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<WaterPumpBucketComponent, AfterInteractEvent>(OnAfterInteract);
-        SubscribeLocalEvent<WaterPumpBucketComponent, BucketUseEvent>(OnBucketUse);
+        SubscribeLocalEvent<WaterPumpBucketComponent, ActivateInWorldEvent>(OnActivateInWorld);
+        SubscribeLocalEvent<WaterPumpBucketComponent, PumpUseEvent>(OnBucketUse);
     }
 
     private void OnAfterInteract(EntityUid uid, WaterPumpBucketComponent component, AfterInteractEvent args)
     {
-        var playerEntity = args.User;
-
         if (args.Handled || !args.CanReach )
             return;
+        Use(args.User, uid);
+    }
 
-        var boat = _transform.GetParentUid(playerEntity);
-
-        var clickEntity = args.ClickLocation.EntityId;
-        if (boat != clickEntity)
+    private void OnActivateInWorld(EntityUid uid, WaterPumpBucketComponent component, ActivateInWorldEvent args)
+    {
+        if (args.Handled)
             return;
+
+        Use(args.User,  uid);
+    }
+
+    private void Use(EntityUid playerEntity, EntityUid used)
+    {
+
+
+
+
+        var boat = _transform.GetParentUid(used);
+
         TryComp<MapGridComponent>(boat, out var boatComponent);
         if (boatComponent == null)
             return;
 
-        _popup.PopupClient($"Ты вычёрпываешь воду с корабля", playerEntity);
-        var time = 7 -_skills.GetSkillLevel(playerEntity, "Agility") * 0.15f - _skills.GetSkillLevel(playerEntity, "Strength") * 0.15f;
+        var time = 7 -_skills.GetSkillLevel(playerEntity, "Agility") * 0.05f - _skills.GetSkillLevel(playerEntity, "Intelligence") * 0.25f;
         var sdoAfter = new DoAfterArgs(EntityManager,
             playerEntity,
             time,
-            new RepairUseEvent(),
-            args.Used,
+            new PumpUseEvent(),
+            used,
             boat,
-            args.Used)
+            used)
         {
             MovementThreshold = 0.1f,
             BreakOnMove = true,
@@ -78,11 +88,15 @@ public sealed class WaterPumpBucketSystem : EntitySystem
         _doAfter.TryStartDoAfter(sdoAfter);
     }
 
-    private void OnBucketUse(EntityUid uid, WaterPumpBucketComponent component, BucketUseEvent args)
+    private void OnBucketUse(EntityUid uid, WaterPumpBucketComponent component, PumpUseEvent args)
     {
         if (args.Cancelled || args.Target is null || args.Handled)
             return;
 
         _waterOnShip.RemoveWater(args.Target.Value, component.WaterCount);
+        args.Repeat = true;
+        args.Handled = true;
     }
+
+
 }

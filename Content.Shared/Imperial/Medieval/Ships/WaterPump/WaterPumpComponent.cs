@@ -9,6 +9,6 @@ namespace Content.Shared.Imperial.Medieval.Ships.WaterPump;
 public sealed partial class WaterPumpComponent : Component
 {
     [DataField("waterCount")]
-    public int WaterCount;
+    public int WaterCount = 50;
 
 }
