@@ -4,6 +4,7 @@ using Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 using Content.Server.Imperial.Medieval.Ships.Wave;
 using Content.Shared.Damage;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
+using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 
@@ -18,6 +19,7 @@ public sealed class ShipDrowningSystem : EntitySystem
     [Dependency] private readonly EntityManager _entityManager = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly WaveSystem _wave = default!;
+    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
 
     private const float DefaultReloadTimeSeconds = 10f;
 
@@ -62,18 +64,14 @@ public sealed class ShipDrowningSystem : EntitySystem
 
                 var brokenTilesCount = 0;
                 var allTilesCount = 0;
-                var brokenlevel = 0;
 
                 while (allTilesEnumerator.MoveNext(out var tile))
                 {
                     allTilesCount++;
-                    brokenlevel = 0;
-                    foreach (var stage in _wave.Stages)
-                    {
-                        if (stage.Item2 == tile.Value.Tile.TypeId)
-                            brokenTilesCount+= brokenlevel;
-                        brokenlevel++;
-                    }
+                    _tileDefinitionManager.TryGetDefinition("FloorBrokenWoodDDD", out var tileDef);
+                    if (tileDef is null || tile.Value.Tile.TypeId != tileDef.TileId)
+                        continue;
+                    brokenTilesCount += tile.Value.Tile.Variant;
                 }
 
                 component.DrownLevel += brokenTilesCount;
