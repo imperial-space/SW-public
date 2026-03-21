@@ -1,6 +1,8 @@
 using Content.Shared._RD.Weight.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Ships.Repairing;
+using Content.Shared.Imperial.Medieval.Ships.WaterPump.Bucket;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
@@ -10,28 +12,34 @@ using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Systems;
 
-namespace Content.Shared.Imperial.Medieval.Ships.Repairing;
+namespace Content.Shared.Imperial.Medieval.Ships.WaterPump;
 
 /// <summary>
 /// This handles...
 /// </summary>
-public sealed class ShipRepairSystem : EntitySystem
+public sealed class WaterPumpBucketSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
     [Dependency] private readonly SharedSkillsSystem  _skills = default!;
+    [Dependency] private readonly EntityManager _entManager = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly RDWeightSystem  _rdWeight = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
-    [Dependency] private readonly SharedStackSystem _stack = default!;
+    [Dependency] private readonly SharedWaterOnShipSystem _waterOnShip = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<RepairMaterialComponent, AfterInteractEvent>(OnAfterInteract);
-        SubscribeLocalEvent<RepairMaterialComponent, RepairUseEvent>(OnRepairUse);
+        SubscribeLocalEvent<WaterPumpBucketComponent, AfterInteractEvent>(OnAfterInteract);
+        SubscribeLocalEvent<WaterPumpBucketComponent, BucketUseEvent>(OnBucketUse);
     }
 
-    private void OnAfterInteract(EntityUid uid, RepairMaterialComponent component, AfterInteractEvent args)
+    private void OnAfterInteract(EntityUid uid, WaterPumpBucketComponent component, AfterInteractEvent args)
     {
         var playerEntity = args.User;
 
@@ -46,15 +54,8 @@ public sealed class ShipRepairSystem : EntitySystem
         TryComp<MapGridComponent>(boat, out var boatComponent);
         if (boatComponent == null)
             return;
-        _map.TryGetTileRef(boat, boatComponent, args.ClickLocation,  out var tile);
-        _tileDefinitionManager.TryGetDefinition("FloorBrokenWoodDDD", out var floor);
-        _tileDefinitionManager.TryGetDefinition(tile.Tile.TypeId, out var test);
-        if (test == null)
-            return;
 
-        if (floor == null || tile.Tile.TypeId != floor.TileId)
-            return;
-        _popup.PopupClient($"Ты начинаешь закрывать дыры доской", playerEntity);
+        _popup.PopupClient($"Ты вычёрпываешь воду с корабля", playerEntity);
         var time = 7 -_skills.GetSkillLevel(playerEntity, "Agility") * 0.05f - _skills.GetSkillLevel(playerEntity, "Intelligence") * 0.25f;
         var sdoAfter = new DoAfterArgs(EntityManager,
             playerEntity,
@@ -73,21 +74,17 @@ public sealed class ShipRepairSystem : EntitySystem
             BreakOnDropItem = true,
             BreakOnHandChange = true,
             NeedHand = true,
-
         };
         _doAfter.TryStartDoAfter(sdoAfter);
-        component.TileCord = tile.GridIndices;
     }
 
-    private void OnRepairUse(EntityUid uid, RepairMaterialComponent component, RepairUseEvent args)
+    private void OnBucketUse(EntityUid uid, WaterPumpBucketComponent component, BucketUseEvent args)
     {
-        if (args.Cancelled || args.Target == null)
+        if (args.Cancelled || args.Target is null || args.Handled)
             return;
-        TryComp<MapGridComponent>(args.Target, out var mapGrid);
-        _tileDefinitionManager.TryGetDefinition("woodenfloor", out var floor);
-        if (mapGrid == null || floor == null)
-            return;
-        _map.SetTile(args.Target.Value, mapGrid, component.TileCord, new Tile(floor.TileId));
-        _stack.Use(uid, 1);
+
+        _waterOnShip.RemoveWater(args.Target.Value, component.WaterCount);
+        args.Repeat = true;
+        args.Handled = true;
     }
 }
