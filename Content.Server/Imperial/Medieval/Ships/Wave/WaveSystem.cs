@@ -53,13 +53,6 @@ public sealed class WaveSystem : EntitySystem
 
 
     private readonly Random _random = new();
-    public (string, ushort)[] Stages =
-    {
-        ("FloorWood", (ushort)1),
-        ("FloorBrokenWoodDDD", (ushort)2),
-        ("Plating", (ushort)3),
-        ("FloorWhite", (ushort)4)
-    };
     private bool _initialized;
 
     public override void Initialize()
@@ -67,28 +60,9 @@ public sealed class WaveSystem : EntitySystem
         SubscribeLocalEvent<WaveComponent, StartCollideEvent>(OnCollide);
 
     }
-    private void Startup()
-    {
-        if (_initialized)
-            return;
-        if (Stages == null || Stages.Length == 0)
-            return;
-
-        for (int i = 0; i < Stages.Length; i++)
-        {
-            var stage = Stages[i];
-            if (!_tileDefinitionManager.TryGetDefinition(stage.Item1, out var tileDefinition))
-                continue;
-
-            Stages[i] = (stage.Item1, tileDefinition.TileId);
-        }
-        _initialized = true;
-    }
 
     private void OnCollide(EntityUid uid, WaveComponent component, ref StartCollideEvent args)
     {
-        if (!_initialized)
-            Startup();
         if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OtherEntity))
             return;
         if (component.HitList.Contains(args.OtherEntity))
@@ -151,20 +125,25 @@ public sealed class WaveSystem : EntitySystem
             var tilePos = nearbyTiles[i];
             if (!_map.TryGetTile(grid, tilePos, out var tile))
                 continue;
-            var stagelast = Stages.Length-1;
-
-            if (tile.TypeId == Stages[stagelast].Item2 || tile.IsEmpty)
-                continue;
-            var index = 0;
-            foreach (var stage in Stages)
+            _tileDefinitionManager.TryGetDefinition("FloorBrokenWoodDDD", out var floorDef);
+            if (floorDef == null)
             {
-                if (stage.Item2 == tile.TypeId)
-                    break;
-                index++;
+                Log.Error("Пол не найден");
+                return;
             }
-            if (index == stagelast+1)
-                index = 0;
-            _map.SetTile(grid.Owner, grid , tilePos, new Tile(Stages[index+1].Item2, 0, 0));
+            var stagelast = floorDef.Variants;
+
+            if (tile.TypeId != floorDef.TileId)
+            {
+                _map.SetTile(grid.Owner, grid , tilePos, new Tile(floorDef.TileId, 0, 0));
+                continue;
+            }
+
+            if (tile.TypeId == stagelast || tile.IsEmpty)
+                continue;
+
+            var variant = (byte)(tile.Variant + 1);
+            _map.SetTile(grid.Owner, grid , tilePos, new Tile(floorDef.TileId, 0, variant));
         }
         if (!TerminatingOrDeleted(args.OtherEntity))
             component.HitList.Add(args.OtherEntity);

@@ -90,7 +90,7 @@ public sealed class ShipRepairSystem : EntitySystem
         if (args.Cancelled || args.Target == null)
             return;
         TryComp<MapGridComponent>(args.Target, out var mapGrid);
-        _tileDefinitionManager.TryGetDefinition("WoodenFloor", out var floor);
+        _tileDefinitionManager.TryGetDefinition("woodenfloor", out var floor);
         if (mapGrid == null || floor == null)
             return;
         _map.SetTile(args.Target.Value, mapGrid, component.TileCord, new Tile(floor.TileId));
