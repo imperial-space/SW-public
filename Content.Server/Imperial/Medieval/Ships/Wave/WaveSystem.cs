@@ -56,7 +56,7 @@ public sealed class WaveSystem : EntitySystem
     public (string, ushort)[] Stages =
     {
         ("FloorWood", (ushort)1),
-        ("FloorSteel", (ushort)2),
+        ("FloorBrokenWoodDDD", (ushort)2),
         ("Plating", (ushort)3),
         ("FloorWhite", (ushort)4)
     };

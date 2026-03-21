@@ -68,7 +68,7 @@ public sealed class OarSystem : EntitySystem
         {
             MovementThreshold = 0.1f,
             BreakOnMove = true,
-            CancelDuplicate = true,
+            BlockDuplicate = true,
             DistanceThreshold = 2,
             BreakOnDamage = true,
             RequireCanInteract = false,
@@ -83,8 +83,6 @@ public sealed class OarSystem : EntitySystem
         component.Direction = direction;
 
         _popup.PopupClient($"Ты гребёшь в сторону взгляда", playerEntity);
-        EnsureComp<NoRotateOnInteractComponent>(playerEntity);
-        EnsureComp<NoRotateOnMoveComponent>(playerEntity);
 
     }
 }
