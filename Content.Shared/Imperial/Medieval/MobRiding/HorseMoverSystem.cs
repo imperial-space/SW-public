@@ -10,13 +10,13 @@ namespace Content.Shared.Imperial.Medieval.MobRiding;
 public sealed class HorseMoverSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<HorseControlComponent, WishDirOverrideEvent>(OnWishDirOverride);
-        SubscribeLocalEvent<HorseControlComponent, StopRideEvent>(OnStopRide);
     }
 
     public void OnWishDirOverride(Entity<HorseControlComponent> ent, ref WishDirOverrideEvent ev)
@@ -40,35 +40,53 @@ public sealed class HorseMoverSystem : EntitySystem
             turnSpeed = ent.Comp.TurnSpeed / (1f + speed * ent.Comp.TurnSpeedSlowdown * ent.Comp.TurnSpeedSlowdownSpeedScale);
 
         if ((buttons & MoveButtons.Left) != 0)
-            xform.LocalRotation += Angle.FromDegrees(turnSpeed * dt);
+            _transform.SetLocalRotation(ent, xform.LocalRotation + Angle.FromDegrees(turnSpeed * dt), xform);
 
         if ((buttons & MoveButtons.Right) != 0)
-            xform.LocalRotation -= Angle.FromDegrees(turnSpeed * dt);
+            _transform.SetLocalRotation(ent, xform.LocalRotation - Angle.FromDegrees(turnSpeed * dt), xform);
 
-        var forward = xform.WorldRotation.ToWorldVec();
+        var forward = _transform.GetWorldRotation(xform).ToWorldVec();
         var desiredSpeed = GetDesiredSpeed(ent.Owner, mover, ev.WishDir);
-        var targetThrottle = GetTargetThrottle(buttons);
-        var reversing = targetThrottle != 0f
-            && ent.Comp.CurrentThrottle != 0f
-            && MathF.Sign(targetThrottle) != MathF.Sign(ent.Comp.CurrentThrottle);
-        var throttleRate = targetThrottle == 0f || reversing
+        var inputThrottle = GetTargetThrottle(buttons);
+        var currentThrottle = 0f;
+
+        if (physics != null && desiredSpeed > 0f && speed > 0f)
+        {
+            var forwardSpeed = Vector2.Dot(physics.LinearVelocity, forward);
+
+            if (forwardSpeed >= 0f)
+            {
+                currentThrottle = Math.Clamp(forwardSpeed / desiredSpeed, 0f, 1f);
+            }
+            else
+            {
+                var backwardsSpeed = desiredSpeed * ent.Comp.BackwardsModifier;
+                if (backwardsSpeed > 0f)
+                    currentThrottle = Math.Clamp(forwardSpeed / backwardsSpeed, -1f, 0f);
+            }
+        }
+
+        var targetThrottle = inputThrottle;
+        if (inputThrottle != 0f
+            && currentThrottle != 0f
+            && MathF.Sign(currentThrottle) != MathF.Sign(inputThrottle))
+        {
+            targetThrottle = 0f;
+        }
+
+        var throttleRate = targetThrottle == 0f
             ? ent.Comp.ThrottleDeceleration
             : ent.Comp.ThrottleAcceleration;
 
-        ent.Comp.CurrentThrottle = Approach(ent.Comp.CurrentThrottle, targetThrottle, throttleRate * dt);
+        var throttle = Approach(currentThrottle, targetThrottle, throttleRate * dt);
 
-        var throttleModifier = ent.Comp.CurrentThrottle < 0f
+        var throttleModifier = throttle < 0f
             ? ent.Comp.BackwardsModifier
             : 1f;
 
-        var wish = forward * ent.Comp.CurrentThrottle * throttleModifier * desiredSpeed;
+        var wish = forward * throttle * throttleModifier * desiredSpeed;
 
         ev.WishDir = wish;
-    }
-
-    private void OnStopRide(Entity<HorseControlComponent> ent, ref StopRideEvent ev)
-    {
-        ent.Comp.CurrentThrottle = 0f;
     }
 
     private static float GetTargetThrottle(MoveButtons buttons)

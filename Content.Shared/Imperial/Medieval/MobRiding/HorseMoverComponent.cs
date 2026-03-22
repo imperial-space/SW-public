@@ -18,5 +18,4 @@ public sealed partial class HorseControlComponent : Component
     // как быстро замедляется при конце двжиения
     [DataField, AutoNetworkedField] public float ThrottleDeceleration = 2f;
 
-    [AutoNetworkedField] public float CurrentThrottle;
 }
