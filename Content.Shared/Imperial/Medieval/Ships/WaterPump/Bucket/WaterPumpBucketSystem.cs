@@ -1,7 +1,10 @@
 using Content.Shared._RD.Weight.Systems;
+using Content.Shared.Chemistry.Components.SolutionManager;
+using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Ships.Repairing;
+using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Imperial.Medieval.Ships.WaterPump.Bucket;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
@@ -27,11 +30,12 @@ public sealed class WaterPumpBucketSystem : EntitySystem
     [Dependency] private readonly EntityManager _entManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly RDWeightSystem  _rdWeight = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem  _solution = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly TileSystem _tile = default!;
     [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
     [Dependency] private readonly SharedWaterOnShipSystem _waterOnShip = default!;
+
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -51,8 +55,10 @@ public sealed class WaterPumpBucketSystem : EntitySystem
         var clickEntity = args.ClickLocation.EntityId;
         if (boat != clickEntity)
             return;
-        TryComp<MapGridComponent>(boat, out var boatComponent);
-        if (boatComponent == null)
+        // if (_solution.PercentFull(args.Used) >= 100)
+        //     return;
+
+        if (HasComp<MapGridComponent>(boat) || HasComp<ShipDrowningComponent>(boat))
             return;
 
         _popup.PopupClient($"Ты вычёрпываешь воду с корабля", playerEntity);
@@ -82,6 +88,7 @@ public sealed class WaterPumpBucketSystem : EntitySystem
     {
         if (args.Cancelled || args.Target is null || args.Handled)
             return;
+        //TryComp<SolutionContainerManagerComponent>(uid, out var bucket);
 
         _waterOnShip.RemoveWater(args.Target.Value, component.WaterCount);
     }

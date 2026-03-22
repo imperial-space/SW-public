@@ -1,0 +1,112 @@
+- type: entity
+  parent: BaseWall
+  id: WaterPump
+  name: Водная помпа
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi
+  - type: WallReplacementMarker
+  - type: Icon
+    sprite: Structures/Walls/solid.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: IconSmooth
+    key: walls
+    base: solid
+  - type: WaterPump
+
+- type: entity
+  parent: BaseWall
+  id: SteeringOar
+  name: Рулевое весло
+  description: Рулевое весло что используется для поворота лодки
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi
+  - type: WallReplacementMarker
+  - type: Icon
+    sprite: Structures/Walls/solid.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: IconSmooth
+    key: walls
+    base: solid
+
+
+- type: entity
+  parent: BaseWall
+  id: SteeringOar
+  name: Рулевое весло
+  description: Рулевое весло что используется для поворота лодки
+  components:
+  - type: Sprite
+    sprite: Structures/Walls/solid.rsi
+  - type: WallReplacementMarker
+  - type: Icon
+    sprite: Structures/Walls/solid.rsi
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+      - !type:ChangeConstructionNodeBehavior
+        node: girder
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: IconSmooth
+    key: walls
+    base: solid
+  - type: SteeringOar
