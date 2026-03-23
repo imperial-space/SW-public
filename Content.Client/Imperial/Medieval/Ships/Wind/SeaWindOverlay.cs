@@ -103,7 +103,12 @@ public sealed class SeaWindOverlay : Overlay
                 particle.Position += (particle.Velocity + particle.CurveVelocity * curveDrift) * frameTime;
 
                 if (particle.Age >= particle.Lifetime)
+                {
                     particles.RemoveAt(i);
+                    continue;
+                }
+
+                particles[i] = particle;
             }
 
             if (particles.Count == 0)
