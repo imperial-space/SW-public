@@ -248,7 +248,7 @@
 - type: latheRecipePack
   id: MedievalWeaponsAutolath
   recipes:
-  - MedievalWeaponPulseCarbine
+  - MedievalWeaponPulseCarbineEvent
   - MedievalWeaponAdvancedLaser
   - MedievalFlashlightSecliteCraft
   - MedievalFlashCraft
@@ -311,8 +311,8 @@
 
 - type: latheRecipe
   parent: BaseToolRecipe
-  id: MedievalWeaponPulseCarbine
-  result: WeaponPulseCarbine
+  id: MedievalWeaponPulseCarbineEvent
+  result: WeaponPulseCarbineEvent
   materials:
     Plasteel: 1000
     Plasma: 500
@@ -521,3 +521,86 @@
     Plasma: 300
     MedievalGold: 200
     MatterBin: 100
+
+# Weaponery
+
+- type: CP14Recipe
+  id: WeaponPistolViperEvent
+  craftTime: 10
+  iconOverride: WeaponPistolViperEvent
+  stacks:
+    Steel: 7
+    Manipulator: 1
+    Plastic: 3
+  result: WeaponPistolViperEvent
+
+- type: CP14Recipe
+  id: WeaponPulseCarbineEvent
+  craftTime: 10
+  iconOverride: WeaponPulseCarbineEvent
+  stacks:
+    Plasteel: 10
+    Plasma: 5
+    Capacitor: 2
+    Manipulator: 2
+    BluespaceEssence: 1
+  result: WeaponPulseCarbineEvent
+
+- type: CP14Recipe
+  id: WeaponPulsePistolEvent
+  craftTime: 10
+  iconOverride: WeaponPulsePistolEvent
+  stacks:
+    Plasteel: 6
+    Plasma: 4
+    Capacitor: 1
+    Manipulator: 1
+    Uranium: 8
+  result: WeaponPulsePistolEvent
+
+- type: CP14Recipe
+  id: WeaponRifleM90GrenadeLauncherImperialEvent
+  craftTime: 10
+  iconOverride: WeaponRifleM90GrenadeLauncherImperialEvent
+  stacks:
+    Plasteel: 14
+    Plastic: 12
+    MatterBin: 1
+    Manipulator: 2
+    Glass: 3
+  result: WeaponRifleM90GrenadeLauncherImperialEvent
+
+- type: CP14Recipe
+  id: WeaponAdvancedLaserEvent
+  craftTime: 10
+  iconOverride: WeaponAdvancedLaserEvent
+  stacks:
+    Plasteel: 8
+    Plasma: 3
+    Capacitor: 1
+    MatterBin: 1
+    Uranium: 10
+  result: WeaponAdvancedLaserEvent
+
+- type: CP14Recipe
+  id: WeaponSniperHristovEvent
+  craftTime: 10
+  iconOverride: WeaponSniperHristovEvent
+  stacks:
+    Plasteel: 20
+    Plastic: 15
+    Glass: 5
+    MatterBin: 1
+    Manipulator: 3
+  result: WeaponSniperHristovEvent
+
+- type: CP14Recipe
+  id: WeaponRevolverDeckardEvent
+  craftTime: 10
+  iconOverride: WeaponRevolverDeckardEvent
+  stacks:
+    Plasteel: 10
+    Plastic: 8
+    MatterBin: 1
+    Manipulator: 1
+  result: WeaponRevolverDeckardEvent

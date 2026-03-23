@@ -113,3 +113,109 @@
   color: "#ff2222"
   # long range since I don't wanna make a special xenoborg telecomm server
   longRange: true
+
+
+########################################
+# BASE PASSIVE GENERATOR (MYRMEX)
+########################################
+
+- type: entity
+  id: BasePassiveGenerator
+  abstract: true
+  name: passive generator
+  description: A device that generates power into the Myrmex network.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Clickable
+    - type: InteractionOutline
+    - type: Sprite
+      sprite: Structures/Power/smes.rsi
+      snapCardinals: true
+      state: smes
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 190
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Anchorable
+    - type: Pullable
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexDeviceNode
+          nodeGroupID: HVPower
+          connectDirection: South
+    - type: MyrmexPipeEndpoint
+    - type: PowerSupplier
+      supplyRate: 15000
+      voltage: High
+    - type: Appearance
+    - type: RandomPower
+      node: power
+    - type: MedievalPowerExaminable
+      examinableNode: power
+      isGeyser: true
+
+########################################
+# PASSIVE GENERATOR VARIANTS
+########################################
+
+- type: entity
+  parent: BasePassiveGenerator
+  id: PassiveGeneratorSmall
+  name: 1
+  suffix: Small, 5kW
+  components:
+    - type: PowerSupplier
+      supplyRate: 5000
+
+- type: entity
+  parent: BasePassiveGenerator
+  id: PassiveGeneratorSmall2
+  name: 2
+  suffix: Small, 5kW
+  components:
+    - type: PowerSupplier
+      supplyRate: 5000
+
+- type: entity
+  parent: BasePassiveGenerator
+  id: PassiveGeneratorSmall3
+  name: 3
+  suffix: Small, 5kW
+  components:
+    - type: PowerSupplier
+      supplyRate: 5000
+
+- type: entity
+  parent: BasePassiveGenerator
+  id: PassiveGeneratorSmallBlue
+  name: small passive generator blue
+  suffix: Small, 5kW
+  components:
+    - type: NodeContainer
+      nodes:
+        power:
+          !type:MyrmexDeviceNode
+          nodeGroupID: HVPower
+          connectDirection: South
+    - type: MyrmexPipeEndpoint
+    - type: PowerSupplier
+      supplyRate: 5000
+      voltage: High
+    - type: Sprite
+      sprite: Structures/Power/smes.rsi
+      snapCardinals: true
+      state: smes
+      color: CadetBlue

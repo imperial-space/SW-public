@@ -1,0 +1,33 @@
+- type: soundCollection
+  id: MyrmexStewFeed
+  files:
+    - /Audio/Imperial/Medieval/ant_feed1.ogg
+    - /Audio/Imperial/Medieval/ant_feed2.ogg
+
+- type: soundCollection
+  id: FootstepMyrmexFloor
+  files:
+  - /Audio/Imperial/Medieval/resin_move2.ogg
+  - /Audio/Imperial/Medieval/resin_move1.ogg
+
+- type: soundCollection
+  id: MyrmexAttack
+  files:
+  - /Audio/Imperial/Medieval/ant_attack1.ogg
+  - /Audio/Imperial/Medieval/ant_attack2.ogg
+  - /Audio/Imperial/Medieval/ant_attack3.ogg
+
+- type: soundCollection
+  id: MyrmexFootsteps
+  files:
+  - /Audio/Imperial/Medieval/ant_footstep2.ogg
+  - /Audio/Imperial/Medieval/ant_footstep3.ogg
+
+- type: speechSounds
+  id: Myrmex
+  saySound:
+    path: /Audio/Imperial/Medieval/ant_speak2.ogg
+  askSound:
+    path: /Audio/Imperial/Medieval/ant_speak1.ogg
+  exclaimSound:
+    path: /Audio/Imperial/Medieval/ant_speak3.ogg

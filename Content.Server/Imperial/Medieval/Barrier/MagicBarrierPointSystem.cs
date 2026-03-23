@@ -142,10 +142,15 @@ namespace Content.Server.MagicBarrier
 
         private void OnCurseDamage(EntityUid uid, MagicBarrierCurseComponent component, ref BeforeDamageChangedEvent args)
         {
+            if (component.Triggered)
+                return;
+
+            component.Triggered = true;
             var xform = Transform(component.Owner);
             var coords = xform.Coordinates;
             Spawn("ShardCrystalRed", coords);
             Spawn("ShockWaveEffect", coords);
+            RemComp(uid, component);
             QueueDel(uid);
             _chat.DispatchGlobalAnnouncement("Проклятый нарост уничтожен, расход стабильности барьера снижен.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())

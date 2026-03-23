@@ -16,6 +16,22 @@
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
 
+- type: roleLoadout
+  id: JobMedievalLegionCourier
+  groups:
+  - TravellerHead
+  - TravellerJumpsuit
+  - MedievalNeck
+  - MedievalBackpack
+  #- SecurityOuterClothing
+  - MedievalShoes
+  #- SecurityPDA
+  - MedievalBelt
+  #- SurvivalSecurity
+  - MedievalTrinkets
+  #- GroupSpeciesBreathToolSecurity
+  - MedievalGloves
+
 - type: loadoutGroup
   id: TravellerHead
   name: loadout-group-traveller-head
@@ -978,6 +994,49 @@
   #  back:
   #  - Flash
   #  - MagazinePistol
+
+- type: startingGear
+  id: MedievalLegionCourierGear
+  equipment:
+    pocket1: MedievalRevent10
+    pocket2: MedievalRevent10
+    belt: CourierBag
+
+# MEDIEVAL COURIER
+
+- type: playTimeTracker
+  id: JobMedievalLegionCourier
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalLegionCourier
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icon_courier.rsi
+    state: courier
+  jobName: job-name-courier
+
+- type: job
+  id: MedievalLegionCourier
+  name: job-name-courier
+  description: job-description-courier
+  playTimeTracker: JobMedievalLegionCourier
+  startingGear: MedievalLegionCourierGear
+  icon: "JobIconMedievalLegionCourier"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
+    - type: MedievalJobSpawn
+      spawnType: Default
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective300500
+    - type: Courier
+    - type: MedievalPasportPerson
+      personJob: "[color=cyan]Курьер[/color]"
+      pasport: MedievalPasportLegion
+      jobPrefix: "[Кур]"
 
 
 
@@ -2650,7 +2709,7 @@
 - type: startingGear
   id: MedievalLegionTreasurerGear
   equipment:
-    pocket1: MedievalRevent25
+    pocket1: MedievalStampMedievalTreasurer
     pocket2: MedievalKeyTreasurer
     jumpsuit: MedievalClothingTreasurer
     head: MedievalClothingHeadTreasurer
@@ -2829,7 +2888,7 @@
 - type: startingGear
   id: MedievalLegionAlchemicGear
   equipment:
-    #pocket1: MedievalCommsCrystallLeg
+    pocket1: MedievalStampMedievalAlch
     pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanEagle
@@ -3410,7 +3469,7 @@
 - type: startingGear
   id: MedievalInsurgencyAlchemicGear
   equipment:
-    #pocket1: MedievalCommsCrystallIns
+    pocket1: MedievalStampMedievalAlch
     pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanFox
@@ -5544,7 +5603,7 @@
   id: MedievalVillagerLeaderGear
   equipment:
     pocket1: MedievalRevent50
-    pocket2: MedievalRevent25
+    pocket2: MedievalStampMedievalVillage
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
     head: MedievalClothingHeadArcherHat
 

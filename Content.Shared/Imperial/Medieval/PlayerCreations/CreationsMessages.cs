@@ -194,20 +194,18 @@ public sealed class CreationBook : IEquatable<CreationBook>
         SenderUserName = senderUserName;
     }
 
-    public override bool Equals(object? obj) => Equals(obj as CreationBook);
-
     public bool Equals(CreationBook? other)
     {
-        if (other is null)
-            return false;
-
-        return Text.SequenceEqual(other.Text);
+        if (other is null) return false;
+        return SenderUserId == other.SenderUserId && CreationTime == other.CreationTime;
     }
 
     public override int GetHashCode()
     {
-        return Text.GetHashCode();
+        return HashCode.Combine(SenderUserId, CreationTime);
     }
+
+    public override bool Equals(object? obj) => Equals(obj as CreationBook);
 
     public static bool operator ==(CreationBook? left, CreationBook? right)
     {
@@ -312,6 +310,32 @@ public sealed class RemoveAcceptedCreationBook : EuiMessageBase
 }
 
 [Serializable, NetSerializable]
+public sealed class EditPaintingMsg : EuiMessageBase
+{
+    public CreationPaintingMessage Painting { get; }
+    public EditedCreationData Edited { get; }
+
+    public EditPaintingMsg(CreationPaintingMessage painting, EditedCreationData edited)
+    {
+        Painting = painting;
+        Edited = edited;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class EditBookMsg : EuiMessageBase
+{
+    public CreationBook Book { get; }
+    public EditedCreationData Edited { get; }
+
+    public EditBookMsg(CreationBook book, EditedCreationData edited)
+    {
+        Book = book;
+        Edited = edited;
+    }
+}
+
+[Serializable, NetSerializable]
 public sealed class SendCreationBookEvent : EntityEventArgs
 {
     public string Text;
@@ -328,4 +352,22 @@ public sealed class SendCreationBookEvent : EntityEventArgs
         Author = author;
         SenderPlayer = senderPlayer;
     }
+}
+
+[Serializable, NetSerializable]
+public sealed class CreationInfo
+{
+    public string Name { get; init; } = default!;
+    public string Description { get; init; } = default!;
+    public string Author { get; init; } = default!;
+    public string SenderUserName { get; init; } = default!;
+    public DateTime CreationTime { get; init; }
+}
+
+[Serializable, NetSerializable]
+public sealed class EditedCreationData
+{
+    public string Name { get; init; } = default!;
+    public string Author { get; init; } = default!;
+    public string Description { get; init; } = default!;
 }

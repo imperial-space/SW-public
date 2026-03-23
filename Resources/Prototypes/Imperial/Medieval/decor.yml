@@ -964,6 +964,40 @@
         - BulletImpassable
 
 - type: entity
+  id: MedievalSignParent
+  parent: MedievalBannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: mogila3
+    drawdepth: Overdoors
+  - type: SpriteFade
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+
+- type: entity
   id: MedievalDecorMogila3
   parent: MedievalBannerBase
   name: nanotrasen banner
@@ -1170,7 +1204,7 @@
       fix1:
         shape:
           !type:PhysShapeCircle
-          radius: 0.35
+          radius: 0.25
         density: 190
         mask:
         - SmallMobMask
@@ -1559,7 +1593,7 @@
       radius: 1.5
 
 - type: entity
-  parent: MedievalDecorHelpParent
+  parent: MedievalSignParent
   id: MedievalSign1
   name: sign
   description: A sign
@@ -1577,7 +1611,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorHelpParent
+  parent: MedievalSignParent
   id: MedievalSign2
   name: sign
   description: A sign
@@ -1593,7 +1627,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorHelpParent
+  parent: MedievalSignParent
   id: MedievalSign3
   name: sign
   description: A sign
@@ -1609,7 +1643,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorHelpParent
+  parent: MedievalSignParent
   id: MedievalSign4
   name: sign
   description: A sign
@@ -1625,7 +1659,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorHelpParent
+  parent: MedievalSignParent
   id: MedievalSign5
   name: sign
   description: A sign
@@ -1641,7 +1675,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorHelpParent
+  parent: MedievalSignParent
   id: MedievalSign6
   name: sign
   description: A sign
@@ -1657,7 +1691,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorHelpParent
+  parent: MedievalSignParent
   id: MedievalSign7
   name: sign
   description: A sign
@@ -1673,7 +1707,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorHelpParent
+  parent: MedievalSignParent
   id: MedievalSign8
   name: sign
   description: A sign
@@ -1689,7 +1723,7 @@
           variation: 0.05
 
 - type: entity
-  parent: MedievalDecorHelpParent
+  parent: MedievalSignParent
   id: MedievalSign9
   name: sign
   description: A sign
@@ -2072,6 +2106,16 @@
         - MidImpassable
         - HighImpassable
         - BulletImpassable
+
+- type: entity
+  id: MedievalDecorDangerSign4
+  parent: MedievalDecorDangerSign3
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: danger4
 
 - type: entity
   id: MedievalDecorCastle1
@@ -3855,7 +3899,6 @@
     color: red
     castShadows: false
 
-
 - type: entity
   id: MedievalFlagCaptureBlueGold
   parent: BaseStructure
@@ -3863,7 +3906,7 @@
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
-    drawdepth: Overdoors
+    drawdepth: 3
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_blul_gold
   - type: MedievalFactionFlagChecker
@@ -3884,20 +3927,6 @@
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeCircle
-          radius: 0.45
-        density: 190
-        mask:
-        - MachineMask
-        layer:
-        - Opaque
-        - MidImpassable
-        - HighImpassable
-        - BulletImpassable
 
 - type: entity
   id: MedievalFlagCaptureRedGold
@@ -3906,7 +3935,7 @@
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
-    drawdepth: Overdoors
+    drawdepth: 3
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_red_gold
   - type: MedievalFactionFlagChecker
@@ -3934,13 +3963,6 @@
           !type:PhysShapeCircle
           radius: 0.45
         density: 190
-        mask:
-        - MachineMask
-        layer:
-        - Opaque
-        - MidImpassable
-        - HighImpassable
-        - BulletImpassable
 
 - type: entity
   id: MedievalDecorPerekatiPole
@@ -4984,6 +5006,17 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailing
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.15,0.49,0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   parent: RailingCorner
@@ -5022,6 +5055,26 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingCorner
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2:  #horizontal
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.15,0.15,-0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   parent: RailingCornerSmall
@@ -5060,6 +5113,18 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingCornerSmall
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.15,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+
 
 - type: entity
   parent: RailingRound
@@ -5098,6 +5163,26 @@
         acts: [ "Destruction" ]
   - type: Construction
     node: woodrailingRound
+  - type: Fixtures
+    fixtures:
+      fix1:  #vertical
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.15,-0.49,0.15,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2: #horizontal
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.15,0.15,0.15"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
 
 - type: entity
   id: MedievalDecorWoodenClock
@@ -5288,3 +5373,274 @@
         layer:
         - WallLayer
   - type: InteractionOutline
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  id: CandleWall
+  components:
+    # - type: AmbientSound
+      # volume: -15
+      # range: 1.5
+      # sound:
+        # path: /Audio/Ambience/Objects/fireplace.ogg
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+        - state: fire
+          shader: unshaded
+    - type: PointLight
+      color: "#e39c40"
+      radius: 3.5
+      power: 10
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.1,0.5,0.1,0.255"
+          density: 190
+          mask:
+          - None
+          layer:
+          - TabletopMachineLayer
+    - type: Damageable
+      damageContainer: Inorganic
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors: #excess damage, don't spawn entities.
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: Construction
+      graph: LightFixture
+      node: bulbLight
+    - type: Transform
+      anchored: true
+    - type: Clickable
+    - type: InteractionOutline
+    # - type: RCDDeconstructable
+      # cost: 4
+      # delay: 2
+      # fx: EffectRCDDeconstruct2
+    # - type: PlacementReplacement
+      # key: MedievalBannerBase
+    # placement:
+      # mode: SnapgridCenter
+      # snap:
+      # - Wallmount
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: CandleWall1
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall1.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+        - state: fire
+          shader: unshaded
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: CandleWall2
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall2.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+        - state: fire
+          shader: unshaded
+
+- type: entity
+  id: MedievalSteeringMap
+  name: map
+  parent: WoodenSupportWall
+  description: map
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/map.rsi
+      state: map
+
+- type: entity
+  id: MedievalSteeringWheel
+  name: Steering wheel
+  parent: WoodenSupportWall
+  description: Hold on tight, sailors! We're going to make a sharp turn! Grrrr!
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/steeringwheel.rsi
+      state: wheel
+
+- type: entity
+  id: Medievalblackflag
+  parent: BaseFlag
+  name: flag
+  description: Money, dice, a gun!
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: blackflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: Medievalblueflag
+  parent: BaseFlag
+  name: flag
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: blueflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: Medievalredflag
+  parent: BaseFlag
+  name: flag
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: redflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: Medievalwhiteflag
+  parent: BaseFlag
+  name: flag
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: whiteflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: Medievalyellowflag
+  parent: BaseFlag
+  name: flag
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: yellowflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: CaptainsChair
+  parent: ChairWood
+  name: chair
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/chair.rsi
+    state: chair
+
+- type: entity
+  id: Medievalcannon
+  parent: ShuttleGunPirateCannon
+  name: pirate ship cannon
+  description: Kaboom!
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Guns/Shuttles/pirate_cannon.rsi
+    layers:
+    - state: base
+
+- type: entity
+  id: MedievalDecorShipSailReady
+  parent: MedievalDecorShipSail
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/shipsailenclosed.rsi
+    layers:
+      - state: ready
+        map: ["enum.CatapultVisualKey.Ready"]
+    drawdepth: Overdoors
+    offset: 0,1.95
+  - type: Anchorable
+  - type: Rotatable
+    angleStep: 45
+    rotateWhileAnchored: true
+
+- type: entity
+  id: MedievalDecorShipSailShipup
+  parent: MedievalDecorShipSailReady
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/shipsailshipup.rsi
+    layers:
+      - state: shipup
+        map: ["enum.CatapultVisualKey.Ready"]
+    drawdepth: Overdoors
+    offset: 0,1.95
+
+- type: entity
+  id: MedievalFlagpole
+  name: Flagpole
+  parent: BaseStructure
+  description: A flagpole without a flag. like an elf without ears
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/flagpole.rsi
+      state: flag
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: MedievalWalllamp
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall3.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: Medievalwithoutlampshade
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall4.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+
+- type: entity
+  parent: Lantern
+  id: MedievalLanternAlit
+  name: small light
+  description: "An always powered light."
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Objects/Tools/lantern.rsi
+    - type: Item
+      sprite: Imperial/Medieval/Objects/Tools/lantern.rsi
+      heldPrefix: off
+    - type: Clothing
+      sprite: Imperial/Medieval/Objects/Tools/lantern.rsi
+      equippedPrefix: off
+

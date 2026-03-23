@@ -1,0 +1,68 @@
+- type: entity
+  id: BloodEyesAction
+  name: BloodEyesAction
+  description: BloodEyesAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 1
+    sound: /Audio/Effects/card_drag.ogg
+    icon:
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: ability_bloody_eyes_off
+    iconOn:
+      sprite: Imperial/Medieval/Forged/abilities.rsi
+      state: ability_bloody_eyes
+  - type: InstantAction
+    event: !type:ForgedBloodEyesActionEvent
+
+- type: entity
+  id: BoostAction
+  name: BoostAction
+  description: BoostAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 30
+    sound: /Audio/Effects/card_drag.ogg
+    icon:
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: ability_speed_off
+    iconOn:
+      sprite: Imperial/Medieval/Forged/abilities.rsi
+      state: ability_speed
+  - type: InstantAction
+    event: !type:ForgedBoostActionEvent
+
+- type: entity
+  id: SilaAction
+  name: SilaAction
+  description: SilaAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 30
+    sound: /Audio/Effects/card_drag.ogg
+    icon:
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: ability_gain_off
+    iconOn:
+      sprite: Imperial/Medieval/Forged/abilities.rsi
+      state: ability_gain
+  - type: InstantAction
+    event: !type:ForgedSilaActionEvent
+
+- type: entity
+  id: RepairAction
+  name: RepairAction
+  description: RepairAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    useDelay: 60
+    sound: /Audio/Effects/card_drag.ogg
+    icon:
+      sprite: Imperial/Medieval/Forged/abilities.rsi #
+      state: ability_gold_regeneration
+  - type: InstantAction
+    event: !type:ForgedRepairActionEvent

@@ -1,5 +1,6 @@
 ﻿
 using Content.Client.Imperial.Medieval.PlayerCreations.Books;
+using Content.Client.Popups;
 using Content.Shared.Imperial.Medieval.PlayerCreations;
 using Content.Shared.Imperial.Medieval.PlayerCreations.Books;
 using Content.Shared.Paper;
@@ -12,6 +13,7 @@ public sealed class CreationsBookSystem : EntitySystem
 {
 
     [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -31,8 +33,6 @@ public sealed class CreationsBookSystem : EntitySystem
             {
                 if (!TryComp<PaperComponent>(uid, out var paper))
                     return;
-
-
 
                 var bookSendWindow = new BookSendDialogWindow((name, description, author) =>
                 {

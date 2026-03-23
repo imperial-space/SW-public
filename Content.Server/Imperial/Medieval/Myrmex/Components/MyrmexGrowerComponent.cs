@@ -4,10 +4,25 @@ namespace Content.Server.Myrmex.Components
     public sealed partial class MyrmexGrowerComponent : Component
     {
         [DataField]
-        public string ResType = "";
+        public MyrmexSporeType SporeType = MyrmexSporeType.None;
 
         [DataField]
-        public string ResCur = "";
-
+        public MyrmexLightType LightType = MyrmexLightType.None;
     }
+}
+
+public enum MyrmexSporeType : byte
+{
+    None = 0,
+    IronCap,
+    Caustic,
+    Neuromycite
+}
+
+public enum MyrmexLightType : byte
+{
+    None = 0,
+    Runic,
+    Ethereal,
+    Shadow
 }

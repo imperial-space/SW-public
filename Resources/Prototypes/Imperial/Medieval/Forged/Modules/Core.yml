@@ -1,0 +1,102 @@
+- type: entity
+  id: ForgedCoreBase
+  name: ForgedCoreBase
+  parent: BaseHumanOrgan
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: base_core
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: core
+    layerState: base_core
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
+  - type: Organ
+  - type: Stomach
+    #specialDigestible:
+  - type: SolutionContainerManager
+    solutions:
+      stomach:
+        maxVol: 50
+        canReact: false
+  - type: Metabolizer
+    solution: stomach
+    solutionOnBody: false
+    maxReagents: 2
+    removeEmpty: true
+    metabolizerTypes: [ Forged ]
+    groups:
+      - id: Food
+
+- type: entity
+  id: ForgedCoreSerdolic
+  name: ForgedCoreSerdolic
+  parent: ForgedCoreBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: serdolic_core_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: core
+    layerState: serdolic_core
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - MedievalFireSerdolick
+
+###
+
+- type: entity
+  id: ForgedCoreAdam
+  name: ForgedCoreAdam
+  parent: ForgedCoreBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: adamantite_core_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: core
+    layerState: adamantite_core
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - MedievalAdam
+
+- type: entity
+  id: ForgedCoreTopaz
+  name: ForgedCoreTopaz
+  parent: ForgedCoreBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: topaz_core_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: core
+    layerState: topaz_core
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
+  - type: Stomach
+    specialDigestible:
+      tags:
+      - MedievalTopaz
+
+- type: entity
+  id: ForgedCoreGold
+  name: ForgedCoreGold
+  parent: ForgedCoreBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/cores.rsi
+    state: gold_core_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: core
+    layerState: gold_core
+    rsiPath: Imperial/Medieval/Forged/cores.rsi
+  - type: Stomach
+

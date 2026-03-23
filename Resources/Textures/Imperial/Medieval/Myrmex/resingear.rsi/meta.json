@@ -1,0 +1,14 @@
+{
+    "version": 1,
+    "license": "ICLA",
+    "copyright": "by gag08984",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "resingear"
+        }
+    ]
+}

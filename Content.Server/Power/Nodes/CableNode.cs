@@ -3,6 +3,7 @@ using Content.Server.NodeContainer.Nodes;
 using Content.Shared.NodeContainer;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Content.Shared.Glue;
 
 namespace Content.Server.Power.Nodes
 {
@@ -27,15 +28,29 @@ namespace Content.Server.Power.Nodes
 
             foreach (var (dir, node) in NodeHelpers.GetCardinalNeighborNodes(nodeQuery, grid, gridIndex))
             {
-                if (node is CableNode && node != this)
+                if (entMan.HasComponent<GlueComponent>(Owner))
                 {
-                    nodeDirs.Add((dir, node));
+                    if (node is CableTerminalNode && dir == Direction.Invalid)
+                    {
+                        nodeDirs.Add((Direction.Invalid, node));
+                    }
+                    else if (node is CableDeviceNode && dir == Direction.Invalid)
+                    {
+                        nodeDirs.Add((Direction.Invalid, node));
+                    }
                 }
-
-                if (node is CableDeviceNode && dir == Direction.Invalid)
+                else
                 {
-                    // device on same tile
-                    nodeDirs.Add((Direction.Invalid, node));
+                    if (node is CableNode && node != this)
+                    {
+                        nodeDirs.Add((dir, node));
+                    }
+
+                    if (node is CableDeviceNode && dir == Direction.Invalid)
+                    {
+                        // device on same tile
+                        nodeDirs.Add((Direction.Invalid, node));
+                    }
                 }
 
                 if (node is CableTerminalNode)
