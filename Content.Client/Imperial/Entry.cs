@@ -23,6 +23,7 @@ public sealed partial class ImperialEntry
         var overlayManager = IoCManager.Resolve<IOverlayManager>();
 
         overlayManager.AddOverlay(new ShockWaveDistortionOverlay());
+        overlayManager.AddOverlay(new SeaSwellOverlay());
         overlayManager.AddOverlay(new SeaShipFloodOverlay());
         overlayManager.AddOverlay(new SeaShipRippleOverlay());
         overlayManager.AddOverlay(new SeaWindOverlay());
