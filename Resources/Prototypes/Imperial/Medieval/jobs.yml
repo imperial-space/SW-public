@@ -1103,7 +1103,7 @@
 
 - type: loadoutGroup
   id: BardItems
-  name: loadout-group-traveller-items
+  name: loadout-group-bard-items
   minLimit: 0
   loadouts:
   - BardHorse

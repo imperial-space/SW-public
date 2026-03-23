@@ -1,4 +1,4 @@
-loadout-group-traveller = Предмет барда
+loadout-group-bard-items = Предмет барда
 
 ent-BardArlekinoHead = головной убор "Арлекино"
     .desc = Часть шутовского костюма. Выглядит забавно, но немного зловеще.
