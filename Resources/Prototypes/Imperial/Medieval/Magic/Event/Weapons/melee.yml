@@ -1,0 +1,44 @@
+- type: entity
+  id: MedievalSabreCavalry
+  parent: MedievalFalshionT3LegionSteel
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/melee/sabre_cavalry.rsi
+  - type: Item
+    sprite: Imperial/Medieval/Event/Weapons/melee/sabre_cavalry_96x.rsi
+  - type: Tag
+    tags:
+    - CaptainSabre
+
+- type: entity
+  id: MedievalSabreInfantry
+  parent: MedievalFalshionT3LegionSteel
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/melee/sabre_infantry.rsi
+  - type: Tag
+    tags:
+    - CaptainSabre
+
+- type: entity
+  id: MedievalSabreOfficer
+  parent: MedievalFalshionT3LegionSteel
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/melee/sabre_officer.rsi
+  - type: Tag
+    tags:
+    - CaptainSabre
+
+- type: entity
+  id: MedievalSapperAxe
+  parent: MedievalIronHammer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/melee/sapper_axe.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Weapons/melee/sapper_axe.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage

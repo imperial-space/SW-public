@@ -1,0 +1,533 @@
+- type: entity
+  parent: ClothingOuterBase
+  id: MedievalApronDoc
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/common/apron_doc.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/common/apron_doc.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  id: MedievalBagSheath
+  parent: ClothingBeltBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/common/bag_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/common/bag_sheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CaptainSabre
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - CaptainSabre
+  - type: Storage
+    grid:
+    - 0,0,9,2
+  - type: Appearance
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: UseDelay
+    delay: 0.5
+
+- type: entity
+  id: MedievalCavalryBoots
+  parent: ClothingShoesBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/common/cavalry_boots.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/common/cavalry_boots.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: MedievalCavalrySheath
+  parent: ClothingBeltBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/common/cavalry_sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/common/cavalry_sheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: Sabre
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CaptainSabre
+  - type: ItemMapper
+    mapLayers:
+      sheath-sabre:
+        whitelist:
+          tags:
+          - CaptainSabre
+  - type: Appearance
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalGorgetOfficer
+  components:
+  - type: Sprite
+    sprite:  Imperial/Medieval/Event/Clothes/common/gorget_officer.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/common/gorget_officer.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalGorgetUnterofficer
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/common/gorget_unterofficer.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/common/gorget_unterofficer.rsi
+  - type: Item
+    size: Tiny
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalDocHat
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/common/hat_doc.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/common/hat_doc.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: MedievalClothingBackpackSatchelLeather
+  id: MedievalMarshSatchel
+  name: пехотный ранец
+  description: Стандартный пехотный ранец для хранения вещей первой необходимости.
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Storage
+    grid:
+    - 0,0,6,4
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        ents: []
+  - type: UserInterface
+    interfaces:
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+  - type: UseDelay
+    delay: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.9
+    sprintModifier: 0.9
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/common/marsh_satchel.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/common/marsh_satchel.rsi
+
+- type: entity
+  id: MedievalBagSheathImperial
+  parent: MedievalBagSheath
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/bag_sheath_officer.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/bag_sheath_officer.rsi
+
+- type: entity
+  id: MedievalImperialBoots
+  parent: MedievalCavalryBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/boots_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/boots_imperial.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatCavalryImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/hat_cavalry_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/hat_cavalry_imperial_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatSapperImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/hat_sapper_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/hat_sapper_imperial_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatArtillery
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/shako_artillery_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/shako_artillery_imperial_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/shako_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/shako_imperial_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatMusicianImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/shako_musician_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/shako_musician_imperial_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatOfficerImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/shako_officer_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/hat/shako_officer_imperial_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalCavalryImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/cavalry_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/cavalry_imperial.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalDocImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/doc_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/doc_imperial.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalMusicianImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/musician_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/musician_imperial.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalMusketeerImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/musketeer_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/musketeer_imperial.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalOfficerImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/officer_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/officer_imperial.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalSapperImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/sapper_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/sapper_imperial.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalUnterofficerImperial
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/unterofficer_imperial.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/unterofficer_imperial.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  id: MedievalBagSheathMallinhen
+  parent: MedievalBagSheath
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/bag_sheath_officer_mallin.rsi
+    state: sheath
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/bag_sheath_officer_mallin.rsi
+
+- type: entity
+  id: MedievalMallinhenBoots
+  parent: MedievalCavalryBoots
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/boots_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/boots_mallin.rsi
+  - type: Item
+    size: Normal
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatArtilleryMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/artillery_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/artillery_mallin.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatArtilleryOfficerMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/artillery_officer_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/artillery_officer_mallin.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatSapperMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/hat_sapper_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/hat_sapper_mallin_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/helmet_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/helmet_mallin_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatMusicianMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/helmet_musician_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/helmet_musician_mallin_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingHeadBase
+  id: MedievalHatOfficerMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/helmet_officer_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/hat/helmet_officer_mallin_96x96.rsi
+  - type: Item
+    size: Small
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalCavalryMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/cavalry_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/cavalry_mallin.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalDocMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/doc_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/doc_mallin.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalMusicianMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/musician_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/musician_mallin.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalMusketeerMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/musketeer_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/musketeer_mallin.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalOfficerMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/officer_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/officer_mallin.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalSapperMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/sapper_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/sapper_mallin.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalUnterofficerMallinhen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/unterofficer_mallin.rsi
+    state: icon
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/unterofficer_mallin.rsi
+  - type: Item
+    size: Normal
+  - type: Insulated

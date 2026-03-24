@@ -1,0 +1,246 @@
+- type: entity
+  parent: BaseWeaponSniper
+  id: MedievalCarabine
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/gun/carabine.rsi
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Weapons/gun/carabine.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/Event/fire1.ogg
+    minAngle: 50
+    maxAngle: 50
+    angleDecay: 0
+    angleIncrease: 0
+  - type: BallisticAmmoProvider
+    soundRack:
+      path: /Audio/Imperial/Medieval/Event/hammer.ogg
+    soundInsert:
+      path: /Audio/Imperial/Medieval/Event/powder.ogg
+    cartridgeFillDelay: 8
+    capacity: 1
+    proto: MedievalPowderCartridge
+    whitelist:
+      tags:
+       - Cartridge
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+        ents: []
+  - type: Wieldable
+    unwieldOnUse: true
+  - type: GunRequiresWield
+  - type: UseDelayOnShoot
+  - type: UseDelay
+    delay: 4
+  - type: GunWieldBonus
+    minAngle: 0
+    maxAngle: 0
+  - type: CursorOffsetRequiresWield
+  - type: EyeCursorOffset
+    maxOffset: 5
+
+- type: entity
+  parent: MedievalCarabine
+  id: MedievalKatriel
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/gun/musket_katriel.rsi
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Weapons/gun/musket_katriel.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/Event/fire2.ogg
+    minAngle: 50
+    maxAngle: 50
+  - type: AltFireMelee
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 15
+    attackRate: 1.2
+    range: 1.5
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Weapons/punchmiss.ogg
+
+- type: entity
+  parent: MedievalCarabine
+  id: MedievalLangford
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/gun/musket_langford.rsi
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Weapons/gun/musket_langford.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/Event/fire3.ogg
+    minAngle: 50
+    maxAngle: 50
+  - type: AltFireMelee
+  - type: MeleeWeapon
+    damage:
+      types:
+        Piercing: 15
+    attackRate: 1.2
+    range: 1.5
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+    soundSwing:
+      path: /Audio/Weapons/punchmiss.ogg
+
+- type: entity
+  parent: MedievalCarabine
+  id: MedievalStutzen
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/gun/stutzen_short.rsi
+  - type: Item
+    size: Ginormous
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Weapons/gun/stutzen_short.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: Gun
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/Event/fire1.ogg
+    minAngle: 25
+    maxAngle: 25
+
+- type: entity
+  parent: BaseWeaponSniper
+  id: MedievalPistole
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/gun/officer_pistole.rsi
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Imperial/Medieval/Event/Weapons/gun/officer_pistole.rsi
+    quickEquip: false
+    slots:
+    - Back
+    - suitStorage
+  - type: AmmoCounter
+  - type: Gun
+    fireRate: 0.75
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/Event/fire3.ogg
+    minAngle: 25
+    maxAngle: 25
+  - type: BallisticAmmoProvider
+    soundRack:
+      path: /Audio/Imperial/Medieval/Event/hammer.ogg
+    soundInsert:
+      path: /Audio/Imperial/Medieval/Event/powder.ogg
+    cartridgeFillDelay: 8
+    capacity: 1
+    proto: MedievalPowderCartridgePistole
+    whitelist:
+      tags:
+       - CartridgeMagnum
+
+
+- type: entity
+  id: MedievalPowderCartridge
+  parent: BaseCartridgeCaselessRifle
+  components:
+  - type: Tag
+    tags:
+      - Cartridge
+  - type: CartridgeAmmo
+    proto: MedievalBullet
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/ammo.rsi
+    layers:
+      - state: paper_patron
+        map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: MedievalBullet
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 80
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: TimedDespawn
+    lifetime: 2.5
+
+- type: entity
+  id: MedievalPowderCartridgePistole
+  parent: BaseCartridgeCaselessRifle
+  components:
+  - type: Tag
+    tags:
+      - CartridgeMagnum
+  - type: CartridgeAmmo
+    proto: MedievalBulletPistole
+  - type: Sprite
+    sprite: Imperial/Medieval/Event/Weapons/ammo.rsi
+    layers:
+      - state: paper_patron_pistol
+        map: ["enum.AmmoVisualLayers.Base"]
+
+- type: entity
+  id: MedievalBulletPistole
+  parent: BaseBullet
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 80
+    soundHit:
+      path: /Audio/Weapons/Guns/Hits/snap.ogg
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles2.rsi
+    state: buckshot
+  - type: TimedDespawn
+    lifetime: 0.5

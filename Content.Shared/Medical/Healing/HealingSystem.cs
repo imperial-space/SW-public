@@ -100,17 +100,20 @@ public sealed class HealingSystem : EntitySystem
 
         // Re-verify that we can heal the damage.
         var dontRepeat = false;
-        if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
-        {
-            _stacks.Use(args.Used.Value, 1, stackComp);
+        // Imperial Medieval Event start
+        if (healing.ConsumeOnUse)
+        // Imperial Medieval Event end
+            if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
+            {
+                _stacks.Use(args.Used.Value, 1, stackComp);
 
-            if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
-                dontRepeat = true;
-        }
-        else
-        {
-            PredictedQueueDel(args.Used.Value);
-        }
+                if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
+                    dontRepeat = true;
+            }
+            else
+            {
+                PredictedQueueDel(args.Used.Value);
+            }
 
         if (target.Owner != args.User)
         {
