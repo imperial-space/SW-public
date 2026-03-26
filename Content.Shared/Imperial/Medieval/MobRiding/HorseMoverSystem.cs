@@ -47,30 +47,42 @@ public sealed class HorseMoverSystem : EntitySystem
             _transform.SetLocalRotation(ent, xform.LocalRotation - Angle.FromDegrees(turnSpeed * dt), xform);
 
         var forward = _transform.GetWorldRotation(xform).ToWorldVec();
+        var forwardSpeed = physics != null
+            ? Vector2.Dot(physics.LinearVelocity, forward)
+            : 0f;
         var wish = Vector2.Zero;
         var desiredSpeed = ev.WishDir.Length();
-        var hasForwardInput = false;
+        var forwardHeld = (buttons & MoveButtons.Up) != 0;
+        var backwardHeld = (buttons & MoveButtons.Down) != 0;
+        var hasDirectionalInput = forwardHeld || backwardHeld;
+        var reversingFromForward = backwardHeld && forwardSpeed > ent.Comp.MinInertiaSpeed;
+        var reversingFromBackward = forwardHeld && forwardSpeed < -ent.Comp.MinInertiaSpeed;
+        var conflictingInput = forwardHeld && backwardHeld;
 
-        if ((buttons & MoveButtons.Up) != 0)
+        if (forwardHeld && !conflictingInput && !reversingFromBackward)
         {
             wish += forward;
-            hasForwardInput = true;
         }
 
-        if ((buttons & MoveButtons.Down) != 0)
+        if (backwardHeld && !conflictingInput && !reversingFromForward)
         {
             wish -= forward * ent.Comp.BackwardsModifier;
-            hasForwardInput = true;
         }
 
         if (wish != Vector2.Zero)
         {
             wish *= desiredSpeed;
         }
-        else if (!hasForwardInput && speed > ent.Comp.MinInertiaSpeed)
+        else if (forwardSpeed > ent.Comp.MinInertiaSpeed
+            && (!hasDirectionalInput || reversingFromForward))
         {
-            var coastMultiplier = Math.Clamp(1f - ent.Comp.NoInputFriction * dt, 0f, 1f);
-            var coastSpeed = speed * coastMultiplier;
+            var coastFriction = ent.Comp.NoInputFriction;
+
+            if (reversingFromForward)
+                coastFriction *= ent.Comp.ReverseBrakeMultiplier;
+
+            var coastMultiplier = Math.Clamp(1f - coastFriction * dt, 0f, 1f);
+            var coastSpeed = forwardSpeed * coastMultiplier;
 
             if (coastSpeed > ent.Comp.MinInertiaSpeed)
                 wish = forward * coastSpeed;
