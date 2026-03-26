@@ -42,6 +42,10 @@
   - type: Storage
     grid:
     - 0,0,9,2
+  - type: StorageFill
+    contents:
+    - id: MedievalPowderCartridge
+      amount: 30
   - type: Appearance
   - type: ContainerContainer
     containers:
@@ -68,33 +72,13 @@
 
 - type: entity
   id: MedievalCavalrySheath
-  parent: ClothingBeltBase
+  parent: MedievalBagSheath
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/common/cavalry_sheath.rsi
     state: sheath
   - type: Clothing
     sprite: Imperial/Medieval/Event/Clothes/common/cavalry_sheath.rsi
-  - type: Item
-    size: Ginormous
-  - type: ItemSlots
-    slots:
-      item:
-        name: Sabre
-        insertVerbText: sheath-insert-verb
-        ejectVerbText: sheath-eject-verb
-        insertSound: /Audio/Items/sheath.ogg
-        ejectSound: /Audio/Items/unsheath.ogg
-        whitelist:
-          tags:
-          - CaptainSabre
-  - type: ItemMapper
-    mapLayers:
-      sheath-sabre:
-        whitelist:
-          tags:
-          - CaptainSabre
-  - type: Appearance
 
 - type: entity
   parent: ClothingNeckBase
