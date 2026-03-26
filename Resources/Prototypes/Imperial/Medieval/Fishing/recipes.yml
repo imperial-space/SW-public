@@ -1,0 +1,230 @@
+- type: construction
+  id: FishingRodT1Construction
+  name: construction-recipe-fishing-rod
+  description: construction-recipe-fishing-rod-desc
+  graph: FishingRodT1Construction
+  startNode: start
+  targetNode: FishingRodT1
+  category: construction-category-misc
+  icon: { sprite: Imperial/Medieval/Fishing/Objects/FishingRod/T1/rod.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: FishingRodT1Construction
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: FishingRodT1
+          steps:
+            - material: WoodPlank
+              amount: 5
+              doAfter: 2
+            - material: MedievalGrass
+              amount: 5
+    - node: FishingRodT1
+      entity: FishingRodT1
+
+- type: CP14Recipe
+  id: FishingRodT2
+  craftTime: 3
+  iconOverride: FishingRodT2
+  stacks:
+    WoodPlank: 10
+    MedievalIronIngot: 1
+    MedievalRope: 5
+  result: FishingRodT2
+
+- type: CP14Recipe
+  id: FishingRodT3
+  craftTime: 7
+  iconOverride: FishingRodT3
+  stacks:
+    WoodPlank: 15
+    MedievalIronIngot: 15
+    MedievalSteelIngot: 2
+    MedievalRope: 10
+    WebSilk: 5
+    MedievalCoal: 5
+  result: FishingRodT3
+
+- type: constructionGraph
+  id: FishPlotvaCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish plotva cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish plotva cooked
+      entity: FishPlotvaCooked
+
+- type: constructionGraph
+  id: FishLinCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish lin cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish lin cooked
+      entity: FishLinCooked
+
+- type: constructionGraph
+  id: FishSterlyadCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish sterlyad cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish sterlyad cooked
+      entity: FishSterlyadCooked
+
+- type: constructionGraph
+  id: FishOkunCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish okun cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish okun cooked
+      entity: FishOkunCooked
+
+- type: constructionGraph
+  id: FishZherekhCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish zherekh cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish zherekh cooked
+      entity: FishZherekhCooked
+
+- type: constructionGraph
+  id: FishSomCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish som cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish som cooked
+      entity: FishSomCooked
+
+- type: constructionGraph
+  id: FishKefalCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish kefal cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish kefal cooked
+      entity: FishKefalCooked
+
+- type: constructionGraph
+  id: FishKambalaTurboCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish kambala turbo cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish kambala turbo cooked
+      entity: FishKambalaTurboCooked
+
+- type: constructionGraph
+  id: FishGoldSparCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish gold spar cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish gold spar cooked
+      entity: FishGoldSparCooked
+
+- type: constructionGraph
+  id: FishStavridaCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish stavrida cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish stavrida cooked
+      entity: FishStavridaCooked
+
+- type: constructionGraph
+  id: FishZubatkaCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish zubatka cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish zubatka cooked
+      entity: FishZubatkaCooked
+
+- type: constructionGraph
+  id: FishTunaCooking
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: fish tuna cooked
+          completed:
+            - !type:PlaySound
+              sound: /Audio/Effects/sizzle.ogg
+          steps:
+            - minTemperature: 335
+    - node: fish tuna cooked
+      entity: FishTunaCooked
+

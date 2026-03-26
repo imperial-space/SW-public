@@ -1,188 +1,244 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-               xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
+               xmlns:trade="clr-namespace:Content.Client.Trade.UI"
                x:Class="Content.Client.Trade.UI.TradeTerminalWindow"
-               MinSize="680 540">
+               MinSize="820 430"
+               SetSize="1060 500">
 
-    <BoxContainer Orientation="Vertical" Margin="10">
-
-        <!--══════════════════════════════════════════════════════════════════
-            PANEL: Directory (Idle)
-        ══════════════════════════════════════════════════════════════════════-->
+    <BoxContainer Orientation="Vertical" Margin="6">
         <BoxContainer Name="PanelDirectory"
                       Orientation="Vertical"
                       VerticalExpand="True">
+            <PanelContainer Name="DirectoryCard"
+                            VerticalExpand="True">
+                <BoxContainer Orientation="Vertical"
+                              VerticalExpand="True"
+                              Margin="8">
+                    <PanelContainer Name="DirectoryHeaderBand"
+                                    Margin="0 0 0 6">
+                        <BoxContainer Orientation="Vertical"
+                                      Margin="8 6">
+                            <Label Name="LblDirTitle"
+                                   StyleClasses="LabelKeyText"
+                                   Margin="0 0 0 2"/>
 
-            <Label Name="LblDirTitle"
-                   StyleClasses="LabelKeyText"
-                   Margin="0 0 0 6"/>
+                            <Label Name="LblDirHint"
+                                   StyleClasses="LabelSubText"/>
+                        </BoxContainer>
+                    </PanelContainer>
 
-            <Label Name="LblDirHint"
-                   StyleClasses="LabelSubText"
-                   Margin="0 0 0 6"/>
-
-            <PanelContainer VerticalExpand="True">
-                <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-                    <BoxContainer Name="DirectoryList"
-                                  Orientation="Vertical"
-                                  HorizontalExpand="True"
-                                  Margin="4 4"/>
-                </ScrollContainer>
+                    <PanelContainer Name="DirectoryListFrame"
+                                    VerticalExpand="True">
+                        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+                            <BoxContainer Name="DirectoryList"
+                                          Orientation="Vertical"
+                                          HorizontalExpand="True"
+                                          Margin="4 4"/>
+                        </ScrollContainer>
+                    </PanelContainer>
+                </BoxContainer>
             </PanelContainer>
-
         </BoxContainer>
 
-        <!--══════════════════════════════════════════════════════════════════
-            PANEL: Calling (исходящий звонок)
-        ══════════════════════════════════════════════════════════════════════-->
         <BoxContainer Name="PanelCalling"
                       Orientation="Vertical"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Visible="False">
+            <PanelContainer Name="CallingCard">
+                <BoxContainer Orientation="Vertical"
+                              Margin="18 16"
+                              MinSize="280 0">
+                    <Label Name="LblCallingTitle"
+                           StyleClasses="LabelKeyText"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 14"/>
 
-            <Label Name="LblCallingTitle"
-                   StyleClasses="LabelKeyText"
-                   HorizontalAlignment="Center"
-                   Margin="0 0 0 16"/>
-
-            <Button Name="BtnHangUpCalling"
-                    HorizontalAlignment="Center"
-                    MinWidth="140"/>
-
+                    <Button Name="BtnHangUpCalling"
+                            HorizontalAlignment="Center"
+                            MinWidth="150"
+                            MinHeight="36"/>
+                </BoxContainer>
+            </PanelContainer>
         </BoxContainer>
 
-        <!--══════════════════════════════════════════════════════════════════
-            PANEL: Ringing (входящий звонок)
-        ══════════════════════════════════════════════════════════════════════-->
         <BoxContainer Name="PanelRinging"
                       Orientation="Vertical"
                       VerticalAlignment="Center"
                       HorizontalAlignment="Center"
                       Visible="False">
+            <PanelContainer Name="RingingCard">
+                <BoxContainer Orientation="Vertical"
+                              Margin="18 16"
+                              MinSize="320 0">
+                    <Label Name="LblRingingTitle"
+                           StyleClasses="LabelKeyText"
+                           HorizontalAlignment="Center"
+                           Margin="0 0 0 18"/>
 
-            <Label Name="LblRingingTitle"
-                   StyleClasses="LabelKeyText"
-                   HorizontalAlignment="Center"
-                   Margin="0 0 0 20"/>
+                    <BoxContainer Orientation="Horizontal"
+                                  HorizontalAlignment="Center">
 
-            <BoxContainer Orientation="Horizontal"
-                          HorizontalAlignment="Center">
+                        <Button Name="BtnAccept"
+                                StyleClasses="Constructive"
+                                MinWidth="130"
+                                MinHeight="36"
+                                Margin="0 0 10 0"/>
 
-                <Button Name="BtnAccept"
-                        StyleClasses="Constructive"
-                        MinWidth="120"
-                        Margin="0 0 12 0"/>
-
-                <Button Name="BtnDecline"
-                        StyleClasses="Caution"
-                        MinWidth="120"/>
-
-            </BoxContainer>
-
+                        <Button Name="BtnDecline"
+                                StyleClasses="Caution"
+                                MinWidth="130"
+                                MinHeight="36"/>
+                    </BoxContainer>
+                </BoxContainer>
+            </PanelContainer>
         </BoxContainer>
 
-        <!--══════════════════════════════════════════════════════════════════
-            PANEL: Trade  (Active / Countdown / Completed)
-        ══════════════════════════════════════════════════════════════════════-->
         <BoxContainer Name="PanelTrade"
                       Orientation="Vertical"
                       VerticalExpand="True"
                       Visible="False">
+            <BoxContainer Orientation="Vertical"
+                          HorizontalExpand="True">
+                <PanelContainer Name="TradeStatusPanel"
+                                Margin="0 0 0 6">
+                    <BoxContainer Orientation="Vertical"
+                                  Margin="10 8">
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Name="LblStatus"
+                                   HorizontalExpand="True"
+                                   ClipText="True"
+                                   StyleClasses="LabelSubText"/>
+                            <Label Name="LblCountdown"
+                                   StyleClasses="LabelKeyText"
+                                   Visible="False"/>
+                        </BoxContainer>
 
-            <!-- Строка статуса -->
-            <BoxContainer Orientation="Horizontal" Margin="0 0 0 4">
-                <Label Name="LblStatus"
-                       HorizontalExpand="True"
-                       StyleClasses="LabelSubText"/>
-                <Label Name="LblCountdown"
-                       StyleClasses="LabelKeyText"
-                       Visible="False"/>
-            </BoxContainer>
+                        <ProgressBar Name="BarCountdown"
+                                     MinValue="0"
+                                     MaxValue="1"
+                                     Value="0"
+                                     MinHeight="10"
+                                     Visible="False"
+                                     Margin="0 5 0 0"/>
+                    </BoxContainer>
+                </PanelContainer>
 
-            <!-- Прогресс-бар обратного отсчёта -->
-            <ProgressBar Name="BarCountdown"
-                         MinValue="0"
-                         MaxValue="1"
-                         Value="0"
-                         MinHeight="12"
-                         Visible="False"
-                         Margin="0 0 0 6"/>
-
-            <!-- Две колонки предметов -->
-            <BoxContainer Orientation="Horizontal" VerticalExpand="True">
-
-                <!-- Моё предложение -->
-                <BoxContainer Orientation="Vertical"
+                <BoxContainer Name="TradeColumns"
+                              Orientation="Horizontal"
                               HorizontalExpand="True"
-                              Margin="0 0 4 0">
+                              VerticalExpand="False">
+                    <PanelContainer Name="OwnOfferPanel"
+                                    MinSize="272 0"
+                                    Margin="0 0 4 0"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="False">
+                        <BoxContainer Orientation="Vertical"
+                                      Margin="8">
+                            <PanelContainer Name="OwnHeaderBand"
+                                            Margin="0 0 0 6">
+                                <BoxContainer Orientation="Vertical"
+                                              Margin="8 6">
+                                    <Label Name="LblOwnColumn"
+                                           ClipText="True"
+                                           StyleClasses="LabelKeyText"/>
+                                </BoxContainer>
+                            </PanelContainer>
 
-                    <Label Name="LblOwnColumn"
-                           StyleClasses="LabelKeyText"
-                           Margin="0 0 0 2"/>
+                            <PanelContainer Name="OwnGridFrame"
+                                            HorizontalExpand="True"
+                                            VerticalExpand="False"
+                                            Margin="0 0 0 6">
+                                <ScrollContainer HorizontalExpand="True"
+                                                 VerticalExpand="False"
+                                                 ReturnMeasure="True">
+                                    <trade:TradeOfferGrid Name="OwnOfferGrid"
+                                                          HorizontalAlignment="Left"
+                                                          VerticalAlignment="Top"/>
+                                </ScrollContainer>
+                            </PanelContainer>
 
-                    <Label Name="LblInsertHint"
-                           StyleClasses="LabelSubText"
-                           Margin="0 0 0 4"/>
-
-                    <PanelContainer VerticalExpand="True">
-                        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-                            <BoxContainer Name="OwnItemList"
-                                          Orientation="Vertical"
-                                          HorizontalExpand="True"
-                                          Margin="4"/>
-                        </ScrollContainer>
+                            <PanelContainer Name="OwnHintBand">
+                                <Label Name="LblInsertHint"
+                                       ClipText="True"
+                                       StyleClasses="LabelSubText"
+                                       Margin="8 6"/>
+                            </PanelContainer>
+                        </BoxContainer>
                     </PanelContainer>
 
-                </BoxContainer>
+                    <PanelContainer Name="TradeDivider"
+                                    MinSize="1 0"
+                                    Margin="0 3"
+                                    VerticalExpand="True"/>
 
-                <!-- Вертикальный разделитель -->
-                <customControls:VSeparator Margin="0 0 4 0"/>
+                    <PanelContainer Name="PartnerOfferPanel"
+                                    MinSize="272 0"
+                                    Margin="4 0 0 0"
+                                    HorizontalExpand="True"
+                                    VerticalExpand="False">
+                        <BoxContainer Orientation="Vertical"
+                                      Margin="8">
+                            <PanelContainer Name="PartnerHeaderBand"
+                                            Margin="0 0 0 6">
+                                <BoxContainer Orientation="Vertical"
+                                              Margin="8 6">
+                                    <Label Name="LblPartnerColumn"
+                                           ClipText="True"
+                                           StyleClasses="LabelKeyText"/>
+                                </BoxContainer>
+                            </PanelContainer>
 
-                <!-- Предложение партнёра -->
-                <BoxContainer Orientation="Vertical"
-                              HorizontalExpand="True"
-                              Margin="4 0 0 0">
+                            <PanelContainer Name="PartnerGridFrame"
+                                            HorizontalExpand="True"
+                                            VerticalExpand="False"
+                                            Margin="0 0 0 6">
+                                <ScrollContainer HorizontalExpand="True"
+                                                 VerticalExpand="False"
+                                                 ReturnMeasure="True">
+                                    <trade:TradeOfferGrid Name="PartnerOfferGrid"
+                                                          HorizontalAlignment="Left"
+                                                          VerticalAlignment="Top"/>
+                                </ScrollContainer>
+                            </PanelContainer>
 
-                    <Label Name="LblPartnerColumn"
-                           StyleClasses="LabelKeyText"
-                           Margin="0 0 0 2"/>
-
-                    <!-- Пустой label для выравнивания высоты с левой колонкой -->
-                    <Label StyleClasses="LabelSubText" Margin="0 0 0 4"/>
-
-                    <PanelContainer VerticalExpand="True">
-                        <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
-                            <BoxContainer Name="PartnerItemList"
-                                          Orientation="Vertical"
-                                          HorizontalExpand="True"
-                                          Margin="4"/>
-                        </ScrollContainer>
+                            <PanelContainer Name="PartnerHintBand">
+                                <Label Name="LblPartnerHint"
+                                       ClipText="True"
+                                       StyleClasses="LabelSubText"
+                                       Margin="8 6"/>
+                            </PanelContainer>
+                        </BoxContainer>
                     </PanelContainer>
-
                 </BoxContainer>
-
             </BoxContainer>
 
-            <!-- Нижняя панель кнопок -->
-            <BoxContainer Orientation="Horizontal"
-                          HorizontalAlignment="Right"
-                          Margin="0 8 0 0">
+            <PanelContainer Name="TradeActionPanel"
+                            Margin="0 6 0 0">
+                <BoxContainer Orientation="Horizontal"
+                              Margin="6"
+                              HorizontalExpand="True">
 
-                <Button Name="BtnHangUp"
-                        Margin="0 0 8 0"/>
+                    <Button Name="BtnHangUp"
+                            HorizontalExpand="True"
+                            SizeFlagsStretchRatio="0.95"
+                            MinHeight="38"
+                            Margin="0 0 4 0"/>
 
-                <Button Name="BtnCancel"
-                        StyleClasses="Caution"
-                        Margin="0 0 8 0"/>
+                    <Button Name="BtnConfirm"
+                            StyleClasses="Constructive"
+                            HorizontalExpand="True"
+                            SizeFlagsStretchRatio="1.15"
+                            MinHeight="38"
+                            Margin="0 0 4 0"/>
 
-                <Button Name="BtnConfirm"
-                        StyleClasses="Constructive"
-                        MinWidth="160"/>
-
-            </BoxContainer>
-
+                    <Button Name="BtnCancel"
+                            StyleClasses="Caution"
+                            HorizontalExpand="True"
+                            SizeFlagsStretchRatio="0.95"
+                            MinHeight="38"/>
+                </BoxContainer>
+            </PanelContainer>
         </BoxContainer>
-
     </BoxContainer>
 </DefaultWindow>

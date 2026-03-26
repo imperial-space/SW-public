@@ -923,6 +923,7 @@
     recipes:
     - MedievalWeaponCrossbow
     - MedievalWoodenSword
+    - FishingRodT2
     - MedievalBolt
     - MedievalBoltSteel
     - MedievalBoltPractice
@@ -1272,6 +1273,7 @@
     - MedievalClothingFeetDragonBoneBone
     - MedievalBloodlettingNeedle
     - MedievalCultConductorRodIron
+    - FishingRodT3
     - Spoon
     - Fork
     - MedievalSilverCup
