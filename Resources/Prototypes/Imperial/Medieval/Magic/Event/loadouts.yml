@@ -216,7 +216,7 @@
     shoes: MedievalImperialBoots
     head: MedievalDocHat
     pocket1: MedievalFlaskImperial
-    suitStorage: SurgicalKit
+    pocket2: SurgicalKit
     outerClothing: MedievalApronDoc
 
 - type: startingGear
@@ -342,7 +342,7 @@
     shoes: MedievalMallinhenBoots
     head: MedievalDocHat
     pocket1: MedievalFlaskMallin
-    suitStorage: SurgicalKit
+    pocket2: SurgicalKit
     outerClothing: MedievalApronDoc
 
 - type: startingGear
