@@ -1,7 +1,9 @@
 using System.Numerics;
+using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Robust.Client.Graphics;
+using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
@@ -15,20 +17,41 @@ namespace Content.Client.Imperial.Medieval.Ships.Wind;
 
 public sealed class SeaSwellOverlay : Overlay
 {
+    [Dependency] private readonly IConfigurationManager _configuration = default!;
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
 
     private const float TileQueryPadding = 4f;
     private const float ShipMaskPadding = 1.1f;
     private const float ParticleSpawnPadding = 1.2f;
-    private const float ParticleDensity = 0.58f;
-    private const int MinParticles = 132;
-    private const int MaxParticles = 360;
+    private const float CalmParticleDensity = 0.2f;
+    private const float StormParticleDensity = 0.58f;
+    private const int CalmMinParticles = 44;
+    private const int StormMinParticles = 132;
+    private const int CalmMaxParticles = 128;
+    private const int StormMaxParticles = 360;
     private const float ParticleOverlapPadding = 0.035f;
+    private const float CalmSizeScale = 0.72f;
+    private const float StormSizeScale = 1.18f;
+    private const float CalmSpreadScale = 0.78f;
+    private const float StormSpreadScale = 1.16f;
+    private const float CalmThicknessScale = 0.8f;
+    private const float StormThicknessScale = 1.18f;
+    private const float CalmAlphaScale = 0.72f;
+    private const float StormAlphaScale = 1.1f;
+    private const float CalmLifetimeScale = 1f;
+    private const float StormLifetimeScale = 1.06f;
+    private const float CalmAnimationSpeed = 1f;
+    private const float StormAnimationSpeed = 1.24f;
+    private const float CalmLineChance = 0.38f;
+    private const float StormLineChance = 0.16f;
+    private const float CalmChevronChance = 0.28f;
+    private const float StormChevronChance = 0.34f;
 
     private readonly Dictionary<MapId, List<SwellParticle>> _particlesByMap = new();
     private readonly List<MapId> _staleMaps = new();
     private readonly List<ShipMask> _shipMasks = new();
+    private float _stormStrength;
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
 
@@ -40,19 +63,32 @@ public sealed class SeaSwellOverlay : Overlay
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
     {
-        return _entityManager.TryGetComponent<SeaComponent>(args.MapUid, out var sea) && !sea.Disabled;
+        if (!_entityManager.TryGetComponent<SeaComponent>(args.MapUid, out var sea) || sea.Disabled)
+            return false;
+
+        if (_configuration.GetCVar(ShipsCCVars.WindEnabled))
+            return true;
+
+        return _particlesByMap.TryGetValue(args.MapId, out var particles) && particles.Count > 0;
     }
 
     protected override void FrameUpdate(FrameEventArgs args)
     {
+        var rawStrength = _configuration.GetCVar(ShipsCCVars.WindEnabled)
+            ? MathF.Max(0f, _configuration.GetCVar(ShipsCCVars.StormLevel))
+            : 0f;
+        var targetStrength = Math.Clamp(rawStrength / 10f, 0f, 1f);
+        _stormStrength += (targetStrength - _stormStrength) * MathF.Min(1f, args.DeltaSeconds * 2f);
+
         _staleMaps.Clear();
+        var animationSpeed = MathHelper.Lerp(CalmAnimationSpeed, StormAnimationSpeed, _stormStrength);
 
         foreach (var (mapId, particles) in _particlesByMap)
         {
             for (var i = particles.Count - 1; i >= 0; i--)
             {
                 var particle = particles[i];
-                particle.Age += args.DeltaSeconds;
+                particle.Age += args.DeltaSeconds * animationSpeed;
 
                 if (particle.Age >= particle.Lifetime)
                 {
@@ -79,9 +115,10 @@ public sealed class SeaSwellOverlay : Overlay
         BuildShipMasks(args.MapId, visibleBounds);
 
         var particles = AllParticles(args.MapId);
-        SpawnParticles(particles, visibleBounds);
+        if (_configuration.GetCVar(ShipsCCVars.WindEnabled))
+            SpawnParticles(particles, visibleBounds);
         var eyeRotation = args.Viewport.Eye?.Rotation ?? Angle.Zero;
-        DrawParticles(args.WorldHandle, particles, args.WorldAABB.Enlarged(ParticleSpawnPadding), eyeRotation);
+        DrawParticles(args.WorldHandle, particles, args.WorldAABB.Enlarged(ParticleSpawnPadding + _stormStrength * 0.35f), eyeRotation);
     }
 
     private List<SwellParticle> AllParticles(MapId mapId)
@@ -139,7 +176,10 @@ public sealed class SeaSwellOverlay : Overlay
     {
         var spawnBounds = GetSpawnFocusBounds(visibleBounds);
         var area = visibleBounds.Width * visibleBounds.Height;
-        var targetCount = Math.Clamp((int) MathF.Ceiling(area * ParticleDensity), MinParticles, MaxParticles);
+        var density = MathHelper.Lerp(CalmParticleDensity, StormParticleDensity, _stormStrength);
+        var minParticles = (int) MathF.Round(MathHelper.Lerp(CalmMinParticles, StormMinParticles, _stormStrength));
+        var maxParticles = (int) MathF.Round(MathHelper.Lerp(CalmMaxParticles, StormMaxParticles, _stormStrength));
+        var targetCount = Math.Clamp((int) MathF.Ceiling(area * density), minParticles, maxParticles);
         var slotCount = 0;
 
         foreach (var particle in particles)
@@ -160,6 +200,14 @@ public sealed class SeaSwellOverlay : Overlay
 
     private bool TryCreateParticle(List<SwellParticle> particles, Box2 spawnBounds, bool warmStart, out SwellParticle particle)
     {
+        var sizeScale = MathHelper.Lerp(CalmSizeScale, StormSizeScale, _stormStrength);
+        var spreadScale = MathHelper.Lerp(CalmSpreadScale, StormSpreadScale, _stormStrength);
+        var thicknessScale = MathHelper.Lerp(CalmThicknessScale, StormThicknessScale, _stormStrength);
+        var alphaScale = MathHelper.Lerp(CalmAlphaScale, StormAlphaScale, _stormStrength);
+        var lifetimeScale = MathHelper.Lerp(CalmLifetimeScale, StormLifetimeScale, _stormStrength);
+        var lineChance = MathHelper.Lerp(CalmLineChance, StormLineChance, _stormStrength);
+        var chevronChance = MathHelper.Lerp(CalmChevronChance, StormChevronChance, _stormStrength);
+
         for (var attempt = 0; attempt < 44; attempt++)
         {
             var position = new Vector2(
@@ -167,13 +215,14 @@ public sealed class SeaSwellOverlay : Overlay
                 _random.NextFloat(spawnBounds.Bottom, spawnBounds.Top));
 
             var shapeRoll = _random.NextFloat();
-            var shape = shapeRoll switch
-            {
-                < 0.28f => SwellShapeType.LinePulse,
-                < 0.54f => SwellShapeType.Chevron,
-                _ => SwellShapeType.Split,
-            };
-            var lifetime = _random.NextFloat(1.15f, 1.95f);
+            SwellShapeType shape;
+            if (shapeRoll < lineChance)
+                shape = SwellShapeType.LinePulse;
+            else if (shapeRoll < lineChance + chevronChance)
+                shape = SwellShapeType.Chevron;
+            else
+                shape = SwellShapeType.Split;
+            var lifetime = _random.NextFloat(1.15f, 1.95f) * lifetimeScale;
             var (length, spread, thickness, alpha) = shape switch
             {
                 SwellShapeType.Chevron => (
@@ -192,6 +241,10 @@ public sealed class SeaSwellOverlay : Overlay
                     _random.NextFloat(0.0044f, 0.007f),
                     _random.NextFloat(0.34f, 0.5f)),
             };
+            length *= sizeScale;
+            spread *= spreadScale;
+            thickness *= thicknessScale;
+            alpha *= alphaScale;
             var reach = EstimateParticleReach(shape, length, spread);
 
             if (IsParticleBlocked(position, reach))
