@@ -17,6 +17,28 @@
   - type: SteeringOar
 
 - type: entity
+  id: MedievalAnchorUp
+  name: Якорь
+  description: Штука что не даёт двигатся лодке
+  parent: WoodenSupportWall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Ships/Anchor.rsi
+    state: up
+  - type: MedievalAnchor
+    Enabled: false
+
+- type: entity
+  id: MedievalAnchorDown
+  parent: MedievalAnchorUp
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Ships/Anchor.rsi
+    state: down
+  - type: MedievalAnchor
+    Enabled: true
+
+- type: entity
   id: MedievalSteeringWheel
   name: Steering wheel
   parent: WoodenSupportWall

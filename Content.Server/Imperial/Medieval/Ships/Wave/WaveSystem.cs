@@ -123,7 +123,7 @@ public sealed class WaveSystem : EntitySystem
         for (int i = 0; i < tilesToReplace; i++)
         {
             var tilePos = nearbyTiles[i];
-            if (!_map.TryGetTile(grid, tilePos, out var tile))
+            if (!_map.TryGetTile(grid, tilePos, out var tile) || tile.IsEmpty)
                 continue;
             _tileDefinitionManager.TryGetDefinition("FloorBrokenWoodDDD", out var floorDef);
             if (floorDef == null)

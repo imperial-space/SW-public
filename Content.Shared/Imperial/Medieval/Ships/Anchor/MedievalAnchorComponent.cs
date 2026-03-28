@@ -8,4 +8,6 @@ public sealed partial class MedievalAnchorComponent : Component
 {
     [DataField("Enabled")]
     public bool Enabled;
+
+    public string State;
 }

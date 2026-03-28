@@ -1,6 +1,7 @@
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Imperial.Medieval.Ships.Anchor;
+using Robust.Server.GameObjects;
 
 namespace Content.Server.Imperial.Medieval.Ships.Anchor;
 
@@ -10,6 +11,7 @@ namespace Content.Server.Imperial.Medieval.Ships.Anchor;
 public sealed class ServerMedievalAnchorSystem : EntitySystem
 {
     [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {
@@ -42,6 +44,18 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
         }
 
         shuttleComponent.Enabled = !enabled;
-        component.Enabled = !enabled;
+        var spawnname = "";
+        if (enabled)
+        {
+            spawnname = "MedievalAnchorUp";
+        }
+        else
+        {
+            spawnname = "MedievalAnchorDown";
+        }
+        var newEnt = Spawn(spawnname);
+        var coords = _transform.GetMoverCoordinates(target);
+        _transform.SetCoordinates(newEnt, coords);
+        Del(target);
     }
 }
