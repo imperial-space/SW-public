@@ -55,9 +55,9 @@ public sealed class WaveSystem : EntitySystem
     private readonly Random _random = new();
     public (string, ushort)[] Stages =
     {
-        ("FloorWood", (ushort)1),
-        ("FloorBrokenWoodDDD", (ushort)2),
-        ("Plating", (ushort)3)
+        ("woodbroken", (ushort)1),
+        ("woodbroken2", (ushort)2),
+        ("woodbroken3", (ushort)3)
     };
     private bool _initialized;
 
