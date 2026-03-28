@@ -5,6 +5,7 @@ using System.Numerics;
 using Content.Server.Imperial.Medieval.Ships.Sea.Init;
 using Content.Server.MagicBarrier.Components;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Parallax;
 using Robust.Server.GameObjects;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
@@ -65,6 +66,8 @@ public sealed class SeasGenerationSystem : EntitySystem
 
                 var mapUid = _map.CreateMap();
                 _metaData.SetEntityName(mapUid, $"Море {x} {y}");
+                var parallax = AddComp<ParallaxComponent>(mapUid);
+                parallax.Parallax = "OceanMedieval";
                 var mapId = _transform.GetMapId(mapUid);
                 AddComp<SeaComponent>(mapUid);
                 seaMatrix.SetSeaId(x, y, mapId);
