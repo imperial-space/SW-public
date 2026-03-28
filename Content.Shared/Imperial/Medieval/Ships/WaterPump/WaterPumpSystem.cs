@@ -56,7 +56,6 @@ public sealed class WaterPumpSystem : EntitySystem
 
     private void Use(EntityUid playerEntity, EntityUid used)
     {
-
         var boat = _transform.GetParentUid(used);
 
         TryComp<MapGridComponent>(boat, out var boatComponent);

@@ -74,16 +74,14 @@
 
 
 - type: entity
-  parent: BaseWall
   id: SteeringOar
   name: Рулевое весло
   description: Рулевое весло что используется для поворота лодки
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
-  - type: WallReplacementMarker
+    sprite: Imperial/Medieval/Ships/SteeringOar.rsi
   - type: Icon
-    sprite: Structures/Walls/solid.rsi
+    sprite: Imperial/Medieval/Ships/SteeringOar.rsi
   - type: Destructible
     thresholds:
     - trigger:
