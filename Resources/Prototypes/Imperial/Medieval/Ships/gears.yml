@@ -18,7 +18,7 @@
 
 - type: entity
   id: MedievalAnchorUp
-  name: Якорь
+  name: якорь
   description: Штука что не даёт двигатся лодке
   parent: WoodenSupportWall
   components:
