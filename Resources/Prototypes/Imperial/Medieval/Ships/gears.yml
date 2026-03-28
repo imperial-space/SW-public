@@ -1,110 +1,32 @@
 - type: entity
-  parent: BaseWall
   id: WaterPump
   name: Водная помпа
+  parent: WoodenSupportWall
   components:
-  - type: Sprite
-    sprite: Structures/Walls/solid.rsi
-  - type: WallReplacementMarker
-  - type: Icon
-    sprite: Structures/Walls/solid.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: solid
   - type: WaterPump
 
 - type: entity
-  parent: BaseWall
   id: SteeringOar
   name: Рулевое весло
   description: Рулевое весло что используется для поворота лодки
+  parent: WoodenSupportWall
   components:
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
-  - type: WallReplacementMarker
-  - type: Icon
-    sprite: Structures/Walls/solid.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: solid
-
+    sprite: Imperial/Medieval/Ships/SteeringOar.rsi
+    state: base
+  - type: SteeringOar
 
 - type: entity
-  id: SteeringOar
-  name: Рулевое весло
-  description: Рулевое весло что используется для поворота лодки
+  id: MedievalSteeringWheel
+  name: Steering wheel
+  parent: WoodenSupportWall
+  description: Hold on tight, sailors! We're going to make a sharp turn! Grrrr!
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Ships/SteeringOar.rsi
-  - type: Icon
-    sprite: Imperial/Medieval/Ships/SteeringOar.rsi
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 400
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-    - trigger:
-        !type:DamageTrigger
-        damage: 200
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-      - !type:ChangeConstructionNodeBehavior
-        node: girder
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: IconSmooth
-    key: walls
-    base: solid
-  - type: SteeringOar
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/steeringwheel.rsi
+      state: wheel
+    - type: Sail
+      helm: true
+    - type: Rotatable
+      RotateWhileAnchored: true
+      Increment: 5

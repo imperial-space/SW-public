@@ -5479,15 +5479,6 @@
       sprite: Imperial/Medieval/Decor/map.rsi
       state: map
 
-- type: entity
-  id: MedievalSteeringWheel
-  name: Steering wheel
-  parent: WoodenSupportWall
-  description: Hold on tight, sailors! We're going to make a sharp turn! Grrrr!
-  components:
-    - type: Sprite
-      sprite: Imperial/Medieval/Decor/steeringwheel.rsi
-      state: wheel
 
 - type: entity
   id: Medievalblackflag
