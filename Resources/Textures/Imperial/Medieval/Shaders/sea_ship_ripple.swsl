@@ -1,0 +1,166 @@
+const highp float PI = 3.14159265;
+const lowp int MaxBubbles = 14;
+
+uniform highp float time;
+uniform highp float edgeLength;
+uniform highp float bandExtent;
+uniform highp float rippleOffset;
+uniform highp float rippleAmplitude;
+uniform highp float rippleAlpha;
+uniform highp float waveCount;
+uniform highp float tilePhase;
+uniform highp float tileStep;
+uniform highp float tileOriginX;
+uniform highp float tileOriginY;
+uniform highp float tileAxisX;
+uniform highp float tileAxisY;
+uniform highp float shipSeed;
+uniform highp float seedBase;
+uniform highp float edgeIndex;
+uniform lowp int bubbleCount;
+
+highp float hash1(highp float n)
+{
+    return fract(sin(n) * 43758.5453123);
+}
+
+highp float hash12(highp vec2 x)
+{
+    return fract(cos(mod(dot(x, vec2(13.9898, 8.141)), 3.14)) * 43758.5453);
+}
+
+highp float bubbleMask(highp float along, highp float radial)
+{
+    highp float safeEdgeLength = max(edgeLength, 0.001);
+    highp vec2 tileKey = vec2(
+        tileOriginX + shipSeed * 0.173 + edgeIndex * 0.619,
+        tileOriginY + shipSeed * 0.419 + edgeIndex * 0.283);
+
+    for (int i = 0; i < MaxBubbles; i++)
+    {
+        if (i >= bubbleCount)
+            break;
+
+        highp vec2 slotKey = tileKey + vec2(float(i) * 3.71, float(i) * 7.13);
+        highp float phaseHash = hash12(slotKey + vec2(0.13, 1.73));
+        highp float rateHash = hash12(slotKey + vec2(2.91, 4.07));
+        highp float alongHash = hash12(slotKey + vec2(5.63, 7.19));
+        highp float driftHash = hash12(slotKey + vec2(9.41, 3.11));
+        highp float shapeHash = hash12(slotKey + vec2(11.17, 13.37));
+        highp float windowHash = hash12(slotKey + vec2(17.31, 19.91));
+        highp float growthHash = hash12(slotKey + vec2(23.47, 29.63));
+        highp float flareHash = hash12(slotKey + vec2(31.41, 37.91));
+        highp float burstHash = hash12(slotKey + vec2(41.17, 43.81));
+        highp float burst = smoothstep(0.62, 0.98, burstHash);
+
+        highp float rate = mix(
+            0.052 + rateHash * 0.05,
+            0.11 + rateHash * 0.11,
+            burst);
+        highp float cycle = fract(time * rate + phaseHash);
+        highp float start = windowHash * 0.82;
+        highp float window = mix(
+            0.14 + shapeHash * 0.22,
+            0.08 + shapeHash * 0.12,
+            burst);
+        highp float age = fract(cycle - start + 1.0);
+
+        if (age > window)
+            continue;
+
+        highp float travel = age / max(window, 0.001);
+        highp float fade = smoothstep(0.0, 0.16, travel) * (1.0 - smoothstep(0.8, 1.0, travel));
+
+        if (fade <= 0.0005)
+            continue;
+
+        highp float growthProgress = pow(smoothstep(0.0, 1.0, travel), mix(0.72, 0.38, burst));
+        highp float flareProgress = pow(growthProgress, mix(1.8, 0.75, flareHash));
+        highp float alongJitter = sin(time * mix(0.07 + rateHash * 0.05, 0.14 + rateHash * 0.08, burst) + tileOriginX * 0.91 + tileOriginY * 1.37 + float(i) * 2.11) * (0.012 + driftHash * 0.022 + burst * 0.01);
+        highp float alongT = 0.1 + alongHash * 0.8 + (driftHash - 0.5) * 0.18 + alongJitter;
+        alongT = clamp(alongT, 0.08, 0.92);
+
+        highp float bubbleAlong = alongT * safeEdgeLength;
+        highp float radialOffset = mix(
+            0.006 + shapeHash * 0.01,
+            rippleOffset * mix(1.1 + shapeHash * 0.52, 1.8 + shapeHash * 0.72, burst),
+            growthProgress);
+        highp float radiusAlong = mix(
+            0.016 + alongHash * 0.02,
+            0.04 + alongHash * 0.034,
+            growthProgress);
+        highp float radiusOutward = mix(
+            0.011 + driftHash * 0.007,
+            0.026 + driftHash * 0.016,
+            growthProgress);
+        radiusAlong *= mix(1.0, 1.56, flareProgress);
+        radiusOutward *= mix(1.02, 1.4, mix(growthHash, flareHash, 0.5));
+        radiusAlong *= fade;
+        radiusOutward *= fade;
+
+        if (radiusAlong <= 0.0005 || radiusOutward <= 0.0005)
+            continue;
+
+        highp vec2 delta = vec2(along - bubbleAlong, radial - radialOffset);
+        highp float rotation = (driftHash - 0.5) * 0.028;
+        highp float sinRot = sin(rotation);
+        highp float cosRot = cos(rotation);
+        highp vec2 local = vec2(
+            delta.x * cosRot - delta.y * sinRot,
+            delta.x * sinRot + delta.y * cosRot
+        );
+
+        highp vec2 ellipse = vec2(local.x / radiusAlong, local.y / radiusOutward);
+        highp float irregularity = 0.035 + shapeHash * 0.045;
+        highp float angle = atan(ellipse.y, ellipse.x);
+        highp float wobblePhase = tilePhase + phaseHash * 3.91 + driftHash * 5.37 + float(i) * 1.71;
+        highp float wobble = 1.0 + sin(angle * (3.1 + irregularity * 4.2) + wobblePhase) * irregularity;
+
+        if (dot(ellipse, ellipse) <= wobble * wobble)
+            return 1.0;
+    }
+
+    return 0.0;
+}
+
+void fragment()
+{
+    highp float alongUv = UV.x;
+    highp float radialUv = UV.y;
+    highp float along = alongUv * edgeLength;
+    highp float radial = radialUv * bandExtent;
+    highp float edgeFade = sin(alongUv * PI);
+    highp float wavePhase = alongUv * PI * waveCount + time + edgeIndex * 0.75 + tilePhase;
+    highp float waveOffset = sin(wavePhase) * rippleAmplitude * edgeFade;
+    highp float microPhase = alongUv * PI * (waveCount * 3.35 + 1.9) - time * 0.72 + edgeIndex * 1.31 + tilePhase * 1.43;
+    highp float microWave = sin(microPhase) * rippleAmplitude * 0.34 * edgeFade;
+    highp float crestPhase = alongUv * PI * (waveCount * 5.2 + 2.4) + time * 0.38 + edgeIndex * 0.53 + tilePhase * 0.91;
+    highp float crestWave = sin(crestPhase) * rippleAmplitude * 0.11 * edgeFade;
+    highp float innerOffset = max(0.0, waveOffset * 0.14 + microWave * 0.32 + crestWave * 0.18);
+    highp float outerOffset = max(rippleOffset * 0.36, rippleOffset * 0.95 + waveOffset + microWave + crestWave);
+
+#ifdef HAS_DFDX
+    highp float aa = max(fwidth(radial) * 1.35, 0.0025);
+#else
+    highp float aa = 0.003;
+#endif
+
+    highp float band = smoothstep(innerOffset - aa, innerOffset + aa, radial);
+    band *= 1.0 - smoothstep(outerOffset - aa, outerOffset + aa, radial);
+
+    if (band <= 0.0)
+    {
+        COLOR = vec4(0.0);
+        return;
+    }
+
+    if (bubbleMask(along, radial) > 0.5)
+    {
+        COLOR = vec4(0.0);
+        return;
+    }
+
+    lowp vec3 lightColor = clamp(lightSample.rgb * 1.2, vec3(0.0), vec3(1.0));
+    COLOR = vec4(lightColor, band * rippleAlpha);
+    lightSample = vec3(1.0);
+}
