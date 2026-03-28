@@ -43,11 +43,11 @@ public sealed class HorseDirectionArrowSystem : EntitySystem
 
         while (enumerator.MoveNext(out var uid, out var horse, out var xform, out var sprite))
         {
-            UpdateArrow(uid, horse, xform, sprite);
+            UpdateArrow(uid, xform, sprite);
         }
     }
 
-    private void UpdateArrow(EntityUid uid, HorseControlComponent horse, TransformComponent xform, SpriteComponent sprite)
+    private void UpdateArrow(EntityUid uid, TransformComponent xform, SpriteComponent sprite)
     {
         if (!EnsureArrowLayer(uid, sprite, out var layer))
             return;
@@ -56,7 +56,7 @@ public sealed class HorseDirectionArrowSystem : EntitySystem
         var hasMind = _mindQuery.TryGetComponent(uid, out var mind) && mind.HasMind;
 
         if (!isRiding && !hasMind
-            || !TryGetArrowRotation(uid, horse, xform, sprite.NoRotation, out var rotation))
+            || !TryGetArrowRotation(uid, xform, sprite.NoRotation, out var rotation))
         {
             _sprite.LayerSetVisible((uid, sprite), layer, false);
             return;
@@ -85,32 +85,20 @@ public sealed class HorseDirectionArrowSystem : EntitySystem
         return true;
     }
 
-    private bool TryGetArrowRotation(EntityUid uid, HorseControlComponent horse, TransformComponent xform, bool noRotation, out Angle rotation)
+    private bool TryGetArrowRotation(EntityUid uid, TransformComponent xform, bool noRotation, out Angle rotation)
     {
         rotation = Angle.Zero;
 
-        if (_moverQuery.TryGetComponent(uid, out var mover))
+        if (_moverQuery.TryGetComponent(uid, out var mover) &&
+            mover.WishDir.LengthSquared() > DirectionEpsilon)
         {
-            var buttons = mover.HeldMoveButtons;
-            var forward = xform.WorldRotation.ToWorldVec();
-            var wish = Vector2.Zero;
+            var wish = mover.WishDir.Normalized();
+            rotation = Angle.FromWorldVec(wish);
 
-            if ((buttons & MoveButtons.Up) != 0)
-                wish += forward;
+            if (!noRotation)
+                rotation -= xform.WorldRotation;
 
-            if ((buttons & MoveButtons.Down) != 0)
-                wish -= forward * horse.BackwardsModifier;
-
-            if (wish.LengthSquared() > DirectionEpsilon)
-            {
-                wish = wish.Normalized();
-                rotation = Angle.FromWorldVec(wish);
-
-                if (!noRotation)
-                    rotation -= xform.WorldRotation;
-
-                return true;
-            }
+            return true;
         }
 
         if (_physicsQuery.TryGetComponent(uid, out var physics))

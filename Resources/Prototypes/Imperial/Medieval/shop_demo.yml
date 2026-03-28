@@ -1981,6 +1981,14 @@
   - MedievalBackpackDemo
 
 - type: listing
+  id: DemoMdvShopFishingBag
+  productEntity: FishingBag
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBackpackDemo
+
+- type: listing
   id: DemoMdvShopHealBag
   productEntity: MedievalHealBag
   cost:

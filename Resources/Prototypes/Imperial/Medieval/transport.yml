@@ -332,6 +332,12 @@
     sound:
       path: /Audio/Imperial/Medieval/animal_horse.ogg
   - type: HorseControl
+    turnSpeed: 90
+    turnSpeedSlowdown: 1.1
+    turnSpeedSlowdownSpeedScale: 0.3
+    noInputFrictionMultiplier: 0.35
+    reverseBrakeMultiplier: 1.5
+    minInertiaSpeed: 0.35
   - type: Rideable
     pikeShape: !type:PolygonShape
       vertices:

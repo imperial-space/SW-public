@@ -231,6 +231,12 @@ public abstract partial class SharedMoverController : VirtualController
 
             wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed);
 
+            // imperial medieval rideable start
+            var wishOverrideEvent = new WishDirOverrideEvent(uid, wishDir);
+            RaiseLocalEvent(uid, ref wishOverrideEvent, true);
+            wishDir = wishOverrideEvent.WishDir;
+            // imperial medieval rideable end
+
             var ev = new CanWeightlessMoveEvent(uid);
             RaiseLocalEvent(uid, ref ev, true);
 
@@ -269,6 +275,12 @@ public abstract partial class SharedMoverController : VirtualController
 
             wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed);
 
+            // imperial medieval rideable start
+            var wishOverrideEvent = new WishDirOverrideEvent(uid, wishDir);
+            RaiseLocalEvent(uid, ref wishOverrideEvent, true);
+            wishDir = wishOverrideEvent.WishDir;
+            // imperial medieval rideable end
+
             if (wishDir != Vector2.Zero)
             {
                 friction = moveSpeedComponent?.Friction ?? MovementSpeedModifierComponent.DefaultFriction;
@@ -283,12 +295,6 @@ public abstract partial class SharedMoverController : VirtualController
             accel = moveSpeedComponent?.Acceleration ?? MovementSpeedModifierComponent.DefaultAcceleration;
             accel *= tileDef?.MobAcceleration ?? 1f;
         }
-
-        // imperial medieval rideable start
-        var wishOverrideEvent = new WishDirOverrideEvent(uid, wishDir);
-        RaiseLocalEvent(uid, ref wishOverrideEvent, true);
-        wishDir = wishOverrideEvent.WishDir;
-        // imperial medieval rideable end
 
         // This way friction never exceeds acceleration when you're trying to move.
         // If you want to slow down an entity with "friction" you shouldn't be using this system.

@@ -736,6 +736,8 @@
         prob: 0.03
       - id: MedievalManaBurnGrenade
         prob: 0.01
+      - id: Worm
+        prob: 0.5
       - id: MedievalRevent
         prob: 0.05
       - id: MedievalRevent
@@ -1940,6 +1942,8 @@
         prob: 0.035
       - id: MedievalClothingUniformJumpsuitShitCloth1
         prob: 0.05
+      - id: Worm
+        prob: 0.2
       - id: MedievalRevent
         prob: 0.05
       - id: MedievalRevent
