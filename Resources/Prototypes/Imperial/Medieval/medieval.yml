@@ -2424,6 +2424,7 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 3
     fillBaseName: mopbucket_water-
+  - type: WaterPumpBucket
 
 - type: entity
   id: MedievalDruidTree
