@@ -1,6 +1,6 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Imperial.Medieval.Ships.Sea.Generation;
+namespace Content.Shared.Imperial.Medieval.Ships.Sea;
 
 /// <summary>
 /// Прототип острова — содержит конфигурацию для генерации.
