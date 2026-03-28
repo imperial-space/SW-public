@@ -57,8 +57,7 @@ public sealed class WaveSystem : EntitySystem
     {
         ("FloorWood", (ushort)1),
         ("FloorBrokenWoodDDD", (ushort)2),
-        ("Plating", (ushort)3),
-        ("FloorWhite", (ushort)4)
+        ("Plating", (ushort)3)
     };
     private bool _initialized;
 
