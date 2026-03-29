@@ -1,4 +1,3 @@
-uniform highp float time;
 uniform highp float shipSeed;
 uniform highp float coverageRatio;
 uniform highp float overflowRatio;
@@ -9,13 +8,9 @@ void fragment()
 {
     highp vec2 local = UV + vec2(driftX, driftY) * 3.0;
     highp float seed = shipSeed * 0.071;
-    highp vec2 idleSway = vec2(
-        sin(time * 0.33 + UV.y * 3.1 + seed * 1.7) + cos(time * 0.17 - UV.x * 2.2 + seed) * 0.35,
-        cos(time * 0.28 + UV.x * 2.7 - seed * 1.2) + sin(time * 0.21 + UV.y * 2.4 - seed * 0.8) * 0.28) * 0.018;
-    local += idleSway;
-    highp vec2 motionDrift = vec2(driftX, driftY) * 7.2 + idleSway * 2.8;
-    highp vec2 driftA = local * vec2(1.63, 1.88) + vec2(-time * 0.22, time * 0.18) + seed + motionDrift;
-    highp vec2 driftB = local.yx * vec2(2.24, 1.37) + vec2(time * 0.13, -time * 0.17) - seed * 1.37 + motionDrift.yx * 0.7;
+    highp vec2 motionDrift = vec2(driftX, driftY) * 7.2;
+    highp vec2 driftA = local * vec2(1.63, 1.88) + vec2(seed, -seed * 0.61) + motionDrift;
+    highp vec2 driftB = local.yx * vec2(2.24, 1.37) + vec2(-seed * 1.37, seed * 0.53) + motionDrift.yx * 0.7;
     highp float swell =
         sin(driftA.x + sin(driftA.y * 0.82 + seed)) *
         cos(driftA.y - sin(driftA.x * 0.74 - seed));
@@ -25,7 +20,7 @@ void fragment()
     highp float motion = swell * 0.62 + shimmer * 0.44;
     highp float sparkle =
         0.5 +
-        0.5 * sin((local.x - local.y) * 2.3 - time * 0.51 + sin((local.x + local.y) * 0.9 + seed));
+        0.5 * sin((local.x - local.y) * 2.3 + sin((local.x + local.y) * 0.9 + seed));
     highp float depth = clamp(pow(max(coverageRatio, 0.0), 0.7) + overflowRatio * 0.24, 0.0, 1.2);
     highp vec3 waterColor = mix(vec3(0.08, 0.25, 0.3), vec3(0.18, 0.48, 0.56), 0.44 + motion * 0.12 + depth * 0.16);
     waterColor += vec3(0.014, 0.024, 0.024) * sparkle * (0.3 + depth * 0.22);
