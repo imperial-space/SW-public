@@ -38,6 +38,7 @@ public sealed class SeaShipFloodOverlay : Overlay
     private const float MediumFloodMeshStep = 0.085f;
     private const float LargeFloodMeshStep = 0.1f;
     private const float HugeFloodMeshStep = 0.12f;
+    private const int MaxFloodDrawVerticesPerBatch = 12288;
     private const float MinMeshRebuildInterval = 0.05f;
     private const float CoverageRebuildThreshold = 0.008f;
     private const float WaterDriftRebuildThresholdSquared = 0.0004f;
@@ -171,7 +172,12 @@ public sealed class SeaShipFloodOverlay : Overlay
 
         handle.UseShader(shader);
         handle.SetTransform(worldMatrix);
-        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, _whiteTexture, CollectionsMarshal.AsSpan(cache.MeshVertices));
+        var meshSpan = CollectionsMarshal.AsSpan(cache.MeshVertices);
+        for (var start = 0; start < meshSpan.Length; start += MaxFloodDrawVerticesPerBatch)
+        {
+            var count = Math.Min(MaxFloodDrawVerticesPerBatch, meshSpan.Length - start);
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, _whiteTexture, meshSpan.Slice(start, count));
+        }
         handle.UseShader(null);
         handle.SetTransform(Matrix3x2.Identity);
     }
