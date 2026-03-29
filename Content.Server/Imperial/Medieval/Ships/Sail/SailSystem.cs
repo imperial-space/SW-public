@@ -154,11 +154,9 @@ public sealed class SailSystem : EntitySystem
 
         _physics.ApplyLinearImpulse(boat, impulse);
     }
-
-
     private void OnFold(EntityUid uid, SailComponent component, SailFoldEvent args)
     {
-        if (args.Cancelled)
+        if (args.Cancelled || TerminatingOrDeleted(uid))
             return;
 
         var rot = _transform.GetWorldRotation(uid);

@@ -5575,9 +5575,8 @@
     drawdepth: Overdoors
     offset: 0,1.95
   - type: Anchorable
-  - type: Rotatable
-    angleStep: 45
-    rotateWhileAnchored: true
+  - type: Sail
+    Folded: false
 
 - type: entity
   id: MedievalDecorShipSailShipup
@@ -5590,6 +5589,8 @@
         map: ["enum.CatapultVisualKey.Ready"]
     drawdepth: Overdoors
     offset: 0,1.95
+  - type: Sail
+    Folded: true
 
 - type: entity
   id: MedievalFlagpole

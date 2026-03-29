@@ -10,7 +10,7 @@ namespace Content.Server.Imperial.Medieval.Ships.SummonShip;
 public sealed partial class SummonShipComponent : Component
 {
     [DataField(required: true, customTypeSerializer:typeof(PrototypeIdSerializer<EntityPrototype>))]
-    public string File = "/Ships/Victoria.yml";
+    public string File = "/Maps/Imperial/Medieval/Ships/Victoria.yml";
 
     [DataField]
     public float Delay = 2;

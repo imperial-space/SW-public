@@ -1,9 +1,11 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared.Imperial.Medieval.Ships.Sail;
 
 /// <summary>
 /// This is used for...
 /// </summary>
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, Serializable]
 public sealed partial class SailComponent : Component
 {
     [DataField("SailSize")]

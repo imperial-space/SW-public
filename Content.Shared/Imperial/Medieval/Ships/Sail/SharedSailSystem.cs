@@ -84,6 +84,7 @@ public sealed class SharedSailSystem : EntitySystem
 
         if (!TryComp<SailComponent>(ev.Target, out var sail) || sail.Helm)
             return;
+
         var text = "Сложить";
         if (sail.Folded)
             text = "Разложить";
