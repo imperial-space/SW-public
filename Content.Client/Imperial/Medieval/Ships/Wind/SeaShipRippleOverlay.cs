@@ -49,9 +49,11 @@ public sealed partial class SeaShipRippleOverlay : Overlay
     private const float MovementWakeWidthAftOffset = 0.075f;
     private const float MovementWakeLowSpeedAftBoost = 0.11f;
 
-    private readonly HashSet<Vector2i> _occupiedTiles = new();
+    private HashSet<Vector2i> _occupiedTiles = new();
+    private readonly HashSet<Vector2i> _visibleOccupiedTiles = new();
     private readonly HashSet<Vector2i> _visitedVertices = new();
     private readonly Dictionary<EntityUid, ShipMotionState> _shipStates = new();
+    private readonly Dictionary<EntityUid, ShipMask> _shipMasks = new();
     private readonly HashSet<EntityUid> _activeShips = new();
     private readonly List<WaveParticle> _waveParticles = new();
     private readonly List<RippleEmitPoint> _emitPoints = new();
@@ -61,6 +63,18 @@ public sealed partial class SeaShipRippleOverlay : Overlay
     private readonly List<ShaderInstance> _rippleShaders = new();
     private readonly Texture _whiteTexture;
     private int _activeRippleShaderCount;
+
+    private SharedMapSystem MapSystem => _entityManager.System<SharedMapSystem>();
+
+    private sealed class ShipMask
+    {
+        public EntityUid GridUid;
+        public MapGridComponent Grid = default!;
+        public Box2 WorldBounds;
+        public Matrix3x2 WorldMatrix = Matrix3x2.Identity;
+        public GameTick LastTileModifiedTick;
+        public readonly HashSet<Vector2i> OccupiedTiles = new();
+    }
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
 
@@ -113,7 +127,6 @@ public sealed partial class SeaShipRippleOverlay : Overlay
     {
         var visibleBounds = args.WorldAABB.Enlarged(TileQueryPadding);
         var xformSystem = _entityManager.System<SharedTransformSystem>();
-        var mapSystem = _entityManager.System<SharedMapSystem>();
         var lookupSystem = _entityManager.System<EntityLookupSystem>();
         var query = _entityManager.AllEntityQueryEnumerator<MapGridComponent, TransformComponent>();
         _activeShips.Clear();
@@ -133,9 +146,13 @@ public sealed partial class SeaShipRippleOverlay : Overlay
             if (!worldBounds.Intersects(visibleBounds))
                 continue;
 
+            var shipMask = EnsureShipMask(uid, grid, worldBounds);
+            if (shipMask.OccupiedTiles.Count == 0)
+                continue;
+
             _activeShips.Add(uid);
             var motion = UpdateShipMotion(uid, xformSystem.GetWorldPosition(uid));
-            DrawRipple(args.WorldHandle, args.MapId, uid, grid, worldMatrix, visibleBounds, mapSystem, lookupSystem, motion);
+            DrawRipple(args.WorldHandle, args.MapId, uid, grid, worldMatrix, visibleBounds, shipMask, lookupSystem, motion);
         }
 
         var staleShips = new List<EntityUid>();
@@ -150,6 +167,48 @@ public sealed partial class SeaShipRippleOverlay : Overlay
             _shipStates.Remove(uid);
         }
 
+        staleShips.Clear();
+        foreach (var (uid, _) in _shipMasks)
+        {
+            if (!_activeShips.Contains(uid))
+                staleShips.Add(uid);
+        }
+
+        foreach (var uid in staleShips)
+        {
+            _shipMasks.Remove(uid);
+        }
+
         DrawWaveParticles(args.WorldHandle, args.MapId);
+    }
+
+    private ShipMask EnsureShipMask(
+        EntityUid gridUid,
+        MapGridComponent grid,
+        Box2 worldBounds)
+    {
+        if (!_shipMasks.TryGetValue(gridUid, out var shipMask))
+        {
+            shipMask = new ShipMask();
+            _shipMasks.Add(gridUid, shipMask);
+        }
+
+        shipMask.GridUid = gridUid;
+        shipMask.Grid = grid;
+        shipMask.WorldBounds = worldBounds;
+        shipMask.WorldMatrix = _entityManager.System<SharedTransformSystem>().GetWorldMatrix(gridUid);
+        if (shipMask.LastTileModifiedTick == grid.LastTileModifiedTick)
+            return shipMask;
+
+        shipMask.LastTileModifiedTick = grid.LastTileModifiedTick;
+        shipMask.OccupiedTiles.Clear();
+
+        var tileEnumerator = MapSystem.GetTilesEnumerator(gridUid, grid, worldBounds);
+        while (tileEnumerator.MoveNext(out var tileRef))
+        {
+            shipMask.OccupiedTiles.Add(tileRef.GridIndices);
+        }
+
+        return shipMask;
     }
 }
