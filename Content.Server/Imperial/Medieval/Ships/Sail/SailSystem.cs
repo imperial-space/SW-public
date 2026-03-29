@@ -10,6 +10,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
+using Content.Shared.Imperial.Medieval.Ships.Islands;
 using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
@@ -70,11 +71,13 @@ public sealed class SailSystem : EntitySystem
             var windForce = _cfg.GetCVar(ShipsCCVars.StormLevel);
             foreach (var sailComponent in EntityManager.EntityQuery<SailComponent>())
             {
-                if (sailComponent.Folded)
+                if (sailComponent.Folded || sailComponent.Helm)
                     continue;
 
                 var sailEntity = sailComponent.Owner;
                 var boat = _transform.GetParentUid(sailEntity);
+                if (HasComp<IslandComponent>(boat))
+                    continue;
                 EnsureComp<ShipDrowningComponent>(boat);
                 var boatAngle = new Angle();
                 var entities = _lookup.GetEntitiesIntersecting(boat);
@@ -144,6 +147,7 @@ public sealed class SailSystem : EntitySystem
         if (!push)
         {
             _transform.SetWorldRotation(sail, Angle.FromDegrees(_cfg.GetCVar(ShipsCCVars.WindRotation)));
+            return;
         }
 
         if (helm)
