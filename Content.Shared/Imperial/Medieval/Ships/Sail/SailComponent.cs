@@ -14,9 +14,6 @@ public sealed partial class SailComponent : Component
     [DataField("Folded")]
     public bool Folded;
 
-    [DataField("Helm")]
-    public bool Helm;
-
     [DataField("Push")]
     public bool Push = true;
 }

@@ -10,6 +10,7 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
+using Content.Shared.Imperial.Medieval.Ships.Helm;
 using Content.Shared.Imperial.Medieval.Ships.Islands;
 using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
@@ -71,7 +72,7 @@ public sealed class SailSystem : EntitySystem
             var windForce = _cfg.GetCVar(ShipsCCVars.StormLevel);
             foreach (var sailComponent in EntityManager.EntityQuery<SailComponent>())
             {
-                if (sailComponent.Folded || sailComponent.Helm)
+                if (sailComponent.Folded)
                     continue;
 
                 var sailEntity = sailComponent.Owner;
@@ -112,14 +113,14 @@ public sealed class SailSystem : EntitySystem
                     wind = 1;
                 var force = windForce * MathF.Cos(diffAngle/180) * sailComponent.SailSize * wind;
 
-                Push(sailEntity, force, boatAngle , push: sailComponent.Push, helm: sailComponent.Helm);
+                Push(sailEntity, force, boatAngle , push: sailComponent.Push);
                 if (!ships.Contains(boat))
                     ships.Add(boat);
             }
         }
     }
 
-    private void Push(EntityUid sail, float windForce, Angle torque , bool push = true, bool helm = false)
+    private void Push(EntityUid sail, float windForce, Angle torque , bool push = true)
     {
         var boat = _transform.GetParentUid(sail);
 
@@ -149,15 +150,11 @@ public sealed class SailSystem : EntitySystem
             _transform.SetWorldRotation(sail, Angle.FromDegrees(_cfg.GetCVar(ShipsCCVars.WindRotation)));
             return;
         }
-
-        if (helm)
-            _helm.RotateShip(boat,sail, _helm.CheckForce(boat, sail));
-
-        if (_helm.CheckForce(boat, sail) > _cfg.GetCVar(ShipsCCVars.ShipsMaxSpeed))
+        if (_helm.CheckForce(boat) > _cfg.GetCVar(ShipsCCVars.ShipsMaxSpeed))
             return;
-
         _physics.ApplyLinearImpulse(boat, impulse);
     }
+
     private void OnFold(EntityUid uid, SailComponent component, SailFoldEvent args)
     {
         if (args.Cancelled || TerminatingOrDeleted(uid))

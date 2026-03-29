@@ -82,7 +82,7 @@ public sealed class SharedSailSystem : EntitySystem
         if (ev.User == ev.Target || IsClientSide(ev.Target))
             return;
 
-        if (!TryComp<SailComponent>(ev.Target, out var sail) || sail.Helm)
+        if (!TryComp<SailComponent>(ev.Target, out var sail))
             return;
 
         var text = "Сложить";
