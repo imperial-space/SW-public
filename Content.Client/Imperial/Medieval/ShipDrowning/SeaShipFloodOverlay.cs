@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using System.Runtime.InteropServices;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
@@ -33,21 +34,46 @@ public sealed class SeaShipFloodOverlay : Overlay
     };
 
     private const float TileQueryPadding = 3f;
-    private const float FloodMeshStep = 0.05f;
+    private const float SmallFloodMeshStep = 0.07f;
+    private const float MediumFloodMeshStep = 0.085f;
+    private const float LargeFloodMeshStep = 0.1f;
+    private const float HugeFloodMeshStep = 0.12f;
+    private const int MaxFloodDrawVerticesPerBatch = 12288;
+    private const float MinMeshRebuildInterval = 0.05f;
+    private const float CoverageRebuildThreshold = 0.008f;
+    private const float WaterDriftRebuildThresholdSquared = 0.0004f;
 
-    private readonly HashSet<Vector2i> _occupiedTiles = new();
-    private readonly Dictionary<Vector2i, int> _boundaryDistance = new();
+    private HashSet<Vector2i> _occupiedTiles = new();
+    private Dictionary<Vector2i, int> _boundaryDistance = new();
     private readonly Dictionary<Vector2i, float> _tileFill = new();
     private readonly Dictionary<Vector2i, float> _vertexFill = new();
+    private readonly HashSet<Vector2i> _vertexCandidates = new();
     private readonly Queue<Vector2i> _distanceQueue = new();
     private readonly List<FloodBlob> _floodBlobs = new();
-    private readonly List<DrawVertexUV2D> _meshVertices = new();
+    private List<DrawVertexUV2D> _meshVertices = new();
     private readonly ShaderInstance _baseFloodShader;
     private readonly List<ShaderInstance> _floodShaders = new();
     private readonly Texture _whiteTexture;
+    private readonly Dictionary<EntityUid, FloodGridCache> _gridCaches = new();
     private int _activeFloodShaderCount;
+    private float[] _sampleBuffer = Array.Empty<float>();
 
     private readonly record struct FloodBlob(Vector2 Center, Vector2 Radius, float Strength);
+
+    private sealed class FloodGridCache
+    {
+        public readonly HashSet<Vector2i> OccupiedTiles = new();
+        public readonly Dictionary<Vector2i, int> BoundaryDistance = new();
+        public readonly List<DrawVertexUV2D> MeshVertices = new();
+        public GameTick LastTileModifiedTick;
+        public Vector2i MinTile;
+        public Vector2i MaxTile;
+        public int MaxBoundaryDistance = -1;
+        public float CachedDrownRatio = -1f;
+        public Vector2 CachedWaterDrift;
+        public TimeSpan LastMeshRebuildTime = TimeSpan.MinValue;
+        public bool MeshValid;
+    }
 
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowEntities;
 
@@ -71,6 +97,7 @@ public sealed class SeaShipFloodOverlay : Overlay
         }
 
         _floodShaders.Clear();
+        _gridCaches.Clear();
     }
 
     protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -118,80 +145,25 @@ public sealed class SeaShipFloodOverlay : Overlay
         Vector2 waterDrift,
         SharedMapSystem mapSystem)
     {
-        _occupiedTiles.Clear();
-        _boundaryDistance.Clear();
-        _tileFill.Clear();
-        _vertexFill.Clear();
-        _distanceQueue.Clear();
-        _floodBlobs.Clear();
-        _meshVertices.Clear();
-
-        var allTiles = mapSystem.GetAllTilesEnumerator(gridUid, grid);
-        var minTile = new Vector2i(int.MaxValue, int.MaxValue);
-        var maxTile = new Vector2i(int.MinValue, int.MinValue);
-        while (allTiles.MoveNext(out var tile))
-        {
-            var indices = tile.Value.GridIndices;
-            _occupiedTiles.Add(indices);
-            minTile.X = Math.Min(minTile.X, indices.X);
-            minTile.Y = Math.Min(minTile.Y, indices.Y);
-            maxTile.X = Math.Max(maxTile.X, indices.X);
-            maxTile.Y = Math.Max(maxTile.Y, indices.Y);
-        }
-
-        if (_occupiedTiles.Count == 0)
+        if (!EnsureGridCache(gridUid, grid, mapSystem, out var cache))
             return;
 
-        var maxDistance = BuildBoundaryDistances();
-        if (maxDistance < 0)
-            return;
-
-        var coverageRatio = Math.Clamp(drownRatio, 0f, 1f);
-        var overflowRatio = Math.Clamp(drownRatio - 1f, 0f, 1.4f);
-        var floodProgress = MathF.Pow(coverageRatio, 1.08f);
-        var globalEdgeFill = SmoothStep(0.955f, 1.02f, coverageRatio + overflowRatio * 0.2f);
-        var floodFront = MathHelper.Lerp(0.08f, maxDistance + 0.9f, floodProgress);
         var shipSeed = gridUid.Id;
-        var time = (float) _timing.CurTime.TotalSeconds;
 
-        foreach (var tile in _occupiedTiles)
-        {
-            if (!_boundaryDistance.TryGetValue(tile, out var distance))
-                continue;
+        _occupiedTiles = cache.OccupiedTiles;
+        _boundaryDistance = cache.BoundaryDistance;
+        _meshVertices = cache.MeshVertices;
 
-            var seedA = Hash(tile.X * 928371 + tile.Y * 364479 + shipSeed * 83);
-            var seedB = Hash(tile.X * 18233 + tile.Y * 74653 + shipSeed * 41 + 19);
-            var frontNoise = (seedA - 0.5f) * 0.12f + (seedB - 0.5f) * 0.05f;
-            var floodDepth = floodFront - distance + frontNoise;
-            var fill = SmoothStep(-0.08f, 0.94f, floodDepth);
+        var clampedDrownRatio = Math.Clamp(drownRatio, 0f, 2.4f);
+        var coverageRatio = Math.Clamp(clampedDrownRatio, 0f, 1f);
+        var overflowRatio = Math.Clamp(clampedDrownRatio - 1f, 0f, 1.4f);
+        if (NeedsFloodMeshRebuild(cache, clampedDrownRatio, waterDrift))
+            RebuildFloodMesh(cache, shipSeed, clampedDrownRatio, waterDrift);
 
-            if (IsBoundaryTile(tile))
-                fill = MathF.Max(fill, globalEdgeFill * 0.96f);
-
-            if (fill <= 0.0005f)
-                continue;
-
-            _tileFill[tile] = Math.Clamp(fill, 0f, 1.04f);
-        }
-
-        BuildVertexFills();
-        BuildFloodBlobs(coverageRatio, shipSeed);
-        BuildFloodMesh(
-            minTile.X,
-            minTile.Y,
-            maxTile.X + 1f,
-            maxTile.Y + 1f,
-            coverageRatio,
-            overflowRatio,
-            globalEdgeFill,
-            shipSeed,
-            waterDrift);
-
-        if (_meshVertices.Count == 0)
+        if (cache.MeshVertices.Count == 0)
             return;
 
         var shader = GetFloodShader();
-        shader.SetParameter("time", time);
         shader.SetParameter("shipSeed", (float) shipSeed);
         shader.SetParameter("coverageRatio", coverageRatio);
         shader.SetParameter("overflowRatio", overflowRatio);
@@ -200,7 +172,12 @@ public sealed class SeaShipFloodOverlay : Overlay
 
         handle.UseShader(shader);
         handle.SetTransform(worldMatrix);
-        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, _whiteTexture, CollectionsMarshal.AsSpan(_meshVertices));
+        var meshSpan = CollectionsMarshal.AsSpan(cache.MeshVertices);
+        for (var start = 0; start < meshSpan.Length; start += MaxFloodDrawVerticesPerBatch)
+        {
+            var count = Math.Min(MaxFloodDrawVerticesPerBatch, meshSpan.Length - start);
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, _whiteTexture, meshSpan.Slice(start, count));
+        }
         handle.UseShader(null);
         handle.SetTransform(Matrix3x2.Identity);
     }
@@ -214,25 +191,27 @@ public sealed class SeaShipFloodOverlay : Overlay
         float overflowRatio,
         float globalEdgeFill,
         int shipSeed,
-        Vector2 waterDrift)
+        Vector2 waterDrift,
+        float meshStep)
     {
         var fullFlood = coverageRatio >= 0.95f || overflowRatio >= 0.03f;
         var threshold = fullFlood
             ? 0.02f
             : MathHelper.Lerp(0.22f, 0.145f, MathF.Pow(Math.Clamp(coverageRatio, 0f, 1f), 0.78f));
-        var cellsX = (int) MathF.Ceiling((maxX - minX) / FloodMeshStep);
-        var cellsY = (int) MathF.Ceiling((maxY - minY) / FloodMeshStep);
+        var cellsX = (int) MathF.Ceiling((maxX - minX) / meshStep);
+        var cellsY = (int) MathF.Ceiling((maxY - minY) / meshStep);
         var sampleWidth = cellsX + 1;
         var sampleHeight = cellsY + 1;
-        var samples = new float[sampleWidth * sampleHeight];
+        var sampleCount = sampleWidth * sampleHeight;
+        var samples = EnsureSampleBuffer(sampleCount);
 
         for (var y = 0; y < sampleHeight; y++)
         {
-            var sampleY = y == cellsY ? maxY - 0.0001f : minY + y * FloodMeshStep;
+            var sampleY = y == cellsY ? maxY - 0.0001f : minY + y * meshStep;
 
             for (var x = 0; x < sampleWidth; x++)
             {
-                var sampleX = x == cellsX ? maxX - 0.0001f : minX + x * FloodMeshStep;
+                var sampleX = x == cellsX ? maxX - 0.0001f : minX + x * meshStep;
                 samples[x + y * sampleWidth] = SampleFloodField(
                     new Vector2(sampleX, sampleY),
                     coverageRatio,
@@ -245,13 +224,13 @@ public sealed class SeaShipFloodOverlay : Overlay
 
         for (var y = 0; y < cellsY; y++)
         {
-            var y0 = minY + y * FloodMeshStep;
-            var y1 = y == cellsY - 1 ? maxY : minY + (y + 1) * FloodMeshStep;
+            var y0 = minY + y * meshStep;
+            var y1 = y == cellsY - 1 ? maxY : minY + (y + 1) * meshStep;
 
             for (var x = 0; x < cellsX; x++)
             {
-                var x0 = minX + x * FloodMeshStep;
-                var x1 = x == cellsX - 1 ? maxX : minX + (x + 1) * FloodMeshStep;
+                var x0 = minX + x * meshStep;
+                var x1 = x == cellsX - 1 ? maxX : minX + (x + 1) * meshStep;
 
                 var p00 = new Vector2(x0, y0);
                 var p10 = new Vector2(x1, y0);
@@ -283,36 +262,72 @@ public sealed class SeaShipFloodOverlay : Overlay
         float v2,
         float threshold)
     {
-        var poly = new Vector2[6];
-        var count = 0;
         var inside0 = v0 >= threshold;
         var inside1 = v1 >= threshold;
         var inside2 = v2 >= threshold;
-
-        if (inside0)
-            poly[count++] = p0;
-        if (inside0 != inside1)
-            poly[count++] = IntersectEdge(p0, p1, v0, v1, threshold);
-
-        if (inside1)
-            poly[count++] = p1;
-        if (inside1 != inside2)
-            poly[count++] = IntersectEdge(p1, p2, v1, v2, threshold);
-
-        if (inside2)
-            poly[count++] = p2;
-        if (inside2 != inside0)
-            poly[count++] = IntersectEdge(p2, p0, v2, v0, threshold);
-
-        if (count < 3)
+        var insideCount = (inside0 ? 1 : 0) + (inside1 ? 1 : 0) + (inside2 ? 1 : 0);
+        if (insideCount == 0)
             return;
 
-        for (var i = 1; i < count - 1; i++)
+        if (insideCount == 3)
         {
-            _meshVertices.Add(new DrawVertexUV2D(poly[0], poly[0]));
-            _meshVertices.Add(new DrawVertexUV2D(poly[i], poly[i]));
-            _meshVertices.Add(new DrawVertexUV2D(poly[i + 1], poly[i + 1]));
+            AppendFloodTriangle(p0, p1, p2);
+            return;
         }
+
+        if (insideCount == 1)
+        {
+            if (inside0)
+            {
+                var i01 = IntersectEdge(p0, p1, v0, v1, threshold);
+                var i20 = IntersectEdge(p2, p0, v2, v0, threshold);
+                AppendFloodTriangle(p0, i01, i20);
+                return;
+            }
+
+            if (inside1)
+            {
+                var i01 = IntersectEdge(p0, p1, v0, v1, threshold);
+                var i12 = IntersectEdge(p1, p2, v1, v2, threshold);
+                AppendFloodTriangle(i01, p1, i12);
+                return;
+            }
+
+            var i12Only = IntersectEdge(p1, p2, v1, v2, threshold);
+            var i20Only = IntersectEdge(p2, p0, v2, v0, threshold);
+            AppendFloodTriangle(i12Only, p2, i20Only);
+            return;
+        }
+
+        if (!inside0)
+        {
+            var i01 = IntersectEdge(p0, p1, v0, v1, threshold);
+            var i20 = IntersectEdge(p2, p0, v2, v0, threshold);
+            AppendFloodTriangle(i01, p1, p2);
+            AppendFloodTriangle(i01, p2, i20);
+            return;
+        }
+
+        if (!inside1)
+        {
+            var i01 = IntersectEdge(p0, p1, v0, v1, threshold);
+            var i12 = IntersectEdge(p1, p2, v1, v2, threshold);
+            AppendFloodTriangle(p0, i01, i12);
+            AppendFloodTriangle(p0, i12, p2);
+            return;
+        }
+
+        var i12Last = IntersectEdge(p1, p2, v1, v2, threshold);
+        var i20Last = IntersectEdge(p2, p0, v2, v0, threshold);
+        AppendFloodTriangle(p0, p1, i12Last);
+        AppendFloodTriangle(p0, i12Last, i20Last);
+    }
+
+    private void AppendFloodTriangle(Vector2 a, Vector2 b, Vector2 c)
+    {
+        _meshVertices.Add(new DrawVertexUV2D(a, a));
+        _meshVertices.Add(new DrawVertexUV2D(b, b));
+        _meshVertices.Add(new DrawVertexUV2D(c, c));
     }
 
     private static Vector2 IntersectEdge(Vector2 a, Vector2 b, float va, float vb, float threshold)
@@ -822,43 +837,26 @@ public sealed class SeaShipFloodOverlay : Overlay
 
     private void BuildVertexFills()
     {
-        var vertices = new HashSet<Vector2i>();
+        _vertexCandidates.Clear();
 
         foreach (var tile in _occupiedTiles)
         {
-            vertices.Add(tile);
-            vertices.Add(tile + new Vector2i(1, 0));
-            vertices.Add(tile + new Vector2i(0, 1));
-            vertices.Add(tile + new Vector2i(1, 1));
+            _vertexCandidates.Add(tile);
+            _vertexCandidates.Add(tile + new Vector2i(1, 0));
+            _vertexCandidates.Add(tile + new Vector2i(0, 1));
+            _vertexCandidates.Add(tile + new Vector2i(1, 1));
         }
 
-        foreach (var vertex in vertices)
+        foreach (var vertex in _vertexCandidates)
         {
             var sum = 0f;
             var max = 0f;
             var count = 0;
 
-            var adjacentTiles = new[]
-            {
-                vertex + new Vector2i(-1, -1),
-                vertex + new Vector2i(0, -1),
-                vertex + new Vector2i(-1, 0),
-                vertex,
-            };
-
-            foreach (var tile in adjacentTiles)
-            {
-                if (!_occupiedTiles.Contains(tile))
-                    continue;
-
-                var fill = GetTileFill(tile);
-                if (fill <= 0f)
-                    continue;
-
-                count++;
-                sum += fill;
-                max = MathF.Max(max, fill);
-            }
+            AccumulateVertexTileFill(vertex + new Vector2i(-1, -1), ref sum, ref max, ref count);
+            AccumulateVertexTileFill(vertex + new Vector2i(0, -1), ref sum, ref max, ref count);
+            AccumulateVertexTileFill(vertex + new Vector2i(-1, 0), ref sum, ref max, ref count);
+            AccumulateVertexTileFill(vertex, ref sum, ref max, ref count);
 
             if (count == 0)
                 continue;
@@ -918,6 +916,166 @@ public sealed class SeaShipFloodOverlay : Overlay
             _floodShaders.Add(_baseFloodShader.Duplicate());
 
         return _floodShaders[_activeFloodShaderCount++];
+    }
+
+    private bool EnsureGridCache(
+        EntityUid gridUid,
+        MapGridComponent grid,
+        SharedMapSystem mapSystem,
+        out FloodGridCache cache)
+    {
+        if (!_gridCaches.TryGetValue(gridUid, out cache!))
+        {
+            cache = new FloodGridCache();
+            _gridCaches[gridUid] = cache;
+        }
+
+        if (cache.LastTileModifiedTick == grid.LastTileModifiedTick && cache.MaxBoundaryDistance >= 0 && cache.OccupiedTiles.Count > 0)
+            return true;
+
+        _occupiedTiles = cache.OccupiedTiles;
+        _boundaryDistance = cache.BoundaryDistance;
+        _occupiedTiles.Clear();
+        _boundaryDistance.Clear();
+        _distanceQueue.Clear();
+
+        var allTiles = mapSystem.GetAllTilesEnumerator(gridUid, grid);
+        var minTile = new Vector2i(int.MaxValue, int.MaxValue);
+        var maxTile = new Vector2i(int.MinValue, int.MinValue);
+        while (allTiles.MoveNext(out var tile))
+        {
+            var indices = tile.Value.GridIndices;
+            _occupiedTiles.Add(indices);
+            minTile.X = Math.Min(minTile.X, indices.X);
+            minTile.Y = Math.Min(minTile.Y, indices.Y);
+            maxTile.X = Math.Max(maxTile.X, indices.X);
+            maxTile.Y = Math.Max(maxTile.Y, indices.Y);
+        }
+
+        cache.LastTileModifiedTick = grid.LastTileModifiedTick;
+        cache.MeshValid = false;
+        cache.MeshVertices.Clear();
+
+        if (_occupiedTiles.Count == 0)
+        {
+            cache.MinTile = Vector2i.Zero;
+            cache.MaxTile = Vector2i.Zero;
+            cache.MaxBoundaryDistance = -1;
+            return false;
+        }
+
+        cache.MinTile = minTile;
+        cache.MaxTile = maxTile;
+        cache.MaxBoundaryDistance = BuildBoundaryDistances();
+        return cache.MaxBoundaryDistance >= 0;
+    }
+
+    private bool NeedsFloodMeshRebuild(FloodGridCache cache, float drownRatio, Vector2 waterDrift)
+    {
+        if (!cache.MeshValid)
+            return true;
+
+        var elapsed = (_timing.CurTime - cache.LastMeshRebuildTime).TotalSeconds;
+        if (elapsed < MinMeshRebuildInterval)
+            return false;
+
+        if (MathF.Abs(cache.CachedDrownRatio - drownRatio) >= CoverageRebuildThreshold)
+            return true;
+
+        var driftDelta = cache.CachedWaterDrift - waterDrift;
+        return driftDelta.LengthSquared() >= WaterDriftRebuildThresholdSquared;
+    }
+
+    private void RebuildFloodMesh(FloodGridCache cache, int shipSeed, float drownRatio, Vector2 waterDrift)
+    {
+        _occupiedTiles = cache.OccupiedTiles;
+        _boundaryDistance = cache.BoundaryDistance;
+        _meshVertices = cache.MeshVertices;
+        _tileFill.Clear();
+        _vertexFill.Clear();
+        _floodBlobs.Clear();
+        _meshVertices.Clear();
+
+        var coverageRatio = Math.Clamp(drownRatio, 0f, 1f);
+        var overflowRatio = Math.Clamp(drownRatio - 1f, 0f, 1.4f);
+        var floodProgress = MathF.Pow(coverageRatio, 1.08f);
+        var globalEdgeFill = SmoothStep(0.955f, 1.02f, coverageRatio + overflowRatio * 0.2f);
+        var floodFront = MathHelper.Lerp(0.08f, cache.MaxBoundaryDistance + 0.9f, floodProgress);
+
+        foreach (var tile in _occupiedTiles)
+        {
+            if (!_boundaryDistance.TryGetValue(tile, out var distance))
+                continue;
+
+            var seedA = Hash(tile.X * 928371 + tile.Y * 364479 + shipSeed * 83);
+            var seedB = Hash(tile.X * 18233 + tile.Y * 74653 + shipSeed * 41 + 19);
+            var frontNoise = (seedA - 0.5f) * 0.12f + (seedB - 0.5f) * 0.05f;
+            var floodDepth = floodFront - distance + frontNoise;
+            var fill = SmoothStep(-0.08f, 0.94f, floodDepth);
+
+            if (IsBoundaryTile(tile))
+                fill = MathF.Max(fill, globalEdgeFill * 0.96f);
+
+            if (fill <= 0.0005f)
+                continue;
+
+            _tileFill[tile] = Math.Clamp(fill, 0f, 1.04f);
+        }
+
+        BuildVertexFills();
+        BuildFloodBlobs(coverageRatio, shipSeed);
+        BuildFloodMesh(
+            cache.MinTile.X,
+            cache.MinTile.Y,
+            cache.MaxTile.X + 1f,
+            cache.MaxTile.Y + 1f,
+            coverageRatio,
+            overflowRatio,
+            globalEdgeFill,
+            shipSeed,
+            waterDrift,
+            GetFloodMeshStep(cache.OccupiedTiles.Count));
+
+        cache.CachedDrownRatio = drownRatio;
+        cache.CachedWaterDrift = waterDrift;
+        cache.LastMeshRebuildTime = _timing.CurTime;
+        cache.MeshValid = true;
+    }
+
+    private void AccumulateVertexTileFill(Vector2i tile, ref float sum, ref float max, ref int count)
+    {
+        if (!_occupiedTiles.Contains(tile))
+            return;
+
+        var fill = GetTileFill(tile);
+        if (fill <= 0f)
+            return;
+
+        count++;
+        sum += fill;
+        max = MathF.Max(max, fill);
+    }
+
+    private float[] EnsureSampleBuffer(int sampleCount)
+    {
+        if (_sampleBuffer.Length < sampleCount)
+            _sampleBuffer = new float[sampleCount];
+
+        return _sampleBuffer;
+    }
+
+    private static float GetFloodMeshStep(int occupiedTileCount)
+    {
+        if (occupiedTileCount >= 900)
+            return HugeFloodMeshStep;
+
+        if (occupiedTileCount >= 400)
+            return LargeFloodMeshStep;
+
+        if (occupiedTileCount >= 180)
+            return MediumFloodMeshStep;
+
+        return SmallFloodMeshStep;
     }
 
     private float GetTileFill(Vector2i tile)

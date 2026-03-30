@@ -8,7 +8,7 @@ namespace Content.Client.Imperial.Medieval.Ships.Wind;
 
 public sealed partial class SeaShipRippleOverlay
 {
-    private void TryEmitSmallWave(MapId mapId, ShipMotionState motion)
+    private void TryEmitSmallWave(MapId mapId, EntityUid shipUid, ShipMotionState motion)
     {
         if (motion.NextSmallWaveTime > _timing.CurTime.TotalSeconds)
             return;
@@ -21,6 +21,7 @@ public sealed partial class SeaShipRippleOverlay
 
         EmitWaveParticle(
             mapId,
+            shipUid,
             sample.Position,
             waveDirection,
             0.06f + _random.NextFloat() * 0.05f,
@@ -41,6 +42,7 @@ public sealed partial class SeaShipRippleOverlay
 
     private void TryEmitMovingWave(
         MapId mapId,
+        EntityUid shipUid,
         ShipMotionState motion,
         Vector2 shipCenter)
     {
@@ -55,6 +57,11 @@ public sealed partial class SeaShipRippleOverlay
 
         var motionDirection = Normalize(motion.InstantWorldDirection);
         var waveDirection = -motionDirection;
+
+        if (_shipMasks.TryGetValue(shipUid, out var shipMask) &&
+            !IsWakeSternVisible(shipMask, waveDirection))
+            return;
+
         var sideDirection = new Vector2(-waveDirection.Y, waveDirection.X);
         var bestBackProjection = float.MinValue;
         RippleEmitPoint? bestPoint = null;
@@ -137,6 +144,7 @@ public sealed partial class SeaShipRippleOverlay
 
         EmitWaveParticle(
             mapId,
+            shipUid,
             origin,
             waveDirection,
             0.1f + speedFactor * 0.06f + sternWidth * 0.01f,
@@ -154,6 +162,7 @@ public sealed partial class SeaShipRippleOverlay
 
         EmitWaveParticle(
             mapId,
+            shipUid,
             origin,
             waveDirection,
             0.076f + speedFactor * 0.04f + sternWidth * 0.008f,
@@ -191,6 +200,7 @@ public sealed partial class SeaShipRippleOverlay
             DrawArcBand(
                 handle,
                 particle.Center,
+                particle.ShipUid,
                 particle.Direction,
                 particle.Radius,
                 particle.Thickness,
@@ -205,6 +215,7 @@ public sealed partial class SeaShipRippleOverlay
     private void DrawArcBand(
         DrawingHandleWorld handle,
         Vector2 origin,
+        EntityUid shipUid,
         Vector2 forward,
         float radius,
         float thickness,
@@ -218,6 +229,7 @@ public sealed partial class SeaShipRippleOverlay
             return;
 
         forward = Vector2.Normalize(forward);
+
         var inner = new Vector2[ArcPointCount];
         var outer = new Vector2[ArcPointCount];
         var circleCenter = origin - forward * radius;
@@ -239,11 +251,12 @@ public sealed partial class SeaShipRippleOverlay
             outer[i] = circleCenter + dir * (radius + wave + localThickness);
         }
 
-        DrawBand(handle, inner, outer, color);
+        DrawBandClippedToShip(handle, inner, outer, color, shipUid);
     }
 
     private void EmitWaveParticle(
         MapId mapId,
+        EntityUid shipUid,
         Vector2 worldCenter,
         Vector2 worldDirection,
         float velocity,
@@ -262,6 +275,7 @@ public sealed partial class SeaShipRippleOverlay
         _waveParticles.Add(new WaveParticle
         {
             MapId = mapId,
+            ShipUid = shipUid,
             Center = worldCenter,
             Direction = Normalize(worldDirection),
             Velocity = Normalize(worldDirection) * velocity,
@@ -331,6 +345,7 @@ public sealed partial class SeaShipRippleOverlay
     private sealed class WaveParticle
     {
         public MapId MapId;
+        public EntityUid ShipUid;
         public Vector2 Center;
         public Vector2 Direction;
         public Vector2 Velocity;
@@ -346,6 +361,115 @@ public sealed partial class SeaShipRippleOverlay
         public float Seed;
         public float WaveAmplitudeScale;
         public float WaveFrequencyScale;
+    }
+
+    private bool IsWakeSternVisible(ShipMask shipMask, Vector2 waveDirection)
+    {
+        if (shipMask.OccupiedTiles.Count == 0)
+            return false;
+
+        if (_visibleOccupiedTiles.Count == 0)
+            return false;
+
+        var fullProjection = float.MinValue;
+        foreach (var tile in shipMask.OccupiedTiles)
+        {
+            var center = GetTileWorldCenter(shipMask, tile);
+            fullProjection = MathF.Max(fullProjection, Vector2.Dot(center, waveDirection));
+        }
+
+        var visibleProjection = float.MinValue;
+        foreach (var tile in _visibleOccupiedTiles)
+        {
+            var center = GetTileWorldCenter(shipMask, tile);
+            visibleProjection = MathF.Max(visibleProjection, Vector2.Dot(center, waveDirection));
+        }
+
+        var tolerance = shipMask.Grid.TileSize * 1.35f;
+        return visibleProjection >= fullProjection - tolerance;
+    }
+
+    private Vector2 GetTileWorldCenter(ShipMask shipMask, Vector2i tile)
+    {
+        var localCenter = new Vector2(
+            (tile.X + 0.5f) * shipMask.Grid.TileSize,
+            (tile.Y + 0.5f) * shipMask.Grid.TileSize);
+        return Vector2.Transform(localCenter, shipMask.WorldMatrix);
+    }
+
+    private void DrawBandClippedToShip(
+        DrawingHandleWorld handle,
+        Vector2[] inner,
+        Vector2[] outer,
+        Color color,
+        EntityUid shipUid)
+    {
+        if (!_shipMasks.TryGetValue(shipUid, out var shipMask) || shipMask.OccupiedTiles.Count == 0)
+        {
+            DrawBand(handle, inner, outer, color);
+            return;
+        }
+
+        var vertices = new DrawVertexUV2D[(inner.Length - 1) * 6];
+        var vertexIndex = 0;
+
+        for (var i = 0; i < inner.Length - 1; i++)
+        {
+            var a = inner[i];
+            var b = outer[i];
+            var c = outer[i + 1];
+            var d = inner[i + 1];
+
+            if (!TriangleTouchesShip(shipMask, a, b, c))
+            {
+                vertices[vertexIndex++] = new DrawVertexUV2D(a, a);
+                vertices[vertexIndex++] = new DrawVertexUV2D(b, b);
+                vertices[vertexIndex++] = new DrawVertexUV2D(c, c);
+            }
+
+            if (!TriangleTouchesShip(shipMask, a, c, d))
+            {
+                vertices[vertexIndex++] = new DrawVertexUV2D(a, a);
+                vertices[vertexIndex++] = new DrawVertexUV2D(c, c);
+                vertices[vertexIndex++] = new DrawVertexUV2D(d, d);
+            }
+        }
+
+        if (vertexIndex == 0)
+            return;
+
+        handle.UseShader(_detailRippleShader);
+        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleList, _whiteTexture, vertices.AsSpan(0, vertexIndex), color);
+        handle.UseShader(null);
+    }
+
+    private bool TriangleTouchesShip(ShipMask shipMask, Vector2 a, Vector2 b, Vector2 c)
+    {
+        var minX = MathF.Min(a.X, MathF.Min(b.X, c.X));
+        var minY = MathF.Min(a.Y, MathF.Min(b.Y, c.Y));
+        var maxX = MathF.Max(a.X, MathF.Max(b.X, c.X));
+        var maxY = MathF.Max(a.Y, MathF.Max(b.Y, c.Y));
+        var triangleBounds = new Box2(minX, minY, maxX, maxY);
+
+        if (!triangleBounds.Intersects(shipMask.WorldBounds))
+            return false;
+
+        return IsPointOnShip(shipMask, a) ||
+               IsPointOnShip(shipMask, b) ||
+               IsPointOnShip(shipMask, c) ||
+               IsPointOnShip(shipMask, (a + b + c) / 3f) ||
+               IsPointOnShip(shipMask, (a + b) * 0.5f) ||
+               IsPointOnShip(shipMask, (b + c) * 0.5f) ||
+               IsPointOnShip(shipMask, (c + a) * 0.5f);
+    }
+
+    private bool IsPointOnShip(ShipMask shipMask, Vector2 worldPoint)
+    {
+        if (!shipMask.WorldBounds.Contains(worldPoint))
+            return false;
+
+        var tile = MapSystem.WorldToTile(shipMask.GridUid, shipMask.Grid, worldPoint);
+        return shipMask.OccupiedTiles.Contains(tile);
     }
 
     private sealed class RippleEmitPoint

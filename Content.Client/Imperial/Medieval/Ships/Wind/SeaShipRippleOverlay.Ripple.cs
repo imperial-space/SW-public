@@ -17,19 +17,20 @@ public sealed partial class SeaShipRippleOverlay
         MapGridComponent grid,
         Matrix3x2 worldMatrix,
         Box2 visibleBounds,
-        SharedMapSystem mapSystem,
+        ShipMask shipMask,
         EntityLookupSystem lookupSystem,
         ShipMotionState motion)
     {
-        _occupiedTiles.Clear();
-        var tileEnumerator = mapSystem.GetTilesEnumerator(gridUid, grid, visibleBounds);
+        _occupiedTiles = shipMask.OccupiedTiles;
+        _visibleOccupiedTiles.Clear();
 
+        var tileEnumerator = MapSystem.GetTilesEnumerator(gridUid, grid, visibleBounds);
         while (tileEnumerator.MoveNext(out var tileRef))
         {
-            _occupiedTiles.Add(tileRef.GridIndices);
+            _visibleOccupiedTiles.Add(tileRef.GridIndices);
         }
 
-        if (_occupiedTiles.Count == 0)
+        if (_visibleOccupiedTiles.Count == 0 || _occupiedTiles.Count == 0)
             return;
 
         handle.SetTransform(worldMatrix);
@@ -38,7 +39,7 @@ public sealed partial class SeaShipRippleOverlay
         _emitWorldMatrix = worldMatrix;
         var shipCenter = Vector2.Transform(grid.LocalAABB.Center, worldMatrix);
 
-        foreach (var tile in _occupiedTiles)
+        foreach (var tile in _visibleOccupiedTiles)
         {
             if (HasBoundary(tile, Direction.North))
                 DrawHorizontalRun(handle, lookupSystem, gridUid, grid, tile, 1, Direction.North, worldMatrix);
@@ -57,8 +58,8 @@ public sealed partial class SeaShipRippleOverlay
 
         handle.SetTransform(Matrix3x2.Identity);
 
-        TryEmitSmallWave(mapId, motion);
-        TryEmitMovingWave(mapId, motion, shipCenter);
+        TryEmitSmallWave(mapId, gridUid, motion);
+        TryEmitMovingWave(mapId, gridUid, motion, shipCenter);
     }
 
     private bool HasBoundary(Vector2i tile, Direction direction)
@@ -273,7 +274,7 @@ public sealed partial class SeaShipRippleOverlay
     {
         var color = Color.White.WithAlpha(RippleAlpha);
 
-        foreach (var tile in _occupiedTiles)
+        foreach (var tile in _visibleOccupiedTiles)
         {
             DrawCornerPatch(handle, new Vector2i(tile.X + 1, tile.Y + 1), color);
             DrawCornerPatch(handle, new Vector2i(tile.X, tile.Y + 1), color);

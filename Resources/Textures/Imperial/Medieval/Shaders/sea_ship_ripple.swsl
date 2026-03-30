@@ -139,11 +139,7 @@ void fragment()
     highp float innerOffset = max(0.0, waveOffset * 0.14 + microWave * 0.32 + crestWave * 0.18);
     highp float outerOffset = max(rippleOffset * 0.36, rippleOffset * 0.95 + waveOffset + microWave + crestWave);
 
-#ifdef HAS_DFDX
-    highp float aa = max(fwidth(radial) * 1.35, 0.0025);
-#else
     highp float aa = 0.003;
-#endif
 
     highp float band = smoothstep(innerOffset - aa, innerOffset + aa, radial);
     band *= 1.0 - smoothstep(outerOffset - aa, outerOffset + aa, radial);
