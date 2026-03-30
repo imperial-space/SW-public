@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Numerics;
 using Content.Server.Administration.Logs;
 using Content.Shared._RD.Weight.Systems;
@@ -10,6 +11,7 @@ using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Popups;
 using NetCord;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
@@ -86,9 +88,17 @@ public sealed class HelmSystem : EntitySystem
             helmAngle -= 2;
 
         var diff = (float)steeringOarAngle*180 - (float)helmAngle*180;
+        diff *= (float)0.001;
+        if (!TryComp<MapGridComponent>(boat, out var boatMapComp))
+            return;
+        var tiles= _map.GetAllTiles(boat, boatMapComp);
+        var count = tiles.Count();
+        diff *= -count;
+        if (!TryComp<TransformComponent>(helm, out var helmTransform))
+            return;
+
+        _transform.SetLocalRotation(helm, helmTransform.LocalRotation-(diff/18));
         diff *= (float)0.01;
-        _map.GetAllTiles(boat)
-        diff *= -1;
         if (helmSpeed > 0)
         {
             _physics.ApplyAngularImpulse(boat, diff);
@@ -99,7 +109,7 @@ public sealed class HelmSystem : EntitySystem
             _physics.ApplyAngularImpulse(boat, -diff);
             return;
         }
-        Log.Info($"{diff}");
+
     }
     /// <summary>
     /// Проверяет скорость лодки

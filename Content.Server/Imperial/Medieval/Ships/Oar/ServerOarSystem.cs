@@ -11,30 +11,26 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 
-
 using Content.Shared.Database;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Ships.Oar;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
 
-
 namespace Content.Server.Imperial.Medieval.Ships.Oar;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class OarSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedSkillsSystem  _skills = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!;
     [Dependency] private readonly EntityManager _entManager = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
-    [Dependency] private readonly RDWeightSystem  _rdWeight = default!;
+    [Dependency] private readonly RDWeightSystem _rdWeight = default!;
+
     public override void Initialize()
     {
         SubscribeLocalEvent<OarComponent, OnOarDoAfterEvent>(OnOarDoAfter);
@@ -42,12 +38,6 @@ public sealed class OarSystem : EntitySystem
 
     private void OnOarDoAfter(EntityUid uid, OarComponent component, ref OnOarDoAfterEvent args)
     {
-        if (args.Cancelled)
-        {
-            RemComp<NoRotateOnInteractComponent>(args.User);
-            RemComp<NoRotateOnMoveComponent>(args.User);
-        }
-
         var item = _hands.GetActiveItem(args.User);
         if (args.Cancelled || args.Handled || item == null)
             return;
@@ -62,20 +52,24 @@ public sealed class OarSystem : EntitySystem
 
     private void Push(EntityUid item, Angle direction, float power, EntityUid player)
     {
-        power += power * (-10 + _skills.GetSkillLevel(player, "Strength")) * 0.1f;
+        // Учитываем силу гребца
+        power += power * (10 - _skills.GetSkillLevel(player, "Strength")) * 0.1f;
 
+        // Получаем лодку
         var boat = _transform.GetParentUid(player);
-
-        var boatAngle = _transform.GetWorldRotation(boat);
-
-        var playerAngle = _transform.GetWorldRotation(player);
-
-        var entities = _lookup.GetEntitiesIntersecting(boat);
-
-        if (entities.Count > 1000)
+        if (!TryComp<TransformComponent>(boat, out var boatTransform))
             return;
 
+        // Получаем угол поворота лодки
+        var boatAngle = boatTransform.LocalRotation;
+
+        // Вычисляем общий вес лодки и груза
         var weight = _rdWeight.GetTotal(boat);
+        if (weight == 0) weight = 10; // Минимальный вес
+
+        // Проверяем объекты в лодке
+        var entities = _lookup.GetEntitiesIntersecting(boat);
+        if (entities.Count > 1000) return;
 
         foreach (var entity in entities)
         {
@@ -83,49 +77,31 @@ public sealed class OarSystem : EntitySystem
                 weight += _rdWeight.GetTotal(entity);
         }
 
-        if (weight == 0)
-            weight = 10;
+        // Нормализуем угол (0-2π)
+        var normalizedAngle = (float)direction.Theta % (2 * MathF.PI);
+        if (normalizedAngle < 0)
+            normalizedAngle += 2 * MathF.PI;
 
-        var directionVec = Vector2.Zero;
-        while (direction > 2)
+        // Преобразуем угол в вектор направления
+        var directionVec = new Vector2(
+            MathF.Cos(normalizedAngle),
+            MathF.Sin(normalizedAngle)
+        );
+
+        // Учитываем поворот игрока
+        if (TryComp<TransformComponent>(player, out var playerTransform))
         {
-            direction -= 2;
+            directionVec = playerTransform.LocalRotation.RotateVec(directionVec);
         }
 
-
-        direction += Angle.FromDegrees(45);
-        // от 0 до 0.5 (1,0)
-        // от 0.5 до 1 (0,1)
-        // от 1 до 1,5 (0,-1)
-        // от 1,5 до 0 (-1,0)
-        if (direction > 1)
-        {
-            if (direction > 1.5)
-                directionVec = new Vector2(-1,0);
-            else
-            {
-                directionVec = new Vector2(0,-1);
-            }
-        }
-        else
-        {
-            if (direction > 0.5)
-                directionVec = new Vector2(0,1);
-            else
-            {
-                directionVec = new Vector2(1,0);
-            }
-        }
-
-        directionVec = playerAngle.RotateVec(directionVec);
+        // Применяем импульс
         var impulse = directionVec * (power / weight);
-        var angleimpulse = (power / weight);
 
-        if (EntityManager.TryGetComponent(boat, out PhysicsComponent? body))
+        if (TryComp<PhysicsComponent>(boat, out var body))
         {
             _physics.WakeBody(boat);
             _physics.ApplyLinearImpulse(boat, impulse, body: body);
-            // _physics.ApplyAngularImpulse(boat, angleimpulse, body: body);
         }
     }
+
 }

@@ -17,6 +17,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction.Components;
 using Content.Shared.Movement.Components;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 
 
 namespace Content.Shared.Imperial.Medieval.Ships.Oar;
@@ -56,6 +57,8 @@ public sealed class OarSystem : EntitySystem
         var clickEntity = args.ClickLocation.EntityId;
         if (boat == _transform.GetParentUid(clickEntity))
             return;
+        if (!HasComp<MapComponent>(clickEntity))
+            return;
 
         var time = 7 -_skills.GetSkillLevel(playerEntity, "Agility") * 0.3f;
         var sdoAfter = new DoAfterArgs(EntityManager,
@@ -82,7 +85,7 @@ public sealed class OarSystem : EntitySystem
         var direction = (playerPosition - boatPosition).ToAngle();
         component.Direction = direction;
 
-        _popup.PopupClient($"Ты гребёшь в сторону взгляда", playerEntity);
+        _popup.PopupClient($"Ты гребёшь от себя", playerEntity);
 
     }
 }
