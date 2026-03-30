@@ -14,5 +14,7 @@ namespace Content.Shared.Imperial.Medieval.Factions.Components
 
         [DataField]
         public string Faction = "none";
+
+        public EntityUid? ActionEntity;
     }
 }

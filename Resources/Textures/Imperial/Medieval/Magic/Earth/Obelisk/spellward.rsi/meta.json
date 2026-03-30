@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+  "copyright": "by @CrookLv",
+  "size": {
+    "x": 64,
+    "y": 96
+  },
+  "states": [
+    {
+      "name": "bandit"
+    },
+    {
+      "name": "collegia"
+    },
+    {
+      "name": "ins"
+    },
+    {
+      "name": "invincible"
+    },
+    {
+      "name": "legion"
+    },
+    {
+      "name": "merc"
+    },
+    {
+      "name": "miner"
+    },
+    {
+      "name": "state-0"
+    },
+    {
+      "name": "state-1"
+    },
+    {
+      "name": "state-2"
+    }
+  ]
+}

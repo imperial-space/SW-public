@@ -1,0 +1,15 @@
+ent-MedievalFactionCommsObelisk = faction obelisk
+    .desc = A magical source of communication for the faction with the outside world and among its own members.
+ent-MedievalFactionCommsObeliskLegion = Legion obelisk
+    .desc = A magical source of communication for the Legion with the outside world and among its members.
+ent-MedievalFactionCommsObeliskInsurgency = Insurgency obelisk
+    .desc = A magical source of communication for the insurgency with the outside world and among its members.
+ent-MedievalFactionCommsObeliskBandit = Bandit obelisk
+    .desc = A magical source of communication for the bandits with the outside world and among their members.
+ent-MedievalFactionCommsObeliskMerc = Mercenary obelisk
+    .desc = A magical source of communication for the mercenaries with the outside world and among their members.
+ent-MedievalFactionCommsObeliskCollegium = Collegium obelisk
+    .desc = A magical source of communication for the Collegium with the outside world and among its members.
+ent-MedievalFactionCommsObeliskMiner = Miners obelisk
+    .desc = A magical source of communication for the miners with the outside world and among their members.
+medieval-faction-obelisk-destroyed-desc = a pile of battered stone, unfit for repair
