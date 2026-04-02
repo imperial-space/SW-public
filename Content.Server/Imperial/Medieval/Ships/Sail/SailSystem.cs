@@ -71,7 +71,6 @@ public sealed class SailSystem : EntitySystem
 
     private void OnRotate(EntityUid uid, SailComponent component, RotateEvent args)
     {
-        Log.Info($"принял");
         if (args.Handled || args.Cancelled)
             return;
         var sail = uid;
@@ -86,7 +85,6 @@ public sealed class SailSystem : EntitySystem
         var newAngle = transformComponent.LocalRotation + rot;
 
         _transform.SetLocalRotation(sail, newAngle);
-        Log.Info($"Я отработал, новый угол {newAngle} {transformComponent.LocalRotation}");
         args.Handled = true;
     }
 
