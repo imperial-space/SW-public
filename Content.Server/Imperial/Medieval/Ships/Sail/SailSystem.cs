@@ -10,11 +10,14 @@ using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
+using Content.Shared.Imperial.Medieval.Ships.Helm;
+using Content.Shared.Imperial.Medieval.Ships.Islands;
 using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Imperial.Medieval.Ships.Wind;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
@@ -22,6 +25,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Maths;
+using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Medieval.Ships.Sail;
 
@@ -52,6 +56,36 @@ public sealed class SailSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<SailComponent, SailFoldEvent>(OnFold);
+        SubscribeLocalEvent<SailComponent, RotateEvent>(OnRotate);
+        SubscribeLocalEvent<SailComponent, ActivateInWorldEvent>(OnInteractHand);
+    }
+
+    private void OnInteractHand(EntityUid uid, SailComponent component, ActivateInWorldEvent args)
+    {
+        if (args.Handled || !TryComp(args.User, out ActorComponent? actor))
+            return;
+
+        args.Handled = true;
+        RaiseNetworkEvent(new OpenSailMenuEvent(args.User.Id, args.Target.Id), actor.PlayerSession);
+    }
+
+    private void OnRotate(EntityUid uid, SailComponent component, RotateEvent args)
+    {
+        if (args.Handled || args.Cancelled)
+            return;
+        var sail = uid;
+        if (!TryComp<TransformComponent>(sail, out var transformComponent))
+            return;
+
+        var rot = 0;
+        if (args.Direction)
+            rot = -45;
+        else
+            rot = 45;
+        var newAngle = transformComponent.LocalRotation + rot;
+
+        _transform.SetLocalRotation(sail, newAngle);
+        args.Handled = true;
     }
 
     public override void Update(float frameTime)
@@ -75,6 +109,8 @@ public sealed class SailSystem : EntitySystem
 
                 var sailEntity = sailComponent.Owner;
                 var boat = _transform.GetParentUid(sailEntity);
+                if (HasComp<IslandComponent>(boat))
+                    continue;
                 EnsureComp<ShipDrowningComponent>(boat);
                 var boatAngle = new Angle();
                 var entities = _lookup.GetEntitiesIntersecting(boat);
@@ -109,14 +145,14 @@ public sealed class SailSystem : EntitySystem
                     wind = 1;
                 var force = windForce * MathF.Cos(diffAngle/180) * sailComponent.SailSize * wind;
 
-                Push(sailEntity, force, boatAngle , push: sailComponent.Push, helm: sailComponent.Helm);
+                Push(sailEntity, force, boatAngle , push: sailComponent.Push);
                 if (!ships.Contains(boat))
                     ships.Add(boat);
             }
         }
     }
 
-    private void Push(EntityUid sail, float windForce, Angle torque , bool push = true, bool helm = false)
+    private void Push(EntityUid sail, float windForce, Angle torque , bool push = true)
     {
         var boat = _transform.GetParentUid(sail);
 
@@ -144,21 +180,16 @@ public sealed class SailSystem : EntitySystem
         if (!push)
         {
             _transform.SetWorldRotation(sail, Angle.FromDegrees(_cfg.GetCVar(ShipsCCVars.WindRotation)));
-        }
-
-        if (helm)
-            _helm.RotateShip(boat,sail, _helm.CheckForce(boat, sail));
-
-        if (_helm.CheckForce(boat, sail) > _cfg.GetCVar(ShipsCCVars.ShipsMaxSpeed))
             return;
-
+        }
+        if (_helm.CheckForce(boat) > _cfg.GetCVar(ShipsCCVars.ShipsMaxSpeed))
+            return;
         _physics.ApplyLinearImpulse(boat, impulse);
     }
 
-
     private void OnFold(EntityUid uid, SailComponent component, SailFoldEvent args)
     {
-        if (args.Cancelled)
+        if (args.Cancelled || TerminatingOrDeleted(uid))
             return;
 
         var rot = _transform.GetWorldRotation(uid);

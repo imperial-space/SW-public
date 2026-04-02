@@ -24,7 +24,7 @@ public sealed class SeasGenerationSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly SeaMatrixInitSystem _seaMatrix = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!; // 🔥 НОВЫЙ ДЕПЕНДЕНС
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     private const int MapMin = -75;
     private const int MapMax = 75;

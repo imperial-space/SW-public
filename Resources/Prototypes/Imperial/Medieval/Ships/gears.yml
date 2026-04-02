@@ -47,8 +47,7 @@
     - type: Sprite
       sprite: Imperial/Medieval/Decor/steeringwheel.rsi
       state: wheel
-    - type: Sail
-      helm: true
+    - type: Helm
     - type: Rotatable
       RotateWhileAnchored: true
       Increment: 5
