@@ -36,7 +36,10 @@ public sealed class IslandSetSystem : EntitySystem
         _shuttleSystem.Disable(land);
 
         if (!TryComp<PaperComponent>(uid, out var paperComp))
+        {
+            Del(uid);
             return;
+        }
 
         var text = paperComp.Content;
 
