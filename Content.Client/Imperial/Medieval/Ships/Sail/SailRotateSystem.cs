@@ -15,6 +15,7 @@ public sealed class SailMenuUIController : UIController
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly IEntitySystemManager _entitySystemManager = default!;
+    [Dependency] private readonly IEntityNetworkManager _net = default!;
 
     private SimpleRadialMenu? _menu;
     public enum Direction
@@ -25,28 +26,30 @@ public sealed class SailMenuUIController : UIController
 
     public override void Initialize()
     {
+        base.Initialize();
         SubscribeNetworkEvent<OpenSailMenuEvent>(OpenSailMenu);
     }
 
     private void OpenSailMenu(OpenSailMenuEvent args, EntitySessionEventArgs entArgs)
     {
-        if (_menu != null) return; // Не открывать, если уже открыто
+        if (_menu != null)
+            return; // Не открывать, если уже открыто
 
         var options = new List<RadialMenuOptionBase>
         {
-            new RadialMenuActionOption<Direction>(HandleRotateLeft, Direction.Left)
+            new RadialMenuActionOption<int>(HandleRotateLeft, args.Target)
             {
-                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Emotes/rotate_left.png"))),
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/rotate_ccw.svg.192dpi.png"))),
                 ToolTip = Loc.GetString("sail-menu-rotate-left")
             },
-            new RadialMenuActionOption<bool>(HandleToggleFold, true)
+            new RadialMenuActionOption<int>(HandleToggleFold, args.Target)
             {
-                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Emotes/fold.png"))),
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png"))),
                 ToolTip = Loc.GetString("sail-menu-toggle-fold")
             },
-            new RadialMenuActionOption<Direction>(HandleRotateRight, Direction.Right)
+            new RadialMenuActionOption<int>(HandleRotateRight, args.Target)
             {
-                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Emotes/rotate_right.png"))),
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png"))),
                 ToolTip = Loc.GetString("sail-menu-rotate-right")
             }
         };
@@ -63,19 +66,22 @@ public sealed class SailMenuUIController : UIController
         _menu = null;
     }
 
-    private void HandleRotateLeft(Direction direction)
+    private void HandleRotateLeft(int target)
     {
-        EntityManager.RaisePredictiveEvent(new RotateSailEvent(-1, ));
+        var msg = new RotateSailEvent(1, target);
+        _net.SendSystemNetworkMessage(msg);
     }
 
-    private void HandleToggleFold(bool _) // bool — фейковый аргумент
+    private void HandleToggleFold(int target) // bool — фейковый аргумент
     {
-        EntityManager.RaisePredictiveEvent(new RotateSailEvent(0));
+        var msg = new RotateSailEvent(0, target);
+        _net.SendSystemNetworkMessage(msg);
     }
 
-    private void HandleRotateRight(Direction direction)
+    private void HandleRotateRight(int target)
     {
-        EntityManager.RaisePredictiveEvent(new RotateSailEvent(1));
+        var msg = new RotateSailEvent(-1, target);
+        _net.SendSystemNetworkMessage(msg);
     }
 
 }

@@ -17,6 +17,7 @@ using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Imperial.Medieval.Ships.Wind;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Shared.Configuration;
 using Robust.Shared.Physics.Components;
@@ -24,6 +25,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Maths;
+using Robust.Shared.Player;
 
 namespace Content.Server.Imperial.Medieval.Ships.Sail;
 
@@ -54,6 +56,38 @@ public sealed class SailSystem : EntitySystem
     public override void Initialize()
     {
         SubscribeLocalEvent<SailComponent, SailFoldEvent>(OnFold);
+        SubscribeLocalEvent<SailComponent, RotateEvent>(OnRotate);
+        SubscribeLocalEvent<SailComponent, ActivateInWorldEvent>(OnInteractHand);
+    }
+
+    private void OnInteractHand(EntityUid uid, SailComponent component, ActivateInWorldEvent args)
+    {
+        if (args.Handled || !TryComp(args.User, out ActorComponent? actor))
+            return;
+
+        args.Handled = true;
+        RaiseNetworkEvent(new OpenSailMenuEvent(args.User.Id, args.Target.Id), actor.PlayerSession);
+    }
+
+    private void OnRotate(EntityUid uid, SailComponent component, RotateEvent args)
+    {
+        Log.Info($"принял");
+        if (args.Handled || args.Cancelled)
+            return;
+        var sail = uid;
+        if (!TryComp<TransformComponent>(sail, out var transformComponent))
+            return;
+
+        var rot = 0;
+        if (args.Direction)
+            rot = -45;
+        else
+            rot = 45;
+        var newAngle = transformComponent.LocalRotation + rot;
+
+        _transform.SetLocalRotation(sail, newAngle);
+        Log.Info($"Я отработал, новый угол {newAngle} {transformComponent.LocalRotation}");
+        args.Handled = true;
     }
 
     public override void Update(float frameTime)

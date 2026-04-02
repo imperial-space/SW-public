@@ -18,14 +18,14 @@ public sealed partial class SailFoldEvent : SimpleDoAfterEvent
 [Serializable, NetSerializable]
 public sealed class RotateSailEvent : EntityEventArgs
 {
-    public int Direction; // Направление поворота (-1 или 1)
-    public int IntUid; // Направление поворота (-1 или 1)
+    public int Direction;
+    public int Target { get; }
 
     // Конструктор для удобства создания события
     public RotateSailEvent(int direction, int uid)
     {
         Direction = direction;
-        IntUid = uid;
+        Target = uid;
     }
 }
 
@@ -34,14 +34,15 @@ public sealed class RotateSailEvent : EntityEventArgs
 [Serializable, NetSerializable]
 public sealed class OpenSailMenuEvent : EntityEventArgs
 {
-    public string MenuType { get; }
-    public int SlotIndex { get; }
+    public int User { get; }
+    public int Target { get; }
 
-    public OpenSailMenuEvent(string menuType = "default", int slotIndex = 0)
+    public OpenSailMenuEvent(int user, int target)
     {
-        MenuType = menuType;
-        SlotIndex = slotIndex;
+        User = user;
+        Target = target;
     }
+    public OpenSailMenuEvent() { }
 }
 
 [Serializable, NetSerializable]
@@ -54,6 +55,6 @@ public sealed partial class RotateEvent : DoAfterEvent
         Direction = dir;
     }
 
-public override DoAfterEvent Clone() => this;
+    public override DoAfterEvent Clone() => this;
 }
 

@@ -6,6 +6,7 @@ using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
 using Content.Shared.Verbs;
 using Robust.Shared.Configuration;
+using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Imperial.Medieval.Ships.Sail;
@@ -22,18 +23,11 @@ public sealed class SharedSailSystem : EntitySystem
 
     public override void Initialize()
     {
-        // SubscribeLocalEvent<SailComponent, InteractHandEvent>(OnInteractHand);
+
         SubscribeNetworkEvent<RotateSailEvent>(OnMenuOptionSelected);
     }
 
-    // private void OnInteractHand(EntityUid uid, SailComponent component, InteractHandEvent args)
-    // {
-    //     if (args.Handled || args.User.TryGetComponent(out ActorComponent? actor) == false)
-    //         return;
-    //
-    //     args.Handled = true;
-    //     RaiseNetworkEvent(new OpenSailRadialMenuEvent(), actor.PlayerSession);
-    // }
+
 
     private void OnMenuOptionSelected(RotateSailEvent args, EntitySessionEventArgs session)
     {
@@ -44,13 +38,13 @@ public sealed class SharedSailSystem : EntitySystem
         switch (args.Direction)
         {
             case -1: // Влево
-                EntityManager.RaisePredictiveEvent(new RotateSailEvent(-1));
+                TryRotate(player.Value, new EntityUid(args.Target), true);
                 break;
             case 1: // Вправо
-                EntityManager.RaisePredictiveEvent(new RotateSailEvent(1));
+                TryRotate(player.Value, new EntityUid(args.Target), false);
                 break;
             case 0: // Сложить/разложить
-                TryFold(player.Value,new EntityUid(args.IntUid));
+                TryFold(player.Value,new EntityUid(args.Target));
                 break;
         }
     }
@@ -66,7 +60,7 @@ public sealed class SharedSailSystem : EntitySystem
         var rotateEvent = new RotateEvent(direction);
 
         // Аргументы DoAfter — аналогично TryFold
-        var doAfterArgs = new DoAfterArgs(EntityManager, playerEntity, time, rotateEvent, targetEntity, playerEntity)
+        var doAfterArgs = new DoAfterArgs(EntityManager, playerEntity, time, rotateEvent, targetEntity, targetEntity)
         {
             MovementThreshold = 0.5f,
             BreakOnMove = true,
