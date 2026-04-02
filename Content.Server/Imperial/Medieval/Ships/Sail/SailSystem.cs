@@ -77,13 +77,12 @@ public sealed class SailSystem : EntitySystem
         if (!TryComp<TransformComponent>(sail, out var transformComponent))
             return;
 
-        var rot = 0;
+        float rot = 0;
         if (args.Direction)
             rot = -45;
         else
             rot = 45;
-        var newAngle = transformComponent.LocalRotation + rot;
-
+        Angle newAngle = transformComponent.LocalRotation + Angle.FromDegrees(rot);
         _transform.SetLocalRotation(sail, newAngle);
         args.Handled = true;
     }

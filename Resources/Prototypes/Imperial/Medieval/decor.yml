@@ -5375,9 +5375,6 @@
   - type: InteractionOutline
   - type: Sail
     SailSize: 5
-  - type: Rotatable
-    RotateWhileAnchored: true
-    Increment: 5
 
 - type: entity
   name: small light
