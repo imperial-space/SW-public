@@ -19,4 +19,12 @@
   spawnWeight: 8
   path: /Maps/Imperial/Medieval/Ships/Victoria.yml
 
-
+- type: entity
+  id: Islandpaper
+  parent: Paper
+  name: Бумажка для островов
+  description: Если вы это читаете значит либо что то не так либо вы мапер, эта бумажка при инициализации карты пропадёт и сделает грид островом, при желании можно назвать этот остров если написать тут Я нарекаю сей остров "Название"
+  components:
+  - type: IslandSetter
+  - type: Paper
+    content: "Я нарекаю сей остров "
