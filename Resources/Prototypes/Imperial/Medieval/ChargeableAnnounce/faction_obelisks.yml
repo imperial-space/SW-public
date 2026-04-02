@@ -4,8 +4,11 @@
   abstract: true
   suffix: medieval
   components:
+  - type: SpriteFade
   - type: Sprite
     sprite: Imperial/Medieval/Magic/Earth/Obelisk/spellward.rsi
+    drawdepth: Overdoors
+    offset: 0,0.9
     layers:
     - state: state-0
       map: ["base"]
