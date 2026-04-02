@@ -44,7 +44,7 @@ public sealed class SailMenuUIController : UIController
             },
             new RadialMenuActionOption<int>(HandleToggleFold, args.Target)
             {
-                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/rotate_cw.svg.192dpi.png"))),
+                IconSpecifier = RadialMenuIconSpecifier.With(new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/VerbIcons/flip.svg.192dpi.png"))),
                 ToolTip = Loc.GetString("sail-menu-toggle-fold")
             },
             new RadialMenuActionOption<int>(HandleRotateRight, args.Target)
