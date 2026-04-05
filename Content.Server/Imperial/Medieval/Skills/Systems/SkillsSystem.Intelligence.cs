@@ -123,7 +123,10 @@ public sealed partial class SkillsSystem
 
     private void OnGetMessage(GetEnteredChatTextResponseMessage message)
     {
-        _examine.SendExamineTooltip(GetEntity(message.User), GetEntity(message.Target), FormattedMessage.FromUnformatted(message.Text != string.Empty ? $"По глазам легко читается - '{message.Text}'." : $"Кажется, {Identity.Name(GetEntity(message.Target), EntityManager, GetEntity(message.User))} не планирует ничего говорить."), false, false);
+        var msg1 = Loc.GetString("imperial-hm-intel-readeyes", ("name", $"{message.Text}"));
+        var msg2 = Loc.GetString("imperial-hm-intel-nothing", ("name", $"{Identity.Name(GetEntity(message.Target), EntityManager, GetEntity(message.User))}"));
+        var mmssg = FormattedMessage.FromUnformatted(message.Text != string.Empty ? msg1 : msg2);
+        _examine.SendExamineTooltip(GetEntity(message.User), GetEntity(message.Target), mmssg, false, false);
     }
 
     private string Accentuate(string message, float scale)
@@ -149,14 +152,14 @@ public sealed partial class SkillsSystem
 
                     var replacement = _random.Pick(new[]
                     {
-                        "ээ",
-                        "э-э-э",
-                        "эмм",
-                        "уэээ",
-                        "ааа...",
-                        "ммм",
-                        "эмм",
-                        "ыээ"
+                        Loc.GetString("imperial-hm-intel-r1"),
+                        Loc.GetString("imperial-hm-intel-r2"),
+                        Loc.GetString("imperial-hm-intel-r3"),
+                        Loc.GetString("imperial-hm-intel-r4"),
+                        Loc.GetString("imperial-hm-intel-r5"),
+                        Loc.GetString("imperial-hm-intel-r6"),
+                        Loc.GetString("imperial-hm-intel-r7"),
+                        Loc.GetString("imperial-hm-intel-r8")
                     });
 
                     if (wordBeginIndex == 0)

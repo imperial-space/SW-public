@@ -2,87 +2,87 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стальная плитка # Imperial Recipes Locale
+  #name: Стальная плитка # Imperial Recipes Locale
   id: TileSteel
   graph: TileSteel
   startNode: start
   targetNode: steeltile
   category: construction-category-tiles
-  description: Четыре стальные плитки покрытия станции. # Imperial Recipes Locale
+  #description: Четыре стальные плитки покрытия станции. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Деревянный пол # Imperial Recipes Locale
+  #name: Деревянный пол # Imperial Recipes Locale
   id: TileWood
   graph: TileWood
   startNode: start
   targetNode: woodtile
   category: construction-category-tiles
-  description: Четыре плитки деревянного пола покрытия станции. # Imperial Recipes Locale
+  #description: Четыре плитки деревянного пола покрытия станции. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Заполненная латунная пластина # Imperial Recipes Locale
+  #name: Заполненная латунная пластина # Imperial Recipes Locale
   id: TileBrassFilled
   graph: TilesBrass
   startNode: start
   targetNode: filledPlate
   category: construction-category-tiles
-  description: Четыре куска латунного напольного покрытия станции, совместимого только с латунным покрытием. # Imperial Recipes Locale
+  #description: Четыре куска латунного напольного покрытия станции, совместимого только с латунным покрытием. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Гладкая латунная пластина # Imperial Recipes Locale
+  #name: Гладкая латунная пластина # Imperial Recipes Locale
   id: TileBrassReebe
   graph: TilesBrass
   startNode: start
   targetNode: reebe
   category: construction-category-tiles
-  description: Четыре плитки гладкого латунного покрытия станции, совместимого только с латунным покрытием. # Imperial Recipes Locale
+  #description: Четыре плитки гладкого латунного покрытия станции, совместимого только с латунным покрытием. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Белая плитка # Imperial Recipes Locale
+  #name: Белая плитка # Imperial Recipes Locale
   id: TileWhite
   graph: TileWhite
   startNode: start
   targetNode: whitetile
   category: construction-category-tiles
-  description: Четыре белых плитки покрытия станции. # Imperial Recipes Locale
+  #description: Четыре белых плитки покрытия станции. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Тёмная плитка # Imperial Recipes Locale
+  #name: Тёмная плитка # Imperial Recipes Locale
   id: TileDark
   graph: TileDark
   startNode: start
   targetNode: darktile
   category: construction-category-tiles
-  description: Четыре темных плитки покрытия станции. # Imperial Recipes Locale
+  #description: Четыре темных плитки покрытия станции. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Пол из плоти # Imperial Recipes Locale
+  #name: Пол из плоти # Imperial Recipes Locale
   id: TileFlesh
   graph: TileFlesh
   startNode: start
   targetNode: fleshTile
   category: construction-category-tiles
-  description: Четыре мясистые плитки. # Imperial Recipes Locale
+  #description: Четыре мясистые плитки. # Imperial Recipes Locale
   objectType: Item
 
 - type: construction
-  name: Большой деревянный пол # Imperial Recipes Locale
+  #name: Большой деревянный пол # Imperial Recipes Locale
   id: TileWoodLarge
   graph: TileWoodLarge
   startNode: start
   targetNode: woodtilelarge
   category: construction-category-tiles
-  description: "Четыре плитки деревянного пола покрытия станции." # Imperial Recipes Locale
+  #description: "Четыре плитки деревянного пола покрытия станции." # Imperial Recipes Locale
   objectType: Item

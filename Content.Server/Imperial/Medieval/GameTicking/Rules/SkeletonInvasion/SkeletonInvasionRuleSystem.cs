@@ -71,7 +71,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         base.Started(uid, component, gameRule, args);
 
         var cursespawners = EntityManager.AllEntities<MagicBarrierCurseSpawnComponent>().Select(x => x.Owner).ToList();
-        _chat.DispatchGlobalAnnouncement("Посланники темного повелителя замечен на этих землях.", playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+        _chat.DispatchGlobalAnnouncement(Loc.GetString("imperial-hm-gameticking-oopsie"), playSound: true, colorOverride: Color.DeepPink, sender: Loc.GetString("imperial-hm-barrier-barrier"));
         component.NextSpawn = _timing.CurTime;
     }
 
@@ -146,7 +146,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
     {
         if (args.PurifiedParts < args.Parts / 2)
         {
-            var msg = "Проклятый череп полностью собран. Трепещите смертные,  армия тьмы грядет и мир уже не будет прежним. Объединение - единственный шанс на спасение...";
+            var msg = Loc.GetString("imperial-hm-gameticking-cursedskull");
             _chatMan.ChatMessageToAll(ChatChannel.Radio, msg, msg, EntityUid.Invalid, false, true, colorOverride: Color.OrangeRed);
             _audio.PlayGlobal(new SoundPathSpecifier(new ResPath("/Audio/Imperial/Medieval/Effects/skull-announce.ogg")), Filter.Broadcast(), true);
             _result = RoundResult.SkeletonsWon;
@@ -184,7 +184,7 @@ public sealed class SkeletonInvasionRuleSystem : GameRuleSystem<SkeletonInvasion
         if (bossfightPlayers.Count == 0)
             return;
 
-        var msgBoss = "Древний череп собран. Его проклятие не сломлено, но искажено святым пламенем. Равновесие пало, и теперь судьба этого острова решится в битве!";
+        var msgBoss = Loc.GetString("imperial-hm-gameticking-ancientskull");
         _chatMan.ChatMessageToAll(ChatChannel.Radio, msgBoss, msgBoss, EntityUid.Invalid, false, true, colorOverride: Color.OrangeRed);
         _audio.PlayGlobal(new SoundPathSpecifier(new ResPath("/Audio/Imperial/Medieval/Effects/skull-announce.ogg")), Filter.Broadcast(), true);
 

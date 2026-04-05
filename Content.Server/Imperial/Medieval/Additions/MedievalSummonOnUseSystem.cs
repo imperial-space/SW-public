@@ -51,7 +51,7 @@ public sealed class MedievalSummonOnUseSystem : EntitySystem
 
         if (!HasEnoughSpace(coordinates, args.User))
         {
-            _popup.PopupEntity("Нужно больше свободного места для призыва!", args.User, args.User);
+            _popup.PopupEntity(Loc.GetString("medieval-hm-additions-needmorespace"), args.User, args.User);
             return;
         }
 

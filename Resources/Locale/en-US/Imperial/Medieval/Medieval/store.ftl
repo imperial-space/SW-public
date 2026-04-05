@@ -12,7 +12,6 @@ medieval-category-wolf = Equipment
 store-preset-medieval = Trade rift
 
 medieval-category-pallet = Cargo
-store-currency-display-paperonvaluablecargo = Papers for valuable cargo
 store-currency-display-medal = Medal
 medieval-category-charm-1 = Student
 medieval-category-charm-2 = Experienced

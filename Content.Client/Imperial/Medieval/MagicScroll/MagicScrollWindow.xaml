@@ -8,19 +8,19 @@
 <DefaultWindow xmlns="https://spacestation14.io"
                xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
-               Title="Магический Свиток"
+               Title="{Loc 'imperial-hm-magicscroll-magicscroll'}"
                MinSize="400 300"
                MaxSize="500 400">
     <BoxContainer Orientation="Vertical" Margin="10">
         <BoxContainer Orientation="Vertical" Margin="0 0 0 10">
-            <Label Name="PowerLabel" Text="Сила свитка: 0" HorizontalAlignment="Center"/>
-            <Label Name="StatusLabel" Text="Статус: Не расшифрован" HorizontalAlignment="Center"/>
+            <Label Name="PowerLabel" Text="{Loc 'imperial-hm-magicscroll-power'}" HorizontalAlignment="Center"/>
+            <Label Name="StatusLabel" Text="{Loc 'imperial-hm-magicscroll-status'}" HorizontalAlignment="Center"/>
         </BoxContainer>
 
         <customControls:HSeparator Margin="0 10"/>
 
         <BoxContainer Orientation="Vertical">
-            <Label Text="Зашифрованные руны:" Margin="0 0 0 5"/>
+            <Label Text="{Loc 'imperial-hm-magicscroll-encrypted'}" Margin="0 0 0 5"/>
             <GridContainer Name="EncryptedRunesGrid" Columns="4" HSeparationOverride="5" VSeparationOverride="5">
             </GridContainer>
         </BoxContainer>
@@ -28,7 +28,7 @@
         <customControls:HSeparator Margin="0 10"/>
 
         <BoxContainer Orientation="Vertical">
-            <Label Text="Известные руны (нажмите для расшифровки):" Margin="0 0 0 5"/>
+            <Label Text="{Loc 'imperial-hm-magicscroll-known'}" Margin="0 0 0 5"/>
             <GridContainer Name="KnownRunesGrid" Columns="4" HSeparationOverride="5" VSeparationOverride="5">
             </GridContainer>
         </BoxContainer>

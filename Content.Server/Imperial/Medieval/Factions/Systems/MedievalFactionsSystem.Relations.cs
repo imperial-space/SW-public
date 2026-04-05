@@ -54,7 +54,7 @@ public sealed partial class MedievalFactionsSystem
 
         AlternativeVerb verb = new()
         {
-            Text = "Изменить отношения",
+            Text = Loc.GetString("medieval-hm-relations-change"),
             Act = () =>
             {
                 var ev = new OpenOfferFactionRelationsEvent(GetNetEntity(uid), friends.Faction, comp.Faction);
@@ -75,7 +75,7 @@ public sealed partial class MedievalFactionsSystem
 
         AlternativeVerb verb = new()
         {
-            Text = "Сделать запрос на смену отношений",
+            Text = Loc.GetString("medieval-hm-relations-changereq"),
             Act = () =>
             {
                 var ev = new OpenFactionRelationsRequestEvent(GetNetEntity(uid), friends.Faction);
@@ -251,8 +251,9 @@ public sealed partial class MedievalFactionsSystem
         {
             if (!GetFactionMemberById(item.Key, out var target) || !_sharedPlayerManager.TryGetSessionByEntity(target.Value, out var session))
                 continue;
-
-            var announcement = $"Отношения вашей фракции с {(item.Value.Faction == ev.UserFaction ? targetFaction.Name : userFaction.Name)} изменены на {Proto.Index<FactionRelationsPrototype>("War").Name}";
+            var name1 = item.Value.Faction == ev.UserFaction ? targetFaction.Name : userFaction.Name;
+            var name2 = Proto.Index<FactionRelationsPrototype>("War").Name;
+            var announcement = Loc.GetString("medieval-hm-relations-changeanc", ("name1", $"{name1}"), ("name2", $"{name2}"));
             _chatMan.ChatMessageToOne(Shared.Chat.ChatChannel.Radio, announcement, announcement, EntityUid.Invalid, false, session.Channel, Proto.Index<FactionRelationsPrototype>("War").Color);
             _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/faction_group_assigned.ogg"), session);
         }
@@ -277,8 +278,9 @@ public sealed partial class MedievalFactionsSystem
         {
             if (!GetFactionMemberById(item.Key, out var target) || !_sharedPlayerManager.TryGetSessionByEntity(target.Value, out var session))
                 continue;
-
-            var announcement = $"Отношения вашей фракции с {(item.Value.Faction == userFaction ? targetFactionProto.Name : userFactionProto.Name)} изменены на {Proto.Index(relation).Name}";
+            var name1 = item.Value.Faction == userFaction ? targetFactionProto.Name : userFactionProto.Name;
+            var name2 = Proto.Index(relation).Name;
+            var announcement = Loc.GetString("medieval-hm-relations-changeanc", ("name1", $"{name1}"), ("name2", $"{name2}"));
             _chatMan.ChatMessageToOne(Shared.Chat.ChatChannel.Radio, announcement, announcement, EntityUid.Invalid, false, session.Channel, Proto.Index(relation).Color);
             _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/faction_group_assigned.ogg"), session);
         }

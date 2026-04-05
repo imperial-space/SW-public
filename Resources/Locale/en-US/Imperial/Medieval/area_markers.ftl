@@ -1,129 +1,129 @@
-ent-AreaMarkerPortNearby = Port Vicinity Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerPortNearby = port vicinity area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-port-nearby = Port Vicinity
 
-ent-AreaMarkerPortLegion = Legion Port Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerPortLegion = port legion area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-port-legion = Legion Port
 
-ent-AreaMarkerCollegiumNearby = Collegium Vicinity Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerCollegiumNearby = collegium vicinity area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-collegium-nearby = Collegium Vicinity
 
-ent-AreaMarkerCollegium = Collegium Marker
-    .desc = empty
-    .suffix = { "Medieval" }
-area-map1-collegium = Mage Collegium
+ent-AreaMarkerCollegium = collegium area location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-collegium = Mages' Collegium
 
-ent-AreaMarkerSwamp = Swamp Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerSwamp = swamp area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-swamp = Cursed Swamp
 
-ent-AreaMarkerTavern = Tavern Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerTavern = tavern area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-tavern = Tavern
 
-ent-AreaMarkerNecro = Necropolis Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerNecro = necropolis area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-necro = Necropolis
 
-ent-AreaMarkerCult = Cult Marker
-    .desc = empty
-    .suffix = { "Medieval" }
-area-map1-cult = Lair of the Truth Cult
+ent-AreaMarkerCult = cult area location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-cult = Cult of Truth Lair
 
-ent-AreaMarkerMine = Mine Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerMine = mine area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-mine = Miners' Outpost
 
-ent-AreaMarkerChapel = Chapel Marker
-    .desc = empty
-    .suffix = { "Medieval" }
-area-map1-chapel = Church
+ent-AreaMarkerChapel = chapel area location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-chapel = Chapel
 
-ent-AreaMarkerIns = Rebellion Fortress Marker
-    .desc = empty
-    .suffix = { "Medieval" }
-area-map1-ins = Rebel Fortress
+ent-AreaMarkerIns = insurgent fortress area location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-ins = Insurgent Fortress
 
-ent-AreaMarkerGoblin = Goblin Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerGoblin = goblin area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-goblin = Goblin Caves
 
-ent-AreaMarkerPiramid = Pyramid Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerPiramid = pyramid area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-piramid = Ancient Pyramid
 
-ent-AreaMarkerSklep = Crypt Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerSklep = crypt area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-sklep = Ancient Crypt
 
-ent-AreaMarkerNorth = North Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerNorth = north area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-north = Northern Lands
 
-ent-AreaMarkerSand = Desert Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerSand = desert area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-sand = Sandy Desert
 
-ent-AreaMarkerBand = Bandit Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerBand = bandit area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-band = Bandit Hideout
 
-ent-AreaMarkerMerc = Mercenary Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerMerc = mercenary area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-merc = Mercenary Hideout
 
-ent-AreaMarkerVillage = Village Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerVillage = village area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-village = Village
 
-ent-AreaMarkerTribe = Tribe Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerTribe = tribe area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-tribe = Ancient Tribe
 
-ent-AreaMarkerPrison = Dungeon Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerPrison = prison area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-prison = Dungeon
 
-ent-AreaMarkerWestCoast = West Coast Marker
-    .desc = empty
-    .suffix = { "Medieval" }
-area-map1-west-coast = Western Coast
+ent-AreaMarkerWestCoast = west coast area location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-west-coast = West Coast
 
-ent-AreaMarkerEastCoast = East Coast Marker
-    .desc = empty
-    .suffix = { "Medieval" }
-area-map1-east-coast = Eastern Coast
+ent-AreaMarkerEastCoast = east coast area location marker
+.desc = empty
+.suffix = { "Medieval" }
+area-map1-east-coast = East Coast
 
-ent-AreaMarkerFlowerForest = Flower Forest Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerFlowerForest = flower forest area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-flower-forest = Flower Forest
 
-ent-AreaMarkerFlowerForestNear = Flower Forest Vicinity Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerFlowerForestNear = flower forest vicinity area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-flower-forest-near = Flower Forest Vicinity
 
-ent-AreaMarkerHell = Hell Marker
-    .desc = empty
-    .suffix = { "Medieval" }
+ent-AreaMarkerHell = hell area location marker
+.desc = empty
+.suffix = { "Medieval" }
 area-map1-hell = Purgatory

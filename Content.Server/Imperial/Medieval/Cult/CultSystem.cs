@@ -104,7 +104,7 @@ namespace Content.Server.Cult
         private void OnPlayerAttached(EntityUid uid, TakeNameComponent comp, PlayerAttachedEvent args)
         {
             if (!_playerManager.TryGetSessionByEntity(uid, out var session) || comp.HasName) return;
-            _quickDialog.OpenDialog(session, "Введите имя", "Имя", (string message) =>
+            _quickDialog.OpenDialog(session, Loc.GetString("imperial-hm-cult-entername"), Loc.GetString("imperial-hm-cult-name"), (string message) =>
             {
                 _metaData.SetEntityName(uid, message);
                 comp.HasName = true;
@@ -281,7 +281,7 @@ namespace Content.Server.Cult
                                 case "sector5":
                                     if (!picture.CollegiumUnlocked)
                                     {
-                                        _popupSystem.PopupEntity(Loc.GetString("imperial-hm-cult-begibratan"), cultist.Owner, cultist.Owner, PopupType.LargeCaution);
+                                        _popupSystem.PopupEntity(Loc.GetString("imperial-hm-cult-collegium"), cultist.Owner, cultist.Owner, PopupType.LargeCaution);
                                         _audioSystem.PlayEntity("/Audio/Imperial/Medieval/Cult/cult_zone_damage.ogg", Filter.Entities(cultist.Owner), cultist.Owner, false, AudioParams.Default.WithVolume(10f));
                                         _damageableSystem.TryChangeDamage(cultist.Owner, cultist.Damage, true, false);
                                     }
@@ -454,7 +454,7 @@ namespace Content.Server.Cult
                                     Spawn("ShockWaveEffect", coords);
                                     _audioSystem.PlayPvs(comp.SuccesSound, uid);
                                     _chat.TrySendInGameICMessage(uid, Loc.GetString("imperial-hm-cult-tisukaumresh"), InGameICChatType.Speak, false);
-                                    _chat.DispatchGlobalAnnouncement(Loc.GetString("imperial-hm-cult-ahpindosi"), playSound: true, colorOverride: Color.DeepPink, sender: "Барьер");
+                                    _chat.DispatchGlobalAnnouncement(Loc.GetString("imperial-hm-cult-ahpindosi"), playSound: true, colorOverride: Color.DeepPink, sender: Loc.GetString("medieval-hm-barrier-barrier"));
                                 }
                             }
                             else
@@ -977,9 +977,7 @@ namespace Content.Server.Cult
         }
         private void OnExamine(EntityUid uid, CultCheckPictureComponent comp, ExaminedEvent args)
         {
-            var bldcr = comp.BloodyCrystall.ToString();
-            var redstuff = comp.RedCrystall.ToString();
-            args.PushMarkup(Loc.GetString("imperial-hm-cult-current", ("amount", $"{bldcr}"), ("amount2", $"{redstuff}")));
+            args.PushMarkup(Loc.GetString("imperial-hm-cult-current", ("amount", $"{comp.BloodyCrystall}"), ("amount2", $"{comp.RedCrystall}")));
         }
         private void OnExamineTp(EntityUid uid, CultTeleportComponent comp, ExaminedEvent args)
         {
@@ -1013,8 +1011,7 @@ namespace Content.Server.Cult
             {
                 if (GetCultistCount(center.Owner) < need)
                 {
-                    var nn = need.ToString();
-                    _chat.TrySendInGameICMessage(uid, Loc.GetString("imperial-hm-cult-needmore", ("amount", $"{nn}")), InGameICChatType.Speak, false);
+                    _chat.TrySendInGameICMessage(uid, Loc.GetString("imperial-hm-cult-needmore", ("amount", $"{need}")), InGameICChatType.Speak, false);
                     return false;
                 }
             }

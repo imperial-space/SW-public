@@ -137,13 +137,13 @@ public sealed partial class SkillsSystem
             switch (i)
             {
                 case 0:
-                    _chat.TrySendInGameICMessage(uid, "кряхтит", InGameICChatType.Emote, false);
+                    _chat.TrySendInGameICMessage(uid, Loc.GetString("imperial-hm-vitality-ded"), InGameICChatType.Emote, false);
                     break;
                 case 1:
-                    _popup.PopupEntity("Спина болит...", uid, uid, Shared.Popups.PopupType.SmallCaution);
+                    _popup.PopupEntity(Loc.GetString("imperial-hm-vitality-ded2"), uid, uid, Shared.Popups.PopupType.SmallCaution);
                     break;
                 case 2:
-                    _popup.PopupEntity("Ух, как же тяжело...", uid, uid, Shared.Popups.PopupType.SmallCaution);
+                    _popup.PopupEntity(Loc.GetString("imperial-hm-vitality-ded3"), uid, uid, Shared.Popups.PopupType.SmallCaution);
                     break;
                 default:
                     break;

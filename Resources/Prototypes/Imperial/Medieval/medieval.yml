@@ -71,8 +71,8 @@
 
 - type: construction
   id: MedievalStockade
-  name: деревянный частокол
-  description: На случай, если на стену из дерева не хватает.
+  #name: деревянный частокол
+  #description: На случай, если на стену из дерева не хватает.
   graph: MedievalStockade
   startNode: start
   targetNode: medievalstockade
@@ -152,8 +152,8 @@
 
 - type: construction
   id: MedievalStockadeHigh
-  name: деревянная стена
-  description: Прочная стена из дерева.
+  #name: деревянная стена
+  #description: Прочная стена из дерева.
   graph: MedievalStockadeHigh
   startNode: start
   targetNode: medievalstockadeHigh
@@ -3206,13 +3206,13 @@
   maxCount: 1
 
 - type: construction
-  name: ожерелье из ушей гоблинов
+  #name: ожерелье из ушей гоблинов
   id: MedievalLootGoblin
   graph: MedievalLootGoblin
   startNode: start
   targetNode: ground
   category: construction-category-misc
-  description: "Гоблин слейэр бы был такому рад."
+  #description: "Гоблин слейэр бы был такому рад."
   icon: { sprite: Imperial/Medieval/Misc/mdv_loot.rsi, state: goblin }
 #    color: darkgreen
   objectType: Item
@@ -7184,13 +7184,13 @@
     node: ground
 
 - type: construction
-  name: огниво
+  #name: огниво
   id: MedievalFlinter
   graph: MedievalFlinter
   startNode: start
   targetNode: MedievalFlinter
   category: construction-category-misc
-  description: "Лучший способ добычи огня"
+  #description: "Лучший способ добычи огня"
   icon: { sprite: Imperial/Medieval/Misc/flint.rsi, state: flint }
   objectType: Item
 
@@ -7295,13 +7295,13 @@
     node: ground
 
 - type: construction
-  name: факел с тряпкой
+  #name: факел с тряпкой
   id: MedievalTorch
   graph: MedievalTorch
   startNode: start
   targetNode: MedievalTorch
   category: construction-category-misc
-  description: "Горит в 2 раза дольше обычного"
+  #description: "Горит в 2 раза дольше обычного"
   icon: { sprite: Imperial/Medieval/Misc/torch.rsi, state: icon }
   objectType: Item
 
@@ -8272,13 +8272,13 @@
   canWithdraw: true
 
 - type: construction
-  name: Деревянная броня гоблинов
+  #name: Деревянная броня гоблинов
   id: MedievalClothingOuterArmorGoblinWood
   graph: MedievalClothingOuterArmorGoblinWood
   startNode: start
   targetNode: MedievalClothingOuterArmorGoblinWood
   category: construction-category-misc
-  description: "Пик гоблинской моды"
+  #description: "Пик гоблинской моды"
   icon: { sprite: Imperial/Medieval/Clothing/Armor/goblin_wood_armor.rsi, state: icon }
   objectType: Item
 
@@ -8299,13 +8299,13 @@
       entity: MedievalClothingOuterArmorGoblinWood
 
 - type: construction
-  name: Алхимическая ступка
+  #name: Алхимическая ступка
   id: MedievalMortarNew
   graph: MedievalMortarNew
   startNode: start
   targetNode: MedievalMortarNew
   category: construction-category-misc
-  description: "Ступка, в которой можно измельчать алхимические ингредиенты с помощью пестика"
+  #description: "Ступка, в которой можно измельчать алхимические ингредиенты с помощью пестика"
   icon: { sprite: Imperial/Medieval/Chem/mortar.rsi, state: stupca }
   objectType: Item
 
@@ -8324,13 +8324,13 @@
       entity: MedievalMortarNew
 
 - type: construction
-  name: Пестик
+  #name: Пестик
   id: MedievalMortarTool
   graph: MedievalMortarTool
   startNode: start
   targetNode: MedievalMortarTool
   category: construction-category-misc
-  description: "Необходим для измельчения ингредиентов в ступке"
+  #description: "Необходим для измельчения ингредиентов в ступке"
   icon: { sprite: Imperial/Medieval/Chem/mortartool.rsi, state: icon }
   objectType: Item
 

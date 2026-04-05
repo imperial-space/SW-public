@@ -1,12 +1,12 @@
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Каркас # Imperial Recipes Locale
+  #name: Каркас # Imperial Recipes Locale
   id: Girder
   graph: Girder
   startNode: start
   targetNode: girder
   category: construction-category-structures
-  description: Большой металлический каркас. Его необходимо покрыть листами стали, чтобы он считался стеной. # Imperial Recipes Locale
+  #description: Большой металлический каркас. Его необходимо покрыть листами стали, чтобы он считался стеной. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -16,13 +16,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённый каркас # Imperial Recipes Locale
+  #name: Укреплённый каркас # Imperial Recipes Locale
   id: ReinforcedGirder
   graph: Girder
   startNode: start
   targetNode: reinforcedGirder
   category: construction-category-structures
-  description: Большой каркас из металла и стали. Его необходимо покрыть листами пластали, чтобы он считался стеной. # Imperial Recipes Locale
+  #description: Большой каркас из металла и стали. Его необходимо покрыть листами пластали, чтобы он считался стеной. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -32,13 +32,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Каркас-шестерня # Imperial Recipes Locale
+  #name: Каркас-шестерня # Imperial Recipes Locale
   id: ClockworkGirder
   graph: ClockworkGirder
   startNode: start
   targetNode: clockGirder
   category: construction-category-structures
-  description: Огромная шестерня с кронштейнами для дополнительного покрытия. С помощью листов латуни её можно превратить в стену. # Imperial Recipes Locale
+  #description: Огромная шестерня с кронштейнами для дополнительного покрытия. С помощью листов латуни её можно превратить в стену. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -48,13 +48,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стена # Imperial Recipes Locale
+  #name: Стена # Imperial Recipes Locale
   id: Wall
   graph: Girder
   startNode: start
   targetNode: wall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -64,13 +64,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённая стена # Imperial Recipes Locale
+  #name: Укреплённая стена # Imperial Recipes Locale
   id: ReinforcedWall
   graph: Girder
   startNode: start
   targetNode: reinforcedWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -80,13 +80,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Часовая стена # Imperial Recipes Locale
+  #name: Часовая стена # Imperial Recipes Locale
   id: WallClock
   graph: ClockworkGirder
   startNode: start
   targetNode: clockworkWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -96,13 +96,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Деревянная стена # Imperial Recipes Locale
+  #name: Деревянная стена # Imperial Recipes Locale
   id: WoodWall
   graph: Barricade
   startNode: start
   targetNode: woodWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -112,13 +112,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Урановая стена # Imperial Recipes Locale
+  #name: Урановая стена # Imperial Recipes Locale
   id: UraniumWall
   graph: Girder
   startNode: start
   targetNode: uraniumWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -128,13 +128,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Серебрянная стена # Imperial Recipes Locale
+  #name: Серебрянная стена # Imperial Recipes Locale
   id: SilverWall
   graph: Girder
   startNode: start
   targetNode: silverWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -144,13 +144,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Пластиковая стена # Imperial Recipes Locale
+  #name: Пластиковая стена # Imperial Recipes Locale
   id: PlasticWall
   graph: Girder
   startNode: start
   targetNode: plasticWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -160,13 +160,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Плазменная стена # Imperial Recipes Locale
+  #name: Плазменная стена # Imperial Recipes Locale
   id: PlasmaWall
   graph: Girder
   startNode: start
   targetNode: plasmaWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -176,13 +176,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Золотая стена # Imperial Recipes Locale
+  #name: Золотая стена # Imperial Recipes Locale
   id: GoldWall
   graph: Girder
   startNode: start
   targetNode: goldWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -192,13 +192,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стена шаттла # Imperial Recipes Locale
+  #name: Стена шаттла # Imperial Recipes Locale
   id: ShuttleWall
   graph: Girder
   startNode: start
   targetNode: shuttleWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canRotate: false
@@ -209,12 +209,12 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: DiagonalShuttleWall
-  name: Диагональная стена шаттла # Imperial Recipes Locale
+  #name: Диагональная стена шаттла # Imperial Recipes Locale
   graph: Girder
   startNode: start
   targetNode: diagonalshuttleWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -225,13 +225,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Бананиумовая стена # Imperial Recipes Locale
+  #name: Бананиумовая стена # Imperial Recipes Locale
   id: ClownWall
   graph: Girder
   startNode: start
   targetNode: bananiumWall
   category: construction-category-structures
-  description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
+  #description: Удерживает воздух внутри, а ассистентов снаружи. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -242,13 +242,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Мясная стена # Imperial Recipes Locale
+  #name: Мясная стена # Imperial Recipes Locale
   id: MeatWall
   graph: Girder
   startNode: start
   targetNode: meatWall
   category: construction-category-structures
-  description: Липко. # Imperial Recipes Locale
+  #description: Липко. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -278,7 +278,7 @@
   startNode: start
   targetNode: grille
   category: construction-category-structures
-  description: Хлипкий каркас из металлических прутьев. # Imperial Recipes Locale
+  #description: Хлипкий каркас из металлических прутьев. # Imperial Recipes Locale
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
@@ -289,13 +289,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Заводная решётка # Imperial Recipes Locale
+  #name: Заводная решётка # Imperial Recipes Locale
   id: ClockGrille
   graph: ClockGrille
   startNode: start
   targetNode: clockGrille
   category: construction-category-structures
-  description: Хлипкий каркас из металлических прутьев, собранный в традиционном Ратварском стиле. # Imperial Recipes Locale
+  #description: Хлипкий каркас из металлических прутьев, собранный в традиционном Ратварском стиле. # Imperial Recipes Locale
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
@@ -305,13 +305,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональная решётка # Imperial Recipes Locale
+  #name: Диагональная решётка # Imperial Recipes Locale
   id: GrilleDiagonal
   graph: GrilleDiagonal
   startNode: start
   targetNode: grilleDiagonal
   category: construction-category-structures
-  description: Хлипкий каркас из металлических прутьев. # Imperial Recipes Locale
+  #description: Хлипкий каркас из металлических прутьев. # Imperial Recipes Locale
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
@@ -320,13 +320,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональная заводная решётка # Imperial Recipes Locale
+  #name: Диагональная заводная решётка # Imperial Recipes Locale
   id: ClockworkGrilleDiagonal
   graph: GrilleDiagonal
   startNode: start
   targetNode: clockworkGrilleDiagonal
   category: construction-category-structures
-  description: Хлипкий каркас из металлических прутьев, собранный в традиционном Ратварском стиле. # Imperial Recipes Locale
+  #description: Хлипкий каркас из металлических прутьев, собранный в традиционном Ратварском стиле. # Imperial Recipes Locale
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
@@ -335,13 +335,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Окно # Imperial Recipes Locale
+  #name: Окно # Imperial Recipes Locale
   id: Window
   graph: Window
   startNode: start
   targetNode: window
   category: construction-category-structures
-  description: Прозрачное. # Imperial Recipes Locale
+  #description: Прозрачное. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -352,13 +352,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное окно # Imperial Recipes Locale
+  #name: Диагональное окно # Imperial Recipes Locale
   id: WindowDiagonal
   graph: WindowDiagonal
   startNode: start
   targetNode: windowDiagonal
   category: construction-category-structures
-  description: Прозрачное. # Imperial Recipes Locale
+  #description: Прозрачное. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -368,13 +368,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Армированное окно # Imperial Recipes Locale
+  #name: Армированное окно # Imperial Recipes Locale
   id: ReinforcedWindow
   graph: Window
   startNode: start
   targetNode: reinforcedWindow
   category: construction-category-structures
-  description: Крепкое и прозрачное. # Imperial Recipes Locale
+  #description: Крепкое и прозрачное. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -385,13 +385,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное армированное окно # Imperial Recipes Locale
+  #name: Диагональное армированное окно # Imperial Recipes Locale
   id: ReinforcedWindowDiagonal
   graph: WindowDiagonal
   startNode: start
   targetNode: reinforcedWindowDiagonal
   category: construction-category-structures
-  description: Крепкое и прозрачное. # Imperial Recipes Locale
+  #description: Крепкое и прозрачное. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -401,13 +401,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Тонированное окно # Imperial Recipes Locale
+  #name: Тонированное окно # Imperial Recipes Locale
   id: TintedWindow
   graph: Window
   startNode: start
   targetNode: tintedWindow
   category: construction-category-structures
-  description: Непрозрачное, но крепкое. # Imperial Recipes Locale
+  #description: Непрозрачное, но крепкое. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -418,13 +418,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Заводное окно # Imperial Recipes Locale
+  #name: Заводное окно # Imperial Recipes Locale
   id: ClockworkWindow
   graph: Window
   startNode: start
   targetNode: clockworkWindow
   category: construction-category-structures
-  description: Прозрачное и твёрдое, с золотистым оттенком. # Imperial Recipes Locale
+  #description: Прозрачное и твёрдое, с золотистым оттенком. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -435,13 +435,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное заводное окно # Imperial Recipes Locale
+  #name: Диагональное заводное окно # Imperial Recipes Locale
   id: ClockworkWindowDiagonal
   graph: WindowDiagonal
   startNode: start
   targetNode: clockworkWindowDiagonal
   category: construction-category-structures
-  description: Прозрачное и твёрдое, с золотистым оттенком. # Imperial Recipes Locale
+  #description: Прозрачное и твёрдое, с золотистым оттенком. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -451,14 +451,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Плазменное окно # Imperial Recipes Locale
+  #name: Плазменное окно # Imperial Recipes Locale
   id: PlasmaWindow
   graph: Window
   startNode: start
   targetNode: plasmaWindow
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Прозрачное и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
+  #description: Прозрачное и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -468,14 +468,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённое плазменное окно # Imperial Recipes Locale
+  #name: Укреплённое плазменное окно # Imperial Recipes Locale
   id: ReinforcedPlasmaWindow
   graph: Window
   startNode: start
   targetNode: reinforcedPlasmaWindow
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Огнестойкое и ещё более прочное, с фиолетовым оттенком.
+  #description: Огнестойкое и ещё более прочное, с фиолетовым оттенком.
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -485,14 +485,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Окно шаттла # Imperial Recipes Locale
+  #name: Окно шаттла # Imperial Recipes Locale
   id: ShuttleWindow
   graph: Window
   startNode: start
   targetNode: shuttleWindow
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Очень прочное для сдерживания давления сверхзвуковой скорости или сдерживания боеприпасов. # Imperial Recipes Locale
+  #description: Очень прочное для сдерживания давления сверхзвуковой скорости или сдерживания боеприпасов. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -502,14 +502,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное плазменное окно # Imperial Recipes Locale
+  #name: Диагональное плазменное окно # Imperial Recipes Locale
   id: PlasmaWindowDiagonal
   graph: WindowDiagonal
   startNode: start
   targetNode: plasmaWindowDiagonal
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Прозрачное и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
+  #description: Прозрачное и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -518,14 +518,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное укреплённое плазменное окно # Imperial Recipes Locale
+  #name: Диагональное укреплённое плазменное окно # Imperial Recipes Locale
   id: ReinforcedPlasmaWindowDiagonal
   graph: WindowDiagonal
   startNode: start
   targetNode: reinforcedPlasmaWindowDiagonal
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Огнестойкое и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
+  #description: Огнестойкое и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -534,13 +534,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное окно # Imperial Recipes Locale
+  #name: Диагональное окно # Imperial Recipes Locale
   id: WindowDirectional
   graph: WindowDirectional
   startNode: start
   targetNode: windowDirectional
   category: construction-category-structures
-  description: Прозрачное. # Imperial Recipes Locale
+  #description: Прозрачное. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -550,13 +550,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное укреплённое окно # Imperial Recipes Locale
+  #name: Диагональное укреплённое окно # Imperial Recipes Locale
   id: WindowReinforcedDirectional
   graph: WindowDirectional
   startNode: start
   targetNode: windowReinforcedDirectional
   category: construction-category-structures
-  description: Прозрачное и крепкое. # Imperial Recipes Locale
+  #description: Прозрачное и крепкое. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -566,13 +566,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное часовое окно # Imperial Recipes Locale
+  #name: Диагональное часовое окно # Imperial Recipes Locale
   id: WindowClockworkDirectional
   graph: WindowDirectional
   startNode: start
   targetNode: windowClockworkDirectional
   category: construction-category-structures
-  description: Прозрачное и крепкое, с золотым оттенком. # Imperial Recipes Locale
+  #description: Прозрачное и крепкое, с золотым оттенком. # Imperial Recipes Locale
   canBuildInImpassable: true
   conditions:
     - !type:EmptyOrWindowValidInTile
@@ -582,14 +582,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное плазменное окно # Imperial Recipes Locale
+  #name: Диагональное плазменное окно # Imperial Recipes Locale
   id: PlasmaWindowDirectional
   graph: WindowDirectional
   startNode: start
   targetNode: plasmaWindowDirectional
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Прозрачное и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
+  #description: Прозрачное и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -598,14 +598,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное укреплённое плазменное окно # Imperial Recipes Locale
+  #name: Диагональное укреплённое плазменное окно # Imperial Recipes Locale
   id: PlasmaReinforcedWindowDirectional
   graph: WindowDirectional
   startNode: start
   targetNode: plasmaReinforcedWindowDirectional
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Огнестойкое и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
+  #description: Огнестойкое и ещё более прочное, с фиолетовым оттенком. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -614,14 +614,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Урановое окно # Imperial Recipes Locale
+  #name: Урановое окно # Imperial Recipes Locale
   id: UraniumWindow
   graph: Window
   startNode: start
   targetNode: uraniumWindow
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Прозрачное и гораздо более прочное, чем обычное стекло, с добавлением RadAbsorb для защиты от смертельного излучения. # Imperial Recipes Locale
+  #description: Прозрачное и гораздо более прочное, чем обычное стекло, с добавлением RadAbsorb для защиты от смертельного излучения. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -631,14 +631,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Укреплённое урановое окно # Imperial Recipes Locale
+  #name: Укреплённое урановое окно # Imperial Recipes Locale
   id: ReinforcedUraniumWindow
   graph: Window
   startNode: start
   targetNode: reinforcedUraniumWindow
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Прозрачное и гораздо более прочное, чем обычное стекло, с добавлением RadAbsorb для защиты от смертельного излучения. # Imperial Recipes Locale
+  #description: Прозрачное и гораздо более прочное, чем обычное стекло, с добавлением RadAbsorb для защиты от смертельного излучения. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -648,14 +648,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное урановое окно # Imperial Recipes Locale
+  #name: Диагональное урановое окно # Imperial Recipes Locale
   id: UraniumWindowDiagonal
   graph: WindowDiagonal
   startNode: start
   targetNode: uraniumWindowDiagonal
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Прозрачное и гораздо более прочное, чем обычное стекло, с добавлением RadAbsorb для защиты от смертельного излучения. # Imperial Recipes Locale
+  #description: Прозрачное и гораздо более прочное, чем обычное стекло, с добавлением RadAbsorb для защиты от смертельного излучения. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -664,14 +664,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Диагональное укреплённое урановое окно # Imperial Recipes Locale
+  #name: Диагональное укреплённое урановое окно # Imperial Recipes Locale
   id: ReinforcedUraniumWindowDiagonal
   graph: WindowDiagonal
   startNode: start
   targetNode: reinforcedUraniumWindowDiagonal
   category: construction-category-structures
   canBuildInImpassable: true
-  description: Прозрачное и гораздо более прочное, чем обычное стекло, с добавлением RadAbsorb для защиты от смертельного излучения. # Imperial Recipes Locale
+  #description: Прозрачное и гораздо более прочное, чем обычное стекло, с добавлением RadAbsorb для защиты от смертельного излучения. # Imperial Recipes Locale
   conditions:
     - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
@@ -680,13 +680,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Пожарный шлюз # Imperial Recipes Locale
+  #name: Пожарный шлюз # Imperial Recipes Locale
   id: Firelock
   graph: Firelock
   startNode: start
   targetNode: Firelock
   category: construction-category-structures
-  description: Это пожарный шлюз – он запирает помещение при срабатывании пожарной сигнализации на участке. Не станьте лепёшкой! # Imperial Recipes Locale
+  #description: Это пожарный шлюз – он запирает помещение при срабатывании пожарной сигнализации на участке. Не станьте лепёшкой! # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -697,13 +697,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стеклянный пожарный шлюз # Imperial Recipes Locale
+  #name: Стеклянный пожарный шлюз # Imperial Recipes Locale
   id: FirelockGlass
   graph: Firelock
   startNode: start
   targetNode: FirelockGlass
   category: construction-category-structures
-  description: Это пожарный шлюз – он запирает помещение при срабатывании пожарной сигнализации на участке. Не станьте лепёшкой! # Imperial Recipes Locale
+  #description: Это пожарный шлюз – он запирает помещение при срабатывании пожарной сигнализации на участке. Не станьте лепёшкой! # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -714,13 +714,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Пожарная перегородка # Imperial Recipes Locale
+  #name: Пожарная перегородка # Imperial Recipes Locale
   id: FirelockEdge
   graph: Firelock
   startNode: start
   targetNode: FirelockEdge
   category: construction-category-structures
-  description: Это пожарный шлюз – он запирает помещение при срабатывании пожарной сигнализации на участке. Не станьте лепёшкой! # Imperial Recipes Locale
+  #description: Это пожарный шлюз – он запирает помещение при срабатывании пожарной сигнализации на участке. Не станьте лепёшкой! # Imperial Recipes Locale
 
   placementMode: SnapgridCenter
   objectType: Structure
@@ -743,13 +743,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Ставни # Imperial Recipes Locale
+  #name: Ставни # Imperial Recipes Locale
   id: Shutters
   graph: Shutters
   startNode: start
   targetNode: Shutters
   category: construction-category-structures
-  description: Это ставни - подключите их к кнопке, чтобы открыть и закрыть. # Imperial Recipes Locale
+  #description: Это ставни - подключите их к кнопке, чтобы открыть и закрыть. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -757,13 +757,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Оконные ставни # Imperial Recipes Locale
+  #name: Оконные ставни # Imperial Recipes Locale
   id: ShuttersWindow
   graph: Shutters
   startNode: start
   targetNode: ShuttersWindow
   category: construction-category-structures
-  description: Это ставни - подключите их к кнопке, чтобы открыть и закрыть. # Imperial Recipes Locale
+  #description: Это ставни - подключите их к кнопке, чтобы открыть и закрыть. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -771,13 +771,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Радиационные ставни # Imperial Recipes Locale
+  #name: Радиационные ставни # Imperial Recipes Locale
   id: ShuttersRadiation
   graph: Shutters
   startNode: start
   targetNode: ShuttersRadiation
   category: construction-category-structures
-  description: то ставни - подключите их к кнопке, чтобы открыть и закрыть. # Imperial Recipes Locale
+  #description: то ставни - подключите их к кнопке, чтобы открыть и закрыть. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -785,13 +785,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Гермозатвор # Imperial Recipes Locale
+  #name: Гермозатвор # Imperial Recipes Locale
   id: BlastDoor
   graph: BlastDoor
   startNode: start
   targetNode: blastdoor
   category: construction-category-structures
-  description: Имеется надпись "ОПАСНОСТЬ ВЗРЫВА". # Imperial Recipes Locale
+  #description: Имеется надпись "ОПАСНОСТЬ ВЗРЫВА". # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -799,13 +799,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Мостик # Imperial Recipes Locale
+  #name: Мостик # Imperial Recipes Locale
   id: Catwalk
   graph: Catwalk
   startNode: start
   targetNode: Catwalk
   category: construction-category-structures
-  description: Прямо как решетка. Разве что выглядит лучше. # Imperial Recipes Locale
+  #description: Прямо как решетка. Разве что выглядит лучше. # Imperial Recipes Locale
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
@@ -819,13 +819,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Бананиумовый пол # Imperial Recipes Locale
+  #name: Бананиумовый пол # Imperial Recipes Locale
   id: FloorBananium
   graph: FloorBananium
   startNode: start
   targetNode: BananiumFloor
   category: construction-category-structures
-  description: Скользкий пол из ярко-желтого бананиума. # Imperial Recipes Locale
+  #description: Скользкий пол из ярко-желтого бананиума. # Imperial Recipes Locale
   conditions:
     - !type:TileNotBlocked
       failIfSpace: false
@@ -837,13 +837,13 @@
   canBuildInImpassable: false
 
 - type: construction
-  name: Деревянная баррикада # Imperial Recipes Locale
+  #name: Деревянная баррикада # Imperial Recipes Locale
   id: Barricade
   graph: Barricade
   startNode: start
   targetNode: barricadefull
   category: construction-category-structures
-  description: Импровизированная баррикада из деревянных досок. # Imperial Recipes Locale
+  #description: Импровизированная баррикада из деревянных досок. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -852,13 +852,13 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Деревянная баррикада # Imperial Recipes Locale
+  #name: Деревянная баррикада # Imperial Recipes Locale
   id: BarricadeDirectional
   graph: BarricadeDirectional
   startNode: start
   targetNode: barricadefull
   category: construction-category-structures
-  description: Импровизированная баррикада из деревянных досок. # Imperial Recipes Locale
+  #description: Импровизированная баррикада из деревянных досок. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -868,13 +868,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Перила # Imperial Recipes Locale
+  #name: Перила # Imperial Recipes Locale
   id: Railing
   graph: Railing
   startNode: start
   targetNode: railing
   category: construction-category-structures
-  description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
+  #description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -884,13 +884,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Перила # Imperial Recipes Locale
+  #name: Перила # Imperial Recipes Locale
   id: RailingCorner
   graph: Railing
   startNode: start
   targetNode: railingCorner
   category: construction-category-structures
-  description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
+  #description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -900,13 +900,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Перила # Imperial Recipes Locale
+  #name: Перила # Imperial Recipes Locale
   id: RailingCornerSmall
   graph: Railing
   startNode: start
   targetNode: railingCornerSmall
   category: construction-category-structures
-  description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
+  #description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -916,13 +916,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Перила # Imperial Recipes Locale
+  #name: Перила # Imperial Recipes Locale
   id: RailingRound
   graph: Railing
   startNode: start
   targetNode: railingRound
   category: construction-category-structures
-  description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
+  #description: Простые перила, предназначенные для защиты таких идиотов, как ты, от падения. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -933,13 +933,13 @@
 # Chain link fencing
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Сетка-рабица # Imperial Recipes Locale
+  #name: Сетка-рабица # Imperial Recipes Locale
   id: FenceMetal
   graph: FenceMetal
   startNode: start
   targetNode: straight
   category: construction-category-structures
-  description: Часть сетчатого забора, предназначенная для ограждения территорий. # Imperial Recipes Locale
+  #description: Часть сетчатого забора, предназначенная для ограждения территорий. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -949,13 +949,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Угол сетки-рабицы # Imperial Recipes Locale
+  #name: Угол сетки-рабицы # Imperial Recipes Locale
   id: FenceMetalCorner
   graph: FenceMetal
   startNode: start
   targetNode: corner
   category: construction-category-structures
-  description: Часть сетчатого забора, предназначенная для ограждения территорий. # Imperial Recipes Locale
+  #description: Часть сетчатого забора, предназначенная для ограждения территорий. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -965,13 +965,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Конец сетки-рабицы # Imperial Recipes Locale
+  #name: Конец сетки-рабицы # Imperial Recipes Locale
   id: FenceMetalEnd
   graph: FenceMetal
   startNode: start
   targetNode: end
   category: construction-category-structures
-  description: Часть сетчатого забора, предназначенная для ограждения территорий. # Imperial Recipes Locale
+  #description: Часть сетчатого забора, предназначенная для ограждения территорий. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -981,13 +981,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Ворота сетки-рабицы # Imperial Recipes Locale
+  #name: Ворота сетки-рабицы # Imperial Recipes Locale
   id: FenceMetalGate
   graph: FenceMetal
   startNode: start
   targetNode: gate
   category: construction-category-structures
-  description: Простой способ пройти через сетчатый забор. # Imperial Recipes Locale
+  #description: Простой способ пройти через сетчатый забор. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -997,13 +997,13 @@
 
 #Wooden fence high
 - type: construction
-  name: Деревянный забор # Imperial Recipes Locale
+  #name: Деревянный забор # Imperial Recipes Locale
   id: FenceWood
   graph: FenceWood
   startNode: start
   targetNode: straight
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1012,13 +1012,13 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Конец деревянного забора # Imperial Recipes Locale
+  #name: Конец деревянного забора # Imperial Recipes Locale
   id: FenceWoodEnd
   graph: FenceWood
   startNode: start
   targetNode: end
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1027,13 +1027,13 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Угол деревянного забора # Imperial Recipes Locale
+  #name: Угол деревянного забора # Imperial Recipes Locale
   id: FenceWoodCorner
   graph: FenceWood
   startNode: start
   targetNode: corner
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1042,13 +1042,13 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Т-образный деревянный забор # Imperial Recipes Locale
+  #name: Т-образный деревянный забор # Imperial Recipes Locale
   id: FenceWoodTJunction
   graph: FenceWood
   startNode: start
   targetNode: tjunction
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1057,13 +1057,13 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Ворота деревянного забора # Imperial Recipes Locale
+  #name: Ворота деревянного забора # Imperial Recipes Locale
   id: FenceWoodGate
   graph: FenceWood
   startNode: start
   targetNode: gate
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1073,13 +1073,13 @@
 
 #Wooden fence small
 - type: construction
-  name: Небольшой деревянный забор # Imperial Recipes Locale
+  #name: Небольшой деревянный забор # Imperial Recipes Locale
   id: FenceWoodSmall
   graph: FenceWood
   startNode: start
   targetNode: straight_small
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1088,13 +1088,13 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Конец небольшого деревянного забора # Imperial Recipes Locale
+  #name: Конец небольшого деревянного забора # Imperial Recipes Locale
   id: FenceWoodEndSmall
   graph: FenceWood
   startNode: start
   targetNode: end_small
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1103,13 +1103,13 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Угол небольшого деревянного забора # Imperial Recipes Locale
+  #name: Угол небольшого деревянного забора # Imperial Recipes Locale
   id: FenceWoodCornerSmall
   graph: FenceWood
   startNode: start
   targetNode: corner_small
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1118,13 +1118,13 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Т-образный деревянный забор # Imperial Recipes Locale
+  #name: Т-образный деревянный забор # Imperial Recipes Locale
   id: FenceWoodTJunctionSmall
   graph: FenceWood
   startNode: start
   targetNode: tjunction_small
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1133,13 +1133,13 @@
   - !type:TileNotBlocked
 
 - type: construction
-  name: Ворота маленького деревянного забора # Imperial Recipes Locale
+  #name: Ворота маленького деревянного забора # Imperial Recipes Locale
   id: FenceWoodGateSmall
   graph: FenceWood
   startNode: start
   targetNode: gate_small
   category: construction-category-structures
-  description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
+  #description: Часть деревянного забора, предназначенного для ограждения территории. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1149,14 +1149,14 @@
 
 #Airlocks
 - type: construction
-  name: Шлюз # Imperial Recipes Locale
+  #name: Шлюз # Imperial Recipes Locale
   hide: true # imperial medieval craft disable
   id: Airlock
   graph: Airlock
   startNode: start
   targetNode: airlock
   category: construction-category-structures
-  description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
+  #description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1165,14 +1165,14 @@
     - !type:TileNotBlocked
 
 - type: construction
-  name: Стеклянный шлюз # Imperial Recipes Locale
+  #name: Стеклянный шлюз # Imperial Recipes Locale
   hide: true # imperial medieval craft disable
   id: AirlockGlass
   graph: Airlock
   startNode: start
   targetNode: glassAirlock
   category: construction-category-structures
-  description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
+  #description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1182,13 +1182,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Шестерной шлюз # Imperial Recipes Locale
+  #name: Шестерной шлюз # Imperial Recipes Locale
   id: PinionAirlock
   graph: PinionAirlock
   startNode: start
   targetNode: airlock
   category: construction-category-structures
-  description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
+  #description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1198,13 +1198,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стеклянный шестерной шлюз # Imperial Recipes Locale
+  #name: Стеклянный шестерной шлюз # Imperial Recipes Locale
   id: PinionAirlockGlass
   graph: PinionAirlock
   startNode: start
   targetNode: glassAirlock
   category: construction-category-structures
-  description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
+  #description: Он открывается, он закрывается, и он может вас раздавить. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1214,13 +1214,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стыковочный шлюз # Imperial Recipes Locale
+  #name: Стыковочный шлюз # Imperial Recipes Locale
   id: AirlockShuttle
   graph: AirlockShuttle
   startNode: start
   targetNode: airlock
   category: construction-category-structures
-  description: Он открывается, он закрывается, и он может вас раздавить. Необходим для стыковки двух космических кораблей. # Imperial Recipes Locale
+  #description: Он открывается, он закрывается, и он может вас раздавить. Необходим для стыковки двух космических кораблей. # Imperial Recipes Locale
 
   #  state: assembly
   objectType: Structure
@@ -1231,13 +1231,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стеклянный стыковочный шлюз # Imperial Recipes Locale
+  #name: Стеклянный стыковочный шлюз # Imperial Recipes Locale
   id: AirlockGlassShuttle
   graph: AirlockShuttle
   startNode: start
   targetNode: airlockGlass
   category: construction-category-structures
-  description: Он открывается, он закрывается, и он может вас раздавить. Необходим для стыковки двух космических кораблей. В этом есть окно. # Imperial Recipes Locale
+  #description: Он открывается, он закрывается, и он может вас раздавить. Необходим для стыковки двух космических кораблей. В этом есть окно. # Imperial Recipes Locale
 
   #  state: assembly
   objectType: Structure
@@ -1248,13 +1248,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Раздвижное окно # Imperial Recipes Locale
+  #name: Раздвижное окно # Imperial Recipes Locale
   id: Windoor
   graph: Windoor
   startNode: start
   targetNode: windoor
   category: construction-category-structures
-  description: Оно открывается, закрывается, и вы можете видеть сквозь него! Может быть изготовлено из плазмы, урана или обычного стекла! # Imperial Recipes Locale
+  #description: Оно открывается, закрывается, и вы можете видеть сквозь него! Может быть изготовлено из плазмы, урана или обычного стекла! # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1264,13 +1264,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Армированное раздвижное окно # Imperial Recipes Locale
+  #name: Армированное раздвижное окно # Imperial Recipes Locale
   id: SecureWindoor
   graph: Windoor
   startNode: start
   targetNode: windoorSecure
   category: construction-category-structures
-  description: Оно открывается, закрывается, и вы можете видеть сквозь него! Может быть изготовлен из плазмы, урана или обычного стекла! # Imperial Recipes Locale
+  #description: Оно открывается, закрывается, и вы можете видеть сквозь него! Может быть изготовлен из плазмы, урана или обычного стекла! # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1280,13 +1280,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Раздвижное заводное окно # Imperial Recipes Locale
+  #name: Раздвижное заводное окно # Imperial Recipes Locale
   id: ClockworkWindoor
   graph: Windoor
   startNode: start
   targetNode: windoorClockwork
   category: construction-category-structures
-  description: Оно открывается, закрывается, и вы можете видеть сквозь него! Выглядит жестко. # Imperial Recipes Locale
+  #description: Оно открывается, закрывается, и вы можете видеть сквозь него! Выглядит жестко. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1297,13 +1297,13 @@
 #lighting
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Настенный светильник # Imperial Recipes Locale
+  #name: Настенный светильник # Imperial Recipes Locale
   id: LightTubeFixture
   graph: LightFixture
   startNode: start
   targetNode: tubeLight
   category: construction-category-structures
-  description: Настенный светильник. Использует лампы-трубки. # Imperial Recipes Locale
+  #description: Настенный светильник. Использует лампы-трубки. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1316,13 +1316,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Маленький настенный светильник # Imperial Recipes Locale
+  #name: Маленький настенный светильник # Imperial Recipes Locale
   id: LightSmallFixture
   graph: LightFixture
   startNode: start
   targetNode: bulbLight
   category: construction-category-structures
-  description: Настенный светильник. Использует лампочки. # Imperial Recipes Locale
+  #description: Настенный светильник. Использует лампочки. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1334,13 +1334,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Аварийная лампа # Imperial Recipes Locale
+  #name: Аварийная лампа # Imperial Recipes Locale
   id: EmergencyLightFixture
   graph: LightFixture
   startNode: start
   targetNode: emergencyLight
   category: construction-category-structures
-  description: Аварийная лампа. # Imperial Recipes Locale
+  #description: Аварийная лампа. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1351,13 +1351,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Фонарный столб # Imperial Recipes Locale
+  #name: Фонарный столб # Imperial Recipes Locale
   id: LightGroundFixture
   graph: LightFixture
   startNode: start
   targetNode: groundLight
   category: construction-category-structures
-  description: Маленький осветительный прибор. Использует лампочки. # Imperial Recipes Locale
+  #description: Маленький осветительный прибор. Использует лампочки. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1368,13 +1368,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Стробоскоп # Imperial Recipes Locale
+  #name: Стробоскоп # Imperial Recipes Locale
   id: LightStrobeFixture
   graph: LightFixture
   startNode: start
   targetNode: strobeLight
   category: construction-category-structures
-  description: Настенный светильник. Используйте лампочки. # Imperial Recipes Locale
+  #description: Настенный светильник. Используйте лампочки. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1386,13 +1386,13 @@
 #conveyor
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Конвейерная лента # Imperial Recipes Locale
+  #name: Конвейерная лента # Imperial Recipes Locale
   id: ConveyorBelt
   graph: ConveyorGraph
   startNode: start
   targetNode: entity
   category: construction-category-structures
-  description: Конвейерная лента, обычно используемая для довольно быстрой транспортировки большого количества предметов в другое место. # Imperial Recipes Locale
+  #description: Конвейерная лента, обычно используемая для довольно быстрой транспортировки большого количества предметов в другое место. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1401,13 +1401,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Металлическая дверь # Imperial Recipes Locale
+  #name: Металлическая дверь # Imperial Recipes Locale
   id: MetalDoor
   graph: DoorGraph
   startNode: start
   targetNode: metalDoor
   category: construction-category-structures
-  description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
+  #description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1416,13 +1416,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Деревянная дверь # Imperial Recipes Locale
+  #name: Деревянная дверь # Imperial Recipes Locale
   id: WoodDoor
   graph: DoorGraph
   startNode: start
   targetNode: woodDoor
   category: construction-category-structures
-  description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
+  #description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1431,13 +1431,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Плазменная дверь # Imperial Recipes Locale
+  #name: Плазменная дверь # Imperial Recipes Locale
   id: PlasmaDoor
   graph: DoorGraph
   startNode: start
   targetNode: plasmaDoor
   category: construction-category-structures
-  description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
+  #description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1446,13 +1446,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Золотая дверь # Imperial Recipes Locale
+  #name: Золотая дверь # Imperial Recipes Locale
   id: GoldDoor
   graph: DoorGraph
   startNode: start
   targetNode: goldDoor
   category: construction-category-structures
-  description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
+  #description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1461,13 +1461,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Серебрянная дверь # Imperial Recipes Locale
+  #name: Серебрянная дверь # Imperial Recipes Locale
   id: SilverDoor
   graph: DoorGraph
   startNode: start
   targetNode: silverDoor
   category: construction-category-structures
-  description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
+  #description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1476,13 +1476,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Бумажная дверь # Imperial Recipes Locale
+  #name: Бумажная дверь # Imperial Recipes Locale
   id: PaperDoor
   graph: DoorGraph
   startNode: start
   targetNode: paperDoor
   category: construction-category-structures
-  description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
+  #description: Примитивная дверь с ручным управлением, как у пещерных людей. # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1506,7 +1506,7 @@
   targetNode: plasticFlaps
   category: construction-category-structures
   placementMode: SnapgridCenter
-  description: Пластиковые шторки, позволяющие пропускать только предметы. # Imperial Recipes Locale
+  #description: Пластиковые шторки, позволяющие пропускать только предметы. # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
   conditions:
@@ -1514,14 +1514,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Непрозрачные пластиковые шторки # Imperial Recipes Locale
+  #name: Непрозрачные пластиковые шторки # Imperial Recipes Locale
   id: PlasticFlapsOpaque
   graph: PlasticFlapsGraph
   startNode: start
   targetNode: opaqueFlaps
   category: construction-category-structures
   placementMode: SnapgridCenter
-  description: Непрозрачные пластиковые шторки, позволяющие пропускать только предметы. # Imperial Recipes Locale
+  #description: Непрозрачные пластиковые шторки, позволяющие пропускать только предметы. # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
   conditions:
@@ -1529,14 +1529,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Статуя карпа # Imperial Recipes Locale
+  #name: Статуя карпа # Imperial Recipes Locale
   id: CarpStatue
   graph: CarpStatue
   startNode: start
   targetNode: statue
   category: construction-category-structures
   placementMode: SnapgridCenter
-  description: Статуя одного из отважных карпов, которые привели нас туда, где мы находимся сегодня. Сделана из настоящих зубов! # Imperial Recipes Locale
+  #description: Статуя одного из отважных карпов, которые привели нас туда, где мы находимся сегодня. Сделана из настоящих зубов! # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
   conditions:
@@ -1544,14 +1544,14 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Бананиумовая статуя спасителя # Imperial Recipes Locale
+  #name: Бананиумовая статуя спасителя # Imperial Recipes Locale
   id: BananiumClownStatue
   graph: BananiumStatueClown
   startNode: start
   targetNode: bananiumStatue
   category: construction-category-structures
   placementMode: SnapgridCenter
-  description: Бананиумовая статуя, изображающая возвращение спасителя, который поведет всех клоунов на великий побег от СБ! # Imperial Recipes Locale
+  #description: Бананиумовая статуя, изображающая возвращение спасителя, который поведет всех клоунов на великий побег от СБ! # Imperial Recipes Locale
   objectType: Structure
   canBuildInImpassable: false
   conditions:
@@ -1559,13 +1559,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Бананиумовая дверь # Imperial Recipes Locale
+  #name: Бананиумовая дверь # Imperial Recipes Locale
   id: BananiumDoor
   graph: DoorGraph
   startNode: start
   targetNode: bananiumDoor
   category: construction-category-structures
-  description: Примитивная дверь, сделанная из банана, ХОНК! # Imperial Recipes Locale
+  #description: Примитивная дверь, сделанная из банана, ХОНК! # Imperial Recipes Locale
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
@@ -1574,13 +1574,13 @@
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Алтарь Хонкоматери # Imperial Recipes Locale
+  #name: Алтарь Хонкоматери # Imperial Recipes Locale
   id: BananiumAltar
   graph: BananiumAltarGraph
   startNode: start
   targetNode: bananiumAltar
   category: construction-category-structures
-  description: Бананиумовый алтарь, посвященный Великой Хонкоматери. # Imperial Recipes Locale
+  #description: Бананиумовый алтарь, посвященный Великой Хонкоматери. # Imperial Recipes Locale
 
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1592,8 +1592,8 @@
 - type: construction
   hide: true # imperial medieval craft disable
   id: SolidSecretDoor
-  name: Секретная дверь # Imperial Recipes Locale
-  description: Секретная дверь, замаскированная под обычную стену. # Imperial Recipes Locale
+  #name: Секретная дверь # Imperial Recipes Locale
+  #description: Секретная дверь, замаскированная под обычную стену. # Imperial Recipes Locale
   graph: SecretDoor
   startNode: start
   targetNode: solidSecretDoor

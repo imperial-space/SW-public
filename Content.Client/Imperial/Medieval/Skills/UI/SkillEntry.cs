@@ -72,7 +72,7 @@ public sealed partial class SkillEntry : Control
     {
         VisualizerContainer.RemoveAllChildren();
         _level = level;
-        LevelLabel.Text = $"УР: {level}";
+        LevelLabel.Text = Loc.GetString("imperial-hm-ui-lvl", ("amount", $"{level}"));
 
         IncreaseButton.Disabled = level >= 20;
         DecreaseButton.Disabled = level <= 1;

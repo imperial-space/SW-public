@@ -16,7 +16,7 @@ public sealed partial class HumanoidProfileEditor
 
         SkillsContainer.RemoveAllChildren();
 
-        TabContainer.SetTabTitle(1, "Характеристики");
+        TabContainer.SetTabTitle(1, Loc.GetString("imperial-hm-misc-chars"));
 
         var sum = SharedSkillsSystem.Points;
         foreach (var item in _prototypeManager.EnumeratePrototypes<SkillPrototype>())
@@ -24,7 +24,7 @@ public sealed partial class HumanoidProfileEditor
             sum += SharedSkillsSystem.GetPointsCost(Profile.Skills.GetValueOrDefault(item.ID, 10));
         }
 
-        SkillPointsCountLabel.Text = $"Доступно очков: {sum}";
+        SkillPointsCountLabel.Text = Loc.GetString("imperial-hm-misc-points", ("amount", $"{sum}"));
         SetDefaultSkillsButton.OnPressed += args =>
         {
             HumanoidCharacterProfile prof = new(Profile);
@@ -69,7 +69,7 @@ public sealed partial class HumanoidProfileEditor
                 SkillsContainer.Children.OfType<SkillEntry>().ToList()
                         .ForEach(x => x.IncreaseButton.Disabled = sum <= 0);
 
-                SkillPointsCountLabel.Text = $"Доступно очков: {sum}";
+                SkillPointsCountLabel.Text = Loc.GetString("imperial-hm-misc-points", ("amount", $"{sum}"));
                 SetDirty();
             };
         }

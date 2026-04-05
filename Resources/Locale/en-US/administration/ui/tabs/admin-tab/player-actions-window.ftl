@@ -9,3 +9,5 @@ admin-player-actions-window-admin-logs = Admin Logs
 admin-player-actions-window-admin-notes = Admin Notes
 admin-player-actions-window-admin-fax = Admin Fax
 admin-player-actions-window-admin-chat = Admin Chat
+admin-player-actions-window-nrp-panel = NRP
+admin-player-actions-window-creations-panel = Creations

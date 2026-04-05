@@ -1,0 +1,12 @@
+imperial-hm-intel-readeyes = You can read in the eyes - '{$name}'.
+imperial-hm-intel-nothing = It seems, {$name} has nothing to say.
+imperial-hm-intel-r1 = uh
+imperial-hm-intel-r2 = um
+imperial-hm-intel-r3 = er
+imperial-hm-intel-r4 = ah
+imperial-hm-intel-r5 = uh...
+imperial-hm-intel-r6 = erm
+imperial-hm-intel-r7 = uhm
+imperial-hm-intel-r8 = well...
+imperial-hm-intel-urtoostupid = You are too stupid.
+imperial-hm-intel-lookinhead = Read mind

@@ -1,0 +1,12 @@
+imperial-hm-intel-readeyes = По глазам легко читается - '{$name}'.
+imperial-hm-intel-nothing = Кажется, {$name} не планирует ничего говорить.
+imperial-hm-intel-r1 = ээ
+imperial-hm-intel-r2 = э-э-э
+imperial-hm-intel-r3 = эмм
+imperial-hm-intel-r4 = уэээ
+imperial-hm-intel-r5 = ааа...
+imperial-hm-intel-r6 = ммм
+imperial-hm-intel-r7 = мхм
+imperial-hm-intel-r8 = ыээ...
+imperial-hm-intel-urtoostupid = Вы слишком глупы.
+imperial-hm-intel-lookinhead = Заглянуть в голову

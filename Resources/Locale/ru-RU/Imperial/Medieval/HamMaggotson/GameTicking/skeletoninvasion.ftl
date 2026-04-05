@@ -1,0 +1,3 @@
+imperial-hm-gameticking-oopsie = Посланники темного повелителя замечен на этих землях.
+imperial-hm-gameticking-cursedskull = The cursed skull is fully assembled. Tremble, mortals, the army of darkness arrives, and the world shall never be the same again. Unity is the only chance for salvation...
+imperial-hm-gameticking-ancientskull = The ancient skull is fully assembled. Its curse is not broken, but twisted by the holy flame. The equality has fallen, and now the fate of this island is to be decided in a battle!

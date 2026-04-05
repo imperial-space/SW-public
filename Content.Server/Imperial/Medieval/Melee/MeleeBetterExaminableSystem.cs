@@ -57,10 +57,10 @@ namespace Content.Server.MeleeBetterExaminable
                         args.PushMarkup(Loc.GetString("medieval-hm-mbe-almostfull"));
                         break;
                     case "Damaged":
-                        args.PushMarkup(Loc.GetString("На этом оружии видны [color=yellow]повреждения[/color]"));
+                        args.PushMarkup(Loc.GetString("medieval-hm-mbe-damaged"));
                         break;
                     case "BadlyDamaged":
-                        args.PushMarkup(Loc.GetString("Это оружие в [color=orange]отвратном[/color] состоянии"));
+                        args.PushMarkup(Loc.GetString("medieval-hm-mbe-badlydamaged"));
                         break;
                     case "Broken":
                         args.PushMarkup(Loc.GetString("medieval-hm-mbe-broken"));

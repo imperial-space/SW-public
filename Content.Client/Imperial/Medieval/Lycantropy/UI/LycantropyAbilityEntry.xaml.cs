@@ -31,7 +31,7 @@ public sealed partial class LycantropyAbilityEntry : Control
         AbilityIcon.Texture = item.Icon.Frame0();
 
         AbilityDesc.SetMessage(Loc.GetString(item.Desc));
-        Cost.SetMarkup($"Стоит [color=crimson]{item.Cost}[/color] очков ярости");
+        Cost.SetMarkup(Loc.GetString("imperial-hm-ui-costrage", ("amount", $"{item.Cost}")));
 
         BuyButton.OnPressed += args => BuyPressed?.Invoke(item.ID);
 

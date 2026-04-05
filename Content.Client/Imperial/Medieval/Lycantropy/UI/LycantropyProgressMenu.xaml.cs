@@ -62,7 +62,7 @@ public sealed partial class LycantropyProgressMenu : DefaultWindow
     public void Populate(List<ProtoId<LycantropyAbilityPrototype>> unlocked, int points)
     {
         Points = points;
-        PointsCounter.SetMarkup($"Очки ярости: {Points}");
+        PointsCounter.SetMarkup(Loc.GetString("imperial-hm-ui-rageborne", ("amount", $"{Points}")));
 
         var prototypes = _proto.EnumeratePrototypes<LycantropyAbilityPrototype>();
 

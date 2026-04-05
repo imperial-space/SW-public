@@ -34,7 +34,7 @@ public sealed class RDWeightExamineSystem : EntitySystem
 
         using (args.PushGroup(nameof(RDWeightExamineComponent), 1))
         {
-            args.PushMarkup(Loc.GetString("mc-weight-examine", ("name", Loc.GetString(entity.Comp.Current))));
+            args.PushMarkup(Loc.GetString(entity.Comp.Current));
         }
     }
 

@@ -177,7 +177,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
         var targetId = message.PlayerId;
         var targetName = message.PlayerName;
 
-        var adminName = "неизвестно";
+        var adminName = Loc.GetString("medieval-hm-administration-unknown");
         if (_playerManager.TryGetSessionById(senderId, out var senderSession))
             adminName = senderSession.Name;
 
@@ -214,7 +214,7 @@ public sealed partial class NrpMessagesSystem : EntitySystem
 
     public void OnViolation(NetUserId targetId, string targetName, string reason, int violationCount, NetUserId senderId)
     {
-        var adminName = "неизвестно";
+        var adminName = Loc.GetString("medieval-hm-administration-unknown");
         if (_playerManager.TryGetSessionById(senderId, out var senderSession))
             adminName = senderSession.Name;
 

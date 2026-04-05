@@ -1,8 +1,8 @@
 ﻿<Document>
-  # Технические панели
-  У некоторых машин на станции, например [bold]шлюзов[/bold] или [bold]торговых автоматов[/bold], есть технические панели, [bold]контролирующие их работу[/bold].
+  # Wire Panels
+  Some station devices like airlocks, vending machines, and arcade consoles have wire panels, which control certain aspects of their functionality.
 
-  Вы можете [bold]открыть[bold] эти панели, воспользовавшись [bold]отвёрткой[/bold].
+  These panels can be opened using a screwdriver to access the wiring inside.
 
   <Box>
     <GuideEntityEmbed Entity="Wirecutter"/>
@@ -21,9 +21,9 @@
   Cutting wires often completely disables or restores functionality to a device.
   It may also trigger unintended functionality, like shocking people, dropping door bolts, or exploding.
 
-  Подача импульса может привести к [bold]большому числу эффектов[/bold], но чаще всего она или временно [bold]отключает[/bold], или [bold]включает[/bold] какую-либо функцию машины.
+  Pulsing wires can have a variety of effects, but oftentimes it either temporarily disables or enables functionality.
 
-  На надрезанные провода [bold]нельзя подать импульс[/bold]. Их сначала [bold]надо починить[/bold].
+  You can't pulse wires if the wire you're trying to pulse is cut. You have to mend the wire first.
 
 
 </Document>

@@ -103,7 +103,7 @@ public sealed partial class SkillsSystem
                     continue;
 
                 _stun.TryAddParalyzeDuration(uid, TimeSpan.FromSeconds(0.5f));
-                _popup.PopupEntity("Вы споткнулись на ровном месте!", uid, uid, PopupType.MediumCaution);
+                _popup.PopupEntity(Loc.GetString("imperial-hm-agility-oopsie"), uid, uid, PopupType.MediumCaution);
             }
 
             if (comp.Timers.TryGetValue("AgilityDrop", out var dropTimer) && _timing.CurTime > dropTimer)
@@ -120,8 +120,7 @@ public sealed partial class SkillsSystem
                 var ent = _hands.GetActiveItem(uid);
                 if (!ent.HasValue)
                     continue;
-
-                _popup.PopupEntity($"{Name(ent.Value)} выскальзывает из ваших рук!", uid, uid, PopupType.MediumCaution);
+                _popup.PopupEntity(Loc.GetString("imperial-hm-agility-itemdrop", ("name", $"{Name(ent.Value)}")), uid, uid, PopupType.MediumCaution);
                 _hands.ThrowHeldItem(uid, new EntityCoordinates(coords.EntityId, _random.NextFloat(coords.X - 2, coords.X + 2), _random.NextFloat(coords.Y - 2, coords.Y + 2)));
             }
         }

@@ -56,7 +56,7 @@ namespace Content.Server.NeedSleep
         private void OnExamine(EntityUid uid, NeedSleepComponent component, ExaminedEvent args)
         {
             if (component.SleepLevel > 80f)
-                args.PushMarkup("[color=cyan]Сонные глаза[/color]");
+                args.PushMarkup(Loc.GetString("medieval-hm-needsleep-sleepyeyes"));
         }
 
         public override void Update(float frameTime)
@@ -90,7 +90,7 @@ namespace Content.Server.NeedSleep
 
                 if (comp.SleepLevel > 96.5f)
                 {
-                    _popup.PopupEntity("Вам нужно выспаться", uid, uid, PopupType.LargeCaution);
+                    _popup.PopupEntity(Loc.GetString("medieval-hm-needsleep-sleepphonk"), comp.Owner, comp.Owner, PopupType.LargeCaution);
                     //if (TryComp<StatusEffectsComponent>(uid, out var status))
                     //    _stun.TrySlowdown(uid, TimeSpan.FromSeconds(9.99f), true, 0.85f, 0.85f, status); // need to fix
                 }

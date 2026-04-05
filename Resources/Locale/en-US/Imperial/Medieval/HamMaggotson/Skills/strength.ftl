@@ -1,0 +1,1 @@
+imperial-hm-strength-tooweak = You are too weak to use this.

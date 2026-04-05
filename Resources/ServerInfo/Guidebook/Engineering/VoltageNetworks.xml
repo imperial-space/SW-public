@@ -1,10 +1,9 @@
 ﻿<Document>
-  # Напряжение
-  В Space Station 14
-  In Space Station 14, энергия распределяется по станции с помощью трёх уровней напряжения.
-  Эти три уровня: [color=green]Низкий[/color], [color=yellow]Средний[/color] и [color=orange]Высокий[/color].
+  # Voltage Networks
+  In Space Station 14, power distribution is divided into three separate voltage networks.
+  These networks are the [color=green]Low Voltage[/color] Network, the [color=Yellow]Medium Voltage[/color] Network, and the [color=orange]High Voltage[/color] Network.
 
-  Каждый уровень напряжения питает свои устройства.
+  These networks power different types of machinery on the station.
 
   <Box>
     <GuideEntityEmbed Entity="CableHVStack"/>
@@ -12,13 +11,12 @@
     <GuideEntityEmbed Entity="CableApcStack"/>
   </Box>
 
-  ## Низкое напряжение
-  Сеть [color=green]Низкого напряжения[/color] используется для питания почти всех маленьких устройств станции. Список включает в себя освещение, консоли, зарядники, двери и т.д.
-  Низкое напряжение передаётся [color=green]НВ кабелями[/color] из ЛКП.
+  ## Low Voltage Network
+  The [color=green]Low Voltage[/color] Network is used for powering almost all small machines on the station. This includes things like lights, computers, and other small devices.
 
   <Box>
     <GuideEntityEmbed Entity="PoweredSmallLight" Caption=""/>
-    <GuideEntityEmbed Entity="ComputerShuttleCargo" Caption=""/>
+    <GuideEntityEmbed Entity="ComputerCargoShuttle" Caption=""/>
     <GuideEntityEmbed Entity="ComputerComms" Caption=""/>
     <GuideEntityEmbed Entity="Autolathe" Caption=""/>
     <GuideEntityEmbed Entity="VendingMachineEngivend" Caption=""/>
@@ -26,16 +24,18 @@
     <GuideEntityEmbed Entity="AlwaysPoweredWallLight" Caption=""/>
   </Box>
 
+  [color=green]Low Voltage[/color] power is provided by APCs, which are wall-mounted devices that convert power from the [color=Yellow]Medium Voltage[/color] Network to [color=green]Low Voltage[/color].
+
   <Box>
     <GuideEntityEmbed Entity="APCBasic"/>
-    Настенное устройство, понижающее [color=Yellow]Среднее[/color] напряжение до [color=green]Низкого[/color].
   </Box>
 
-  [color=green]НВ кабель[/color] передаёт энергию в радиусе 2-х клеток (3-х, если соединение прямое), то есть не требует прямого подключения к устройствам (кроме ЛКП).
+  [color=green]Low Voltage[/color] wire doesn't have to be directly run to every machine, as it can power multiple machines as long as the wire is close enough to the machine.
+  It can power machines within 2 tiles radially, and 3 tiles in each cardinal direction.
 
-  ## Среднее напряжение
-  Сеть [color=Yellow]Среднего напряжения[/color] используется для питания ЛКП и других устройств, требующих [color=Yellow]СВ подключения[/color].
-  Например, Ускоритель Частиц работает именно на энергии [color=Yellow]Среднего напряжения[/color].
+  ## Medium Voltage Network
+  The [color=Yellow]Medium Voltage[/color] Network is used for powering APCs and other power-hungry machinery that can only accept [color=Yellow]Medium Voltage[/color] power.
+  The Particle Accelerator is an example, as it operates on [color=Yellow]Medium Voltage[/color] power.
 
   <Box>
     <GuideEntityEmbed Entity="ParticleAcceleratorEndCap" Caption="" Margin="0"/>
@@ -58,22 +58,25 @@
   </Box>
 
   <Box>
-    [color=#999999][italic]Ускоритель Частиц[/italic][/color]
+    [color=#999999][italic]The Particle Accelerator[italic][/color]
   </Box>
 
+  [color=Yellow]Medium Voltage[/color] power is provided by Substations, which are large machines that convert power from the [color=Orange]High Voltage[/color] Network to [color=Yellow]Medium Voltage[/color].
+
+  There are also wallmount variants of these substations for compact spaces, like shuttles.
   <Box HorizontalAlignment="Stretch">
-    <GuideEntityEmbed Entity="SubstationBasic"/>
-    [color=Yellow]Среднее напряжение[/color] поставляется Подстанциями, - устройствами, снижающими напряжение с [color=Orange]Высокого[/color] до [color=Yellow]Среднего[/color].
-  </Box>
-  <Box>
-    <GuideEntityEmbed Entity="SubstationWallBasic" Caption="подстанция"/>
-    Существует настенный вариант подстанции, используемый на шаттлах.
+    <Box>
+      <GuideEntityEmbed Entity="SubstationBasic"/>
+    </Box>
+    <Box>
+      <GuideEntityEmbed Entity="SubstationWallBasic"/>
+    </Box>
   </Box>
 
-  ## Высокое напряжение
-  Сеть [color=Orange]Высокого напряжения[/color] используется для перемещения большого количества энергии по станции. Используется для питания большинства устройств, работающих с энергией. Например: СМЭСы и подстанции.
+  ## High Voltage Network
+  The [color=Orange]High Voltage[/color] Network is used for moving large amount of power across the station. It is used to power most power handling equipment, such as SMES units and Substations.
 
-  Большая часть [textlink="генераторов высокого уровня" link="Generators"] производят энергию на сеть [color=Orange]Высокого напряжения[/color].
+  Most high-output generators output power to the [color=Orange]High Voltage[/color] Network.
 
   <Box>
     <GuideEntityEmbed Entity="SMESBasic"/>
@@ -82,11 +85,11 @@
     <GuideEntityEmbed Entity="SubstationBasic"/>
   </Box>
 
-  ## Удары током
-  Количество урона зависит от напряжения кабеля. Это может вас [bolditalic]шокировать[/bolditalic], но удар током от [color=Orange]ВВ кабеля[/color] может вас убить! О ударах от [color=green]НВ кабеля[/color] можете сильно не беспокоиться.
+  ## Shock Damage
+  If you are shocked by a cable carrying power, you will take damage. The amount of damage you take is based on the voltage of the cable that shocked you.
 
-  <Box>
-    <GuideEntityEmbed Entity="ClothingHandsGlovesColorYellow" Caption="перчатки"/>
-  Вы можете избежать ударов током, нося изолированные перчатки.
-  </Box>
+  [color=green]Low Voltage[/color] cables will deal less damage than [color=Yellow]Medium Voltage[/color] cables, which will deal less damage than [color=Orange]High Voltage[/color] cables.
+
+  Energized [color=Orange]High Voltage[/color] and [color=Yellow]Medium Voltage[/color] cabling hurts, so be sure to wear insulated gloves when working with it.
+
 </Document>

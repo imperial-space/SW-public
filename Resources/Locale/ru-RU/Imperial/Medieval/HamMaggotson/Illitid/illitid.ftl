@@ -1,0 +1,9 @@
+imperial-hm-illitid-send = Отправить мысль
+imperial-hm-illitid-thought = Мысль
+imperial-hm-illitid-nobody = Никто не услышал...
+imperial-hm-illitid-say = Сказать
+imperial-hm-illitid-words = Слова
+imperial-hm-illitid-toointl = Слишком крепкий разум
+imperial-hm-illitid-psi = Недостаточно пси-энергии
+imperial-hm-illitid-voices = Голос в вашей голове: {$name}
+imperial-hm-illitid-urvoice = Ваш голос: {$name}

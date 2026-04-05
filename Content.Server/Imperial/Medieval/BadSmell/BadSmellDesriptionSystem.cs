@@ -185,7 +185,7 @@ namespace Content.Server.BadSmell
                     {
 
                         if (_random.Prob(comp.SmellLevel / 200f))
-                            _popup.PopupEntity("Вы чувствуете резкий запах вони", feel.Owner, feel.Owner, PopupType.LargeCaution);
+                            _popup.PopupEntity(Loc.GetString("medieval-hm-badsmell-feelsmell"), feel.Owner, feel.Owner, PopupType.LargeCaution);
 
                     }
                 }

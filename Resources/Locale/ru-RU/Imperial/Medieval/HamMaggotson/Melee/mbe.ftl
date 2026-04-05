@@ -12,3 +12,4 @@ medieval-hm-mbe-almostfull = Это оружие выглядит [color=#90ee90
 medieval-hm-mbe-damaged = На этом оружии видны [color=yellow]повреждения[/color]
 medieval-hm-mbe-badlydamaged = Это оружие в [color=orange]отвратном[/color] состоянии
 medieval-hm-mbe-broken = Это оружие вот-вот [color=red]развалится[/color]
+medieval-hm-mbe-parryy = Парирование

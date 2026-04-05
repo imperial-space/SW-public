@@ -373,26 +373,6 @@ namespace Content.Server.Nocturn
             }
         }
 
-        public void OnNocturnDisguiseAction(EntityUid uid, NocturnComponent component, NocturnDisguiseActionEvent args)
-        {
-            if (!CanBite(uid))
-            {
-                _popupSystem.PopupEntity(Loc.GetString("nocturn-disguise-obstacle"), uid, uid, PopupType.Large);
-                return;
-            }
-
-            var doAfterArgs = new DoAfterArgs(EntityManager, uid, 2.25f, new NocturnDisguiseDoAfterEvent(), uid)
-            {
-                BreakOnMove = false,
-                BreakOnDamage = false,
-                NeedHand = false
-            };
-
-            _audio.PlayPvs(new SoundPathSpecifier(component.EffectSoundOnDisguise), uid);
-            _doAfterSystem.TryStartDoAfter(doAfterArgs);
-            args.Handled = true;
-        }
-
         private void OnNocturnDisguiseDoAfter(EntityUid uid, NocturnComponent component, NocturnDisguiseDoAfterEvent args)
         {
             if (args.Handled || args.Cancelled)
@@ -468,63 +448,6 @@ namespace Content.Server.Nocturn
             _audio.PlayPvs(new SoundPathSpecifier(component.EffectSoundOnDisguise), uid);
             _doAfterSystem.TryStartDoAfter(doAfterArgs);
             args.Handled = true;
-        }
-
-        private void OnNocturnDisguiseDoAfter(EntityUid uid, NocturnComponent component, NocturnDisguiseDoAfterEvent args)
-        {
-            if (args.Handled || args.Cancelled)
-                return;
-
-            if (!TryComp<HumanoidAppearanceComponent>(uid, out var appearance))
-                return;
-
-            if (!component.IsDisguised)
-            {
-                if (component.BloodLevel < 50)
-                {
-                    _popupSystem.PopupEntity(Loc.GetString("nocturn-disguise-low-blood"), uid, uid, PopupType.Large);
-                    return;
-                }
-
-                _popupSystem.PopupEntity(Loc.GetString("nocturn-disguise-apply"), uid, uid);
-                ApplyDisguise(uid, component, appearance);
-            }
-            else
-            {
-                _popupSystem.PopupEntity(Loc.GetString("nocturn-disguise-revert"), uid, uid);
-                RevertToOriginalForm(uid, component, appearance);
-            }
-        }
-
-        private void ApplyDisguise(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
-        {
-            appearance.Species = "Human";
-            component.BloodDrainPerSecond *= 1.3f;
-            component.BloodLevel -= 10;
-
-            component.IsDisguised = true;
-            _action.SetToggled(component.DisguiseActionEntity, component.IsDisguised);
-            Dirty(uid, appearance);
-            if (TryComp<TypingIndicatorComponent>(uid, out var typing))
-            {
-                typing.TypingIndicatorPrototype = component.TypingIndicatorPrototypeBase;
-                Dirty(uid, typing);
-            }
-        }
-
-        private void RevertToOriginalForm(EntityUid uid, NocturnComponent component, HumanoidAppearanceComponent appearance)
-        {
-            appearance.Species = "Drou";
-            component.BloodDrainPerSecond /= 1.3f;
-
-            component.IsDisguised = false;
-            _action.SetToggled(component.DisguiseActionEntity, component.IsDisguised);
-            Dirty(uid, appearance);
-            if (TryComp<TypingIndicatorComponent>(uid, out var typing))
-            {
-                typing.TypingIndicatorPrototype = component.TypingIndicatorPrototypeMod;
-                Dirty(uid, typing);
-            }
         }
 
         public void ShowEyes(EntityUid uid)

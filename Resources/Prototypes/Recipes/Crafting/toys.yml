@@ -1,24 +1,24 @@
 ﻿- type: construction
   hide: true # imperial medieval craft disable
-  name: Плюшевый ревенант # Imperial Recipes Locale
+  #name: Плюшевый ревенант # Imperial Recipes Locale
   id: PlushieGhostRevenant
   graph: PlushieGhostRevenant
   startNode: start
   targetNode: plushie
   category: construction-category-misc
   objectType: Item
-  description: Игрушка, которой можно напугать медотсек. # Imperial Recipes Locale
+  #description: Игрушка, которой можно напугать медотсек. # Imperial Recipes Locale
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Игрушечный Иан # Imperial Recipes Locale
+  #name: Игрушечный Иан # Imperial Recipes Locale
   id: ClothingOuterSuitIan
   graph: ClothingOuterSuitIan
   startNode: start
   targetNode: suit
   category: construction-category-misc
   objectType: Item
-  description: Сделайте себя похожим на Иана! # Imperial Recipes Locale
+  #description: Сделайте себя похожим на Иана! # Imperial Recipes Locale
 
 - type: construction
   id: MoproachShoes

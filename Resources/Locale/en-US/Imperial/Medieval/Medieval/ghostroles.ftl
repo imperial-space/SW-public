@@ -1,8 +1,5 @@
 ghost-role-information-goblin-name = Goblin
 ghost-role-information-goblin-description = Thief
-ghost-role-information-hobgoblin-name = Hobgoblin
-ghost-role-information-hobgoblin-description = Muscular thief
-ghost-role-information-goblin-rules = Drag as many items into the lair as you can. Act in groups. If you have left the lair, [color=red]attack only as a last resort[/color], [color=red]capture people[/color], and demand a ransom. Do not attack faction bases alone.
 ghost-role-information-horse-name = Horse
 ghost-role-information-horse-description = Neigh
 ghost-role-information-fox-description = Snort
@@ -68,10 +65,7 @@ ghost-role-information-medieval-peasant-description = Listen to the superiors, i
 
 medieval-necro-sender-name = Ambassador of the dark lord
 medieval-necro-sender-desc = Tell everyone!
-medieval-necro-sender-rules = Tell everyone that your lord will soon come to this sinful lands! And than die [color=green](You are not allowed to kill anyone, you must die a glorious death)[/color]
 medieval-necro-fighter-name = Ambassador of the dark lord
-medieval-necro-fighter-desc = Create chaos in these lands!
-medieval-necro-fighter-rules = Buy equipment, make a plan, wait until the gate opens, and kill them all!
 medieval-necro-leader-name = Warrior of the dark lord
 medieval-necro-leader-desc = Create chaos in these lands!
 medieval-necro-leader-rules = Buy equipment, make a plan, wait until the gate opens, and kill them all!

@@ -95,7 +95,7 @@ namespace Content.Shared.Imperial.Medieval.MobRiding
 
             var direction = physics.LinearVelocity;
             _throwing.TryThrow(uid, direction * throwingDistance);
-            _popup.PopupClient("Вы теряете равновесие и падаете с лошади.", uid, uid);
+            _popup.PopupClient(Loc.GetString("imperial-hm-mobriding-lostbalance"), uid, uid);
             if (!_netManager.IsServer)
                 return;
             _audio.PlayPvs("/Audio/Imperial/Medieval/animal_horse.ogg", rideable.Value);

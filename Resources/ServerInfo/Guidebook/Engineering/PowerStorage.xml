@@ -1,19 +1,20 @@
 ﻿<Document>
-  # Хранение энергии
-  Из-за [textlink="разгона" link="Ramping"] важно иметь устройства, хранящие энергию, помогающие сгладить всплески и падение потребления, а также поставлять энергию в случае отключения генераторов.
+  # Power Storage
+  Because of [textlink="Power Ramping" link="Ramping"], it is important to have power storage devices to help flatten out spikes and dips in power usage, as well as to provide power in the event of a power deficit.
 
-  У каждого трансформатора есть свой уровень ([color=orange]ВВ[/color], [color=yellow]СВ[/color] и [color=green]НВ[/color]) и встроенная батарея, помогающая сглаживать подачу энергии; однако, это не поможет в случае дефицита по всей станции.
+  Each transformer for its respective power level ([color=orange]HV[/color], [color=yellow]MV[/color], and [color=green]LV[/color]) has an attached small battery to handle minor spikes and dips; however, this is not viable in the case of a large grid deficit.
 
-  ## СМЭС
+  ## SMES
 
-  [bold]Сверхпроводящая Магнитная Энергонакопительная Станция[/bold] (СМЭС) - устройство, способное как накапливать, так и быстро выпускать большое количество энергии.
+  The Superconducting Magnetic Energy Storage (SMES) unit is a device that can store a large amount of power and release it quickly.
 
   <Box>
     <GuideEntityEmbed Entity="SMESBasic"/>
   </Box>
 
-  Входом СМЭСа является кабельный терминал, направленный в его сторону и [color=orange]ВВ кабель[/color] под ним. Терминал не даст проводу под ним и проводу под СМЭСом соединиться.
-  Выход СМЭСа - ВВ кабель под ним самим.
+  In order to charge the SMES unit, [color=orange]HV[/color] power must be provided to a cable terminal pointing at the SMES unit. The SMES will draw power from the terminal and send power out from underneath.
+
+  The terminal will ensure that the [color=orange]HV input[/color] and [color=orange]HV output[/color] do not connect.
 
   <Box HorizontalAlignment="Stretch">
     <Box>
@@ -30,15 +31,13 @@
 
   SMESes can store [color=orange][protodata="SMESBasic" comp="Battery" member="MaxCharge" format="N0"/] J[/color] of energy, and can output a maximum [color=orange][protodata="SMESBasic" comp="PowerNetworkBattery" member="MaxSupply" format="N0"/] W[/color] of power.
 
-  При полной зарядке, энергия будет поставляться напрямую на Выход СМЭСа. В случае дефицита, СМЭСы попробуют заменить генераторы накопленной энергией.
+  If the battery is full, the SMES will pass through the power it receives from the input cable to the output cable. In the event of a power deficit, the SMES will ramp up to supplement the power draw.
 
-  У СМЭСов, Подстанций и ЛКП есть интерфейсы, позволяющие управлять их работой.
-
-  ## Продвинутый СМЭС
+  ## Advanced SMES
+  The Advanced SMES unit is a more advanced version of the SMES unit that can store even more power.
 
   <Box>
     <GuideEntityEmbed Entity="SMESAdvanced"/>
-    Способен хранить ещё больше энергии. Чаще всего используются в массивах СМЭСов для хранения энергии станции.
   </Box>
 
   They're primarily used in station SMES arrays to store large amounts of power for the station's power grid.

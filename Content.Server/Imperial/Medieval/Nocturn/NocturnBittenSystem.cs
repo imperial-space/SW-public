@@ -13,7 +13,7 @@ public sealed class NocturnBittenSystem : EntitySystem
 
     private void OnExamine(EntityUid uid, NocturnBittenComponent component, ExaminedEvent args)
     {
-        args.PushMarkup("[color=red]На шее видны следы укуса[/color]");
+        args.PushMarkup(Loc.GetString("medieval-hm-nocturn-bitten"));
     }
     public override void Update(float frameTime)
     {

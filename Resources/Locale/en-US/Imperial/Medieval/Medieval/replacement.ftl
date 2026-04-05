@@ -1,8 +1,5 @@
-chatsan-word-68 = dumbass
-chatsan-replacement-68 = slowpoke
-
-chatsan-word-69 = dumbasses
-chatsan-replacement-69 = slowpokes
+chatsan-word-69 = dumbass
+chatsan-replacement-69 = slowpoke
 
 chatsan-word-70 = сheat
 chatsan-replacement-70 = sin

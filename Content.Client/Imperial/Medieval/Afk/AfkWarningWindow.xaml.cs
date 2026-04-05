@@ -38,7 +38,7 @@ public sealed partial class AfkWarningWindow : DefaultWindow
         if (Remaining < 0)
             Remaining = 0;
 
-        var kickText = $"{Math.Floor(Remaining)} сек";
+        var kickText = Loc.GetString("imperial-hm-ui-secs", ("amount", $"{Math.Floor(Remaining)}"));
 
         UpdateLabel(AfkText, kickText);
     }

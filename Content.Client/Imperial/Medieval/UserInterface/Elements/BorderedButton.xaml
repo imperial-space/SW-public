@@ -19,7 +19,7 @@
                     BorderRadius="25">
                 <RichTextLabel
                     Name="Label"
-                    Text="Дипломатия"
+                    Text="{Loc 'medieval-hm-relations-diplomacy'}"
                     HorizontalExpand="True"
                     VerticalExpand="True"
                     Margin="0 0"

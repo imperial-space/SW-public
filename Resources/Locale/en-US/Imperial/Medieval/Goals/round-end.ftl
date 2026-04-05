@@ -1,0 +1,2 @@
+faction-goal-round-end-header = [head=3][bold]The { $faction } faction had the following goals:[/bold][/head]
+faction-goal-round-end-text = { $goal } [bold]Completed at: [color={ $color }]{ $completion }[/color][/bold]

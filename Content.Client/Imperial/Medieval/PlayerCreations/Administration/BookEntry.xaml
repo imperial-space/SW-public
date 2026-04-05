@@ -3,13 +3,13 @@
          xmlns:ui="clr-namespace:Content.Client.Options.UI">
   <PanelContainer HorizontalAlignment="Stretch" StyleClasses="WindowHeadingBackground" Margin="5">
     <BoxContainer HorizontalAlignment="Stretch" Orientation="Vertical">
-      <RichTextLabel Name="BookName" HorizontalAlignment="Center" Text="Книга 123"/>
-      <RichTextLabel Name="BookAuthor" HorizontalAlignment="Center" Text="Урист МакЧеловек (Ligyb)"/>
-      <Button Name="ReadButton" HorizontalExpand="True" Text="Читать"/>
-      <Button Name="MoreButton" HorizontalExpand="True" Text="Подробнее"/>
+      <RichTextLabel Name="BookName" HorizontalAlignment="Center" Text="{Loc 'imperial-hm-ui-book'}"/>
+      <RichTextLabel Name="BookAuthor" HorizontalAlignment="Center" Text="{Loc 'imperial-hm-ui-urist'}"/>
+      <Button Name="ReadButton" HorizontalExpand="True" Text="{Loc 'imperial-hm-ui-read'}"/>
+      <Button Name="MoreButton" HorizontalExpand="True" Text="{Loc 'imperial-hm-ui-moree'}"/>
       <BoxContainer Orientation="Horizontal" HorizontalExpand="True" HorizontalAlignment="Stretch">
-        <Button Name="AcceptButton" HorizontalExpand="True" Text="Принять"/>
-        <Button Name="DeclineButton" HorizontalExpand="True" Text="Отклонить"/>
+        <Button Name="AcceptButton" HorizontalExpand="True" Text="{Loc 'imperial-hm-ui-accept'}"/>
+        <Button Name="DeclineButton" HorizontalExpand="True" Text="{Loc 'imperial-hm-ui-decline'}"/>
       </BoxContainer>
     </BoxContainer>
   </PanelContainer>

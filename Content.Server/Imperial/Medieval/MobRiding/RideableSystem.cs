@@ -139,7 +139,7 @@ namespace Content.Server.Imperial.Medieval.MobRiding
 
             var velocity = rideablePhysics.LinearVelocity.Length();
 
-            _popup.PopupEntity("Вы сшибаете пехотинца с дороги.", rider, rider);
+            _popup.PopupEntity(Loc.GetString("imperial-hm-mobriding-knockoff"), rider, rider);
 
             _damageable.TryChangeDamage(other, pikeComp.RidingDamage * velocity);
             var oneSound = _random.Pick(_clashOne);
@@ -336,13 +336,13 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                         // TODO: текст в Loc, посмотреть, почему не работают звуки
                         // TODO: сделаю после ОБТ, сейчас впадлу
                         case CheckResult.Self:
-                            _popup.PopupEntity("Противник не удерживается в седле и падает.", rider.Value, rider.Value);
+                            _popup.PopupEntity(Loc.GetString("imperial-hm-mobriding-weakling"), rider.Value, rider.Value);
                             _audio.PlayPvs(oneSound, uid);
                             ThrowClash(uid, rider.Value, otherRider.Value);
                             DelayPike(rider.Value);
                             break;
                         case CheckResult.Other:
-                            _popup.PopupEntity("Противник не удерживается в седле и падает.", otherRider.Value, otherRider.Value);
+                            _popup.PopupEntity(Loc.GetString("imperial-hm-mobriding-weakling"), otherRider.Value, otherRider.Value);
                             _audio.PlayPvs(oneSound, other);
                             ThrowClash(other, otherRider.Value, rider.Value);
                             DelayPike(otherRider.Value);
@@ -352,8 +352,8 @@ namespace Content.Server.Imperial.Medieval.MobRiding
                             ThrowClashBoth(uid, other, rider.Value, otherRider.Value);
                             break;
                         case CheckResult.Both:
-                            _popup.PopupEntity("Вы сталкиваетесь, но оба удерживаетесь в седле.", rider.Value, rider.Value);
-                            _popup.PopupEntity("Вы сталкиваетесь, но оба удерживаетесь в седле.", otherRider.Value, otherRider.Value);
+                            _popup.PopupEntity(Loc.GetString("imperial-hm-mobriding-itsfine"), rider.Value, rider.Value);
+                            _popup.PopupEntity(Loc.GetString("imperial-hm-mobriding-itsfine"), otherRider.Value, otherRider.Value);
                             DelayPike(rider.Value);
                             DelayPike(otherRider.Value);
                             _audio.PlayPvs(_clashNone, uid);

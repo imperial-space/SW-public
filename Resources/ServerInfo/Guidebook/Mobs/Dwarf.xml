@@ -1,11 +1,11 @@
 <Document>
-  # Дварфы
+  # Dwarves
 
   <Box>
     <GuideEntityEmbed Entity="MobDwarf" Caption=""/>
   </Box>
 
-  Дварфы в общем похожи на людей, но более устойчивы к алкоголю. Алкоголь их лечит.
+  Dwarves are similar to humans in most respect, but tolerate alcohol better and are healed by it.
 
 
 </Document>

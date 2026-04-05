@@ -1,23 +1,23 @@
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Модульная граната # Imperial Recipes Locale
+  #name: Модульная граната # Imperial Recipes Locale
   id: ModularGrenadeRecipe
   graph: ModularGrenadeGraph
   startNode: start
   targetNode: grenade
   category: construction-category-weapons
-  description: Соберите гранату, используя триггер и заряд. # Imperial Recipes Locale
+  #description: Соберите гранату, используя триггер и заряд. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified
 
 - type: construction
   hide: true # imperial medieval craft disable
-  name: Модульная мина # Imperial Recipes Locale
+  #name: Модульная мина # Imperial Recipes Locale
   id: ModularMineRecipe
   graph: ModularMineGraph
   startNode: start
   targetNode: mine
   category: construction-category-weapons
-  description: Соберите мину, используя заряд. # Imperial Recipes Locale
+  #description: Соберите мину, используя заряд. # Imperial Recipes Locale
   objectType: Item
   blockForPacifist: true #Imperial pacified

@@ -71,26 +71,26 @@ public partial class MagicRuneSystem
     {
         if (!TryComp<MagicRuneKnowledgeComponent>(user, out var knowledge))
         {
-            _popupSystem.PopupPredicted("Я слишком туп для такого..", user, user);
+            _popupSystem.PopupPredicted(Loc.GetString("imperial-hm-magicrunes-stupid"), user, user);
             return;
         }
 
         if (knowledge.KnownRunes.Contains(rune))
         {
-            _popupSystem.PopupPredicted("Я уже знаю эту руну..", user, user);
+            _popupSystem.PopupPredicted(Loc.GetString("imperial-hm-magicrunes-ik"), user, user);
             return;
         }
 
         if (knowledge.KnownRunes.Count >= knowledge.MaxRunesKnowledge)
         {
-            _popupSystem.PopupPredicted("Я знаю максимальное количество рун..", user, user);
+            _popupSystem.PopupPredicted(Loc.GetString("imperial-hm-magicrunes-max"), user, user);
             return;
         }
 
         if (!PopulateRune(user, knowledge, rune))
             return;
 
-        _popupSystem.PopupPredicted($"Вы изучили новую руну - {rune}!", user, user);
+        _popupSystem.PopupPredicted(Loc.GetString("imperial-hm-magicrunes-yay", ("name", $"{rune}")), user, user);
 
         if (_net.IsServer)
         {

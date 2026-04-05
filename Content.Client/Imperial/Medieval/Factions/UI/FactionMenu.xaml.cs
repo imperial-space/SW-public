@@ -122,7 +122,7 @@ public sealed partial class FactionMenu : DefaultWindow
                 }
 
                 _fireSelected = args;
-                ConfirmationLabel.SetMessage($"{item.Value.JobPrefix}{item.Value.Name} будет исключён из вашей фракции.");
+                ConfirmationLabel.SetMessage(Loc.GetString("medieval-hm-relations-firefire", ("name", $"{item.Value.JobPrefix}"), ("name2", $"{item.Value.Name}")));
                 Main.Visible = false;
                 Confirmation.Visible = true;
                 Headhunt.Visible = IoCManager.Resolve<IPrototypeManager>().Index(Data.Faction).AllowHeadhunt;

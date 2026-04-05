@@ -24,7 +24,7 @@
                             Name="LevelLabel"
                             MinWidth="50"
                             Margin="0 4"
-                            Text="Тут будет уровень"
+                            Text="{Loc 'imperial-hm-ui-level'}"
                             HorizontalExpand="True" />
                     </BoxContainer>
                     <BoxContainer HorizontalExpand="True" Margin="4" VerticalExpand="True" Orientation="Vertical">

@@ -80,14 +80,9 @@ namespace Content.Server.CustomDoorKey
 
         private void OnExamine(EntityUid uid, DoorHackableComponent component, ExaminedEvent args)
         {
-            var lpMin = component.LockPickProgress;
-            var count = component.NumberCount;
-            var minN = component.MinNumber;
-            var maxN = component.MaxNumber;
-
-            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-progress", ("min", $"{lpMin}"), ("max", $"{count}")));
-            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-length", ("min", $"{minN}"), ("max", $"{maxN}")));
-            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-amount", ("amount", $"{count}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-progress", ("min", $"{component.LockPickProgress}"), ("max", $"{component.NumberCount}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-length", ("min", $"{component.MinNumber}"), ("max", $"{component.MaxNumber}")));
+            args.PushMarkup(Loc.GetString("medieval-hm-doorhack-amount", ("amount", $"{component.NumberCount}")));
         }
 
         public void OnUseInHand(EntityUid uid, DoorHackLockpickComponent comp, BeforeRangedInteractEvent args)
@@ -130,7 +125,7 @@ namespace Content.Server.CustomDoorKey
                 }
                 if (number < min)
                 {
-                    _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-toobig"), Loc.GetString("medieval-hm-doorhack-gibberlish"));
+                    _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-toosmall"), Loc.GetString("medieval-hm-doorhack-gibberlish"));
                     return;
                 }
 
@@ -151,8 +146,8 @@ namespace Content.Server.CustomDoorKey
                     door.LockPickProgress++;
                     if (door.LockPickProgress < door.NumberCount)
                     {
-                        var smthh = door.NumberCount - door.LockPickProgress;
-                        _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-hacking", ("min", $"{number}"), ("max", $"{smthh}")), Loc.GetString("medieval-hm-doorhack-success"));
+                        var left = door.NumberCount - door.LockPickProgress;
+                        _prayerSystem.SendSubtleMessage(sender, sender, Loc.GetString("medieval-hm-doorhack-yay", ("amount", $"{number}"), ("amount2", $"{left}")), Loc.GetString("medieval-hm-doorhack-success"));
                         _audio.PlayPvs(new SoundPathSpecifier(comp.EffectSoundOnNext), door.Owner);
                         return;
                     }

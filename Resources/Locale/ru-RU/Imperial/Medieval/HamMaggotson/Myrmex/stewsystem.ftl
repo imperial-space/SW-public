@@ -1,0 +1,1 @@
+imperial-hm-myrmex-left = [color=gray]Осталось [bold]{$amount}[/bold] кусочков[/color]

@@ -1,21 +1,21 @@
 <Document>
-  # Задачи Карго
-  Конечно, [textlink="Карго" link="Cargo"] может делать [color=cyan]кредиты[color], продавая почти всё что угодно. Но намного (!) больше кредитов может быть сделано, если Карго будет выполнять [color=cyan]Задачи[/color], которые можно найти на Консоли задач Карго.
+  # Cargo Bounties
+  While [textlink="Cargo" link="Cargo"] can make [color=cyan]spesos[color] selling just about anything, more spesos can be made by fulfilling [color=cyan]bounties[/color] found through the Cargo Bounty Computer.
 
-  ## Начало выполнения задач
+  ## Starting Bounties
 
   <Box>
     <GuideEntityEmbed Entity="ComputerCargoBounty"/>
     <GuideEntityEmbed Entity="PaperCargoBountyManifest"/>
   </Box>
 
-  Чтобы начать выполнять задачу, используйте [color=cyan]Консоль Задач Карго[/color]. Она содержит в себе список всех Задач и позволяет распечатать их на манифесте или же пропустить.
+  To start a bounty, open the bounty screen by interacting with the [color=cyan]Cargo Bounty Computer[/color]. The Cargo Bounty Computer maintains a list of all the current bounties and lets you either print out a label or skip it.
 
-  - [color=cyan]Манифест Задачи[/color] показывает предметы, необходимые для выполнения задачи. Количество распечатанных манифестов не ограничено. Перед тем как возьмётесь за какую-то работу, уточните, не занят ли ей другой грузчик.
+  - Printing the label gives you a [color=cyan]Bounty Manifest[/color] listing the goods that need to be acquired. You can print out infinite Bounty Manifests, so ensure you are not repeating the same work as another Cargo Technician.
 
-  - Пропуск Задачи заменяет её на новую, всего может быть 6 активных Задач. Пропуск имеет перезарядку в 15 минут и заканчивает пропущенную задачу, что может разозлить Грузчика, который ради неё вырезал себе почку.
+  - Skipping a bounty replaces that bounty with a new one, as there can only be six active bounties at any time. Skipping has a 15-minute cooldown and voids that bounty, which may anger other Cargo Technicians working on it.
 
-  ## Выполнение Задач
+  ## Fulfilling Bounties
 
   <Box>
     <GuideEntityEmbed Entity="PaperCargoBountyManifest"/>
@@ -23,13 +23,13 @@
     <GuideEntityEmbed Entity="AppraisalTool"/>
   </Box>
 
-  Когда Вы распечатали [color=cyan]Манифест Задачи[/color], остаётся только собрать необходимые предметы. Большинство отделов согласится отдать Вам нужные предметы при условии, что Вы покажите им [color=cyan]Манифест[/color].
+  With the [color=cyan]Bounty Manifest[/color], it is now up to you to collect the required goods. Most departments will give you what you need by asking for it with a Bounty Manifest.
 
-  Когда Вы нашли всё необходимое, вернитесь в Карго и положите предметы в пустой [color=cyan]ящик[/color], закройте его, а затем, держа в руке Манифест, нажмите на него [color=yellow][bold][keybind="AltActivateItemInWorld"][/bold][/color].
+  Once you have collected the goods, return to the cargo bay and put the goods inside an empty [color=cyan]Crate[/color]. After everything is in the crate, close it, and then apply the Bounty Manifest to it.
 
-  Чтобы убедиться в выполнении заказа, используйте [color=cyan]оценочный инструмент[/color] на ящике с Заказом.
+  To verify the completion of a bounty, use the [color=cyan]Appraisal Tool[/color] on it. It should say that it confirms that the bounty has been completed.
 
-  ## Продажа Заказов
+  ## Selling Bounties
 
   <Box>
     <GuideEntityEmbed Entity="PaperCargoBountyManifest"/>
@@ -37,6 +37,9 @@
     <GuideEntityEmbed Entity="CargoPalletSell"/>
   </Box>
 
-  Продайте ящик с заказом как обычный. Просто доставьте его на [color=cyan]Торговый Аванпост[/color] и поставьте на поддоны для продажи грузов, а затем используйте консоль. После этого на Консоли Задач Карго появится новый Заказ.
+  Once you have verified that you have completed the bounty, follow the same steps as selling anything else.
 
+  Just transport it to the [color=cyan]Trading Station[/color], sell it, and you are done!
+
+  When you return, there should be a new bounty to take its place.
 </Document>

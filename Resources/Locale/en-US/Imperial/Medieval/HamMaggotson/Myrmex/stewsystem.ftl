@@ -1,0 +1,1 @@
+imperial-hm-myrmex-left = [color=gray][bold]{$amount}[/bold] pieces left[/color]

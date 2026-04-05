@@ -1,0 +1,1 @@
+imperial-medieval-rideable-skill-popup = You are too clumsy to control a mount.

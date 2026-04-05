@@ -67,10 +67,9 @@
   - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
     state: 4
   - sprite: /Textures/Imperial/Medieval/Misc/cult_curse.rsi
-    state: 5
+    state: 5  
   name: alerts-imperial-medieval-cult-curse-name
   description: alerts-imperial-medieval-cult-curse-description
-  minSeverity: 0
   maxSeverity: 5
 
 - type: alert

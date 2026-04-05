@@ -1,7 +1,6 @@
 ﻿<Document>
-  #Входы/Выходы атмосферы
-  Выкачка
-  Ввод и вывод газов из существующей (или не существующей) атмосферы - неотъемлемая часть Атмоса.
+  #Atmosphere Input and Output
+  Inserting and extracting gasses from a present (or non-present) atmosphere is an essential part of Atmos' job.
   <Box>
     <GuideEntityEmbed Entity="GasVentPump"/>
     <GuideEntityEmbed Entity="GasPassiveVent"/>
@@ -10,12 +9,12 @@
     <GuideEntityEmbed Entity="PortableScrubber"/>
   </Box>
 
-  Эти девайсы помогают вводить нужные и выводить ненужные газы из атмосферы.
-  С помощью них на станции поддерживается безопасная для дыхания атмосфера.
+  With these devices, Atmos can insert, extract, or scrub unwanted gasses from any atmosphere they would like.
+  This allows the maintaining of a safe, breathable atmosphere.
 
-  Некоторым из этих девайсов для работы нужна [textlink="энергия" link="Power"], а некоторые могут быть подключены к [textlink="воздушным сигнализациям" link="AirAlarms"].
+  Some of these devices require [textlink="power" link="Power"] to function, and can be linked to an [textlink="air alarm." link="AirAlarms"]
 
-  Девайсы, способные к [textlink="Сетевым соединениям" link="Networking"], получают дополнительный функционал при подключении к воздушным сигнализациям. Если они ни к чему не подключены, они следуют своим стандартным режимам работы (см. подруководства).
+  [textlink="Linking" link="Networking"] compatible devices to an air alarm unlocks more configuration options and functionality. Otherwise, these devices follow their default behavior as defined in the subguides.
 
   <Box>
     <GuideEntityEmbed Entity="AirAlarm"/>
