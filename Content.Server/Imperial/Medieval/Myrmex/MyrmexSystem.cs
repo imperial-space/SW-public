@@ -123,48 +123,48 @@ namespace Content.Server.Myrmex
         {
             var xform = Transform(uid);
             var coords = xform.Coordinates;
-            string light = CheckNearby(coords, "light");
-            string spore = CheckNearby(coords, "spore");
-            string cl = "white";
-            if (comp.LightColor == Loc.GetString("imperial-hm-myrmex-runic"))
-                cl = "cyan";
-            else if (comp.LightColor == Loc.GetString("imperial-hm-myrmex-ethereal"))
-                cl = "orange";
-            else if (comp.LightColor == Loc.GetString("imperial-hm-myrmex-shadow"))
-                cl = "pink";
-            string cs = "white";
-            if (comp.SporeType == Loc.GetString("imperial-hm-myrmex-ironcap"))
-                cs = "cyan";
-            else if (comp.SporeType == Loc.GetString("imperial-hm-myrmex-caustic"))
-                cs = "orange";
-            else if (comp.SporeType == Loc.GetString("imperial-hm-myrmex-neuromycite"))
-                cs = "pink";
-            args.PushMarkup(Loc.GetString("imperial-hm-myrmex-reqs", ("colour", $"{cs}"), ("name", $"{comp.SporeType}"), ("name2", $"{comp.LightColor}")), 3);
-
-            if (light == "")
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-nolight"), 1);
-            else if (light == "many")
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-toomuchlight"), 1);
-            else if (light == comp.LightColor)
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-correctlight"), 1);
-            else if (light != comp.LightColor)
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-incorrectlight"), 1);
-
-            if (spore == "")
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-nospores"), 2);
-            else if (spore == "many")
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-toomanyspores"), 2);
-            else if (spore == comp.SporeType)
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-correctspores"), 2);
-            else if (spore != comp.SporeType)
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-incorrectspores"), 2);
-
-            if (light == comp.LightColor && spore == comp.SporeType)
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-ideal"), 0);
-            else if (light != comp.LightColor && spore == comp.SporeType || light == comp.LightColor && spore != comp.SporeType)
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-fine"), 0);
-            else
-                args.PushMarkup(Loc.GetString("imperial-hm-myrmex-horrible"), 0);
+            //string light = CheckNearby(coords, "light");
+            //string spore = CheckNearby(coords, "spore");
+            //string cl = "white";
+            //if (comp.LightColor == Loc.GetString("imperial-hm-myrmex-runic"))
+            //    cl = "cyan";
+            //else if (comp.LightColor == Loc.GetString("imperial-hm-myrmex-ethereal"))
+            //    cl = "orange";
+            //else if (comp.LightColor == Loc.GetString("imperial-hm-myrmex-shadow"))
+            //    cl = "pink";
+            //string cs = "white";
+            //if (comp.SporeType == Loc.GetString("imperial-hm-myrmex-ironcap"))
+            //    cs = "cyan";
+            //else if (comp.SporeType == Loc.GetString("imperial-hm-myrmex-caustic"))
+            //    cs = "orange";
+            //else if (comp.SporeType == Loc.GetString("imperial-hm-myrmex-neuromycite"))
+            //    cs = "pink";
+            //args.PushMarkup(Loc.GetString("imperial-hm-myrmex-reqs", ("colour", $"{cs}"), ("name", $"{comp.SporeType}"), ("name2", $"{comp.LightColor}")), 3);
+//
+            //if (light == "")
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-nolight"), 1);
+            //else if (light == "many")
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-toomuchlight"), 1);
+            //else if (light == comp.LightColor)
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-correctlight"), 1);
+            //else if (light != comp.LightColor)
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-incorrectlight"), 1);
+//
+            //if (spore == "")
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-nospores"), 2);
+            //else if (spore == "many")
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-toomanyspores"), 2);
+            //else if (spore == comp.SporeType)
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-correctspores"), 2);
+            //else if (spore != comp.SporeType)
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-incorrectspores"), 2);
+//
+            //if (light == comp.LightColor && spore == comp.SporeType)
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-ideal"), 0);
+            //else if (light != comp.LightColor && spore == comp.SporeType || light == comp.LightColor && spore != comp.SporeType)
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-fine"), 0);
+            //else
+            //    args.PushMarkup(Loc.GetString("imperial-hm-myrmex-horrible"), 0); // TODO FIX MEDIEVAL
         }
         TimeSpan StartTime = TimeSpan.FromSeconds(0f);
         TimeSpan EndTime = TimeSpan.FromSeconds(0f);
@@ -175,10 +175,10 @@ namespace Content.Server.Myrmex
             base.Update(frameTime);
 
             var curTime = _timing.CurTime;
-            if (curTime < _nextUpdate)
-                return;
-
-            _nextUpdate = curTime + TimeSpan.FromSeconds(UpdateInterval);
+            //if (curTime < _nextUpdate)
+            //    return;
+//
+            //_nextUpdate = curTime + TimeSpan.FromSeconds(UpdateInterval); // TODO FIX MEDIEVAL
 
             foreach (var comp in EntityQuery<MyrmexEggComponent>())
             {
@@ -256,13 +256,13 @@ namespace Content.Server.Myrmex
             var growthMultiplier = CalculateGrowthMultiplier(nearbyLight, nearbySpore,
                 comp.RequiredLightType, comp.RequiredSporeType);
 
-            comp.TimeTillSpawn -= UpdateInterval * growthMultiplier;
+            //comp.TimeTillSpawn -= UpdateInterval * growthMultiplier;// TODO FIX MEDIEVAL
 
-            if (comp.TimeTillSpawn < EggJitterThreshold)
-            {
-                _jitter.AddJitter(uid);
-                _jitter.DoJitter(uid, TimeSpan.FromSeconds(12f), true);
-            }
+            //if (comp.TimeTillSpawn < EggJitterThreshold) // TODO FIX MEDIEVAL
+            //{
+            //    _jitter.AddJitter(uid);
+            //    _jitter.DoJitter(uid, TimeSpan.FromSeconds(12f), true);
+            //}
 
             if (comp.TimeTillSpawn <= 0)
                 HatchEgg(uid, comp, coords);
@@ -304,15 +304,15 @@ namespace Content.Server.Myrmex
             var count = 0;
             var result = MyrmexLightType.None;
 
-            foreach (var entity in _lookup.GetEntitiesInRange(coords, EggGrowthRange))
-            {
-                if (TryComp<MyrmexGrowerComponent>(entity, out var grower) &&
-                    grower.LightType != MyrmexLightType.None)
-                {
-                    count++;
-                    result = grower.LightType;
-                }
-            }
+            //foreach (var entity in _lookup.GetEntitiesInRange(coords, EggGrowthRange))
+            //{
+            //    if (TryComp<MyrmexGrowerComponent>(entity, out var grower) &&
+            //        grower.LightType != MyrmexLightType.None)
+            //    {
+            //        count++;
+            //        result = grower.LightType;
+            //    }
+            //} // TODO FIX MEDIEVAL
 
             return count switch
             {
@@ -327,15 +327,15 @@ namespace Content.Server.Myrmex
             var count = 0;
             var result = MyrmexSporeType.None;
 
-            foreach (var entity in _lookup.GetEntitiesInRange(coords, EggGrowthRange))
-            {
-                if (TryComp<MyrmexGrowerComponent>(entity, out var grower) &&
-                    grower.SporeType != MyrmexSporeType.None)
-                {
-                    count++;
-                    result = grower.SporeType;
-                }
-            }
+            //foreach (var entity in _lookup.GetEntitiesInRange(coords, EggGrowthRange))
+            //{
+            //    if (TryComp<MyrmexGrowerComponent>(entity, out var grower) &&
+            //        grower.SporeType != MyrmexSporeType.None)
+            //    {
+            //        count++;
+            //        result = grower.SporeType;
+            //    }
+            //} // TODO FIX MEDIEVAL
 
             return count switch
             {
