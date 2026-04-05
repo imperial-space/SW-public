@@ -159,6 +159,7 @@
   - type: Tag
     tags:
     - NecromancerKey
+  - type: CurseItem
 
 - type: entity
   parent: MedievalKeyBase
@@ -219,6 +220,8 @@
   - type: Tag
     tags:
     - CultOfTruthKey
+  - type: CurseItem
+    cult: true
 
 - type: entity
   parent: MedievalKeyBase
@@ -789,11 +792,12 @@
       wood:
         whitelist:
           tags:
-            - MinerKey
+          - MinerKey
       king:
         whitelist:
           tags:
-            - CultOfTruthKey
+          - CultOfTruthKey
+
     sprite: Imperial/Medieval/Misc/key_storage.rsi
   - type: Appearance
   - type: Item
@@ -818,6 +822,9 @@
   - type: Key
     accesses:
     - LegionTreasury
+  - type: Tag
+    tags:
+    - LegionnaireKey
 
 - type: entity
   parent: MedievalKeyBase
@@ -831,6 +838,9 @@
   - type: Key
     accesses:
     - Archivist
+  - type: Tag
+    tags:
+    - LegionnaireKey
 
 - type: playTimeTracker
   id: Medieval1

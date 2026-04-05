@@ -1035,6 +1035,11 @@
   description: flavor-complex-brave-bull
 
 - type: flavor
+  id: dwarvesblood
+  flavorType: Complex
+  description: flavor-complex-dwarves-blood
+
+- type: flavor
   id: demonsblood
   flavorType: Complex
   description: flavor-complex-demons-blood

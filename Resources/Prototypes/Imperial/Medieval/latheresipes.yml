@@ -389,6 +389,15 @@
   result: MedievalMonsterBag
 
 - type: CP14Recipe
+  id: MedievalHealBag
+  craftTime: 10
+  stacks:
+    MedievalLeather1: 2
+    MedievalRope: 1
+    MedievalLeatherBelt: 2
+  result: MedievalHealBag
+
+- type: CP14Recipe
   id: MedievalWineskin
   craftTime: 6
   stacks:
@@ -1131,14 +1140,14 @@
 
 - type: CP14Recipe
   id: MedievalGoldCup
-  craftTime: 25
+  craftTime: 15
   stacks:
     MedievalGold: 2
   result: MedievalGoldCup
 
 - type: CP14Recipe
   id: MedievalSilverCup
-  craftTime: 25
+  craftTime: 15
   stacks:
     MedievalIronIngot: 2
   result: MedievalSilverCup
@@ -1423,6 +1432,47 @@
   result: MedievalCoal10
 
 - type: CP14Recipe
+  id: MedievalLintstock
+  craftTime: 1
+  stacks:
+    MedievalIronIngot: 1
+    MedievalLeather1: 1
+    MedievalFireSerdolick: 1
+  result: MedievalLintstock
+
+- type: CP14Recipe
+  id: MedievalGunpowderCharge
+  craftTime: 1
+  stacks:
+    Gunpowder: 4
+    Cloth: 1
+  result: MedievalGunpowderCharge
+
+- type: CP14Recipe
+  id: MedievalCannonballShip
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 10
+  result: MedievalCannonballShip
+
+- type: CP14Recipe
+  id: MedievalCannonballExplosive
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 5
+    Gunpowder: 4
+  result: MedievalCannonballExplosive
+
+- type: CP14Recipe
+  id: MedievalGrapeshot
+  craftTime: 3
+  stacks:
+    MedievalRivets: 3
+    Cloth: 1
+    MedievalRope: 1
+  result: MedievalGrapeshot
+
+- type: CP14Recipe
   id: ClothingMaskBandGreen
   craftTime: 4
   stacks:
@@ -1463,6 +1513,15 @@
   stacks:
     Cloth: 2
   result: ClothingMaskBandBlack
+
+- type: CP14Recipe
+  id: MedievalCultConductor
+  craftTime: 2
+  iconOverride: MedievalCultConductor
+  stacks:
+    Cloth: 10
+    MedievalLeather1: 10
+  result: MedievalCultConductor
 
 - type: CP14Recipe
   id: MedievalClothingOuterArmorGoblinLeather
@@ -1616,3 +1675,45 @@
     MedievalGlina: 5
     MedievalCoal: 1
   result: MedievalStoneBrick
+
+- type: CP14Recipe
+  id: GoldenFork
+  craftTime: 15
+  stacks:
+    MedievalGold: 1
+  result: GoldenFork
+
+- type: CP14Recipe
+  id: GoldenSpoon
+  craftTime: 15
+  stacks:
+    MedievalGold: 1
+  result: GoldenSpoon
+
+- type: CP14Recipe
+  id: GoldenPlate
+  craftTime: 15
+  stacks:
+    MedievalGold: 2
+  result: GoldenPlate
+
+- type: CP14Recipe
+  id: MedievalFireplaceCraft
+  craftTime: 15
+  stacks:
+    MedievalStoneBrick: 4
+  result: MedievalFireplaceCraft
+
+- type: CP14Recipe
+  id: Spoon
+  craftTime: 5
+  stacks:
+    MedievalIronIngot: 2
+  result: Spoon
+
+- type: CP14Recipe
+  id: Fork
+  craftTime: 5
+  stacks:
+    MedievalIronIngot: 2
+  result: Fork

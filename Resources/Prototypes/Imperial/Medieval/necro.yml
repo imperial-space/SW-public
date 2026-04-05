@@ -138,10 +138,7 @@
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth13Necro
     back: ClothingBackpackSatchelNecro
     #pocket1: BaseMagicNecroShop
-
-
-
-
+    pocket2: MedievalCursedMarkNecro
 
 - type: entity
   #noSpawn: true
@@ -194,6 +191,7 @@
     id: MedievalKeyChapel
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth13Necro
     back: ClothingBackpackSatchelNecro
+    pocket2: MedievalCursedMarkNecro
   storage:
     back:
     - BaseMagicNecroShop
@@ -246,6 +244,7 @@
     gloves: MedievalNecroGlovesLight
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth13Necro
     back: ClothingBackpackSatchelNecro
+    pocket2: MedievalCursedMarkNecro
   storage:
     back:
     - BaseMagicNecroShopLeader
@@ -283,6 +282,8 @@
     preset: StorePresetMedievalNecro
     balance:
       UnholyMedieval: 140
+  - type: CurseItem
+    cult: true
 
 - type: entity
   parent: BaseMagicNecroShop
@@ -526,6 +527,14 @@
   - MedievalNecroOther
 
 - type: listing
+  id: MagicNecroShopMedievalManaBurnGrenade
+  productEntity: MedievalManaBurnGrenade
+  cost:
+    UnholyMedieval: 5
+  categories:
+  - MedievalNecroOther
+
+- type: listing
   id: MagicNecroShopMedievalServerMap
   productEntity: MedievalServerMap
   cost:
@@ -608,6 +617,7 @@
         - id: MedievalClothingOuterArmorNecro
         - id: MedievalClothingFeetNecromancer
         - id: MedievalNecroGloves
+    - type: CurseItem
 
 - type: entity
   #noSpawn: true
@@ -651,6 +661,7 @@
     damageCoefficient: 0.75
   - type: ManaRegen
     regen: 0.7
+  - type: CurseItem
 
 - type: entity
   parent: ClothingOuterBase
@@ -680,6 +691,7 @@
     damageCoefficient: 0.85
   - type: ManaRegen
     regen: 2.5
+  - type: CurseItem
 
 - type: listing
   id: NecroListingMedievalRepairStone
@@ -712,3 +724,23 @@
     UnholyMedieval: 50
   categories:
   - MedievalNecroArmor
+
+- type: entity
+  id: MedievalCursedMarkNecro
+  parent: BaseItem
+  name: Cursed Mark
+  description: This cursed mark created by Morbius for all of the Necropolis citizens.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/cursed_mark.rsi
+    state: icon
+  - type: Item
+    size: Tiny
+  - type: PointLight
+    enabled: true
+    color: "#8A1313"
+    radius: 4.0
+    energy: 6.0
+  - type: Unremoveable
+  - type: CurseItem
+

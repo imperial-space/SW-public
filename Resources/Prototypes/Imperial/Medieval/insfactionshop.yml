@@ -177,11 +177,53 @@
   categories:
   - MedievalInsWeapon
 
+- type: listing
+  id: MdvInsBowImprovised
+  productEntity: BowImprovised
+  cost:
+    MedalIns: 1
+  categories:
+  - MedievalInsWeapon
 
+- type: listing
+  id: MdvInsMedievalWeaponCrossbow
+  productEntity: MedievalWeaponCrossbow
+  cost:
+    MedalIns: 5
+  categories:
+  - MedievalInsWeapon
 
+- type: listing
+  id: MdvInsMedievalQuiverFullArrowIronPhysics
+  productEntity: MedievalQuiverFullArrowIronPhysics
+  cost:
+    MedalIns: 1
+  categories:
+  - MedievalInsWeapon
 
+- type: listing
+  id: MdvInsMedievalQuiverFullArrowSteelPhysics
+  productEntity: MedievalQuiverFullArrowSteelPhysics
+  cost:
+    MedalIns: 2
+  categories:
+  - MedievalInsWeapon
 
+- type: listing
+  id: MdvInsMedievalQuiverFullBoltIron
+  productEntity: MedievalQuiverFullBoltIron
+  cost:
+    MedalIns: 3
+  categories:
+  - MedievalInsWeapon
 
+- type: listing
+  id: MdvInsMedievalQuiverFullBoltSteel
+  productEntity: MedievalQuiverFullBoltSteel
+  cost:
+    MedalIns: 4
+  categories:
+  - MedievalInsWeapon
 
 - type: listing
   id: MdvInsMedievalPalice

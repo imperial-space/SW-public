@@ -27,17 +27,20 @@
     - MedievalFireSpells
     - MedievalLightSpells
     - MedievalVodkaSpells
+    - MedievalEarthSpells
     - MedievalDarknessSpells
     currencyWhitelist:
     - MagicMedievalFire
     - MagicMedievalLight
     - MagicMedievalVodka
+    - MagicMedievalEarth
     - MagicMedievalDarkness
     - ArchmagePoints
     balance:
       MagicMedievalFire: 80
       MagicMedievalLight: 80
       MagicMedievalVodka: 80
+      MagicMedievalEarth: 80
       MagicMedievalDarkness: 10
       ArchmagePoints: 1
     bonusCount: 5
@@ -54,6 +57,7 @@
       MagicMedievalFire: 100
       MagicMedievalLight: 100
       MagicMedievalVodka: 100
+      MagicMedievalEarth: 100
       MagicMedievalDarkness: 20
       ArchmagePoints: 4
 
@@ -69,6 +73,7 @@
       MagicMedievalFire: 70
       MagicMedievalLight: 70
       MagicMedievalVodka: 70
+      MagicMedievalEarth: 70
       MagicMedievalDarkness: 0
       ArchmagePoints: 2
 
@@ -84,6 +89,7 @@
       MagicMedievalFire: 70
       MagicMedievalLight: 70
       MagicMedievalVodka: 70
+      MagicMedievalEarth: 70
       MagicMedievalDarkness: 45
       ArchmagePoints: 2
 
@@ -99,6 +105,7 @@
       MagicMedievalFire: 70
       MagicMedievalLight: 70
       MagicMedievalVodka: 70
+      MagicMedievalEarth: 70
       MagicMedievalDarkness: 0
       ArchmagePoints: 2
 
@@ -114,6 +121,7 @@
       MagicMedievalFire: 70
       MagicMedievalLight: 70
       MagicMedievalVodka: 70
+      MagicMedievalEarth: 70
       MagicMedievalDarkness: 0
       ArchmagePoints: 2
 
@@ -130,6 +138,7 @@
       MagicMedievalFire: 70
       MagicMedievalLight: 70
       MagicMedievalVodka: 70
+      MagicMedievalEarth: 70
       MagicMedievalDarkness: 0
       ArchmagePoints: 2
 
@@ -145,6 +154,7 @@
       MagicMedievalFire: 55
       MagicMedievalLight: 55
       MagicMedievalVodka: 55
+      MagicMedievalEarth: 55
       MagicMedievalDarkness: 100
       ArchmagePoints: 1
 
@@ -160,6 +170,7 @@
       MagicMedievalFire: 45
       MagicMedievalLight: 45
       MagicMedievalVodka: 45
+      MagicMedievalEarth: 45
       MagicMedievalDarkness: 0
       ArchmagePoints: 1
 
@@ -176,6 +187,7 @@
       MagicMedievalFire: 50
       MagicMedievalLight: 25
       MagicMedievalVodka: 25
+      MagicMedievalEarth: 25
       MagicMedievalDarkness: 0
       ArchmagePoints: 0
 
@@ -191,6 +203,7 @@
       MagicMedievalFire: 25
       MagicMedievalLight: 25
       MagicMedievalVodka: 50
+      MagicMedievalEarth: 25
       MagicMedievalDarkness: 0
       ArchmagePoints: 0
 
@@ -206,6 +219,23 @@
       MagicMedievalFire: 25
       MagicMedievalLight: 50
       MagicMedievalVodka: 25
+      MagicMedievalEarth: 25
+      MagicMedievalDarkness: 0
+      ArchmagePoints: 0
+
+- type: entity
+  parent: MedievalSpellBookBase
+  id: MedievalSpellBookRecodeCollegiumWeakEarth
+  name: магический гримуар ученика магии земли
+  description: Гримуар может быть только один у мага. Он привязан к своему владельцу и нужен для изучения заклинаний.
+  suffix: Empty
+  components:
+  - type: ImperialStore
+    balance:
+      MagicMedievalFire: 25
+      MagicMedievalLight: 25
+      MagicMedievalVodka: 25
+      MagicMedievalEarth: 50
       MagicMedievalDarkness: 0
       ArchmagePoints: 0
 
@@ -221,5 +251,6 @@
       MagicMedievalFire: 999
       MagicMedievalLight: 999
       MagicMedievalVodka: 999
+      MagicMedievalEarth: 999
       MagicMedievalDarkness: 999
       ArchmagePoints: 100

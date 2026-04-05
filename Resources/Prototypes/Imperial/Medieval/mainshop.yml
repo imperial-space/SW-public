@@ -140,6 +140,7 @@
     # нужно создать прототип личной торговой дыры (?)
     # все остальные ограничения по типу дыры для легиона настраиваются также, как раньше
     ownerOnly: true
+  - type: TradingPitCollect
   - type: TrashDefendArea
   - type: Transform
     anchored: true
@@ -564,6 +565,17 @@
     Revent: 35
   cost:
     Revent: 50
+  categories:
+  - MedievalBuild
+
+- type: listing
+  id: MdvShopMedievalSeedExtractorNewCraft
+  productEntity: MedievalSeedExtractorNewCraft
+  discountCategory: medievalDiscounts
+  discountDownTo:
+    Revent: 50
+  cost:
+    Revent: 100
   categories:
   - MedievalBuild
 
@@ -2310,6 +2322,22 @@
   - MedievalBackpack
 
 - type: listing
+  id: MdvShopFishingBag
+  productEntity: FishingBag
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
+  id: MdvShopHealBag
+  productEntity: MedievalHealBag
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
   id: MedievalClothingBackpackSatchelLeather
   productEntity: MedievalClothingBackpackSatchelLeather
   cost:
@@ -2557,6 +2585,206 @@
   - MedievalMisc
 
 - type: listing
+  id: MdvShopMusicBoxInstrument
+  productEntity: MusicBoxInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopHarpInstrument
+  productEntity: HarpInstrument
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopAcousticGuitarInstrument
+  productEntity: AcousticGuitarInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopTrumpetInstrument
+  productEntity: TrumpetInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopTromboneInstrument
+  productEntity: TromboneInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopContrabassInstrument
+  productEntity: ContrabassInstrument
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopCelloInstrument
+  productEntity: CelloInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopViolinInstrument
+  productEntity: ViolinInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopViolaInstrument
+  productEntity: ViolaInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopBagpipeInstrument
+  productEntity: BagpipeInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopPanFluteInstrument
+  productEntity: PanFluteInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopHarmonicaInstrument
+  productEntity: HarmonicaInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopOcarinaInstrument
+  productEntity: OcarinaInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopRecorderInstrument
+  productEntity: RecorderInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopFluteInstrument
+  productEntity: FluteInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopClarinetInstrument
+  productEntity: ClarinetInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopKalimbaInstrument
+  productEntity: KalimbaInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopUprightPianoInstrument
+  productEntity: UprightPianoInstrument
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopChurchOrganInstrument
+  productEntity: ChurchOrganInstrument
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopTaikoInstrument
+  productEntity: TaikoInstrument
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopTimpaniInstrument
+  productEntity: TimpaniInstrument
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopWoodblockInstrument
+  productEntity: WoodblockInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopGlockenspielInstrument
+  productEntity: GlockenspielInstrument
+  cost:
+    Revent: 20
+  categories:
+  - MedievalMisc
+
+- type: listing
+  id: MdvShopTomDrumsInstrument
+  productEntity: TomDrumsInstrument
+  cost:
+    Revent: 50
+  categories:
+  - MedievalMisc
+
+# - type: listing
+  # id: MdvShopPianoInstrument
+  # productEntity: PianoInstrument
+  # cost:
+    # Revent: 100
+  # categories:
+  # - MedievalMisc
+
+- type: listing
   id: MdvShopMedievalWineskin
   productEntity: MedievalWineskin
   cost:
@@ -2785,6 +3013,70 @@
   productEntity: MedievalMopBucket
   cost:
     Revent: 15
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle01
+  productEntity: MedievalChemistryEmptyBottle01
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle02
+  productEntity: MedievalChemistryEmptyBottle02
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle03
+  productEntity: MedievalChemistryEmptyBottle03
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottle04
+  productEntity: MedievalChemistryEmptyBottle04
+  cost:
+    Revent: 5
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottleTempering01
+  productEntity: MedievalChemistryEmptyBottleTempering01
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottleTempering02
+  productEntity: MedievalChemistryEmptyBottleTempering02
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottleTempering03
+  productEntity: MedievalChemistryEmptyBottleTempering03
+  cost:
+    Revent: 20
+  categories:
+  - MedievalPlants
+
+- type: listing
+  id: MdvShopChemistryEmptyBottleTempering04
+  productEntity: MedievalChemistryEmptyBottleTempering04
+  cost:
+    Revent: 20
   categories:
   - MedievalPlants
 

@@ -19,6 +19,7 @@
       groups:
         Burn: 10
   - type: MeleeWeapon
+    attackRate: 0.1 # imperial medieval
     soundHit:
       collection: Punch
     damage:

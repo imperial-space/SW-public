@@ -46,12 +46,14 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: -3
-            Shock: -3
-            Cold: -3
+            Heat: -30
+            Shock: -20
+            Cold: -15
+          groups:
+            Brute: -7
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 1
+        progressAmount: -10
+        curePower: 10
     Poison:
       effects:
       - !type:Jitter
@@ -88,11 +90,13 @@
       - !type:HealthChange
         damage:
           types:
-            Asphyxiation: -1
-            Bloodloss: -0.5
+            Asphyxiation: -10
+            Bloodloss: -10
+          groups:
+            Brute: -6
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 1
+        progressAmount: -7
+        curePower: 10
     Poison:
       effects:
       - !type:Jitter
@@ -141,10 +145,10 @@
         ignoreResistances: false
         damage:
           types:
-            Caustic: 0.5
+            Caustic: 20
       - !type:Emote
         emote: Scream
-        probability: 0.3
+        probability: 0.8
   metabolisms:
     Poison:
       effects:
@@ -156,10 +160,10 @@
         type: Local
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
-        probability: 0.33
+        probability: 0.8
       - !type:Emote
         emote: Scream
-        probability: 0.3
+        probability: 0.8
       - !type:Jitter
         conditions:
         - !type:ReagentThreshold
@@ -202,7 +206,7 @@
         ignoreResistances: false
         damage:
           types:
-            Radiation: 1
+            Radiation: 25
   metabolisms:
     Poison:
       effects:
@@ -250,10 +254,10 @@
       - !type:HealthChange
         damage:
           groups:
-            Brute: -6
+            Brute: -20
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 1
+        progressAmount: -15
+        curePower: 10
     Poison:
       effects:
       - !type:Jitter
@@ -288,7 +292,7 @@
     Narcotic:
       effects:
       - !type:ChemVomit
-        probability: 0.5
+        probability: 0.9
     Poison:
       effects:
       - !type:Jitter
@@ -304,10 +308,184 @@
       - !type:HealthChange
         damage:
           groups:
-            Toxin: 6
+            Toxin: 24
         conditions:
         - !type:ReagentThreshold
           min: 30
+
+- type: reagent
+  id: medievalAmmonia
+  showinbook: false
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#77b58e"
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: 1
+  - !type:PlantAdjustHealth
+    amount: 0.5
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 1
+    Gas:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Rat
+          shouldHave: false
+        - !type:ReagentThreshold
+          reagent: Ammonia
+          min: 1
+        ignoreResistances: true
+        damage:
+          types:
+            Poison: 0.25
+      - !type:ChemVomit
+        probability: 0.12
+        conditions:
+        - !type:OrganType
+          type: Rat
+          shouldHave: false
+        - !type:OrganType
+          type: Vox
+          shouldHave: false
+        - !type:ReagentThreshold
+          reagent: Ammonia
+          min: 0.8
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages: [ "ammonia-smell" ]
+        probability: 0.1
+        conditions:
+        - !type:ReagentThreshold
+          reagent: Ammonia
+          min: 0.25
+      - !type:HealthChange
+        conditions:
+        - !type:OrganType
+          type: Rat
+        - !type:ReagentThreshold
+          reagent: Ammonia
+          min: 1
+        scaleByQuantity: true
+        ignoreResistances: true
+        damage:
+          groups:
+            Brute: -5
+            Burn: -5
+          types:
+            Bloodloss: -5
+      - !type:Oxygenate # ammonia displaces nitrogen in vox blood
+        conditions:
+        - !type:OrganType
+          type: Vox
+        factor: -4
+
+- type: reagent
+  id: medievalPlantBGone
+  showinbook: false
+  name: ""
+  desc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#49002E"
+  physicalDesc: ""
+  plantMetabolism:
+    - !type:PlantAdjustToxins
+      amount: 6
+    - !type:PlantAdjustWeeds
+      amount: -8
+    - !type:PlantAdjustHealth
+      amount: -20
+    - !type:PlantAdjustMutationMod
+      amount: 0.1
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: -4
+            Blunt: 2
+            Slash: 1
+            Piercing: 1
+        conditions:
+        - !type:OrganType
+          type: Plant
+
+- type: reagent
+  id: medievalLeft4Zed
+  showinbook: false
+  name: ""
+  desc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: null
+  color: "#5b406c"
+  physicalDesc: ""
+  plantMetabolism:
+    - !type:PlantAdjustNutrition
+      amount: 1
+    - !type:PlantAdjustHealth
+      amount: -0.5
+    - !type:PlantAdjustMutationMod
+      probability: 0.3
+      amount: 0.4
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:SatiateHunger
+        conditions:
+        - !type:OrganType
+          type: Plant
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 1
+        conditions:
+        - !type:OrganType
+          type: Plant
+
+- type: reagent
+  id: medievalDiethylamine
+  showinbook: false
+  name: ""
+  desc: ""
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: ""
+  flavor: null
+  color: "#a1000b"
+  plantMetabolism:
+  - !type:PlantAdjustNutrition
+    amount: 0.1
+  - !type:PlantAdjustPests
+    probability: 0.1
+    amount: -1
+  - !type:PlantAdjustHealth
+    amount: 0.1
+  - !type:PlantAffectGrowth
+    probability: 0.2
+    amount: 1
+  - !type:PlantDiethylamine {}
+  metabolisms:
+    Poison:
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 1
 
 - type: reagent
   id: medievalslow
@@ -323,8 +501,8 @@
     Narcotic:
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 0.8
-        sprintSpeedModifier: 0.8
+        walkSpeedModifier: 0.5
+        sprintSpeedModifier: 0.5
     Poison:
       effects:
       - !type:Jitter
@@ -359,8 +537,8 @@
     Narcotic:
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.2
-        sprintSpeedModifier: 1.2
+        walkSpeedModifier: 1.6
+        sprintSpeedModifier: 1.6
     Poison:
       effects:
       - !type:Jitter
@@ -397,7 +575,7 @@
       - !type:GenericStatusEffect
         key: StaminaModifier
         component: StaminaModifier
-        time: 3
+        time: 30
         type: Add
     Poison:
       effects:
@@ -451,6 +629,29 @@
           min: 30
 
 - type: reagent
+  id: medievalAntihol
+  showinbook: false
+  name: ""
+  desc: ""
+  physicalDesc: ""
+  flavor: null
+  color: "#b0a28a"
+  metabolisms:
+    Medicine:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentThreshold
+          min: 15
+        damage:
+          types:
+            Poison: -0.65
+      - !type:GenericStatusEffect
+        key: Drunk
+        time: 1.0
+        type: Remove
+
+- type: reagent
   id: medievalcryoexplosion
   name: ""
   desc: imperial-medieval-medievalcryoexplosion-desc
@@ -497,12 +698,12 @@
       - !type:HealthChange
         damage:
           types:
-            Slash: -2
+            Slash: -15
           groups:
-            Brute: -3
+            Brute: -15
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 1
+        progressAmount: -8
+        curePower: 10
     Poison:
       effects:
       - !type:Jitter
@@ -539,12 +740,12 @@
       - !type:HealthChange
         damage:
           types:
-            Piercing: -2
+            Piercing: -15
           groups:
-            Brute: -3
+            Brute: -15
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 1
+        progressAmount: -8
+        curePower: 10
     Poison:
       effects:
       - !type:Jitter
@@ -581,12 +782,12 @@
       - !type:HealthChange
         damage:
           types:
-            Blunt: -2
+            Blunt: -15
           groups:
-            Brute: -3
+            Brute: -15
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 1
+        progressAmount: -8
+        curePower: 10
     Poison:
       effects:
       - !type:Jitter
@@ -624,8 +825,8 @@
         key: Muted
         component: Muted
         type: Add
-        time: 10
-        refresh: false
+        time: 180
+        refresh: true
     Poison:
       effects:
       - !type:Jitter
@@ -759,11 +960,11 @@
       - !type:Emote
         emote: Yawn
         showInChat: true
-        probability: 0.1
+        probability: 0.2
       - !type:GenericStatusEffect
         key: Drowsiness
         component: Drowsiness
-        time: 4
+        time: 30
         type: Add
         refresh: false
       - !type:Jitter
@@ -799,13 +1000,13 @@
       methods: [ Touch ]
       effects:
       - !type:FlammableReaction
-        multiplier: 0.2
+        multiplier: 3
       - !type:Ignite
   metabolisms:
     Poison:
       effects:
       - !type:FlammableReaction
-        multiplier: 2
+        multiplier: 6
       - !type:AdjustTemperature
         amount: 6000
       - !type:Ignite
@@ -843,12 +1044,14 @@
       - !type:HealthChange
         damage:
           types:
-            Bloodloss: -0.5
+            Bloodloss: -30
+          groups:
+            Brute: -6
       - !type:ModifyBleedAmount
-        amount: -0.25
+        amount: -5
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 1
+        progressAmount: -8
+        curePower: 10
     Poison:
       effects:
       - !type:Jitter
@@ -914,13 +1117,13 @@
       - !type:HealthChange
         damage:
           groups:
-            Burn: -2
-            Toxin: -2
-            Airloss: -2
-            Brute: -2
+            Burn: -25
+            Toxin: -25
+            Airloss: -25
+            Brute: -25
       - !type:ProgressPlague
-        progressAmount: -3
-        curePower: 3
+        progressAmount: -30
+        curePower: 30
       - !type:GrantPlagueImmunity
     Poison:
       effects:
@@ -958,12 +1161,12 @@
       - !type:HealthChange
         damage:
           types:
-            Slash: -4
+            Slash: -30
           groups:
-            Brute: -6
+            Brute: -30
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 2
+        progressAmount: -20
+        curePower: 20
     Poison:
       effects:
       - !type:Jitter
@@ -1000,12 +1203,12 @@
       - !type:HealthChange
         damage:
           types:
-            Piercing: -4
+            Piercing: -30
           groups:
-            Brute: -6
+            Brute: -30
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 2
+        progressAmount: -20
+        curePower: 20
     Poison:
       effects:
       - !type:Jitter
@@ -1042,12 +1245,12 @@
       - !type:HealthChange
         damage:
           types:
-            Blunt: -4
+            Blunt: -30
           groups:
-            Brute: -6
+            Brute: -30
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 2
+        progressAmount: -20
+        curePower: 20
     Poison:
       effects:
       - !type:Jitter
@@ -1084,12 +1287,14 @@
       - !type:HealthChange
         damage:
           types:
-            Heat: -3
-            Shock: -3
-            Cold: -3
+            Heat: -30
+            Shock: -30
+            Cold: -30
+          groups:
+            Brute: -12
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 2
+        progressAmount: -20
+        curePower: 20
     Poison:
       effects:
       - !type:Jitter
@@ -1135,30 +1340,33 @@
       effects:
       - !type:HealthChange
         scaleByQuantity: true
-        ignoreResistances: false
+        ignoreResistances: true
         damage:
           types:
-            Caustic: 2
-            Radiation: 2
+            Caustic: 25
+            Radiation: 25
       - !type:Emote
         emote: Scream
-        probability: 0.3
+        probability: 0.8
   metabolisms:
+    Medicine:
+      effects:
+      - !type:DeleteDeathCurseEffect
     Poison:
       effects:
       - !type:HealthChange
         damage:
           types:
-            Caustic: 4
-            Radiation: 4
+            Caustic: 25
+            Radiation: 25
       - !type:PopupMessage
         type: Local
         visualType: Large
         messages: [ "generic-reagent-effect-burning-insides" ]
-        probability: 0.33
+        probability: 0.7
       - !type:Emote
         emote: Scream
-        probability: 0.3
+        probability: 0.7
       - !type:Jitter
         conditions:
         - !type:ReagentThreshold
@@ -1191,8 +1399,8 @@
     Narcotic:
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.3
-        sprintSpeedModifier: 1.3
+        walkSpeedModifier: 2.1
+        sprintSpeedModifier: 2.1
     Poison:
       effects:
       - !type:Jitter
@@ -1227,8 +1435,8 @@
     Narcotic:
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 0.6
-        sprintSpeedModifier: 0.6
+        walkSpeedModifier: 0.25
+        sprintSpeedModifier: 0.25
     Poison:
       effects:
       - !type:Jitter
@@ -1266,7 +1474,7 @@
         key: Pacified
         component: Pacified
         type: Add
-        time: 4
+        time: 30
       - !type:Jitter
         conditions:
         - !type:ReagentThreshold
@@ -1300,7 +1508,7 @@
       methods: [ Touch ]
       effects:
       - !type:TeleportEntityEffect
-        energyPerUnit: 1
+        energyPerUnit: 4
         teleportType: Random
   metabolisms:
     Poison:
@@ -1342,12 +1550,14 @@
       - !type:HealthChange
         damage:
           types:
-            Bloodloss: -2
+            Bloodloss: -50
+          groups:
+            Brute: -12
       - !type:ModifyBleedAmount
-        amount: -1
+        amount: -10
       - !type:ProgressPlague
-        progressAmount: -3
-        curePower: 3
+        progressAmount: -30
+        curePower: 30
     Poison:
       effects:
       - !type:Jitter
@@ -1385,8 +1595,8 @@
       metabolismRate: 1.0
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.1
-        sprintSpeedModifier: 1.1
+        walkSpeedModifier: 1.4
+        sprintSpeedModifier: 1.4
       - !type:GenericStatusEffect
         key: Stun
         time: 3
@@ -1418,7 +1628,7 @@
         - !type:HealthChange
           damage: # heals at the same rate as tricordrazine, doesn't heal poison because if you OD'd I'm not giving you a safety net
             groups:
-              Brute: -2
+              Brute: -7
     Poison:
       effects:
       - !type:Jitter
@@ -1450,10 +1660,13 @@
   flavor: null
   color: "#63806e"
   metabolisms:
+    Medicine:
+      effects:
+      - !type:DeleteDeathCurseEffect
     Poison:
       effects:
       - !type:FlammableReaction
-        multiplier: 5
+        multiplier: 8
       - !type:AdjustTemperature
         amount: 10000
       - !type:Ignite
@@ -1482,7 +1695,7 @@
       methods: [ Touch ]
       effects:
       - !type:FlammableReaction
-        multiplier: 0.5
+        multiplier: 8
       - !type:Ignite
 
 - type: reagent
@@ -1603,16 +1816,16 @@
       - !type:HealthChange
         damage:
           types:
-            Cellular: -10
-            Bloodloss: -10
+            Cellular: -60
+            Bloodloss: -60
           groups:
-            Burn: -10
-            Toxin: -10
-            Airloss: -10
-            Brute: -10
+            Burn: -60
+            Toxin: -60
+            Airloss: -60
+            Brute: -60
       - !type:ProgressPlague
-        progressAmount: -2
-        curePower: 4
+        progressAmount: -20
+        curePower: 40
       - !type:GrantPlagueImmunity
     Poison:
       effects:
@@ -1645,12 +1858,15 @@
   flavor: null
   color: "#63806e"
   metabolisms:
+    Medicine:
+      effects:
+      - !type:DeleteDeathCurseEffect
     Narcotic:
       effects:
       - !type:MovespeedModifier
-        walkSpeedModifier: 0.2
-        sprintSpeedModifier: 0.2
-        statusLifetime: 6
+        walkSpeedModifier: 0.1
+        sprintSpeedModifier: 0.1
+        statusLifetime: 15
       - !type:ChemVomit
         probability: 1
       - !type:GenericStatusEffect
@@ -1695,24 +1911,24 @@
         component: StutteringAccent
       - !type:Jitter
       - !type:MovespeedModifier
-        walkSpeedModifier: 1.4
-        sprintSpeedModifier: 1.4
+        walkSpeedModifier: 2
+        sprintSpeedModifier: 2
       - !type:GenericStatusEffect
         key: Stun
-        time: 3
+        time: 8
         type: Remove
       - !type:GenericStatusEffect
         key: KnockedDown
-        time: 3
+        time: 8
         type: Remove
       - !type:GenericStatusEffect
         key: StaminaModifier
         component: StaminaModifier
-        time: 3
+        time: 8
         type: Add
       - !type:GenericStatusEffect
         key: ForcedSleep
-        time: 3
+        time: 8
         type: Remove
       - !type:GenericStatusEffect
         conditions:

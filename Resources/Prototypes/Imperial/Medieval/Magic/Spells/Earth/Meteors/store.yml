@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellMeteorsBeginner
+  name: medieval-store-spells-earth-meteors-beginner-name
+  description: medieval-store-spells-earth-meteors-beginner-desc
+  productAction: MedievalActionMeteorsBeginner
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellMeteorsMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalEarth: 40
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellMeteorsMiddle
+  name: medieval-store-spells-earth-meteors-middle-name
+  description: medieval-store-spells-earth-meteors-middle-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellMeteorsSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalEarth: 65
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellMeteorsBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellMeteorsSenior
+  name: medieval-store-spells-earth-meteors-senior-name
+  description: medieval-store-spells-earth-meteors-senior-desc
+  priority: 2
+  productUpgradeId:
+    - MedievalSpellMeteorsSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Meteors/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalEarth: 75
+    ArchmagePoints: 1
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellMeteorsMiddle

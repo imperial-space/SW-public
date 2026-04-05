@@ -12,6 +12,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
+using Content.Shared.Imperial.Medieval.Skills; // --- IMPERIAL MEDIEVAL
 
 namespace Content.Shared.Throwing;
 
@@ -163,11 +164,21 @@ public sealed class ThrowingSystem : EntitySystem
 
         // Set the time the item is supposed to be in the air so we can apply OnGround status.
         // This is a free parameter, but we should set it to something reasonable.
-        var flyTime = direction.Length() / baseThrowSpeed;
-        if (compensateFriction)
-            flyTime *= FlyTimePercentage;
+        // --- IMPERIAL MEDIEVAL START ---
+        var kin = ThrowSpeedHelper.Compute(
+            direction,
+            baseThrowSpeed,
+            tileFriction,
+            compensateFriction,
+            FlyTimePercentage,
+            uid,
+            user,
+            EntityManager);
+        if (kin.ThrowSpeed <= 0f)
+            return;
         comp.ThrownTime = _gameTiming.CurTime;
-        comp.LandTime = comp.ThrownTime + TimeSpan.FromSeconds(flyTime);
+        comp.LandTime = comp.ThrownTime + TimeSpan.FromSeconds(kin.FlyTimeSeconds);
+        // --- IMPERIAL MEDIEVAL END
         comp.PlayLandSound = playSound;
         AddComp(uid, comp, true);
 
@@ -198,8 +209,7 @@ public sealed class ThrowingSystem : EntitySystem
         // This is an exact formula we get from exponentially decaying velocity after landing.
         // If someone changes how tile friction works at some point, this will have to be adjusted.
         // This doesn't actually compensate for air friction, but it's low enough it shouldn't matter.
-        var throwSpeed = compensateFriction ? direction.Length() / (flyTime + 1 / tileFriction) : baseThrowSpeed;
-        var impulseVector = direction.Normalized() * throwSpeed * physics.Mass;
+        var impulseVector = direction.Normalized() * kin.ThrowSpeed * physics.Mass; // --- IMPERIAL MEDIEVAL ---
         _physics.ApplyLinearImpulse(uid, impulseVector, body: physics);
 
         var thrownEvent = new ThrownEvent(user, uid);

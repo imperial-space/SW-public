@@ -1,0 +1,191 @@
+- type: guideEntry
+  id: MedievalCultMainRules
+  name: Основные правила проведения ритуалов
+  text: "/ServerInfo/Imperial/Medieval/Cult/MainRules.xml"
+  children:
+  - MedievalCultMainRituals
+  - MedievalCultMinorRituals
+
+- type: guideEntry
+  id: MedievalCultMinorRituals
+  name: Малые ритуалы
+  text: "/ServerInfo/Imperial/Medieval/Cult/MinorRituals.xml"
+  children:
+  - MedievalCultCraftWeapon
+  - MedievalCultCraftArmor
+  - MedievalCultCurseBlood
+
+- type: guideEntry
+  id: MedievalCultMainRituals
+  name: Основные ритуалы
+  text: "/ServerInfo/Imperial/Medieval/Cult/MainRituals.xml"
+  children:
+  - MedievalCultCursed
+  - MedievalCultCrystalsConvert
+  - MedievalCultCrystalShardConvert
+  - MedievalCultFoliantConvert
+  - MedievalCultUnlockSectors
+  - MedievalCultAdjustManaRegen
+  - MedievalCultNocturnBlood
+  - MedievalCultSpawnGrimoire
+  - MedievalCultSpawnFoodAndVine
+  - MedievalCultHealAllCultistOnRune
+  - MedievalCultStabilityCheck
+  - MedievalCultCursedScroll
+  - MedievalCultEye
+  - MedievalCultKey
+  - MedievalCultHeart
+
+- type: guideEntry
+  id: MedievalCultCraftArmor
+  name: Заклятие брони
+  text: "/ServerInfo/Imperial/Medieval/Cult/CraftArmor.xml"
+
+- type: guideEntry
+  id: MedievalCultCraftWeapon
+  name: Заклятие оружия
+  text: "/ServerInfo/Imperial/Medieval/Cult/CraftWeapon.xml"
+
+- type: guideEntry
+  id: MedievalCultCurseBlood
+  name: Проклятие крови
+  text: "/ServerInfo/Imperial/Medieval/Cult/CurseBlood.xml"
+
+- type: guideEntry
+  id: MedievalCultCursed
+  name: Ритуал привязки жертвы
+  text: "/ServerInfo/Imperial/Medieval/Cult/CultCursed.xml"
+
+- type: guideEntry
+  id: MedievalCultCrystalsConvert
+  name: Конвертации кристаллов
+  text: "/ServerInfo/Imperial/Medieval/Cult/CrystalsConvert.xml"
+
+- type: guideEntry
+  id: MedievalCultCrystalShardConvert
+  name: Конвертация хрусталя
+  text: "/ServerInfo/Imperial/Medieval/Cult/CrystalShardConvert.xml"
+
+- type: guideEntry
+  id: MedievalCultFoliantConvert
+  name: Конвертация фолианта
+  text: "/ServerInfo/Imperial/Medieval/Cult/FoliantConvert.xml"
+
+- type: guideEntry
+  id: MedievalCultUnlockSectors
+  name: Разблокировка Секторов
+  text: "/ServerInfo/Imperial/Medieval/Cult/UnlockSectors.xml"
+
+- type: guideEntry
+  id: MedievalCultAdjustManaRegen
+  name: Регенерация маны
+  text: "/ServerInfo/Imperial/Medieval/Cult/AdjustManaRegen.xml"
+
+- type: guideEntry
+  id: MedievalCultNocturnBlood
+  name: Кровь Ноктюрна
+  text: "/ServerInfo/Imperial/Medieval/Cult/NocturnBlood.xml"
+
+- type: guideEntry
+  id: MedievalCultSpawnGrimoire
+  name: Призыв гримуара
+  text: "/ServerInfo/Imperial/Medieval/Cult/SpawnGrimoire.xml"
+
+- type: guideEntry
+  id: MedievalCultSpawnFoodAndVine
+  name: Еда и Вино
+  text: "/ServerInfo/Imperial/Medieval/Cult/SpawnFoodAndVine.xml"
+
+- type: guideEntry
+  id: MedievalCultHealAllCultistOnRune
+  name: Лечение всех участников ритуала
+  text: "/ServerInfo/Imperial/Medieval/Cult/HealAllCultistOnRune.xml"
+
+- type: guideEntry
+  id: MedievalCultStabilityCheck
+  name: Проверка стабильности барьера
+  text: "/ServerInfo/Imperial/Medieval/Cult/StabilityCheck.xml"
+
+- type: guideEntry
+  id: MedievalCultCursedScroll
+  name: Проклятый свиток
+  text: "/ServerInfo/Imperial/Medieval/Cult/CursedScroll.xml"
+
+- type: guideEntry
+  id: MedievalCultEye
+  name: Глаз(Стабильность барьера)
+  text: "/ServerInfo/Imperial/Medieval/Cult/Eye.xml"
+
+- type: guideEntry
+  id: MedievalCultKey
+  name: Ключ(Сектор коллегии)
+  text: "/ServerInfo/Imperial/Medieval/Cult/Key.xml"
+
+- type: guideEntry
+  id: MedievalCultHeart
+  name: Сердце(Камень возрождения)
+  text: "/ServerInfo/Imperial/Medieval/Cult/Heart.xml"
+
+- type: entity
+  id: MedievalCultBrushOff
+  hideSpawnMenu: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/cult_brush.rsi
+    state: off
+
+- type: entity
+  id: MedievalCultBrushOn
+  hideSpawnMenu: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/cult_brush.rsi
+    state: on
+
+- type: entity
+  id: MedievalCultBloodyCrystal
+  hideSpawnMenu: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/cult.rsi
+    state: bloody
+
+- type: entity
+  id: MedievalCultRedCrystal
+  hideSpawnMenu: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/cult.rsi
+    state: red
+
+- type: entity
+  id: MedievalCultDog
+  hideSpawnMenu: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/medieval_decor.rsi
+    state: cultdog
+
+- type: entity
+  id: MedievalCultCurse
+  hideSpawnMenu: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Cult/deathcurse.rsi
+    state: 2
+
+- type: entity
+  id: MedievalCultClothingArmor
+  hideSpawnMenu: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_armor_up.rsi
+    state: icon
+
+- type: entity
+  id: MedievalCultClothingMana
+  hideSpawnMenu: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/cult_armor_mana.rsi
+    state: icon

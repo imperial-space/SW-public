@@ -6,6 +6,7 @@ using Content.Shared.Weapons.Melee.Components;
 using Content.Shared.Weapons.Melee.Events;
 using Robust.Shared.Physics.Components;
 using System.Numerics;
+using Content.Shared.Imperial.Medieval.Skills;
 
 namespace Content.Shared.Weapons.Melee;
 
@@ -93,6 +94,18 @@ public sealed class MeleeThrowOnHitSystem : EntitySystem
 
         if (attemptEvent.Cancelled)
             return;
+        // --- IMPERIAL MEDIEVAL START ---
+        float distance = ent.Comp.Distance;
+
+        // Если есть юзер и на оружии висит категория скилла (например, TwoHanded)
+        if (user != null && TryComp<MedievalWeaponSkillCategoryComponent>(ent.Owner, out var cat))
+        {
+            var skillEv = new GetWeaponSkillThrowOnHitMultiplierEvent(ent.Owner, cat.Skill);
+            RaiseLocalEvent(user.Value, ref skillEv);
+
+            distance *= skillEv.Multiplier;
+        }
+        // --- IMPERIAL MEDIEVAL END ---
 
         var startEvent = new MeleeThrowOnHitStartEvent(ent.Owner, user, ent.Comp.Distance); // Imperial Medieval - distance added
         RaiseLocalEvent(target, ref startEvent);

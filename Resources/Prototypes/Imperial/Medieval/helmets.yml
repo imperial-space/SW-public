@@ -310,7 +310,7 @@
     sprite: Imperial/Medieval/Clothing/Head/goblin_slayer_helmet.rsi
 
 - type: entity
-  parent: MedievalClothingHelmetBaseHeavy
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetHood
   name: leather hood
   description: Medieval leather hood
@@ -327,7 +327,7 @@
         Piercing: 0.93
 
 - type: entity
-  parent: MedievalClothingHelmetBaseHeavy
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetHood2
   name: leather hood
   description: Medieval leather hood
@@ -345,7 +345,7 @@
         Piercing: 0.93
 
 - type: entity
-  parent: MedievalClothingHelmetBaseHeavy
+  parent: MedievalClothingHelmetBaseLight
   id: MedievalClothingHeadHelmetHood3
   name: leather hood
   description: Medieval leather hood
@@ -557,6 +557,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: CurseItem
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -582,6 +583,7 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: CurseItem
 
 - type: entity
   parent: MedievalClothingHelmetBaseLight
@@ -615,6 +617,15 @@
   - type: HideLayerClothing
     slots:
     - Hair
+  - type: SoulboundTrigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - soulboundtrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 4
+    intensitySlope: 4
+    maxIntensity: 4
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmer
@@ -681,6 +692,17 @@
   - type: HideLayerClothing
     slots:
     - Hair
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerLight
+  id: MedievalClothingHeadHelmetCharmerNeutral
+  name: MedievalClothingHeadHelmetCharmerNeutral
+  description: Medieval salad helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/charmer_neutral.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/charmer_neutral.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCollegiumPurpleHat
@@ -1119,7 +1141,7 @@
     sprite: Imperial/Medieval/Clothing/Head/charmerpurple.rsi
 
 - type: entity
-  parent: MedievalClothingHelmetBaseLight
+  parent: MedievalClothingHeadHelmetCharmerWeak
   id: MedievalClothingHeadHelmetCharmerWeakStrayMage
   name: MedievalClothingHeadHelmetCharmerWeakStrayMage
   description: MedievalClothingHeadHelmetCharmerWeakStrayMage
@@ -1128,18 +1150,17 @@
     sprite: Imperial/Medieval/Clothing/Head/stray.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/stray.rsi
-  - type: Armor
-    modifiers:
-      coefficients:
-        Blunt: 0.9
-        Slash: 0.85
-        Piercing: 0.95
-  - type: Meltable
-    resourceCount: 2
-  - type: ExplosionResistance
-    damageCoefficient: 0.9
-  - type: ManaRegen
-    regen: 0.25
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCharmerNeutral
+  id: MedievalClothingHeadHelmetCharmerNeutralStrayMage
+  name: MedievalClothingHeadHelmetCharmerNeutralStrayMage
+  description: MedievalClothingHeadHelmetCharmerNeutralStrayMage
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/stray.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/stray.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCharmerWeak
@@ -1198,6 +1219,116 @@
   - type: HideLayerClothing
     slots:
     - Hair
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetLegionLegionerNew
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/legionnaire_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/legionnaire_helmet.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/legionnaire_helmet.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetLegionLegatNew
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/legate_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/legate_helmet.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/legate_helmet.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetLegionLegatAltNew
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/legate_helmet_alt.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/legate_helmet_alt.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/legate_helmet_alt.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetLegionOpcionNew
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/helmet_option.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/helmet_option.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/helmet_option.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+
+- type: entity
+  parent: MedievalClothingHelmetBaseHeavy
+  id: MedievalClothingHeadHelmetLegionTribuneNew
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/tribune_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/tribune_helmet.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/tribune_helmet.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
 
 - type: entity
   parent: MedievalClothingHelmetBaseHeavy
@@ -1312,6 +1443,39 @@
       - state: inhand-right-leg
 
 - type: entity
+  parent: MedievalClothingHeadHelmetLegionLegionerNew
+  id: MedievalClothingHeadHelmetLegionLegionerNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
+  - type: Item
+    sprite: Imperial/Medieval/Clothing/Head/leg_inhand.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-leg
+      right:
+      - state: inhand-right-leg
+
+- type: entity
+  parent: MedievalClothingHeadHelmetLegionOpcionNew
+  id: MedievalClothingHeadHelmetLegionOpcionNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg3.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg3.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetLegionOpcionWeak
   id: MedievalClothingHeadHelmetLegionOpcionWeakRoyal
   name: shapel helmet
@@ -1323,6 +1487,17 @@
     sprite: Imperial/Medieval/Clothing/Head/royalleg3.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetLegionTribuneNew
+  id: MedievalClothingHeadHelmetLegionTribuneNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg2.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg2.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetLegionOpcion
   id: MedievalClothingHeadHelmetLegionOpcionRoyal
   name: shapel helmet
@@ -1332,6 +1507,28 @@
     sprite: Imperial/Medieval/Clothing/Head/royalleg2.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/royalleg2.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetLegionLegatNew
+  id: MedievalClothingHeadHelmetLegionLegatNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg1.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg1.rsi
+
+- type: entity
+  parent: MedievalClothingHeadHelmetLegionLegatAltNew
+  id: MedievalClothingHeadHelmetLegionLegatAltNewRoyal
+  name: shapel helmet
+  description: Medieval shapel helmet
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/royalleg1.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/royalleg1.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetLegionLegat
@@ -1724,6 +1921,10 @@
     sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Head/royalchaplain.rsi
+  - type: IngestionBlocker
+    enabled: false
+  - type: IdentityBlocker
+    enabled: false
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader
@@ -1737,6 +1938,17 @@
     sprite: Imperial/Medieval/Clothing/Head/draconic.rsi
 
 - type: entity
+  parent: MedievalClothingHeadHelmetNormandFree
+  id: MedievalClothingHeadHelmetZablik
+  name: MedievalClothingHeadHelmetZablik
+  description: MedievalClothingHeadHelmetZablik
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/zablik_head.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/zablik_head.rsi
+
+- type: entity
   parent: MedievalClothingHeadHelmetCrusader
   id: MedievalClothingHeadHelmetGreenKnight
   name: MedievalClothingHeadHelmetGreenKnight
@@ -1748,6 +1960,17 @@
     sprite: Imperial/Medieval/Clothing/Head/greenknight.rsi
   - type: IdentityBlocker
     enabled: false
+
+- type: entity
+  parent: MedievalClothingHeadHelmetCrusader
+  id: MedievalClothingHeadHelmetFoxei
+  name: MedievalClothingHeadHelmetFoxei
+  description: MedievalClothingHeadHelmetFoxei
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Head/foxei_helmet.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Head/foxei_helmet.rsi
 
 - type: entity
   parent: MedievalClothingHeadHelmetCrusader

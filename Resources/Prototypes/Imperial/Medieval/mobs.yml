@@ -437,6 +437,15 @@
     chance: 0.12
   - type: AllergySpreader
     id: Fur
+  - type: Speech
+  - type: TypingIndicator
+    proto: wolf
+
+- type: typingIndicator
+  id: wolf
+  typingState: wolf0
+  idleState: wolf3
+  # offset: 0, 0.125
 
 - type: entity
   name: wolf
@@ -1455,8 +1464,8 @@
     fixtures:
       fix1:
         shape: !type:PhysShapeCircle
-          radius: 0.35
-        density: 80
+          radius: 0.3
+        density: 130
         mask:
         - MobMask
         layer:
@@ -1471,7 +1480,7 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: monkey
-      sprite: Imperial/Medieval/Mobs/cobold.rsi
+      sprite: Imperial/Medieval/Mobs/murlok.rsi
   - type: Hands
   - type: ComplexInteraction
   - type: Body
@@ -1499,7 +1508,7 @@
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-cobold-name
-    description: ghost-role-information-cobold-description
+    description: ghost-role-information-murlok-description
     rules: Вы - фамильяр. Служите тому, кто вас призвал.
   - type: MobThresholds
     thresholds:
@@ -1522,6 +1531,552 @@
   - type: Familiar
   - type: NocturnBadFood
     timesCanBeBiten: 2
+  - type: LanguageSpeaker
+    languages:
+      Common: Speak
+      Goblin: Speak
+      #Ancient: Speak
+      Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+  - type: Butcherable
+    spawned:
+    - id: FoodMeatCrab
+      amount: 2
+  - type: Access
+    tags:
+    - Maintenance
+  - type: Speech
+    speechSounds: Goblin
+    allowedEmotes: ['Scream', 'Laugh', 'Cough', 'Sigh', 'Warcry', 'PainScream', 'PassiveScream']
+  - type: Vocal
+    sounds:
+      Male: Goblins
+      Female: Goblins
+      Unsexed: Goblins
+  - type: Mana
+    maxMana: 50
+    regen: 0.2
+  - type: WhitelistClothing
+    whitelist: GoblinArmor
+    whitelistState: humanoid
+  - type: AllergySpreader
+    id: Goblin
+  - type: MedievalDash
+    force: 715
+  - type: SSDFree
+  # - type: MultiHandedItem
+  # - type: Item
+    # size: Ginormous
+
+- type: entity
+  name: bat
+  parent: SimpleMobBaseNoFood
+  id: MedievalMobFire
+  description: Some cultures find them terrifying, others crunchy on the teeth.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 2.5
+  - type: Sprite
+    # drawdepth: SmallMobs
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: bat
+      sprite: Imperial/Medieval/Mobs/fire.rsi
+  - type: Physics
+  - type: Speech
+    speechSounds: Squeak
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.25
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: bat
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  # - type: InteractionPopup
+    # successChance: 0.2
+    # interactSuccessString: petting-success-soft-floofy
+    # interactFailureString: petting-failure-bat
+    # interactSuccessSound:
+      # path: /Audio/Animals/fox_squeak.ogg
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  #- type: ReplacementAccent
+  #  accent: mouse
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcPunch
+    damage:
+      types:
+        Heat: 2
+        ParryAble: 1
+  - type: NoSlip
+  - type: Puller
+    needsHands: true
+  - type: Alerts
+  - type: Familiar
+  - type: PointLight
+    color: Orange
+    radius: 5
+    energy: 5
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-fire-name
+    description: ghost-role-information-fire-description
+    rules: Вы - фамильяр. Служите тому, кто вас призвал. [color=yellow]Лкм - удар[/color], [color=yellow]пкм - запуск магической искры.[/color]
+  # - type: Item
+  - type: InteractionOutline
+  - type: Clickable
+  - type: DamageOnInteract
+    damage:
+      types:
+        Heat: 1
+    popupText: medieval-firefire-component-contact-damage
+  - type: IgniteOnMeleeHit
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+  - type: LanguageSpeaker
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      Ancient: Speak
+      Tribe: Understand
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      #Elf: Speak
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 10
+    rechargeSound:
+      path: /Audio/Imperial/Medieval/fireball_cast.ogg
+  - type: BasicEntityAmmoProvider
+    proto: SparkBeginner
+    capacity: 1
+    count: 1
+  - type: Gun
+    projectileSpeed: 10
+    fireRate: 1
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Imperial/Medieval/fireball_cast.ogg
+  - type: AlwaysHot
+  - type: Damageable
+    damageModifierSet: FireFire
+  - type: Temperature
+    heatDamageThreshold: 325
+    coldDamageThreshold: 260
+    currentTemperature: 310.15
+    specificHeat: 42
+    coldDamage:
+      types:
+        Cold: 1 #per second, scales with temperature & other constants
+    heatDamage:
+      types:
+        Heat: -1
+  - type: Flammable
+    firestackFade: -1
+    canResistFire: true
+  - type: MedievalDash
+    force: 350
+  # - type: MultiHandedItem
+  # - type: Item
+    # size: Ginormous
+
+- type: damageModifierSet
+  id: FireFire
+  coefficients:
+    Heat: 0
+
+- type: entity
+  name: bat
+  parent: SimpleMobBaseNoFood
+  id: MedievalMobPnya
+  description: Some cultures find them terrifying, others crunchy on the teeth.
+  components:
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4.5
+    baseSprintSpeed: 2.5
+  - type: Sprite
+    # drawdepth: SmallMobs
+    layers:
+    - map: ["enum.DamageStateVisualLayers.Base", "movement"]
+      state: peni
+      sprite: Imperial/Medieval/Mobs/pnya.rsi
+  - type: SpriteMovement
+    movementLayers:
+      movement:
+        state: peni-moving
+    noMovementLayers:
+      movement:
+        state: peni
+  - type: Physics
+  - type: Speech
+    speechSounds: Squeak
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.25
+        density: 100
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: peni
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  - type: InteractionPopup
+    successChance: 0.2
+    interactSuccessString: medieval-petting-success-pnya
+    interactFailureString: petting-failure-bat
+    interactSuccessSound:
+      path: /Audio/Animals/fox_squeak.ogg
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  #- type: ReplacementAccent
+  #  accent: mouse
+  - type: MeleeWeapon
+    hidden: true
+    soundHit:
+      path: /Audio/Effects/bite.ogg
+      angle: 0
+      animation: WeaponArcPunch
+    damage:
+      groups:
+        Brute: 5
+      types:
+        ParryAble: 1
+  - type: NoSlip
+  - type: Puller
+    needsHands: true
+  - type: Alerts
+  - type: Familiar
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: InputMover
+  - type: MobMover
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-pnya-name
+    description: ghost-role-information-pnya-description
+    rules: Вы - фамильяр. Служите тому, кто вас призвал. [color=yellow]Лкм - удар[/color], [color=yellow]пкм - запуск исцеляющего снаряда.[/color]
+  # - type: Item
+  - type: IgniteOnMeleeHit
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Log:
+            min: 1
+            max: 1
+  - type: LanguageSpeaker
+    languages:
+      Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      Tribe: Understand
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      #Hissing: Speak
+      Elf: Speak
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 5
+    rechargeSound:
+      path: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileHealingBolt
+    capacity: 1
+    count: 1
+  - type: Gun
+    projectileSpeed: 10
+    fireRate: 1
+    useKey: false
+    selectedMode: SemiAuto
+    availableModes:
+    - SemiAuto
+    soundGunshot: /Audio/Weapons/Guns/Gunshots/Magic/staff_healing.ogg
+  - type: MedievalDash
+    force: 350
+  # - type: MultiHandedItem
+  # - type: Item
+    # size: Ginormous
+
+- type: entity
+  id: MedievalProjectileHealingBolt
+  name: healing bolt
+  description: I COMMAND YOU TO LIVE!
+  parent: BaseBullet
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Projectiles/magic.rsi
+    layers:
+    - state: spell
+      color: white
+  - type: Projectile
+    damage:
+      groups: # good enough. Maybe make it call the rejuvenate command later.
+        Brute: -5
+        Burn: -5
+        Airloss: -5
+        Toxin: -5
+      types:
+        Bloodloss: -2.5
+        Cellular: -5
+    ignoreResistances: true
+
+- type: entity
+  id: MedievalMobPetSlime
+  name: plague slime
+  description: wuewuewue
+  parent: [ MobAdultSlimes, SimpleMobBaseNoFood ]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/petslime.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: slime
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slime
+      Critical:
+        Base: dead
+      Dead:
+        Base: dead
+  # - type: Destructible
+    # thresholds:
+    # - trigger: !type:DamageTrigger
+        # damage: 200
+      # behaviors:
+      # - !type:DoActsBehavior
+        # acts: [ "Destruction" ]
+      # - !type:SpawnEntitiesBehavior
+        # spawn:
+          # FoodCakeSlimeSlice:
+            # min: 1
+            # max: 1
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 10
+        Structural: 5
+        Caustic: 4
+        ParryAble: 1
+  - type: GhostTakeoverAvailable
+  - type: GhostRole
+    makeSentient: true
+    name: ghost-role-information-slime-name
+    description: ghost-role-information-slime-description
+    rules: Вы - фамильяр. Служите тому, кто вас призвал.
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: NpcFactionMember
+    factions:
+    - NanoTrasen
+  - type: LanguageSpeaker
+    languages:
+      Common: Understand
+      Goblin: Understand
+      Ancient: Understand
+      Tribe: Understand
+      Orc: Understand
+      Cursed: Understand
+      Growling: Understand
+      Hissing: Understand
+      Elf: Understand
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      150: Critical
+      200: Dead
+  - type: PassiveDamage
+    allowedStates:
+    - Alive
+    - Critical
+    damageCap: 200
+    damage:
+      groups:
+        Brute: -1
+        Burn: -1
+        Airloss: -0.5
+        Toxin: -1
+      types:
+        Bloodloss: -1
+        Cellular: -0.5
+  - type: MedievalDash
+    force: 550
+  # - type: MultiHandedItem
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 1
+  - type: Hunger
+    thresholds: # only animals and rats are derived from this prototype so let's override it here and in rats' proto
+      Overfed: 100
+      Okay: 50
+      Peckish: 25
+      Starving: 10
+      Dead: 0
+    baseDecayRate: 0
+  - type: Thirst
+    thresholds:
+      OverHydrated: 200
+      Okay: 150
+      Thirsty: 100
+      Parched: 50
+      Dead: 0
+    baseDecayRate: 0
+  - type: Bloodstream
+    bloodMaxVolume: 0
+
+- type: entity
+  id: MedievalMobPetSlime1
+  name: plague slime
+  description: wuewuewue
+  parent: MedievalMobPetSlime
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/petslime.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: slime1
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slime1
+      Critical:
+        Base: dead1
+      Dead:
+        Base: dead1
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 2
+
+- type: entity
+  id: MedievalMobPetSlime2
+  name: plague slime
+  description: wuewuewue
+  parent: MedievalMobPetSlime
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/petslime.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: slime2
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slime2
+      Critical:
+        Base: dead2
+      Dead:
+        Base: dead2
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 3
+
+- type: entity
+  id: MedievalMobPetSlime3
+  name: plague slime
+  description: wuewuewue
+  parent: MedievalMobPetSlime
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/petslime.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: slime3
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slime3
+      Critical:
+        Base: dead3
+      Dead:
+        Base: dead3
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 4
+
+- type: entity
+  id: MedievalMobPetSlime4
+  name: plague slime
+  description: wuewuewue
+  parent: MedievalMobPetSlime
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/petslime.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: slime4
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: slime4
+      Critical:
+        Base: dead4
+      Dead:
+        Base: dead4
+  # - type: Item
+    # size: Ginormous
+    # heldPrefix: 5
 
 - type: entity
   name: rabbit
@@ -1607,112 +2162,6 @@
     name: ghost-role-information-druid-name
     description: ghost-role-information-druid-description
     rules: Вы - энт. Вас разозлили люди, ломающие лес. Отомстите им
-
-- type: entity
-  name: bat
-  parent: SimpleMobBaseNoFood
-  id: MedievalMobFire
-  description: Some cultures find them terrifying, others crunchy on the teeth.
-  components:
-  - type: MovementSpeedModifier
-    baseWalkSpeed: 3
-    baseSprintSpeed: 6
-  - type: Sprite
-    drawdepth: Mobs
-    layers:
-    - map: [ "enum.DamageStateVisualLayers.Base" ]
-      state: bat
-      sprite: Imperial/Medieval/Mobs/fire.rsi
-  - type: Physics
-  - type: Speech
-    speechSounds: Squeak
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape: !type:PhysShapeCircle
-          radius: 0.25
-        density: 10
-        mask:
-        - FlyingMobMask
-        layer:
-        - FlyingMobLayer
-  - type: DamageStateVisuals
-    states:
-      Alive:
-        Base: bat
-      Critical:
-        Base: dead
-      Dead:
-        Base: dead
-  - type: InteractionPopup
-    successChance: 0.2
-    interactSuccessString: petting-success-soft-floofy
-    interactFailureString: petting-failure-bat
-    interactSuccessSound:
-      path: /Audio/Animals/fox_squeak.ogg
-  - type: Bloodstream
-    bloodMaxVolume: 0
-  #- type: ReplacementAccent
-  #  accent: mouse
-  - type: MeleeWeapon
-    hidden: true
-    soundHit:
-      path: /Audio/Effects/bite.ogg
-      angle: 0
-      animation: WeaponArcBite
-      damage:
-      types:
-        Burn: 7
-        ParryAble: 1
-  - type: NoSlip
-  - type: Puller
-    needsHands: true
-  - type: Alerts
-  - type: Familiar
-  - type: PointLight
-    color: Orange
-    radius: 8
-    energy: 8
-  - type: NpcFactionMember
-    factions:
-    - NanoTrasen
-  - type: InputMover
-  - type: MobMover
-  - type: HTN
-    rootTask:
-      task: SimpleHostileCompound
-  - type: GhostTakeoverAvailable
-  - type: GhostRole
-    makeSentient: true
-    name: ghost-role-information-fire-name
-    description: ghost-role-information-fire-description
-    rules: Вы - фамильяр. Служите тому, кто вас призвал.
-  - type: Item
-  - type: IgniteOnMeleeHit
-  - type: Destructible
-    thresholds:
-    - trigger: !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:DoActsBehavior
-        acts: [ "Destruction" ]
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          Ash:
-            min: 1
-            max: 1
-  - type: LanguageSpeaker
-    languages:
-      Common: Understand
-      #Goblin: Speak
-      Ancient: Speak
-      #Tribe: Speak
-      #Orc: Speak
-      #Cursed: Speak
-      #Growling: Speak
-      #Hissing: Speak
-      #Elf: Speak
-
 
 - type: entity
   name: rabbit
@@ -2472,6 +2921,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.09
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: fighter skeleton
@@ -2564,6 +3015,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.16
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: legion skeleton
@@ -2785,6 +3238,8 @@
       amount: 1
       prob: 0.17
   - type: MedievalUnthrowable
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a mace
@@ -2841,6 +3296,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a spear
@@ -2900,6 +3357,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a halberd
@@ -2956,6 +3415,8 @@
     - id: MedievalMagicStoneRandom
       amount: 1
       prob: 0.17
+  - type: Hands
+  - type: ComplexInteraction
 
 - type: entity
   name: skeleton with a dagger
@@ -3752,8 +4213,6 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: alive
-    - state: unshaded
-      shader: unshaded
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -3778,17 +4237,17 @@
       path: /Audio/Weapons/bladeslice.ogg
     damage:
       groups:
-        Airloss: 2
+        Airloss: 3
       types:
-        Slash: 8.5
+        Slash: 17
         ParryAble: 1
-        Bloodloss: 3
-        Radiation: 3
+        Bloodloss: 4.5
+        Radiation: 4.5
   - type: Puller
   - type: MobThresholds
     thresholds:
       0: Alive
-      125: Dead
+      375: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 2
     baseSprintSpeed: 3.2
@@ -3803,7 +4262,7 @@
   - type: MobMover
   - type: SlowOnDamage
     speedModifierThresholds:
-      10: 1.1
+      150: 1.1
       65: 1.2
   - type: DamageStateVisuals
     states:
@@ -3822,6 +4281,7 @@
       path: /Audio/Imperial/Medieval/0919132c658e1be.ogg
       params:
         variation: 0.125
+        volume: -7
   - type: LanguageSpeaker
     languages:
       #Common: Understand
@@ -3833,3 +4293,126 @@
       #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
+  - type: Butcherable
+    spawned:
+    - id: MedievalLeather1
+      amount: 3
+    - id: MedievalLootWingedShadow
+      amount: 1
+    - id: MedievalWingedShadowRandomOreSpawner
+      amount: 1
+
+- type: entity
+  name: MedievalMobAngler
+  parent: SimpleMobBaseNoFood
+  id: MedievalMobAngler
+  description: They're a golem.
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 240
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/angler.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.8
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: MeleeWeapon
+    range: 1.80
+    attackRate: 0.8
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: AlienClaw
+    damage:
+      groups:
+        Brute: 56
+      types:
+        ParryAble: 1
+        Caustic: 1
+        Bloodloss: 3
+  - type: Puller
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      540: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 3.2
+  - type: PointLight
+    color: white
+    energy: 2
+    radius: 3
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: InputMover
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MobMover
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      120: 0.9
+      250: 0.8
+      320: 0.7
+      400: 0.6
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: MedievalLootAnglerEgg
+      amount: 1
+      prob: 0.5
+    - id: MedievalLootanglerskin
+      amount: 1
+  - type: IgnoreSpiderWeb
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/spider_stepsound.ogg
+      params:
+        variation: 0.125
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: AllergySpreader
+    id: Spider
+  - type: Stamina
+    excess: 150
+  - type: StaminaDamageOnHit
+    damage: 28

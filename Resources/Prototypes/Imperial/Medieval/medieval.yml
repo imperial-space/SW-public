@@ -1208,6 +1208,37 @@
     proto: MedievalExplosionEffect
 
 - type: entity
+  name: mana burn bomb
+  description: Grenade that creates a mana burn field.
+  parent: GrenadeBase
+  id: MedievalManaBurnGrenade
+  components:
+  - type: RDWeight
+    value: 2
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_manaburn_grenade.rsi
+    layers:
+    - state: icon
+      map: ["enum.TriggerVisualLayers.Base"]
+  - type: TimerTrigger
+    delay: 2.5
+    beepSound:
+      path: "/Audio/Imperial/Medieval/bomb.ogg"
+      params:
+        volume: 7
+    initialBeepDelay: 0
+    beepInterval: 6 # 2 beeps total (at 0 and 2)
+  - type: DeleteOnTrigger
+    keysIn:
+    - timer
+  - type: SpawnOnTrigger
+    useMapCoords: true
+    keysIn:
+    - timer
+    proto: MedievalManaBurnFieldSpawnMiddle
+
+
+- type: entity
   parent: MopItem
   id: MedievalMopItem
   name: MedievalMopItem
@@ -1370,6 +1401,14 @@
     accent: NoSlip
   - type: StealTarget # imperial medieval
     stealGroup: MedievalGetMedaljonNoslip # imperial medieval
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.99
+        Slash: 0.99
+        Piercing: 0.99
+  - type: StaminaResistance
+    damageCoefficient: 0.7
 
 - type: entity
   parent: MedaljonFlashImmune
@@ -1564,6 +1603,9 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle01
+    node: ground
 
 - type: entity
   parent: ChemistryEmptyBottle02
@@ -1573,6 +1615,9 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle02
+    node: ground
 
 - type: entity
   parent: ChemistryEmptyBottle03
@@ -1582,6 +1627,9 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle03
+    node: ground
 
 - type: entity
   parent: ChemistryEmptyBottle04
@@ -1591,6 +1639,225 @@
   components:
   - type: Item
     size: Tiny
+  - type: Construction
+    graph: MedievalChemistryEmptyBottle04
+    node: ground
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle01
+  graph: MedievalChemistryEmptyBottle01
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle01
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-1 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle01
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle01
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle01
+      entity: MedievalChemistryEmptyBottle01
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle02
+  graph: MedievalChemistryEmptyBottle02
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle02
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-2 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle02
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle02
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle02
+      entity: MedievalChemistryEmptyBottle02
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle03
+  graph: MedievalChemistryEmptyBottle03
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle03
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-3 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle03
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle03
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle03
+      entity: MedievalChemistryEmptyBottle03
+
+- type: construction
+  name: бутылёк
+  id: MedievalChemistryEmptyBottle04
+  graph: MedievalChemistryEmptyBottle04
+  startNode: start
+  targetNode: MedievalChemistryEmptyBottle04
+  category: construction-category-misc
+  description: "Небольшой стеклянный бутылёк."
+  icon: { sprite: Objects/Specific/Chemistry/bottle.rsi, state: bottle-4 }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalChemistryEmptyBottle04
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalChemistryEmptyBottle04
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+    - node: MedievalChemistryEmptyBottle04
+      entity: MedievalChemistryEmptyBottle04
+
+- type: entity
+  parent: ChemistryEmptyBottle01
+  id: MedievalChemistryEmptyBottleTempering01
+  name: MedievalChemistryEmptyBottleTempering01
+  description: MedievalChemistryEmptyBottleTempering01
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ChemistryEmptyBottle02
+  id: MedievalChemistryEmptyBottleTempering02
+  name: MedievalChemistryEmptyBottleTempering02
+  description: MedievalChemistryEmptyBottleTempering02
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ChemistryEmptyBottle03
+  id: MedievalChemistryEmptyBottleTempering03
+  name: MedievalChemistryEmptyBottleTempering03
+  description: MedievalChemistryEmptyBottleTempering03
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: ChemistryEmptyBottle04
+  id: MedievalChemistryEmptyBottleTempering04
+  name: MedievalChemistryEmptyBottleTempering04
+  description: MedievalChemistryEmptyBottleTempering04
+  components:
+  - type: Item
+    size: Tiny
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1000
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: GlassBreak
+          params:
+            volume: -4
+      - !type:SpillBehavior { }
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 0
+            max: 1
+        transferForensics: true
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
 
 - type: entity
   name: MedievalLockpickPack
@@ -2067,7 +2334,7 @@
       state: brutepack
     - type: Healing
       plagueProgressionDecayPerUse: 1
-      damageContainers: [Biological]
+      damageContainers: [Biological, Forged]
       damage:
         groups:
           Brute: -15 # 5 for each type in the group
@@ -2157,6 +2424,7 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 3
     fillBaseName: mopbucket_water-
+  - type: WaterPumpBucket
 
 - type: entity
   id: MedievalDruidTree
@@ -2500,6 +2768,45 @@
   - type: Sprite
     sprite: Imperial/Medieval/Misc/medieval_paper.rsi
     state: stamp-ce
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: MedievalStampMedievalAlch
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-medieval-alch
+    stampState: "paper_stamp-alch"
+    stampedColor: brown
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
+    state: stamp-alch
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: MedievalStampMedievalTreasurer
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-medieval-treasurer
+    stampState: "paper_stamp-treasurer"
+    stampedColor: "#3333ff"
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
+    state: stamp-treasurer
+
+- type: entity
+  name: stamp
+  parent: RubberStampMime
+  id: MedievalStampMedievalVillage
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-medieval-village
+    stampState: "paper_stamp-village"
+    stampedColor: "#d49d06"
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/medieval_paper.rsi
+    state: stamp-village
 
 - type: entity
   id: MedievalWoodenFloor
@@ -3158,6 +3465,27 @@
       - MonsterLoot
 
 - type: entity
+  name: medieval loot
+  parent: BaseItem
+  id: MedievalLootanglerskin
+  description: medieval loot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: anglerskin
+  - type: Currency
+    price:
+      Revent: 280
+  - type: MedievalCurrency
+    price:
+      Revent: 280
+  - type: Item
+    size: Normal
+  - type: Tag
+    tags:
+      - MonsterLoot
+
+- type: entity
   name: шкура кабана
   parent: BaseItem
   id: MedievalLoothogskin
@@ -3494,6 +3822,29 @@
     tags:
       - MonsterLoot
 
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalLootWingedShadow
+  description: MedievalLoot
+  components:
+  - type: RDWeight
+    value: 1
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/wingedshadow.rsi
+    state: part
+  - type: Currency
+    price:
+      Revent: 90
+  - type: MedievalCurrency
+    price:
+      Revent: 90
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+      - MonsterLoot
+
 - type: reagent
   id: MedievalLootEgg
   name: ent-MedievalLootEgg
@@ -3531,6 +3882,27 @@
       reagents:
       - ReagentId: MedievalLootEgg
         Quantity: 35
+  - type: Tag
+    tags:
+      - MonsterLoot
+
+- type: entity
+  name: MedievalLoot
+  parent: BaseItem
+  id: MedievalLootAnglerEgg
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: angleregg
+  - type: Currency
+    price:
+      Revent: 420
+  - type: MedievalCurrency
+    price:
+      Revent: 420
+  - type: Item
+    size: Tiny
   - type: Tag
     tags:
       - MonsterLoot
@@ -3673,7 +4045,41 @@
         - !type:DoActsBehavior
           acts: [ "Destruction" ]
 
+- type: entity
+  id: MedievalCommsLegion
+  parent: MedievalComms
+  name: computer
+  components:
+  - type: CommunicationsConsole
+    title: medieval-announcement-title-horn-legion
+    color: "#035afc"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/Medieval/horn.ogg
 
+- type: entity
+  id: MedievalCommsInsurgency
+  parent: MedievalComms
+  name: computer
+  components:
+  - type: CommunicationsConsole
+    title: medieval-announcement-title-horn-insurgency
+    color: "#ff0000"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/Medieval/horn.ogg
+
+- type: entity
+  id: MedievalCommsCollegium
+  parent: MedievalComms
+  name: computer
+  components:
+  - type: CommunicationsConsole
+    title: medieval-announcement-title-horn-collegium
+    color: "#9403fc"
+    canShuttle: false
+    global: true
+    sound: /Audio/Imperial/Medieval/horn.ogg
 
 - type: entity
   id: MedievalWaterDeepDarkEntity
@@ -6273,24 +6679,6 @@
 
 - type: entity
   parent: BaseMedievalGetItemObjective
-  id: MedievalGetClothingHeadHelmetBone
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetClothingHeadHelmetBone
-    descriptionText: Устрашающий шлем. Слышал, что такой есть у старейшины гоблинов.
-    descriptionMultiplyText: Устрашающий шлем. Слышал, что такой есть у старейшины гоблинов.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetClothingHeadHelmetBone
-  name: костяной шлем
-  sprite:
-    sprite: Clothing/Head/Helmets/bone_helmet.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
   id: MedievalGetClothingHeadHatCowboyBrown
   components:
   - type: StealCondition
@@ -6503,150 +6891,6 @@
   name: медальон защиты от темных сил
   sprite:
     sprite: Imperial/Medieval/Clothing/Medaljons/medaljon_dark.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingNeckCloakClanTribe
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingNeckCloakClanTribe
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingNeckCloakClanTribe
-  name: ожерелье члена племени
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Cloaks/clan_tribe.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingNeckCloakClanEagle
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingNeckCloakClanEagle
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingNeckCloakClanEagle
-  name: плащ легионера
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Cloaks/clan_eagle.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingNeckCloakClanWolf
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingNeckCloakClanWolf
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingNeckCloakClanWolf
-  name: плащ разбойника
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Cloaks/clan_wolf.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingNeckCloakClanFox
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingNeckCloakClanFox
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо убить представителя этой фракции или выкрасть эту вещь. Второй - мирный. Можно просто вступить в эту фракцию.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingNeckCloakClanFox
-  name: плащ мятежника
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Cloaks/clan_fox.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingHeadHelmetFox4
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingHeadHelmetFox4
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingHeadHelmetFox4
-  name: шлем ярла мятежников
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Head/fox4.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingHeadHelmetLegionLegat
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingHeadHelmetLegionLegat
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingHeadHelmetLegionLegat
-  name: шлем легата легиона
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Head/leg4.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingHeadHelmetBand3
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingHeadHelmetBand3
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingHeadHelmetBand3
-  name: капюшон главаря бандитов
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Head/band3.rsi
-    state: icon
-
-- type: entity
-  parent: BaseMedievalGetItemObjective
-  id: MedievalGetMedievalClothingHeadHelmetTribe3
-  components:
-  - type: StealCondition
-    stealGroup: MedievalGetMedievalClothingHeadHelmetTribe3
-    descriptionText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-    descriptionMultiplyText: Эту цель можно выполнить двумя путями. Первый - агрессивный. Надо совершить успешное покушение на главу фракции и выкрасть его головной убор. Второй - мирный. Можно просто вступить в эту фракцию и попробовать дослужиться до главы.
-  - type: Objective
-    difficulty: 2
-
-- type: stealTargetGroup
-  id: MedievalGetMedievalClothingHeadHelmetTribe3
-  name: племеннная маска вождя
-  sprite:
-    sprite: Imperial/Medieval/Clothing/Head/tribe3.rsi
     state: icon
 
 - type: entity
@@ -7270,8 +7514,8 @@
     shoes: MedievalClothingFeetNecromancerLight
     #id: AgentIDCard
     #ears: ClothingHeadsetGrey
-    pocket1: MedievalRevent10
-    pocket2: MedievalRevent25
+    pocket1: MedievalRevent35
+    pocket2: MedievalCursedMarkNecro
     #belt: EnergyKatana
   inhand:
     - MedievalFalshionNecro
@@ -7856,38 +8100,6 @@
 #     tags:
 #     - AlchemicIngredient
 
-- type: entity
-  name: MedievalTimedSpawnerMushrooms
-  id: MedievalTimedSpawnerMushrooms
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-  - type: Timer
-  - type: TimedSpawner
-    prototypes:
-    - MedievalSpawnerMushroom
-    chance: 0.22
-    intervalSeconds: 180
-    minimumEntitiesSpawned: 1
-    maximumEntitiesSpawned: 2
-
-- type: entity
-  name: BlastDoor
-  id: MedievalSpawnerMushroom
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    layers:
-    - state: red
-  - type: RandomSpawner
-    prototypes:
-    - MedievalMushroom1
-    - MedievalMushroom2
-    - MedievalMushroom3
-    chance: 1
-    offset: 8
 - type: explosion
   id: MedievalDefault
   damagePerIntensity:
@@ -8182,6 +8394,10 @@
   name: ApollaStaffMedieval
   description: ApollaStaffMedieval
   components:
+  - type: PointLight
+    color: "#E25822"
+    radius: 1.0
+    energy: 5.0
   - type: Item
     sprite: Imperial/Medieval/Misc/apolla_staff.rsi
     size: Large
@@ -8661,3 +8877,226 @@
     - type: Tag
       tags:
         - MedievalKey
+
+- type: entity
+  id: MedievalGussarFlagZablik
+  description: A barricade made out of wood planks. It looks like it can take a few solid hits.
+  parent: BaseStructureMedieval
+  name: wooden barricade
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/gussarflag.rsi
+    state: icon
+    drawdepth: Overdoors
+    noRot: true
+    offset: 0,0.8
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.2,-0.4,0.2,0.1"
+        density: 1000
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageModifierSet: Wood
+    damageContainer: StructuralInorganic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 3
+            max: 3
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: MedievalAnglerWeb1
+  name: angler web
+  description: Sticky and slippy
+  placement:
+    mode: SnapgridCenter
+    snap:
+      - Wall
+  components:
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path:
+            "/Audio/Weapons/slash.ogg"
+    - type: Sprite
+      sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+      state: web1
+      drawdepth: WallMountedItems
+    - type: Appearance
+    - type: Clickable
+    - type: Transform
+      anchored: true
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          hard: false
+          density: 7
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.5,-0.5,0.5,0.5"
+          layer:
+          - MidImpassable
+    - type: Damageable
+      damageModifierSet: Wood
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+      - trigger:
+          !type:DamageTrigger
+          damage: 30
+        behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - type: SpiderWebObject
+    - type: SpeedModifierContacts
+      walkSpeedModifier: 0.8
+      sprintSpeedModifier: 0.8
+      ignoreWhitelist:
+        components:
+            - IgnoreSpiderWeb
+#    - type: StepTrigger
+#      RequiredTriggeredSpeed: 2.0
+#    - type: StunOnContact
+#      duration: 0.6
+#      blacklist:
+#        tags:
+#        - Goliath
+#    - type: SpawnOnTrigger
+#      proto: MedievalAnglerMobSlowSpawner
+
+- type: entity
+  parent: MedievalAnglerWeb1
+  id: MedievalAnglerWeb2
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+    state: web2
+
+- type: entity
+  parent: MedievalAnglerWeb1
+  id: MedievalAnglerWeb3
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+    state: web3
+
+- type: entity
+  parent: MedievalAnglerWeb1
+  id: MedievalAnglerWeb4
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+    state: web4
+
+- type: entity
+  parent: MedievalAnglerWeb1
+  id: MedievalAnglerWeb5
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Structures/anglerweb.rsi
+    state: web5
+
+- type: entity
+  id: WeaponArcAbibi
+  categories: [ HideSpawnMenu ]
+  parent: WeaponArcStatic
+  components:
+    - type: WeaponArcVisuals
+      fadeOut: false
+    - type: Sprite
+      layers:
+      - sprite: Imperial/Medieval/Effects/arc.rsi
+        state: arc_abibi
+        shader: unshaded
+    - type: TimedDespawn
+      lifetime: 1.26
+    - type: PointLight
+      color: "#ff2400"
+      radius: 1.5
+      energy: 6
+    - type: Tag
+      tags:
+        - HideContextMenu
+
+- type: entity
+  id: MedievalStockadeHighBlek
+  parent: MedievalStockadeHigh
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: Imperial/Medieval/Walls/wood_wall_new_blek.rsi
+  - type: Icon
+    sprite: Imperial/Medieval/Walls/wood_wall_new_blek.rsi
+  - type: PlacementReplacement
+    key: walls
+  - type: MyrmexProp
+  - type: Construction
+    graph: MWoodenSupportWall
+    node: medievalWoodenSupportWall
+
+- type: entity
+  id: MedievalShipWindow
+  name: Steering wheel
+  parent: WoodenSupportWall
+  description: Hold on tight, sailors! We're going to make a sharp turn! Grrrr!
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/ship_window.rsi
+      state: wheel
+    - type: Physics
+      bodyType: Static
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: Wood
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path: /Audio/Effects/glass_crack1.ogg
+          params:
+            variation: 0.05
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 250
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            path: /Audio/Effects/window_shatter2.ogg
+            params:
+              variation: 0.2
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardGlass:
+              min: 1
+              max: 3

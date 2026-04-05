@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
-  "copyright": "Drawed by itsbapehbe",
+  "copyright": "Drawed by itsbapehbe, tm_sm_rc, fortengamer",
   "size": {
     "x": 32,
     "y": 32
@@ -21,6 +21,18 @@
     },
     {
       "name": "bow"
+    },
+    {
+      "name": "fire"
+    },
+    {
+      "name": "pnya"
+    },
+    {
+      "name": "slime"
+    },
+    {
+      "name": "murlo"
     }
   ]
 }

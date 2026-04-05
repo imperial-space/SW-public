@@ -1055,15 +1055,25 @@
       - state: ball
   - type: ExplodeOnTrigger
   - type: Explosive
-    explosionType: DemolitionCharge
-    maxIntensity: 9
-    intensitySlope: 6
-    totalIntensity: 60
-    maxTileBreak: 0
-  - type: PointLight
-    radius: 1
-    color: orange
-    energy: 0.5
+    explosionType: Default
+    totalIntensity: 300
+    intensitySlope: 10
+    maxIntensity: 50
+    canCreateVacuum: false
+
+- type: entity
+  id: BulletCannonBallExplosive
+  name: explosive cannonball
+  parent: BulletCannonBall
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: ContainerContainer
+    containers:
+      cluster-payload: !type:Container
+  - type: ProjectileGrenade
+    triggerKey: trigger
+    fillPrototype: PelletClusterLethal
+    capacity: 5
 
 - type: entity
   id: GrapplingHook

@@ -16,6 +16,22 @@
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
 
+- type: roleLoadout
+  id: JobMedievalLegionCourier
+  groups:
+  - TravellerHead
+  - TravellerJumpsuit
+  - MedievalNeck
+  - MedievalBackpack
+  #- SecurityOuterClothing
+  - MedievalShoes
+  #- SecurityPDA
+  - MedievalBelt
+  #- SurvivalSecurity
+  - MedievalTrinkets
+  #- GroupSpeciesBreathToolSecurity
+  - MedievalGloves
+
 - type: loadoutGroup
   id: TravellerHead
   name: loadout-group-traveller-head
@@ -525,6 +541,23 @@
     back: MedievalClothingBackpackSatchelLeather3
 
 - type: loadoutGroup
+  id: MedievalBackpackMagLegion
+  name: loadout-group-medieval-backpack
+  loadouts:
+  - MedievalClothingBackpackSatchelLeatherMagloadout2
+  - MedievalClothingBackpackSatchelLeatherMagloadout1
+
+- type: loadout
+  id: MedievalClothingBackpackSatchelLeatherMagloadout1
+  equipment:
+    back: MedievalClothingBackpackSatchelLeatherMag1
+
+- type: loadout
+  id: MedievalClothingBackpackSatchelLeatherMagloadout2
+  equipment:
+    back: MedievalClothingBackpackSatchelLeatherMag2
+
+- type: loadoutGroup
   id: MedievalShoes
   name: loadout-group-medieval-shoes
   loadouts:
@@ -961,6 +994,49 @@
   #  back:
   #  - Flash
   #  - MagazinePistol
+
+- type: startingGear
+  id: MedievalLegionCourierGear
+  equipment:
+    pocket1: MedievalRevent10
+    pocket2: MedievalRevent10
+    belt: CourierBag
+
+# MEDIEVAL COURIER
+
+- type: playTimeTracker
+  id: JobMedievalLegionCourier
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalLegionCourier
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icon_courier.rsi
+    state: courier
+  jobName: job-name-courier
+
+- type: job
+  id: MedievalLegionCourier
+  name: job-name-courier
+  description: job-description-courier
+  playTimeTracker: JobMedievalLegionCourier
+  startingGear: MedievalLegionCourierGear
+  icon: "JobIconMedievalLegionCourier"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
+    - type: MedievalJobSpawn
+      spawnType: Default
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective300500
+    - type: Courier
+    - type: MedievalPasportPerson
+      personJob: "[color=cyan]Курьер[/color]"
+      pasport: MedievalPasportLegion
+      jobPrefix: "[Кур]"
 
 
 
@@ -1977,6 +2053,7 @@
   #- MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGloves
+  - MedievalJumpsuitLegion
 
 # MEDIEVAL LEGION RECRUIT
 
@@ -1986,7 +2063,6 @@
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallLeg
     #belt: Bible
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetLegionRecruit
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
@@ -2044,6 +2120,7 @@
   #- MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGloves
+  - MedievalJumpsuitLegion
 
 - type: loadoutGroup
   id: MedievalBeltLegion
@@ -2068,6 +2145,23 @@
   equipment:
     belt: MedievalFalshionT3LegionGold
 
+- type: loadoutGroup
+  id: MedievalJumpsuitLegion
+  name: loadout-group-medieval-jumpsuit-legion
+  loadouts:
+  - LegionMedievalClothingUniformJumpsuitShitCloth84
+  - LegionMedievalClothingUniformJumpsuitShitCloth88
+
+- type: loadout
+  id: LegionMedievalClothingUniformJumpsuitShitCloth88
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth88
+
+- type: loadout
+  id: LegionMedievalClothingUniformJumpsuitShitCloth84
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth84
+
 # MEDIEVAL LEGION LEGIONER
 
 - type: startingGear
@@ -2075,8 +2169,7 @@
   equipment:
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallLeg
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
-    head: MedievalClothingHeadHelmetLegionLegioner
+    head: MedievalClothingHeadHelmetLegionLegionerNew
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
 
@@ -2134,6 +2227,7 @@
   - MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGloves
+  - MedievalJumpsuitLegion
 
 # MEDIEVAL LEGION Gateman
 
@@ -2191,6 +2285,7 @@
   - MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGloves
+  - MedievalJumpsuitLegion
 
 # MEDIEVAL LEGION OPCION
 
@@ -2199,8 +2294,8 @@
   equipment:
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallLeg
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
-    head: MedievalClothingHeadHelmetLegionOpcionWeak
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth85
+    head: MedievalClothingHeadHelmetLegionOpcionNew
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
 
@@ -2267,8 +2362,8 @@
   equipment:
     pocket1: MedievalCommsCrystallLeg
     pocket2: MedievalKeyCargo
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
-    head: MedievalClothingHeadHelmetLegionOpcion
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth86
+    head: MedievalClothingHeadHelmetLegionTribuneNew
     neck: MedievalClothingNeckCloakClanEagle
     id: MedievalLeatherKey
 
@@ -2334,8 +2429,7 @@
   equipment:
     pocket1: MedievalRevent25
     pocket2: MedievalKeyCargo
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
-    head: MedievalClothingHeadHelmetLegionLegat
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth87
     neck: MedievalClothingNeckCloakClanEagle
     shoes: MedievalClothingFeetSteel
     id: MedievalLeatherKey
@@ -2402,13 +2496,34 @@
   - MedievalBeltLegion
   - MedievalTrinkets
   - MedievalGlovesWithIron
+  - MedievalHelmetLegionLegat
+
+- type: loadoutGroup
+  id: MedievalHelmetLegionLegat
+  name: loadout-group-medieval-helmet-legion-legat
+  loadouts:
+  - LegionMedievalClothingHeadHelmetLegionLegatAltNew
+  - LegionMedievalClothingHeadHelmetLegionLegatNew
+
+- type: loadout
+  id: LegionMedievalClothingHeadHelmetLegionLegatNew
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: LegionTimer30hours
+  equipment:
+    head: MedievalClothingHeadHelmetLegionLegatNew
+
+- type: loadout
+  id: LegionMedievalClothingHeadHelmetLegionLegatAltNew
+  equipment:
+    head: MedievalClothingHeadHelmetLegionLegatAltNew
 
 # MEDIEVAL LEGION TREASURER
 
 - type: startingGear
   id: MedievalLegionTreasurerGear
   equipment:
-    pocket1: MedievalRevent25
+    pocket1: MedievalStampMedievalTreasurer
     pocket2: MedievalKeyTreasurer
     jumpsuit: MedievalClothingTreasurer
     head: MedievalClothingHeadTreasurer
@@ -2481,7 +2596,6 @@
     pocket1: MedievalCommsCrystallLeg
     #pocket2: MedievalKeyCargo
     #back: MedievalClothingBackpackSatchelLeather
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth26
     head: MedievalClothingHeadHelmetCharmerLegion
     outerClothing: MedievalClothingOuterArmorCharmerLightLegion
     neck: MedievalClothingNeckCloakClanEagle
@@ -2550,7 +2664,7 @@
   #- TravellerHead
   #- ChaplainOuterMedieval
   #- ChaplainJumpsuitMedieval
-  - MedievalBackpack
+  # - MedievalBackpack
   #- MedievalBiblie
   #- MedievalChaplainNeck
   #- SecurityOuterClothing
@@ -2563,13 +2677,32 @@
   #- MedievalMusic
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
+  - MedievalJumpsuitMagLegion
+  - MedievalBackpackMagLegion
+
+- type: loadoutGroup
+  id: MedievalJumpsuitMagLegion
+  name: loadout-group-medieval-jumpsuit-legion
+  loadouts:
+  - LegionMedievalClothingUniformJumpsuitShitCloth89
+  - LegionMedievalClothingUniformJumpsuitShitCloth90
+
+- type: loadout
+  id: LegionMedievalClothingUniformJumpsuitShitCloth89
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth89
+
+- type: loadout
+  id: LegionMedievalClothingUniformJumpsuitShitCloth90
+  equipment:
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth90
 
 # MEDIEVAL LegionAlchemic
 
 - type: startingGear
   id: MedievalLegionAlchemicGear
   equipment:
-    #pocket1: MedievalCommsCrystallLeg
+    pocket1: MedievalStampMedievalAlch
     pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanEagle
@@ -2744,7 +2877,7 @@
   equipment:
     pocket1: MedievalRevent25
     pocket2: MedievalCommsCrystallIns
-    jumpsuit: ClothingUniformJumpsuitCasualRed
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth20
     head: MedievalClothingHeadHelmetFox2
     neck: MedievalClothingNeckCloakClanFox
     id: MedievalKeyGuard
@@ -3063,7 +3196,7 @@
     pocket1: MedievalCommsCrystallIns
     #pocket2: MedievalGuardKey
     #back: MedievalClothingBackpackSatchelLeather
-    jumpsuit: MedievalClothingUniformJumpsuitShitCloth5
+    jumpsuit: MedievalClothingUniformJumpsuitShitCloth91
     head: MedievalClothingHeadHelmetCharmerIns
     outerClothing: MedievalClothingOuterArmorCharmerLightIns
     neck: MedievalClothingNeckCloakClanFox
@@ -3130,7 +3263,7 @@
   #- TravellerHead
   #- ChaplainOuterMedieval
   #- ChaplainJumpsuitMedieval
-  - MedievalBackpack
+  # - MedievalBackpack
   #- MedievalBiblie
   #- MedievalChaplainNeck
   #- SecurityOuterClothing
@@ -3143,13 +3276,14 @@
   #- MedievalMusic
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
+  - MedievalBackpackMagLegion
 
 # MEDIEVAL InsurgencyAlchemic
 
 - type: startingGear
   id: MedievalInsurgencyAlchemicGear
   equipment:
-    #pocket1: MedievalCommsCrystallIns
+    pocket1: MedievalStampMedievalAlch
     pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanFox
@@ -5057,6 +5191,23 @@
       personJob: "[color=red]Культист[/color]"
       pasport: no
       jobPrefix: "[Культ]"
+    - type: PassiveDamage # Этот компонент имитирует лечение от связи с культом (CultCursedComponent) + стандартное пассивное лечение
+      allowedStates:
+      - Alive
+      damageCap: 100
+      damage:
+        types:
+          Asphyxiation: -0.11
+          Bloodloss: -0.13
+          Blunt: -0.15
+          Heat: -0.12
+          Piercing: -0.18
+          Poison: -0.08
+          Slash: -0.23
+          Shock: -0.08
+          Radiation: -0.08
+          Cold: -0.08
+          Cellular: -0.08
 
 # MEDIEVAL CultLeader
 
@@ -5133,6 +5284,23 @@
     - type: CloackMessage
       action: CloackMessageActionIns
       faction: "cult"
+    - type: PassiveDamage # Этот компонент имитирует лечение от связи с культом (CultCursedComponent) + стандартное пассивное лечение
+      allowedStates:
+      - Alive
+      damageCap: 100
+      damage:
+        types:
+          Asphyxiation: -0.11
+          Bloodloss: -0.13
+          Blunt: -0.15
+          Heat: -0.12
+          Piercing: -0.18
+          Poison: -0.08
+          Slash: -0.23
+          Shock: -0.08
+          Radiation: -0.08
+          Cold: -0.08
+          Cellular: -0.08
 
 # MEDIEVAL Villager REGULAR
 
@@ -5249,7 +5417,7 @@
   id: MedievalVillagerLeaderGear
   equipment:
     pocket1: MedievalRevent50
-    pocket2: MedievalRevent25
+    pocket2: MedievalStampMedievalVillage
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
     head: MedievalClothingHeadArcherHat
 
@@ -5318,3 +5486,5 @@
   storage:
     back:
     - MedievalFlinter
+
+

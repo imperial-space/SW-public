@@ -1,0 +1,41 @@
+{
+    "version": 1,
+    "license": "this content is under ICLA licence, read more on https://wiki.imperialspace.net/icla",
+    "copyright": "PR by crookielv",
+    "size": {
+        "x": 48,
+        "y": 96
+    },
+    "states": [
+        {
+            "name": "blackflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "redflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "whiteflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "yellowflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        },
+        {
+            "name": "blueflag",
+            "delays": [
+                [0.1, 0.1, 0.1, 0.1]
+            ]
+        }
+    ]
+}

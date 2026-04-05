@@ -162,11 +162,13 @@
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
+  - type: Unremoveable
   #- type: Armor
   #  modifiers:
   #    coefficients:
   #      Radiation: 0.0
   #      Caustic: 0.0
+  - type: CurseItem
 
 - type: entity
   parent: ClothingUniformBase
@@ -278,6 +280,20 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_20.rsi
   - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth91
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_91.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_91.rsi
+  - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase
@@ -411,6 +427,8 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_30.rsi
   - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase
@@ -929,6 +947,18 @@
   - type: Insulated
 
 - type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth7623
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Insulated
+
+- type: entity
   parent: ClothingBeltStorageBase
   id: MedievalQuiver
   name: MedievalQuiver
@@ -964,12 +994,32 @@
 
 - type: entity
   parent: MedievalQuiver
+  id: MedievalQuiverFullArrowIronPhysics
+  suffix: Full, IronArrowPhysics
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowIronPhysics
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
   id: MedievalQuiverFullArrowSteel
   suffix: Full, SteelArrow
   components:
   - type: StorageFill
     contents:
     - id: MedievalArrowSteel
+      amount: 18
+
+- type: entity
+  parent: MedievalQuiver
+  id: MedievalQuiverFullArrowSteelPhysics
+  suffix: Full, SteelArrowPhysics
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalArrowSteelPhysics
       amount: 18
 
 - type: entity
@@ -1579,6 +1629,26 @@
     state: icon
 
 - type: entity
+  parent: MedievalClothingBackpackSatchelLeather
+  id: MedievalClothingBackpackSatchelLeatherMag1
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/leather_mag1.rsi
+    state: icon
+
+- type: entity
+  parent: MedievalClothingBackpackSatchelLeather
+  id: MedievalClothingBackpackSatchelLeatherMag2
+  name: satchel
+  description: A trendy looking satchel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/leather_mag2.rsi
+    state: icon
+
+- type: entity
   parent: ClothingBackpack
   id: MedievalClothingBackpackSatchelLeather
   name: satchel
@@ -1971,7 +2041,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesBaseButcherable
   id: MedievalClothingRoyalBoots
   name: MedievalClothingRoyalBoots
   description: MedievalClothingRoyalBoots
@@ -1982,7 +2052,7 @@
     sprite: Imperial/Medieval/Clothing/Shoes/royalboots.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesBaseButcherable
   id: MedievalClothingRoyalChaplainBoots
   name: MedievalClothingRoyalChaplainBoots
   description: MedievalClothingRoyalChaplainBoots
@@ -2142,6 +2212,42 @@
   - type: Insulated
 
 - type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth82
+  name: песочная одежда война
+  description: Одежда предпочитаемая бандитами. С ней удобно прятаться в песках.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_82.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_82.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth83
+  name: песочная одежда война
+  description: Одежда предпочитаемая бандитами. С ней удобно прятаться в песках.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+  - type: Insulated
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth2383
+  name: песочная одежда война
+  description: Одежда предпочитаемая бандитами. С ней удобно прятаться в песках.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_83.rsi
+  - type: Insulated
+
+- type: entity
   parent: MedievalClothingUniformJumpsuitShitCloth23
   id: MedievalClothingUniformJumpsuitShitCloth72
   name: MedievalClothingUniformJumpsuitShitCloth72
@@ -2188,6 +2294,34 @@
     whitelist:
       tags:
         - MonsterLoot
+  - type: Dumpable
+
+- type: entity
+  name: heal bag
+  id: MedievalHealBag
+  parent: BaseStorageItem
+  description: A bag for real monster hunters
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/heal_bag.rsi
+    state: icon
+  - type: Item
+    storedRotation: -90
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: Storage
+    grid:
+    - 0,0,7,4
+    maxItemSize: Small
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+        - Gauze
+        - Ointment
+        - Brutepack
   - type: Dumpable
 
 - type: entity
@@ -2465,6 +2599,94 @@
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_81.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_81.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth87
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_87.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_87.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth88
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_88.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_88.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth89
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_89.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_89.rsi
+  - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth90
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_90.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_90.rsi
+  - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth84
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_84.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_84.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth85
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_85.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_85.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth86
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_86.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_86.rsi
+  - type: Insulated
 
 - type: entity
   parent: MedievalClothingHandsGlovesCloth

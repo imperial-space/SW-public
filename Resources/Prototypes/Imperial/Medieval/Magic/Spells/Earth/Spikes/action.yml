@@ -1,0 +1,132 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionSpikesBeginner
+  name: medieval-store-spells-earth-spikes-beginner-name
+  description: medieval-store-spells-earth-spikes-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalEarth: 1
+        bonusEssences:
+          MagicMedievalEarth: 1
+  - type: ManaDrainSpell
+    manaDrain: 15
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: SpellCastEffect
+    effectProto: SpikesSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 5
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/Spikes/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 3
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalSpikesLineBeginner
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-spikes
+          color: "#838275"
+          hideChat: true
+  - type: ShowSpawnedEntity
+    sprites:
+      - drawedSprite:
+          sprite: Imperial/Medieval/Magic/Earth/Spikes/projectiles.rsi
+          state: pointer
+        alwaysRender: true
+        mixColor: 0.1
+        inRangeColor: "#C12AFF"
+        # outOfRangeColor: "#FF0000"
+        range: 3
+    rotationPerClick: 45
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionSpikesMiddle
+      3: MedievalActionSpikesSenior
+
+# Middle
+
+- type: entity
+  id: MedievalActionSpikesMiddle
+  name: medieval-store-spells-earth-spikes-middle-name
+  description: medieval-store-spells-earth-spikes-middle-desc
+  parent: MedievalActionSpikesBeginner
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 20
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 8
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/Spikes/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    range: 3
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalSpikesLineMiddle
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-spikes
+          color: "#838275"
+          hideChat: true
+
+# Senior
+
+- type: entity
+  id: MedievalActionSpikesSenior
+  name: medieval-store-spells-earth-spikes-senior-name
+  description: medieval-store-spells-earth-spikes-senior-desc
+  parent: MedievalActionSpikesBeginner
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 25
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 8
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/Spikes/icons.rsi
+      state: senior
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalSpikesLineSenior
+      spawnType: SpawnOnMousePosition
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-spikes
+          color: "#838275"
+          hideChat: true

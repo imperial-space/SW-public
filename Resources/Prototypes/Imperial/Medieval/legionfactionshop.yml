@@ -184,11 +184,53 @@
   categories:
   - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionBowImprovised
+  productEntity: BowImprovised
+  cost:
+    MedalLegion: 1
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalWeaponCrossbow
+  productEntity: MedievalWeaponCrossbow
+  cost:
+    MedalLegion: 5
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalQuiverFullArrowIronPhysics
+  productEntity: MedievalQuiverFullArrowIronPhysics
+  cost:
+    MedalLegion: 1
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalQuiverFullArrowSteelPhysics
+  productEntity: MedievalQuiverFullArrowSteelPhysics
+  cost:
+    MedalLegion: 2
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalQuiverFullBoltIron
+  productEntity: MedievalQuiverFullBoltIron
+  cost:
+    MedalLegion: 3
+  categories:
+  - MedievalLegionWeapon
 
+- type: listing
+  id: MdvLegionMedievalQuiverFullBoltSteel
+  productEntity: MedievalQuiverFullBoltSteel
+  cost:
+    MedalLegion: 4
+  categories:
+  - MedievalLegionWeapon
 
 - type: listing
   id: MdvLegionMedievalSaber

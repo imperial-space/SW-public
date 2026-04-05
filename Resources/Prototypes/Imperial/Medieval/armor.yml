@@ -1079,6 +1079,7 @@
   - type: RadiationSource
     intensity: 0.3
     slope: 0.2
+  - type: CurseItem
 
 - type: entity
   parent: ClothingHandsBase
@@ -1188,6 +1189,7 @@
     intensity: 0.3
     slope: 0.2
   - type: MedievalIronHitSound
+  - type: CurseItem
 
 - type: entity
   parent: Clothing
@@ -1232,6 +1234,7 @@
     intensity: 0.3
     slope: 0.2
   - type: ProtectedFromStepTriggers
+  - type: CurseItem
 
 - type: entity
   parent: ClothingOuterBase
@@ -1273,6 +1276,15 @@
     damageCoefficient: 0.75
   - type: ManaRegen
     regen: 2.2
+  - type: SoulboundTrigger
+  - type: ExplodeOnTrigger
+    keysIn:
+    - soulboundtrigger
+  - type: Explosive
+    explosionType: Default
+    totalIntensity: 4
+    intensitySlope: 4
+    maxIntensity: 4
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmer
@@ -1541,6 +1553,19 @@
 
 - type: entity
   parent: MedievalClothingOuterArmorCharmerLight
+  id: MedievalClothingOuterArmorCharmerNeutral
+  name: MedievalClothingOuterArmorCharmerNeutral
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_neutral.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/charmer_armor_neutral.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerLight
   id: MedievalClothingOuterArmorCharmerLightPurple
   name: MedievalClothingOuterArmorCharmerLightPurple
   description: An upgraded armor with iron plates to protect against melee weapons.
@@ -1789,6 +1814,18 @@
   parent: MedievalClothingOuterArmorCharmerWeak
   id: MedievalClothingOuterArmorCharmerWeakStrayMage
   name: MedievalClothingOuterArmorCharmerWeakStrayMage
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/stray.rsi
+  - type: Clothing
+    equipDelay: 4
+    unequipDelay: 4
+    sprite: Imperial/Medieval/Clothing/Armor/stray.rsi
+- type: entity
+  parent: MedievalClothingOuterArmorCharmerNeutral
+  id: MedievalClothingOuterArmorCharmerNeutralStrayMage
+  name: MedievalClothingOuterArmorCharmerNeutralStrayMage
   description: An upgraded armor with iron plates to protect against melee weapons.
   components:
   - type: Sprite
@@ -2123,6 +2160,164 @@
     sprite: Imperial/Medieval/Clothing/Armor/greenknight.rsi
 
 - type: entity
+  parent: ClothingOuterArmorPodWars
+  id: ClothingOuterArmorPodWarsFoxei
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+
+- type: entity
+  parent: MedievalClothingFeetSteel
+  id: MedievalClothingFeetSteelFoxei
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Shoes/foxei_boots.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Shoes/foxei_boots.rsi
+
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesFoxei
+  name: MedievalIronGlovesFoxei
+  description: MedievalIronGlovesFoxei
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/foxei_gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/foxei_gloves.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirassLight
+  id: MedievalClothingOuterArmorIronCuirassLightFoxei
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalClothingOuterArmorBrigantinFoxei
+  name: armor
+  description: An armored northern armor to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterArmorIronCuirassFoxei
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalClothingOuterArmorChainMailFoxei
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIron
+  id: MedievalClothingOuterArmorIronFoxei
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron2
+  id: MedievalClothingOuterArmorUpIron2Foxei
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron3
+  id: MedievalClothingOuterArmorUpIron3Foxei
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron
+  id: MedievalClothingOuterArmorUpIronFoxei
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorEbonit
+  id: MedievalClothingOuterArmorEbonitFoxei
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorEbonit2
+  id: MedievalClothingOuterArmorEbonit2Foxei
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorForstone
+  id: MedievalClothingOuterArmorForstoneFoxei
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/foxei_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
   parent: MedievalClothingFeetSteel
   id: MedievalClothingFeetSteelGreenKnight
   components:
@@ -2141,6 +2336,17 @@
     sprite: Imperial/Medieval/Clothing/Gloves/greenknight.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Gloves/greenknight.rsi
+
+- type: entity
+  parent: MedievalIronGloves
+  id: MedievalIronGlovesZablik
+  name: MedievalIronGlovesZablik
+  description: MedievalIronGlovesZablik
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Gloves/zablik_gloves.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Gloves/zablik_gloves.rsi
 
 - type: entity
   parent: MedievalIronGloves
@@ -2311,6 +2517,108 @@
     sprite: Imperial/Medieval/Clothing/Armor/deimon_armor.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/Armor/deimon_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: ClothingOuterArmorPodWars
+  id: ClothingOuterArmorPodWarsZablik
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirassLight
+  id: MedievalClothingOuterArmorIronCuirassLightZablik
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorBrigantin
+  id: MedievalClothingOuterArmorBrigantinZablik
+  name: armor
+  description: An armored northern armor to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIronCuirass
+  id: MedievalClothingOuterArmorIronCuirassZablik
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorChainMail
+  id: MedievalClothingOuterArmorChainMailZablik
+  name: iron armor cuirass
+  description: An armored iron plate to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorIron
+  id: MedievalClothingOuterArmorIronZablik
+  name: cloth
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron2
+  id: MedievalClothingOuterArmorUpIron2Zablik
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron3
+  id: MedievalClothingOuterArmorUpIron3Zablik
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: MedievalIronHitSound
+
+- type: entity
+  parent: MedievalClothingOuterArmorUpIron
+  id: MedievalClothingOuterArmorUpIronZablik
+  name: upgrade iron armor
+  description: An upgraded armor with iron plates to protect against melee weapons.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/Armor/zablik_armor.rsi
   - type: MedievalIronHitSound
 
 - type: entity

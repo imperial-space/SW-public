@@ -24,8 +24,8 @@ public sealed partial class ManaBurnFieldSystem : EntitySystem
         {
             var xform = Transform(comp.Owner);
             var coords = xform.Coordinates;
-            foreach (var entity in _lookup.GetEntitiesInRange(coords, comp.Radius))
-                if (comp.BurnTime <= _timing.CurTime)
+            if (comp.BurnTime <= _timing.CurTime)
+                foreach (var entity in _lookup.GetEntitiesInRange(coords, comp.Radius))
                 {
                     if (!_net.IsServer) continue;
                     comp.BurnTime = _timing.CurTime + comp.BurnDelay;

@@ -45,6 +45,13 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
+  # Imperial Space Start
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Sheet
+    - Ore
+  # Imperial Space End
   - type: Stack
     stackType: Steel
     baseLayer: base
@@ -169,6 +176,13 @@
   - type: PhysicalComposition
     materialComposition:
       Plasteel: 100
+  # Imperial Space Start
+  - type: Tag
+    tags:
+    - RawMaterial
+    - Sheet
+    - Ore
+  # Imperial Space End
   - type: Stack
     stackType: Plasteel
     baseLayer: base

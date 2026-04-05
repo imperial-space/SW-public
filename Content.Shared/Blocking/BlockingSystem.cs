@@ -17,6 +17,7 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Utility;
+using Content.Shared.Imperial.Medieval.Skills;  // --- IMPERIAL MEDIEVAL
 
 namespace Content.Shared.Blocking;
 
@@ -299,6 +300,14 @@ public sealed partial class BlockingSystem : EntitySystem
             return;
 
         var fraction = component.IsBlocking ? component.ActiveBlockFraction : component.PassiveBlockFraction;
+        //  IMPERIAL MEDIEVAL Start
+        if (component.User != null)
+        {
+            var ev = new GetShieldBlockFractionEvent(uid, component.User.Value, fraction);
+            RaiseLocalEvent(component.User.Value, ref ev);
+            fraction = ev.BlockFraction;
+        }
+        // IMPERIAL MEDIEVAL END
         var modifier = component.IsBlocking ? component.ActiveBlockDamageModifier : component.PassiveBlockDamageModifer;
 
         var msg = new FormattedMessage();

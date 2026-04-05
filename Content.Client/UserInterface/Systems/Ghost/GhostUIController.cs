@@ -5,9 +5,12 @@ using Content.Client.UserInterface.Systems.Gameplay;
 using Content.Client.UserInterface.Systems.Ghost.Controls.Roles;
 using Content.Client.UserInterface.Systems.Ghost.Widgets;
 using Content.Shared.Ghost;
+using Content.Shared.Imperial.Medieval.MedievalReviveSpawner;
 using Content.Shared.Imperial.Medieval.Revive;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
+using Content.Shared.Imperial.Medieval.MedievalReviveSpawner;
+using Robust.Shared.Network;
 
 namespace Content.Client.UserInterface.Systems.Ghost;
 
@@ -26,6 +29,7 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeNetworkEvent<ReviveCountResponseEvent>(OnReviveCountResponse);// Imperial Medieval edit
 
         var gameplayStateLoad = UIManager.GetUIController<GameplayStateLoadController>();
         gameplayStateLoad.OnScreenLoad += OnScreenLoad;
@@ -124,21 +128,29 @@ public sealed class GhostUIController : UIController, IOnSystemChanged<GhostSyst
     }
 
     // Imperial Medieval Revive start
-    private void OnGhostReviveClicked()
+    private int reviveCount = 3;
+    private void OnReviveCountResponse(ReviveCountResponseEvent ev, EntitySessionEventArgs args)
     {
-        // При нажатии на кнопку должно открыться окно подтверждения.
-        if (_windowRules != null) return;
-        _windowRules = new GhostReviveWindow("Выбейте необходимое количество магической эссенции из злых духов вокруг и купите за нее магический ключ. После чего кликните ключом по особой двери и отправьтесь на респавн. Учтите, [color=red]ЗАХОДИТЬ ЗА ТОГО ЖЕ ПЕРСОНАЖА НЕЛЬЗЯ[/color]!!", _ =>
-                {
-                    var msg = new GhostReviveRequestEvent();
-                    _net.SendSystemNetworkMessage(msg);
-                    _windowRules?.Close();
-                });
+        reviveCount = ev.MaxCount - ev.CurrentCount;
+
+        _windowRules = new GhostReviveWindow("Выбейте необходимое количество магической эссенции из злых духов вокруг и купите за нее магический ключ. После чего кликните ключом по особой двери и отправьтесь на респавн. Учтите, [color=red]ЗАХОДИТЬ ЗА ТОГО ЖЕ ПЕРСОНАЖА НЕЛЬЗЯ[/color]!! У вас осталось "+reviveCount+" жизней", _ =>
+        {
+            var msg = new GhostReviveRequestEvent();
+            _net.SendSystemNetworkMessage(msg);
+            _windowRules?.Close();
+        });
         _windowRules.OnClose += () =>
         {
             _windowRules = null;
         };
         _windowRules.OpenCentered();
+    }
+
+
+    private void OnGhostReviveClicked()
+    {
+        var request = new ReviveCountRequestEvent();
+        _net.SendSystemNetworkMessage(request);
     }
     // Imperial Medieval Revive end
     public void LoadGui()

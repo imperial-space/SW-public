@@ -12,10 +12,16 @@ public sealed partial class RepeatingTriggerComponent : BaseTriggerOnXComponent
 {
     /// <summary>
     /// How long to wait between triggers.
-    /// The first trigger starts this long after the component is added.
+    /// The first trigger starts this long after the component is added if FirstDelay is Zero.
     /// </summary>
     [DataField, AutoNetworkedField]
     public TimeSpan Delay = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    /// When the first trigger must be
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public TimeSpan FirstDelay = TimeSpan.Zero;
 
     /// <summary>
     /// When the next trigger will be.

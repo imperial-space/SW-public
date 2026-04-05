@@ -15,6 +15,16 @@ public sealed partial class PaintingTab : Control
     public void AddEntry(PaintingEntry entry)
     {
         PaintingContainer.AddChild(entry);
+
+        PaintingContainer.InvalidateArrange();
+    }
+
+    protected override void EnteredTree()
+    {
+        base.EnteredTree();
+
+        PaintingContainer.InvalidateMeasure();
+        PaintingContainer.InvalidateArrange();
     }
 
     public void RemoveEntry(PaintingEntry entry)

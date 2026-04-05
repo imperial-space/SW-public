@@ -57,6 +57,8 @@
   id: FoodMeatRawBase
   abstract: true
   components:
+  - type: FishingBait
+    baitType: Meat
   - type: Tag
     tags:
     - Raw
@@ -858,6 +860,8 @@
   name: meat patty
   description: A flat slab of ground meat. Ready for grillin'.
   components:
+  - type: FishingBait
+    baitType: Meat
   - type: Tag
     tags:
     - Raw
@@ -1014,6 +1018,8 @@
   name: steak
   description: A cooked slab of meat. Smells primal.
   components:
+  - type: FishingBait
+    baitType: Meat
   - type: Tag
     tags:
     - Cooked
@@ -1522,6 +1528,8 @@
   name: cooked meat patty
   description: A cooked meat patty.
   components:
+  - type: FishingBait
+    baitType: Meat
   - type: Tag
     tags:
     - Cooked
@@ -1678,6 +1686,8 @@
   name: raw cutlet
   description: A raw meat cutlet.
   components:
+  - type: FishingBait
+    baitType: Meat
   - type: Tag
     tags:
     - Raw
@@ -2068,6 +2078,8 @@
   name: cutlet
   description: A cooked meat cutlet. Needs some seasoning.
   components:
+  - type: FishingBait
+    baitType: Meat
   - type: Tag
     tags:
     - Cooked

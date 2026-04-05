@@ -734,6 +734,10 @@
         prob: 0.03
       - id: MedievalClothingHeadHelmetExecutor1
         prob: 0.03
+      - id: MedievalManaBurnGrenade
+        prob: 0.01
+      - id: Worm
+        prob: 0.5
       - id: MedievalRevent
         prob: 0.05
       - id: MedievalRevent
@@ -1182,6 +1186,8 @@
         prob: 0.08
       - id: MedievalGrenade
         prob: 0.08
+      - id: MedievalManaBurnGrenade
+        prob: 0.1
       - id: MedievalClothingBackpackSatchelTraveller
         prob: 0.06
       - id: MedievalAlchemicBelt
@@ -1610,6 +1616,8 @@
         prob: 0.05
       - id: MedievalGrenade
         prob: 0.1
+      - id: MedievalManaBurnGrenade
+        prob: 0.2
       - id: MedievalClothingBackpackSatchelTraveller
         prob: 0.06
       - id: MedievalAlchemicBelt
@@ -1934,6 +1942,8 @@
         prob: 0.035
       - id: MedievalClothingUniformJumpsuitShitCloth1
         prob: 0.05
+      - id: Worm
+        prob: 0.2
       - id: MedievalRevent
         prob: 0.05
       - id: MedievalRevent

@@ -62,6 +62,23 @@
     maximumEntitiesSpawned: 2
 
 - type: entity
+  name: MedievalTimedSpawnerMushrooms
+  id: MedievalTimedSpawnerMushrooms
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: Timer
+  - type: TimedSpawner
+    prototypes:
+    - MedievalSpawnerMushroom
+    chance: 0.22
+    intervalSeconds: 180
+    minimumEntitiesSpawned: 1
+    maximumEntitiesSpawned: 2
+
+- type: entity
   name: MedievalTimedSpawnerMedievalMobWolf
   id: MedievalTimedSpawnerMedievalMobWolf
   parent: MarkerBase
@@ -452,6 +469,172 @@
     spawnedEntity: MedievalLateMobSpawnerMedievalMobSkeletLegionGhost
 
 - type: entity
+  name: MedievalTimedSpawnerMedievalMobWingedShadow
+  id: MedievalTimedSpawnerMedievalMobWingedShadow
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 11
+        layer:
+        - DoorPassable
+        hard: false
+        mask:
+        # imperial medieval start
+        - MedievalSpawnerLayer # imperial medieval end
+  - type: Physics
+    bodyType: Static
+  - type: MedievalMobSpawner
+    barrierAddicted: false
+    maxCoolDown: 450
+    chance: 0.4
+    spawnedEntity: MedievalWingedShadowSpawner
+
+- type: entity
+  name: BlastDoor
+  id: MedievalWingedShadowSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalWingedShadow1
+    - MedievalWingedShadow2
+    - MedievalWingedShadow3
+    chance: 1
+    offset: 0
+
+- type: entity
+  name: BlastDoor
+  id: MedievalWingedShadowRandomLootSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalMobWingedShadow
+    - MedievalMobWingedShadow
+    - MedievalWingedShadowRandomOreSpawner
+    chance: 1
+    offset: 0
+
+- type: entity
+  name: BlastDoor
+  id: MedievalWingedShadowRandomOreSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalEbonitOre
+    - MedievalForstoneOre
+    chance: 1
+    offset: 0
+
+- type: entity
+  id: MedievalWingedShadow1
+  parent: BannerBase
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Mobs/wingedshadow.rsi
+    state: statue
+  - type: Transform
+    noRot: true
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    fixedRotation: true
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger: !type:DamageTrigger
+        damage: 95
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Effects/break_stone.ogg
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        offset: 0.35
+        spawn:
+          MedievalWingedShadowRandomLootSpawner:
+            min: 1
+            max: 1
+  - type: Fixtures
+    fixtures:
+      slips:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.5"
+        hard: false
+        layer:
+          - SlipLayer
+        mask:
+          - ItemMask
+        density: 1000
+  - type: TimedDespawn
+    lifetime: 500
+  - type: MedievalDiggAble
+  - type: MedievalMeleeBadTarget # imperial medieval
+    safeToHitGroup: ore # imperial medieval
+    breakMultiplier: 10
+  - type: Slippery
+    staminaDamage: 0
+    frictionStatusTime: 0
+    slipData:
+      stunTime: 0
+      knockdownTime: 0
+      launchForwardsMultiplier: 0
+    slipSound:
+      path: /Audio/Imperial/Medieval/stone_release.ogg
+      params:
+        variation: 0.125
+  - type: StepTrigger
+    requiredTriggeredSpeed: 0
+    intersectRatio: 0.1
+    stepOn: true
+  - type: TriggerOnStepTrigger
+  - type: SpawnOnTrigger
+    proto: MedievalMobWingedShadow
+  - type: DeleteOnTrigger
+
+- type: entity
+  id: MedievalWingedShadow2
+  parent: MedievalWingedShadow1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    state: packed
+
+- type: entity
+  id: MedievalWingedShadow3
+  parent: MedievalWingedShadow1
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Sprite
+    state: dead
+
+- type: entity
   name: MedievalTimedSpawnerMedievalMobHunter
   id: MedievalTimedSpawnerMedievalMobHunter
   parent: MarkerBase
@@ -785,6 +968,30 @@
     - MedievalFlowerLipad
     - MedievalFlowerLava
     - MedievalFlowerCryo
+    - MedievalFlowerLuna
+    - MedievalFlowerStar
+    - MedievalFlowerDark
+    - MedievalFlowerWhite
+    - MedievalFlowerBlood
+    chance: 1
+    offset: 8
+
+- type: entity
+  name: BlastDoor
+  id: MedievalSpawnerMushroom
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalMushroom1
+    - MedievalMushroom2
+    - MedievalMushroom3
+    - MedievalMushroom4
+    - MedievalMushroom5
+    - MedievalMushroom6
     chance: 1
     offset: 8
 
@@ -2341,3 +2548,37 @@
   - type: MedievalJobPoint
     spawnType: Kayot
   - type: AntiSSDFreeArea
+
+- type: entity
+  name: MedievalSpawnerRandomMushroomTreeLifetime1200
+  noSpawn: true
+  id: MedievalSpawnerRandomMushroomTreeLifetime1200
+  components:
+  - type: TimedDespawn
+    lifetime: 1200
+  - type: SpawnOnDespawn
+    prototype: MedievalSpawnerRandomMushroomTree
+
+- type: entity
+  name: MedievalSpawnerRandomMushroomTree
+  noSpawn: true
+  id: MedievalSpawnerRandomMushroomTree
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+  - type: RandomSpawner
+    prototypes:
+    - MedievalMushroomTree11
+    - MedievalMushroomTree12
+    - MedievalMushroomTree13
+    - MedievalMushroomTree21
+    - MedievalMushroomTree22
+    - MedievalMushroomTree23
+    - MedievalMushroomTree31
+    - MedievalMushroomTree32
+    - MedievalMushroomTree33
+    - MedievalMushroomTree4
+    chance: 1
+    offset: 0

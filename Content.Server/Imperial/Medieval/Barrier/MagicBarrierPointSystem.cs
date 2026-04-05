@@ -20,6 +20,7 @@ using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Content.Server.Imperial.Medieval.GameTicking.Rules;
 using Content.Shared.GameTicking;
+using Content.Server.Cult.Components;
 
 namespace Content.Server.MagicBarrier
 {
@@ -141,25 +142,91 @@ namespace Content.Server.MagicBarrier
 
         private void OnCurseDamage(EntityUid uid, MagicBarrierCurseComponent component, ref BeforeDamageChangedEvent args)
         {
+            if (component.Triggered)
+                return;
+
+            component.Triggered = true;
             var xform = Transform(component.Owner);
             var coords = xform.Coordinates;
             Spawn("ShardCrystalRed", coords);
             Spawn("ShockWaveEffect", coords);
+            RemComp(uid, component);
             QueueDel(uid);
             _chat.DispatchGlobalAnnouncement("Проклятый нарост уничтожен, расход стабильности барьера снижен.", playSound: false, colorOverride: Color.LimeGreen, sender: "Барьер");
             foreach (var comp in EntityManager.EntityQuery<MagicBarrierComponent>())
             {
-                comp.Lose *= 0.8f;
+                comp.Lose *= 0.72f;
                 comp.Stability += 4f;
             }
         }
 
         private void OnExamine(EntityUid uid, MagicBarrierComponent component, ExaminedEvent args)
         {
-            args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]");
-            args.PushMarkup("[color=cyan]Текущий расход " + Math.Round(component.Lose, 2) + " стабильности в минуту[/color]");
-        }
+            args.PushMarkup("[color=red]Текущая стабильность барьера " + Math.Round(component.Stability, 2) + " из " + component.MaxStability + "[/color]", 1);
+            args.PushMarkup("[color=cyan]Текущий расход " + Math.Round(component.Lose, 2) + " стабильности в минуту[/color]", 0);
+            int sector1 = 0;
+            int sector2 = 0;
+            int sector3 = 0;
+            int sector4 = 0;
+            int sector5 = 0;
+            int sector6 = 0;
+            int sector7 = 0;
+            int sector8 = 0;
+            int sector9 = 0;
+            int sector0 = 0;
 
+            foreach (var comp in EntityManager.EntityQuery<MagicBarrierCurseComponent>())
+            {
+                var t = Transform(comp.Owner);
+                if (TryComp<CultMapBlockerComponent>(t.ParentUid, out var blocker))
+                {
+                    switch (blocker.Sector)
+                    {
+                        case "sector9":
+                            sector9++;
+                            break;
+                        case "sector8":
+                            sector8++;
+                            break;
+                        case "sector7":
+                            sector7++;
+                            break;
+                        case "sector6":
+                            sector6++;
+                            break;
+                        case "sector5":
+                            sector5++;
+                            break;
+                        case "sector4":
+                            sector4++;
+                            break;
+                        case "sector3":
+                            sector3++;
+                            break;
+                        case "sector2":
+                            sector2++;
+                            break;
+                        case "sector1":
+                            sector1++;
+                            break;
+                        default:
+                            sector0++;
+                            break;
+                    }
+                }
+                else sector0++;
+            }
+            args.PushMarkup(sector1 + " проклятых наростов в секторе 1 (Некрополь)", -1);
+            args.PushMarkup(sector2 + " проклятых наростов в секторе 2 (Мятеж)", -2);
+            args.PushMarkup(sector3 + " проклятых наростов в секторе 3 (Церковь)", -3);
+            args.PushMarkup(sector4 + " проклятых наростов в секторе 4 (Пустыня)", -4);
+            args.PushMarkup(sector5 + " проклятых наростов в секторе 5 (Коллегия)", -5);
+            args.PushMarkup(sector6 + " проклятых наростов в секторе 6 (Шахта)", -6);
+            args.PushMarkup(sector7 + " проклятых наростов в секторе 7 (Гоблины)", -7);
+            args.PushMarkup(sector8 + " проклятых наростов в секторе 8 (Легион)", -8);
+            args.PushMarkup(sector9 + " проклятых наростов в секторе 9 (Племя)", -9);
+            args.PushMarkup(sector0 + " проклятых наростов скрыты в неизвестном месте под землей", -10);
+        }
         public override void Update(float frameTime)
         {
             base.Update(frameTime);

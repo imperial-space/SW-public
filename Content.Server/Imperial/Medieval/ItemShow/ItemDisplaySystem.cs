@@ -4,8 +4,13 @@ using Content.Shared.Hands;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Imperial.Medieval.ItemShow;
 using Content.Shared.Interaction.Events;
+using Content.Shared.Mind;
+using Content.Shared.Mind.Components;
+using Content.Shared.Pointing;
 using Content.Shared.Popups;
+using Content.Shared.RatKing;
 using Content.Shared.Throwing;
+using Robust.Server.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 
@@ -13,15 +18,15 @@ namespace Content.Server.Imperial.Medieval.ItemShow;
 
 public sealed class ItemDisplaySystem : EntitySystem
 {
-    [Dependency] private readonly HandsSystem _handsSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
-
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
         SubscribeNetworkEvent<ItemDisplayRequest>(OnItemShowRequest);
         SubscribeLocalEvent<ItemDisplayComponent, DidUnequipHandEvent>(OnUnequipped);
+        SubscribeLocalEvent<MindContainerComponent, AfterPointedAtEvent>(OnPointedAt);
     }
 
     private void OnUnequipped(Entity<ItemDisplayComponent> ent, ref DidUnequipHandEvent args)
@@ -67,12 +72,6 @@ public sealed class ItemDisplaySystem : EntitySystem
             return;
         }
 
-        if (_handsSystem.EnumerateHeld(player.Value).All(x => x != itemUid))
-        {
-            Log.Error($"Attempt to show an item failed: player does not hold the specified item {itemUid}.");
-            return;
-        }
-
         var comp = EnsureComp<ItemDisplayComponent>(player.Value);
 
         comp.ItemUid = itemUid.Value;
@@ -85,7 +84,22 @@ public sealed class ItemDisplaySystem : EntitySystem
 
         var loc = Loc.GetString("pointing-system-point-at-other-others", ("otherName", playerName), ("other", pointedName));
         _popupSystem.PopupEntity(loc, player.Value, pvs, false);
-
         Dirty(player.Value, comp);
     }
+
+    private void OnPointedAt(Entity<MindContainerComponent> mind, ref AfterPointedAtEvent args)
+    {
+        if (args.Pointed is not { Valid: true } pointed)
+            return;
+        if (!TryComp<MindComponent>(mind.Comp.Mind, out var mindComponent))
+            return;
+        var player = mindComponent.OriginalOwnerUserId;
+        if (player == null)
+            return;
+        var session = _playerManager.GetSessionById(player.Value);
+
+        var request = new ItemDisplayRequest(GetNetEntity(pointed));
+        OnItemShowRequest(request, new EntitySessionEventArgs(session));
+    }
+
 }

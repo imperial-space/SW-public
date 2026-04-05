@@ -20,7 +20,6 @@ namespace Content.Client.Imperial.Medieval.Flavors
         [Dependency] private readonly IClientNetManager _netManager = default!;
         [Dependency] private readonly IBaseClient _baseClient = default!;
         [Dependency] private readonly IResourceCache _resources = default!;
-        [Dependency] private readonly IDependencyCollection _collection = default!;
         [Dependency] private readonly ILogManager _log = default!;
         private ISawmill _sawmill = default!;
         private SpriteSystem _sprite = default!;

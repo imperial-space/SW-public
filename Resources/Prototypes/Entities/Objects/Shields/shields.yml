@@ -59,6 +59,17 @@
                   max: 2
     - type: StaticPrice
       price: 100
+    - type: MedievalWeaponSkillCategory
+      skill: Shield
+# Imperial-Medieval-Start
+    - type: HealthExaminable
+      examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      locPrefix: shield
+# Imperial-Medieval-End
 
 #Security Shields
 

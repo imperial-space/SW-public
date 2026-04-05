@@ -1,0 +1,29 @@
+- type: entity
+  id: MedievalShelterSenior
+  components:
+  - type: TriggerOnSpawn
+  - type: VectoredSpawnOnTrigger
+    spawnedEntityID: MedievalShelterRock
+    spawnPositions: ["-1, 2", "0, 2", "1, 2", "2, 1", "2, 0", "2, -1", "-1, -2", "0, -2", "1, -2", "-2, 1", "-2, 0", "-2, -1"]
+  - type: TimedDespawn
+    lifetime: 1
+
+- type: entity
+  id: MedievalShelterRock
+  parent: MedievalWallRock
+  components:
+  - type: TimedDespawn
+    lifetime: 9
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1415
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/break_stone.ogg
+              params:
+                volume: -6

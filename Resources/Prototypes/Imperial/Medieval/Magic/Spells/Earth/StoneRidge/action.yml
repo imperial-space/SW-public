@@ -1,0 +1,100 @@
+# Beginner
+
+- type: entity
+  id: MedievalActionStoneRidgeBeginner
+  name: medieval-store-spells-earth-stone-ridge-beginner-name
+  description: medieval-store-spells-earth-stone-ridge-beginner-desc
+  components:
+  - type: CastTraining
+    trainingResults:
+      - !type:AddMagicEssence
+        essenceAddProbability: 0.0007
+        bonusAddProbability: 1
+        addedEssences:
+          MagicMedievalEarth: 1
+        bonusEssences:
+          MagicMedievalEarth: 1
+  - type: ManaDrainSpell
+    manaDrain: 40
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: SpellCastEffect
+    effectProto: StoneRidgeSpellCastEffectBeginner
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 25
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/StoneRidge/icons.rsi
+      state: beginner
+  - type: TargetAction
+    checkCanAccess: false
+    range: 8
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalStoneRidgeBeginner
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-stone-ridge
+          color: "#838275"
+          hideChat: true
+  - type: ActionUpgrade
+    effectedLevels:
+      2: MedievalActionStoneRidgeMiddle
+
+# Middle
+
+- type: entity
+  id: MedievalActionStoneRidgeMiddle
+  name: medieval-store-spells-earth-stone-ridge-middle-name
+  description: medieval-store-spells-earth-stone-ridge-middle-desc
+  parent: MedievalActionStoneRidgeBeginner
+  components:
+  - type: ManaDrainSpell
+    manaDrain: 50
+    canUseWithoutMana: true
+    manaLowMessage: medieval-spell-speach-not-enough-mana-fire-spell
+    damageOnUseWithoutMana:
+      groups:
+        Burn: 12
+  - type: MedievalTargetSpell
+  - type: Action
+    useDelay: 30
+    itemIconStyle: BigAction
+    sound: !type:SoundPathSpecifier
+      path: /Audio/Imperial/Medieval/mob_spawn_effect.ogg
+    icon:
+      sprite: Imperial/Medieval/Magic/Earth/StoneRidge/icons.rsi
+      state: middle
+  - type: TargetAction
+    checkCanAccess: false
+    range: 8
+  - type: WorldTargetAction
+    event: !type:MedievalSpawnSpellEvent
+      spawnedEntityPrototype: MedievalStoneRidgeMiddle
+      spawnType: SpawnOnMousePosition
+      spellCastDoAfter:
+        delay: 1
+        breakOnDropItem: false
+        breakOnWeightlessMove: false
+        breakOnMove: false
+        needHand: true
+        speedModifier: 0.3
+      speechPoints:
+        0:
+          speech: medieval-spell-speach-stone-ridge
+          color: "#838275"
+          hideChat: true

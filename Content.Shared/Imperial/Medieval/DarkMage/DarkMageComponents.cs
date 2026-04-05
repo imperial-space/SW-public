@@ -42,5 +42,6 @@ public sealed partial class DarkMageComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? Action;
     [ViewVariables(VVAccess.ReadWrite)]
-    public EntityUid Flame;
+    public EntityUid? Flame;
+    public EntityUid? LastClosest;
 }

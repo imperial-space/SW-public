@@ -120,7 +120,11 @@ public sealed partial class TradingSystem
 
         component.Balance -= cost;
 
-        guild?.AddReputation(netBuyer, item.ReputationForBuying);
+        string? name = null;
+        if (TryComp(buyer, out MetaDataComponent? meta))
+            name = meta.EntityName;
+
+        guild?.AddReputation(netBuyer, item.ReputationForBuying, name);
 
         if (item.ProductEntity != null)
         {

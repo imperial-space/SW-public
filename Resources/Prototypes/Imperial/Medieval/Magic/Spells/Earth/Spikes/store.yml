@@ -1,0 +1,67 @@
+# Beginner
+
+- type: imperialListing
+  id: MedievalSpellSpikesBeginner
+  name: medieval-store-spells-earth-spikes-beginner-name
+  description: medieval-store-spells-earth-spikes-beginner-desc
+  productAction: MedievalActionSpikesBeginner
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellSpikesMiddle
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Spikes/icons.rsi
+    state: beginner
+  cost:
+    MagicMedievalEarth: 20
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+
+# Middle
+
+- type: imperialListing
+  id: MedievalSpellSpikesMiddle
+  name: medieval-store-spells-earth-spikes-middle-name
+  description: medieval-store-spells-earth-spikes-middle-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellSpikesSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Spikes/icons.rsi
+    state: middle
+  cost:
+    MagicMedievalEarth: 35
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellSpikesBeginner
+
+# Senior
+
+- type: imperialListing
+  id: MedievalSpellSpikesSenior
+  name: medieval-store-spells-earth-spikes-senior-name
+  description: medieval-store-spells-earth-spikes-senior-desc
+  priority: 1
+  productUpgradeId:
+    - MedievalSpellSpikesSenior
+  icon:
+    sprite: Imperial/Medieval/Magic/Earth/Spikes/icons.rsi
+    state: senior
+  cost:
+    MagicMedievalEarth: 55
+    ArchmagePoints: 1
+  categories:
+  - MedievalEarthSpells
+  conditions:
+  - !type:ImperialListingLimitedStockCondition
+    stock: 1
+  - !type:ImperialBuyBeforeCondition
+    whitelist:
+      - MedievalSpellSpikesMiddle

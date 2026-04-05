@@ -5,8 +5,11 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
+using Content.Shared.EntityEffects.EffectConditions;
 using Content.Shared.FixedPoint;
+using Content.Shared.Forged;
 using Content.Shared.IdentityManagement;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs;
@@ -14,7 +17,9 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Stacks;
+using Content.Shared.Tag;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Prototypes;
 //upstream need to fix - Кыть, у тебя тут использовалась серверная медиевал.плагуе, визы это перенесли в шеред
 //код восстановить просто так ктрлц+ктрлв я не могу, нужно поправить
 // аналогично затронуло хилингкомпонент
@@ -32,6 +37,7 @@ public sealed class HealingSystem : EntitySystem
     [Dependency] private readonly MobThresholdSystem _mobThresholdSystem = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public override void Initialize()
     {
@@ -44,7 +50,6 @@ public sealed class HealingSystem : EntitySystem
 
     private void OnDoAfter(Entity<DamageableComponent> target, ref HealingDoAfterEvent args)
     {
-
         if (args.Handled || args.Cancelled)
             return;
 
@@ -78,7 +83,15 @@ public sealed class HealingSystem : EntitySystem
         if (healing.ModifyBloodLevel != 0 && bloodstream != null)
             _bloodstreamSystem.TryModifyBloodLevel((target.Owner, bloodstream), healing.ModifyBloodLevel);
 
-        var healed = _damageable.TryChangeDamage(target.Owner, healing.Damage * _damageable.UniversalTopicalsHealModifier, true, origin: args.Args.User);
+        DamageSpecifier heal = healing.Damage;
+
+        // Start Imperial Forged
+        ProtoId<TagPrototype> tag = "ForgedHealItem";
+        if (HasComp<ForgedComponent>(target.Owner) && !_tag.HasTag(args.Used.Value, tag))
+            heal *= 0.5;
+        // End Imperial Forged
+
+        var healed = _damageable.TryChangeDamage(target.Owner, heal * _damageable.UniversalTopicalsHealModifier, true, origin: args.Args.User);
 
         if (healed == null && healing.BloodlossModifier != 0)
             return;
@@ -87,17 +100,20 @@ public sealed class HealingSystem : EntitySystem
 
         // Re-verify that we can heal the damage.
         var dontRepeat = false;
-        if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
-        {
-            _stacks.Use(args.Used.Value, 1, stackComp);
+        // Imperial Medieval Event start
+        if (healing.ConsumeOnUse)
+        // Imperial Medieval Event end
+            if (TryComp<StackComponent>(args.Used.Value, out var stackComp))
+            {
+                _stacks.Use(args.Used.Value, 1, stackComp);
 
-            if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
-                dontRepeat = true;
-        }
-        else
-        {
-            PredictedQueueDel(args.Used.Value);
-        }
+                if (_stacks.GetCount(args.Used.Value, stackComp) <= 0)
+                    dontRepeat = true;
+            }
+            else
+            {
+                PredictedQueueDel(args.Used.Value);
+            }
 
         if (target.Owner != args.User)
         {
@@ -210,11 +226,16 @@ public sealed class HealingSystem : EntitySystem
             var msg = Loc.GetString("medical-item-popup-target", ("user", Identity.Entity(user, EntityManager)), ("item", healing.Owner));
             _popupSystem.PopupEntity(msg, target, target, PopupType.Medium);
         }
-
+        // Medieval Imperial Edit start
+        var healingSkill = 0f;
+        if (TryComp<SkillsComponent>(user, out var skills))
+        {
+            healingSkill = (skills.Levels["Intelligence"]-10)*0.25f;
+        }
         var delay = isNotSelf
-            ? healing.Comp.Delay
-            : healing.Comp.Delay * GetScaledHealingPenalty(target, healing.Comp.SelfHealPenaltyMultiplier);
-
+            ? healing.Comp.Delay-TimeSpan.FromSeconds(healingSkill)
+            : healing.Comp.Delay * GetScaledHealingPenalty(target, healing.Comp.SelfHealPenaltyMultiplier)-TimeSpan.FromSeconds(healingSkill);
+        // Medieval Imperial Edit end
         var doAfterEventArgs =
             new DoAfterArgs(EntityManager, user, delay, new HealingDoAfterEvent(), target, target: target, used: healing)
             {

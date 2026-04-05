@@ -2,6 +2,7 @@ using Content.Shared.Damage;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Audio;
+using Robust.Shared.Containers;
 
 namespace Content.Server.Cult.Components;
 

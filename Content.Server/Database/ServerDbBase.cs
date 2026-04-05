@@ -686,6 +686,31 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync(cancel);
         }
 
+        public async Task EditPainting(Color[] texture, string name, string author, string description, CancellationToken cancel)
+        {
+            var log = "EditPainting";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
+
+            await using var db = await GetDb(cancel);
+
+            var textureString = PaintingHelper.ColorsToString(texture);
+
+            var painting = await db.DbContext.Paintings
+                .Where(v => v.Texture == textureString)
+                .FirstOrDefaultAsync(cancel);
+
+            if (painting == null)
+                return;
+
+            painting.Name = name;
+            painting.Author = author;
+            painting.Description = description;
+
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
         public async Task<Book?> GetBook(string text, CancellationToken cancel)
         {
             var log = "GetBook";
@@ -781,6 +806,29 @@ namespace Content.Server.Database
                 return;
 
             book.Accepted = true;
+            await db.DbContext.SaveChangesAsync(cancel);
+        }
+
+        public async Task EditBook(string text, string name, string author, string description, CancellationToken cancel)
+        {
+            var log = "EditBook";
+            var value = 0;
+            Logs.TryGetValue(log, out value);
+            Logs[log] = value + 1;
+
+            await using var db = await GetDb(cancel);
+
+            var book = await db.DbContext.Books
+                .Where(v => v.Text == text)
+                .FirstOrDefaultAsync(cancel);
+
+            if (book == null)
+                return;
+
+            book.Name = name;
+            book.Author = author;
+            book.Description = description;
+
             await db.DbContext.SaveChangesAsync(cancel);
         }
 
@@ -946,7 +994,7 @@ namespace Content.Server.Database
                 return null;
 
             var image = await db.DbContext.FlavorImages.SingleOrDefaultAsync(p => p.ProfileId == profile.Id, cancel);
-
+            _opsLog.Debug($"Getting image for {userId} image bytecount is {(image != null ? image.Image.Count() : 0)} slot is {slot}");
             return image;
         }
         public async Task AddOrUpdateFlavorImage(Guid userId, byte[] image, CancellationToken cancel, int? slot)
@@ -981,7 +1029,7 @@ namespace Content.Server.Database
             {
                 entry.Image = image;
             }
-
+            _opsLog.Debug($"Updating image for {userId} new image bytecount is {image.Count()} slot is {slot}");
             await db.DbContext.SaveChangesAsync(cancel);
         }
         public async Task RemoveFlavorImage(Guid userId, int slot, CancellationToken cancel)
@@ -1005,6 +1053,7 @@ namespace Content.Server.Database
                 return;
 
             db.DbContext.FlavorImages.Remove(image);
+            _opsLog.Debug($"Removing image for {userId} old image bytecount is {image.Image.Count()} slot is {slot}");
             await db.DbContext.SaveChangesAsync(cancel);
         }
         // Imperial Medieval Flavor Images End

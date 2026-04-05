@@ -76,7 +76,7 @@
       task: SimpleHostileCompound
   - type: NpcFactionMember
     factions:
-    - Syndicate
+    - NanoTrasen # imperial medieval
   - type: InteractionPopup
     successChance: 0.5
     interactSuccessString: petting-success-corrupted-corgi
@@ -105,7 +105,8 @@
       Male: Cerberus
       Female: Cerberus
       Unsexed: Cerberus
-  - type: LanguageSpeaker # imperial medieval start
+# Imperial-Medieval-Start
+  - type: LanguageSpeaker
     languages:
       Common: Understand
       #Goblin: Speak
@@ -115,4 +116,9 @@
       Cursed: Speak
       Growling: Speak
       #Hissing: Speak
-      #Elf: Speak # imperial medieval end
+      #Elf: Speak
+  - type: Body
+    prototype: Animal
+  - type: Damageable
+    damageContainer: Biological
+# Imperial-Medieval-End

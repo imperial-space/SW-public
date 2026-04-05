@@ -507,6 +507,24 @@
   #- type: Anchorable
 
 - type: entity
+  name: MedievalSeedExtractorNewCraft
+  description: MedievalSeedExtractorNewCraft
+  id: MedievalSeedExtractorNewCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: SpawnAfterInteract
+    prototype: MedievalSeedExtractorNew
+    doAfter: 9
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stone_wall.rsi
+    state: icon
+  #- type: Damageable
+  #- type: Anchorable
+
+- type: entity
   name: MedievalKeybenchCraft
   description: MedievalKeybenchCraft
   id: MedievalKeybenchCraft
@@ -1408,6 +1426,24 @@
   - type: SpawnAfterInteract
     prototype: MedievalMeltingPlace
     doAfter: 9
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: Imperial/Medieval/CraftBosses/stone_wall.rsi
+    state: icon
+  #- type: Damageable
+  #- type: Anchorable
+
+- type: entity
+  name: MedievalFireplaceCraft
+  description: MedievalFireplaceCraft
+  id: MedievalFireplaceCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Large
+  - type: SpawnAfterInteract
+    prototype: Fireplace
+    doAfter: 16
     deleteOnInteract: true
   - type: Sprite
     sprite: Imperial/Medieval/CraftBosses/stone_wall.rsi

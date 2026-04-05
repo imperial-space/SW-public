@@ -47,8 +47,8 @@
     damage:
       types:
         Piercing: 21
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -207,8 +207,8 @@
     wideAnimation: CP14WeaponArcSlash
     cPSwingBeverage: true
     cPAnimationOffset: 0.8
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -272,8 +272,8 @@
   - type: RadiationSource
     intensity: 1
     slope: 1
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -329,8 +329,8 @@
     damage:
       types:
         Piercing: 14
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -350,7 +350,7 @@
   components:
   - type: RDWeight
     value: 2
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/wooden_sword.rsi
     state: icon
@@ -797,8 +797,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.1,0.1
+  #- type: EmbeddableProjectile
+    #offset: 0.1,0.1
   - type: Tag
     tags:
     - Spear
@@ -975,7 +975,7 @@
     resourceCount: 2
 
 - type: entity
-  parent: Pickaxe
+  parent: [ Pickaxe, BaseTwoHandedCharged ]
   id: MedievalPickaxeSteel
   name: MedievalPickaxe
   description: MedievalPickaxe
@@ -1438,12 +1438,6 @@
     size: Large
 
 - type: entity
-  id: MedievalWrench
-  name: MedievalWrench
-  description: MedievalWrench
-  parent: Wrench
-
-- type: entity
   name: falshion
   parent: MedievalFalshionT3
   id: MedievalFalshionT3Gold
@@ -1521,6 +1515,28 @@
     sprite: Imperial/Medieval/Melee/viking.rsi
   - type: Clothing
     sprite: Imperial/Medieval/Melee/viking.rsi
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3Steel
+  id: MedievalFalshionT3SteelFoxei
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3
+  id: MedievalFalshionT3Foxei
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/foxei.rsi
 
 - type: entity
   name: falshion
@@ -1613,8 +1629,8 @@
     damage:
       types:
         Slash: 6
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: MedievalItemRust
   #- type: QualityOfItem
   #  qualityWeights:
@@ -1763,8 +1779,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -1808,7 +1824,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_mace.rsi
     state: icon
@@ -1875,7 +1891,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/heavy_mace.rsi
     state: icon
@@ -1964,7 +1980,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.25
     wideAnimationRotation: -140
-    attackRate: 0.4
+    attackRate: 0.26
     damage:
       types:
         Piercing: 9
@@ -1990,8 +2006,8 @@
     damage:
       types:
         Slash: 12
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2037,7 +2053,7 @@
     sprite: Imperial/Medieval/Melee/sekir.rsi
     state: icon
   - type: MeleeParry
-    parryChanse: 0.55
+    parryChanse: 0.35
   - type: MeleeWeapon
     angle: 135
     animation: CP14WeaponArcThrust
@@ -2046,7 +2062,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.54
+    attackRate: 0.35
     damage:
       types:
         Piercing: 6
@@ -2072,8 +2088,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   - type: Clothing
     sprite: Imperial/Medieval/Melee/sekir.rsi
@@ -2124,7 +2140,7 @@
     sprite: Imperial/Medieval/Melee/sekir.rsi
     state: icon
   - type: MeleeParry
-    parryChanse: 0.55
+    parryChanse: 0.35
   - type: MeleeWeapon
     angle: 135
     animation: CP14WeaponArcThrust
@@ -2133,7 +2149,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.6
+    attackRate: 0.4
     damage:
       types:
         Piercing: 10
@@ -2159,9 +2175,14 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/sekir.rsi
+    slots:
+    - back
+    - suitStorage
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -2279,7 +2300,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.2
     wideAnimationRotation: -140
-    attackRate: 0.54
+    attackRate: 0.34
     damage:
       types:
         Piercing: 6
@@ -2306,8 +2327,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2364,7 +2385,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.6
+    attackRate: 0.4
     damage:
       types:
         Piercing: 10
@@ -2391,8 +2412,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2447,7 +2468,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.2
     wideAnimationRotation: -140
-    attackRate: 0.54
+    attackRate: 0.34
     damage:
       types:
         Piercing: 6
@@ -2474,8 +2495,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2532,7 +2553,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.22
     wideAnimationRotation: -140
-    attackRate: 0.6
+    attackRate: 0.4
     damage:
       types:
         Piercing: 8
@@ -2559,8 +2580,8 @@
     damage:
       types:
         Slash: 19
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   #- type: QualityOfItem
   #  qualityWeights:
@@ -2650,6 +2671,23 @@
   - type: Item
     size: Huge
     sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+  - type: MeleeWeapon
+    angle: 140
+    animation: WeaponArcAbibi
+    wideAnimation: WeaponArcAbibi
+    clickDamageModifier: 1.2
+    attackRate: 0.34
+    damage:
+      types:
+        Piercing: 6
+        Slash: 6
+        Structural: 2
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Imperial/Medieval/cosmic_expansion.ogg
+      params:
+          variation: 0.02
+          volume: -2
 
 - type: entity
   name: steel claymore
@@ -2671,6 +2709,23 @@
   - type: Item
     size: Huge
     sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+  - type: MeleeWeapon
+    angle: 140
+    animation: WeaponArcAbibi
+    wideAnimation: WeaponArcAbibi
+    clickDamageModifier: 1.22
+    attackRate: 0.4
+    damage:
+      types:
+        Piercing: 8
+        Slash: 17.7
+        Structural: 3
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Imperial/Medieval/cosmic_expansion.ogg
+      params:
+          variation: 0.02
+          volume: -2
 
 - type: entity
   name: steel zweihander
@@ -2806,8 +2861,8 @@
     damage:
       types:
         Slash: 10
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -2999,8 +3054,8 @@
     damage:
       types:
         Slash: 11
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -3076,8 +3131,8 @@
     damage:
       types:
         Slash: 10.5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -3218,8 +3273,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3263,7 +3318,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_mace.rsi
     state: icon
@@ -3330,7 +3385,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/heavy_mace.rsi
     state: icon
@@ -3414,7 +3469,7 @@
     cPAnimationOffset: 1
     clickDamageModifier: 1.25
     wideAnimationRotation: -140
-    attackRate: 0.4
+    attackRate: 0.25
     damage:
       types:
         Piercing: 13
@@ -3440,8 +3495,8 @@
     damage:
       types:
         Slash: 28
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: MeleeRequiresWield
   - type: Clothing
     sprite: Imperial/Medieval/Melee/halberd.rsi
@@ -3849,8 +3904,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -3929,8 +3984,8 @@
     damage:
       types:
         Slash: 6
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -4005,8 +4060,8 @@
     damage:
       types:
         Slash: 10.5
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   #- type: QualityOfItem
   #  qualityWeights:
   #    0: 0
@@ -4081,8 +4136,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4229,8 +4284,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4324,8 +4379,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4415,8 +4470,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4457,7 +4512,7 @@
 
 - type: entity
   name: dagger
-  parent: [ BaseKnife, BaseCrushingCharged ]
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalPalice
   description: A deadly knife intended for melee confrontations.
   components:
@@ -4508,8 +4563,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4532,7 +4587,7 @@
 
 - type: entity
   name: dagger
-  parent: [ BaseKnife, BaseCrushingCharged ]
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalPaliceSteel
   description: A deadly knife intended for melee confrontations.
   components:
@@ -4583,8 +4638,8 @@
   #    4: 0
   #    5: 0
   #    6: 0
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -4615,7 +4670,7 @@
     value: 3
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/bone_mace.rsi
     state: icon
@@ -4937,7 +4992,7 @@
 
 - type: entity
   name: Pilum
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearPilum
   description: Just a spear
   components:
@@ -4977,8 +5032,8 @@
       types:
         Piercing: 39
         Blunt: 3
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -5005,7 +5060,7 @@
 
 - type: entity
   name: Sulica
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalSpearSulica
   description: Just a spear
   components:
@@ -5045,8 +5100,8 @@
       types:
         Piercing: 39
         Blunt: 3
-  - type: EmbeddableProjectile
-    offset: 0.15,0.15
+  #- type: EmbeddableProjectile
+    #offset: 0.15,0.15
   - type: ThrowingAngle
     angle: 225
   - type: Tag
@@ -5101,7 +5156,7 @@
 
 - type: entity
   name: medieval cavalery spear
-  parent: BaseItem
+  parent: [ BaseItem, BaseSpearCharged ]
   id: MedievalCavalerySpearT3
   description: Definition of a Classic. Keeping murder affordable since 200,000 BCE.
   components:

@@ -1,0 +1,596 @@
+- type: entity
+  abstract: true
+  id: FishRawLevel1Base
+  suffix: medieval
+  parent: FoodInjectableBase
+  components:
+  - type: Tag
+    tags:
+    - fish
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 9
+        - ReagentId: Fat
+          Quantity: 9
+  - type: Currency
+    price:
+      Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
+  - type: RDWeight
+    value: 0.5
+  - type: Fish
+    level: 1
+    progressPerTick: 25
+    tensionAccelerationDelta: -18
+    tensionAccelerationDeltaPressed: 18
+  - type: AtmosExposed
+  - type: Temperature
+    currentTemperature: 290
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.25,0.25,0.25"
+        density: 1
+        mask:
+        - ItemMask
+        restitution: 0.3
+        friction: 0.2
+  - type: InternalTemperature
+    conductivity: 0.43
+    thickness: 0.02
+    area: 0.02
+  - type: LastPickedUpContainer
+
+- type: entity
+  abstract: true
+  id: FishRawLevel2Base
+  suffix: medieval
+  parent: FishRawLevel1Base
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 18
+        - ReagentId: Fat
+          Quantity: 18
+  - type: Currency
+    price:
+      Revent: 25
+  - type: MedievalCurrency
+    price:
+      Revent: 25
+  - type: RDWeight
+    value: 1.5
+  - type: Fish
+    level: 2
+    progressPerTick: 20
+    tensionAccelerationDelta: -22
+    tensionAccelerationDeltaPressed: 22
+
+- type: entity
+  abstract: true
+  id: FishRawLevel3Base
+  suffix: medieval
+  parent: FishRawLevel1Base
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 36
+        - ReagentId: Fat
+          Quantity: 36
+  - type: Currency
+    price:
+      Revent: 60
+  - type: MedievalCurrency
+    price:
+      Revent: 60
+  - type: RDWeight
+    value: 4
+  - type: Fish
+    level: 3
+    progressPerTick: 15
+    tensionAccelerationDelta: -28
+    tensionAccelerationDeltaPressed: 24
+
+- type: entity
+  abstract: true
+  id: FishCookedLevel1Base
+  suffix: medieval
+  parent: FoodInjectableBase
+  components:
+  - type: Tag
+    tags:
+    - fish
+  - type: Item
+    size: Small
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Protein
+          Quantity: 5
+  - type: Currency
+    price:
+      Revent: 15
+  - type: MedievalCurrency
+    price:
+      Revent: 15
+  - type: RDWeight
+    value: 0.5
+
+- type: entity
+  abstract: true
+  id: FishCookedLevel2Base
+  suffix: medieval
+  parent: FishCookedLevel1Base
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 40
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+        - ReagentId: Protein
+          Quantity: 10
+  - type: Currency
+    price:
+      Revent: 25
+  - type: MedievalCurrency
+    price:
+      Revent: 25
+  - type: RDWeight
+    value: 1.5
+
+- type: entity
+  abstract: true
+  id: FishCookedLevel3Base
+  suffix: medieval
+  parent: FishCookedLevel1Base
+  components:
+  - type: Item
+    size: Normal
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 80
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 40
+        - ReagentId: Protein
+          Quantity: 20
+  - type: Currency
+    price:
+      Revent: 60
+  - type: MedievalCurrency
+    price:
+      Revent: 60
+  - type: RDWeight
+    value: 4
+
+- type: entity
+  id: FishPlotva
+  suffix: medieval
+  parent: FishRawLevel1Base
+  name: Roach
+  description: River fish.
+  components:
+  - type: Fish
+    bait: Plant
+    location: River
+  - type: Construction
+    graph: FishPlotvaCooking
+    node: start
+    defaultTarget: fish plotva cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishPlotva.rsi
+    state: icon
+  - type: Item
+    size: Small
+
+- type: entity
+  id: FishLin
+  suffix: medieval
+  parent: FishRawLevel2Base
+  name: Tench
+  description: River fish.
+  components:
+  - type: Fish
+    bait: Plant
+    location: River
+  - type: Construction
+    graph: FishLinCooking
+    node: start
+    defaultTarget: fish lin cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishLin.rsi
+    state: icon
+  - type: Item
+    size: Small
+
+- type: entity
+  id: FishSterlyad
+  suffix: medieval
+  parent: FishRawLevel3Base
+  name: Sterlet
+  description: River fish.
+  components:
+  - type: Fish
+    bait: Plant
+    location: River
+  - type: Construction
+    graph: FishSterlyadCooking
+    node: start
+    defaultTarget: fish sterlyad cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishSterlyad.rsi
+    state: icon
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: FishOkun
+  suffix: medieval
+  parent: FishRawLevel1Base
+  name: Perch
+  description: River fish.
+  components:
+  - type: Fish
+    bait: Meat
+    location: River
+  - type: Construction
+    graph: FishOkunCooking
+    node: start
+    defaultTarget: fish okun cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishOkun.rsi
+    state: icon
+  - type: Item
+    size: Small
+
+- type: entity
+  id: FishZherekh
+  suffix: medieval
+  parent: FishRawLevel2Base
+  name: Asp
+  description: River fish.
+  components:
+  - type: Fish
+    bait: Meat
+    location: River
+  - type: Construction
+    graph: FishZherekhCooking
+    node: start
+    defaultTarget: fish zherekh cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishZherekh.rsi
+    state: icon
+  - type: Item
+    size: Small
+
+- type: entity
+  id: FishSom
+  suffix: medieval
+  parent: FishRawLevel3Base
+  name: Catfish
+  description: River fish.
+  components:
+  - type: Fish
+    bait: Meat
+    location: River
+  - type: Construction
+    graph: FishSomCooking
+    node: start
+    defaultTarget: fish som cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishSom.rsi
+    state: icon
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: FishKefal
+  suffix: medieval
+  parent: FishRawLevel1Base
+  name: Mullet
+  description: Sea fish.
+  components:
+  - type: Fish
+    bait: Plant
+    location: Sea
+  - type: Construction
+    graph: FishKefalCooking
+    node: start
+    defaultTarget: fish kefal cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishKefal.rsi
+    state: icon
+  - type: Item
+    size: Small
+
+- type: entity
+  id: FishKambalaTurbo
+  suffix: medieval
+  parent: FishRawLevel2Base
+  name: Flounder
+  description: Sea fish.
+  components:
+  - type: Fish
+    bait: Plant
+    location: Sea
+  - type: Construction
+    graph: FishKambalaTurboCooking
+    node: start
+    defaultTarget: fish kambala turbo cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishKambalaTurbo.rsi
+    state: icon
+  - type: Item
+    size: Small
+
+- type: entity
+  id: FishGoldSpar
+  suffix: medieval
+  parent: FishRawLevel3Base
+  name: Golden spar
+  description: Sea fish.
+  components:
+  - type: Fish
+    bait: Plant
+    location: Sea
+  - type: Construction
+    graph: FishGoldSparCooking
+    node: start
+    defaultTarget: fish gold spar cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishGoldSpar.rsi
+    state: icon
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: FishStavrida
+  suffix: medieval
+  parent: FishRawLevel1Base
+  name: Horse mackerel
+  description: Sea fish.
+  components:
+  - type: Fish
+    bait: Meat
+    location: Sea
+  - type: Construction
+    graph: FishStavridaCooking
+    node: start
+    defaultTarget: fish stavrida cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishStavrida.rsi
+    state: icon
+  - type: Item
+    size: Small
+
+- type: entity
+  id: FishZubatka
+  suffix: medieval
+  parent: FishRawLevel2Base
+  name: Wolffish
+  description: Sea fish.
+  components:
+  - type: Fish
+    bait: Meat
+    location: Sea
+  - type: Construction
+    graph: FishZubatkaCooking
+    node: start
+    defaultTarget: fish zubatka cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishZubatka.rsi
+    state: icon
+  - type: Item
+    size: Small
+
+- type: entity
+  id: FishTuna
+  suffix: medieval
+  parent: FishRawLevel3Base
+  name: Tuna
+  description: Sea fish.
+  components:
+  - type: Fish
+    bait: Meat
+    location: Sea
+  - type: Construction
+    graph: FishTunaCooking
+    node: start
+    defaultTarget: fish tuna cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishTuna.rsi
+    state: icon
+  - type: Item
+    size: Normal
+
+- type: entity
+  id: FishPlotvaCooked
+  suffix: medieval
+  parent: FishCookedLevel1Base
+  name: Fried roach
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishPlotvaCooking
+    node: fish plotva cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishPlotvaCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishLinCooked
+  suffix: medieval
+  parent: FishCookedLevel2Base
+  name: Fried tench
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishLinCooking
+    node: fish lin cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishLinCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishSterlyadCooked
+  suffix: medieval
+  parent: FishCookedLevel3Base
+  name: Fried sterlet
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishSterlyadCooking
+    node: fish sterlyad cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishSterlyadCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishOkunCooked
+  suffix: medieval
+  parent: FishCookedLevel1Base
+  name: Fried perch
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishOkunCooking
+    node: fish okun cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishOkunCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishZherekhCooked
+  suffix: medieval
+  parent: FishCookedLevel2Base
+  name: Fried asp
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishZherekhCooking
+    node: fish zherekh cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishZherekhCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishSomCooked
+  suffix: medieval
+  parent: FishCookedLevel3Base
+  name: Fried catfish
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishSomCooking
+    node: fish som cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishSomCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishKefalCooked
+  suffix: medieval
+  parent: FishCookedLevel1Base
+  name: Fried mullet
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishKefalCooking
+    node: fish kefal cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishKefalCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishKambalaTurboCooked
+  suffix: medieval
+  parent: FishCookedLevel2Base
+  name: Fried flounder
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishKambalaTurboCooking
+    node: fish kambala turbo cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishKambalaTurboCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishGoldSparCooked
+  suffix: medieval
+  parent: FishCookedLevel3Base
+  name: Fried golden spar
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishGoldSparCooking
+    node: fish gold spar cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishGoldSparCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishStavridaCooked
+  suffix: medieval
+  parent: FishCookedLevel1Base
+  name: Fried horse mackerel
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishStavridaCooking
+    node: fish stavrida cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishStavridaCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishZubatkaCooked
+  suffix: medieval
+  parent: FishCookedLevel2Base
+  name: Fried wolffish
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishZubatkaCooking
+    node: fish zubatka cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishZubatkaCooked.rsi
+    state: icon
+
+- type: entity
+  id: FishTunaCooked
+  suffix: medieval
+  parent: FishCookedLevel3Base
+  name: Fried tuna
+  description: Fried fish.
+  components:
+  - type: Construction
+    graph: FishTunaCooking
+    node: fish tuna cooked
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Fish/FishTunaCooked.rsi
+    state: icon
+

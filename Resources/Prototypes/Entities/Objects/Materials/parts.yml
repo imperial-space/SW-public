@@ -78,6 +78,10 @@
   - type: Tag
     tags:
       - DoesNotRecycleThisShit
+      - RawMaterial
+      - Ore
+      - Sheet
+  - type: Material
   # Imperial Space Bugfix End
 
 - type: entity

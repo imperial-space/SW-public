@@ -11,6 +11,18 @@
       - state: security_officer
 
 - type: entity
+  id: SpawnPointMedievalLegionCourier
+  parent: SpawnPointJobBase
+  name: securityofficer
+  components:
+  - type: SpawnPoint
+    job_id: MedievalLegionCourier
+  - type: Sprite
+    layers:
+      - state: green
+      - state: security_officer
+
+- type: entity
   id: SpawnPointMedievalAvanturist
   parent: SpawnPointJobBase
   name: securityofficer

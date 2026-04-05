@@ -60,3 +60,42 @@
     sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves5.rsi
   - type: Fiber
     fiberColor: fibers-red
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass6
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves6.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves6.rsi
+  - type: Fiber
+    fiberColor: fibers-white
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass7
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves7.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves7.rsi
+  - type: Fiber
+    fiberColor: fibers-black
+
+- type: entity
+  parent: ClothingHandsGlovesSyntheticBase
+  id: MedievalClothingHandsGlovesPass8
+  name: MedievalClothingHandsGlovesPass
+  description: MedievalClothingHandsGlovesPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves8.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Gloves/gloves8.rsi
+  - type: Fiber
+    fiberColor: fibers-green

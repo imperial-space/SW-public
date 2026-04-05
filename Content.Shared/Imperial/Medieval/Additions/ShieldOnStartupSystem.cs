@@ -1,5 +1,6 @@
 
 using Content.Shared.Alert;
+using Content.Shared.CombatMode;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Robust.Shared.Timing;
@@ -18,6 +19,7 @@ public partial class ShieldOnStartupSystem : EntitySystem
         SubscribeLocalEvent<ShieldOnStartupComponent, BeforeDamageChangedEvent>(OnBeforeDamageChanged);
         SubscribeLocalEvent<ShieldOnStartupComponent, BeforeStaminaDamageEvent>(OnBeforeStaminaDamage);
         SubscribeLocalEvent<ShieldOnStartupComponent, RejuvenateEvent>(OnRejuv);
+        SubscribeLocalEvent<ShieldOnStartupComponent, ToggleCombatActionEvent>(OnCombatModeChanged);
     }
 
     public void OnRejuv(EntityUid uid, ShieldOnStartupComponent component, RejuvenateEvent args)
@@ -51,5 +53,11 @@ public partial class ShieldOnStartupSystem : EntitySystem
             return;
         }
         args.Cancelled = true;
+    }
+
+    private void OnCombatModeChanged(Entity<ShieldOnStartupComponent> ent, ref ToggleCombatActionEvent args)
+    {
+        _alert.ClearAlert(ent.Owner, "SpawnProtection");
+        RemComp<ShieldOnStartupComponent>(ent);
     }
 }

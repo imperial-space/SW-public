@@ -1,0 +1,62 @@
+# Imperial Medieval Start
+# Blood
+
+- type: reagent
+  id: DwarfBlood
+  parent: BaseAlcohol
+  name: reagent-name-dwarf-blood
+  slipData: null
+  desc: reagent-desc-dwarf-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  color: "#8a0000"
+  physicalDesc: reagent-physical-desc-dwarf-blood
+  flavor: dwarfblood
+
+- type: flavor
+  id: dwarfblood
+  flavorType: Complex
+  description: flavor-complex-dwarf-blood
+
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: PartDwarf
+  parent: [BaseItem, BasePart]
+  name: "dwarf body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: DwarfBlood
+        Quantity: 10
+
+- type: entity
+  id: TorsoDwarf
+  name: "dwarf torso"
+  parent: [PartHuman, BaseTorso]
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: DwarfBlood
+        Quantity: 20
+
+- type: entity
+  id: HeadDwarf
+  name: "dwarf head"
+  parent: [PartHuman, BaseHead]
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: DwarfBlood
+        Quantity: 10
+# Imperial Medieval End
