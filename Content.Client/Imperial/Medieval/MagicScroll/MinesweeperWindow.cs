@@ -57,7 +57,7 @@ public sealed partial class MinesweeperWindow : DefaultWindow
 
             UseHint();
         };
-        RestartButton.OnPressed += _ =>
+        //RestartButton.OnPressed += _ => // TODO FIX MEDIEVAL
         {
             if (_gameOver)
                 return;
