@@ -1,0 +1,43 @@
+ent-MedievalBaseCannon = пушка
+    .desc = Дульнозарядная артиллерийская пушка.
+    .suffix = medieval
+ent-MedievalShipCannon = корабельная пушка
+    .desc = Тяжёлая корабельная пушка на лафете.
+    .suffix = medieval
+ent-MedievalFieldCannon = полевая пушка
+    .desc = Мобильная артиллерийская пушка на лафете.
+    .suffix = medieval
+ent-MedievalGrapeshot = картечь
+    .desc = Компактный заряд картечи.
+    .suffix = medieval
+ent-MedievalCannonballExplosive = взрывное ядро
+    .desc = Пушечное ядро со взрывным зарядом.
+    .suffix = medieval
+ent-MedievalLintstock = пальник
+    .desc = Фитильный запальник для поджига зарядов.
+    .suffix = medieval
+ent-MedievalRamrod = банник
+    .desc = Шомпол-банник для чистки и трамбовки ствола.
+    .suffix = medieval
+ent-MedievalCannonballShip = корабельное ядро
+    .desc = Обычное цельное корабельное ядро.
+    .suffix = medieval
+ent-MedievalGunpowderCharge = пороховой заряд
+    .desc = Компактный заряд чёрного пороха.
+    .suffix = medieval
+
+construction-recipe-medieval-ramrod = банник
+construction-recipe-medieval-ramrod-desc = Шомпол-банник для чистки и трамбовки ствола.
+
+medieval-cannon-state-dirty-examine = Ствол пушки покрыт толстым слоем сажи изнутри
+medieval-cannon-state-empty-examine = Пушка пуста. Чтобы зарядить, положите пороховой заряд
+medieval-cannon-state-gunpowder-loose-examine = Порох вложен в пушку. Используйте банник, чтобы утрамбовать заряд.
+medieval-cannon-state-gunpowder-rammed-examine = Порох утрамбован. Поместите снаряд в ствол.
+medieval-cannon-state-payload-loose-examine = Снаряд помещён в ствол. Используйте банник, чтобы дослать и утрамбовать его до упора.
+medieval-cannon-state-ready-to-fire-examine = Пушка заряжена и готова к выстрелу. Подожгите запальное отверстие, чтобы произвести выстрел.
+
+medieval-cannon-state-dirty-invalid-use = Сначала почистите пушку банником
+medieval-cannon-state-empty-invalid-use = Положите заряд пороха
+medieval-cannon-state-gunpowder-loose-invalid-use = Используйте банник чтобы утрамбовать заряд
+medieval-cannon-state-gunpowder-rammed-invalid-use = Положите снаряд в ствол пушки
+medieval-cannon-state-payload-loose-invalid-use = Утрамбуйте снаряд банником!

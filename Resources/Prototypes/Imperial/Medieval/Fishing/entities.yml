@@ -1,0 +1,166 @@
+- type: entity
+  id: FishingRodT1
+  suffix: medieval
+  parent: BaseItem
+  name: fishing rod
+  description: A simple fishing rod.
+  components:
+  - type: FishingRod
+    bobberPrototype: FishingBobber
+    riverWaterPrototype: FloorWaterEntity
+    riverWaterNoSoundPrototype: FloorWaterEntityNoSound
+    seaWaterPrototype: MedievalWaterDeepDarkEntity
+    baseFishingChancePercent: 1
+    initialDoAfterTime: 1
+    loopDoAfterTime: 2
+    incrementChance: 1
+    maxChance: 5
+  - type: Wieldable
+    unwieldOnUse: false
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/FishingRod/T1/rod.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Medieval/Fishing/Objects/FishingRod/T1/rod_inhands_64x.rsi
+    size: Large
+  - type: ContainerContainer
+    containers:
+      bait_slot: !type:ContainerSlot
+  - type: ItemSlots
+    slots:
+      bait_slot:
+        name: fishing-bait-slot-name
+        whitelist:
+          components:
+          - FishingBait
+  - type: UserInterface
+    interfaces:
+      enum.FishingRodUiKey.Key:
+        type: FishingBoundUserInterface
+
+- type: entity
+  id: FishingRodT2
+  suffix: medieval
+  parent: FishingRodT1
+  name: fishing rod t2
+  description: A reinforced fishing rod.
+  components:
+  - type: FishingRod
+    level: 2
+    incrementChance: 2
+    maxChance: 10
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/FishingRod/T2/rod.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Medieval/Fishing/Objects/FishingRod/T2/rod_inhands_64x.rsi
+
+- type: entity
+  id: FishingRodT3
+  suffix: medieval
+  parent: FishingRodT1
+  name: fishing rod t3
+  description: An expert fishing rod.
+  components:
+  - type: FishingRod
+    level: 3
+    incrementChance: 3
+    maxChance: 15
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/FishingRod/T3/rod.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Medieval/Fishing/Objects/FishingRod/T3/rod_inhands_64x.rsi
+
+- type: entity
+  id: Worm
+  suffix: medieval
+  parent: BaseItem
+  name: worm
+  description: A squirmy fishing bait.
+  components:
+  - type: Edible
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        reagents:
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 2
+  - type: FishingBait
+    baitType: Meat
+  - type: Stack
+    stackType: Worm
+    count: 1
+    baseLayer: base
+    layerStates:
+    - worms_item
+    - bunch_worms_item
+    layerFunction: Threshold
+  - type: StackLayerThreshold
+    thresholds: [2]
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Bait/worm.rsi
+    layers:
+    - state: worms_item
+      map: ["base"]
+  - type: Item
+    sprite: Imperial/Medieval/Fishing/Objects/Bait/worm.rsi
+    size: Tiny
+  - type: Tag
+    tags:
+    - FishingBait
+  - type: Appearance
+  - type: RDWeight
+    value: 0.01
+
+- type: entity
+  id: FishingBag
+  suffix: medieval
+  parent: BaseStorageItem
+  name: fishing basket
+  description: A woven basket for carrying fish.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/FishingBag/fishing_basket.rsi
+    state: icon
+  - type: Item
+    storedRotation: -90
+    shape:
+    - 0,0,1,1
+  - type: Storage
+    grid:
+    - 0,0,7,4
+    maxItemSize: Normal
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+      - fish
+  - type: Dumpable
+
+- type: entity
+  id: FishingBobber
+  suffix: medieval
+  name: bobber
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Bobber
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: Imperial/Medieval/Fishing/Objects/Bobber/bobber.rsi
+    drawdepth: Effects
+    layers:
+    - state: icon
+      map: ["bobber"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.BobberVisuals.State:
+        bobber:
+          Icon:
+            state: icon
+          Biting:
+            state: biting
+

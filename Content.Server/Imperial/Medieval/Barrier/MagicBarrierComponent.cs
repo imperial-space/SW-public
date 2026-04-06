@@ -1,3 +1,6 @@
+using System.Numerics;
+using Content.Server.Imperial.Medieval.Ships.Sea.Init;
+using Robust.Shared.Map;
 using Robust.Shared.Network;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
@@ -21,15 +24,19 @@ namespace Content.Server.MagicBarrier.Components
 
         [DataField]
         public float MaxStability = 60f;
+
         [DataField]
         public float Lose = 0.7f;
+
         [DataField]
         public float Rate = 1.5f;
+
         [DataField]
         public int Cycle = 0;
 
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnScrollAdd = "/Audio/Imperial/Medieval/scroll_use.ogg";
+
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnFinish = "/Audio/Imperial/Medieval/magic_craft.ogg";
 
@@ -61,5 +68,15 @@ namespace Content.Server.MagicBarrier.Components
         [DataField]
         public float ElementalRiftMaxSpawnMinutes = 60f;
 
+
+        // Приветик, делаем генерацию морей
+        [DataField]
+        public bool SeaInitalazed = false;
+
+
+        [DataField]
+        public SeaMatrix? SeaMatrix = null;
     }
 }
+
+

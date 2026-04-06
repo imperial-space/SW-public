@@ -1,5 +1,6 @@
 ﻿using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.Myrmex;
+using Content.Shared.Myrmex.Hive;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -8,19 +9,15 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Examine;
 
-namespace Content.Server.Imperial.Medieval.Myrmex
-{
+namespace Content.Server.Imperial.Medieval.Myrmex;
+
     public sealed partial class MyrmexStewSystem : EntitySystem
     {
         [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly IRobustRandom _random = default!;
-        private readonly string[] _feedSounds = new[] {
-                "/Audio/Imperial/Medieval/ant_feed1.ogg",
-                "/Audio/Imperial/Medieval/ant_feed2.ogg",
-            };
+        [Dependency] private readonly SharedMyrmexHiveSystem _hive = default!;
 
         public override void Initialize()
         {
@@ -33,8 +30,9 @@ namespace Content.Server.Imperial.Medieval.Myrmex
 
         private void OnExamine(EntityUid uid, MyrmexStewComponent comp, ExaminedEvent args)
         {
-            args.PushMarkup($"[color=gray]Осталось [bold]{comp.Uses}[/bold] кусочков[/color]", 1);
+            args.PushMarkup(Loc.GetString("medieval-myrmex-stew-remaining-pieces", ("uses", comp.Uses)), 1);
         }
+
         private void OnInteractHand(Entity<MyrmexStewComponent> entity, ref ActivateInWorldEvent args)
         {
             if (args.Handled)
@@ -66,20 +64,18 @@ namespace Content.Server.Imperial.Medieval.Myrmex
         private bool FeedCheck(Entity<MyrmexStewComponent> stew, Entity<MyrmexHungerComponent> user, bool silent = false)
         {
             var curTime = _gameTiming.CurTime;
-
             var diff = (curTime - user.Comp.LastEaten);
 
             if (HasComp<LarvaComponent>(user.Owner) && !stew.Comp.EdibleByLarva)
                 return false;
 
-            if(diff.HasValue && diff.Value.Duration() < TimeSpan.FromSeconds(user.Comp.EatCooldownSeconds))
-            {
-                if(!silent)
-                    _popup.PopupEntity(Loc.GetString("medieval-myrmex-stew-cooldown"), user.Owner, user.Owner);
-                return false;
-            }
+            if (!diff.HasValue || diff.Value.Duration() >= TimeSpan.FromSeconds(user.Comp.EatCooldownSeconds))
+                return true;
 
-            return true;
+            if (!silent)
+                _popup.PopupEntity(Loc.GetString("medieval-myrmex-stew-cooldown"), user.Owner, user.Owner);
+            return false;
+
         }
 
         private (bool Success, bool Handled) TryFeed(Entity<MyrmexStewComponent> stew, Entity<MyrmexHungerComponent> user)
@@ -87,9 +83,8 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             if (!FeedCheck(stew, user))
                 return (false, true);
 
+            _audio.PlayPvs(stew.Comp.FeedSounds, user.Owner);
 
-            var sound = _random.Pick(_feedSounds);
-            _audio.PlayPvs(sound, user.Owner);
             var doAfterArgs = new DoAfterArgs(EntityManager,
                 user.Owner,
                 TimeSpan.FromSeconds(2),
@@ -104,7 +99,9 @@ namespace Content.Server.Imperial.Medieval.Myrmex
                 DistanceThreshold = 2,
                 BreakOnMove = true,
             };
+
             _doAfter.TryStartDoAfter(doAfterArgs);
+
             return (true, true);
         }
 
@@ -113,37 +110,33 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             if (args.Cancelled || args.Handled || entity.Comp.Deleted || args.Target == null)
                 return;
 
-            if (!TryComp(args.User, out MyrmexHungerComponent? hunger))
-                return;
-            if (!TryComp(entity.Owner, out MetaDataComponent? metadata))
-                return;
-            if (!TryComp(entity.Owner, out TransformComponent? transform))
+            if (!TryComp(args.User, out MyrmexHungerComponent? hunger) ||
+                !TryComp(entity.Owner, out MetaDataComponent? metadata) ||
+                !FeedCheck(entity, (args.User, hunger)))
                 return;
 
             args.Handled = true;
 
-            var userEntity = new Entity<MyrmexHungerComponent>(args.User, hunger);
-            if (!FeedCheck(entity, userEntity))
-                return;
-
             entity.Comp.Uses--;
-
             hunger.LastEaten = _gameTiming.CurTime;
-            if(entity.Comp.Buff != null)
-                hunger.Buffs.Add(entity.Comp.Buff);
+
+            if (entity.Comp.Buff != null && _hive.TryGetHive(out var hive))
+            {
+                if (hunger.Buffs.Count < hive!.Value.Comp.MaxBuffs)
+                    hunger.Buffs.Add(entity.Comp.Buff);
+                else
+                    _popup.PopupEntity("Достигнут лимит баффов", args.User, args.User);
+            }
 
             hunger.Dirty();
 
-            if (TryComp<LarvaComponent>(args.User, out var larva))
+            if (TryComp<LarvaComponent>(args.User, out _) &&
+                metadata.EntityPrototype != null)
             {
-                if (metadata.EntityPrototype == null)
-                    return;
-                var ev = new LarvaFeedEvent(metadata.EntityPrototype);
-                RaiseLocalEvent(args.User, ev);
+                RaiseLocalEvent(args.User, new LarvaFeedEvent(metadata.EntityPrototype));
             }
 
-            if (entity.Comp.Uses == 0)
-                PredictedQueueDel(new Entity<MetaDataComponent?, TransformComponent?>(entity.Owner, metadata, transform));
+            if (entity.Comp.Uses <= 0)
+                PredictedQueueDel(entity.Owner);
         }
-    }
 }

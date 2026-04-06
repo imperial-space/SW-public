@@ -881,6 +881,7 @@
     - MedievalPlantBag
     - MedievalOreBag
     - MedievalMonsterBag
+    - MedievalHealBag
     - MedievalAlchemicBelt
     - MedievalClothingHeadHatCowboyBrown
     - MedievalCultConductor
@@ -922,6 +923,7 @@
     recipes:
     - MedievalWeaponCrossbow
     - MedievalWoodenSword
+    - FishingRodT2
     - MedievalBolt
     - MedievalBoltSteel
     - MedievalBoltPractice
@@ -1050,6 +1052,7 @@
     - MedievalReliefStoneWeakCraft
     - MedievalReliefStoneStrongCraft
     - MedievalAntiGravitationStoneCraft
+    - MedievalObeliskInfusionCraft
     - MedievalDragonQuantEssence
     - MedievalScrollsHalberdCraft
     - MedievalScrollsFalshionCraft
@@ -1062,6 +1065,36 @@
     - MedievalScrollsPetSlimeCraft
     - MedievalClothingHeadHelmetCharmerNeutral
     - MedievalClothingOuterArmorCharmerNeutral
+    - ForgedCoreSerdolicCraft
+    - ForgedCoreAdamCraft
+    - ForgedCoreTopazCraft
+    - ForgedCoreGoldCraft
+    - ForgedWoodenHeadCraft
+    - ForgedWoodenTorsoCraft
+    - ForgedWoodenRArmCraft
+    - ForgedWoodenLArmCraft
+    - ForgedWoodenRLegCraft
+    - ForgedWoodenLLegCraft
+    - ForgedIronHeadCraft
+    - ForgedIronTorsoCraft
+    - ForgedIronRArmCraft
+    - ForgedIronLArmCraft
+    - ForgedIronRLegCraft
+    - ForgedIronLLegCraft
+    - ForgedGoldenHeadCraft
+    - ForgedGoldenTorsoCraft
+    - ForgedGoldenRArmCraft
+    - ForgedGoldenLArmCraft
+    - ForgedGoldenRLegCraft
+    - ForgedGoldenLLegCraft
+    - ForgedEyesSerdolickCraft
+    - ForgedEyesAdamCraft
+    - ForgedEyesTopazCraft
+    - ForgedEyesBloodCraft
+    - ForgedRHandBladeCraft
+    - ForgedLHandBladeCraft
+    - ForgedCrossbowRHandCraft
+    - ForgedCrossbowLHandCraft
 
 - type: entity
   parent: CP14BaseWorkbench
@@ -1197,6 +1230,11 @@
     - MedievalHatchet
     - BarberScissors
     - MedievalGrenade
+    - MedievalLintstock
+    - MedievalGunpowderCharge
+    - MedievalCannonballShip
+    - MedievalCannonballExplosive
+    - MedievalGrapeshot
     - MedievalKeyStorage
     - MedievalDoorKeyCheck
     - MedievalPrisonGrilleCraft
@@ -1236,6 +1274,7 @@
     - MedievalClothingFeetDragonBoneBone
     - MedievalBloodlettingNeedle
     - MedievalCultConductorRodIron
+    - FishingRodT3
     - Spoon
     - Fork
     - MedievalSilverCup
@@ -1360,3 +1399,28 @@
       - CarpetPurpleCraft
       #- CarpetCraft
       - CarpetWhiteCraft
+      - BardArlekinoHead
+      - BardAsianHat
+      - BardCrown
+      - BardHat
+      - BardHeadscarf
+      - BardHorse
+      - BardManHead
+      - BardWig
+      - BardArlekino
+      - BardBear
+      - BardKimano
+      - BardMagicDress
+      - BardPierro
+      - BardGrinCoat
+      - BardRedcoat
+      - BardMaskLove
+      - BardMaskSad
+      - BardMaskSmile
+      - MedievalDecorBardDragon
+      - MedievalDecorBardFire
+      - MedievalDecorBardMoon
+      - MedievalDecorBardSun
+      - MedievalDecorBardThrone
+      - MedievalDecorBardTower
+      - MedievalDecorBardTree

@@ -10,3 +10,16 @@
     sprite: Imperial/Medieval/Monetization/Clothing/Mask/mask1.rsi
   - type: MedievalPlagueSpreadBlocking
     modifier: 0.4
+
+- type: entity
+  parent: MedievalClothingMaskPlague
+  id: MedievalClothingMaskPlaguePass2
+  name: MedievalClothingMaskPlaguePass2
+  description: MedievalClothingMaskPlaguePass2
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Mask/mask2.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Mask/mask2.rsi
+  - type: MedievalPlagueSpreadBlocking
+    modifier: 0.4

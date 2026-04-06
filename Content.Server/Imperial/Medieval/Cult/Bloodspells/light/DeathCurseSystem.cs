@@ -9,11 +9,8 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Popups;
 using Robust.Shared.Timing;
 
-namespace Content.Server.Imperial.Medieval.Cult.Bloodspells.light;
+namespace Content.Server.Imperial.Medieval.Cult.Bloodspells.Light;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class DeathCurseSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
@@ -21,7 +18,6 @@ public sealed class DeathCurseSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
     [Dependency] private readonly AlertsSystem _alertsSystem = default!;
 
-    /// <inheritdoc/>
     private TimeSpan _nextCheckTime;
     private TimeSpan _nextCheckTimePopup;
 
