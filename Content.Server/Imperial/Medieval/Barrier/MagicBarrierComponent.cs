@@ -56,6 +56,18 @@ namespace Content.Server.MagicBarrier.Components
         [DataField]
         public Dictionary<NetUserId, int> ReviveCount = new();
 
+        [DataField]
+        public TimeSpan ElementalRiftNextSpawnTime = TimeSpan.Zero;
+
+        [DataField]
+        public float ElementalRiftStabilityLossPerMinute = 0.0015f;
+
+        [DataField]
+        public float ElementalRiftMinSpawnMinutes = 30f;
+
+        [DataField]
+        public float ElementalRiftMaxSpawnMinutes = 60f;
+
 
         // Приветик, делаем генерацию морей
         [DataField]

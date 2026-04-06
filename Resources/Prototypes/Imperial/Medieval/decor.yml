@@ -3806,6 +3806,7 @@
     castShadows: false
   - type: MagicBarrierCurse
 
+
 - type: entity
   id: MedievalBarrierCurseSpawner
   name: barrier curse spawner
