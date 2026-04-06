@@ -7934,7 +7934,8 @@
 - type: entity
   name: gol
   parent: BaseItem
-  id: MedievalCommsCrystallLeg
+  id: MedievalCommsCrystallBase
+  abstract: true
   description: gol
   components:
   - type: Sprite
@@ -7942,8 +7943,17 @@
     state: leg
   - type: Item
     size: Tiny
+
+- type: entity
+  name: gol
+  parent: MedievalCommsCrystallBase
+  id: MedievalCommsCrystallLeg
+  description: gol
+  components:
   - type: CloackReciever
     faction: "leg"
+  - type: ChargeableAnnounce
+    chargedstate: leg
 
 - type: entity
   name: gol
@@ -7955,6 +7965,8 @@
     state: mine
   - type: CloackReciever
     faction: "mine"
+  - type: ChargeableAnnounce
+    chargedstate: mine
 
 - type: entity
   name: gol
@@ -7966,10 +7978,12 @@
     state: band
   - type: CloackReciever
     faction: "band"
+  - type: ChargeableAnnounce
+    chargedstate: band
 
 - type: entity
   name: кристалл связи шайки койота
-  parent: MedievalCommsCrystallLeg
+  parent: MedievalCommsCrystallBase
   id: MedievalCommsCrystallKayot
   description: Кристалл связи позволяет получать сообщения лидера фракции даже с другого конца острова.
   components:
@@ -7988,6 +8002,8 @@
     state: ins
   - type: CloackReciever
     faction: "ins"
+  - type: ChargeableAnnounce
+    chargedstate: ins
 
 - type: entity
   name: gol
@@ -7999,6 +8015,8 @@
     state: merc
   - type: CloackReciever
     faction: "merc"
+  - type: ChargeableAnnounce
+    chargedstate: merc
 
 - type: entity
   name: gol
@@ -8010,6 +8028,8 @@
     state: coll
   - type: CloackReciever
     faction: "collegium"
+  - type: ChargeableAnnounce
+    chargedstate: coll
 
 - type: tile
   id: CultFloor
