@@ -138,3 +138,6 @@
 
 - type: Tag
   id: CultConductorRod
+
+- type: Tag
+  id: CourierLetter
