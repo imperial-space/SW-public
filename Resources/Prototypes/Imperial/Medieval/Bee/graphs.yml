@@ -1,0 +1,33 @@
+- type: constructionGraph
+  id: MedievalBeeHoneyBandage
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: bandage
+          steps:
+            - material: Gauze
+              amount: 10
+              doAfter: 2
+            - material: MedievalBeeHoneyPiece
+              amount: 3
+              doAfter: 1
+    - node: bandage
+      entity: MedievalBeeHoneyBandage
+
+- type: constructionGraph
+  id: MedievalCustomBeeHive
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: hive
+          steps:
+            - material: WoodPlank
+              amount: 10
+              doAfter: 2
+            - material: MedievalBeeHoneyComb
+              amount: 15
+              doAfter: 1
+    - node: hive
+      entity: MedievalCustomBeeHive

@@ -1,0 +1,189 @@
+- type: entity
+  id: MedievalBeeHive
+  parent: BaseStructure
+  name: bee hive
+  description: bee hive
+  suffix: Beekeeping
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Bee/natural-hive.rsi
+    layers:
+    - state: icon
+  - type: InteractionOutline
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.6,-0.6,0.6,0.6"
+        density: 155
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    noRot: true
+  - type: MedievalBeeHive
+
+- type: entity
+  id: MedievalCustomBeeHive
+  parent: BaseStructure
+  name: custom bee hive
+  description: custom bee hive
+  suffix: Beekeeping
+  components:
+  - type: Anchorable
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Bee/custom-hive.rsi
+    layers:
+    - state: icon
+  - type: InteractionOutline
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 155
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    noRot: true
+  - type: MedievalBeeHive
+    gridDataset: MCBeeGrids
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: Wood # imperial medieval
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100 # weak
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank:
+            min: 1
+            max: 3
+  - type: Construction
+    graph: MedievalCustomBeeHive
+    node: hive
+
+- type: entity
+  parent: BaseWall
+  id: MedievalWallHive
+  name: hive wall
+  suffix: Beekeeping
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Bee/wall.rsi
+  - type: Icon
+    sprite: Imperial/Medieval/Bee/wall.rsi
+  - type: IconSmooth
+    key: walls
+    base: combs
+
+- type: entity
+  id: MedievalBeeTrap
+  name: hive trap
+  suffix: Beekeeping
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Sprite
+    layers:
+    - map: [ "state" ]
+      sprite: Imperial/Medieval/Bee/hive-trap.rsi
+      state: icon
+      visible: true
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        density: 155
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+        hard: false
+  - type: MedievalBeeTrap
+
+- type: entity
+  id: MedievalHoneyDeposit
+  parent: BaseStructure
+  name: honey deposit
+  description: honey deposit
+  suffix: Beekeeping
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Bee/honey-deposit.rsi
+    layers:
+    - state: icon
+  - type: InteractionOutline
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 155
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    noRot: true
+  - type: MedievalBeeItemSource
+    item: MedievalBeeHoneyPiece
+
+- type: entity
+  id: MedievalHoneySticks
+  parent: BaseStructure
+  name: honey sticks
+  description: honey sticks
+  suffix: Beekeeping
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Bee/honey-sticks.rsi
+    layers:
+    - state: pipes-1
+      map: [ "base" ]
+  - type: RandomSprite
+    available:
+    - base:
+        pipes-1: ""
+        pipes-2: ""
+        pipes-3: ""
+  - type: InteractionOutline
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 155
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Transform
+    noRot: true
+  - type: MedievalBeeItemSource
+    item: MedievalBeeHoneyComb

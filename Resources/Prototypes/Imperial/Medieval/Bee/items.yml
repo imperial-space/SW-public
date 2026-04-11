@@ -1,0 +1,94 @@
+- type: entity
+  id: MedievalBeeSmoke
+  name: bee smoker
+  parent: BaseItem
+  suffix: Beekeeping
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Bee/smoke.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: MedievalBeeSmoke
+
+- type: entity
+  id: MedievalBeeHoneyPiece
+  name: honey piece
+  parent: BaseItem
+  suffix: Beekeeping
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Bee/honey.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Stack
+    stackType: MedievalBeeHoneyPiece
+    baseLayer: base
+    layerStates:
+    - icon
+    count: 1
+
+- type: entity
+  id: MedievalBeeHoneyComb
+  name: honey comb
+  parent: BaseItem
+  suffix: Beekeeping
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Bee/honey-combs.rsi
+    state: honey-comb
+    layers:
+    - state: honey-comb
+      map: ["base"]
+  - type: Item
+    size: Normal
+  - type: Stack
+    stackType: MedievalBeeHoneyComb
+    baseLayer: base
+    layerStates:
+    - honey-comb
+    - honey-comb_2
+    - honey-comb_3
+    count: 1
+  - type: Appearance
+
+- type: entity
+  name: honey bandage
+  description: gooool
+  parent: BaseHealingItem
+  id: MedievalBeeHoneyBandage
+  suffix: Full, Beekeeping
+  components:
+  - type: Tag
+    tags:
+    - Brutepack
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/Bee/honey-bandage.rsi
+    state: icon
+  - type: Item
+  - type: Healing
+    damageContainers:
+      - Biological
+    damage:
+      groups:
+        Brute: -30
+    bloodlossModifier: -10
+    healingBeginSound:
+      path: "/Audio/Items/Medical/brutepack_begin.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+    healingEndSound:
+      path: "/Audio/Items/Medical/brutepack_end.ogg"
+      params:
+        volume: 1.0
+        variation: 0.125
+  - type: Stack
+    stackType: MedievalBeeHoneyBandage
+    count: 10
+  - type: StackPrice
+    price: 20
+  - type: Construction
+    graph: MedievalBeeHoneyBandage
+    node: bandage
