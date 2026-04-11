@@ -12,7 +12,7 @@
     layerState: iron_right_arm_blade
     rsiPath: Imperial/Medieval/Forged/upgrades.rsi
     resistanceModifier: 0.02
-    speedModifier: 0.025
+    speedModifier: 0
     abilityId: Right_blade
     requiredModule: right_arm
 
@@ -31,7 +31,7 @@
     layerState: iron_left_arm_blade
     rsiPath: Imperial/Medieval/Forged/upgrades.rsi
     resistanceModifier: 0.05
-    speedModifier: 0.025
+    speedModifier: 0
     abilityId: Left_blade
     requiredModule: left_arm
 

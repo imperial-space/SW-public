@@ -291,13 +291,13 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      110: Critical # Imperial Medieval
-      111: Dead # Imperial Medieval
+      100: Critical # Imperial Medieval
+      101: Dead # Imperial Medieval
   - type: Destructible # Изменить относительно модулей!!!
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 110 # Imperial Medieval
+        damage: 100 # Imperial Medieval
       behaviors:
       - !type:GoSSDBehavior { } # Imperial Medieval
       - !type:GibBehavior { }
@@ -336,12 +336,18 @@
     alternateState: Standing
   - type: FlashImmunity
   - type: Inventory
-    femaleDisplacements:
-      jumpsuit:
-        sizeMaps:
-          32:
-            sprite: Mobs/Species/Human/displacement.rsi
-            state: jumpsuit-female
+  - type: ContainerFill
+    containers:
+        shoes:
+        - ForgedSlotBlocker
+        outerClothing:
+        - ForgedSlotBlocker
+        jumpsuit:
+        - ForgedSlotBlocker
+        head:
+        - ForgedSlotBlocker
+        gloves:
+        - ForgedSlotBlocker
   - type: GhostTakeoverAvailable
   - type: GhostRole
     makeSentient: true
@@ -358,3 +364,11 @@
     baseDecayRate: 0.005
   - type: TakeName
 
+- type: entity
+  id: ForgedSlotBlocker
+  parent: BaseItem
+  name: слот заблокирован
+  description: Особенности анатомии не позволяют использовать этот слот.
+  components:
+    - type: Item
+    - type: Unremoveable # Запрещает снимать предмет любым способом

@@ -247,6 +247,7 @@
   result: ForgedCrossbowRHand
   entities:
     MedievalWeaponCrossbow: 1
+  stacks:
     MedievalSteelIngot: 1
 
 - type: CP14Recipe
@@ -254,5 +255,6 @@
   result: ForgedCrossbowLHand
   entities:
     MedievalWeaponCrossbow: 1
+  stacks:
     MedievalSteelIngot: 1
 

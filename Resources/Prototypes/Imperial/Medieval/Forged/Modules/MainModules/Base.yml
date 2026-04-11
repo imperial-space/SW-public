@@ -1,0 +1,136 @@
+- type: entity
+  id: ForgedHeadBase
+  name: ForgedHeadBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Mask/brass_skull.rsi
+    state: icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: head
+    layerState: HeadBase
+    rsiPath: Imperial/Medieval/Forged/heads.rsi
+
+- type: entity
+  id: ForgedTorsoBase
+  name: ForgedTorsoBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/wooden.rsi
+    drawdepth: Items
+    layers:
+    - state: wooden_torso
+      map: ["torso"]
+    - state: blank
+      map: ["head"]
+    - state: blank
+      map: ["eyes"]
+    - state: blank
+      map: ["right_arm"]
+    - state: blank
+      map: ["left_arm"]
+    - state: blank
+      map: ["right_hand"]
+    - state: blank
+      map: ["left_hand"]
+    - state: blank
+      map: ["core"]
+      offset: 0, -0.1
+    - state: blank
+      map: ["right_leg"]
+    - state: blank
+      map: ["left_leg"]
+    - state: blank
+      map: ["right_foot"]
+    - state: blank
+      map: ["left_foot"]
+    - state: blank
+      map : ["upgrade1"]
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.35
+        density: 150
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Pullable
+  - type: Appearance
+  - type: ForgedAssembly
+    torso: ForgedTorsoBase
+    avaibleSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg", "right_hand", "left_hand", "right_foot", "left_foot" ]
+    requireSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg" ]
+  - type: ForgedModule
+    partSlot: torso
+    layerState: wooden_torso
+    rsiPath: Imperial/Medieval/Forged/torsos.rsi
+
+- type: entity
+  id: ForgedRArmBase
+  name: ForgedRArmBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/arms.rsi
+    state: base_right_arm
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_arm
+    layerState: base_right_arm
+    rsiPath: Imperial/Medieval/Forged/arms.rsi
+
+- type: entity
+  id: ForgedLArmBase
+  name: ForgedLArmBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/arms.rsi
+    state: base_left_armbase
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: left_arm
+    layerState: base_left_armbase
+    rsiPath: Imperial/Medieval/Forged/arms.rsi
+
+- type: entity
+  id: ForgedRLegBase
+  name: ForgedRLegBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/legs.rsi
+    state: base_right_leg
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_leg
+    layerState: base_right_leg
+    rsiPath: Imperial/Medieval/Forged/legs.rsi
+
+- type: entity
+  id: ForgedLLegBase
+  name: ForgedLLegBase
+  parent: BaseItem
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/legs.rsi
+    state: base_left_leg
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: left_leg
+    layerState: base_left_leg
+    rsiPath: Imperial/Medieval/Forged/legs.rsi

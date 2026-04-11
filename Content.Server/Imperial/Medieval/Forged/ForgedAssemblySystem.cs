@@ -9,6 +9,7 @@ using Content.Shared.Imperial.Medieval.MagicRunes.Components;
 using Robust.Shared.Utility;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio;
+using Content.Shared.Examine;
 
 namespace Content.Server.Imperial.Medieval.Forged;
 
@@ -30,6 +31,8 @@ public sealed class ForgedAssemblySystem : EntitySystem
         SubscribeLocalEvent<ForgedAssemblyComponent, ForgedAssemblyDoAfterEvent>(OnDoAfter);
 
         SubscribeLocalEvent<ForgedAssemblyComponent, GetVerbsEvent<EquipmentVerb>>(OnGetVerbs);
+
+        SubscribeLocalEvent<ForgedModuleComponent, ExaminedEvent>(OnExamined);
     }
 
     private void OnCompInit(EntityUid uid, ForgedAssemblyComponent component, ComponentInit args)
@@ -139,11 +142,44 @@ public sealed class ForgedAssemblySystem : EntitySystem
             {
                 _popup.PopupEntity($"Вы извлекли {Name(module)}", uid, args.User);
                 _audio.PlayPvs(new SoundPathSpecifier("/Audio/Effects/unbuckle.ogg"), uid);
+
+                DropDependentModules(uid, args.SlotId, args.User);
+
                 FinalizeUpdate(uid, component);
             }
         }
 
         args.Handled = true;
+    }
+
+    private void DropDependentModules(EntityUid uid, string parentSlotId, EntityUid user)
+    {
+        var dependencies = new List<string>();
+
+        foreach (var container in _containerSystem.GetAllContainers(uid))
+        {
+            if (container.Count == 0) continue;
+
+            var entity = container.ContainedEntities[0];
+            if (TryComp<ForgedModuleComponent>(entity, out var module) && module.RequiredModule == parentSlotId)
+            {
+                dependencies.Add(container.ID);
+            }
+        }
+
+        foreach (var slotId in dependencies)
+        {
+            if (_containerSystem.TryGetContainer(uid, slotId, out var container) && container.Count > 0)
+            {
+                var dependentEntity = container.ContainedEntities[0];
+                if (_containerSystem.TryRemoveFromContainer(dependentEntity))
+                {
+                    _popup.PopupEntity($"Извлечено вместе с основой: {Name(dependentEntity)}", uid, user);
+
+                    DropDependentModules(uid, slotId, user);
+                }
+            }
+        }
     }
 
     private void FinalizeUpdate(EntityUid uid, ForgedAssemblyComponent component)
@@ -234,5 +270,16 @@ public sealed class ForgedAssemblySystem : EntitySystem
         args.Handled = true;
         QueueDel(args.Used);
         QueueDel(uid);
+    }
+
+    private void OnExamined(EntityUid uid, ForgedModuleComponent component, ExaminedEvent args)
+    {
+        // Добавляем информацию о сопротивлении
+        var resBonus = component.ResistanceModifier * 100;
+        args.PushMarkup(Loc.GetString("forged-module-examine-resistance", ("res", resBonus)));
+
+        // Добавляем информацию о скорости
+        var speedBonus = component.SpeedModifier * 100;
+        args.PushMarkup(Loc.GetString("forged-module-examine-speed", ("speed", speedBonus)));
     }
 }
