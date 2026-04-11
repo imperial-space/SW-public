@@ -367,7 +367,7 @@
 - type: entity
   id: ForgedSlotBlocker
   parent: BaseItem
-  name: слот заблокирован
+  name: ForgedSlotBlocker
   description: Особенности анатомии не позволяют использовать этот слот.
   components:
     - type: Item
