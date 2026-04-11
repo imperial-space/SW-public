@@ -350,7 +350,7 @@
   components:
   - type: RDWeight
     value: 2
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/wooden_sword.rsi
     state: icon
@@ -1518,6 +1518,28 @@
 
 - type: entity
   name: falshion
+  parent: MedievalFalshionT3Steel
+  id: MedievalFalshionT3SteelFoxei
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+
+- type: entity
+  name: falshion
+  parent: MedievalFalshionT3
+  id: MedievalFalshionT3Foxei
+  description: An ancient war blade.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Melee/foxei.rsi
+
+- type: entity
+  name: falshion
   parent: MedievalFalshionT3LegionSteel
   id: MedievalFalshionT3LegionSteelChainMace
   description: An ancient war blade.
@@ -1802,7 +1824,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_mace.rsi
     state: icon
@@ -1869,7 +1891,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/heavy_mace.rsi
     state: icon
@@ -2649,6 +2671,23 @@
   - type: Item
     size: Huge
     sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+  - type: MeleeWeapon
+    angle: 140
+    animation: WeaponArcAbibi
+    wideAnimation: WeaponArcAbibi
+    clickDamageModifier: 1.2
+    attackRate: 0.34
+    damage:
+      types:
+        Piercing: 6
+        Slash: 6
+        Structural: 2
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Imperial/Medieval/cosmic_expansion.ogg
+      params:
+          variation: 0.02
+          volume: -2
 
 - type: entity
   name: steel claymore
@@ -2670,6 +2709,23 @@
   - type: Item
     size: Huge
     sprite: Imperial/Medieval/Melee/abibi_claymore_inhand.rsi
+  - type: MeleeWeapon
+    angle: 140
+    animation: WeaponArcAbibi
+    wideAnimation: WeaponArcAbibi
+    clickDamageModifier: 1.22
+    attackRate: 0.4
+    damage:
+      types:
+        Piercing: 8
+        Slash: 17.7
+        Structural: 3
+        ParryAble: 1
+    soundHit:
+      path: /Audio/Imperial/Medieval/cosmic_expansion.ogg
+      params:
+          variation: 0.02
+          volume: -2
 
 - type: entity
   name: steel zweihander
@@ -3262,7 +3318,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/iron_mace.rsi
     state: icon
@@ -3329,7 +3385,7 @@
       params:
           variation: 0.02
           volume: 1
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/heavy_mace.rsi
     state: icon
@@ -4456,7 +4512,7 @@
 
 - type: entity
   name: dagger
-  parent: [ BaseKnife, BaseCrushingCharged ]
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalPalice
   description: A deadly knife intended for melee confrontations.
   components:
@@ -4531,7 +4587,7 @@
 
 - type: entity
   name: dagger
-  parent: [ BaseKnife, BaseCrushingCharged ]
+  parent: [ BaseItem, BaseCrushingCharged ]
   id: MedievalPaliceSteel
   description: A deadly knife intended for melee confrontations.
   components:
@@ -4614,7 +4670,7 @@
     value: 3
   - type: QuestItem
     contractName: "любое дробящее одноручное оружие"
-  - type: Sharp
+  # - type: Sharp
   - type: Sprite
     sprite: Imperial/Medieval/Melee/bone_mace.rsi
     state: icon

@@ -262,8 +262,8 @@
   - type: Insulated
   - type: CloackReciever
     faction: "cult"
-  #- type: CurseItem
-  #  cult: true
+  - type: CurseItem
+    cult: true
 
 - type: entity
   parent: ClothingNeckBase
@@ -494,6 +494,16 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Clothing/Cloaks/apolla_neck.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakFoxei
+  name: cloak
+  description: A cloak to distinguish allies.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Cloaks/foxei_neck.rsi
   - type: Insulated
 
 - type: entity

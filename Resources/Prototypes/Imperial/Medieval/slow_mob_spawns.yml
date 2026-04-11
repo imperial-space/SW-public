@@ -212,6 +212,31 @@
     - HideContextMenu
 
 - type: entity
+  name: lightning
+  id: MedievalAnglerMobSlowSpawner
+  noSpawn: true
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: /Textures/Imperial/Medieval/Misc/anglerspawneffect.rsi
+    layers:
+    - state: "effect"
+  - type: Physics
+    canCollide: false
+  - type: MedievalTimedDespawn
+    lifetime: 10
+  - type: Tag
+    tags:
+    - HideContextMenu
+  - type: SpawnOnDespawn
+    prototype: MedievalMobAngler
+  - type: AmbientSound
+    sound: /Audio/Imperial/Medieval/footstep_hunter.ogg
+    volume: 10
+    range: 5
+
+
+- type: entity
   id: MedievalLateMobSpawnerMedievalMobNastyGrowth
   name: late mob spawn nasty growth
   parent: MedievalLateMobSpawnerBase
@@ -226,3 +251,24 @@
   components:
   - type: SlowMobSpawn
     spawnMob: MedievalMobShieldSlug
+
+#- type: entity
+#  id: MedievalLateMobSpawnerAngler
+#  name: Late Angler Spawner
+#  parent: MarkerBase
+#  components:
+#  - type: Sprite
+#    sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
+#    layers:
+#    #- state: black
+#    - sprite: Imperial/Other/ErtCall/imperial_jobs.rsi
+#      state: cburn
+#  - type: SlowMobSpawn
+#    spawnEffect: MedievalAnglerMobSpawnEffect
+#    spawnmob: MedievalMobAngler
+#    soundEffect: "/Audio/Imperial/Medieval/footstep_hunter.ogg"
+#    starttime: 1
+#  - type: MedievalTimedDespawn
+#    lifetime: 10
+#  - type: SpawnOnDespawn
+#    prototype: MedievalMobAngler

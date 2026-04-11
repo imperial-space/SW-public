@@ -1,4 +1,8 @@
+using System.Linq;
 using Content.Server.Cult.Components;
+using Content.Shared.Alert;
+using Content.Shared.Hands.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Cult;
 using Content.Shared.Imperial.Medieval.Curse;
 using Content.Shared.Imperial.Medieval.Skills;
@@ -19,6 +23,8 @@ public sealed class ServerCurseItem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly AlertsSystem _alerts = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
 
     private TimeSpan _nextCheckTime;
 
@@ -38,6 +44,7 @@ public sealed class ServerCurseItem : EntitySystem
         {
             var curseItem = curse.Owner;
             var parent = Transform(curseItem).ParentUid;
+            var pull = false;
             if (!HasComp<MindContainerComponent>(parent))
             {
                 if (HasComp<MindContainerComponent>(Transform(parent).ParentUid))
@@ -49,6 +56,7 @@ public sealed class ServerCurseItem : EntitySystem
                     if (TryComp<PullableComponent>(curseItem, out var pullable) && pullable.Puller != null)
                     {
                         parent = pullable.Puller.Value;
+                        pull = true;
                     }
                     else
                     {
@@ -71,6 +79,13 @@ public sealed class ServerCurseItem : EntitySystem
             if (_inventory.TryGetSlotEntity(parent, "pocket2", out var pocket2) && HasComp<UnremoveableComponent>(pocket2))
                 continue;
 
+            if (pull ||
+                !TryComp<HandsComponent>(parent, out var hands) ||
+                !_inventory.GetInventoryEntities(parent, SlotFlags.All, true)
+                    .Any(x => HasComp<CurseItemComponent>(x)) &&
+                !_hands.EnumerateHeld((parent, hands)).Any(y => HasComp<CurseItemComponent>(y)))
+                continue; // не особо мне нравится эта проверка но она проверяет в руках или одето или тащит человек
+
             if (!TryComp<SkillsComponent>(parent, out var skills))
                 Curse(parent);
             else if (!skills.Levels.TryGetValue("Intelligence", out var intelligence))
@@ -87,6 +102,8 @@ public sealed class ServerCurseItem : EntitySystem
         if (TryComp<DeathCurseComponent>(cursed, out var death))
             death.CurseDamage *= 1.2f;
         else
+        {
             AddComp<DeathCurseComponent>(cursed);
+        }
     }
 }

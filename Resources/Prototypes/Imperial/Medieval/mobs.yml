@@ -4213,8 +4213,6 @@
     layers:
     - map: [ "enum.DamageStateVisualLayers.Base" ]
       state: alive
-    - state: unshaded
-      shader: unshaded
   - type: Physics
   - type: Fixtures
     fixtures:
@@ -4303,3 +4301,118 @@
       amount: 1
     - id: MedievalWingedShadowRandomOreSpawner
       amount: 1
+
+- type: entity
+  name: MedievalMobAngler
+  parent: SimpleMobBaseNoFood
+  id: MedievalMobAngler
+  description: They're a golem.
+  components:
+  - type: MedievalTimedDespawn
+    lifetime: 240
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: Imperial/Medieval/Mobs/angler.rsi
+    layers:
+    - map: [ "enum.DamageStateVisualLayers.Base" ]
+      state: base
+  - type: Physics
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeCircle
+          radius: 0.8
+        density: 50
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: Appearance
+  - type: Bloodstream
+    bloodMaxVolume: 0
+  - type: MeleeWeapon
+    range: 1.80
+    attackRate: 0.8
+    hidden: true
+    angle: 0
+    soundHit:
+      collection: AlienClaw
+    damage:
+      groups:
+        Brute: 56
+      types:
+        ParryAble: 1
+        Caustic: 1
+        Bloodloss: 3
+  - type: Puller
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      540: Dead
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 3.2
+    baseSprintSpeed: 3.2
+  - type: PointLight
+    color: white
+    energy: 2
+    radius: 3
+  - type: NpcFactionMember
+    factions:
+    - Xeno
+  - type: InputMover
+  - type: Tag
+    tags:
+    - CannotSuicide
+    - DoorBumpOpener
+    - FootstepSound
+  - type: MobMover
+  - type: SlowOnDamage
+    speedModifierThresholds:
+      10: 1
+      120: 0.9
+      250: 0.8
+      320: 0.7
+      400: 0.6
+  - type: DamageStateVisuals
+    states:
+      Alive:
+        Base: base
+      Dead:
+        Base: dead
+  - type: Butcherable
+    spawned:
+    - id: MedievalLootAnglerEgg
+      amount: 1
+      prob: 0.5
+    - id: MedievalLootanglerskin
+      amount: 1
+  - type: IgnoreSpiderWeb
+  - type: HTN
+    rootTask:
+      task: SimpleHostileCompound
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Imperial/Medieval/spider_stepsound.ogg
+      params:
+        variation: 0.125
+  - type: LanguageSpeaker
+    languages:
+      #Common: Understand
+      #Goblin: Speak
+      #Ancient: Speak
+      #Tribe: Speak
+      #Orc: Speak
+      #Cursed: Speak
+      #Growling: Speak
+      Hissing: Speak
+      #Elf: Speak
+  - type: MedievalPlagueInfectOnHit
+    active: false
+    id: Animal
+    chance: 0.12
+  - type: AllergySpreader
+    id: Spider
+  - type: Stamina
+    excess: 150
+  - type: StaminaDamageOnHit
+    damage: 28

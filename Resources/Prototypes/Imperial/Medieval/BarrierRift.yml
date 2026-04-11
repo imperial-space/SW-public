@@ -1,0 +1,206 @@
+- type: entity
+  id: MedievalBarrierRiftBase
+  parent: BaseStructure
+  name: elemental rift
+  description: A tear filled with elemental energy.
+  components:
+  - type: SpriteFade
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: Imperial/Medieval/Decor/barrier_curse.rsi
+    state: curse
+  - type: FloatingVisuals
+    offset: 0, 0.15
+    animationTime: 2
+    ignoreGravity: true
+  - type: AmbientSound
+    range: 5
+    volume: -5
+    sound:
+      path: /Audio/Ambience/anomaly_drone.ogg
+  - type: Physics
+    bodyType: Static
+    bodyStatus: InAir
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  id: MedievalBarrierRiftEarth
+  parent: MedievalBarrierRiftBase
+  name: earth rift
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: Imperial/Medieval/Decor/barrier_rift_earth.rsi
+    state: earth-rift
+  - type: PointLight
+    radius: 4.5
+    energy: 15
+    color: "#7B5E3B"
+    castShadows: false
+  - type: MagicBarrierRift
+    element: earth
+    guardianEntities:
+    - MedievalMobWolf
+    - MedievalMobWolf
+    - MedievalMobWolf
+    guardianOffsets:
+    - 1,1
+    - -1,1
+    - -1,0
+
+- type: entity
+  id: MedievalBarrierRiftFire
+  parent: MedievalBarrierRiftBase
+  name: fire rift
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: Imperial/Medieval/Decor/barrier_rift_fire.rsi
+    state: fire-rift
+  - type: PointLight
+    radius: 4.5
+    energy: 15
+    color: orange
+    castShadows: false
+  - type: MagicBarrierRift
+    element: fire
+    guardianEntities:
+    - MedievalMobSkeletHalberd
+    guardianOffsets:
+    - 0,0
+
+- type: entity
+  id: MedievalBarrierRiftWater
+  parent: MedievalBarrierRiftBase
+  name: water rift
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: Imperial/Medieval/Decor/barrier_rift_water.rsi
+    state: water-rift
+  - type: PointLight
+    radius: 4.5
+    energy: 15
+    color: dodgerblue
+    castShadows: false
+  - type: MagicBarrierRift
+    element: water
+    guardianEntities:
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    - MedievalMobCrab
+    guardianOffsets:
+    - 1,1
+    - 1,0
+    - 1,-1
+    - 0,1
+    - 0,-1
+    - -1,1
+    - -1,0
+    - -1,-1
+
+- type: entity
+  id: MedievalBarrierRiftLight
+  parent: MedievalBarrierRiftBase
+  name: light rift
+  components:
+  - type: Sprite
+    drawdepth: Overdoors
+    sprite: Imperial/Medieval/Decor/barrier_rift_light.rsi
+    state: light-rift
+  - type: PointLight
+    radius: 4.5
+    energy: 15
+    color: white
+    castShadows: false
+  - type: MagicBarrierRift
+    element: light
+    guardianEntities:
+    - MedievalMobBear
+    guardianOffsets:
+    - -1,0
+
+- type: entity
+  id: MedievalRiftKeyEarth
+  parent: BaseItem
+  name: earth lock
+  description: A lock attuned to the power of earth.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/rift_key_earth.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: RiftKey
+    element: earth
+
+- type: entity
+  id: MedievalRiftKeyFire
+  parent: BaseItem
+  name: fire lock
+  description: A lock attuned to the power of fire.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/rift_key_fire.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: RiftKey
+    element: fire
+
+- type: entity
+  id: MedievalRiftKeyWater
+  parent: BaseItem
+  name: water lock
+  description: A lock attuned to the power of water.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/rift_key_water.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: RiftKey
+    element: water
+
+- type: entity
+  id: MedievalRiftKeyLight
+  parent: BaseItem
+  name: light lock
+  description: A lock attuned to the power of light.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Misc/rift_key_light.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: RiftKey
+    element: light
+
+- type: entity
+  id: MedievalBarrierRiftSpawner
+  name: elemental rift spawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Imperial/Medieval/Markers/cross.rsi
+      state: def
+  - type: MagicBarrierRiftSpawn

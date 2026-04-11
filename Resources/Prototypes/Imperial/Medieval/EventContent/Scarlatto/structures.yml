@@ -99,3 +99,1161 @@
   - type: Icon
     sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/dark_diagonal.rsi
     state: state0
+
+- type: entity
+  parent: BaseStructure
+  id: BasePlatformScarlatto
+  abstract: true
+  name: railing
+  description: Basic railing meant to protect idiots like you from falling.
+  components:
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+  - type: Icon
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+  - type: Climbable
+
+- type: entity
+  parent: BasePlatformScarlatto
+  id: PlatformWoodScarlatto
+  components:
+  - type: Sprite
+    state: platform
+  - type: Icon
+    state: platform
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 260
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BasePlatformScarlatto
+  id: PlatformWoodCornerScarlatto
+  components:
+  - type: Sprite
+    state: platform_corner
+  - type: Icon
+    state: platform_corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 260
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BasePlatformScarlatto
+  id: PlatformWoodCornerSmallScarlatto
+  components:
+  - type: Sprite
+    state: platform_deco
+  - type: Icon
+    state: platform_deco
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 260
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: BasePlatformScarlatto
+  id: PlatformWoodRoundScarlatto
+  components:
+  - type: Sprite
+    state: platform_round
+  - type: Icon
+    state: platform_round
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 260
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+          params:
+            volume: -6
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: PlatformWoodScarlatto
+  id: PlatformStonebrickScarlatto
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Sprite
+    state: stoneplatform
+  - type: Icon
+    state: stoneplatform
+
+- type: entity
+  parent: PlatformWoodCornerScarlatto
+  id: PlatformStonebrickCornerScarlatto
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Sprite
+    state: stoneplatform_corner
+  - type: Icon
+    state: stoneplatform_corner
+
+- type: entity
+  parent: PlatformWoodCornerSmallScarlatto
+  id: PlatformStonebrickCornerSmallScarlatto
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Sprite
+    state: stoneplatform_deco
+  - type: Icon
+    state: stoneplatform_deco
+
+- type: entity
+  parent: PlatformWoodRoundScarlatto
+  id: PlatformStonebrickRoundScarlatto
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Sprite
+    state: stoneplatform_round
+  - type: Icon
+    state: stoneplatform_round
+
+- type: entity
+  parent: BaseStructure
+  id: ScarlattoPlatform
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+    state: platform
+  - type: Icon
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+    state: platform
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 260
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Construction
+    graph: Railing
+    node: railing
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Climbable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+
+- type: entity
+  parent: ScarlattoPlatform
+  id: ScarlattoStonePlatform
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Sprite
+    state: stoneplatform
+  - type: Icon
+    state: stoneplatform
+
+- type: entity
+  parent: BaseStructure
+  id: ScarlattoPlatformCorner
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+    state: platform_corner
+  - type: Icon
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+    state: platform_corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 260
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Construction
+    graph: Railing
+    node: railingCorner
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Climbable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+
+- type: entity
+  parent: ScarlattoPlatformCorner
+  id: ScarlattoStonePlatformCorner
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Sprite
+    state: stoneplatform_corner
+  - type: Icon
+    state: stoneplatform_corner
+
+- type: entity
+  parent: BaseStructure
+  id: ScarlattoPlatformCornerSmall
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+    state: platform_deco
+  - type: Icon
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+    state: platform_deco
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 260
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Construction
+    graph: Railing
+    node: railingCornerSmall
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Climbable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+
+- type: entity
+  parent: ScarlattoPlatformCornerSmall
+  id: ScarlattoStonePlatformCornerSmall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Sprite
+    state: stoneplatform_deco
+  - type: Icon
+    state: stoneplatform_deco
+
+- type: entity
+  parent: BaseStructure
+  id: ScarlattoPlatformRound
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+    state: platform_round
+  - type: Icon
+    sprite: Imperial/Medieval/EventContent/Scarlatto/platform.rsi
+    state: platform_round
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,-0.25,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+      fix3:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.25,-0.49,0.49,0.49"
+        density: 1000
+        mask:
+          - TableMask
+        layer:
+          - TableLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 260
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Construction
+    graph: Railing
+    node: railingRound
+  - type: Physics
+    bodyType: Static
+  - type: InteractionOutline
+  - type: Repairable
+  - type: Climbable
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
+
+- type: entity
+  parent: ScarlattoPlatformRound
+  id: ScarlattoStonePlatformRound
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+  - type: Sprite
+    state: stoneplatform_round
+  - type: Icon
+    state: stoneplatform_round
+
+- type: shader
+  id: GlitchWall
+  kind: source
+  path: "/Textures/Imperial/Shaders/glitch.swsl"
+  params:
+    shake_power: 1
+    shake_rate: 1
+    shake_speed: 1
+    shake_block_size: 0.2
+    shake_color_rate: 2
+
+- type: entity
+  parent: BaseWall
+  id: MedievalWallBlackScarlatto
+  name: wall
+  description: wall
+  components:
+  - type: IconSmooth
+    key: walls
+    mode: NoSprite
+  - type: SmoothEdge
+  - type: Sprite
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Walls/black.rsi
+    layers:
+    - state: icon
+    - map: [ "enum.EdgeLayer.South" ]
+      state: south
+    - map: [ "enum.EdgeLayer.East" ]
+      state: east
+    - map: [ "enum.EdgeLayer.North" ]
+      state: north
+    - map: [ "enum.EdgeLayer.West" ]
+      state: west
+  - type: Icon
+    sprite: Imperial/Medieval/EventContent/Scarlatto/Walls/black.rsi
+    state: icon
+    shader: GlitchWall
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 9999999
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: WallDiagonalBase
+  id: DiagonalWallWoodEvent
+  name: wall
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroyHeavy
+      - !type:ChangeConstructionNodeBehavior
+        node: Barricade
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Sprite
+    drawdepth: Walls
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/wood.rsi
+    state: wood0
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/wood.rsi
+    state: wood0
+  - type: IconSmooth
+    mode: Diagonal
+    key: woods
+    base: wood
+
+- type: entity
+  parent: DiagonalWallWoodEvent
+  id: DiagonalWallWoodEventUndestructible
+  name: wall
+  components:
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000 # imperial medieval
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: WallDiagonalBase
+  id: DiagonalWallStoneEvent
+  name: wall
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 3600 # imperial medieval
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    drawdepth: Walls
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stone.rsi
+    state: state0
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stone.rsi
+    state: state0
+
+- type: entity
+  parent: DiagonalWallStoneEvent
+  id: DiagonalWallStoneEventUndestructible
+  name: wall
+  components:
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000 # imperial medieval
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: StoneStairsEvent
+  name: stairs
+  description: The greatest invention since rocket-propelled grenades.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Anchorable
+    flags:
+    - Anchorable
+  - type: Rotatable
+  - type: Clickable
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/stairs.rsi
+    state: stairs
+    drawdepth: FloorTiles
+  - type: Transform
+    anchored: true
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 750
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  id: MedievalVintageWindow
+  name: reinforced window
+  parent: Window
+  components:
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/window.rsi
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/window.rsi
+  - type: Repairable
+    fuelCost: 10
+    doAfterDelay: 2
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: IconSmooth
+    key: woods
+    base: window
+  - type: Appearance
+  - type: DamageVisuals
+    thresholds: [5, 10, 20]
+    damageDivisor: 3
+    trackAllDamage: true
+    damageOverlay:
+      sprite: Structures/Windows/cracks.rsi
+
+- type: entity
+  id: MedievalVintageStoneWindow
+  name: reinforced window
+  parent: MedievalVintageWindow
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+    - trigger:
+        !type:DamageTrigger
+        damage: 280
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WindowShatter
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlass:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    drawdepth: WallTops
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stonewindow.rsi
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stonewindow.rsi
+  - type: IconSmooth
+    key: walls
+    base: window
+
+- type: entity
+  id: WallDirectionalWood
+  parent: BaseStructure
+  name: directional wall
+  description: Don't smudge up the glass down there.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: RangedDamageSound
+    soundGroups:
+      Brute:
+        collection:
+          MetalBulletImpact
+    soundTypes:
+      Heat:
+        collection:
+          MetalLaserImpact
+  - type: Sprite
+    drawdepth: Mobs
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/directional.rsi
+    state: wood
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/directional.rsi
+    state: wood
+  - type: InteractionPopup
+    interactSuccessString: comp-window-knock
+    messagePerceivedByOthers: comp-window-knock
+    interactSuccessSound:
+      path: /Audio/Effects/glass_knock.ogg
+  - type: Physics
+    bodyType: Static
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.5,0.49,-0.25"
+        density: 1000
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Airtight
+    noAirWhenFullyAirBlocked: false
+    airBlockedDirection:
+    - South
+  - type: Occluder
+    boundingBox: "-0.5,-0.5,0.5,-0.25"
+  - type: StaticPrice
+    price: 10
+
+- type: entity
+  id: WallDirectionalStone
+  parent: WallDirectionalWood
+  name: directional wall
+  description: Don't smudge up the glass down there.
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 2800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Sprite
+    state: stone
+  - type: Icon
+    state: stone
+
+- type: entity
+  parent: WallDiagonalBase
+  id: DiagonalVintageWindowWood
+  name: wall
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Sprite
+    drawdepth: Walls
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/window_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/window_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: woods
+    base: state
+
+- type: entity
+  parent: DiagonalVintageWindowWood
+  id: DiagonalVintageWindowStone
+  name: wall
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wall
+  components:
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 400
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalSlam
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stonewindow_diagonal.rsi
+    state: state0
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/Walls/stonewindow_diagonal.rsi
+    state: state0
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
+
+- type: entity
+  parent: Railing
+  id: WoodRailingScarlatto
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side
+  - type: Transform
+    anchored: false
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: WoodDestroy
+          params:
+            volume: -6
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MaterialWoodPlank1:
+            min: 0
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: WoodRailingScarlatto
+  id: WoodRailingSideScarlatto
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side1
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/railing.rsi
+    state: side1
+
+- type: entity
+  parent: WoodRailingScarlatto
+  id: WoodRailingCornerScarlatto
+  components:
+  - type: Sprite
+    state: corner
+  - type: Icon
+    state: corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: WoodRailingScarlatto
+  id: WoodRailingCornerSmallScarlatto
+  components:
+  - type: Sprite
+    state: corner_small
+  - type: Icon
+    state: corner_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: Railing
+  id: StoneRailingScarlatto
+  components:
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/stonerailing.rsi
+    state: side
+  - type: Icon
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/stonerailing.rsi
+    state: side
+  - type: Transform
+    anchored: false
+  - type: Damageable # imperial medieval
+    damageContainer: StructuralInorganic # imperial medieval
+    damageModifierSet: MedievalStructuralMetallic # imperial medieval
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1200 # imperial medieval
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+
+- type: entity
+  parent: StoneRailingScarlatto
+  id: StoneRailingSideScarlatto
+  components:
+  - type: Sprite
+    state: side1
+  - type: Icon
+    state: side1
+
+- type: entity
+  parent: StoneRailingScarlatto
+  id: StoneRailingCornerScarlatto
+  components:
+  - type: Sprite
+    state: corner
+  - type: Icon
+    state: corner
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,-0.49,0.49,-0.25"
+        density: 1000
+        mask:
+        - TableMask
+        layer:
+        - TableLayer
+      fix2:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "0.49,0.49,0.25,-0.49"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: StoneRailingScarlatto
+  id: StoneRailingCornerSmallScarlatto
+  components:
+  - type: Sprite
+    state: corner_small
+  - type: Icon
+    state: corner_small
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.49,0.49,-0.25,0.25"
+        density: 1000
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+
+- type: entity
+  parent: WallWood
+  id: WallWoodUndestructible
+  name: wood wall
+  description: The traditional greytide defense.
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+
+- type: entity
+  parent: WallNecropolis
+  id: WallNecropolisUndestructible
+  name: stone wall
+  components:
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1500000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]

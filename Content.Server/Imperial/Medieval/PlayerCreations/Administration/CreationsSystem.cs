@@ -95,7 +95,7 @@ public sealed partial class CreationsSystem : EntitySystem
 
     private bool ValidateBookInput(string text, string name, string desc)
     {
-        return text.Length < 12000 &&
+        return text.Length <= 12000 &&
                name.Length < 40 &&
                desc.Length < 500;
     }
@@ -203,6 +203,15 @@ public sealed partial class CreationsSystem : EntitySystem
                 eui.SendNewAcceptedPainting(p);
             });
 
+    public async Task EditPainting(CreationPaintingMessage painting, EditedCreationData edited)
+        => await ProcessIncoming(
+            painting,
+            async p => await _db.EditPainting(p.Painting, edited.Name, edited.Author, edited.Description),
+            (eui, p) =>
+            {
+                // TODO: update eui on edit
+            });
+
     #endregion
 
 
@@ -279,6 +288,15 @@ public sealed partial class CreationsSystem : EntitySystem
             {
                 eui.SendRemoveIncomingBook(b);
                 eui.SendNewAcceptedBook(b);
+            });
+
+    public async Task EditBook(CreationBook book, EditedCreationData edited)
+        => await ProcessIncoming(
+            book,
+            async b => await _db.EditBook(b.Text, edited.Name, edited.Author, edited.Description),
+            (eui, b) =>
+            {
+                // TODO: update eui on edit
             });
 
     #endregion

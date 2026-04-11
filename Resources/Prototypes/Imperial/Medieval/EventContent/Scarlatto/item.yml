@@ -1,9 +1,27 @@
+- type: material
+  id: Capacitor
+  stackEntity: CapacitorStockPart1
+  name: конденсатор
+  unit: materials-unit-bar
+  icon: { sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi, state: capacitor }
+  color: "#d9d9d9"
+  price: 0.1
+
 - type: stack
   id: Capacitor
   name: конденсатор
   icon: { sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi, state: capacitor}
   spawn: CapacitorStockPart1
   maxCount: 30
+
+- type: material
+  id: MatterBin
+  stackEntity: MatterBinStockPart1
+  name: ёмкость материи
+  unit: materials-unit-bar
+  icon: { sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi, state: matterbin }
+  color: "#d9d9d9"
+  price: 0.1
 
 - type: stack
   id: MatterBin
@@ -12,12 +30,29 @@
   spawn: MatterBinStockPart1
   maxCount: 30
 
+- type: material
+  id: Manipulator
+  stackEntity: MicroManipulatorStockPart
+  name: микро-манипулятор
+  unit: materials-unit-bar
+  icon: { sprite: /Textures/Objects/Misc/stock_parts.rsi, state: micro_mani }
+  color: "#d9d9d9"
+  price: 0.1
+
 - type: entity
   id: CapacitorStockPart
   name: modular machine part
   parent: BaseStockPart
   description: A basic machine part used in the construction of a variety of devices.
   components:
+    - type: Tag
+      tags:
+      - RawMaterial
+      - ConstructionMaterial
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        Capacitor: 100
     - type: Sprite
       sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
       state: capacitor
@@ -38,6 +73,14 @@
   parent: BaseStockPart
   description: A basic machine part used in the construction of a variety of devices.
   components:
+    - type: Tag
+      tags:
+      - RawMaterial
+      - ConstructionMaterial
+    - type: Material
+    - type: PhysicalComposition
+      materialComposition:
+        MatterBin: 100
     - type: Sprite
       sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
       state: matterbin
@@ -147,6 +190,102 @@
     count: 10
 
 - type: entity
+  name: MedievalPlasmaWindowCraft
+  description: MedievalPlasmaWindowCraft
+  id: MedievalPlasmaWindowCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: PlasmaWindow
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
+  name: MedievalReinforcedPlasmaWindowCraft
+  description: MedievalReinforcedPlasmaWindowCraft
+  id: MedievalReinforcedPlasmaWindowCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: ReinforcedPlasmaWindow
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
+  name: MedievalUraniumWindowCraft
+  description: MedievalUraniumWindowCraft
+  id: MedievalUraniumWindowCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: UraniumWindow
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
+  name: MedievalReinforcedUraniumWindowCraft
+  description: MedievalReinforcedUraniumWindowCraft
+  id: MedievalReinforcedUraniumWindowCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: ReinforcedUraniumWindow
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
+  name: MedievalDarkAirlockStarCorpsCraft
+  description: MedievalDarkAirlockStarCorpsCraft
+  id: MedievalDarkAirlockStarCorpsCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: DarkAirlockStarCorps
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
+  name: MedievalAPCBasicCraft
+  description: MedievalAPCBasicCraft
+  id: MedievalAPCBasicCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: APCBasic
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
   name: MedievalWindowCraft
   description: MedievalWindowCraft
   id: MedievalWindowCraft
@@ -227,7 +366,152 @@
     state: blank
 
 - type: entity
+  name: MedievalWeaponTurretNanoTrasenCraftEvent
+  description: MedievalWeaponTurretNanoTrasenCraftEvent
+  id: MedievalWeaponTurretNanoTrasenCraftEvent
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: WeaponTurretNanoTrasen
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
+  name: MedievalThruster_smallCraft
+  description: MedievalThruster_smallCraft
+  id: MedievalThruster_smallCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: Thruster_small
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
+  name: MedievalWallShuttleStarCorpsCraft
+  description: MedievalWallShuttleStarCorpsCraft
+  id: MedievalWallShuttleStarCorpsCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: WallShuttleStarCorps
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
+  name: MedievalDarkWallShuttleStarCorpsCraft
+  description: MedievalDarkWallShuttleStarCorpsCraft
+  id: MedievalDarkWallShuttleStarCorpsCraft
+  parent: BaseItem
+  components:
+  - type: Item
+    size: Normal
+  - type: SpawnAfterInteract
+    prototype: DarkWallShuttleStarCorps
+    doAfter: 7
+    deleteOnInteract: true
+  - type: Sprite
+    sprite: /Textures/Imperial/Medieval/EventContent/Scarlatto/some.rsi
+    state: blank
+
+- type: entity
   name: MedievalClothingOuterArmorStandard
   description: MedievalClothingOuterArmorStandard
   id: MedievalClothingOuterArmorStandard
   parent: ClothingOuterArmorNu7
+
+- type: material
+  id: BluespaceEssence
+  stackEntity: MedievalItemBluespaceEssence
+  name: блюспейс эссенция
+  unit: materials-unit-bar
+  icon: { sprite: Imperial/Medieval/Magic/essence.rsi, state: essence }
+  color: "#60d1e6"
+  price: 0.1
+
+- type: stack
+  id: BluespaceEssence
+  name: блюспейс эссенция
+  icon: { sprite: /Textures/Imperial/Medieval/Magic/essence.rsi, state: essence}
+  spawn: BluespaceEssence1
+  maxCount: 30
+
+- type: entity
+  id: MedievalItemBluespaceEssence
+  parent: BaseItem
+  name: essence of vodka
+  description: Magical essence of vodka
+  components:
+  - type: Tag
+    tags:
+    - RawMaterial
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      BluespaceEssence: 100
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/essence.rsi
+    color: "#60d1e6"
+    state: essence
+    noRot: true
+  - type: Stack
+    stackType: BluespaceEssence
+
+- type: entity
+  id: BluespaceEssence1
+  name: modular machine part
+  parent: MedievalItemBluespaceEssence
+  components:
+    - type: Stack
+      count: 1
+
+- type: entity
+  name: seclite
+  parent: FlashlightSeclite
+  id: MedievalFlashlightSeclite
+  description: A robust flashlight used by security.
+  components:
+  - type: RDWeight
+    value: 0.5
+  - type: MeleeWeapon
+    animation: CP14WeaponArcThrust
+    wideAnimation: CP14WeaponArcSlash
+    cPSwingBeverage: true
+    cPAnimationOffset: 0.8
+    clickDamageModifier: 1.15
+    attackRate: 1
+    range: 1
+    damage:
+      types:
+        Blunt: 8
+    soundHit:
+      collection: MetalThud
+  - type: MeleeThrowOnHit
+    distance: 0.3
+    speed: 5
+  - type: StaminaDamageOnHit
+    damage: 3
+
+- type: entity
+  name: flash
+  parent: Flash
+  id: MedievalFlash
+  description: An ultrabright flashbulb with a trigger, which causes the victim to be dazed and lose their eyesight for a moment. Useless when burnt out.
+  components:
+  - type: RDWeight
+    value: 0.5

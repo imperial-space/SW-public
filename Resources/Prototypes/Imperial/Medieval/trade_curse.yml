@@ -87,3 +87,11 @@
   description: Ты чуствуешь как боль течёт по твоим венам, возможно кто то может тебе помочь?
   minSeverity: 0
   maxSeverity: 2
+
+- type: alert
+  id: CultDeathCurse
+  icons:
+  - sprite: /Textures/Imperial/Medieval/Cult/shielddeathcurse.rsi
+    state: shield
+  name: Проклятая защита
+  description: Древнее проклятье, что готово набросится на первого попавшегося обидчика.

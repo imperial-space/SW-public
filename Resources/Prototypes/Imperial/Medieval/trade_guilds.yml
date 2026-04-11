@@ -1103,6 +1103,12 @@
   - productEntity: MedievalMonsterBag
     cost: 25
     reputationForBuying: 1
+  - productEntity: FishingBag
+    cost: 25
+    reputationForBuying: 1
+  - productEntity: MedievalHealBag
+    cost: 25
+    reputationForBuying: 1
   - productEntity: MedievalClothingBackpackSatchelLeather
     cost: 25
     reputationForBuying: 1
@@ -1519,6 +1525,81 @@
   - productEntity: MedievalBanjoInstrument
     cost: 20
     reputationForBuying: 0.7
+  - productEntity: MusicBoxInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: HarpInstrument
+    cost: 50
+    reputationForBuying: 1.7
+  - productEntity: AcousticGuitarInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: TrumpetInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: TromboneInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: ContrabassInstrument
+    cost: 50
+    reputationForBuying: 1.7
+  - productEntity: CelloInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: ViolinInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: ViolaInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: BagpipeInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: PanFluteInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: HarmonicaInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: OcarinaInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: RecorderInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: FluteInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: ClarinetInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: KalimbaInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: UprightPianoInstrument
+    cost: 50
+    reputationForBuying: 1.7
+  - productEntity: ChurchOrganInstrument
+    cost: 50
+    reputationForBuying: 1.7
+  - productEntity: TaikoInstrument
+    cost: 50
+    reputationForBuying: 1.7
+  - productEntity: TimpaniInstrument
+    cost: 50
+    reputationForBuying: 1.7
+  - productEntity: WoodblockInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: GlockenspielInstrument
+    cost: 20
+    reputationForBuying: 0.7
+  - productEntity: TomDrumsInstrument
+    cost: 50
+    reputationForBuying: 1.7
+  # - productEntity: PianoInstrument
+    # cost: 100
+    # reputationForBuying: 2.7
   - productEntity: MedievalChest2
     cost: 35
     reputationForBuying: 1.15
@@ -1548,10 +1629,10 @@
     reputationForBuying: 1.7
   - productEntity: MedievalSeedExtractorNewCraft
     cost: 100
-    reputationForBuying: 2
+    reputationForBuying: 2.7
   - productEntity: MedievalWizardBlacksmithCraft
     cost: 200
-    reputationForBuying: 4
+    reputationForBuying: 7.3
   - productEntity: MedievalWoodenFloorCraft
     cost: 10
     reputationForBuying: 0.3
@@ -1644,7 +1725,7 @@
     reputationForBuying: 1.7
   - productEntity: MedievalSharpeningMachineCraft
     cost: 220
-    reputationForBuying: 1.7
+    reputationForBuying: 7.3
   - productEntity: MedievalCatapultCraft
     cost: 500
     reputationForBuying: 16.7
@@ -1671,4 +1752,7 @@
     cost: 220
     reputationForBuying: 7.3
     spawnOnActionWhitelist: ActionSpellwardSpawnTradeIns
-
+  - productEntity: PottedPlantRandomSW
+    cost: 50
+    reputationForBuying: 1.5
+    

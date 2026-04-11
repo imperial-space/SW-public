@@ -65,12 +65,15 @@ public sealed partial class TradingMenu : DefaultWindow
             {
                 if (_entityManager.TryGetEntity(kv.Key, out var uid) &&
                     _entityManager.TryGetComponent<MetaDataComponent>(uid, out var meta))
-                    return new { Name = meta.EntityName, kv.Value };
+                    return (meta.EntityName, kv.Value);
 
-                return null;
+                if (CurrentGuild.ReputationNames.TryGetValue(kv.Key, out var name))
+                    return (name, kv.Value);
+
+                return ("???", kv.Value);
             })
-            .Where(x => x != null)
-            .ToDictionary(x => x!.Name, x => x!.Value);
+            .ToDictionary(x => x.Item1, x => x.Item2);
+
 
         if (_statsWindow != null && _statsWindow.IsOpen)
         {
@@ -121,14 +124,17 @@ public sealed partial class TradingMenu : DefaultWindow
     }
 
     public void UpdateGuild() => SelectGuild();
-    public void SelectGuild(Guild? guild = null)
+    public void SelectGuild(Guild? guild = null, string? search = null)
     {
         if (guild != null)
             CurrentGuild = guild;
 
-        SearchBar.Text = "";
+        if (guild != null)
+            SearchBar.Text = "";
+
+        var normalizedSearch = (search ?? SearchBar.Text).Trim().ToLowerInvariant();
         UpdateReputation(CurrentGuild);
-        UpdateItems(CurrentGuild);
+        UpdateItems(CurrentGuild, normalizedSearch);
     }
 
     private void UpdateReputation(Guild? guild = null)

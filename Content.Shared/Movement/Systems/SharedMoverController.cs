@@ -4,6 +4,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.CCVar;
 using Content.Shared.Friction;
 using Content.Shared.Gravity;
+using Content.Shared.Imperial.Medieval.MobRiding;
 using Content.Shared.Inventory;
 using Content.Shared.Maps;
 using Content.Shared.Mobs.Systems;
@@ -230,6 +231,12 @@ public abstract partial class SharedMoverController : VirtualController
 
             wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed);
 
+            // imperial medieval rideable start
+            var wishOverrideEvent = new WishDirOverrideEvent(uid, wishDir);
+            RaiseLocalEvent(uid, ref wishOverrideEvent, true);
+            wishDir = wishOverrideEvent.WishDir;
+            // imperial medieval rideable end
+
             var ev = new CanWeightlessMoveEvent(uid);
             RaiseLocalEvent(uid, ref ev, true);
 
@@ -267,6 +274,12 @@ public abstract partial class SharedMoverController : VirtualController
             var sprintSpeed = moveSpeedComponent?.CurrentSprintSpeed ?? MovementSpeedModifierComponent.DefaultBaseSprintSpeed;
 
             wishDir = AssertValidWish(mover, walkSpeed, sprintSpeed);
+
+            // imperial medieval rideable start
+            var wishOverrideEvent = new WishDirOverrideEvent(uid, wishDir);
+            RaiseLocalEvent(uid, ref wishOverrideEvent, true);
+            wishDir = wishOverrideEvent.WishDir;
+            // imperial medieval rideable end
 
             if (wishDir != Vector2.Zero)
             {

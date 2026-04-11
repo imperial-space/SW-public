@@ -88,3 +88,16 @@
     sprite: Imperial/Medieval/Monetization/Clothing/Shoes/shoes7.rsi
   - type: Item
     size: Normal
+
+- type: entity
+  parent: ClothingShoesBaseButcherable
+  id: MedievalPassShoes8
+  name: MedievalPassShoes
+  description: MedievalPassShoes
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Shoes/shoes8.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Shoes/shoes8.rsi
+  - type: Item
+    size: Normal

@@ -44,6 +44,72 @@
 
 - type: entity
   parent: SeedBase
+  name: seed-star-name
+  id: MedievalStarSeeds
+  description: seed-starseeds-desc
+  components:
+    - type: Seed
+      seedId: StarFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/star.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-luna-name
+  id: MedievalLunaSeeds
+  description: seed-lunaseeds-desc
+  components:
+    - type: Seed
+      seedId: LunaFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/luna.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-dark-name
+  id: MedievalDarkSeeds
+  description: seed-darkseeds-desc
+  components:
+    - type: Seed
+      seedId: DarkFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/dark.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-blood-name
+  id: MedievalBloodSeeds
+  description: seed-bloodseeds-desc
+  components:
+    - type: Seed
+      seedId: BloodFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/blood.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-white-name
+  id: MedievalWhiteSeeds
+  description: seed-whiteseeds-desc
+  components:
+    - type: Seed
+      seedId: WhiteFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/white.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-black-name
+  id: MedievalBlackSeeds
+  description: seed-blackseeds-desc
+  components:
+    - type: Seed
+      seedId: BlackFlower
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/black.rsi
+
+- type: entity
+  parent: SeedBase
   name: seed-mushroom1spores-name
   id: MedievalMushroom1Spores
   description: seed-mushroom1spores-desc
@@ -74,6 +140,39 @@
       seedId: Mushroom3
     - type: Sprite
       sprite: Imperial/Medieval/Chem/Garden/mushroom3.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-mushroom4spores-name
+  id: MedievalMushroom4Spores
+  description: seed-mushroom4spores-desc
+  components:
+    - type: Seed
+      seedId: Mushroom4
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/mushroom4.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-mushroom5spores-name
+  id: MedievalMushroom5Spores
+  description: seed-mushroom5spores-desc
+  components:
+    - type: Seed
+      seedId: Mushroom5
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/mushroom5.rsi
+
+- type: entity
+  parent: SeedBase
+  name: seed-mushroom6spores-name
+  id: MedievalMushroom6Spores
+  description: seed-mushroom6spores-desc
+  components:
+    - type: Seed
+      seedId: Mushroom6
+    - type: Sprite
+      sprite: Imperial/Medieval/Chem/Garden/mushroom6.rsi
 
 - type: seed
   id: Mushroom1
@@ -146,6 +245,81 @@
   idealHeat: 288
   chemicals:
     MedievalMushroom3:
+      Min: 2
+      Max: 6
+      PotencyDivisor: 20
+
+- type: seed
+  id: Mushroom4
+  name: seeds-mushroom4-display-name
+  noun: seeds-noun-spores
+  displayName: seeds-mushroom4-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/mushroom4.rsi
+  packetPrototype: MedievalMushroom4Spores
+  productPrototypes:
+    - MedievalMushroom4
+  lifespan: 30
+  maturation: 12
+  production: 2
+  yield: 2
+  potency: 12
+  growthStages: 3
+  waterConsumption: 0.80
+  nutrientConsumption: 0.50
+  idealLight: 4
+  idealHeat: 288
+  chemicals:
+    MedievalMushroom4:
+      Min: 2
+      Max: 6
+      PotencyDivisor: 20
+
+- type: seed
+  id: Mushroom5
+  name: seeds-mushroom5-display-name
+  noun: seeds-noun-spores
+  displayName: seeds-mushroom5-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/mushroom5.rsi
+  packetPrototype: MedievalMushroom5Spores
+  productPrototypes:
+    - MedievalMushroom5
+  lifespan: 30
+  maturation: 12
+  production: 2
+  yield: 2
+  potency: 12
+  growthStages: 3
+  waterConsumption: 0.80
+  nutrientConsumption: 0.50
+  idealLight: 4
+  idealHeat: 288
+  chemicals:
+    MedievalMushroom5:
+      Min: 2
+      Max: 6
+      PotencyDivisor: 20
+
+- type: seed
+  id: Mushroom6
+  name: seeds-mushroom6-display-name
+  noun: seeds-noun-spores
+  displayName: seeds-mushroom6-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/mushroom6.rsi
+  packetPrototype: MedievalMushroom6Spores
+  productPrototypes:
+    - MedievalMushroom6
+  lifespan: 30
+  maturation: 12
+  production: 2
+  yield: 2
+  potency: 12
+  growthStages: 3
+  waterConsumption: 0.80
+  nutrientConsumption: 0.50
+  idealLight: 4
+  idealHeat: 288
+  chemicals:
+    MedievalMushroom6:
       Min: 2
       Max: 6
       PotencyDivisor: 20
@@ -246,6 +420,156 @@
   idealHeat: 295
   chemicals:
     MedievalFlowerLipad:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: LunaFlower
+  name: seeds-lunaflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-lunaflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/luna.rsi
+  packetPrototype: MedievalLunaSeeds
+  productPrototypes:
+    - MedievalFlowerLuna
+  lifespan: 28
+  maturation: 9
+  production: 3
+  yield: 3
+  potency: 11
+  growthStages: 3
+  waterConsumption: 0.65
+  nutrientConsumption: 0.45
+  idealLight: 8
+  idealHeat: 295
+  chemicals:
+    MedievalFlowerLuna:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: StarFlower
+  name: seeds-starflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-starflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/star.rsi
+  packetPrototype: MedievalStarSeeds
+  productPrototypes:
+    - MedievalFlowerStar
+  lifespan: 28
+  maturation: 9
+  production: 3
+  yield: 3
+  potency: 11
+  growthStages: 3
+  waterConsumption: 0.65
+  nutrientConsumption: 0.45
+  idealLight: 8
+  idealHeat: 295
+  chemicals:
+    MedievalFlowerStar:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: DarkFlower
+  name: seeds-darkflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-darkflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/dark.rsi
+  packetPrototype: MedievalDarkSeeds
+  productPrototypes:
+    - MedievalFlowerDark
+  lifespan: 28
+  maturation: 9
+  production: 3
+  yield: 3
+  potency: 11
+  growthStages: 3
+  waterConsumption: 0.65
+  nutrientConsumption: 0.45
+  idealLight: 8
+  idealHeat: 295
+  chemicals:
+    MedievalFlowerDark:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: BloodFlower
+  name: seeds-bloodflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-bloodflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/blood.rsi
+  packetPrototype: MedievalBloodSeeds
+  productPrototypes:
+    - MedievalFlowerBlood
+  lifespan: 28
+  maturation: 9
+  production: 3
+  yield: 3
+  potency: 11
+  growthStages: 3
+  waterConsumption: 0.65
+  nutrientConsumption: 0.45
+  idealLight: 8
+  idealHeat: 295
+  chemicals:
+    MedievalFlowerBlood:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: WhiteFlower
+  name: seeds-whiteflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-whiteflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/white.rsi
+  packetPrototype: MedievalWhiteSeeds
+  productPrototypes:
+    - MedievalFlowerWhite
+  lifespan: 28
+  maturation: 9
+  production: 3
+  yield: 3
+  potency: 11
+  growthStages: 3
+  waterConsumption: 0.65
+  nutrientConsumption: 0.45
+  idealLight: 8
+  idealHeat: 295
+  chemicals:
+    MedievalFlowerWhite:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: BlackFlower
+  name: seeds-blackflower-display-name
+  noun: seeds-noun-seeds
+  displayName: seeds-blackflower-display-name
+  plantRsi: Imperial/Medieval/Chem/Garden/black.rsi
+  packetPrototype: MedievalBlackSeeds
+  productPrototypes:
+    - MedievalFlowerBlack
+  lifespan: 28
+  maturation: 9
+  production: 3
+  yield: 3
+  potency: 11
+  growthStages: 3
+  waterConsumption: 0.65
+  nutrientConsumption: 0.45
+  idealLight: 8
+  idealHeat: 295
+  chemicals:
+    MedievalFlowerWhite:
       Min: 1
       Max: 5
       PotencyDivisor: 20
@@ -431,6 +755,276 @@
         Quantity: 35
 
 - type: reagent
+  id: MedievalFlowerLuna
+  name: ent-MedievalFlowerLuna
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerLuna
+  description: gol
+  components:
+  - type: RDWeight
+    value: 0.05
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/luna.rsi
+    state: produce
+  - type: Produce
+    seedId: LunaFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Luna
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerLuna
+        Quantity: 35
+
+- type: reagent
+  id: MedievalFlowerStar
+  name: ent-MedievalFlowerStar
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerStar
+  description: gol
+  components:
+  - type: RDWeight
+    value: 0.05
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/star.rsi
+    state: produce
+  - type: Produce
+    seedId: StarFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Star
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerStar
+        Quantity: 35
+
+- type: reagent
+  id: MedievalFlowerDark
+  name: ent-MedievalFlowerDark
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerDark
+  description: gol
+  components:
+  - type: RDWeight
+    value: 0.05
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/dark.rsi
+    state: produce
+  - type: Produce
+    seedId: DarkFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Dark
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerDark
+        Quantity: 35
+
+- type: reagent
+  id: MedievalFlowerBlood
+  name: ent-MedievalFlowerBlood
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerBlood
+  description: gol
+  components:
+  - type: RDWeight
+    value: 0.05
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/blood.rsi
+    state: produce
+  - type: Produce
+    seedId: BloodFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Bloody
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerBlood
+        Quantity: 35
+
+- type: reagent
+  id: MedievalFlowerWhite
+  name: ent-MedievalFlowerWhite
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerWhite
+  description: gol
+  components:
+  - type: RDWeight
+    value: 0.05
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/white.rsi
+    state: produce
+  - type: Produce
+    seedId: WhiteFlower
+  - type: MagicPotionsIngredient
+    ingredientType: White
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerWhite
+        Quantity: 35
+
+- type: reagent
+  id: MedievalFlowerBlack
+  name: ent-MedievalFlowerBlack
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: gol
+  parent: ProduceBase
+  id: MedievalFlowerBlack
+  description: gol
+  components:
+  - type: RDWeight
+    value: 0.05
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/black.rsi
+    state: produce
+  - type: Produce
+    seedId: BlackFlower
+  - type: MagicPotionsIngredient
+    ingredientType: Black
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalFlowerBlack
+        Quantity: 35
+
+- type: reagent
   id: MedievalMushroom1
   name: ent-MedievalMushroom1
   group: Elements
@@ -559,3 +1153,128 @@
     - MyrmexCanTake
     - Mushroom3
 
+- type: reagent
+  id: MedievalMushroom4
+  name: ent-MedievalMushroom4
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: MedievalLoot
+  parent: ProduceBase
+  id: MedievalMushroom4
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/mushroom4.rsi
+    state: produce
+  - type: Produce
+    seedId: Mushroom4
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMushroom4
+        Quantity: 35
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+    - MyrmexCanTake
+
+- type: reagent
+  id: MedievalMushroom5
+  name: ent-MedievalMushroom5
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: MedievalLoot
+  parent: ProduceBase
+  id: MedievalMushroom5
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/mushroom5.rsi
+    state: produce
+  - type: Produce
+    seedId: Mushroom5
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMushroom5
+        Quantity: 35
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+    - MyrmexCanTake
+
+- type: reagent
+  id: MedievalMushroom6
+  name: ent-MedievalMushroom6
+  group: Elements
+  desc: .
+  physicalDesc: reagent-physical-desc-dark-brown
+  evaporationSpeed: 0.3
+  absorbent: true
+  flavor: bitter
+  color: "#BC8A00"
+  boilingPoint: 184.3
+  meltingPoint: 113.7
+
+- type: entity
+  name: MedievalLoot
+  parent: ProduceBase
+  id: MedievalMushroom6
+  description: MedievalLoot
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Chem/Garden/mushroom6.rsi
+    state: produce
+  - type: Produce
+    seedId: Mushroom6
+  - type: Currency
+    price:
+      Revent: 3
+  - type: MedievalCurrency
+    price:
+      Revent: 3
+  - type: Item
+    size: Tiny
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMushroom6
+        Quantity: 35
+  - type: Tag
+    tags:
+    - AlchemicIngredient
+    - MyrmexCanTake

@@ -1,0 +1,43 @@
+ent-MedievalBaseCannon = cannon
+    .desc = A muzzle-loading artillery cannon.
+    .suffix = medieval
+ent-MedievalShipCannon = ship cannon
+    .desc = A heavy naval cannon mounted on a carriage.
+    .suffix = medieval
+ent-MedievalFieldCannon = field cannon
+    .desc = A mobile artillery cannon on a carriage.
+    .suffix = medieval
+ent-MedievalGrapeshot = grapeshot
+    .desc = A compact grapeshot charge.
+    .suffix = medieval
+ent-MedievalCannonballExplosive = explosive cannonball
+    .desc = A cannonball with an explosive payload.
+    .suffix = medieval
+ent-MedievalLintstock = lintstock
+    .desc = A match tool used to ignite charges.
+    .suffix = medieval
+ent-MedievalRamrod = ramrod
+    .desc = A cleaning rod for a cannon barrel.
+    .suffix = medieval
+ent-MedievalCannonballShip = ship cannonball
+    .desc = A standard solid ship cannonball.
+    .suffix = medieval
+ent-MedievalGunpowderCharge = gunpowder charge
+    .desc = A compact charge of black powder.
+    .suffix = medieval
+
+construction-recipe-medieval-ramrod = ramrod
+construction-recipe-medieval-ramrod-desc = A cleaning rod for a cannon barrel.
+
+medieval-cannon-state-dirty-examine = The cannon barrel is coated with a thick layer of soot inside.
+medieval-cannon-state-empty-examine = The cannon is empty. To load it, place a gunpowder charge.
+medieval-cannon-state-gunpowder-loose-examine = The gunpowder is inside the cannon. Use the ramrod to tamp the charge.
+medieval-cannon-state-gunpowder-rammed-examine = The gunpowder is tamped. Place a projectile into the barrel.
+medieval-cannon-state-payload-loose-examine = The projectile is in the barrel. Use the ramrod to seat and tamp it fully.
+medieval-cannon-state-ready-to-fire-examine = The cannon is loaded and ready to fire. Ignite the touch hole to shoot.
+
+medieval-cannon-state-dirty-invalid-use = Clean the cannon with the ramrod first.
+medieval-cannon-state-empty-invalid-use = Load a gunpowder charge.
+medieval-cannon-state-gunpowder-loose-invalid-use = Use the ramrod to tamp the charge.
+medieval-cannon-state-gunpowder-rammed-invalid-use = Place a projectile into the cannon barrel.
+medieval-cannon-state-payload-loose-invalid-use = Tamp the projectile with the ramrod!

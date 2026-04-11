@@ -32,6 +32,12 @@ public sealed partial class CP14WorkbenchRecipeControl : Control
         var entityName = prototype.Name;
         Name.Text =  count <= 1 ? entityName : $"{entityName} x{count}";
         View.Texture = _sprite.GetPrototypeIcon(prototype).Default;
+
+        if (prototype.TryGetComponent<SpriteComponent>(out var sprite, _entity.ComponentFactory))
+        {
+            View.ModulateSelfOverride = sprite.Color;
+            View.TextureScale = sprite.Scale;
+        }
     }
 
     public CP14WorkbenchRecipeControl(StackPrototype prototype, int count) : this()

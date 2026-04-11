@@ -155,7 +155,17 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
 
         var gameDataMessage = GenerateGameData(workpiece);
 
-        ent.Comp.GameState = new SmithGameState(workpiece.Steps, gameDataMessage.CalculateTotalTime());
+        var penaltyCount = 0;
+        foreach (var s in gameDataMessage.Steps)
+        {
+            if (s.IsPenaltyActivator)
+                penaltyCount++;
+        }
+
+        var extraPerPenalty = workpiece.StepsSpawnSpeed + workpiece.ExcellentTime + workpiece.NothingTime * 2f;
+        var maxTime = gameDataMessage.CalculateTotalTime() + penaltyCount * extraPerPenalty;
+
+        ent.Comp.GameState = new SmithGameState(workpiece.Steps, maxTime);
 
         _ui.SetUiState(ent.Owner, SmithUiKey.Key, gameDataMessage);
     }
@@ -171,6 +181,7 @@ public sealed partial class SmithingSystem : SharedSmithingSystem
                 State = SmithHitState.Missed,
                 PerfectHitTime = workpieceComponent.ExcellentTime,
                 GoodHitTime = workpieceComponent.NothingTime,
+                IsPenaltyActivator = _random.Prob(Math.Clamp(workpieceComponent.PenaltyActivatorChance, 0f, 1f)),
             };
 
             steps.Push(stepData);

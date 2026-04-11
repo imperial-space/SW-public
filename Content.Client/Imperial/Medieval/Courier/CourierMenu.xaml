@@ -1,0 +1,47 @@
+<DefaultWindow
+    xmlns="https://spacestation14.io"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    Title="{Loc 'store-ui-default-title'}"
+    MinSize="512 512"
+    SetSize="863 660">
+    <BoxContainer Name="TradingTab" Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True">
+        <BoxContainer Margin="4,4,4,0" Orientation="Horizontal" VerticalAlignment="Top">
+            <Label
+                Name="GuildNameInfo"
+                HorizontalExpand="True" />
+            <Button
+                Name="WithdrawButton"
+                MinWidth="64"
+                HorizontalAlignment="Right"
+                Text="{Loc 'store-ui-default-withdraw-text'}" />
+        </BoxContainer>
+
+        <BoxContainer Margin="4,2,24,4" Orientation="Horizontal" VerticalAlignment="Top">
+            <RichTextLabel
+                Name="BalanceInfo"
+                HorizontalAlignment="Left"
+                HorizontalExpand="True" />
+            <Label Name="FreeMailsInfo" Margin="22 0 0 0" MinWidth="220" />
+            <Label Name="ReputationInfo" Margin="22 0 0 0" MinWidth="150" />
+        </BoxContainer>
+
+        <PanelContainer VerticalExpand="True" Margin="4,0,4,4">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#000000FF" />
+            </PanelContainer.PanelOverride>
+            <ScrollContainer
+                Name="TradingItemsScroll"
+                HScrollEnabled="False"
+                HorizontalExpand="True"
+                VerticalExpand="True">
+                <BoxContainer
+                    Name="TradingItemsContainer"
+                    Orientation="Vertical"
+                    HorizontalExpand="True"
+                    VerticalExpand="True">
+                    <!-- Listings are added here by code -->
+                </BoxContainer>
+            </ScrollContainer>
+        </PanelContainer>
+    </BoxContainer>
+</DefaultWindow>

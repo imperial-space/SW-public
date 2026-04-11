@@ -1981,6 +1981,22 @@
   - MedievalBackpackDemo
 
 - type: listing
+  id: DemoMdvShopFishingBag
+  productEntity: FishingBag
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBackpackDemo
+
+- type: listing
+  id: DemoMdvShopHealBag
+  productEntity: MedievalHealBag
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalBackpackDemo
+
+- type: listing
   id: DemoMedievalClothingBackpackSatchelLeather
   productEntity: MedievalClothingBackpackSatchelLeather
   cost:
@@ -2203,6 +2219,206 @@
     UnknownMedieval: 1
   categories:
   - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopMusicBoxInstrument
+  productEntity: MusicBoxInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopHarpInstrument
+  productEntity: HarpInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopAcousticGuitarInstrument
+  productEntity: AcousticGuitarInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopTrumpetInstrument
+  productEntity: TrumpetInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopTromboneInstrument
+  productEntity: TromboneInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopContrabassInstrument
+  productEntity: ContrabassInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopCelloInstrument
+  productEntity: CelloInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopViolinInstrument
+  productEntity: ViolinInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopViolaInstrument
+  productEntity: ViolaInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopBagpipeInstrument
+  productEntity: BagpipeInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopPanFluteInstrument
+  productEntity: PanFluteInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopHarmonicaInstrument
+  productEntity: HarmonicaInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopOcarinaInstrument
+  productEntity: OcarinaInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopRecorderInstrument
+  productEntity: RecorderInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopFluteInstrument
+  productEntity: FluteInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopClarinetInstrument
+  productEntity: ClarinetInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopKalimbaInstrument
+  productEntity: KalimbaInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopUprightPianoInstrument
+  productEntity: UprightPianoInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopChurchOrganInstrument
+  productEntity: ChurchOrganInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopTaikoInstrument
+  productEntity: TaikoInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopTimpaniInstrument
+  productEntity: TimpaniInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopWoodblockInstrument
+  productEntity: WoodblockInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopGlockenspielInstrument
+  productEntity: GlockenspielInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+- type: listing
+  id: DemoMdvShopTomDrumsInstrument
+  productEntity: TomDrumsInstrument
+  cost:
+    UnknownMedieval: 1
+  categories:
+  - MedievalMiscDemo
+
+# - type: listing
+  # id: DemoMdvShopPianoInstrument
+  # productEntity: PianoInstrument
+  # cost:
+    # UnknownMedieval: 1
+  # categories:
+  # - MedievalMiscDemo
 
 - type: listing
   id: DemoMdvShopMedievalWineskin

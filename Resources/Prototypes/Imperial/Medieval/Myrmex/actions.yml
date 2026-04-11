@@ -1,0 +1,113 @@
+- type: entity
+  name: Shoot
+  id: MedievalMyrmexShootAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    priority: -12
+    useDelay: 5
+  - type: TargetAction
+    checkCanAccess: false
+    range: 60
+  - type: WorldTargetAction
+    event: !type:ActionMyrmexShootEvent
+      projectileProto: MedievalProjectileFireballBeginner
+      speed: 10
+
+- type: entity
+  name: Boost
+  id: MedievalMyrmexBoostAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/boost.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 90
+  - type: InstantAction
+    event: !type:ActionMyrmexBoostEvent
+      duration: 3.5
+      multiplier: 0.7
+
+- type: entity
+  name: Toggle armor
+  id: MedievalMyrmexToggleArmorAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/armor.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 5
+  - type: InstantAction
+    event: !type:ActionMyrmexToggleArmorEvent
+
+- type: entity
+  name: Enable stun
+  id: MedievalMyrmexToggleStunAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/stun.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 120
+  - type: InstantAction
+    event: !type:ActionMyrmexToggleStunEvent
+
+- type: entity
+  name: Spawn
+  id: MedievalMyrmexSpawnAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/wall.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 18
+  - type: InstantAction
+    event: !type:ActionMyrmexSpawnEvent
+      proto: MedievalMyrmexFlimsyWall
+      doAfterDuration: 3
+
+- type: entity
+  name: Toggle stealth
+  id: MedievalMyrmexToggleStealthAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/invis.png
+    priority: -12
+    checkCanAccess: false
+    useDelay: 1
+  - type: InstantAction
+    event: !type:ActionMyrmexToggleStealthEvent
+
+- type: entity
+  name: Heal
+  id: MedievalMyrmexHealAction
+  components:
+  - type: Action
+    itemIconStyle: BigAction
+    icon: Imperial/Medieval/Myrmex/Icons/heal.png
+    priority: -12
+    useDelay: 40
+  - type: TargetAction
+    range: 2
+    checkCanAccess: false
+  - type: EntityTargetAction
+    event: !type:ActionMyrmexHealEvent
+      healedDamage:
+        groups:
+          Brute: -50
+          Burn: -50
+    canTargetSelf: false
+    whitelist:
+      requireAll: true
+      components:
+      - Myrmex
+
+- type: entity
+  name: Lay egg
+  id: MedievalMyrmexQueenLayEggAction
+  components:
+  - type: Action
+    icon: Imperial/Medieval/Myrmex/Icons/yaico.png
+    useDelay: 180
+  - type: InstantAction
+    event: !type:ActionMyrmexQueenLayEggEvent

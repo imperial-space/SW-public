@@ -168,7 +168,7 @@
   #    coefficients:
   #      Radiation: 0.0
   #      Caustic: 0.0
-  #- type: CurseItem
+  - type: CurseItem
 
 - type: entity
   parent: ClothingUniformBase
@@ -280,6 +280,20 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_20.rsi
   - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth91
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_91.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_91.rsi
+  - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase
@@ -923,6 +937,18 @@
 - type: entity
   parent: ClothingUniformBase
   id: MedievalClothingUniformJumpsuitShitCloth76
+  name: shot clith
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_76.rsi
+  - type: Insulated
+
+- type: entity
+  parent: MedievalClothingUniformJumpsuitShitCloth23
+  id: MedievalClothingUniformJumpsuitShitCloth7623
   name: shot clith
   description: hoho
   components:
@@ -2015,7 +2041,7 @@
   - type: Appearance
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesBaseButcherable
   id: MedievalClothingRoyalBoots
   name: MedievalClothingRoyalBoots
   description: MedievalClothingRoyalBoots
@@ -2026,7 +2052,7 @@
     sprite: Imperial/Medieval/Clothing/Shoes/royalboots.rsi
 
 - type: entity
-  parent: ClothingShoesBase
+  parent: ClothingShoesBaseButcherable
   id: MedievalClothingRoyalChaplainBoots
   name: MedievalClothingRoyalChaplainBoots
   description: MedievalClothingRoyalChaplainBoots
@@ -2268,6 +2294,34 @@
     whitelist:
       tags:
         - MonsterLoot
+  - type: Dumpable
+
+- type: entity
+  name: heal bag
+  id: MedievalHealBag
+  parent: BaseStorageItem
+  description: A bag for real monster hunters
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/Backpack/heal_bag.rsi
+    state: icon
+  - type: Item
+    storedRotation: -90
+  - type: Clothing
+    quickEquip: false
+    slots:
+    - belt
+  - type: Storage
+    grid:
+    - 0,0,7,4
+    maxItemSize: Small
+    quickInsert: true
+    areaInsert: true
+    whitelist:
+      tags:
+        - Gauze
+        - Ointment
+        - Brutepack
   - type: Dumpable
 
 - type: entity
@@ -2569,6 +2623,34 @@
   - type: Clothing
     sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_88.rsi
   - type: Insulated
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth89
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_89.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_89.rsi
+  - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
+
+- type: entity
+  parent: ClothingUniformBase
+  id: MedievalClothingUniformJumpsuitShitCloth90
+  name: shit cloth
+  description: hoho
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_90.rsi
+  - type: Clothing
+    sprite: Imperial/Medieval/Clothing/ShitCloth/shit_cloth_90.rsi
+  - type: Insulated
+  - type: ManaRegen
+    regen: 0.6
 
 - type: entity
   parent: ClothingUniformBase

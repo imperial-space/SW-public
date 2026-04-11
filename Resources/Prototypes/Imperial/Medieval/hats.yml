@@ -37,6 +37,8 @@
     sprite: Imperial/Medieval/Clothing/Head/red_hat.rsi
   - type: Item
     size: Normal
+  - type: ManaRegen
+    regen: 0.5
 
 
 - type: entity
@@ -51,6 +53,8 @@
     sprite: Imperial/Medieval/Clothing/Head/purple_hat.rsi
   - type: Item
     size: Normal
+  - type: ManaRegen
+    regen: 0.5
 
 
 - type: entity
@@ -134,6 +138,8 @@
     sprite: Imperial/Medieval/Clothing/Head/blue_hat.rsi
   - type: Item
     size: Normal
+  - type: ManaRegen
+    regen: 0.5
 
 
 - type: entity
@@ -148,6 +154,8 @@
     sprite: Imperial/Medieval/Clothing/Head/black_hat.rsi
   - type: Item
     size: Normal
+  - type: ManaRegen
+    regen: 0.5
 
 - type: entity
   parent: [ClothingHeadBase, MedievalClothingHelmetBaseLight]

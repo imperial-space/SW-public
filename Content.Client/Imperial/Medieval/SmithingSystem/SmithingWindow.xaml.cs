@@ -73,7 +73,7 @@ public sealed partial class SmithingWindow : FancyWindow
 
     public event Action<SmithHitMesage>? TargetHit;
     public event Action? HitMissed;
-    public event Action? TargetExpired;
+    public event Action<SmithHitMesage>? TargetExpired;
     public event Action? StartGamePressed;
     public event Action<int>? GameEnded;
 
@@ -119,11 +119,11 @@ public sealed partial class SmithingWindow : FancyWindow
         if (!_pendingSteps.TryPop(out var targetData))
             return;
 
-        CreateTarget(targetData.GoodHitTime, targetData.PerfectHitTime);
+        CreateTarget(targetData.GoodHitTime, targetData.PerfectHitTime, targetData.IsPenaltyActivator);
         _ticker = 0f;
     }
 
-    private void CreateTarget(float grayTime, float goldTime)
+    private void CreateTarget(float grayTime, float goldTime, bool isPenaltyActivator)
     {
         var size = MainLayout.Size;
 
@@ -160,7 +160,7 @@ public sealed partial class SmithingWindow : FancyWindow
         if (!found)
             return;
 
-        var button = new SmithTargetButton(grayTime, goldTime)
+        var button = new SmithTargetButton(grayTime, goldTime, isPenaltyActivator)
         {
             SetSize = _targetSize,
         };
@@ -181,23 +181,60 @@ public sealed partial class SmithingWindow : FancyWindow
         {
             button.DisableInput();
 
+            var isPenalty = isPenaltyActivator;
+
             if (state == SmithHitState.Good)
                 _points++;
+            else if (state == SmithHitState.Penalty)
+                _points -= 6;
 
-            _completedSteps++;
+            if (!isPenalty)
+            {
+                _completedSteps++;
+                TargetHit?.Invoke(new SmithHitMesage(state, true));
+            }
+            else
+            {
+                TargetHit?.Invoke(new SmithHitMesage(state, false));
 
-            TargetHit?.Invoke(new SmithHitMesage(state, true));
+                _pendingSteps?.Push(new SmithStepData
+                {
+                    State = SmithHitState.Missed,
+                    PerfectHitTime = goldTime,
+                    GoodHitTime = grayTime,
+                    IsPenaltyActivator = false,
+                });
+            }
+
             Cleanup();
         };
 
-        button.Expired += () =>
+        button.Expired += expiredPenalty =>
         {
             button.DisableInput();
 
-            _points--;
-            _completedSteps++;
+            var isPenalty = expiredPenalty;
+            var state = isPenalty ? SmithHitState.Neutral : SmithHitState.Missed;
 
-            TargetExpired?.Invoke();
+            if (!isPenalty)
+            {
+                _points--;
+                _completedSteps++;
+                TargetExpired?.Invoke(new SmithHitMesage(state, true));
+            }
+            else
+            {
+                TargetExpired?.Invoke(new SmithHitMesage(state, false));
+
+                _pendingSteps?.Push(new SmithStepData
+                {
+                    State = SmithHitState.Missed,
+                    PerfectHitTime = goldTime,
+                    GoodHitTime = grayTime,
+                    IsPenaltyActivator = false,
+                });
+            }
+
             Cleanup();
         };
     }
@@ -236,11 +273,14 @@ public sealed partial class SmithingWindow : FancyWindow
             new("/Textures/Imperial/Medieval/Interface/sparkle.rsi/s_0.png"),
             new("/Textures/Imperial/Medieval/Interface/sparkle.rsi/s_1.png"),
             new("/Textures/Imperial/Medieval/Interface/sparkle.rsi/s_2.png"),
+            new("/Textures/Imperial/Medieval/Interface/sparkle.rsi/s_3.png"),
         };
 
         private readonly float _goldTime;
 
         private readonly float _grayTime;
+
+        private readonly bool _isPenaltyActivator;
 
         private int _currentStage;
 
@@ -248,11 +288,12 @@ public sealed partial class SmithingWindow : FancyWindow
 
         private bool _expiredOrHandled;
 
-        public SmithTargetButton(float grayTime, float goldTime)
+        public SmithTargetButton(float grayTime, float goldTime, bool isPenaltyActivator)
         {
             MouseFilter = MouseFilterMode.Stop;
             _goldTime = goldTime;
             _grayTime = grayTime;
+            _isPenaltyActivator = isPenaltyActivator;
 
             TexturePath = _spriteStates[0].ToString();
 
@@ -263,13 +304,15 @@ public sealed partial class SmithingWindow : FancyWindow
 
                 _expiredOrHandled = true;
 
-                var state = _currentStage == 1 ? SmithHitState.Good : SmithHitState.Neutral;
+                var state = _currentStage == 1
+                    ? (_isPenaltyActivator ? SmithHitState.Penalty : SmithHitState.Good)
+                    : SmithHitState.Neutral;
                 Clicked?.Invoke(state);
             };
         }
 
         public event Action<SmithHitState>? Clicked;
-        public event Action? Expired;
+        public event Action<bool>? Expired;
 
         public void DisableInput()
         {
@@ -294,7 +337,7 @@ public sealed partial class SmithingWindow : FancyWindow
                     {
                         _deltaTime = 0;
                         _currentStage = 1;
-                        TexturePath = _spriteStates[1].ToString();
+                        TexturePath = (_isPenaltyActivator ? _spriteStates[3] : _spriteStates[1]).ToString();
                     }
 
                     break;
@@ -313,7 +356,7 @@ public sealed partial class SmithingWindow : FancyWindow
                     if (_deltaTime >= _grayTime)
                     {
                         _expiredOrHandled = true;
-                        Expired?.Invoke();
+                        Expired?.Invoke(_isPenaltyActivator);
                     }
 
                     break;
