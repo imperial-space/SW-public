@@ -89,6 +89,3 @@
     count: 10
   - type: StackPrice
     price: 20
-  - type: Construction
-    graph: MedievalBeeHoneyBandage
-    node: bandage

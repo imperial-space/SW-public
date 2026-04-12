@@ -60,6 +60,7 @@ public sealed class MedievalBeeSystem : EntitySystem
         SubscribeLocalEvent<MedievalBeeLinkedMobComponent, MobStateChangedEvent>(LinkedMobStateChanged);
         SubscribeLocalEvent<MedievalBeeChanceSpawnComponent, MapInitEvent>(ChanceSpawnInit);
         SubscribeLocalEvent<MedievalBeeHiveComponent, DestructionEventArgs>(HiveDestroyed);
+        SubscribeLocalEvent<MedievalBeeSmokeComponent, InteractUsingEvent>(SmokeInteractUsing);
     }
     public void Teleport(EntityUid uid, EntityUid target)
     {
@@ -203,7 +204,7 @@ public sealed class MedievalBeeSystem : EntitySystem
         args.PushMarkup(Loc.GetString($"medieval-bee-pacified-{component.Pacified.ToString().ToLower()}"));
         if (component.PacifyEnd.HasValue)
         {
-            args.PushMarkup(Loc.GetString("medieval-bee-smoke-yes", ("time", (_timing.CurTime - component.PacifyEnd.Value).ToString())));
+            args.PushMarkup(Loc.GetString("medieval-bee-smoke-yes", ("time", (component.PacifyEnd.Value - _timing.CurTime).ToString())));
         }
         else
         {
@@ -281,6 +282,9 @@ public sealed class MedievalBeeSystem : EntitySystem
         if (!TryComp<MedievalBeeHiveComponent>(args.Target.Value, out var hiveComponent))
             return;
 
+        if (component.UsesLeft <= 0)
+            return;
+
         if (hiveComponent.Pacified)
         {
             _popup.PopupEntity(Loc.GetString("medieval-bee-pacify-already"), args.User, args.User);
@@ -294,9 +298,6 @@ public sealed class MedievalBeeSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("medieval-pacify-succesful"), args.User, args.User);
         Pacify((uid, hiveComponent), component.PacifyTime);
         component.UsesLeft--;
-        if (component.UsesLeft <= 0)
-            QueueDel(uid);
-
         args.Handled = true;
     }
     private void BeeInitialize(EntityUid uid, MedievalBeeComponent component, MapInitEvent args)
@@ -348,9 +349,31 @@ public sealed class MedievalBeeSystem : EntitySystem
         _lookup.GetGridEntities(component.Grid, mobs);
         foreach (var mob in mobs)
         {
-           Teleport(mob.Owner, uid);
+            Teleport(mob.Owner, uid);
         }
         QueueDel(Transform(component.Grid).MapUid);
+    }
+    private void SmokeInteractUsing(EntityUid uid, MedievalBeeSmokeComponent component, InteractUsingEvent args)
+    {
+        if (args.Used == uid)
+            return;
+
+        if (!TryComp<StackComponent>(args.Used, out var stack) || stack.StackTypeId != component.ResourceStack)
+            return;
+
+        var add = Math.Min(component.MaxUses - component.UsesLeft, stack.Count);
+        if (add <= 0)
+        {
+            _popup.PopupEntity(Loc.GetString("medieval-smokerefill-full"), args.User, args.User);
+            return;
+        }
+        component.UsesLeft += add;
+        _popup.PopupEntity(Loc.GetString("medieval-smokerefill-succesful", ("uses", add.ToString())), args.User, args.User);
+        var newCount = stack.Count - add;
+        if (newCount > 0)
+            _stack.SetCount(args.Used, newCount, stack);
+        else
+            QueueDel(args.Used);
     }
     private TimeSpan _nextUpdate = TimeSpan.Zero;
     private TimeSpan _updateCooldown = TimeSpan.FromSeconds(1);
