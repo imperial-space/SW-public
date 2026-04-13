@@ -1,0 +1,137 @@
+- type: reagent
+  id: RatlingBlood
+  parent: Blood
+  name: reagent-name-Ratling-blood
+  slipData: null
+  desc: reagent-desc-Ratling-blood
+  evaporationSpeed: 0.3
+  absorbent: true
+  physicalDesc: reagent-physical-desc-Ratling-blood
+  color: "#002409"
+  flavor: Ratlingblood
+
+- type: flavor
+  id: Ratlingblood
+  flavorType: Complex
+  description: flavor-complex-Ratling-blood
+
+# TODO: Add descriptions (many)
+# TODO BODY: Part damage
+- type: entity
+  id: PartRatling
+  parent: [BaseItem, BasePart]
+  name: "Ratling body part"
+  abstract: true
+  components:
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: RatlingBlood
+        Quantity: 10
+
+- type: entity
+  id: TorsoRatling
+  name: "Ratling torso"
+  parent: [PartRatling, BaseTorso]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "torso_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 10
+      - ReagentId: RatlingBlood
+        Quantity: 20
+
+- type: entity
+  id: HeadRatling
+  name: "Ratling head"
+  parent: [PartRatling, BaseHead]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "head_m"
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Blood
+        Quantity: 10
+
+- type: entity
+  id: LeftArmRatling
+  name: "left Ratling arm"
+  parent: [PartRatling, BaseLeftArm]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "l_arm"
+
+- type: entity
+  id: RightArmRatling
+  name: "right Ratling arm"
+  parent: [PartRatling, BaseRightArm]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "r_arm"
+
+- type: entity
+  id: LeftHandRatling
+  name: "left Ratling hand"
+  parent: [PartRatling, BaseLeftHand]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "l_hand"
+
+- type: entity
+  id: RightHandRatling
+  name: "right Ratling hand"
+  parent: [PartRatling, BaseRightHand]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "r_hand"
+
+- type: entity
+  id: LeftLegRatling
+  name: "left Ratling leg"
+  parent: [PartRatling, BaseLeftLeg]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "l_leg"
+
+- type: entity
+  id: RightLegRatling
+  name: "right Ratling leg"
+  parent: [PartRatling, BaseRightLeg]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "r_leg"
+
+- type: entity
+  id: LeftFootRatling
+  name: "left Ratling foot"
+  parent: [PartRatling, BaseLeftFoot]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "l_foot"
+
+- type: entity
+  id: RightFootRatling
+  name: "right Ratling foot"
+  parent: [PartRatling, BaseRightFoot]
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Species/Ratling/parts.rsi
+    state: "r_foot"
+
