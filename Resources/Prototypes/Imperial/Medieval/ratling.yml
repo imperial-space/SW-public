@@ -104,6 +104,7 @@
   id: BaseMobRatling
   abstract: true
   components:
+  - type: CanSmellFood
   - type: Hunger
   - type: Thirst
   - type: Icon
@@ -185,6 +186,8 @@
     bloodReagent: RatlingBlood
   - type: Puller
     needsHands: false
+  - type: HumanoidAppearance
+    species: Ratling
 
 - type: damageModifierSet
   id: Ratling
@@ -195,9 +198,6 @@
   parent: BaseMobRatling
   id: MobRatlingDummy
   noSpawn: true
-  components:
-  - type: HumanoidAppearance
-    species: Ratling
 
 - type: species
   id: Ratling
