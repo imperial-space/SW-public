@@ -25,7 +25,7 @@ public sealed class FoodSmellSystem : EntitySystem
         var hasFood = HasFoodInInventory(args.Examined);
         if (!hasFood)
             return;
-        args.PushMarkup(Loc.GetString("food-smelled"));
+        args.PushMarkup(Loc.GetString("[color=yellow]Пахнет едой[/color]"));
     }
 
     private bool HasFoodInInventory(EntityUid target)

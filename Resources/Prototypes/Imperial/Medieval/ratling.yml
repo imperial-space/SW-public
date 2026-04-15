@@ -128,24 +128,17 @@
     spawned:
     - id: FoodMeatHuman
       amount: 5
-  # - type: Vocal
-  #   sounds:
-  #     Male: MaleRatling
-  #     Female: FemaleRatling
-  #     Unsexed: MaleRatling
   - type: LanguageSpeaker
     languages:
       Common: Speak
-      #Goblin: Speak
+      Goblin: Speak
       #Ancient: Speak
       #Tribe: Speak
       #Orc: Speak
       #Cursed: Speak
-      Growling: Speak
+      #Growling: Speak
       #Hissing: Speak
       #Elf: Speak
-  - type: Speech
-    speechSounds: Alto
   - type: Mana
     maxManaRaceModifier: 1
     regenRaceModifier: 1
@@ -174,7 +167,6 @@
     sleepLevelPerUpdate: 0.36
   - type: BadSmellRaceModifier
     modifier: 100
-  - type: Wagging
   - type: Damageable
     damageModifierSet: Ratling
   - type: LocalLight
@@ -188,6 +180,18 @@
     needsHands: false
   - type: HumanoidAppearance
     species: Ratling
+  - type: BadSmellVision
+    smellThreshold: 80.0
+    radius: 8
+  - type: Speech
+    speechSounds: Alto
+  - type: Vocal
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
+  - type: ReplacementAccent
+    accent: ratling
 
 - type: damageModifierSet
   id: Ratling
@@ -323,7 +327,7 @@
       points: 1
       required: false
     FacialHair:
-      points: 0
+      points: 1
       required: false
     Tail:
       points: 1
@@ -333,14 +337,8 @@
       points: 1
       required: true
       defaultMarkings: [ RatlingEarsDefault ]
-    Overlay:
-      points: 1
-      required: false
     HeadSide:
       points: 2
-      required: false
-    Chest:
-      points: 1
       required: false
 
 - type: marking
@@ -396,38 +394,6 @@
     state: d0
   - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
     state: d1
-
-- type: marking
-  id: RatlingBodySpots
-  bodyPart: LLeg
-  markingCategory: Overlay
-  speciesRestriction: [Ratling]
-  coloring:
-    default:
-      type:
-        !type:SimpleColoring
-        color: "#FFFFFF"
-  sprites:
-  - sprite: Imperial/Medieval/Species/Customization/Ratling/spots.rsi
-    state: body
-
-- type: marking
-  id: RatlingJawSpot
-  bodyPart: HeadSide
-  markingCategory: HeadSide
-  speciesRestriction: [Ratling]
-  sprites:
-  - sprite: Imperial/Medieval/Species/Customization/Ratling/spots.rsi
-    state: jaw
-
-- type: marking
-  id: RatlingBellySpot
-  bodyPart: Chest
-  markingCategory: Chest
-  speciesRestriction: [Ratling]
-  sprites:
-  - sprite: Imperial/Medieval/Species/Customization/Ratling/spots.rsi
-    state: belly
 
 - type: inventoryTemplate
   id: ratling
@@ -536,3 +502,25 @@
       blacklist:
         tags:
         - PetOnly
+
+- type: accent
+  id: ratling
+  wordReplacements:
+    еда: сыр
+    еды: сыра
+    едой: сыром
+    украсть: свиснуть
+    ревент: серебряшка
+    ревенты: серебряшки
+    ревентов: серебряшек
+    ярл: важный шишка
+    легат: важный шишка
+    архимаг: важный шишка
+    дракон: крылатая крыса
+    оборотень: вонючий
+    оборотни: вонючие
+    крыса: браток
+    мышь: братишка
+    корова: богиня
+    копье: зубочистка
+    воняешь: вкусно пахнешь

@@ -47,3 +47,8 @@ reagent-name-dwarf-blood = кровь дворфа
 reagent-desc-dwarf-blood = Пиво!
 reagent-physical-desc-dwarf-blood = хмельное
 flavor-complex-dwarf-blood = как пиво
+
+reagent-name-Ratling-blood = кровь ратлинга
+reagent-desc-Ratling-blood = Даже она воняет
+reagent-physical-desc-Ratling-blood = противное
+flavor-complex-Ratling-blood = как помои
