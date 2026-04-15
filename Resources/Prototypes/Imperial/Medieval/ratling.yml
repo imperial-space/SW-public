@@ -321,7 +321,6 @@
 
 - type: markingPoints
   id: MobRatlingMarkingLimits
-  #onlyWhitelisted: true
   points:
     Hair:
       points: 1
@@ -337,9 +336,6 @@
       points: 1
       required: true
       defaultMarkings: [ RatlingEarsDefault ]
-    HeadSide:
-      points: 2
-      required: false
 
 - type: marking
   id: RatlingTailDefault
