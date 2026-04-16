@@ -21,7 +21,6 @@ using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Fishing;
 
@@ -37,7 +36,6 @@ public sealed class FishingSystem : EntitySystem
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly RDWeightSystem _rdWeight = default!;
     [Dependency] private readonly SharedStackSystem _stack = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly ThrowingSystem _throwing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
@@ -53,7 +51,7 @@ public sealed class FishingSystem : EntitySystem
         SubscribeLocalEvent<FishingRodComponent, EntRemovedFromContainerMessage>(OnBaitRemoved);
         SubscribeLocalEvent<FishingRodComponent, FishingDoAfterEvent>(OnFishingDoAfter);
         SubscribeLocalEvent<FishingRodComponent, FishingWaitDoAfterEvent>(OnFishingWaitDoAfter);
-        SubscribeLocalEvent<FishingRodComponent, FishingMinigameInputMessage>(OnFishingMinigameInput);
+        SubscribeLocalEvent<FishingRodComponent, FishingMinigameResultMessage>(OnFishingMinigameResult);
         SubscribeLocalEvent<FishingRodComponent, BoundUIClosedEvent>(OnRodUiClosed);
         SubscribeLocalEvent<HandsComponent, DamageChangedEvent>(OnHandsDamageChanged);
     }
@@ -296,53 +294,9 @@ public sealed class FishingSystem : EntitySystem
         ExitFishingMinigame((rodUid, rod));
     }
 
-    private void ProcessMinigameTick(Entity<FishingRodComponent> ent, float frameTime)
+    private bool CanContinueMinigame(Entity<FishingRodComponent> ent)
     {
-        if (!CanContinueMinigame(ent, out var fishSettings))
-        {
-            ExitFishingMinigame(ent);
-            return;
-        }
-
-        var baseStep = Math.Max(0.001f, ent.Comp.BaseAsyncTImeStep);
-        var scale = frameTime / baseStep;
-        if (scale <= 0f)
-            return;
-
-        var accelerationDelta = ent.Comp.IsHoldingLmb
-            ? fishSettings.TensionAccelerationDeltaPressed
-            : fishSettings.TensionAccelerationDelta;
-        ent.Comp.TensionAcceleration += accelerationDelta * scale;
-
-        ent.Comp.Tension += ent.Comp.TensionAcceleration * scale;
-
-        if (ent.Comp.IsHoldingLmb)
-            ent.Comp.Progress += fishSettings.ProgressPerTick * scale;
-
-        if (ent.Comp.Tension is <= 0f or >= 100f)
-        {
-            ExitFishingMinigame(ent);
-            return;
-        }
-
-        if (ent.Comp.Progress > 100f)
-        {
-            CompleteFishingMinigame(ent);
-            return;
-        }
-
-        Dirty(ent);
-        UpdateMinigameUiState(ent);
-    }
-
-    private bool CanContinueMinigame(Entity<FishingRodComponent> ent, out FishComponent fishSettings)
-    {
-        fishSettings = default!;
-
-        if (!ent.Comp.MinigameActive || ent.Comp.CurrentFish is not { } fish)
-            return false;
-
-        if (!TryGetFishSettings(fish, out fishSettings))
+        if (!ent.Comp.MinigameActive || ent.Comp.CurrentFish is not { })
             return false;
 
         if (ent.Comp.MinigameUser is not { } userUid || !Exists(userUid))
@@ -389,13 +343,24 @@ public sealed class FishingSystem : EntitySystem
         return true;
     }
 
-    private void OnFishingMinigameInput(Entity<FishingRodComponent> ent, ref FishingMinigameInputMessage args)
+    private void OnFishingMinigameResult(Entity<FishingRodComponent> ent, ref FishingMinigameResultMessage args)
     {
         if (!ent.Comp.MinigameActive || ent.Comp.MinigameUser != args.Actor)
             return;
 
-        ent.Comp.IsHoldingLmb = args.HoldingLmb;
-        Dirty(ent);
+        if (!CanContinueMinigame(ent))
+        {
+            ExitFishingMinigame(ent);
+            return;
+        }
+
+        if (args.Result == FishingMinigameResult.Complete)
+        {
+            CompleteFishingMinigame(ent);
+            return;
+        }
+
+        ExitFishingMinigame(ent);
     }
 
     private void OnRodUiClosed(Entity<FishingRodComponent> ent, ref BoundUIClosedEvent args)
@@ -442,7 +407,7 @@ public sealed class FishingSystem : EntitySystem
             return;
         }
 
-        if (!_ui.HasUi(rod.Owner, FishingRodUiKey.Key) || rod.Comp.CurrentFish == null)
+        if (!_ui.HasUi(rod.Owner, FishingRodUiKey.Key) || rod.Comp.CurrentFish is not { } currentFish)
         {
             if (IsOwnedBobber(rod, bobberUid))
                 QueueDel(bobberUid);
@@ -450,6 +415,12 @@ public sealed class FishingSystem : EntitySystem
             rod.Comp.CurrentBobber = null;
             rod.Comp.CurrentFish = null;
             Dirty(rod);
+            return;
+        }
+
+        if (!TryGetFishSettings(currentFish, out var fishSettings))
+        {
+            ResetMinigameState(rod, deleteBobber: true, consumeBait: false, clearCurrentFish: true);
             return;
         }
 
@@ -469,25 +440,25 @@ public sealed class FishingSystem : EntitySystem
         _appearance.SetData(bobberUid, BobberVisuals.State, BobberVisualState.Biting);
         _audio.PlayPvs(rod.Comp.MinigameBitePullSound, bobberUid);
         _ui.OpenUi(rod.Owner, FishingRodUiKey.Key, userUid);
-        UpdateMinigameUiState(rod);
-        _ = RunMinigameLoop(rod.Owner, rod.Comp);
+        UpdateMinigameUiState(rod, fishSettings);
+        _ = RunMinigameMonitorLoop(rod.Owner, rod.Comp);
     }
 
-    private async Task RunMinigameLoop(EntityUid rodUid, FishingRodComponent rod)
+    private async Task RunMinigameMonitorLoop(EntityUid rodUid, FishingRodComponent rod)
     {
         while (true)
         {
-            var frameTime = await WaitForMinigameUpdateAsync();
+            await WaitForMinigameUpdateAsync();
 
             if (!HasComp<FishingRodComponent>(rodUid) || !rod.MinigameActive)
-            {
                 return;
-            }
 
-            if (frameTime <= 0f)
-                frameTime = Math.Max(0.001f, rod.BaseAsyncTImeStep);
+            if (CanContinueMinigame((rodUid, rod)))
+                continue;
 
-            ProcessMinigameTick((rodUid, rod), frameTime);
+            NotifyClientStopMinigame((rodUid, rod));
+            ExitFishingMinigame((rodUid, rod));
+            return;
         }
     }
 
@@ -498,10 +469,19 @@ public sealed class FishingSystem : EntitySystem
         return waiter.Task;
     }
 
-    private void UpdateMinigameUiState(Entity<FishingRodComponent> rod)
+    private void UpdateMinigameUiState(Entity<FishingRodComponent> rod, FishComponent fishSettings)
     {
         NetEntity? bobber = rod.Comp.CurrentBobber is { } bobberUid ? GetNetEntity(bobberUid) : null;
-        var state = new FishingMinigameBoundUserInterfaceState(rod.Comp.Tension, rod.Comp.Progress, bobber, rod.Comp.MinigameActive);
+        var state = new FishingMinigameBoundUserInterfaceState(
+            rod.Comp.Tension,
+            rod.Comp.Progress,
+            rod.Comp.TensionAcceleration,
+            rod.Comp.BaseAsyncTImeStep,
+            fishSettings.TensionAccelerationDelta,
+            fishSettings.TensionAccelerationDeltaPressed,
+            fishSettings.ProgressPerTick,
+            bobber,
+            rod.Comp.MinigameActive);
         _ui.SetUiState(rod.Owner, FishingRodUiKey.Key, state);
     }
 
@@ -512,6 +492,14 @@ public sealed class FishingSystem : EntitySystem
 
         if (minigameUser is { } userUid)
             _popup.PopupEntity(Loc.GetString("fishing-minigame-failed-popup"), userUid, userUid);
+    }
+
+    private void NotifyClientStopMinigame(Entity<FishingRodComponent> rod)
+    {
+        if (rod.Comp.MinigameUser is not { } userUid)
+            return;
+
+        _ui.ServerSendUiMessage(rod.Owner, FishingRodUiKey.Key, new FishingMinigameStopMessage(), userUid);
     }
 
     private void CompleteFishingMinigame(Entity<FishingRodComponent> rod)
