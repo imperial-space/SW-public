@@ -14,6 +14,7 @@
 - type: medievalFaction
   id: Legion
   name: легион
+  color: "#2c518a"
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: legion
@@ -32,6 +33,7 @@
 - type: medievalFaction
   id: Insurgency
   name: мятежники
+  color: "#a82e2b"
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: insurgency
@@ -50,6 +52,7 @@
 - type: medievalFaction
   id: Bandit
   name: банда
+  color: "#5f6263"
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: bandit
@@ -105,6 +108,7 @@
 - type: medievalFaction
   id: Miner
   name: шахтёры
+  color: "#397a44"
   icon:
     sprite: Imperial/Medieval/Interface/factions.rsi
     state: miner
