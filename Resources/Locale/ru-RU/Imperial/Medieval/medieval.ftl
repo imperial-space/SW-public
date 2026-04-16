@@ -6738,4 +6738,5 @@ marking-RatlingTailBig = Большой хвост
 marking-RatlingTailDown = Опущеный хвост
 marking-RatlingEarsDefault = Уши
 marking-RatlingEarsDown = Прижатые уши
+marking-RatlingSnoutLong = Длинная морда
 

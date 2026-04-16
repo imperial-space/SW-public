@@ -391,6 +391,16 @@
   - sprite: Imperial/Medieval/Species/Customization/Ratling/ears.rsi
     state: d1
 
+- type: marking
+  id: RatlingSnoutLong
+  bodyPart: Snout
+  markingCategory: Snout
+  forcedColoring: true
+  speciesRestriction: [Ratling]
+  sprites:
+  - sprite: Imperial/Medieval/Species/Customization/Ratling/face.rsi
+    state: long
+
 - type: inventoryTemplate
   id: ratling
   slots:
