@@ -15,6 +15,7 @@ using Content.Shared.Popups;
 using Content.Shared.StatusEffectNew;
 using Robust.Server.GameObjects;
 using Robust.Server.Player;
+using Robust.Shared.Player;
 using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -558,9 +559,9 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
             if (!TryComp<MedievalFactionMemberComponent>(uid, out var member))
                 continue;
 
-            #if DEBUG
+            #if !DEBUG
             if (!HasComp<ActorComponent>(uid))
-                return;
+                continue;
             #endif
 
             if (member.Faction != faction)
