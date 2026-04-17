@@ -12,4 +12,6 @@ ent-MedievalFactionCommsObeliskCollegium = Collegium obelisk
     .desc = A magical source of communication for the Collegium with the outside world and among its members.
 ent-MedievalFactionCommsObeliskMiner = Miners obelisk
     .desc = A magical source of communication for the miners with the outside world and among their members.
+ent-MedievalFactionCommsObeliskTribe = Tribe obelisk
+    .desc = A magical source of communication for the tribe with the outside world and among its members.
 medieval-faction-obelisk-destroyed-desc = a pile of battered stone, unfit for repair

@@ -12,4 +12,6 @@ ent-MedievalFactionCommsObeliskCollegium = обелиск коллегии
     .desc = Магический источник связи коллегии с внешним миром и между её членами.
 ent-MedievalFactionCommsObeliskMiner = обелиск шахтёров
     .desc = Магический источник связи шахтёров с внешним миром и между их членами.
+ent-MedievalFactionCommsObeliskTribe = обелиск племени
+    .desc = Магический источник связи племени с внешним миром и между его членами.
 medieval-faction-obelisk-destroyed-desc = Кучка побитого камня, непригодно для починки.

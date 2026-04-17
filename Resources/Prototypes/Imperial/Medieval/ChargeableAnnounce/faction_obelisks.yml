@@ -6,7 +6,7 @@
   components:
   - type: SpriteFade
   - type: Sprite
-    sprite: Imperial/Medieval/Magic/Earth/Obelisk/spellward.rsi
+    sprite: Imperial/Medieval/obelisks/layerobelisks.rsi
     drawdepth: Overdoors
     offset: 0,0.9
     layers:
@@ -131,3 +131,17 @@
     announcementLocPrefix: obelisk-destructable-miner-phase
     announcementColor: "#75A743"
     outerLayerState: miner
+
+- type: entity
+  id: MedievalFactionCommsObeliskTribe
+  parent: MedievalFactionCommsObelisk
+  suffix: medieval
+  components:
+  - type: CommsCharger
+    faction: "tribe"
+  - type: ObeliskDestroyable
+    faction: Tribe
+    lockedDepartment: Tribe
+    announcementLocPrefix: obelisk-destructable-tribe-phase
+    announcementColor: "#A26B43"
+    outerLayerState: tribe
