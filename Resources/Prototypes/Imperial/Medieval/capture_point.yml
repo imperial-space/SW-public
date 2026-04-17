@@ -1,0 +1,43 @@
+- type: entity
+  id: MedievalCapturePoint
+  parent: BaseStructure
+  name: застава
+  description: Кто держит заставу, тот собирает дань с этих земель.
+  components:
+  - type: CapturePoint
+    pointName: "Церковь"
+    radius: 5.5
+    allowedFactions:
+    - Legion
+    - Insurgency
+    factionIncomeInterval: 420
+    factionIncome:
+      Legion:
+        MedievalRevent25: 6
+        MedievalMedalLegion: 6
+      Insurgency:
+        MedievalRevent25: 6
+        MedievalMedalIns: 6
+  - type: Transform
+  - type: Sprite
+    drawdepth: 3
+    sprite: Imperial/Medieval/Decor/medieval_banner.rsi
+    layers:
+    - state: banner
+      map: ["factionLayer"]
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.CapturePointVisuals.Faction:
+        factionLayer:
+          Legion:
+            state: banner_blul
+          Insurgency:
+            state: banner_red
+          NoFaction:
+            state: banner
+  - type: InteractionOutline
+  - type: UserInterface
+    interfaces:
+      enum.CapturePointUiKey.Key:
+        type: CapturePointBoundUi

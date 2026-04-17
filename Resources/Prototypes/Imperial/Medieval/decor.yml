@@ -3860,8 +3860,6 @@
     energy: 3
     color: white
     castShadows: false
-  - type: MedievalFactionFlag
-    faction: none
 
 - type: entity
   id: MedievalFlagCaptureBlue
@@ -3873,8 +3871,6 @@
     drawdepth: Overdoors
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_blul
-  - type: MedievalFactionFlag
-    faction: legion
   - type: PointLight
     radius: 2.5
     energy: 3
@@ -3892,8 +3888,6 @@
     drawdepth: Overdoors
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_red
-  - type: MedievalFactionFlag
-    faction: insurgency
   - type: PointLight
     radius: 2.5
     energy: 3
@@ -3910,7 +3904,7 @@
     drawdepth: 3
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_blul_gold
-  - type: MedievalFactionFlagChecker
+  - type: MedievalFactionFlag
     faction: legion
   - type: PointLight
     radius: 3.7
@@ -3939,7 +3933,7 @@
     drawdepth: 3
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_red_gold
-  - type: MedievalFactionFlagChecker
+  - type: MedievalFactionFlag
     faction: insurgency
   - type: PointLight
     radius: 3.7
