@@ -67,6 +67,9 @@
       state: flag
       visible: false
 # Imperial Medieval Surrender End
+# Imperial Medieval SmellFood Begin
+  - type: FoodSmell
+# Imperial Medieval SmellFood End
   - type: DamageVisuals
     thresholds: [ 10, 20, 30, 50, 70, 100 ]
     targetLayers:

@@ -6757,3 +6757,10 @@ ent-MagicMedievalDarkness1 = эссенция тьмы
     .desc = Эссенция используемая темными магами и некромантами.
     .suffix = { "Средневековье, ресурс" }
 trading-pit-collect-verb = Собрать вокруг
+marking-RatlingTailDefault = Хвост
+marking-RatlingTailBig = Большой хвост
+marking-RatlingTailDown = Опущеный хвост
+marking-RatlingEarsDefault = Уши
+marking-RatlingEarsDown = Прижатые уши
+marking-RatlingSnoutLong = Длинная морда
+
