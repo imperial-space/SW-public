@@ -1092,6 +1092,19 @@
     - ForgedLHandBladeCraft
     - ForgedCrossbowRHandCraft
     - ForgedCrossbowLHandCraft
+    - ForgedEbonitHeadCraft
+    - ForgedEbonitTorsoCraft
+    - ForgedEbonitRArmCraft
+    - ForgedEbonitLArmCraft
+    - ForgedEbonitRLegCraft
+    - ForgedEbonitLLegCraft
+    - ForgedForstoneHeadCraft
+    - ForgedForstoneTorsoCraft
+    - ForgedForstoneRArmCraft
+    - ForgedForstoneLArmCraft
+    - ForgedForstoneRLegCraft
+    - ForgedForstoneLLegCraft
+    - ForgedInvisibilityNimbusCraft
 
 - type: entity
   parent: CP14BaseWorkbench
