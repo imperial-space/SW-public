@@ -15,6 +15,7 @@
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "core" ]
       offset: 0, -0.1
+    - map: [ "torso_upgrade" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]

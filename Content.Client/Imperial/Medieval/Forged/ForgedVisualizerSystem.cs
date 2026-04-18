@@ -26,10 +26,11 @@ public sealed class ForgedVisualizerSystem : VisualizerSystem<ForgedComponent>
 
     private void SetLayer(EntityUid uid, ForgedVisuals partKey, ForgedVisualsPacket packet, SpriteComponent sprite)
     {
-        if (partKey != ForgedVisuals.core && partKey != ForgedVisuals.crown && partKey != ForgedVisuals.torso_upgrade)
+        if (partKey != ForgedVisuals.core && partKey != ForgedVisuals.torso_upgrade)
         {
             HumanoidVisualLayers? targetLayer = partKey switch
             {
+                ForgedVisuals.crown      => HumanoidVisualLayers.HeadTop,
                 ForgedVisuals.head       => HumanoidVisualLayers.Head,
                 ForgedVisuals.eyes       => HumanoidVisualLayers.Eyes,
                 ForgedVisuals.torso      => HumanoidVisualLayers.Chest,
