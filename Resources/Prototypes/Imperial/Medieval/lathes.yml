@@ -943,6 +943,9 @@
     - MedievalMopItem
     - MedievalMopBucket
     - MedievalKnut
+    - MedievalBeeHoneyBandage
+    - MedievalCustomBeeHive
+    - MedievalBeeSmoke
 
 - type: entity
   parent: CP14BaseWorkbench
