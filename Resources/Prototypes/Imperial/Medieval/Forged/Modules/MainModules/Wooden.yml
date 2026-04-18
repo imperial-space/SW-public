@@ -78,7 +78,7 @@
 - type: entity
   id: ForgedWoodenLArm
   name: ForgedWoodenLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/wooden.rsi

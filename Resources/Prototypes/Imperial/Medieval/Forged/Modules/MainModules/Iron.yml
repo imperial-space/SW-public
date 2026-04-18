@@ -63,7 +63,7 @@
 - type: entity
   id: ForgedIronLArm
   name: ForgedIronLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/iron.rsi
@@ -80,7 +80,7 @@
 - type: entity
   id: ForgedIronRArm
   name: ForgedIronRArm
-  parent: ForgedRLegBase
+  parent: ForgedRArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/iron.rsi

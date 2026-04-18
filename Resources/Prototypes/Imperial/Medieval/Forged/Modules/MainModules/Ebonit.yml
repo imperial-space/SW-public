@@ -63,7 +63,7 @@
 - type: entity
   id: ForgedEbonitRArm
   name: ForgedEbonitRArm
-  parent: ForgedRLegBase
+  parent: ForgedRArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/ebonit.rsi
@@ -79,7 +79,7 @@
 - type: entity
   id: ForgedEbonitLArm
   name: ForgedEbonitLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/ebonit.rsi

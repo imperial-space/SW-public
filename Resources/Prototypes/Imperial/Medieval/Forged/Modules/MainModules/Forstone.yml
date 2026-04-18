@@ -79,7 +79,7 @@
 - type: entity
   id: ForgedForstoneLArm
   name: ForgedForstoneLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/forstone.rsi

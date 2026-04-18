@@ -65,7 +65,7 @@
 - type: entity
   id: ForgedGoldenRArm
   name: ForgedGoldenRArm
-  parent: ForgedRLegBase
+  parent: ForgedRArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/golden.rsi
@@ -82,7 +82,7 @@
 - type: entity
   id: ForgedGoldenLArm
   name: ForgedGoldenLArm
-  parent: ForgedLLegBase
+  parent: ForgedLArmBase
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/golden.rsi
