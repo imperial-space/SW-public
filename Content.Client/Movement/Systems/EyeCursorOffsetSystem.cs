@@ -2,6 +2,8 @@ using System.Numerics;
 using Content.Client.Movement.Components;
 using Content.Client.Viewport;
 using Content.Shared.Camera;
+using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Movement.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Shared.Map;
@@ -35,6 +37,9 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
 
     public Vector2? OffsetAfterMouse(EntityUid uid, EyeCursorOffsetComponent? component)
     {
+        if (IsRestrictedOutsideSea(uid))
+            return null;
+
         // We need the main viewport where the game content is displayed, as certain UI layouts (e.g. Separated HUD) can make it a different size to the game window.
         if (_eyeManager.MainViewport is not ScalingViewport vp)
             return null;
@@ -84,5 +89,14 @@ public sealed partial class EyeCursorOffsetSystem : EntitySystem
             }
         }
         return component.CurrentPosition;
+    }
+
+    private bool IsRestrictedOutsideSea(EntityUid uid)
+    {
+        if (!HasComp<EyeCursorOffsetShipResrtictComponent>(uid))
+            return false;
+
+        var mapUid = Transform(uid).MapUid;
+        return !mapUid.HasValue || !HasComp<SeaComponent>(mapUid.Value);
     }
 }

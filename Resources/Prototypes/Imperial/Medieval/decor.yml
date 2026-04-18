@@ -5329,10 +5329,16 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Imperial/Medieval/Decor/shipsail.rsi
-    state: icon
     drawdepth: Overdoors
-    offset: 0,3.6
+    offset: 0,1.95
+    layers:
+    - sprite: Imperial/Medieval/Decor/shipsailenclosed.rsi
+      state: ready
+      map: ["enum.SailVisualLayers.Unfolded"]
+    - sprite: Imperial/Medieval/Decor/shipsailshipup.rsi
+      state: shipup
+      map: ["enum.SailVisualLayers.Folded"]
+      visible: false
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -5368,6 +5374,7 @@
         layer:
         - WallLayer
   - type: InteractionOutline
+  - type: Appearance
   - type: Sail
     SailSize: 5
 
@@ -5559,13 +5566,6 @@
   name: nanotrasen banner
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Decor/shipsailenclosed.rsi
-    layers:
-      - state: ready
-        map: ["enum.CatapultVisualKey.Ready"]
-    drawdepth: Overdoors
-    offset: 0,1.95
   - type: Anchorable
   - type: Sail
     Folded: false
@@ -5574,13 +5574,6 @@
   id: MedievalDecorShipSailShipup
   parent: MedievalDecorShipSailReady
   components:
-  - type: Sprite
-    sprite: Imperial/Medieval/Decor/shipsailshipup.rsi
-    layers:
-      - state: shipup
-        map: ["enum.CatapultVisualKey.Ready"]
-    drawdepth: Overdoors
-    offset: 0,1.95
   - type: Sail
     Folded: true
 

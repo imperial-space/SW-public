@@ -1,0 +1,465 @@
+using System.Numerics;
+using Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
+using Content.Server.Imperial.Medieval.Ships.Wave;
+using Content.Server.Shuttles.Components;
+using Content.Shared.DoAfter;
+using Content.Shared.Imperial.Medieval.Ships.Anchor;
+using Content.Shared.Imperial.Medieval.Ships.Hull;
+using Content.Shared.Imperial.Medieval.Ships.Repairing;
+using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
+using Content.Shared.Maps;
+using Content.Shared.Stacks;
+using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Maths;
+using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Systems;
+
+namespace Content.IntegrationTests.Tests.Imperial.Medieval.Ships;
+
+[TestFixture]
+public sealed class ShipSystemsTest
+{
+    private static ushort GetTileId(ITileDefinitionManager tileDefinitions, string id)
+    {
+        Assert.That(tileDefinitions.TryGetDefinition(id, out var tile), Is.True, $"Missing tile definition '{id}'.");
+        return tile.TileId;
+    }
+
+    private static EntityUid SpawnSingleTileGrid(
+        IMapManager mapManager,
+        SharedMapSystem mapSystem,
+        MapId mapId,
+        ushort tileId,
+        out MapGridComponent gridComp)
+    {
+        var grid = mapManager.CreateGridEntity(mapId);
+        gridComp = grid.Comp;
+        mapSystem.SetTile(grid.Owner, grid.Comp, Vector2i.Zero, new Tile(tileId));
+        return grid.Owner;
+    }
+
+    private static TEvent CreateCompletedDoAfter<TEvent>(
+        IEntityManager entMan,
+        EntityUid user,
+        EntityUid eventTarget,
+        EntityUid? target,
+        EntityUid? used,
+        TEvent ev) where TEvent : DoAfterEvent
+    {
+        ev.DoAfter = new Content.Shared.DoAfter.DoAfter(1, new DoAfterArgs(entMan, user, TimeSpan.Zero, ev, eventTarget, target, used), TimeSpan.Zero);
+
+        return ev;
+    }
+
+    private static EntityUid FindAnchorOnGrid(IEntityManager entMan, EntityUid gridUid, bool enabled)
+    {
+        var query = entMan.AllEntityQueryEnumerator<MedievalAnchorComponent, TransformComponent>();
+        while (query.MoveNext(out var uid, out var anchor, out var xform))
+        {
+            if (xform.ParentUid != gridUid || anchor.Enabled != enabled)
+                continue;
+
+            return uid;
+        }
+
+        Assert.Fail($"Could not find anchor with Enabled={enabled} on grid {gridUid}.");
+        return EntityUid.Invalid;
+    }
+
+    [Test]
+    public async Task HullStagesFollowExpectedProgression()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var tileDefinitions = server.ResolveDependency<ITileDefinitionManager>();
+        var shipHull = entMan.System<SharedShipHullSystem>();
+
+        await server.WaitAssertion(() =>
+        {
+            var intact = shipHull.IntactHullTileId;
+            var broken1 = GetTileId(tileDefinitions, "woodbroken1");
+            var broken2 = GetTileId(tileDefinitions, "woodbroken2");
+            var broken3 = GetTileId(tileDefinitions, "woodbroken3");
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(shipHull.MaxDamageStage, Is.EqualTo(3));
+
+                Assert.That(shipHull.TryGetDamageStage(intact, out var intactStage), Is.True);
+                Assert.That(intactStage, Is.EqualTo(0));
+
+                Assert.That(shipHull.TryGetDamageStage(broken1, out var brokenStage1), Is.True);
+                Assert.That(brokenStage1, Is.EqualTo(1));
+
+                Assert.That(shipHull.TryGetDamageStage(broken2, out var brokenStage2), Is.True);
+                Assert.That(brokenStage2, Is.EqualTo(2));
+
+                Assert.That(shipHull.TryGetDamageStage(broken3, out var brokenStage3), Is.True);
+                Assert.That(brokenStage3, Is.EqualTo(3));
+
+                Assert.That(shipHull.TryGetNextDamageTile(intact, out var nextFromIntact), Is.True);
+                Assert.That(nextFromIntact, Is.EqualTo(broken1));
+
+                Assert.That(shipHull.TryGetNextDamageTile(broken1, out var nextFromStage1), Is.True);
+                Assert.That(nextFromStage1, Is.EqualTo(broken2));
+
+                Assert.That(shipHull.TryGetNextDamageTile(broken2, out var nextFromStage2), Is.True);
+                Assert.That(nextFromStage2, Is.EqualTo(broken3));
+
+                Assert.That(shipHull.TryGetNextDamageTile(broken3, out _), Is.False);
+
+                Assert.That(shipHull.TryGetPreviousDamageTile(broken1, out var previousFromStage1), Is.True);
+                Assert.That(previousFromStage1, Is.EqualTo(intact));
+
+                Assert.That(shipHull.TryGetPreviousDamageTile(broken2, out var previousFromStage2), Is.True);
+                Assert.That(previousFromStage2, Is.EqualTo(broken1));
+
+                Assert.That(shipHull.TryGetPreviousDamageTile(broken3, out var previousFromStage3), Is.True);
+                Assert.That(previousFromStage3, Is.EqualTo(broken2));
+
+                Assert.That(shipHull.GetFloodContribution(intact), Is.EqualTo(0));
+                Assert.That(shipHull.GetFloodContribution(broken1), Is.EqualTo(1));
+                Assert.That(shipHull.GetFloodContribution(broken2), Is.EqualTo(2));
+                Assert.That(shipHull.GetFloodContribution(broken3), Is.EqualTo(3));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task RepairRevertsExactlyOneDamageStageAndConsumesOnePlank()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var tileDefinitions = server.ResolveDependency<ITileDefinitionManager>();
+
+        await server.WaitAssertion(() =>
+        {
+            var broken2 = GetTileId(tileDefinitions, "woodbroken2");
+            var broken3 = GetTileId(tileDefinitions, "woodbroken3");
+            var gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, broken3, out var gridComp);
+            var user = entMan.SpawnEntity(null, new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+            var plank = entMan.SpawnEntity("MaterialWoodPlank10", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+
+            var repairEvent = CreateCompletedDoAfter(
+                entMan,
+                user,
+                plank,
+                gridUid,
+                plank,
+                new RepairUseEvent(Vector2i.Zero));
+
+            entMan.EventBus.RaiseLocalEvent(plank, repairEvent);
+
+            Assert.That(mapSystem.TryGetTileRef(gridUid, gridComp, Vector2i.Zero, out var tile), Is.True);
+            var stack = entMan.GetComponent<StackComponent>(plank);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(tile.Tile.TypeId, Is.EqualTo(broken2));
+                Assert.That(stack.Count, Is.EqualTo(9));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task DrowningAddsDamageContributionAndPassivelyDrainsBelowHalf()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var tileDefinitions = server.ResolveDependency<ITileDefinitionManager>();
+
+        EntityUid gridUid = default;
+
+        await server.WaitAssertion(() =>
+        {
+            var broken2 = GetTileId(tileDefinitions, "woodbroken2");
+            gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, broken2, out _);
+
+            var drowning = entMan.EnsureComponent<ShipDrowningComponent>(gridUid);
+            drowning.DrownLevel = 0;
+            drowning.FloodPerDamageStage = 10;
+            drowning.PassiveDrainPerTick = 5;
+            drowning.PassiveRisePerTick = 5;
+            drowning.MaxFloodPerTile = 100;
+        });
+
+        await PoolManager.WaitUntil(server, () => entMan.GetComponent<ShipDrowningComponent>(gridUid).DrownLevel == 15, maxTicks: 120);
+
+        await server.WaitAssertion(() =>
+        {
+            var drowning = entMan.GetComponent<ShipDrowningComponent>(gridUid);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(drowning.DrownLevel, Is.EqualTo(15));
+                Assert.That(drowning.DrownMaxLevel, Is.EqualTo(100));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task DrowningPassivelyRisesAboveHalfWithoutBrokenTiles()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var shipHull = entMan.System<SharedShipHullSystem>();
+
+        EntityUid gridUid = default;
+
+        await server.WaitAssertion(() =>
+        {
+            gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, shipHull.IntactHullTileId, out _);
+
+            var drowning = entMan.EnsureComponent<ShipDrowningComponent>(gridUid);
+            drowning.DrownLevel = 60;
+            drowning.FloodPerDamageStage = 10;
+            drowning.PassiveDrainPerTick = 5;
+            drowning.PassiveRisePerTick = 5;
+            drowning.MaxFloodPerTile = 100;
+        });
+
+        await PoolManager.WaitUntil(server, () => entMan.GetComponent<ShipDrowningComponent>(gridUid).DrownLevel == 65, maxTicks: 120);
+
+        await server.WaitAssertion(() =>
+        {
+            var drowning = entMan.GetComponent<ShipDrowningComponent>(gridUid);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(drowning.DrownLevel, Is.EqualTo(65));
+                Assert.That(drowning.DrownMaxLevel, Is.EqualTo(100));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task DrowningDeletesOnlyGridAndPreservesDirectChildren()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var shipHull = entMan.System<SharedShipHullSystem>();
+
+        EntityUid gridUid = default;
+        EntityUid child = default;
+
+        await server.WaitAssertion(() =>
+        {
+            gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, shipHull.IntactHullTileId, out _);
+            child = entMan.SpawnEntity("MaterialWoodPlank1", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+
+            var drowning = entMan.EnsureComponent<ShipDrowningComponent>(gridUid);
+            drowning.DrownLevel = 100;
+            drowning.FloodPerDamageStage = 10;
+            drowning.PassiveDrainPerTick = 5;
+            drowning.PassiveRisePerTick = 5;
+            drowning.MaxFloodPerTile = 100;
+        });
+
+        await PoolManager.WaitUntil(server, () => !entMan.EntityExists(gridUid), maxTicks: 120);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.EntityExists(child), Is.True);
+
+            var childXform = entMan.GetComponent<TransformComponent>(child);
+            Assert.Multiple(() =>
+            {
+                Assert.That(childXform.ParentUid, Is.EqualTo(testMap.MapUid));
+                Assert.That(childXform.MapUid, Is.EqualTo(testMap.MapUid));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task AnchorToggleDisablesShuttleZerosVelocityAndRestoresItBack()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var shipHull = entMan.System<SharedShipHullSystem>();
+        var physics = entMan.System<SharedPhysicsSystem>();
+
+        EntityUid gridUid = default;
+        EntityUid user = default;
+        EntityUid anchorUp = default;
+
+        await server.WaitAssertion(() =>
+        {
+            gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, shipHull.IntactHullTileId, out _);
+            entMan.EnsureComponent<ShuttleComponent>(gridUid).Enabled = true;
+
+            var body = entMan.GetComponent<PhysicsComponent>(gridUid);
+            physics.SetLinearVelocity(gridUid, new Vector2(5f, -2f), body: body);
+            physics.SetAngularVelocity(gridUid, 3f, body: body);
+
+            user = entMan.SpawnEntity(null, new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+            anchorUp = entMan.SpawnEntity("MedievalAnchorUp", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+
+            var lowerEvent = CreateCompletedDoAfter(
+                entMan,
+                user,
+                anchorUp,
+                anchorUp,
+                anchorUp,
+                new UseAnchorEvent());
+
+            entMan.EventBus.RaiseLocalEvent(anchorUp, lowerEvent);
+        });
+
+        await server.WaitRunTicks(1);
+
+        EntityUid anchorDown = default;
+
+        await server.WaitAssertion(() =>
+        {
+            anchorDown = FindAnchorOnGrid(entMan, gridUid, true);
+
+            var shuttle = entMan.GetComponent<ShuttleComponent>(gridUid);
+            var body = entMan.GetComponent<PhysicsComponent>(gridUid);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(entMan.EntityExists(anchorUp), Is.False);
+                Assert.That(entMan.EntityExists(anchorDown), Is.True);
+                Assert.That(shuttle.Enabled, Is.False);
+                Assert.That(physics.GetMapLinearVelocity(gridUid), Is.EqualTo(Vector2.Zero));
+                Assert.That(body.AngularVelocity, Is.EqualTo(0f));
+            });
+        });
+
+        await server.WaitAssertion(() =>
+        {
+            var raiseEvent = CreateCompletedDoAfter(
+                entMan,
+                user,
+                anchorDown,
+                anchorDown,
+                anchorDown,
+                new UseAnchorEvent());
+
+            entMan.EventBus.RaiseLocalEvent(anchorDown, raiseEvent);
+        });
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            var newAnchorUp = FindAnchorOnGrid(entMan, gridUid, false);
+            var shuttle = entMan.GetComponent<ShuttleComponent>(gridUid);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(entMan.EntityExists(anchorDown), Is.False);
+                Assert.That(entMan.EntityExists(newAnchorUp), Is.True);
+                Assert.That(shuttle.Enabled, Is.True);
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task SpawnedWavesStayOnTheSeaMapInsteadOfBecomingShipChildren()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var transform = entMan.System<SharedTransformSystem>();
+        var shipHull = entMan.System<SharedShipHullSystem>();
+        var waveSystem = entMan.System<WaveSystem>();
+
+        EntityUid gridUid = default;
+        EntityUid waveUid = default;
+
+        await server.WaitAssertion(() =>
+        {
+            gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, shipHull.IntactHullTileId, out _);
+            var waveCoords = transform.ToMapCoordinates(new EntityCoordinates(gridUid, new Vector2(5f, 0f)));
+            waveUid = waveSystem.SpawnWave(waveCoords, new Vector2(-1f, 0f))!.Value;
+        });
+
+        await server.WaitRunTicks(1);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.That(entMan.EntityExists(waveUid), Is.True);
+            var waveXform = entMan.GetComponent<TransformComponent>(waveUid);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(waveXform.ParentUid, Is.EqualTo(testMap.MapUid));
+                Assert.That(waveXform.GridUid, Is.Null);
+                Assert.That(waveXform.ParentUid, Is.Not.EqualTo(gridUid));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task LooseEntitiesOnSeaMapsGainDrowningAndEventuallyDisappear()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+
+        EntityUid itemUid = default;
+
+        await server.WaitAssertion(() =>
+        {
+            entMan.EnsureComponent<SeaComponent>(testMap.MapUid);
+            itemUid = entMan.SpawnEntity("MaterialWoodPlank1", new EntityCoordinates(testMap.MapUid, new Vector2(1f, 1f)));
+        });
+
+        await PoolManager.WaitUntil(server, () => entMan.TryGetComponent<DrownerComponent>(testMap.MapUid, out _), maxTicks: 120);
+        await PoolManager.WaitUntil(server, () => entMan.TryGetComponent<PlayerDrowningComponent>(itemUid, out _), maxTicks: 120);
+        await PoolManager.WaitUntil(server, () => !entMan.EntityExists(itemUid), maxTicks: 700);
+
+        await pair.CleanReturnAsync();
+    }
+}

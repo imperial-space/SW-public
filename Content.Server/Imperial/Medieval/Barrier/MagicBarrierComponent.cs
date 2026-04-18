@@ -1,9 +1,7 @@
 using System.Numerics;
-using Content.Server.Imperial.Medieval.Ships.Sea.Init;
-using Robust.Shared.Map;
 using Robust.Shared.Network;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.MagicBarrier.Components
 {
@@ -40,7 +38,6 @@ namespace Content.Server.MagicBarrier.Components
         [DataField, ViewVariables(VVAccess.ReadOnly)]
         public string EffectSoundOnFinish = "/Audio/Imperial/Medieval/magic_craft.ogg";
 
-        // starfall
         [DataField]
         public float StarfallCurrentPoints = 0f;
 
@@ -67,16 +64,5 @@ namespace Content.Server.MagicBarrier.Components
 
         [DataField]
         public float ElementalRiftMaxSpawnMinutes = 60f;
-
-
-        // Приветик, делаем генерацию морей
-        [DataField]
-        public bool SeaInitalazed = false;
-
-
-        [DataField]
-        public SeaMatrix? SeaMatrix = null;
     }
 }
-
-

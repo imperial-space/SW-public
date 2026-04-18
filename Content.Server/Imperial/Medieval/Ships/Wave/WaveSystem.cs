@@ -1,206 +1,180 @@
-using System.Linq;
+using System;
+using System.Collections.Generic;
 using System.Numerics;
-using Content.Server.Administration.Logs;
-using Content.Server.Destructible;
-using Content.Shared.Construction.Conditions;
-using Content.Shared.Damage;
-using Content.Shared.Database;
 using Content.Shared.Imperial.Medieval.Additions;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
+using Content.Shared.Imperial.Medieval.Ships.Hull;
+using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Maps;
-using Content.Shared.Mobs.Systems;
-using Content.Shared.Physics;
-using Content.Shared.Popups;
 using Content.Shared.Tag;
 using Content.Shared.Tiles;
-using Content.Shared.Trigger.Components;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio;
-using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
-using Robust.Shared.Physics;
-using Robust.Shared.Physics.Events;
-using Robust.Shared.Player;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Timing;
-using Robust.Shared.Physics.Components;
+using Robust.Shared.Physics.Events;
+using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
-using Robust.Shared.Utility;
+using Robust.Shared.Spawners;
 
 namespace Content.Server.Imperial.Medieval.Ships.Wave;
 
 public sealed class WaveSystem : EntitySystem
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DestructibleSystem _destructible = default!;
-    [Dependency] private readonly MobThresholdSystem _mobThreshold = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
-    [Dependency] private readonly FloorTileSystem _floorTileSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly IAdminLogManager _adminlogs = default!;
+    [Dependency] private readonly SharedShipHullSystem _shipHull = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
-
-    private readonly Random _random = new();
-    public (string, ushort)[] Stages =
-    {
-        ("woodbroken", (ushort)1),
-        ("woodbroken2", (ushort)2),
-        ("woodbroken3", (ushort)3)
-    };
-    private bool _initialized;
+    private readonly List<Vector2i> _nearbyTiles = new();
+    private readonly HashSet<EntityUid> _tileContents = new();
 
     public override void Initialize()
     {
         SubscribeLocalEvent<WaveComponent, StartCollideEvent>(OnCollide);
-
-    }
-    private void Startup()
-    {
-        if (_initialized)
-            return;
-        if (Stages == null || Stages.Length == 0)
-            return;
-
-        for (int i = 0; i < Stages.Length; i++)
-        {
-            var stage = Stages[i];
-            if (!_tileDefinitionManager.TryGetDefinition(stage.Item1, out var tileDefinition))
-                continue;
-
-            Stages[i] = (stage.Item1, tileDefinition.TileId);
-        }
-        _initialized = true;
     }
 
     private void OnCollide(EntityUid uid, WaveComponent component, ref StartCollideEvent args)
     {
-        if (!_initialized)
-            Startup();
         if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OtherEntity))
             return;
-        if (component.HitList.Contains(args.OtherEntity))
+
+        var targetEntity = args.OtherEntity;
+        MapGridComponent? mapGridComp = null;
+
+        if (!TryComp<MapGridComponent>(targetEntity, out mapGridComp))
+        {
+            var gridUid = _transform.GetGrid(targetEntity);
+            if (!gridUid.HasValue || !TryComp<MapGridComponent>(gridUid.Value, out mapGridComp))
+            {
+                if (component.DeleteOnCollide)
+                    EntityManager.DeleteEntity(args.OurEntity);
+
+                return;
+            }
+
+            targetEntity = gridUid.Value;
+        }
+
+        if (component.HitList.Contains(targetEntity))
             return;
+
+        if (!HasComp<ShipDrowningComponent>(targetEntity))
+        {
+            if (component.DeleteOnCollide)
+                EntityManager.DeleteEntity(args.OurEntity);
+
+            return;
+        }
+
         if (_cfg.GetCVar(ShipsCCVars.WaveMinToBreakLevel) > _cfg.GetCVar(ShipsCCVars.StormLevel))
-            _entityManager.DeleteEntity(args.OurEntity);
-        EnsureComp<TransformComponent>(args.OurEntity);
+        {
+            if (component.DeleteOnCollide)
+                EntityManager.DeleteEntity(args.OurEntity);
+
+            return;
+        }
+
+        var grid = new Entity<MapGridComponent>(targetEntity, mapGridComp);
         var collisionPos = _transform.GetMapCoordinates(args.OurEntity);
-        var gridEntity = args.OtherEntity;
-        if (!_entityManager.TryGetComponent<MapGridComponent>(gridEntity, out var mapGridComp))
-            return;
-
-        var grid = new Entity<MapGridComponent>(gridEntity, mapGridComp);
-
-        var tileRef = _map.GetTileRef(grid, collisionPos);
-
         var centerTilePos = _map.MapToGrid(grid, collisionPos);
-
         var radiusTiles = _cfg.GetCVar(ShipsCCVars.WaveRadiusTiles) + _cfg.GetCVar(ShipsCCVars.StormLevel);
+        var radiusLimit = (int) MathF.Ceiling(radiusTiles);
+        var radiusSquared = radiusTiles * radiusTiles;
 
-        var antiradius = (int)radiusTiles*-1;
+        _nearbyTiles.Clear();
 
-        var nearbyTiles = new List<Vector2i>();
-
-
-        for (int dx = antiradius; dx <= radiusTiles; dx++)
+        for (var dx = -radiusLimit; dx <= radiusLimit; dx++)
         {
-            for (int dy = antiradius; dy <= radiusTiles; dy++)
+            for (var dy = -radiusLimit; dy <= radiusLimit; dy++)
             {
-                var tilePos = centerTilePos + new EntityCoordinates(gridEntity, new Vector2(dx, dy)) ;
-                var tile = _map.GetTileRef(grid, tilePos);
-
-                if (tile.Tile.IsEmpty)
+                var tileCoordinates = centerTilePos.Offset(new Vector2(dx, dy));
+                if (!_map.TryGetTileRef(grid.Owner, grid.Comp, tileCoordinates, out var tile))
                     continue;
-                var wallcheck = new HashSet<EntityUid>();
-                _lookup.GetEntitiesInTile(tile, wallcheck);
-                var stop = false;
-                foreach (var wall in wallcheck)
+
+                if (tile.Tile.IsEmpty || !_shipHull.TryGetDamageStage(tile.Tile.TypeId, out _))
+                    continue;
+
+                _tileContents.Clear();
+                _lookup.GetEntitiesInTile(tile, _tileContents);
+
+                var blockedByWall = false;
+                foreach (var tileEntity in _tileContents)
                 {
-                    if (_tags.HasTag(wall, "Wall"))
-                    {
-                        stop = true;
-                    }
+                    if (!_tags.HasTag(tileEntity, "Wall"))
+                        continue;
 
+                    blockedByWall = true;
+                    break;
                 }
-                if (stop)
+
+                if (blockedByWall)
                     continue;
 
-                var distance = Vector2.Distance(centerTilePos.Position, tilePos.Position);
-                if (distance <= radiusTiles)
-                    nearbyTiles.Add(((int)tilePos.X, (int)tilePos.Y));
+                var delta = tileCoordinates.Position - centerTilePos.Position;
+                if (delta.LengthSquared() <= radiusSquared)
+                    _nearbyTiles.Add(tile.GridIndices);
             }
         }
 
-        _random.Shuffle(nearbyTiles);
-
-        int tilesToReplace = Math.Min(_random.Next(0,_cfg.GetCVar(ShipsCCVars.WaveMaxBreakCount)), nearbyTiles.Count);
-        for (int i = 0; i < tilesToReplace; i++)
+        if (_nearbyTiles.Count == 0)
         {
-            var tilePos = nearbyTiles[i];
-            if (!_map.TryGetTile(grid, tilePos, out var tile) || tile.IsEmpty)
-                continue;
-            var stagelast = Stages.Length-1;
+            if (component.DeleteOnCollide)
+                EntityManager.DeleteEntity(args.OurEntity);
 
-            if (tile.TypeId == Stages[stagelast].Item2 || tile.IsEmpty)
-                continue;
-            var index = 0;
-            foreach (var stage in Stages)
-            {
-                if (stage.Item2 == tile.TypeId)
-                    break;
-                index++;
-            }
-            if (index == stagelast+1)
-                index = 0;
-            _map.SetTile(grid.Owner, grid , tilePos, new Tile(Stages[index+1].Item2, 0, 0));
+            return;
         }
-        if (!TerminatingOrDeleted(args.OtherEntity))
-            component.HitList.Add(args.OtherEntity);
+
+        var maxBreakCount = Math.Max(0, _cfg.GetCVar(ShipsCCVars.WaveMaxBreakCount));
+        if (maxBreakCount > 0)
+        {
+            _random.Shuffle(_nearbyTiles);
+
+            var tilesToReplace = Math.Min(_random.Next(1, maxBreakCount + 1), _nearbyTiles.Count);
+            for (var i = 0; i < tilesToReplace; i++)
+            {
+                var tilePos = _nearbyTiles[i];
+                if (!_map.TryGetTileRef(grid.Owner, grid.Comp, tilePos, out var tile) || tile.Tile.IsEmpty)
+                    continue;
+
+                if (!_shipHull.TryGetNextDamageTile(tile.Tile.TypeId, out var damagedTileType))
+                    continue;
+
+                _map.SetTile(grid.Owner, grid, tilePos, new Tile(damagedTileType, 0, 0));
+            }
+        }
+
+        if (!TerminatingOrDeleted(targetEntity))
+            component.HitList.Add(targetEntity);
+
         if (component.DeleteOnCollide)
-            _entityManager.DeleteEntity(args.OurEntity);
+            EntityManager.DeleteEntity(args.OurEntity);
     }
-    /// <summary>
-    /// призывает грид на куазанных координатах относительно какой то сущности и даёт ей силу
-    /// coords кординаты это сущность от которой считать и вектор смещения
-    /// mapId айди мапы
-    /// force вектор силы который мы прикладываем если надо
-    /// deleteOnCollide при столкновении удаляем
-    /// lifetime = 0 не будет удалять сущность по истечению таймера
-    /// </summary>
-    public void SpawnWave(EntityCoordinates coords, MapId mapId, Vector2 force = new Vector2(), bool deleteOnCollide = true, float lifetime = 60)
-    {
-        if (!_map.TryGetMap(mapId, out var mapEntity))
-            return;
 
-        var grid = _mapManager.CreateGridEntity(mapId);
-        _transform.SetParent(grid, mapEntity.Value);
-        var waveComponent = EnsureComp<WaveComponent>(grid);
+    public EntityUid? SpawnWave(MapCoordinates coords, Vector2 force = default, bool deleteOnCollide = true, float lifetime = 60)
+    {
+        if (!_map.TryGetMap(coords.MapId, out _))
+            return null;
+
+        var wave = Spawn("WaveLarge", coords);
+        var waveComponent = EnsureComp<WaveComponent>(wave);
         waveComponent.DeleteOnCollide = deleteOnCollide;
-        _tileDefinitionManager.TryGetDefinition("FloorWood", out var tileDefinition);// сюда поставить воду
-        if (tileDefinition == null)
-            return;
-        _map.SetTile(grid, new Vector2i(0,0), new Tile(tileDefinition.TileId, 0, 0));// создаёт тайлик воды надо поставить воду вон туда
-        if (HasComp<TransformComponent>(grid))
-        {
-            _transform.SetCoordinates(grid, coords);
-            _physics.WakeBody(grid);
-            _physics.ApplyLinearImpulse(grid, force);
-            if (lifetime > 0)
-            {
-                var despawnComponent = EnsureComp<MedievalTimedDespawnComponent>(grid);
-                despawnComponent.Lifetime = lifetime;
-                despawnComponent.OriginalLifeTime = lifetime;
-            }
-        }
+
+        _physics.WakeBody(wave);
+        _physics.ApplyLinearImpulse(wave, force);
+
+        RemComp<TimedDespawnComponent>(wave);
+        RemComp<MedievalTimedDespawnComponent>(wave);
+        if (lifetime <= 0)
+            return wave;
+
+        var despawnComponent = EnsureComp<MedievalTimedDespawnComponent>(wave);
+        despawnComponent.Lifetime = lifetime;
+        despawnComponent.OriginalLifeTime = lifetime;
+        return wave;
     }
 }

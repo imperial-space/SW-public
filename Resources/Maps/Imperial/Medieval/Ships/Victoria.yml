@@ -5,7 +5,7 @@ meta:
   forkId: ""
   forkVersion: ""
   time: 03/03/2026 16:07:46
-  entityCount: 220
+  entityCount: 221
 maps: []
 grids:
 - 1
@@ -1146,10 +1146,7 @@ entities:
     - type: RDWeightExamine
       current: 'Вес: [color=#7DFF66]легкий[/color]'
     - type: Sail
-      Helm: True
-    - type: Rotatable
-      Increment: 0.5235987755982988 rad
-      RotateWhileAnchored: True
+    - type: Helm
   - uid: 218
     components:
     - type: Transform
@@ -1158,7 +1155,6 @@ entities:
     - type: RDWeightExamine
       current: 'Вес: [color=#7DFF66]легкий[/color]'
     - type: Sail
-      Push: False
   - uid: 219
     components:
     - type: Transform
@@ -1983,6 +1979,15 @@ entities:
     - type: Transform
       pos: -0.5,-0.5
       parent: 1
+- proto: WarpPoint
+  entities:
+  - uid: 221
+    components:
+    - type: Transform
+      pos: -1.5,-1
+      parent: 1
+    - type: WarpPoint
+      location: Корабль Victoria
 - proto: Ointment
   entities:
   - uid: 173

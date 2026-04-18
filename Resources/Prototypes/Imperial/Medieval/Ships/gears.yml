@@ -1,14 +1,31 @@
 - type: entity
+  id: MedievalAnchorBase
+  abstract: true
+  name: якорь
+  description: Старое, но надежное железо для фиксации корабля.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Sprite
+    sprite: Imperial/Medieval/Ships/Anchor.rsi
+
+- type: entity
   id: WaterPump
-  name: Водная помпа
+  name: водяная помпа
   parent: WoodenSupportWall
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Ships/WaterPump.rsi
+    state: icon
   - type: WaterPump
 
 - type: entity
   id: SteeringOar
-  name: Рулевое весло
-  description: Рулевое весло что используется для поворота лодки
+  name: рулевое весло
+  description: Рулевое весло, помогающее держать курс корабля.
   parent: WoodenSupportWall
   components:
   - type: Sprite
@@ -18,12 +35,9 @@
 
 - type: entity
   id: MedievalAnchorUp
-  name: якорь
-  description: Штука что не даёт двигатся лодке
-  parent: WoodenSupportWall
+  parent: MedievalAnchorBase
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Ships/Anchor.rsi
     state: up
   - type: MedievalAnchor
     Enabled: false
@@ -33,7 +47,6 @@
   parent: MedievalAnchorUp
   components:
   - type: Sprite
-    sprite: Imperial/Medieval/Ships/Anchor.rsi
     state: down
   - type: MedievalAnchor
     Enabled: true
@@ -44,10 +57,7 @@
   parent: WoodenSupportWall
   description: Hold on tight, sailors! We're going to make a sharp turn! Grrrr!
   components:
-    - type: Sprite
-      sprite: Imperial/Medieval/Decor/steeringwheel.rsi
-      state: wheel
-    - type: Helm
-    - type: Rotatable
-      RotateWhileAnchored: true
-      Increment: 5
+  - type: Sprite
+    sprite: Imperial/Medieval/Ships/SteeringWheel.rsi
+    state: wheel
+  - type: Helm
