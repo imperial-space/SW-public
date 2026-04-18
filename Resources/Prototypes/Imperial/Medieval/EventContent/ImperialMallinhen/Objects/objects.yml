@@ -169,8 +169,40 @@
         Bloodloss: -200
     damageContainers:
       - Biological
-    delay: 30.0
-    bloodlossModifier: -1.5
+    delay: 25.0
+    bloodlossModifier: -15
     consumeOnUse: false
   - type: UseDelay
     delay: 5.0
+
+- type: entity
+  parent: MedievalDecorBoxEmpty
+  id: MedievalDecorBoxRifleAmmo
+  name: ящик винтовочных патронов
+  description: Ящик, наполенный патронами для винтовок.
+  suffix: Ивент, Маллинхен, Империя
+  components:
+  - type: Storage
+    grid:
+    - 0,0,9,9
+    maxItemSize: Small
+  - type: StorageFill
+    contents:
+      - id: MedievalPowderCartridge
+        amount: 100
+
+- type: entity
+  parent: MedievalDecorBoxEmpty
+  id: MedievalDecorBoxPistolAmmo
+  name: ящик пистолетных патронов
+  description: Ящик, наполенный патронами для пистоля.
+  suffix: Ивент, Маллинхен, Империя
+  components:
+  - type: Storage
+    grid:
+    - 0,0,9,9
+    maxItemSize: Small
+  - type: StorageFill
+    contents:
+      - id: MedievalPowderCartridgePistole
+        amount: 100

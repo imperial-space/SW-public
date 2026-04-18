@@ -20,8 +20,8 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/Event/fire1.ogg
-    minAngle: 50
-    maxAngle: 50
+    minAngle: 25
+    maxAngle: 25
     angleDecay: 0
     angleIncrease: 0
   - type: BallisticAmmoProvider
@@ -73,8 +73,8 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/Event/fire2.ogg
-    minAngle: 50
-    maxAngle: 50
+    minAngle: 25
+    maxAngle: 25
   - type: AltFireMelee
   - type: MeleeWeapon
     damage:
@@ -108,8 +108,8 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/Event/fire3.ogg
-    minAngle: 50
-    maxAngle: 50
+    minAngle: 25
+    maxAngle: 25
   - type: AltFireMelee
   - type: MeleeWeapon
     damage:
@@ -143,8 +143,8 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/Event/fire1.ogg
-    minAngle: 25
-    maxAngle: 25
+    minAngle: 10
+    maxAngle: 10
 
 - type: entity
   parent: BaseWeaponSniper
@@ -168,8 +168,8 @@
     - SemiAuto
     soundGunshot:
       path: /Audio/Imperial/Medieval/Event/fire3.ogg
-    minAngle: 25
-    maxAngle: 25
+    minAngle: 10
+    maxAngle: 10
   - type: BallisticAmmoProvider
     soundRack:
       path: /Audio/Imperial/Medieval/Event/hammer.ogg

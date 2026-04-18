@@ -244,6 +244,10 @@
   parent: ClothingUniformBase
   id: MedievalCavalryImperial
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/cavalry_imperial.rsi
     state: icon
@@ -257,6 +261,10 @@
   parent: ClothingUniformBase
   id: MedievalDocImperial
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/doc_imperial.rsi
     state: icon
@@ -270,6 +278,10 @@
   parent: ClothingUniformBase
   id: MedievalMusicianImperial
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/musician_imperial.rsi
     state: icon
@@ -283,6 +295,10 @@
   parent: ClothingUniformBase
   id: MedievalMusketeerImperial
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/musketeer_imperial.rsi
     state: icon
@@ -296,6 +312,10 @@
   parent: ClothingUniformBase
   id: MedievalOfficerImperial
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/officer_imperial.rsi
     state: icon
@@ -309,6 +329,10 @@
   parent: ClothingUniformBase
   id: MedievalSapperImperial
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/sapper_imperial.rsi
     state: icon
@@ -322,6 +346,10 @@
   parent: ClothingUniformBase
   id: MedievalUnterofficerImperial
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/great_empire/jumpsuit/unterofficer_imperial.rsi
     state: icon
@@ -429,6 +457,10 @@
   parent: ClothingUniformBase
   id: MedievalCavalryMallinhen
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/cavalry_mallin.rsi
     state: icon
@@ -442,6 +474,10 @@
   parent: ClothingUniformBase
   id: MedievalDocMallinhen
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/doc_mallin.rsi
     state: icon
@@ -455,6 +491,10 @@
   parent: ClothingUniformBase
   id: MedievalMusicianMallinhen
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/musician_mallin.rsi
     state: icon
@@ -468,6 +508,10 @@
   parent: ClothingUniformBase
   id: MedievalMusketeerMallinhen
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/musketeer_mallin.rsi
     state: icon
@@ -481,6 +525,10 @@
   parent: ClothingUniformBase
   id: MedievalOfficerMallinhen
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/officer_mallin.rsi
     state: icon
@@ -494,6 +542,10 @@
   parent: ClothingUniformBase
   id: MedievalSapperMallinhen
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/sapper_mallin.rsi
     state: icon
@@ -507,6 +559,10 @@
   parent: ClothingUniformBase
   id: MedievalUnterofficerMallinhen
   components:
+  - type: Unremoveable
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
   - type: Sprite
     sprite: Imperial/Medieval/Event/Clothes/mallinhen/jumpsuit/unterofficer_mallin.rsi
     state: icon

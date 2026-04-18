@@ -1035,9 +1035,10 @@
         - BulletImpassable
 
 - type: entity
-  id: MedievalDecorBox
+  id: MedievalDecorBoxEmpty
   parent: MedievalBannerBase
   name: nanotrasen banner
+  suffix: Empty
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
@@ -1085,6 +1086,13 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+
+- type: entity
+  id: MedievalDecorBox
+  parent: MedievalDecorBoxEmpty
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
   - type: StorageFill
     contents:
       - id: MedievalRevent
