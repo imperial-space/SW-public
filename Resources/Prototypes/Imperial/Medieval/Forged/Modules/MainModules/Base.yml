@@ -68,7 +68,7 @@
   - type: Appearance
   - type: ForgedAssembly
     torso: ForgedTorsoBase
-    avaibleSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg", "right_hand", "left_hand", "right_foot", "left_foot" ]
+    avaibleSlots: [ "crown","head", "eyes", "right_arm", "left_arm", "core", "torso_upgrade", "right_leg", "left_leg", "right_hand", "left_hand", "right_foot", "left_foot" ]
     requireSlots: [ "head", "eyes", "right_arm", "left_arm", "core", "right_leg", "left_leg" ]
   - type: ForgedModule
     partSlot: torso

@@ -72,3 +72,76 @@
     speedModifier: -0.02
     abilityId: Left_crossbow
     requiredModule: left_arm
+
+- type: entity
+  id: ForgedInvisibilityNimbus
+  name: ForgedInvisibilityNimbus
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: invisibility_nimbus
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: crown
+    layerState: invisibility_nimbus
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.0
+    speedModifier: 0.0
+    abilityId: Invisibility_Nimbus
+    requiredModule: head
+
+- type: entity
+  id: ForgedTorsoExplosive
+  name: ForgedTorsoExplosive
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: torso_explosive_item
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: torso_upgrade
+    layerState: iron_torso_explosive
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: -0.1
+    speedModifier: 0.1
+    abilityId: Torso_Explosion
+    requiredModule: torso
+
+- type: entity
+  id: ForgedRHandCannon
+  name: ForgedRHandCannon
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_cannon_item
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_hand
+    layerState: iron_right_arm_cannon
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Right_cannon
+    requiredModule: right_arm
+
+- type: entity
+  id: ForgedLHandCannon
+  name: ForgedLHandCannon
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_cannon_item
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_hand
+    layerState: iron_left_arm_cannon
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.03
+    speedModifier: -0.04
+    abilityId: Left_cannon
+    requiredModule: left_arm

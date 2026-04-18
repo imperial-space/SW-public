@@ -12,9 +12,13 @@ using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.MedievalMeleeResource.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Overlays;
+using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
+using Content.Shared.Trigger;
+using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Timing;
 
 
 namespace Content.Shared.Imperial.Medieval.Forged;
@@ -27,6 +31,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
     [Dependency] private readonly SharedStunSystem _stun = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {
@@ -36,6 +41,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
         SubscribeLocalEvent<ForgedComponent, ForgedBoostActionEvent>(OnBoost);
         SubscribeLocalEvent<ForgedComponent, ForgedSilaActionEvent>(OnSila);
         SubscribeLocalEvent<ForgedComponent, ForgedRepairActionEvent>(OnRepair);
+        SubscribeLocalEvent<ForgedComponent, ForgedExplosiveActionEvent>(OnExplosiveTrigger);
     }
 
     public void ExecuteAbility(EntityUid forgedUid, EntityUid moduleUid, string abilityId)
@@ -78,11 +84,86 @@ public sealed class ForgedAbilitySystem : EntitySystem
             case "Right_crossbow":
                 RightCrossbow(forgedUid);
                 break;
+            case "Right_cannon":
+                RightCannon(forgedUid);
+                break;
+            case "Left_cannon":
+                LeftCannon(forgedUid);
+                break;
+            case "Invisibility_Nimbus":
+                NimbusStealth(forgedUid);
+                break;
+            case "Torso_Explosion":
+                SetupExplosive(forgedUid);
+                break;
             default:
                 break;
         }
     }
 
+    private void SpawnModuleInHand(EntityUid forgedUid, string handId, string proto, bool strip)
+    {
+        if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
+            return;
+
+        if (container.ContainedEntities.Count > 0)
+        {
+            var oldItem = container.ContainedEntities[0];
+            _containerSystem.Remove(oldItem, container);
+            QueueDel(oldItem);
+        }
+
+        var item = EntityManager.SpawnEntity(proto, MapCoordinates.Nullspace);
+        if (strip)
+        {
+            RemComp<MedievalMeleeResourceComponent>(item);
+            RemComp<DurabilityDisplayComponent>(item);
+        }
+        _containerSystem.Insert(item, container);
+    }
+
+    private void LeftCannon(EntityUid forgedUid)
+    {
+        SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon", true);
+    }
+
+    private void RightCannon(EntityUid forgedUid)
+    {
+        SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon", false);
+    }
+
+    private void NimbusStealth(EntityUid forgedUid)
+    {
+        var stealth = EnsureComp<StealthComponent>(forgedUid);
+        EnsureComp<StealthOnMoveComponent>(forgedUid); // Чтобы стелс работал корректно
+        Dirty(forgedUid, stealth);
+    }
+
+    private void SetupExplosive(EntityUid forgedUid)
+    {
+        EnsureComp<ExplosionOnTriggerComponent>(forgedUid);
+        _actions.AddAction(forgedUid, "ExplosiveAction");
+    }
+
+
+    TimeSpan _lastPressExplose = TimeSpan.Zero;
+    private void OnExplosiveTrigger(EntityUid uid, ForgedComponent comp, ForgedExplosiveActionEvent args)
+    {
+        if (args.Handled) return;
+
+        // Проверка на двойное нажатие (1 секунда)
+        if (_gameTiming.CurTime - _lastPressExplose < TimeSpan.FromSeconds(1))
+        {
+            var ev = new TriggerEvent(uid, "ss");
+            RaiseLocalEvent(uid, ref ev, true);
+        }
+        else
+        {
+            _lastPressExplose = _gameTiming.CurTime;
+        }
+
+        args.Handled = true;
+    }
     private void LeftBlade(EntityUid forgedUid)
     {
         string handId = "body_part_slot_left_hand";

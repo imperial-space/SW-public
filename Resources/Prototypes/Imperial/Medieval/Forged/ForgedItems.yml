@@ -180,5 +180,31 @@
     tags:
       - ForgedArmCrossbow
 
+- type: entity
+  name: ForgedArmCannon
+  id: ForgedArmCannon
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: magic_arm_cannon_item
+  - type: BasicEntityAmmoProvider
+    proto: MedievalProjectileMagicArrowKunaiSenior
+    capacity: 1
+    count: 1
+  - type: RechargeBasicEntityAmmo
+    rechargeCooldown: 1.5f
+    rechargeSound:
+      path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: Gun
+    resetOnHandSelected: false
+    fireRate: 0.4
+    selectedMode: FullAuto
+    availableModes:
+    - FullAuto
+    soundGunshot:
+      path: /Audio/Imperial/Medieval/ES_Arrow_Release_1_-_SFX_Producer.ogg
+  - type: Unremoveable
+
 - type: Tag
   id: ForgedArmCrossbow

@@ -18,3 +18,7 @@ public sealed partial class ForgedSilaActionEvent : InstantActionEvent
 public sealed partial class ForgedRepairActionEvent : InstantActionEvent
 {
 }
+
+public sealed partial class ForgedExplosiveActionEvent : InstantActionEvent
+{
+}
