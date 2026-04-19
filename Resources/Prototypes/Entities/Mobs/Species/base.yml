@@ -365,6 +365,7 @@
       Agility: 10
       Intelligence: 10
       Endurance: 10
+  - type: LastWords
 # Imperial Medieval End
 
 - type: entity
