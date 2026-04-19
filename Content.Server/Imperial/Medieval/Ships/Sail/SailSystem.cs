@@ -1,4 +1,5 @@
 using System;
+using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Shared._RD.Weight.Systems;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
@@ -93,7 +94,9 @@ public sealed class SailSystem : EntitySystem
                 continue;
 
             var sailEntity = sailComponent.Owner;
-            var boat = _transform.GetParentUid(sailEntity);
+            var sailXform = Transform(sailEntity);
+            if (sailXform.GridUid is not { } boat)
+                continue;
 
             if (HasComp<IslandComponent>(boat))
                 continue;
@@ -120,7 +123,7 @@ public sealed class SailSystem : EntitySystem
             var efficiency = GetEfficiencyByAngle(sailDirection, windDirection);
             var weightDivider = GetWeightDivider(boat);
             var force = stormLevel * windPower * sailComponent.SailSize * efficiency;
-            var impulse = sailDirection.ToVec() * (force / weightDivider);
+            var impulse = GetImpulseDirection(sailDirection) * (force / weightDivider);
 
             if (!TryComp<PhysicsComponent>(boat, out var body))
                 continue;
@@ -148,6 +151,11 @@ public sealed class SailSystem : EntitySystem
             return -0.5f;
 
         return -1f;
+    }
+
+    private static Vector2 GetImpulseDirection(Angle sailDirection)
+    {
+        return sailDirection.ToWorldVec();
     }
 
     private float GetShipSpeed(EntityUid boat)

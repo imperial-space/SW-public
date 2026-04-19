@@ -21,6 +21,7 @@ namespace Content.Server.Imperial.Medieval.Ships.Wave;
 
 public sealed class WaveSystem : EntitySystem
 {
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly PhysicsSystem _physics = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
@@ -38,27 +39,74 @@ public sealed class WaveSystem : EntitySystem
         SubscribeLocalEvent<WaveComponent, StartCollideEvent>(OnCollide);
     }
 
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        var enumerator = EntityQueryEnumerator<WaveComponent>();
+        while (enumerator.MoveNext(out var uid, out var component))
+        {
+            if (TerminatingOrDeleted(uid))
+                continue;
+
+            var collisionPos = _transform.GetMapCoordinates(uid);
+            if (!_mapManager.TryFindGridAt(collisionPos, out var gridUid, out var mapGridComp))
+                continue;
+
+            HandleWaveImpact(uid, component, gridUid, mapGridComp, collisionPos);
+        }
+    }
+
     private void OnCollide(EntityUid uid, WaveComponent component, ref StartCollideEvent args)
     {
         if (TerminatingOrDeleted(uid) || TerminatingOrDeleted(args.OtherEntity))
             return;
 
-        var targetEntity = args.OtherEntity;
-        MapGridComponent? mapGridComp = null;
-
-        if (!TryComp<MapGridComponent>(targetEntity, out mapGridComp))
+        if (!TryResolveCollisionGrid(args.OtherEntity, out var targetEntity, out var mapGridComp))
         {
-            var gridUid = _transform.GetGrid(targetEntity);
-            if (!gridUid.HasValue || !TryComp<MapGridComponent>(gridUid.Value, out mapGridComp))
-            {
-                if (component.DeleteOnCollide)
-                    EntityManager.DeleteEntity(args.OurEntity);
+            if (component.DeleteOnCollide)
+                EntityManager.DeleteEntity(args.OurEntity);
 
-                return;
-            }
-
-            targetEntity = gridUid.Value;
+            return;
         }
+
+        var collisionPos = _transform.GetMapCoordinates(args.OurEntity);
+        HandleWaveImpact(args.OurEntity, component, targetEntity, mapGridComp, collisionPos);
+    }
+
+    private bool TryResolveCollisionGrid(EntityUid targetEntity, out EntityUid gridUid, out MapGridComponent mapGridComp)
+    {
+        if (TryComp<MapGridComponent>(targetEntity, out var directGridComp) && directGridComp != null)
+        {
+            mapGridComp = directGridComp;
+            gridUid = targetEntity;
+            return true;
+        }
+
+        var resolvedGridUid = _transform.GetGrid(targetEntity);
+        if (resolvedGridUid.HasValue &&
+            TryComp<MapGridComponent>(resolvedGridUid.Value, out var parentGridComp) &&
+            parentGridComp != null)
+        {
+            mapGridComp = parentGridComp;
+            gridUid = resolvedGridUid.Value;
+            return true;
+        }
+
+        gridUid = EntityUid.Invalid;
+        mapGridComp = default!;
+        return false;
+    }
+
+    private void HandleWaveImpact(
+        EntityUid wave,
+        WaveComponent component,
+        EntityUid targetEntity,
+        MapGridComponent mapGridComp,
+        MapCoordinates collisionPos)
+    {
+        if (TerminatingOrDeleted(wave) || TerminatingOrDeleted(targetEntity))
+            return;
 
         if (component.HitList.Contains(targetEntity))
             return;
@@ -66,7 +114,7 @@ public sealed class WaveSystem : EntitySystem
         if (!HasComp<ShipDrowningComponent>(targetEntity))
         {
             if (component.DeleteOnCollide)
-                EntityManager.DeleteEntity(args.OurEntity);
+                EntityManager.DeleteEntity(wave);
 
             return;
         }
@@ -74,13 +122,12 @@ public sealed class WaveSystem : EntitySystem
         if (_cfg.GetCVar(ShipsCCVars.WaveMinToBreakLevel) > _cfg.GetCVar(ShipsCCVars.StormLevel))
         {
             if (component.DeleteOnCollide)
-                EntityManager.DeleteEntity(args.OurEntity);
+                EntityManager.DeleteEntity(wave);
 
             return;
         }
 
         var grid = new Entity<MapGridComponent>(targetEntity, mapGridComp);
-        var collisionPos = _transform.GetMapCoordinates(args.OurEntity);
         var centerTilePos = _map.MapToGrid(grid, collisionPos);
         var radiusTiles = _cfg.GetCVar(ShipsCCVars.WaveRadiusTiles) + _cfg.GetCVar(ShipsCCVars.StormLevel);
         var radiusLimit = (int) MathF.Ceiling(radiusTiles);
@@ -124,7 +171,7 @@ public sealed class WaveSystem : EntitySystem
         if (_nearbyTiles.Count == 0)
         {
             if (component.DeleteOnCollide)
-                EntityManager.DeleteEntity(args.OurEntity);
+                EntityManager.DeleteEntity(wave);
 
             return;
         }
@@ -152,10 +199,10 @@ public sealed class WaveSystem : EntitySystem
             component.HitList.Add(targetEntity);
 
         if (component.DeleteOnCollide)
-            EntityManager.DeleteEntity(args.OurEntity);
+            EntityManager.DeleteEntity(wave);
     }
 
-    public EntityUid? SpawnWave(MapCoordinates coords, Vector2 force = default, bool deleteOnCollide = true, float lifetime = 60)
+    public EntityUid? SpawnWave(MapCoordinates coords, Vector2 velocity = default, bool deleteOnCollide = true, float lifetime = 60)
     {
         if (!_map.TryGetMap(coords.MapId, out _))
             return null;
@@ -165,7 +212,7 @@ public sealed class WaveSystem : EntitySystem
         waveComponent.DeleteOnCollide = deleteOnCollide;
 
         _physics.WakeBody(wave);
-        _physics.ApplyLinearImpulse(wave, force);
+        _physics.SetLinearVelocity(wave, velocity);
 
         RemComp<TimedDespawnComponent>(wave);
         RemComp<MedievalTimedDespawnComponent>(wave);
