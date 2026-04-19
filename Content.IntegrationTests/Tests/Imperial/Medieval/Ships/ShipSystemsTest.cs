@@ -3,6 +3,8 @@ using Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 using Content.Server.Imperial.Medieval.Ships.Wave;
 using Content.Server.Shuttles.Components;
 using Content.Shared.DoAfter;
+using Content.Shared.Ghost;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Ships.Anchor;
 using Content.Shared.Imperial.Medieval.Ships.Hull;
 using Content.Shared.Imperial.Medieval.Ships.Repairing;
@@ -299,6 +301,159 @@ public sealed class ShipSystemsTest
             {
                 Assert.That(childXform.ParentUid, Is.EqualTo(testMap.MapUid));
                 Assert.That(childXform.MapUid, Is.EqualTo(testMap.MapUid));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task DeletingGridPreservesAdminGhostAndHeldItem()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var shipHull = entMan.System<SharedShipHullSystem>();
+        var handsSystem = entMan.System<SharedHandsSystem>();
+
+        EntityUid gridUid = default;
+        EntityUid ghostUid = default;
+        EntityUid heldItem = default;
+
+        await server.WaitAssertion(() =>
+        {
+            gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, shipHull.IntactHullTileId, out _);
+            ghostUid = entMan.SpawnEntity("AdminObserver", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+            heldItem = entMan.SpawnEntity("Crowbar", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+
+            Assert.That(handsSystem.TryPickupAnyHand(ghostUid, heldItem), Is.True);
+        });
+
+        await server.WaitPost(() => entMan.DeleteEntity(gridUid));
+        await pair.RunTicksSync(5);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(entMan.EntityExists(ghostUid), Is.True);
+                Assert.That(entMan.EntityExists(heldItem), Is.True);
+                Assert.That(entMan.HasComponent<GhostComponent>(ghostUid), Is.True);
+            });
+
+            var ghostXform = entMan.GetComponent<TransformComponent>(ghostUid);
+            var heldItemXform = entMan.GetComponent<TransformComponent>(heldItem);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(ghostXform.ParentUid, Is.EqualTo(testMap.MapUid));
+                Assert.That(ghostXform.GridUid, Is.Null);
+                Assert.That(heldItemXform.ParentUid, Is.EqualTo(ghostUid));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task DeletingGridPreservesMobHumanAndHeldItem()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var shipHull = entMan.System<SharedShipHullSystem>();
+        var handsSystem = entMan.System<SharedHandsSystem>();
+
+        EntityUid gridUid = default;
+        EntityUid humanUid = default;
+        EntityUid heldItem = default;
+
+        await server.WaitAssertion(() =>
+        {
+            gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, shipHull.IntactHullTileId, out _);
+            humanUid = entMan.SpawnEntity("MobHuman", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+            heldItem = entMan.SpawnEntity("Crowbar", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+
+            Assert.That(handsSystem.TryPickupAnyHand(humanUid, heldItem), Is.True);
+        });
+
+        await server.WaitPost(() => entMan.DeleteEntity(gridUid));
+        await pair.RunTicksSync(5);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(entMan.EntityExists(humanUid), Is.True);
+                Assert.That(entMan.EntityExists(heldItem), Is.True);
+            });
+
+            var humanXform = entMan.GetComponent<TransformComponent>(humanUid);
+            var heldItemXform = entMan.GetComponent<TransformComponent>(heldItem);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(humanXform.ParentUid, Is.EqualTo(testMap.MapUid));
+                Assert.That(humanXform.GridUid, Is.Null);
+                Assert.That(heldItemXform.ParentUid, Is.EqualTo(humanUid));
+            });
+        });
+
+        await pair.CleanReturnAsync();
+    }
+
+    [Test]
+    public async Task DeletingGridPreservesMobHumanAndLooseBackpack()
+    {
+        await using var pair = await PoolManager.GetServerClient();
+        var server = pair.Server;
+        var testMap = await pair.CreateTestMap();
+
+        var entMan = server.ResolveDependency<IEntityManager>();
+        var mapManager = server.ResolveDependency<IMapManager>();
+        var mapSystem = entMan.System<SharedMapSystem>();
+        var shipHull = entMan.System<SharedShipHullSystem>();
+
+        EntityUid gridUid = default;
+        EntityUid humanUid = default;
+        EntityUid backpackUid = default;
+
+        await server.WaitAssertion(() =>
+        {
+            gridUid = SpawnSingleTileGrid(mapManager, mapSystem, testMap.MapId, shipHull.IntactHullTileId, out _);
+            humanUid = entMan.SpawnEntity("MobHuman", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+            backpackUid = entMan.SpawnEntity("ClothingBackpack", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+        });
+
+        await server.WaitPost(() => entMan.DeleteEntity(gridUid));
+        await pair.RunTicksSync(5);
+
+        await server.WaitAssertion(() =>
+        {
+            Assert.Multiple(() =>
+            {
+                Assert.That(entMan.EntityExists(humanUid), Is.True);
+                Assert.That(entMan.EntityExists(backpackUid), Is.True);
+                Assert.That(entMan.HasComponent<GhostComponent>(humanUid), Is.False);
+            });
+
+            var playerXform = entMan.GetComponent<TransformComponent>(humanUid);
+            var backpackXform = entMan.GetComponent<TransformComponent>(backpackUid);
+
+            Assert.Multiple(() =>
+            {
+                Assert.That(playerXform.ParentUid, Is.EqualTo(testMap.MapUid));
+                Assert.That(playerXform.GridUid, Is.Null);
+                Assert.That(backpackXform.ParentUid, Is.EqualTo(testMap.MapUid));
+                Assert.That(backpackXform.GridUid, Is.Null);
             });
         });
 

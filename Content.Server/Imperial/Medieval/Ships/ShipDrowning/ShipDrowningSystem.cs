@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using Content.Shared.Imperial.Medieval.Ships.Hull;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
+using Content.Shared.Movement.Components;
 using Content.Shared.Maps;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Maths;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Ships.ShipDrowning;
@@ -24,6 +26,7 @@ public sealed class ShipDrowningSystem : EntitySystem
     public override void Initialize()
     {
         _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(UpdateDelaySeconds);
+        SubscribeLocalEvent<MapGridComponent, EntityTerminatingEvent>(OnGridTerminating);
         SubscribeLocalEvent<ShipDrowningComponent, EntityTerminatingEvent>(OnShipTerminating);
     }
 
@@ -81,6 +84,19 @@ public sealed class ShipDrowningSystem : EntitySystem
 
     private void OnShipTerminating(EntityUid uid, ShipDrowningComponent component, ref EntityTerminatingEvent args)
     {
+        RescueGridChildrenToMap(uid);
+    }
+
+    private void OnGridTerminating(EntityUid uid, MapGridComponent component, ref EntityTerminatingEvent args)
+    {
+        if (HasComp<ShipDrowningComponent>(uid))
+            return;
+
+        RescueGridChildrenToMap(uid);
+    }
+
+    private void RescueGridChildrenToMap(EntityUid uid)
+    {
         var shipXform = Transform(uid);
         if (!_map.TryGetMap(shipXform.MapID, out var mapUid))
             return;
@@ -92,7 +108,7 @@ public sealed class ShipDrowningSystem : EntitySystem
             if (child == uid || TerminatingOrDeleted(child))
                 continue;
 
-            if (childXform.GridUid != uid && childXform.ParentUid != uid)
+            if (childXform.ParentUid != uid)
                 continue;
 
             _gridChildren.Add(child);
@@ -107,6 +123,33 @@ public sealed class ShipDrowningSystem : EntitySystem
             childXform.GridTraversal = false;
             _transform.SetCoordinates(child, childXform, new EntityCoordinates(mapUid.Value, mapCoordinates.Position), rotation: worldRotation);
             childXform.GridTraversal = traversal;
+        }
+
+        UpdateMoverRelativeEntities(uid, mapUid.Value);
+    }
+
+    private void UpdateMoverRelativeEntities(EntityUid gridUid, EntityUid mapUid)
+    {
+        var oldRelativeRotation = Angle.Zero;
+        if (TryComp<TransformComponent>(gridUid, out var oldRelativeXform))
+            oldRelativeRotation = _transform.GetWorldRotation(oldRelativeXform);
+
+        var newRelativeRotation = Angle.Zero;
+        if (TryComp<TransformComponent>(mapUid, out var newRelativeXform))
+            newRelativeRotation = _transform.GetWorldRotation(newRelativeXform);
+
+        var diff = newRelativeRotation - oldRelativeRotation;
+        var moverEnumerator = EntityQueryEnumerator<InputMoverComponent>();
+        while (moverEnumerator.MoveNext(out var moverUid, out var mover))
+        {
+            if (mover.RelativeEntity != gridUid)
+                continue;
+
+            mover.TargetRelativeRotation -= diff;
+            mover.RelativeRotation -= diff;
+            mover.RelativeEntity = mapUid;
+            mover.LerpTarget = TimeSpan.Zero;
+            Dirty(moverUid, mover);
         }
     }
 }

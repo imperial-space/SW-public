@@ -15,6 +15,7 @@
 - type: entity
   id: WaterPump
   name: водяная помпа
+  description: используйте это, чтобы выкачать воду прочь из вашего корабля
   parent: WoodenSupportWall
   components:
   - type: Sprite
