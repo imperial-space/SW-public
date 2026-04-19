@@ -1,3 +1,4 @@
+using System;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
 using Content.Shared.Ghost;
@@ -82,8 +83,9 @@ public sealed class SharedSailSystem : EntitySystem
     {
         var time = 7 - _skills.GetSkillLevel(playerEntity, "Agility") * 0.15f -
                    _skills.GetSkillLevel(playerEntity, "Intelligence") * 0.15f;
+        time = Math.Max(1.0f, time);
 
-        var doAfterArgs = new DoAfterArgs(EntityManager, playerEntity, time, new SailFoldEvent(), targetEntity, playerEntity)
+        var doAfterArgs = new DoAfterArgs(EntityManager, playerEntity, time, new SailFoldEvent(), targetEntity, targetEntity)
         {
             MovementThreshold = 0.5f,
             BreakOnMove = true,

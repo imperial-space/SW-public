@@ -1,3 +1,4 @@
+using System;
 using Content.Shared._RD.Weight.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Hands.EntitySystems;
@@ -63,6 +64,7 @@ public sealed class WaterPumpSystem : EntitySystem
             return;
 
         var time = 7 -_skills.GetSkillLevel(playerEntity, "Agility") * 0.05f - _skills.GetSkillLevel(playerEntity, "Intelligence") * 0.25f;
+        time = Math.Max(1.0f, time);
         var sdoAfter = new DoAfterArgs(EntityManager,
             playerEntity,
             time,

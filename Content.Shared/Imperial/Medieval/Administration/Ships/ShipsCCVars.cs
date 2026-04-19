@@ -24,15 +24,15 @@ public sealed class ShipsCCVars : CVars
     public static readonly CVarDef<float> WindDelay =
         CVarDef.Create("ships.winddelay", 1f, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
-    /// как часто появляются волны
+    /// Частота спавна волн
     /// </summary>
     public static readonly CVarDef<float> WaveDelay =
         CVarDef.Create("ships.wavedelay", 1f, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
-    /// Минимальный уровень для поломки лодки (Шторма если кто не понял)
+    /// Работает ли ветер
     /// </summary>
     public static readonly CVarDef<bool> WindEnabled =
-        CVarDef.Create("ships.waveenabled", true, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.windenabled", true, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// сила с которой ветер толкает
     /// </summary>
@@ -48,6 +48,20 @@ public sealed class ShipsCCVars : CVars
     /// </summary>
     public static readonly CVarDef<float> StormLevel =
         CVarDef.Create("ships.stormlevel", 1f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> StormChangeTime =
+        CVarDef.Create("ships.stormchangetime", 60f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> StormIncreaseChance =
+        CVarDef.Create("ships.stormincreasechance", 0.10f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> StormDecreaseChance =
+        CVarDef.Create("ships.stormdecreasechance", 0.15f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> StormMinLevel =
+        CVarDef.Create("ships.stormminlevel", 1f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> StormMaxLevel =
+        CVarDef.Create("ships.stormmaxlevel", 4f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> StormRainLevel =
+        CVarDef.Create("ships.stormrainlevel", 3f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<string> StormRainWeather =
+        CVarDef.Create("ships.stormrainweather", "Rain", CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// скорость с которой волна спавнится
     /// </summary>

@@ -1,66 +1,52 @@
-using Content.Server.Administration.Logs;
-using Content.Server.Imperial.Medieval.Ships.Wave;
-using Content.Server.MagicBarrier.Components;
-using Content.Shared.Database;
+using System;
+using Content.Server.Imperial.Medieval.Ships.Sea.Generation;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Ships.ShipTeleporting;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class ShipTeleportSystem : EntitySystem
 {
+    private const int SeaMatrixSize = 5;
+
     [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly WaveSystem _wave = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
 
     private TimeSpan _nextCheckTime;
-    /// <inheritdoc/>
-    public override void Initialize()
-    {
-
-    }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
         var curTime = _timing.CurTime;
+        if (curTime <= _nextCheckTime)
+            return;
 
-        if (curTime > _nextCheckTime)
+        _nextCheckTime = curTime + TimeSpan.FromSeconds(_cfg.GetCVar(ShipsCCVars.WaveDelay));
+        foreach (var seaComponent in EntityManager.EntityQuery<SeaComponent>())
         {
-            _nextCheckTime = curTime + TimeSpan.FromSeconds(_cfg.GetCVar(ShipsCCVars.WaveDelay));
+            if (seaComponent.Disabled)
+                continue;
 
-            foreach (var seaComponent in EntityManager.EntityQuery<SeaComponent>())
+            var sea = seaComponent.Owner;
+            var entities = new HashSet<Entity<MapGridComponent>>();
+            _lookup.GetEntitiesOnMap(_transform.GetMapId(sea), entities);
+            foreach (var shipComp in entities)
             {
+                var ship = shipComp.Owner;
+                var coords = _transform.GetMapCoordinates(ship);
+                var tpDist = _cfg.GetCVar(ShipsCCVars.MapScale) + _cfg.GetCVar(ShipsCCVars.TeleportRange);
+                if (Math.Abs(coords.X) <= tpDist && Math.Abs(coords.Y) <= tpDist)
+                    continue;
 
-                var sea = seaComponent.Owner;
-
-                var entities = new HashSet<Entity<MapGridComponent>>();
-                _lookup.GetEntitiesOnMap(_transform.GetMapId(sea), entities);
-                foreach (var shipComp in entities)
-                {
-                    var ship = shipComp.Owner;
-
-
-                    var coords = _transform.GetMapCoordinates(ship);
-                    if (Math.Abs(coords.X) > 250 || Math.Abs(coords.Y) > 250)
-                    {
-                        TeleportShip(ship, coords);
-                    }
-                }
+                TeleportShip(ship, coords);
             }
         }
     }
@@ -71,11 +57,13 @@ public sealed class ShipTeleportSystem : EntitySystem
         var tpRange = _cfg.GetCVar(ShipsCCVars.TeleportRange);
         var tpDist = mapScale + tpRange;
         var newcoords = coords.Position;
-        foreach (var magicBarrier in EntityManager.EntityQuery<MagicBarrierComponent>())
+
+        foreach (var seasGenerationState in EntityManager.EntityQuery<SeasGenerationStateComponent>())
         {
-            var seematrix = magicBarrier.SeaMatrix;
-            if ( seematrix is null)
+            var seematrix = seasGenerationState.SeaMatrix;
+            if (seematrix is null)
                 continue;
+
             var seamap = seematrix.FoundSell(coords.MapId, seematrix);
             if (seamap is null)
                 continue;
@@ -103,7 +91,6 @@ public sealed class ShipTeleportSystem : EntitySystem
                     y += 1;
                     newcoords.Y = -tpDist;
                 }
-
                 else
                 {
                     y -= 1;
@@ -111,19 +98,31 @@ public sealed class ShipTeleportSystem : EntitySystem
                 }
             }
 
-            var mapId = seematrix.GetCell(x,y).SeaId;
+            if (x < 0 || x >= SeaMatrixSize || y < 0 || y >= SeaMatrixSize)
+            {
+                ApplyDrowningPenalty(ship, coords);
+                continue;
+            }
+
+            var mapId = seematrix.GetCell(x, y).SeaId;
             if (mapId == new MapId(-1))
             {
-                EnsureComp<ShipDrowningComponent>(ship, out var comp);
-                comp.DrownLevel += (int)Math.Abs(coords.Position.X) + (int)Math.Abs(coords.Position.Y);
+                ApplyDrowningPenalty(ship, coords);
+                continue;
             }
 
             var nmapcoords = new MapCoordinates(newcoords, mapId);
-
             _transform.SetMapCoordinates(ship, nmapcoords);
             break;
         }
+    }
 
-
+    private void ApplyDrowningPenalty(EntityUid ship, MapCoordinates coords)
+    {
+        EnsureComp<ShipDrowningComponent>(ship, out var comp);
+        var previousLevel = comp.DrownLevel;
+        comp.DrownLevel += (int) Math.Abs(coords.Position.X) + (int) Math.Abs(coords.Position.Y);
+        if (comp.DrownLevel != previousLevel)
+            Dirty(ship, comp);
     }
 }

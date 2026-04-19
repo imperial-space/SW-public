@@ -1,6 +1,6 @@
-using Content.Shared._RD.Weight.Systems;
+using System;
 using Content.Shared.DoAfter;
-using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Ships.Hull;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Interaction;
 using Content.Shared.Maps;
@@ -8,23 +8,19 @@ using Content.Shared.Popups;
 using Content.Shared.Stacks;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Imperial.Medieval.Ships.Repairing;
 
-/// <summary>
-/// This handles...
-/// </summary>
 public sealed class ShipRepairSystem : EntitySystem
 {
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private readonly SharedSkillsSystem  _skills = default!;
+    [Dependency] private readonly SharedSkillsSystem _skills = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly ITileDefinitionManager _tileDefinitionManager = default!;
+    [Dependency] private readonly SharedShipHullSystem _shipHull = default!;
     [Dependency] private readonly SharedStackSystem _stack = default!;
-    /// <inheritdoc/>
+
     public override void Initialize()
     {
         SubscribeLocalEvent<RepairMaterialComponent, AfterInteractEvent>(OnAfterInteract);
@@ -34,32 +30,31 @@ public sealed class ShipRepairSystem : EntitySystem
     private void OnAfterInteract(EntityUid uid, RepairMaterialComponent component, AfterInteractEvent args)
     {
         var playerEntity = args.User;
-
-        if (args.Handled || !args.CanReach )
+        if (args.Handled || !args.CanReach)
             return;
 
         var boat = _transform.GetParentUid(playerEntity);
-
         var clickEntity = args.ClickLocation.EntityId;
         if (boat != clickEntity)
             return;
-        TryComp<MapGridComponent>(boat, out var boatComponent);
-        if (boatComponent == null)
-            return;
-        _map.TryGetTileRef(boat, boatComponent, args.ClickLocation,  out var tile);
-        _tileDefinitionManager.TryGetDefinition("FloorBrokenWoodDDD", out var floor);
-        _tileDefinitionManager.TryGetDefinition(tile.Tile.TypeId, out var test);
-        if (test == null)
+
+        if (!TryComp<MapGridComponent>(boat, out var boatComponent))
             return;
 
-        if (floor == null || tile.Tile.TypeId != floor.TileId)
+        if (!_map.TryGetTileRef(boat, boatComponent, args.ClickLocation, out var tile))
             return;
-        _popup.PopupClient($"Ты начинаешь закрывать дыры доской", playerEntity);
-        var time = 7 -_skills.GetSkillLevel(playerEntity, "Agility") * 0.05f - _skills.GetSkillLevel(playerEntity, "Intelligence") * 0.25f;
-        var sdoAfter = new DoAfterArgs(EntityManager,
+
+        if (!_shipHull.TryGetPreviousDamageTile(tile.Tile.TypeId, out _))
+            return;
+
+        _popup.PopupClient("Ты начинаешь закрывать дыры доской", playerEntity);
+        var time = 7 - _skills.GetSkillLevel(playerEntity, "Agility") * 0.05f - _skills.GetSkillLevel(playerEntity, "Intelligence") * 0.25f;
+        time = Math.Max(1.0f, time);
+
+        var doAfter = new DoAfterArgs(EntityManager,
             playerEntity,
             time,
-            new RepairUseEvent(),
+            new RepairUseEvent(tile.GridIndices),
             args.Used,
             boat,
             args.Used)
@@ -73,21 +68,27 @@ public sealed class ShipRepairSystem : EntitySystem
             BreakOnDropItem = true,
             BreakOnHandChange = true,
             NeedHand = true,
-
         };
-        _doAfter.TryStartDoAfter(sdoAfter);
-        component.TileCord = tile.GridIndices;
+
+        _doAfter.TryStartDoAfter(doAfter);
     }
 
     private void OnRepairUse(EntityUid uid, RepairMaterialComponent component, RepairUseEvent args)
     {
-        if (args.Cancelled || args.Target == null)
+        if (args.Cancelled || args.Target is null)
             return;
-        TryComp<MapGridComponent>(args.Target, out var mapGrid);
-        _tileDefinitionManager.TryGetDefinition("woodenfloor", out var floor);
-        if (mapGrid == null || floor == null)
+
+        if (!TryComp<MapGridComponent>(args.Target, out var mapGrid))
             return;
-        _map.SetTile(args.Target.Value, mapGrid, component.TileCord, new Tile(floor.TileId));
+
+        if (!_map.TryGetTileRef(args.Target.Value, mapGrid, args.TileCoordinates, out var currentTile) || currentTile.Tile.IsEmpty)
+            return;
+
+        if (!_shipHull.TryGetPreviousDamageTile(currentTile.Tile.TypeId, out var repairedTile))
+            return;
+
+        _map.SetTile(args.Target.Value, mapGrid, args.TileCoordinates, new Tile(repairedTile));
         _stack.Use(uid, 1);
+        args.Handled = true;
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Numerics;
 using Content.Shared._RD.Weight.Components;
 using Content.Shared._RD.Weight.Systems;
@@ -49,6 +50,9 @@ public sealed class OarSystem : EntitySystem
         if (args.Handled || !args.CanReach )
             return;
 
+        if (!_skills.HasSkill(playerEntity, SharedSkillsSystem.StrengthId))
+            return;
+
         var boat = _transform.GetParentUid(playerEntity);
 
         if (boat == args.ClickLocation.EntityId)
@@ -61,6 +65,7 @@ public sealed class OarSystem : EntitySystem
             return;
 
         var time = 7 -_skills.GetSkillLevel(playerEntity, "Agility") * 0.3f;
+        time = Math.Max(1.0f, time);
         var sdoAfter = new DoAfterArgs(EntityManager,
             playerEntity,
             time,
