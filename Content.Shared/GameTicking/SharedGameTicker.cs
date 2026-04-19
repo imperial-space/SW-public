@@ -202,6 +202,9 @@ namespace Content.Shared.GameTicking
         public int PlayerCount { get; }
         public RoundEndPlayerInfo[] AllPlayersEndInfo { get; }
 
+        // Imperial Medieval Last Words
+        public string[] LastWords { get; }
+
         /// <summary>
         /// Sound gets networked due to how entity lifecycle works between client / server and to avoid clipping.
         /// </summary>
@@ -214,7 +217,8 @@ namespace Content.Shared.GameTicking
             int roundId,
             int playerCount,
             RoundEndPlayerInfo[] allPlayersEndInfo,
-            ResolvedSoundSpecifier? restartSound)
+            ResolvedSoundSpecifier? restartSound,
+            string[] lastWords) // Imperial Medieval Last Words
         {
             GamemodeTitle = gamemodeTitle;
             RoundEndText = roundEndText;
@@ -223,6 +227,7 @@ namespace Content.Shared.GameTicking
             PlayerCount = playerCount;
             AllPlayersEndInfo = allPlayersEndInfo;
             RestartSound = restartSound;
+            LastWords = lastWords; // Imperial Medieval Last Words
         }
     }
 
