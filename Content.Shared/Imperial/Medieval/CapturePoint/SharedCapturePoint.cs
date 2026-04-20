@@ -21,19 +21,6 @@ public sealed class CapturePointMessengerEvent : EntityEventArgs
 }
 
 [Serializable, NetSerializable]
-public sealed class CapturePointOverlayUpdateEvent : EntityEventArgs
-{
-    public bool Active;
-    public NetEntity Point;
-
-    public CapturePointOverlayUpdateEvent(bool active, NetEntity point = default)
-    {
-        Active = active;
-        Point = point;
-    }
-}
-
-[Serializable, NetSerializable]
 public sealed class CapturePointResultEvent : EntityEventArgs
 {
     public NetEntity Point;
