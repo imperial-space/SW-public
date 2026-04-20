@@ -188,14 +188,14 @@
   - type: Sprite
     sprite: Imperial/Medieval/Forged/upgrades.rsi
     state: magic_arm_cannon_item
-  - type: BasicEntityAmmoProvider
-    proto: MedievalProjectileMagicArrowKunaiSenior
-    capacity: 1
-    count: 1
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 1.5f
+    rechargeCooldown: 0.75
     rechargeSound:
       path: /Audio/Weapons/Guns/MagIn/kinetic_reload.ogg
+  - type: BasicEntityAmmoProvider
+    proto: BulletKinetic
+    capacity: 1
+    count: 1
   - type: Gun
     resetOnHandSelected: false
     fireRate: 0.4

@@ -2,20 +2,20 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
+using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Forged;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.DurabilityDisplay.Components;
 using Content.Shared.Imperial.LocalLight;
+using Content.Shared.Imperial.Medieval.Additions;
 using Content.Shared.Imperial.Medieval.Lycantropy;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.MedievalMeleeResource.Components;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Overlays;
+using Content.Shared.Popups;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
-using Content.Shared.Trigger;
-using Content.Shared.Trigger.Components.Effects;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Timing;
@@ -29,9 +29,10 @@ public sealed class ForgedAbilitySystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SharedExplosionSystem _explosionSystem = default!;
 
     public override void Initialize()
     {
@@ -42,6 +43,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
         SubscribeLocalEvent<ForgedComponent, ForgedSilaActionEvent>(OnSila);
         SubscribeLocalEvent<ForgedComponent, ForgedRepairActionEvent>(OnRepair);
         SubscribeLocalEvent<ForgedComponent, ForgedExplosiveActionEvent>(OnExplosiveTrigger);
+        SubscribeLocalEvent<ForgedComponent, ForgedInvisibilityNimbusActionEvent>(OnInvisibleNimbus);
     }
 
     public void ExecuteAbility(EntityUid forgedUid, EntityUid moduleUid, string abilityId)
@@ -91,7 +93,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
                 LeftCannon(forgedUid);
                 break;
             case "Invisibility_Nimbus":
-                NimbusStealth(forgedUid);
+                _actions.AddAction(forgedUid, "InvisibileNimbusAction");
                 break;
             case "Torso_Explosion":
                 SetupExplosive(forgedUid);
@@ -132,30 +134,23 @@ public sealed class ForgedAbilitySystem : EntitySystem
         SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon", false);
     }
 
-    private void NimbusStealth(EntityUid forgedUid)
-    {
-        var stealth = EnsureComp<StealthComponent>(forgedUid);
-        EnsureComp<StealthOnMoveComponent>(forgedUid); // Чтобы стелс работал корректно
-        Dirty(forgedUid, stealth);
-    }
-
     private void SetupExplosive(EntityUid forgedUid)
     {
-        EnsureComp<ExplosionOnTriggerComponent>(forgedUid);
         _actions.AddAction(forgedUid, "ExplosiveAction");
     }
-
-
     TimeSpan _lastPressExplose = TimeSpan.Zero;
     private void OnExplosiveTrigger(EntityUid uid, ForgedComponent comp, ForgedExplosiveActionEvent args)
     {
         if (args.Handled) return;
 
-        // Проверка на двойное нажатие (1 секунда)
-        if (_gameTiming.CurTime - _lastPressExplose < TimeSpan.FromSeconds(1))
+        _popup.PopupEntity("Нажмите еще раз!", uid, uid);
+
+        RemComp<ShieldOnStartupComponent>(uid);
+
+        if (_gameTiming.CurTime - _lastPressExplose < TimeSpan.FromSeconds(2))
         {
-            var ev = new TriggerEvent(uid, "ss");
-            RaiseLocalEvent(uid, ref ev, true);
+            _explosionSystem.QueueExplosion(uid, "Default", 250, 5, 200);
+            _actions.RemoveAction(uid, args.Action.Owner);
         }
         else
         {
@@ -166,41 +161,12 @@ public sealed class ForgedAbilitySystem : EntitySystem
     }
     private void LeftBlade(EntityUid forgedUid)
     {
-        string handId = "body_part_slot_left_hand";
-
-        if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
-            return;
-
-        if (container.ContainedEntities.Count > 0)
-        {
-            var oldItem = container.ContainedEntities[0];
-            _containerSystem.Remove(oldItem, container);
-            QueueDel(oldItem);
-        }
-
-        var item = EntityManager.SpawnEntity("ForgedArmBlade", MapCoordinates.Nullspace);
-        RemComp<MedievalMeleeResourceComponent>(item);
-        RemComp<DurabilityDisplayComponent>(item);
-        _containerSystem.Insert(item, container);
+        SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmBlade", true);
     }
 
     private void RightBlade(EntityUid forgedUid)
     {
-        string handId = "body_part_slot_right_hand";
-
-        if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
-            return;
-
-        if (container.ContainedEntities.Count > 0)
-        {
-            var oldItem = container.ContainedEntities[0];
-            _containerSystem.Remove(oldItem, container);
-            QueueDel(oldItem);
-        }
-
-        var item = EntityManager.SpawnEntity("ForgedArmBlade", MapCoordinates.Nullspace);
-
-        _containerSystem.Insert(item, container);
+        SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmBlade", true);
     }
 
     private void LeftCrossbow(EntityUid forgedUid)
@@ -270,7 +236,29 @@ public sealed class ForgedAbilitySystem : EntitySystem
         if (HasComp<WerewolfBloodFeelComponent>(uid)) RemComp<WerewolfBloodFeelComponent>(uid);
         else EnsureComp<WerewolfBloodFeelComponent>(uid);
 
-        _actions.SetToggled(args.Action.Owner, !args.Toggle);
+        if (!TryComp<ActionComponent>(args.Action, out var actionComponent)) return;
+        _actions.SetToggled(args.Action.Owner, !actionComponent.Toggled);
+        args.Handled = true;
+    }
+
+    private void OnInvisibleNimbus(EntityUid uid, ForgedComponent comp, ForgedInvisibilityNimbusActionEvent args)
+    {
+        if (args.Handled) return;
+
+        if (HasComp<StealthComponent>(uid))
+        {
+            RemComp<StealthComponent>(uid);
+            RemComp<StealthOnMoveComponent>(uid);
+
+        }
+        else
+        {
+            EnsureComp<StealthComponent>(uid);
+            EnsureComp<StealthOnMoveComponent>(uid);
+        }
+
+        if (!TryComp<ActionComponent>(args.Action, out var actionComponent)) return;
+        _actions.SetToggled(args.Action.Owner, !actionComponent.Toggled);
         args.Handled = true;
     }
 

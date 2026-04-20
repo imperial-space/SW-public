@@ -98,11 +98,11 @@
   components:
   - type: Sprite
     sprite: Imperial/Medieval/Forged/upgrades.rsi
-    state: torso_explosive_item
+    state: self_destruction_item
     drawdepth: Items
   - type: ForgedModule
     partSlot: torso_upgrade
-    layerState: iron_torso_explosive
+    layerState: self_destruction
     rsiPath: Imperial/Medieval/Forged/upgrades.rsi
     resistanceModifier: -0.1
     speedModifier: 0.1

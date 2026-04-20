@@ -39,7 +39,11 @@
             "name": "invisibility_nimbus"
         },
         {
-            "name": "invisibility_nimbus_item"
+            "name": "self_destruction",
+            "directions": 4
+        },
+        {
+            "name": "self_destruction_item"
         }
     ]
 }
