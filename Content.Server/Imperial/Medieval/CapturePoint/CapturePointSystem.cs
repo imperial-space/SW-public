@@ -35,8 +35,6 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
     [Dependency] private readonly SharedUserInterfaceSystem _userInterface = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
 
-    private readonly Dictionary<EntityUid, HashSet<EntityUid>> _overlayRecipients = new();
-
     private float _updateTimer;
     private const float UpdateInterval = 0.5f;
 
@@ -46,23 +44,7 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
 
         SubscribeLocalEvent<CapturePointComponent, InteractHandEvent>(OnInteractHand);
         SubscribeLocalEvent<CapturePointComponent, StartCapturePointMessage>(OnStartCapture);
-        SubscribeLocalEvent<CapturePointComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SpawnAfterInteractComponent, BeforeSpawnAfterInteractEvent>(OnBeforeSpawn);
-    }
-
-    private void OnShutdown(Entity<CapturePointComponent> ent, ref ComponentShutdown args)
-    {
-        if (!_overlayRecipients.TryGetValue(ent, out var overlaySet))
-            return;
-
-        var ev = new CapturePointOverlayUpdateEvent(active: false);
-        foreach (var recipient in overlaySet)
-        {
-            if (_playerManager.TryGetSessionByEntity(recipient, out var session))
-                RaiseNetworkEvent(ev, session);
-        }
-
-        _overlayRecipients.Remove(ent);
     }
 
     private void OnInteractHand(Entity<CapturePointComponent> ent, ref InteractHandEvent args)
@@ -187,9 +169,6 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
 
         _ui.CloseUi(ent.Owner, CapturePointUiKey.Key);
 
-        if (_overlayRecipients.TryGetValue(ent, out var overlaySet))
-            SendOverlayToSet(ent, overlaySet);
-
         ApplyStatusEffectToEnemyFaction(ent);
         NotifyEnemyLeader(ent);
 
@@ -216,14 +195,13 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
     private void UpdateCapturePoint(Entity<CapturePointComponent> ent)
     {
         var comp = ent.Comp;
+
         var newCounts = new int[comp.AllowedFactions.Count];
-        var allInZone = new HashSet<EntityUid>();
 
         for (var i = 0; i < comp.AllowedFactions.Count; i++)
         {
             var entities = GetFactionEntitiesInRadius(ent, comp.AllowedFactions[i]);
             newCounts[i] = entities.Count;
-            allInZone.UnionWith(entities);
         }
 
         var countsChanged = false;
@@ -239,9 +217,10 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
 
         if (countsChanged)
         {
-            var viewer = _userInterface.GetActors(ent.Owner, CapturePointUiKey.Key).First();
+            var actors = _userInterface.GetActors(ent.Owner, CapturePointUiKey.Key);
+            var viewer = actors.FirstOrDefault();
 
-            if (TryComp<MedievalFactionMemberComponent>(viewer, out var member))
+            if (viewer != default && TryComp<MedievalFactionMemberComponent>(viewer, out var member))
             {
                 var allies = GetFactionEntitiesInRadius(ent, member.Faction);
                 var allyNames = allies.Select(a => Name(a)).ToList();
@@ -259,36 +238,6 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
                     estimatedDuration,
                     canStart,
                     reason));
-            }
-        }
-
-        if (!_overlayRecipients.TryGetValue(ent, out var overlaySet))
-        {
-            overlaySet = new HashSet<EntityUid>();
-            _overlayRecipients[ent] = overlaySet;
-        }
-
-        foreach (var left in overlaySet.Except(allInZone).ToList())
-        {
-            if (_playerManager.TryGetSessionByEntity(left, out var sess))
-                RaiseNetworkEvent(new CapturePointOverlayUpdateEvent(active: false), sess);
-
-            overlaySet.Remove(left);
-        }
-
-        var newEntrants = new HashSet<EntityUid>(allInZone);
-        newEntrants.ExceptWith(overlaySet);
-
-        if (newEntrants.Count > 0)
-        {
-            var ev = new CapturePointOverlayUpdateEvent(active: true, point: GetNetEntity(ent));
-            foreach (var entrant in newEntrants)
-            {
-                if (!_playerManager.TryGetSessionByEntity(entrant, out var session))
-                    continue;
-
-                RaiseNetworkEvent(ev, session);
-                overlaySet.Add(entrant);
             }
         }
 
@@ -388,19 +337,6 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
                 for (var i = 0; i < amount; i++)
                     Spawn(proto, spawnCoords);
             }
-        }
-    }
-
-    private void SendOverlayToSet(Entity<CapturePointComponent> ent, HashSet<EntityUid> overlaySet)
-    {
-        if (overlaySet.Count == 0)
-            return;
-
-        var ev = new CapturePointOverlayUpdateEvent(active: true, point: GetNetEntity(ent));
-        foreach (var recipient in overlaySet)
-        {
-            if (_playerManager.TryGetSessionByEntity(recipient, out var session))
-                RaiseNetworkEvent(ev, session);
         }
     }
 
@@ -542,7 +478,6 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
         var result = new HashSet<EntityUid>();
 
         var xform = Transform(ent);
-
         var (pos, rot) = _transform.GetWorldPositionRotation(ent);
 
         var half = ent.Comp.Radius;
@@ -559,7 +494,7 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
             if (!TryComp<MedievalFactionMemberComponent>(uid, out var member))
                 continue;
 
-            #if !DEBUG
+            #if RELEASE
             if (!HasComp<ActorComponent>(uid))
                 continue;
             #endif
@@ -576,7 +511,7 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
         return result;
     }
 
-    private void OnBeforeSpawn(Entity<SpawnAfterInteractComponent> _, ref BeforeSpawnAfterInteractEvent args)
+    private void OnBeforeSpawn(Entity<SpawnAfterInteractComponent> ent, ref BeforeSpawnAfterInteractEvent args)
     {
         if (args.User is not { } user)
             return;
@@ -597,6 +532,7 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
             if (rotated.Contains(userPos.Position))
             {
                 args.Cancelled = true;
+                _popup.PopupEntity(Loc.GetString("construction-system-cannot-start"), ent, user);
                 return;
             }
         }

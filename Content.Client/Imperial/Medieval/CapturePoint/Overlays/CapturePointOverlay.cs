@@ -45,9 +45,6 @@ public sealed class CapturePointOverlay : Overlay
 
     protected override void Draw(in OverlayDrawArgs args)
     {
-        if (!_system.OverlayActive)
-            return;
-
         var pointUid = _entManager.GetEntity(_system.OverlayPointEntity);
         if (!_entManager.TryGetComponent<CapturePointComponent>(pointUid, out var comp))
             return;
