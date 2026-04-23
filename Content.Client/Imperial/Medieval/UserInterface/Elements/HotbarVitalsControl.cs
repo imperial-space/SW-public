@@ -306,7 +306,11 @@ public sealed class HotbarVitalsControl : BoxContainer
         if (WidthReference == null)
             return;
 
-        var width = MathF.Round(WidthReference.Size.X * UIScale) / UIScale;
+        var referenceWidth = WidthReference.Size.X;
+        if (referenceWidth <= 0f)
+            referenceWidth = WidthReference.DesiredSize.X;
+
+        var width = MathF.Round(referenceWidth * UIScale) / UIScale;
         if (width <= 0f)
             return;
 
