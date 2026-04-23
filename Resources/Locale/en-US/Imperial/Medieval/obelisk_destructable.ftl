@@ -20,3 +20,6 @@ obelisk-destructable-collegium-phase-destroyed = The obelisk of the Collegium fa
 obelisk-destructable-miner-phase-damaged = The obelisk of the Miners faction has been damaged!
 obelisk-destructable-miner-phase-critical = The obelisk of the Miners faction is on the verge of destruction!
 obelisk-destructable-miner-phase-destroyed = The obelisk of the Miners faction has been destroyed!
+obelisk-destructable-tribe-phase-damaged = The obelisk of the Tribe faction has been damaged!
+obelisk-destructable-tribe-phase-critical = The obelisk of the Tribe faction is on the verge of destruction!
+obelisk-destructable-tribe-phase-destroyed = The obelisk of the Tribe faction has been destroyed!

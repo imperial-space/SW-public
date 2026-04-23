@@ -20,3 +20,6 @@ obelisk-destructable-collegium-phase-destroyed = Обелиск коллегии
 obelisk-destructable-miner-phase-damaged = Обелиск шахтёров повреждён! Следующие 5 минут он будет неуязвим к урону
 obelisk-destructable-miner-phase-critical = Обелиск шахтёров на грани уничтожения! Следующие 5 минут он будет неуязвим к урону
 obelisk-destructable-miner-phase-destroyed = Обелиск шахтёров разрушен!
+obelisk-destructable-tribe-phase-damaged = Обелиск племени повреждён! Следующие 5 минут он будет неуязвим к урону
+obelisk-destructable-tribe-phase-critical = Обелиск племени на грани уничтожения! Следующие 5 минут он будет неуязвим к урону
+obelisk-destructable-tribe-phase-destroyed = Обелиск племени разрушен!

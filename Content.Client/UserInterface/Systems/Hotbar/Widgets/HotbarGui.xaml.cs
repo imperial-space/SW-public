@@ -13,6 +13,9 @@ public sealed partial class HotbarGui : UIWidget
         RobustXamlLoader.Load(this);
         StatusPanelRight.SetSide(HandUILocation.Right);
         StatusPanelLeft.SetSide(HandUILocation.Left);
+        // imperial medieval statusbars start
+        VitalsControl.WidthReference = Hotbar;
+        // imperial medieval statusbars end
         var hotbarController = UserInterfaceManager.GetUIController<HotbarUIController>();
 
         hotbarController.Setup(HandContainer);
