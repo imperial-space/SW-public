@@ -2671,10 +2671,8 @@
     rootTask:
       task: SimpleHostileCompound
   - type: Speech
-  #- type: Advertise RETURN AFTER OPTIMIZATION THIS HUINYA
-  #  pack: MedievalSkeletAdvertise
-  #  minimumWait: 9
-  #  maximumWait: 28
+  - type: MedievalSpeechInFight
+    pack: MedievalSkeletAdvertise
   - type: Damageable
     damageModifierSet: MedievalRespawn
   - type: Hunger
