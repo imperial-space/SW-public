@@ -8,12 +8,23 @@ namespace Content.Client.UserInterface.Systems.Hotbar.Widgets;
 [GenerateTypedNameReferences]
 public sealed partial class HotbarGui : UIWidget
 {
+    // imperial medieval statusbars start
+    private const float EmptyHotbarColumns = 6f;
+    private const float EmptyHandsColumns = 2f;
+    private bool _handsVisible = true;
+    private bool _leftStatusVisible = true;
+    private bool _rightStatusVisible = true;
+    // imperial medieval statusbars end
+
     public HotbarGui()
     {
         RobustXamlLoader.Load(this);
         StatusPanelRight.SetSide(HandUILocation.Right);
         StatusPanelLeft.SetSide(HandUILocation.Left);
         // imperial medieval statusbars start
+        StatusPanelLeft.ReservesSpace = true;
+        StatusPanelRight.ReservesSpace = true;
+        UpdateFallbackMinSize();
         VitalsControl.WidthReference = Hotbar;
         // imperial medieval statusbars end
         var hotbarController = UserInterfaceManager.GetUIController<HotbarUIController>();
@@ -21,6 +32,14 @@ public sealed partial class HotbarGui : UIWidget
         hotbarController.Setup(HandContainer);
         LayoutContainer.SetGrowVertical(this, LayoutContainer.GrowDirection.Begin);
     }
+
+    // imperial medieval statusbars start
+    protected override void FrameUpdate(Robust.Shared.Timing.FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+        UpdateFallbackMinSize();
+    }
+    // imperial medieval statusbars end
 
     public void UpdatePanelEntityLeft(EntityUid? entity, Hand? hand)
     {
@@ -40,7 +59,43 @@ public sealed partial class HotbarGui : UIWidget
 
     public void UpdateStatusVisibility(bool left, bool right)
     {
-        StatusPanelLeft.Visible = left;
-        StatusPanelRight.Visible = right;
+        // imperial medieval statusbars start
+        // StatusPanelLeft.Visible = left;
+        // StatusPanelRight.Visible = right;
+        _leftStatusVisible = left;
+        _rightStatusVisible = right;
+        StatusPanelLeft.Visible = _handsVisible && left;
+        StatusPanelRight.Visible = _handsVisible && right;
+        // imperial medieval statusbars end
     }
+
+    // imperial medieval statusbars start
+    public void SetHandsVisibility(bool visible)
+    {
+        _handsVisible = visible;
+        StatusPanelLeft.ReservesSpace = !visible;
+        StatusPanelRight.ReservesSpace = !visible;
+        HandContainer.ReservesSpace = !visible;
+        HandContainer.Visible = visible;
+        StatusPanelLeft.Visible = visible && _leftStatusVisible;
+        StatusPanelRight.Visible = visible && _rightStatusVisible;
+        UpdateFallbackMinSize();
+    }
+
+    private void UpdateFallbackMinSize()
+    {
+        var hasHotbar = MainHotbar.ChildCount > 0 || SecondHotbar.ChildCount > 0 || HandContainer.ButtonCount > 0;
+        var slotSize = UserInterface.Controls.SlotControl.DefaultButtonSize;
+        var hotbarMinSize = hasHotbar
+            ? System.Numerics.Vector2.Zero
+            : new System.Numerics.Vector2(slotSize * EmptyHotbarColumns, slotSize);
+        var handsMinSize = hasHotbar
+            ? System.Numerics.Vector2.Zero
+            : new System.Numerics.Vector2(slotSize * EmptyHandsColumns, slotSize);
+
+        SecondHotbar.MinSize = hotbarMinSize;
+        MainHotbar.MinSize = hotbarMinSize;
+        HandContainer.MinSize = handsMinSize;
+    }
+    // imperial medieval statusbars end
 }
