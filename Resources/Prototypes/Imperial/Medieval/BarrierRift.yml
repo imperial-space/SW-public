@@ -55,7 +55,7 @@
     guardianEntities:
     - MedievalElementalEarth
     guardianOffsets:
-    - 4,0
+    - 0,3
 
 - type: entity
   id: MedievalBarrierRiftFire
@@ -79,10 +79,10 @@
     - MedievalElementalFire
     - MedievalElementalFire
     guardianOffsets:
-    - 4,4
-    - -4,4
-    - 4,-4
-    - -4,-4
+    - 3,3
+    - -3,3
+    - 3,-3
+    - -3,-3
 
 - type: entity
   id: MedievalBarrierRiftWater
@@ -133,10 +133,10 @@
     - MedievalElementalAir
     - MedievalElementalAir
     guardianOffsets:
-    - 4,4
-    - -4,4
-    - 4,-4
-    - -4,-4
+    - 3,3
+    - -3,3
+    - 3,-3
+    - -3,-3
 
 - type: entity
   id: MedievalRiftKeyEarth
