@@ -6,19 +6,22 @@ namespace Content.Shared.MeleeParry.Components
     public sealed partial class MeleeParryComponent : Component
     {
         [DataField]
-        public float ParryChanse = 0.6f;
+        public float ParryChanse = 0.6f; //Не используется это Легаси
 
         [DataField]
-        public float ParriedAgo = 3.5f;
+        public float ParriedAgo = 0.5f; //Если игрок нажал парирование, но никто его в этот момент не бил
 
         [DataField]
-        public float ParriedTime = 3.5f;
+        public float ParriedTime = 0.5f; // Окно парирования после нажатие кнопки
 
         [DataField]
         public string ParryEffect = "MedievalEffectParry";
 
         [DataField]
         public bool RealParry = true;
+
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float ParryWindow = 0f;
     }
 
     [RegisterComponent, NetworkedComponent]
@@ -28,9 +31,9 @@ namespace Content.Shared.MeleeParry.Components
         public float ParryChanse = 0.75f;
 
         [DataField]
-        public float ParriedAgo = 2.5f;
+        public float ParriedAgo = 0.5f;
 
         [DataField]
-        public float ParriedTime = 2.5f;
+        public float ParriedTime = 0.5f;
     }
 }
