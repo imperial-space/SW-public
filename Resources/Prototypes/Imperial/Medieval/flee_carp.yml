@@ -1,0 +1,116 @@
+# ── HTN: атака при HP > 50%, побег при HP ≤ 50% (с 30-секундным кд) ─────────
+
+- type: htnCompound
+  id: FleeCarpCompound
+  branches:
+    # Ветка 0 (высший приоритет): HP ≤ 50% и кд побега прошло — убегаем
+    - preconditions:
+        - !type:SelfHealthFractionGreaterPrecondition
+          value: 0.5
+          invert: true        # true когда healthFraction ≤ 0.5
+          cooldownDuration: 15  # 30 секунд кд между побегами
+      tasks:
+        - !type:HTNPrimitiveTask
+          operator: !type:UtilityOperator
+            proto: NearbyMeleeTargets
+        - !type:HTNPrimitiveTask
+          operator: !type:FleeOperator
+            targetKey: Target
+            fleeDistance: 12
+
+    # Ветка 1: HP > 50% или кд побега активен — атакуем
+    - preconditions:
+        - !type:SelfHealthFractionGreaterPrecondition
+          value: 0.5
+          cooldownDuration: 30
+      tasks:
+        - !type:HTNCompoundTask
+          task: MeleeCombatCompound
+
+    # Ветка 2: нет угроз — бездействуем
+    - tasks:
+        - !type:HTNCompoundTask
+          task: IdleCompound
+
+# ── Моб: Трусливый карп ───────────────────────────────────────────────────────
+
+- type: entity
+  id: MobCarpFlee
+  name: трусливый карп
+  description: Космический карп, который умеет считать до двух, но быстро забывает.
+  parent: [ SimpleSpaceMobBase, FlyingMobBase, MobCombat ]
+  components:
+    - type: InputMover
+    - type: MobMover
+    - type: HTN
+      rootTask:
+        task: FleeCarpCompound
+      blackboard:
+        NavSmash: !type:Bool
+          true
+    - type: NpcFactionMember
+      factions:
+        - SimpleHostile
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: Mobs/Aliens/Carps/space.rsi
+      layers:
+        - map: [ "enum.DamageStateVisualLayers.Base" ]
+          state: alive
+        - map: [ "enum.DamageStateVisualLayers.BaseUnshaded" ]
+          state: mouth
+          shader: unshaded
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: alive
+          BaseUnshaded: mouth
+        Dead:
+          Base: dead
+          BaseUnshaded: dead_mouth
+    - type: CombatMode
+    - type: Physics
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.40
+          density: 80
+          mask:
+            - FlyingMobMask
+          layer:
+            - FlyingMobLayer
+    - type: MobState
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        40: Dead
+    - type: MovementSpeedModifier
+      baseWalkSpeed: 3.5
+      baseSprintSpeed: 5.0
+    - type: Stamina
+      baseCritThreshold: 100
+    - type: MeleeWeapon
+      altDisarm: false
+      angle: 0
+      animation: WeaponArcBite
+      soundHit:
+        path: /Audio/Effects/bite.ogg
+      damage:
+        types:
+          Blunt: 5
+          Slash: 7
+    - type: Butcherable
+      spawned:
+        - id: FoodMeatFish
+          amount: 2
+    - type: ReplacementAccent
+      accent: genericAggressive
+    - type: Speech
+      speechVerb: LargeMob
+    - type: Tag
+      tags:
+        - Carp
+        - DoorBumpOpener
+        - CannotSuicide
