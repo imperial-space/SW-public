@@ -92,6 +92,10 @@ public sealed class ShipDrowningSystem : EntitySystem
         if (HasComp<ShipDrowningComponent>(uid))
             return;
 
+        var mapUid = Transform(uid).MapUid;
+        if (mapUid == null || TerminatingOrDeleted(mapUid.Value))
+            return;
+
         RescueGridChildrenToMap(uid);
     }
 
