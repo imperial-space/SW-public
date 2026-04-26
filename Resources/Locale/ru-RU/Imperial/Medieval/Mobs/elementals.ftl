@@ -1,0 +1,12 @@
+ent-MedievalElementalEarth = элементаль земли
+    .desc = Вы хотите убить камень своей зубочисткой?
+    .suffix = { "Средневековье" }
+ent-MedievalElementalAir = элементаль воздуха
+    .desc = Разрежь воздух.
+    .suffix = { "Средневековье" }
+ent-MedievalElementalFire = элементаль огня
+    .desc = Вода бьёт огонь.
+    .suffix = { "Средневековье" }
+ent-MedievalElementalWater = элементаль воды
+    .desc = Огонь бьёт воду.
+    .suffix = { "Средневековье" }
