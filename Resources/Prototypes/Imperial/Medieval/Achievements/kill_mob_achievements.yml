@@ -1,0 +1,51 @@
+- type: achievement
+  id: AchievementKillAnyDragon
+  name: "Драконоборец"
+  description: "Победите любого дракона в бою."
+  roundOnly: true
+  icon:
+    sprite: Imperial/Medieval/Mobs/Bosses/Dragons/aciddragon.rsi
+    state: alive # TODO NORMALNAYA ICONKA SUKA SSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killAnyDragonProgression
+    targetMobPrototypes:
+    - MedievalBossThunderDragon
+    - MedievalBossAcidDragon
+    - MedievalBossFireDragon
+    - MedievalBossIceDragon
+
+- type: achievement
+  id: AchievementFriendlyBetrayal
+  name: "Сомнительное предательство"
+  description: "Вы убили своего напарника, но никто не в обиде."
+  hidden: true
+  roundOnly: true
+  icon:
+    sprite: Imperial/Medieval/Mobs/skelet_legion.rsi
+    state: base # TODO NORMALNAYA ICONKA SUKA SSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killLegionerSkeletonAsSkeletonProgression
+    requiredFactions:
+    - Legion
+    targetMobPrototypes:
+    - MedievalMobSkeletLegion
+
+- type: achievement
+  id: AchievementFallenBrothers
+  name: "Падшие братья"
+  description: "Уничтожь бывших легионеров, восставших в виде скелетов"
+  roundOnly: false
+  icon:
+    sprite: Imperial/Medieval/Misc/mdv_loot.rsi
+    state: legion
+  conditions:
+  - !type:KillMobCondition
+    progressKey: killFallenLegionSkeletons
+    requiredCount: 20
+    requiredFactions:
+    - Legion
+    targetMobPrototypes:
+    - MedievalMobSkeletLegion
+    - MedievalMobSkeletLegionGhost

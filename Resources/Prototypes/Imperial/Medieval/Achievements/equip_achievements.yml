@@ -1,0 +1,21 @@
+- type: achievement
+  id: AchievementEliteArmorSet
+  name: "Настоящий броненосец"
+  description: "Облекитесь в мощь лучшей брони, собрав полный комплект."
+  roundOnly: true
+  icon:
+    sprite: Imperial/Medieval/Clothing/Head/forstone.rsi
+    state: icon
+  conditions:
+  - !type:EquipSetCondition
+    sets:
+      EbonitSet:
+      - MedievalClothingHeadHelmetEbonit2
+      - MedievalClothingOuterArmorEbonit2
+      - MedievalClothingFeetEbonit2
+      - MedievalEbonitGloves2
+      ForstoneSet:
+      - MedievalClothingHeadHelmetForstone
+      - MedievalClothingOuterArmorForstone
+      - MedievalClothingFeetForstone
+      - MedievalForstoneGloves

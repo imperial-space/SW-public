@@ -366,6 +366,7 @@
       Intelligence: 10
       Endurance: 10
   - type: LastWords
+  - type: AchievementOwner
 # Imperial Medieval End
 
 - type: entity

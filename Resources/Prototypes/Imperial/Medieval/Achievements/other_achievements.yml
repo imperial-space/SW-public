@@ -1,0 +1,7 @@
+- type: achievement
+  id: AchievementJoinSpellward
+  name: Первый шаг в Spellward
+  description: Вы впервые оказались в этих землях, где правит магия и сталь.
+  icon:
+    sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi
+    state: union

@@ -1,0 +1,33 @@
+- type: achievement
+  id: AchievementVisitBarrier
+  name: "Spellward"
+  description: "Где-то я это уже видел..."
+  roundOnly: true
+  icon:
+    sprite: Imperial/Medieval/Decor/barrier.rsi
+    state: barrier
+  conditions:
+  - !type:LocationCondition
+    locationId: achievement-visit-barrier-location # locationId ДОЛЖЕН быть равен ключу локализации из ftl
+    progressKey: visitedBarrierProgression
+
+- type: entity
+  id: MedievalAchievementTriggerBarrier
+  name: Achievement Trigger
+  suffix: Barrier
+  components:
+    - type: Transform
+      anchored: true
+    - type: AchievementLocation
+      locationId: achievement-visit-barrier-location
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-1.5,-1.5,1.5,1.5"
+          hard: false 
+          layer:
+            - MedievalSpawnerLayer
