@@ -10,9 +10,12 @@ using Content.Shared.Inventory;
 using Content.Shared.Wieldable.Components;
 using Content.Shared.Coordinates;
 using Content.Shared.Popups;
-using Content.Shared.Damage.Systems;
 using Content.Shared.Damage.Events;
 using Content.Shared.Hands.EntitySystems;
+
+using Robust.Shared.Input.Binding;
+using Content.Shared.Input;
+using Robust.Shared.Player;
 
 namespace Content.Shared.MeleeParry
 {
@@ -35,6 +38,22 @@ namespace Content.Shared.MeleeParry
             SubscribeLocalEvent<MeleeParryAbleComponent, BeforeStaminaDamageEvent>(OnBeforeStaminaDamage);
             SubscribeLocalEvent<MeleeParryEffectComponent, MapInitEvent>(OnStart);
 
+
+            CommandBinds.Builder
+            .Bind(ContentKeyFunctions.MedievalMeleeParry, InputCmdHandler.FromDelegate(OnParryPressed))
+            .Register<MeleeParrySystem>();
+        }
+
+        private void OnParryPressed(ICommonSession? session)
+        {
+            if (session?.AttachedEntity is not { } uid) return;
+
+            var item = _hands.GetActiveItem(uid);
+            if (!TryComp<MeleeParryComponent>(item, out var parry)) return;
+
+            _popup.PopupEntity("Парирование", uid, PopupType.LargeCaution);
+            parry.ParryChanse = 1;
+            Spawn(parry.ParryEffect, parry.Owner.ToCoordinates());
         }
 
         private void OnStart(EntityUid uid, MeleeParryEffectComponent component, ref MapInitEvent args)
