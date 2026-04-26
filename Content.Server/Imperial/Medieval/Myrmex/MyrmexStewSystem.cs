@@ -1,5 +1,6 @@
 ﻿using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.Myrmex;
+using Content.Shared.Myrmex.Hive;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Popups;
@@ -8,14 +9,15 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Content.Shared.Examine;
 
-namespace Content.Server.Imperial.Medieval.Myrmex
-{
+namespace Content.Server.Imperial.Medieval.Myrmex;
+
     public sealed partial class MyrmexStewSystem : EntitySystem
     {
         [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly SharedAudioSystem _audio = default!;
+        [Dependency] private readonly SharedMyrmexHiveSystem _hive = default!;
 
         public override void Initialize()
         {
@@ -108,41 +110,33 @@ namespace Content.Server.Imperial.Medieval.Myrmex
             if (args.Cancelled || args.Handled || entity.Comp.Deleted || args.Target == null)
                 return;
 
-            if (!TryComp(args.User, out MyrmexHungerComponent? hunger))
-                return;
-
-            if (!TryComp(entity.Owner, out MetaDataComponent? metadata))
+            if (!TryComp(args.User, out MyrmexHungerComponent? hunger) ||
+                !TryComp(entity.Owner, out MetaDataComponent? metadata) ||
+                !FeedCheck(entity, (args.User, hunger)))
                 return;
 
             args.Handled = true;
 
-            if (!FeedCheck(entity, (args.User, hunger)))
-                return;
-
             entity.Comp.Uses--;
             hunger.LastEaten = _gameTiming.CurTime;
 
-            if (entity.Comp.Buff != null)
+            if (entity.Comp.Buff != null && _hive.TryGetHive(out var hive))
             {
-                var max = hunger.MaxBuffs;
-                if (hunger.Buffs.Count < max)
+                if (hunger.Buffs.Count < hive!.Value.Comp.MaxBuffs)
                     hunger.Buffs.Add(entity.Comp.Buff);
                 else
-                    _popup.PopupEntity($"Лимит баффов: {max}. Новый бафф не добавлен.", args.User, args.User);
+                    _popup.PopupEntity("Достигнут лимит баффов", args.User, args.User);
             }
+
             hunger.Dirty();
 
-            if (TryComp<LarvaComponent>(args.User, out var larva))
+            if (TryComp<LarvaComponent>(args.User, out _) &&
+                metadata.EntityPrototype != null)
             {
-                if (metadata.EntityPrototype == null)
-                    return;
-
-                var ev = new LarvaFeedEvent(metadata.EntityPrototype);
-                RaiseLocalEvent(args.User, ev);
+                RaiseLocalEvent(args.User, new LarvaFeedEvent(metadata.EntityPrototype));
             }
 
-            if (entity.Comp.Uses == 0)
+            if (entity.Comp.Uses <= 0)
                 PredictedQueueDel(entity.Owner);
         }
-    }
 }

@@ -1035,9 +1035,10 @@
         - BulletImpassable
 
 - type: entity
-  id: MedievalDecorBox
+  id: MedievalDecorBoxEmpty
   parent: MedievalBannerBase
   name: nanotrasen banner
+  suffix: Empty
   description: A banner displaying the Nanotrasen logo. It looks rather cheap.
   components:
   - type: Sprite
@@ -1085,6 +1086,13 @@
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
+
+- type: entity
+  id: MedievalDecorBox
+  parent: MedievalDecorBoxEmpty
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
   - type: StorageFill
     contents:
       - id: MedievalRevent
@@ -3806,6 +3814,7 @@
     castShadows: false
   - type: MagicBarrierCurse
 
+
 - type: entity
   id: MedievalBarrierCurseSpawner
   name: barrier curse spawner
@@ -3859,8 +3868,6 @@
     energy: 3
     color: white
     castShadows: false
-  - type: MedievalFactionFlag
-    faction: none
 
 - type: entity
   id: MedievalFlagCaptureBlue
@@ -3872,8 +3879,6 @@
     drawdepth: Overdoors
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_blul
-  - type: MedievalFactionFlag
-    faction: legion
   - type: PointLight
     radius: 2.5
     energy: 3
@@ -3891,8 +3896,6 @@
     drawdepth: Overdoors
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_red
-  - type: MedievalFactionFlag
-    faction: insurgency
   - type: PointLight
     radius: 2.5
     energy: 3
@@ -3909,7 +3912,7 @@
     drawdepth: 3
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_blul_gold
-  - type: MedievalFactionFlagChecker
+  - type: MedievalFactionFlag
     faction: legion
   - type: PointLight
     radius: 3.7
@@ -3938,7 +3941,7 @@
     drawdepth: 3
     sprite: Imperial/Medieval/Decor/medieval_banner.rsi
     state: banner_red_gold
-  - type: MedievalFactionFlagChecker
+  - type: MedievalFactionFlag
     faction: insurgency
   - type: PointLight
     radius: 3.7
@@ -5334,10 +5337,16 @@
   components:
   - type: Sprite
     noRot: true
-    sprite: Imperial/Medieval/Decor/shipsail.rsi
-    state: icon
     drawdepth: Overdoors
-    offset: 0,3.6
+    offset: 0,1.95
+    layers:
+    - sprite: Imperial/Medieval/Decor/shipsailenclosed.rsi
+      state: ready
+      map: ["enum.SailVisualLayers.Unfolded"]
+    - sprite: Imperial/Medieval/Decor/shipsailshipup.rsi
+      state: shipup
+      map: ["enum.SailVisualLayers.Folded"]
+      visible: false
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -5373,6 +5382,9 @@
         layer:
         - WallLayer
   - type: InteractionOutline
+  - type: Appearance
+  - type: Sail
+    SailSize: 5
 
 - type: entity
   name: small light
@@ -5463,3 +5475,162 @@
         - state: base
         - state: fire
           shader: unshaded
+
+- type: entity
+  id: MedievalSteeringMap
+  name: map
+  parent: WoodenSupportWall
+  description: map
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/map.rsi
+      state: map
+
+
+- type: entity
+  id: Medievalblackflag
+  parent: BaseFlag
+  name: flag
+  description: Money, dice, a gun!
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: blackflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: Medievalblueflag
+  parent: BaseFlag
+  name: flag
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: blueflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: Medievalredflag
+  parent: BaseFlag
+  name: flag
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: redflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: Medievalwhiteflag
+  parent: BaseFlag
+  name: flag
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: whiteflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: Medievalyellowflag
+  parent: BaseFlag
+  name: flag
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Imperial/Medieval/Decor/fаlags.rsi
+    state: yellowflag
+    drawdepth: Overdoors
+    offset: 0,0.8
+
+- type: entity
+  id: CaptainsChair
+  parent: ChairWood
+  name: chair
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Decor/chair.rsi
+    state: chair
+
+- type: entity
+  id: Medievalcannon
+  parent: ShuttleGunPirateCannon
+  name: pirate ship cannon
+  description: Kaboom!
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Objects/Guns/Shuttles/pirate_cannon.rsi
+    layers:
+    - state: base
+
+- type: entity
+  id: MedievalDecorShipSailReady
+  parent: MedievalDecorShipSail
+  name: nanotrasen banner
+  description: A banner displaying the Nanotrasen logo. It looks rather cheap.
+  components:
+  - type: Anchorable
+  - type: Sail
+    Folded: false
+
+- type: entity
+  id: MedievalDecorShipSailShipup
+  parent: MedievalDecorShipSailReady
+  components:
+  - type: Sail
+    Folded: true
+
+- type: entity
+  id: MedievalFlagpole
+  name: Flagpole
+  parent: BaseStructure
+  description: A flagpole without a flag. like an elf without ears
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/flagpole.rsi
+      state: flag
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: MedievalWalllamp
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall3.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+
+- type: entity
+  name: small light
+  description: "An always powered light."
+  parent: CandleWall
+  id: Medievalwithoutlampshade
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/candle_wall4.rsi
+      drawdepth: WallMountedItems
+      layers:
+        - state: base
+
+- type: entity
+  parent: Lantern
+  id: MedievalLanternAlit
+  name: small light
+  description: "An always powered light."
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Objects/Tools/lantern.rsi
+    - type: Item
+      sprite: Imperial/Medieval/Objects/Tools/lantern.rsi
+      heldPrefix: off
+    - type: Clothing
+      sprite: Imperial/Medieval/Objects/Tools/lantern.rsi
+      equippedPrefix: off
+

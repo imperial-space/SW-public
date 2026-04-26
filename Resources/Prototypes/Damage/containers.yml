@@ -73,3 +73,11 @@
   - Airloss
   - Genetic
   - Metaphysical
+
+#Imperial Forged starts
+- type: damageContainer
+  id: Forged
+  supportedGroups:
+    - Brute
+    - Burn
+#Imperial Forged ends

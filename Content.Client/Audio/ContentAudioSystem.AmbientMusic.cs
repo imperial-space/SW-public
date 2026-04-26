@@ -1,8 +1,10 @@
 using System.Linq;
 using Content.Client.Gameplay;
+using Content.Client.Imperial.Medieval.XxRaay.MedievalAmbientToggle; // Imperial Medieval Ambient Toggle command
 using Content.Shared.Audio;
 using Content.Shared.CCVar;
 using Content.Shared.GameTicking;
+using Content.Shared.Imperial.Medieval.XxRaay.MedievalAmbientToggle; // Imperial Medieval Ambient Toggle command
 using Content.Shared.Random.Rules;
 using Robust.Client.Player;
 using Robust.Client.State;
@@ -29,6 +31,7 @@ public sealed partial class ContentAudioSystem
     [Dependency] private readonly IStateManager _state = default!;
     [Dependency] private readonly RulesSystem _rules = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly MedievalAmbientToggleClientSystem _medievalAmbientToggle = default!;
 
     private readonly TimeSpan _minAmbienceTime = TimeSpan.FromSeconds(30);
     private readonly TimeSpan _maxAmbienceTime = TimeSpan.FromSeconds(60);
@@ -245,6 +248,11 @@ public sealed partial class ContentAudioSystem
         {
             if (!_rules.IsTrue(player.Value, _proto.Index<RulesPrototype>(amb.Rules)))
                 continue;
+
+            // Imperial Medieval Ambient Toggle command start
+            if (!_medievalAmbientToggle.IsMedievalAmbientEnabled && MedievalAmbientRules.IsMedievalRule(amb.Rules))
+                continue;
+            // Imperial Medieval Ambient Toggle command end
 
             return amb;
         }

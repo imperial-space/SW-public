@@ -85,6 +85,31 @@
   - type: MedievalCurrency
     price:
       Revent: 10
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        canReact: false
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 2
+  - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 4
+
+- type: entity
+  name: MedievalTopaz10
+  parent: MedievalTopaz
+  id: MedievalTopaz10
+  description: furry :)
+  components:
+  - type: Stack
+    stackType: MedievalTopaz
+    count: 10
 
 - type: entity
   name: MedievalTopazOre
@@ -218,6 +243,16 @@
   - type: Stack
     stackType: MedievalSteelIngot
     count: 10
+
+- type: entity
+  name: MedievalSteelIngot30
+  parent: MedievalSteelIngot
+  id: MedievalSteelIngot30
+  description: furry :)
+  components:
+  - type: Stack
+    stackType: MedievalSteelIngot
+    count: 30
 
 - type: entity
   parent: BaseItem
@@ -420,6 +455,16 @@
   - type: MedievalCurrency
     price:
       Revent: 20
+
+- type: entity
+  name: MedievalEssence5
+  parent: MedievalEssence
+  id: MedievalEssence5
+  description: furry :)
+  components:
+  - type: Stack
+    stackType: MedievalEssence
+    count: 5
 
 - type: entity
   name: MedievalEssence30
@@ -914,6 +959,32 @@
   - type: MedievalCurrency
     price:
       Revent: 10
+  - type: Food
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        canReact: false
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 2
+  - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 4
+
+
+- type: entity
+  name: MedievalFireSerdolick10
+  parent: MedievalFireSerdolick
+  id: MedievalFireSerdolick10
+  description: furry :)
+  components:
+  - type: Stack
+    stackType: MedievalFireSerdolick
+    count: 10
 
 - type: entity
   name: MedievalIngotGold
@@ -975,6 +1046,7 @@
     - RawMaterial
     - Sheet
     - Ore
+    - MedievalAdam
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -992,6 +1064,32 @@
   - type: MedievalCurrency
     price:
       Revent: 10
+  - type: Food
+    requiresSpecialDigestion: true
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        canReact: false
+        reagents:
+        - ReagentId: MedievalMagicCrystallReagent
+          Quantity: 2
+  - type: ForgedFoodStack
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: MedievalMagicCrystallReagent
+        Quantity: 4
+
+- type: entity
+  name: MedievalAdam10
+  parent: MedievalAdam
+  id: MedievalAdam10
+  description: MedievalAdam
+  components:
+  - type: Stack
+    stackType: MedievalAdam
+    count: 10
 
 - type: material
   id: MedievalEbonitIngot

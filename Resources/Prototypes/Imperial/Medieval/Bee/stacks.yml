@@ -1,0 +1,20 @@
+- type: stack
+  id: MedievalBeeHoneyPiece
+  name: medieval-bee-materials-honeypiece
+  icon: { sprite: /Textures/Imperial/Medieval/Bee/honey.rsi, state: icon }
+  spawn: MedievalBeeHoneyPiece
+  maxCount: 15
+
+- type: stack
+  id: MedievalBeeHoneyComb
+  name: medieval-bee-materials-honeycomb
+  icon: { sprite: /Textures/Imperial/Medieval/Bee/honey-combs.rsi, state: honey-comb }
+  spawn: MedievalBeeHoneyComb
+  maxCount: 15
+
+- type: stack
+  id: MedievalBeeHoneyBandage
+  name: medieval-bee-result-MedievalBeeHoneyBandage
+  icon: { sprite: /Textures/Imperial/Medieval/Bee/honey-bandage.rsi, state: icon }
+  spawn: MedievalBeeHoneyBandage
+  maxCount: 10

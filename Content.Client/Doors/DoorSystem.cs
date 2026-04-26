@@ -130,7 +130,8 @@ public sealed class DoorSystem : SharedDoorSystem
 
                 return;
             case DoorState.Denying:
-                _animationSystem.Play(entity, (Animation)entity.Comp.DenyingAnimation, DoorComponent.AnimationKey);
+                if (entity.Comp.DenyingAnimation is Animation denyingAnimation)
+                    _animationSystem.Play(entity, denyingAnimation, DoorComponent.AnimationKey);
 
                 return;
             case DoorState.Emagging:

@@ -1,0 +1,31 @@
+- type: parallax
+  id: OceanMedieval
+  layers:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax.png"
+      slowness: 0.9985
+      scale: "1.45, 1.45"
+      scrolling: "0.0016, -0.0008"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax.png"
+      slowness: 0.9955
+      scale: "1.1, 1.1"
+      scrolling: "-0.0012, 0.0009"
+      worldHomePosition: "72.0, -48.0"
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax.png"
+      slowness: 0.992
+      scale: "0.82, 0.82"
+      scrolling: "0.0024, 0.0011"
+      worldHomePosition: "-94.0, 61.0"
+  layersLQ:
+    - texture:
+        !type:ImageParallaxTextureSource
+        path: "/Textures/Imperial/Medieval/Parallaxes/ocean_parallax.png"
+      slowness: 0.996
+      scale: "1.2, 1.2"
+      scrolling: "0.0012, -0.0006"
+  layersLQUseHQ: false

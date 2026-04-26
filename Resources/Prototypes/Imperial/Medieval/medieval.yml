@@ -2334,7 +2334,7 @@
       state: brutepack
     - type: Healing
       plagueProgressionDecayPerUse: 1
-      damageContainers: [Biological]
+      damageContainers: [Biological, Forged]
       damage:
         groups:
           Brute: -15 # 5 for each type in the group
@@ -2424,6 +2424,7 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 3
     fillBaseName: mopbucket_water-
+  - type: WaterPumpBucket
 
 - type: entity
   id: MedievalDruidTree
@@ -7933,7 +7934,8 @@
 - type: entity
   name: gol
   parent: BaseItem
-  id: MedievalCommsCrystallLeg
+  id: MedievalCommsCrystallBase
+  abstract: true
   description: gol
   components:
   - type: Sprite
@@ -7941,8 +7943,17 @@
     state: leg
   - type: Item
     size: Tiny
+
+- type: entity
+  name: gol
+  parent: MedievalCommsCrystallBase
+  id: MedievalCommsCrystallLeg
+  description: gol
+  components:
   - type: CloackReciever
     faction: "leg"
+  - type: ChargeableAnnounce
+    chargedstate: leg
 
 - type: entity
   name: gol
@@ -7954,6 +7965,8 @@
     state: mine
   - type: CloackReciever
     faction: "mine"
+  - type: ChargeableAnnounce
+    chargedstate: mine
 
 - type: entity
   name: gol
@@ -7965,10 +7978,12 @@
     state: band
   - type: CloackReciever
     faction: "band"
+  - type: ChargeableAnnounce
+    chargedstate: band
 
 - type: entity
   name: кристалл связи шайки койота
-  parent: MedievalCommsCrystallLeg
+  parent: MedievalCommsCrystallBase
   id: MedievalCommsCrystallKayot
   description: Кристалл связи позволяет получать сообщения лидера фракции даже с другого конца острова.
   components:
@@ -7987,6 +8002,8 @@
     state: ins
   - type: CloackReciever
     faction: "ins"
+  - type: ChargeableAnnounce
+    chargedstate: ins
 
 - type: entity
   name: gol
@@ -7998,6 +8015,8 @@
     state: merc
   - type: CloackReciever
     faction: "merc"
+  - type: ChargeableAnnounce
+    chargedstate: merc
 
 - type: entity
   name: gol
@@ -8009,6 +8028,8 @@
     state: coll
   - type: CloackReciever
     faction: "collegium"
+  - type: ChargeableAnnounce
+    chargedstate: coll
 
 - type: tile
   id: CultFloor
@@ -9036,3 +9057,66 @@
     - type: Tag
       tags:
         - HideContextMenu
+
+- type: entity
+  id: MedievalStockadeHighBlek
+  parent: MedievalStockadeHigh
+  components:
+  - type: Tag
+    tags:
+      - Wall
+  - type: Sprite
+    sprite: Imperial/Medieval/Walls/wood_wall_new_blek.rsi
+  - type: Icon
+    sprite: Imperial/Medieval/Walls/wood_wall_new_blek.rsi
+  - type: PlacementReplacement
+    key: walls
+  - type: MyrmexProp
+  - type: Construction
+    graph: MWoodenSupportWall
+    node: medievalWoodenSupportWall
+
+- type: entity
+  id: MedievalShipWindow
+  name: Steering wheel
+  parent: WoodenSupportWall
+  description: Hold on tight, sailors! We're going to make a sharp turn! Grrrr!
+  components:
+    - type: Sprite
+      sprite: Imperial/Medieval/Decor/ship_window.rsi
+      state: wheel
+    - type: Physics
+      bodyType: Static
+    - type: Damageable
+      damageContainer: StructuralInorganic
+      damageModifierSet: Wood
+    - type: MeleeSound
+      soundGroups:
+        Brute:
+          path: /Audio/Effects/glass_crack1.ogg
+          params:
+            variation: 0.05
+    - type: Destructible
+      thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 250
+        behaviors:
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+      - trigger:
+          !type:DamageTrigger
+          damage: 150
+        behaviors:
+        - !type:PlaySoundBehavior
+          sound:
+            path: /Audio/Effects/window_shatter2.ogg
+            params:
+              variation: 0.2
+        - !type:DoActsBehavior
+          acts: ["Destruction"]
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            ShardGlass:
+              min: 1
+              max: 3

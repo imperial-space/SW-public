@@ -88,6 +88,16 @@ public sealed class CreationsPanelEui : BaseEui
         SendMessage(new RemoveAcceptedCreationPaintingMessage(painting));
     }
 
+    private void SendEditPainting(CreationPaintingMessage painting, EditedCreationData data)
+    {
+        SendMessage(new EditPaintingMsg(painting, data));
+    }
+
+    private void SendEditBook(CreationBook book, EditedCreationData data)
+    {
+        SendMessage(new EditBookMsg(book, data));
+    }
+
     private bool TryCreateIncomingPainting(CreationPaintingMessage painting)
     {
         if (_incomingPaintings.ContainsKey(painting))
@@ -112,7 +122,7 @@ public sealed class CreationsPanelEui : BaseEui
     {
         if (_acceptedPaintings.ContainsKey(painting))
             return false;
-        var entry = new PaintingEntry(_clyde, painting, null, () => ConfirmRemovePainting(painting), false);
+        var entry = new PaintingEntry(_clyde, painting, null, () => ConfirmRemovePainting(painting), false, true, (data) => SendEditPainting(painting, data));
         _acceptedPaintings.Add(painting, entry);
         _creationsPanel?.AcceptedPaintingsTab.AddEntry(entry);
 
@@ -213,7 +223,7 @@ public sealed class CreationsPanelEui : BaseEui
     {
         if (_acceptedBooks.ContainsKey(book))
             return false;
-        var entry = new BookEntry(book, null, () => ConfirmRemoveBook(book), false);
+        var entry = new BookEntry(book, null, () => ConfirmRemoveBook(book), false, true, (data) => SendEditBook(book, data));
         _acceptedBooks.Add(book, entry);
         _creationsPanel?.AcceptedBooksTab.AddEntry(entry);
 

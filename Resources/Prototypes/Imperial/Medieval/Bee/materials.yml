@@ -1,0 +1,13 @@
+- type: material
+  id: MedievalBeeHoneyPiece
+  stackEntity: MedievalBeeHoneyPiece
+  name: medieval-bee-materials-honeypiece
+  icon: { sprite: /Textures/Imperial/Medieval/Bee/honey.rsi, state: icon }
+  price: 0.15
+
+- type: material
+  id: MedievalBeeHoneyComb
+  stackEntity: MedievalBeeHoneyComb
+  name: medieval-bee-materials-honeycomb
+  icon: { sprite: /Textures/Imperial/Medieval/Bee/honey-combs.rsi, state: honey-comb }
+  price: 0.15

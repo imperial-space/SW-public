@@ -5,6 +5,7 @@ using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
 using Content.Server.Maps;
 using Content.Server.Roles;
+using Content.Server.Imperial.Medieval.LastWords; // Imperial Medieval Last Words
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -37,6 +38,7 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly RoleSystem _role = default!;
         [Dependency] private readonly ITaskManager _taskManager = default!;
         [Dependency] private readonly IVoteManager _voteManager = default!; //Imperial
+        [Dependency] private readonly LastWordsSystem _lastWords = default!;
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -593,6 +595,9 @@ namespace Content.Server.GameTicking
             var listOfPlayerInfoFinal = listOfPlayerInfo.OrderBy(pi => pi.PlayerOOCName).ToArray();
             var sound = RoundEndSoundCollection == null ? null : _audio.ResolveSound(new SoundCollectionSpecifier(RoundEndSoundCollection));
 
+            // Imperial Medieval Last Words
+            var lastWords = _lastWords.GetAll().ToArray();
+
             var roundEndMessageEvent = new RoundEndMessageEvent(
                 gamemodeTitle,
                 roundEndText,
@@ -600,7 +605,8 @@ namespace Content.Server.GameTicking
                 RoundId,
                 listOfPlayerInfoFinal.Length,
                 listOfPlayerInfoFinal,
-                sound
+                sound,
+                lastWords // Imperial Medieval Last Words
             );
             RaiseNetworkEvent(roundEndMessageEvent);
             RaiseLocalEvent(roundEndMessageEvent);

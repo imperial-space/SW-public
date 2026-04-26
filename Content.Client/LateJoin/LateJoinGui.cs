@@ -83,6 +83,7 @@ namespace Content.Client.LateJoin
             _jobLists.Clear();
             _jobButtons.Clear();
             _jobCategories.Clear();
+            var obeliskDestroyedJobs = GetObeliskDestroyedJobs();
 
             if (!_gameTicker.DisallowedLateJoin && _gameTicker.StationNames.Count == 0)
                 _sawmill.Warning("No stations exist, nothing to display in late-join GUI");
@@ -170,11 +171,11 @@ namespace Content.Client.LateJoin
                 Array.Sort(departments, DepartmentUIComparer.Instance);
 
                 _jobButtons[id] = new Dictionary<string, List<JobButton>>();
+                _jobCategories[id] = new Dictionary<string, BoxContainer>();
 
                 foreach (var department in departments)
                 {
                     var departmentName = Loc.GetString(department.Name);
-                    _jobCategories[id] = new Dictionary<string, BoxContainer>();
                     var stationAvailable = _gameTicker.JobsAvailable[id];
                     var jobsAvailable = new List<JobPrototype>();
 
@@ -230,13 +231,18 @@ namespace Content.Client.LateJoin
                     foreach (var prototype in jobsAvailable)
                     {
                         var value = stationAvailable[prototype.ID];
+                        var obeliskDestroyed = obeliskDestroyedJobs.Contains(prototype.ID);
 
                         var jobLabel = new Label
                         {
                             Margin = new Thickness(5f, 0, 0, 0)
                         };
 
-                        var jobButton = new JobButton(jobLabel, prototype.ID, prototype.LocalizedName, value);
+                        var jobButton = new JobButton(jobLabel,
+                            prototype.ID,
+                            prototype.LocalizedName,
+                            value,
+                            obeliskDestroyed);
 
                         var jobSelector = new BoxContainer
                         {
@@ -262,6 +268,7 @@ namespace Content.Client.LateJoin
 
                         if (!_jobRequirements.IsAllowed(prototype, (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter, out var reason))
                         {
+                            jobButton.RequirementsLocked = true;
                             jobButton.Disabled = true;
 
                             if (!reason.IsEmpty)
@@ -280,7 +287,7 @@ namespace Content.Client.LateJoin
                                 HorizontalAlignment = HAlignment.Right,
                             });
                         }
-                        else if (value == 0)
+                        else if (value == 0 || obeliskDestroyed)
                         {
                             jobButton.Disabled = true;
                         }
@@ -298,6 +305,8 @@ namespace Content.Client.LateJoin
 
         private void JobsAvailableUpdated(IReadOnlyDictionary<NetEntity, Dictionary<ProtoId<JobPrototype>, int?>> updatedJobs)
         {
+            var obeliskDestroyedJobs = GetObeliskDestroyedJobs();
+
             foreach (var stationEntries in updatedJobs)
             {
                 if (_jobButtons.ContainsKey(stationEntries.Key))
@@ -312,16 +321,32 @@ namespace Content.Client.LateJoin
                             var updatedJobValue = jobsAvailable[existingJobEntry.Key];
                             foreach (var matchingJobButton in existingJobEntry.Value)
                             {
-                                if (matchingJobButton.Amount != updatedJobValue)
-                                {
-                                    matchingJobButton.RefreshLabel(updatedJobValue);
-                                    matchingJobButton.Disabled |= matchingJobButton.Amount == 0;
-                                }
+                                matchingJobButton.RefreshLabel(updatedJobValue,
+                                    obeliskDestroyedJobs.Contains(matchingJobButton.JobId));
+
+                                matchingJobButton.Disabled = matchingJobButton.RequirementsLocked ||
+                                                             matchingJobButton.Amount == 0 ||
+                                                             obeliskDestroyedJobs.Contains(matchingJobButton.JobId);
                             }
                         }
                     }
                 }
             }
+        }
+
+        private HashSet<ProtoId<JobPrototype>> GetObeliskDestroyedJobs()
+        {
+            var jobs = new HashSet<ProtoId<JobPrototype>>();
+
+            foreach (var departmentId in _gameTicker.ObeliskDestroyedDepartments)
+            {
+                if (!_prototypeManager.TryIndex(departmentId, out DepartmentPrototype? department))
+                    continue;
+
+                jobs.UnionWith(department.Roles);
+            }
+
+            return jobs;
         }
 
         protected override void Dispose(bool disposing)
@@ -344,25 +369,39 @@ namespace Content.Client.LateJoin
         public string JobId { get; }
         public string JobLocalisedName { get; }
         public int? Amount { get; private set; }
+        public bool RequirementsLocked { get; set; }
+        private bool _obeliskDestroyed;
         private bool _initialised = false;
 
-        public JobButton(Label jobLabel, ProtoId<JobPrototype> jobId, string jobLocalisedName, int? amount)
+        public JobButton(Label jobLabel,
+            ProtoId<JobPrototype> jobId,
+            string jobLocalisedName,
+            int? amount,
+            bool obeliskDestroyed)
         {
             JobLabel = jobLabel;
             JobId = jobId;
             JobLocalisedName = jobLocalisedName;
-            RefreshLabel(amount);
+            RefreshLabel(amount, obeliskDestroyed);
             AddStyleClass(StyleClassButton);
             _initialised = true;
         }
 
-        public void RefreshLabel(int? amount)
+        public void RefreshLabel(int? amount, bool obeliskDestroyed)
         {
-            if (Amount == amount && _initialised)
+            if (Amount == amount && _obeliskDestroyed == obeliskDestroyed && _initialised)
             {
                 return;
             }
+
             Amount = amount;
+            _obeliskDestroyed = obeliskDestroyed;
+
+            if (_obeliskDestroyed)
+            {
+                JobLabel.Text = Loc.GetString("late-join-gui-job-slot-obelisk-destroyed", ("jobName", JobLocalisedName));
+                return;
+            }
 
             JobLabel.Text = Amount != null ?
                 Loc.GetString("late-join-gui-job-slot-capped", ("jobName", JobLocalisedName), ("amount", Amount)) :

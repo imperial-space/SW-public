@@ -1,0 +1,260 @@
+- type: construction
+  name: Магическая глина
+  id: MedievalMagicGlina
+  graph: MedievalMagicGlina
+  startNode: start
+  targetNode: MedievalMagicGlina
+  category: construction-category-misc
+  description: "Глина перемешанная с магической пылью."
+  icon: { sprite: Imperial/Medieval/Forged/items.rsi, state: magicGlina }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalMagicGlina
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalMagicGlina
+          steps:
+            - material: MedievalGlina
+              amount: 1
+              doAfter: 3
+            - material: MedievalMagicDust
+              amount: 1
+    - node: MedievalMagicGlina
+      entity: MedievalMagicGlina
+
+- type: CP14Recipe
+  id: ForgedWoodenHeadCraft
+  result: ForgedWoodenHead
+  stacks:
+    WoodPlank: 5
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenTorsoCraft
+  result: ForgedWoodenTorso
+  stacks:
+    WoodPlank: 25
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenRArmCraft
+  result: ForgedWoodenRArm
+  stacks:
+    WoodPlank: 15
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenLArmCraft
+  result: ForgedWoodenLArm
+  stacks:
+    WoodPlank: 15
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenRLegCraft
+  result: ForgedWoodenRLeg
+  stacks:
+    WoodPlank: 15
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedWoodenLLegCraft
+  result: ForgedWoodenLLeg
+  stacks:
+    WoodPlank: 15
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedIronHeadCraft
+  result: ForgedIronHead
+  stacks:
+    MedievalIronIngot: 2
+    MedievalRivets: 1
+    MedievalIronPlateSmall: 2
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedIronTorsoCraft
+  result: ForgedIronTorso
+  stacks:
+    MedievalIronIngot: 5
+    MedievalIronPlate: 6
+    MedievalRivets: 2
+    MedievalIronPlateSmall: 12
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedIronRArmCraft
+  result: ForgedIronRArm
+  stacks:
+    MedievalIronIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalShoulder: 1
+    MedievalRivets: 2
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedIronLArmCraft
+  result: ForgedIronLArm
+  stacks:
+    MedievalIronIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalShoulder: 1
+    MedievalRivets: 2
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedIronRLegCraft
+  result: ForgedIronRLeg
+  stacks:
+    MedievalIronIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalRivets: 4
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedIronLLegCraft
+  result: ForgedIronLLeg
+  stacks:
+    MedievalIronIngot: 2
+    MedievalGear: 2
+    MedievalIronPlateSmall: 2
+    MedievalRivets: 4
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedGoldenHeadCraft
+  result: ForgedGoldenHead
+  stacks:
+    MedievalGold: 1
+  entities:
+    ForgedIronHead: 1
+
+- type: CP14Recipe
+  id: ForgedGoldenTorsoCraft
+  result: ForgedGoldenTorso
+  stacks:
+    MedievalGold: 3
+  entities:
+    ForgedIronTorso: 1
+
+- type: CP14Recipe
+  id: ForgedGoldenRArmCraft
+  result: ForgedGoldenRArm
+  stacks:
+    MedievalGold: 1
+  entities:
+    ForgedIronRArm: 1
+
+- type: CP14Recipe
+  id: ForgedGoldenLArmCraft
+  result: ForgedGoldenLArm
+  stacks:
+    MedievalGold: 1
+  entities:
+    ForgedIronLArm: 1
+
+- type: CP14Recipe
+  id: ForgedGoldenRLegCraft
+  result: ForgedGoldenRLeg
+  stacks:
+    MedievalGold: 1
+  entities:
+    ForgedIronRLeg: 1
+
+- type: CP14Recipe
+  id: ForgedGoldenLLegCraft
+  result: ForgedGoldenLLeg
+  stacks:
+    MedievalGold: 1
+  entities:
+    ForgedIronLLeg: 1
+
+- type: CP14Recipe
+  id: ForgedCoreSerdolicCraft
+  result: ForgedCoreSerdolic
+  stacks:
+    MedievalFireSerdolick: 1
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedCoreAdamCraft
+  result: ForgedCoreAdam
+  stacks:
+    MedievalAdam: 1
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedCoreTopazCraft
+  result: ForgedCoreTopaz
+  stacks:
+    MedievalTopaz: 1
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedCoreGoldCraft
+  result: ForgedCoreGold
+  stacks:
+    MedievalGold: 1
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedEyesSerdolickCraft
+  result: ForgedSerdolickEyes
+  stacks:
+    MedievalFireSerdolick: 1
+
+- type: CP14Recipe
+  id: ForgedEyesAdamCraft
+  result: ForgedAdamEyes
+  stacks:
+    MedievalAdam: 1
+
+- type: CP14Recipe
+  id: ForgedEyesTopazCraft
+  result: ForgedTopazEyes
+  stacks:
+    MedievalTopaz: 1
+
+- type: CP14Recipe
+  id: ForgedEyesBloodCraft
+  result: ForgedBloodEyes
+  entities:
+    ShardCrystalRed: 1
+
+- type: CP14Recipe
+  id: ForgedRHandBladeCraft
+  result: ForgedRHandBlade
+  stacks:
+    MedievalIronPlateSmall: 2
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedLHandBladeCraft
+  result: ForgedLHandBlade
+  stacks:
+    MedievalIronPlateSmall: 2
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedCrossbowRHandCraft
+  result: ForgedCrossbowRHand
+  entities:
+    MedievalWeaponCrossbow: 1
+  stacks:
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedCrossbowLHandCraft
+  result: ForgedCrossbowLHand
+  entities:
+    MedievalWeaponCrossbow: 1
+  stacks:
+    MedievalSteelIngot: 1
+
