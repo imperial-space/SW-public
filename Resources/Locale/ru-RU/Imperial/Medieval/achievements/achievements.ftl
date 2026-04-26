@@ -44,9 +44,9 @@ achievement-condition-any-item = любой предмет
 achievement-condition-collect-all = Собрать все предметы: { $targets }
 achievement-condition-collect-any-n = Собрать { $count } из следующих: { $targets }
 
-achievement-condition-location = Посетить { $location } ({ $count } раз)
+achievement-condition-location = Посетить [color=#a67d3d]{ $location }[/color] ({ $count } раз)
 
 achievement-detail-back = Назад к списку
 achievement-detail-conditions-header = Условия для получения:
 
-achievement-visit-barrier-location = Барьер в подвале коллегии
+achievement-visit-barrier-location = барьер в подвале коллегии

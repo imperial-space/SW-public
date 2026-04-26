@@ -17,13 +17,11 @@ public sealed partial class LocationCondition : AchievementCondition
 
     public override FormattedMessage GetDescription(IPrototypeManager protoManager)
     {
-        var msg = new FormattedMessage();
-        msg.PushColor(Color.FromHex("#9e8c78"));
-        msg.AddText(Loc.GetString("achievement-condition-location",
+        var locString = Loc.GetString("achievement-condition-location",
             ("count", RequiredCount),
-            ("location", Loc.GetString(LocationId))));;
-        msg.Pop();
-        return msg;
+            ("location", Loc.GetString(LocationId)));
+
+        return FormattedMessage.FromMarkup(locString);
     }
 
     public override bool Check(
