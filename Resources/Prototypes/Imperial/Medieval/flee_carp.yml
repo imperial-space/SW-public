@@ -16,7 +16,7 @@
         - !type:HTNPrimitiveTask
           operator: !type:FleeOperator
             targetKey: Target
-            fleeDistance: 12
+            fleeDistance: 18
 
     # Ветка 1: HP > 50% или кд побега активен — атакуем
     - preconditions:
