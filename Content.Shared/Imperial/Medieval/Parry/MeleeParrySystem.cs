@@ -1,10 +1,8 @@
-using System;
 using Content.Shared.MeleeParry.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Content.Shared.Damage;
-using Robust.Shared.Random;
 using Content.Shared.Timing;
 using Content.Shared.Popups;
 using Content.Shared.Damage.Events;
@@ -16,6 +14,7 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Medieval.Skills;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.MeleeParry
 {
@@ -23,9 +22,19 @@ namespace Content.Shared.MeleeParry
     [Serializable, NetSerializable]
     public sealed class ParryPressedEvent : EntityEventArgs { }
 
+    [Serializable, NetSerializable]
+    public sealed class PlayParryVfxEvent : EntityEventArgs
+    {
+        public NetEntity Uid;
+        public string EffectId = "MedievalEffectWindowParry";
+        public SoundSpecifier ParrySound = new SoundPathSpecifier("/Audio/Imperial/Medieval/iron_parry1.ogg");
+
+    }
+
     public sealed partial class MeleeParrySystem : EntitySystem
     {
         [Dependency] internal readonly IEntityManager _entityManager = default!;
+        [Dependency] internal readonly ISharedPlayerManager _playerManager = default!;
         [Dependency] internal readonly IMapManager _mapManager = default!;
         [Dependency] protected readonly SharedAudioSystem _audio = default!;
         [Dependency] private readonly UseDelaySystem _useDelay = default!;
@@ -35,28 +44,44 @@ namespace Content.Shared.MeleeParry
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SharedStaminaSystem _stamina = default!;
 
+
         public override void Initialize()
         {
             base.Initialize();
 
             SubscribeLocalEvent<MeleeParryAbleComponent, BeforeDamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<MeleeParryAbleComponent, BeforeStaminaDamageEvent>(OnStaminaDamage);
-            SubscribeLocalEvent<MeleeParryEffectComponent, MapInitEvent>(OnStart);
 
-            // Обработка сетевого ивента сервером
             SubscribeNetworkEvent<ParryPressedEvent>(OnParryNetworkPressed);
 
-            // Бинды обрабатываются только локально на клиенте
             CommandBinds.Builder
                 .Bind(ContentKeyFunctions.MedievalMeleeParry, InputCmdHandler.FromDelegate(OnParryLocalPressed))
                 .Register<MeleeParrySystem>();
+
+            SubscribeNetworkEvent<PlayParryVfxEvent>(OnPlayVfx);
         }
 
         private void OnParryLocalPressed(ICommonSession? session)
         {
             // Отправляем событие на сервер
-            if (_netMan.IsClient)
-                RaiseNetworkEvent(new ParryPressedEvent());
+            if (!_netMan.IsClient) return;
+
+            if (session?.AttachedEntity is { } uid)
+            {
+                var item = _hands.GetActiveItem(uid);
+                if (item != null && TryComp<MeleeParryComponent>(item.Value, out var parry))
+                {
+                    if (_timing.CurTime >= parry.NextAllowedParryTime)
+                    {
+                        parry.NextAllowedParryTime = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryCooldown / (Comp<SkillsComponent>(uid).Levels["Agility"] + 1) / 10);
+
+                        Spawn(parry.ParryEffectWindow, Transform(uid).Coordinates);
+                        _audio.PlayPredicted(new SoundPathSpecifier("/Audio/Imperial/Medieval/iron_parry1.ogg"), uid, uid);
+
+                        RaiseNetworkEvent(new ParryPressedEvent());
+                    }
+                }
+            }
         }
 
         private void OnParryNetworkPressed(ParryPressedEvent args, EntitySessionEventArgs sessionArgs)
@@ -70,17 +95,15 @@ namespace Content.Shared.MeleeParry
             if (_timing.CurTime < parry.NextAllowedParryTime) return;
 
             parry.ParriedTime = _timing.CurTime; // Запись времени
-            parry.NextAllowedParryTime = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryCooldown / (Comp<SkillsComponent>(uid).Levels["Agility"] / 2));
-
-            _popup.PopupEntity("Парирование", uid, PopupType.LargeCaution);
+            parry.NextAllowedParryTime = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryCooldown / ((Comp<SkillsComponent>(uid).Levels["Agility"] + 1) / 10));
 
             Dirty(item.Value, parry);
-        }
 
-        private void OnStart(EntityUid uid, MeleeParryEffectComponent component, ref MapInitEvent args)
-        {
-            if (_netMan.IsServer)
-                _popup.PopupEntity("Парирование", uid, PopupType.LargeCaution);
+            RaiseNetworkEvent(new PlayParryVfxEvent()
+            {
+                Uid = GetNetEntity(uid),
+                EffectId = parry.ParryEffectWindow
+            });
         }
 
         private void OnStaminaDamage(EntityUid uid, MeleeParryAbleComponent component, ref BeforeStaminaDamageEvent args)
@@ -110,7 +133,7 @@ namespace Content.Shared.MeleeParry
             {
                 args.Cancelled = true;
 
-                _stamina.TakeStaminaDamage(args.Origin.Value, 15 * (Comp<SkillsComponent>(uid).Levels["Endurance"] / 2) + (float)parryDMG * 5); // Изначально урон стамине 15 + (выносливость обороняющегося / 2) + (5 * легкость парирования атакующего оружия)
+                _stamina.TakeStaminaDamage(args.Origin.Value, 10 * ((Comp<SkillsComponent>(uid).Levels["Endurance"] + 1) / 2) + (float)parryDMG * 5); // Изначально урон стамине = 10 + (выносливость обороняющегося / 2) + (5 * легкость парирования атакующего оружия)
             }
         }
 
@@ -126,9 +149,7 @@ namespace Content.Shared.MeleeParry
                 parry.ParriedTime != TimeSpan.Zero &&
                 CountParryWindowTime(parry, parryDMG) > _timing.CurTime)
             {
-                _popup.PopupEntity("Успешное Парирование!", uid, PopupType.LargeCaution);
-
-                Spawn(parry.ParryEffect, Transform(item.Value).Coordinates);
+                Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
 
                 parry.LastSuccessParriedAttacker = attacker;
                 parry.LastSuccessParriedTime = _timing.CurTime;
@@ -145,6 +166,22 @@ namespace Content.Shared.MeleeParry
         private TimeSpan CountParryWindowTime(MeleeParryComponent parry, float parryDMG)
         {
             return (parry.ParriedTime + TimeSpan.FromSeconds(parry.ParryWindow * parryDMG)); //Потом можно настроить более тонко. parryDMG = ParryAble => Это тип урона у оружия(см. в прототипе оружия)
+        }
+
+        private void OnPlayVfx(PlayParryVfxEvent args)
+        {
+            // Отрисовкой занимаются только клиенты
+            if (!_netMan.IsClient) return;
+
+            var uid = GetEntity(args.Uid);
+            if (!Exists(uid)) return;
+
+            if (_playerManager.LocalSession?.AttachedEntity == uid)
+                return;
+
+            // Все остальные игроки вокруг видят этот спавн
+            _audio.PlayPvs(args.ParrySound, uid);
+            Spawn(args.EffectId, Transform(uid).Coordinates);
         }
     }
 }

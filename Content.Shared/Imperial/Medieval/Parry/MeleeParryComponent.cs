@@ -1,9 +1,9 @@
+using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Timing;
 
 namespace Content.Shared.MeleeParry.Components
 {
-    [RegisterComponent, NetworkedComponent]
+    [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
     public sealed partial class MeleeParryComponent : Component
     {
         [ViewVariables(VVAccess.ReadOnly)]
@@ -12,7 +12,7 @@ namespace Content.Shared.MeleeParry.Components
         [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan LastSuccessParriedTime;  //Нужно для парирования урона стамине, после этого оно обнулится
 
-        [DataField]
+        [DataField, AutoNetworkedField]
         [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan NextAllowedParryTime;
 
@@ -20,12 +20,14 @@ namespace Content.Shared.MeleeParry.Components
         [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan ParriedTime = TimeSpan.Zero;
 
-        [DataField]
+        [DataField, AutoNetworkedField]
         [ViewVariables(VVAccess.ReadWrite)]
         public float ParryCooldown = 4f;
 
         [DataField]
-        public string ParryEffect = "MedievalEffectParry";
+        public string ParryEffectSuccess = "MedievalEffectSuccessParry";
+        [DataField]
+        public string ParryEffectWindow = "MedievalEffectWindowParry";
 
         [DataField]
         public bool RealParry = true;
