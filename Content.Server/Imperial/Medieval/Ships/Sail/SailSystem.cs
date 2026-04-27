@@ -120,10 +120,11 @@ public sealed class SailSystem : EntitySystem
                 continue;
 
             var sailDirection = _transform.GetWorldRotation(sailEntity);
+            var shipDirection = _transform.GetWorldRotation(boat);
             var efficiency = GetEfficiencyByAngle(sailDirection, windDirection);
             var weightDivider = GetWeightDivider(boat);
             var force = stormLevel * windPower * sailComponent.SailSize * efficiency;
-            var impulse = GetImpulseDirection(sailDirection) * (force / weightDivider);
+            var impulse = GetImpulseDirection(shipDirection) * (force / weightDivider);
 
             if (!TryComp<PhysicsComponent>(boat, out var body))
                 continue;
@@ -153,9 +154,9 @@ public sealed class SailSystem : EntitySystem
         return -1f;
     }
 
-    private static Vector2 GetImpulseDirection(Angle sailDirection)
+    private static Vector2 GetImpulseDirection(Angle shipDirection)
     {
-        return sailDirection.ToWorldVec();
+        return shipDirection.RotateVec(Vector2.UnitY);
     }
 
     private float GetShipSpeed(EntityUid boat)

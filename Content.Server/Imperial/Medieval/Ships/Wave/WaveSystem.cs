@@ -12,6 +12,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
@@ -36,7 +37,16 @@ public sealed class WaveSystem : EntitySystem
 
     public override void Initialize()
     {
+        SubscribeLocalEvent<WaveComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<WaveComponent, StartCollideEvent>(OnCollide);
+    }
+
+    private void OnStartup(EntityUid uid, WaveComponent component, ComponentStartup args)
+    {
+        if (!TryGetShipGridAt(_transform.GetMapCoordinates(uid), out _, out _))
+            return;
+
+        EntityManager.QueueDeleteEntity(uid);
     }
 
     public override void Update(float frameTime)
@@ -90,6 +100,20 @@ public sealed class WaveSystem : EntitySystem
         {
             mapGridComp = parentGridComp;
             gridUid = resolvedGridUid.Value;
+            return true;
+        }
+
+        gridUid = EntityUid.Invalid;
+        mapGridComp = default!;
+        return false;
+    }
+
+    private bool TryGetShipGridAt(MapCoordinates coords, out EntityUid gridUid, out MapGridComponent mapGridComp)
+    {
+        if (_mapManager.TryFindGridAt(coords, out gridUid, out var foundGridComp) &&
+            HasComp<ShipDrowningComponent>(gridUid))
+        {
+            mapGridComp = foundGridComp;
             return true;
         }
 
@@ -207,12 +231,21 @@ public sealed class WaveSystem : EntitySystem
         if (!_map.TryGetMap(coords.MapId, out _))
             return null;
 
+        if (TryGetShipGridAt(coords, out _, out _))
+            return null;
+
         var wave = Spawn("WaveLarge", coords);
+        if (TerminatingOrDeleted(wave))
+            return null;
+
         var waveComponent = EnsureComp<WaveComponent>(wave);
         waveComponent.DeleteOnCollide = deleteOnCollide;
 
-        _physics.WakeBody(wave);
-        _physics.SetLinearVelocity(wave, velocity);
+        if (TryComp<PhysicsComponent>(wave, out var body))
+        {
+            _physics.WakeBody(wave, body: body);
+            _physics.ApplyLinearImpulse(wave, velocity * body.Mass, body: body);
+        }
 
         RemComp<TimedDespawnComponent>(wave);
         RemComp<MedievalTimedDespawnComponent>(wave);
