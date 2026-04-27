@@ -670,6 +670,6 @@ binds:
 # Medieval Melee System
 - function: MeleeParry
   type: State
-  key: J
+  key: F
 
 # Imperial Options End
