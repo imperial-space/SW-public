@@ -31,6 +31,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
         InitializeMenu();
 
         SubscribeLocalEvent<CloackMessageComponent, ComponentStartup>(OnStart);
+        SubscribeLocalEvent<CloackMessageComponent, ComponentShutdown>(OnCloackMessageShutdown);
         SubscribeLocalEvent<CloackMessageComponent, CloackMessageActionEvent>(OnCloackMessageAction);
 
         SubscribeLocalEvent<GallowsComponent, StrappedEvent>(OnGallowsStrapped);
@@ -58,7 +59,13 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
 
     public void OnStart(EntityUid uid, CloackMessageComponent comp, ComponentStartup args)
     {
-        _action.AddAction(uid, comp.Action, uid);
+        _action.AddAction(uid, ref comp.ActionEntity, comp.Action, uid);
+    }
+
+    public void OnCloackMessageShutdown(EntityUid uid, CloackMessageComponent comp, ComponentShutdown args)
+    {
+        _action.RemoveAction(uid, comp.ActionEntity);
+        comp.ActionEntity = null;
     }
 
     private void OnGallowsStrapped(EntityUid uid, GallowsComponent comp, ref StrappedEvent args)

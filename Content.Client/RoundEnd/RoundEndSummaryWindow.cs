@@ -2,6 +2,7 @@ using System.Linq;
 using System.Numerics;
 using Content.Client.Message;
 using Content.Shared.GameTicking;
+using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Utility;
@@ -15,7 +16,8 @@ namespace Content.Client.RoundEnd
         public int RoundId;
 
         public RoundEndSummaryWindow(string gm, string roundEnd, TimeSpan roundTimeSpan, int roundId,
-            RoundEndMessageEvent.RoundEndPlayerInfo[] info, IEntityManager entityManager)
+            RoundEndMessageEvent.RoundEndPlayerInfo[] info, IEntityManager entityManager,
+            string[] lastWords) // Imperial Medieval Last Words
         {
             _entityManager = entityManager;
 
@@ -33,6 +35,7 @@ namespace Content.Client.RoundEnd
             var roundEndTabs = new TabContainer();
             roundEndTabs.AddChild(MakeRoundEndSummaryTab(gm, roundEnd, roundTimeSpan, roundId));
             roundEndTabs.AddChild(MakePlayerManifestTab(info));
+            roundEndTabs.AddChild(MakeLastWordsTab(lastWords)); // Imperial Medieval Last Words
 
             Contents.AddChild(roundEndTabs);
 
@@ -166,6 +169,71 @@ namespace Content.Client.RoundEnd
 
             return playerManifestTab;
         }
+
+        // Imperial Medieval Last Words Start 
+        private BoxContainer MakeLastWordsTab(string[] lastWords)
+        {
+            var lastWordsTab = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical,
+                Name = Loc.GetString("round-end-summary-window-last-words-tab-title")
+            };
+
+            var scrollBox = new ScrollContainer
+            {
+                VerticalExpand = true,
+                Margin = new Thickness(10),
+                HScrollEnabled = false
+            };
+            var container = new BoxContainer
+            {
+                Orientation = LayoutOrientation.Vertical,
+                SeparationOverride = 6
+            };
+
+            if (lastWords.Length == 0)
+            {
+                container.AddChild(new Label
+                {
+                    Text = Loc.GetString("round-end-summary-window-last-words-none"),
+                    HorizontalAlignment = HAlignment.Center,
+                    Margin = new Thickness(0, 20)
+                });
+            }
+            else
+            {
+                foreach (var words in lastWords)
+                {
+                    var panel = new PanelContainer
+                    {
+                        Margin = new Thickness(0, 0, 0, 2)
+                    };
+
+                    panel.PanelOverride = new StyleBoxFlat
+                    {
+                        BackgroundColor = new Color(0.12f, 0.08f, 0.06f, 1f),
+                        BorderColor = new Color(0.36f, 0.29f, 0.25f, 1f),
+                        BorderThickness = new Thickness(2),
+                        ContentMarginLeftOverride = 12,
+                        ContentMarginRightOverride = 12,
+                        ContentMarginTopOverride = 8,
+                        ContentMarginBottomOverride = 8,
+                    };
+
+                    var label = new RichTextLabel { HorizontalExpand = true };
+                    label.SetMarkup($"[italic]\"{words.Replace("[", "\\[")}\"[/italic]");
+                    panel.AddChild(label);
+                    container.AddChild(panel);
+                }
+            }
+
+            scrollBox.AddChild(container);
+            lastWordsTab.AddChild(scrollBox);
+
+            return lastWordsTab;
+        }
+
     }
+    // Imperial Medieval Last Words End 
 
 }

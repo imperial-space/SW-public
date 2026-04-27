@@ -16,6 +16,22 @@
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
 
+- type: roleLoadout
+  id: JobMedievalLegionCourier
+  groups:
+  - TravellerHead
+  - TravellerJumpsuit
+  - MedievalNeck
+  - MedievalBackpack
+  #- SecurityOuterClothing
+  - MedievalShoes
+  #- SecurityPDA
+  - MedievalBelt
+  #- SurvivalSecurity
+  - MedievalTrinkets
+  #- GroupSpeciesBreathToolSecurity
+  - MedievalGloves
+
 - type: loadoutGroup
   id: TravellerHead
   name: loadout-group-traveller-head
@@ -979,6 +995,49 @@
   #  - Flash
   #  - MagazinePistol
 
+- type: startingGear
+  id: MedievalLegionCourierGear
+  equipment:
+    pocket1: MedievalRevent10
+    pocket2: MedievalRevent10
+    belt: CourierBag
+
+# MEDIEVAL COURIER
+
+- type: playTimeTracker
+  id: JobMedievalLegionCourier
+
+- type: jobIcon
+  parent: JobIcon
+  id: JobIconMedievalLegionCourier
+  icon:
+    sprite: /Textures/Imperial/Medieval/Misc/job_icon_courier.rsi
+    state: courier
+  jobName: job-name-courier
+
+- type: job
+  id: MedievalLegionCourier
+  name: job-name-courier
+  description: job-description-courier
+  playTimeTracker: JobMedievalLegionCourier
+  startingGear: MedievalLegionCourierGear
+  icon: "JobIconMedievalLegionCourier"
+  special:
+  - !type:AddComponentSpecial
+    components:
+    - type: WarningOnAttach
+      message: medieval-warning-base
+    - type: MedievalJobSpawn
+      spawnType: Default
+    - type: GiveItemObjective
+    - type: MoneyCollector
+      objectivePrototype: MedievalGetMoneyObjective300500
+    - type: Courier
+    - type: MedievalPasportPerson
+      personJob: "[color=cyan]Курьер[/color]"
+      pasport: MedievalPasportLegion
+      jobPrefix: "[Кур]"
+
 
 
 
@@ -1087,6 +1146,9 @@
   groups:
   - BardHead
   - BardJumpsuit
+  - BardOuter
+  - BardMask
+  - BardItems
   - MedievalBackpack
   #- SecurityOuterClothing
   - MedievalShoes
@@ -1097,6 +1159,22 @@
   - MedievalMusic
   #- GroupSpeciesBreathToolSecurity
   - MedievalGloves
+
+- type: loadoutGroup
+  id: BardItems
+  name: loadout-group-bard-items
+  minLimit: 0
+  loadouts:
+  - BardHorse
+
+- type: loadout
+  id: BardHorse
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  storage:
+    back:
+    - BardHorse
 
 - type: loadoutGroup
   id: BardHead
@@ -1118,6 +1196,13 @@
   - MedievalWanderHat
   - MedievalGreenHat
   - MedievalWhiteHat
+  - BardArlekinoHead
+  - BardAsianHat
+  - BardCrown
+  - BardHat
+  - BardHeadscarf
+  - BardManHead
+  - BardWig
   #- TravellerHood
 
 - type: loadout
@@ -1232,6 +1317,62 @@
   equipment:
     head: MedievalWhiteHat
 
+- type: loadout
+  id: BardArlekinoHead
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardArlekinoHead
+
+- type: loadout
+  id: BardAsianHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardAsianHat
+
+- type: loadout
+  id: BardCrown
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer10hours
+  equipment:
+    head: BardCrown
+
+- type: loadout
+  id: BardHat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardHat
+
+- type: loadout
+  id: BardHeadscarf
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardHeadscarf
+
+- type: loadout
+  id: BardManHead
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardManHead
+
+- type: loadout
+  id: BardWig
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    head: BardWig
+
 
 
 - type: loadoutGroup
@@ -1244,6 +1385,10 @@
   - BardReallyGood
   - BardGor1
   - BardGor2
+  - BardArlekino
+  - BardKimano
+  - BardMagicDress
+  - BardPierro
 
 - type: loadout
   id: BardDefault
@@ -1292,6 +1437,106 @@
     proto: BardTimer30hours
   equipment:
     jumpsuit: ClothingUniformJumpskirtJanimaid
+
+- type: loadout
+  id: BardArlekino
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    jumpsuit: BardArlekino
+
+- type: loadout
+  id: BardKimano
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    jumpsuit: BardKimano
+
+- type: loadout
+  id: BardMagicDress
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer10hours
+  equipment:
+    jumpsuit: BardMagicDress
+
+- type: loadout
+  id: BardPierro
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    jumpsuit: BardPierro
+
+- type: loadoutGroup
+  id: BardOuter
+  name: loadout-group-traveller-outer
+  minLimit: 0
+  loadouts:
+  - BardBear
+  - BardGrinCoat
+  - BardRedcoat
+
+- type: loadout
+  id: BardBear
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer10hours
+  equipment:
+    outerClothing: BardBear
+
+- type: loadout
+  id: BardGrinCoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    outerClothing: BardGrinCoat
+
+- type: loadout
+  id: BardRedcoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    outerClothing: BardRedcoat
+
+- type: loadoutGroup
+  id: BardMask
+  name: loadout-group-traveller-mask
+  minLimit: 0
+  loadouts:
+  - BardMaskLove
+  - BardMaskSad
+  - BardMaskSmile
+
+- type: loadout
+  id: BardMaskLove
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    mask: BardMaskLove
+
+- type: loadout
+  id: BardMaskSad
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    mask: BardMaskSad
+
+- type: loadout
+  id: BardMaskSmile
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: BardTimer4hours
+  equipment:
+    mask: BardMaskSmile
+
+
 
 - type: loadoutGroup
   id: MedievalMusic
@@ -2464,7 +2709,7 @@
 - type: startingGear
   id: MedievalLegionTreasurerGear
   equipment:
-    pocket1: MedievalRevent25
+    pocket1: MedievalStampMedievalTreasurer
     pocket2: MedievalKeyTreasurer
     jumpsuit: MedievalClothingTreasurer
     head: MedievalClothingHeadTreasurer
@@ -2643,7 +2888,7 @@
 - type: startingGear
   id: MedievalLegionAlchemicGear
   equipment:
-    #pocket1: MedievalCommsCrystallLeg
+    pocket1: MedievalStampMedievalAlch
     pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanEagle
@@ -3224,7 +3469,7 @@
 - type: startingGear
   id: MedievalInsurgencyAlchemicGear
   equipment:
-    #pocket1: MedievalCommsCrystallIns
+    pocket1: MedievalStampMedievalAlch
     pocket2: MedievalRevent50
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth68
     #neck: MedievalClothingNeckCloakClanFox
@@ -5358,7 +5603,7 @@
   id: MedievalVillagerLeaderGear
   equipment:
     pocket1: MedievalRevent50
-    pocket2: MedievalRevent25
+    pocket2: MedievalStampMedievalVillage
     jumpsuit: MedievalClothingUniformJumpsuitShitCloth10
     head: MedievalClothingHeadArcherHat
 

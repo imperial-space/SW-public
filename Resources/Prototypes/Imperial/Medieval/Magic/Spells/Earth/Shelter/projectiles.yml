@@ -14,3 +14,16 @@
   components:
   - type: TimedDespawn
     lifetime: 9
+  - type: Destructible
+    thresholds:
+      - trigger:
+          !type:DamageTrigger
+          damage: 1415
+        behaviors:
+          - !type:DoActsBehavior
+            acts: ["Destruction"]
+          - !type:PlaySoundBehavior
+            sound:
+              path: /Audio/Effects/break_stone.ogg
+              params:
+                volume: -6

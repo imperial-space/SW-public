@@ -4,11 +4,14 @@ using Content.Shared.Damage.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Humanoid;
+using Content.Shared.Hands;
+using Content.Shared.Hands.Components;
 using Content.Shared.Interaction.Events;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Weapons.Melee;
 using Content.Shared.Weapons.Melee.Events;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -40,35 +43,75 @@ public sealed class ChargedAttackSystem : EntitySystem
 
         SubscribeLocalEvent<ChargedAttackComponent, MeleeHitEvent>(OnHit);
         SubscribeLocalEvent<ChargedAttackComponent, StaminaMeleeHitEvent>(OnStaminaHit);
+        SubscribeLocalEvent<ChargedAttackComponent, DroppedEvent>(OnDropped);
+        SubscribeLocalEvent<ChargedAttackComponent, GotUnequippedHandEvent>(OnUnequipped);
+        SubscribeLocalEvent<ChargedAttackComponent, EntInsertedIntoContainerMessage>(OnInsertedIntoContainer);
+    }
+
+    private void OnDropped(EntityUid weapon, ChargedAttackComponent charged, DroppedEvent args)
+    {
+        if (!charged.CurrentAttacking)
+            return;
+
+        StopAttacking(weapon, charged, args.User);
+    }
+
+    private void OnUnequipped(EntityUid weapon, ChargedAttackComponent charged, GotUnequippedHandEvent args)
+    {
+        if (!charged.CurrentAttacking)
+            return;
+
+        StopAttacking(weapon, charged, args.User);
+    }
+
+    private void OnInsertedIntoContainer(EntityUid weapon, ChargedAttackComponent charged, EntInsertedIntoContainerMessage args)
+    {
+        if (!charged.CurrentAttacking)
+            return;
+
+        var user = args.Container.Owner;
+        
+        if (TryComp<TransformComponent>(user, out var xform) && xform.ParentUid.IsValid())
+        {
+            if (HasComp<HandsComponent>(xform.ParentUid))
+                user = xform.ParentUid;
+        }
+        
+        StopAttacking(weapon, charged, user);
     }
 
     private void OnHit(EntityUid weapon, ChargedAttackComponent charged, MeleeHitEvent args)
     {
-        if (!args.HitEntities.Any())
-            return;
-
         if (charged.Modifier == 0f)
             return;
 
-        var modifier = charged.Modifier - 1;
+        var modifier = charged.Modifier;
 
-        args.BonusDamage = args.BaseDamage * modifier;
         charged.Modifier = 0f;
         Dirty(weapon, charged);
+
+        if (!args.HitEntities.Any())
+            return;
+
+        args.BonusDamage = args.BaseDamage * (modifier - 1);
     }
 
     private void OnStaminaHit(EntityUid weapon, ChargedAttackComponent charged, StaminaMeleeHitEvent args)
     {
-        if (!args.HitList.Any())
-            return;
-
         if (charged.Modifier == 0f)
             return;
 
-        args.Multiplier *= charged.Modifier;
+        var modifier = charged.Modifier;
+
         charged.Modifier = 0f;
         Dirty(weapon, charged);
+
+        if (!args.HitList.Any())
+            return;
+
+        args.Multiplier *= modifier;
     }
+
 
     public override void Update(float frameTime)
     {
@@ -113,7 +156,9 @@ public sealed class ChargedAttackSystem : EntitySystem
             return;
 
         var weaponUid = GetEntity(msg.Weapon);
-        if (!TryComp<ChargedAttackComponent>(weaponUid, out var charged)) return;
+        if (!TryComp<ChargedAttackComponent>(weaponUid, out var charged))
+            return;
+
         charged.AttackStart = _timing.CurTime;
         charged.CurrentAttacking = true;
         Dirty(weaponUid, charged);
@@ -130,8 +175,12 @@ public sealed class ChargedAttackSystem : EntitySystem
         var weaponUid = GetEntity(msg.Weapon);
         var attackTime = msg.AttackTime;
 
-        if (!TryComp<ChargedAttackComponent>(weaponUid, out var charged)) return;
-        if (!TryComp<MeleeWeaponComponent>(weaponUid, out var weapon)) return;
+        if (!TryComp<ChargedAttackComponent>(weaponUid, out var charged))
+            return;
+
+        if (!TryComp<MeleeWeaponComponent>(weaponUid, out var weapon))
+            return;
+
         ChargedAttack(user, coordinates, (weaponUid, weapon), charged, attackTime, args.SenderSession);
         StopAttacking(weaponUid, charged, user);
     }
@@ -169,6 +218,7 @@ public sealed class ChargedAttackSystem : EntitySystem
     {
         charged.CurrentAttacking = false;
         charged.AttackStart = TimeSpan.FromSeconds(0f);
+        charged.Modifier = 0f;
         _modifierSystem.RefreshMovementSpeedModifiers(user);
         EndEffect(entity, charged);
         Dirty(entity, charged);

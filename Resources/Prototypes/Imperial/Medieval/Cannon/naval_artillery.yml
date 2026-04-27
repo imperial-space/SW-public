@@ -1,0 +1,155 @@
+- type: entity
+  id: MedievalGrapeshot
+  parent: BaseItem
+  name: grapeshot
+  description: A compact grapeshot charge.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Cannon/grapeshot.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Medieval/Cannon/grapeshot.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: RDWeight
+    value: 2
+  - type: Tag
+    tags:
+    - CannonBall
+  - type: CartridgeAmmo
+    proto: PelletGrapeshotSpread
+    deleteOnSpawn: true
+
+- type: entity
+  id: MedievalCannonballExplosive
+  parent: BaseItem
+  name: explosive cannonball
+  description: A cannonball with an explosive payload.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Cannon/cannonball_explosive.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Medieval/Cannon/cannonball_explosive.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: RDWeight
+    value: 2
+  - type: Tag
+    tags:
+    - CannonBall
+  - type: CartridgeAmmo
+    proto: BulletCannonBallExplosive
+    deleteOnSpawn: true
+
+- type: entity
+  id: MedievalLintstock
+  parent: BaseItem
+  name: lintstock
+  description: A match tool used to ignite charges.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Cannon/lintstock.rsi
+    state: icon
+  - type: Item
+    size: Small
+    sprite: Imperial/Medieval/Cannon/lintstock.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: AlwaysHot
+  - type: IgnitionSource
+    ignited: true
+    temperature: 400
+  - type: PointLight
+    enabled: true
+    netsync: false
+    radius: 1.1
+    color: orange
+
+- type: entity
+  id: MedievalRamrod
+  parent: BaseItem
+  name: ramrod
+  description: A cleaning rod for a cannon barrel.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Cannon/ramrod.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Medieval/Cannon/ramrod.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Construction
+    graph: MedievalRamrodConstruction
+    node: MedievalRamrodBuilt
+  - type: Ramrod
+    actionSound:
+      path: /Audio/Imperial/Medieval/Cannon/ramrod_action.ogg
+
+- type: entity
+  id: MedievalCannonballShip
+  parent: BaseItem
+  name: ship cannonball
+  description: A standard solid ship cannonball.
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Cannon/cannonball_ship.rsi
+    state: icon
+  - type: Item
+    size: Normal
+    sprite: Imperial/Medieval/Cannon/cannonball_ship.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: RDWeight
+    value: 2
+  - type: Tag
+    tags:
+    - CannonBall
+  - type: CartridgeAmmo
+    proto: BulletCannonBall
+    deleteOnSpawn: true
+
+- type: construction
+  name: construction-recipe-medieval-ramrod
+  id: MedievalRamrodConstruction
+  graph: MedievalRamrodConstruction
+  startNode: start
+  targetNode: MedievalRamrodBuilt
+  category: construction-category-misc
+  description: construction-recipe-medieval-ramrod-desc
+  icon: { sprite: Imperial/Medieval/Cannon/ramrod.rsi, state: icon }
+  objectType: Item
+
+- type: constructionGraph
+  id: MedievalRamrodConstruction
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: MedievalRamrodBuilt
+          steps:
+            - material: WoodPlank
+              amount: 1
+              doAfter: 1
+            - material: Cloth
+              amount: 2
+    - node: MedievalRamrodBuilt
+      entity: MedievalRamrod

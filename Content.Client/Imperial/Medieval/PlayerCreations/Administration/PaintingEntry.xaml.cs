@@ -12,7 +12,7 @@ public sealed partial class PaintingEntry : Control
 {
     [Dependency] private readonly IPlayerManager _playerManager = default!;
 
-    public PaintingEntry(IClyde clyde, CreationPaintingMessage message, Action? onAccept = null, Action? onDecline = null, bool acceptEnabled = true)
+    public PaintingEntry(IClyde clyde, CreationPaintingMessage message, Action? onAccept = null, Action? onDecline = null, bool acceptEnabled = true, bool editable = false, Action<EditedCreationData>? onEdit = null)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -24,7 +24,7 @@ public sealed partial class PaintingEntry : Control
         PaintingName.SetMessage(message.Name);
         PaintingAuthor.SetMessage(message.Author);
 
-        MoreButton.OnPressed += _ => OpenMoreWindow(message);
+        MoreButton.OnPressed += _ => OpenMoreWindow(message, editable, onEdit);
 
         DeclineButton.OnPressed += _ => onDecline?.Invoke();
 
@@ -34,7 +34,7 @@ public sealed partial class PaintingEntry : Control
             AcceptButton.OnPressed += _ => onAccept?.Invoke();
     }
 
-    private void OpenMoreWindow(CreationPaintingMessage message)
+    private void OpenMoreWindow(CreationPaintingMessage message, bool editable, Action<EditedCreationData>? onEdit)
     {
         var moreWindow = new MoreWindow();
 
@@ -47,7 +47,7 @@ public sealed partial class PaintingEntry : Control
         var offset = new DateTimeOffset(utc).ToOffset(TimeSpan.FromHours(3));
         moreDict.Add(Loc.GetString("creations-info-creation-time"), offset.ToString("dd.MM.yyyy HH:mm"));
 
-        moreWindow.Populate(moreDict);
+        moreWindow.PopulatePainting(message, editable, onEdit);
         moreWindow.OpenCentered();
     }
 }

@@ -81,4 +81,17 @@ public abstract partial class SharedSkillsSystem : EntitySystem
 
         return sum;
     }
+
+    public int GetSkillLevel(EntityUid uid, string skill)
+    {
+        if (!TryComp<SkillsComponent>(uid, out var skillComponent))
+            return 1;
+        return skillComponent.Levels.GetValueOrDefault(skill, 1);
+    }
+
+    public bool HasSkill(EntityUid uid, string skill)
+    {
+        return TryComp<SkillsComponent>(uid, out var skillComponent)
+            && skillComponent.Levels.ContainsKey(skill);
+    }
 }

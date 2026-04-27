@@ -1,0 +1,357 @@
+# ИМПЕРИЯ - НАПОЛНЕННЫЕ РЮКЗАКИ
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelMusketeerImperial
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSabreInfantry
+    - id: MedievalFlaskImperial
+    - id: FoodBreadPlain
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelArtillerymanImperial
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSabreInfantry
+    - id: MedievalFlaskImperial
+    - id: FoodBreadPlain
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelMusicianImperial
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSabreInfantry
+    - id: MedievalFlaskImperial
+    - id: FoodBreadPlain
+    - id: FluteInstrument
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelMusicianImperialBagpipe
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSabreInfantry
+    - id: MedievalFlaskImperial
+    - id: FoodBreadPlain
+    - id: BagpipeInstrument
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelSapperImperial
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalFlaskImperial
+    - id: MedievalSabreInfantry
+
+# МАЛЛИНХЕН - НАПОЛНЕННЫЕ РЮКЗАКИ
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelVoltigeurMallinhen
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSabreInfantry
+    - id: MedievalFlaskMallin
+    - id: FoodBreadPlain
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelArtillerymanMallinhen
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSabreInfantry
+    - id: MedievalFlaskMallin
+    - id: FoodBreadPlain
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelMusicianMallinhen
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSabreInfantry
+    - id: MedievalFlaskMallin
+    - id: FoodBreadPlain
+    - id: FluteInstrument
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelMusicianMallinhenBagpipe
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalSabreInfantry
+    - id: MedievalFlaskMallin
+    - id: FoodBreadPlain
+    - id: BagpipeInstrument
+
+- type: entity
+  parent: MedievalMarshSatchel
+  id: MedievalMarshSatchelSapperMallinhen
+  components:
+  - type: StorageFill
+    contents:
+    - id: MedievalFlaskMallin
+    - id: MedievalSabreInfantry
+
+# ИМПЕРИЯ - ЛОДАУТЫ
+
+- type: startingGear
+  id: ImperialOfficer
+  name: Обер-офицер Империи
+  equipment:
+    jumpsuit: MedievalOfficerImperial
+    belt: MedievalBagSheathImperial
+    shoes: MedievalImperialBoots
+    head: MedievalHatOfficerImperial
+    neck: MedievalGorgetOfficer
+    pocket1: MedievalPistole
+    back: MedievalSabreOfficer
+
+- type: startingGear
+  id: ImperialUnterofficer
+  name: Унтер-офицер Империи
+  equipment:
+    jumpsuit: MedievalUnterofficerImperial
+    belt: MedievalBagSheathImperial
+    shoes: MedievalImperialBoots
+    head: MedievalHatImperial
+    neck: MedievalGorgetUnterofficer
+    pocket1: MedievalPistole
+    back: MedievalSabreOfficer
+
+- type: startingGear
+  id: ImperialSeniorArtillery
+  name: Старший канонир Империи
+  equipment:
+    jumpsuit: MedievalUnterofficerImperial
+    belt: MedievalBagSheathImperial
+    shoes: MedievalImperialBoots
+    head: MedievalHatArtillery
+    neck: MedievalGorgetUnterofficer
+    pocket1: MedievalPistole
+    pocket2: Binoculars
+    back: MedievalSabreOfficer
+
+- type: startingGear
+  id: ImperialCaptain
+  name: Ротмистр Империи
+  equipment:
+    jumpsuit: MedievalCavalryImperial
+    belt: MedievalCavalrySheath
+    shoes: MedievalCavalryBoots
+    head: MedievalHatCavalryImperial
+    neck: MedievalGorgetOfficer
+    pocket1: MedievalPistole
+    pocket2: MedievalTrumpet
+    back: MedievalSabreCavalry
+
+- type: startingGear
+  id: ImperialMusketeer
+  name: Мушкетёр Империи
+  equipment:
+    jumpsuit: MedievalMusketeerImperial
+    belt: MedievalBagSheath
+    shoes: MedievalImperialBoots
+    head: MedievalHatImperial
+    back: MedievalMarshSatchelMusketeerImperial
+
+- type: startingGear
+  id: ImperialArtilleryman
+  name: Канонир Империи
+  equipment:
+    jumpsuit: MedievalMusketeerImperial
+    belt: MedievalBagSheath
+    shoes: MedievalImperialBoots
+    head: MedievalHatArtillery
+    back: MedievalMarshSatchelArtillerymanImperial
+
+- type: startingGear
+  id: ImperialSapper
+  name: Сапёр-пионер Империи
+  equipment:
+    jumpsuit: MedievalSapperImperial
+    belt: MedievalBagSheath
+    shoes: MedievalImperialBoots
+    head: MedievalHatSapperImperial
+    pocket1: MedievalFlaskImperial
+    back: MedievalSapperAxe
+    suitStorage: MedievalSabreInfantry
+
+- type: startingGear
+  id: ImperialMusician
+  name: Музыкант Империи (флейта)
+  equipment:
+    jumpsuit: MedievalMusicianImperial
+    belt: MedievalBagSheath
+    shoes: MedievalImperialBoots
+    head: MedievalHatMusicianImperial
+    back: MedievalMarshSatchelMusicianImperial
+
+- type: startingGear
+  id: ImperialMusicianBagpipe
+  name: Музыкант Империи (волынка)
+  equipment:
+    jumpsuit: MedievalMusicianImperial
+    belt: MedievalBagSheath
+    shoes: MedievalImperialBoots
+    head: MedievalHatMusicianImperial
+    back: MedievalMarshSatchelMusicianImperialBagpipe
+
+- type: startingGear
+  id: ImperialDoctor
+  name: Военврач Империи
+  equipment:
+    jumpsuit: MedievalDocImperial
+    shoes: MedievalImperialBoots
+    head: MedievalDocHat
+    pocket1: MedievalFlaskImperial
+    pocket2: SurgicalKit
+    outerClothing: MedievalApronDoc
+
+- type: startingGear
+  id: ImperialCavalry
+  name: Кавалерист Империи
+  equipment:
+    jumpsuit: MedievalCavalryImperial
+    belt: MedievalCavalrySheath
+    shoes: MedievalCavalryBoots
+    head: MedievalHatCavalryImperial
+    pocket1: MedievalSabreCavalry
+    back: MedievalStutzen
+
+# МАЛЛИНХЕН - ЛОДАУТЫ
+
+- type: startingGear
+  id: MallinhenOfficer
+  name: Обер-офицер Маллинхена
+  equipment:
+    jumpsuit: MedievalOfficerMallinhen
+    belt: MedievalBagSheathMallinhen
+    shoes: MedievalMallinhenBoots
+    head: MedievalHatOfficerMallinhen
+    neck: MedievalGorgetOfficer
+    pocket1: MedievalPistole
+    back: MedievalSabreOfficer
+
+- type: startingGear
+  id: MallinhenUnterofficer
+  name: Унтер-офицер Маллинхена
+  equipment:
+    jumpsuit: MedievalUnterofficerMallinhen
+    belt: MedievalBagSheathMallinhen
+    shoes: MedievalMallinhenBoots
+    head: MedievalHatMallinhen
+    neck: MedievalGorgetUnterofficer
+    pocket1: MedievalPistole
+    back: MedievalSabreOfficer
+
+- type: startingGear
+  id: MallinhenSeniorArtillery
+  name: Фейерверкер Маллинхена
+  equipment:
+    jumpsuit: MedievalUnterofficerMallinhen
+    belt: MedievalBagSheathMallinhen
+    shoes: MedievalMallinhenBoots
+    head: MedievalHatArtilleryOfficerMallinhen
+    neck: MedievalGorgetUnterofficer
+    pocket1: MedievalPistole
+    pocket2: Binoculars
+    back: MedievalSabreOfficer
+
+- type: startingGear
+  id: MallinhenCaptain
+  name: Ротмистр Маллинхена
+  equipment:
+    jumpsuit: MedievalCavalryMallinhen
+    belt: MedievalCavalrySheath
+    shoes: MedievalCavalryBoots
+    head: MedievalHatOfficerMallinhen
+    neck: MedievalGorgetOfficer
+    pocket1: MedievalPistole
+    pocket2: MedievalTrumpet
+    back: MedievalSabreCavalry
+
+- type: startingGear
+  id: MallinhenMusketeer
+  name: Вольтижёр Маллинхена
+  equipment:
+    jumpsuit: MedievalMusketeerMallinhen
+    belt: MedievalBagSheath
+    shoes: MedievalMallinhenBoots
+    head: MedievalHatMallinhen
+    back: MedievalMarshSatchelVoltigeurMallinhen
+
+- type: startingGear
+  id: MallinhenArtilleryman
+  name: Канонир Маллинхена
+  equipment:
+    jumpsuit: MedievalMusketeerMallinhen
+    belt: MedievalBagSheath
+    shoes: MedievalMallinhenBoots
+    head: MedievalHatArtilleryMallinhen
+    back: MedievalMarshSatchelArtillerymanMallinhen
+
+- type: startingGear
+  id: MallinhenSapper
+  name: Сапёр-пионер Маллинхена
+  equipment:
+    jumpsuit: MedievalSapperMallinhen
+    belt: MedievalBagSheath
+    shoes: MedievalMallinhenBoots
+    head: MedievalHatSapperMallinhen
+    pocket1: MedievalFlaskMallin
+    pocket2: MedievalSabreInfantry
+    back: MedievalSapperAxe
+
+- type: startingGear
+  id: MallinhenMusician
+  name: Музыкант Маллинхена (флейта)
+  equipment:
+    jumpsuit: MedievalMusicianMallinhen
+    belt: MedievalBagSheath
+    shoes: MedievalMallinhenBoots
+    head: MedievalHatMusicianMallinhen
+    back: MedievalMarshSatchelMusicianMallinhen
+
+- type: startingGear
+  id: MallinhenMusicianBagpipe
+  name: Музыкант Маллинхена (волынка)
+  equipment:
+    jumpsuit: MedievalMusicianMallinhen
+    belt: MedievalBagSheath
+    shoes: MedievalMallinhenBoots
+    head: MedievalHatMusicianMallinhen
+    back: MedievalMarshSatchelMusicianMallinhenBagpipe
+
+- type: startingGear
+  id: MallinhenDoctor
+  name: Ротный-лекарь Маллинхена
+  equipment:
+    jumpsuit: MedievalDocMallinhen
+    shoes: MedievalMallinhenBoots
+    head: MedievalDocHat
+    pocket1: MedievalFlaskMallin
+    pocket2: SurgicalKit
+    outerClothing: MedievalApronDoc
+
+- type: startingGear
+  id: MallinhenCavalry
+  name: Кавалерист Маллинхена
+  equipment:
+    jumpsuit: MedievalCavalryMallinhen
+    belt: MedievalCavalrySheath
+    shoes: MedievalCavalryBoots
+    head: MedievalHatMallinhen
+    pocket1: MedievalSabreCavalry
+    back: MedievalStutzen

@@ -1,0 +1,6 @@
+- type: entity
+  parent: BaseGameRule
+  id: MedievalSeaGeneration
+  components:
+  - type: GameRule
+  - type: MedievalSeaGenerationRule

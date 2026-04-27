@@ -1,3 +1,4 @@
+using Content.Server.Imperial.Medieval.Engineering;
 using Content.Server.Engineering.Components;
 using Content.Server.Stack;
 using Content.Shared.Coordinates.Helpers;
@@ -47,6 +48,14 @@ namespace Content.Server.Engineering.EntitySystems
 
             if (!IsTileClear())
                 return;
+
+            // Imperial Medieval Start
+            var ev = new BeforeSpawnAfterInteractEvent(args.User);
+            RaiseLocalEvent(uid, ref ev);
+
+            if (ev.Cancelled)
+                return;
+            // Imperial Medieval End
 
             if (component.DoAfterTime > 0)
             {

@@ -1,0 +1,55 @@
+- type: entity
+  parent: CrateLivestock
+  id: MedievalAncientOakCloset
+  name: ancient oak closet
+  suffix: Medieval
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Structures/Storage/closet.rsi
+    layers:
+    - state: base
+    - state: closed
+      map: ["enum.StorageVisualLayers.Door"]
+  - type: Icon
+    sprite: Imperial/Medieval/Structures/Storage/closet.rsi
+    state: base
+  - type: AccessReader
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25,-0.5,0.25,0.5"
+        density: 135
+        mask:
+        - CrateMask
+        layer:
+        - LargeMobLayer
+
+- type: entity
+  parent: MedievalAncientOakCloset
+  id: MedievalAncientOakClosetAlh
+  name: ancient oak closets
+  suffix: Alh, Medieval
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: AlchemyCloset
+
+- type: entityTable
+  id: MedievalAlchemyCloset
+  table: !type:AllSelector
+    children:
+    - id: MedievalPaper
+      amount: 6
+    - id: MedievalKotel
+    - id: MedievalhydroponicsSoilCraft
+      amount: 6
+    - id: MedievalHoe
+    - id: MedievalHatchet
+    - id: MedievalMortarNew
+    - id: MedievalMortarTool
+    - id: MedievalKnut
+    - id: MedievalHandcuffs
+    - id: MedievalMopBucket

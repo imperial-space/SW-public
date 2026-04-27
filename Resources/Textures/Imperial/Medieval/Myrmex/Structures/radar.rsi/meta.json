@@ -1,0 +1,29 @@
+{
+    "version": 1,
+    "license": "ICLA",
+    "copyright": "by gag08984",
+    "size": {
+        "x": 64,
+        "y": 64
+    },
+    "states": [
+        {
+            "name": "radar_animated",
+            "delays": [
+                [0.17, 0.17, 0.17, 0.17, 0.17, 0.17, 0.17, 0.17]
+            ]
+        },
+        {
+          "name": "radar_static"
+        },
+        {
+          "name": "connector_mv"
+        },
+        {
+          "name": "connector_hv"
+        },
+        {
+          "name": "connector_lv"
+        }
+    ]
+}

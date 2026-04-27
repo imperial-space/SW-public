@@ -71,6 +71,37 @@
 
 - type: entity
   parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakPass7
+  name: MedievalClothingNeckCloakPass
+  description: MedievalClothingNeckCloakPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Neck/neck7.rsi
+  - type: Insulated
+
+- type: entity
+  parent: ClothingNeckBase
+  id: MedievalClothingNeckCloakPass8
+  name: MedievalClothingNeckCloakPass
+  description: MedievalClothingNeckCloakPass
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Monetization/Clothing/Neck/neck8.rsi
+    layers:
+      - state: icon
+      - state: unshaded
+        shader: unshaded
+  - type: Insulated
+  - type: Clothing
+    sprite: Imperial/Medieval/Monetization/Clothing/Neck/neck8.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-unshaded
+        shader: unshaded
+
+- type: entity
+  parent: ClothingNeckBase
   id: MedievalClothingNeckCloakMediaSeking
   name: MedievalClothingNeckCloakPass
   description: MedievalClothingNeckCloakPass

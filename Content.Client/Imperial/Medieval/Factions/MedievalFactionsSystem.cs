@@ -84,7 +84,7 @@ public sealed partial class MedievalFactionsSystem : SharedMedievalFactionsSyste
         {
             if (IsRelationEnemy(playerFaction.Faction, comp.Faction))// если он из вражеской фракции и если он бил нашу фраку
             {
-                if (_identity.IsIdentityMasked(uid) && !comp.AttackedFactions.Contains(playerFaction.Faction))
+                if (!comp.AttackedFactions.Contains(playerFaction.Faction))
                     return;
                 args.StatusIcons.Add(_proto.Index(_enemyIcon));
             }

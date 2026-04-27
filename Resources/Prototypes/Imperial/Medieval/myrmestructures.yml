@@ -89,6 +89,22 @@
     - MyrmexCanTake
     - MyrmexResourceYant
 
+- type: entity
+  id: MedievalMyrmexResourceYantGear
+  name: янтарная шестерня
+  description: Довольно некачественная шестерня из янтаря, сделанная на скорую лапу
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Myrmex/resingear.rsi
+    state: resingear
+  - type: Item
+    size: Ginormous
+  - type: Tag
+    tags:
+    - MyrmexCanTake
+    - MyrmexResourceYantGear
+
   # - type: Construction
   #   graph: MedievalChest4
   #   node: MedievalChest4
@@ -184,6 +200,7 @@
         - HighImpassable
         - BulletImpassable
 
+# Light structures
 - type: entity
   id: MedievalMyrmexLightBlue
   parent: MedievalMyrmexBaseSmall
@@ -192,8 +209,7 @@
     sprite: Imperial/Medieval/Myrmex/Structures/lighting.rsi
     state: blue
   - type: MyrmexGrower
-    resType: light
-    resCur: руническое
+    lightType: Runic
   - type: PointLight
     color: "#107182FF"
     castShadows: false
@@ -211,8 +227,7 @@
     sprite: Imperial/Medieval/Myrmex/Structures/lighting.rsi
     state: orange
   - type: MyrmexGrower
-    resType: light
-    resCur: эфирное
+    lightType: Ethereal
   - type: PointLight
     color: "#D1671AFF"
     castShadows: false
@@ -230,8 +245,7 @@
     sprite: Imperial/Medieval/Myrmex/Structures/lighting.rsi
     state: purple
   - type: MyrmexGrower
-    resType: light
-    resCur: теневое
+    lightType: Shadow
   - type: PointLight
     color: "#9f11bc"
     castShadows: false
@@ -241,6 +255,7 @@
     graph: MLightPurple
     node: medievalMyrmexLightPurple
 
+# Spore structures
 - type: entity
   id: MedievalMyrmexSporeBlue
   parent: MedievalMyrmexBaseSmall
@@ -249,8 +264,7 @@
     sprite: Imperial/Medieval/Myrmex/Structures/spores.rsi
     state: blue
   - type: MyrmexGrower
-    resType: spore
-    resCur: "споры железошляпника"
+    sporeType: IronCap
   - type: PointLight
     color: "#107182FF"
     castShadows: false
@@ -268,8 +282,7 @@
     sprite: Imperial/Medieval/Myrmex/Structures/spores.rsi
     state: orange
   - type: MyrmexGrower
-    resType: spore
-    resCur: "едкие споры"
+    sporeType: Caustic
   - type: PointLight
     color: "#D1671AFF"
     castShadows: false
@@ -287,8 +300,7 @@
     sprite: Imperial/Medieval/Myrmex/Structures/spores.rsi
     state: purple
   - type: MyrmexGrower
-    resType: spore
-    resCur: "споры нейромицита"
+    sporeType: Neuromycite
   - type: PointLight
     color: "#9f11bc"
     castShadows: false
@@ -509,6 +521,7 @@
     - MedievalMyrmexResourceYant
     - MedievalMyrmexFibeStack5
     - MedievalMyrmexResourceGum
+    - MedievalMyrmexResourceYantGear
 
 - type: entity
   id: MedievalMyrmexToxicHole
@@ -640,3 +653,10 @@
   - type: Construction
     graph: MMyrmexIncubatorCraft
     node: medievalMyrmexIncubator
+
+- type: entity
+  id: MyrmexHive
+  name: Default
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: MyrmexHive

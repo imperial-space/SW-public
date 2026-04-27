@@ -389,6 +389,15 @@
   result: MedievalMonsterBag
 
 - type: CP14Recipe
+  id: MedievalHealBag
+  craftTime: 10
+  stacks:
+    MedievalLeather1: 2
+    MedievalRope: 1
+    MedievalLeatherBelt: 2
+  result: MedievalHealBag
+
+- type: CP14Recipe
   id: MedievalWineskin
   craftTime: 6
   stacks:
@@ -1421,6 +1430,47 @@
   stacks:
     WoodPlank: 10
   result: MedievalCoal10
+
+- type: CP14Recipe
+  id: MedievalLintstock
+  craftTime: 1
+  stacks:
+    MedievalIronIngot: 1
+    MedievalLeather1: 1
+    MedievalFireSerdolick: 1
+  result: MedievalLintstock
+
+- type: CP14Recipe
+  id: MedievalGunpowderCharge
+  craftTime: 1
+  stacks:
+    Gunpowder: 4
+    Cloth: 1
+  result: MedievalGunpowderCharge
+
+- type: CP14Recipe
+  id: MedievalCannonballShip
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 10
+  result: MedievalCannonballShip
+
+- type: CP14Recipe
+  id: MedievalCannonballExplosive
+  craftTime: 3
+  stacks:
+    MedievalIronIngot: 5
+    Gunpowder: 4
+  result: MedievalCannonballExplosive
+
+- type: CP14Recipe
+  id: MedievalGrapeshot
+  craftTime: 3
+  stacks:
+    MedievalRivets: 3
+    Cloth: 1
+    MedievalRope: 1
+  result: MedievalGrapeshot
 
 - type: CP14Recipe
   id: ClothingMaskBandGreen

@@ -1,0 +1,125 @@
+- type: entity
+  id: ForgedEbonitHead
+  name: ForgedEbonitHead
+  parent: ForgedHeadBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/ebonit.rsi
+    state: ebonit_head_icon
+  - type: ForgedModule
+    partSlot: head
+    layerState: ebonit_head
+    rsiPath: Imperial/Medieval/Forged/ebonit.rsi
+    resistanceModifier: 0.08
+    speedModifier: -0.15
+
+- type: entity
+  id: ForgedEbonitTorso
+  name: ForgedEbonitTorso
+  parent: ForgedTorsoBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/ebonit.rsi
+    state: TorsoBase
+    layers:
+    - state: ebonit_torso
+      map: ["torso"]
+    - state: blank
+      map: ["head"]
+    - state: blank
+      map: ["eyes"]
+    - state: blank
+      map: ["right_arm"]
+    - state: blank
+      map: ["left_arm"]
+    - state: blank
+      map: ["right_hand"]
+    - state: blank
+      map: ["left_hand"]
+    - state: blank
+      map: ["core"]
+      offset: 0, -0.1
+    - state: blank
+      map: ["right_leg"]
+    - state: blank
+      map: ["left_leg"]
+    - state: blank
+      map: ["right_foot"]
+    - state: blank
+      map: ["left_foot"]
+    - state: blank
+      map : ["upgrade1"]
+  - type: ForgedAssembly
+    torso: ForgedEbonitTorso
+  - type: ForgedModule
+    partSlot: torso
+    layerState: ebonit_torso
+    rsiPath: Imperial/Medieval/Forged/ebonit.rsi
+    resistanceModifier: 0.32
+    speedModifier: -0.55
+
+- type: entity
+  id: ForgedEbonitRArm
+  name: ForgedEbonitRArm
+  parent: ForgedRLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/ebonit.rsi
+    state: ebonit_arm_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_arm
+    layerState: ebonit_right_arm
+    rsiPath: Imperial/Medieval/Forged/ebonit.rsi
+    resistanceModifier: 0.08
+    speedModifier: -0.05
+
+- type: entity
+  id: ForgedEbonitLArm
+  name: ForgedEbonitLArm
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/ebonit.rsi
+    state: ebonit_arm_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_arm
+    layerState: ebonit_left_arm
+    rsiPath: Imperial/Medieval/Forged/ebonit.rsi
+    resistanceModifier: 0.08
+    speedModifier: -0.05
+
+- type: entity
+  id: ForgedEbonitRLeg
+  name: ForgedEbonitRLeg
+  parent: ForgedRLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/ebonit.rsi
+    state: ebonit_leg_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_leg
+    layerState: ebonit_right_leg
+    rsiPath: Imperial/Medieval/Forged/ebonit.rsi
+    resistanceModifier: 0.12
+    speedModifier: 0.10
+
+- type: entity
+  id: ForgedEbonitLLeg
+  name: ForgedEbonitLLeg
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/ebonit.rsi
+    state: ebonit_leg_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_leg
+    layerState: ebonit_left_leg
+    rsiPath: Imperial/Medieval/Forged/ebonit.rsi
+    resistanceModifier: 0.12
+    speedModifier: 0.10
