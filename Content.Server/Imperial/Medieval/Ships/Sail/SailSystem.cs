@@ -121,16 +121,20 @@ public sealed class SailSystem : EntitySystem
 
             var sailDirection = _transform.GetWorldRotation(sailEntity);
             var shipDirection = _transform.GetWorldRotation(boat);
-            var efficiency = GetEfficiencyByAngle(sailDirection, windDirection);
+            var forceFactor = GetForceFactorByAngle(sailDirection, windDirection);
+            if (MathF.Abs(forceFactor) < 0.001f)
+                continue;
+
             var weightDivider = GetWeightDivider(boat);
-            var force = stormLevel * windPower * sailComponent.SailSize * efficiency;
-            var impulse = GetImpulseDirection(shipDirection) * (force / weightDivider);
+            var impulseMagnitude = stormLevel * windPower * sailComponent.SailSize / weightDivider;
+            var localImpulse = Vector2.UnitY * (impulseMagnitude * forceFactor);
+            var worldImpulse = shipDirection.RotateVec(localImpulse);
 
             if (!TryComp<PhysicsComponent>(boat, out var body))
                 continue;
 
             _physics.WakeBody(boat);
-            _physics.ApplyLinearImpulse(boat, impulse, body: body);
+            _physics.ApplyLinearImpulse(boat, worldImpulse, body: body);
         }
     }
 
@@ -140,23 +144,20 @@ public sealed class SailSystem : EntitySystem
         return MathF.Max(1f, 1f + weight * 0.01f);
     }
 
-    private static float GetEfficiencyByAngle(Angle sailDirection, Angle windDirection)
+    private static float GetForceFactorByAngle(Angle sailDirection, Angle windDirection)
     {
         var diff = MathF.Abs((float) Angle.ShortestDistance(sailDirection, windDirection).Degrees);
 
-        if (diff <= 45f)
+        if (diff < 30f)
             return 1f;
-        if (diff < 90f)
+        if (diff < 75f)
             return 0.5f;
-        if (diff < 135f)
+        if (diff < 115f)
+            return 0f;
+        if (diff <= 150f)
             return -0.5f;
 
         return -1f;
-    }
-
-    private static Vector2 GetImpulseDirection(Angle shipDirection)
-    {
-        return shipDirection.RotateVec(Vector2.UnitY);
     }
 
     private float GetShipSpeed(EntityUid boat)
