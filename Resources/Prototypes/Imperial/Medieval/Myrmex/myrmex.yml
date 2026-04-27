@@ -439,8 +439,11 @@
         kidneys: OrganHumanKidneys
       connections:
       - right hand
+      - left hand
     right hand:
       part: RightHandReptilian
+    left hand:
+      part: LeftHandReptilian
 
 - type: Tag
   id: MyrmexCanTake

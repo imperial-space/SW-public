@@ -62,4 +62,8 @@ public sealed partial class HealingComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? HealingEndSound = null;
+    // Imperial Medieval Event start
+    [DataField]
+    public bool ConsumeOnUse = true;
+    // Imperial Medieval Event start
 }

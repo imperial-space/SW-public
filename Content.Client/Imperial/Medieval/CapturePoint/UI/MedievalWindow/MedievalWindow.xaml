@@ -1,0 +1,36 @@
+<medieval:MedievalWindow
+    xmlns="https://spacestation14.io"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+    xmlns:medieval="clr-namespace:Content.Client.Imperial.Medieval.CapturePoint.UI.MedievalWindow"
+    MinWidth="200" MinHeight="100">
+    <PanelContainer>
+        <PanelContainer.PanelOverride>
+            <gfx:StyleBoxFlat BackgroundColor="#1e1611"
+                               BorderColor="#3d2e24"
+                               BorderThickness="3" />
+        </PanelContainer.PanelOverride>
+    </PanelContainer>
+    <BoxContainer Orientation="Vertical" SeparationOverride="0">
+        <PanelContainer Name="WindowHeader" MinHeight="32">
+            <PanelContainer.PanelOverride>
+                <gfx:StyleBoxFlat BackgroundColor="#2a1f18"
+                                   BorderColor="#5c4a3d"
+                                   BorderThickness="0 0 0 2" />
+            </PanelContainer.PanelOverride>
+
+            <BoxContainer Orientation="Horizontal" Margin="8 0">
+                <Label Name="TitleLabel"
+                       VAlign="Center"
+                       HorizontalExpand="True"
+                       FontColorOverride="#d4af37"
+                       StyleClasses="LabelHeadingBigger" />
+
+                <TextureButton Name="CloseButton"
+                               VerticalAlignment="Center"
+                               StyleClasses="windowCloseButton" />
+            </BoxContainer>
+        </PanelContainer>
+        <Control Name="ContentsContainer" Margin="12" VerticalExpand="True" />
+    </BoxContainer>
+</medieval:MedievalWindow>

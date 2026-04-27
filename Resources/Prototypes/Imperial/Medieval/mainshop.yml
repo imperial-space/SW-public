@@ -2322,6 +2322,14 @@
   - MedievalBackpack
 
 - type: listing
+  id: MdvShopFishingBag
+  productEntity: FishingBag
+  cost:
+    Revent: 25
+  categories:
+  - MedievalBackpack
+
+- type: listing
   id: MdvShopHealBag
   productEntity: MedievalHealBag
   cost:

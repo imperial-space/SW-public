@@ -30,6 +30,9 @@ public abstract partial class SharedGunSystem
         SubscribeLocalEvent<BallisticAmmoProviderComponent, AfterInteractEvent>(OnBallisticAfterInteract);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, AmmoFillDoAfterEvent>(OnBallisticAmmoFillDoAfter);
         SubscribeLocalEvent<BallisticAmmoProviderComponent, UseInHandEvent>(OnBallisticUse);
+        //Imperial Medieval Event start
+        SubscribeLocalEvent<BallisticAmmoProviderComponent, CartridgeReloadDoAfterEvent>(OnCartridgeReloadDoAfter);
+        //Imperial Medieval Event end
     }
 
     private void OnBallisticUse(EntityUid uid, BallisticAmmoProviderComponent component, UseInHandEvent args)
@@ -51,7 +54,20 @@ public abstract partial class SharedGunSystem
 
         if (GetBallisticShots(component) >= component.Capacity)
             return;
-
+        //Imperial Medieval Event start
+        if (component.CartridgeFillDelay > TimeSpan.Zero)
+        {
+            Audio.PlayPredicted(component.SoundInsert, uid, args.User);
+            _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, args.User, component.CartridgeFillDelay, new CartridgeReloadDoAfterEvent(), used: args.Used, target: uid, eventTarget: uid)
+            {
+                BreakOnMove = true,
+                BreakOnDamage = true,
+                NeedHand = true,
+            });
+            args.Handled = true;
+            return;
+        }
+        //Imperial Medieval Event end
         component.Entities.Add(args.Used);
         Containers.Insert(args.Used, component.Container);
         // Not predicted so
@@ -289,6 +305,25 @@ public abstract partial class SharedGunSystem
         UpdateAmmoCount(entity.Owner);
         Dirty(entity);
     }
+
+//Imperial Medieval Event start
+    private void OnCartridgeReloadDoAfter(EntityUid uid, BallisticAmmoProviderComponent component, CartridgeReloadDoAfterEvent args)
+    {
+        args.Handled = true;
+        if (args.Cancelled)
+            return;
+        if (Deleted(args.Used))
+            return;
+        if (_whitelistSystem.IsWhitelistFailOrNull(component.Whitelist, args.Used.Value))
+            return;
+        if (GetBallisticShots(component) >= component.Capacity)
+            return;
+        component.Entities.Add(args.Used.Value);
+        Containers.Insert(args.Used.Value, component.Container);
+        UpdateBallisticAppearance(uid, component);
+        DirtyField(uid, component, nameof(BallisticAmmoProviderComponent.Entities));
+    }
+//Imperial Medieval Event end
 }
 
 /// <summary>
@@ -298,3 +333,9 @@ public abstract partial class SharedGunSystem
 public sealed partial class AmmoFillDoAfterEvent : SimpleDoAfterEvent
 {
 }
+//Imperial Medieval Event start
+[Serializable, NetSerializable]
+public sealed partial class CartridgeReloadDoAfterEvent : SimpleDoAfterEvent
+{
+}
+//Imperial Medieval Event end

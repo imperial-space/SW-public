@@ -4,7 +4,7 @@
          xmlns:creations="clr-namespace:Content.Client.Imperial.Medieval.PlayerCreations.Administration">
     <BoxContainer HorizontalExpand="True" Orientation="Vertical" VerticalExpand="True">
         <ScrollContainer VerticalExpand="True" Name="Scroll" HScrollEnabled="False">
-            <GridContainer Name="BookContainer" Columns="2" VerticalExpand="True" HorizontalAlignment="Center"/>
+            <WrapContainer Name="BookContainer" VerticalExpand="True" EqualSize="True"  HorizontalAlignment="Center"/>
         </ScrollContainer>
     </BoxContainer>
 </Control>

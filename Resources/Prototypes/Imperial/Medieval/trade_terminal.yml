@@ -1,0 +1,94 @@
+- type: entity
+  id: TradeTerminal
+  name: trade terminal
+  description: >-
+    A secure item exchange terminal. Open the interface to call
+    another terminal and negotiate a trade.
+  placement:
+    mode: SnapgridCenter
+  components:
+    - type: Transform
+      anchored: true
+    - type: Physics
+      bodyType: Static
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeAabb
+            bounds: "-0.45,-0.45,0.45,0.45"
+          density: 190
+          mask:
+            - MachineMask
+          layer:
+            - MachineLayer
+    - type: Sprite
+      drawdepth: Objects
+      sprite: Imperial/Medieval/Misc/quest.rsi
+      layers:
+        - state: merccontract
+          map: ["base"]
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.TradeTerminalVisuals.State:
+          base:
+            Idle:
+              state: merccontract
+            Calling:
+              state: merc
+            Ringing:
+              state: merc
+            Active:
+              state: mag
+            Countdown:
+              state: band
+            Completed:
+              state: ins
+    - type: Clickable
+    - type: Storage
+      maxItemSize: Huge
+      openOnActivate: false
+      clickInsert: false
+      showVerb: false
+      grid:
+        - 0,0,7,4
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+    - type: TradeTerminal
+      containerId: storagebase
+      countdownDuration: 10.0
+      completedCleanupDelay: 120.0
+    - type: UserInterface
+      interfaces:
+        enum.TradeUiKey.Key:
+          type: TradeTerminalBoundUserInterface
+    - type: Telephone
+      transmissionRange: Unlimited
+      compatibleRanges:
+        - Unlimited
+      listeningRange: 2.5
+      speakerVolume: Speak
+    - type: Speech
+    - type: InteractionOutline
+    - type: Damageable
+      damageContainer: Inorganic
+      damageModifierSet: Metallic
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 120
+          behaviors:
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel1:
+                  min: 1
+                  max: 2
+            - !type:DoActsBehavior
+              acts:
+                - Destruction

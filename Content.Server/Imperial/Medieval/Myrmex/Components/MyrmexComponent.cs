@@ -1,4 +1,6 @@
 using Content.Shared.Damage.Prototypes;
+using Content.Shared.FixedPoint;
+using Content.Shared.Mobs;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
@@ -33,4 +35,7 @@ public sealed partial class MyrmexComponent : Component
 
     [DataField]
     public float ActiveArmorSpeedMultiplier;
+
+    [DataField]
+    public List<(FixedPoint2 threshold, MobState state)>? BaseHealthThresholds = null;
 }

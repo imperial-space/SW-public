@@ -1,0 +1,74 @@
+- type: entity
+  id: ForgedRHandBlade
+  name: ForgedRHandBlade
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_blade_item1
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_hand
+    layerState: iron_right_arm_blade
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.02
+    speedModifier: 0
+    abilityId: Right_blade
+    requiredModule: right_arm
+
+- type: entity
+  id: ForgedLHandBlade
+  name: ForgedLHandBlade
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_blade_item1
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_hand
+    layerState: iron_left_arm_blade
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.05
+    speedModifier: 0
+    abilityId: Left_blade
+    requiredModule: left_arm
+
+- type: entity
+  id: ForgedCrossbowRHand
+  name: ForgedCrossbowRHand
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_crossbow_item
+    drawdepth: Items
+    scale: -1, -1
+  - type: ForgedModule
+    partSlot: right_hand
+    layerState: iron_righ_arm_crossbow
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.025
+    speedModifier: -0.02
+    abilityId: Right_crossbow
+    requiredModule: right_arm
+
+- type: entity
+  id: ForgedCrossbowLHand
+  name: ForgedCrossbowLHand
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/upgrades.rsi
+    state: iron_arm_crossbow_item
+    drawdepth: Items
+    scale: 1, -1
+  - type: ForgedModule
+    partSlot: left_hand
+    layerState: iron_left_arm_crossbow
+    rsiPath: Imperial/Medieval/Forged/upgrades.rsi
+    resistanceModifier: 0.025
+    speedModifier: -0.02
+    abilityId: Left_crossbow
+    requiredModule: left_arm

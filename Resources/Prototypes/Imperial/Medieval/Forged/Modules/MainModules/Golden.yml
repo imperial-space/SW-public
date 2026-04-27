@@ -1,0 +1,131 @@
+- type: entity
+  id: ForgedGoldenHead
+  name: ForgedGoldenHead
+  parent: ForgedHeadBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/golden.rsi
+    state: golden_head_icon
+  - type: ForgedModule
+    partSlot: head
+    layerState: golden_head
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
+    resistanceModifier: 0.04
+    speedModifier: -0.06
+    abilityId: VerySmart
+
+- type: entity
+  id: ForgedGoldenTorso
+  name: ForgedGoldenTorso
+  parent: ForgedTorsoBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/golden.rsi
+    state: TorsoBase
+    layers:
+    - state: golden_torso
+      map: ["torso"]
+    - state: blank
+      map: ["head"]
+    - state: blank
+      map: ["eyes"]
+    - state: blank
+      map: ["right_arm"]
+    - state: blank
+      map: ["left_arm"]
+    - state: blank
+      map: ["right_hand"]
+    - state: blank
+      map: ["left_hand"]
+    - state: blank
+      map: ["core"]
+      offset: 0, -0.1
+    - state: blank
+      map: ["right_leg"]
+    - state: blank
+      map: ["left_leg"]
+    - state: blank
+      map: ["right_foot"]
+    - state: blank
+      map: ["left_foot"]
+    - state: blank
+      map : ["upgrade1"]
+  - type: ForgedAssembly
+    torso: ForgedGoldenTorso
+  - type: ForgedModule
+    partSlot: torso
+    layerState: golden_torso
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
+    resistanceModifier: 0.16
+    speedModifier: -0.22
+    abilityId: Repair
+
+- type: entity
+  id: ForgedGoldenRArm
+  name: ForgedGoldenRArm
+  parent: ForgedRLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/golden.rsi
+    state: golden_arm_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_arm
+    layerState: golden_right_arm
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
+    resistanceModifier: 0.04
+    speedModifier: -0.02
+    abilityId: Sila
+
+- type: entity
+  id: ForgedGoldenLArm
+  name: ForgedGoldenLArm
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/golden.rsi
+    state: golden_arm_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_arm
+    layerState: golden_left_arm
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
+    resistanceModifier: 0.04
+    speedModifier: -0.02
+    abilityId: SilaReq
+
+- type: entity
+  id: ForgedGoldenRLeg
+  name: ForgedGoldenRLeg
+  parent: ForgedRLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/golden.rsi
+    state: golden_leg_icon
+    drawdepth: Items
+  - type: ForgedModule
+    partSlot: right_leg
+    layerState: golden_right_leg
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
+    resistanceModifier: 0.06
+    speedModifier: 0.06
+    abilityId: Boost
+
+- type: entity
+  id: ForgedGoldenLLeg
+  name: ForgedGoldenLLeg
+  parent: ForgedLLegBase
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Forged/golden.rsi
+    state: golden_leg_icon
+    drawdepth: Items
+    scale: -1, 1
+  - type: ForgedModule
+    partSlot: left_leg
+    layerState: golden_left_leg
+    rsiPath: Imperial/Medieval/Forged/golden.rsi
+    resistanceModifier: 0.06
+    speedModifier: 0.06
+    abilityId: BoostReq

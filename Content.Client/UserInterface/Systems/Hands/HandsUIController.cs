@@ -128,8 +128,12 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
 
     private void UnloadPlayerHands()
     {
+        // imperial medieval statusbars start
+        // if (HandsGui != null)
+        //     HandsGui.Visible = false;
         if (HandsGui != null)
-            HandsGui.Visible = false;
+            HandsGui.SetHandsVisibility(false);
+        // imperial medieval statusbars end
 
         _handContainerIndices.Clear();
         _handLookup.Clear();
@@ -144,8 +148,12 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
     private void LoadPlayerHands(Entity<HandsComponent> handsComp)
     {
         DebugTools.Assert(_playerHandsComponent == null);
+        // imperial medieval statusbars start
+        // if (HandsGui != null)
+        //     HandsGui.Visible = true;
         if (HandsGui != null)
-            HandsGui.Visible = true;
+            HandsGui.SetHandsVisibility(true);
+        // imperial medieval statusbars end
 
         _playerHandsComponent = handsComp;
         foreach (var (name, hand) in handsComp.Comp.Hands)
@@ -505,8 +513,12 @@ public sealed class HandsUIController : UIController, IOnStateEntered<GameplaySt
 
     public void OnStateEntered(GameplayState state)
     {
+        // imperial medieval statusbars start
+        // if (HandsGui != null)
+        //     HandsGui.Visible = _playerHandsComponent != null;
         if (HandsGui != null)
-            HandsGui.Visible = _playerHandsComponent != null;
+            HandsGui.SetHandsVisibility(_playerHandsComponent != null);
+        // imperial medieval statusbars end
     }
 
     public override void FrameUpdate(FrameEventArgs args)

@@ -391,17 +391,17 @@
   - type: MobThresholds
     thresholds:
       0: Alive
-      54: Dead
+      71: Dead
   - type: MovementSpeedModifier
     baseWalkSpeed: 3.0
     baseSprintSpeed: 3.75
   - type: SlowOnDamage
     speedModifierThresholds:
       10: 1
-      25: 0.8
-      35: 0.7
-      45: 0.6
-      60: 0.5
+      25: 0.9
+      35: 0.87
+      45: 0.77
+      60: 0.7
   #- type: Strap
   #  buckleOffset: "0, 0"
   #  maxBuckleDistance: 1
@@ -414,7 +414,10 @@
   - type: MobMover
   - type: HTN
     rootTask:
-      task: SimpleHostileCompound
+      task: FleeCarpCompound
+    blackboard:
+      NavSmash: !type:Bool
+        true
   - type: Vocal
     sounds:
       Unsexed: MedievalWolf
@@ -2671,10 +2674,8 @@
     rootTask:
       task: SimpleHostileCompound
   - type: Speech
-  #- type: Advertise RETURN AFTER OPTIMIZATION THIS HUINYA
-  #  pack: MedievalSkeletAdvertise
-  #  minimumWait: 9
-  #  maximumWait: 28
+  - type: MedievalSpeechInFight
+    pack: MedievalSkeletAdvertise
   - type: Damageable
     damageModifierSet: MedievalRespawn
   - type: Hunger
