@@ -4718,11 +4718,31 @@
     damage: 7 #2 dagger, 5 spear, 4 sword, 5 mace, 8 halberd, 6 sekir, 18 hammer
 
 - type: entity
-  id: MedievalEffectParry
-  categories: [ HideSpawnMenu ]
+  id: MedievalEffectWindowParry
   components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Parry/parry.rsi
+    state: parry_window
+    drawdepth: Overlays
   - type: TimedDespawn
-    lifetime: 3
+    lifetime: 0.525
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: MeleeParry
+  - type: MeleeParryEffect
+
+- type: entity
+  id: MedievalEffectSuccessParry
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Parry/parry.rsi
+    state: parry_success
+    drawdepth: Overlays
+  - type: TimedDespawn
+    lifetime: 0.525
   - type: Tag
     tags:
       - HideContextMenu
