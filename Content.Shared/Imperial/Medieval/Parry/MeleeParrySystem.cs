@@ -27,8 +27,6 @@ namespace Content.Shared.MeleeParry
     {
         public NetEntity Uid;
         public string EffectId = "MedievalEffectWindowParry";
-        public SoundSpecifier ParrySound = new SoundPathSpecifier("/Audio/Imperial/Medieval/iron_parry1.ogg");
-
     }
 
     public sealed partial class MeleeParrySystem : EntitySystem
@@ -68,15 +66,18 @@ namespace Content.Shared.MeleeParry
 
             if (session?.AttachedEntity is { } uid)
             {
+                if (!TryComp<MeleeParryStorageComponent>(uid, out var parryStorage)) return;
+                if (_timing.CurTime < parryStorage.GlobalNextParryTime) return;
+
                 var item = _hands.GetActiveItem(uid);
                 if (item != null && TryComp<MeleeParryComponent>(item.Value, out var parry))
                 {
                     if (_timing.CurTime >= parry.NextAllowedParryTime)
                     {
-                        parry.NextAllowedParryTime = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryCooldown / (Comp<SkillsComponent>(uid).Levels["Agility"] + 1) / 10);
+                        parry.NextAllowedParryTime = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryCooldown / GetAgilityMod(uid) / 10f);
+                        parryStorage.GlobalNextParryTime = parry.NextAllowedParryTime;
 
                         Spawn(parry.ParryEffectWindow, Transform(uid).Coordinates);
-                        _audio.PlayPredicted(new SoundPathSpecifier("/Audio/Imperial/Medieval/iron_parry1.ogg"), uid, uid);
 
                         RaiseNetworkEvent(new ParryPressedEvent());
                     }
@@ -86,8 +87,10 @@ namespace Content.Shared.MeleeParry
 
         private void OnParryNetworkPressed(ParryPressedEvent args, EntitySessionEventArgs sessionArgs)
         {
-            if (sessionArgs.SenderSession.AttachedEntity is not { } uid)
-                return;
+            if (sessionArgs.SenderSession.AttachedEntity is not { } uid) return;
+
+            if (!TryComp<MeleeParryStorageComponent>(uid, out var parryStorage)) return;
+            if (_timing.CurTime < parryStorage.GlobalNextParryTime) return;
 
             var item = _hands.GetActiveItem(uid);
             if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parry)) return;
@@ -95,9 +98,14 @@ namespace Content.Shared.MeleeParry
             if (_timing.CurTime < parry.NextAllowedParryTime) return;
 
             parry.ParriedTime = _timing.CurTime; // Запись времени
-            parry.NextAllowedParryTime = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryCooldown / ((Comp<SkillsComponent>(uid).Levels["Agility"] + 1) / 10));
+            parry.NextAllowedParryTime = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryCooldown / (GetAgilityMod(uid) / 10f));
+            parryStorage.GlobalNextParryTime = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryCooldown / (GetAgilityMod(uid) / 10f));
+            parryStorage.GlobalCooldownParry = parry.ParryCooldown / (GetAgilityMod(uid) / 10f);
 
             Dirty(item.Value, parry);
+            Dirty(uid, parryStorage);
+
+            _audio.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/iron_parry1.ogg"), uid);
 
             RaiseNetworkEvent(new PlayParryVfxEvent()
             {
@@ -133,7 +141,7 @@ namespace Content.Shared.MeleeParry
             {
                 args.Cancelled = true;
 
-                _stamina.TakeStaminaDamage(args.Origin.Value, 10 * ((Comp<SkillsComponent>(uid).Levels["Endurance"] + 1) / 2) + (float)parryDMG * 5); // Изначально урон стамине = 10 + (выносливость обороняющегося / 2) + (5 * легкость парирования атакующего оружия)
+                _stamina.TakeStaminaDamage(args.Origin.Value, 10 * (GetEnduranceMod(uid) / 2f) + (float)parryDMG * 5); // Изначально урон стамине = 10 + (выносливость обороняющегося / 2) + (5 * легкость парирования атакующего оружия)
             }
         }
 
@@ -156,6 +164,12 @@ namespace Content.Shared.MeleeParry
                 parry.NextAllowedParryTime = TimeSpan.Zero;
                 parry.ParriedTime = TimeSpan.Zero;
 
+                if (TryComp<MeleeParryStorageComponent>(uid, out var parryStorage)){
+                    parryStorage.GlobalNextParryTime = TimeSpan.Zero;
+                    parryStorage.GlobalCooldownParry = parry.ParryCooldown / (GetAgilityMod(uid) / 10f);
+                    Dirty(uid, parryStorage);
+                }
+
                 Dirty(item.Value, parry);
                 return true;
             }
@@ -174,14 +188,27 @@ namespace Content.Shared.MeleeParry
             if (!_netMan.IsClient) return;
 
             var uid = GetEntity(args.Uid);
+
             if (!Exists(uid)) return;
 
             if (_playerManager.LocalSession?.AttachedEntity == uid)
                 return;
 
-            // Все остальные игроки вокруг видят этот спавн
-            _audio.PlayPvs(args.ParrySound, uid);
             Spawn(args.EffectId, Transform(uid).Coordinates);
+        }
+
+        private float GetAgilityMod(EntityUid uid)
+        {
+            if (TryComp<SkillsComponent>(uid, out var skills) && skills.Levels.TryGetValue("Agility", out var level))
+                return Math.Max(level, 1f);
+            return 1f;
+        }
+
+        private float GetEnduranceMod(EntityUid uid)
+        {
+            if (TryComp<SkillsComponent>(uid, out var skills) && skills.Levels.TryGetValue("Endurance", out var level))
+                return Math.Max(level, 1f);
+            return 1f;
         }
     }
 }

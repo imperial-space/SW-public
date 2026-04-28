@@ -34,16 +34,15 @@ public sealed class ParryCooldownOverlay : Overlay
         if (playerEnt == null)
             return;
 
-        var activeItem = _hands.GetActiveItem(playerEnt.Value);
-        if (activeItem == null || !_entMan.TryGetComponent<MeleeParryComponent>(activeItem.Value, out var parry))
+        if (!_entMan.TryGetComponent<MeleeParryStorageComponent>(playerEnt, out var parryStorage))
             return;
 
-        if (_timing.CurTime >= parry.NextAllowedParryTime)
+        if (_timing.CurTime >= parryStorage.GlobalNextParryTime)
             return; // Кулдаун прошел, не рисуем
 
         // Вычисляем прогресс
-        var cooldownDuration = TimeSpan.FromSeconds(parry.ParryCooldown);
-        var startTime = parry.NextAllowedParryTime - cooldownDuration;
+        var cooldownDuration = TimeSpan.FromSeconds(parryStorage.GlobalCooldownParry);
+        var startTime = parryStorage.GlobalNextParryTime - cooldownDuration;
         var elapsed = _timing.CurTime - startTime;
         var progress = Math.Clamp(elapsed.TotalSeconds / cooldownDuration.TotalSeconds, 0.0, 1.0);
 
