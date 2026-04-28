@@ -23,7 +23,7 @@ public enum SailVisualLayers : byte
 public sealed partial class SailComponent : Component
 {
     [DataField("SailSize")]
-    public int SailSize = 1;
+    public float SailSize = 1f;
 
     [DataField("Folded")]
     public bool Folded;

@@ -10,7 +10,6 @@ using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -20,7 +19,6 @@ namespace Content.Server.Imperial.Medieval.Ships.Helm;
 public sealed class HelmSystem : EntitySystem
 {
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly RDWeightSystem _rdWeight = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -41,8 +39,7 @@ public sealed class HelmSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, HelmComponent component, ComponentStartup args)
     {
-        component.HelmRotation = NormalizeHelmRotation((float) Transform(uid).LocalRotation.Degrees);
-        _transform.SetLocalRotation(uid, Angle.FromDegrees(component.HelmRotation));
+        component.HelmRotation = NormalizeHelmRotation(component.HelmRotation);
     }
 
     private void OnInteractHand(EntityUid uid, HelmComponent component, ActivateInWorldEvent args)
@@ -135,7 +132,6 @@ public sealed class HelmSystem : EntitySystem
         }
 
         helmComponent.HelmRotation = NormalizeHelmRotation(helmComponent.HelmRotation);
-        _transform.SetLocalRotation(helm, Angle.FromDegrees(helmComponent.HelmRotation));
     }
 
     public override void Update(float frameTime)
