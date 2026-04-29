@@ -1,4 +1,5 @@
 using Content.Shared.Imperial.Medieval.Factions.Prototypes;
+using Content.Shared.Roles;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 
@@ -55,5 +56,8 @@ public sealed partial class FactionDataContainerComponent : Component
 
     [ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<ProtoId<MedievalFactionPrototype>, Dictionary<FactionMemberGroup, List<EntityUid>>> Points = new();
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public HashSet<ProtoId<DepartmentPrototype>> LockedDepartments = new();
 }
 

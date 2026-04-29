@@ -30,6 +30,12 @@ namespace Content.Server.Power.Components
 
         public PowerState.Load NetworkLoad { get; } = new();
 
+        [DataField]
+        public bool Powered;
+
+        [DataField]
+        public float Threshold = 0.9f;
+
         protected override void AddSelfToNet(IBasePowerNet powerNet)
         {
             powerNet.AddConsumer(this);

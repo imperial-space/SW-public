@@ -226,8 +226,8 @@
 
 - type: plagueSymptom
   id: ContactSpread3
-  name: plague-contact-spread-2-name
-  desc: plague-contact-spread-2-desc
+  name: plague-contact-spread-3-name
+  desc: plague-contact-spread-3-desc
   icon:
     sprite: Imperial/Medieval/Interface/Plague/symptoms.rsi
     state: infectiontier2

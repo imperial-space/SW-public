@@ -1,0 +1,419 @@
+# ИМПЕРИЯ - ГОТОВЫЕ ПЕРСОНАЖИ
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialOfficer
+  name: Офицер Империи
+  suffix: Империя, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialOfficer
+  - type: GhostRole
+    name: Офицер Империи
+    description: Командуйте войсками Империи на поле боя.
+    rules: >-
+      Вы — офицер Великой Империи Териона.
+      Ваша задача — командовать войсками Империи.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialUnterofficer
+  name: Унтер-офицер Империи
+  suffix: Империя, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialUnterofficer
+  - type: GhostRole
+    name: Унтер-офицер Империи
+    description: Помогайте офицерам командовать и следите за порядком.
+    rules: >-
+      Вы — унтер-офицер Великой Империи Териона.
+      Ваша задача — помогать офицерам командовать, следить за дисциплиной и вести солдат в бой.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialSeniorArtillery
+  name: Старший канонир Империи
+  suffix: Империя, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialSeniorArtillery
+  - type: GhostRole
+    name: Старший канонир Империи
+    description: Управляйте артиллерией и корректируйте огонь.
+    rules: >-
+      Вы — старший канонир Великой Империи Териона.
+      Ваша задача — управлять артиллерийскими орудиями и корректировать огонь.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialCaptain
+  name: Ротмистр Империи
+  suffix: Империя, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialCaptain
+  - type: GhostRole
+    name: Ротмистр Империи
+    description: Командуйте кавалерией и ведите её в атаку.
+    rules: >-
+      Вы — ротмистр Великой Империи Териона.
+      Ваша задача — командовать кавалерией, вести её в атаку и прорывать вражеские ряды.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialMusketeer
+  name: Мушкетёр Империи
+  suffix: Империя, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialMusketeer
+  - type: GhostRole
+    name: Мушкетёр Империи
+    description: Сражайтесь в пехоте, используя мушкеты и штыки.
+    rules: >-
+      Вы — мушкетёр Великой Империи Териона.
+      Ваша задача — выполнять приказы офицеров.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialArtilleryman
+  name: Канонир Империи
+  suffix: Империя, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialArtilleryman
+  - type: GhostRole
+    name: Канонир Империи
+    description: Обслуживайте артиллерийские орудия.
+    rules: >-
+      Вы — канонир Великой Империи Териона.
+      Ваша задача — обслуживать артиллерийские орудия и поддерживать пехоту огнём.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialSapper
+  name: Сапёр Империи
+  suffix: Империя, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialSapper
+  - type: GhostRole
+    name: Сапёр Империи
+    description: Стройте укрепления и разрушайте вражеские.
+    rules: >-
+      Вы — сапёр Великой Империи Териона.
+      Ваша задача — строить укрепления для защиты союзников и разрушать вражеские баррикады.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialMusician
+  name: Музыкант Империи
+  suffix: Империя, Ивент, Флейта
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialMusician
+  - type: GhostRole
+    name: Музыкант Империи
+    description: Вдохновляйте союзников музыкой.
+    rules: >-
+      Вы — музыкант Великой Империи Териона.
+      Ваша задача — поднимать боевой дух союзников.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialMusicianBagpipe
+  name: Музыкант Империи
+  suffix: Империя, Ивент, Волынка
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialMusicianBagpipe
+  - type: GhostRole
+    name: Музыкант Империи
+    description: Вдохновляйте союзников музыкой.
+    rules: >-
+      Вы — музыкант Великой Империи Териона.
+      Ваша задача — поднимать боевой дух союзников.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialDoctor
+  name: Военврач Империи
+  suffix: Империя, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialDoctor
+  - type: GhostRole
+    name: Военврач Империи
+    description: Лечите раненых солдат на поле боя.
+    rules: >-
+      Вы — военврач Великой Империи Териона.
+      Ваша задача — лечить раненых солдат и возвращать их в строй.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobImperialCavalry
+  name: Кавалерист Империи
+  suffix: Империя, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - ImperialCavalry
+  - type: GhostRole
+    name: Кавалерист Империи
+    description: Сражайтесь верхом, используя карабины и сабли.
+    rules: >-
+      Вы — кавалерист Великой Империи Териона.
+      Ваша задача — выполнять приказы ротмистра.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+# МАЛЛИНХЕН - ГОТОВЫЕ ПЕРСОНАЖИ
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenOfficer
+  name: Офицер Маллинхена
+  suffix: Маллинхен, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenOfficer
+  - type: GhostRole
+    name: Офицер Маллинхена
+    description: Командуйте войсками Королевства Маллинхен.
+    rules: >-
+      Вы — офицер Соединённого Королевства Маллинхена.
+      Ваша задача - командовать войсками Маллинхена.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenUnterofficer
+  name: Унтер-офицер Маллинхена
+  suffix: Маллинхен, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenUnterofficer
+  - type: GhostRole
+    name: Унтер-офицер Маллинхена
+    description: Помогайте офицерам командовать.
+    rules: >-
+      Вы — унтер-офицер Соединённого Королевства Маллинхена.
+      Ваша задача — помогать офицерам командовать, следить за дисциплиной и вести солдат в бой.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenSeniorArtillery
+  name: Фейерверкер Маллинхена
+  suffix: Маллинхен, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenSeniorArtillery
+  - type: GhostRole
+    name: Фейерверкер Маллинхена
+    description: Управляйте артиллерией.
+    rules: >-
+      Вы — фейерверкер Соединённого Королевства Маллинхена.
+      Ваша задача — управлять артиллерийскими орудиями и корректировать огонь.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenCaptain
+  name: Ротмистр Маллинхена
+  suffix: Маллинхен, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenCaptain
+  - type: GhostRole
+    name: Ротмистр Маллинхена
+    description: Командуйте кавалерией.
+    rules: >-
+      Вы — ротмистр Соединённого Королевства Маллинхена.
+      Ваша задача — командовать кавалерией.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenMusketeer
+  name: Вольтижёр Маллинхена
+  suffix: Маллинхен, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenMusketeer
+  - type: GhostRole
+    name: Вольтижёр Маллинхена
+    description: Сражайтесь в пехоте.
+    rules: >-
+      Вы — вольтижёр Соединённого Королевства Маллинхена.
+      Ваша задача — выполнять приказы офицеров.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenArtilleryman
+  name: Канонир Маллинхена
+  suffix: Маллинхен, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenArtilleryman
+  - type: GhostRole
+    name: Канонир Маллинхена
+    description: Обслуживайте артиллерию.
+    rules: >-
+      Вы — канонир Соединённого Королевства Маллинхена.
+      Ваша задача — обслуживать артиллерийские орудия и поддерживать пехоту огнём.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenSapper
+  name: Сапёр-пионер Маллинхена
+  suffix: Маллинхен, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenSapper
+  - type: GhostRole
+    name: Сапёр-пионер Маллинхена
+    description: Стройте и разрушайте укрепления.
+    rules: >-
+      Вы — сапёр-пионер Соединённого Королевства Маллинхена.
+      Ваша задача — строить укрепления и разрушать вражеские баррикады.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenMusician
+  name: Музыкант Маллинхена
+  suffix: Маллинхен, Ивент, Флейта
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenMusician
+  - type: GhostRole
+    name: Музыкант Маллинхена
+    description: Вдохновляйте союзников музыкой.
+    rules: >-
+      Вы — музыкант Соединённого Королевства Маллинхена.
+      Ваша задача — поднимать боевой дух союзников.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenMusicianBagpipe
+  name: Музыкант Маллинхена
+  suffix: Маллинхен, Ивент, Волынка
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenMusicianBagpipe
+  - type: GhostRole
+    name: Музыкант Маллинхена
+    description: Вдохновляйте союзников музыкой.
+    rules: >-
+      Вы — музыкант Соединённого Королевства Маллинхена.
+      Ваша задача — поднимать боевой дух союзников.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenDoctor
+  name: Ротный-лекарь Маллинхена
+  suffix: Маллинхен, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenDoctor
+  - type: GhostRole
+    name: Ротный-лекарь Маллинхена
+    description: Лечите раненых солдат.
+    rules: >-
+      Вы — ротный-лекарь Соединённого Королевства Маллинхена.
+      Ваша задача — лечить раненых солдат и возвращать их в строй.
+  - type: GhostTakeoverAvailable
+  - type: TakeName
+
+- type: entity
+  parent: BaseMobSpeciesOrganic
+  id: MobMallinhenCavalry
+  name: Кавалерист Маллинхена
+  suffix: Маллинхен, Ивент
+  components:
+  - type: Loadout
+    prototypes:
+      - MallinhenCavalry
+  - type: GhostRole
+    name: Кавалерист Маллинхена
+    description: Сражайтесь верхом.
+    rules: >-
+      Вы — кавалерист Соединённого Королевства Маллинхена.
+      Ваша задача — выполнять приказы ротмистра.
+    raffle:
+      settings: default
+  - type: GhostTakeoverAvailable
+  - type: TakeName

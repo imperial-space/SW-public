@@ -4,6 +4,7 @@ using Content.Shared.Administration;
 using Content.Shared.Eui;
 using Content.Server.Administration;
 using Content.Shared.Imperial.Medieval.Administration.Nrp;
+using Content.Shared.Imperial.Medieval.PlayerCreations;
 
 namespace Content.Server.Imperial.Medieval.Administration.Nrp;
 
@@ -69,11 +70,8 @@ public sealed class NrpPanelEui : BaseEui
                 SendMessage(new NrpMessagesResponse(messages));
                 break;
             case ResolveNrpMessageMsg resolve:
-                if (!_nrpSystem.TryRemoveMessage(resolve.Message))
-                {
-                    SendMessage(new RemoveNrpMessageMsg(resolve.Message));
+                if (!resolve.Message.TryResolve())
                     return;
-                }
 
                 var isNrp = resolve.IsNrp;
                 if (isNrp)

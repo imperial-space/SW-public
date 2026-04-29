@@ -58,6 +58,23 @@
     price:
       Revent: 350
 
+- type: entity
+  id: MedievalObeliskInfusion
+  parent: BaseItem
+  name: ent-MedievalObeliskInfusion
+  description: ent-MedievalObeliskInfusion.desc
+  suffix: medieval
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Magic/Earth/Obelisk/obeliskinfusion.rsi
+    state: icon
+  - type: Item
+    sprite: Imperial/Medieval/Magic/Earth/Obelisk/obeliskinfusion.rsi
+    size: Normal
+  - type: RDWeight
+    value: 1
+  - type: ObeliskFixer
+
 # Crafting recipes (Magic blacksmith)
 - type: CP14Recipe
   id: MedievalReliefStoneWeakCraft
@@ -87,4 +104,11 @@
     MedievalTopaz: 2
     MedievalFireSerdolick: 2
 
-
+- type: CP14Recipe
+  id: MedievalObeliskInfusionCraft
+  craftTime: 10
+  result: MedievalObeliskInfusion
+  stacks:
+    MedievalFireSerdolick: 10
+    MedievalTopaz: 10
+    MedievalAdam: 10

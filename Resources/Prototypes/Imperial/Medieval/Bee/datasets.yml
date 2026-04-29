@@ -1,0 +1,11 @@
+- type: dataset
+  id: MBeeGrids
+  values:
+    - /Maps/Imperial/Medieval/Bee/basic_test1.yml
+    - /Maps/Imperial/Medieval/Bee/basic_test2.yml
+
+- type: dataset
+  id: MCBeeGrids
+  values:
+    - /Maps/Imperial/Medieval/Bee/custom_test1.yml
+    - /Maps/Imperial/Medieval/Bee/custom_test2.yml

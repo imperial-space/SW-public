@@ -124,14 +124,17 @@ public sealed partial class TradingMenu : DefaultWindow
     }
 
     public void UpdateGuild() => SelectGuild();
-    public void SelectGuild(Guild? guild = null)
+    public void SelectGuild(Guild? guild = null, string? search = null)
     {
         if (guild != null)
             CurrentGuild = guild;
 
-        SearchBar.Text = "";
+        if (guild != null)
+            SearchBar.Text = "";
+
+        var normalizedSearch = (search ?? SearchBar.Text).Trim().ToLowerInvariant();
         UpdateReputation(CurrentGuild);
-        UpdateItems(CurrentGuild);
+        UpdateItems(CurrentGuild, normalizedSearch);
     }
 
     private void UpdateReputation(Guild? guild = null)

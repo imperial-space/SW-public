@@ -1,9 +1,10 @@
 using System.Linq;
+using Content.Server.Administration.Logs;
 using Content.Server.Chat.Managers;
 using Content.Shared.Imperial.Medieval.Factions;
 using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Imperial.Medieval.Factions.Prototypes;
-using Content.Shared.IdentityManagement;
+using Content.Shared.Database;
 using Content.Shared.Verbs;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -22,6 +23,7 @@ public sealed partial class MedievalFactionsSystem
     [Dependency] private readonly SharedContainerSystem _container = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
     [Dependency] private readonly IBanManager _ban = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
 
     private void InitializeRelations()
     {
@@ -98,8 +100,17 @@ public sealed partial class MedievalFactionsSystem
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
         }
+
+        var targetUid = GetEntity(ev.Target);
+        StorePendingRelationsOffer(
+            targetUid,
+            ev.UserFaction,
+            ev.TargetFaction,
+            ev.Relation,
+            senderUid.Value);
+
         var openEv = new OpenAcceptFactionRelationsEvent(ev.UserFaction, ev.TargetFaction, ev.Relation);
-        RaiseNetworkEvent(openEv, GetEntity(ev.Target));
+        RaiseNetworkEvent(openEv, targetUid);
     }
 
     private void OnAcceptRelations(AcceptFactionRelationsEvent ev, EntitySessionEventArgs args)
@@ -116,12 +127,18 @@ public sealed partial class MedievalFactionsSystem
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
         }
+
+        EntityUid? offeredBy = null;
+        TryTakePendingRelationsOffer(senderUid.Value, ev.UserFaction, ev.TargetFaction, ev.Relation, out offeredBy);
+
         SetRelations(ev.UserFaction, ev.TargetFaction, ev.Relation);
+        LogRelationsChanged(offeredBy, senderUid.Value, ev.UserFaction, ev.TargetFaction, ev.Relation);
     }
 
     private void OnSetRelationsByRequest(SetFactionRelationsByRequestEvent ev, EntitySessionEventArgs args)
     {
-        if (!TryComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target), out var request))
+        var targetUid = GetEntity(ev.Target);
+        if (!TryComp<MedievalFactionRelationsRequestComponent>(targetUid, out var request))
             return;
 
         var senderSession = args.SenderSession;
@@ -138,13 +155,20 @@ public sealed partial class MedievalFactionsSystem
         }
         if (ev.Decline)
         {
-            RemComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target));
+            RemComp<MedievalFactionRelationsRequestComponent>(targetUid);
+            RemComp<MedievalFactionRelationsRequestInitiatorComponent>(targetUid);
             return;
         }
 
-
         SetRelations(request.From, request.To, request.Relation);
-        RemComp<MedievalFactionRelationsRequestComponent>(GetEntity(ev.Target));
+
+        EntityUid? requestedBy = null;
+        if (TryComp<MedievalFactionRelationsRequestInitiatorComponent>(targetUid, out var initiatorComp))
+            requestedBy = initiatorComp.RequestedBy;
+
+        LogRelationsChanged(requestedBy, senderUid.Value, request.From, request.To, request.Relation);
+        RemComp<MedievalFactionRelationsRequestComponent>(targetUid);
+        RemComp<MedievalFactionRelationsRequestInitiatorComponent>(targetUid);
     }
 
     private void OnCreateRequest(CreateFactionRelationsRequestEvent ev, EntitySessionEventArgs args)
@@ -176,6 +200,9 @@ public sealed partial class MedievalFactionsSystem
         comp.Relation = ev.Relation;
         Dirty(env, comp);
 
+        var initiatorComp = EnsureComp<MedievalFactionRelationsRequestInitiatorComponent>(env);
+        initiatorComp.RequestedBy = senderUid.Value;
+
         _paper.SetContent(env, Comp<PaperComponent>(target).Content);
 
         Comp<PaperComponent>(target).EditingDisabled = true;
@@ -205,6 +232,9 @@ public sealed partial class MedievalFactionsSystem
             BanPerson(senderSession, Loc.GetString("medieval-relations-error"));
             return;
         }
+
+        _adminLogger.Add(LogType.MedievalFactionRelations, LogImpact.Medium,
+            $"Лидер {ToPrettyString(senderUid.Value):leader} фракции {Proto.Index(ev.UserFaction).Name} обьявил войну этой фракции: {Proto.Index(ev.TargetFaction).Name}");
 
         ref var relations = ref cont.Value.Comp.Relations;
         relations[ev.UserFaction][ev.TargetFaction] = "War";
@@ -252,6 +282,70 @@ public sealed partial class MedievalFactionsSystem
             _chatMan.ChatMessageToOne(Shared.Chat.ChatChannel.Radio, announcement, announcement, EntityUid.Invalid, false, session.Channel, Proto.Index(relation).Color);
             _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/faction_group_assigned.ogg"), session);
         }
+    }
+
+    private void StorePendingRelationsOffer(
+        EntityUid targetUid,
+        ProtoId<MedievalFactionPrototype> userFaction,
+        ProtoId<MedievalFactionPrototype> targetFaction,
+        ProtoId<FactionRelationsPrototype> relation,
+        EntityUid offeredBy)
+    {
+        var pendingComp = EnsureComp<MedievalFactionRelationsPendingOffersComponent>(targetUid);
+        pendingComp.Offers.RemoveAll(offer => offer.UserFaction == userFaction && offer.TargetFaction == targetFaction);
+        pendingComp.Offers.Add(new MedievalFactionRelationsPendingOfferData
+        {
+            UserFaction = userFaction,
+            TargetFaction = targetFaction,
+            Relation = relation,
+            OfferedBy = offeredBy
+        });
+    }
+
+    private bool TryTakePendingRelationsOffer(
+        EntityUid targetUid,
+        ProtoId<MedievalFactionPrototype> userFaction,
+        ProtoId<MedievalFactionPrototype> targetFaction,
+        ProtoId<FactionRelationsPrototype> relation,
+        out EntityUid? offeredBy)
+    {
+        offeredBy = null;
+        if (!TryComp<MedievalFactionRelationsPendingOffersComponent>(targetUid, out var pendingComp))
+            return false;
+
+        for (var i = 0; i < pendingComp.Offers.Count; i++)
+        {
+            var offer = pendingComp.Offers[i];
+            if (offer.UserFaction != userFaction || offer.TargetFaction != targetFaction || offer.Relation != relation)
+                continue;
+
+            offeredBy = offer.OfferedBy;
+            pendingComp.Offers.RemoveAt(i);
+            if (pendingComp.Offers.Count == 0)
+                RemComp<MedievalFactionRelationsPendingOffersComponent>(targetUid);
+
+            return true;
+        }
+
+        return false;
+    }
+
+    private void LogRelationsChanged(
+        EntityUid? offeredBy,
+        EntityUid acceptedBy,
+        ProtoId<MedievalFactionPrototype> userFaction,
+        ProtoId<MedievalFactionPrototype> targetFaction,
+        ProtoId<FactionRelationsPrototype> relation)
+    {
+        if (offeredBy != null)
+        {
+            _adminLogger.Add(LogType.MedievalFactionRelations, LogImpact.Medium,
+                $"лидеры фракций {ToPrettyString(offeredBy.Value):leader} и {ToPrettyString(acceptedBy):leader} изменили отношения между фракциями {Proto.Index(userFaction).Name} и {Proto.Index(targetFaction).Name} на {relation.Id}");
+            return;
+        }
+
+        _adminLogger.Add(LogType.MedievalFactionRelations, LogImpact.Medium,
+            $"лидеры фракций неизвестно и {ToPrettyString(acceptedBy):leader} изменили отношения между фракциями {Proto.Index(userFaction).Name} и {Proto.Index(targetFaction).Name} на {relation.Id}");
     }
 
     private void OnFactionDataContainerInit(EntityUid uid, FactionDataContainerComponent comp, MapInitEvent args)

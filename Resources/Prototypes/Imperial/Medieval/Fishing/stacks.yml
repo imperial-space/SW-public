@@ -1,0 +1,7 @@
+- type: stack
+  id: Worm
+  name: stack-worm
+  icon: { sprite: /Textures/Imperial/Medieval/Fishing/Objects/Bait/worm.rsi, state: worms_item }
+  spawn: Worm
+  maxCount: 30
+

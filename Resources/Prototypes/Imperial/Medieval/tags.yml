@@ -104,6 +104,9 @@
   id: MyrmexResourceYant
 
 - type: Tag
+  id: MyrmexResourceYantGear
+
+- type: Tag
   id: Mushroom1
 
 - type: Tag
@@ -135,3 +138,6 @@
 
 - type: Tag
   id: CultConductorRod
+
+- type: Tag
+  id: CourierLetter
