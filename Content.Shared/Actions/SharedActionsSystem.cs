@@ -689,7 +689,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
         return AddActionDirect(performer, (ent, ent));
     }
 
-    /// <summary>1
+    /// <summary>
     ///     Adds a pre-existing action. This also bypasses the requirement that the given action must be stored in a
     ///     valid action container.
     /// </summary>

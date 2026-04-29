@@ -18,15 +18,13 @@ public sealed partial class FoliantToHandTeleporterSystem : EntitySystem
         EntityUid playerUid = args.Performer;
         var query = EntityQueryEnumerator<BindStoreOnEquipComponent>();
 
-        while(query.MoveNext(out var folliantUID, out var bindComp))
+        while (query.MoveNext(out var folliantUID, out var bindComp))
         {
-            if(bindComp.BindedEntity != playerUid) continue;
-            else TeleportItemToHand(playerUid, folliantUID); break;
+            if (bindComp.BindedEntity == playerUid)
+            {
+                _handsSystem.TryForcePickupAnyHand(playerUid, folliantUID);
+                break;
+            }
         }
-    }
-
-    private void TeleportItemToHand(EntityUid playerUid, EntityUid itemUid)
-    {
-        _handsSystem.TryForcePickupAnyHand(playerUid, itemUid);
     }
 }
