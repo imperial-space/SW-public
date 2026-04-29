@@ -363,7 +363,7 @@
   - type: Forged
   - type: Hunger
     hungerThresholdAlerts: {}
-    baseDecayRate: 0.005
+    baseDecayRate: 0.0665
   - type: TakeName
 
 - type: entity
