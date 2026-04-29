@@ -7,4 +7,6 @@ public sealed partial class ForgedComponent : Component
 {
     [ViewVariables]
     public Dictionary<string, EntityUid> FittedModules = new();
+
+    public TimeSpan LastExplosivePress = TimeSpan.Zero;
 }

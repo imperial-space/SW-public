@@ -362,6 +362,7 @@
     requiredLegs: 2
   - type: Forged
   - type: Hunger
+    hungerThresholdAlerts: {}
     baseDecayRate: 0.005
   - type: TakeName
 

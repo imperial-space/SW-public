@@ -10,10 +10,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Damage;
-using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Prototypes;
 

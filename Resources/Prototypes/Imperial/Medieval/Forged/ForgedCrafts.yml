@@ -387,3 +387,101 @@
     MedievalTopaz: 3
     MedievalMagicGlina: 1
 
+- type: CP14Recipe
+  id: ForgedTorsoExplosiveCraft
+  result: ForgedTorsoExplosive
+  stacks:
+    Gunpowder: 1
+    MedievalFireSerdolick: 3
+    MedievalMagicGlina: 1
+
+- type: CP14Recipe
+  id: ForgedLHandCannon1Craft
+  result: ForgedLHandCannon1
+  stacks:
+    Gunpowder: 1
+    MedievalMagicGlina: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedRHandCannon1Craft
+  result: ForgedRHandCannon1
+  stacks:
+    Gunpowder: 1
+    MedievalMagicGlina: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedLHandCannon2Craft
+  result: ForgedLHandCannon2
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalSteelIngot: 2
+
+- type: CP14Recipe
+  id: ForgedRHandCannon2Craft
+  result: ForgedRHandCannon2
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalSteelIngot: 2
+
+- type: CP14Recipe
+  id: ForgedLHandCannon3Craft
+  result: ForgedLHandCannon3
+  stacks:
+    Gunpowder: 1
+    MedievalMagicGlina: 1
+    MedievalTopaz: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedRHandCannon3Craft
+  result: ForgedRHandCannon3
+  stacks:
+    Gunpowder: 1
+    MedievalMagicGlina: 1
+    MedievalTopaz: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedLHandCannon4Craft
+  result: ForgedLHandCannon4
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalTopaz: 2
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedRHandCannon4Craft
+  result: ForgedRHandCannon4
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalTopaz: 2
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedLHandCannon5Craft
+  result: ForgedLHandCannon5
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalTopaz: 1
+    MedievalFireSerdolick: 1
+    MedievalAdam: 1
+    MedievalSteelIngot: 1
+
+- type: CP14Recipe
+  id: ForgedRHandCannon5Craft
+  result: ForgedRHandCannon5
+  stacks:
+    Gunpowder: 2
+    MedievalMagicGlina: 1
+    MedievalTopaz: 1
+    MedievalFireSerdolick: 1
+    MedievalAdam: 1
+    MedievalSteelIngot: 1
+

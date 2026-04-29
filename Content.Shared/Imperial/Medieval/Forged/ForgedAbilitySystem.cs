@@ -18,6 +18,7 @@ using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
 using Robust.Shared.Timing;
 
 
@@ -33,6 +34,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedExplosionSystem _explosionSystem = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
 
     public override void Initialize()
     {
@@ -75,22 +77,46 @@ public sealed class ForgedAbilitySystem : EntitySystem
                 VerySmart(forgedUid);
                 break;
             case "Right_blade":
-                RightBlade(forgedUid);
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmBlade");
                 break;
             case "Left_blade":
-                LeftBlade(forgedUid);
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmBlade");
                 break;
             case "Left_crossbow":
-                LeftCrossbow(forgedUid);
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCrossbow");
                 break;
             case "Right_crossbow":
-                RightCrossbow(forgedUid);
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCrossbow");
                 break;
-            case "Right_cannon":
-                RightCannon(forgedUid);
+            case "Right_magic_gun_1":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon1");
                 break;
-            case "Left_cannon":
-                LeftCannon(forgedUid);
+            case "Left_magic_gun_1":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon1");
+                break;
+            case "Right_magic_gun_2":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon2");
+                break;
+            case "Left_magic_gun_2":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon2");
+                break;
+            case "Right_magic_gun_3":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon3");
+                break;
+            case "Left_magic_gun_3":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon3");
+                break;
+            case "Right_magic_gun_4":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon4");
+                break;
+            case "Left_magic_gun_4":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon4");
+                break;
+            case "Right_magic_gun_5":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon5");
+                break;
+            case "Left_magic_gun_5":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon5");
                 break;
             case "Invisibility_Nimbus":
                 _actions.AddAction(forgedUid, "InvisibileNimbusAction");
@@ -103,7 +129,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
         }
     }
 
-    private void SpawnModuleInHand(EntityUid forgedUid, string handId, string proto, bool strip)
+    private void SpawnModuleInHand(EntityUid forgedUid, string handId, string proto, bool strip = true)
     {
         if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
             return;
@@ -124,49 +150,31 @@ public sealed class ForgedAbilitySystem : EntitySystem
         _containerSystem.Insert(item, container);
     }
 
-    private void LeftCannon(EntityUid forgedUid)
-    {
-        SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon", true);
-    }
-
-    private void RightCannon(EntityUid forgedUid)
-    {
-        SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon", false);
-    }
 
     private void SetupExplosive(EntityUid forgedUid)
     {
         _actions.AddAction(forgedUid, "ExplosiveAction");
     }
-    TimeSpan _lastPressExplose = TimeSpan.Zero;
+
     private void OnExplosiveTrigger(EntityUid uid, ForgedComponent comp, ForgedExplosiveActionEvent args)
     {
-        if (args.Handled) return;
-
-        _popup.PopupEntity("Нажмите еще раз!", uid, uid);
-
-        RemComp<ShieldOnStartupComponent>(uid);
-
-        if (_gameTiming.CurTime - _lastPressExplose < TimeSpan.FromSeconds(2))
+        if (_netManager.IsServer && args.Handled == false)
         {
-            _explosionSystem.QueueExplosion(uid, "Default", 250, 5, 200);
-            _actions.RemoveAction(uid, args.Action.Owner);
-        }
-        else
-        {
-            _lastPressExplose = _gameTiming.CurTime;
+            if (_gameTiming.CurTime - comp.LastExplosivePress < TimeSpan.FromSeconds(2))
+            {
+                RemComp<ShieldOnStartupComponent>(uid);
+                _explosionSystem.QueueExplosion(uid, "Default", 250, 5, 200);
+                _actions.RemoveAction(uid, args.Action.Owner);
+            }
+            else
+            {
+                comp.LastExplosivePress = _gameTiming.CurTime;
+                _popup.PopupEntity("Нажмите еще раз!", uid, uid);
+            }
+            Dirty(uid, comp);
         }
 
         args.Handled = true;
-    }
-    private void LeftBlade(EntityUid forgedUid)
-    {
-        SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmBlade", true);
-    }
-
-    private void RightBlade(EntityUid forgedUid)
-    {
-        SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmBlade", true);
     }
 
     private void LeftCrossbow(EntityUid forgedUid)
@@ -186,25 +194,6 @@ public sealed class ForgedAbilitySystem : EntitySystem
         var item = EntityManager.SpawnEntity("ForgedArmCrossbow", MapCoordinates.Nullspace);
         RemComp<MedievalMeleeResourceComponent>(item);
         RemComp<DurabilityDisplayComponent>(item);
-        _containerSystem.Insert(item, container);
-    }
-
-    private void RightCrossbow(EntityUid forgedUid)
-    {
-        string handId = "body_part_slot_right_hand";
-
-        if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
-            return;
-
-        if (container.ContainedEntities.Count > 0)
-        {
-            var oldItem = container.ContainedEntities[0];
-            _containerSystem.Remove(oldItem, container);
-            QueueDel(oldItem);
-        }
-
-        var item = EntityManager.SpawnEntity("ForgedArmCrossbow", MapCoordinates.Nullspace);
-
         _containerSystem.Insert(item, container);
     }
 
