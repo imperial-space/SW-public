@@ -53,10 +53,10 @@ namespace Content.Shared.MeleeParry
             SubscribeLocalEvent<MeleeParryAbleComponent, BeforeDamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<MeleeParryAbleComponent, BeforeStaminaDamageEvent>(OnStaminaDamage);
 
-            SubscribeNetworkEvent<ParryPressedEvent>(OnParryNetworkPressed);
+            SubscribeNetworkEvent<ParryPressedEvent>(ExecuteParryNetworked);
 
             CommandBinds.Builder
-                .Bind(ContentKeyFunctions.MedievalMeleeParry, InputCmdHandler.FromDelegate(OnParryLocalPressed))
+                .Bind(ContentKeyFunctions.MedievalMeleeParry, InputCmdHandler.FromDelegate(OnParryPressedLocal))
                 .Register<MeleeParrySystem>();
 
             SubscribeNetworkEvent<PlayParryVfxEvent>(OnPlayVfx);
@@ -64,46 +64,97 @@ namespace Content.Shared.MeleeParry
             _cfg.OnValueChanged(CCVars.ParryStaminaDamage, (value) => _parryStaminaDamage = value, true);
         }
 
-        private void OnParryLocalPressed(ICommonSession? session)
+        private void OnParryPressedLocal(ICommonSession? session)
         {
             if (!_netMan.IsClient) return;
             if (session?.AttachedEntity is not { } uid) return;
 
-            if (!TryComp<MeleeParryStorageComponent>(uid, out var parryStorage)) return;
-            if (_timing.CurTime < parryStorage.GlobalNextParryTime) return;
+            if (CheckParryRequiments(uid, out var parryStorage, out var parry))
+            {
+                ExecuteParryLocal(uid, parry, parryStorage);
+                return;
+            }
+
+            if (TryComp<MeleeParryStorageComponent>(uid, out var storage))
+            {
+                var timeLeft = (storage.GlobalNextParryTime - _timing.CurTime).TotalSeconds;
+
+                if (timeLeft > 0 && timeLeft <= 0.25f)
+                {
+                    storage.ParryQueued = true;
+                }
+            }
+        }
+
+        public override void Update(float frameTime)
+        {
+            base.Update(frameTime);
+
+            if (!_netMan.IsClient || _playerManager.LocalEntity is not { } localUid)
+                return;
+
+            if (TryComp<MeleeParryStorageComponent>(localUid, out var storage) && storage.ParryQueued)
+            {
+                if (_timing.CurTime >= storage.GlobalNextParryTime)
+                {
+                    var item = _hands.GetActiveItem(localUid);
+                    if (item != null && TryComp<MeleeParryComponent>(item.Value, out var parry))
+                    {
+                        storage.ParryQueued = false;
+                        ExecuteParryLocal(localUid, parry, storage);
+                    }
+                }
+            }
+        }
+
+        private bool CheckParryRequiments(EntityUid uid, out MeleeParryStorageComponent parryStorage, out MeleeParryComponent parry)
+        {
+            parryStorage = null!;
+            parry = null!;
+
+            if (!TryComp<MeleeParryStorageComponent>(uid, out var storageComp)) return false;
+            if (_timing.CurTime < storageComp.GlobalNextParryTime) return false;
 
             var item = _hands.GetActiveItem(uid);
-            if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parry)) return;
-            if (_timing.CurTime < parry.NextAllowedParryTime) return;
+            if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parryComp)) return false;
 
+            parryStorage = storageComp;
+            parry = parryComp;
+
+            return true;
+        }
+
+        private void ExecuteParryLocal(EntityUid uid, MeleeParryComponent parry, MeleeParryStorageComponent parryStorage)
+        {
             var cooldown = TimeSpan.FromSeconds(Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7.5f));
             var nextTime = _timing.CurTime + cooldown;
 
             parryStorage.GlobalNextParryTime = nextTime;
-            parry.NextAllowedParryTime = nextTime;
+            parryStorage.GlobalCooldownParry = (float)cooldown.TotalSeconds;
 
             RaiseNetworkEvent(new ParryPressedEvent());
         }
 
-        private void OnParryNetworkPressed(ParryPressedEvent args, EntitySessionEventArgs sessionArgs)
+        private void ExecuteParryNetworked(ParryPressedEvent args, EntitySessionEventArgs sessionArgs)
         {
             if (sessionArgs.SenderSession.AttachedEntity is not { } uid) return;
 
             if (!TryComp<MeleeParryStorageComponent>(uid, out var parryStorage)) return;
-            if (_timing.CurTime < parryStorage.GlobalNextParryTime) return;
+
+            TimeSpan bufferTime = TimeSpan.FromSeconds(0.1f); // Окно прощения. Есть баг, когда у клиента есть возможность нажать парирование, а на сервере нет
+            if (_timing.CurTime + bufferTime < parryStorage.GlobalNextParryTime) return;
 
             var item = _hands.GetActiveItem(uid);
             if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parry)) return;
-
-            if (_timing.CurTime < parry.NextAllowedParryTime) return;
 
             var cooldown = TimeSpan.FromSeconds(Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7f));
             var nextTime = _timing.CurTime + cooldown;
 
             parryStorage.GlobalNextParryTime = nextTime;
-            parry.NextAllowedParryTime = nextTime;
 
-            parry.ParriedTime = _timing.CurTime;
+            var latency = TimeSpan.FromMilliseconds(Math.Min(sessionArgs.SenderSession.Ping / 2, 400));
+
+            parry.ParriedTime = _timing.CurTime - latency;
             parryStorage.GlobalCooldownParry = (float)cooldown.TotalSeconds;
 
             Dirty(item.Value, parry);
@@ -139,40 +190,51 @@ namespace Content.Shared.MeleeParry
             if (!args.Damage.DamageDict.TryGetValue("ParryAble", out var parryDMG))
                 return;
 
-            if (CheckParryChance(uid, (float)parryDMG, args.Origin))
+
+            if (CheckParryable(uid, (float)parryDMG, out var item, out var parry, out var parryStorage))
             {
                 args.Cancelled = true;
+
+                Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
+
+                parry.LastSuccessParriedAttacker = args.Origin;
+
+                parry.LastSuccessParriedTime = _timing.CurTime;
+                parry.ParriedTime = TimeSpan.Zero;
+
+
+                parryStorage.GlobalNextParryTime = TimeSpan.Zero;
+                parryStorage.GlobalCooldownParry = Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7f);
+                parryStorage.ParryQueued = false;
+
+
+                Dirty(uid, parryStorage);
+                Dirty(item, parry);
 
                 _stamina.TakeStaminaDamage(args.Origin.Value, _parryStaminaDamage);
             }
         }
 
-        public bool CheckParryChance(EntityUid uid, float parryDMG, EntityUid? attacker)
+        public bool CheckParryable(EntityUid uid, float parryDMG, out EntityUid weaponUid, out MeleeParryComponent parry, out MeleeParryStorageComponent parryStorage)
         {
+            weaponUid = EntityUid.Invalid;
+            parry = null!;
+            parryStorage = null!;
+
             var item = _hands.GetActiveItem(uid);
             if (item == null) return false;
 
             if (TryComp<UseDelayComponent>(item, out var delay) && _useDelay.IsDelayed((item.Value, delay)))
                 return false;
 
-            if (TryComp<MeleeParryComponent>(item, out var parry) &&
-                parry.ParriedTime != TimeSpan.Zero &&
-                CountParryWindowTime(parry, parryDMG) > _timing.CurTime)
+            if (TryComp<MeleeParryComponent>(item, out var parryComp) &&
+                parryComp.ParriedTime != TimeSpan.Zero &&
+                CountParryWindowTime(parryComp, parryDMG) > _timing.CurTime &&
+                TryComp<MeleeParryStorageComponent>(uid, out var parryStorageComp))
             {
-                Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
-
-                parry.LastSuccessParriedAttacker = attacker;
-                parry.LastSuccessParriedTime = _timing.CurTime;
-                parry.NextAllowedParryTime = TimeSpan.Zero;
-                parry.ParriedTime = TimeSpan.Zero;
-
-                if (TryComp<MeleeParryStorageComponent>(uid, out var parryStorage)){
-                    parryStorage.GlobalNextParryTime = TimeSpan.Zero;
-                    parryStorage.GlobalCooldownParry = Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7f);
-                    Dirty(uid, parryStorage);
-                }
-
-                Dirty(item.Value, parry);
+                weaponUid = item.Value;
+                parry = parryComp;
+                parryStorage = parryStorageComp;
                 return true;
             }
 

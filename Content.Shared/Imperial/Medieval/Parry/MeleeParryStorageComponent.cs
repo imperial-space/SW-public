@@ -11,4 +11,7 @@ public sealed partial class MeleeParryStorageComponent : Component
 
     [DataField, AutoNetworkedField]
     public float GlobalCooldownParry = 0.5f;
+
+    [DataField, AutoNetworkedField]
+    public bool ParryQueued = false;
 }
