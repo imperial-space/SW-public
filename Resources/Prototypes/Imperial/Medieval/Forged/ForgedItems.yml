@@ -205,6 +205,8 @@
     soundGunshot:
       path: /Audio/Imperial/Medieval/icebeam_shot.ogg
   - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 2
 
 - type: entity
   name: ForgedArmCannon2
@@ -231,6 +233,8 @@
     soundGunshot:
       path: /Audio/Imperial/Medieval/icebeam_shot.ogg
   - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 2
 
 - type: entity
   name: ForgedArmCannon3
@@ -257,6 +261,8 @@
     soundGunshot:
       path: /Audio/Imperial/Medieval/icebeam_shot.ogg
   - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 3
 
 - type: entity
   name: ForgedArmCannon4
@@ -283,6 +289,8 @@
     soundGunshot:
       path: /Audio/Imperial/Medieval/icebeam_shot.ogg
   - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 4
 
 - type: entity
   name: ForgedArmCannon5
@@ -309,6 +317,8 @@
     soundGunshot:
       path: /Audio/Imperial/Medieval/icebeam_shot.ogg
   - type: Unremoveable
+  - type: ForgedGun
+    hungerCost: 5
 
 - type: entity
   id: MedievalProjectileMagicArrowKunaiCannon12
@@ -354,8 +364,8 @@
   - type: Projectile
     damage:
       types:
-        Blunt: 10
-        Piercing: 10
+        Blunt: 12
+        Piercing: 12
 
 - type: entity
   id: MedievalProjectileMagicArrowKunaiCannon4
@@ -370,16 +380,16 @@
   - type: StaminaDamageOnCollide
     damage: 3
   - type: Explosive
-    explosionType: Cryo
-    maxIntensity: 1
-    intensitySlope: 1
-    totalIntensity: 2
+    explosionType: Default
+    maxIntensity: 5
+    intensitySlope: 5
+    totalIntensity: 5
     maxTileBreak: 0
   - type: Projectile
     damage:
       types:
-        Blunt: 10
-        Piercing: 10
+        Blunt: 12
+        Piercing: 12
 
 - type: entity
   id: MedievalProjectileMagicArrowKunaiCannon5

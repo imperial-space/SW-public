@@ -9,13 +9,16 @@ using Content.Shared.Imperial.DurabilityDisplay.Components;
 using Content.Shared.Imperial.LocalLight;
 using Content.Shared.Imperial.Medieval.Additions;
 using Content.Shared.Imperial.Medieval.Lycantropy;
+using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.MedievalMeleeResource.Components;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Overlays;
 using Content.Shared.Popups;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
+using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Network;
@@ -35,6 +38,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private readonly HungerSystem _hungerSystem = default!;
 
     public override void Initialize()
     {
@@ -46,6 +50,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
         SubscribeLocalEvent<ForgedComponent, ForgedRepairActionEvent>(OnRepair);
         SubscribeLocalEvent<ForgedComponent, ForgedExplosiveActionEvent>(OnExplosiveTrigger);
         SubscribeLocalEvent<ForgedComponent, ForgedInvisibilityNimbusActionEvent>(OnInvisibleNimbus);
+        SubscribeLocalEvent<ForgedGunComponent, GunShotEvent>(OnGunShot);
     }
 
     public void ExecuteAbility(EntityUid forgedUid, EntityUid moduleUid, string abilityId)
@@ -129,6 +134,10 @@ public sealed class ForgedAbilitySystem : EntitySystem
         }
     }
 
+    private void OnGunShot(Entity<ForgedGunComponent> ent, ref GunShotEvent args)
+    {
+        _hungerSystem.ModifyHunger(args.User, -ent.Comp.HungerCost);
+    }
     private void SpawnModuleInHand(EntityUid forgedUid, string handId, string proto, bool strip = true)
     {
         if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
@@ -175,26 +184,6 @@ public sealed class ForgedAbilitySystem : EntitySystem
         }
 
         args.Handled = true;
-    }
-
-    private void LeftCrossbow(EntityUid forgedUid)
-    {
-        string handId = "body_part_slot_left_hand";
-
-        if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
-            return;
-
-        if (container.ContainedEntities.Count > 0)
-        {
-            var oldItem = container.ContainedEntities[0];
-            _containerSystem.Remove(oldItem, container);
-            QueueDel(oldItem);
-        }
-
-        var item = EntityManager.SpawnEntity("ForgedArmCrossbow", MapCoordinates.Nullspace);
-        RemComp<MedievalMeleeResourceComponent>(item);
-        RemComp<DurabilityDisplayComponent>(item);
-        _containerSystem.Insert(item, container);
     }
 
     private void MedicalEyes(EntityUid forgedUid)
