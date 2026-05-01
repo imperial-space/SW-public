@@ -12,6 +12,7 @@ using Content.Shared.Imperial.Medieval.Lycantropy;
 using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.MedievalMeleeResource.Components;
+using Content.Shared.Mind;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Overlays;
@@ -39,6 +40,7 @@ public sealed class ForgedAbilitySystem : EntitySystem
     [Dependency] private readonly SharedExplosionSystem _explosionSystem = default!;
     [Dependency] private readonly INetManager _netManager = default!;
     [Dependency] private readonly HungerSystem _hungerSystem = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
     public override void Initialize()
     {
@@ -129,8 +131,24 @@ public sealed class ForgedAbilitySystem : EntitySystem
             case "Torso_Explosion":
                 SetupExplosive(forgedUid);
                 break;
+            case "TransferMind":
+                TransferMind(forgedUid, moduleUid);
+                break;
             default:
                 break;
+        }
+    }
+
+    private void TransferMind(EntityUid forgedUid, EntityUid moduleUid)
+    {
+        if (_mindSystem.TryGetMind(forgedUid, out var oldMindId, out var oldMind))
+        {
+            _mindSystem.TransferTo(oldMindId, null, mind: oldMind);
+        }
+
+        if (_mindSystem.TryGetMind(moduleUid, out var targetMindId, out var targetMind))
+        {
+            _mindSystem.TransferTo(targetMindId, forgedUid, mind: targetMind);
         }
     }
 
