@@ -17,6 +17,7 @@ using Content.Shared.Imperial.Medieval.Skills;
 using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Content.Shared.CCVar;
+using Content.Shared.Weapons.Melee;
 
 namespace Content.Shared.MeleeParry
 {
@@ -47,6 +48,7 @@ namespace Content.Shared.MeleeParry
 
         private float _parryStaminaDamage;
         private float _desyncTolerance;
+        private float _parryUseDelay;
         public override void Initialize()
         {
             base.Initialize();
@@ -63,7 +65,8 @@ namespace Content.Shared.MeleeParry
             SubscribeNetworkEvent<PlayParryVfxEvent>(OnPlayVfx);
 
             _cfg.OnValueChanged(CCVars.ParryStaminaDamage, (value) => _parryStaminaDamage = value, true);
-            _cfg.OnValueChanged(CCVars.DesyncTolerance, (value) => _desyncTolerance = value, true);
+            _cfg.OnValueChanged(CCVars.ParryDesyncTolerance, (value) => _desyncTolerance = value, true);
+            _cfg.OnValueChanged(CCVars.ParryUseDelay, (value) => _parryUseDelay = value, true);
         }
 
         private void OnParryPressedLocal(ICommonSession? session)
@@ -71,7 +74,7 @@ namespace Content.Shared.MeleeParry
             if (!_netMan.IsClient) return;
             if (session?.AttachedEntity is not { } uid) return;
 
-            if (CheckParryRequiments(uid, out var parryStorage, out var parry))
+            if (CheckParryRequiments(uid, out var parryStorage, out var parry, out var item))
             {
                 ExecuteParryLocal(uid, parry, parryStorage);
                 return;
@@ -109,27 +112,39 @@ namespace Content.Shared.MeleeParry
             }
         }
 
-        private bool CheckParryRequiments(EntityUid uid, out MeleeParryStorageComponent parryStorage, out MeleeParryComponent parry)
+        private bool CheckParryRequiments(EntityUid uid, out MeleeParryStorageComponent parryStorage, out MeleeParryComponent parry, out EntityUid itemUid)
         {
             parryStorage = null!;
             parry = null!;
+            itemUid = EntityUid.Invalid;
 
             if (!TryComp<MeleeParryStorageComponent>(uid, out var storageComp)) return false;
-            if (_timing.CurTime < storageComp.GlobalNextParryTime) return false;
+
+            if (_netMan.IsServer)
+                if (_timing.CurTime + TimeSpan.FromSeconds(_desyncTolerance) < storageComp.GlobalNextParryTime) return false;
+            if (_netMan.IsClient)
+                if (_timing.CurTime < storageComp.GlobalNextParryTime) return false;
 
             var item = _hands.GetActiveItem(uid);
             if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parryComp)) return false;
 
+            if (_useDelay.IsDelayed(item.Value)) return false;
+
             parryStorage = storageComp;
             parry = parryComp;
+            itemUid = item.Value;
 
             return true;
         }
 
         private void ExecuteParryLocal(EntityUid uid, MeleeParryComponent parry, MeleeParryStorageComponent parryStorage)
         {
+
             var cooldown = TimeSpan.FromSeconds(Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7.5f));
             var nextTime = _timing.CurTime + cooldown;
+
+            if (!TryComp<MeleeWeaponComponent>(parry.Owner, out var weapon)) return;
+            weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(_parryUseDelay);
 
             parryStorage.GlobalNextParryTime = nextTime;
             parryStorage.GlobalCooldownParry = (float)cooldown.TotalSeconds;
@@ -141,31 +156,36 @@ namespace Content.Shared.MeleeParry
         {
             if (sessionArgs.SenderSession.AttachedEntity is not { } uid) return;
 
-            if (!TryComp<MeleeParryStorageComponent>(uid, out var parryStorage)) return;
-
-            if (_timing.CurTime + TimeSpan.FromSeconds(_desyncTolerance) < parryStorage.GlobalNextParryTime) return;
-
-            var item = _hands.GetActiveItem(uid);
-            if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parry)) return;
-
-            var cooldown = TimeSpan.FromSeconds(Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7f));
-            var nextTime = _timing.CurTime + cooldown;
-
-            parryStorage.GlobalNextParryTime = nextTime;
-
-            var latency = TimeSpan.FromMilliseconds(Math.Min(sessionArgs.SenderSession.Ping / 2, 400));
-
-            parry.ParriedTime = _timing.CurTime - latency;
-            parryStorage.GlobalCooldownParry = (float)cooldown.TotalSeconds;
-
-            Dirty(item.Value, parry);
-            Dirty(uid, parryStorage);
-
-            RaiseNetworkEvent(new PlayParryVfxEvent()
+            if (CheckParryRequiments(uid, out var parryStorage, out var parry, out var item))
             {
-                Uid = GetNetEntity(uid),
-                EffectId = parry.ParryEffectWindow
-            });
+                if (!TryComp<MeleeWeaponComponent>(item, out var weapon)) return;
+
+                var useDelay = EnsureComp<UseDelayComponent>(item);
+
+                var cooldown = TimeSpan.FromSeconds(Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7f));
+                var nextTime = _timing.CurTime + cooldown;
+
+                parryStorage.GlobalNextParryTime = nextTime;
+
+                var latency = TimeSpan.FromMilliseconds(Math.Min(sessionArgs.SenderSession.Ping / 2, 400));
+
+                parry.ParriedTime = _timing.CurTime - latency;
+                parryStorage.GlobalCooldownParry = (float)cooldown.TotalSeconds;
+
+                _useDelay.SetLength(item, TimeSpan.FromSeconds(_parryUseDelay));
+                _useDelay.TryResetDelay((item, useDelay));
+                weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(_parryUseDelay);
+
+                Dirty(item, weapon);
+                Dirty(item, parry);
+                Dirty(uid, parryStorage);
+
+                RaiseNetworkEvent(new PlayParryVfxEvent()
+                {
+                    Uid = GetNetEntity(uid),
+                    EffectId = parry.ParryEffectWindow
+                });
+            }
         }
 
         private void OnStaminaDamage(EntityUid uid, MeleeParryAbleComponent component, ref BeforeStaminaDamageEvent args)
