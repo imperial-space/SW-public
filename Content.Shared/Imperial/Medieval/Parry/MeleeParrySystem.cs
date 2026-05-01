@@ -46,6 +46,7 @@ namespace Content.Shared.MeleeParry
         [Dependency] private readonly SharedStaminaSystem _stamina = default!;
 
         private float _parryStaminaDamage;
+        private float _desyncTolerance;
         public override void Initialize()
         {
             base.Initialize();
@@ -62,6 +63,7 @@ namespace Content.Shared.MeleeParry
             SubscribeNetworkEvent<PlayParryVfxEvent>(OnPlayVfx);
 
             _cfg.OnValueChanged(CCVars.ParryStaminaDamage, (value) => _parryStaminaDamage = value, true);
+            _cfg.OnValueChanged(CCVars.DesyncTolerance, (value) => _desyncTolerance = value, true);
         }
 
         private void OnParryPressedLocal(ICommonSession? session)
@@ -141,8 +143,7 @@ namespace Content.Shared.MeleeParry
 
             if (!TryComp<MeleeParryStorageComponent>(uid, out var parryStorage)) return;
 
-            TimeSpan bufferTime = TimeSpan.FromSeconds(0.1f); // Окно прощения. Есть баг, когда у клиента есть возможность нажать парирование, а на сервере нет
-            if (_timing.CurTime + bufferTime < parryStorage.GlobalNextParryTime) return;
+            if (_timing.CurTime + TimeSpan.FromSeconds(_desyncTolerance) < parryStorage.GlobalNextParryTime) return;
 
             var item = _hands.GetActiveItem(uid);
             if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parry)) return;
