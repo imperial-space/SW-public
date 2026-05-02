@@ -103,7 +103,7 @@ namespace Content.Shared.MeleeParry
 
                     if (!_playedReadySounds.Contains(localUid) && _timing.IsFirstTimePredicted)
                     {
-                        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/soft_bell_ding.ogg"), Filter.Local(), false);
+                        //_audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/soft_bell_ding.ogg"), Filter.Local(), false);
                         _playedReadySounds.Add(localUid);
                     }
 
