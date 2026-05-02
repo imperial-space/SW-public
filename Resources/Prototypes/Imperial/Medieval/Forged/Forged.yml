@@ -15,6 +15,7 @@
     - map: [ "enum.HumanoidVisualLayers.Chest" ]
     - map: [ "core" ]
       offset: 0, -0.1
+    - map: [ "torso_upgrade" ]
     - map: [ "enum.HumanoidVisualLayers.Head" ]
     - map: [ "enum.HumanoidVisualLayers.Snout" ]
     - map: [ "enum.HumanoidVisualLayers.Eyes" ]
@@ -361,7 +362,8 @@
     requiredLegs: 2
   - type: Forged
   - type: Hunger
-    baseDecayRate: 0.005
+    hungerThresholdAlerts: {}
+    baseDecayRate: 0.0665
   - type: TakeName
 
 - type: entity
