@@ -14,7 +14,6 @@ using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Imperial.Medieval.Skills;
-using Robust.Shared.Audio;
 using Robust.Shared.Configuration;
 using Content.Shared.CCVar;
 using Content.Shared.Weapons.Melee;
@@ -145,17 +144,22 @@ namespace Content.Shared.MeleeParry
             parry = null!;
             itemUid = EntityUid.Invalid;
 
-            if (!TryComp<MeleeParryStorageComponent>(uid, out var storageComp)) return false;
+            if (!TryComp<MeleeParryStorageComponent>(uid, out var storageComp))
+                return false;
 
             if (_netMan.IsServer)
-                if (_timing.CurTime + TimeSpan.FromSeconds(_desyncTolerance) < storageComp.NextParryTime) return false;
+                if (_timing.CurTime + TimeSpan.FromSeconds(_desyncTolerance) < storageComp.NextParryTime)
+                    return false;
             if (_netMan.IsClient)
-                if (_timing.CurTime < storageComp.NextParryTime) return false;
+                if (_timing.CurTime < storageComp.NextParryTime)
+                    return false;
 
             var item = _hands.GetActiveItem(uid);
-            if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parryComp)) return false;
+            if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parryComp))
+                return false;
 
-            if (_useDelay.IsDelayed(item.Value)) return false;
+            if (_useDelay.IsDelayed(item.Value))
+                return false;
 
             parryStorage = storageComp;
             parry = parryComp;
@@ -170,7 +174,8 @@ namespace Content.Shared.MeleeParry
             var cooldown = TimeSpan.FromSeconds(Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7.5f));
             var nextTime = _timing.CurTime + cooldown;
 
-            if (!TryComp<MeleeWeaponComponent>(parry.Owner, out var weapon)) return;
+            if (!TryComp<MeleeWeaponComponent>(parry.Owner, out var weapon))
+                return;
             weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(_parryUseDelay);
 
             parryStorage.NextParryTime = nextTime;
@@ -185,7 +190,8 @@ namespace Content.Shared.MeleeParry
 
             if (CheckParryRequiments(uid, out var parryStorage, out var parry, out var item))
             {
-                if (!TryComp<MeleeWeaponComponent>(item, out var weapon)) return;
+                if (!TryComp<MeleeWeaponComponent>(item, out var weapon))
+                    return;
 
                 var useDelay = EnsureComp<UseDelayComponent>(item);
 
@@ -233,6 +239,7 @@ namespace Content.Shared.MeleeParry
 
             var attacker = args.Origin.Value;
             var attackerItem = _hands.GetActiveItem(attacker);
+
             if (attackerItem != null && TryComp<MedievalWeaponSkillCategoryComponent>(attackerItem.Value, out var skillComp))
             {
                 parryDMG *= skillComp.Skill.GetParryData().Able;
@@ -263,12 +270,16 @@ namespace Content.Shared.MeleeParry
                 Dirty(item, parry);
 
                 float staminaDMGBoost = 1f;
-                if (TryComp<StaminaParryBoosterComponent>(uid, out var booster)) staminaDMGBoost *= booster.StaminaDamageMultiplier;
+                if (TryComp<StaminaParryBoosterComponent>(uid, out var booster))
+                    staminaDMGBoost *= booster.StaminaDamageMultiplier;
 
-                _stamina.TakeStaminaDamage(args.Origin.Value, _parryStaminaDamage * staminaDMGBoost);
+                var staminaDamage = _parryStaminaDamage * staminaDMGBoost;
+                _stamina.TakeStaminaDamage(args.Origin.Value, staminaDamage);
 
-                if (weapon.Damage.GetTotal() > 4) Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
-                else Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
+                if (weapon.Damage.GetTotal() > 4)
+                    Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
+                else
+                    Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
             }
         }
 

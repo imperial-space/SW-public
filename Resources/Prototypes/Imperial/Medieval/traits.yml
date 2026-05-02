@@ -189,8 +189,7 @@
   category: MedievalBody
   cost: 1
   components:
-    - type: StaminaParryBoosterComponent
-      parryModifier: 1.25
+    - type: StaminaParryBooster
 
 - type: trait
   id: MedievalCrafter
