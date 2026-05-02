@@ -9,12 +9,6 @@ public sealed partial class CollectAnyItemsCondition : AchievementCondition
     [DataField(required: true)]
     public List<string> ItemPrototypes = new();
 
-    [DataField(required: true)]
-    public int RequiredCount = 1;
-
-    [DataField(required: true)]
-    public string ProgressKey = default!;
-
     public override FormattedMessage GetDescription(IPrototypeManager protoManager)
     {
         var msg = new FormattedMessage();

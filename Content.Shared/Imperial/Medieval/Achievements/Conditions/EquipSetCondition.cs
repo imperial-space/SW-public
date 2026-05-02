@@ -13,36 +13,34 @@ public sealed partial class EquipSetCondition : AchievementCondition
     public override FormattedMessage GetDescription(IPrototypeManager protoManager)
     {
         var msg = new FormattedMessage();
-        
+
         if (Sets.Count == 0)
             return msg;
 
         msg.PushColor(Color.FromHex("#9e8c78"));
-        msg.AddText(Loc.GetString("achievement-condition-equip-set-header") + "\n");
+        msg.AddText(Loc.GetString("achievement-condition-equip-set-header"));
 
-        var setIndex = 0;
-        foreach (var (setName, items) in Sets)
+        var first = true;
+        foreach (var items in Sets.Values)
         {
-            var itemNames = items
-                .Select(id => protoManager.TryIndex<EntityPrototype>(id, out var ep) ? ep.Name : id)
-                .Distinct()
-                .ToList();
-
-            if (setIndex > 0)
+            if (!first)
             {
+                msg.AddText("\n");
                 msg.PushColor(Color.FromHex("#8b6914"));
-                msg.AddText(Loc.GetString("achievement-condition-equip-set-or").ToUpper() + "\n");
+                msg.AddText(Loc.GetString("achievement-condition-equip-set-or").ToUpper());
                 msg.Pop();
             }
 
-            foreach (var itemName in itemNames)
+            foreach (var id in items)
             {
-                msg.AddText($"  • {itemName}\n");
+                var name = protoManager.TryIndex<EntityPrototype>(id, out var ep) ? ep.Name : id;
+                msg.AddText($"\n {name}");
             }
-            setIndex++;
-        }
-        msg.Pop();
 
+            first = false;
+        }
+
+        msg.Pop();
         AppendRequirements(msg, protoManager);
         return msg;
     }
@@ -57,39 +55,53 @@ public sealed partial class EquipSetCondition : AchievementCondition
         if (!CheckFilters(player, entManager, protoManager))
             return false;
 
-        var invSystem = entManager.System<InventorySystem>();
-        var equippedIds = new HashSet<string>();
+        var equipped = GetEquippedIds(player, entManager);
 
-        if (invSystem.TryGetContainerSlotEnumerator(player, out var enumerator))
+        foreach (var items in Sets.Values)
         {
-            while (enumerator.MoveNext(out var slot))
-            {
-                if (slot.ContainedEntity is { } item &&
-                    entManager.TryGetComponent<MetaDataComponent>(item, out var meta) &&
-                    meta.EntityPrototype != null)
-                {
-                    equippedIds.Add(meta.EntityPrototype.ID);
-                }
-            }
-        }
-
-        foreach (var set in Sets.Values)
-        {
-            if (set.Count == 0)
+            if (items.Count == 0)
                 continue;
 
-            var allMatch = true;
-            foreach (var protoId in set)
-            {
-                if (!equippedIds.Contains(protoId))
-                {
-                    allMatch = false;
-                    break;
-                }
-            }
-            if (allMatch)
+            if (items.All(id => equipped.Contains(id)))
                 return true;
         }
+
         return false;
+    }
+
+    public override bool TryUpdateProgress(
+        EntityUid player,
+        IEntityManager entManager,
+        IPrototypeManager protoManager,
+        object? context,
+        Dictionary<string, int> progress)
+    {
+        if (!CheckFilters(player, entManager, protoManager))
+            return false;
+
+        return true;
+    }
+
+    private static HashSet<string> GetEquippedIds(EntityUid player, IEntityManager entManager)
+    {
+        var ids = new HashSet<string>();
+        var invSystem = entManager.System<InventorySystem>();
+
+        if (!invSystem.TryGetContainerSlotEnumerator(player, out var enumerator))
+            return ids;
+
+        while (enumerator.MoveNext(out var slot))
+        {
+            if (slot.ContainedEntity is not { } item)
+                continue;
+
+            if (entManager.TryGetComponent<MetaDataComponent>(item, out var meta) &&
+                meta.EntityPrototype != null)
+            {
+                ids.Add(meta.EntityPrototype.ID);
+            }
+        }
+
+        return ids;
     }
 }

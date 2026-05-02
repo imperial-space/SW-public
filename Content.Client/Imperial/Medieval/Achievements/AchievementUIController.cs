@@ -33,7 +33,7 @@ public sealed class AchievementUIController : UIController,
     private BoxContainer? _notificationStack;
     private LayoutContainer? _canvas;
 
-    private AchievementMenuWindow? _menuWindow;
+    private AchievementTreeMenuWindow? _menuWindow;
 
     private HashSet<string> _cachedUnlocked = new();
     private Dictionary<string, float> _cachedPercents = new();
@@ -110,7 +110,7 @@ public sealed class AchievementUIController : UIController,
         }
 
         var spriteSystem = EntityManager.System<SpriteSystem>();
-        _menuWindow = new AchievementMenuWindow(_proto, _cache, spriteSystem);
+        _menuWindow = new AchievementTreeMenuWindow(_proto, _cache, spriteSystem);
         _menuWindow.OnClose += OnWindowClosed;
         _menuWindow.OpenCentered();
 
@@ -167,6 +167,9 @@ public sealed class AchievementUIController : UIController,
             return;
 
         _cachedUnlocked.Add(achId);
+
+        if (_menuWindow != null && !_menuWindow.Disposed)
+            _menuWindow.Populate(_cachedUnlocked, _cachedPercents, _cachedProgress);
 
         if (_notificationStack?.ChildCount >= MaxNotifications)
             return;

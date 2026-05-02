@@ -9,12 +9,6 @@ public sealed partial class LocationCondition : AchievementCondition
     [DataField(required: true)]
     public string LocationId = default!;
 
-    [DataField(required: true)]
-    public string ProgressKey = default!;
-
-    [DataField]
-    public int RequiredCount = 1;
-
     public override FormattedMessage GetDescription(IPrototypeManager protoManager)
     {
         var locString = Loc.GetString("achievement-condition-location",

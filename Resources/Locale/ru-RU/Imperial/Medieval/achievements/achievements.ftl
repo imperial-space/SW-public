@@ -26,7 +26,7 @@ achievement-condition-requires-jobs = в должности { $jobs }
 achievement-condition-requires-faction-header = находясь во фракции:
 
 achievement-condition-equip-set-header = Экипировать один из комплектов:
-achievement-condition-equip-set-or = — ИЛИ —
+achievement-condition-equip-set-or = ИЛИ
 achievement-condition-equip-set = Экипировать: { $sets }
 achievement-condition-equip-set-complex = комплект ({ $items })
 
@@ -50,3 +50,38 @@ achievement-detail-back = Назад к списку
 achievement-detail-conditions-header = Условия для получения:
 
 achievement-visit-barrier-location = барьер в подвале коллегии
+
+achievement-tree-recenter = Центрировать
+achievement-tooltip-completed = Выполнено
+achievement-detail-window-title = Детали достижения
+achievement-detail-completed = Получено
+achievement-detail-requires-header = Требуемые достижения:
+
+achievement-condition-require-achievements = Требует выполнения: { $achievements }
+
+achievement-condition-build-structure = Постройте { $count } { $targets }
+
+achievement-condition-break-structure = Разрушьте { $count } { $targets }
+
+achievement-condition-guild-reputation = Достигните { $reputation } репутации в { $guild }
+
+achievement-condition-become-entity = Станьте { $targets } (всего { $count } раз)
+
+achievement-condition-craft-any = Создайте { $count } любых предметов
+achievement-condition-craft-single = Создайте { $count } { $target }
+achievement-condition-craft-multi-header = Создайте { $count } из следующих предметов:
+achievement-condition-craft-workbench = 
+    {" "}
+    Используя: { $benches }
+
+achievement-condition-capture-point = Захватите { $count } контрольных точек
+
+achievement-condition-destroy-specific-crystal = Разрушьте { $count } обелиск фракции { $faction }
+
+achievement-condition-refill-barrier = Восполните энергию барьера { $count } раз
+
+achievement-condition-kill-faction-any = Убейте { $count } бойцов любой фракции
+achievement-condition-kill-faction-single-prefix = Убейте { $count } бойцов фракции:
+achievement-condition-kill-faction-multi-header = Убейте { $count } бойцов следующих фракций:
+
+achievement-condition-complete-contract = Выполните контракт наемников { $count } раз

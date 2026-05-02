@@ -17,6 +17,12 @@ namespace Content.Shared.Imperial.Medieval.Achievements;
 public abstract partial class AchievementCondition
 {
     [DataField]
+    public string ProgressKey { get; private set; } = string.Empty;
+
+    [DataField]
+    public int RequiredCount { get; private set; } = 1;
+
+    [DataField]
     public List<string>? RequiredSpecies = null;
 
     [DataField]
@@ -140,4 +146,14 @@ public abstract partial class AchievementCondition
     {
         return false;
     }
+
+    public virtual int GetCurrentProgress(Dictionary<string, int>? progress)
+    {
+        if (progress == null || string.IsNullOrEmpty(ProgressKey))
+            return 0;
+
+        return progress.GetValueOrDefault(ProgressKey, 0);
+    }
+
+    public virtual int GetTargetProgress() => RequiredCount;
 }

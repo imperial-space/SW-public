@@ -10,12 +10,6 @@ public sealed partial class KillMobCondition : AchievementCondition
     [DataField(required: true)]
     public List<string> TargetMobPrototypes = new();
 
-    [DataField]
-    public int RequiredCount = 1;
-
-    [DataField(required: true)]
-    public string ProgressKey = default!;
-
     public override FormattedMessage GetDescription(IPrototypeManager protoManager)
     {
         var msg = new FormattedMessage();

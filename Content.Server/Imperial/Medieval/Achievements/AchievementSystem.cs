@@ -1,25 +1,17 @@
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Content.Server.Imperial.Medieval.Achievements.Jobs;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.Achievements;
-using Content.Shared.Inventory.Events;
-using Content.Shared.Hands;
-using Content.Shared.Mobs;
-using Content.Shared.Mobs.Components;
-using Content.Shared.Projectiles;
-using Content.Shared.Stacks;
-using Content.Shared.Storage;
-using Content.Shared.Storage.Events;
-using Robust.Shared.Containers;
 using Robust.Server.Player;
-using Robust.Shared.Physics.Events;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Enums;
 using Robust.Shared.Timing;
+using Robust.Shared.Containers;
 
 namespace Content.Server.Imperial.Medieval.Achievements;
 
@@ -30,6 +22,7 @@ public sealed partial class AchievementSystem : EntitySystem
     [Dependency] private readonly IServerDbManager _dbManager = default!;
     [Dependency] private readonly ActorSystem _actor = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly JobAchievementManager _jobAchievement = default!;
     [Dependency] protected readonly IGameTiming Timing = default!;
 
     private readonly Dictionary<Guid, HashSet<string>> _playerAchievements = new();
@@ -44,17 +37,9 @@ public sealed partial class AchievementSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
         SubscribeLocalEvent<RoundStartedEvent>(OnRoundStarted);
 
-        SubscribeLocalEvent<StackComponent, StackCountChangedEvent>(OnStackCountChanged);
-        SubscribeLocalEvent<StorageComponent, StorageItemInsertedEvent>(OnStorageItemInserted);
-        SubscribeLocalEvent<StorageComponent, StorageItemRemovedEvent>(OnStorageItemRemoved);
-        SubscribeLocalEvent<AchievementOwnerComponent, DidEquipEvent>(OnInventoryEquipped);
-        SubscribeLocalEvent<AchievementOwnerComponent, DidEquipHandEvent>(OnHandEquipped);
-        SubscribeLocalEvent<AchievementOwnerComponent, DidUnequipHandEvent>(OnHandUnequipped);
-        SubscribeLocalEvent<AchievementTargetComponent, MobStateChangedEvent>(OnTargetDied);
-        SubscribeLocalEvent<AchievementLocationComponent, StartCollideEvent>(OnCollide);
-
         _playerManager.PlayerStatusChanged += OnPlayerChange;
 
+        InitializeConditions();
         InitializeUI();
     }
 
@@ -154,14 +139,6 @@ public sealed partial class AchievementSystem : EntitySystem
         }
     }
 
-    private Guid? GetPlayerGuid(EntityUid player)
-    {
-        if (!_actor.TryGetSession(player, out var session))
-            return null;
-
-        return session?.UserId.UserId;
-    }
-
     public void TryGrantAchievement(EntityUid player, string achievementId, object? context = null)
     {
         var guid = GetPlayerGuid(player);
@@ -175,6 +152,9 @@ public sealed partial class AchievementSystem : EntitySystem
             return;
 
         if (!_protoManager.TryIndex<AchievementPrototype>(achievementId, out var prototype))
+            return;
+
+        if (!ArePrerequisitesMet(prototype, unlocked))
             return;
 
         if (!_roundProgression.TryGetValue(guid.Value, out var playerProg))
@@ -207,13 +187,14 @@ public sealed partial class AchievementSystem : EntitySystem
 
             if (_actor.TryGetSession(player, out var session))
             {
-                var ev = new AchievementUnlockedEvent(achievementId);
-                RaiseNetworkEvent(ev, session!);
+                RaiseNetworkEvent(new AchievementUnlockedEvent(achievementId), session!);
+                _ = _jobAchievement.RecheckJobs(session!.UserId);
             }
         }
     }
 
-    private void UpdatePickupProgress(EntityUid player)
+    public void TryUpdateProgressAndGrant(EntityUid player, object context,
+        Func<AchievementPrototype, bool> filter)
     {
         if (GetPlayerGuid(player) is not { } guid)
             return;
@@ -221,21 +202,19 @@ public sealed partial class AchievementSystem : EntitySystem
         if (!_playerAchievements.TryGetValue(guid, out var unlocked))
             return;
 
-        var itemCounts = CountInventoryItems(player);
+        if (!_roundProgression.TryGetValue(guid, out var playerProg))
+        {
+            playerProg = new Dictionary<string, Dictionary<string, int>>();
+            _roundProgression[guid] = playerProg;
+        }
 
         foreach (var ach in _protoManager.EnumeratePrototypes<AchievementPrototype>())
         {
-            if (unlocked.Contains(ach.ID))
+            if (unlocked.Contains(ach.ID) || !filter(ach))
                 continue;
 
-            if (!ach.Conditions.Any(c => c is CollectAllItemsCondition or CollectAnyItemsCondition))
+            if (!ArePrerequisitesMet(ach, unlocked))
                 continue;
-
-            if (!_roundProgression.TryGetValue(guid, out var playerProg))
-            {
-                playerProg = new Dictionary<string, Dictionary<string, int>>();
-                _roundProgression[guid] = playerProg;
-            }
 
             if (!playerProg.TryGetValue(ach.ID, out var achievementProg))
             {
@@ -243,188 +222,16 @@ public sealed partial class AchievementSystem : EntitySystem
                 playerProg[ach.ID] = achievementProg;
             }
 
+            var anyUpdated = false;
             foreach (var condition in ach.Conditions)
             {
-                switch (condition)
-                {
-                    case CollectAllItemsCondition collectAll:
-                    {
-                        foreach (var (proto, _) in collectAll.ItemPrototypes)
-                        {
-                            var key = $"{collectAll.ProgressKey}:{proto}";
-                            var count = itemCounts.GetValueOrDefault(proto, 0);
-                            achievementProg[key] = Math.Max(achievementProg.GetValueOrDefault(key, 0), count);
-                        }
-                        break;
-                    }
-
-                    case CollectAnyItemsCondition collectAny:
-                    {
-                        var total = collectAny.ItemPrototypes.Sum(p => itemCounts.GetValueOrDefault(p, 0));
-                        achievementProg[collectAny.ProgressKey] = Math.Max(
-                            achievementProg.GetValueOrDefault(collectAny.ProgressKey, 0), total);
-                        break;
-                    }
-                }
+                if (condition.TryUpdateProgress(player, EntityManager, _protoManager, context, achievementProg))
+                    anyUpdated = true;
             }
 
-            TryGrantAchievement(player, ach.ID);
+            if (anyUpdated)
+                TryGrantAchievement(player, ach.ID);
         }
-    }
-
-    private Dictionary<string, int> CountInventoryItems(EntityUid player)
-    {
-        var counts = new Dictionary<string, int>();
-        var visited = new HashSet<EntityUid>();
-        CountItemsRecursive(player, counts, visited);
-        return counts;
-    }
-
-    private void CountItemsRecursive(EntityUid uid, Dictionary<string, int> counts, HashSet<EntityUid> visited)
-    {
-        if (!visited.Add(uid))
-            return;
-
-        if (!EntityManager.TryGetComponent<ContainerManagerComponent>(uid, out var containerManager))
-            return;
-
-        foreach (var container in containerManager.Containers.Values)
-        {
-            foreach (var item in container.ContainedEntities)
-            {
-                var meta = EntityManager.GetComponent<MetaDataComponent>(item);
-                if (meta.EntityPrototype != null)
-                {
-                    var protoId = meta.EntityPrototype.ID;
-                    var count = EntityManager.TryGetComponent<StackComponent>(item, out var stack)
-                        ? stack.Count
-                        : 1;
-                    counts[protoId] = counts.GetValueOrDefault(protoId, 0) + count;
-                }
-
-                CountItemsRecursive(item, counts, visited);
-            }
-        }
-    }
-
-    private int GetItemCount(EntityUid item)
-    {
-        if (EntityManager.TryGetComponent<StackComponent>(item, out var stack))
-            return stack.Count;
-
-        return 1;
-    }
-
-    private void OnHandEquipped(EntityUid uid, AchievementOwnerComponent component, DidEquipHandEvent args)
-    {
-        UpdatePickupProgress(uid);
-    }
-
-    private void OnHandUnequipped(EntityUid uid, AchievementOwnerComponent component, DidUnequipHandEvent args)
-    {
-        UpdatePickupProgress(uid);
-    }
-
-    private void OnStorageItemInserted(EntityUid uid, StorageComponent component, ref StorageItemInsertedEvent args)
-    {
-        if (FindOwnerPlayer(uid) is not { } player)
-            return;
-
-        UpdatePickupProgress(player);
-    }
-
-    private void OnStorageItemRemoved(EntityUid uid, StorageComponent component, ref StorageItemRemovedEvent args)
-    {
-        if (FindOwnerPlayer(uid) is not { } player)
-            return;
-
-        UpdatePickupProgress(player);
-    }
-
-    private EntityUid? FindOwnerPlayer(EntityUid uid)
-    {
-        var current = uid;
-        while (_containerSystem.TryGetContainingContainer(current, out var container))
-        {
-            current = container.Owner;
-            if (HasComp<AchievementOwnerComponent>(current))
-                return current;
-        }
-
-        if (HasComp<AchievementOwnerComponent>(uid))
-            return uid;
-
-        return null;
-    }
-
-    private void OnStackCountChanged(EntityUid uid, StackComponent component, StackCountChangedEvent args)
-    {
-        if (args.NewCount == args.OldCount)
-            return;
-
-        if (FindOwnerPlayer(uid) is not { } player)
-            return;
-
-        UpdatePickupProgress(player);
-    }
-
-    private void OnInventoryEquipped(EntityUid uid, AchievementOwnerComponent component, DidEquipEvent args)
-    {
-        if (GetPlayerGuid(uid) == null)
-            return;
-
-        foreach (var ach in _protoManager.EnumeratePrototypes<AchievementPrototype>())
-        {
-            if (ach.Conditions.Any(c => c is EquipSetCondition))
-            {
-                TryGrantAchievement(uid, ach.ID);
-            }
-        }
-    }
-
-    private void OnTargetDied(EntityUid targetUid, AchievementTargetComponent component, MobStateChangedEvent args)
-    {
-        if (args.NewMobState != MobState.Dead)
-            return;
-
-        var killer = GetPlayerFromOrigin(args.Origin);
-        if (killer == null || !HasComp<AchievementOwnerComponent>(killer.Value))
-            return;
-
-        TryUpdateProgressAndGrant(killer.Value, targetUid,
-            ach => ach.Conditions.Any(c => c is KillMobCondition));
-    }
-
-    private void OnCollide(EntityUid uid, AchievementLocationComponent component, ref StartCollideEvent args)
-    {
-        var player = args.OtherEntity;
-
-        if (!HasComp<AchievementOwnerComponent>(player) || GetPlayerGuid(player) == null)
-            return;
-
-        TryUpdateProgressAndGrant(player, component.LocationId,
-            ach => ach.Conditions.Any(c => c is LocationCondition));
-    }
-
-    private EntityUid? GetPlayerFromOrigin(EntityUid? origin)
-    {
-        if (origin == null)
-            return null;
-
-        if (HasComp<AchievementOwnerComponent>(origin.Value))
-            return origin.Value;
-
-        var parent = Transform(origin.Value).ParentUid;
-        if (parent.IsValid() && HasComp<AchievementOwnerComponent>(parent))
-            return parent;
-
-        if (TryComp<ProjectileComponent>(origin.Value, out var projectile) && projectile.Shooter.HasValue)
-        {
-            if (HasComp<AchievementOwnerComponent>(projectile.Shooter.Value))
-                return projectile.Shooter.Value;
-        }
-
-        return null;
     }
 
     public async Task<bool> TryGrantAchievement(Guid guid, string achievementId, ICommonSession? session = null)
@@ -451,12 +258,15 @@ public sealed partial class AchievementSystem : EntitySystem
             await _dbManager.DeletePlayerAchievementProgress(guid, achievementId);
 
         if (session != null)
+        {
             RaiseNetworkEvent(new AchievementUnlockedEvent(achievementId), session);
+            _ = _jobAchievement.RecheckJobs(session.UserId);
+        }
 
         return true;
     }
 
-    public async Task<bool> TryRevokeAchievement(Guid guid, string achievementId)
+    public async Task<bool> TryRevokeAchievement(Guid guid, string achievementId, ICommonSession? session = null)
     {
         if (!_playerAchievements.TryGetValue(guid, out var unlocked))
             return false;
@@ -471,6 +281,9 @@ public sealed partial class AchievementSystem : EntitySystem
 
             if (_roundProgression.TryGetValue(guid, out var playerProg))
                 playerProg.Remove(achievementId);
+
+            if (session != null)
+                _ = _jobAchievement.RecheckJobs(session.UserId);
         }
 
         return success;
@@ -484,41 +297,11 @@ public sealed partial class AchievementSystem : EntitySystem
         return new List<string>();
     }
 
-    private void TryUpdateProgressAndGrant(EntityUid player, object context,
-        Func<AchievementPrototype, bool> filter)
+    private Guid? GetPlayerGuid(EntityUid player)
     {
-        if (GetPlayerGuid(player) is not { } guid)
-            return;
+        if (!_actor.TryGetSession(player, out var session))
+            return null;
 
-        if (!_playerAchievements.TryGetValue(guid, out var unlocked))
-            return;
-
-        if (!_roundProgression.TryGetValue(guid, out var playerProg))
-        {
-            playerProg = new Dictionary<string, Dictionary<string, int>>();
-            _roundProgression[guid] = playerProg;
-        }
-
-        foreach (var ach in _protoManager.EnumeratePrototypes<AchievementPrototype>())
-        {
-            if (unlocked.Contains(ach.ID) || !filter(ach))
-                continue;
-
-            if (!playerProg.TryGetValue(ach.ID, out var achievementProg))
-            {
-                achievementProg = new Dictionary<string, int>();
-                playerProg[ach.ID] = achievementProg;
-            }
-
-            var anyUpdated = false;
-            foreach (var condition in ach.Conditions)
-            {
-                if (condition.TryUpdateProgress(player, EntityManager, _protoManager, context, achievementProg))
-                    anyUpdated = true;
-            }
-
-            if (anyUpdated)
-                TryGrantAchievement(player, ach.ID);
-        }
+        return session?.UserId.UserId;
     }
 }

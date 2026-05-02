@@ -23,10 +23,13 @@ public sealed partial class AchievementPrototype : IPrototype
     public SoundSpecifier AchievementSound = new SoundPathSpecifier("/Audio/Imperial/Medieval/achievement_unlocked.ogg");
 
     [DataField]
-    public bool Hidden;
+    public AchievementVisibility Visibility = AchievementVisibility.Visible;
 
     [DataField]
     public bool RoundOnly = false;
+
+    [DataField]
+    public List<ProtoId<AchievementPrototype>> Prerequisites = new();
 
     [DataField]
     public List<AchievementCondition> Conditions = new();
@@ -37,4 +40,37 @@ public sealed partial class AchievementPrototype : IPrototype
     /// </summary>
     [DataField]
     public ProtoId<AchievementRarityPrototype>? Rarity;
+
+    [DataField]
+    public int Priority = 0;
+}
+
+/// <summary>
+/// Controls how an achievement and its descendants are displayed in the tree
+/// </summary>
+public enum AchievementVisibility : byte
+{
+    /// <summary>
+    /// Default. The achievement and all descendants are always visible
+    /// </summary>
+    Visible = 0,
+
+    /// <summary>
+    /// The achievement is completely invisible until be unlocked.
+    /// All descendants are also invisible until this achievement is unlocked
+    /// </summary>
+    Hidden = 1,
+
+    /// <summary>
+    /// The achievement itself is shown as available, but all descendants
+    /// are invisible until this achievement is unlocked
+    /// </summary>
+    Blocking = 2,
+
+    /// <summary>
+    /// The achievement itself is shown as available. Descendants are shown
+    /// as question marks their count and order are visible, but their
+    /// content (name, description, icon) is hidden until this is unlocked
+    /// </summary>
+    BlockingRevealed = 3,
 }

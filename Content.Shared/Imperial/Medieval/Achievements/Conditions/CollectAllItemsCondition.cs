@@ -9,9 +9,6 @@ public sealed partial class CollectAllItemsCondition : AchievementCondition
     [DataField(required: true)]
     public Dictionary<string, int> ItemPrototypes = new();
 
-    [DataField(required: true)]
-    public string ProgressKey = default!;
-
     public override FormattedMessage GetDescription(IPrototypeManager protoManager)
     {
         var msg = new FormattedMessage();
@@ -50,5 +47,24 @@ public sealed partial class CollectAllItemsCondition : AchievementCondition
         }
 
         return true;
+    }
+
+    public override int GetTargetProgress() => ItemPrototypes.Values.Sum();
+
+    public override int GetCurrentProgress(Dictionary<string, int>? progress)
+    {
+        if (progress == null || string.IsNullOrEmpty(ProgressKey))
+            return 0;
+
+        int total = 0;
+        foreach (var (proto, required) in ItemPrototypes)
+        {
+            var key = $"{ProgressKey}:{proto}";
+            var amount = progress.GetValueOrDefault(key, 0);
+
+            total += Math.Min(amount, required); 
+        }
+
+        return total;
     }
 }
