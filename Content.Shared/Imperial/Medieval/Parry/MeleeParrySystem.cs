@@ -25,6 +25,18 @@ namespace Content.Shared.MeleeParry
     [Serializable, NetSerializable]
     public sealed class ParryPressedEvent : EntityEventArgs { }
 
+    public readonly struct ParryParameters
+    {
+        public readonly float Able;
+        public readonly float Window;
+
+        public ParryParameters(float able, float window)
+        {
+            Able = able;
+            Window = window;
+        }
+    }
+
     public sealed partial class MeleeParrySystem : EntitySystem
     {
         [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -219,6 +231,14 @@ namespace Content.Shared.MeleeParry
             if (args.Origin == null || !args.Damage.DamageDict.TryGetValue("ParryAble", out var parryDMG))
                 return;
 
+            var attacker = args.Origin.Value;
+            var attackerItem = _hands.GetActiveItem(attacker);
+            if (attackerItem != null && TryComp<MedievalWeaponSkillCategoryComponent>(attackerItem.Value, out var skillComp))
+            {
+                parryDMG *= skillComp.Skill.GetParryData().Able;
+            }
+
+
             if (CheckParryable(uid, (float)parryDMG, out var item, out var parry, out var parryStorage, out var weapon))
             {
                 args.Cancelled = true;
@@ -264,7 +284,7 @@ namespace Content.Shared.MeleeParry
 
             if (TryComp<MeleeParryComponent>(item, out var parryComp) &&
                 parryComp.ParriedTime != TimeSpan.Zero &&
-                CountParryWindowTime(parryComp, parryDMG) > _timing.CurTime &&
+                CountParryWindowTime((item.Value, parryComp), parryDMG) > _timing.CurTime &&
                 TryComp<MeleeParryStorageComponent>(uid, out var parryStorageComp) &&
                 TryComp<MeleeWeaponComponent>(item, out var weaponComp))
             {
@@ -278,9 +298,12 @@ namespace Content.Shared.MeleeParry
             return false;
         }
 
-        private TimeSpan CountParryWindowTime(MeleeParryComponent parry, float parryDMG)
+        private TimeSpan CountParryWindowTime(Entity<MeleeParryComponent> ent, float parryDMG)
         {
-            return (parry.ParriedTime + TimeSpan.FromSeconds(parry.ParryWindow * parryDMG));
+            var parryWindow = ent.Comp.ParryWindow;
+            if (TryComp<MedievalWeaponSkillCategoryComponent>(ent, out var skillComp)) parryWindow *= skillComp.Skill.GetParryData().Window;
+
+            return (ent.Comp.ParriedTime + TimeSpan.FromSeconds(parryWindow * parryDMG));
         }
         private float GetAgilityMod(EntityUid uid)
         {
