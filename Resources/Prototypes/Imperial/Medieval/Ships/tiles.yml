@@ -1,0 +1,68 @@
+- type: tile
+  id: woodbroken1
+  name: tiles-wooden-tile
+  sprite: /Textures/Imperial/Medieval/Ships/BrokenTiles/woodbroken.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepWood
+  barestepSounds:
+    collection: BarestepWood
+  heatCapacity: 10000
+  badSmellMod: 0.75
+  weather: true
+
+- type: tile
+  id: woodbroken2
+  name: tiles-wooden-tile
+  sprite: /Textures/Imperial/Medieval/Ships/BrokenTiles/woodbroken2.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepWood
+  barestepSounds:
+    collection: BarestepWood
+  heatCapacity: 10000
+  badSmellMod: 0.75
+  weather: true
+
+- type: tile
+  id: woodbroken3
+  name: tiles-wooden-tile
+  sprite: /Textures/Imperial/Medieval/Ships/BrokenTiles/woodbroken3.png
+  variants: 6
+  placementVariants:
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  - 1.0
+  baseTurf: Plating
+  isSubfloor: false
+  deconstructTools: [ Prying ]
+  footstepSounds:
+    collection: FootstepWood
+  barestepSounds:
+    collection: BarestepWood
+  heatCapacity: 10000
+  badSmellMod: 0.75
+  weather: true

@@ -5373,6 +5373,8 @@
         layer:
         - WallLayer
   - type: InteractionOutline
+  - type: Sail
+    SailSize: 5
 
 - type: entity
   name: small light
@@ -5474,15 +5476,6 @@
       sprite: Imperial/Medieval/Decor/map.rsi
       state: map
 
-- type: entity
-  id: MedievalSteeringWheel
-  name: Steering wheel
-  parent: WoodenSupportWall
-  description: Hold on tight, sailors! We're going to make a sharp turn! Grrrr!
-  components:
-    - type: Sprite
-      sprite: Imperial/Medieval/Decor/steeringwheel.rsi
-      state: wheel
 
 - type: entity
   id: Medievalblackflag
@@ -5579,9 +5572,8 @@
     drawdepth: Overdoors
     offset: 0,1.95
   - type: Anchorable
-  - type: Rotatable
-    angleStep: 45
-    rotateWhileAnchored: true
+  - type: Sail
+    Folded: false
 
 - type: entity
   id: MedievalDecorShipSailShipup
@@ -5594,6 +5586,8 @@
         map: ["enum.CatapultVisualKey.Ready"]
     drawdepth: Overdoors
     offset: 0,1.95
+  - type: Sail
+    Folded: true
 
 - type: entity
   id: MedievalFlagpole

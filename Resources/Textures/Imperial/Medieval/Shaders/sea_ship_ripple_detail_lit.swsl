@@ -1,0 +1,6 @@
+void fragment()
+{
+    lowp vec3 lightColor = clamp(lightSample.rgb * 1.2, vec3(0.0), vec3(1.0));
+    COLOR = vec4(1.0);
+    lightSample = lightColor;
+}
