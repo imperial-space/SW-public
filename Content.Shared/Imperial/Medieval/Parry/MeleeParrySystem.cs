@@ -42,6 +42,8 @@ namespace Content.Shared.MeleeParry
         private float _parryStaminaDamage;
         private float _desyncTolerance;
         private float _parryUseDelay;
+        private readonly HashSet<EntityUid> _playedReadySounds = new();
+
         public override void Initialize()
         {
             base.Initialize();
@@ -73,9 +75,9 @@ namespace Content.Shared.MeleeParry
 
             if (TryComp<MeleeParryStorageComponent>(uid, out var storage))
             {
-                var timeLeft = (storage.GlobalNextParryTime - _timing.CurTime).TotalSeconds;
+                var timeLeft = (storage.NextParryTime - _timing.CurTime).TotalSeconds;
 
-                if (timeLeft > 0 && timeLeft <= 0.25f)
+                if (timeLeft > 0 && timeLeft <= 0.15f)
                 {
                     storage.ParryQueued = true;
                 }
@@ -89,15 +91,37 @@ namespace Content.Shared.MeleeParry
             if (!_netMan.IsClient || _playerManager.LocalEntity is not { } localUid)
                 return;
 
-            if (TryComp<MeleeParryStorageComponent>(localUid, out var storage) && storage.ParryQueued)
+            if (TryComp<MeleeParryStorageComponent>(localUid, out var storage))
             {
-                if (_timing.CurTime >= storage.GlobalNextParryTime)
+                if (_timing.CurTime > storage.NextParryTime)
                 {
-                    var item = _hands.GetActiveItem(localUid);
-                    if (item != null && TryComp<MeleeParryComponent>(item.Value, out var parry))
+                    if (storage.NextParryTime == TimeSpan.Zero)
                     {
-                        storage.ParryQueued = false;
-                        ExecuteParryLocal(localUid, parry, storage);
+                        _playedReadySounds.Add(localUid);
+                        return;
+                    }
+
+                    if (!_playedReadySounds.Contains(localUid) && _timing.IsFirstTimePredicted)
+                    {
+                        _audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/soft_bell_ding.ogg"), Filter.Local(), false);
+                        _playedReadySounds.Add(localUid);
+                    }
+
+                    if (storage.ParryQueued)
+                    {
+                        var item = _hands.GetActiveItem(localUid);
+                        if (item != null && TryComp<MeleeParryComponent>(item.Value, out var parry))
+                        {
+                            storage.ParryQueued = false;
+                            ExecuteParryLocal(localUid, parry, storage);
+                        }
+                    }
+                }
+                else
+                {
+                    if ((storage.NextParryTime - _timing.CurTime).TotalSeconds > 0.5)
+                    {
+                        _playedReadySounds.Remove(localUid);
                     }
                 }
             }
@@ -112,9 +136,9 @@ namespace Content.Shared.MeleeParry
             if (!TryComp<MeleeParryStorageComponent>(uid, out var storageComp)) return false;
 
             if (_netMan.IsServer)
-                if (_timing.CurTime + TimeSpan.FromSeconds(_desyncTolerance) < storageComp.GlobalNextParryTime) return false;
+                if (_timing.CurTime + TimeSpan.FromSeconds(_desyncTolerance) < storageComp.NextParryTime) return false;
             if (_netMan.IsClient)
-                if (_timing.CurTime < storageComp.GlobalNextParryTime) return false;
+                if (_timing.CurTime < storageComp.NextParryTime) return false;
 
             var item = _hands.GetActiveItem(uid);
             if (item == null || !TryComp<MeleeParryComponent>(item.Value, out var parryComp)) return false;
@@ -137,8 +161,8 @@ namespace Content.Shared.MeleeParry
             if (!TryComp<MeleeWeaponComponent>(parry.Owner, out var weapon)) return;
             weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(_parryUseDelay);
 
-            parryStorage.GlobalNextParryTime = nextTime;
-            parryStorage.GlobalCooldownParry = (float)cooldown.TotalSeconds;
+            parryStorage.NextParryTime = nextTime;
+            parryStorage.CooldownParry = (float)cooldown.TotalSeconds;
 
             RaiseNetworkEvent(new ParryPressedEvent());
         }
@@ -156,12 +180,12 @@ namespace Content.Shared.MeleeParry
                 var cooldown = TimeSpan.FromSeconds(Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7f));
                 var nextTime = _timing.CurTime + cooldown;
 
-                parryStorage.GlobalNextParryTime = nextTime;
+                parryStorage.NextParryTime = nextTime;
 
                 var latency = TimeSpan.FromMilliseconds(Math.Min(sessionArgs.SenderSession.Ping / 2, 400));
 
                 parry.ParriedTime = _timing.CurTime - latency;
-                parryStorage.GlobalCooldownParry = (float)cooldown.TotalSeconds;
+                parryStorage.CooldownParry = (float)cooldown.TotalSeconds;
 
                 _useDelay.SetLength(item, TimeSpan.FromSeconds(_parryUseDelay));
                 _useDelay.TryResetDelay((item, useDelay));
@@ -205,8 +229,8 @@ namespace Content.Shared.MeleeParry
                 parry.ParriedTime = TimeSpan.Zero;
 
 
-                parryStorage.GlobalNextParryTime = TimeSpan.Zero;
-                parryStorage.GlobalCooldownParry = Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7f);
+                parryStorage.NextParryTime = TimeSpan.Zero;
+                parryStorage.CooldownParry = Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7f);
                 parryStorage.ParryQueued = false;
 
                 var useDelay = EnsureComp<UseDelayComponent>(item);

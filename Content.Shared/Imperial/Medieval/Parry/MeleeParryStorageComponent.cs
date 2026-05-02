@@ -7,10 +7,10 @@ namespace Content.Shared.MeleeParry.Components;
 public sealed partial class MeleeParryStorageComponent : Component
 {
     [DataField, AutoNetworkedField]
-    public TimeSpan GlobalNextParryTime = TimeSpan.Zero;
+    public TimeSpan NextParryTime = TimeSpan.Zero;
 
     [DataField, AutoNetworkedField]
-    public float GlobalCooldownParry = 0.5f;
+    public float CooldownParry = 0.5f;
 
     [DataField, AutoNetworkedField]
     public bool ParryQueued = false;
