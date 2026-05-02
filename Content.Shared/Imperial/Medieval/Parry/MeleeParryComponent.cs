@@ -12,28 +12,21 @@ namespace Content.Shared.MeleeParry.Components
         [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan LastSuccessParriedTime;  //Нужно для парирования урона стамине, после этого оно обнулится
 
-        [DataField, AutoNetworkedField]
-        [ViewVariables(VVAccess.ReadOnly)]
-        public TimeSpan NextAllowedParryTime;
-
         [DataField]
         [ViewVariables(VVAccess.ReadOnly)]
         public TimeSpan ParriedTime = TimeSpan.Zero;
-
-        [DataField, AutoNetworkedField]
-        [ViewVariables(VVAccess.ReadWrite)]
-        public float ParryCooldown = 4f;
 
         [DataField]
         public string ParryEffectSuccess = "MedievalEffectSuccessParry";
         [DataField]
         public string ParryEffectWindow = "MedievalEffectWindowParry";
 
-        [DataField]
-        public bool RealParry = true;
-
         [ViewVariables(VVAccess.ReadWrite)]
         public float ParryWindow = 0.5f;
+
+        [DataField, AutoNetworkedField]
+        [ViewVariables(VVAccess.ReadWrite)]
+        public float ParryCooldown = 4f;
     }
 
     [RegisterComponent, NetworkedComponent]

@@ -355,9 +355,7 @@
     sprite: Imperial/Medieval/Melee/wooden_sword.rsi
     state: icon
   - type: MeleeParry
-    parryEffect: MedievalEffectParryWood
-    realParry: false
-    parryChanse: 0.75
+    parryEffectSuccess: MedievalEffectSuccessParryWooden
   - type: MeleeParryStamina
   - type: MeleeWeapon
     clickDamageModifier: 2
@@ -4731,7 +4729,7 @@
       - HideContextMenu
   - type: EmitSoundOnSpawn
     sound:
-      collection: MeleeParry
+      collection: MeleeParryWindow
   - type: MeleeParryEffect
 
 - type: entity
@@ -4751,6 +4749,23 @@
       collection: MeleeParry
   - type: MeleeParryEffect
 
+- type: entity
+  id: MedievalEffectSuccessParryWooden
+  components:
+  - type: Sprite
+    sprite: Imperial/Medieval/Parry/parry.rsi
+    state: parry_success
+    drawdepth: Overlays
+  - type: TimedDespawn
+    lifetime: 0.525
+  - type: Tag
+    tags:
+      - HideContextMenu
+  - type: EmitSoundOnSpawn
+    sound:
+      collection: MeleeParryWood
+  - type: MeleeParryEffect
+
 - type: soundCollection
   id: MeleeParry
   files:
@@ -4760,6 +4775,11 @@
   - /Audio/Imperial/Medieval/iron_parry4.ogg
   - /Audio/Imperial/Medieval/iron_parry5.ogg
   - /Audio/Imperial/Medieval/iron_parry6.ogg
+
+- type: soundCollection
+  id: MeleeParryWindow
+  files:
+  - /Audio/Imperial/Medieval/sword_twice_swishes.ogg
 
 - type: entity
   id: MedievalEffectParryWood
