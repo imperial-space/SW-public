@@ -242,9 +242,12 @@ namespace Content.Shared.MeleeParry
                 Dirty(uid, parryStorage);
                 Dirty(item, parry);
 
-                _stamina.TakeStaminaDamage(args.Origin.Value, _parryStaminaDamage);
+                float staminaDMGBoost = 1f;
+                if (TryComp<StaminaParryBoosterComponent>(uid, out var booster)) staminaDMGBoost *= booster.StaminaDamageMultiplier;
 
-                if (weapon.Damage.GetTotal() > 2) Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
+                _stamina.TakeStaminaDamage(args.Origin.Value, _parryStaminaDamage * staminaDMGBoost);
+
+                if (weapon.Damage.GetTotal() > 4) Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
                 else Spawn(parry.ParryEffectSuccess, Transform(uid).Coordinates);
             }
         }
@@ -277,7 +280,7 @@ namespace Content.Shared.MeleeParry
 
         private TimeSpan CountParryWindowTime(MeleeParryComponent parry, float parryDMG)
         {
-            return (parry.ParriedTime + TimeSpan.FromSeconds(parry.ParryWindow * parryDMG)); //Потом можно настроить более тонко. parryDMG = ParryAble => Это тип урона у оружия(см. в прототипе оружия)
+            return (parry.ParriedTime + TimeSpan.FromSeconds(parry.ParryWindow * parryDMG));
         }
         private float GetAgilityMod(EntityUid uid)
         {
