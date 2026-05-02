@@ -17,6 +17,9 @@ using Content.Shared.Imperial.Medieval.Skills;
 using Robust.Shared.Configuration;
 using Content.Shared.CCVar;
 using Content.Shared.Weapons.Melee;
+using Content.Shared.Damage.Components;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Mobs;
 
 namespace Content.Shared.MeleeParry
 {
@@ -144,6 +147,15 @@ namespace Content.Shared.MeleeParry
             parry = null!;
             itemUid = EntityUid.Invalid;
 
+            if (TryComp<StaminaComponent>(uid, out var stam) && stam.Critical)
+                return false;
+
+            if (TryComp<MobStateComponent>(uid, out var mobState))
+            {
+                if (mobState.CurrentState is MobState.Critical or MobState.Dead)
+                    return false;
+            }
+
             if (!TryComp<MeleeParryStorageComponent>(uid, out var storageComp))
                 return false;
 
@@ -170,7 +182,6 @@ namespace Content.Shared.MeleeParry
 
         private void ExecuteParryLocal(EntityUid uid, MeleeParryComponent parry, MeleeParryStorageComponent parryStorage)
         {
-
             var cooldown = TimeSpan.FromSeconds(Math.Clamp(parry.ParryCooldown / (GetAgilityMod(uid) / 10f), 2.5f, 7.5f));
             var nextTime = _timing.CurTime + cooldown;
 
@@ -209,11 +220,20 @@ namespace Content.Shared.MeleeParry
                 _useDelay.TryResetDelay((item, useDelay));
                 weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(_parryUseDelay);
 
+                Spawn(parry.ParryEffectWindow, Transform(uid).Coordinates);
+
                 Dirty(item, weapon);
                 Dirty(item, parry);
                 Dirty(uid, parryStorage);
+            }
+            else
+            {
+                if (!TryComp<MeleeWeaponComponent>(item, out var weapon))
+                    return;
 
-                Spawn(parry.ParryEffectWindow, Transform(uid).Coordinates);
+                Dirty(item, weapon);
+                Dirty(item, parry);
+                Dirty(uid, parryStorage);
             }
         }
 
