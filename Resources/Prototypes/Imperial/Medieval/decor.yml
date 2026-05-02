@@ -5384,7 +5384,7 @@
   - type: InteractionOutline
   - type: Appearance
   - type: Sail
-    SailSize: 5
+    SailSize: 10
 
 - type: entity
   name: small light
