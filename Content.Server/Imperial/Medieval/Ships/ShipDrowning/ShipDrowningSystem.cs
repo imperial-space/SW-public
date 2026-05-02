@@ -26,7 +26,6 @@ public sealed class ShipDrowningSystem : EntitySystem
     public override void Initialize()
     {
         _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(UpdateDelaySeconds);
-        SubscribeLocalEvent<MapGridComponent, EntityTerminatingEvent>(OnGridTerminating);
         SubscribeLocalEvent<ShipDrowningComponent, EntityTerminatingEvent>(OnShipTerminating);
     }
 
@@ -84,14 +83,6 @@ public sealed class ShipDrowningSystem : EntitySystem
 
     private void OnShipTerminating(EntityUid uid, ShipDrowningComponent component, ref EntityTerminatingEvent args)
     {
-        RescueGridChildrenToMap(uid);
-    }
-
-    private void OnGridTerminating(EntityUid uid, MapGridComponent component, ref EntityTerminatingEvent args)
-    {
-        if (HasComp<ShipDrowningComponent>(uid))
-            return;
-
         RescueGridChildrenToMap(uid);
     }
 

@@ -6,6 +6,7 @@ using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Maths;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -16,6 +17,7 @@ public sealed class SpawnWindWaveSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly WaveSystem _wave = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -59,39 +61,46 @@ public sealed class SpawnWindWaveSystem : EntitySystem
 
                     var direction = waveOffset / offsetLength;
                     var spawnDistance = shipRadius + offsetLength;
-                    var wavePosition = shipCenter.Position + direction * spawnDistance;
-                    var waveCoords = new MapCoordinates(wavePosition, seaMapId);
-                    var forceDirection = shipCenter.Position - wavePosition;
-                    var force = forceDirection.Normalized() * _cfg.GetCVar(ShipsCCVars.WaveForce);
-                    _wave.SpawnWave(waveCoords, force);
+                    if (!TryFindValidSpawnPosition(seaMapId, shipCenter.Position, direction, spawnDistance, out var waveCoords))
+                        continue;
+
+                    var wavePosition = waveCoords.Position;
+                    var velocityDirection = shipCenter.Position - wavePosition;
+                    var velocity = velocityDirection.Normalized() * _cfg.GetCVar(ShipsCCVars.WaveForce);
+                    _wave.SpawnWave(waveCoords, velocity);
                 }
             }
         }
     }
 
-    private Vector2 GenerateWave(float radius = 0, float targetAngle = 0, float halfAngle = 3.0235f)
+    private bool TryFindValidSpawnPosition(MapId mapId, Vector2 shipCenter, Vector2 direction, float initialDistance, out MapCoordinates coords)
     {
-        if (halfAngle == 3.0235f)
-            halfAngle = _cfg.GetCVar(ShipsCCVars.WaveSpawnAngle) * _cfg.GetCVar(ShipsCCVars.StormLevel);
+        var distance = initialDistance;
+        for (var attempt = 0; attempt < 16; attempt++)
+        {
+            var wavePosition = shipCenter + direction * distance;
+            if (!_mapManager.TryFindGridAt(mapId, wavePosition, out _, out _))
+            {
+                coords = new MapCoordinates(wavePosition, mapId);
+                return true;
+            }
 
-        if (targetAngle == 0)
-            targetAngle = _cfg.GetCVar(ShipsCCVars.WindRotation);
+            distance += 1f;
+        }
 
-        if (radius == 0)
-            radius = _cfg.GetCVar(ShipsCCVars.WaveSpawnRange);
+        coords = default;
+        return false;
+    }
 
-        var targetAngleRad = targetAngle * MathF.PI / 180f;
-        var halfAngleRad = halfAngle * MathF.PI / 180f;
-        var u = _random.NextDouble();
-        var v = _random.NextDouble();
-        var rho = radius * Math.Sqrt(u);
+    private Vector2 GenerateWave()
+    {
+        var radius = _cfg.GetCVar(ShipsCCVars.WaveSpawnRange);
+        var targetAngle = Angle.FromDegrees(_cfg.GetCVar(ShipsCCVars.WindRotation));
+        var halfAngle = _cfg.GetCVar(ShipsCCVars.WaveSpawnAngle) * _cfg.GetCVar(ShipsCCVars.StormLevel);
 
-        var phiMin = targetAngleRad - halfAngleRad;
-        var phiMax = targetAngleRad + halfAngleRad;
-        var phi = phiMin + (phiMax - phiMin) * v;
-
-        var x = (float) (rho * Math.Cos(phi));
-        var y = (float) (rho * Math.Sin(phi));
-        return new Vector2(x, y);
+        var rho = radius * MathF.Sqrt(_random.NextFloat());
+        var angleOffset = Angle.FromDegrees(_random.NextFloat(-halfAngle, halfAngle));
+        var direction = (targetAngle + angleOffset).ToWorldVec();
+        return direction * rho;
     }
 }
