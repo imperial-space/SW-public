@@ -31,34 +31,50 @@ public sealed class ParryCooldownOverlay : Overlay
     protected override void Draw(in OverlayDrawArgs args)
     {
         var playerEnt = _player.LocalEntity;
-        if (playerEnt == null)
+        if (playerEnt == null || !_entMan.TryGetComponent<MeleeParryStorageComponent>(playerEnt, out var parryStorage))
             return;
 
-        if (!_entMan.TryGetComponent<MeleeParryStorageComponent>(playerEnt, out var parryStorage))
+        if (_timing.CurTime >= parryStorage.NextParryTime)
             return;
 
-        if (_timing.CurTime >= parryStorage.GlobalNextParryTime)
-            return; // Кулдаун прошел, не рисуем
-
-        // Вычисляем прогресс
-        var cooldownDuration = TimeSpan.FromSeconds(parryStorage.GlobalCooldownParry);
-        var startTime = parryStorage.GlobalNextParryTime - cooldownDuration;
+        var cooldownDuration = TimeSpan.FromSeconds(parryStorage.CooldownParry);
+        var startTime = parryStorage.NextParryTime - cooldownDuration;
         var elapsed = _timing.CurTime - startTime;
+
         var progress = Math.Clamp(elapsed.TotalSeconds / cooldownDuration.TotalSeconds, 0.0, 1.0);
 
-        var screenPos = _input.MouseScreenPosition.Position;
         var handle = args.ScreenHandle;
+        var center = _input.MouseScreenPosition.Position;
 
-        // Размеры и позиция (смещение на 20 пикселей вниз от курсора)
-        var barWidth = 64f;
-        var barHeight = 8f;
-        var position = screenPos + new Vector2(-barWidth / 2f, -40f);
+        // Параметры кольца
+        var innerR = 40f;
+        var outerR = 50f;
+        var segments = 64;
 
-        // Отрисовка фона (темно-серый полупрозрачный)
-        handle.DrawRect(new UIBox2(position, position + new Vector2(barWidth, barHeight)), Color.Black.WithAlpha(0.6f));
+        float fullCircle = (float)Math.PI * 2;
+        float startAngle = -(float)Math.PI / 2 + (fullCircle * (float)progress);
+        float sweepAngle = fullCircle * (1.0f - (float)progress);
 
-        // Отрисовка заполнения прогресса (зеленый)
-        var fillWidth = barWidth * (float)progress;
-        handle.DrawRect(new UIBox2(position, position + new Vector2(fillWidth, barHeight)), Color.FromHex("#ededed"));
+        DrawPie(handle, center, innerR, outerR, startAngle, sweepAngle, segments);
+    }
+
+    private void DrawPie(DrawingHandleScreen handle, Vector2 center, float innerRadius, float outerRadius, float startAngle, float sweepAngle, int segments)
+    {
+        if (sweepAngle <= 0) return;
+
+        var vertices = new Vector2[(segments + 1) * 2];
+
+        for (var i = 0; i <= segments; i++)
+        {
+            var angle = startAngle + (sweepAngle * (i / (float)segments));
+            var direction = new Vector2((float)Math.Cos(angle), (float)Math.Sin(angle));
+
+            // Внешняя точка
+            vertices[i * 2] = center + direction * outerRadius;
+            // Внутренняя точка
+            vertices[i * 2 + 1] = center + direction * innerRadius;
+        }
+
+        handle.DrawPrimitives(DrawPrimitiveTopology.TriangleStrip, vertices, Color.White.WithAlpha(0.2f));
     }
 }
