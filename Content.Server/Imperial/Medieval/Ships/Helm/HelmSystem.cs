@@ -10,7 +10,6 @@ using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
-using Robust.Shared.Maths;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -20,8 +19,6 @@ namespace Content.Server.Imperial.Medieval.Ships.Helm;
 public sealed class HelmSystem : EntitySystem
 {
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly RDWeightSystem _rdWeight = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
@@ -42,8 +39,7 @@ public sealed class HelmSystem : EntitySystem
 
     private void OnStartup(EntityUid uid, HelmComponent component, ComponentStartup args)
     {
-        component.HelmRotation = NormalizeHelmRotation((float) Transform(uid).LocalRotation.Degrees);
-        _transform.SetLocalRotation(uid, Angle.FromDegrees(component.HelmRotation));
+        component.HelmRotation = NormalizeHelmRotation(component.HelmRotation);
     }
 
     private void OnInteractHand(EntityUid uid, HelmComponent component, ActivateInWorldEvent args)
@@ -136,7 +132,6 @@ public sealed class HelmSystem : EntitySystem
         }
 
         helmComponent.HelmRotation = NormalizeHelmRotation(helmComponent.HelmRotation);
-        _transform.SetLocalRotation(helm, Angle.FromDegrees(helmComponent.HelmRotation));
     }
 
     public override void Update(float frameTime)
@@ -154,8 +149,8 @@ public sealed class HelmSystem : EntitySystem
         foreach (var helmComponent in EntityManager.EntityQuery<HelmComponent>())
         {
             var helm = helmComponent.Owner;
-            var boat = _transform.GetParentUid(helm);
-            if (!HasComp<MapGridComponent>(boat))
+            var helmXform = Transform(helm);
+            if (helmXform.GridUid is not { } boat || !HasComp<MapGridComponent>(boat))
                 continue;
 
             RotateShip(boat, helmComponent);
@@ -167,8 +162,8 @@ public sealed class HelmSystem : EntitySystem
         if (TryComp<ShuttleComponent>(boat, out var shuttle) && !shuttle.Enabled)
             return;
 
-        var steeringOars = CountSteeringOars(boat);
-        if (steeringOars <= 0)
+        var steeringPower = GetSteeringPower(boat);
+        if (steeringPower <= 0f)
             return;
 
         var steeringInput = GetSteeringInput(helmComponent);
@@ -177,30 +172,32 @@ public sealed class HelmSystem : EntitySystem
 
         var weight = MathF.Max(helmComponent.MinShipWeight, _rdWeight.GetTotal(boat));
         var weightDivider = 1f + weight * 0.01f;
-        var motionFactor = MathF.Max(helmComponent.MinMotionFactor, _physics.GetMapLinearVelocity(boat).Length());
-        var angularImpulse = steeringInput * motionFactor * steeringOars * helmComponent.TurnImpulseScalar / weightDivider;
+        var angularImpulse = steeringInput * helmComponent.MinMotionFactor * steeringPower * helmComponent.TurnImpulseScalar / weightDivider;
 
         _physics.WakeBody(boat);
         _physics.ApplyAngularImpulse(boat, angularImpulse);
     }
 
-    private int CountSteeringOars(EntityUid boat)
+    private float GetSteeringPower(EntityUid boat)
     {
-        var count = 0;
-        foreach (var entity in _lookup.GetEntitiesIntersecting(boat))
+        var power = 0f;
+        var childEnumerator = Transform(boat).ChildEnumerator;
+        while (childEnumerator.MoveNext(out var entity))
         {
-            if (HasComp<SteeringOarComponent>(entity))
-                count++;
+            if (!TryComp<SteeringOarComponent>(entity, out var steeringOar))
+                continue;
+
+            power += steeringOar.Power;
         }
 
-        return count;
+        return power;
     }
 
     private static float GetSteeringInput(HelmComponent helmComponent)
     {
         var diffDegrees = helmComponent.HelmRotation;
         var maxTurnAngle = MathF.Max(1f, MathF.Abs(helmComponent.SteeringAngleForMaxTurn));
-        return Math.Clamp(diffDegrees / maxTurnAngle, -1f, 1f);
+        return Math.Clamp(-diffDegrees / maxTurnAngle, -1f, 1f);
     }
 
     private static float NormalizeHelmRotation(float helmRotation)

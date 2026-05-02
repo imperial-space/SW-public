@@ -2,19 +2,28 @@ using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Damage;
+using Content.Shared.Explosion.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Forged;
-using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.DurabilityDisplay.Components;
 using Content.Shared.Imperial.LocalLight;
+using Content.Shared.Imperial.Medieval.Additions;
 using Content.Shared.Imperial.Medieval.Lycantropy;
+using Content.Shared.Imperial.Medieval.Magic.Mana;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.MedievalMeleeResource.Components;
+using Content.Shared.Mind;
 using Content.Shared.Movement.Systems;
+using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Overlays;
+using Content.Shared.Popups;
+using Content.Shared.Stealth.Components;
 using Content.Shared.Stunnable;
+using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Network;
+using Robust.Shared.Timing;
 
 
 namespace Content.Shared.Imperial.Medieval.Forged;
@@ -25,8 +34,13 @@ public sealed class ForgedAbilitySystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly SharedStunSystem _stun = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SharedExplosionSystem _explosionSystem = default!;
+    [Dependency] private readonly INetManager _netManager = default!;
+    [Dependency] private readonly HungerSystem _hungerSystem = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
 
     public override void Initialize()
     {
@@ -36,6 +50,9 @@ public sealed class ForgedAbilitySystem : EntitySystem
         SubscribeLocalEvent<ForgedComponent, ForgedBoostActionEvent>(OnBoost);
         SubscribeLocalEvent<ForgedComponent, ForgedSilaActionEvent>(OnSila);
         SubscribeLocalEvent<ForgedComponent, ForgedRepairActionEvent>(OnRepair);
+        SubscribeLocalEvent<ForgedComponent, ForgedExplosiveActionEvent>(OnExplosiveTrigger);
+        SubscribeLocalEvent<ForgedComponent, ForgedInvisibilityNimbusActionEvent>(OnInvisibleNimbus);
+        SubscribeLocalEvent<ForgedGunComponent, GunShotEvent>(OnGunShot);
     }
 
     public void ExecuteAbility(EntityUid forgedUid, EntityUid moduleUid, string abilityId)
@@ -67,26 +84,80 @@ public sealed class ForgedAbilitySystem : EntitySystem
                 VerySmart(forgedUid);
                 break;
             case "Right_blade":
-                RightBlade(forgedUid);
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmBlade");
                 break;
             case "Left_blade":
-                LeftBlade(forgedUid);
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmBlade");
                 break;
             case "Left_crossbow":
-                LeftCrossbow(forgedUid);
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCrossbow");
                 break;
             case "Right_crossbow":
-                RightCrossbow(forgedUid);
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCrossbow");
+                break;
+            case "Right_magic_gun_1":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon1");
+                break;
+            case "Left_magic_gun_1":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon1");
+                break;
+            case "Right_magic_gun_2":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon2");
+                break;
+            case "Left_magic_gun_2":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon2");
+                break;
+            case "Right_magic_gun_3":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon3");
+                break;
+            case "Left_magic_gun_3":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon3");
+                break;
+            case "Right_magic_gun_4":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon4");
+                break;
+            case "Left_magic_gun_4":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon4");
+                break;
+            case "Right_magic_gun_5":
+                SpawnModuleInHand(forgedUid, "body_part_slot_right_hand", "ForgedArmCannon5");
+                break;
+            case "Left_magic_gun_5":
+                SpawnModuleInHand(forgedUid, "body_part_slot_left_hand", "ForgedArmCannon5");
+                break;
+            case "Invisibility_Nimbus":
+                _actions.AddAction(forgedUid, "InvisibileNimbusAction");
+                break;
+            case "Torso_Explosion":
+                SetupExplosive(forgedUid);
+                break;
+            case "TransferMind":
+                TransferMind(forgedUid, moduleUid);
                 break;
             default:
                 break;
         }
     }
 
-    private void LeftBlade(EntityUid forgedUid)
+    private void TransferMind(EntityUid forgedUid, EntityUid moduleUid)
     {
-        string handId = "body_part_slot_left_hand";
+        if (_mindSystem.TryGetMind(forgedUid, out var oldMindId, out var oldMind))
+        {
+            _mindSystem.TransferTo(oldMindId, null, mind: oldMind);
+        }
 
+        if (_mindSystem.TryGetMind(moduleUid, out var targetMindId, out var targetMind))
+        {
+            _mindSystem.TransferTo(targetMindId, forgedUid, mind: targetMind);
+        }
+    }
+
+    private void OnGunShot(Entity<ForgedGunComponent> ent, ref GunShotEvent args)
+    {
+        _hungerSystem.ModifyHunger(args.User, -ent.Comp.HungerCost);
+    }
+    private void SpawnModuleInHand(EntityUid forgedUid, string handId, string proto, bool strip = true)
+    {
         if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
             return;
 
@@ -97,68 +168,40 @@ public sealed class ForgedAbilitySystem : EntitySystem
             QueueDel(oldItem);
         }
 
-        var item = EntityManager.SpawnEntity("ForgedArmBlade", MapCoordinates.Nullspace);
-        RemComp<MedievalMeleeResourceComponent>(item);
-        RemComp<DurabilityDisplayComponent>(item);
+        var item = EntityManager.SpawnEntity(proto, MapCoordinates.Nullspace);
+        if (strip)
+        {
+            RemComp<MedievalMeleeResourceComponent>(item);
+            RemComp<DurabilityDisplayComponent>(item);
+        }
         _containerSystem.Insert(item, container);
     }
 
-    private void RightBlade(EntityUid forgedUid)
+
+    private void SetupExplosive(EntityUid forgedUid)
     {
-        string handId = "body_part_slot_right_hand";
-
-        if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
-            return;
-
-        if (container.ContainedEntities.Count > 0)
-        {
-            var oldItem = container.ContainedEntities[0];
-            _containerSystem.Remove(oldItem, container);
-            QueueDel(oldItem);
-        }
-
-        var item = EntityManager.SpawnEntity("ForgedArmBlade", MapCoordinates.Nullspace);
-
-        _containerSystem.Insert(item, container);
+        _actions.AddAction(forgedUid, "ExplosiveAction");
     }
 
-    private void LeftCrossbow(EntityUid forgedUid)
+    private void OnExplosiveTrigger(EntityUid uid, ForgedComponent comp, ForgedExplosiveActionEvent args)
     {
-        string handId = "body_part_slot_left_hand";
-
-        if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
-            return;
-
-        if (container.ContainedEntities.Count > 0)
+        if (_netManager.IsServer && args.Handled == false)
         {
-            var oldItem = container.ContainedEntities[0];
-            _containerSystem.Remove(oldItem, container);
-            QueueDel(oldItem);
+            if (_gameTiming.CurTime - comp.LastExplosivePress < TimeSpan.FromSeconds(2))
+            {
+                RemComp<ShieldOnStartupComponent>(uid);
+                _explosionSystem.QueueExplosion(uid, "Default", 250, 5, 200);
+                _actions.RemoveAction(uid, args.Action.Owner);
+            }
+            else
+            {
+                comp.LastExplosivePress = _gameTiming.CurTime;
+                _popup.PopupEntity("Нажмите еще раз!", uid, uid);
+            }
+            Dirty(uid, comp);
         }
 
-        var item = EntityManager.SpawnEntity("ForgedArmCrossbow", MapCoordinates.Nullspace);
-        RemComp<MedievalMeleeResourceComponent>(item);
-        RemComp<DurabilityDisplayComponent>(item);
-        _containerSystem.Insert(item, container);
-    }
-
-    private void RightCrossbow(EntityUid forgedUid)
-    {
-        string handId = "body_part_slot_right_hand";
-
-        if (!_containerSystem.TryGetContainer(forgedUid, handId, out var container))
-            return;
-
-        if (container.ContainedEntities.Count > 0)
-        {
-            var oldItem = container.ContainedEntities[0];
-            _containerSystem.Remove(oldItem, container);
-            QueueDel(oldItem);
-        }
-
-        var item = EntityManager.SpawnEntity("ForgedArmCrossbow", MapCoordinates.Nullspace);
-
-        _containerSystem.Insert(item, container);
+        args.Handled = true;
     }
 
     private void MedicalEyes(EntityUid forgedUid)
@@ -189,7 +232,29 @@ public sealed class ForgedAbilitySystem : EntitySystem
         if (HasComp<WerewolfBloodFeelComponent>(uid)) RemComp<WerewolfBloodFeelComponent>(uid);
         else EnsureComp<WerewolfBloodFeelComponent>(uid);
 
-        _actions.SetToggled(args.Action.Owner, !args.Toggle);
+        if (!TryComp<ActionComponent>(args.Action, out var actionComponent)) return;
+        _actions.SetToggled(args.Action.Owner, !actionComponent.Toggled);
+        args.Handled = true;
+    }
+
+    private void OnInvisibleNimbus(EntityUid uid, ForgedComponent comp, ForgedInvisibilityNimbusActionEvent args)
+    {
+        if (args.Handled) return;
+
+        if (HasComp<StealthComponent>(uid))
+        {
+            RemComp<StealthComponent>(uid);
+            RemComp<StealthOnMoveComponent>(uid);
+
+        }
+        else
+        {
+            EnsureComp<StealthComponent>(uid);
+            EnsureComp<StealthOnMoveComponent>(uid);
+        }
+
+        if (!TryComp<ActionComponent>(args.Action, out var actionComponent)) return;
+        _actions.SetToggled(args.Action.Owner, !actionComponent.Toggled);
         args.Handled = true;
     }
 
