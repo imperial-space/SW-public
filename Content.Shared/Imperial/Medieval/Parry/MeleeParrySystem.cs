@@ -20,6 +20,7 @@ using Content.Shared.Weapons.Melee;
 using Content.Shared.Damage.Components;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs;
+using Robust.Shared.Audio;
 
 namespace Content.Shared.MeleeParry
 {
@@ -53,9 +54,8 @@ namespace Content.Shared.MeleeParry
         [Dependency] private readonly IGameTiming _timing = default!;
         [Dependency] private readonly SharedStaminaSystem _stamina = default!;
 
-        private float _parryStaminaDamage;
         private float _desyncTolerance;
-        private float _parryUseDelay;
+        private float _parryReadySound;
         private readonly HashSet<EntityUid> _playedReadySounds = new();
 
         public override void Initialize()
@@ -71,9 +71,8 @@ namespace Content.Shared.MeleeParry
                 .Bind(ContentKeyFunctions.MedievalMeleeParry, InputCmdHandler.FromDelegate(OnParryPressedLocal))
                 .Register<MeleeParrySystem>();
 
-            _cfg.OnValueChanged(CCVars.ParryStaminaDamage, (value) => _parryStaminaDamage = value, true);
             _cfg.OnValueChanged(CCVars.ParryDesyncTolerance, (value) => _desyncTolerance = value, true);
-            _cfg.OnValueChanged(CCVars.ParryUseDelay, (value) => _parryUseDelay = value, true);
+            _cfg.OnValueChanged(CCVars.ParryReadySoundType, (value) => _parryReadySound = value, true);
         }
 
         private void OnParryPressedLocal(ICommonSession? session)
@@ -117,7 +116,18 @@ namespace Content.Shared.MeleeParry
 
                     if (!_playedReadySounds.Contains(localUid) && _timing.IsFirstTimePredicted)
                     {
-                        //_audio.PlayGlobal(new SoundPathSpecifier("/Audio/Imperial/Medieval/soft_bell_ding.ogg"), Filter.Local(), false);
+                        if (_parryReadySound == 0) return;
+
+                        var soundPath = _parryReadySound switch
+                        {
+                            1 => "/Audio/Imperial/Medieval/soft_bell_ding.ogg",
+                            2 => "/Audio/Imperial/Medieval/pop.ogg",
+                            3 => "/Audio/Imperial/Medieval/single_tick1.ogg",
+                            4 => "/Audio/Imperial/Medieval/single_tick2.ogg",
+                            _ => "/Audio/Imperial/Medieval/soft_bell_ding.ogg",
+                        };
+
+                        _audio.PlayGlobal(new SoundPathSpecifier(soundPath), Filter.Local(), false);
                         _playedReadySounds.Add(localUid);
                     }
 
@@ -187,7 +197,7 @@ namespace Content.Shared.MeleeParry
 
             if (!TryComp<MeleeWeaponComponent>(parry.Owner, out var weapon))
                 return;
-            weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(_parryUseDelay);
+            weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryUseDelay);
 
             parryStorage.NextParryTime = nextTime;
             parryStorage.CooldownParry = (float)cooldown.TotalSeconds;
@@ -216,9 +226,9 @@ namespace Content.Shared.MeleeParry
                 parry.ParriedTime = _timing.CurTime - latency;
                 parryStorage.CooldownParry = (float)cooldown.TotalSeconds;
 
-                _useDelay.SetLength(item, TimeSpan.FromSeconds(_parryUseDelay));
+                _useDelay.SetLength(item, TimeSpan.FromSeconds(parry.ParryUseDelay));
                 _useDelay.TryResetDelay((item, useDelay));
-                weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(_parryUseDelay);
+                weapon.NextAttack = _timing.CurTime + TimeSpan.FromSeconds(parry.ParryUseDelay);
 
                 Spawn(parry.ParryEffectWindow, Transform(uid).Coordinates);
 
@@ -261,9 +271,7 @@ namespace Content.Shared.MeleeParry
             var attackerItem = _hands.GetActiveItem(attacker);
 
             if (attackerItem != null && TryComp<MedievalWeaponSkillCategoryComponent>(attackerItem.Value, out var skillComp))
-            {
                 parryDMG *= skillComp.Skill.GetParryData().Able;
-            }
 
 
             if (CheckParryable(uid, (float)parryDMG, out var item, out var parry, out var parryStorage, out var weapon))
@@ -293,7 +301,7 @@ namespace Content.Shared.MeleeParry
                 if (TryComp<StaminaParryBoosterComponent>(uid, out var booster))
                     staminaDMGBoost *= booster.StaminaDamageMultiplier;
 
-                var staminaDamage = _parryStaminaDamage * staminaDMGBoost;
+                var staminaDamage = parry.ParryStaminaDamage * staminaDMGBoost;
                 _stamina.TakeStaminaDamage(args.Origin.Value, staminaDamage);
 
                 if (weapon.Damage.GetTotal() > 4)
@@ -332,9 +340,10 @@ namespace Content.Shared.MeleeParry
         private TimeSpan CountParryWindowTime(Entity<MeleeParryComponent> ent, float parryDMG)
         {
             var parryWindow = ent.Comp.ParryWindow;
-            if (TryComp<MedievalWeaponSkillCategoryComponent>(ent, out var skillComp)) parryWindow *= skillComp.Skill.GetParryData().Window;
+            if (TryComp<MedievalWeaponSkillCategoryComponent>(ent, out var skillComp))
+                parryWindow *= skillComp.Skill.GetParryData().Window;
 
-            return (ent.Comp.ParriedTime + TimeSpan.FromSeconds(parryWindow * parryDMG));
+            return ent.Comp.ParriedTime + TimeSpan.FromSeconds(parryWindow * parryDMG);
         }
         private float GetAgilityMod(EntityUid uid)
         {
