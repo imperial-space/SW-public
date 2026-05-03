@@ -169,7 +169,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
         RaiseLocalEvent(player, ref startEv);
 
         component.StartDashPos = _transformSystem.GetWorldPosition(player);
-        component.LegalEndDashPos = _transformSystem.GetWorldPosition(player) + impulse.Normalized() * GetDashDistanceCollision(player, impulse.Normalized(), 5);
+        component.LegalEndDashPos = _transformSystem.GetWorldPosition(player) + impulse.Normalized() * GetDashDistanceCollision(player, impulse.Normalized(), 15);
 
         return false;
     }
@@ -178,9 +178,12 @@ public sealed partial class MedievalDashSystem : EntitySystem
     {
         var xform = Transform(uid);
         var mask = (int)(CollisionGroup.Impassable | CollisionGroup.LowImpassable);
-        var ray = new CollisionRay(_transformSystem.GetWorldPosition(uid), direction, mask);
 
-        var results = _physicsSystem.IntersectRay(
+        for (int i = -10; i < 10; i++)
+        {
+            var ray = new CollisionRay(_transformSystem.GetWorldPosition(uid), Angle.FromDegrees(i).RotateVec(direction), mask);
+
+            var results = _physicsSystem.IntersectRay(
             xform.MapID,
             ray,
             maxDistance,
@@ -188,10 +191,11 @@ public sealed partial class MedievalDashSystem : EntitySystem
             false
         );
 
-        foreach (var result in results)
-        {
-            if (result.HitEntity != EntityUid.Invalid)
-                return result.Distance;
+            foreach (var result in results)
+            {
+                if (result.HitEntity != EntityUid.Invalid)
+                    return result.Distance;
+            }
         }
 
         return null;
