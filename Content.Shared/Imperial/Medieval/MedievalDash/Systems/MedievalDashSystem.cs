@@ -16,6 +16,9 @@ using System.Diagnostics.CodeAnalysis;
 using Robust.Shared.Physics;
 using Content.Shared.Physics;
 using Robust.Shared.Debugging;
+using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Hands.Components;
+using Content.Shared.Standing;
 
 namespace Content.Shared.Imperial.Dash;
 
@@ -29,6 +32,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
     [Dependency] private readonly SharedPhysicsSystem _physicsSystem = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSystem = default!;
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -101,6 +105,12 @@ public sealed partial class MedievalDashSystem : EntitySystem
                 return false;
             }
         }
+
+        if (TryComp<StandingStateComponent>(uid, out var standingComp) &&
+            standingComp.Standing == false &&
+            _handsSystem.GetEmptyHandCount(uid) == 0)
+            return false;
+
 
         var ev = new CanDashEvent();
         RaiseLocalEvent(uid, ref ev);
