@@ -48,7 +48,8 @@ public sealed partial class MedievalDashComponent : Component
     public TimeSpan NextDash = TimeSpan.Zero;
 
     [ViewVariables]
-    public TimeSpan DashEndTime = TimeSpan.Zero;
+
+    public TimeSpan DashEndTime;
 
     [ViewVariables]
     public GameTick DashButtonPressedTick;

@@ -19,9 +19,13 @@ using Robust.Shared.Debugging;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Hands.Components;
 using Content.Shared.Standing;
+using Content.Shared.Movement.Components;
+using Content.Shared.Damage.Components;
+using Robust.Shared.Serialization;
+using Content.Shared.Coordinates;
+using Robust.Shared.Physics.Events;
 
 namespace Content.Shared.Imperial.Dash;
-
 
 public sealed partial class MedievalDashSystem : EntitySystem
 {
@@ -37,6 +41,8 @@ public sealed partial class MedievalDashSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<MedievalDashComponent, PreventCollideEvent>(OnHit);
+
         CommandBinds.Builder
             .Bind(ContentKeyFunctions.MedievalDash, new PointerInputCmdHandler(DashButtonPressed))
             .Register<MedievalDashSystem>();
@@ -50,154 +56,173 @@ public sealed partial class MedievalDashSystem : EntitySystem
 
         while (enumerator.MoveNext(out var uid, out var component))
         {
-            if (HasComp<PhaseSpaceShadowComponent>(uid))
-            {
-                float curDisFromStart = Vector2.Distance(_transformSystem.GetWorldPosition(uid), component.StartDashPos);
-                if (component.LegalEndDashPos != null &&
-                    curDisFromStart > Vector2.Distance(component.LegalEndDashPos.Value, component.StartDashPos))
-                {
-                    _transformSystem.SetWorldPosition(uid, component.LegalEndDashPos.Value);
-                    _physicsSystem.SetLinearVelocity(uid, Vector2.Zero);
-                }
-            }
-
-            if (_timing.CurTime < component.DashEndTime) continue;
-            if (!component.IsDashing) continue;
-
-            component.IsDashing = false;
-            var ev = new DashEndedEvent();
-            RaiseLocalEvent(uid, ref ev);
-
-            if (_net.IsClient) return;
-
-            RemComp<PhaseSpaceShadowComponent>(uid);
+            if (_timing.CurTime > component.DashEndTime &&
+                component.IsDashing)
+                StopDash((uid, component));
         }
     }
 
     private bool DashButtonPressed(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid entity)
     {
-        return TryDash(playerSession);
-    }
-
-    private bool CanDash(EntityUid uid, [NotNullWhen(true)] out MedievalDashComponent? component)
-    {
-        if (!TryComp(uid, out component))
+        if (playerSession == null)
             return false;
 
-        var isSimulationTick = _timing.CurTick == component.DashButtonPressedTick;
-
-        if (component.IsDashing && !isSimulationTick)
-            return false;
-
-        if (_timing.CurTime < component.NextDash && !isSimulationTick)
-            return false;
-
-        if (!_actionBlockerSystem.CanMove(uid))
-            return false;
-
-        var xform = Transform(uid);
-        var coords = xform.Coordinates;
-
-        foreach (var entity in _lookup.GetEntitiesInRange(coords, 0.35f))
+        if (CanDash(playerSession, coordinates, entity, out Entity<MedievalDashComponent, PhysicsComponent> entity2, out Vector2 direction, out CheckDashStaminaCostModifiersEvent staminaEvent))
         {
-            if (TryComp<MedievalNotAllowDashComponent>(entity, out var Dash))
-            {
-                return false;
-            }
+            Dash(entity2, direction, staminaEvent);
+            return true;
         }
-
-        if (TryComp<StandingStateComponent>(uid, out var standingComp) &&
-            standingComp.Standing == false &&
-            _handsSystem.GetEmptyHandCount(uid) == 0)
-            return false;
-
-
-        var ev = new CanDashEvent();
-        RaiseLocalEvent(uid, ref ev);
-        return !ev.Cancelled;
-    }
-
-    private bool TryDash(ICommonSession? playerSession, Vector2? targetPos = null)
-    {
-        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player))
-            return false;
-
-        if (!CanDash(player, out var component))
-            return false;
-
-        if (!TryComp<PhysicsComponent>(player, out var physicsComponent) ||
-            targetPos == null && physicsComponent.LinearVelocity == Vector2.Zero)
-            return false;
-
-        if (!component.RequiredBodyStatus.Contains(physicsComponent.BodyStatus))
-            return false;
-
-        var targetRotation = targetPos == null ? physicsComponent.LinearVelocity.ToAngle() : (targetPos.Value - _transformSystem.GetWorldPosition(player)).ToAngle();
-
-        var force = new Vector2(component.Force * 2);
-        var forceDirection = targetRotation - Angle.FromDegrees(45);
-
-        var impulse = forceDirection.RotateVec(force);
-        var dashTime = TimeSpan.FromSeconds(component.Force / 990 / physicsComponent.Mass);
-
-        var staminaEv = new CheckDashStaminaCostModifiersEvent(1f);
-        RaiseLocalEvent(player, ref staminaEv);
-
-        if (!_staminaSystem.TryTakeStamina(player, component.StaminaDamage * staminaEv.Modifier, ignoreResist: true))
-            return false;
-
-        var distEv = new CheckDashDistanceModifiersEvent(1f);
-        RaiseLocalEvent(player, ref distEv);
-
-        // TODO модификатор расстояни
-        _physicsSystem.ApplyLinearImpulse(player, impulse, null, physicsComponent);
-
-        var shadowComponent = EnsureComp<PhaseSpaceShadowComponent>(player);
-
-        shadowComponent.ShadowUpdateRate = TimeSpan.Zero;
-        shadowComponent.PositionUpdateRate = TimeSpan.Zero;
-        component.DashEndTime = dashTime + _timing.CurTime;
-
-        var cooldownEv = new CheckDashCooldownModifiersEvent(1f);
-        RaiseLocalEvent(player, ref cooldownEv, true);
-
-        component.NextDash = _timing.CurTime + component.DashReloadTime + TimeSpan.FromSeconds(staminaEv.Modifier);
-        component.DashButtonPressedTick = _timing.CurTick;
-        component.IsDashing = true;
-
-        var startEv = new DashStartedEvent();
-        RaiseLocalEvent(player, ref startEv);
-
-        component.StartDashPos = _transformSystem.GetWorldPosition(player);
-        component.LegalEndDashPos = _transformSystem.GetWorldPosition(player) + impulse.Normalized() * GetDashDistanceCollision(player, impulse.Normalized(), 15);
 
         return false;
     }
 
-    private float? GetDashDistanceCollision(EntityUid uid, Vector2 direction, float maxDistance)
+    private bool CanDash(ICommonSession? playerSession, EntityCoordinates coordinates, EntityUid entity, out Entity<MedievalDashComponent, PhysicsComponent> entity2, out Vector2 direction, out CheckDashStaminaCostModifiersEvent staminaEvent)
+    {
+        direction = Vector2.Zero;
+        entity2 = default;
+        staminaEvent = default;
+
+        if (playerSession?.AttachedEntity is not { Valid: true } player || !Exists(player))
+            return false;
+
+        if (!TryComp<MedievalDashComponent>(player, out var dashComponent))
+            return false;
+        if (!TryComp<PhysicsComponent>(player, out var physicsComponent))
+            return false;
+        entity2 = (player, dashComponent, physicsComponent);
+
+        var staminaEv = new CheckDashStaminaCostModifiersEvent(1f);
+        RaiseLocalEvent(player, ref staminaEv);
+
+        if (TryComp<StaminaComponent>(player, out var staminaComponent) &&
+            staminaComponent.StaminaDamage / staminaComponent.CritThreshold > 0.9)
+            return false;
+
+        staminaEvent = staminaEv;
+
+        var isSimulationTick = _timing.CurTick == dashComponent.DashButtonPressedTick;
+
+        if (dashComponent.IsDashing && !isSimulationTick)
+            return false;
+
+        if (_timing.CurTime < dashComponent.NextDash && !isSimulationTick)
+            return false;
+
+        if (!_actionBlockerSystem.CanMove(player))
+            return false;
+
+        var xform = Transform(player);
+        var coords = xform.Coordinates;
+
+        foreach (var ent in _lookup.GetEntitiesInRange(coords, 0.35f))
+            if (HasComp<MedievalNotAllowDashComponent>(ent))
+                return false;
+
+        if (TryComp<StandingStateComponent>(player, out var standingComp) &&
+            standingComp.Standing == false &&
+            _handsSystem.GetEmptyHandCount(player) == 0)
+            return false;
+
+        Vector2 dir = physicsComponent.LinearVelocity.Normalized();
+        if (dir == Vector2.Zero)
+            return false;
+        direction = dir.Normalized();
+
+        var ev = new CanDashEvent();
+        RaiseLocalEvent(player, ref ev);
+        return !ev.Cancelled;
+    }
+
+    private void Dash(Entity<MedievalDashComponent, PhysicsComponent> entity, Vector2 direction, CheckDashStaminaCostModifiersEvent staminaEv)
+    {
+        var (dashComponent, physicsComponent) = (entity.Comp1, entity.Comp2);
+
+        var maxDistance = CountMaxDistance(entity, direction);
+        direction *= maxDistance / direction.Length();
+
+        var impulse = direction.Normalized() * dashComponent.Force * 2;
+
+        var dashTime = TimeSpan.FromSeconds(dashComponent.Force / physicsComponent.Mass);
+        dashComponent.DashEndTime = _timing.CurTime + dashTime;
+
+        var distEv = new CheckDashDistanceModifiersEvent(1f);
+        RaiseLocalEvent(entity, ref distEv);
+
+        _physicsSystem.ApplyLinearImpulse(entity, impulse, null, physicsComponent);
+
+        if (_net.IsServer)
+            _staminaSystem.TryTakeStamina(entity, dashComponent.StaminaDamage * staminaEv.Modifier, ignoreResist: true);
+
+        var shadowComponent = EnsureComp<PhaseSpaceShadowComponent>(entity);
+
+        shadowComponent.ShadowUpdateRate = TimeSpan.Zero;
+        shadowComponent.PositionUpdateRate = TimeSpan.Zero;
+
+        var cooldownEv = new CheckDashCooldownModifiersEvent(1f);
+        RaiseLocalEvent(entity, ref cooldownEv, true);
+
+        dashComponent.NextDash = _timing.CurTime + dashComponent.DashReloadTime + TimeSpan.FromSeconds(staminaEv.Modifier);
+        dashComponent.DashButtonPressedTick = _timing.CurTick;
+        dashComponent.IsDashing = true;
+
+        var startEv = new DashStartedEvent();
+        RaiseLocalEvent(entity, ref startEv);
+
+        Dirty(entity, dashComponent);
+    }
+
+    private float CountMaxDistance(Entity<MedievalDashComponent, PhysicsComponent> entity, Vector2 direction)
+    {
+        var (dashComponent, physicsComponent) = (entity.Comp1, entity.Comp2);
+
+        if (physicsComponent.LinearDamping <= 0) // Перестраховка
+            return 2;
+
+        float predictedDistance = entity.Comp1.Force / entity.Comp2.Mass * 0.2f;
+
+        return GetDashDistanceCollision(entity, direction, predictedDistance);
+    }
+
+    private float GetDashDistanceCollision(EntityUid uid, Vector2 direction, float maxDistance)
     {
         var xform = Transform(uid);
         var mask = (int)(CollisionGroup.Impassable | CollisionGroup.LowImpassable);
 
-        for (int i = -10; i < 10; i++)
-        {
-            var ray = new CollisionRay(_transformSystem.GetWorldPosition(uid), Angle.FromDegrees(i).RotateVec(direction), mask);
+        var ray = new CollisionRay(_transformSystem.GetWorldPosition(uid), direction, mask);
 
-            var results = _physicsSystem.IntersectRay(
+        var results = _physicsSystem.IntersectRay(
             xform.MapID,
             ray,
             maxDistance,
             uid,
-            false
-        );
+            false);
 
-            foreach (var result in results)
-            {
-                if (result.HitEntity != EntityUid.Invalid)
-                    return result.Distance;
-            }
+        foreach (var result in results)
+        {
+            if (result.HitEntity != EntityUid.Invalid)
+                return MathF.Max(0, result.Distance - 1f);
         }
 
-        return null;
+        return maxDistance;
+    }
+
+    private void OnHit(Entity<MedievalDashComponent> entity, ref PreventCollideEvent args)
+    {
+        if (!entity.Comp.IsDashing) return;
+
+        if (args.OtherFixture.CollisionLayer == (int) (CollisionGroup.Impassable | CollisionGroup.LowImpassable | CollisionGroup.MidImpassable | CollisionGroup.HighImpassable))
+            StopDash(entity);
+
+        args.Cancelled = false;
+    }
+
+    private void StopDash(Entity<MedievalDashComponent> entity)
+    {
+        entity.Comp.IsDashing = false;
+        var ev = new DashEndedEvent();
+        RaiseLocalEvent(entity, ref ev);
+
+        RemComp<PhaseSpaceShadowComponent>(entity);
+        Dirty(entity, entity.Comp);
     }
 }
