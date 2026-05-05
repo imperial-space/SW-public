@@ -1,0 +1,40 @@
+- type: entity
+  id: Waystone
+  parent: BaseStructure
+  components:
+  - type: SpriteFade
+  - type: Sprite
+    drawdepth: Overdoors
+    offset: 0,0.5
+    sprite: Imperial/Medieval/Decor/barrier.rsi
+    state: barrier
+  - type: Physics
+    bodyType: Static
+  - type: Damageable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 150000
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.45
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - Opaque
+        - MidImpassable
+        - HighImpassable
+        - BulletImpassable
+  - type: Waystone
+  - type: UserInterface
+    interfaces:
+      enum.WaystoneUiKey.Key:
+        type: WaystoneBoundUserInterface
