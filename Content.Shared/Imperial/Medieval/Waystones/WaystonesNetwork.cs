@@ -6,7 +6,8 @@ namespace Content.Shared.Imperial.Medieval.Waystones;
 [Serializable, NetSerializable]
 public enum WaystoneUiKey : byte
 {
-    Key
+    Key,
+    AdminKey
 }
 
 [Serializable, NetSerializable]
@@ -28,8 +29,8 @@ public struct WaystoneInfo
     {
         Entity = entity;
         Name = name;
-        PriceOut = priceOut;
         PriceIn = priceIn;
+        PriceOut = priceOut;
     }
 }
 
@@ -42,3 +43,16 @@ public sealed class WaystoneSelectMessage : BoundUserInterfaceMessage
 
 [Serializable, NetSerializable]
 public sealed partial class WaystoneTeleportDoAfterEvent : SimpleDoAfterEvent { }
+
+[Serializable, NetSerializable]
+public sealed class WaystoneChangePriceMessage : BoundUserInterfaceMessage
+{
+    public int PriceIn;
+    public int PriceOut;
+
+    public WaystoneChangePriceMessage(int priceIn, int priceOut)
+    {
+        PriceIn = priceIn;
+        PriceOut = priceOut;
+    }
+}

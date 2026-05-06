@@ -8,7 +8,7 @@ public sealed partial class WaystoneComponent : Component
     public string Name = "Путеводный камень";
 
     [DataField]
-    public ProtoId<MedievalFactionPrototype>? Faction;
+    public ProtoId<MedievalFactionPrototype>? Faction { get; set; } = string.Empty;
 
     [DataField]
     public string LinkId = string.Empty;
@@ -17,9 +17,9 @@ public sealed partial class WaystoneComponent : Component
     public float TimeToTeleport = 5f;
 
     [DataField]
-    public int PriceIn = 5;
+    public int PriceIn = 15;
     [DataField]
-    public int PriceOut = 15;
+    public int PriceOut = 5;
 
     [DataField]
     public bool IsEnable = true;

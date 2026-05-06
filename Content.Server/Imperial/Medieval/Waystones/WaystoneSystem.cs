@@ -7,10 +7,12 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Imperial.Medieval.CapturePoint;
 using Content.Shared.Imperial.Medieval.CapturePoint.Components;
 using Content.Shared.Imperial.Medieval.Factions;
+using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Imperial.Medieval.Waystones;
 using Content.Shared.Interaction;
 using Content.Shared.Stacks;
 using Content.Shared.Verbs;
+using NetCord;
 using Robust.Server.GameObjects;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
@@ -43,7 +45,9 @@ public sealed class WaystoneSystem : EntitySystem
 
         SubscribeLocalEvent<WaystoneComponent, WaystoneTeleportDoAfterEvent>(OnDoAfter);
 
-        SubscribeNetworkEvent<CapturePointResultEvent>(OnCapturePointResult);
+        SubscribeLocalEvent<CapturePointResultEvent>(OnCapturePointResult);
+
+        SubscribeLocalEvent<WaystoneComponent, WaystoneChangePriceMessage>(OnPriceChanged);
     }
 
     public override void Update(float frameTime)
@@ -67,6 +71,11 @@ public sealed class WaystoneSystem : EntitySystem
         if (!HasComp<HandsComponent>(args.User))
             return;
 
+        TryComp<MedievalFactionMemberComponent>(args.User, out var member);
+        if (member != null && entity.Comp.Faction != null)
+            if (_factionsSystem.IsRelationEnemy(member.Faction, entity.Comp.Faction!.Value))
+                return;
+
         if (!_uiSystem.TryOpenUi(entity.Owner, WaystoneUiKey.Key, args.User))
             return;
 
@@ -79,13 +88,36 @@ public sealed class WaystoneSystem : EntitySystem
                 continue;
 
             if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
-                return;
+                continue;
+            if (_factionsSystem.IsRelationEnemy(entity.Comp.Faction!.Value, entityTarget.Comp.Faction!.Value))
+                continue;
+            if (member != null && _factionsSystem.IsRelationEnemy(member.Faction, entityTarget.Comp.Faction!.Value))
+                continue;
 
-            int priceIn = _factionsSystem.IsRelationUnion(entity.Comp.Faction.Value, entityTarget.Comp.Faction.Value) ? 0 : entityTarget.Comp.PriceIn;
-            infoList.Add(new WaystoneInfo(GetNetEntity(entityTarget), entityTarget.Comp.Name, entity.Comp.PriceOut, priceIn));
+            infoList.Add(new WaystoneInfo(GetNetEntity(entityTarget), entityTarget.Comp.Name, CountPriceIn(entity, entityTarget, args.User), CountPriceOut(entity, entityTarget, args.User)));
         }
 
         _uiSystem.SetUiState(entity.Owner, WaystoneUiKey.Key, new WaystoneUpdateState(infoList));
+    }
+
+    private int CountPriceIn(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
+    {
+        if (!TryComp<MedievalFactionMemberComponent>(user, out var member))
+            return entity.Comp.PriceIn;
+
+        int priceIn = _factionsSystem.IsRelationUnion(member.Faction, entity.Comp.Faction!.Value) ? (int)(entity.Comp.PriceIn / 2) : entity.Comp.PriceIn;
+        priceIn = member.Faction == entity.Comp.Faction!.Value ? 0 : priceIn;
+        return priceIn;
+    }
+
+    private int CountPriceOut(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
+    {
+        if (!TryComp<MedievalFactionMemberComponent>(user, out var member))
+            return entity.Comp.PriceIn;
+
+        int priceOut = _factionsSystem.IsRelationUnion(member.Faction, entityTarget.Comp.Faction!.Value) ? (int)(entityTarget.Comp.PriceOut / 2) : entityTarget.Comp.PriceOut;
+        priceOut = member.Faction == entityTarget.Comp.Faction!.Value ? 0 : priceOut;
+        return priceOut;
     }
 
     private void OnSelect(Entity<WaystoneComponent> entity, ref WaystoneSelectMessage args)
@@ -93,11 +125,17 @@ public sealed class WaystoneSystem : EntitySystem
         if (!TryComp<WaystoneComponent>(GetEntity(args.TargetWaystone), out var targetComp))
             return;
 
+        TryComp<MedievalFactionMemberComponent>(args.Actor, out var member);
         var faction = entity.Comp.Faction;
         var factionTarget = targetComp.Faction;
         if (faction == null || factionTarget == null)
             return;
         if (_factionsSystem.IsRelationEnemy(faction.Value, factionTarget.Value))
+            return;
+        if (member != null && _factionsSystem.IsRelationEnemy(member.Faction, targetComp.Faction!.Value))
+            return;
+
+        if (member != null && _factionsSystem.IsRelationEnemy(member.Faction, entity.Comp.Faction!.Value))
             return;
 
         if (entity.Comp.IsEnable == false)
@@ -113,24 +151,20 @@ public sealed class WaystoneSystem : EntitySystem
         _uiSystem.CloseUi(entity.Owner, WaystoneUiKey.Key, player);
 
         var randomIndex = _random.Next(1, 21);
-        _chat.TrySendInGameICMessage(entity, Loc.GetString($"waystone-phrase-{randomIndex}"), InGameICChatType.Speak, true);
 
         entity.Comp.BookedTime = _timing.CurTime + TimeSpan.FromSeconds(10);
         entity.Comp.User = args.Actor;
+
+        int total = CountPriceIn(entity, new (entity.Comp.SelectedWaystone, targetComp), args.Actor) + CountPriceOut(entity, new (entity.Comp.SelectedWaystone, targetComp), args.Actor);
+        if (total == 0)
+            PrepareToTeleport(entity, args.Actor);
+        else
+            _chat.TrySendInGameICMessage(entity, Loc.GetString($"waystone-phrase-{randomIndex}"), InGameICChatType.Speak, true);
     }
 
     public void OnInteractUsing(Entity<WaystoneComponent> entity, ref InteractUsingEvent args)
     {
         if (entity.Comp.User == EntityUid.Invalid)
-            return;
-
-        if (!TryComp<StackComponent>(args.Used, out var stack))
-            return;
-
-        var meta = MetaData(args.Used);
-        if (meta.EntityPrototype == null)
-            return;
-        if (!meta.EntityPrototype.ID.Contains("MedievalRevent"))
             return;
 
         if (!TryComp<WaystoneComponent>(entity.Comp.SelectedWaystone, out var targetComp))
@@ -139,34 +173,43 @@ public sealed class WaystoneSystem : EntitySystem
 
         if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
             return;
-        int priceIn = _factionsSystem.IsRelationUnion(entity.Comp.Faction.Value, entityTarget.Comp.Faction.Value) ? 0 : entityTarget.Comp.PriceIn;
-
-        int total = entity.Comp.PriceOut + priceIn;
+        int total = CountPriceOut(entity, entityTarget, args.User) + CountPriceIn(entity, entityTarget, args.User);
         int needed = total - entity.Comp.CurrentPaid;
-        if (needed <= 0)
-            return;
-
-        int toTake = Math.Min(needed, stack.Count);
-        _stack.SetCount(args.Used, stack.Count - toTake);
-        args.Handled = true;
-
-        entity.Comp.CurrentPaid += toTake;
-        _chat.TrySendInGameICMessage(entity, Loc.GetString($"Внесено {toTake}g. Всего: {entity.Comp.CurrentPaid} из {total}"), InGameICChatType.Speak, true);
-
-        if (entity.Comp.CurrentPaid >= total)
+        if (needed > 0)
         {
-            _chat.TrySendInGameICMessage(entity, "Ритуал начат! Не двигайся и не подпускай никого...", InGameICChatType.Speak, true);
-            entity.Comp.BookedTime += TimeSpan.FromSeconds(5);
+            if (!TryComp<StackComponent>(args.Used, out var stack))
+                return;
 
-            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, TimeSpan.FromSeconds(entity.Comp.TimeToTeleport), new WaystoneTeleportDoAfterEvent(), entity.Owner, target: entity.Owner)
-            {
-                BreakOnMove = false,
-                DistanceThreshold = 1.5f,
-                NeedHand = false,
-                CancelDuplicate = true
-            };
-            _doAfterSystem.TryStartDoAfter(doAfterArgs);
+            var meta = MetaData(args.Used);
+            if (meta.EntityPrototype == null)
+                return;
+            if (!meta.EntityPrototype.ID.Contains("MedievalRevent"))
+                return;
+
+            int toTake = Math.Min(needed, stack.Count);
+            _stack.SetCount(args.Used, stack.Count - toTake);
+            args.Handled = true;
+
+            entity.Comp.CurrentPaid += toTake;
+            _chat.TrySendInGameICMessage(entity, Loc.GetString($"Внесено {toTake}. Всего: {entity.Comp.CurrentPaid} из {total}"), InGameICChatType.Speak, true);
         }
+        if (entity.Comp.CurrentPaid >= total)
+            PrepareToTeleport(entity, args.User);
+    }
+
+    private void PrepareToTeleport(Entity<WaystoneComponent> entity, EntityUid user)
+    {
+        _chat.TrySendInGameICMessage(entity, "Ритуал начат! Не отходи", InGameICChatType.Speak, true);
+        entity.Comp.BookedTime += TimeSpan.FromSeconds(5);
+
+        var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(entity.Comp.TimeToTeleport), new WaystoneTeleportDoAfterEvent(), entity.Owner, target: entity.Owner)
+        {
+            BreakOnMove = false,
+            DistanceThreshold = 1.5f,
+            NeedHand = false,
+            CancelDuplicate = true
+        };
+        _doAfterSystem.TryStartDoAfter(doAfterArgs);
     }
 
     private void OnDoAfter(Entity<WaystoneComponent> entity, ref WaystoneTeleportDoAfterEvent args)
@@ -200,12 +243,10 @@ public sealed class WaystoneSystem : EntitySystem
 
         _transform.SetCoordinates(entity.Comp.User, xform.Coordinates.Offset(offset));
 
-        entity.Comp.collectedMoney += entity.Comp.PriceOut;
-
         if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
             return;
-        int priceIn = _factionsSystem.IsRelationUnion(entity.Comp.Faction.Value, entityTarget.Comp.Faction.Value) ? 0 : entityTarget.Comp.PriceIn;
-        entityTarget.Comp.collectedMoney += priceIn;
+        entity.Comp.collectedMoney += CountPriceIn(entity, entityTarget, entity.Comp.User);
+        entityTarget.Comp.collectedMoney += CountPriceOut(entity, entityTarget, entity.Comp.User);
 
         entity.Comp.CurrentPaid = 0;
 
@@ -242,20 +283,38 @@ public sealed class WaystoneSystem : EntitySystem
             args.Verbs.Add(verb);
         }
 
-        // TODO Faction if
-        if (entity.Comp.collectedMoney > 0)
+        var user = args.User;
+
+        if (TryComp<MedievalFactionMemberComponent>(args.User, out var member))
         {
-            AlternativeVerb verb2 = new()
+            if (member.Faction == entity.Comp.Faction!.Value)
             {
-                Text = "Забрать заработок",
-                Act = () =>
+                if (entity.Comp.collectedMoney > 0)
                 {
-                    _chat.TrySendInGameICMessage(entity, Loc.GetString($"Заработано: {entity.Comp.collectedMoney}"), InGameICChatType.Speak, true);
-                    DispenseIncount(entity);
-                },
-                Priority = 2
-            };
-            args.Verbs.Add(verb2);
+                    AlternativeVerb verb2 = new()
+                    {
+                        Text = "Забрать заработок",
+                        Act = () =>
+                        {
+                            _chat.TrySendInGameICMessage(entity, Loc.GetString($"Заработано: {entity.Comp.collectedMoney}"), InGameICChatType.Speak, true);
+                            DispenseIncount(entity);
+                        },
+                        Priority = 2
+                    };
+                    args.Verbs.Add(verb2);
+                }
+
+                AlternativeVerb verbPrice = new()
+                {
+                    Text = "Настроить стоимость",
+                    Act = () =>
+                    {
+                        _uiSystem.TryOpenUi(entity.Owner, WaystoneUiKey.AdminKey, user);
+                    },
+                    Priority = 3
+                };
+                args.Verbs.Add(verbPrice);
+            }
         }
     }
 
@@ -323,5 +382,23 @@ public sealed class WaystoneSystem : EntitySystem
 
             comp.Faction = ev.WinnerFaction;
         }
+    }
+
+    private void OnPriceChanged(Entity<WaystoneComponent> entity, ref WaystoneChangePriceMessage args)
+    {
+        if (!TryComp<MedievalFactionMemberComponent>(args.Actor, out var member))
+            return;
+        if (member.Faction != entity.Comp.Faction!.Value)
+            return;
+
+        if (args.PriceIn < 0 || args.PriceOut < 0)
+            return;
+
+        entity.Comp.PriceIn = Math.Min(args.PriceIn, 1000);
+        entity.Comp.PriceOut = Math.Min(args.PriceOut, 1000);
+
+        _chat.TrySendInGameICMessage(entity,
+            $"Тарифы обновлены. Вход: {entity.Comp.PriceIn}, Выход: {entity.Comp.PriceOut}",
+            InGameICChatType.Speak, true);
     }
 }

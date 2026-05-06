@@ -1,8 +1,9 @@
+using System.Numerics;
+using Content.Shared.Imperial.Medieval.Waystones;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
-using Content.Shared.Imperial.Medieval.Waystones;
-using System.Numerics;
+using Content.Client.Imperial.Medieval.Waystones.UI;
 
 namespace Content.Client.Imperial.Medieval.Waystones;
 
@@ -33,7 +34,7 @@ public sealed class WaystoneListWindow : DefaultWindow
         {
             var button = new Button
             {
-                Text = $"{wp.Name}. Цена: {wp.PriceIn + wp.PriceOut}({wp.PriceOut}  +  {wp.PriceIn})",
+                Text = $"{wp.Name}. Цена: {wp.PriceIn + wp.PriceOut} ({wp.PriceIn}  +  {wp.PriceOut})",
                 HorizontalExpand = true
             };
             button.OnPressed += _ => OnItemSelected?.Invoke(wp.Entity);
@@ -46,7 +47,7 @@ public sealed class WaystoneBoundUserInterface : BoundUserInterface
 {
     private WaystoneListWindow? _window;
 
-    public WaystoneBoundUserInterface(EntityUid owner, object uiKey) : base(owner, (Enum)uiKey) { }
+    public WaystoneBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
 
     protected override void Open()
     {
@@ -60,12 +61,43 @@ public sealed class WaystoneBoundUserInterface : BoundUserInterface
     protected override void UpdateState(BoundUserInterfaceState state)
     {
         base.UpdateState(state);
-        if (state is WaystoneUpdateState msg) _window?.PopulateList(msg.Waystones);
+        if (state is WaystoneUpdateState msg)
+            _window?.PopulateList(msg.Waystones);
     }
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
         if (disposing) _window?.Dispose();
+    }
+}
+
+
+public sealed class WaystoneBoundUserInterfaceAdmin : BoundUserInterface
+{
+    private WaystoneAdminMenu? _menu;
+
+    public WaystoneBoundUserInterfaceAdmin(EntityUid owner, Enum uiKey) : base(owner, uiKey) {}
+
+    protected override void Open()
+    {
+        base.Open();
+
+        _menu = new WaystoneAdminMenu();
+        _menu.OnClose += Close;
+
+        _menu.OnApplyPressed += (priceIn, priceOut) =>
+        {
+            SendMessage(new WaystoneChangePriceMessage(priceIn, priceOut));
+        };
+
+        _menu.OpenCentered();
+    }
+
+    protected override void Dispose(bool disposing)
+    {
+        base.Dispose(disposing);
+        if (!disposing) return;
+        _menu?.Dispose();
     }
 }

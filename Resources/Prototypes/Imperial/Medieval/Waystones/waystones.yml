@@ -38,3 +38,5 @@
     interfaces:
       enum.WaystoneUiKey.Key:
         type: WaystoneBoundUserInterface
+      enum.WaystoneUiKey.AdminKey:
+        type: WaystoneBoundUserInterfaceAdmin
