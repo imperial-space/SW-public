@@ -17,9 +17,9 @@ public sealed partial class WaystoneComponent : Component
     public float TimeToTeleport = 5f;
 
     [DataField]
-    public int PriceIn = 15;
+    public int DeparturePrice = 15;
     [DataField]
-    public int PriceOut = 5;
+    public int ArrivalPrice = 5;
 
     [DataField]
     public bool IsEnable = true;

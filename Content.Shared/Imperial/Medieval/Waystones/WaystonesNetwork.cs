@@ -22,15 +22,17 @@ public struct WaystoneInfo
 {
     public NetEntity Entity;
     public string Name;
-    public int PriceOut;
-    public int PriceIn;
+    public int DeparturePrice;
+    public int ArrivalPrice;
+    public bool IsEnable;
 
-    public WaystoneInfo(NetEntity entity, string name, int priceIn, int priceOut)
+    public WaystoneInfo(NetEntity entity, string name, int departurePrice, int arrivalPrice, bool isEnable)
     {
         Entity = entity;
         Name = name;
-        PriceIn = priceIn;
-        PriceOut = priceOut;
+        DeparturePrice = departurePrice;
+        ArrivalPrice = arrivalPrice;
+        IsEnable = isEnable;
     }
 }
 
@@ -45,14 +47,16 @@ public sealed class WaystoneSelectMessage : BoundUserInterfaceMessage
 public sealed partial class WaystoneTeleportDoAfterEvent : SimpleDoAfterEvent { }
 
 [Serializable, NetSerializable]
-public sealed class WaystoneChangePriceMessage : BoundUserInterfaceMessage
+public sealed class WaystoneStateMessage : BoundUserInterfaceMessage
 {
-    public int PriceIn;
-    public int PriceOut;
+    public int DeparturePrice;
+    public int ArrivalPrice;
+    public bool State;
 
-    public WaystoneChangePriceMessage(int priceIn, int priceOut)
+    public WaystoneStateMessage(int departurePrice, int arrivalPrice, bool state)
     {
-        PriceIn = priceIn;
-        PriceOut = priceOut;
+        DeparturePrice = departurePrice;
+        ArrivalPrice = arrivalPrice;
+        State = state;
     }
 }

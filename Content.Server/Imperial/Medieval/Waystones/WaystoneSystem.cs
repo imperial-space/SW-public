@@ -47,7 +47,7 @@ public sealed class WaystoneSystem : EntitySystem
 
         SubscribeLocalEvent<CapturePointResultEvent>(OnCapturePointResult);
 
-        SubscribeLocalEvent<WaystoneComponent, WaystoneChangePriceMessage>(OnPriceChanged);
+        SubscribeLocalEvent<WaystoneComponent, WaystoneStateMessage>(OnWaystoneState);
     }
 
     public override void Update(float frameTime)
@@ -69,6 +69,9 @@ public sealed class WaystoneSystem : EntitySystem
             return;
 
         if (!HasComp<HandsComponent>(args.User))
+            return;
+
+        if (entity.Comp.IsEnable == false)
             return;
 
         TryComp<MedievalFactionMemberComponent>(args.User, out var member);
@@ -94,35 +97,38 @@ public sealed class WaystoneSystem : EntitySystem
             if (member != null && _factionsSystem.IsRelationEnemy(member.Faction, entityTarget.Comp.Faction!.Value))
                 continue;
 
-            infoList.Add(new WaystoneInfo(GetNetEntity(entityTarget), entityTarget.Comp.Name, CountPriceIn(entity, entityTarget, args.User), CountPriceOut(entity, entityTarget, args.User)));
+            infoList.Add(new WaystoneInfo(GetNetEntity(entityTarget), entityTarget.Comp.Name, CountDeparturePrice(entity, entityTarget, args.User), CountArrivalPrice(entity, entityTarget, args.User), entity.Comp.IsEnable));
         }
 
         _uiSystem.SetUiState(entity.Owner, WaystoneUiKey.Key, new WaystoneUpdateState(infoList));
     }
 
-    private int CountPriceIn(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
+    private int CountDeparturePrice(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
     {
         if (!TryComp<MedievalFactionMemberComponent>(user, out var member))
-            return entity.Comp.PriceIn;
+            return entity.Comp.DeparturePrice;
 
-        int priceIn = _factionsSystem.IsRelationUnion(member.Faction, entity.Comp.Faction!.Value) ? (int)(entity.Comp.PriceIn / 2) : entity.Comp.PriceIn;
-        priceIn = member.Faction == entity.Comp.Faction!.Value ? 0 : priceIn;
-        return priceIn;
+        int depPrice = _factionsSystem.IsRelationUnion(member.Faction, entity.Comp.Faction!.Value) ? (int)(entity.Comp.DeparturePrice / 2) : entity.Comp.DeparturePrice;
+        depPrice = member.Faction == entity.Comp.Faction!.Value ? 0 : depPrice;
+        return depPrice;
     }
 
-    private int CountPriceOut(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
+    private int CountArrivalPrice(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
     {
         if (!TryComp<MedievalFactionMemberComponent>(user, out var member))
-            return entity.Comp.PriceIn;
+            return entity.Comp.DeparturePrice;
 
-        int priceOut = _factionsSystem.IsRelationUnion(member.Faction, entityTarget.Comp.Faction!.Value) ? (int)(entityTarget.Comp.PriceOut / 2) : entityTarget.Comp.PriceOut;
-        priceOut = member.Faction == entityTarget.Comp.Faction!.Value ? 0 : priceOut;
-        return priceOut;
+        int arrPrice = _factionsSystem.IsRelationUnion(member.Faction, entityTarget.Comp.Faction!.Value) ? (int)(entityTarget.Comp.ArrivalPrice / 2) : entityTarget.Comp.ArrivalPrice;
+        arrPrice = member.Faction == entityTarget.Comp.Faction!.Value ? 0 : arrPrice;
+        return arrPrice;
     }
 
     private void OnSelect(Entity<WaystoneComponent> entity, ref WaystoneSelectMessage args)
     {
         if (!TryComp<WaystoneComponent>(GetEntity(args.TargetWaystone), out var targetComp))
+            return;
+
+        if (entity.Comp.IsEnable == false)
             return;
 
         TryComp<MedievalFactionMemberComponent>(args.Actor, out var member);
@@ -155,7 +161,7 @@ public sealed class WaystoneSystem : EntitySystem
         entity.Comp.BookedTime = _timing.CurTime + TimeSpan.FromSeconds(10);
         entity.Comp.User = args.Actor;
 
-        int total = CountPriceIn(entity, new (entity.Comp.SelectedWaystone, targetComp), args.Actor) + CountPriceOut(entity, new (entity.Comp.SelectedWaystone, targetComp), args.Actor);
+        int total = CountDeparturePrice(entity, new (entity.Comp.SelectedWaystone, targetComp), args.Actor) + CountArrivalPrice(entity, new (entity.Comp.SelectedWaystone, targetComp), args.Actor);
         if (total == 0)
             PrepareToTeleport(entity, args.Actor);
         else
@@ -173,7 +179,7 @@ public sealed class WaystoneSystem : EntitySystem
 
         if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
             return;
-        int total = CountPriceOut(entity, entityTarget, args.User) + CountPriceIn(entity, entityTarget, args.User);
+        int total = CountArrivalPrice(entity, entityTarget, args.User) + CountDeparturePrice(entity, entityTarget, args.User);
         int needed = total - entity.Comp.CurrentPaid;
         if (needed > 0)
         {
@@ -245,8 +251,8 @@ public sealed class WaystoneSystem : EntitySystem
 
         if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
             return;
-        entity.Comp.collectedMoney += CountPriceIn(entity, entityTarget, entity.Comp.User);
-        entityTarget.Comp.collectedMoney += CountPriceOut(entity, entityTarget, entity.Comp.User);
+        entity.Comp.collectedMoney += CountDeparturePrice(entity, entityTarget, entity.Comp.User);
+        entityTarget.Comp.collectedMoney += CountArrivalPrice(entity, entityTarget, entity.Comp.User);
 
         entity.Comp.CurrentPaid = 0;
 
@@ -306,10 +312,11 @@ public sealed class WaystoneSystem : EntitySystem
 
                 AlternativeVerb verbPrice = new()
                 {
-                    Text = "Настроить стоимость",
+                    Text = "Настроить",
                     Act = () =>
                     {
                         _uiSystem.TryOpenUi(entity.Owner, WaystoneUiKey.AdminKey, user);
+                        UpdateAdminUI(entity);
                     },
                     Priority = 3
                 };
@@ -384,21 +391,30 @@ public sealed class WaystoneSystem : EntitySystem
         }
     }
 
-    private void OnPriceChanged(Entity<WaystoneComponent> entity, ref WaystoneChangePriceMessage args)
+    private void OnWaystoneState(Entity<WaystoneComponent> entity, ref WaystoneStateMessage args)
     {
         if (!TryComp<MedievalFactionMemberComponent>(args.Actor, out var member))
             return;
         if (member.Faction != entity.Comp.Faction!.Value)
             return;
 
-        if (args.PriceIn < 0 || args.PriceOut < 0)
+        if (args.DeparturePrice < 0 || args.ArrivalPrice < 0)
             return;
 
-        entity.Comp.PriceIn = Math.Min(args.PriceIn, 1000);
-        entity.Comp.PriceOut = Math.Min(args.PriceOut, 1000);
+        entity.Comp.DeparturePrice = Math.Min(args.DeparturePrice, 1000);
+        entity.Comp.ArrivalPrice = Math.Min(args.ArrivalPrice, 1000);
+        entity.Comp.IsEnable = args.State;
 
         _chat.TrySendInGameICMessage(entity,
-            $"Тарифы обновлены. Вход: {entity.Comp.PriceIn}, Выход: {entity.Comp.PriceOut}",
+            $"Тарифы обновлены. Вход: {entity.Comp.DeparturePrice}, Выход: {entity.Comp.ArrivalPrice}",
             InGameICChatType.Speak, true);
+    }
+
+    private void UpdateAdminUI(Entity<WaystoneComponent> entity)
+    {
+        var info = new WaystoneInfo(GetNetEntity(entity), entity.Comp.Name, entity.Comp.ArrivalPrice, entity.Comp.DeparturePrice, entity.Comp.IsEnable);
+        var state = new WaystoneUpdateState(new List<WaystoneInfo> { info });
+
+        _uiSystem.SetUiState(entity.Owner, WaystoneUiKey.AdminKey, state);
     }
 }
