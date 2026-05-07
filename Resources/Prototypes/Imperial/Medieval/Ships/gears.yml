@@ -12,8 +12,14 @@
     sprite: Imperial/Medieval/Ships/Anchor.rsi
     layers:
     - state: up
-      map: ["enum.MedievalAnchorVisualLayers.Base"]
+      map: ["base"]
   - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.MedievalAnchorVisuals.Enabled:
+        base:
+          True: {state: down}
+          False: {state: up}
   - type: MedievalAnchor
     Enabled: false
 
