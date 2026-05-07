@@ -50,8 +50,11 @@ public sealed class WaystoneSystem : EntitySystem
         SubscribeLocalEvent<WaystoneComponent, WaystoneStateMessage>(OnWaystoneState);
     }
 
+    float _timer = 0f;
     public override void Update(float frameTime)
     {
+        _timer += frameTime;
+
         base.Update(frameTime);
 
         var query = EntityQueryEnumerator<WaystoneComponent>();
@@ -60,7 +63,22 @@ public sealed class WaystoneSystem : EntitySystem
             Entity<WaystoneComponent> entity = (uid, comp);
             if (entity.Comp.BookedTime < _timing.CurTime && entity.Comp.User != EntityUid.Invalid)
                 ClearUserSelection(entity);
+
+            if (_timer > 1f)
+            {
+                UpdateEnergy(entity);
+                _timer = 0;
+            }
         }
+    }
+
+    public void UpdateEnergy(Entity<WaystoneComponent> entity)
+    {
+        // Модификаторы Todo?
+        //if (isInHolyDistrict)
+        //    regenRate *= 2.0f;
+
+        entity.Comp.CurrentEnergy = Math.Min(entity.Comp.MaxEnergy, entity.Comp.CurrentEnergy + 1f);
     }
 
     private void OnActivate(Entity<WaystoneComponent> entity, ref ActivateInWorldEvent args)
@@ -71,7 +89,7 @@ public sealed class WaystoneSystem : EntitySystem
         if (!HasComp<HandsComponent>(args.User))
             return;
 
-        if (entity.Comp.IsEnable == false)
+        if (entity.Comp.IsEnable == false || entity.Comp.CurrentEnergy < 30)
             return;
 
         TryComp<MedievalFactionMemberComponent>(args.User, out var member);
@@ -86,6 +104,9 @@ public sealed class WaystoneSystem : EntitySystem
         var query = EntityQueryEnumerator<WaystoneComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
+            if (comp.IsEnable == false)
+                return;
+
             Entity<WaystoneComponent> entityTarget = (uid, comp);
             if (entityTarget.Owner == entity.Owner)
                 continue;
@@ -128,7 +149,7 @@ public sealed class WaystoneSystem : EntitySystem
         if (!TryComp<WaystoneComponent>(GetEntity(args.TargetWaystone), out var targetComp))
             return;
 
-        if (entity.Comp.IsEnable == false)
+        if (entity.Comp.IsEnable == false || targetComp.IsEnable == false || entity.Comp.CurrentEnergy < 30)
             return;
 
         TryComp<MedievalFactionMemberComponent>(args.Actor, out var member);
@@ -181,24 +202,25 @@ public sealed class WaystoneSystem : EntitySystem
             return;
         int total = CountArrivalPrice(entity, entityTarget, args.User) + CountDeparturePrice(entity, entityTarget, args.User);
         int needed = total - entity.Comp.CurrentPaid;
-        if (needed > 0)
-        {
-            if (!TryComp<StackComponent>(args.Used, out var stack))
-                return;
+        if (needed == 0)
+            return;
 
-            var meta = MetaData(args.Used);
-            if (meta.EntityPrototype == null)
-                return;
-            if (!meta.EntityPrototype.ID.Contains("MedievalRevent"))
-                return;
+        if (!TryComp<StackComponent>(args.Used, out var stack))
+            return;
 
-            int toTake = Math.Min(needed, stack.Count);
-            _stack.SetCount(args.Used, stack.Count - toTake);
-            args.Handled = true;
+        var meta = MetaData(args.Used);
+        if (meta.EntityPrototype == null)
+            return;
+        if (!meta.EntityPrototype.ID.Contains("MedievalRevent"))
+            return;
 
-            entity.Comp.CurrentPaid += toTake;
-            _chat.TrySendInGameICMessage(entity, Loc.GetString($"Внесено {toTake}. Всего: {entity.Comp.CurrentPaid} из {total}"), InGameICChatType.Speak, true);
-        }
+        int toTake = Math.Min(needed, stack.Count);
+        _stack.SetCount(args.Used, stack.Count - toTake);
+        args.Handled = true;
+
+        entity.Comp.CurrentPaid += toTake;
+        _chat.TrySendInGameICMessage(entity, Loc.GetString($"Внесено {toTake}. Всего: {entity.Comp.CurrentPaid} из {total}"), InGameICChatType.Speak, true);
+
         if (entity.Comp.CurrentPaid >= total)
             PrepareToTeleport(entity, args.User);
     }
@@ -227,10 +249,11 @@ public sealed class WaystoneSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<WaystoneComponent>(entity.Comp.SelectedWaystone, out var targetComp))
+        if (!TryComp<WaystoneComponent>(entity.Comp.SelectedWaystone, out var targetComp) || targetComp.IsEnable == false)
         {
             _chat.TrySendInGameICMessage(entity, "Связь с целью потеряна!", InGameICChatType.Speak, true);
             ClearUserSelection(entity);
+            args.Handled = true;
             return;
         }
 
@@ -251,10 +274,12 @@ public sealed class WaystoneSystem : EntitySystem
 
         if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
             return;
-        entity.Comp.collectedMoney += CountDeparturePrice(entity, entityTarget, entity.Comp.User);
-        entityTarget.Comp.collectedMoney += CountArrivalPrice(entity, entityTarget, entity.Comp.User);
+        entity.Comp.CollectedMoney += CountDeparturePrice(entity, entityTarget, entity.Comp.User);
+        entityTarget.Comp.CollectedMoney += CountArrivalPrice(entity, entityTarget, entity.Comp.User);
 
         entity.Comp.CurrentPaid = 0;
+
+        entity.Comp.CurrentEnergy -= 30;
 
         ClearUserSelection(entity);
     }
@@ -295,14 +320,14 @@ public sealed class WaystoneSystem : EntitySystem
         {
             if (member.Faction == entity.Comp.Faction!.Value)
             {
-                if (entity.Comp.collectedMoney > 0)
+                if (entity.Comp.CollectedMoney > 0)
                 {
                     AlternativeVerb verb2 = new()
                     {
                         Text = "Забрать заработок",
                         Act = () =>
                         {
-                            _chat.TrySendInGameICMessage(entity, Loc.GetString($"Заработано: {entity.Comp.collectedMoney}"), InGameICChatType.Speak, true);
+                            _chat.TrySendInGameICMessage(entity, Loc.GetString($"Заработано: {entity.Comp.CollectedMoney}"), InGameICChatType.Speak, true);
                             DispenseIncount(entity);
                         },
                         Priority = 2
@@ -352,12 +377,12 @@ public sealed class WaystoneSystem : EntitySystem
     private void DispenseIncount(Entity<WaystoneComponent> entity)
     {
         var comp = entity.Comp;
-        var amount = comp.collectedMoney;
+        var amount = comp.CollectedMoney;
 
         if (amount <= 0)
             return;
 
-        comp.collectedMoney = 0;
+        comp.CollectedMoney = 0;
 
         var coords = Transform(entity.Owner).Coordinates;
 

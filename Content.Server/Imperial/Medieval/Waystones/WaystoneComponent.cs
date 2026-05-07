@@ -37,6 +37,12 @@ public sealed partial class WaystoneComponent : Component
     public TimeSpan BookedTime = TimeSpan.Zero;
 
     [DataField]
-    public int collectedMoney = 0;
+    public int CollectedMoney = 0;
+
+    [DataField]
+    public float MaxEnergy = 100f;
+
+    [DataField]
+    public float CurrentEnergy = 100f;
 
 }
