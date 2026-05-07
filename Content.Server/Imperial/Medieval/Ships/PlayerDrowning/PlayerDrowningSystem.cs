@@ -5,6 +5,9 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Ghost;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
@@ -14,7 +17,7 @@ namespace Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
 public sealed class PlayerDrowningSystem : EntitySystem
 {
     private const float DefaultReloadTimeSeconds = 1f;
-    private const int DrownTimeMax = 15;
+    private const int DrownTimeMax = 25;
     private static readonly DamageSpecifier DrowningDamage = new()
     {
         DamageDict = new()
@@ -26,6 +29,7 @@ public sealed class PlayerDrowningSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
 
     private readonly HashSet<MapId> _seaMaps = new();
     private readonly List<EntityUid> _resetQueue = new();
@@ -36,6 +40,28 @@ public sealed class PlayerDrowningSystem : EntitySystem
     {
         base.Initialize();
         _nextCheckTime = _timing.CurTime + TimeSpan.FromSeconds(DefaultReloadTimeSeconds);
+
+        SubscribeLocalEvent<PlayerDrowningComponent, ComponentInit>(OnDrowningInit);
+        SubscribeLocalEvent<PlayerDrowningComponent, ComponentShutdown>(OnDrowningShutdown);
+        SubscribeLocalEvent<PlayerDrowningComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshMovementSpeed);
+    }
+
+    private void OnDrowningInit(Entity<PlayerDrowningComponent> ent, ref ComponentInit args)
+    {
+        _movement.RefreshMovementSpeedModifiers(ent);
+    }
+
+    private void OnDrowningShutdown(Entity<PlayerDrowningComponent> ent, ref ComponentShutdown args)
+    {
+        _movement.RefreshMovementSpeedModifiers(ent);
+    }
+
+    private void OnRefreshMovementSpeed(Entity<PlayerDrowningComponent> ent, ref RefreshMovementSpeedModifiersEvent args)
+    {
+        if (!HasComp<MobStateComponent>(ent) || HasComp<GhostComponent>(ent))
+            return;
+
+        args.ModifySpeed(ent.Comp.SpeedModifier);
     }
 
     public override void Update(float frameTime)
@@ -115,8 +141,16 @@ public sealed class PlayerDrowningSystem : EntitySystem
 
         _damageable.TryChangeDamage(uid, DrowningDamage, true, false);
 
-        if (drowner.DrownTime >= DrownTimeMax)
-            QueueDel(uid);
+        if (drowner.DrownTime < DrownTimeMax)
+            return;
+
+        if (TryComp<MobStateComponent>(uid, out var mobState) && mobState.CurrentState == MobState.Alive)
+        {
+            drowner.DrownTime = 0;
+            return;
+        }
+
+        QueueDel(uid);
     }
 
     private bool IsAttachedToGhost(EntityUid uid, TransformComponent transform)

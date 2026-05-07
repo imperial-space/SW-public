@@ -10,6 +10,7 @@ using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -166,16 +167,54 @@ public sealed class HelmSystem : EntitySystem
         if (steeringPower <= 0f)
             return;
 
-        var steeringInput = GetSteeringInput(helmComponent);
-        if (MathF.Abs(steeringInput) < 0.001f)
+        if (!TryComp<PhysicsComponent>(boat, out var body))
             return;
 
         var weight = MathF.Max(helmComponent.MinShipWeight, _rdWeight.GetTotal(boat));
         var weightDivider = 1f + weight * 0.01f;
+        var steeringInput = GetSteeringInput(helmComponent);
+        if (MathF.Abs(steeringInput) < 0.001f)
+        {
+            StabilizeShipRotation(boat, helmComponent, steeringPower, weightDivider, body);
+            return;
+        }
+
         var angularImpulse = steeringInput * helmComponent.MinMotionFactor * steeringPower * helmComponent.TurnImpulseScalar / weightDivider;
 
-        _physics.WakeBody(boat);
-        _physics.ApplyAngularImpulse(boat, angularImpulse);
+        _physics.WakeBody(boat, body: body);
+        _physics.ApplyAngularImpulse(boat, angularImpulse, body: body);
+    }
+
+    private void StabilizeShipRotation(
+        EntityUid boat,
+        HelmComponent helmComponent,
+        float steeringPower,
+        float weightDivider,
+        PhysicsComponent body)
+    {
+        var angularVelocity = body.AngularVelocity;
+        if (MathF.Abs(angularVelocity) < 0.001f)
+        {
+            _physics.SetAngularVelocity(boat, 0f, body: body);
+            return;
+        }
+
+        if (body.InvI <= 0f)
+            return;
+
+        var stabilizingImpulseMagnitude = helmComponent.MinMotionFactor * steeringPower * helmComponent.StabilizingImpulseScalar / weightDivider;
+        if (stabilizingImpulseMagnitude <= 0f)
+            return;
+
+        var desiredImpulse = -MathF.Sign(angularVelocity) * stabilizingImpulseMagnitude;
+        var stopImpulse = -angularVelocity / body.InvI;
+        var stopNow = MathF.Abs(desiredImpulse) >= MathF.Abs(stopImpulse);
+        var angularImpulse = stopNow ? stopImpulse : desiredImpulse;
+
+        _physics.ApplyAngularImpulse(boat, angularImpulse, body: body);
+
+        if (stopNow)
+            _physics.SetAngularVelocity(boat, 0f, body: body);
     }
 
     private float GetSteeringPower(EntityUid boat)

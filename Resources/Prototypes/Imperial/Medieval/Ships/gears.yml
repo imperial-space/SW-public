@@ -1,6 +1,5 @@
 - type: entity
-  id: MedievalAnchorBase
-  abstract: true
+  id: MedievalAnchorUp
   name: якорь
   description: Старое, но надежное железо для фиксации корабля.
   placement:
@@ -11,6 +10,12 @@
   - type: Clickable
   - type: Sprite
     sprite: Imperial/Medieval/Ships/Anchor.rsi
+    layers:
+    - state: up
+      map: ["enum.MedievalAnchorVisualLayers.Base"]
+  - type: Appearance
+  - type: MedievalAnchor
+    Enabled: false
 
 - type: entity
   id: WaterPump
@@ -33,24 +38,6 @@
     sprite: Imperial/Medieval/Ships/SteeringOar.rsi
     state: base
   - type: SteeringOar
-
-- type: entity
-  id: MedievalAnchorUp
-  parent: MedievalAnchorBase
-  components:
-  - type: Sprite
-    state: up
-  - type: MedievalAnchor
-    Enabled: false
-
-- type: entity
-  id: MedievalAnchorDown
-  parent: MedievalAnchorUp
-  components:
-  - type: Sprite
-    state: down
-  - type: MedievalAnchor
-    Enabled: true
 
 - type: entity
   id: MedievalSteeringWheel

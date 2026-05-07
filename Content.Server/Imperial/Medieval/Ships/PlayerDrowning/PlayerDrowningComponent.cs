@@ -9,6 +9,9 @@ public sealed partial class PlayerDrowningComponent : Component
     [DataField("drownTime")]
     public int DrownTime;
 
+    [DataField("speedModifier")]
+    public float SpeedModifier = 0.5f;
+
     [DataField("Undrowable")]
     public bool Undrowable;
 }

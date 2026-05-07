@@ -15,10 +15,17 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
     [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedSkillsSystem _skills = default!;
+    [Dependency] private readonly AppearanceSystem _appearance = default!;
 
     public override void Initialize()
     {
+        SubscribeLocalEvent<MedievalAnchorComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<MedievalAnchorComponent, UseAnchorEvent>(OnUseAnchor);
+    }
+
+    private void OnStartup(EntityUid uid, MedievalAnchorComponent component, ComponentStartup args)
+    {
+        UpdateAnchorVisuals(uid, component);
     }
 
     private void OnUseAnchor(EntityUid uid, MedievalAnchorComponent component, UseAnchorEvent args)
@@ -29,9 +36,8 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
         if (!_skills.HasSkill(args.User, SharedSkillsSystem.StrengthId))
             return;
 
-        var anchor = component.Owner;
         var anchorDown = component.Enabled;
-        var anchorTransform = Transform(anchor);
+        var anchorTransform = Transform(uid);
         var grid = anchorTransform.GridUid;
 
         ShuttleComponent? shuttleComponent = null;
@@ -58,8 +64,13 @@ public sealed class ServerMedievalAnchorSystem : EntitySystem
             _shuttleSystem.Enable(grid.Value);
         }
 
-        var nextAnchorPrototype = anchorDown ? "MedievalAnchorUp" : "MedievalAnchorDown";
-        Spawn(nextAnchorPrototype, anchorTransform.Coordinates);
-        Del(anchor);
+        component.Enabled = !anchorDown;
+        UpdateAnchorVisuals(uid, component);
+        args.Handled = true;
+    }
+
+    private void UpdateAnchorVisuals(EntityUid uid, MedievalAnchorComponent component)
+    {
+        _appearance.SetData(uid, MedievalAnchorVisuals.Enabled, component.Enabled);
     }
 }
