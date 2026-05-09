@@ -140,6 +140,8 @@ public sealed partial class ImperialOptionsMenuTab : Control
         AddSubHeader("ui-options-imperial-controls-medieval");
         AddButton(ContentKeyFunctions.MedievalDash);
 
+        AddButton(ContentKeyFunctions.MedievalMeleeParry);
+
         foreach (var control in _keyControls.Values)
         {
             UpdateKeyControl(control);

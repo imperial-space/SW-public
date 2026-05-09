@@ -10,10 +10,8 @@ using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Damage;
-using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Interaction;
 using Content.Shared.Tag;
-using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Robust.Shared.Prototypes;
 
@@ -114,7 +112,7 @@ public sealed class ForgedSystem : EntitySystem
         foreach (var (slotId, moduleUid) in component.FittedModules)
         {
             if (TerminatingOrDeleted(moduleUid)) continue;
-
+            if (!TryComp<ForgedModuleComponent>(moduleUid, out var module)) continue;
             if (_containerSystem.TryGetContainer(uid, slotId, out var container))
             {
                 if (!container.Contains(moduleUid))
@@ -124,7 +122,7 @@ public sealed class ForgedSystem : EntitySystem
 
                 _containerSystem.Remove(moduleUid, container, force: true);
 
-                if (slotId == "torso")
+                if (slotId == "torso" || module.AbilityId == "Torso_Explosion")
                 {
                     QueueDel(moduleUid);
                     continue;

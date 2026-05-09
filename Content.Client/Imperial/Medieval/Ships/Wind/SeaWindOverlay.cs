@@ -140,7 +140,7 @@ public sealed class SeaWindOverlay : Overlay
     private WindParticle CreateParticle(Box2 visibleBounds)
     {
         var angle = new Angle(_windAngle + _random.NextFloat(-0.2f, 0.2f));
-        var direction = angle.ToVec();
+        var direction = angle.ToWorldVec();
         var perpendicular = new Vector2(-direction.Y, direction.X);
 
         // kill me pls
