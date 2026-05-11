@@ -16,7 +16,8 @@ public enum SailVisuals : byte
 public enum SailVisualLayers : byte
 {
     Unfolded,
-    Folded
+    Folded,
+    Animation
 }
 
 [RegisterComponent, NetworkedComponent, Serializable]

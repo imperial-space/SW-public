@@ -5347,6 +5347,10 @@
       state: shipup
       map: ["enum.SailVisualLayers.Folded"]
       visible: false
+    - sprite: Imperial/Medieval/Decor/shipsailunfasten.rsi
+      state: unfasten
+      map: ["enum.SailVisualLayers.Animation"]
+      visible: false
   - type: MeleeSound
     soundGroups:
       Brute:
