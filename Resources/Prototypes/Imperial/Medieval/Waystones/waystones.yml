@@ -1,13 +1,15 @@
 - type: entity
   id: Waystone
+  name: Waystone
+  description: WaystoneDesc
   parent: BaseStructure
   components:
   - type: SpriteFade
   - type: Sprite
     drawdepth: Overdoors
-    offset: 0,0.5
-    sprite: Imperial/Medieval/Decor/barrier.rsi
-    state: barrier
+    offset: 0, -0.5
+    sprite: Imperial/Medieval/Waystones/waystones.rsi
+    state: teleportation_stone
   - type: Physics
     bodyType: Static
   - type: Damageable
@@ -15,7 +17,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 150000
+        damage: 999999999
       behaviors:
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
@@ -29,10 +31,9 @@
         mask:
         - MachineMask
         layer:
-        - Opaque
+        - MobLayer
         - MidImpassable
-        - HighImpassable
-        - BulletImpassable
+        - LowImpassable
   - type: Waystone
   - type: UserInterface
     interfaces:
@@ -40,3 +41,22 @@
         type: WaystoneBoundUserInterface
       enum.WaystoneUiKey.AdminKey:
         type: WaystoneBoundUserInterfaceAdmin
+  - type: InteractionOutline
+
+- type: decal
+  id: WaystoneRedCircle
+  sprite:
+    sprite: Imperial/Medieval/Waystones/waystones.rsi
+    state: teleportation_stone_red
+
+- type: decal
+  id: WaystoneYellowCircle
+  sprite:
+    sprite: Imperial/Medieval/Waystones/waystones.rsi
+    state: teleportation_stone_yellow
+
+- type: decal
+  id: WaystoneBlueCircle
+  sprite:
+    sprite: Imperial/Medieval/Waystones/waystones.rsi
+    state: teleportation_stone_blue

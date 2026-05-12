@@ -3,6 +3,7 @@ using System.Reflection;
 using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
 using Content.Shared.DoAfter;
+using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.Imperial.Medieval.CapturePoint;
 using Content.Shared.Imperial.Medieval.CapturePoint.Components;
@@ -14,6 +15,7 @@ using Content.Shared.Stacks;
 using Content.Shared.Verbs;
 using NetCord;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Random;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
@@ -48,6 +50,8 @@ public sealed class WaystoneSystem : EntitySystem
         SubscribeLocalEvent<CapturePointResultEvent>(OnCapturePointResult);
 
         SubscribeLocalEvent<WaystoneComponent, WaystoneStateMessage>(OnWaystoneState);
+
+        SubscribeLocalEvent<WaystoneComponent, ExaminedEvent>(OnExamined);
     }
 
     float _timer = 0f;
@@ -62,14 +66,16 @@ public sealed class WaystoneSystem : EntitySystem
         {
             Entity<WaystoneComponent> entity = (uid, comp);
             if (entity.Comp.BookedTime < _timing.CurTime && entity.Comp.User != EntityUid.Invalid)
-                ClearUserSelection(entity);
+                ClearUserSelection(entity, Transform(entity.Comp.User).Coordinates);
 
             if (_timer > 1f)
             {
                 UpdateEnergy(entity);
-                _timer = 0;
             }
         }
+
+        if (_timer > 1f)
+            _timer = 0;
     }
 
     public void UpdateEnergy(Entity<WaystoneComponent> entity)
@@ -126,7 +132,7 @@ public sealed class WaystoneSystem : EntitySystem
 
     private int CountDeparturePrice(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
     {
-        if (!TryComp<MedievalFactionMemberComponent>(user, out var member))
+        if (!TryComp<MedievalFactionMemberComponent>(user, out var member) || entity.Comp.Faction == string.Empty)
             return entity.Comp.DeparturePrice;
 
         int depPrice = _factionsSystem.IsRelationUnion(member.Faction, entity.Comp.Faction!.Value) ? (int)(entity.Comp.DeparturePrice / 2) : entity.Comp.DeparturePrice;
@@ -136,8 +142,8 @@ public sealed class WaystoneSystem : EntitySystem
 
     private int CountArrivalPrice(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
     {
-        if (!TryComp<MedievalFactionMemberComponent>(user, out var member))
-            return entity.Comp.DeparturePrice;
+        if (!TryComp<MedievalFactionMemberComponent>(user, out var member) || entity.Comp.Faction == string.Empty)
+            return entityTarget.Comp.ArrivalPrice;
 
         int arrPrice = _factionsSystem.IsRelationUnion(member.Faction, entityTarget.Comp.Faction!.Value) ? (int)(entityTarget.Comp.ArrivalPrice / 2) : entityTarget.Comp.ArrivalPrice;
         arrPrice = member.Faction == entityTarget.Comp.Faction!.Value ? 0 : arrPrice;
@@ -245,14 +251,14 @@ public sealed class WaystoneSystem : EntitySystem
         if (args.Cancelled || args.Handled)
         {
             _chat.TrySendInGameICMessage(entity, "Связь потеряна!", InGameICChatType.Speak, true);
-            ClearUserSelection(entity);
+            ClearUserSelection(entity, Transform(args.User).Coordinates);
             return;
         }
 
         if (!TryComp<WaystoneComponent>(entity.Comp.SelectedWaystone, out var targetComp) || targetComp.IsEnable == false)
         {
             _chat.TrySendInGameICMessage(entity, "Связь с целью потеряна!", InGameICChatType.Speak, true);
-            ClearUserSelection(entity);
+            ClearUserSelection(entity, Transform(args.User).Coordinates);
             args.Handled = true;
             return;
         }
@@ -270,10 +276,11 @@ public sealed class WaystoneSystem : EntitySystem
         var dist = 1.5f;
         var offset = new Vector2(MathF.Cos(angle) * dist, MathF.Sin(angle) * dist);
 
-        _transform.SetCoordinates(entity.Comp.User, xform.Coordinates.Offset(offset));
-
         if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
             return;
+
+        _transform.SetCoordinates(entity.Comp.User, xform.Coordinates.Offset(offset));
+
         entity.Comp.CollectedMoney += CountDeparturePrice(entity, entityTarget, entity.Comp.User);
         entityTarget.Comp.CollectedMoney += CountArrivalPrice(entity, entityTarget, entity.Comp.User);
 
@@ -281,22 +288,24 @@ public sealed class WaystoneSystem : EntitySystem
 
         entity.Comp.CurrentEnergy -= 30;
 
-        ClearUserSelection(entity);
+        ClearUserSelection(entity, xform.Coordinates.Offset(offset));
     }
 
-    private void ClearUserSelection(Entity<WaystoneComponent> entity)
+    private void ClearUserSelection(Entity<WaystoneComponent> entity, EntityCoordinates coords)
     {
         entity.Comp.BookedTime = TimeSpan.Zero;
         entity.Comp.User = EntityUid.Invalid;
         entity.Comp.SelectedWaystone = EntityUid.Invalid;
 
-        DispenseMoney(entity);
+        DispenseMoney(entity, coords);
     }
 
     private void OnGetAltVerbs(Entity<WaystoneComponent> entity, ref GetVerbsEvent<AlternativeVerb> args)
     {
         if (!args.CanAccess || !args.CanInteract)
             return;
+
+        var user = args.User;
 
         if (entity.Comp.User == args.User && entity.Comp.CurrentPaid > 0)
         {
@@ -305,7 +314,7 @@ public sealed class WaystoneSystem : EntitySystem
                 Text = "Забрать внесенные деньги",
                 Act = () =>
                 {
-                    ClearUserSelection(entity);
+                    ClearUserSelection(entity, Transform(user).Coordinates);
 
                     _chat.TrySendInGameICMessage(entity, Loc.GetString($"Ритуал прерван, забери свои деньги и поди прочь!"), InGameICChatType.Speak, true);
                 },
@@ -314,11 +323,9 @@ public sealed class WaystoneSystem : EntitySystem
             args.Verbs.Add(verb);
         }
 
-        var user = args.User;
-
         if (TryComp<MedievalFactionMemberComponent>(args.User, out var member))
         {
-            if (member.Faction == entity.Comp.Faction!.Value)
+            if (entity.Comp.Faction != string.Empty && member.Faction == entity.Comp.Faction!.Value)
             {
                 if (entity.Comp.CollectedMoney > 0)
                 {
@@ -328,7 +335,7 @@ public sealed class WaystoneSystem : EntitySystem
                         Act = () =>
                         {
                             _chat.TrySendInGameICMessage(entity, Loc.GetString($"Заработано: {entity.Comp.CollectedMoney}"), InGameICChatType.Speak, true);
-                            DispenseIncount(entity);
+                            DispenseIncount(entity, Transform(user).Coordinates);
                         },
                         Priority = 2
                     };
@@ -350,7 +357,7 @@ public sealed class WaystoneSystem : EntitySystem
         }
     }
 
-    private void DispenseMoney(Entity<WaystoneComponent> entity)
+    private void DispenseMoney(Entity<WaystoneComponent> entity, EntityCoordinates coords)
     {
         var comp = entity.Comp;
         var amount = comp.CurrentPaid;
@@ -359,8 +366,6 @@ public sealed class WaystoneSystem : EntitySystem
             return;
 
         comp.CurrentPaid = 0;
-
-        var coords = Transform(entity.Owner).Coordinates;
 
         while (amount > 0)
         {
@@ -374,7 +379,7 @@ public sealed class WaystoneSystem : EntitySystem
         }
     }
 
-    private void DispenseIncount(Entity<WaystoneComponent> entity)
+    private void DispenseIncount(Entity<WaystoneComponent> entity, EntityCoordinates coords)
     {
         var comp = entity.Comp;
         var amount = comp.CollectedMoney;
@@ -384,7 +389,6 @@ public sealed class WaystoneSystem : EntitySystem
 
         comp.CollectedMoney = 0;
 
-        var coords = Transform(entity.Owner).Coordinates;
 
         while (amount > 0)
         {
@@ -441,5 +445,37 @@ public sealed class WaystoneSystem : EntitySystem
         var state = new WaystoneUpdateState(new List<WaystoneInfo> { info });
 
         _uiSystem.SetUiState(entity.Owner, WaystoneUiKey.AdminKey, state);
+    }
+
+    private void OnExamined(Entity<WaystoneComponent> entity, ref ExaminedEvent args)
+    {
+        if (entity.Comp.IsEnable == false)
+        {
+            args.PushMarkup(Loc.GetString("waystone-examine-headeroff"));
+            return;
+        }
+
+        args.PushMarkup(Loc.GetString("waystone-examine-departure",
+            ("price", entity.Comp.DeparturePrice)));
+
+        args.PushMarkup(Loc.GetString("waystone-examine-arrival",
+            ("price", entity.Comp.ArrivalPrice)));
+
+        if (entity.Comp.CurrentPaid > 0)
+        {
+            args.PushMarkup(Loc.GetString("waystone-examine-paid",
+                ("paid", entity.Comp.CurrentPaid)));
+        }
+
+        if (!TryComp<MedievalFactionMemberComponent>(args.Examiner, out var member))
+            return;
+
+        if (member.Faction == entity.Comp.Faction!.Value && entity.Comp.Faction != string.Empty)
+        {
+            args.PushMarkup(Loc.GetString("waystone-examine-collected",
+                ("money", entity.Comp.CollectedMoney)));
+
+            args.PushMarkup(Loc.GetString("waystone-examine-headerCollector"));
+        }
     }
 }
