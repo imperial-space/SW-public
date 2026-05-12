@@ -140,6 +140,7 @@
         #- Door
         #tags:
         #- Wall
+    - type: AchievementTarget
 
 - type: entity
   name: dragon
