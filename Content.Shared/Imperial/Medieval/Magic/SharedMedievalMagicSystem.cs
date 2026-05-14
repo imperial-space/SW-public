@@ -18,7 +18,6 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -103,10 +102,7 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
         RaiseLocalEvent(spell, ref ev);
 
         if (_handsSystem.TryGetEmptyHand(performer, out _) == false) // TODO: Если в игре появятся магические катализаторы (посохи, палочки), что дают баффы при сотворении чар, то нужно будет добавить их в исключение
-        {
-            _popupSystem.PopupClient("Мне нужна свободная рука, чтобы использовать заклинание...", performer);
             return false;
-        }
 
         return !ev.Cancelled;
     }
