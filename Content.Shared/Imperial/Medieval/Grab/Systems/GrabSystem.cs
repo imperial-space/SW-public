@@ -18,6 +18,7 @@ using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Movement.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Pulling.Events;
+using Content.Shared.Standing;
 using Robust.Shared.Containers;
 using Robust.Shared.Network;
 using Robust.Shared.Physics;
@@ -458,6 +459,14 @@ public sealed class GrabSystem : EntitySystem
         var attackerScore = GetStrength(grabberUid) * 4 + GetDexterity(grabberUid) * 3;
         var defenderScore = GetStrength(grabbable) * 3 + GetDexterity(grabbable) * 7;
         var chance = 50 + attackerScore - defenderScore;
+
+        if (TryComp<StandingStateComponent>(grabbable, out var standingComp) &&
+            standingComp.Standing == false)
+        {
+            chance += 70;
+        }
+
+        chance = Math.Clamp(chance, 0, 100);
 
         var doAfterArgs = new DoAfterArgs(new DoAfterArgs(EntityManager, grabberUid, TimeSpan.FromSeconds(1), new GrabDoAfterEvent(GetNetEntity(grabbable), chance), grabberUid, grabbable, grabberUid))
         {
