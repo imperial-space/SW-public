@@ -18,3 +18,22 @@ waystone-phrase-17 = Звезды не видят тебя за толпой. В
 waystone-phrase-18 = Кровь или золото? Выберу злато. Встань в круг один, велика твоя плата.
 waystone-phrase-19 = Тень одиночки порталу мила. Встань в круг один, чтоб дорога легла.
 waystone-phrase-20 = В бездне нет места для верных друзей. Встань в круг один и плати поскорей.
+
+waystone-message-money-inserted = Внесено
+waystone-message-money-inserted-needed = Осталось
+
+waystone-message-ritual-started = Ритуал начат, не отходи!
+
+waystone-message-connection-loss = Связь потеряна! Ритуал прерван!
+
+waystone-verb-return-money= Забрать внесенные деньги
+waystone-message-ritual-cancelled = Ритуал прерван, забери деньги
+
+waystone-verb-collect-money = Собрать заработанные деньги
+waystone-verb-collected-money = Собрано средств
+
+waystone-verb-setting = Настроить
+
+waystone-message-price-changed = Цены изменены. Цена отправления и цена прибытия
+
+waystone-xaml-network = Доступные путеводные камни

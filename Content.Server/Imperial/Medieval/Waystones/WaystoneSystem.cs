@@ -225,7 +225,7 @@ public sealed class WaystoneSystem : EntitySystem
         args.Handled = true;
 
         entity.Comp.CurrentPaid += toTake;
-        _chat.TrySendInGameICMessage(entity, Loc.GetString($"Внесено {toTake}. Всего: {entity.Comp.CurrentPaid} из {total}"), InGameICChatType.Speak, true);
+        _chat.TrySendInGameICMessage(entity, Loc.GetString($"{Loc.GetString("waystone-message-money-inserted")}: {toTake}. {Loc.GetString("waystone-message-money-inserted-needed")}: {total - entity.Comp.CurrentPaid}"), InGameICChatType.Speak, true);
 
         if (entity.Comp.CurrentPaid >= total)
             PrepareToTeleport(entity, args.User);
@@ -233,7 +233,7 @@ public sealed class WaystoneSystem : EntitySystem
 
     private void PrepareToTeleport(Entity<WaystoneComponent> entity, EntityUid user)
     {
-        _chat.TrySendInGameICMessage(entity, "Ритуал начат! Не отходи", InGameICChatType.Speak, true);
+        _chat.TrySendInGameICMessage(entity, Loc.GetString("waystone-message-ritual-started"), InGameICChatType.Speak, true);
         entity.Comp.BookedTime += TimeSpan.FromSeconds(5);
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(entity.Comp.TimeToTeleport), new WaystoneTeleportDoAfterEvent(), entity.Owner, target: entity.Owner)
@@ -250,14 +250,14 @@ public sealed class WaystoneSystem : EntitySystem
     {
         if (args.Cancelled || args.Handled)
         {
-            _chat.TrySendInGameICMessage(entity, "Связь потеряна!", InGameICChatType.Speak, true);
+            _chat.TrySendInGameICMessage(entity, Loc.GetString("waystone-message-connection-loss"), InGameICChatType.Speak, true);
             ClearUserSelection(entity, Transform(args.User).Coordinates);
             return;
         }
 
         if (!TryComp<WaystoneComponent>(entity.Comp.SelectedWaystone, out var targetComp) || targetComp.IsEnable == false)
         {
-            _chat.TrySendInGameICMessage(entity, "Связь с целью потеряна!", InGameICChatType.Speak, true);
+            _chat.TrySendInGameICMessage(entity, Loc.GetString("waystone-message-connection-loss"), InGameICChatType.Speak, true);
             ClearUserSelection(entity, Transform(args.User).Coordinates);
             args.Handled = true;
             return;
@@ -311,12 +311,12 @@ public sealed class WaystoneSystem : EntitySystem
         {
             AlternativeVerb verb = new()
             {
-                Text = "Забрать внесенные деньги",
+                Text = Loc.GetString("waystone-verb-return-money"),
                 Act = () =>
                 {
                     ClearUserSelection(entity, Transform(user).Coordinates);
 
-                    _chat.TrySendInGameICMessage(entity, Loc.GetString($"Ритуал прерван, забери свои деньги и поди прочь!"), InGameICChatType.Speak, true);
+                    _chat.TrySendInGameICMessage(entity, Loc.GetString($"waystone-message-ritual-cancelled"), InGameICChatType.Speak, true);
                 },
                 Priority = 1
             };
@@ -331,10 +331,10 @@ public sealed class WaystoneSystem : EntitySystem
                 {
                     AlternativeVerb verb2 = new()
                     {
-                        Text = "Забрать заработок",
+                        Text = Loc.GetString("waystone-verb-collect-money"),
                         Act = () =>
                         {
-                            _chat.TrySendInGameICMessage(entity, Loc.GetString($"Заработано: {entity.Comp.CollectedMoney}"), InGameICChatType.Speak, true);
+                            _chat.TrySendInGameICMessage(entity, Loc.GetString($"{Loc.GetString("waystone-verb-collected-money")}: {entity.Comp.CollectedMoney}"), InGameICChatType.Speak, true);
                             DispenseIncount(entity, Transform(user).Coordinates);
                         },
                         Priority = 2
@@ -344,7 +344,7 @@ public sealed class WaystoneSystem : EntitySystem
 
                 AlternativeVerb verbPrice = new()
                 {
-                    Text = "Настроить",
+                    Text = Loc.GetString("waystone-verb-setting"),
                     Act = () =>
                     {
                         _uiSystem.TryOpenUi(entity.Owner, WaystoneUiKey.AdminKey, user);
@@ -435,7 +435,7 @@ public sealed class WaystoneSystem : EntitySystem
         entity.Comp.IsEnable = args.State;
 
         _chat.TrySendInGameICMessage(entity,
-            $"Тарифы обновлены. Вход: {entity.Comp.DeparturePrice}, Выход: {entity.Comp.ArrivalPrice}",
+            $"{Loc.GetString("waystone-message-price-changed")}: {entity.Comp.DeparturePrice}, {entity.Comp.ArrivalPrice}",
             InGameICChatType.Speak, true);
     }
 

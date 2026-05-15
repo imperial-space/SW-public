@@ -14,7 +14,7 @@ public sealed class WaystoneListWindow : DefaultWindow
 
     public WaystoneListWindow()
     {
-        Title = "Waystone Network";
+        Title = $"{Loc.GetString("waystone-xaml-network")}";
         SetSize = new Vector2(600, 500);
 
         var scroll = new ScrollContainer { VerticalExpand = true };
