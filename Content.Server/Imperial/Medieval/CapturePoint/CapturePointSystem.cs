@@ -369,6 +369,8 @@ public sealed class CapturePointSystem : SharedCapturePointSystem
                 RaiseNetworkEvent(resultEv, session);
         }
 
+        RaiseLocalEvent(resultEv); // Для waystones
+
         var resultText = winner != null
             ? Loc.GetString("medieval-capture-point-captured",
                 ("pointName", comp.PointName),
