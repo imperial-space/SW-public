@@ -223,7 +223,6 @@
   - type: MedievalIronHitSound
   - type: IgnitPocketFlames
   - type: MedievalSpikeTarget
-  - type: BadSmell
   - type: MeleeParryAble
   - type: RandomSteal
   - type: Customizer
@@ -243,7 +242,7 @@
     energy: 0.3
     radius: 1.18
   - type: RDWeight
-    value: 63
+    value: 80
   - type: RDWeightSpeedModifier
     curve: !type:RDWeightModifierLinearCurve
       min: 90

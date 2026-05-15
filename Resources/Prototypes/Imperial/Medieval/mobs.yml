@@ -3018,6 +3018,7 @@
       prob: 0.16
   - type: Hands
   - type: ComplexInteraction
+  - type: AchievementTarget
 
 - type: entity
   name: legion skeleton
