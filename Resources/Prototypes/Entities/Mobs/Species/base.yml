@@ -367,6 +367,7 @@
       Endurance: 10
   - type: LastWords
   - type: MeleeParryStorage
+  - type: AchievementOwner
 # Imperial Medieval End
 
 - type: entity

@@ -27,6 +27,12 @@ namespace Content.Shared.MeleeParry.Components
         [DataField, AutoNetworkedField]
         [ViewVariables(VVAccess.ReadWrite)]
         public float ParryCooldown = 4f;
+
+        [DataField]
+        public float ParryUseDelay = 1.25f;
+
+        [DataField]
+        public float ParryStaminaDamage = 20f;
     }
 
     [RegisterComponent, NetworkedComponent]

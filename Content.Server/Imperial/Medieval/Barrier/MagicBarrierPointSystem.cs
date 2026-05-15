@@ -10,6 +10,8 @@ using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
+using Content.Shared.Imperial.Medieval.Achievements;
+using Content.Server.Imperial.Medieval.Achievements;
 using Content.Server.MagicSpellcraft.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.MagicRunes.Components;
@@ -35,6 +37,7 @@ namespace Content.Server.MagicBarrier
         [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
         [Dependency] private readonly MagicRuneSystem _rune = default!;
         [Dependency] private readonly DamageableSystem _damageable = default!;
+        [Dependency] private readonly AchievementSystem _achievement = default!;
 
         public static bool IsBarrierActive = true;
         private static readonly string[] ElementalRiftPrototypes =
@@ -122,6 +125,9 @@ namespace Content.Server.MagicBarrier
                 barrier.Stability += comp.Power;
                 _audio.PlayPvs(new SoundPathSpecifier(barrier.EffectSoundOnScrollAdd), target.Value);
                 QueueDel(used);
+
+                _achievement.TryUpdateProgressAndGrant(user, new BarrierRefilledContext(), 
+                    ach => ach.Conditions.Any(c => c is RefillBarrierCondition));
                 return;
             }
 
