@@ -23,7 +23,7 @@ public sealed partial class EffectSystem : EntitySystem
     {
         if (_handsSystem.TryGetEmptyHand(args.Performer, out _) == false)
         {
-            _popupSystem.PopupClient("Мне нужна свободная рука, чтобы использовать заклинание...", args.Performer);
+            _popupSystem.PopupClient(Loc.GetString("medieval-magic-free-hand-required"), args.Performer);
             return;
         }
 

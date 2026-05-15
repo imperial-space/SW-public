@@ -102,7 +102,7 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
         RaiseLocalEvent(spell, ref ev);
 
         if (_handsSystem.TryGetEmptyHand(performer, out _) == false) // TODO: Если в игре появятся магические катализаторы (посохи, палочки), что дают баффы при сотворении чар, то нужно будет добавить их в исключение
-            return false;
+            return ev.Cancelled;
 
         return !ev.Cancelled;
     }
