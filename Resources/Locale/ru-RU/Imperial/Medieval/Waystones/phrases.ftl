@@ -37,3 +37,5 @@ waystone-verb-setting = Настроить
 waystone-message-price-changed = Цены изменены. Цена отправления и цена прибытия
 
 waystone-xaml-network = Доступные путеводные камни
+
+waystone-message-waystone-free = Путеводный камень освобожден

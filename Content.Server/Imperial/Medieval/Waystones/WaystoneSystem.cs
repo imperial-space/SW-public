@@ -13,11 +13,11 @@ using Content.Shared.Imperial.Medieval.Waystones;
 using Content.Shared.Interaction;
 using Content.Shared.Stacks;
 using Content.Shared.Verbs;
-using NetCord;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 
 
@@ -31,6 +31,7 @@ public sealed class WaystoneSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedMedievalFactionsSystem _factionsSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
 
     public override void Initialize()
     {
@@ -66,7 +67,11 @@ public sealed class WaystoneSystem : EntitySystem
         {
             Entity<WaystoneComponent> entity = (uid, comp);
             if (entity.Comp.BookedTime < _timing.CurTime && entity.Comp.User != EntityUid.Invalid)
+            {
                 ClearUserSelection(entity, Transform(entity.Comp.User).Coordinates);
+
+                _chat.TrySendInGameICMessage(entity, Loc.GetString($"waystone-message-waystone-free"), InGameICChatType.Speak, true);
+            }
 
             if (_timer > 1f)
             {
@@ -192,7 +197,12 @@ public sealed class WaystoneSystem : EntitySystem
         if (total == 0)
             PrepareToTeleport(entity, args.Actor);
         else
+        {
             _chat.TrySendInGameICMessage(entity, Loc.GetString($"waystone-phrase-{randomIndex}"), InGameICChatType.Speak, true);
+
+            var param = AudioParams.Default.WithLoop(true);
+            entity.Comp.BookedAudioStream = _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/cat_purring.ogg"), Transform(entity).Coordinates, param)?.Entity;
+        }
     }
 
     public void OnInteractUsing(Entity<WaystoneComponent> entity, ref InteractUsingEvent args)
@@ -225,6 +235,7 @@ public sealed class WaystoneSystem : EntitySystem
         args.Handled = true;
 
         entity.Comp.CurrentPaid += toTake;
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/coin_in.ogg"), Transform(entity).Coordinates);
         _chat.TrySendInGameICMessage(entity, Loc.GetString($"{Loc.GetString("waystone-message-money-inserted")}: {toTake}. {Loc.GetString("waystone-message-money-inserted-needed")}: {total - entity.Comp.CurrentPaid}"), InGameICChatType.Speak, true);
 
         if (entity.Comp.CurrentPaid >= total)
@@ -235,6 +246,9 @@ public sealed class WaystoneSystem : EntitySystem
     {
         _chat.TrySendInGameICMessage(entity, Loc.GetString("waystone-message-ritual-started"), InGameICChatType.Speak, true);
         entity.Comp.BookedTime += TimeSpan.FromSeconds(5);
+
+        _audioSystem.Stop(entity.Comp.BookedAudioStream);
+        entity.Comp.BookedAudioStream = _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/cat_purring2.ogg"), Transform(entity).Coordinates)?.Entity;
 
         var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(entity.Comp.TimeToTeleport), new WaystoneTeleportDoAfterEvent(), entity.Owner, target: entity.Owner)
         {
@@ -288,6 +302,9 @@ public sealed class WaystoneSystem : EntitySystem
 
         entity.Comp.CurrentEnergy -= 30;
 
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/Effects/teleport.ogg"), Transform(entity).Coordinates);
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/Effects/teleport.ogg"), Transform(entityTarget).Coordinates);
+
         ClearUserSelection(entity, xform.Coordinates.Offset(offset));
     }
 
@@ -296,6 +313,9 @@ public sealed class WaystoneSystem : EntitySystem
         entity.Comp.BookedTime = TimeSpan.Zero;
         entity.Comp.User = EntityUid.Invalid;
         entity.Comp.SelectedWaystone = EntityUid.Invalid;
+
+        _audioSystem.Stop(entity.Comp.BookedAudioStream);
+        entity.Comp.BookedAudioStream = EntityUid.Invalid;
 
         DispenseMoney(entity, coords);
     }
@@ -377,6 +397,8 @@ public sealed class WaystoneSystem : EntitySystem
 
             amount -= toSpawn;
         }
+
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/coin_out.ogg"), Transform(entity).Coordinates);
     }
 
     private void DispenseIncount(Entity<WaystoneComponent> entity, EntityCoordinates coords)
@@ -400,6 +422,8 @@ public sealed class WaystoneSystem : EntitySystem
 
             amount -= toSpawn;
         }
+
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/coin_out.ogg"), Transform(entity).Coordinates);
     }
 
     private void OnCapturePointResult(CapturePointResultEvent ev)
