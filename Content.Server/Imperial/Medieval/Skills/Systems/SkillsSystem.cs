@@ -4,15 +4,15 @@ using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
 using Content.Shared.Administration;
+using Content.Shared.Examine;
 using Content.Shared.GameTicking;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Imperial.Medieval.Skills;
 
@@ -29,6 +29,7 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
     [Dependency] private readonly IBanManager _ban = default!;
     [Dependency] private readonly IAdminManager _admin = default!;
 
+
     private TimeSpan _nextUpdate = TimeSpan.Zero;
 
     public override void Initialize()
@@ -43,6 +44,8 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
 
         SubscribeNetworkEvent<SetSkillLevelMessage>(OnSetSkillLevel);
+
+        SubscribeLocalEvent<SkillsComponent, ExaminedEvent>(OnExamined);
     }
     public bool TryGetSkill(EntityUid uid, string skillId, out int level)
     {
@@ -137,5 +140,39 @@ public sealed partial class SkillsSystem : SharedSkillsSystem
 
         UpdateAgility(frameTime);
         UpdateVitality(frameTime);
+    }
+
+    private void OnExamined(EntityUid uid, SkillsComponent comp, ExaminedEvent args)
+    {
+        var message = new FormattedMessage();
+
+        foreach (var level in comp.Levels)
+        {
+            message.AddText($"{Loc.GetString($"skill-{level.Key.ToLower()}-name")}: ");
+
+            string hex = GetColorForDiff(0);
+            if (TryComp<SkillsComponent>(args.Examiner, out var examinerComp))
+                hex = GetColorForDiff(comp.Levels[level.Key] - examinerComp.Levels[level.Key]);
+
+            message.PushColor(Color.FromHex(hex));
+            message.AddText($"{comp.Levels[level.Key]}");
+            message.Pop();
+            message.AddText("   ");
+        }
+
+        args.PushMessage(message);
+    }
+
+    private string GetColorForDiff(int diff)
+    {
+        return diff switch
+        {
+            <= -10 => "#00FF00",
+            <= -3 => "#ADFF2F",
+            <= 2 => "#d1d1d1",
+            >= 10 => "#ff0000",
+            >= 7 => "#ff9100",
+            >= 3 => "#ffea00"
+        };
     }
 }
