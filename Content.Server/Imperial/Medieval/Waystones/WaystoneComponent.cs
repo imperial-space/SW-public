@@ -1,3 +1,4 @@
+using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Robust.Shared.Prototypes;
 
@@ -36,8 +37,9 @@ public sealed partial class WaystoneComponent : Component
     [DataField]
     public TimeSpan BookedTime = TimeSpan.Zero;
 
-    [DataField]
     public EntityUid? BookedAudioStream;
+
+    public DoAfterId? ActiveDoAfterId;
 
     [DataField]
     public int CollectedMoney = 0;

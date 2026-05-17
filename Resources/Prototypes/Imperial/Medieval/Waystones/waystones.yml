@@ -6,8 +6,8 @@
   components:
   - type: Sprite
     noRot: true
-    drawdepth: Overdoors
-    offset: 0, -0.5
+    drawdepth: Mobs
+    offset: 0 , 1
     sprite: Imperial/Medieval/Waystones/waystones.rsi
     state: teleportation_stone
   - type: Physics
@@ -29,11 +29,12 @@
           radius: 0.45
         density: 190
         mask:
-        - MachineMask
+        - MobMask
         layer:
-        - MobLayer
+        - Opaque
         - MidImpassable
-        - LowImpassable
+        - HighImpassable
+        - BulletImpassable
   - type: Waystone
   - type: UserInterface
     interfaces:
