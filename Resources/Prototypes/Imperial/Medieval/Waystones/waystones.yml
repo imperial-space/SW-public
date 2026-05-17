@@ -4,8 +4,8 @@
   description: WaystoneDesc
   parent: BaseStructure
   components:
-  - type: SpriteFade
   - type: Sprite
+    noRot: true
     drawdepth: Overdoors
     offset: 0, -0.5
     sprite: Imperial/Medieval/Waystones/waystones.rsi

@@ -25,19 +25,19 @@ public sealed partial class WaystoneComponent : Component
     public bool IsEnable = true;
 
     [DataField]
-    public EntityUid SelectedWaystone = EntityUid.Invalid;
+    public EntityUid? SelectedWaystone;
 
     [DataField]
     public int CurrentPaid = 0;
 
     [DataField]
-    public EntityUid User = EntityUid.Invalid;
+    public EntityUid? User;
 
     [DataField]
     public TimeSpan BookedTime = TimeSpan.Zero;
 
     [DataField]
-    public EntityUid? BookedAudioStream = EntityUid.Invalid;
+    public EntityUid? BookedAudioStream;
 
     [DataField]
     public int CollectedMoney = 0;
