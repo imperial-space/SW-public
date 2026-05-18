@@ -8,13 +8,13 @@ namespace Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 public sealed partial class ShipDrowningComponent : Component
 {
     [DataField("DrownLevel"), AutoNetworkedField]
-    public int DrownLevel;
+    public float DrownLevel;
 
     [DataField("DrownMaxLevel"), AutoNetworkedField]
     public float DrownMaxLevel;
 
     [DataField("floodPerDamageStage")]
-    public int FloodPerDamageStage = 10;
+    public float FloodPerDamageStage = 4f;
 
     [DataField("passiveDrainPerTick")]
     public int PassiveDrainPerTick = 5;

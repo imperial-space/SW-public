@@ -87,7 +87,7 @@ public sealed class ShipRepairSystem : EntitySystem
         if (!_shipHull.TryGetPreviousDamageTile(currentTile.Tile.TypeId, out var repairedTile))
             return;
 
-        _map.SetTile(args.Target.Value, mapGrid, args.TileCoordinates, new Tile(repairedTile));
+        _map.SetTile(args.Target.Value, mapGrid, args.TileCoordinates, _shipHull.WithTileType(currentTile.Tile, repairedTile));
         _stack.Use(uid, 1);
         args.Handled = true;
     }

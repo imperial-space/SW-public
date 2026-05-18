@@ -18,20 +18,20 @@ public sealed class MedievalAnchorSystem : EntitySystem
 
     private void OnInteractUsing(EntityUid uid, MedievalAnchorComponent component, InteractUsingEvent args)
     {
-        Use(args.User, args.Target);
+        Use(args.User, args.Target, component);
     }
 
     private void OnActivate(EntityUid uid, MedievalAnchorComponent component, ActivateInWorldEvent args)
     {
-        Use(args.User, args.Target);
+        Use(args.User, args.Target, component);
     }
 
-    private void Use(EntityUid playerEntity, EntityUid target)
+    private void Use(EntityUid playerEntity, EntityUid target, MedievalAnchorComponent component)
     {
         if (!_skills.HasSkill(playerEntity, SharedSkillsSystem.StrengthId))
             return;
 
-        var time = 7 - _skills.GetSkillLevel(playerEntity, "Strength") * 0.3f;
+        var time = component.BaseUseTime - _skills.GetSkillLevel(playerEntity, "Strength") * component.StrengthUseTimeModifier;
         time = Math.Max(1.0f, time);
 
         var doAfter = new DoAfterArgs(EntityManager,

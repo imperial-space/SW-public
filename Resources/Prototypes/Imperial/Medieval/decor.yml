@@ -5347,6 +5347,10 @@
       state: shipup
       map: ["enum.SailVisualLayers.Folded"]
       visible: false
+    - sprite: Imperial/Medieval/Decor/shipsailunfasten.rsi
+      state: unfasten
+      map: ["enum.SailVisualLayers.Animation"]
+      visible: false
   - type: MeleeSound
     soundGroups:
       Brute:
@@ -5485,6 +5489,16 @@
     - type: Sprite
       sprite: Imperial/Medieval/Decor/map.rsi
       state: map
+    - type: RadarConsole
+      maxRange: 256
+      followEntity: true
+    - type: ActivatableUI
+      key: enum.RadarConsoleUiKey.Key
+      singleUser: true
+    - type: UserInterface
+      interfaces:
+        enum.RadarConsoleUiKey.Key:
+          type: MedievalCartographerTableBoundUserInterface
 
 
 - type: entity
