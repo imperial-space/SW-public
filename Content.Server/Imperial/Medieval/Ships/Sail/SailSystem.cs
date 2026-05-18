@@ -12,6 +12,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Light.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
@@ -44,7 +45,7 @@ public sealed class SailSystem : EntitySystem
         UpdateSailVisuals(uid, component);
 
         var sailXform = Transform(uid);
-        if (sailXform.GridUid is not { } boat)
+        if (!TryGetGrid(uid, sailXform, out var boat))
             return;
 
         if (HasComp<ImplicitRoofComponent>(boat))
@@ -107,7 +108,7 @@ public sealed class SailSystem : EntitySystem
             var sailEntity = sailComponent.Owner;
             var sailXform = Transform(sailEntity);
 
-            if (sailXform.GridUid is not { } boat)
+            if (!TryGetGrid(sailEntity, sailXform, out var boat))
             {
                 SetLastSailEfficencyMod(sailEntity, sailComponent, 0f);
                 continue;
@@ -183,6 +184,12 @@ public sealed class SailSystem : EntitySystem
 
         component.LastSailEfficencyMod = mod;
         Dirty(uid, component);
+    }
+
+    private bool TryGetGrid(EntityUid uid, TransformComponent xform, out EntityUid grid)
+    {
+        grid = _transform.GetMoverCoordinates(uid, xform).EntityId;
+        return HasComp<MapGridComponent>(grid);
     }
 
     private static string FormatEfficiency(float value)

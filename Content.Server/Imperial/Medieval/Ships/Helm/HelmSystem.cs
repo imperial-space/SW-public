@@ -27,6 +27,7 @@ public sealed class HelmSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private TimeSpan _nextCheckTime;
 
@@ -155,7 +156,7 @@ public sealed class HelmSystem : EntitySystem
         {
             var helm = helmComponent.Owner;
             var helmXform = Transform(helm);
-            if (helmXform.GridUid is not { } boat || !HasComp<MapGridComponent>(boat))
+            if (!TryGetGrid(helm, helmXform, out var boat))
                 continue;
 
             RotateShip(boat, helmComponent);
@@ -239,20 +240,26 @@ public sealed class HelmSystem : EntitySystem
     private float GetSailsEfficiency(EntityUid helm)
     {
         var helmXform = Transform(helm);
-        if (helmXform.GridUid is not { } boat)
+        if (!TryGetGrid(helm, helmXform, out var boat))
             return 0f;
 
         var efficiency = 0f;
-        var childEnumerator = Transform(boat).ChildEnumerator;
-        while (childEnumerator.MoveNext(out var entity))
+        var sailEnumerator = EntityQueryEnumerator<SailComponent, TransformComponent>();
+        while (sailEnumerator.MoveNext(out var sailUid, out var sail, out var sailXform))
         {
-            if (!TryComp<SailComponent>(entity, out var sail))
+            if (!TryGetGrid(sailUid, sailXform, out var sailGrid) || sailGrid != boat)
                 continue;
 
             efficiency += sail.LastSailEfficencyMod;
         }
 
         return efficiency;
+    }
+
+    private bool TryGetGrid(EntityUid uid, TransformComponent xform, out EntityUid grid)
+    {
+        grid = _transform.GetMoverCoordinates(uid, xform).EntityId;
+        return HasComp<MapGridComponent>(grid);
     }
 
     private static float GetSteeringInput(HelmComponent helmComponent)
