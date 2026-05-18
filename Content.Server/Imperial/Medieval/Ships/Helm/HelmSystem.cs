@@ -5,6 +5,7 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Helm;
+using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
@@ -60,14 +61,17 @@ public sealed class HelmSystem : EntitySystem
         if (component.HelmRotation == 0f)
         {
             args.PushMarkup(Loc.GetString("helm-examine-center"));
-            return;
+        }
+        else
+        {
+            var degrees = MathF.Abs(component.HelmRotation).ToString("0.##");
+            if (component.HelmRotation > 0f)
+                args.PushMarkup(Loc.GetString("helm-examine-right", ("degrees", degrees)));
+            else
+                args.PushMarkup(Loc.GetString("helm-examine-left", ("degrees", degrees)));
         }
 
-        var degrees = MathF.Abs(component.HelmRotation).ToString("0.##");
-        if (component.HelmRotation > 0f)
-            args.PushMarkup(Loc.GetString("helm-examine-right", ("degrees", degrees)));
-        else
-            args.PushMarkup(Loc.GetString("helm-examine-left", ("degrees", degrees)));
+        args.PushMarkup(Loc.GetString("helm-examine-sails-efficiency", ("efficiency", FormatEfficiency(GetSailsEfficiency(uid)))));
     }
 
     private void OnMenuOptionSelected(HelmMenuActionEvent args, EntitySessionEventArgs session)
@@ -232,11 +236,35 @@ public sealed class HelmSystem : EntitySystem
         return power;
     }
 
+    private float GetSailsEfficiency(EntityUid helm)
+    {
+        var helmXform = Transform(helm);
+        if (helmXform.GridUid is not { } boat)
+            return 0f;
+
+        var efficiency = 0f;
+        var childEnumerator = Transform(boat).ChildEnumerator;
+        while (childEnumerator.MoveNext(out var entity))
+        {
+            if (!TryComp<SailComponent>(entity, out var sail))
+                continue;
+
+            efficiency += sail.LastSailEfficencyMod;
+        }
+
+        return efficiency;
+    }
+
     private static float GetSteeringInput(HelmComponent helmComponent)
     {
         var diffDegrees = helmComponent.HelmRotation;
         var maxTurnAngle = MathF.Max(1f, MathF.Abs(helmComponent.SteeringAngleForMaxTurn));
         return Math.Clamp(-diffDegrees / maxTurnAngle, -1f, 1f);
+    }
+
+    private static string FormatEfficiency(float value)
+    {
+        return value.ToString("0.##");
     }
 
     private static float NormalizeHelmRotation(float helmRotation)
