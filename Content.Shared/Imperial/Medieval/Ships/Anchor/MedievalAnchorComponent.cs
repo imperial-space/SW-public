@@ -13,4 +13,10 @@ public sealed partial class MedievalAnchorComponent : Component
 {
     [DataField("Enabled")]
     public bool Enabled;
+
+    [DataField("baseUseTime")]
+    public float BaseUseTime = 11f;
+
+    [DataField("strengthUseTimeModifier")]
+    public float StrengthUseTimeModifier = 0.3f;
 }
