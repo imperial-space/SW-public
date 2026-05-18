@@ -53,7 +53,7 @@ public sealed class SeaWindOverlay : Overlay
     private const float SpawnMarginStrength = 6f;
     private const float SpawnDirectionMinOffset = 0.5f;
     private const float SpawnLateralPadding = 2f;
-    private const float SpawnDirectionJitter = 1f;
+    private const float SpawnDirectionJitter = 0.5f;
 
     private const float CurveMin = -0.14f;
     private const float CurveMax = 0.14f;
@@ -192,7 +192,8 @@ public sealed class SeaWindOverlay : Overlay
     private void SpawnParticles(List<WindParticle> particles, Box2 visibleBounds)
     {
         var area = visibleBounds.Width * visibleBounds.Height;
-        var density = ParticleDensityBase + _windStrength * ParticleDensityStrength;
+        var intensity = _windStrength * _stormStrength;
+        var density = ParticleDensityBase + intensity * ParticleDensityStrength;
         var targetCount = Math.Clamp((int) MathF.Ceiling(area * density), MinParticleCount, MaxParticleCount);
         var activeBounds = GetActiveBounds(visibleBounds);
         var missingParticles = targetCount - CountParticlesInBounds(particles, activeBounds);
@@ -231,7 +232,7 @@ public sealed class SeaWindOverlay : Overlay
 
         var speed = RandomRange(SpeedBaseMin, SpeedBaseMax) + intensity * RandomRange(SpeedStrengthMin, SpeedStrengthMax);
         var travelDistance = RandomRange(TravelDistanceBaseMin, TravelDistanceBaseMax) +
-                             _windStrength * RandomRange(TravelDistanceStrengthMin, TravelDistanceStrengthMax);
+                             intensity * RandomRange(TravelDistanceStrengthMin, TravelDistanceStrengthMax);
         var lifetime = travelDistance / MathF.Max(speed, MinimumSpeed);
         var length = RandomRange(LengthBaseMin, LengthBaseMax) + intensity * RandomRange(LengthStrengthMin, LengthStrengthMax);
         var spawnMargin = SpawnMarginBase + _windStrength * SpawnMarginStrength;
@@ -335,8 +336,8 @@ public sealed class SeaWindOverlay : Overlay
             MathF.Min(position.Y - drawBounds.Bottom, drawBounds.Top - position.Y));
 
         var innerDistance = MathF.Max(
-            MathF.Max(visibleBounds.Left - position.X, position.X - drawBounds.Right),
-            MathF.Max(visibleBounds.Bottom - position.Y, position.Y - drawBounds.Top));
+            MathF.Max(visibleBounds.Left - position.X, position.X - visibleBounds.Right),
+            MathF.Max(visibleBounds.Bottom - position.Y, position.Y - visibleBounds.Top));
 
         var fadeWidth = MathF.Max(outerDistance + innerDistance, MinimumFadeWidth);
         return SmoothStep(0f, fadeWidth, outerDistance);
