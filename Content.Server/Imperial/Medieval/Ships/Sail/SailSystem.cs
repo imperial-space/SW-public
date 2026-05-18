@@ -66,6 +66,7 @@ public sealed class SailSystem : EntitySystem
             return;
 
         args.PushMarkup(Loc.GetString("sail-examine-efficiency", ("efficiency", FormatEfficiency(component.LastSailEfficencyMod))));
+        args.PushMarkup(Loc.GetString("sail-examine-wind-strength", ("strength", FormatEfficiency(_cfg.GetCVar(ShipsCCVars.WindPower)))));
     }
 
     private void OnRotate(EntityUid uid, SailComponent component, RotateEvent args)

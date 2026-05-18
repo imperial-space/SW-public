@@ -55,6 +55,7 @@ sail-menu-rotate-left = Повернуть влево
 sail-menu-toggle-fold = Свернуть/развернуть
 sail-menu-rotate-right = Повернуть вправо
 sail-examine-efficiency = Эффективность паруса - { $efficiency }
+sail-examine-wind-strength = Сила ветра - { $strength }
 helm-menu-rotate-left = Повернуть влево
 helm-menu-center = Вернуть в центр
 helm-menu-rotate-right = Повернуть вправо
