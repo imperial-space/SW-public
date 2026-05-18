@@ -308,21 +308,25 @@ public sealed class GrabSystem : EntitySystem
         if (_net.IsClient)
             return;
 
-        if (args.Cancelled || args.Handled)
-            return;
-
         var target = GetEntity(args.Grabber);
-
         if (!TryComp<GrabbableComponent>(target, out var grabbable))
             return;
 
-        if (_random.Prob(args.Chance / 100f))
+        if (args.Cancelled || args.Handled)
+        {
+            grabbable.GrabMissStreak = 0;
+            return;
+        }
+
+        if (_random.Prob((args.Chance + grabbable.GrabMissStreak * 5) / 100f))
         {
             TryStartGrab(uid, target, component, grabbable);
             args.Handled = true;
         }
         else
         {
+            grabbable.GrabMissStreak += 1;
+
             args.Repeat = true;
         }
     }
@@ -462,9 +466,7 @@ public sealed class GrabSystem : EntitySystem
 
         if (TryComp<StandingStateComponent>(grabbable, out var standingComp) &&
             standingComp.Standing == false)
-        {
             chance += 70;
-        }
 
         chance = Math.Clamp(chance, 0, 100);
 
@@ -525,6 +527,8 @@ public sealed class GrabSystem : EntitySystem
             grabbableUid,
             grabbablePhysics,
             grabbableComponent);
+
+        grabbableComponent.GrabMissStreak = 0;
 
         return true;
     }
