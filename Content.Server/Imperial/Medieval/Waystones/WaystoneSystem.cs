@@ -1,5 +1,4 @@
 using System.Numerics;
-using System.Reflection;
 using Content.Server.Chat.Systems;
 using Content.Server.DoAfter;
 using Content.Shared.DoAfter;
@@ -12,14 +11,15 @@ using Content.Shared.Imperial.Medieval.Factions.Components;
 using Content.Shared.Imperial.Medieval.Waystones;
 using Content.Shared.Interaction;
 using Content.Shared.Stacks;
+using Content.Shared.Tag;
 using Content.Shared.Verbs;
-using NetCord;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
-using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
-
 
 public sealed class WaystoneSystem : EntitySystem
 {
@@ -31,6 +31,8 @@ public sealed class WaystoneSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly DoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly SharedMedievalFactionsSystem _factionsSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
 
     public override void Initialize()
     {
@@ -65,8 +67,13 @@ public sealed class WaystoneSystem : EntitySystem
         while (query.MoveNext(out var uid, out var comp))
         {
             Entity<WaystoneComponent> entity = (uid, comp);
-            if (entity.Comp.BookedTime < _timing.CurTime && entity.Comp.User != EntityUid.Invalid)
-                ClearUserSelection(entity, Transform(entity.Comp.User).Coordinates);
+            if (entity.Comp.BookedTime < _timing.CurTime &&
+                entity.Comp.User is { } user && EntityManager.EntityExists(user))
+            {
+                ClearUserSelection(entity, Transform(user).Coordinates);
+
+                _chat.TrySendInGameICMessage(entity, Loc.GetString($"waystone-message-waystone-free"), InGameICChatType.Speak, true);
+            }
 
             if (_timer > 1f)
             {
@@ -95,13 +102,20 @@ public sealed class WaystoneSystem : EntitySystem
         if (!HasComp<HandsComponent>(args.User))
             return;
 
-        if (entity.Comp.IsEnable == false || entity.Comp.CurrentEnergy < 30)
+        if (!entity.Comp.IsEnable)
             return;
+        if (entity.Comp.CurrentEnergy < 30)
+        {
+            _chat.TrySendInGameICMessage(entity, Loc.GetString($"waystone-message-energy-low"), InGameICChatType.Speak, true);
+            return;
+        }
 
+        if (entity.Comp.Faction is not { } faction)
+            return;
         TryComp<MedievalFactionMemberComponent>(args.User, out var member);
-        if (member != null && entity.Comp.Faction != null)
-            if (_factionsSystem.IsRelationEnemy(member.Faction, entity.Comp.Faction!.Value))
-                return;
+        if (member is not null &&
+            _factionsSystem.IsRelationEnemy(member.Faction, faction))
+            return;
 
         if (!_uiSystem.TryOpenUi(entity.Owner, WaystoneUiKey.Key, args.User))
             return;
@@ -110,43 +124,46 @@ public sealed class WaystoneSystem : EntitySystem
         var query = EntityQueryEnumerator<WaystoneComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if (comp.IsEnable == false)
-                return;
+            if (!comp.IsEnable)
+                continue;
 
             Entity<WaystoneComponent> entityTarget = (uid, comp);
             if (entityTarget.Owner == entity.Owner)
                 continue;
 
-            if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
+            if (entityTarget.Comp.Faction is not { } targetFaction)
                 continue;
-            if (_factionsSystem.IsRelationEnemy(entity.Comp.Faction!.Value, entityTarget.Comp.Faction!.Value))
+            if (_factionsSystem.IsRelationEnemy(faction, targetFaction))
                 continue;
-            if (member != null && _factionsSystem.IsRelationEnemy(member.Faction, entityTarget.Comp.Faction!.Value))
+            if (member is not null &&
+                _factionsSystem.IsRelationEnemy(member.Faction, targetFaction))
                 continue;
 
-            infoList.Add(new WaystoneInfo(GetNetEntity(entityTarget), entityTarget.Comp.Name, CountDeparturePrice(entity, entityTarget, args.User), CountArrivalPrice(entity, entityTarget, args.User), entity.Comp.IsEnable));
+            infoList.Add(new WaystoneInfo(GetNetEntity(entityTarget), entityTarget.Comp.Name, CountDeparturePrice(entity, args.User), CountArrivalPrice(entityTarget, args.User), entity.Comp.IsEnable));
         }
 
         _uiSystem.SetUiState(entity.Owner, WaystoneUiKey.Key, new WaystoneUpdateState(infoList));
     }
 
-    private int CountDeparturePrice(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
+    private int CountDeparturePrice(Entity<WaystoneComponent> entity, EntityUid user)
     {
-        if (!TryComp<MedievalFactionMemberComponent>(user, out var member) || entity.Comp.Faction == string.Empty)
+        if (!TryComp<MedievalFactionMemberComponent>(user, out var member) ||
+            entity.Comp.Faction is not { Id: { Length: > 0 } } faction)
             return entity.Comp.DeparturePrice;
 
-        int depPrice = _factionsSystem.IsRelationUnion(member.Faction, entity.Comp.Faction!.Value) ? (int)(entity.Comp.DeparturePrice / 2) : entity.Comp.DeparturePrice;
-        depPrice = member.Faction == entity.Comp.Faction!.Value ? 0 : depPrice;
+        int depPrice = _factionsSystem.IsRelationUnion(member.Faction, faction) ? (int)(entity.Comp.DeparturePrice / 2) : entity.Comp.DeparturePrice;
+        depPrice = member.Faction == faction ? 0 : depPrice;
         return depPrice;
     }
 
-    private int CountArrivalPrice(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget, EntityUid user)
+    private int CountArrivalPrice(Entity<WaystoneComponent> entityTarget, EntityUid user)
     {
-        if (!TryComp<MedievalFactionMemberComponent>(user, out var member) || entity.Comp.Faction == string.Empty)
+        if (!TryComp<MedievalFactionMemberComponent>(user, out var member) ||
+            entityTarget.Comp.Faction is not { Id: { Length: > 0 } } targetFaction)
             return entityTarget.Comp.ArrivalPrice;
 
-        int arrPrice = _factionsSystem.IsRelationUnion(member.Faction, entityTarget.Comp.Faction!.Value) ? (int)(entityTarget.Comp.ArrivalPrice / 2) : entityTarget.Comp.ArrivalPrice;
-        arrPrice = member.Faction == entityTarget.Comp.Faction!.Value ? 0 : arrPrice;
+        int arrPrice = _factionsSystem.IsRelationUnion(member.Faction, targetFaction) ? (int)(entityTarget.Comp.ArrivalPrice / 2) : entityTarget.Comp.ArrivalPrice;
+        arrPrice = member.Faction == targetFaction ? 0 : arrPrice;
         return arrPrice;
     }
 
@@ -155,69 +172,58 @@ public sealed class WaystoneSystem : EntitySystem
         if (!TryComp<WaystoneComponent>(GetEntity(args.TargetWaystone), out var targetComp))
             return;
 
-        if (entity.Comp.IsEnable == false || targetComp.IsEnable == false || entity.Comp.CurrentEnergy < 30)
+        if (!entity.Comp.IsEnable || !targetComp.IsEnable || entity.Comp.CurrentEnergy < 30)
             return;
 
         TryComp<MedievalFactionMemberComponent>(args.Actor, out var member);
-        var faction = entity.Comp.Faction;
-        var factionTarget = targetComp.Faction;
-        if (faction == null || factionTarget == null)
+        if (entity.Comp.Faction is not { } faction ||
+            targetComp.Faction is not { } targetFaction ||
+            _factionsSystem.IsRelationEnemy(faction, targetFaction))
             return;
-        if (_factionsSystem.IsRelationEnemy(faction.Value, factionTarget.Value))
-            return;
-        if (member != null && _factionsSystem.IsRelationEnemy(member.Faction, targetComp.Faction!.Value))
-            return;
-
-        if (member != null && _factionsSystem.IsRelationEnemy(member.Faction, entity.Comp.Faction!.Value))
+        if (member is not null &&
+            (_factionsSystem.IsRelationEnemy(member.Faction, targetFaction) ||
+            _factionsSystem.IsRelationEnemy(member.Faction, faction)))
             return;
 
-        if (entity.Comp.IsEnable == false)
-            return;
+        var targetUid = GetEntity(args.TargetWaystone);
+        entity.Comp.SelectedWaystone = targetUid;
 
-        var player = args.Actor;
-
-        if (player == EntityUid.Invalid)
-            return;
-
-        entity.Comp.SelectedWaystone = GetEntity(args.TargetWaystone);
-
-        _uiSystem.CloseUi(entity.Owner, WaystoneUiKey.Key, player);
+        _uiSystem.CloseUi(entity.Owner, WaystoneUiKey.Key, args.Actor);
 
         var randomIndex = _random.Next(1, 21);
 
         entity.Comp.BookedTime = _timing.CurTime + TimeSpan.FromSeconds(10);
         entity.Comp.User = args.Actor;
 
-        int total = CountDeparturePrice(entity, new (entity.Comp.SelectedWaystone, targetComp), args.Actor) + CountArrivalPrice(entity, new (entity.Comp.SelectedWaystone, targetComp), args.Actor);
+        int total = CountDeparturePrice(entity, args.Actor) + CountArrivalPrice(new(targetUid, targetComp), args.Actor);
         if (total == 0)
             PrepareToTeleport(entity, args.Actor);
         else
+        {
             _chat.TrySendInGameICMessage(entity, Loc.GetString($"waystone-phrase-{randomIndex}"), InGameICChatType.Speak, true);
+
+            var param = AudioParams.Default.WithLoop(true);
+            entity.Comp.BookedAudioStream = _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/cat_purring.ogg"), Transform(entity).Coordinates, param)?.Entity;
+        }
     }
 
     public void OnInteractUsing(Entity<WaystoneComponent> entity, ref InteractUsingEvent args)
     {
-        if (entity.Comp.User == EntityUid.Invalid)
+        if (entity.Comp.SelectedWaystone is not { } targetUid ||
+            !TryComp<WaystoneComponent>(targetUid, out var targetComp))
             return;
 
-        if (!TryComp<WaystoneComponent>(entity.Comp.SelectedWaystone, out var targetComp))
-            return;
-        Entity<WaystoneComponent> entityTarget = new(entity.Comp.SelectedWaystone, targetComp);
+        Entity<WaystoneComponent> entityTarget = (targetUid, targetComp);
 
-        if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
+        if (entity.Comp.Faction is null || entityTarget.Comp.Faction is null)
             return;
-        int total = CountArrivalPrice(entity, entityTarget, args.User) + CountDeparturePrice(entity, entityTarget, args.User);
+        int total = CountArrivalPrice(entityTarget, args.User) + CountDeparturePrice(entity, args.User);
         int needed = total - entity.Comp.CurrentPaid;
-        if (needed == 0)
+        if (needed <= 0)
             return;
 
-        if (!TryComp<StackComponent>(args.Used, out var stack))
-            return;
-
-        var meta = MetaData(args.Used);
-        if (meta.EntityPrototype == null)
-            return;
-        if (!meta.EntityPrototype.ID.Contains("MedievalRevent"))
+        if (!TryComp<StackComponent>(args.Used, out var stack) ||
+            !_tag.HasTag(args.Used, new ProtoId<TagPrototype>("MedievalRevent")))
             return;
 
         int toTake = Math.Min(needed, stack.Count);
@@ -225,6 +231,7 @@ public sealed class WaystoneSystem : EntitySystem
         args.Handled = true;
 
         entity.Comp.CurrentPaid += toTake;
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/coin_in.ogg"), Transform(entity).Coordinates);
         _chat.TrySendInGameICMessage(entity, Loc.GetString($"{Loc.GetString("waystone-message-money-inserted")}: {toTake}. {Loc.GetString("waystone-message-money-inserted-needed")}: {total - entity.Comp.CurrentPaid}"), InGameICChatType.Speak, true);
 
         if (entity.Comp.CurrentPaid >= total)
@@ -236,6 +243,9 @@ public sealed class WaystoneSystem : EntitySystem
         _chat.TrySendInGameICMessage(entity, Loc.GetString("waystone-message-ritual-started"), InGameICChatType.Speak, true);
         entity.Comp.BookedTime += TimeSpan.FromSeconds(5);
 
+        _audioSystem.Stop(entity.Comp.BookedAudioStream);
+        entity.Comp.BookedAudioStream = _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/cat_purring2.ogg"), Transform(entity).Coordinates)?.Entity;
+
         var doAfterArgs = new DoAfterArgs(EntityManager, user, TimeSpan.FromSeconds(entity.Comp.TimeToTeleport), new WaystoneTeleportDoAfterEvent(), entity.Owner, target: entity.Owner)
         {
             BreakOnMove = false,
@@ -243,7 +253,8 @@ public sealed class WaystoneSystem : EntitySystem
             NeedHand = false,
             CancelDuplicate = true
         };
-        _doAfterSystem.TryStartDoAfter(doAfterArgs);
+        _doAfterSystem.TryStartDoAfter(doAfterArgs, out var doAfterId);
+        entity.Comp.ActiveDoAfterId = doAfterId;
     }
 
     private void OnDoAfter(Entity<WaystoneComponent> entity, ref WaystoneTeleportDoAfterEvent args)
@@ -255,7 +266,9 @@ public sealed class WaystoneSystem : EntitySystem
             return;
         }
 
-        if (!TryComp<WaystoneComponent>(entity.Comp.SelectedWaystone, out var targetComp) || targetComp.IsEnable == false)
+        if (entity.Comp.SelectedWaystone is not { } selectedWaystone ||
+            !TryComp<WaystoneComponent>(selectedWaystone, out var targetComp)||
+            !targetComp.IsEnable)
         {
             _chat.TrySendInGameICMessage(entity, Loc.GetString("waystone-message-connection-loss"), InGameICChatType.Speak, true);
             ClearUserSelection(entity, Transform(args.User).Coordinates);
@@ -263,30 +276,37 @@ public sealed class WaystoneSystem : EntitySystem
             return;
         }
 
-        ExecuteTeleport(entity, new Entity<WaystoneComponent>(entity.Comp.SelectedWaystone, targetComp));
+        ExecuteTeleport(entity, new Entity<WaystoneComponent>(selectedWaystone, targetComp));
 
         args.Handled = true;
     }
 
     private void ExecuteTeleport(Entity<WaystoneComponent> entity, Entity<WaystoneComponent> entityTarget)
     {
+        if (entity.Comp.User is not { } user ||
+            !EntityManager.EntityExists(user))
+            return;
+
+        if (entity.Comp.Faction is null || entityTarget.Comp.Faction is null)
+            return;
+
         var xform = Transform(entityTarget);
 
         var angle = _random.NextFloat(0, MathF.PI * 2);
         var dist = 1.5f;
         var offset = new Vector2(MathF.Cos(angle) * dist, MathF.Sin(angle) * dist);
 
-        if (entity.Comp.Faction == null || entityTarget.Comp.Faction == null)
-            return;
+        _transform.SetCoordinates(user, xform.Coordinates.Offset(offset));
 
-        _transform.SetCoordinates(entity.Comp.User, xform.Coordinates.Offset(offset));
-
-        entity.Comp.CollectedMoney += CountDeparturePrice(entity, entityTarget, entity.Comp.User);
-        entityTarget.Comp.CollectedMoney += CountArrivalPrice(entity, entityTarget, entity.Comp.User);
+        entity.Comp.CollectedMoney += CountDeparturePrice(entity, user);
+        entityTarget.Comp.CollectedMoney += CountArrivalPrice(entityTarget, user);
 
         entity.Comp.CurrentPaid = 0;
 
         entity.Comp.CurrentEnergy -= 30;
+
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/Effects/teleport.ogg"), Transform(entity).Coordinates);
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/Effects/teleport.ogg"), Transform(entityTarget).Coordinates);
 
         ClearUserSelection(entity, xform.Coordinates.Offset(offset));
     }
@@ -294,8 +314,11 @@ public sealed class WaystoneSystem : EntitySystem
     private void ClearUserSelection(Entity<WaystoneComponent> entity, EntityCoordinates coords)
     {
         entity.Comp.BookedTime = TimeSpan.Zero;
-        entity.Comp.User = EntityUid.Invalid;
-        entity.Comp.SelectedWaystone = EntityUid.Invalid;
+        entity.Comp.User = null;
+        entity.Comp.SelectedWaystone = null;
+
+        _audioSystem.Stop(entity.Comp.BookedAudioStream);
+        entity.Comp.BookedAudioStream = null;
 
         DispenseMoney(entity, coords);
     }
@@ -316,7 +339,7 @@ public sealed class WaystoneSystem : EntitySystem
                 {
                     ClearUserSelection(entity, Transform(user).Coordinates);
 
-                    _chat.TrySendInGameICMessage(entity, Loc.GetString($"waystone-message-ritual-cancelled"), InGameICChatType.Speak, true);
+                    _doAfterSystem.Cancel(entity.Comp.ActiveDoAfterId);
                 },
                 Priority = 1
             };
@@ -325,7 +348,7 @@ public sealed class WaystoneSystem : EntitySystem
 
         if (TryComp<MedievalFactionMemberComponent>(args.User, out var member))
         {
-            if (entity.Comp.Faction != string.Empty && member.Faction == entity.Comp.Faction!.Value)
+            if (entity.Comp.Faction != string.Empty && member.Faction == entity.Comp.Faction)
             {
                 if (entity.Comp.CollectedMoney > 0)
                 {
@@ -377,6 +400,8 @@ public sealed class WaystoneSystem : EntitySystem
 
             amount -= toSpawn;
         }
+
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/coin_out.ogg"), Transform(entity).Coordinates);
     }
 
     private void DispenseIncount(Entity<WaystoneComponent> entity, EntityCoordinates coords)
@@ -400,6 +425,8 @@ public sealed class WaystoneSystem : EntitySystem
 
             amount -= toSpawn;
         }
+
+        _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/coin_out.ogg"), Transform(entity).Coordinates);
     }
 
     private void OnCapturePointResult(CapturePointResultEvent ev)
@@ -424,7 +451,7 @@ public sealed class WaystoneSystem : EntitySystem
     {
         if (!TryComp<MedievalFactionMemberComponent>(args.Actor, out var member))
             return;
-        if (member.Faction != entity.Comp.Faction!.Value)
+        if (member.Faction != entity.Comp.Faction)
             return;
 
         if (args.DeparturePrice < 0 || args.ArrivalPrice < 0)
@@ -441,7 +468,7 @@ public sealed class WaystoneSystem : EntitySystem
 
     private void UpdateAdminUI(Entity<WaystoneComponent> entity)
     {
-        var info = new WaystoneInfo(GetNetEntity(entity), entity.Comp.Name, entity.Comp.ArrivalPrice, entity.Comp.DeparturePrice, entity.Comp.IsEnable);
+        var info = new WaystoneInfo(GetNetEntity(entity), entity.Comp.Name, entity.Comp.DeparturePrice, entity.Comp.ArrivalPrice, entity.Comp.IsEnable);
         var state = new WaystoneUpdateState(new List<WaystoneInfo> { info });
 
         _uiSystem.SetUiState(entity.Owner, WaystoneUiKey.AdminKey, state);
@@ -449,7 +476,7 @@ public sealed class WaystoneSystem : EntitySystem
 
     private void OnExamined(Entity<WaystoneComponent> entity, ref ExaminedEvent args)
     {
-        if (entity.Comp.IsEnable == false)
+        if (!entity.Comp.IsEnable)
         {
             args.PushMarkup(Loc.GetString("waystone-examine-headeroff"));
             return;
@@ -470,7 +497,7 @@ public sealed class WaystoneSystem : EntitySystem
         if (!TryComp<MedievalFactionMemberComponent>(args.Examiner, out var member))
             return;
 
-        if (member.Faction == entity.Comp.Faction!.Value && entity.Comp.Faction != string.Empty)
+        if (member.Faction == entity.Comp.Faction && entity.Comp.Faction != string.Empty)
         {
             args.PushMarkup(Loc.GetString("waystone-examine-collected",
                 ("money", entity.Comp.CollectedMoney)));
