@@ -46,31 +46,30 @@ public sealed partial class MedievalDashSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var enumerator = EntityQueryEnumerator<MedievalDashComponent>();
+        var enumerator = EntityQueryEnumerator<MedievalDashComponent, PhysicsComponent>();
 
-        while (enumerator.MoveNext(out var uid, out var component))
+        while (enumerator.MoveNext(out var uid, out var dashComponent, out var physicsComponent))
         {
             if (HasComp<PhaseSpaceShadowComponent>(uid))
             {
-                float curDisFromStart = Vector2.Distance(_transformSystem.GetWorldPosition(uid), component.StartDashPos);
-                if (component.LegalEndDashPos != null &&
-                    curDisFromStart > Vector2.Distance(component.LegalEndDashPos.Value, component.StartDashPos))
+                float curDisFromStart = Vector2.Distance(_transformSystem.GetWorldPosition(uid), dashComponent.StartDashPos);
+                if (dashComponent.LegalEndDashPos != null &&
+                    curDisFromStart > Vector2.Distance(dashComponent.LegalEndDashPos.Value, dashComponent.StartDashPos))
                 {
-                    _transformSystem.SetWorldPosition(uid, component.LegalEndDashPos.Value);
+                    _transformSystem.SetWorldPosition(uid, dashComponent.LegalEndDashPos.Value);
                     _physicsSystem.SetLinearVelocity(uid, Vector2.Zero);
                 }
             }
 
-            if (_timing.CurTime < component.DashEndTime) continue;
-            if (!component.IsDashing) continue;
+            if (_timing.CurTime > dashComponent.DashEndTime && dashComponent.IsDashing ||
+                physicsComponent.LinearVelocity.LengthSquared() < 0.04f)
+            {
+                dashComponent.IsDashing = false;
+                var ev = new DashEndedEvent();
+                RaiseLocalEvent(uid, ref ev);
 
-            component.IsDashing = false;
-            var ev = new DashEndedEvent();
-            RaiseLocalEvent(uid, ref ev);
-
-            if (_net.IsClient) return;
-
-            RemComp<PhaseSpaceShadowComponent>(uid);
+                RemComp<PhaseSpaceShadowComponent>(uid); // Тут раньше стояло условие, что это обрабатывать может только сервер. Я не знаю зачем, так как это создавало эффект на клиенте, когда экран трясся 0.5 секунды, если ударится в стену.
+            }
         }
     }
 
@@ -174,30 +173,28 @@ public sealed partial class MedievalDashSystem : EntitySystem
         return false;
     }
 
-    private float? GetDashDistanceCollision(EntityUid uid, Vector2 direction, float maxDistance)
+    private float GetDashDistanceCollision(EntityUid uid, Vector2 direction, float maxDistance)
     {
         var xform = Transform(uid);
         var mask = (int)(CollisionGroup.Impassable | CollisionGroup.LowImpassable);
 
-        for (int i = -10; i < 10; i++)
+
+        var ray = new CollisionRay(_transformSystem.GetWorldPosition(uid), direction, mask);
+
+        var results = _physicsSystem.IntersectRay(
+        xform.MapID,
+        ray,
+        maxDistance,
+        uid,
+        false);
+
+
+        foreach (var result in results)
         {
-            var ray = new CollisionRay(_transformSystem.GetWorldPosition(uid), Angle.FromDegrees(i).RotateVec(direction), mask);
-
-            var results = _physicsSystem.IntersectRay(
-            xform.MapID,
-            ray,
-            maxDistance,
-            uid,
-            false
-        );
-
-            foreach (var result in results)
-            {
-                if (result.HitEntity != EntityUid.Invalid)
-                    return Math.Max(0, result.Distance - 0.75f);
-            }
+            if (result.HitEntity != EntityUid.Invalid)
+                return Math.Max(0, result.Distance - 0.5f);
         }
 
-        return null;
+        return maxDistance;
     }
 }
