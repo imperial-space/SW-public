@@ -10,6 +10,7 @@ using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Light.Components;
+using Content.Shared.Maps;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
@@ -28,6 +29,7 @@ public sealed class SailSystem : EntitySystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
 
     private TimeSpan _nextCheckTime;
 
@@ -156,8 +158,12 @@ public sealed class SailSystem : EntitySystem
             if (MathF.Abs(forceFactor) < 0.001f)
                 continue;
 
-            var weightDivider = GetWeightDivider(boat);
-            var impulseMagnitude = stormLevel * windPower * sailComponent.SailSize / weightDivider;
+            if (!TryComp<MapGridComponent>(boat, out var mapGrid) ||
+                !TryGetOverloadCeil(boat, mapGrid, sailComponent.OverloadCeilPerTile, out var overloadCeil))
+                continue;
+
+            var weight = _rdWeight.GetTotal(boat);
+            var impulseMagnitude = GetImpulseMagnitude(stormLevel * windPower * sailComponent.SailSize, overloadCeil, weight);
             var localImpulse = Vector2.UnitY * (impulseMagnitude * forceFactor);
             var worldImpulse = shipDirection.RotateVec(localImpulse);
 
@@ -197,12 +203,6 @@ public sealed class SailSystem : EntitySystem
         return value.ToString("0.##");
     }
 
-    private float GetWeightDivider(EntityUid boat)
-    {
-        var weight = _rdWeight.GetTotal(boat);
-        return MathF.Max(1f, 1f + weight * 0.01f);
-    }
-
     private static float GetForceFactorByAngle(Angle sailDirection, Angle windDirection)
     {
         var diff = MathF.Abs((float) Angle.ShortestDistance(sailDirection, windDirection).Degrees);
@@ -222,6 +222,27 @@ public sealed class SailSystem : EntitySystem
     private float GetShipSpeed(EntityUid boat)
     {
         return _physics.GetMapLinearVelocity(boat).Length();
+    }
+
+    private bool TryGetOverloadCeil(EntityUid gridUid, MapGridComponent mapGrid, float overloadCeilPerTile, out float overloadCeil)
+    {
+        var totalTiles = 0;
+        var allTiles = _map.GetAllTilesEnumerator(gridUid, mapGrid);
+        while (allTiles.MoveNext(out _))
+        {
+            totalTiles++;
+        }
+
+        overloadCeil = totalTiles * overloadCeilPerTile;
+        return totalTiles > 0;
+    }
+
+    private static float GetImpulseMagnitude(float power, float overloadCeil, float weight)
+    {
+        if (weight <= 0f || weight <= overloadCeil)
+            return power;
+
+        return power * overloadCeil / weight;
     }
 
     private void OnFold(EntityUid uid, SailComponent component, SailFoldEvent args)

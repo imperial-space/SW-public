@@ -5,6 +5,8 @@ using Content.Shared._RD.Weight.Systems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Imperial.Medieval.Ships.Oar;
 using Content.Shared.Imperial.Medieval.Skills;
+using Content.Shared.Maps;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 
@@ -17,8 +19,7 @@ public sealed class OarSystem : EntitySystem
     [Dependency] private readonly SharedSkillsSystem _skills = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly RDWeightSystem _rdWeight = default!;
-
-    private const float MinWeight = 10f;
+    [Dependency] private readonly SharedMapSystem _map = default!;
 
     public override void Initialize()
     {
@@ -37,31 +38,56 @@ public sealed class OarSystem : EntitySystem
         if (!TryComp<OarComponent>(item, out var oarComp))
             return;
 
-        Push(oarComp.Direction, oarComp.Power, args.User);
+        Push(oarComp.Direction, oarComp.Power, oarComp.OverloadCeilPerTile, args.User);
         args.Handled = true;
         args.Repeat = true;
     }
 
-    private void Push(Angle direction, float power, EntityUid player)
+    private void Push(Angle direction, float power, float overloadCeilPerTile, EntityUid player)
     {
-        power += power * (_skills.GetSkillLevel(player, "Strength") - 10) * 0.1f;
+        power += power * (_skills.GetSkillLevel(player, "Strength") - 10) * 0.03f;
 
         var boat = _transform.GetParentUid(player);
         if (TryComp<ShuttleComponent>(boat, out var shuttle) && !shuttle.Enabled)
             return;
 
-        var weight = MathF.Max(MinWeight, _rdWeight.GetTotal(boat));
+        if (!TryComp<MapGridComponent>(boat, out var mapGrid) ||
+            !TryGetOverloadCeil(boat, mapGrid, overloadCeilPerTile, out var overloadCeil))
+            return;
+
+        var weight = _rdWeight.GetTotal(boat);
 
         var normalizedAngle = (float) direction.Theta % (2 * MathF.PI);
         if (normalizedAngle < 0)
             normalizedAngle += 2 * MathF.PI;
 
         var directionVec = new Vector2(MathF.Cos(normalizedAngle), MathF.Sin(normalizedAngle));
-        var impulse = directionVec * (power / weight);
+        var impulse = directionVec * GetImpulsePower(power, overloadCeil, weight);
         if (!TryComp<PhysicsComponent>(boat, out var body))
             return;
 
         _physics.WakeBody(boat);
         _physics.ApplyLinearImpulse(boat, impulse, body: body);
+    }
+
+    private bool TryGetOverloadCeil(EntityUid gridUid, MapGridComponent mapGrid, float overloadCeilPerTile, out float overloadCeil)
+    {
+        var totalTiles = 0;
+        var allTiles = _map.GetAllTilesEnumerator(gridUid, mapGrid);
+        while (allTiles.MoveNext(out _))
+        {
+            totalTiles++;
+        }
+
+        overloadCeil = totalTiles * overloadCeilPerTile;
+        return totalTiles > 0;
+    }
+
+    private static float GetImpulsePower(float power, float overloadCeil, float weight)
+    {
+        if (weight <= 0f || weight <= overloadCeil)
+            return power;
+
+        return power * overloadCeil / weight;
     }
 }
