@@ -14,7 +14,7 @@ public sealed partial class ShipDrowningComponent : Component
     public float DrownMaxLevel;
 
     [DataField("floodPerDamageStage")]
-    public float FloodPerDamageStage = 4f;
+    public float FloodPerDamageStage = 0.1f;
 
     [DataField("passiveDrainPerTick")]
     public int PassiveDrainPerTick = 5;
