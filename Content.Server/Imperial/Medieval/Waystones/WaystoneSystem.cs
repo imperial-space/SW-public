@@ -91,7 +91,7 @@ public sealed class WaystoneSystem : EntitySystem
         //if (isInHolyDistrict)
         //    regenRate *= 2.0f;
 
-        entity.Comp.CurrentEnergy = Math.Min(entity.Comp.MaxEnergy, entity.Comp.CurrentEnergy + 1f);
+        entity.Comp.CurrentEnergy = Math.Min(entity.Comp.MaxEnergy, entity.Comp.CurrentEnergy + entity.Comp.EnergyRegenRate);
     }
 
     private void OnActivate(Entity<WaystoneComponent> entity, ref ActivateInWorldEvent args)
@@ -429,24 +429,6 @@ public sealed class WaystoneSystem : EntitySystem
         _audioSystem.PlayPvs(new SoundPathSpecifier("/Audio/Imperial/Medieval/coin_out.ogg"), Transform(entity).Coordinates);
     }
 
-    private void OnCapturePointResult(CapturePointResultEvent ev)
-    {
-        if (!TryComp<CapturePointComponent>(GetEntity(ev.Point), out var capturePoint))
-            return;
-
-        var query = EntityQueryEnumerator<WaystoneComponent>();
-        while (query.MoveNext(out var uid, out var comp))
-        {
-            if (comp.LinkId == string.Empty)
-                continue;
-
-            if (comp.LinkId != capturePoint.LinkId)
-                continue;
-
-            comp.Faction = ev.WinnerFaction;
-        }
-    }
-
     private void OnWaystoneState(Entity<WaystoneComponent> entity, ref WaystoneStateMessage args)
     {
         if (!TryComp<MedievalFactionMemberComponent>(args.Actor, out var member))
@@ -503,6 +485,65 @@ public sealed class WaystoneSystem : EntitySystem
                 ("money", entity.Comp.CollectedMoney)));
 
             args.PushMarkup(Loc.GetString("waystone-examine-headerCollector"));
+        }
+    }
+
+    private void OnCapturePointResult(CapturePointResultEvent ev)
+    {
+        if (!TryComp<CapturePointComponent>(GetEntity(ev.Point), out var capturePoint))
+            return;
+
+        var validLinks = new HashSet<string>();
+        var query = EntityQueryEnumerator<WaystoneComponent>();
+
+        while (query.MoveNext(out _, out var comp))
+        {
+            if (string.IsNullOrEmpty(comp.LinkId) || comp.LinkId != capturePoint.LinkId)
+                continue;
+
+            comp.Faction = ev.WinnerFaction;
+
+            if (!string.IsNullOrEmpty(comp.LinkedCircle))
+                validLinks.Add(comp.LinkedCircle);
+        }
+
+        if (validLinks.Count == 0)
+            return;
+
+        var circlesToReplace = new List<(EntityUid OldUid, EntityCoordinates Coords, string LinkedCircle)>();
+        var queryCircle = EntityQueryEnumerator<WaystoneCircleComponent, TransformComponent>();
+
+        while (queryCircle.MoveNext(out var circleUid, out var circleComp, out var xform))
+        {
+            if (string.IsNullOrEmpty(circleComp.LinkedCircle))
+                continue;
+
+            if (validLinks.Contains(circleComp.LinkedCircle))
+            {
+                circlesToReplace.Add((circleUid, xform.Coordinates, circleComp.LinkedCircle));
+            }
+        }
+
+        if (circlesToReplace.Count == 0)
+            return;
+
+        string prototype = ev.WinnerFaction.ToString() switch
+        {
+            "Legion" => "WaystoneBlueCircle",
+            "Insurgency" => "WaystoneRedCircle",
+            _ => "WaystoneYellowCircle" // По идее это никогда не сработает, но добавил
+        };
+
+        foreach (var circleData in circlesToReplace)
+        {
+            TryQueueDel(circleData.OldUid);
+
+            var newCircle = Spawn(prototype, circleData.Coords);
+
+            if (TryComp<WaystoneCircleComponent>(newCircle, out var circleCompNew))
+            {
+                circleCompNew.LinkedCircle = circleData.LinkedCircle;
+            }
         }
     }
 }
