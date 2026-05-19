@@ -71,7 +71,9 @@ public sealed class ShipsCCVars : CVars
     /// радиус спавна волн
     /// </summary>
     public static readonly CVarDef<float> WaveSpawnRange =
-        CVarDef.Create("ships.wavespawnrange", 40f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.wavespawnrange", 35.5f, CVar.REPLICATED | CVar.SERVER);
+    public static readonly CVarDef<float> WaveMinSpawnDistance =
+        CVarDef.Create("ships.waveminspawndistance", 3f, CVar.REPLICATED | CVar.SERVER);
     /// <summary>
     /// угол разброса волн
     /// </summary>

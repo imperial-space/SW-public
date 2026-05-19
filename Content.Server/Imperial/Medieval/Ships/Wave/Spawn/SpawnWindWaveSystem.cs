@@ -61,7 +61,7 @@ public sealed class SpawnWindWaveSystem : EntitySystem
 
                     var windDirection = waveOffset / offsetLength;
                     var spawnDirection = -windDirection;
-                    var spawnDistance = shipRadius + offsetLength;
+                    var spawnDistance = shipRadius + _cfg.GetCVar(ShipsCCVars.WaveMinSpawnDistance) + offsetLength;
                     if (!TryFindValidSpawnPosition(seaMapId, shipCenter.Position, spawnDirection, spawnDistance, out var waveCoords))
                         continue;
 
