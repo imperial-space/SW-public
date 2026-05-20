@@ -152,7 +152,14 @@ public sealed class PlayerDrowningSystem : EntitySystem
             return;
         }
 
+        SinkEntity(uid, drowner);
+    }
+
+    private void SinkEntity(EntityUid uid, PlayerDrowningComponent component)
+    {
+        var coordinates = _transform.GetMapCoordinates(uid);
         QueueDel(uid);
+        Spawn(component.SplashEffect, coordinates);
     }
 
     private bool IsAttachedToGhost(EntityUid uid, TransformComponent transform)
