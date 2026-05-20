@@ -32,7 +32,9 @@ public sealed class ServerWindSystem : EntitySystem
 
     public override void Initialize()
     {
-        _cfg.OnValueChanged(ShipsCCVars.StormLevel, OnStormLevelChanged, true);
+        SubscribeLocalEvent<StormLevelChangedEvent>(OnStormLevelChanged);
+
+        _cfg.OnValueChanged(ShipsCCVars.StormLevel, OnStormLevelCVarChanged, true);
     }
 
     public override void Update(float frameTime)
@@ -95,8 +97,6 @@ public sealed class ServerWindSystem : EntitySystem
         stormLevel = Math.Clamp(stormLevel, minStormLevel, maxStormLevel);
         if (Math.Abs(stormLevel - _cfg.GetCVar(ShipsCCVars.StormLevel)) > 0.001f)
             _cfg.SetCVar(ShipsCCVars.StormLevel, stormLevel);
-
-        UpdateStormParallax(stormLevel);
     }
 
     private int FindShips()
@@ -116,7 +116,7 @@ public sealed class ServerWindSystem : EntitySystem
         return count;
     }
 
-    private void OnStormLevelChanged(float stormLevel)
+    private void OnStormLevelCVarChanged(float stormLevel)
     {
         var minStormLevel = _cfg.GetCVar(ShipsCCVars.StormMinLevel);
         var maxStormLevel = _cfg.GetCVar(ShipsCCVars.StormMaxLevel);
@@ -127,9 +127,24 @@ public sealed class ServerWindSystem : EntitySystem
             return;
         }
 
-        _cfg.SetCVar(ShipsCCVars.WindPower, clampedLevel);
-        UpdateStormWeather(clampedLevel);
-        UpdateStormParallax(clampedLevel);
+        RaiseLocalEvent(new StormLevelChangedEvent(clampedLevel));
+    }
+
+    private void OnStormLevelChanged(StormLevelChangedEvent args)
+    {
+        ApplyStormLevel(args.StormLevel);
+    }
+
+    private void ApplyStormLevel(float stormLevel)
+    {
+        UpdateStormWindPower(stormLevel);
+        UpdateStormWeather(stormLevel);
+        UpdateStormParallax(stormLevel);
+    }
+
+    private void UpdateStormWindPower(float stormLevel)
+    {
+        _cfg.SetCVar(ShipsCCVars.WindPower, stormLevel);
     }
 
     private void UpdateStormWeather(float stormLevel)
@@ -212,5 +227,15 @@ public sealed class ServerWindSystem : EntitySystem
             return sea.StormParallax1;
 
         return sea.CalmParallax;
+    }
+}
+
+public sealed class StormLevelChangedEvent : EntityEventArgs
+{
+    public readonly float StormLevel;
+
+    public StormLevelChangedEvent(float stormLevel)
+    {
+        StormLevel = stormLevel;
     }
 }
