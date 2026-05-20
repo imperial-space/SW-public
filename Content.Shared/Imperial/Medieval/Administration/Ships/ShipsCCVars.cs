@@ -57,9 +57,9 @@ public sealed class ShipsCCVars : CVars
     public static readonly CVarDef<float> StormMinLevel =
         CVarDef.Create("ships.stormminlevel", 1f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormMaxLevel =
-        CVarDef.Create("ships.stormmaxlevel", 3f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormmaxlevel", 8f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<float> StormRainLevel =
-        CVarDef.Create("ships.stormrainlevel", 3f, CVar.REPLICATED | CVar.SERVER);
+        CVarDef.Create("ships.stormrainlevel", 4f, CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<string> StormRainWeather =
         CVarDef.Create("ships.stormrainweather", "Rain", CVar.REPLICATED | CVar.SERVER);
     /// <summary>

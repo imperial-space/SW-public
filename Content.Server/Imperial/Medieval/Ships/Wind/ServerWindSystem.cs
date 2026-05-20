@@ -3,6 +3,7 @@ using Content.Server.Shuttles.Components;
 using Content.Server.Weather;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Parallax;
 using Content.Shared.Weather;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
@@ -90,10 +91,12 @@ public sealed class ServerWindSystem : EntitySystem
             stormLevel += 1f;
         else if (roll < increaseChance + decreaseChance)
             stormLevel -= 1f;
-        else
-            return;
 
-        _cfg.SetCVar(ShipsCCVars.StormLevel, Math.Clamp(stormLevel, minStormLevel, maxStormLevel));
+        stormLevel = Math.Clamp(stormLevel, minStormLevel, maxStormLevel);
+        if (Math.Abs(stormLevel - _cfg.GetCVar(ShipsCCVars.StormLevel)) > 0.001f)
+            _cfg.SetCVar(ShipsCCVars.StormLevel, stormLevel);
+
+        UpdateStormParallax(stormLevel);
     }
 
     private int FindShips()
@@ -126,6 +129,7 @@ public sealed class ServerWindSystem : EntitySystem
 
         _cfg.SetCVar(ShipsCCVars.WindPower, clampedLevel);
         UpdateStormWeather(clampedLevel);
+        UpdateStormParallax(clampedLevel);
     }
 
     private void UpdateStormWeather(float stormLevel)
@@ -170,5 +174,43 @@ public sealed class ServerWindSystem : EntitySystem
 
         rainData.EndTime = endTime;
         Dirty(mapUid.Value, weatherComp);
+    }
+
+    private void UpdateStormParallax(float stormLevel)
+    {
+        var seaMaps = new HashSet<MapId>();
+        foreach (var seaComp in EntityManager.EntityQuery<SeaComponent>())
+        {
+            if (seaComp.Disabled)
+                continue;
+
+            var seaParallax = GetStormParallax(stormLevel, seaComp);
+
+            var mapId = _transform.GetMapId(seaComp.Owner);
+            if (mapId == MapId.Nullspace || !seaMaps.Add(mapId))
+                continue;
+
+            if (!_mapSystem.TryGetMap(mapId, out var mapUid))
+                continue;
+
+            var parallax = EnsureComp<ParallaxComponent>(mapUid.Value);
+            if (parallax.Parallax == seaParallax)
+                continue;
+
+            parallax.Parallax = seaParallax;
+            Dirty(mapUid.Value, parallax);
+        }
+    }
+
+    private static string GetStormParallax(float stormLevel, SeaComponent sea)
+    {
+        if (stormLevel >= 7f)
+            return sea.StormParallax3;
+        if (stormLevel >= 5f)
+            return sea.StormParallax2;
+        if (stormLevel >= 3f)
+            return sea.StormParallax1;
+
+        return sea.CalmParallax;
     }
 }
