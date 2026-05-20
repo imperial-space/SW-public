@@ -3,9 +3,11 @@ using System.Numerics;
 using Content.Server.Shuttles.Components;
 using Content.Shared._RD.Weight.Systems;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Oar;
 using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Maps;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
@@ -20,6 +22,7 @@ public sealed class OarSystem : EntitySystem
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly RDWeightSystem _rdWeight = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
 
     public override void Initialize()
     {
@@ -38,24 +41,27 @@ public sealed class OarSystem : EntitySystem
         if (!TryComp<OarComponent>(item, out var oarComp))
             return;
 
-        Push(oarComp.Direction, oarComp.Power, oarComp.OverloadCeilPerTile, args.User);
+        if (!Push(oarComp.Direction, oarComp.Power, oarComp.OverloadCeilPerTile, args.User))
+            return;
+
+        _audio.PlayPvs(MedievalShipSounds.OarUse, args.User);
         args.Handled = true;
         args.Repeat = true;
     }
 
-    private void Push(Angle direction, float power, float overloadCeilPerTile, EntityUid player)
+    private bool Push(Angle direction, float power, float overloadCeilPerTile, EntityUid player)
     {
         power += power * (_skills.GetSkillLevel(player, "Strength") - 10) * 0.03f;
 
         if (!TryGetGrid(player, out var boat))
-            return;
+            return false;
 
         if (TryComp<ShuttleComponent>(boat, out var shuttle) && !shuttle.Enabled)
-            return;
+            return false;
 
         if (!TryComp<MapGridComponent>(boat, out var mapGrid) ||
             !TryGetOverloadCeil(boat, mapGrid, overloadCeilPerTile, out var overloadCeil))
-            return;
+            return false;
 
         var weight = _rdWeight.GetTotalOnGrid(boat);
 
@@ -66,10 +72,11 @@ public sealed class OarSystem : EntitySystem
         var directionVec = new Vector2(MathF.Cos(normalizedAngle), MathF.Sin(normalizedAngle));
         var impulse = directionVec * GetImpulsePower(power, overloadCeil, weight);
         if (!TryComp<PhysicsComponent>(boat, out var body))
-            return;
+            return false;
 
         _physics.WakeBody(boat);
         _physics.ApplyLinearImpulse(boat, impulse, body: body);
+        return true;
     }
 
     private bool TryGetOverloadCeil(EntityUid gridUid, MapGridComponent mapGrid, float overloadCeilPerTile, out float overloadCeil)

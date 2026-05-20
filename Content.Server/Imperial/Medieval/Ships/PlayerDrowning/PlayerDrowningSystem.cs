@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using Content.Server.Imperial.Medieval.Ships.Wave;
 using Content.Shared.Damage;
 using Content.Shared.Ghost;
+using Content.Shared.Imperial.Medieval.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
+using Content.Shared.Maps;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Systems;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Ships.PlayerDrowning;
@@ -21,6 +25,9 @@ public sealed class PlayerDrowningSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movement = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private TimeSpan _nextCheckTime;
 
@@ -157,9 +164,11 @@ public sealed class PlayerDrowningSystem : EntitySystem
 
     private void SinkEntity(EntityUid uid, PlayerDrowningComponent component)
     {
-        var coordinates = _transform.GetMapCoordinates(uid);
+        var mapCoordinates = _transform.GetMapCoordinates(uid);
+        var soundCoordinates = new EntityCoordinates(_map.GetMapOrInvalid(mapCoordinates.MapId), mapCoordinates.Position);
         QueueDel(uid);
-        Spawn(component.SplashEffect, coordinates);
+        Spawn(component.SplashEffect, mapCoordinates);
+        _audio.PlayPvs(_random.Pick(MedievalShipSounds.Drown), soundCoordinates);
     }
 
     private bool IsAttachedToGhost(EntityUid uid, TransformComponent transform)

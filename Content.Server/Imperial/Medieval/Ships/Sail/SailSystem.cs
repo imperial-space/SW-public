@@ -4,6 +4,7 @@ using Content.Server.Shuttles.Components;
 using Content.Shared._RD.Weight.Systems;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Islands;
+using Content.Shared.Imperial.Medieval.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
@@ -11,12 +12,14 @@ using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Light.Components;
 using Content.Shared.Maps;
+using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
+using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Imperial.Medieval.Ships.Sail;
@@ -30,6 +33,8 @@ public sealed class SailSystem : EntitySystem
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly AppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     private TimeSpan _nextCheckTime;
 
@@ -83,6 +88,7 @@ public sealed class SailSystem : EntitySystem
         var delta = args.Direction ? 45f : -45f;
         var newAngle = transformComponent.LocalRotation + Angle.FromDegrees(delta);
         _transform.SetLocalRotation(uid, newAngle);
+        _audio.PlayPvs(_random.Pick(MedievalShipSounds.SailRotate), uid);
         args.Handled = true;
     }
 
@@ -253,6 +259,7 @@ public sealed class SailSystem : EntitySystem
         component.Folded = !component.Folded;
         Dirty(uid, component);
         UpdateSailVisuals(uid, component);
+        _audio.PlayPvs(component.Folded ? MedievalShipSounds.SailClose : MedievalShipSounds.SailOpen, uid);
         args.Handled = true;
     }
 
