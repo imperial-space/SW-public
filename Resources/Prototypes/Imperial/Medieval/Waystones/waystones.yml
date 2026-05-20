@@ -44,20 +44,41 @@
         type: WaystoneBoundUserInterfaceAdmin
   - type: InteractionOutline
 
-- type: decal
+- type: entity
   id: WaystoneRedCircle
-  sprite:
+  name: WaystoneRedCircle
+  description: WaystoneRedCircleDesc
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
     sprite: Imperial/Medieval/Waystones/waystones.rsi
     state: teleportation_stone_red
+  - type: Physics
+    bodyType: Static
+  - type: WaystoneCircle
 
-- type: decal
+- type: entity
   id: WaystoneYellowCircle
-  sprite:
+  name: WaystoneYellowCircle
+  description: WaystoneYellowCircleDesc
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
     sprite: Imperial/Medieval/Waystones/waystones.rsi
     state: teleportation_stone_yellow
+  - type: WaystoneCircle
 
-- type: decal
+- type: entity
   id: WaystoneBlueCircle
-  sprite:
+  name: WaystoneBlueCircle
+  description: WaystoneBlueCircleDesc
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
     sprite: Imperial/Medieval/Waystones/waystones.rsi
     state: teleportation_stone_blue
+  - type: WaystoneCircle

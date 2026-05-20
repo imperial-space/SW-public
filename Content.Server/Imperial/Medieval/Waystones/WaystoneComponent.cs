@@ -50,4 +50,9 @@ public sealed partial class WaystoneComponent : Component
     [DataField]
     public float CurrentEnergy = 100f;
 
+    [DataField]
+    public float EnergyRegenRate = 1f;
+
+    [DataField]
+    public string LinkedCircle = string.Empty;
 }
