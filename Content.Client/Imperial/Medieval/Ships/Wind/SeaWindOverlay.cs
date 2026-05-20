@@ -26,8 +26,8 @@ public sealed class SeaWindOverlay : Overlay
     private const float AngleSmoothSpeed = 4f;
     private const float StrengthSmoothSpeed = 2f;
 
-    private const float ParticleDensityBase = 0.052f;
-    private const float ParticleDensityStrength = 0.09f;
+    private const float ParticleDensityBase = 0.112f;
+    private const float ParticleDensityStrength = 0.0325f;
     private const int MinParticleCount = 34;
     private const int MaxParticleCount = 220;
     private const float ActiveBoundsBasePadding = 1.8f;
@@ -35,22 +35,22 @@ public sealed class SeaWindOverlay : Overlay
     private const float DrawBoundsExtraPadding = 2f;
 
     private const float AngleJitter = 0.1f;
-    private const float SpeedBaseMin = 2.55f;
-    private const float SpeedBaseMax = 4.35f;
-    private const float SpeedStrengthMin = 6f;
-    private const float SpeedStrengthMax = 11f;
-    private const float TravelDistanceBaseMin = 20f;
-    private const float TravelDistanceBaseMax = 28f;
-    private const float TravelDistanceStrengthMin = 18f;
-    private const float TravelDistanceStrengthMax = 32f;
-    private const float LengthBaseMin = 0.7125f;
-    private const float LengthBaseMax = 1.1625f;
-    private const float LengthStrengthMin = 0.6875f;
-    private const float LengthStrengthMax = 1.6875f;
+    private const float SpeedBaseMin = 8.25f;
+    private const float SpeedBaseMax = 14.35f;
+    private const float SpeedStrengthMin = 0.375f;
+    private const float SpeedStrengthMax = 0.6875f;
+    private const float TravelDistanceBaseMin = 38f;
+    private const float TravelDistanceBaseMax = 60f;
+    private const float TravelDistanceStrengthMin = 1.125f;
+    private const float TravelDistanceStrengthMax = 2f;
+    private const float LengthBaseMin = 1.3525f;
+    private const float LengthBaseMax = 2.8325f;
+    private const float LengthStrengthMin = 0.04296875f;
+    private const float LengthStrengthMax = 0.1055f;
     private const float MinimumSpeed = 0.1f;
 
-    private const float SpawnMarginBase = 4f;
-    private const float SpawnMarginStrength = 6f;
+    private const float SpawnMarginBase = 9.6f;
+    private const float SpawnMarginStrength = 0.375f;
     private const float SpawnDirectionMinOffset = 0.5f;
     private const float SpawnLateralPadding = 2f;
     private const float SpawnDirectionJitter = 0.5f;
