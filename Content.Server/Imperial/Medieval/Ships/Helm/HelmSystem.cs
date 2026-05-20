@@ -185,7 +185,7 @@ public sealed class HelmSystem : EntitySystem
         if (!TryComp<PhysicsComponent>(boat, out var body))
             return;
 
-        var weight = MathF.Max(helmComponent.MinShipWeight, _rdWeight.GetTotal(boat));
+        var weight = MathF.Max(helmComponent.MinShipWeight, _rdWeight.GetTotalOnGrid(boat));
         var weightDivider = 1f + weight * 0.01f;
         var steeringInput = GetSteeringInput(helmComponent);
         if (MathF.Abs(steeringInput) < 0.001f)
@@ -278,7 +278,7 @@ public sealed class HelmSystem : EntitySystem
         if (!TryGetOverloadCeil(boat, mapGrid, helmComponent.OverloadCeilPerTile, out overloadCeil))
             return false;
 
-        weight = _rdWeight.GetTotal(boat);
+        weight = _rdWeight.GetTotalOnGrid(boat);
         return true;
     }
 

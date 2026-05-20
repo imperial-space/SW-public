@@ -162,7 +162,7 @@ public sealed class SailSystem : EntitySystem
                 !TryGetOverloadCeil(boat, mapGrid, sailComponent.OverloadCeilPerTile, out var overloadCeil))
                 continue;
 
-            var weight = _rdWeight.GetTotal(boat);
+            var weight = _rdWeight.GetTotalOnGrid(boat);
             var impulseMagnitude = GetImpulseMagnitude(stormLevel * windPower * sailComponent.SailSize, overloadCeil, weight);
             var localImpulse = Vector2.UnitY * (impulseMagnitude * forceFactor);
             var worldImpulse = shipDirection.RotateVec(localImpulse);

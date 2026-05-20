@@ -47,7 +47,9 @@ public sealed class OarSystem : EntitySystem
     {
         power += power * (_skills.GetSkillLevel(player, "Strength") - 10) * 0.03f;
 
-        var boat = _transform.GetParentUid(player);
+        if (!TryGetGrid(player, out var boat))
+            return;
+
         if (TryComp<ShuttleComponent>(boat, out var shuttle) && !shuttle.Enabled)
             return;
 
@@ -55,7 +57,7 @@ public sealed class OarSystem : EntitySystem
             !TryGetOverloadCeil(boat, mapGrid, overloadCeilPerTile, out var overloadCeil))
             return;
 
-        var weight = _rdWeight.GetTotal(boat);
+        var weight = _rdWeight.GetTotalOnGrid(boat);
 
         var normalizedAngle = (float) direction.Theta % (2 * MathF.PI);
         if (normalizedAngle < 0)
@@ -81,6 +83,13 @@ public sealed class OarSystem : EntitySystem
 
         overloadCeil = totalTiles * overloadCeilPerTile;
         return totalTiles > 0;
+    }
+
+    private bool TryGetGrid(EntityUid uid, out EntityUid grid)
+    {
+        var xform = Transform(uid);
+        grid = _transform.GetMoverCoordinates(uid, xform).EntityId;
+        return HasComp<MapGridComponent>(grid);
     }
 
     private static float GetImpulsePower(float power, float overloadCeil, float weight)
