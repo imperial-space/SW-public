@@ -194,7 +194,7 @@ public sealed partial class MedievalDashSystem : EntitySystem
             foreach (var result in results)
             {
                 if (result.HitEntity != EntityUid.Invalid)
-                    return Math.Max(0, result.Distance - 0.75f);
+                    return Math.Max(0, result.Distance - 0.35f);
             }
         }
 

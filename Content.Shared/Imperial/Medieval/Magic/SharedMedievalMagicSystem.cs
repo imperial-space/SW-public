@@ -18,6 +18,7 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -61,6 +62,12 @@ public abstract partial class SharedMedievalMagicSystem : EntitySystem
         Dirty(uid, casterComponent);
 
         _speedModifierSystem.RefreshMovementSpeedModifiers(uid);
+
+        if (_handsSystem.TryGetEmptyHand(args.User, out _) == false)
+        {
+            _popupSystem.PopupClient(Loc.GetString("medieval-magic-free-hand-required"), args.User);
+            return;
+        }
 
         if (args.Cancelled)
         {
