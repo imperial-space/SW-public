@@ -1,0 +1,14 @@
+- type: achievement
+  id: AchievementWarGeneralArcher
+  priority: 15
+  rarity: Common
+  name: "Лук и стрелы"
+  description: "Приправьте ядом!"
+  icon: { sprite: /Textures/Imperial/Medieval/Interface/faction_relations.rsi, state: union }
+  visibility: Visible
+  conditions:
+  - !type:CollectAllItemsCondition
+    progressKey: collectAllProgression
+    requiredJobs: ["MedievalLegionOpcion"]
+    itemPrototypes:
+      MedievalMedalLegion: 10

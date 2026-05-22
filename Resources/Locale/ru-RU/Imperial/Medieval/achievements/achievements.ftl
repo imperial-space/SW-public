@@ -44,7 +44,7 @@ achievement-condition-any-item = любой предмет
 achievement-condition-collect-all = Собрать все предметы: { $targets }
 achievement-condition-collect-any-n = Собрать { $count } из следующих: { $targets }
 
-achievement-condition-location = Посетить [color=#a67d3d]{ $location }[/color] ({ $count } раз)
+achievement-condition-location = Посетить { $location } ({ $count } раз)
 
 achievement-detail-back = Назад к списку
 achievement-detail-conditions-header = Условия для получения:
@@ -70,7 +70,7 @@ achievement-condition-become-entity = Станьте { $targets } (всего { 
 achievement-condition-craft-any = Создайте { $count } любых предметов
 achievement-condition-craft-single = Создайте { $count } { $target }
 achievement-condition-craft-multi-header = Создайте { $count } из следующих предметов:
-achievement-condition-craft-workbench = 
+achievement-condition-craft-workbench =
     {" "}
     Используя: { $benches }
 
