@@ -9,6 +9,7 @@ using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.DoAfter;
 using Content.Shared.Ghost;
 using Content.Shared.Hands.EntitySystems;
+using Content.Shared.Imperial.Medieval.Skills;
 using Content.Shared.Imperial.Medieval.Ships.Anchor;
 using Content.Shared.Imperial.Medieval.Ships.Helm;
 using Content.Shared.Imperial.Medieval.Ships.Hull;
@@ -493,6 +494,9 @@ public sealed class ShipSystemsTest
             physics.SetAngularVelocity(gridUid, 3f, body: body);
 
             user = entMan.SpawnEntity(null, new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
+            var skills = entMan.EnsureComponent<SkillsComponent>(user);
+            skills.Levels[SharedSkillsSystem.StrengthId] = 10;
+
             anchorUp = entMan.SpawnEntity("MedievalAnchorUp", new EntityCoordinates(gridUid, new Vector2(0.5f, 0.5f)));
 
             var lowerEvent = CreateCompletedDoAfter(
@@ -519,7 +523,8 @@ public sealed class ShipSystemsTest
 
             Assert.Multiple(() =>
             {
-                Assert.That(entMan.EntityExists(anchorUp), Is.False);
+                Assert.That(anchorDown, Is.EqualTo(anchorUp));
+                Assert.That(entMan.EntityExists(anchorUp), Is.True);
                 Assert.That(entMan.EntityExists(anchorDown), Is.True);
                 Assert.That(shuttle.Enabled, Is.False);
                 Assert.That(physics.GetMapLinearVelocity(gridUid), Is.EqualTo(Vector2.Zero));
@@ -549,7 +554,8 @@ public sealed class ShipSystemsTest
 
             Assert.Multiple(() =>
             {
-                Assert.That(entMan.EntityExists(anchorDown), Is.False);
+                Assert.That(newAnchorUp, Is.EqualTo(anchorDown));
+                Assert.That(entMan.EntityExists(anchorDown), Is.True);
                 Assert.That(entMan.EntityExists(newAnchorUp), Is.True);
                 Assert.That(shuttle.Enabled, Is.True);
             });

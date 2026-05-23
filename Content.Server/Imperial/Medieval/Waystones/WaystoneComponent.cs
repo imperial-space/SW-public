@@ -1,3 +1,4 @@
+using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.Factions.Prototypes;
 using Robust.Shared.Prototypes;
 
@@ -25,16 +26,20 @@ public sealed partial class WaystoneComponent : Component
     public bool IsEnable = true;
 
     [DataField]
-    public EntityUid SelectedWaystone = EntityUid.Invalid;
+    public EntityUid? SelectedWaystone;
 
     [DataField]
     public int CurrentPaid = 0;
 
     [DataField]
-    public EntityUid User = EntityUid.Invalid;
+    public EntityUid? User;
 
     [DataField]
     public TimeSpan BookedTime = TimeSpan.Zero;
+
+    public EntityUid? BookedAudioStream;
+
+    public DoAfterId? ActiveDoAfterId;
 
     [DataField]
     public int CollectedMoney = 0;
@@ -45,4 +50,9 @@ public sealed partial class WaystoneComponent : Component
     [DataField]
     public float CurrentEnergy = 100f;
 
+    [DataField]
+    public float EnergyRegenRate = 1f;
+
+    [DataField]
+    public string LinkedCircle = string.Empty;
 }

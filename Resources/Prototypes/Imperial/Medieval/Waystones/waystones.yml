@@ -4,10 +4,10 @@
   description: WaystoneDesc
   parent: BaseStructure
   components:
-  - type: SpriteFade
   - type: Sprite
-    drawdepth: Overdoors
-    offset: 0, -0.5
+    noRot: true
+    drawdepth: Mobs
+    offset: 0 , 1
     sprite: Imperial/Medieval/Waystones/waystones.rsi
     state: teleportation_stone
   - type: Physics
@@ -29,11 +29,12 @@
           radius: 0.45
         density: 190
         mask:
-        - MachineMask
+        - MobMask
         layer:
-        - MobLayer
+        - Opaque
         - MidImpassable
-        - LowImpassable
+        - HighImpassable
+        - BulletImpassable
   - type: Waystone
   - type: UserInterface
     interfaces:
@@ -43,20 +44,41 @@
         type: WaystoneBoundUserInterfaceAdmin
   - type: InteractionOutline
 
-- type: decal
+- type: entity
   id: WaystoneRedCircle
-  sprite:
+  name: WaystoneRedCircle
+  description: WaystoneRedCircleDesc
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    drawdepth: FloorObjects
     sprite: Imperial/Medieval/Waystones/waystones.rsi
     state: teleportation_stone_red
+  - type: Physics
+    bodyType: Static
+  - type: WaystoneCircle
 
-- type: decal
+- type: entity
   id: WaystoneYellowCircle
-  sprite:
+  name: WaystoneYellowCircle
+  description: WaystoneYellowCircleDesc
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
     sprite: Imperial/Medieval/Waystones/waystones.rsi
     state: teleportation_stone_yellow
+  - type: WaystoneCircle
 
-- type: decal
+- type: entity
   id: WaystoneBlueCircle
-  sprite:
+  name: WaystoneBlueCircle
+  description: WaystoneBlueCircleDesc
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
     sprite: Imperial/Medieval/Waystones/waystones.rsi
     state: teleportation_stone_blue
+  - type: WaystoneCircle

@@ -5,11 +5,13 @@ using Content.Shared.ActionBlocker;
 using Content.Shared.DoAfter;
 using Content.Shared.Imperial.Medieval.Administration.Ships;
 using Content.Shared.Imperial.Medieval.Ships.Helm;
+using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -25,6 +27,7 @@ public sealed class HelmSystem : EntitySystem
     [Dependency] private readonly SharedInteractionSystem _interaction = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
 
     private TimeSpan _nextCheckTime;
 
@@ -59,14 +62,17 @@ public sealed class HelmSystem : EntitySystem
         if (component.HelmRotation == 0f)
         {
             args.PushMarkup(Loc.GetString("helm-examine-center"));
-            return;
+        }
+        else
+        {
+            var degrees = MathF.Abs(component.HelmRotation).ToString("0.##");
+            if (component.HelmRotation > 0f)
+                args.PushMarkup(Loc.GetString("helm-examine-right", ("degrees", degrees)));
+            else
+                args.PushMarkup(Loc.GetString("helm-examine-left", ("degrees", degrees)));
         }
 
-        var degrees = MathF.Abs(component.HelmRotation).ToString("0.##");
-        if (component.HelmRotation > 0f)
-            args.PushMarkup(Loc.GetString("helm-examine-right", ("degrees", degrees)));
-        else
-            args.PushMarkup(Loc.GetString("helm-examine-left", ("degrees", degrees)));
+        args.PushMarkup(Loc.GetString("helm-examine-sails-efficiency", ("efficiency", FormatEfficiency(GetSailsEfficiency(uid)))));
     }
 
     private void OnMenuOptionSelected(HelmMenuActionEvent args, EntitySessionEventArgs session)
@@ -150,7 +156,7 @@ public sealed class HelmSystem : EntitySystem
         {
             var helm = helmComponent.Owner;
             var helmXform = Transform(helm);
-            if (helmXform.GridUid is not { } boat || !HasComp<MapGridComponent>(boat))
+            if (!TryGetGrid(helm, helmXform, out var boat))
                 continue;
 
             RotateShip(boat, helmComponent);
@@ -166,16 +172,54 @@ public sealed class HelmSystem : EntitySystem
         if (steeringPower <= 0f)
             return;
 
-        var steeringInput = GetSteeringInput(helmComponent);
-        if (MathF.Abs(steeringInput) < 0.001f)
+        if (!TryComp<PhysicsComponent>(boat, out var body))
             return;
 
         var weight = MathF.Max(helmComponent.MinShipWeight, _rdWeight.GetTotal(boat));
         var weightDivider = 1f + weight * 0.01f;
+        var steeringInput = GetSteeringInput(helmComponent);
+        if (MathF.Abs(steeringInput) < 0.001f)
+        {
+            StabilizeShipRotation(boat, helmComponent, steeringPower, weightDivider, body);
+            return;
+        }
+
         var angularImpulse = steeringInput * helmComponent.MinMotionFactor * steeringPower * helmComponent.TurnImpulseScalar / weightDivider;
 
-        _physics.WakeBody(boat);
-        _physics.ApplyAngularImpulse(boat, angularImpulse);
+        _physics.WakeBody(boat, body: body);
+        _physics.ApplyAngularImpulse(boat, angularImpulse, body: body);
+    }
+
+    private void StabilizeShipRotation(
+        EntityUid boat,
+        HelmComponent helmComponent,
+        float steeringPower,
+        float weightDivider,
+        PhysicsComponent body)
+    {
+        var angularVelocity = body.AngularVelocity;
+        if (MathF.Abs(angularVelocity) < 0.001f)
+        {
+            _physics.SetAngularVelocity(boat, 0f, body: body);
+            return;
+        }
+
+        if (body.InvI <= 0f)
+            return;
+
+        var stabilizingImpulseMagnitude = helmComponent.MinMotionFactor * steeringPower * helmComponent.StabilizingImpulseScalar / weightDivider;
+        if (stabilizingImpulseMagnitude <= 0f)
+            return;
+
+        var desiredImpulse = -MathF.Sign(angularVelocity) * stabilizingImpulseMagnitude;
+        var stopImpulse = -angularVelocity / body.InvI;
+        var stopNow = MathF.Abs(desiredImpulse) >= MathF.Abs(stopImpulse);
+        var angularImpulse = stopNow ? stopImpulse : desiredImpulse;
+
+        _physics.ApplyAngularImpulse(boat, angularImpulse, body: body);
+
+        if (stopNow)
+            _physics.SetAngularVelocity(boat, 0f, body: body);
     }
 
     private float GetSteeringPower(EntityUid boat)
@@ -193,11 +237,41 @@ public sealed class HelmSystem : EntitySystem
         return power;
     }
 
+    private float GetSailsEfficiency(EntityUid helm)
+    {
+        var helmXform = Transform(helm);
+        if (!TryGetGrid(helm, helmXform, out var boat))
+            return 0f;
+
+        var efficiency = 0f;
+        var sailEnumerator = EntityQueryEnumerator<SailComponent, TransformComponent>();
+        while (sailEnumerator.MoveNext(out var sailUid, out var sail, out var sailXform))
+        {
+            if (!TryGetGrid(sailUid, sailXform, out var sailGrid) || sailGrid != boat)
+                continue;
+
+            efficiency += sail.LastSailEfficencyMod;
+        }
+
+        return efficiency;
+    }
+
+    private bool TryGetGrid(EntityUid uid, TransformComponent xform, out EntityUid grid)
+    {
+        grid = _transform.GetMoverCoordinates(uid, xform).EntityId;
+        return HasComp<MapGridComponent>(grid);
+    }
+
     private static float GetSteeringInput(HelmComponent helmComponent)
     {
         var diffDegrees = helmComponent.HelmRotation;
         var maxTurnAngle = MathF.Max(1f, MathF.Abs(helmComponent.SteeringAngleForMaxTurn));
         return Math.Clamp(-diffDegrees / maxTurnAngle, -1f, 1f);
+    }
+
+    private static string FormatEfficiency(float value)
+    {
+        return value.ToString("0.##");
     }
 
     private static float NormalizeHelmRotation(float helmRotation)

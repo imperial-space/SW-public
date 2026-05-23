@@ -15,6 +15,9 @@ public sealed partial class HelmComponent : Component
     [DataField("turnImpulseScalar")]
     public float TurnImpulseScalar = 20f;
 
+    [DataField("stabilizingImpulseScalar")]
+    public float StabilizingImpulseScalar = 80f;
+
     [DataField("minMotionFactor")]
     public float MinMotionFactor = 0.25f;
 

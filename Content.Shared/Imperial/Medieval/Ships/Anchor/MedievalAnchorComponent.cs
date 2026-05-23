@@ -1,13 +1,22 @@
+using Robust.Shared.Serialization;
+
 namespace Content.Shared.Imperial.Medieval.Ships.Anchor;
 
-/// <summary>
-/// This is used for...
-/// </summary>
+[Serializable, NetSerializable]
+public enum MedievalAnchorVisuals : byte
+{
+    Enabled
+}
+
 [RegisterComponent]
 public sealed partial class MedievalAnchorComponent : Component
 {
     [DataField("Enabled")]
     public bool Enabled;
 
-    public string State;
+    [DataField("baseUseTime")]
+    public float BaseUseTime = 11f;
+
+    [DataField("strengthUseTimeModifier")]
+    public float StrengthUseTimeModifier = 0.3f;
 }

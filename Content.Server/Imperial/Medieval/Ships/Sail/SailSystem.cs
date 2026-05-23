@@ -7,10 +7,12 @@ using Content.Shared.Imperial.Medieval.Ships.Islands;
 using Content.Shared.Imperial.Medieval.Ships.Sail;
 using Content.Shared.Imperial.Medieval.Ships.Sea;
 using Content.Shared.Imperial.Medieval.Ships.ShipDrowning;
+using Content.Shared.Examine;
 using Content.Shared.Interaction;
 using Content.Shared.Light.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
@@ -35,6 +37,7 @@ public sealed class SailSystem : EntitySystem
         SubscribeLocalEvent<SailComponent, SailFoldEvent>(OnFold);
         SubscribeLocalEvent<SailComponent, RotateEvent>(OnRotate);
         SubscribeLocalEvent<SailComponent, ActivateInWorldEvent>(OnInteractHand);
+        SubscribeLocalEvent<SailComponent, ExaminedEvent>(OnExamine);
     }
 
     private void OnStartup(EntityUid uid, SailComponent component, ComponentStartup args)
@@ -42,7 +45,7 @@ public sealed class SailSystem : EntitySystem
         UpdateSailVisuals(uid, component);
 
         var sailXform = Transform(uid);
-        if (sailXform.GridUid is not { } boat)
+        if (!TryGetGrid(uid, sailXform, out var boat))
             return;
 
         if (HasComp<ImplicitRoofComponent>(boat))
@@ -56,6 +59,15 @@ public sealed class SailSystem : EntitySystem
 
         args.Handled = true;
         RaiseNetworkEvent(new OpenSailMenuEvent(args.User.Id, uid.Id), actor.PlayerSession);
+    }
+
+    private void OnExamine(EntityUid uid, SailComponent component, ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        args.PushMarkup(Loc.GetString("sail-examine-efficiency", ("efficiency", FormatEfficiency(component.LastSailEfficencyMod))));
+        args.PushMarkup(Loc.GetString("sail-examine-wind-strength", ("strength", FormatEfficiency(_cfg.GetCVar(ShipsCCVars.WindPower)))));
     }
 
     private void OnRotate(EntityUid uid, SailComponent component, RotateEvent args)
@@ -82,7 +94,10 @@ public sealed class SailSystem : EntitySystem
 
         _nextCheckTime = curTime + TimeSpan.FromSeconds(_cfg.GetCVar(ShipsCCVars.WindDelay));
         if (!_cfg.GetCVar(ShipsCCVars.WindEnabled))
+        {
+            ResetSailEfficiency();
             return;
+        }
 
         var windDirection = Angle.FromDegrees(_cfg.GetCVar(ShipsCCVars.WindRotation));
         var stormLevel = _cfg.GetCVar(ShipsCCVars.StormLevel);
@@ -90,28 +105,46 @@ public sealed class SailSystem : EntitySystem
 
         foreach (var sailComponent in EntityManager.EntityQuery<SailComponent>())
         {
-            if (sailComponent.Folded)
-                continue;
-
             var sailEntity = sailComponent.Owner;
             var sailXform = Transform(sailEntity);
-            if (sailXform.GridUid is not { } boat)
+
+            if (!TryGetGrid(sailEntity, sailXform, out var boat))
+            {
+                SetLastSailEfficencyMod(sailEntity, sailComponent, 0f);
                 continue;
+            }
+
+            if (sailComponent.Folded)
+            {
+                SetLastSailEfficencyMod(sailEntity, sailComponent, 0f);
+                continue;
+            }
 
             if (HasComp<IslandComponent>(boat))
+            {
+                SetLastSailEfficencyMod(sailEntity, sailComponent, 0f);
                 continue;
+            }
 
             var mapUid = _transform.GetMap(boat);
             if (!mapUid.HasValue || !HasComp<SeaComponent>(mapUid.Value))
+            {
+                SetLastSailEfficencyMod(sailEntity, sailComponent, 0f);
                 continue;
+            }
 
             EnsureComp<ShipDrowningComponent>(boat);
 
             if (!sailComponent.Push)
             {
                 _transform.SetWorldRotation(sailEntity, windDirection);
+                SetLastSailEfficencyMod(sailEntity, sailComponent, GetForceFactorByAngle(_transform.GetWorldRotation(sailEntity), windDirection));
                 continue;
             }
+
+            var sailDirection = _transform.GetWorldRotation(sailEntity);
+            var forceFactor = GetForceFactorByAngle(sailDirection, windDirection);
+            SetLastSailEfficencyMod(sailEntity, sailComponent, forceFactor);
 
             if (TryComp<ShuttleComponent>(boat, out var shuttle) && !shuttle.Enabled)
                 continue;
@@ -119,9 +152,7 @@ public sealed class SailSystem : EntitySystem
             if (GetShipSpeed(boat) >= _cfg.GetCVar(ShipsCCVars.ShipsMaxSpeed))
                 continue;
 
-            var sailDirection = _transform.GetWorldRotation(sailEntity);
             var shipDirection = _transform.GetWorldRotation(boat);
-            var forceFactor = GetForceFactorByAngle(sailDirection, windDirection);
             if (MathF.Abs(forceFactor) < 0.001f)
                 continue;
 
@@ -136,6 +167,34 @@ public sealed class SailSystem : EntitySystem
             _physics.WakeBody(boat);
             _physics.ApplyLinearImpulse(boat, worldImpulse, body: body);
         }
+    }
+
+    private void ResetSailEfficiency()
+    {
+        foreach (var sailComponent in EntityManager.EntityQuery<SailComponent>())
+        {
+            SetLastSailEfficencyMod(sailComponent.Owner, sailComponent, 0f);
+        }
+    }
+
+    private void SetLastSailEfficencyMod(EntityUid uid, SailComponent component, float mod)
+    {
+        if (MathF.Abs(component.LastSailEfficencyMod - mod) < 0.001f)
+            return;
+
+        component.LastSailEfficencyMod = mod;
+        Dirty(uid, component);
+    }
+
+    private bool TryGetGrid(EntityUid uid, TransformComponent xform, out EntityUid grid)
+    {
+        grid = _transform.GetMoverCoordinates(uid, xform).EntityId;
+        return HasComp<MapGridComponent>(grid);
+    }
+
+    private static string FormatEfficiency(float value)
+    {
+        return value.ToString("0.##");
     }
 
     private float GetWeightDivider(EntityUid boat)

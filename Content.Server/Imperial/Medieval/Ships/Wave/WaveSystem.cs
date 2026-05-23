@@ -215,7 +215,7 @@ public sealed class WaveSystem : EntitySystem
                 if (!_shipHull.TryGetNextDamageTile(tile.Tile.TypeId, out var damagedTileType))
                     continue;
 
-                _map.SetTile(grid.Owner, grid, tilePos, new Tile(damagedTileType, 0, 0));
+                _map.SetTile(grid.Owner, grid, tilePos, _shipHull.WithTileType(tile.Tile, damagedTileType));
             }
         }
 
