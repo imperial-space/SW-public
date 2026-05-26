@@ -34,6 +34,8 @@ public sealed class AchievementTreeLayout : LayoutContainer
 
         var from = NodeCenter(node);
 
+        var bendOffset = node.PixelWidth * 1.5f;
+
         foreach (var child in Children)
         {
             if (child is not AchievementTreeNode parent || !requiredIds.Contains(parent.Proto.ID))
@@ -43,14 +45,17 @@ public sealed class AchievementTreeLayout : LayoutContainer
                 ? (UnlockedEdge, UnlockedCenter)
                 : (LockedEdge,   LockedCenter);
 
-            DrawConnector(handle, from, NodeCenter(parent), edge, center);
+            DrawConnector(handle, from, NodeCenter(parent), edge, center, bendOffset);
         }
     }
 
     private static void DrawConnector(DrawingHandleScreen handle,
-        Vector2 from, Vector2 to, Color edge, Color center)
+    Vector2 from, Vector2 to, Color edge, Color center, float bendOffset)
     {
-        var midX = (from.X + to.X) * 0.5f;
+        var midX = from.X - bendOffset;
+
+        if (from.X < to.X)
+            midX = from.X + bendOffset;
 
         var topY    = MathF.Min(from.Y, to.Y);
         var bottomY = MathF.Max(from.Y, to.Y);
