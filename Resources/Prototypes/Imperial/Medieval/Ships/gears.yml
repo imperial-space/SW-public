@@ -55,3 +55,37 @@
     sprite: Imperial/Medieval/Ships/SteeringWheel.rsi
     state: wheel
   - type: Helm
+
+- type: entity
+  id: MedievalCompass
+  name: compass
+  description: A compass whose needle always points north.
+  parent: BaseItem
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/pinpointer.rsi
+    layers:
+    - state: pinpointer-way
+      map: ["enum.MedievalCompassLayers.Base"]
+    - state: pinonfar
+      map: ["enum.MedievalCompassLayers.Arrow"]
+      shader: unshaded
+  - type: Icon
+    sprite: Objects/Devices/pinpointer.rsi
+    state: pinpointer-way
+  - type: Item
+    sprite: Objects/Devices/pinpointer.rsi
+    inhandVisuals:
+      left:
+      - state: inhand-left-base
+        color: "#606060"
+      - state: inhand-left-stripe
+        color: "#606060"
+      - state: inhand-left-top
+      right:
+      - state: inhand-right-base
+        color: "#606060"
+      - state: inhand-right-stripe
+        color: "#606060"
+      - state: inhand-right-top
+  - type: MedievalCompass
